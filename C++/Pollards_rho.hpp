@@ -41,7 +41,7 @@ vu rho(ul n) {
     if (isp(n)) return {n};
     ll x = pollard(n);
     auto l = rho(x), r = rho(n / x);
-    l.emplace(l.end(), r.begin(), r.end());
+    l.insert(l.end(), r.begin(), r.end());
     sort(l.begin(), l.end());
     return l;
 }
