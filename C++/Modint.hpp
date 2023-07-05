@@ -1,3 +1,4 @@
+// inspired by tatyam(https://atcoder.jp/contests/arc151/submissions/35526971)
 #include <iostream>
 #include <vector>
 #include <utility>
