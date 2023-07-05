@@ -1,3 +1,4 @@
+// inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)
 #include <vector>
 using namespace std;
 typedef long long ll;
