@@ -1,4 +1,5 @@
 #include <vector>
+#include <functional>
 using namespace std;
 typedef long long ll;
 template <class X> struct SegTree {
