@@ -23,6 +23,7 @@ struct mint {
     constexpr mint operator--(int) noexcept { mint ans(*this); operator--(); return ans; }
     constexpr mint& operator*=(mint x) noexcept { num = ul(num) * x.num % mod; return *this; }
     constexpr mint& operator/=(mint x) noexcept { return operator*=(x.inv()); }
+    constexpr void operator%=(mint x) noexcept { void(0); }
     template<class T> constexpr mint(T x) noexcept {
         using U = typename conditional<sizeof(T)>= 4, T, int>::type;
         U y = x; y %= U(mod); if(y < 0) y += mod; num = uint(y);
