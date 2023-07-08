@@ -12,7 +12,7 @@ namespace Twitter {
 void wa_haya_exe(){ cin.tie(nullptr); ios::sync_with_stdio(false); }
 }
 void solve();
-}; // VvyLw
+} // VvyLw
 
 mt19937 EhaL(hash<string>()("Huitloxopetl"));
 mt19937 Random() {
@@ -25,15 +25,15 @@ mt19937 Random() {
 
 #define overload4(_1,_2,_3,_4,name,...) name
 #define overload3(_1,_2,_3,name,...) name
-#define rep1(n) for(ll i=0; i<n; ++i)
-#define rep2(i,n) for(ll i=0; i<n; ++i)
-#define rep3(i,a,b) for(ll i=a; i<=b; ++i)
-#define rep4(i,a,b,c) for(ll i=a; i<=b; i+=c)
+#define rep1(n) for(ll i=0; i<(n); ++i)
+#define rep2(i,n) for(ll i=0; i<(n); ++i)
+#define rep3(i,a,b) for(ll i=(a); i<=(b); ++i)
+#define rep4(i,a,b,c) for(ll i=(a); i<=(b); i+=(c))
 #define rep(...) overload4(__VA_ARGS__,rep4,rep3,rep2,rep1)(__VA_ARGS__)
-#define rvp1(n) for(ll i=n-1; i>=0; i--)
-#define rvp2(i,n) for(ll i=n-1; i>=0; i--)
-#define rvp3(i,a,b) for(ll i=a; i>=b; i--)
-#define rvp4(i,a,b,c) for(ll i=a; i>=b; i-=c)
+#define rvp1(n) for(ll i=(n)-1; i>=0; i--)
+#define rvp2(i,n) for(ll i=(n)-1; i>=0; i--)
+#define rvp3(i,a,b) for(ll i=(a); i>=(b); i--)
+#define rvp4(i,a,b,c) for(ll i=(a); i>=(b); i-=(c))
 #define rvp(...) overload4(__VA_ARGS__,rvp4,rvp3,rvp2,rvp1)(__VA_ARGS__)
 #define all1(v) v.begin(),v.end()
 #define all2(v,a) v.begin(),v.begin()+a
@@ -47,9 +47,9 @@ mt19937 Random() {
 #define each2(x,y,v) for(auto &[x,y]: v)
 #define each3(x,y,z,v) for(auto &[x,y,z]: v)
 #define each(...) overload4(__VA_ARGS__,each3,each2,each1)(__VA_ARGS__)
-#define sqrp1(n) for(ll i=0; i*i<n; ++i)
-#define sqrp2(i,n) for(ll i=0; i*i<n; ++i)
-#define sqrp3(i,a,b) for(ll i=a; i*i<=b; ++i)
+#define sqrp1(n) for(ll i=0; i*i<(n); ++i)
+#define sqrp2(i,n) for(ll i=0; i*i<(n); ++i)
+#define sqrp3(i,a,b) for(ll i=(a); i*i<=(b); ++i)
 #define sqrp(...) overload3(__VA_ARGS__,sqrp3,sqrp2,sqrp1)(__VA_ARGS__)
 #define irp(it,v) for(auto it=v.begin(); it!=v.end(); ++it)
 #define ir(it,v) for(auto it=v.begin(); it!=v.end();)
@@ -182,7 +182,7 @@ template <class Head, class... Tail> void vout(const Head& head, const Tail&... 
 void fix(short x){ cout << fixed << setprecision(x); }
 void Alpha(){ cout << boolalpha; }
 void Flush(){ flush(cout); }
-}; // IO
+} // IO
 using namespace IO;
 #define INT(...) int __VA_ARGS__; in(__VA_ARGS__)
 #define LL(...) ll __VA_ARGS__; in(__VA_ARGS__)
@@ -203,11 +203,10 @@ inline void Yes(bool ok=1) { out(ok?"Yes":"No"); }
 inline void No(bool ok=1) { Yes(!ok); }
 inline void yes(bool ok=1) { print(ok?"yes":"no"); }
 inline void no(bool ok=1) { yes(!ok); }
-}; // yesno_sys
+} // yesno_sys
 using namespace yesno_sys;
 
 #ifdef local
-//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3
 #include <debug_print.hpp>
 #define debug(...) debug_print::multi_print(#__VA_ARGS__, __VA_ARGS__)
 #else
@@ -340,7 +339,7 @@ template <class K, class V> inline K vlmax_k(map<K,V> &m){
     auto pr = *max_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second < y.second; });
     return pr.first;
 }
-}; // zia qu
+} // zia qu
 
 namespace Lady_sANDy {
 template <class T> inline void rev(T& v){ reverse(all(v)); }
@@ -371,9 +370,9 @@ template <class T, class Boolean> inline ul cntif(T& v, Boolean fn){ return coun
 template <class T> inline T Count(V<T>& v, ll x) { /*Sort(v);//*/ return UB(v,x)-LB(v,x); }
 template <class T> inline T IP(const V<T>& v, const V<T>& u, T init){ return inner_product(all(v),u.begin(),init); }
 template <class T> inline V<T> iot(T n, ll init=0){ V<T> a(n); iota(all(a),init); return a;}
-template <class T> inline ll vins(V<T>& v, T x, ll id){ v.emplace(v.begin()+id,x); return v.size(); }
-template <class T, class U> inline ll vins(T& v, U u, ll id){ v.emplace(v.begin()+id,all(u)); return v.size(); }
-template <class T, class U> inline ll vins(T& v, U u, ll id, ll a, ll b){ v.emplace(v.begin()+id,all(u,a,b)); return v.size(); }
+template <class T> inline ll vins(V<T>& v, T x, ll id){ v.insert(v.begin()+id,x); return v.size(); }
+template <class T, class U> inline ll vins(T& v, U u, ll id){ v.insert(v.begin()+id,all(u)); return v.size(); }
+template <class T, class U> inline ll vins(T& v, U u, ll id, ll a, ll b){ v.insert(v.begin()+id,all(u,a,b)); return v.size(); }
 template <class T, class U> inline ll ers(T& v, U x){ v.erase(remove(all(v),x),v.end()); return v.size(); }
 template <class T, class Boolean> ll ersif(T& v, Boolean x){ v.erase(remove_if(all(v),x),v.end()); return v.size(); }
 template <class T> inline ll unq(T& v){ Sort(v); v.erase(unique(all(v)),v.end()); return v.size(); }
@@ -416,7 +415,7 @@ template <class T> inline ll vmul(V<T> &v, ll a, ll b){ return reduce(all(v,a,b)
 template <class T> inline ld vdmul(V<T> &v){ return reduce(all(v),1.0L,[](ll acc,ll i){ return acc*i; }); }
 template <class T> inline ld vdmul(V<T> &v, ll a, ll b){ return reduce(all(v,a,b),1.0L,[](ll acc,ll i){ return acc*i; }); }
 #endif
-}; // Lady s&y
+} // Lady s&y
 
 namespace Heileden {
 /* BFS Sample
@@ -497,7 +496,7 @@ inline vb SoE(ll n) {
     if(n>=1) prime[1]=0;
     sqrp(i,2,n) {
         if(!prime[i]) continue;
-        rep(j,i*i,n+1,i) prime[j]=0;
+        rep(j,i*i,n,i) prime[j]=0;
     }
     return prime;
 }
@@ -505,7 +504,7 @@ inline vb SoE(ll n) {
 // prime factor
 template <class T> inline V<PP<T>> prmfct(T n) {
     V<PP<T>> res;
-    rep(i,2,n+1) {
+    sqrp(i,2,n) {
         if(n%i!=0) continue;
         T tmp=0;
         while(n%i==0) {
@@ -519,14 +518,14 @@ template <class T> inline V<PP<T>> prmfct(T n) {
 }
 
 // Manacher
-V<int> manacher(const string &s) {
-    const int n = s.size();
-    V<int> radius(n);
-    int i = 0, j = 0;
+vi manacher(const string &s) {
+    const ll n = s.size();
+    vi radius(n);
+    ll i = 0, j = 0;
     while(i < n) {
         while(i - j >= 0 && i + j < n && s[i - j] == s[i + j]) ++j;
         radius[i] = j;
-        int k = 1;
+        ll k = 1;
         while(i - k >= 0 && i + k < n && k + radius[i - k] < j) {
             radius[i + k] = radius[i - k];
             ++k;
@@ -538,29 +537,37 @@ V<int> manacher(const string &s) {
 }
 
 // factorial
-template <class T> T factor(T n) {
+template <class T> T factor(T n, T mod=0) {
     T res=1;
-    while(n>0) res*=n--;
+    while(n>0) {
+        res*=n--;
+        if(mod) res%=mod;
+    }
     return res;
 }
 
 // permutation
-template <class T=ll> T perm(T n, T r) {
-    T tmp=n;
+template <class T=ll> T perm(T n, T r, T mod=0) {
+    const T tmp=n;
     T res=1;
-    while(n>tmp-r) res*=n--;
+    while(n>tmp-r) {
+        res*=n--;
+        if(mod) res%=mod;
+    }
     return res;
 }
 
 // binomial
-template <class T=ll> T binom(T n, T r) {
+template <class T=ll> T binom(T n, T r, T mod=0) {
     if(r < 0 || n < r) return 0;
-    T ret = 1;
+    T res = 1;
     rep(i,1,r) {
-        ret *= n--;
-        ret /= i;
+        res*=n--;
+        if(mod) res%=mod;
+        res/=i;
+        if(mod) res%=mod;
     }
-    return ret;
+    return res;
 }
 
 // integer judge
@@ -573,7 +580,7 @@ template <class T> inline bool grundy(V<T> v) {
     each(el,v) res^=el;
     return res!=0;
 }//*/
-}; // Heileden
+} // Heileden
 
 
 // --------------------------------------------------------------------------------------------------------------
