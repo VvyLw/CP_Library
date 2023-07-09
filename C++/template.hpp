@@ -23,7 +23,7 @@ using namespace __gnu_pbds;
 
 namespace VvyLw {
 namespace Twitter {
-void wa_haya_exe(){ cin.tie(nullptr); ios::sync_with_stdio(false); }
+void wa_haya_exe(){ cin.tie(nullptr) -> sync_with_stdio(false); }
 }
 void solve();
 } // VvyLw
