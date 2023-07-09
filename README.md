@@ -2,6 +2,4 @@
 競技プログラミング用のライブラリ  
 大体が借り物です。。。
   
-
-Library for Competitive Programming  
-Most are borrowed...
+Library for Competitive Programming
