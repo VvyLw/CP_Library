@@ -3,16 +3,12 @@
 using namespace std;
 typedef vector<int64_t> vi;
 typedef vector<vi> wi;
-//#include "template.hpp"
-namespace zia_qu {
-    inline int bitdigit(int64_t x){ return 64 - __builtin_clzll(x); }
-}//*/
 struct LowestCommonAncestor {
     const int LOG;
     vi dep;
     const wi &g;
     wi table;
-    LowestCommonAncestor(const wi &g) : g(g), dep(g.size()), LOG(zia_qu::bitdigit(g.size())) {
+    LowestCommonAncestor(const wi &g) : g(g), dep(g.size()), LOG(64 - __builtin_clzll(g.size())) {
         table.assign(LOG, vi(g.size(), -1));
     }
     void dfs(int idx, int par, int d) {
