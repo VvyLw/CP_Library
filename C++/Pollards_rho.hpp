@@ -1,3 +1,4 @@
+// inspired by Plato_(https://atcoder.jp/contests/abc284/submissions/37807522)
 #include <vector>
 #include <algorithm>
 #include <numeric>
