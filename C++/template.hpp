@@ -1,5 +1,19 @@
+#if !__INCLUDE_LEVEL__
+#include __FILE__
+
+void VvyLw::solve() {
+  
+}
+
+// --------------------------------------------------------------------------------------------------------------
+
+#else
+
 #include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
 using namespace std;
+using namespace __gnu_pbds;
 
 // --------------------------------------------------------------------------------------------------------------
 
@@ -16,9 +30,9 @@ void solve();
 
 mt19937 EhaL(hash<string>()("Huitloxopetl"));
 mt19937 Random() {
-    random_device seed_gen;
-    mt19937 engine {seed_gen()};
-    return engine;
+  random_device seed_gen;
+  mt19937 engine {seed_gen()};
+  return engine;
 }
 
 // --------------------------------------------------------------------------------------------------------------
@@ -59,6 +73,8 @@ using ll = long long;
 using ld = long double;
 using uint = unsigned;
 using ul = unsigned long long;
+using i128 = __int128_t;
+using u128 = __uint128_t;
 namespace vectors {
 template <class T> using V = vector<T>;
 using vi = V<ll>;
@@ -83,8 +99,8 @@ template <class T, class U> V<T> operator+(const V<T>& v, const U x) { V<T> res 
 template <class T, class U> V<T> operator-(const V<T>& v, const U x) { V<T> res = v; res-=x; return res; }
 template <class T, class U> V<T> operator*(const V<T>& v, const U x) { V<T> res = v; res*=x; return res; }
 template <class T, class U> V<T> operator/(const V<T>& v, const U x) { V<T> res = v; res/=x; return res; }
-template <class T, class U> bool operator==(const V<T>& v, const V<T>& w) { return (v.size()==w.size() && equal(all(v),w.begin())); }
-template <class T, class U> bool operator!=(const V<T>& v, const V<T>& w) { return !(v==w); }
+template <class T> bool operator==(const V<T>& v, const V<T>& w) { return (v.size()==w.size() && equal(all(v),w.begin())); }
+template <class T> bool operator!=(const V<T>& v, const V<T>& w) { return !(v==w); }
 } // vectors
 using namespace vectors;
 namespace pairs {
@@ -105,8 +121,16 @@ template <class T, class U> PP<T>& operator*=(PP<T>& a, const U& b) { return a =
 template <class T, class U> PP<T>& operator/=(PP<T>& a, const U& b) { return a = a / b; }
 template <class T> bool operator==(const PP<T> &p, const PP<T> &q){ return p.first==q.first && p.second==q.second; }
 template <class T> bool operator!=(const PP<T> &p, const PP<T> &q){ return !(p==q); }
+template <class T> bool operator<(const PP<T> &p, const PP<T> &q){ if(p.first==q.first) return p.second<q.second; return p.first<q.first; }
+template <class T> bool operator<=(const PP<T> &p, const PP<T> &q){ if(p.first==q.first) return p.second<=q.second; return p.first<q.first; }
+template <class T> bool operator>(const PP<T> &p, const PP<T> &q){ if(p.first==q.first) return p.second>q.second; return p.first>q.first; }
+template <class T> bool operator>=(const PP<T> &p, const PP<T> &q){ if(p.first==q.first) return p.second>=q.second; return p.first>q.first; }
 template <class T, class U> bool operator==(const P<T,U> &p, const P<T,U> &q){ return p.first==q.first && p.second==q.second; }
 template <class T, class U> bool operator!=(const P<T,U> &p, const P<T,U> &q){ return !(p==q); }
+template <class T, class U> bool operator<(const P<T,U> &p, const P<T,U> &q){ if(p.first==q.first) return p.second<q.second; return p.first<q.first; }
+template <class T, class U> bool operator<=(const P<T,U> &p, const P<T,U> &q){ if(p.first==q.first) return p.second<=q.second; return p.first<q.first; }
+template <class T, class U> bool operator>(const P<T,U> &p, const P<T,U> &q){ if(p.first==q.first) return p.second>q.second; return p.first>q.first; }
+template <class T, class U> bool operator>=(const P<T,U> &p, const P<T,U> &q){ if(p.first==q.first) return p.second>=q.second; return p.first>q.first; }
 template <class T> PP<T> rotate(const PP<T>& a) { return {-a.second, a.first}; } // 90 degree ccw
 template <class T> T dot(const PP<T>& a, const PP<T>& b) { return a.first * b.first + a.second * b.second; }
 template <class T> T cross(const PP<T>& a, const PP<T>& b) { return dot(rotate(a), b); }
@@ -114,26 +138,26 @@ template <class T> T square(const PP<T>& a) { return dot(a, a); }
 template <class T> ld abs(const PP<T>& a) { return hypotl(a.first, a.second); }
 template <class T> T gcd(const PP<T>& a) { return gcd(a.first, a.second); }
 template <class T> PP<T> normalize(PP<T> a) {
-    if(a == PP<T>{}) return a;
-    a /= gcd(a);
-    if(a < PP<T>{}) a = -a;
-    return a;
+  if(a == PP<T>{}) return a;
+  a /= gcd(a);
+  if(a < PP<T>{}) a = -a;
+  return a;
 }
 template <class T, class U> P<U,T> swap(P<T,U> &p){ P<U,T> ret={p.second,p.first}; return ret; }
 template <class T, class U> V<P<U,T>> swap(V<P<T,U>> &vp) {
-    V<P<U,T>> ret;
-    FE(vp,[&ret](P<T,U> el){ret.emplace_back(pairs::swap(el));});
-    return ret;
+  V<P<U,T>> ret;
+  FE(vp,[&ret](P<T,U> el){ret.emplace_back(pairs::swap(el));});
+  return ret;
 }
 template <class T, class U> V<T> first(const V<P<T,U>> &vp) {
-    V<T> res;
-    each(el,vp) res.emplace_back(el.first);
-    return res;
+  V<T> res;
+  each(el,vp) res.emplace_back(el.first);
+  return res;
 }
 template <class T, class U> V<U> second(const V<P<T,U>> &vp) {
-    V<U> res;
-    each(el,vp) res.emplace_back(el.second);
-    return res;
+  V<U> res;
+  each(el,vp) res.emplace_back(el.second);
+  return res;
 }
 } // pairs
 using namespace pairs;
@@ -141,14 +165,16 @@ template <class T> using pq = priority_queue<T>;
 template <class T> using pqr = priority_queue<T,V<T>,greater<T>>;
 template <class T, class U> using pqs = priority_queue<P<T,U>>;
 template <class T, class U> using pqrs = priority_queue<P<T,U>,V<P<T,U>>,greater<P<T,U>>>;
+template <class T> using Tree = tree<T,null_type,less<T>,rb_tree_tag,tree_order_statistics_node_update>;
+template <class T> using TREE = tree<T,null_type,greater<T>,rb_tree_tag,tree_order_statistics_node_update>;
 template <class T, class U> bool chmax(T& a, const U& b) { if (a<b) { a=b; return 1; } return 0; }
 template <class T, class U> bool chmin(T& a, const U& b) { if (a>b) { a=b; return 1; } return 0; }
 template <class T, class U> inline bool overflow_if_add(T a, U b) { return (numeric_limits<T>::max()-a)<b; }
 template <class T, class U> inline bool overflow_if_mul(T a, U b) { return (numeric_limits<T>::max()/a)<b; }
 const int dx[]={0,0,-1,1,-1,-1,1,1};
 const int dy[]={-1,1,0,0,-1,1,-1,1};
-const int MOD = 998244353;
-const int M0D = 1000000007;
+const int MOD = 0x3b800001;
+const int M0D = 1e9+7;
 const int INF = 0x3fffffff;
 const ll LINF = 0x1fffffffffffffff;
 const ld DINF = numeric_limits<ld>::infinity();
@@ -156,6 +182,28 @@ const double PI = acos(-1);
 const double E = 2.718281828459045;
 
 namespace IO {
+ostream &operator<<(ostream &dest, i128 value) {
+  ostream::sentry s(dest);
+  if (s) {
+    u128 tmp = value < 0 ? -value : value;
+    char buffer[128];
+    char *d = end(buffer);
+    do {
+      --d;
+      *d = "0123456789"[tmp % 10];
+      tmp /= 10;
+    } while (tmp != 0);
+    if (value < 0) {
+      --d;
+      *d = '-';
+    }
+    int len = end(buffer) - d;
+    if (dest.rdbuf()->sputn(d, len) != len) {
+      dest.setstate(ios_base::badbit);
+    }
+  }
+  return dest;
+}
 template <class T> void scan(T& a){ cin >> a; }
 template <class T, class U> void scan(P<T,U>& p){ scan(p.first); scan(p.second); }
 template <class T> void scan(V<T>& a){ each(i,a) scan(i); }
@@ -207,16 +255,13 @@ inline void no(bool ok=1) { yes(!ok); }
 using namespace yesno_sys;
 
 #ifdef local
-#include <debug_print.hpp>
-#define debug(...) debug_print::multi_print(#__VA_ARGS__, __VA_ARGS__)
+#define debug(...) do { print(#__VA_ARGS__); print(':'); out(__VA_ARGS__); } while(false)
 #else
-#define debug(...) static_cast<void>(0)
+#define debug(...) void(0)
 #endif
 #define elif else if
 #define scp(a,x,b) a<=x&&x<=b
 #define eid(el,v) &el-&v[0]
-#define mp make_pair
-#define mt make_tuple
 #define gt(tpl,x) get<x>(tpl)
 #define bif(bit,tar) (tar>>bit)&1
 #define nxp(x) next_permutation(all(x))
@@ -228,19 +273,19 @@ template <class T> inline T sqr(T x){ return x*x; }
 template <class T> inline T cub(T x){ return x*x*x; }
 template <class T> inline T Mod(T x, T m){ return (x+m)%m; }
 template <class T> inline T Pow(T a, T b, T mod=0) {
-    T res=1;
-    if(mod) {
-        res%=mod;
-        a%=mod;
-    }
-    while(b>0) {
-        if(b&1) res*=a;
-        if(mod) res%=mod;
-        a*=a;
-        if(mod) a%=mod;
-        b>>=1;
-    }
-    return res;
+  T res=1;
+  if(mod) {
+    res%=mod;
+    a%=mod;
+  }
+  while(b>0) {
+    if(b&1) res*=a;
+    if(mod) res%=mod;
+    a*=a;
+    if(mod) a%=mod;
+    b>>=1;
+  }
+  return res;
 }
 inline ll Ceil(ld x, ll m){ return ceil(x/m); }
 inline ll Round(ld x, ll m, short fx=0){ if(fx==0) return round(x/m); else { ul y=Pow<ul>(10,fx); return round((x/y)/m)*y; } }
@@ -256,6 +301,8 @@ inline bool islower(char c){ return std::islower(c); }
 inline bool islower(string s){ bool ok=1; each(el,s) ok&=islower(el); return ok; }
 inline bool isalpha(char c){ return std::isalpha(c); }
 inline bool isalpha(string s){ bool ok=1; each(el,s) ok&=isalpha(el); return ok; }
+inline bool isdigit(char c){ return std::isdigit(c); }
+inline bool isdigit(string s){ bool ok=1; each(el,s) ok&=isdigit(el); return ok; }
 inline bool isalnum(char c){ return std::isalnum(c); }
 inline bool isalnum(string s){ bool ok=1; each(el,s) ok&=isalnum(el); return ok; }
 inline bool isspace(char c){ return std::isspace(c); }
@@ -268,54 +315,62 @@ inline void strins(string &s, string t, ll id){ s.insert(id,t); }
 inline string toupper(string s){ each(c,s) c=std::toupper(c); return s; }
 inline string tolower(string s){ each(c,s) c=std::tolower(c); return s; }
 inline vi ten_to_adic(ll m, ll n) {
-    vi res;
-    ll now=m;
-    while(now!=0) {
-        res.emplace_back(now%n);
-        now/=n;
-    }
-    //rev(res);
-    return res;
+  vi res;
+  ll now=m;
+  while(now!=0) {
+    res.emplace_back(now%n);
+    now/=n;
+  }
+  //rev(res);
+  return res;
 }
 inline ll adic_to_ten(vi &v, ll u) {
-    ll res=0;
-    //rev(v);
-    each(el,v) {
-        ll idx=eid(el,v);
-        res+=Pow(u,idx)*el;
-    }
-    return res;
+  ll res=0;
+  //rev(v);
+  each(el,v) {
+    ll idx=eid(el,v);
+    res+=Pow(u,idx)*el;
+  }
+  return res;
 }
 inline string to_hex(ll x) {
-    stringstream ss;
-    ss<<hex<<x;
-    string s=ss.str();
-    //s=toupper(s);
-    return s;
+  stringstream ss;
+  ss<<hex<<x;
+  string s=ss.str();
+  //s=toupper(s);
+  return s;
 }
 inline string to_oct(ll x) {
-    stringstream s;
-    s<<oct<<x;
-    return s.str();
+  stringstream s;
+  s<<oct<<x;
+  return s.str();
 }
 inline string to_bin(ll x) {
-    stringstream ss;
-    ss<<bitset<64>(x);
-    string s=ss.str();
-    reverse(all(s));
-    s.resize(ten_to_adic(x,2).size());
-    reverse(all(s));
-    return s;
+  stringstream ss;
+  ss<<bitset<64>(x);
+  string s=ss.str();
+  reverse(all(s));
+  s.resize(ten_to_adic(x,2).size());
+  reverse(all(s));
+  return s;
 }
 inline ll to_ten(string s, short base){ return stoll(s,nullptr,base); }
+inline i128 stoL(string &s) {
+  i128 ret = 0;
+  each(el,s) {
+    if(isdigit(el)) ret = 10 * ret + el - '0';
+  }
+  if(s.front()=='-') ret=-ret;
+  return ret;
+}
 template <class... Ts> constexpr auto symin(Ts... a){ return min(initializer_list<common_type_t<Ts...>>{a...}); }
 template <class... Ts> constexpr auto symax(Ts... a){ return max(initializer_list<common_type_t<Ts...>>{a...}); }
 template<class K, class U> inline V<K> kyl(const map<K,U> m, const U val) {
-    V<K> keys;
-    irp(it,m) {
-        if(it->second==val) keys.emplace_back(it->first);
-    }
-    return keys;
+  V<K> keys;
+  irp(it,m) {
+    if(it->second==val) keys.emplace_back(it->first);
+  }
+  return keys;
 }
 #define stmin(st) *st.begin()
 #define stmax(st) *st.rbegin()
@@ -324,20 +379,20 @@ template<class K, class U> inline V<K> kyl(const map<K,U> m, const U val) {
 #define kymin_v(m) m.begin()->second
 #define kymax_v(m) m.rbegin()->second
 template <class K, class V> inline V vlmin(map<K,V> &m){
-    auto pr = *min_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second > y.second; });
-    return pr.second;
+  auto pr = *min_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second > y.second; });
+  return pr.second;
 }
 template <class K, class V> inline V vlmax(map<K,V> &m){
-    auto pr = *max_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second < y.second; });
-    return pr.second;
+  auto pr = *max_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second < y.second; });
+  return pr.second;
 }
 template <class K, class V> inline K vlmin_k(map<K,V> &m){
-    auto pr = *min_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second > y.second; });
-    return pr.first;
+  auto pr = *min_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second > y.second; });
+  return pr.first;
 }
 template <class K, class V> inline K vlmax_k(map<K,V> &m){
-    auto pr = *max_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second < y.second; });
-    return pr.first;
+  auto pr = *max_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second < y.second; });
+  return pr.first;
 }
 } // zia qu
 
@@ -381,17 +436,17 @@ template <class T> inline T cp(const T& v, ll a, ll b){ T res; copy(all(v,a,b),b
 template <class T> inline void rtt(T& s, ll idx){ ll id=zia_qu::Mod<ll>(idx,s.size()); rotate(all(s,id),s.end());  }
 template <class T> inline void rtt(T& s, ll a, ll b, ll c){ rotate(all(s,a,b),s.end()-c);  }
 template <class T> inline V<T> psum(V<T>& v) {
-    V<T> s(v.size()+1);
-    partial_sum(all(v),s.begin());
-    rtt(s,-1);
-    return s;
+  V<T> s(v.size()+1);
+  partial_sum(all(v),s.begin());
+  rtt(s,-1);
+  return s;
 }
 template <class T> inline V<T> adf(V<T>& v) {
-    V<T> res(v.size());
-    adjacent_difference(all(v),res.begin());
-    rtt(res, 1);
-    res.resize(v.size()-1);
-    return res;
+  V<T> res(v.size());
+  adjacent_difference(all(v),res.begin());
+  rtt(res, 1);
+  res.resize(v.size()-1);
+  return res;
 }
 #ifdef local
 #define rext(...) static_cast<vi>(0)
@@ -420,154 +475,154 @@ template <class T> inline ld vdmul(V<T> &v, ll a, ll b){ return reduce(all(v,a,b
 namespace Heileden {
 /* BFS Sample
 template <class T> inline void bfs(V<V<T>>& g, T start, vb& visited) {
-    queue<T> que;
-    que.emplace(start);
-    visited[start]=1;
-    while(!que.empty()) {
-        T v=que.front();
-        que.pop();
-        each(nv,g[v]) {
-            if(!visited[nv]) {
-                visited[nv]=1;
-                que.emplace(nv);
-            }
-        }
+  queue<T> que;
+  que.emplace(start);
+  visited[start]=1;
+  while(!que.empty()) {
+    T v=que.front();
+    que.pop();
+    each(nv,g[v]) {
+      if(!visited[nv]) {
+        visited[nv]=1;
+        que.emplace(nv);
+      }
     }
+  }
 }//*/
 
 /* DFS Sample
 template <class T> inline void dfs(V<V<T>>& g, T v, vb& visited) {
-    visited[v]=1;
-    each(nv,g[v]) if(!visited[nv]) dfs(g,nv,visited);
+  visited[v]=1;
+  each(nv,g[v]) if(!visited[nv]) dfs(g,nv,visited);
 }//*/
 
 /* Permutation Sample
 template <class T> inline void nPr(V<T>& v) {
-    Sort(v);
-    do {out(v);} while(nxp(v));
+  Sort(v);
+  do {out(v);} while(nxp(v));
 }//*/
 
 /* Binary Search Sample
 template <class T, class U> inline ll MGRBS(T v, U x, ll& ng, ll& ok) {
-    while(abs(ok-ng)>1) {
-        ll mid = (ok+ng)/2;
-        if(v[mid]==x) ok=mid;
-        else ng=mid;
-    }
-    return ok;
+  while(abs(ok-ng)>1) {
+    ll mid = (ok+ng)/2;
+    if(v[mid]==x) ok=mid;
+    else ng=mid;
+  }
+  return ok;
 }//*/
 
 /* Dijikstra-like Sample
 template <class T> inline T dijikstra(const V<T>& v) {
-    pqr<T> pq;
-    T res=0;
-    while(!pq.empty()) {
-        each(el,v) pq.emplace(el+res);
-        res=pq.top();
-        pq.pop();
-    }
-    return res;
+  pqr<T> pq;
+  T res=0;
+  while(!pq.empty()) {
+    each(el,v) pq.emplace(el+res);
+    res=pq.top();
+    pq.pop();
+  }
+  return res;
 }//*/
 
 // divisor
 template <class T> inline V<T> divisor(T n) {
-    V<T> div;
-    sqrp(i,1,n) {
-        if(n%i==0) {
-            div.emplace_back(i);
-            if(i*i!=n) div.emplace_back(n/i);
-        }
+  V<T> div;
+  sqrp(i,1,n) {
+    if(n%i==0) {
+      div.emplace_back(i);
+      if(i*i!=n) div.emplace_back(n/i);
     }
-    Lady_sANDy::Sort(div);
-    return div;
+  }
+  Lady_sANDy::Sort(div);
+  return div;
 }
 
 // prime judge
 inline bool is_prime(ul n) {
-    if(n==1) return 0;
-    sqrp(i,2,n) if(n%i==0) return 0;
-    return 1;
+  if(n==1) return 0;
+  sqrp(i,2,n) if(n%i==0) return 0;
+  return 1;
 }
 
 // Siege of Eratosthenes
-inline vb SoE(ll n) {
-    vb prime(n+1,1);
-    if(n>=0) prime[0]=0;
-    if(n>=1) prime[1]=0;
-    sqrp(i,2,n) {
-        if(!prime[i]) continue;
-        rep(j,i*i,n,i) prime[j]=0;
-    }
-    return prime;
+inline vi SoE(ll n) {
+  vb prime(n+1,1);
+  vi p;
+  rep(i,2,n) {
+    if(!prime[i]) continue;
+    rep(j,i*i,n,i) prime[j]=0;
+    p.emplace_back(i);
+  }
+  return p;
 }
 
 // prime factor
 template <class T> inline V<PP<T>> prmfct(T n) {
-    V<PP<T>> res;
-    sqrp(i,2,n) {
-        if(n%i!=0) continue;
-        T tmp=0;
-        while(n%i==0) {
-            tmp++;
-            n/=i;
-        }
-        res.emplace_back(i,tmp);
+  V<PP<T>> res;
+  sqrp(i,2,n) {
+    if(n%i!=0) continue;
+    T tmp=0;
+    while(n%i==0) {
+      tmp++;
+      n/=i;
     }
-    if(n!=1) res.emplace_back(n,1);
-    return res;
+    res.emplace_back(i,tmp);
+  }
+  if(n!=1) res.emplace_back(n,1);
+  return res;
 }
 
 // Manacher
 vi manacher(const string &s) {
-    const ll n = s.size();
-    vi radius(n);
-    ll i = 0, j = 0;
-    while(i < n) {
-        while(i - j >= 0 && i + j < n && s[i - j] == s[i + j]) ++j;
-        radius[i] = j;
-        ll k = 1;
-        while(i - k >= 0 && i + k < n && k + radius[i - k] < j) {
-            radius[i + k] = radius[i - k];
-            ++k;
-        }
-        i += k;
-        j -= k;
+  const ll n = s.size();
+  vi radius(n);
+  ll i = 0, j = 0;
+  while(i < n) {
+    while(i - j >= 0 && i + j < n && s[i - j] == s[i + j]) ++j;
+    radius[i] = j;
+    ll k = 1;
+    while(i - k >= 0 && i + k < n && k + radius[i - k] < j) {
+      radius[i + k] = radius[i - k];
+      ++k;
     }
-    return radius;
+    i += k;
+    j -= k;
+  }
+  return radius;
 }
 
 // factorial
 template <class T> T factor(T n, T mod=0) {
-    T res=1;
-    while(n>0) {
-        res*=n--;
-        if(mod) res%=mod;
-    }
-    return res;
+  T res=1;
+  while(n>0) {
+    res*=n--;
+    if(mod) res%=mod;
+  }
+  return res;
 }
 
 // permutation
 template <class T=ll> T perm(T n, T r, T mod=0) {
-    const T tmp=n;
-    T res=1;
-    while(n>tmp-r) {
-        res*=n--;
-        if(mod) res%=mod;
-    }
-    return res;
+  const T tmp=n;
+  T res=1;
+  while(n>tmp-r) {
+    res*=n--;
+    if(mod) res%=mod;
+  }
+  return res;
 }
 
 // binomial
 template <class T=ll> T binom(T n, T r, T mod=0) {
-    if(r < 0 || n < r) return 0;
-    T res = 1;
-    rep(i,1,r) {
-        res*=n--;
-        if(mod) res%=mod;
-        res/=i;
-        if(mod) res%=mod;
-    }
-    return res;
+  if(r < 0 || n < r) return 0;
+  T res = 1;
+  rep(i,1,r) {
+    res*=n--;
+    if(mod) res%=mod;
+    res/=i;
+    if(mod) res%=mod;
+  }
+  return res;
 }
 
 // integer judge
@@ -576,9 +631,9 @@ inline bool is_sqr(ll n){ return is_int(sqrt(n)); }
 
 /* grundy sample
 template <class T> inline bool grundy(V<T> v) {
-    ll res=0;
-    each(el,v) res^=el;
-    return res!=0;
+  ll res=0;
+  each(el,v) res^=el;
+  return res!=0;
 }//*/
 } // Heileden
 
@@ -590,14 +645,9 @@ using namespace Lady_sANDy;
 using namespace Heileden;
 
 int main() {
-    VvyLw::Twitter::wa_haya_exe();
-    /*INT(t); while(t--)//*/
-    VvyLw::solve();
+  VvyLw::Twitter::wa_haya_exe();
+  /*INT(t); while(t--)//*/
+  VvyLw::solve();
 }
 
-// --------------------------------------------------------------------------------------------------------------
-
-
-void VvyLw::solve() {
-    
-}
+#endif
