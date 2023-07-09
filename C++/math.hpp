@@ -49,15 +49,15 @@ inline bool is_prime(ul n) {
     return 1;
 }
 
-inline vector<bool> SoE(ll n) {
+inline vector<int> SoE(ll n) {
     vector<bool> prime(n + 1, 1);
-    if(n >= 0) prime[0] = 0;
-    if(n >= 1) prime[1] = 0;
-    for(ll i = 2; i * i <= n; ++i) {
+    vector<int> p;
+    for(ll i = 2; i <= n; ++i) {
         if(!prime[i]) continue;
         for(ll j = i * i; j <= n; j += i) prime[j]=0;
+        p.emplace_back(i);
     }
-    return prime;
+    return p;
 }
 
 template <class T> inline vector<pair<T, T>> prmfct(T n) {
