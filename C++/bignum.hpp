@@ -30,5 +30,6 @@ inline i128 stoL(string &s) {
     for(auto el: s) {
         if(isdigit(el)) ret = 10 * ret + el - '0';
     }
+    if(s.front() == '-') ret = -ret;
     return ret;
 }
