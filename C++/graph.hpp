@@ -2,6 +2,7 @@
 #include <vector>
 #include <queue>
 using namespace std;
+typedef long long ll;
 template <bool indirected=1> struct graph {
     vector<vector<int>> g;
     graph(int n): g(n){}
