@@ -1,7 +1,7 @@
 // inspired by Luzhiled(https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html)
 #include <vector>
 using namespace std;
-typedef vector<int64_t> vi;
+typedef vector<long long> vi;
 typedef vector<vi> wi;
 struct LowestCommonAncestor {
     const int LOG;
@@ -33,7 +33,7 @@ struct LowestCommonAncestor {
             if(((dep[v] - dep[u]) >> i) & 1) v = table[i][v];
         }
         if(u == v) return u;
-            for(int i = LOG - 1; i >= 0; i--;) {
+            for(int i = LOG - 1; i >= 0; i--) {
             if(table[i][u] != table[i][v]) {
                 u = table[i][u];
                 v = table[i][v];
