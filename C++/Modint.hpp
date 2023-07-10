@@ -1,5 +1,6 @@
 // inspired by tatyam(https://atcoder.jp/contests/arc151/submissions/35526971)
 #include <iostream>
+#include <cassert>
 #include <vector>
 #include <utility>
 #include <type_traits>
