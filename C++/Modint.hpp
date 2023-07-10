@@ -142,6 +142,6 @@ struct a_mint {
 };
 //#include "template.hpp"
 //#define MINT(...) a_mint __VA_ARGS__; in(__VA_ARGS__)
-using vm = vector<a_mint>;
-using wm = vector<vm>;
-using pm = pair<a_mint, a_mint>;
+using va = vector<a_mint>;
+using wa = vector<vm>;
+using pa = pair<a_mint, a_mint>;
