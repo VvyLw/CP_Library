@@ -408,8 +408,8 @@ template <class T> inline T Min(const V<T>& v){ return *min_element(all(v)); }
 template <class T> inline T Max(const V<T>& v){ return *max_element(all(v)); }
 template <class T> inline ll Min_i(const T& v){ return min_element(all(v))-v.begin(); }
 template <class T> inline ll Max_i(const T& v){ return max_element(all(v))-v.begin(); }
-template <class T, class U> inline ll LB(const T& v, const U x){ return lower_bound(all(v),x))-v.begin(); }
-template <class T, class U> inline ll UB(const T& v, const U x){ return upper_bound(all(v),x))-v.begin(); }
+template <class T, class U> inline ll LB(const T& v, const U x){ return lower_bound(all(v),x)-v.begin(); }
+template <class T, class U> inline ll UB(const T& v, const U x){ return upper_bound(all(v),x)-v.begin(); }
 template <class T, class U> inline bool BS(const T& v, const U x){ return binary_search(all(v),x); }
 template <class T, class U, class Boolean> inline bool BS(const T& v, const U x, Boolean fn){ return binary_search(all(v),x,fn); }
 template <class T, class Boolean> inline bool All(const T& v, Boolean fn){ return all_of(all(v),fn); }
