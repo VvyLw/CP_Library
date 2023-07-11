@@ -1,15 +1,13 @@
 // inspired by Luzhiled(https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html)
 #include <vector>
 using namespace std;
-typedef vector<long long> vi;
-typedef vector<vi> wi;
-struct LowestCommonAncestor {
+template <class G> struct LowestCommonAncestor {
     const int LOG;
-    vi dep;
-    const wi &g;
-    wi table;
-    LowestCommonAncestor(const wi &g) : g(g), dep(g.size()), LOG(64 - __builtin_clzll(g.size())) {
-        table.assign(LOG, vi(g.size(), -1));
+    vector<int> dep;
+    const G &g;
+    vector<vector<int>> table;
+    LowestCommonAncestor(const G &g_) : g(g_), dep(g_.size()), LOG(__lg(g_.size()) - 1) {
+        table.assign(LOG, vector<int>(g_.size(), -1));
     }
     void dfs(int idx, int par, int d) {
         table[0][idx] = par;
