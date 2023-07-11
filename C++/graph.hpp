@@ -2,12 +2,11 @@
 #include <vector>
 #include <queue>
 using namespace std;
-typedef long long ll;
 template <bool indirected=1> struct graph {
     vector<vector<int>> g;
     graph(int n): g(n){}
     vector<int>& operator[](int x){ return g[x]; }
-    const vector<int>& operator[](ll at) const { return g[at]; }
+    const vector<int>& operator[](int at) const { return g[x]; }
     operator vector<vector<int>>&(){ return g; }
     operator const vector<vector<int>>&() const { return g; }
     auto begin() const { return g.cbegin(); }
@@ -18,7 +17,7 @@ template <bool indirected=1> struct graph {
         g[a].emplace_back(b);
         if(indirected) g[b].emplace_back(a);
     }
-    void input(ll m, int indexed=1) {
+    void input(int m, int indexed=1) {
         for(int i = 0; i < m; ++i) {
             int a, b;
             cin >> a >> b;
