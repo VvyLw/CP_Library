@@ -310,7 +310,7 @@ inline bool ispunct(char c){ return std::ispunct(c); }
 inline bool ispunct(const string &s){ bool ok=1; each(el,s) ok&=ispunct(el); return ok; }
 inline bool isprint(char c){ return std::isprint(c); }
 inline bool isprint(const string &s){ bool ok=1; each(el,s) ok&=isprint(el); return ok; }
-inline void strins(string &s, ll id, string &t){ s.insert(id,t); }
+inline ll strins(string &s, ll id, string &t){ s.insert(id,t); return s.size(); }
 inline string toupper(string s){ each(c,s) c=std::toupper(c); return s; }
 inline string tolower(string s){ each(c,s) c=std::tolower(c); return s; }
 inline vi ten_to_adic(ll m, ll n) {
@@ -371,13 +371,10 @@ template<class K, class U> inline V<K> kyl(const map<K,U> m, const U val) {
   }
   return keys;
 }
-#define stmin(st) *st.begin()
-#define stmax(st) *st.rbegin()
-#define kymin(m) m.begin()->first
-#define kymax(m) m.rbegin()->first
-#define kymin_v(m) m.begin()->second
-#define kymax_v(m) m.rbegin()->second
-template <class K, class V> inline V vlmin(map<K,V> &m){
+template <class K, class V> inline K kymin(const map<K,V> &m){ return m.begin()->first; }
+template <class K, class V> inline K kymax(const map<K,V> &m){ return m.rbegin()->first; }
+template <class K, class V> inline V kymin_v(const map<K,V> &m){ return m.begin()->second; }
+template <class K, class V> inline V kymax_v(const map<K,V> &m){ return m.rbegin()->second; }template <class K, class V> inline V vlmin(map<K,V> &m){
   auto pr = *min_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second > y.second; });
   return pr.second;
 }
@@ -393,6 +390,8 @@ template <class K, class V> inline K vlmax_k(map<K,V> &m){
   auto pr = *max_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second < y.second; });
   return pr.first;
 }
+template <class T> T stmin(const set<T> &s){ return *s.begin(); }
+template <class T> T stmax(const set<T> &s){ return *s.rbegin(); }
 } // zia qu
 
 namespace Lady_sANDy {
