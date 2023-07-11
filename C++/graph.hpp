@@ -7,7 +7,9 @@ template <bool indirected=1> struct graph {
     vector<vector<int>> g;
     graph(int n): g(n){}
     vector<int>& operator[](int x){ return g[x]; }
+    const vector<int>& operator[](ll at) const { return g[at]; }
     operator vector<vector<int>>&(){ return g; }
+    operator const vector<vector<int>>&() const { return g; }
     auto begin() const { return g.cbegin(); }
     auto end() const { return g.cend(); }
     int size() const { return g.size(); }
