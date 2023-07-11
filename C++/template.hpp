@@ -295,22 +295,22 @@ inline int popcnt(ll x){ return __builtin_popcountll(x); }
 inline int fione(ll x){ return __builtin_ffsll(x); }
 inline int zrcnt(ll x){ return __builtin_ctzll(x); }
 inline bool isupper(char c){ return std::isupper(c); }
-inline bool isupper(string s){ bool ok=1; each(el,s) ok&=isupper(el); return ok; }
+inline bool isupper(const string &s){ bool ok=1; each(el,s) ok&=isupper(el); return ok; }
 inline bool islower(char c){ return std::islower(c); }
-inline bool islower(string s){ bool ok=1; each(el,s) ok&=islower(el); return ok; }
+inline bool islower(const string &s){ bool ok=1; each(el,s) ok&=islower(el); return ok; }
 inline bool isalpha(char c){ return std::isalpha(c); }
-inline bool isalpha(string s){ bool ok=1; each(el,s) ok&=isalpha(el); return ok; }
+inline bool isalpha(const string &s){ bool ok=1; each(el,s) ok&=isalpha(el); return ok; }
 inline bool isdigit(char c){ return std::isdigit(c); }
-inline bool isdigit(string s){ bool ok=1; each(el,s) ok&=isdigit(el); return ok; }
+inline bool isdigit(const string &s){ bool ok=1; each(el,s) ok&=isdigit(el); return ok; }
 inline bool isalnum(char c){ return std::isalnum(c); }
-inline bool isalnum(string s){ bool ok=1; each(el,s) ok&=isalnum(el); return ok; }
+inline bool isalnum(const string &s){ bool ok=1; each(el,s) ok&=isalnum(el); return ok; }
 inline bool isspace(char c){ return std::isspace(c); }
-inline bool isspace(string s){ bool ok=1; each(el,s) ok&=isspace(el); return ok; }
+inline bool isspace(const string &s){ bool ok=1; each(el,s) ok&=isspace(el); return ok; }
 inline bool ispunct(char c){ return std::ispunct(c); }
-inline bool ispunct(string s){ bool ok=1; each(el,s) ok&=ispunct(el); return ok; }
+inline bool ispunct(const string &s){ bool ok=1; each(el,s) ok&=ispunct(el); return ok; }
 inline bool isprint(char c){ return std::isprint(c); }
-inline bool isprint(string s){ bool ok=1; each(el,s) ok&=isprint(el); return ok; }
-inline void strins(string &s, ll id, string t){ s.insert(id,t); }
+inline bool isprint(const string &s){ bool ok=1; each(el,s) ok&=isprint(el); return ok; }
+inline void strins(string &s, ll id, string &t){ s.insert(id,t); }
 inline string toupper(string s){ each(c,s) c=std::toupper(c); return s; }
 inline string tolower(string s){ each(c,s) c=std::tolower(c); return s; }
 inline vi ten_to_adic(ll m, ll n) {
@@ -403,21 +403,20 @@ template <class T> inline void Sort(T& v, ll a, ll b){ sort(all(v,a,b)); }
 template <class T> inline void Sortt(T& v){ sort(rall(v)); }
 template <class T> inline void Sortt(T& v, ll a, ll b){ sort(rall(v,a,b)); }
 template <class T> inline void Sorth(T& v){ make_heap(all(v)); sort_heap(all(v)); }
-template <class T, class I> inline ll dst(T& v, I itr){ return distance(v.begin(),itr); }
 template <class T> inline T mrg(T& a, T& b){ T res; merge(all(a),all(b),back_inserter(res)); return res; }
 template <class T> inline T Min(const V<T>& v){ return *min_element(all(v)); }
 template <class T> inline T Max(const V<T>& v){ return *max_element(all(v)); }
-template <class T> inline ll Min_i(const T& v){ return dst(v,min_element(all(v))); }
-template <class T> inline ll Max_i(const T& v){ return dst(v,max_element(all(v))); }
-template <class T, class U> inline ll LB(const T& v, const U x){ return dst(v,lower_bound(all(v),x)); }
-template <class T, class U> inline ll UB(const T& v, const U x){ return dst(v,upper_bound(all(v),x)); }
+template <class T> inline ll Min_i(const T& v){ return min_element(all(v))-v.begin(); }
+template <class T> inline ll Max_i(const T& v){ return max_element(all(v))-v.begin(); }
+template <class T, class U> inline ll LB(const T& v, const U x){ return lower_bound(all(v),x))-v.begin(); }
+template <class T, class U> inline ll UB(const T& v, const U x){ return upper_bound(all(v),x))-v.begin(); }
 template <class T, class U> inline bool BS(const T& v, const U x){ return binary_search(all(v),x); }
 template <class T, class U, class Boolean> inline bool BS(const T& v, const U x, Boolean fn){ return binary_search(all(v),x,fn); }
 template <class T, class Boolean> inline bool All(const T& v, Boolean fn){ return all_of(all(v),fn); }
 template <class T, class Boolean> inline bool Exist(const T& v, Boolean fn){ return any_of(all(v),fn); }
-template <class T, class Boolean> inline void pt(T& v, Boolean fn){ partition(all(v),fn); }
-template <class T, class Boolean> inline ll ptp(T& v, Boolean fn){ return dst(v,partition_point(all(v),fn)); }
-template <class T, class U> inline ll Find(T& v, const U x){ auto itr=find(all(v),x); if(itr==v.end()) return -1LL; return dst(v,itr); }
+template <class T, class Boolean> inline void pt(const T& v, Boolean fn){ partition(all(v),fn); }
+template <class T, class Boolean> inline ll ptp(const T& v, Boolean fn){ return partition_point(all(v),fn)-v.begin(); }
+template <class T, class U> inline ll Find(T& v, const U x){ auto itr=find(all(v),x); if(itr==v.end()) return -1LL; return itr-v.begin(); }
 template <class T, class U> inline void rpl(T& v, U fn, U r){ replace(all(v),fn,r); }
 template <class T, class Boolean, class U> inline void rplif(T& v, Boolean fn, U r){ replace_if(all(v),fn,r); }
 template <class T, class Boolean> inline ul cntif(T& v, Boolean fn){ return count_if(all(v),fn); }
@@ -425,8 +424,8 @@ template <class T> inline T Count(V<T>& v, ll x) { /*Sort(v);//*/ return UB(v,x)
 template <class T> inline T IP(const V<T>& v, const V<T>& u, T init){ return inner_product(all(v),u.begin(),init); }
 template <class T> inline V<T> iot(T n, ll init=0){ V<T> a(n); iota(all(a),init); return a;}
 template <class T> inline ll vins(V<T>& v, ll id, T x){ v.insert(v.begin()+id,x); return v.size(); }
-template <class T, class U> inline ll vins(T& v, ll id, U u){ v.insert(v.begin()+id,all(u)); return v.size(); }
-template <class T, class U> inline ll vins(T& v, ll id, U u, ll a, ll b){ v.insert(v.begin()+id,all(u,a,b)); return v.size(); }
+template <class T> inline ll vins(T& v, ll id, T& u){ v.insert(v.begin()+id,all(u)); return v.size(); }
+template <class T> inline ll vins(T& v, ll id, T& u, ll a, ll b){ v.insert(v.begin()+id,all(u,a,b)); return v.size(); }
 template <class T, class U> inline ll ers(T& v, U x){ v.erase(remove(all(v),x),v.end()); return v.size(); }
 template <class T, class Boolean> ll ersif(T& v, Boolean x){ v.erase(remove_if(all(v),x),v.end()); return v.size(); }
 template <class T> inline ll unq(T& v){ Sort(v); v.erase(unique(all(v)),v.end()); return v.size(); }
