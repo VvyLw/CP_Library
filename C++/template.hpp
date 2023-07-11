@@ -292,7 +292,6 @@ inline ll Round(ld x, ll m, short fx=0){ if(fx==0) return round(x/m); else { ul 
 inline ld Log(ll x, double base=2){ return log2(x)/log2(base); }
 inline int bitdigit(ll x){ return 64-__builtin_clzll(x); }
 inline int popcnt(ll x){ return __builtin_popcountll(x); }
-inline bool popcnt_OE(ll x){ return __builtin_parityll(x); }
 inline int fione(ll x){ return __builtin_ffsll(x); }
 inline int zrcnt(ll x){ return __builtin_ctzll(x); }
 inline bool isupper(char c){ return std::isupper(c); }
