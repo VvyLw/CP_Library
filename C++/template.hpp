@@ -310,7 +310,7 @@ inline bool ispunct(char c){ return std::ispunct(c); }
 inline bool ispunct(const string &s){ bool ok=1; each(el,s) ok&=ispunct(el); return ok; }
 inline bool isprint(char c){ return std::isprint(c); }
 inline bool isprint(const string &s){ bool ok=1; each(el,s) ok&=isprint(el); return ok; }
-inline ll strins(string &s, ll id, string &t){ s.insert(id,t); return s.size(); }
+inline ll strins(string &s, ll id, const string &t){ s.insert(id,t); return s.size(); }
 inline string toupper(string s){ each(c,s) c=std::toupper(c); return s; }
 inline string tolower(string s){ each(c,s) c=std::tolower(c); return s; }
 inline vi ten_to_adic(ll m, ll n) {
@@ -413,18 +413,18 @@ template <class T, class U> inline bool BS(const T& v, const U x){ return binary
 template <class T, class U, class Boolean> inline bool BS(const T& v, const U x, Boolean fn){ return binary_search(all(v),x,fn); }
 template <class T, class Boolean> inline bool All(const T& v, Boolean fn){ return all_of(all(v),fn); }
 template <class T, class Boolean> inline bool Exist(const T& v, Boolean fn){ return any_of(all(v),fn); }
-template <class T, class Boolean> inline void pt(const T& v, Boolean fn){ partition(all(v),fn); }
+template <class T, class Boolean> inline ll pt(T& v, Boolean fn){ auto p=partition(all(v),fn); return p-v.begin(); }
 template <class T, class Boolean> inline ll ptp(const T& v, Boolean fn){ return partition_point(all(v),fn)-v.begin(); }
 template <class T, class U> inline ll Find(T& v, const U x){ auto itr=find(all(v),x); if(itr==v.end()) return -1LL; return itr-v.begin(); }
-template <class T, class U> inline void rpl(T& v, U fn, U r){ replace(all(v),fn,r); }
-template <class T, class Boolean, class U> inline void rplif(T& v, Boolean fn, U r){ replace_if(all(v),fn,r); }
-template <class T, class Boolean> inline ul cntif(T& v, Boolean fn){ return count_if(all(v),fn); }
+template <class T, class U> inline void rpl(T& v, const U fn, const U r){ replace(all(v),fn,r); }
+template <class T, class Boolean, class U> inline void rplif(T& v, Boolean fn, const U r){ replace_if(all(v),fn,r); }
+template <class T, class Boolean> inline ul cntif(const T& v, Boolean fn){ return count_if(all(v),fn); }
 template <class T> inline T Count(V<T>& v, ll x) { /*Sort(v);//*/ return UB(v,x)-LB(v,x); }
 template <class T> inline T IP(const V<T>& v, const V<T>& u, T init){ return inner_product(all(v),u.begin(),init); }
 template <class T> inline V<T> iot(T n, ll init=0){ V<T> a(n); iota(all(a),init); return a;}
 template <class T> inline ll vins(V<T>& v, ll id, T x){ v.insert(v.begin()+id,x); return v.size(); }
-template <class T> inline ll vins(T& v, ll id, T& u){ v.insert(v.begin()+id,all(u)); return v.size(); }
-template <class T> inline ll vins(T& v, ll id, T& u, ll a, ll b){ v.insert(v.begin()+id,all(u,a,b)); return v.size(); }
+template <class T> inline ll vins(T& v, ll id, const T& u){ v.insert(v.begin()+id,all(u)); return v.size(); }
+template <class T> inline ll vins(T& v, ll id, const T& u, ll a, ll b){ v.insert(v.begin()+id,all(u,a,b)); return v.size(); }
 template <class T, class U> inline ll ers(T& v, U x){ v.erase(remove(all(v),x),v.end()); return v.size(); }
 template <class T, class Boolean> ll ersif(T& v, Boolean x){ v.erase(remove_if(all(v),x),v.end()); return v.size(); }
 template <class T> inline ll unq(T& v){ Sort(v); v.erase(unique(all(v)),v.end()); return v.size(); }
@@ -432,13 +432,13 @@ template <class T> inline T cp(const T& v){ T res; copy(all(v),back_inserter(res
 template <class T> inline T cp(const T& v, ll a, ll b){ T res; copy(all(v,a,b),back_inserter(res)); return res; }
 template <class T> inline void rtt(T& s, ll idx){ ll id=zia_qu::Mod<ll>(idx,s.size()); rotate(all(s,id),s.end());  }
 template <class T> inline void rtt(T& s, ll a, ll b, ll c){ rotate(all(s,a,b),s.end()-c);  }
-template <class T> inline V<T> psum(V<T>& v) {
+template <class T> inline V<T> psum(const V<T>& v) {
   V<T> s(v.size()+1);
   partial_sum(all(v),s.begin());
   rtt(s,-1);
   return s;
 }
-template <class T> inline V<T> adf(V<T>& v) {
+template <class T> inline V<T> adf(const V<T>& v) {
   V<T> res(v.size());
   adjacent_difference(all(v),res.begin());
   rtt(res, 1);
@@ -458,58 +458,6 @@ template <class T> inline ld vdmul(V<T> &v, ll a, ll b){ return reduce(all(v,a,b
 } // Lady s&y
 
 namespace Heileden {
-/* BFS Sample
-template <class T> inline void bfs(V<V<T>>& g, T start, vb& visited) {
-  queue<T> que;
-  que.emplace(start);
-  visited[start]=1;
-  while(!que.empty()) {
-    T v=que.front();
-    que.pop();
-    each(nv,g[v]) {
-      if(!visited[nv]) {
-        visited[nv]=1;
-        que.emplace(nv);
-      }
-    }
-  }
-}//*/
-
-/* DFS Sample
-template <class T> inline void dfs(V<V<T>>& g, T v, vb& visited) {
-  visited[v]=1;
-  each(nv,g[v]) if(!visited[nv]) dfs(g,nv,visited);
-}//*/
-
-/* Permutation Sample
-template <class T> inline void nPr(V<T>& v) {
-  Sort(v);
-  do {out(v);} while(nxp(v));
-}//*/
-
-/* Binary Search Sample
-template <class T, class U> inline ll MGRBS(T v, U x, ll& ng, ll& ok) {
-  while(abs(ok-ng)>1) {
-    ll mid = (ok+ng)/2;
-    if(v[mid]==x) ok=mid;
-    else ng=mid;
-  }
-  return ok;
-}//*/
-
-/* Dijikstra-like Sample
-template <class T> inline T dijikstra(const V<T>& v) {
-  pqr<T> pq;
-  T res=0;
-  while(!pq.empty()) {
-    each(el,v) pq.emplace(el+res);
-    res=pq.top();
-    pq.pop();
-  }
-  return res;
-}//*/
-
-// divisor
 template <class T> inline V<T> divisor(T n) {
   V<T> div;
   sqrp(i,1,n) {
@@ -521,15 +469,11 @@ template <class T> inline V<T> divisor(T n) {
   Lady_sANDy::Sort(div);
   return div;
 }
-
-// prime judge
 inline bool is_prime(ul n) {
   if(n==1) return 0;
   sqrp(i,2,n) if(n%i==0) return 0;
   return 1;
 }
-
-// Siege of Eratosthenes
 inline vi SoE(ll n) {
   vb prime(n+1,1);
   vi p;
@@ -540,8 +484,6 @@ inline vi SoE(ll n) {
   }
   return p;
 }
-
-// prime factor
 template <class T> inline V<PP<T>> prmfct(T n) {
   V<PP<T>> res;
   sqrp(i,2,n) {
@@ -556,8 +498,6 @@ template <class T> inline V<PP<T>> prmfct(T n) {
   if(n!=1) res.emplace_back(n,1);
   return res;
 }
-
-// Manacher
 vi manacher(const string &s) {
   const ll n = s.size();
   vi radius(n);
@@ -575,8 +515,6 @@ vi manacher(const string &s) {
   }
   return radius;
 }
-
-// factorial
 template <class T> T factor(T n, T mod=0) {
   T res=1;
   while(n>0) {
@@ -585,8 +523,6 @@ template <class T> T factor(T n, T mod=0) {
   }
   return res;
 }
-
-// permutation
 template <class T=ll> T perm(T n, T r, T mod=0) {
   const T tmp=n;
   T res=1;
@@ -596,8 +532,6 @@ template <class T=ll> T perm(T n, T r, T mod=0) {
   }
   return res;
 }
-
-// binomial
 template <class T=ll> T binom(T n, T r, T mod=0) {
   if(r < 0 || n < r) return 0;
   T res = 1;
@@ -609,11 +543,8 @@ template <class T=ll> T binom(T n, T r, T mod=0) {
   }
   return res;
 }
-
-// integer judge
 inline bool is_int(ld n){ ll r=floor(n); return r==n; }
 inline bool is_sqr(ll n){ return is_int(sqrt(n)); }
-
 /* grundy sample
 template <class T> inline bool grundy(V<T> v) {
   ll res=0;
