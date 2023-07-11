@@ -310,7 +310,7 @@ inline bool ispunct(char c){ return std::ispunct(c); }
 inline bool ispunct(string s){ bool ok=1; each(el,s) ok&=ispunct(el); return ok; }
 inline bool isprint(char c){ return std::isprint(c); }
 inline bool isprint(string s){ bool ok=1; each(el,s) ok&=isprint(el); return ok; }
-inline void strins(string &s, string t, ll id){ s.insert(id,t); }
+inline void strins(string &s, ll id, string t){ s.insert(id,t); }
 inline string toupper(string s){ each(c,s) c=std::toupper(c); return s; }
 inline string tolower(string s){ each(c,s) c=std::tolower(c); return s; }
 inline vi ten_to_adic(ll m, ll n) {
@@ -424,9 +424,9 @@ template <class T, class Boolean> inline ul cntif(T& v, Boolean fn){ return coun
 template <class T> inline T Count(V<T>& v, ll x) { /*Sort(v);//*/ return UB(v,x)-LB(v,x); }
 template <class T> inline T IP(const V<T>& v, const V<T>& u, T init){ return inner_product(all(v),u.begin(),init); }
 template <class T> inline V<T> iot(T n, ll init=0){ V<T> a(n); iota(all(a),init); return a;}
-template <class T> inline ll vins(V<T>& v, T x, ll id){ v.insert(v.begin()+id,x); return v.size(); }
-template <class T, class U> inline ll vins(T& v, U u, ll id){ v.insert(v.begin()+id,all(u)); return v.size(); }
-template <class T, class U> inline ll vins(T& v, U u, ll id, ll a, ll b){ v.insert(v.begin()+id,all(u,a,b)); return v.size(); }
+template <class T> inline ll vins(V<T>& v, ll id, T x){ v.insert(v.begin()+id,x); return v.size(); }
+template <class T, class U> inline ll vins(T& v, ll id, U u){ v.insert(v.begin()+id,all(u)); return v.size(); }
+template <class T, class U> inline ll vins(T& v, ll id, U u, ll a, ll b){ v.insert(v.begin()+id,all(u,a,b)); return v.size(); }
 template <class T, class U> inline ll ers(T& v, U x){ v.erase(remove(all(v),x),v.end()); return v.size(); }
 template <class T, class Boolean> ll ersif(T& v, Boolean x){ v.erase(remove_if(all(v),x),v.end()); return v.size(); }
 template <class T> inline ll unq(T& v){ Sort(v); v.erase(unique(all(v)),v.end()); return v.size(); }
