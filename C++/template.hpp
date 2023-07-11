@@ -143,10 +143,10 @@ template <class T> PP<T> normalize(PP<T> a) {
   if(a < PP<T>{}) a = -a;
   return a;
 }
-template <class T, class U> P<U,T> swap(P<T,U> &p){ P<U,T> ret={p.second,p.first}; return ret; }
-template <class T, class U> V<P<U,T>> swap(V<P<T,U>> &vp) {
+template <class T, class U> P<U,T> swap(const P<T,U> &p){ P<U,T> ret={p.second,p.first}; return ret; }
+template <class T, class U> V<P<U,T>> swap(const V<P<T,U>> &vp) {
   V<P<U,T>> ret;
-  FE(vp,[&ret](P<T,U> el){ret.emplace_back(pairs::swap(el));});
+  FE(vp,[&ret](P<T,U> el){ret.emplace_back(swap(el));});
   return ret;
 }
 template <class T, class U> V<T> first(const V<P<T,U>> &vp) {
@@ -390,8 +390,8 @@ template <class K, class V> inline K vlmax_k(map<K,V> &m){
   auto pr = *max_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second < y.second; });
   return pr.first;
 }
-template <class T> T stmin(const set<T> &s){ return *s.begin(); }
-template <class T> T stmax(const set<T> &s){ return *s.rbegin(); }
+template <class T> inline T stmin(const set<T> &s){ return *s.begin(); }
+template <class T> inline T stmax(const set<T> &s){ return *s.rbegin(); }
 } // zia qu
 
 namespace Lady_sANDy {
@@ -445,17 +445,6 @@ template <class T> inline V<T> adf(V<T>& v) {
   res.resize(v.size()-1);
   return res;
 }
-#ifdef local
-#define rext(...) static_cast<vi>(0)
-template <class T> inline ll vsum(V<T> &v){ return accumulate(all(v),0LL); }
-template <class T> inline ll vsum(V<T> &v, ll a, ll b){ return accumulate(all(v,a,b),0LL); }
-template <class T> inline ld vdsum(V<T> &v){ return accumulate(all(v),0.0L); }
-template <class T> inline ld vdsum(V<T> &v, ll a, ll b){ return accumulate(all(v,a,b),0.0L); }
-template <class T> inline ll vmul(V<T> &v){ return accumulate(all(v),1LL,[](ll acc,ll i){ return acc*i; }); }
-template <class T> inline ll vmul(V<T> &v, ll a, ll b){ return accumulate(all(v,a,b),1LL,[](ll acc,ll i){ return acc*i; }); }
-template <class T> inline ld vdmul(V<T> &v){ return accumulate(all(v),1.0L,[](ll acc,ll i){ return acc*i; }); }
-template <class T> inline ld vdmul(V<T> &v, ll a, ll b){ return accumulate(all(v,a,b),1.0L,[](ll acc,ll i){ return acc*i; }); }
-#else
 template <class T> inline V<T> rext(V<T>& v, mt19937 eng, ll size){ V<T> res; sample(all(v),back_inserter(res),size,eng); return res; }
 template <class T> inline T rext(V<T>& v, mt19937 eng){ V<T> res; sample(all(v),back_inserter(res),1,eng); return res.front(); }
 template <class T> inline ll vsum(V<T> &v){ return reduce(all(v),0LL); }
@@ -466,7 +455,6 @@ template <class T> inline ll vmul(V<T> &v){ return reduce(all(v),1LL,[](ll acc,l
 template <class T> inline ll vmul(V<T> &v, ll a, ll b){ return reduce(all(v,a,b),1LL,[](ll acc,ll i){ return acc*i; }); }
 template <class T> inline ld vdmul(V<T> &v){ return reduce(all(v),1.0L,[](ll acc,ll i){ return acc*i; }); }
 template <class T> inline ld vdmul(V<T> &v, ll a, ll b){ return reduce(all(v,a,b),1.0L,[](ll acc,ll i){ return acc*i; }); }
-#endif
 } // Lady s&y
 
 namespace Heileden {
