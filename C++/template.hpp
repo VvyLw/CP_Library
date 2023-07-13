@@ -471,14 +471,19 @@ inline bool is_prime(ul n) {
   sqrp(i,2,n) if(n%i==0) return 0;
   return 1;
 }
-inline vi SoE(ll n) {
-  vb prime(n+1,1);
-  vi p;
+inline vb SoE(ll n) {
+  vb p(n+1,1);
+  p[0]=0,p[1]=0;
   rep(i,2,n) {
-    if(!prime[i]) continue;
-    rep(j,i*i,n,i) prime[j]=0;
-    p.emplace_back(i);
+    if(!p[i]) continue;
+    rep(j,i*i,n,i) p[j]=0;
   }
+  return p;
+}
+inline vi p_table(ll n) {
+  auto table=SoE(n);
+  vi p;
+  rep(n+1) if(table[i]) p.emplace_back(i);
   return p;
 }
 template <class T> inline V<PP<T>> prmfct(T n) {
