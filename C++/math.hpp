@@ -50,17 +50,22 @@ inline bool is_prime(ul n) {
     return 1;
 }
 
-inline vector<int> SoE(ll n) {
-    vector<bool> prime(n + 1, 1);
-    vector<int> p;
-    for(ll i = 2; i <= n; ++i) {
-        if(!prime[i]) continue;
-        for(ll j = i * i; j <= n; j += i) prime[j]=0;
-        p.emplace_back(i);
+inline vector<bool> SoE(int n) {
+    vector<bool> p(n + 1, 1);
+    p[0] = 0, p[1] = 0;
+    for(int i = 2; i <= n; ++i) {
+        if(!p[i]) continue;
+        for(ll j = i * i; j <= n; j += i) p[j]=0;
     }
     return p;
 }
 
+inline vector<int> p_table(int n) {
+    auto table = SoE(n);
+    vector<int> p;
+    for(int i = 0; i <= n; ++i) if(table[i]) p.emplace_back(i);
+    return p;
+}
 template <class T> inline vector<pair<T, T>> prmfct(T n) {
     vector<pair<T, T>> res;
     for(T i = 2; i * i <= n; ++i) {
