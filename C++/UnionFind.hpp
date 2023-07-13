@@ -1,7 +1,7 @@
 // inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)
-#include <vector>
+/*#include <vector>
 using namespace std;
-typedef long long ll;
+typedef long long ll;//*/
 struct UnionFind {
     vector<ll> par;
     UnionFind(ll n){ par.resize(n,-1); }
