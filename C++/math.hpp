@@ -1,11 +1,11 @@
-#include <vector>
+/*#include <vector>
 #include <cmath>
 #include <algorithm>
 #include <limits>
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-typedef unsigned long long ul;
+typedef unsigned long long ul;//*/
 const int dx[]={0,0,-1,1,-1,-1,1,1};
 const int dy[]={-1,1,0,0,-1,1,-1,1};
 const int MOD = 998244353;
@@ -66,6 +66,7 @@ inline vector<int> p_table(int n) {
     for(int i = 0; i <= n; ++i) if(table[i]) p.emplace_back(i);
     return p;
 }
+
 template <class T> inline vector<pair<T, T>> prmfct(T n) {
     vector<pair<T, T>> res;
     for(T i = 2; i * i <= n; ++i) {
