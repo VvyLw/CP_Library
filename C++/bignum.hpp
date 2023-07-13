@@ -1,8 +1,8 @@
 // inspired by kenkoooo(https://kenkoooo.hatenablog.com/entry/2016/11/30/163533)
-#include <iostream>
+/*#include <iostream>
 using namespace std;
 typedef __int128_t i128;
-typedef __uint128_t u128;
+typedef __uint128_t u128;//*/
 ostream &operator<<(ostream &dest, i128 value) {
     ostream::sentry s(dest);
     if (s) {
