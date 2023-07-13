@@ -89,18 +89,18 @@ using wd = V<vd>;
 using wc = V<vc>;
 using ws = V<vs>;
 using wb = V<vb>;
-template <class T> V<T>& operator++(V<T>& v) { each(el,v) el++; return v; }
-template <class T> V<T>& operator--(V<T>& v) { each(el,v) el--; return v; }
-template <class T, class U> V<T>& operator+=(V<T>& v, const U x) { each(el,v) el+=x; return v; }
-template <class T, class U> V<T>& operator-=(V<T>& v, const U x) { each(el,v) el-=x; return v; }
-template <class T, class U> V<T>& operator*=(V<T>& v, const U x) { each(el,v) el*=x; return v; }
-template <class T, class U> V<T>& operator/=(V<T>& v, const U x) { each(el,v) el/=x; return v; }
-template <class T, class U> V<T> operator+(const V<T>& v, const U x) { V<T> res = v; res+=x; return res; }
-template <class T, class U> V<T> operator-(const V<T>& v, const U x) { V<T> res = v; res-=x; return res; }
-template <class T, class U> V<T> operator*(const V<T>& v, const U x) { V<T> res = v; res*=x; return res; }
-template <class T, class U> V<T> operator/(const V<T>& v, const U x) { V<T> res = v; res/=x; return res; }
-template <class T> bool operator==(const V<T>& v, const V<T>& w) { return (v.size()==w.size() && equal(all(v),w.begin())); }
-template <class T> bool operator!=(const V<T>& v, const V<T>& w) { return !(v==w); }
+template <class T> V<T>& operator++(V<T>& v){ each(el,v) el++; return v; }
+template <class T> V<T>& operator--(V<T>& v){ each(el,v) el--; return v; }
+template <class T, class U> V<T>& operator+=(V<T>& v, const U x){ each(el,v) el+=x; return v; }
+template <class T, class U> V<T>& operator-=(V<T>& v, const U x){ each(el,v) el-=x; return v; }
+template <class T, class U> V<T>& operator*=(V<T>& v, const U x){ each(el,v) el*=x; return v; }
+template <class T, class U> V<T>& operator/=(V<T>& v, const U x){ each(el,v) el/=x; return v; }
+template <class T, class U> V<T> operator+(const V<T>& v, const U x){ V<T> res = v; res+=x; return res; }
+template <class T, class U> V<T> operator-(const V<T>& v, const U x){ V<T> res = v; res-=x; return res; }
+template <class T, class U> V<T> operator*(const V<T>& v, const U x){ V<T> res = v; res*=x; return res; }
+template <class T, class U> V<T> operator/(const V<T>& v, const U x){ V<T> res = v; res/=x; return res; }
+template <class T> bool operator==(const V<T>& v, const V<T>& w){ return (v.size()==w.size() && equal(all(v),w.begin())); }
+template <class T> bool operator!=(const V<T>& v, const V<T>& w){ return !(v==w); }
 } // vectors
 using namespace vectors;
 namespace pairs {
@@ -110,15 +110,15 @@ using pi = PP<ll>;
 using pd = PP<ld>;
 using pc = PP<char>;
 using ps = PP<string>;
-template <class T> PP<T> operator+(const PP<T>& a, const PP<T>& b) { return {a.first + b.first, a.second + b.second}; }
-template <class T> PP<T> operator-(const PP<T>& a, const PP<T>& b) { return {a.first - b.first, a.second - b.second}; }
-template <class T> PP<T> operator-(const PP<T>& a) { return {-a.first, -a.second}; }
-template <class T, class U> PP<T> operator*(const PP<T>& a, const U& b) { return {a.first * b, a.second * b}; }
-template <class T, class U> PP<T> operator/(const PP<T>& a, const U& b) { return {a.first / b, a.second / b}; }
-template <class T> PP<T>& operator+=(PP<T>& a, const PP<T>& b) { return a = a + b; }
-template <class T> PP<T>& operator-=(PP<T>& a, const PP<T>& b) { return a = a - b; }
-template <class T, class U> PP<T>& operator*=(PP<T>& a, const U& b) { return a = a * b; }
-template <class T, class U> PP<T>& operator/=(PP<T>& a, const U& b) { return a = a / b; }
+template <class T> PP<T> operator+(const PP<T>& a, const PP<T>& b){ return {a.first + b.first, a.second + b.second}; }
+template <class T> PP<T> operator-(const PP<T>& a, const PP<T>& b){ return {a.first - b.first, a.second - b.second}; }
+template <class T> PP<T> operator-(const PP<T>& a){ return {-a.first, -a.second}; }
+template <class T, class U> PP<T> operator*(const PP<T>& a, const U& b){ return {a.first * b, a.second * b}; }
+template <class T, class U> PP<T> operator/(const PP<T>& a, const U& b){ return {a.first / b, a.second / b}; }
+template <class T> PP<T>& operator+=(PP<T>& a, const PP<T>& b){ return a = a + b; }
+template <class T> PP<T>& operator-=(PP<T>& a, const PP<T>& b){ return a = a - b; }
+template <class T, class U> PP<T>& operator*=(PP<T>& a, const U& b){ return a = a * b; }
+template <class T, class U> PP<T>& operator/=(PP<T>& a, const U& b){ return a = a / b; }
 template <class T> bool operator==(const PP<T> &p, const PP<T> &q){ return p.first==q.first && p.second==q.second; }
 template <class T> bool operator!=(const PP<T> &p, const PP<T> &q){ return !(p==q); }
 template <class T> bool operator<(const PP<T> &p, const PP<T> &q){ if(p.first==q.first) return p.second<q.second; return p.first<q.first; }
@@ -131,12 +131,13 @@ template <class T, class U> bool operator<(const P<T,U> &p, const P<T,U> &q){ if
 template <class T, class U> bool operator<=(const P<T,U> &p, const P<T,U> &q){ if(p.first==q.first) return p.second<=q.second; return p.first<q.first; }
 template <class T, class U> bool operator>(const P<T,U> &p, const P<T,U> &q){ if(p.first==q.first) return p.second>q.second; return p.first>q.first; }
 template <class T, class U> bool operator>=(const P<T,U> &p, const P<T,U> &q){ if(p.first==q.first) return p.second>=q.second; return p.first>q.first; }
-template <class T> PP<T> rotate(const PP<T>& a) { return {-a.second, a.first}; } // 90 degree ccw
-template <class T> T dot(const PP<T>& a, const PP<T>& b) { return a.first * b.first + a.second * b.second; }
-template <class T> T cross(const PP<T>& a, const PP<T>& b) { return dot(rotate(a), b); }
-template <class T> T square(const PP<T>& a) { return dot(a, a); }
-template <class T> ld abs(const PP<T>& a) { return hypotl(a.first, a.second); }
-template <class T> T gcd(const PP<T>& a) { return gcd(a.first, a.second); }
+template <class T> PP<T> rotate(const PP<T>& a){ return {-a.second, a.first}; } // 90 degree ccw
+template <class T> T dot(const PP<T>& a, const PP<T>& b){ return a.first * b.first + a.second * b.second; }
+template <class T> T cross(const PP<T>& a, const PP<T>& b){ return dot(rotate(a), b); }
+template <class T> T square(const PP<T>& a){ return dot(a, a); }
+template <class T> ld grad(const PP<T>& a){ return 1.0L*a.second/a.first; }
+template <class T> ld abs(const PP<T>& a){ return hypotl(a.first, a.second); }
+template <class T> T gcd(const PP<T>& a){ return gcd(a.first, a.second); }
 template <class T> PP<T> normalize(PP<T> a) {
   if(a == PP<T>{}) return a;
   a /= gcd(a);
@@ -167,10 +168,10 @@ template <class T, class U> using pqs = priority_queue<P<T,U>>;
 template <class T, class U> using pqrs = priority_queue<P<T,U>,V<P<T,U>>,greater<P<T,U>>>;
 template <class T> using Tree = tree<T,null_type,less<T>,rb_tree_tag,tree_order_statistics_node_update>;
 template <class T> using TREE = tree<T,null_type,greater<T>,rb_tree_tag,tree_order_statistics_node_update>;
-template <class T, class U> bool chmax(T& a, const U& b) { if (a<b) { a=b; return 1; } return 0; }
-template <class T, class U> bool chmin(T& a, const U& b) { if (a>b) { a=b; return 1; } return 0; }
-template <class T, class U> inline bool overflow_if_add(T a, U b) { return (numeric_limits<T>::max()-a)<b; }
-template <class T, class U> inline bool overflow_if_mul(T a, U b) { return (numeric_limits<T>::max()/a)<b; }
+template <class T, class U> bool chmax(T& a, const U& b){ if(a<b){ a=b; return 1; } return 0; }
+template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
+template <class T, class U> inline bool overflow_if_add(T a, U b){ return (numeric_limits<T>::max()-a)<b; }
+template <class T, class U> inline bool overflow_if_mul(T a, U b){ return (numeric_limits<T>::max()/a)<b; }
 const int dx[]={0,0,-1,1,-1,-1,1,1};
 const int dy[]={-1,1,0,0,-1,1,-1,1};
 const int MOD = 0x3b800001;
@@ -245,12 +246,12 @@ using namespace IO;
 #define fin(...) do{ out(__VA_ARGS__); return; }while(false)
 
 namespace yesno_sys {
-inline void YES(bool ok=1) { out(ok?"YES":"NO"); }
-inline void NO(bool ok=1) { YES(!ok); }
-inline void Yes(bool ok=1) { out(ok?"Yes":"No"); }
-inline void No(bool ok=1) { Yes(!ok); }
-inline void yes(bool ok=1) { print(ok?"yes":"no"); }
-inline void no(bool ok=1) { yes(!ok); }
+inline void YES(bool ok=1){ out(ok?"YES":"NO"); }
+inline void NO(bool ok=1){ YES(!ok); }
+inline void Yes(bool ok=1){ out(ok?"Yes":"No"); }
+inline void No(bool ok=1){ Yes(!ok); }
+inline void yes(bool ok=1){ print(ok?"yes":"no"); }
+inline void no(bool ok=1){ yes(!ok); }
 } // yesno_sys
 using namespace yesno_sys;
 
@@ -422,6 +423,9 @@ template <class T, class Boolean> inline ul cntif(const T& v, Boolean fn){ retur
 template <class T> inline T Count(V<T>& v, ll x) { /*Sort(v);//*/ return UB(v,x)-LB(v,x); }
 template <class T> inline T IP(const V<T>& v, const V<T>& u, T init){ return inner_product(all(v),u.begin(),init); }
 template <class T> inline V<T> iot(T n, ll init=0){ V<T> a(n); iota(all(a),init); return a;}
+template <class T> inline ll vins(V<T>& v, ll id, T x){ v.insert(v.begin()+id,x); return v.size(); }
+template <class T> inline ll vins(T& v, ll id, const T& u){ v.insert(v.begin()+id,all(u)); return v.size(); }
+template <class T> inline ll vins(T& v, ll id, const T& u, ll a, ll b){ v.insert(v.begin()+id,all(u,a,b)); return v.size(); }
 template <class T, class U> inline ll ers(T& v, U x){ v.erase(remove(all(v),x),v.end()); return v.size(); }
 template <class T, class Boolean> ll ersif(T& v, Boolean x){ v.erase(remove_if(all(v),x),v.end()); return v.size(); }
 template <class T> inline ll unq(T& v){ Sort(v); v.erase(unique(all(v)),v.end()); return v.size(); }
@@ -471,19 +475,14 @@ inline bool is_prime(ul n) {
   sqrp(i,2,n) if(n%i==0) return 0;
   return 1;
 }
-inline vb SoE(ll n) {
-  vb p(n+1,1);
-  p[0]=0,p[1]=0;
-  rep(i,2,n) {
-    if(!p[i]) continue;
-    rep(j,i*i,n,i) p[j]=0;
-  }
-  return p;
-}
-inline vi p_table(ll n) {
-  auto table=SoE(n);
+inline vi SoE(ll n) {
+  vb prime(n+1,1);
   vi p;
-  rep(n+1) if(table[i]) p.emplace_back(i);
+  rep(i,2,n) {
+    if(!prime[i]) continue;
+    rep(j,i*i,n,i) prime[j]=0;
+    p.emplace_back(i);
+  }
   return p;
 }
 template <class T> inline V<PP<T>> prmfct(T n) {
