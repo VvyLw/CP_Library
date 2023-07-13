@@ -1,7 +1,7 @@
-#include <vector>
+/*#include <vector>
 #include <functional>
 using namespace std;
-typedef long long ll;
+typedef long long ll;//*/
 template <class X> struct SegTree {
     using FX = function<X(X, X)>;
     ll n;
