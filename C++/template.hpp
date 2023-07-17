@@ -209,7 +209,7 @@ template <class T> void scan(T& a){ cin >> a; }
 template <class T, class U> void scan(P<T,U>& p){ scan(p.first); scan(p.second); }
 template <class T> void scan(V<T>& a){ each(i,a) scan(i); }
 template <class T> void lin(T& a){ getline(cin, a); }
-void in(){}
+[[maybe_unused]]void in(){}
 template <class Head, class... Tail> void in(Head& head, Tail&... tail){ scan(head); in(tail...); }
 template <class T> void print(const T& a){ cout << a; }
 template <class T> void println(const T& a){ cout << a; }
@@ -398,10 +398,16 @@ template <class T> inline T stmax(const set<T> &s){ return *s.rbegin(); }
 namespace Lady_sANDy {
 template <class T> inline void rev(T& v){ reverse(all(v)); }
 template <class T> inline void rev(T& v, ll a, ll b){ reverse(all(v,a,b)); }
+template <class T> inline T revd(const T& v){ auto c=v; rev(c); return c; }
+template <class T> inline T revd(const T& v, ll a, ll b){ auto c=v; rev(c,a,b); return c; }
 template <class T> inline void Sort(T& v){ sort(all(v)); }
 template <class T> inline void Sort(T& v, ll a, ll b){ sort(all(v,a,b)); }
+template <class T> inline T sorted(T& v){ auto c=v; Sort(c); return c; }
+template <class T> inline T sorted(T& v, ll a, ll b){ auto c=v; Sort(c,a,b); return c; }
 template <class T> inline void Sortt(T& v){ sort(rall(v)); }
 template <class T> inline void Sortt(T& v, ll a, ll b){ sort(rall(v,a,b)); }
+template <class T> inline T Sorted(T& v){ auto c=v; Sortt(c); return c; }
+template <class T> inline T Sorted(T& v, ll a, ll b){ auto c=v; Sortt(c,a,b); return c; }
 template <class T> inline void Sorth(T& v){ make_heap(all(v)); sort_heap(all(v)); }
 template <class T> inline T mrg(T& a, T& b){ T res; merge(all(a),all(b),back_inserter(res)); return res; }
 template <class T> inline T Min(const V<T>& v){ return *min_element(all(v)); }
