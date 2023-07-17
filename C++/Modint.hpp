@@ -8,56 +8,61 @@ using namespace std;
 typedef long long ll;
 typedef unsigned uint;
 typedef unsigned long long ul;//*/
-constexpr const int mod = 998244353;
-//constexpr const int mod = 1e9+7;
-struct mint {
+template <uint mod> struct Modint{
     uint num = 0;
-    constexpr mint() noexcept {}
-    constexpr mint(const mint &x) noexcept : num(x.num){}
+    constexpr Modint() noexcept {}
+    constexpr Modint(const Modint &x) noexcept : num(x.num){}
     constexpr operator ll() const noexcept { return num; }
-    constexpr mint& operator+=(mint x) noexcept { num += x.num; if(num >= mod) num -= mod; return *this; }
-    constexpr mint& operator++() noexcept { if(num == mod - 1) num = 0; else num++; return *this; }
-    constexpr mint operator++(int) noexcept { mint ans(*this); operator++(); return ans; }
-    constexpr mint operator-() const noexcept { return mint(0) -= *this; }
-    constexpr mint& operator-=(mint x) noexcept { if(num < x.num) num += mod; num -= x.num; return *this; }
-    constexpr mint& operator--() noexcept { if(num == 0) num = mod - 1; else num--; return *this; }
-    constexpr mint operator--(int) noexcept { mint ans(*this); operator--(); return ans; }
-    constexpr mint& operator*=(mint x) noexcept { num = ul(num) * x.num % mod; return *this; }
-    constexpr mint& operator/=(mint x) noexcept { return operator*=(x.inv()); }
-    constexpr void operator%=(mint x) noexcept { void(0); }
-    template<class T> constexpr mint(T x) noexcept {
+    constexpr static uint get_mod(){ return mod; }
+    constexpr Modint& operator+=(Modint x) noexcept { num += x.num; if(num >= mod) num -= mod; return *this; }
+    constexpr Modint& operator++() noexcept { if(num == mod - 1) num = 0; else num++; return *this; }
+    constexpr Modint operator++(int) noexcept { Modint ans(*this); operator++(); return ans; }
+    constexpr Modint operator-() const noexcept { return Modint(0) -= *this; }
+    constexpr Modint& operator-=(Modint x) noexcept { if(num < x.num) num += mod; num -= x.num; return *this; }
+    constexpr Modint& operator--() noexcept { if(num == 0) num = mod - 1; else num--; return *this; }
+    constexpr Modint operator--(int) noexcept { Modint ans(*this); operator--(); return ans; }
+    constexpr Modint& operator*=(Modint x) noexcept { num = ul(num) * x.num % mod; return *this; }
+    constexpr Modint& operator/=(Modint x) noexcept { return operator*=(x.inv()); }
+    constexpr void operator%=(Modint x) noexcept { void(0); }
+    template <class T> constexpr Modint(T x) noexcept {
         using U = typename conditional<sizeof(T)>= 4, T, int>::type;
         U y = x; y %= U(mod); if(y < 0) y += mod; num = uint(y);
     }
-    template <class T> constexpr mint operator+(T x) const noexcept { return mint(*this) += x; }
-    template <class T> constexpr mint& operator+=(T x) noexcept { return operator+=(mint(x)); }
-    template <class T> constexpr mint operator-(T x) const noexcept { return mint(*this) -= x; }
-    template <class T> constexpr mint& operator-=(T x) noexcept { return operator-=(mint(x)); }
-    template <class T> constexpr mint operator*(T x) const noexcept { return mint(*this) *= x; }
-    template <class T> constexpr mint& operator*=(T x) noexcept { return operator*=(mint(x)); }
-    template <class T> constexpr mint operator/(T x) const noexcept { return mint(*this) /= x; }
-    template <class T> constexpr mint& operator/=(T x) noexcept { return operator/=(mint(x)); }
-    constexpr mint inv() const noexcept { ll x = 0, y = 0; extgcd(num, mod, x, y); return x; }
+    template <class T> constexpr Modint operator+(T x) const noexcept { return Modint(*this) += x; }
+    template <class T> constexpr Modint& operator+=(T x) noexcept { return operator+=(Modint(x)); }
+    template <class T> constexpr Modint operator-(T x) const noexcept { return Modint(*this) -= x; }
+    template <class T> constexpr Modint& operator-=(T x) noexcept { return operator-=(Modint(x)); }
+    template <class T> constexpr Modint operator*(T x) const noexcept { return Modint(*this) *= x; }
+    template <class T> constexpr Modint& operator*=(T x) noexcept { return operator*=(Modint(x)); }
+    template <class T> constexpr Modint operator/(T x) const noexcept { return Modint(*this) /= x; }
+    template <class T> constexpr Modint& operator/=(T x) noexcept { return operator/=(Modint(x)); }
+    constexpr Modint inv() const noexcept { ll x = 0, y = 0; extgcd(num, mod, x, y); return x; }
     static constexpr ll extgcd(ll a, ll b, ll &x, ll &y) noexcept { ll g = a; x = 1; y = 0; if(b){ g = extgcd(b, a % b, y, x); y -= a / b * x; } return g; }
-    constexpr mint pow(ul x) const noexcept { mint ans = 1, cnt = *this; while(x){ if(x & 1) ans *= cnt; cnt *= cnt; x /= 2; } return ans; }
-    friend ostream& operator<<(ostream& os, const mint& m){ os << m.num; return os; }
-    friend istream &operator>>(istream &is, mint &a) {
+    constexpr Modint pow(ul x) const noexcept { Modint ans = 1, cnt = *this; while(x){ if(x & 1) ans *= cnt; cnt *= cnt; x /= 2; } return ans; }
+    friend ostream& operator<<(ostream& os, const Modint& m){ os << m.num; return os; }
+    friend istream &operator>>(istream &is, Modint &a) {
         ll t;
         is >> t;
-        a=mint(t);
+        a=Modint(t);
         return (is);
     }
 };
+using mint = Modint<998244353>;
+//using mint = Modint<1000000007>;
 //#include "template.hpp"
 //#define MINT(...) mint __VA_ARGS__; in(__VA_ARGS__)
-using vm = vector<mint>;
-using wm = vector<vm>;
-using pm = pair<mint, mint>;
-vm fac(1,1), inv(1,1);
+using vm = V<mint>;
+using wm = V<vm>;
+using pm = PP<mint>;
+template <class T> inline T msum(const V<T> &v){ return reduce(all(v), mint(0)); }
+template <class T> inline T msum(const V<T> &v, ll a, ll b){ return reduce(all(v,a,b), mint(0)); }
+template <class T> inline T mmul(const V<T> &v){ return reduce(all(v), mint(1), [](T acc, T i){ return acc*i; }); }
+template <class T> inline T mmul(const V<T> &v, ll a, ll b){ return reduce(all(v,a,b), mint(1), [](T acc, T i){ return acc*i; }); }
+vm fac(1,1),inv(1,1);
 void reserve(ll a){
     if(fac.size()>=a) return;
     if(a<fac.size()*2) a=fac.size()*2;
-    if(a>=mod) a=mod;
+    if(a>=mint::get_mod()) a=mint::get_mod();
     while(fac.size()<a) fac.emplace_back(fac.back()*mint(fac.size()));
     inv.resize(fac.size());
     inv.back()=fac.back().inv();
@@ -66,13 +71,12 @@ void reserve(ll a){
 mint fact(ll n){ if(n<0) return 0; reserve(n + 1); return fac[n]; }
 mint nPr(ll n,ll r){
     if(r<0 || n<r) return 0;
-    if(n>>24){ mint ans=1; for(int i = 0; i < r; ++i) ans*=n--; return ans; }
+    if(n>>24){ mint ans=1; rep(r) ans*=n--; return ans; }
     reserve(n+1); return fac[n]*inv[n-r];
 }
 mint nCr(ll n,ll r){ if(r<0 || n<r) return 0; r=min(r,n-r); reserve(r+1); return nPr(n,r)*inv[r]; }
 mint nHr(ll n,ll r){ if(!n && !r) return 1; if(n<=0 || r<0) return 0; return nCr(n+r-1,r); }
 
-// Arbitrary Modint
 struct a_mint {
     int val;
     a_mint() : val(0){}
@@ -141,8 +145,7 @@ struct a_mint {
         return (is);
     }
 };
-//#include "template.hpp"
-//#define MINT(...) a_mint __VA_ARGS__; in(__VA_ARGS__)
-using va = vector<a_mint>;
-using wa = vector<vm>;
-using pa = pair<a_mint, a_mint>;
+#define MINT(...) a_mint __VA_ARGS__; in(__VA_ARGS__)
+using va = V<a_mint>;
+using wa = V<vm>;
+using pa = PP<a_mint>;
