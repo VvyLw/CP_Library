@@ -4,7 +4,7 @@ using namespace std;
 typedef long long ll;//*/
 struct UnionFind {
     vector<ll> par;
-    UnionFind(ll n){ par.resize(n,-1); }
+    UnionFind(ll n): par(n, -1){}
     ll operator[](ll a) {
         while(par[a] >= 0) {
             ll p = par[par[a]];
