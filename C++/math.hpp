@@ -1,6 +1,7 @@
 /*#include <vector>
 #include <cmath>
 #include <algorithm>
+#include <map>
 #include <limits>
 using namespace std;
 typedef long long ll;
@@ -50,22 +51,21 @@ inline bool is_prime(ul n) {
     return 1;
 }
 
-inline vector<bool> SoE(int n) {
-    vector<bool> p(n + 1, 1);
-    p[0] = 0, p[1] = 0;
-    for(int i = 2; i <= n; ++i) {
-        if(!p[i]) continue;
-        for(ll j = i * i; j <= n; j += i) p[j]=0;
+struct p_table {
+    vector<bool> SoE;
+    p_table(int n): SoE(n+1,1){
+        SoE[0] = 0, SoE[1] = 0;
+        for(int i = 2; i <= n; ++i) {
+            if(!SoE[i]) continue;
+            for(ll j = i * i; j <= n; j += i) SoE[j] = 0;
+        }
     }
-    return p;
-}
-
-inline vector<int> p_table(int n) {
-    auto table = SoE(n);
-    vector<int> p;
-    for(int i = 0; i <= n; ++i) if(table[i]) p.emplace_back(i);
-    return p;
-}
+    vector<int> table(int n) {
+        vector<int> p;
+        for(int i = 0; i <= n; ++i) if(SoE[i]) p.emplace_back(i);
+        return p;
+    }
+};
 
 template <class T> inline vector<pair<T, T>> prmfct(T n) {
     vector<pair<T, T>> res;
@@ -81,6 +81,28 @@ template <class T> inline vector<pair<T, T>> prmfct(T n) {
     if(n!=1) res.emplace_back(n,1);
     return res;
 }
+
+struct p_fact {
+    vector<int> spf;
+    p_fact(int n): spf(n + 1){
+        iota(spf.begin(), spf.end() ,0);
+        for(int i = 2; i * i <= n; ++i) {
+            if(spf[i]==i) {
+                for(int j = i * i; j <= n; ++j) {
+                    if(spf[j]==j) spf[j]=i;
+                }
+            }
+        }
+    }
+    map<int,int> get(int n) {
+        map<int,int> m;
+        while(n!=1) {
+            m[spf[n]]++;
+            n/=spf[n];
+        }
+        return m;
+    }
+};
 
 template <class T=ll> T factor(T n, T mod=0) {
     T res=1;
