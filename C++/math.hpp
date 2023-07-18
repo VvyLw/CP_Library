@@ -62,7 +62,7 @@ struct p_table {
     }
     vector<int> table(int n) {
         vector<int> p;
-        for(int i = 0; i <= n; ++i) if(SoE[i]) p.emplace_back(i);
+        for(int i = 2; i <= n; ++i) if(SoE[i]) p.emplace_back(i);
         return p;
     }
 };
@@ -88,7 +88,7 @@ struct p_fact {
         iota(spf.begin(), spf.end() ,0);
         for(int i = 2; i * i <= n; ++i) {
             if(spf[i]==i) {
-                for(int j = i * i; j <= n; ++j) {
+                for(int j = i * i; j <= n; j += i) {
                     if(spf[j]==j) spf[j]=i;
                 }
             }
