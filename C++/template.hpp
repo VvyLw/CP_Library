@@ -396,6 +396,7 @@ template <class T> inline T stmax(const set<T> &s){ return *s.rbegin(); }
 } // zia qu
 
 namespace Lady_sANDy {
+template <class T> inline ll len(const T& v){ return v.size(); }
 template <class T> inline void rev(T& v){ reverse(all(v)); }
 template <class T> inline void rev(T& v, ll a, ll b){ reverse(all(v,a,b)); }
 template <class T> inline T revd(const T& v){ auto c=v; rev(c); return c; }
@@ -429,27 +430,24 @@ template <class T, class Boolean> inline ul cntif(const T& v, Boolean fn){ retur
 template <class T> inline T Count(V<T>& v, ll x) { /*Sort(v);//*/ return UB(v,x)-LB(v,x); }
 template <class T> inline T IP(const V<T>& v, const V<T>& u, T init){ return inner_product(all(v),u.begin(),init); }
 template <class T> inline V<T> iot(T n, ll init=0){ V<T> a(n); iota(all(a),init); return a;}
-template <class T> inline ll vins(V<T>& v, ll id, T x){ v.insert(v.begin()+id,x); return v.size(); }
-template <class T> inline ll vins(T& v, ll id, const T& u){ v.insert(v.begin()+id,all(u)); return v.size(); }
-template <class T> inline ll vins(T& v, ll id, const T& u, ll a, ll b){ v.insert(v.begin()+id,all(u,a,b)); return v.size(); }
-template <class T, class U> inline ll ers(T& v, U x){ v.erase(remove(all(v),x),v.end()); return v.size(); }
-template <class T, class Boolean> ll ersif(T& v, Boolean x){ v.erase(remove_if(all(v),x),v.end()); return v.size(); }
-template <class T> inline ll unq(T& v){ Sort(v); v.erase(unique(all(v)),v.end()); return v.size(); }
+template <class T, class U> inline ll ers(T& v, U x){ v.erase(remove(all(v),x),v.end()); return len(v); }
+template <class T, class Boolean> ll ersif(T& v, Boolean x){ v.erase(remove_if(all(v),x),v.end()); return len(v); }
+template <class T> inline ll unq(T& v){ Sort(v); v.erase(unique(all(v)),v.end()); return len(v); }
 template <class T> inline T cp(const T& v){ T res; copy(all(v),back_inserter(res)); return res; }
 template <class T> inline T cp(const T& v, ll a, ll b){ T res; copy(all(v,a,b),back_inserter(res)); return res; }
-template <class T> inline void rtt(T& s, ll idx){ ll id=zia_qu::Mod<ll>(idx,s.size()); rotate(all(s,id),s.end());  }
+template <class T> inline void rtt(T& s, ll idx){ ll id=zia_qu::Mod<ll>(idx,len(s)); rotate(all(s,id),s.end());  }
 template <class T> inline void rtt(T& s, ll a, ll b, ll c){ rotate(all(s,a,b),s.end()-c);  }
 template <class T> inline V<T> psum(const V<T>& v) {
-  V<T> s(v.size()+1);
+  V<T> s(len(v)+1);
   partial_sum(all(v),s.begin());
   rtt(s,-1);
   return s;
 }
 template <class T> inline V<T> adf(const V<T>& v) {
-  V<T> res(v.size());
+  V<T> res(len(v));
   adjacent_difference(all(v),res.begin());
   rtt(res, 1);
-  res.resize(v.size()-1);
+  res.resize(len(v)-1);
   return res;
 }
 template <class T> inline V<T> rext(V<T>& v, mt19937 eng, ll size){ V<T> res; sample(all(v),back_inserter(res),size,eng); return res; }
@@ -506,7 +504,7 @@ template <class T> inline V<PP<T>> prmfct(T n) {
   return res;
 }
 vi manacher(const string &s) {
-  const ll n = s.size();
+  const ll n = Lady_sANDy::len(s);
   vi radius(n);
   ll i = 0, j = 0;
   while(i < n) {
