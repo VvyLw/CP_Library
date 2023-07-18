@@ -450,19 +450,8 @@ template <class T> inline T cp(const T& v){ T res; copy(all(v),back_inserter(res
 template <class T> inline T cp(const T& v, ll a, ll b){ T res; copy(all(v,a,b),back_inserter(res)); return res; }
 template <class T> inline void rtt(T& s, ll idx){ ll id=zia_qu::Mod<ll>(idx,len(s)); rotate(all(s,id),s.end());  }
 template <class T> inline void rtt(T& s, ll a, ll b, ll c){ rotate(all(s,a,b),s.end()-c);  }
-template <class T> inline V<T> psum(const V<T>& v) {
-  V<T> s(len(v)+1);
-  partial_sum(all(v),s.begin());
-  rtt(s,-1);
-  return s;
-}
-template <class T> inline V<T> adf(const V<T>& v) {
-  V<T> res(len(v));
-  adjacent_difference(all(v),res.begin());
-  rtt(res, 1);
-  res.resize(len(v)-1);
-  return res;
-}
+template <class T> inline V<T> psum(const V<T>& v){ V<T> s; partial_sum(all(v),back_inserter(s)); return s; }
+template <class T> inline V<T> adf(const V<T>& v){ V<T> a; adjacent_difference(all(v),back_inserter(a)); return a; }
 template <class T> inline V<T> rext(V<T>& v, mt19937 eng, ll size){ V<T> res; sample(all(v),back_inserter(res),size,eng); return res; }
 template <class T> inline T rext(V<T>& v, mt19937 eng){ V<T> res; sample(all(v),back_inserter(res),1,eng); return res.front(); }
 template <class T> inline ll vsum(V<T> &v){ return reduce(all(v),0LL); }
