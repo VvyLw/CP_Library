@@ -20,6 +20,8 @@ using namespace __gnu_pbds;
 /*#pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")//*/
 //#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
+#pragma GCC diagnostic ignored "-Wsign-compare"
+#pragma GCC diagnostic ignored "-Wdeprecated-copy"
 
 namespace VvyLw {
 namespace Twitter {
