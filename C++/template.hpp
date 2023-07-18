@@ -476,21 +476,6 @@ template <class T> inline V<T> divisor(T n) {
   Lady_sANDy::Sort(div);
   return div;
 }
-inline bool is_prime(ul n) {
-  if(n==1) return 0;
-  sqrp(i,2,n) if(n%i==0) return 0;
-  return 1;
-}
-inline vi SoE(ll n) {
-  vb prime(n+1,1);
-  vi p;
-  rep(i,2,n) {
-    if(!prime[i]) continue;
-    rep(j,i*i,n,i) prime[j]=0;
-    p.emplace_back(i);
-  }
-  return p;
-}
 template <class T> inline V<PP<T>> prmfct(T n) {
   V<PP<T>> res;
   sqrp(i,2,n) {
@@ -505,6 +490,42 @@ template <class T> inline V<PP<T>> prmfct(T n) {
   if(n!=1) res.emplace_back(n,1);
   return res;
 }
+struct p_table {
+  vb SoE;
+  p_table(int n): SoE(n+1,1){
+    SoE[0]=SoE[1]=0;
+    rep(i,2,n) {
+      if(!SoE[i]) continue;
+      rep(j,i*i,n,i) SoE[j] = 0;
+    }
+  }
+  vi table(int n) {
+    vi p;
+    rep(i,2,n) if(SoE[i]) p.emplace_back(i);
+    return p;
+  }
+};
+struct p_fact {
+  vi spf;
+  p_fact(int n): spf(n + 1){
+    iota(all(spf),0);
+    sqrp(i,2,n) {
+      if(spf[i]==i) {
+        rep(j,i*i,n,i) {
+          if(spf[j]==j) spf[j]=i;
+        }
+      }
+    }
+  }
+  map<int,int> get(int n) {
+    map<int,int> m;
+    while(n!=1) {
+      m[spf[n]]++;
+      n/=spf[n];
+    }
+    return m;
+  }
+};
 vi manacher(const string &s) {
   const ll n = Lady_sANDy::len(s);
   vi radius(n);
