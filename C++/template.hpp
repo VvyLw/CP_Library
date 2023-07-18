@@ -20,6 +20,7 @@ using namespace __gnu_pbds;
 /*#pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")//*/
 //#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 #pragma GCC diagnostic ignored "-Wsign-compare"
 #pragma GCC diagnostic ignored "-Wdeprecated-copy"
 
@@ -36,6 +37,16 @@ mt19937 Random() {
   mt19937 engine {seed_gen()};
   return engine;
 }
+
+using Timer = chrono::system_clock::time_point;
+Timer start, stop;
+#if local
+void now(Timer &t){ t = chrono::system_clock::now(); }
+void time(const Timer &t1, const Timer &t2){ auto tm = chrono::duration_cast<chrono::milliseconds>(t2-t1).count(); cout << tm << "ms\n"; }
+#else
+[[maybe_unused]]void now(Timer &t){ void(0); }
+[[maybe_unused]]void time(const Timer &t1, const Timer &t2){ void(0); }
+#endif
 
 // --------------------------------------------------------------------------------------------------------------
 
@@ -569,8 +580,11 @@ using namespace Heileden;
 
 int main() {
   VvyLw::Twitter::wa_haya_exe();
+  now(start);
   /*INT(t); while(t--)//*/
   VvyLw::solve();
+  now(stop);
+  time(start, stop);
 }
 
 #endif
