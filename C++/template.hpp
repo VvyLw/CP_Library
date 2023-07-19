@@ -277,7 +277,7 @@ using namespace yesno_sys;
 #define scp(a,x,b) a<=x&&x<=b
 #define eid(el,v) &el-&v[0]
 #define gt(tpl,x) get<x>(tpl)
-#define bif(bit,tar) if((tar>>bit)&1)
+#define bif(bit,tar) if(((tar)>>(bit))&1)
 #define nxp(x) next_permutation(all(x))
 #define prp(x) prev_permutation(all(x))
 #define strpl(s,a,b) regex_replace(s,regex(a),b)
