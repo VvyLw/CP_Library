@@ -39,13 +39,13 @@ mt19937 Random() {
 }
 
 using Timer = chrono::system_clock::time_point;
-Timer start, stop;
+[[maybe_unused]] Timer start, stop;
 #if local
 void now(Timer &t){ t = chrono::system_clock::now(); }
 void time(const Timer &t1, const Timer &t2){ auto tm = chrono::duration_cast<chrono::milliseconds>(t2-t1).count(); cout << tm << "ms\n"; }
 #else
-[[maybe_unused]]void now(Timer &t){ void(0); }
-[[maybe_unused]]void time(const Timer &t1, const Timer &t2){ void(0); }
+[[maybe_unused]] void now(Timer &t){ void(0); }
+[[maybe_unused]] void time(const Timer &t1, const Timer &t2){ void(0); }
 #endif
 
 // --------------------------------------------------------------------------------------------------------------
@@ -222,7 +222,7 @@ template <class T> void scan(T& a){ cin >> a; }
 template <class T, class U> void scan(P<T,U>& p){ scan(p.first); scan(p.second); }
 template <class T> void scan(V<T>& a){ each(i,a) scan(i); }
 template <class T> void lin(T& a){ getline(cin, a); }
-[[maybe_unused]]void in(){}
+[[maybe_unused]] void in(){}
 template <class Head, class... Tail> void in(Head& head, Tail&... tail){ scan(head); in(tail...); }
 template <class T> void print(const T& a){ cout << a; }
 template <class T> void println(const T& a){ cout << a; }
