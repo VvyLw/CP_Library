@@ -232,7 +232,8 @@ template <class T> void println(const V<T>& a){ if(!a.empty()){ print(a[0]); for
 template <class T, class U> void print(const map<T,U> &m){ if(!m.empty()){ print(m.begin()->first); cout<<' '; print(m.begin()->second); for(auto i=m.begin(); ++i!=m.end();){ cout<<", "; print(i->first); cout<<' '; print(i->second); } } }
 template <class T> void print(const set<T> &st){ print(*st.begin()); for(auto i=st.begin(); ++i!=st.end();){ cout<<' '; print(*i); } }
 template <class T> void print(queue<T> que){ print(que.front()); while(que.size()){ cout<<' '; que.pop(); if(!que.empty()) print(que.front()); } }
-template <class T> void print(deque<T> dq){ print(dq.front()); while(dq.size()){ cout<<' '; dq.pop_front(); if(!dq.empty()) print(dq.front()); } }
+template <class T> void print(const deque<T> &dq){ if(!dq.empty()){ print(dq[0]); for(auto i=dq.begin(); ++i!=dq.end();){ cout<<' '; print(*i); } } }
+template <class T> void println(const deque<T> &dq){ if(!dq.empty()){ print(dq[0]); for(auto i=dq.begin(); ++i!=dq.end();){ cout<<'\n'; print(*i); } } }
 template <class T> void print(stack<T> sk){ print(sk.top()); while(sk.size()){ cout<<' '; sk.pop(); if(!sk.empty()) print(sk.top()); } }
 template <class T, class Container, class Compare> void print(priority_queue<T, Container, Compare> pq){ print(pq.top()); while(pq.size()){ pq.pop(); cout<<' '; if(!pq.empty()) print(pq.top()); } }
 void bl(){ cout<<' '; }
