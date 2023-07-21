@@ -1,6 +1,8 @@
 // inspired by Nyaan(https://github.com/NyaanNyaan/library/blob/master/data-structure/binary-indexed-tree.hpp)
-/*#include <vector>
-using namespace std;//*/
+#pragma once
+
+#include <vector>
+using namespace std;
 template <class T> struct FenwickTree {
     int N;
     vector<T> data;
