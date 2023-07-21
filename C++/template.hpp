@@ -545,8 +545,7 @@ struct p_fact {
 template <class T, class Boolean=bool> inline T mgrbs(T ng, T ok, Boolean fn, ld eps = 1) {
   while(abs(ok-ng)>eps) {
     T mid=(ok+ng)/2;
-    if(fn(mid)) ok = mid;
-    else ng = mid;
+    (fn(mid)?ok:ng) = mid;
   }
   return ok;
 }
