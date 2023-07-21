@@ -11,8 +11,6 @@ struct edge {
     edge(int to_, long long cost_): to(to_), cost(cost_){}
     operator long long() const { return to; }
 };
-using ve = V<edge>;
-using we = V<ve>;
 template <bool indirected=1> struct w_graph {
     vector<vector<edge>> g;
     w_graph(int n): g(n){}
