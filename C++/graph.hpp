@@ -13,13 +13,13 @@ struct edge {
 };
 using ve = V<edge>;
 using we = V<ve>;
-template <bool indirected=1> struct graph {
+template <bool indirected=1> struct w_graph {
     vector<vector<edge>> g;
-    graph(int n): g(n){}
-    vector<int>& operator[](int x){ return g[x]; }
-    const vector<int>& operator[](int x) const { return g[x]; }
-    operator vector<vector<int>>&(){ return g; }
-    operator const vector<vector<int>>&() const { return g; }
+    w_graph(int n): g(n){}
+    vector<edge>& operator[](int x){ return g[x]; }
+    const vector<edge>& operator[](int x) const { return g[x]; }
+    operator vector<vector<edge>>&(){ return g; }
+    operator const vector<vector<edge>>&() const { return g; }
     auto begin() const { return g.cbegin(); }
     auto end() const { return g.cend(); }
     int size() const { return g.size(); }
