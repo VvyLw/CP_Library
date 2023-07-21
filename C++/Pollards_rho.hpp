@@ -1,11 +1,13 @@
 // inspired by Plato_(https://atcoder.jp/contests/abc284/submissions/37807522)
-/*#include <vector>
+#pragma once
+
+#include <vector>
 #include <algorithm>
 #include <numeric>
 typedef long long ll;
 typedef unsigned long long ul;
 using namespace std;
-using vu = vector<ul>;//*/
+using vu = vector<ul>;
 ul modmul(ul a, ul b, ul M) {
     ll ret = a * b - M * ul(1.L / M * a * b);
     return ret + M * (ret < 0) - M * (ret >= (ll)M);
