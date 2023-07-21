@@ -542,7 +542,7 @@ struct p_fact {
     return m;
   }
 };
-template <class T, class Boolean=bool> inline T mgrbs(T ng, T ok, Boolean fn, ld eps = 1) {
+template <class T, class Boolean=bool> inline T bins(T ok, T ng, Boolean fn, ld eps = 1) {
   while(abs(ok-ng)>eps) {
     T mid=(ok+ng)/2;
     (fn(mid)?ok:ng) = mid;
