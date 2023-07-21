@@ -198,7 +198,7 @@ const double E = 2.718281828459045;
 namespace IO {
 ostream &operator<<(ostream &dest, i128 value) {
   ostream::sentry s(dest);
-  if (s) {
+  if(s) {
     u128 tmp = value < 0 ? -value : value;
     char buffer[128];
     char *d = end(buffer);
@@ -206,13 +206,13 @@ ostream &operator<<(ostream &dest, i128 value) {
       --d;
       *d = "0123456789"[tmp % 10];
       tmp /= 10;
-    } while (tmp != 0);
-    if (value < 0) {
+    } while(tmp != 0);
+    if(value < 0) {
       --d;
       *d = '-';
     }
     int len = end(buffer) - d;
-    if (dest.rdbuf()->sputn(d, len) != len) {
+    if(dest.rdbuf()->sputn(d, len) != len) {
       dest.setstate(ios_base::badbit);
     }
   }
@@ -432,20 +432,20 @@ template <class T> inline ll Max_i(const T& v){ return max_element(all(v))-v.beg
 template <class T, class U> inline ll LB(const T& v, const U x){ return lower_bound(all(v),x)-v.begin(); }
 template <class T, class U> inline ll UB(const T& v, const U x){ return upper_bound(all(v),x)-v.begin(); }
 template <class T, class U> inline bool BS(const T& v, const U x){ return binary_search(all(v),x); }
-template <class T, class U, class Boolean> inline bool BS(const T& v, const U x, Boolean fn){ return binary_search(all(v),x,fn); }
-template <class T, class Boolean> inline bool All(const T& v, Boolean fn){ return all_of(all(v),fn); }
-template <class T, class Boolean> inline bool Exist(const T& v, Boolean fn){ return any_of(all(v),fn); }
-template <class T, class Boolean> inline ll pt(T& v, Boolean fn){ auto p=partition(all(v),fn); return p-v.begin(); }
-template <class T, class Boolean> inline ll ptp(const T& v, Boolean fn){ return partition_point(all(v),fn)-v.begin(); }
+template <class T, class U, class Boolean=bool> inline bool BS(const T& v, const U x, Boolean fn){ return binary_search(all(v),x,fn); }
+template <class T, class Boolean=bool> inline bool All(const T& v, Boolean fn){ return all_of(all(v),fn); }
+template <class T, class Boolean=bool> inline bool Exist(const T& v, Boolean fn){ return any_of(all(v),fn); }
+template <class T, class Boolean=bool> inline ll pt(T& v, Boolean fn){ auto p=partition(all(v),fn); return p-v.begin(); }
+template <class T, class Boolean=bool> inline ll ptp(const T& v, Boolean fn){ return partition_point(all(v),fn)-v.begin(); }
 template <class T, class U> inline ll Find(T& v, const U x){ auto itr=find(all(v),x); if(itr==v.end()) return -1LL; return itr-v.begin(); }
 template <class T, class U> inline void rpl(T& v, const U fn, const U r){ replace(all(v),fn,r); }
-template <class T, class Boolean, class U> inline void rplif(T& v, Boolean fn, const U r){ replace_if(all(v),fn,r); }
-template <class T, class Boolean> inline ul cntif(const T& v, Boolean fn){ return count_if(all(v),fn); }
-template <class T> inline T Count(V<T>& v, ll x) { /*Sort(v);//*/ return UB(v,x)-LB(v,x); }
+template <class T, class U, class Boolean=bool> inline void rplif(T& v, Boolean fn, const U r){ replace_if(all(v),fn,r); }
+template <class T, class Boolean=bool> inline ul cntif(const T& v, Boolean fn){ return count_if(all(v),fn); }
+template <class T> inline T Count(V<T>& v, ll x){ /*Sort(v);//*/ return UB(v,x)-LB(v,x); }
 template <class T> inline T IP(const V<T>& v, const V<T>& u, T init){ return inner_product(all(v),u.begin(),init); }
 template <class T> inline V<T> iot(T n, ll init=0){ V<T> a(n); iota(all(a),init); return a;}
 template <class T, class U> inline ll ers(T& v, U x){ v.erase(remove(all(v),x),v.end()); return len(v); }
-template <class T, class Boolean> ll ersif(T& v, Boolean x){ v.erase(remove_if(all(v),x),v.end()); return len(v); }
+template <class T, class Boolean=bool> ll ersif(T& v, Boolean x){ v.erase(remove_if(all(v),x),v.end()); return len(v); }
 template <class T> inline ll unq(T& v){ Sort(v); v.erase(unique(all(v)),v.end()); return len(v); }
 template <class T> inline T cp(const T& v){ T res; copy(all(v),back_inserter(res)); return res; }
 template <class T> inline T cp(const T& v, ll a, ll b){ T res; copy(all(v,a,b),back_inserter(res)); return res; }
@@ -527,6 +527,14 @@ struct p_fact {
     return m;
   }
 };
+template <class T, class Boolean=bool> inline T mgrbs(T ng, T ok, Boolean fn, ld eps = 1) {
+  while(abs(ok-ng)>eps) {
+    T mid=(ok+ng)/2;
+    if(fn(mid)) ok = mid;
+    else ng = mid;
+  }
+  return ok;
+}
 vi manacher(const string &s) {
   const ll n = Lady_sANDy::len(s);
   vi radius(n);
