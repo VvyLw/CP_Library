@@ -63,7 +63,7 @@ template <bool indirected=1> struct w_graph {
             auto tmp=dj.top();
             dj.pop();
             if(cst[tmp.second]<tmp.first) continue;
-            for(auto el: g[tmp.second]) if(chmin(cst[el],cst[tmp.first]+el.cost)) dj.emplace(cst[el],el);
+            for(auto el: g[tmp.second]) if(chmin(cst[el],tmp.first+el.cost)) dj.emplace(cst[el],el);
         }
         return cst;
     }
