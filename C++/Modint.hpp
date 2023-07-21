@@ -1,5 +1,7 @@
 // inspired by tatyam(https://atcoder.jp/contests/arc151/submissions/35526971)
-/*#include <iostream>
+#pragma once
+
+#include <iostream>
 #include <cassert>
 #include <vector>
 #include <utility>
@@ -7,7 +9,7 @@
 using namespace std;
 typedef long long ll;
 typedef unsigned uint;
-typedef unsigned long long ul;//*/
+typedef unsigned long long ul;
 template <uint mod> struct Modint{
     uint num = 0;
     constexpr Modint() noexcept {}
