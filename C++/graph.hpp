@@ -45,9 +45,9 @@ template <bool indirected=1> struct graph {
             int tmp=q.front();
             q.pop();
             for(auto el: g[tmp]) {
-                if(d[el.to]!=-1) continue;
-                d[el.to]=d[tmp]+1;
-                q.emplace(el.to);
+                if(d[el]!=-1) continue;
+                d[el]=d[tmp]+1;
+                q.emplace(el);
             }
         }
         return d;
@@ -65,7 +65,7 @@ template <bool indirected=1> struct graph {
             auto tmp=dj.top();
             dj.pop();
             if(cst[tmp.second]<tmp.first) continue;
-            for(auto el: g[tmp.second]) if(chmin(cst[el.to],cst[tmp.first]+el.cost)) dj.emplace(cst[el.to],el.to);
+            for(auto el: g[tmp.second]) if(chmin(cst[el],cst[tmp.first]+el.cost)) dj.emplace(cst[el],el);
         }
         return cst;
     }
