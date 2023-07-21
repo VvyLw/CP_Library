@@ -1,6 +1,8 @@
 // inspired by Luzhiled(https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html)
-/*#include <vector>
-using namespace std;//*/
+#pragma once
+
+#include <vector>
+using namespace std;
 template <class G> struct LowestCommonAncestor {
     const int LOG;
     vector<int> dep;
