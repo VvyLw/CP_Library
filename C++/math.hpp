@@ -1,4 +1,6 @@
-/*#include <vector>
+#pragma once
+
+#include <vector>
 #include <cmath>
 #include <algorithm>
 #include <map>
@@ -6,7 +8,7 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-typedef unsigned long long ul;//*/
+typedef unsigned long long ul;
 const int dx[]={0,0,0,-1,1,-1,-1,1,1};
 const int dy[]={0,-1,1,0,0,-1,1,-1,1};
 const int MOD = 998244353;
