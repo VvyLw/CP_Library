@@ -185,8 +185,8 @@ template <class T, class U> bool chmax(T& a, const U& b){ if(a<b){ a=b; return 1
 template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
 template <class T, class U> inline bool overflow_if_add(T a, U b){ return (numeric_limits<T>::max()-a)<b; }
 template <class T, class U> inline bool overflow_if_mul(T a, U b){ return (numeric_limits<T>::max()/a)<b; }
-const int dx[]={0,0,-1,1,-1,-1,1,1};
-const int dy[]={-1,1,0,0,-1,1,-1,1};
+const int dx[]={0,0,0,-1,1,-1,-1,1,1};
+const int dy[]={0,-1,1,0,0,-1,1,-1,1};
 const int MOD = 0x3b800001;
 const int M0D = 1e9+7;
 const int INF = 0x3fffffff;
