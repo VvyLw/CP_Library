@@ -220,6 +220,13 @@ ostream &operator<<(ostream &dest, i128 value) {
 }
 template <class T> void scan(T& a){ cin >> a; }
 template <class T, class U> void scan(P<T,U>& p){ scan(p.first); scan(p.second); }
+template <size_t id=0, class T> void scan_t(T &t) {
+  if constexpr (id<tuple_size<T>::value) {
+    scan(get<id>(t));
+    scan_t<id+1>(t);
+  }
+}
+template <class... Ts> void scan(tuple<Ts...> &t){ scan_t(t); }
 template <class T> void scan(V<T>& a){ each(i,a) scan(i); }
 template <class T> void lin(T& a){ getline(cin, a); }
 [[maybe_unused]] void in(){}
@@ -227,6 +234,14 @@ template <class Head, class... Tail> void in(Head& head, Tail&... tail){ scan(he
 template <class T> void print(const T& a){ cout << a; }
 template <class T> void println(const T& a){ cout << a; }
 template <class T, class U> void print(const P<T,U>& p){ print(p.first); cout<<" "; print(p.second); }
+template <size_t id=0, class T> void print_t(const T& t) {
+  if constexpr (id<tuple_size<T>::value) {
+    if constexpr (id>0) cout << ' ';
+    print(get<id>(t));
+    print_t<id+1>(t);
+  }
+}
+template <class... T> void print(const tuple<T...>& tpl){ print_t(tpl); }
 template <class T> void print(const V<T>& a){ if(!a.empty()){ print(a[0]); for(auto i=a.begin(); ++i!=a.end();){ cout<<' '; print(*i); } } }
 template <class T> void println(const V<T>& a){ if(!a.empty()){ print(a[0]); for(auto i=a.begin(); ++i!=a.end();){ cout<<'\n'; print(*i); } } }
 template <class T, class U> void print(const map<T,U> &m){ if(!m.empty()){ print(m.begin()->first); cout<<' '; print(m.begin()->second); for(auto i=m.begin(); ++i!=m.end();){ cout<<", "; print(i->first); cout<<' '; print(i->second); } } }
