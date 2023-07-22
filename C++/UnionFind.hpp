@@ -15,11 +15,12 @@ struct UnionFind {
         }
         return a;
     }
-    void unite(ll x, ll y) {
+    bool unite(ll x, ll y) {
         x = (*this)[x], y = (*this)[y];
-        if(x == y) return;
+        if(x == y) return 0;
         if(-par[x] < -par[y]) swap(x, y);
         par[x] += par[y], par[y] = x;
+        return 1;
     }
     ll size(ll x) {
         x = (*this)[x];
