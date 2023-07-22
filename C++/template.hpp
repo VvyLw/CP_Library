@@ -290,9 +290,7 @@ using namespace yesno_sys;
 #define debug(...) void(0)
 #endif
 #define elif else if
-#define scp(a,x,b) a<=x&&x<=b
 #define eid(el,v) &el-&v[0]
-#define gt(tpl,x) get<x>(tpl)
 #define bif(bit,tar) if(((tar)>>(bit))&1)
 #define nxp(x) next_permutation(all(x))
 #define prp(x) prev_permutation(all(x))
@@ -324,6 +322,8 @@ inline int bitdigit(ll x){ return 64-__builtin_clzll(x); }
 inline int popcnt(ll x){ return __builtin_popcountll(x); }
 inline int fione(ll x){ return __builtin_ffsll(x); }
 inline int zrcnt(ll x){ return __builtin_ctzll(x); }
+template <class T=ll> inline bool out_of_range(T min, T cod, T max){ return cod < min || cod >= max; }
+template <class T=ll> inline bool scope(T a, T x, T b){ return a <= x && x <= b; }
 inline bool isupper(char c){ return std::isupper(c); }
 inline bool isupper(const string &s){ bool ok=1; each(el,s) ok&=isupper(el); return ok; }
 inline bool islower(char c){ return std::islower(c); }
