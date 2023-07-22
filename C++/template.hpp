@@ -80,7 +80,6 @@ void time(const Timer &t1, const Timer &t2){ auto tm = chrono::duration_cast<chr
 #define sqrp(...) overload3(__VA_ARGS__,sqrp3,sqrp2,sqrp1)(__VA_ARGS__)
 #define irp(it,v) for(auto it=v.begin(); it!=v.end(); ++it)
 #define ir(it,v) for(auto it=v.begin(); it!=v.end();)
-#define FE(v,f) for_each(all(v),f)
 
 using ll = long long;
 using ld = long double;
@@ -160,7 +159,7 @@ template <class T> PP<T> normalize(PP<T> a) {
 template <class T, class U> P<U,T> swap(const P<T,U> &p){ P<U,T> ret={p.second,p.first}; return ret; }
 template <class T, class U> V<P<U,T>> swap(const V<P<T,U>> &vp) {
   V<P<U,T>> ret;
-  FE(vp,[&ret](P<T,U> el){ret.emplace_back(swap(el));});
+  each(el,vp) ret.emplace_back(swap(el));
   return ret;
 }
 template <class T, class U> V<T> first(const V<P<T,U>> &vp) {
@@ -177,8 +176,6 @@ template <class T, class U> V<U> second(const V<P<T,U>> &vp) {
 using namespace pairs;
 template <class T> using pq = priority_queue<T>;
 template <class T> using pqr = priority_queue<T,V<T>,greater<T>>;
-template <class T, class U> using pqs = priority_queue<P<T,U>>;
-template <class T, class U> using pqrs = priority_queue<P<T,U>,V<P<T,U>>,greater<P<T,U>>>;
 template <class T> using Tree = tree<T,null_type,less<T>,rb_tree_tag,tree_order_statistics_node_update>;
 template <class T> using TREE = tree<T,null_type,greater<T>,rb_tree_tag,tree_order_statistics_node_update>;
 template <class T, class U> bool chmax(T& a, const U& b){ if(a<b){ a=b; return 1; } return 0; }
