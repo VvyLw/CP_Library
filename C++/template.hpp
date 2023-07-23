@@ -101,6 +101,12 @@ using wd = V<vd>;
 using wc = V<vc>;
 using ws = V<vs>;
 using wb = V<vb>;
+template <class T, class U> inline V<U> ndiv_v(T&& n, U&& v) noexcept {
+  return V<U>(forward<T>(n), forward<U>(v));
+}
+template <class T, class... Ts> inline decltype(auto) ndiv_v(T&& n, Ts&&... v) noexcept {
+  return V<decltype(ndiv_v(forward<Ts>(v)...))>(forward<T>(n), ndiv_v(forward<Ts>(v)...));
+}
 template <class T> V<T>& operator++(V<T>& v){ each(el,v) el++; return v; }
 template <class T> V<T>& operator--(V<T>& v){ each(el,v) el--; return v; }
 template <class T, class U> V<T>& operator+=(V<T>& v, const U x){ each(el,v) el+=x; return v; }
