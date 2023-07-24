@@ -153,7 +153,7 @@ template <class T> PP<T> rotate(const PP<T>& a){ return {-a.second, a.first}; } 
 template <class T> T dot(const PP<T>& a, const PP<T>& b){ return a.first * b.first + a.second * b.second; }
 template <class T> T cross(const PP<T>& a, const PP<T>& b){ return dot(rotate(a), b); }
 template <class T> T square(const PP<T>& a){ return dot(a, a); }
-template <class T> ld grad(const PP<T>& a){ return 1.0L*a.second/a.first; }
+template <class T> ld grad(const PP<T>& a){ assert(a.first); return 1.0L * a.second / a.first; }
 template <class T> ld abs(const PP<T>& a){ return hypotl(a.first, a.second); }
 template <class T> T gcd(const PP<T>& a){ return gcd(a.first, a.second); }
 template <class T> PP<T> normalize(PP<T> a) {
