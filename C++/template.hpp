@@ -397,7 +397,7 @@ inline i128 stoL(string &s) {
 }
 template <class... Ts> constexpr auto symin(Ts... a){ return min(initializer_list<common_type_t<Ts...>>{a...}); }
 template <class... Ts> constexpr auto symax(Ts... a){ return max(initializer_list<common_type_t<Ts...>>{a...}); }
-template<class K, class U> inline V<K> kyl(const map<K,U> m, const U val) {
+template <class K, class U> inline V<K> kyl(const map<K,U> m, const U val) {
   V<K> keys;
   irp(it,m) {
     if(it->second==val) keys.emplace_back(it->first);
