@@ -407,19 +407,19 @@ template <class K, class V> inline K kymin(const map<K,V> &m){ return m.begin()-
 template <class K, class V> inline K kymax(const map<K,V> &m){ return m.rbegin()->first; }
 template <class K, class V> inline V kymin_v(const map<K,V> &m){ return m.begin()->second; }
 template <class K, class V> inline V kymax_v(const map<K,V> &m){ return m.rbegin()->second; }
-template <class K, class V> inline V vlmin(map<K,V> &m){
+template <class K, class V> inline V vlmin(const map<K,V> &m){
   auto pr = *min_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second > y.second; });
   return pr.second;
 }
-template <class K, class V> inline V vlmax(map<K,V> &m){
+template <class K, class V> inline V vlmax(const map<K,V> &m){
   auto pr = *max_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second < y.second; });
   return pr.second;
 }
-template <class K, class V> inline K vlmin_k(map<K,V> &m){
+template <class K, class V> inline K vlmin_k(const map<K,V> &m){
   auto pr = *min_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second > y.second; });
   return pr.first;
 }
-template <class K, class V> inline K vlmax_k(map<K,V> &m){
+template <class K, class V> inline K vlmax_k(const map<K,V> &m){
   auto pr = *max_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second < y.second; });
   return pr.first;
 }
