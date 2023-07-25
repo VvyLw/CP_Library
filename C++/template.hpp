@@ -262,8 +262,6 @@ template <class Head, class... Tail> void vout(const Head& head, const Tail&... 
 void fix(short x){ cout << fixed << setprecision(x); }
 void Alpha(){ cout << boolalpha; }
 void Flush(){ flush(cout); }
-} // IO
-using namespace IO;
 #define INT(...) int __VA_ARGS__; in(__VA_ARGS__)
 #define LL(...) ll __VA_ARGS__; in(__VA_ARGS__)
 #define UL(...) ul __VA_ARGS__; in(__VA_ARGS__)
@@ -275,17 +273,10 @@ using namespace IO;
 #define VEC(type,name,size) V<type> name(size); in(name)
 #define WEC(type,name,h,w) V<V<type>> name(h,V<type>(w)); in(name)
 #define fin(...) do{ out(__VA_ARGS__); return; }while(false)
+} // IO
+using namespace IO;
 
-namespace yesno_sys {
-inline void YES(bool ok=1){ out(ok?"YES":"NO"); }
-inline void NO(bool ok=1){ YES(!ok); }
-inline void Yes(bool ok=1){ out(ok?"Yes":"No"); }
-inline void No(bool ok=1){ Yes(!ok); }
-inline void yes(bool ok=1){ print(ok?"yes":"no"); }
-inline void no(bool ok=1){ yes(!ok); }
-} // yesno_sys
-using namespace yesno_sys;
-
+namespace zia_qu {
 #ifdef local
 #define debug(...) do { print(#__VA_ARGS__); print(':'); out(__VA_ARGS__); } while(false)
 #else
@@ -298,7 +289,12 @@ using namespace yesno_sys;
 #define prp(x) prev_permutation(all(x))
 #define strpl(s,a,b) regex_replace(s,regex(a),b)
 #define rgxmt(s,rgx) regex_match(s,regex(rgx))
-namespace zia_qu {
+inline void YES(bool ok=1){ out(ok?"YES":"NO"); }
+inline void NO(bool ok=1){ YES(!ok); }
+inline void Yes(bool ok=1){ out(ok?"Yes":"No"); }
+inline void No(bool ok=1){ Yes(!ok); }
+inline void yes(bool ok=1){ print(ok?"yes":"no"); }
+inline void no(bool ok=1){ yes(!ok); }
 template <class T> inline T sqr(T x){ return x*x; }
 template <class T> inline T cub(T x){ return x*x*x; }
 template <class T> inline T Mod(T x, T m){ return (x+m)%m; }
