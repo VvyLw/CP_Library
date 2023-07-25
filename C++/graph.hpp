@@ -13,7 +13,8 @@ struct edge {
 };
 template <bool indirected=1> struct w_graph {
     vector<vector<edge>> g;
-    w_graph(int n): g(n){}
+    vector<int> pr;
+    w_graph(int n): g(n), pr(n){}
     vector<edge>& operator[](int x){ return g[x]; }
     const vector<edge>& operator[](int x) const { return g[x]; }
     operator vector<vector<edge>>&(){ return g; }
@@ -24,6 +25,7 @@ template <bool indirected=1> struct w_graph {
     void add(int a, int b, long long cost, int indexed=1) {
         a-=indexed,b-=indexed;
         g[a].emplace_back(b, cost);
+        pr[b] = a;
         if(indirected) g[b].emplace_back(a, cost);
     }
     void input(int m, int indexed=1) {
@@ -34,6 +36,7 @@ template <bool indirected=1> struct w_graph {
             add(a, b, c, indexed);
         }
     }
+    vector<edge> par(int v){ return g[pr[v]]; }
     vector<int> all_dist(int v) {
         vector<int> d(g.size(),-1);
         queue<int> q;
@@ -70,7 +73,8 @@ template <bool indirected=1> struct w_graph {
 };
 template <bool indirected=1> struct graph {
     vector<vector<int>> g;
-    graph(int n): g(n){}
+    vector<int> pr;
+    graph(int n): g(n), pr(n){}
     vector<int>& operator[](int x){ return g[x]; }
     const vector<int>& operator[](int x) const { return g[x]; }
     operator vector<vector<int>>&(){ return g; }
@@ -81,6 +85,7 @@ template <bool indirected=1> struct graph {
     void add(int a, int b, int indexed=1) {
         a-=indexed,b-=indexed;
         g[a].emplace_back(b);
+        pr[b] = a;
         if(indirected) g[b].emplace_back(a);
     }
     void input(int m, int indexed=1) {
@@ -90,6 +95,7 @@ template <bool indirected=1> struct graph {
             add(a,b,indexed);
         }
     }
+    vector<int> par(int v){ return g[pr[v]]; }
     vector<int> all_dist(int v) {
         vector<int> d(g.size(),-1);
         queue<int> q;
