@@ -116,8 +116,6 @@ template <class T, class U> V<T> operator+(const V<T>& v, const U x){ V<T> res =
 template <class T, class U> V<T> operator-(const V<T>& v, const U x){ V<T> res = v; res-=x; return res; }
 template <class T, class U> V<T> operator*(const V<T>& v, const U x){ V<T> res = v; res*=x; return res; }
 template <class T, class U> V<T> operator/(const V<T>& v, const U x){ V<T> res = v; res/=x; return res; }
-template <class T> bool operator==(const V<T>& v, const V<T>& w){ return (v.size()==w.size() && equal(all(v),w.begin())); }
-template <class T> bool operator!=(const V<T>& v, const V<T>& w){ return !(v==w); }
 } // vectors
 using namespace vectors;
 namespace pairs {
