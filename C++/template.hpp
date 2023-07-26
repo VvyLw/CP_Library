@@ -546,6 +546,12 @@ template <class T, class Boolean=bool> inline T bins(T ok, T ng, Boolean fn, ld 
   }
   return ok;
 }
+template <class T> inline V<T> compress(const V<T>& v) {
+  V<T> res,cp=v;
+  Lady_sANDy::unq(cp);
+  each(el,v) res.emplace_back(Lady_sANDy::LB(cp,el));
+  return res;
+}
 vi manacher(const string &s) {
   const ll n = Lady_sANDy::len(s);
   vi radius(n);
