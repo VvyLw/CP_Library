@@ -552,6 +552,24 @@ template <class T> inline V<T> compress(const V<T>& v) {
   each(el,v) res.emplace_back(Lady_sANDy::LB(cp,el));
   return res;
 }
+template <class T> inline V<T> compress_2d(V<T> &c1, V<T> &c2) {
+  V<T> res;
+  const int n = Lady_sANDy::len(c1);
+  rep(n) {
+    for(T d = 0; d < 1; d++) {
+      T tc1 = c1[i]+d;
+      T tc2 = c2[i]+d;
+      res.emplace_back(tc1);
+      res.emplace_back(tc2);
+    }
+  }
+  Lady_sANDy::unq(res);
+  rep(n) {
+    c1[i]=Lady_sANDy::LB(res,c1[i]);
+    c2[i]=Lady_sANDy::LB(res,c2[i]);
+  }
+  return res;
+}
 vi manacher(const string &s) {
   const ll n = Lady_sANDy::len(s);
   vi radius(n);
