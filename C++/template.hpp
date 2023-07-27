@@ -24,9 +24,7 @@ using namespace __gnu_pbds;
 #pragma GCC diagnostic ignored "-Wdeprecated-copy"
 
 namespace VvyLw {
-namespace Twitter {
 void wa_haya_exe(){ cin.tie(nullptr) -> sync_with_stdio(false); }
-}
 void solve();
 } // VvyLw
 
@@ -633,7 +631,7 @@ using namespace Lady_sANDy;
 using namespace Heileden;
 
 int main() {
-  VvyLw::Twitter::wa_haya_exe();
+  VvyLw::wa_haya_exe();
   now(start);
   /*INT(t); while(t--)//*/
   VvyLw::solve();
