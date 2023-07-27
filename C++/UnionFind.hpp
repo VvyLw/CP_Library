@@ -26,4 +26,11 @@ struct UnionFind {
         x = (*this)[x];
         return -par[x];
     }
+    vector<vector<ll>> groups() {
+        const int n = par.size();
+        vector<vector<ll>> res(n);
+        for(int i = 0; i < n; ++i) res[(*this)[i]].emplace_back(i);
+        res.erase(remove_if(res.begin(), res.end(), [&](const vi &v){ return v.empty(); }), res.end());
+        return res;
+    }
 };
