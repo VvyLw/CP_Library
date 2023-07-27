@@ -110,10 +110,12 @@ template <class T, class U> V<T>& operator+=(V<T>& v, const U x){ each(el,v) el+
 template <class T, class U> V<T>& operator-=(V<T>& v, const U x){ each(el,v) el-=x; return v; }
 template <class T, class U> V<T>& operator*=(V<T>& v, const U x){ each(el,v) el*=x; return v; }
 template <class T, class U> V<T>& operator/=(V<T>& v, const U x){ each(el,v) el/=x; return v; }
+template <class T, class U> V<T>& operator%=(V<T>& v, const U x){ each(el,v) el%=x; return v; }
 template <class T, class U> V<T> operator+(const V<T>& v, const U x){ V<T> res = v; res+=x; return res; }
 template <class T, class U> V<T> operator-(const V<T>& v, const U x){ V<T> res = v; res-=x; return res; }
 template <class T, class U> V<T> operator*(const V<T>& v, const U x){ V<T> res = v; res*=x; return res; }
 template <class T, class U> V<T> operator/(const V<T>& v, const U x){ V<T> res = v; res/=x; return res; }
+template <class T, class U> V<T> operator%(const V<T>& v, const U x){ V<T> res = v; res%=x; return res; }
 } // vectors
 using namespace vectors;
 namespace pairs {
