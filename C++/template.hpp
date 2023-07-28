@@ -461,7 +461,7 @@ template <class T, class Boolean=bool> ll ersif(T& v, Boolean x){ v.erase(remove
 template <class T> inline ll unq(T& v){ Sort(v); v.erase(unique(all(v)),v.end()); return v.size(); }
 template <class T> inline T cp(const T& v){ T res; copy(all(v),back_inserter(res)); return res; }
 template <class T> inline T cp(const T& v, ll a, ll b){ T res; copy(all(v,a,b),back_inserter(res)); return res; }
-template <class T> inline void rtt(T& s, ll idx){ ll id=zia_qu::Mod<ll>(idx,v.size()); rotate(all(s,id),s.end());  }
+template <class T> inline void rtt(T& s, ll idx){ ll id=zia_qu::Mod<ll>(idx,s.size()); rotate(all(s,id),s.end());  }
 template <class T> inline void rtt(T& s, ll a, ll b, ll c){ rotate(all(s,a,b),s.end()-c);  }
 template <class T> inline V<T> psum(const V<T>& v){ V<T> s{0}; partial_sum(all(v),back_inserter(s)); return s; }
 template <class T> inline V<T> adf(const V<T>& v){ V<T> a; adjacent_difference(all(v),back_inserter(a)); rtt(a,1); a.pop_back(); return a; }
