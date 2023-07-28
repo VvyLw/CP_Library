@@ -57,14 +57,14 @@ struct p_table {
     vector<bool> SoE;
     p_table(int n): SoE(n+1,1){
         SoE[0] = 0, SoE[1] = 0;
-        for(int i = 2; i <= n; ++i) {
+        for(long i = 2; i <= n; ++i) {
             if(!SoE[i]) continue;
-            for(ll j = i * i; j <= n; j += i) SoE[j] = 0;
+            for(long j = i * i; j <= n; j += i) SoE[j] = 0;
         }
     }
-    vector<int> table(int n) {
+    vector<int> table() const {
         vector<int> p;
-        for(int i = 2; i <= n; ++i) if(SoE[i]) p.emplace_back(i);
+        for(size_t i = 2; i < SoE.size(); ++i) if(SoE[i]) p.emplace_back(i);
         return p;
     }
 };
