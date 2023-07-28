@@ -37,7 +37,7 @@ template <class T> inline T Pow(T a, T b, T mod=0) {
 
 template <class T> inline vector<T> divisor(T n) {
     vector<T> div;
-    for(int64_t i = 1; i * i <= n; ++i) {
+    for(ll i = 1; i * i <= n; ++i) {
         if(n % i == 0) {
             div.emplace_back(i);
             if(i * i != n) div.emplace_back(n / i);
@@ -57,9 +57,9 @@ struct p_table {
     vector<bool> SoE;
     p_table(int n): SoE(n+1,1){
         SoE[0] = 0, SoE[1] = 0;
-        for(long i = 2; i <= n; ++i) {
+        for(ll i = 2; i <= n; ++i) {
             if(!SoE[i]) continue;
-            for(long j = i * i; j <= n; j += i) SoE[j] = 0;
+            for(ll j = i * i; j <= n; j += i) SoE[j] = 0;
         }
     }
     vector<int> table() const {
