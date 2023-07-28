@@ -422,7 +422,6 @@ template <class T> inline T stmax(const set<T> &s){ return *s.rbegin(); }
 } // zia qu
 
 namespace Lady_sANDy {
-template <class T> inline ll len(const T& v){ return v.size(); }
 template <class T> inline void rev(T& v){ reverse(all(v)); }
 template <class T> inline void rev(T& v, ll a, ll b){ reverse(all(v,a,b)); }
 template <class T> inline T revd(const T& v){ auto c=v; rev(c); return c; }
@@ -456,12 +455,12 @@ template <class T, class Boolean=bool> inline ul cntif(const T& v, Boolean fn){ 
 template <class T> inline T Count(V<T>& v, ll x){ /*Sort(v);//*/ return UB(v,x)-LB(v,x); }
 template <class T> inline T IP(const V<T>& v, const V<T>& u, T init){ return inner_product(all(v),u.begin(),init); }
 template <class T> inline V<T> iot(T n, ll init=0){ V<T> a(n); iota(all(a),init); return a;}
-template <class T, class U> inline ll ers(T& v, U x){ v.erase(remove(all(v),x),v.end()); return len(v); }
-template <class T, class Boolean=bool> ll ersif(T& v, Boolean x){ v.erase(remove_if(all(v),x),v.end()); return len(v); }
-template <class T> inline ll unq(T& v){ Sort(v); v.erase(unique(all(v)),v.end()); return len(v); }
+template <class T, class U> inline ll ers(T& v, U x){ v.erase(remove(all(v),x),v.end()); return v.size(); }
+template <class T, class Boolean=bool> ll ersif(T& v, Boolean x){ v.erase(remove_if(all(v),x),v.end()); return v.size(); }
+template <class T> inline ll unq(T& v){ Sort(v); v.erase(unique(all(v)),v.end()); return v.size(); }
 template <class T> inline T cp(const T& v){ T res; copy(all(v),back_inserter(res)); return res; }
 template <class T> inline T cp(const T& v, ll a, ll b){ T res; copy(all(v,a,b),back_inserter(res)); return res; }
-template <class T> inline void rtt(T& s, ll idx){ ll id=zia_qu::Mod<ll>(idx,len(s)); rotate(all(s,id),s.end());  }
+template <class T> inline void rtt(T& s, ll idx){ ll id=zia_qu::Mod<ll>(idx,v.size()); rotate(all(s,id),s.end());  }
 template <class T> inline void rtt(T& s, ll a, ll b, ll c){ rotate(all(s,a,b),s.end()-c);  }
 template <class T> inline V<T> psum(const V<T>& v){ V<T> s{0}; partial_sum(all(v),back_inserter(s)); return s; }
 template <class T> inline V<T> adf(const V<T>& v){ V<T> a; adjacent_difference(all(v),back_inserter(a)); rtt(a,1); a.pop_back(); return a; }
@@ -554,7 +553,7 @@ template <class T> inline V<T> compress(const V<T>& v) {
 }
 template <class T> inline V<T> compress_2d(V<T> &c1, V<T> &c2) {
   V<T> res;
-  const int n = Lady_sANDy::len(c1);
+  const int n = c1.size();
   rep(n) {
     for(T d = 0; d < 1; d++) {
       T tc1 = c1[i]+d;
@@ -571,7 +570,7 @@ template <class T> inline V<T> compress_2d(V<T> &c1, V<T> &c2) {
   return res;
 }
 vi manacher(const string &s) {
-  const ll n = Lady_sANDy::len(s);
+  const int n = s.size();
   vi radius(n);
   ll i = 0, j = 0;
   while(i < n) {
