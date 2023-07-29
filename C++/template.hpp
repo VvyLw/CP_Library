@@ -283,7 +283,7 @@ namespace zia_qu {
 #endif
 #define elif else if
 #define eid(el,v) &el-&v[0]
-#define bif(bit,tar) if(((tar)>>(bit))&1)
+#define bif(bit,tar) if(((bit)>>(tar))&1)
 #define nxp(x) next_permutation(all(x))
 #define prp(x) prev_permutation(all(x))
 #define strpl(s,a,b) regex_replace(s,regex(a),b)
