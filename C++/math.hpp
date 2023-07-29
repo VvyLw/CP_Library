@@ -35,16 +35,16 @@ template <class T> inline T Pow(T a, T b, T mod=0) {
     return res;
 }
 
-template <class T> inline vector<T> divisor(T n) {
-    vector<T> div;
+template <class T> inline vector<T> div(T n) {
+    vector<T> d;
     for(ll i = 1; i * i <= n; ++i) {
         if(n % i == 0) {
-            div.emplace_back(i);
-            if(i * i != n) div.emplace_back(n / i);
+            d.emplace_back(i);
+            if(i * i != n) d.emplace_back(n / i);
         }
     }
-    sort(div.begin(), div.end());
-    return div;
+    sort(d.begin(), d.end());
+    return d;
 }
 
 inline bool is_prime(ul n) {

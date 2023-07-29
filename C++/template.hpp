@@ -478,16 +478,16 @@ template <class T> inline ld vdmul(V<T> &v, ll a, ll b){ return reduce(all(v,a,b
 } // Lady s&y
 
 namespace Heileden {
-template <class T> inline V<T> divisor(T n) {
-  V<T> div;
+template <class T> inline V<T> div(T n) {
+  V<T> d;
   sqrp(i,1,n) {
     if(n%i==0) {
-      div.emplace_back(i);
-      if(i*i!=n) div.emplace_back(n/i);
+      d.emplace_back(i);
+      if(i*i!=n) d.emplace_back(n/i);
     }
   }
-  Lady_sANDy::Sort(div);
-  return div;
+  Lady_sANDy::Sort(d);
+  return d;
 }
 template <class T> inline V<PP<T>> prmfct(T n) {
   V<PP<T>> res;
@@ -546,13 +546,13 @@ template <class T, class Boolean=bool> inline T bins(T ok, T ng, Boolean fn, ld 
   }
   return ok;
 }
-template <class T> inline V<T> compress(const V<T>& v) {
+template <class T> inline V<T> cmp(const V<T>& v) {
   V<T> res,cp=v;
   Lady_sANDy::unq(cp);
   each(el,v) res.emplace_back(Lady_sANDy::LB(cp,el));
   return res;
 }
-template <class T> inline V<T> compress_2d(V<T> &c1, V<T> &c2) {
+template <class T> inline V<T> cmp2(V<T> &c1, V<T> &c2) {
   V<T> res;
   const int n = c1.size();
   rep(n) {
