@@ -63,7 +63,7 @@ struct p_table {
             for(ll j = i * i; j <= n; j += i) SoE[j] = 0;
         }
     }
-    vector<int> table() const {
+    vector<int> get() const {
         vector<int> p;
         for(size_t i = 2; i < SoE.size(); ++i) if(SoE[i]) p.emplace_back(i);
         return p;

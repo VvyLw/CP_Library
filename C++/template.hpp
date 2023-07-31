@@ -178,6 +178,8 @@ template <class T, class U> V<U> second(const V<P<T,U>> &vp) {
 }
 } // pairs
 using namespace pairs;
+template <size_t N> using ai = array<ll, N>;
+using ti = ai<3>;
 template <class T> using pq = priority_queue<T>;
 template <class T> using pqr = priority_queue<T,V<T>,greater<T>>;
 template <class T> using Tree = tree<T,null_type,less<T>,rb_tree_tag,tree_order_statistics_node_update>;
@@ -219,56 +221,28 @@ ostream &operator<<(ostream &dest, i128 value) {
   }
   return dest;
 }
-template <class T> void scan(T& a){ cin >> a; }
-template <class T, class U> void scan(P<T,U>& p){ scan(p.first); scan(p.second); }
-template <size_t id=0, class T> void scan_t(T &t) {
-  if constexpr (id<tuple_size<T>::value) {
-    scan(get<id>(t));
-    scan_t<id+1>(t);
-  }
-}
-template <class... Ts> void scan(tuple<Ts...> &t){ scan_t(t); }
-template <class T> void scan(V<T>& a){ each(i,a) scan(i); }
-template <class T> void lin(T& a){ getline(cin, a); }
-[[maybe_unused]] void in(){}
-template <class Head, class... Tail> void in(Head& head, Tail&... tail){ scan(head); in(tail...); }
-template <class T> void print(const T& a){ cout << a; }
-template <class T> void println(const T& a){ cout << a; }
-template <class T, class U> void print(const P<T,U>& p){ print(p.first); cout<<" "; print(p.second); }
-template <size_t id=0, class T> void print_t(const T& t) {
-  if constexpr (id<tuple_size<T>::value) {
-    if constexpr (id>0) cout << ' ';
-    print(get<id>(t));
-    print_t<id+1>(t);
-  }
-}
-template <class... T> void print(const tuple<T...>& tpl){ print_t(tpl); }
-template <class T> void print(const V<T>& a){ if(!a.empty()){ print(a[0]); for(auto i=a.begin(); ++i!=a.end();){ cout<<' '; print(*i); } } }
-template <class T> void println(const V<T>& a){ if(!a.empty()){ print(a[0]); for(auto i=a.begin(); ++i!=a.end();){ cout<<'\n'; print(*i); } } }
-template <class T, class U> void print(const map<T,U> &m){ if(!m.empty()){ print(m.begin()->first); cout<<' '; print(m.begin()->second); for(auto i=m.begin(); ++i!=m.end();){ cout<<", "; print(i->first); cout<<' '; print(i->second); } } }
-template <class T> void print(const set<T> &st){ print(*st.begin()); for(auto i=st.begin(); ++i!=st.end();){ cout<<' '; print(*i); } }
-template <class T> void print(queue<T> que){ print(que.front()); while(que.size()){ cout<<' '; que.pop(); if(!que.empty()) print(que.front()); } }
-template <class T> void print(const deque<T> &dq){ if(!dq.empty()){ print(dq[0]); for(auto i=dq.begin(); ++i!=dq.end();){ cout<<' '; print(*i); } } }
-template <class T> void println(const deque<T> &dq){ if(!dq.empty()){ print(dq[0]); for(auto i=dq.begin(); ++i!=dq.end();){ cout<<'\n'; print(*i); } } }
-template <class T> void print(stack<T> sk){ print(sk.top()); while(sk.size()){ cout<<' '; sk.pop(); if(!sk.empty()) print(sk.top()); } }
-template <class T, class Container, class Compare> void print(priority_queue<T, Container, Compare> pq){ print(pq.top()); while(pq.size()){ pq.pop(); cout<<' '; if(!pq.empty()) print(pq.top()); } }
-void bl(){ cout<<' '; }
-void out(){ cout<<'\n'; }
-template <class T> void out(const T& t){ print(t); cout<<'\n'; }
-template <class T> void vout(const T& t){ println(t); cout<<'\n'; }
-template <class Head, class... Tail> void out(const Head& head, const Tail&... tail){ print(head); cout<<' '; out(tail...); }
-template <class Head, class... Tail> void vout(const Head& head, const Tail&... tail){ println(head); cout<<'\n'; vout(tail...); }
+template <class T, class U> istream& operator>>(istream &is, P<T, U> &p){ is >> p.first >> p.second; return is; }
+template <class T, size_t N> istream& operator>>(istream &is, array<T, N> &a){ each(el,a) is >> el; return is; }
+template <class T> istream& operator>>(istream &is, V<T> &v){ each(el,v) is >> el; return is; }
+template <class T> inline void in(T& x){ cin >> x; }
+template <class Head, class... Tail> inline bool in(Head& head, Tail&... tail){ in(head); in(tail...); return 1; }
+template <class T, class U> ostream& operator<<(ostream &os, const P<T, U> &p){ os << p.first << ' ' << p.second; return os; }
+template <class T, size_t N> ostream& operator<<(ostream &os, const array<T, N> &a){ if(a.size()){ os << a.front(); for(auto i=a.begin(); ++i!=a.end();){ os << ' ' << *i; } } return os; }
+template <class T> ostream& operator<<(ostream &os, const V<T> &v){ if(v.size()){ os << v.front(); for(auto i=v.begin(); ++i!=v.end();){ os << (' ') << *i; } } return os; }
+template <class K, class V> ostream& operator<<(ostream &os, const map<K, V> &m){ if(m.size()){ os << m.begin()->first << ' ' << m.begin()->second; for(auto i=m.begin(); ++i!=m.end();){ os << '\n' << i->first << ' ' << i->second; } } return os; }
+template <class T> ostream& operator<<(ostream &os, const set<T> &st){ if(st.size()){ os << *st.begin(); for(auto i=st.begin(); ++i!=st.end();){ os << ' ' << *i; } } return os; }
+template <class T> ostream& operator<<(ostream &os, const deque<T> &dq){ if(dq.size()){ os << dq.front(); for(auto i=dq.begin(); ++i!=dq.end();){ os << ' ' << *i; } } return os; }
+void out(){ cout << '\n'; }
+template <bool flush=false, class T> inline void out(const T& x){ if(flush) cout << x << endl; else cout << x << '\n'; }
+template <bool flush=false, class Head, class... Tail> inline void out(const Head& head, const Tail&... tail){ out(head); cout<<' '; out(tail...); }
 void fix(short x){ cout << fixed << setprecision(x); }
 void Alpha(){ cout << boolalpha; }
-void Flush(){ flush(cout); }
 #define INT(...) int __VA_ARGS__; in(__VA_ARGS__)
 #define LL(...) ll __VA_ARGS__; in(__VA_ARGS__)
 #define UL(...) ul __VA_ARGS__; in(__VA_ARGS__)
-#define DBL(...) double __VA_ARGS__; in(__VA_ARGS__)
 #define LD(...) ld __VA_ARGS__; in(__VA_ARGS__)
 #define CHR(...) char __VA_ARGS__; in(__VA_ARGS__)
 #define STR(...) string __VA_ARGS__; in(__VA_ARGS__)
-#define LIN(str) string str; lin(str)
 #define VEC(type,name,size) V<type> name(size); in(name)
 #define WEC(type,name,h,w) V<V<type>> name(h,V<type>(w)); in(name)
 #define fin(...) do{ out(__VA_ARGS__); return; }while(false)
@@ -292,7 +266,7 @@ inline void YES(bool ok=1){ out(ok?"YES":"NO"); }
 inline void NO(bool ok=1){ YES(!ok); }
 inline void Yes(bool ok=1){ out(ok?"Yes":"No"); }
 inline void No(bool ok=1){ Yes(!ok); }
-inline void yes(bool ok=1){ print(ok?"yes":"no"); }
+inline void yes(bool ok=1){ out(ok?"yes":"no"); }
 inline void no(bool ok=1){ yes(!ok); }
 template <class T> inline T sqr(T x){ return x*x; }
 template <class T> inline T cub(T x){ return x*x*x; }
@@ -513,9 +487,9 @@ struct p_table {
       rep(j,i*i,n,i) SoE[j] = 0;
     }
   }
-  vi table(int n) {
+  vi get() {
     vi p;
-    rep(i,2,n) if(SoE[i]) p.emplace_back(i);
+    rep(i,2,SoE.size()-1) if(SoE[i]) p.emplace_back(i);
     return p;
   }
 };
