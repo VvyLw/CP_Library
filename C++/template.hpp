@@ -456,6 +456,7 @@ template <class T, class Boolean=bool> inline ul cntif(const T& v, Boolean fn){ 
 template <class T> inline T Count(V<T>& v, ll x){ /*Sort(v);//*/ return UB(v,x)-LB(v,x); }
 template <class T> inline T IP(const V<T>& v, const V<T>& u, T init){ return inner_product(all(v),u.begin(),init); }
 template <class T> inline V<T> iot(T n, ll init=0){ V<T> a(n); iota(all(a),init); return a;}
+template <class T, class U, class Boolean=bool> inline V<T> trans(const V<U>& v, Boolean fn){ V<T> res; transform(all(v),back_inserter(res),fn); return res; }
 template <class T, class U> inline ll ers(T& v, U x){ v.erase(remove(all(v),x),v.end()); return v.size(); }
 template <class T, class Boolean=bool> ll ersif(T& v, Boolean x){ v.erase(remove_if(all(v),x),v.end()); return v.size(); }
 template <class T> inline ll unq(T& v){ Sort(v); v.erase(unique(all(v)),v.end()); return v.size(); }
