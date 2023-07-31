@@ -178,8 +178,8 @@ template <class T, class U> V<U> second(const V<P<T,U>> &vp) {
 }
 } // pairs
 using namespace pairs;
-template <size_t N> using ai = array<ll, N>;
-using ti = ai<3>;
+template <size_t N> using ti = array<ll, N>;
+using tri = ti<3>;
 template <class T> using pq = priority_queue<T>;
 template <class T> using pqr = priority_queue<T,V<T>,greater<T>>;
 template <class T> using Tree = tree<T,null_type,less<T>,rb_tree_tag,tree_order_statistics_node_update>;
