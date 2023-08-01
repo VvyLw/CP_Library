@@ -39,10 +39,10 @@ vector<ll> zalg(const string &s) {
     return pre;
 }
 
-vector<ll> SA(const string &s) {
+/*vector<ll> SA(const string &s) {
     const ll n = s.size();
     sort(s.begin(), s.end());
-}
+}//*/
 
 template <unsigned mod> struct RollingHash {
     vector<unsigned> hashed, power;
