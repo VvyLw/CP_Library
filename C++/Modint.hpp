@@ -147,7 +147,8 @@ struct a_mint {
         return (is);
     }
 };
-#define AINT(...) a_mint __VA_ARGS__; in(__VA_ARGS__)
+//#include "template.hpp"
+//#define AINT(...) a_mint __VA_ARGS__; in(__VA_ARGS__)
 using va = V<a_mint>;
 using wa = V<va>;
 using pa = PP<a_mint>;
