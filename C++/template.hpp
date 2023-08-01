@@ -179,7 +179,7 @@ template <class T, class U> V<U> second(const V<P<T,U>> &vp) {
 } // pairs
 using namespace pairs;
 template <size_t N> using ti = array<ll, N>;
-using tri = ti<3>;
+using etis = ti<3>;
 template <class T> using pq = priority_queue<T>;
 template <class T> using pqr = priority_queue<T,V<T>,greater<T>>;
 template <class T> using Tree = tree<T,null_type,less<T>,rb_tree_tag,tree_order_statistics_node_update>;
@@ -232,9 +232,12 @@ template <class T> ostream& operator<<(ostream &os, const V<T> &v){ if(v.size())
 template <class K, class V> ostream& operator<<(ostream &os, const map<K, V> &m){ if(m.size()){ os << m.begin()->first << ' ' << m.begin()->second; for(auto i=m.begin(); ++i!=m.end();){ os << '\n' << i->first << ' ' << i->second; } } return os; }
 template <class T> ostream& operator<<(ostream &os, const set<T> &st){ if(st.size()){ os << *st.begin(); for(auto i=st.begin(); ++i!=st.end();){ os << ' ' << *i; } } return os; }
 template <class T> ostream& operator<<(ostream &os, const deque<T> &dq){ if(dq.size()){ os << dq.front(); for(auto i=dq.begin(); ++i!=dq.end();){ os << ' ' << *i; } } return os; }
-void out(){ cout << '\n'; }
-template <bool flush=false, class T> inline void out(const T& x){ if(flush) cout << x << endl; else cout << x << '\n'; }
-template <bool flush=false, class Head, class... Tail> inline void out(const Head& head, const Tail&... tail){ out(head); cout<<' '; out(tail...); }
+template <bool flush=false> inline void out(){ cout << '\n'; if(flush) cout.flush(); }
+template <bool flush=false, class T> inline void out(const T& x){ cout << x << '\n'; if(flush) cout.flush(); }
+template <bool flush=false, class Head, class... Tail> inline void out(const Head& head, const Tail&... tail){ cout << head << ' '; out<flush>(tail...); }
+template <bool flush=false, class T> inline void vout(const T& v){ cout << v << '\n'; if(flush) cout.flush(); }
+template <bool flush=false, class T> inline void vout(const V<T>& v){ rep(v.size()) cout << v[i] << '\n'; if(flush) cout.flush(); }
+template <bool flush=false, class Head, class... Tail> inline void vout(const Head& head, const Tail&... tail){ cout << head << '\n'; vout<flush>(tail...); }
 void fix(short x){ cout << fixed << setprecision(x); }
 void Alpha(){ cout << boolalpha; }
 #define INT(...) int __VA_ARGS__; in(__VA_ARGS__)
