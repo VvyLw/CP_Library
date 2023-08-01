@@ -224,7 +224,7 @@ ostream &operator<<(ostream &dest, i128 value) {
 template <class T, class U> istream& operator>>(istream &is, P<T, U> &p){ is >> p.first >> p.second; return is; }
 template <class T, size_t N> istream& operator>>(istream &is, array<T, N> &a){ each(el,a) is >> el; return is; }
 template <class T> istream& operator>>(istream &is, V<T> &v){ each(el,v) is >> el; return is; }
-template <class T> inline void in(T& x){ cin >> x; }
+template <class T> inline bool in(T& x){ cin >> x; return 1; }
 template <class Head, class... Tail> inline bool in(Head& head, Tail&... tail){ in(head); in(tail...); return 1; }
 template <class T, class U> ostream& operator<<(ostream &os, const P<T, U> &p){ os << p.first << ' ' << p.second; return os; }
 template <class T, size_t N> ostream& operator<<(ostream &os, const array<T, N> &a){ if(a.size()){ os << a.front(); for(auto i=a.begin(); ++i!=a.end();){ os << ' ' << *i; } } return os; }
