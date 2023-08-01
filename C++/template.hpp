@@ -254,7 +254,7 @@ using namespace IO;
 
 namespace zia_qu {
 #ifdef local
-#define debug(...) do { print(#__VA_ARGS__); print(':'); out(__VA_ARGS__); } while(false)
+#define debug(...) do { cout << #__VA_ARGS__ << ':'; out(__VA_ARGS__); } while(false)
 #else
 #define debug(...) void(0)
 #endif
