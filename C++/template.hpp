@@ -85,6 +85,15 @@ using uint = unsigned;
 using ul = unsigned long long;
 using i128 = __int128_t;
 using u128 = __uint128_t;
+const int dx[]={0,0,0,-1,1,-1,-1,1,1};
+const int dy[]={0,-1,1,0,0,-1,1,-1,1};
+const int MOD = 0x3b800001;
+const int M0D = 1e9+7;
+const int INF = 0x3fffffff;
+const ll LINF = 0x1fffffffffffffff;
+const ld DINF = numeric_limits<ld>::infinity();
+const ld PI = acos(-1);
+const ld E = 2.718281828459045;
 namespace vectors {
 template <class T> using V = vector<T>;
 using vi = V<ll>;
@@ -148,6 +157,11 @@ template <class T, class U> bool operator<=(const P<T,U> &p, const P<T,U> &q){ i
 template <class T, class U> bool operator>(const P<T,U> &p, const P<T,U> &q){ if(p.first==q.first) return p.second>q.second; return p.first>q.first; }
 template <class T, class U> bool operator>=(const P<T,U> &p, const P<T,U> &q){ if(p.first==q.first) return p.second>=q.second; return p.first>q.first; }
 template <class T> PP<T> rotate(const PP<T>& a){ return {-a.second, a.first}; } // 90 degree ccw
+template <class T> pd rotate(const PP<T>& a, const int ang) {
+  assert(0<=ang && ang<360);
+  const ld rad=PI*ang/180;
+  return {a.first*cos(rad)-a.second*sin(rad), a.first*sin(rad)+a.second*cos(rad)};
+}
 template <class T> T dot(const PP<T>& a, const PP<T>& b){ return a.first * b.first + a.second * b.second; }
 template <class T> T cross(const PP<T>& a, const PP<T>& b){ return dot(rotate(a), b); }
 template <class T> T square(const PP<T>& a){ return dot(a, a); }
@@ -188,15 +202,6 @@ template <class T, class U> bool chmax(T& a, const U& b){ if(a<b){ a=b; return 1
 template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
 template <class T, class U> inline bool overflow_if_add(T a, U b){ return (numeric_limits<T>::max()-a)<b; }
 template <class T, class U> inline bool overflow_if_mul(T a, U b){ return (numeric_limits<T>::max()/a)<b; }
-const int dx[]={0,0,0,-1,1,-1,-1,1,1};
-const int dy[]={0,-1,1,0,0,-1,1,-1,1};
-const int MOD = 0x3b800001;
-const int M0D = 1e9+7;
-const int INF = 0x3fffffff;
-const ll LINF = 0x1fffffffffffffff;
-const ld DINF = numeric_limits<ld>::infinity();
-const double PI = acos(-1);
-const double E = 2.718281828459045;
 
 namespace IO {
 ostream &operator<<(ostream &dest, i128 value) {
