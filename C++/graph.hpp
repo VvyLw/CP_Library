@@ -4,7 +4,8 @@
 #include <vector>
 #include <queue>
 using namespace std;
-template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
+//#include "template.hpp"
+//template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
 struct edge {
     int to;
     long long cost;
