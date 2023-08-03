@@ -324,22 +324,21 @@ inline bool isprint(const string &s){ bool ok=1; each(el,s) ok&=isprint(el); ret
 inline ll strins(string &s, ll id, const string &t){ s.insert(id,t); return s.size(); }
 inline string toupper(string s){ each(c,s) c=std::toupper(c); return s; }
 inline string tolower(string s){ each(c,s) c=std::tolower(c); return s; }
-inline vi ten_to_adic(ll m, ll n) {
+inline vi ten_to_adic(ll n, const short base) {
   vi res;
-  ll now=m;
-  while(now!=0) {
-    res.emplace_back(now%n);
-    now/=n;
+  while(n) {
+    res.emplace_back(n%base);
+    n/=base;
   }
   //rev(res);
   return res;
 }
-inline ll adic_to_ten(vi &v, ll u) {
+inline ll adic_to_ten(vi &v, const short base) {
   ll res=0;
   //rev(v);
   each(el,v) {
     ll idx=eid(el,v);
-    res+=Pow(u,idx)*el;
+    res+=Pow<ll>(base,idx)*el;
   }
   return res;
 }
