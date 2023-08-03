@@ -233,7 +233,7 @@ template <class T> inline bool in(T& x){ cin >> x; return 1; }
 template <class Head, class... Tail> inline bool in(Head& head, Tail&... tail){ in(head); in(tail...); return 1; }
 template <class T, class U> ostream& operator<<(ostream &os, const P<T, U> &p){ os << p.first << ' ' << p.second; return os; }
 template <class T, size_t N> ostream& operator<<(ostream &os, const array<T, N> &a){ if(a.size()){ os << a.front(); for(auto i=a.begin(); ++i!=a.end();){ os << ' ' << *i; } } return os; }
-template <class T> ostream& operator<<(ostream &os, const V<T> &v){ if(v.size()){ os << v.front(); for(auto i=v.begin(); ++i!=v.end();){ os << (' ') << *i; } } return os; }
+template <class T> ostream& operator<<(ostream &os, const V<T> &v){ if(v.size()){ os << v.front(); for(auto i=v.begin(); ++i!=v.end();){ os << ' ' << *i; } } return os; }
 template <class K, class V> ostream& operator<<(ostream &os, const map<K, V> &m){ if(m.size()){ os << m.begin()->first << ' ' << m.begin()->second; for(auto i=m.begin(); ++i!=m.end();){ os << '\n' << i->first << ' ' << i->second; } } return os; }
 template <class T> ostream& operator<<(ostream &os, const set<T> &st){ if(st.size()){ os << *st.begin(); for(auto i=st.begin(); ++i!=st.end();){ os << ' ' << *i; } } return os; }
 template <class T> ostream& operator<<(ostream &os, const deque<T> &dq){ if(dq.size()){ os << dq.front(); for(auto i=dq.begin(); ++i!=dq.end();){ os << ' ' << *i; } } return os; }
@@ -556,23 +556,6 @@ template <class T> inline V<T> cmp2(V<T> &c1, V<T> &c2) {
     c2[i]=Lady_sANDy::LB(res,c2[i]);
   }
   return res;
-}
-vi manacher(const string &s) {
-  const int n = s.size();
-  vi radius(n);
-  ll i = 0, j = 0;
-  while(i < n) {
-    while(i - j >= 0 && i + j < n && s[i - j] == s[i + j]) ++j;
-    radius[i] = j;
-    ll k = 1;
-    while(i - k >= 0 && i + k < n && k + radius[i - k] < j) {
-      radius[i + k] = radius[i - k];
-      ++k;
-    }
-    i += k;
-    j -= k;
-  }
-  return radius;
 }
 template <class T> T factor(T n, T mod=0) {
   T res=1;
