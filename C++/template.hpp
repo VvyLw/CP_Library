@@ -419,6 +419,8 @@ template <class T> inline void Sortt(T& v, const ll a, const ll b){ sort(rall(v,
 template <class T> inline T Sorted(T& v){ auto c=v; Sortt(c); return c; }
 template <class T> inline T Sorted(const T& v, const ll a, const ll b){ auto c=v; Sortt(c,a,b); return c; }
 template <class T> inline void Sorth(T& v){ make_heap(all(v)); sort_heap(all(v)); }
+template <class T> inline void nth(T& v, const ll id){ nth_element(v.begin(), v.begin()+id, v.end()); }
+template <class T> inline T Nth(const T& v, const ll id){ auto u=v; nth_element(u.begin(), u.begin()+id, u.end()); return u; }
 template <class T> inline T mrg(const T& a, const T& b){ T res; merge(all(a),all(b),back_inserter(res)); return res; }
 template <class T> inline T Min(const V<T>& v){ return *min_element(all(v)); }
 template <class T> inline T Min(const V<T>& v, const ll a, const ll b){ return *min_element(all(v,a,b+1)); }
