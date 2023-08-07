@@ -27,8 +27,26 @@ template <class T> struct SparseTable {
             lookup[i] = lookup[i >> 1] + 1;
         }
     }
-    inline T query(T l, T r) {
+    inline T query(const T l, const T r) {
         int b = lookup[r - l];
         return f(st[b][l], st[b][r - (1 << b)]);
+    }
+    template <class Boolean=bool> inline int min_left(const int x, const Boolean &fn) {
+        if(!x) return 0;
+        int ok=x, ng=-1;
+        while(abs(ok-ng)>1) {
+            int mid=(ok+ng)/2;
+            (fn(query(mid,x)-1)?ok:ng)=mid;
+        }
+        return ok;
+    }
+    template <class Boolean=bool> inline int max_right(const int x, const Boolean &fn) {
+        if(x==lookup.size()-1) return lookup.size()-1;
+        int ok=x, ng=lookup.size();
+        while(abs(ok-ng)>1) {
+            int mid=(ok+ng)/2;
+            (fn(query(x,mid))?ok:ng)=mid;
+        }
+        return ok;
     }
 };
