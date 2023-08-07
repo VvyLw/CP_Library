@@ -16,12 +16,6 @@ template <class T> struct SegTree {
         while(fine>n) n<<=1LL,rank++;
         dat.assign(2*n,e_);
     }
-    SegTree(const vector<T> &v, const F f_, const T& e_): f(f_), e(e_), fine(v.size()) {
-        n=1,rank=0;
-        while(fine>n) n<<=1LL, rank++;
-        dat.assign(2*n,e_);
-        for(size_t i = 0; i < v.size(); ++i) dat[i+n]=v[i];
-    }
     T operator[](ll i) const { return dat[i+n]; }
     void update(ll i, const T& x) {
         i+=n;
