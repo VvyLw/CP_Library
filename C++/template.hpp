@@ -160,7 +160,7 @@ template <class T> PP<T> rotate(const PP<T>& a){ return {-a.second, a.first}; } 
 template <class T> pd rotate(const PP<T>& a, const int ang) {
   assert(0<=ang && ang<360);
   const ld rad=PI*ang/180;
-  return {a.first*cos(rad)-a.second*sin(rad), a.first*sin(rad)+a.second*cos(rad)};
+  return {a.first*cosl(rad)-a.second*sinl(rad), a.first*sinl(rad)+a.second*cosl(rad)};
 }
 template <class T> T dot(const PP<T>& a, const PP<T>& b){ return a.first * b.first + a.second * b.second; }
 template <class T> T cross(const PP<T>& a, const PP<T>& b){ return dot(rotate(a), b); }
@@ -587,7 +587,7 @@ template <class T=ll> T binom(T n, T r, T mod=0) {
   return res;
 }
 inline bool is_int(ld n){ ll r=floor(n); return r==n; }
-inline bool is_sqr(ll n){ return is_int(sqrt(n)); }
+inline bool is_sqr(ll n){ return is_int(sqrtl(n)); }
 /* grundy sample
 template <class T> inline bool grundy(V<T> v) {
   ll res=0;
