@@ -25,7 +25,7 @@ using namespace __gnu_pbds;
 #pragma GCC diagnostic ignored "-Wdeprecated-copy"
 
 namespace VvyLw {
-void wa_haya_exe(){ cin.tie(nullptr) -> sync_with_stdio(false); }
+inline void wa_haya_exe() noexcept { cin.tie(nullptr) -> sync_with_stdio(false); }
 void solve();
 } // VvyLw
 
@@ -441,13 +441,13 @@ template <class T, class U> inline ll Find(T& v, const U x){ auto itr=find(all(v
 template <class T, class U> inline void rpl(T& v, const U fn, const U r){ replace(all(v),fn,r); }
 template <class T, class U, class Boolean=bool> inline void rplif(T& v, Boolean fn, const U r){ replace_if(all(v),fn,r); }
 template <class T, class Boolean=bool> inline ul cntif(const T& v, Boolean fn){ return count_if(all(v),fn); }
-template <class T> inline T Count(V<T>& v, ll x){ /*Sort(v);//*/ return UB(v,x)-LB(v,x); }
+template <class T> inline T Count(V<T>& v, ll x){ if(!is_sorted(all(v))) Sort(v); return UB(v,x)-LB(v,x); }
 template <class T> inline T IP(const V<T>& v, const V<T>& u, T init){ return inner_product(all(v),u.begin(),init); }
 template <class T> inline V<T> iot(T n, ll init=0){ V<T> a(n); iota(all(a),init); return a;}
 template <class T, class U, class Boolean=bool> inline V<T> trans(const V<U>& v, Boolean fn){ V<T> res; transform(all(v),back_inserter(res),fn); return res; }
 template <class T, class U> inline ll ers(T& v, U x){ v.erase(remove(all(v),x),v.end()); return v.size(); }
 template <class T, class Boolean=bool> ll ersif(T& v, Boolean x){ v.erase(remove_if(all(v),x),v.end()); return v.size(); }
-template <class T> inline ll unq(T& v){ Sort(v); v.erase(unique(all(v)),v.end()); return v.size(); }
+template <class T> inline ll unq(T& v){ if(!is_sorted(all(v))) Sort(v); v.erase(unique(all(v)),v.end()); return v.size(); }
 template <class T> inline T cp(const T& v){ T res; copy(all(v),back_inserter(res)); return res; }
 template <class T> inline T cp(const T& v, ll a, ll b){ T res; copy(all(v,a,b),back_inserter(res)); return res; }
 template <class T> inline void rtt(T& s, ll idx){ ll id=zia_qu::Mod<ll>(idx,s.size()); rotate(all(s,id),s.end());  }
