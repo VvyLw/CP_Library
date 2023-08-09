@@ -114,18 +114,18 @@ template <class T, class U> inline V<U> ndiv(T&& n, U&& v) noexcept {
 template <class T, class... Ts> inline decltype(auto) ndiv(T&& n, Ts&&... v) noexcept {
   return V<decltype(ndiv(forward<Ts>(v)...))>(forward<T>(n), ndiv(forward<Ts>(v)...));
 }
-template <class T> V<T>& operator++(V<T>& v){ each(el,v) el++; return v; }
-template <class T> V<T>& operator--(V<T>& v){ each(el,v) el--; return v; }
-template <class T, class U> V<T>& operator+=(V<T>& v, const U x){ each(el,v) el+=x; return v; }
-template <class T, class U> V<T>& operator-=(V<T>& v, const U x){ each(el,v) el-=x; return v; }
-template <class T, class U> V<T>& operator*=(V<T>& v, const U x){ each(el,v) el*=x; return v; }
-template <class T, class U> V<T>& operator/=(V<T>& v, const U x){ each(el,v) el/=x; return v; }
-template <class T, class U> V<T>& operator%=(V<T>& v, const U x){ each(el,v) el%=x; return v; }
-template <class T, class U> V<T> operator+(const V<T>& v, const U x){ V<T> res = v; res+=x; return res; }
-template <class T, class U> V<T> operator-(const V<T>& v, const U x){ V<T> res = v; res-=x; return res; }
-template <class T, class U> V<T> operator*(const V<T>& v, const U x){ V<T> res = v; res*=x; return res; }
-template <class T, class U> V<T> operator/(const V<T>& v, const U x){ V<T> res = v; res/=x; return res; }
-template <class T, class U> V<T> operator%(const V<T>& v, const U x){ V<T> res = v; res%=x; return res; }
+template <class T> constexpr V<T>& operator++(V<T>& v) noexcept { each(el,v) el++; return v; }
+template <class T> constexpr V<T>& operator--(V<T>& v) noexcept { each(el,v) el--; return v; }
+template <class T, class U> constexpr V<T>& operator+=(V<T>& v, const U x) noexcept { each(el,v) el+=x; return v; }
+template <class T, class U> constexpr V<T>& operator-=(V<T>& v, const U x) noexcept { each(el,v) el-=x; return v; }
+template <class T, class U> constexpr V<T>& operator*=(V<T>& v, const U x) noexcept { each(el,v) el*=x; return v; }
+template <class T, class U> constexpr V<T>& operator/=(V<T>& v, const U x) noexcept { each(el,v) el/=x; return v; }
+template <class T, class U> constexpr V<T>& operator%=(V<T>& v, const U x) noexcept { each(el,v) el%=x; return v; }
+template <class T, class U> constexpr V<T> operator+(const V<T>& v, const U x) noexcept { V<T> res = v; res+=x; return res; }
+template <class T, class U> constexpr V<T> operator-(const V<T>& v, const U x) noexcept { V<T> res = v; res-=x; return res; }
+template <class T, class U> constexpr V<T> operator*(const V<T>& v, const U x) noexcept { V<T> res = v; res*=x; return res; }
+template <class T, class U> constexpr V<T> operator/(const V<T>& v, const U x) noexcept { V<T> res = v; res/=x; return res; }
+template <class T, class U> constexpr V<T> operator%(const V<T>& v, const U x) noexcept { V<T> res = v; res%=x; return res; }
 } // vectors
 using namespace vectors;
 namespace pairs {
@@ -135,57 +135,57 @@ using pi = PP<ll>;
 using pd = PP<ld>;
 using pc = PP<char>;
 using ps = PP<string>;
-template <class T> PP<T> operator+(const PP<T>& a, const PP<T>& b){ return {a.first + b.first, a.second + b.second}; }
-template <class T> PP<T> operator-(const PP<T>& a, const PP<T>& b){ return {a.first - b.first, a.second - b.second}; }
-template <class T> PP<T> operator-(const PP<T>& a){ return {-a.first, -a.second}; }
-template <class T, class U> PP<T> operator*(const PP<T>& a, const U& b){ return {a.first * b, a.second * b}; }
-template <class T, class U> PP<T> operator/(const PP<T>& a, const U& b){ return {a.first / b, a.second / b}; }
-template <class T> PP<T>& operator+=(PP<T>& a, const PP<T>& b){ return a = a + b; }
-template <class T> PP<T>& operator-=(PP<T>& a, const PP<T>& b){ return a = a - b; }
-template <class T, class U> PP<T>& operator*=(PP<T>& a, const U& b){ return a = a * b; }
-template <class T, class U> PP<T>& operator/=(PP<T>& a, const U& b){ return a = a / b; }
-template <class T> bool operator==(const PP<T> &p, const PP<T> &q){ return p.first==q.first && p.second==q.second; }
-template <class T> bool operator!=(const PP<T> &p, const PP<T> &q){ return !(p==q); }
-template <class T> bool operator<(const PP<T> &p, const PP<T> &q){ if(p.first==q.first) return p.second<q.second; return p.first<q.first; }
-template <class T> bool operator<=(const PP<T> &p, const PP<T> &q){ if(p.first==q.first) return p.second<=q.second; return p.first<q.first; }
-template <class T> bool operator>(const PP<T> &p, const PP<T> &q){ if(p.first==q.first) return p.second>q.second; return p.first>q.first; }
-template <class T> bool operator>=(const PP<T> &p, const PP<T> &q){ if(p.first==q.first) return p.second>=q.second; return p.first>q.first; }
-template <class T, class U> bool operator==(const P<T,U> &p, const P<T,U> &q){ return p.first==q.first && p.second==q.second; }
-template <class T, class U> bool operator!=(const P<T,U> &p, const P<T,U> &q){ return !(p==q); }
-template <class T, class U> bool operator<(const P<T,U> &p, const P<T,U> &q){ if(p.first==q.first) return p.second<q.second; return p.first<q.first; }
-template <class T, class U> bool operator<=(const P<T,U> &p, const P<T,U> &q){ if(p.first==q.first) return p.second<=q.second; return p.first<q.first; }
-template <class T, class U> bool operator>(const P<T,U> &p, const P<T,U> &q){ if(p.first==q.first) return p.second>q.second; return p.first>q.first; }
-template <class T, class U> bool operator>=(const P<T,U> &p, const P<T,U> &q){ if(p.first==q.first) return p.second>=q.second; return p.first>q.first; }
-template <class T> PP<T> rotate(const PP<T>& a){ return {-a.second, a.first}; } // 90 degree ccw
-template <class T> pd rotate(const PP<T>& a, const int ang) {
+template <class T> constexpr PP<T> operator+(const PP<T>& a, const PP<T>& b) noexcept { return {a.first + b.first, a.second + b.second}; }
+template <class T> constexpr PP<T> operator-(const PP<T>& a, const PP<T>& b) noexcept { return {a.first - b.first, a.second - b.second}; }
+template <class T> constexpr PP<T> operator-(const PP<T>& a) noexcept { return {-a.first, -a.second}; }
+template <class T, class U> constexpr PP<T> operator*(const PP<T>& a, const U& b) noexcept { return {a.first * b, a.second * b}; }
+template <class T, class U> constexpr PP<T> operator/(const PP<T>& a, const U& b) noexcept { return {a.first / b, a.second / b}; }
+template <class T> constexpr PP<T>& operator+=(PP<T>& a, const PP<T>& b) noexcept { return a = a + b; }
+template <class T> constexpr PP<T>& operator-=(PP<T>& a, const PP<T>& b) noexcept { return a = a - b; }
+template <class T, class U> constexpr PP<T>& operator*=(PP<T>& a, const U& b) noexcept { return a = a * b; }
+template <class T, class U> PP<T>& operator/=(PP<T>& a, const U& b) noexcept { return a = a / b; }
+template <class T> constexpr bool operator==(const PP<T> &p, const PP<T> &q) noexcept { return p.first==q.first && p.second==q.second; }
+template <class T> constexpr bool operator!=(const PP<T> &p, const PP<T> &q) noexcept { return !(p==q); }
+template <class T> constexpr bool operator<(const PP<T> &p, const PP<T> &q) noexcept { if(p.first==q.first) return p.second<q.second; return p.first<q.first; }
+template <class T> constexpr bool operator<=(const PP<T> &p, const PP<T> &q) noexcept { if(p.first==q.first) return p.second<=q.second; return p.first<q.first; }
+template <class T> constexpr bool operator>(const PP<T> &p, const PP<T> &q) noexcept { if(p.first==q.first) return p.second>q.second; return p.first>q.first; }
+template <class T> constexpr bool operator>=(const PP<T> &p, const PP<T> &q) noexcept { if(p.first==q.first) return p.second>=q.second; return p.first>q.first; }
+template <class T, class U> constexpr bool operator==(const P<T,U> &p, const P<T,U> &q) noexcept { return p.first==q.first && p.second==q.second; }
+template <class T, class U> constexpr bool operator!=(const P<T,U> &p, const P<T,U> &q) noexcept { return !(p==q); }
+template <class T, class U> constexpr bool operator<(const P<T,U> &p, const P<T,U> &q) noexcept { if(p.first==q.first) return p.second<q.second; return p.first<q.first; }
+template <class T, class U> constexpr bool operator<=(const P<T,U> &p, const P<T,U> &q) noexcept { if(p.first==q.first) return p.second<=q.second; return p.first<q.first; }
+template <class T, class U> constexpr bool operator>(const P<T,U> &p, const P<T,U> &q) noexcept { if(p.first==q.first) return p.second>q.second; return p.first>q.first; }
+template <class T, class U> constexpr bool operator>=(const P<T,U> &p, const P<T,U> &q) noexcept { if(p.first==q.first) return p.second>=q.second; return p.first>q.first; }
+template <class T> inline PP<T> rotate(const PP<T>& a){ return {-a.second, a.first}; } // 90 degree ccw
+template <class T> inline pd rotate(const PP<T>& a, const int ang) {
   assert(0<=ang && ang<360);
   const ld rad=PI*ang/180;
   return {a.first*cosl(rad)-a.second*sinl(rad), a.first*sinl(rad)+a.second*cosl(rad)};
 }
-template <class T> T dot(const PP<T>& a, const PP<T>& b){ return a.first * b.first + a.second * b.second; }
-template <class T> T cross(const PP<T>& a, const PP<T>& b){ return dot(rotate(a), b); }
-template <class T> T square(const PP<T>& a){ return dot(a, a); }
-template <class T> ld grad(const PP<T>& a){ assert(a.first); return 1.0L * a.second / a.first; }
-template <class T> ld abs(const PP<T>& a){ return hypotl(a.first, a.second); }
-template <class T> T gcd(const PP<T>& a){ return gcd(a.first, a.second); }
-template <class T> PP<T> normalize(PP<T> a) {
+template <class T> inline T dot(const PP<T>& a, const PP<T>& b){ return a.first * b.first + a.second * b.second; }
+template <class T> inline T cross(const PP<T>& a, const PP<T>& b){ return dot(rotate(a), b); }
+template <class T> inline T square(const PP<T>& a){ return dot(a, a); }
+template <class T> inline ld grad(const PP<T>& a){ assert(a.first); return 1.0L * a.second / a.first; }
+template <class T> inline ld abs(const PP<T>& a){ return hypotl(a.first, a.second); }
+template <class T> inline T gcd(const PP<T>& a){ return gcd(a.first, a.second); }
+template <class T> inline PP<T> normalize(PP<T> a) {
   if(a == PP<T>{}) return a;
   a /= gcd(a);
   if(a < PP<T>{}) a = -a;
   return a;
 }
-template <class T, class U> P<U,T> swap(const P<T,U> &p){ P<U,T> ret={p.second,p.first}; return ret; }
-template <class T, class U> V<P<U,T>> swap(const V<P<T,U>> &vp) {
+template <class T, class U> inline P<U,T> swap(const P<T,U> &p){ P<U,T> ret={p.second,p.first}; return ret; }
+template <class T, class U> inline V<P<U,T>> swap(const V<P<T,U>> &vp) {
   V<P<U,T>> ret;
   each(el,vp) ret.emplace_back(swap(el));
   return ret;
 }
-template <class T, class U> V<T> first(const V<P<T,U>> &vp) {
+template <class T, class U> inline V<T> first(const V<P<T,U>> &vp) {
   V<T> res;
   each(el,vp) res.emplace_back(el.first);
   return res;
 }
-template <class T, class U> V<U> second(const V<P<T,U>> &vp) {
+template <class T, class U> inline V<U> second(const V<P<T,U>> &vp) {
   V<U> res;
   each(el,vp) res.emplace_back(el.second);
   return res;
@@ -198,8 +198,8 @@ template <class T> using pq = priority_queue<T>;
 template <class T> using pqr = priority_queue<T,V<T>,greater<T>>;
 template <class T> using Tree = tree<T,null_type,less<T>,rb_tree_tag,tree_order_statistics_node_update>;
 template <class T> using TREE = tree<T,null_type,greater<T>,rb_tree_tag,tree_order_statistics_node_update>;
-template <class T, class U> bool chmax(T& a, const U& b){ if(a<b){ a=b; return 1; } return 0; }
-template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
+template <class T, class U> inline bool chmax(T& a, const U& b){ if(a<b){ a=b; return 1; } return 0; }
+template <class T, class U> inline bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
 template <class T, class U> inline bool overflow_if_add(T a, U b){ return (numeric_limits<T>::max()-a)<b; }
 template <class T, class U> inline bool overflow_if_mul(T a, U b){ return (numeric_limits<T>::max()/a)<b; }
 
@@ -229,6 +229,7 @@ ostream &operator<<(ostream &dest, i128 value) {
 template <class T, class U> istream& operator>>(istream &is, P<T, U> &p){ is >> p.first >> p.second; return is; }
 template <class T, size_t N> istream& operator>>(istream &is, array<T, N> &a){ each(el,a) is >> el; return is; }
 template <class T> istream& operator>>(istream &is, V<T> &v){ each(el,v) is >> el; return is; }
+template <class T> istream& operator>>(istream &is, deque<T> &dq){ each(el,dq) is >> el; return is; }
 template <class T> inline bool in(T& x){ cin >> x; return 1; }
 template <class Head, class... Tail> inline bool in(Head& head, Tail&... tail){ in(head); in(tail...); return 1; }
 template <class T, class U> ostream& operator<<(ostream &os, const P<T, U> &p){ os << p.first << ' ' << p.second; return os; }
@@ -237,14 +238,14 @@ template <class T> ostream& operator<<(ostream &os, const V<T> &v){ if(v.size())
 template <class K, class V> ostream& operator<<(ostream &os, const map<K, V> &m){ if(m.size()){ os << m.begin()->first << ' ' << m.begin()->second; for(auto i=m.begin(); ++i!=m.end();){ os << '\n' << i->first << ' ' << i->second; } } return os; }
 template <class T> ostream& operator<<(ostream &os, const set<T> &st){ if(st.size()){ os << *st.begin(); for(auto i=st.begin(); ++i!=st.end();){ os << ' ' << *i; } } return os; }
 template <class T> ostream& operator<<(ostream &os, const deque<T> &dq){ if(dq.size()){ os << dq.front(); for(auto i=dq.begin(); ++i!=dq.end();){ os << ' ' << *i; } } return os; }
-template <bool flush=false> inline void out(){ cout << '\n'; if(flush) cout.flush(); }
-template <bool flush=false, class T> inline void out(const T& x){ cout << x << '\n'; if(flush) cout.flush(); }
+inline void out(){ cout.flush(); }
+template <bool flush=false, class T> inline void out(const T& x){ cout << x << '\n'; if(flush) out(); }
 template <bool flush=false, class Head, class... Tail> inline void out(const Head& head, const Tail&... tail){ cout << head << ' '; out<flush>(tail...); }
-template <bool flush=false, class T> inline void vout(const T& v){ cout << v << '\n'; if(flush) cout.flush(); }
-template <bool flush=false, class T> inline void vout(const V<T>& v){ rep(v.size()) cout << v[i] << '\n'; if(flush) cout.flush(); }
+template <bool flush=false, class T> inline void vout(const T& v){ cout << v << '\n'; if(flush) out(); }
+template <bool flush=false, class T> inline void vout(const V<T>& v){ rep(v.size()) cout << v[i] << '\n'; if(flush) out(); }
 template <bool flush=false, class Head, class... Tail> inline void vout(const Head& head, const Tail&... tail){ cout << head << '\n'; vout<flush>(tail...); }
-void fix(short x){ cout << fixed << setprecision(x); }
-void Alpha(){ cout << boolalpha; }
+inline void fix(short x){ cout << fixed << setprecision(x); }
+inline void Alpha(){ cout << boolalpha; }
 #define INT(...) int __VA_ARGS__; in(__VA_ARGS__)
 #define LL(...) ll __VA_ARGS__; in(__VA_ARGS__)
 #define UL(...) ul __VA_ARGS__; in(__VA_ARGS__)
@@ -372,9 +373,9 @@ inline i128 stoL(string &s) {
   if(s.front()=='-') ret=-ret;
   return ret;
 }
-template <class... Ts> constexpr auto symin(Ts... a){ return min(initializer_list<common_type_t<Ts...>>{a...}); }
-template <class... Ts> constexpr auto symax(Ts... a){ return max(initializer_list<common_type_t<Ts...>>{a...}); }
-template <class K, class U> inline V<K> kyl(const map<K,U> m, const U val) {
+template <class... Ts> constexpr auto symin(Ts... a) noexcept { return min(initializer_list<common_type_t<Ts...>>{a...}); }
+template <class... Ts> constexpr auto symax(Ts... a) noexcept { return max(initializer_list<common_type_t<Ts...>>{a...}); }
+template <class K, class U> inline V<K> kyl(const map<K,U> &m, const U val) {
   V<K> keys;
   irp(it,m) {
     if(it->second==val) keys.emplace_back(it->first);
@@ -558,7 +559,7 @@ template <class T> inline V<T> cmp2(V<T> &c1, V<T> &c2) {
   }
   return res;
 }
-template <class T> T factor(T n, T mod=0) {
+template <class T> inline T factor(T n, T mod=0) {
   T res=1;
   while(n>0) {
     res*=n--;
@@ -566,7 +567,7 @@ template <class T> T factor(T n, T mod=0) {
   }
   return res;
 }
-template <class T=ll> T perm(T n, T r, T mod=0) {
+template <class T=ll> inline T perm(T n, T r, T mod=0) {
   const T tmp=n;
   T res=1;
   while(n>tmp-r) {
@@ -575,7 +576,7 @@ template <class T=ll> T perm(T n, T r, T mod=0) {
   }
   return res;
 }
-template <class T=ll> T binom(T n, T r, T mod=0) {
+template <class T=ll> inline T binom(T n, T r, T mod=0) {
   if(r < 0 || n < r) return 0;
   T res = 1;
   rep(i,1,r) {
