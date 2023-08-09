@@ -456,14 +456,25 @@ template <class T> inline V<T> psum(const V<T>& v){ V<T> s{0}; partial_sum(all(v
 template <class T> inline V<T> adf(const V<T>& v){ V<T> a; adjacent_difference(all(v),back_inserter(a)); rtt(a,1); a.pop_back(); return a; }
 template <class T> inline V<T> rext(V<T>& v, ll size){ V<T> res; sample(all(v),back_inserter(res),size,Random()); return res; }
 template <class T> inline T rext(V<T>& v){ V<T> res; sample(all(v),back_inserter(res),1,Random()); return res.front(); }
-template <class T> inline ll vsum(V<T> &v){ return reduce(all(v),0LL); }
-template <class T> inline ll vsum(V<T> &v, ll a, ll b){ return reduce(all(v,a,b),0LL); }
-template <class T> inline ld vdsum(V<T> &v){ return reduce(all(v),0.0L); }
-template <class T> inline ld vdsum(V<T> &v, ll a, ll b){ return reduce(all(v,a,b),0.0L); }
-template <class T> inline ll vmul(V<T> &v){ return reduce(all(v),1LL,[](ll acc,ll i){ return acc*i; }); }
-template <class T> inline ll vmul(V<T> &v, ll a, ll b){ return reduce(all(v,a,b),1LL,[](ll acc,ll i){ return acc*i; }); }
-template <class T> inline ld vdmul(V<T> &v){ return reduce(all(v),1.0L,[](ll acc,ll i){ return acc*i; }); }
-template <class T> inline ld vdmul(V<T> &v, ll a, ll b){ return reduce(all(v,a,b),1.0L,[](ll acc,ll i){ return acc*i; }); }
+#if why
+template <class T> inline ll vsum(const T &v){ return accumulate(all(v),0LL); }
+template <class T> inline ll vsum(const T &v, ll a, ll b){ return accumulate(all(v,a,b),0LL); }
+template <class T> inline ld vdsum(const T &v){ return accumulate(all(v),0.0L); }
+template <class T> inline ld vdsum(const T &v, ll a, ll b){ return accumulate(all(v,a,b),0.0L); }
+template <class T> inline ll vmul(const T &v){ return accumulate(all(v),1LL,[](ll acc,ll i){ return acc*i; }); }
+template <class T> inline ll vmul(const T &v, ll a, ll b){ return accumulate(all(v,a,b),1LL,[](ll acc,ll i){ return acc*i; }); }
+template <class T> inline ld vdmul(const T &v){ return accumulate(all(v),1.0L,[](ll acc,ll i){ return acc*i; }); }
+template <class T> inline ld vdmul(const T &v, ll a, ll b){ return accumulate(all(v,a,b),1.0L,[](ll acc,ll i){ return acc*i; }); }
+#else
+template <class T> inline ll vsum(const T &v){ return reduce(all(v),0LL); }
+template <class T> inline ll vsum(const T &v, ll a, ll b){ return reduce(all(v,a,b),0LL); }
+template <class T> inline ld vdsum(const T &v){ return reduce(all(v),0.0L); }
+template <class T> inline ld vdsum(const T &v, ll a, ll b){ return reduce(all(v,a,b),0.0L); }
+template <class T> inline ll vmul(const T &v){ return reduce(all(v),1LL,[](ll acc,ll i){ return acc*i; }); }
+template <class T> inline ll vmul(const T &v, ll a, ll b){ return reduce(all(v,a,b),1LL,[](ll acc,ll i){ return acc*i; }); }
+template <class T> inline ld vdmul(const T &v){ return reduce(all(v),1.0L,[](ll acc,ll i){ return acc*i; }); }
+template <class T> inline ld vdmul(const T &v, ll a, ll b){ return reduce(all(v,a,b),1.0L,[](ll acc,ll i){ return acc*i; }); }
+#endif
 } // Lady s&y
 
 namespace Heileden {
