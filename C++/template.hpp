@@ -246,6 +246,7 @@ template <bool flush=false, class T> inline void vout(const V<T>& v){ rep(v.size
 template <bool flush=false, class Head, class... Tail> inline void vout(const Head& head, const Tail&... tail){ cout << head << '\n'; vout<flush>(tail...); }
 inline void fix(short x){ cout << fixed << setprecision(x); }
 inline void Alpha(){ cout << boolalpha; }
+#define INT(...) int __VA_ARGS__; in(__VA_ARGS__)
 #define LL(...) ll __VA_ARGS__; in(__VA_ARGS__)
 #define UL(...) ul __VA_ARGS__; in(__VA_ARGS__)
 #define LD(...) ld __VA_ARGS__; in(__VA_ARGS__)
