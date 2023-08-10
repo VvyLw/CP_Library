@@ -546,13 +546,13 @@ template <class T, class Boolean=bool> inline T bins(T ok, T ng, Boolean fn, ld 
   }
   return ok;
 }
-template <class T> inline V<T> cmp(const V<T>& v) {
+template <class T> inline V<T> press(const V<T>& v) {
   V<T> res,cp=v;
   Lady_sANDy::unq(cp);
   each(el,v) res.emplace_back(Lady_sANDy::LB(cp,el));
   return res;
 }
-template <class T> inline V<T> cmp2(V<T> &c1, V<T> &c2) {
+template <class T> inline V<T> press2(V<T> &c1, V<T> &c2) {
   V<T> res;
   const int n = c1.size();
   rep(n) {
