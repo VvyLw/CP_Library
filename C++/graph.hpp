@@ -43,7 +43,7 @@ template <bool indirected=1> struct w_graph {
         queue<int> q;
         d[v]=0;
         q.emplace(v);
-            while(q.size()) {
+        while(q.size()) {
             int tmp=q.front();
             q.pop();
             for(auto el: g[tmp]) {
@@ -102,7 +102,7 @@ template <bool indirected=1> struct graph {
         queue<int> q;
         d[v]=0;
         q.emplace(v);
-            while(q.size()) {
+        while(q.size()) {
             int tmp=q.front();
             q.pop();
             for(auto el: g[tmp]) {
