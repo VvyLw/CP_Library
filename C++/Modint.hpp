@@ -56,10 +56,10 @@ using mint = Modint<998244353>;
 using vm = V<mint>;
 using wm = V<vm>;
 using pm = PP<mint>;
-template <class T> inline T msum(const V<T> &v){ return reduce(all(v), mint(0)); }
-template <class T> inline T msum(const V<T> &v, ll a, ll b){ return reduce(all(v,a,b), mint(0)); }
-template <class T> inline T mmul(const V<T> &v){ return reduce(all(v), mint(1), [](T acc, T i){ return acc*i; }); }
-template <class T> inline T mmul(const V<T> &v, ll a, ll b){ return reduce(all(v,a,b), mint(1), [](T acc, T i){ return acc*i; }); }
+template <class T> inline T msum(const V<T> &v){ return accumulate(all(v), mint(0)); }
+template <class T> inline T msum(const V<T> &v, ll a, ll b){ return accumulate(all(v,a,b), mint(0)); }
+template <class T> inline T mmul(const V<T> &v){ return accumulate(all(v), mint(1), [](T acc, T i){ return acc*i; }); }
+template <class T> inline T mmul(const V<T> &v, ll a, ll b){ return accumulate(all(v,a,b), mint(1), [](T acc, T i){ return acc*i; }); }
 vm fac(1,1),inv(1,1);
 void reserve(ll a){
     if(fac.size()>=a) return;
