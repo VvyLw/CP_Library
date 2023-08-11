@@ -435,8 +435,8 @@ template <class T, class Boolean=bool> inline bool All(const T& v, const Boolean
 template <class T, class Boolean=bool> inline bool Exist(const T& v, const Boolean &fn){ return any_of(all(v),fn); }
 template <class T, class Boolean=bool> inline int pt(T& v, const Boolean &fn){ auto p=partition(all(v),fn); return p-v.begin(); }
 template <class T, class Boolean=bool> inline int ptp(const T& v, const Boolean &fn){ return partition_point(all(v),fn)-v.begin(); }
-template <class T, class U> inline int fnd(T& v, const U x){ auto itr=find(all(v),x); return itr!=v.end()?itr-v.begin():-1; }
-template <class T> inline ll src(const T& s, const T& t){ auto itr=search(all(s),all(t)); return itr!=s.end()?itr-s.begin():-1; }
+template <class T, class U> inline int fnd(const T& v, const U x){ auto itr=find(all(v),x); return itr!=v.end()?itr-v.begin():-1; }
+template <class T> inline int src(const T& s, const T& t){ auto itr=search(all(s),all(t)); return itr!=s.end()?itr-s.begin():-1; }
 template <class T, class U> inline void rpl(T& v, const U fn, const U r){ replace(all(v),fn,r); }
 template <class T, class U, class Boolean=bool> inline void rplif(T& v, const Boolean &fn, const U r){ replace_if(all(v),fn,r); }
 template <class T, class Boolean=bool> inline ul cntif(const T& v, const Boolean &fn){ return count_if(all(v),fn); }
