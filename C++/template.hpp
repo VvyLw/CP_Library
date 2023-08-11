@@ -413,11 +413,11 @@ template <class T> inline T revd(const T& v){ auto c=v; rev(c); return c; }
 template <class T> inline T revd(const T& v, const ll a, const ll b){ auto c=v; rev(c,a,b); return c; }
 template <class T> inline void Sort(T& v){ sort(all(v)); }
 template <class T> inline void Sort(T& v, const ll a, const ll b){ sort(all(v,a,b+1)); }
-template <class T> inline T sorted(T& v){ auto c=v; Sort(c); return c; }
+template <class T> inline T sorted(const T& v){ auto c=v; Sort(c); return c; }
 template <class T> inline T sorted(const T& v, const ll a, const ll b){ auto c=v; Sort(c,a,b); return c; }
 template <class T> inline void Sortt(T& v){ sort(rall(v)); }
 template <class T> inline void Sortt(T& v, const ll a, const ll b){ sort(rall(v,v.size()-b-1,v.size()-a)); }
-template <class T> inline T Sorted(T& v){ auto c=v; Sortt(c); return c; }
+template <class T> inline T Sorted(const T& v){ auto c=v; Sortt(c); return c; }
 template <class T> inline T Sorted(const T& v, const ll a, const ll b){ auto c=v; Sortt(c,a,b); return c; }
 template <class T> inline void Sorth(T& v){ make_heap(all(v)); sort_heap(all(v)); }
 template <class T> inline T mrg(const T& a, const T& b){ T res; merge(all(a),all(b),back_inserter(res)); return res; }
