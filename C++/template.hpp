@@ -168,6 +168,19 @@ template <class T> inline T square(const PP<T>& a){ return dot(a, a); }
 template <class T> inline ld grad(const PP<T>& a){ assert(a.first); return 1.0L * a.second / a.first; }
 template <class T> inline ld abs(const PP<T>& a){ return hypotl(a.first, a.second); }
 template <class T> inline T gcd(const PP<T>& a){ return gcd(a.first, a.second); }
+template <class T> inline PP<T> extgcd(const PP<T> &p) {
+  T x=1,y=0,t1=0,t2=0,t3=1,a,b;
+  tie(a,b)=p;
+  while(b) {
+    t1=a/b,a-=t1*b;
+    swap(a,b);
+    x-=t1*t2;
+    swap(x,t2);
+    y-=t1*t3;
+    swap(y,t3);
+  }
+  return {x,y};
+}
 template <class T> inline PP<T> normalize(PP<T> a) {
   if(a == PP<T>{}) return a;
   a /= gcd(a);
