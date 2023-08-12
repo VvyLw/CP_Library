@@ -603,6 +603,11 @@ template <class T=ll> inline T binom(T n, T r, T mod=0) {
   }
   return res;
 }
+inline bool is_prime(ul n) {
+  if(n==1) return 0;
+  sqrp(i,2,n) if(n%i==0) return 0;
+  return 1;
+}
 inline bool is_int(ld n){ ll r=floor(n); return r==n; }
 inline bool is_sqr(ll n){ return is_int(sqrtl(n)); }
 /* grundy sample
