@@ -387,8 +387,10 @@ inline i128 stoL(string &s) {
   if(s.front()=='-') ret=-ret;
   return ret;
 }
-template <class... Ts> constexpr auto symin(Ts... a) noexcept { return min(initializer_list<common_type_t<Ts...>>{a...}); }
-template <class... Ts> constexpr auto symax(Ts... a) noexcept { return max(initializer_list<common_type_t<Ts...>>{a...}); }
+template <class... Ts> constexpr ul sygcd(const Ts... a) noexcept { vector v=initializer_list<common_type_t<Ts...>>{a...}; ul g=0; each(el,v) g=gcd(g,el); return g; }
+template <class... Ts> constexpr ul sylcm(const Ts... a) noexcept { vector v=initializer_list<common_type_t<Ts...>>{a...}; ul l=1; each(el,v) l=lcm(l,el); return l; }
+template <class... Ts> constexpr auto symin(const Ts... a) noexcept { return min(initializer_list<common_type_t<Ts...>>{a...}); }
+template <class... Ts> constexpr auto symax(const Ts... a) noexcept { return max(initializer_list<common_type_t<Ts...>>{a...}); }
 template <class K, class U> inline V<K> kyl(const map<K,U> &m, const U val) {
   V<K> keys;
   irp(it,m) {
