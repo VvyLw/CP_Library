@@ -250,6 +250,7 @@ template <class T, size_t N> ostream& operator<<(ostream &os, const array<T, N> 
 template <class T> ostream& operator<<(ostream &os, const V<T> &v){ if(v.size()){ os << v.front(); for(auto i=v.begin(); ++i!=v.end();){ os << ' ' << *i; } } return os; }
 template <class K, class V> ostream& operator<<(ostream &os, const map<K, V> &m){ if(m.size()){ os << m.begin()->first << ' ' << m.begin()->second; for(auto i=m.begin(); ++i!=m.end();){ os << '\n' << i->first << ' ' << i->second; } } return os; }
 template <class T> ostream& operator<<(ostream &os, const set<T> &st){ if(st.size()){ os << *st.begin(); for(auto i=st.begin(); ++i!=st.end();){ os << ' ' << *i; } } return os; }
+template <class T> ostream& operator<<(ostream &os, const multiset<T> &ms){ if(ms.size()){ os << *ms.begin(); for(auto i=ms.begin(); ++i!=ms.end();){ os << ' ' << *i; } } return os; }
 template <class T> ostream& operator<<(ostream &os, const deque<T> &dq){ if(dq.size()){ os << dq.front(); for(auto i=dq.begin(); ++i!=dq.end();){ os << ' ' << *i; } } return os; }
 inline void out(){ cout.flush(); }
 template <bool flush=false, class T> inline void out(const T& x){ cout << x << '\n'; if(flush) out(); }
@@ -464,9 +465,9 @@ template <class T> inline T cp(const T& v){ T res; copy(all(v),back_inserter(res
 template <class T> inline T cp(const T& v, ll a, ll b){ T res; copy(all(v,a,b),back_inserter(res)); return res; }
 template <class T> inline void rtt(T& s, ll idx){ ll id=zia_qu::Mod<ll>(idx,s.size()); rotate(all(s,id),s.end());  }
 template <class T> inline void rtt(T& s, ll a, ll b, ll c){ rotate(all(s,a,b),s.end()-c);  }
-template <class T> inline T setdif(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_difference(all(s),all(t),back_inserter(res)); return res; }
-template <class T> inline T setsum(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_union(all(s),all(t),back_inserter(res)); return res; }
-template <class T> inline T setmul(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_intersection(all(s),all(t),back_inserter(res)); return res; }
+template <class T> inline T setdif(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_difference(all(s),all(t),inserter(res,end(res))); return res; }
+template <class T> inline T setsum(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_union(all(s),all(t),inserter(res,end(res))); return res; }
+template <class T> inline T setmul(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_intersection(all(s),all(t),inserter(res,end(res))); return res; }
 template <class T> inline V<T> adf(const V<T>& v){ V<T> a; adjacent_difference(all(v),back_inserter(a)); rtt(a,1); a.pop_back(); return a; }
 template <class T> inline V<T> psum(const V<T>& v){ V<T> s{0}; partial_sum(all(v),back_inserter(s)); return s; }
 template <class T, class F> inline V<T> isum(const V<T> &v, const F &fn){ V<T> s{0}; inclusive_scan(all(v),back_inserter(s),fn); return s; }
