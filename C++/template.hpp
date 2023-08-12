@@ -319,21 +319,21 @@ inline int fione(ll x){ return __builtin_ffsll(x); }
 inline int zrcnt(ll x){ return __builtin_ctzll(x); }
 template <class T=ll> inline bool out_of_scope(T min, T cod, T max){ return cod < min || cod >= max; }
 template <class T=ll> inline bool scope(T a, T x, T b){ return a <= x && x <= b; }
-inline bool isupper(char c){ return std::isupper(c); }
+inline bool isupper(const char c){ return std::isupper(c); }
 inline bool isupper(const string &s){ bool ok=1; each(el,s) ok&=isupper(el); return ok; }
-inline bool islower(char c){ return std::islower(c); }
+inline bool islower(const char c){ return std::islower(c); }
 inline bool islower(const string &s){ bool ok=1; each(el,s) ok&=islower(el); return ok; }
-inline bool isalpha(char c){ return std::isalpha(c); }
+inline bool isalpha(const char c){ return std::isalpha(c); }
 inline bool isalpha(const string &s){ bool ok=1; each(el,s) ok&=isalpha(el); return ok; }
-inline bool isdigit(char c){ return std::isdigit(c); }
+inline bool isdigit(const char c){ return std::isdigit(c); }
 inline bool isdigit(const string &s){ bool ok=1; each(el,s) ok&=isdigit(el); return ok; }
-inline bool isalnum(char c){ return std::isalnum(c); }
+inline bool isalnum(const char c){ return std::isalnum(c); }
 inline bool isalnum(const string &s){ bool ok=1; each(el,s) ok&=isalnum(el); return ok; }
-inline bool isspace(char c){ return std::isspace(c); }
+inline bool isspace(const char c){ return std::isspace(c); }
 inline bool isspace(const string &s){ bool ok=1; each(el,s) ok&=isspace(el); return ok; }
-inline bool ispunct(char c){ return std::ispunct(c); }
+inline bool ispunct(const char c){ return std::ispunct(c); }
 inline bool ispunct(const string &s){ bool ok=1; each(el,s) ok&=ispunct(el); return ok; }
-inline bool isprint(char c){ return std::isprint(c); }
+inline bool isprint(const char c){ return std::isprint(c); }
 inline bool isprint(const string &s){ bool ok=1; each(el,s) ok&=isprint(el); return ok; }
 inline ll strins(string &s, ll id, const string &t){ s.insert(id,t); return s.size(); }
 inline string toupper(string s){ each(c,s) c=std::toupper(c); return s; }
