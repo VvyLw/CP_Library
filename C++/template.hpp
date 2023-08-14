@@ -259,7 +259,7 @@ template <bool flush=false, class T> inline void vout(const T& v){ cout << v << 
 template <bool flush=false, class T> inline void vout(const V<T>& v){ rep(v.size()) cout << v[i] << '\n'; if(flush) out(); }
 template <bool flush=false, class Head, class... Tail> inline void vout(const Head& head, const Tail&... tail){ cout << head << '\n'; vout<flush>(tail...); }
 inline void fix(short x){ cout << fixed << setprecision(x); }
-inline void Alpha(){ cout << boolalpha; }
+inline void alpha(){ cout << boolalpha; }
 #define INT(...) int __VA_ARGS__; in(__VA_ARGS__)
 #define LL(...) ll __VA_ARGS__; in(__VA_ARGS__)
 #define UL(...) ul __VA_ARGS__; in(__VA_ARGS__)
@@ -486,7 +486,7 @@ template <class T> inline ld vdmul(const T &v, ll a, ll b){ return accumulate(al
 } // Lady s&y
 
 namespace Heileden {
-template <class T> inline V<T> div(T n) {
+template <class T> inline V<T> div(const T n) {
   V<T> d;
   sqrp(i,1,n) {
     if(n%i==0) {
@@ -547,7 +547,7 @@ struct p_fact {
     return m;
   }
 };
-template <class T, class Boolean=bool> inline T bins(T ok, T ng, const Boolean &fn, ld eps = 1) {
+template <class T, class Boolean=bool> inline T bins(const T ok, const T ng, const Boolean &fn, const ld eps = 1) {
   while(abs(ok-ng)>eps) {
     T mid=(ok+ng)/2;
     (fn(mid)?ok:ng) = mid;
@@ -578,7 +578,7 @@ template <class T> inline V<T> press2(V<T> &c1, V<T> &c2) {
   }
   return res;
 }
-template <class T> inline T factor(T n, T mod=0) {
+template <class T> inline T factor(T n, const T mod=0) {
   T res=1;
   while(n>0) {
     res*=n--;
@@ -586,7 +586,7 @@ template <class T> inline T factor(T n, T mod=0) {
   }
   return res;
 }
-template <class T=ll> inline T perm(T n, T r, T mod=0) {
+template <class T=ll> inline T perm(T n, const T r, const T mod=0) {
   const T tmp=n;
   T res=1;
   while(n>tmp-r) {
@@ -595,7 +595,7 @@ template <class T=ll> inline T perm(T n, T r, T mod=0) {
   }
   return res;
 }
-template <class T=ll> inline T binom(T n, T r, T mod=0) {
+template <class T=ll> inline T binom(T n, const T r, const T mod=0) {
   if(r < 0 || n < r) return 0;
   T res = 1;
   rep(i,1,r) {
@@ -606,15 +606,15 @@ template <class T=ll> inline T binom(T n, T r, T mod=0) {
   }
   return res;
 }
-inline bool is_prime(ul n) {
+inline bool is_prime(const ul n) {
   if(n==1) return 0;
   sqrp(i,2,n) if(n%i==0) return 0;
   return 1;
 }
-inline bool is_int(ld n){ ll r=floor(n); return r==n; }
-inline bool is_sqr(ll n){ return is_int(sqrtl(n)); }
+inline bool is_int(const ld n){ ll r=floor(n); return r==n; }
+inline bool is_sqr(const ll n){ return is_int(sqrtl(n)); }
 /* grundy sample
-template <class T> inline bool grundy(V<T> v) {
+template <class T> inline bool grundy(const V<T> &v) {
   ll res=0;
   each(el,v) res^=el;
   return res!=0;
