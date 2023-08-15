@@ -76,8 +76,6 @@ void time(const Timer &t1, const Timer &t2){ auto tm = chrono::duration_cast<chr
 #define sqrp2(i,n) for(ll i=0; i*i<(n); ++i)
 #define sqrp3(i,a,b) for(ll i=(a); i*i<=(b); ++i)
 #define sqrp(...) overload3(__VA_ARGS__,sqrp3,sqrp2,sqrp1)(__VA_ARGS__)
-#define irp(it,v) for(auto it=v.begin(); it!=v.end(); ++it)
-#define ir(it,v) for(auto it=v.begin(); it!=v.end();)
 
 using ll = long long;
 using ld = long double;
