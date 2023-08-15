@@ -391,7 +391,7 @@ template <class... Ts> constexpr auto symin(const Ts... a) noexcept { return min
 template <class... Ts> constexpr auto symax(const Ts... a) noexcept { return max(initializer_list<common_type_t<Ts...>>{a...}); }
 template <class K, class U> inline V<K> kyl(const map<K,U> &m, const U val) {
   V<K> keys;
-  irp(it,m) {
+  for(auto it=m.cbegin(); it!=m.cend(); ++it) {
     if(it->second==val) keys.emplace_back(it->first);
   }
   return keys;
