@@ -250,11 +250,11 @@ template <class K, class V> ostream& operator<<(ostream &os, const map<K, V> &m)
 template <class T> ostream& operator<<(ostream &os, const set<T> &st){ if(st.size()){ os << *st.begin(); for(auto i=st.begin(); ++i!=st.end();){ os << ' ' << *i; } } return os; }
 template <class T> ostream& operator<<(ostream &os, const multiset<T> &ms){ if(ms.size()){ os << *ms.begin(); for(auto i=ms.begin(); ++i!=ms.end();){ os << ' ' << *i; } } return os; }
 template <class T> ostream& operator<<(ostream &os, const deque<T> &dq){ if(dq.size()){ os << dq.front(); for(auto i=dq.begin(); ++i!=dq.end();){ os << ' ' << *i; } } return os; }
-inline void out(){ cout.flush(); }
-template <bool flush=false, class T> inline void out(const T& x){ cout << x << '\n'; if(flush) out(); }
+inline void out(){ cout << '\n'; }
+template <bool flush=false, class T> inline void out(const T& x){ cout << x << '\n'; if(flush) cout.flush(); }
 template <bool flush=false, class Head, class... Tail> inline void out(const Head& head, const Tail&... tail){ cout << head << ' '; out<flush>(tail...); }
-template <bool flush=false, class T> inline void vout(const T& v){ cout << v << '\n'; if(flush) out(); }
-template <bool flush=false, class T> inline void vout(const V<T>& v){ rep(v.size()) cout << v[i] << '\n'; if(flush) out(); }
+template <bool flush=false, class T> inline void vout(const T& v){ cout << v << '\n'; if(flush) cout.flush(); }
+template <bool flush=false, class T> inline void vout(const V<T>& v){ rep(v.size()) cout << v[i] << '\n'; if(flush) cout.flush(); }
 template <bool flush=false, class Head, class... Tail> inline void vout(const Head& head, const Tail&... tail){ cout << head << '\n'; vout<flush>(tail...); }
 inline void fix(short x){ cout << fixed << setprecision(x); }
 inline void alpha(){ cout << boolalpha; }
