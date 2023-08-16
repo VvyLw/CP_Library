@@ -463,8 +463,8 @@ template <class T, class Boolean=bool> int ersif(T& v, const Boolean &fn){ v.era
 template <class T> inline int unq(T& v){ if(!is_sorted(all(v))) Sort(v); v.erase(unique(all(v)),v.end()); return v.size(); }
 template <class T> inline T cp(const T& v){ T res; copy(all(v),back_inserter(res)); return res; }
 template <class T> inline T cp(const T& v, ll a, ll b){ T res; copy(all(v,a,b),back_inserter(res)); return res; }
-template <class T> inline void rtt(T& s, ll idx){ ll id=zia_qu::Mod<ll>(idx,s.size()); rotate(all(s,id),s.end());  }
-template <class T> inline void rtt(T& s, ll a, ll b, ll c){ rotate(all(s,a,b),s.end()-c);  }
+template <class T> inline void rtt(T& s, ll idx){ ll id=zia_qu::Mod<ll>(idx,s.size()); rotate(all(s,id),s.end()); }
+template <class T> inline void rtt(T& s, ll a, ll b, ll c){ rotate(all(s,a,b),s.end()-c); }
 template <class T> inline T setdif(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_difference(all(s),all(t),inserter(res,end(res))); return res; }
 template <class T> inline T setsum(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_union(all(s),all(t),inserter(res,end(res))); return res; }
 template <class T> inline T setmul(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_intersection(all(s),all(t),inserter(res,end(res))); return res; }
@@ -573,6 +573,28 @@ template <class T> inline V<T> press2(V<T> &c1, V<T> &c2) {
   rep(n) {
     c1[i]=Lady_sANDy::LB(res,c1[i]);
     c2[i]=Lady_sANDy::LB(res,c2[i]);
+  }
+  return res;
+}
+inline vs rtt2(const vs &s) {
+  const int h=s.size(), w=s.front().size();
+  vs t(w,string(h,{}));
+  rep(h) rep(j,w) t[j][i]=s[i][j];
+  rep(w) Lady_sANDy::rev(t[i]);
+  return t;
+}
+template <class T> inline V<V<T>> rtt2(const V<V<T>>& v) {
+  const int h=v.size(), w=v.front().size();
+  V<V<T>> res(w,V<T>(h));
+  rep(h) rep(j,w) res[j][i]=v[i][j];
+  rep(w) Lady_sANDy::rev(res[i]);
+  return res;
+}
+template <class T> inline T factor(T n, const T mod=0) {
+  T res=1;
+  while(n>0) {
+    res*=n--;
+    if(mod) res%=mod;
   }
   return res;
 }
