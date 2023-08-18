@@ -598,14 +598,6 @@ template <class T> inline T factor(T n, const T mod=0) {
   }
   return res;
 }
-template <class T> inline T factor(T n, const T mod=0) {
-  T res=1;
-  while(n>0) {
-    res*=n--;
-    if(mod) res%=mod;
-  }
-  return res;
-}
 template <class T=ll> inline T perm(T n, const T r, const T mod=0) {
   const T tmp=n;
   T res=1;
