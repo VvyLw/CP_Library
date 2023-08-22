@@ -211,8 +211,8 @@ template <class T> using Tree = tree<T,null_type,less<T>,rb_tree_tag,tree_order_
 template <class T> using TREE = tree<T,null_type,greater<T>,rb_tree_tag,tree_order_statistics_node_update>;
 template <class T, class U> inline bool chmax(T& a, const U& b){ if(a<b){ a=b; return 1; } return 0; }
 template <class T, class U> inline bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
-template <class T, class U> inline bool overflow_if_add(T a, U b){ return (numeric_limits<T>::max()-a)<b; }
-template <class T, class U> inline bool overflow_if_mul(T a, U b){ return (numeric_limits<T>::max()/a)<b; }
+template <class T, class U> inline bool overflow_if_add(const T a, const U b){ return (numeric_limits<T>::max()-a)<b; }
+template <class T, class U> inline bool overflow_if_mul(const T a, const U b){ return (numeric_limits<T>::max()/a)<b; }
 
 namespace IO {
 ostream &operator<<(ostream &dest, i128 value) {
@@ -284,17 +284,17 @@ namespace zia_qu {
 #define nxp(x) next_permutation(all(x))
 #define prp(x) prev_permutation(all(x))
 #define strpl(s,a,b) regex_replace(s,regex(a),b)
-#define rgxmt(s,rgx) regex_match(s,regex(rgx))
-inline void YES(bool ok=1){ out(ok?"YES":"NO"); }
-inline void NO(bool ok=1){ YES(!ok); }
-inline void Yes(bool ok=1){ out(ok?"Yes":"No"); }
-inline void No(bool ok=1){ Yes(!ok); }
-inline void yes(bool ok=1){ out(ok?"yes":"no"); }
-inline void no(bool ok=1){ yes(!ok); }
-template <class T> inline T sqr(T x){ return x*x; }
-template <class T> inline T cub(T x){ return x*x*x; }
-template <class T> inline T Mod(T x, T m){ return (x+m)%m; }
-template <class T> inline T Pow(T a, T b, T mod=0) {
+#define rgxsr(s,rgx) regex_search(s,regex(rgx))
+inline void YES(const bool ok=1){ out(ok?"YES":"NO"); }
+inline void NO(const bool ok=1){ YES(!ok); }
+inline void Yes(const bool ok=1){ out(ok?"Yes":"No"); }
+inline void No(const bool ok=1){ Yes(!ok); }
+inline void yes(const bool ok=1){ out(ok?"yes":"no"); }
+inline void no(const bool ok=1){ yes(!ok); }
+template <class T> inline T sqr(const T x){ return x*x; }
+template <class T> inline T cub(const T x){ return x*x*x; }
+template <class T> inline T Mod(const T x, const T m){ return (x+m)%m; }
+template <class T> inline T Pow(T a, T b, const T mod=0) {
   T res=1;
   if(mod) {
     res%=mod;
@@ -309,15 +309,15 @@ template <class T> inline T Pow(T a, T b, T mod=0) {
   }
   return res;
 }
-inline ll Ceil(ld x, ll m){ return ceil(x/m); }
-inline ll Round(ld x, ll m, short fx=0){ if(fx==0) return round(x/m); else { ul y=Pow<ul>(10,fx); return round((x/y)/m)*y; } }
-inline ld Log(ll x, double base=2){ return log2(x)/log2(base); }
-inline int bitdigit(ll x){ return 64-__builtin_clzll(x); }
-inline int popcnt(ll x){ return __builtin_popcountll(x); }
-inline int fione(ll x){ return __builtin_ffsll(x); }
-inline int zrcnt(ll x){ return __builtin_ctzll(x); }
-template <class T=ll> inline bool out_of_scope(T min, T cod, T max){ return cod < min || cod >= max; }
-template <class T=ll> inline bool scope(T a, T x, T b){ return a <= x && x <= b; }
+inline ll Ceil(const ld x, const ll m){ return ceil(x/m); }
+inline ll Round(const ld x, const ll m, const short fx=0){ if(fx==0) return round(x/m); const ul y=Pow<ul>(10,fx); return round((x/y)/m)*y; }
+inline ld Log(const ll x, const ld base=2){ return log2(x)/log2(base); }
+inline int bitdigit(const ll x){ return 64-__builtin_clzll(x); }
+inline int popcnt(const ll x){ return __builtin_popcountll(x); }
+inline int fione(const ll x){ return __builtin_ffsll(x); }
+inline int zrcnt(const ll x){ return __builtin_ctzll(x); }
+template <class T=ll> inline bool out_of_scope(const T min, const T cod, const T max){ return cod < min || cod >= max; }
+template <class T=ll> inline bool scope(const T a, const T x, const T b){ return a <= x && x <= b; }
 inline bool isupper(const char c){ return std::isupper(c); }
 inline bool isupper(const string &s){ bool ok=1; each(el,s) ok&=isupper(el); return ok; }
 inline bool islower(const char c){ return std::islower(c); }
@@ -334,7 +334,7 @@ inline bool ispunct(const char c){ return std::ispunct(c); }
 inline bool ispunct(const string &s){ bool ok=1; each(el,s) ok&=ispunct(el); return ok; }
 inline bool isprint(const char c){ return std::isprint(c); }
 inline bool isprint(const string &s){ bool ok=1; each(el,s) ok&=isprint(el); return ok; }
-inline ll strins(string &s, ll id, const string &t){ s.insert(id,t); return s.size(); }
+inline ll strins(string &s, const ll id, const string &t){ s.insert(id,t); return s.size(); }
 inline string toupper(string s){ each(c,s) c=std::toupper(c); return s; }
 inline string tolower(string s){ each(c,s) c=std::tolower(c); return s; }
 inline vi ten_to_adic(ll n, const short base) {
@@ -343,31 +343,29 @@ inline vi ten_to_adic(ll n, const short base) {
     res.emplace_back(n%base);
     n/=base;
   }
-  //rev(res);
   return res;
 }
-inline ll adic_to_ten(vi &v, const short base) {
+inline ll adic_to_ten(const vi &v, const short base) {
   ll res=0;
-  //rev(v);
   each(el,v) {
-    ll idx=eid(el,v);
+    int idx=eid(el,v);
     res+=Pow<ll>(base,idx)*el;
   }
   return res;
 }
-inline string to_hex(ll x) {
+inline string to_hex(const ll x) {
   stringstream ss;
   ss<<hex<<x;
   string s=ss.str();
   //s=toupper(s);
   return s;
 }
-inline string to_oct(ll x) {
+inline string to_oct(const ll x) {
   stringstream s;
   s<<oct<<x;
   return s.str();
 }
-inline string to_bin(ll x) {
+inline string to_bin(const ll x) {
   stringstream ss;
   ss<<bitset<64>(x);
   string s=ss.str();
@@ -376,11 +374,12 @@ inline string to_bin(ll x) {
   reverse(all(s));
   return s;
 }
-inline ll to_ten(string s, short base){ return stoll(s,nullptr,base); }
-inline i128 stoL(string &s) {
+inline ll to_ten(const string &s, const short base){ return stoll(s,nullptr,base); }
+inline i128 stoL(const string &s) {
+  assert(isdigit(s));
   i128 ret = 0;
   each(el,s) {
-    if(isdigit(el)) ret = 10 * ret + el - '0';
+    ret = 10 * ret + el - '0';
   }
   if(s.front()=='-') ret=-ret;
   return ret;
@@ -558,7 +557,7 @@ template <class T> inline V<T> press(const V<T>& v) {
   each(el,v) res.emplace_back(Lady_sANDy::LB(cp,el));
   return res;
 }
-template <class T> inline V<T> press2(V<T> &c1, V<T> &c2) {
+template <class T> inline V<T> press(V<T> &c1, V<T> &c2) {
   V<T> res;
   const int n = c1.size();
   rep(n) {
@@ -576,14 +575,14 @@ template <class T> inline V<T> press2(V<T> &c1, V<T> &c2) {
   }
   return res;
 }
-inline vs rtt2(const vs &s) {
+inline vs rtt(const vs &s) {
   const int h=s.size(), w=s.front().size();
   vs t(w,string(h,{}));
   rep(h) rep(j,w) t[j][i]=s[i][j];
   rep(w) Lady_sANDy::rev(t[i]);
   return t;
 }
-template <class T> inline V<V<T>> rtt2(const V<V<T>>& v) {
+template <class T> inline V<V<T>> rtt(const V<V<T>>& v) {
   const int h=v.size(), w=v.front().size();
   V<V<T>> res(w,V<T>(h));
   rep(h) rep(j,w) res[j][i]=v[i][j];
