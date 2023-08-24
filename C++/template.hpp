@@ -310,7 +310,7 @@ template <class T> inline T Pow(T a, T b, const T mod=0) {
   return res;
 }
 inline ll Ceil(const ld x, const ll m){ return ceil(x/m); }
-inline ll Round(const ld x, const ll m, const short fx=0){ if(fx==0) return round(x/m); const ul y=Pow<ul>(10,fx); return round((x/y)/m)*y; }
+inline ld Round(const ld x, const ll m, const short fx=0){ if(!fx) return round(x/m); const ul y=Pow<ul>(10,fx); return round((x*y)/m)/y; }
 inline ld Log(const ll x, const ld base=2){ return log2(x)/log2(base); }
 inline int bitdigit(const ll x){ return 64-__builtin_clzll(x); }
 inline int popcnt(const ll x){ return __builtin_popcountll(x); }
