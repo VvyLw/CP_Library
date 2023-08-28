@@ -316,7 +316,7 @@ inline bool islower(const string &s){ bool ok=1; each(el,s) ok&=islower(el); ret
 inline bool isalpha(const char c){ return std::isalpha(c); }
 inline bool isalpha(const string &s){ bool ok=1; each(el,s) ok&=isalpha(el); return ok; }
 inline bool isdigit(const char c){ return std::isdigit(c); }
-inline bool isdigit(const string &s){ bool ok=1; each(el,s) ok&=isdigit(el); return ok; }
+inline bool isdigit(const string &s){ bool ok=1, neg=s.front()=='-'; each(el,s){ if(neg){ neg=0; continue; } ok&=isdigit(el); } return ok; }
 inline bool isalnum(const char c){ return std::isalnum(c); }
 inline bool isalnum(const string &s){ bool ok=1; each(el,s) ok&=isalnum(el); return ok; }
 inline bool isspace(const char c){ return std::isspace(c); }
@@ -368,8 +368,13 @@ inline string to_bin(const ll x) {
 inline ll to_ten(const string &s, const short base){ return stoll(s,nullptr,base); }
 inline i128 stoL(const string &s) {
   assert(isdigit(s));
+  bool neg=s.front()=='-';
   i128 ret = 0;
   each(el,s) {
+    if(neg) {
+      neg=0;
+      continue;
+    }
     ret = 10 * ret + el - '0';
   }
   if(s.front()=='-') ret=-ret;
