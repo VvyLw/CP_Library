@@ -21,7 +21,7 @@ int main() {
 
 void VvyLw::solve() {
     INT(n,q);
-    graph<false> g(n);
+    graph<0> g(n);
     rep(i,1,n-1) {
         INT(p);
         g.add(p,i,0);
