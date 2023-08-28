@@ -1,14 +1,3 @@
-#if !__INCLUDE_LEVEL__
-#include __FILE__
-
-void VvyLw::solve() {
-  
-}
-
-// --------------------------------------------------------------------------------------------------------------
-
-#else
-
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
@@ -647,5 +636,3 @@ int main() {
   now(stop);
   time(start, stop);
 }
-
-#endif
