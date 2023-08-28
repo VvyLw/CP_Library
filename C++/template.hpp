@@ -6,9 +6,6 @@ using namespace __gnu_pbds;
 
 // --------------------------------------------------------------------------------------------------------------
 
-/*#pragma GCC optimize("O3")
-#pragma GCC optimize("unroll-loops")//*/
-//#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 #pragma GCC diagnostic ignored "-Wsign-compare"
 #pragma GCC diagnostic ignored "-Wdeprecated-copy"
@@ -613,26 +610,4 @@ inline bool is_prime(const ul n) {
 }
 inline bool is_int(const ld n){ ll r=floor(n); return r==n; }
 inline bool is_sqr(const ll n){ return is_int(sqrtl(n)); }
-/* grundy sample
-template <class T> inline bool grundy(const V<T> &v) {
-  ll res=0;
-  each(el,v) res^=el;
-  return res!=0;
-}//*/
 } // Heileden
-
-
-// --------------------------------------------------------------------------------------------------------------
-
-using namespace zia_qu;
-using namespace Lady_sANDy;
-using namespace Heileden;
-
-int main() {
-  VvyLw::wa_haya_exe();
-  now(start);
-  /*INT(t); while(t--)//*/
-  VvyLw::solve();
-  now(stop);
-  time(start, stop);
-}
