@@ -76,8 +76,13 @@ constexpr int M0D = 1e9+7;
 constexpr int INF = 1<<30;
 constexpr ll LINF = 1LL<61;
 constexpr ld DINF = numeric_limits<ld>::infinity();
+#if __cplusplus >= 202100L
 constexpr ld PI = numbers::pi;
 constexpr ld E = numbers::e;
+#else
+constexpr ld PI = acos(-1);
+constexpr ld E = 2.718281828459045;
+#endif
 namespace vectors {
 template <class T> using V = vector<T>;
 using vi = V<ll>;
