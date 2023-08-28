@@ -5,35 +5,35 @@
 using namespace std;
 template <class G> struct LowestCommonAncestor {
     const int LOG;
-    vector<int> dep;
+    vi dep;
     const G &g;
-    vector<vector<int>> table;
-    LowestCommonAncestor(const G &g_) : g(g_), dep(g_.size()), LOG(__lg(g_.size()) - 1) {
-        table.assign(LOG, vector<int>(g_.size(), -1));
+    wi table;
+    LowestCommonAncestor(const G &g_) : g(g_), dep(g_.size()), LOG(zia_qu::bitdigit(g_.size())) {
+        table.assign(LOG, vi(g_.size(), -1));
     }
-    void dfs(int idx, int par, int d) {
+    void dfs(ll idx, ll par, ll d) {
         table[0][idx] = par;
         dep[idx] = d;
-        for(auto to: g[idx]) {
+        each(to,g[idx]) {
             if(to != par) dfs(to, idx, d + 1);
         }
     }
     void build() {
         dfs(0, -1, 0);
-        for(int k = 0; k < LOG-1; ++k) {
-            for(size_t i = 0; i < table[k].size(); ++i) {
+        rep(k,LOG-1) {
+            rep(table[k].size()) {
                 if(table[k][i] == -1) table[k + 1][i] = -1;
                 else table[k + 1][i] = table[k][table[k][i]];
             }
         }
     }
-    int query(int u, int v) {
+    ll query(ll u, ll v) {
         if(dep[u] > dep[v]) swap(u, v);
-        for(int i = LOG - 1; i >= 0; i--) {
+        rvp(LOG) {
             if(((dep[v] - dep[u]) >> i) & 1) v = table[i][v];
         }
         if(u == v) return u;
-            for(int i = LOG - 1; i >= 0; i--) {
+            rvp(LOG) {
             if(table[i][u] != table[i][v]) {
                 u = table[i][u];
                 v = table[i][v];
@@ -41,5 +41,5 @@ template <class G> struct LowestCommonAncestor {
         }
         return table[0][u];
     }
-    int dist(int u, int v){ return dep[u] + dep[v] - 2 * query(u, v); }
+    ll dist(ll u, ll v){ return dep[u] + dep[v] - 2 * query(u, v); }
 };

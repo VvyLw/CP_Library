@@ -12,7 +12,7 @@ struct edge {
     edge(int to_, long long cost_): to(to_), cost(cost_){}
     operator long long() const { return to; }
 };
-template <bool indirected=1> struct w_graph {
+template <bool undirected=1> struct w_graph {
     vector<vector<edge>> g;
     vector<int> pr;
     w_graph(int n): g(n), pr(n){}
@@ -27,7 +27,7 @@ template <bool indirected=1> struct w_graph {
         a-=indexed,b-=indexed;
         g[a].emplace_back(b, cost);
         pr[b] = a;
-        if(indirected) g[b].emplace_back(a, cost);
+        if(undirected) g[b].emplace_back(a, cost);
     }
     void input(int m, int indexed=1) {
         for(int i = 0; i < m; ++i) {
@@ -72,7 +72,7 @@ template <bool indirected=1> struct w_graph {
         return cst;
     }
 };
-template <bool indirected=1> struct graph {
+template <bool undirected=1> struct graph {
     vector<vector<int>> g;
     vector<int> pr;
     graph(int n): g(n), pr(n){}
@@ -87,7 +87,7 @@ template <bool indirected=1> struct graph {
         a-=indexed,b-=indexed;
         g[a].emplace_back(b);
         pr[b] = a;
-        if(indirected) g[b].emplace_back(a);
+        if(undirected) g[b].emplace_back(a);
     }
     void input(int m, int indexed=1) {
         for(int i = 0; i < m; ++i) {
