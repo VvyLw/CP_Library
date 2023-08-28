@@ -76,8 +76,8 @@ constexpr int M0D = 1e9+7;
 constexpr int INF = 1<<30;
 constexpr ll LINF = 1LL<61;
 constexpr ld DINF = numeric_limits<ld>::infinity();
-constexpr ld PI = acosl(-1);
-constexpr ld E = 2.718281828459045;
+constexpr ld PI = numbers::pi;
+constexpr ld E = numbers::e;
 namespace vectors {
 template <class T> using V = vector<T>;
 using vi = V<ll>;

@@ -7,12 +7,12 @@ using namespace zia_qu;
 using namespace Lady_sANDy;
 using namespace Heileden;
 int main() {
-  VvyLw::wa_haya_exe();
-  now(start);
-  /*INT(t); while(t--)//*/
-  VvyLw::solve();
-  now(stop);
-  time(start, stop);
+  	VvyLw::wa_haya_exe();
+  	now(start);
+  	/*INT(t); while(t--)//*/
+  	VvyLw::solve();
+  	now(stop);
+  	time(start, stop);
 }
 
 // --------------------------------------------------------------------------------------------------------------
