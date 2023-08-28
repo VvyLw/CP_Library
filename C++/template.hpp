@@ -80,8 +80,8 @@ constexpr ld DINF = numeric_limits<ld>::infinity();
 constexpr ld PI = numbers::pi;
 constexpr ld E = numbers::e;
 #else
-constexpr ld PI = acos(-1);
-constexpr ld E = 2.718281828459045;
+const ld PI = acos(-1);
+const ld E = 2.718281828459045;
 #endif
 namespace vectors {
 template <class T> using V = vector<T>;
