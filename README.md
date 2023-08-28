@@ -3,3 +3,5 @@
 大体が借り物です。。。
   
 Library for Competitive Programming
+[![Actions Status](https://github.com/VvyLw/CP_Library/workflows/verify/badge.svg)]
+https://github.com/VvyLw/CP_Library/actions
