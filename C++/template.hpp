@@ -270,7 +270,7 @@ namespace zia_qu {
 #define debug(...) static_cast<void>(0)
 #endif
 #define elif else if
-#define eid(el,v) &el-&v[0]
+#define eid(el,v) size_t(&el-&v[0])
 #define bif(bit,tar) if(((bit)>>(tar))&1)
 #define nxp(x) next_permutation(all(x))
 #define prp(x) prev_permutation(all(x))
