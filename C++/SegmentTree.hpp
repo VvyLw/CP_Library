@@ -6,11 +6,13 @@
 using namespace std;
 typedef long long ll;
 template <class T> struct SegTree {
+private:
     using F = function<T(T, T)>;
     ll n, rank, fine;
     const F f;
     const T e;
     vector<T> dat;
+public:
     SegTree(const ll n_, const F f_, const T& e_): f(f_), e(e_), fine(n_) {
         n=1,rank=0;
         while(fine>n) n<<=1LL,rank++;

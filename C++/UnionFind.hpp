@@ -5,7 +5,9 @@
 using namespace std;
 typedef long long ll;
 struct UnionFind {
+private:
     vector<ll> par;
+public:
     UnionFind(ll n): par(n, -1){}
     ll operator[](ll a) {
         while(par[a] >= 0) {

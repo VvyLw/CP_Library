@@ -4,8 +4,10 @@
 #include <vector>
 using namespace std;
 template <class T> struct FenwickTree {
+private:
     int N;
     vector<T> data;
+public:
     FenwickTree(){}
     FenwickTree(int size){ init(size); }
     void init(int size) {

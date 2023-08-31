@@ -5,10 +5,12 @@
 #include <functional>
 using namespace std;
 template <class T> struct SparseTable {
+private:
     using F = function<T(T,T)>;
     vector<vector<T>> st;
     vector<T> lookup;
     F f;
+public:
     SparseTable(const vector<T> &v, const F &f_) : f(f_) { init(v); }
     void init(const vector<T> &v) {
         int b = 0;

@@ -7,8 +7,10 @@ using namespace std;
 //#include "template.hpp"
 //template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
 struct edge {
+private:
     int to;
     long long cost;
+public:
     edge(int to_, long long cost_): to(to_), cost(cost_){}
     operator long long() const { return to; }
 };
