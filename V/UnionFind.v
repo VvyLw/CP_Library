@@ -3,10 +3,9 @@ mut:
 	par []int
 }
 fn new_uf(n int) UnionFind {
-	uf:=UnionFind{
+	return UnionFind{
 		par: []int{len:n,init:-1}
 	}
-	return uf
 }
 fn (mut uf UnionFind) root(i int) int { 
 	if uf.par[i]<0{ return i }
