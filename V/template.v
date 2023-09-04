@@ -4,6 +4,11 @@ import arrays as ar
 import strings as str
 import regex as re
 //import datatypes as dt
+
+pub fn main() {
+	
+}
+
 const (
 	mod998=998244353
 	mod107=1000000007
@@ -52,7 +57,4 @@ fn graph(n int) [][]int { return [][]int{len:n} }
 struct Pair[T,U] {
 	first T
 	second U
-}
-pub fn main() {
-	
 }
