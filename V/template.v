@@ -1,6 +1,7 @@
 import os { input }
 import math as ma
 import arrays as ar
+import strings as str
 import regex as re
 //import datatypes as dt
 const (
@@ -17,11 +18,13 @@ fn si() string { return input('') }
 fn ni() int { return si().int() }
 fn di() f64 { return si().f64() }
 fn bi() i64 { return si().i64() }
+fn li() []string { return si().split('') }
 fn lsi() []string { return si().split(' ') }
 fn lni() []int { return si().split(' ').map(it.int()) }
 fn ldi() []f64 { return si().split(' ').map(it.f64()) }
 fn lbi() []i64 { return si().split(' ').map(it.i64()) }
 fn aro[T](a []T) string { return a.map(it.str()).join(' ') }
+fn flush[T](arg T) { println(arg) os.flush() }
 fn dbg[T](args ...T) {
 	eprintln('---------------------')
 	for id, el in args { eprintln('arg${id}: ${el}') }
@@ -41,7 +44,11 @@ fn mod(n int, m int) int { return (n+m)%m }
 fn bs[T](a []T, x T) !int { return ar.binary_search(a,x)! }
 fn a_find[T](a []T, filt F1[T]) ?T { return ar.find_first(a,filt) }
 fn a_filter[T](a []T, filt F2[T]) []T { return ar.filter_indexed(a,filt) }
+fn len(s string) int { return s.split('').len }
+fn to_ten(s string, base int) !i64 { return s.parse_int(base,64)! }
+fn repstr(s string, n int) string { return str.repeat_string(s,n) }
 fn rgxmt(s string, pat string) !bool { r:=re.regex_opt(pat)! return r.matches_string(s) }
+fn graph(n int) [][]int { return [][]int{len:n} }
 struct Pair[T,U] {
 	first T
 	second U
