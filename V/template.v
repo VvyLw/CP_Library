@@ -3,6 +3,7 @@ import math as ma
 import arrays as ar
 import strings as str
 import regex as re
+import rand
 //import datatypes as dt
 
 pub fn main() {
@@ -56,6 +57,7 @@ fn len(s string) int { return s.split('').len }
 fn to_ten(s string, base int) !i64 { return s.parse_int(base,64)! }
 fn repstr(s string, n int) string { return str.repeat_string(s,n) }
 fn rgxmt(s string, pat string) !bool { r:=re.regex_opt(pat)! return r.matches_string(s) }
+fn rext(inf i64, sup i64) !i64 { return rand.i64_in_range(inf,sup)! }
 struct Pair[T,U] {
 	first T
 	second U
