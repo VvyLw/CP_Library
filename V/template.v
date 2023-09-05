@@ -29,7 +29,7 @@ fn lsi() []string { return si().split(' ') }
 fn lni() []int { return si().split(' ').map(it.int()) }
 fn ldi() []f64 { return si().split(' ').map(it.f64()) }
 fn lbi() []i64 { return si().split(' ').map(it.i64()) }
-fn dl[T](ls []T) (T,T) { return ls[0],ls[1] }
+fn pl[T](ls []T) (T,T) { return ls[0],ls[1] }
 fn tl[T](ls []T) (T,T,T) { return ls[0],ls[1],ls[2] }
 fn ql[T](ls []T) (T,T,T,T) { return ls[0],ls[1],ls[2],ls[3] }
 fn aro[T](a []T) string { return a.map(it.str()).join(' ') }
