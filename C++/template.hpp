@@ -540,7 +540,7 @@ struct p_fact {
     return m;
   }
 };
-template <class T, class Boolean=bool> inline T bins(const T ok, const T ng, const Boolean &fn, const ld eps = 1) {
+template <class T, class Boolean=bool> inline T bins(T ok, T ng, const Boolean &fn, const ld eps = 1) {
   while(abs(ok-ng)>eps) {
     T mid=(ok+ng)/2;
     (fn(mid)?ok:ng) = mid;
