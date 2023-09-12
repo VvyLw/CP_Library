@@ -49,7 +49,22 @@ fn sylcm(a ...i64) i64 { mut l:=i64(1) for el in a { l=ma.lcm(l,el) } return l }
 fn symin(a ...i64) i64 { mut res:=ma.maxof[i64]() for el in a { res=ma.min(res,el) } return res }
 fn symax(a ...i64) i64 { mut res:=ma.minof[i64]() for el in a { res=ma.max(res,el) } return res }
 fn iota(n int, dlt i64) []i64 { return []i64{len: n, init: index+dlt} }
-fn mod(n int, m int) int { return (n+m)%m }
+fn mod(n i64, m int) i64 { return (n+m)%m }
+fn modpow(a i64, b i64, m int) i64 {
+	mut res:=i64(1)
+	mut x:=mod(a,m)
+	mut y:=b
+	for y>0 {
+		if y%2==1 {
+			res*=x
+			res=mod(res,m)
+		}
+		x*=x
+		x=mod(x,m)
+		y>>=1
+	}
+	return res
+}
 fn bs[T](a []T, x T) !int { return ar.binary_search(a,x)! }
 fn a_find[T](a []T, filt F1[T]) ?T { return ar.find_first(a,filt) }
 fn a_filter[T](a []T, filt F2[T]) []T { return ar.filter_indexed(a,filt) }
