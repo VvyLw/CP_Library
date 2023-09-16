@@ -5,7 +5,7 @@ struct Modint {
 fn mint(num_ i64, mod_ i64) Modint {
 	return Modint{
 		mod: mod_
-		num: if num_>=mod_{num_-mod_}else{num_}
+		num: (num_+mod_)%mod_
 	}
 }
 fn (a Modint)+(b Modint) Modint {
