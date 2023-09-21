@@ -23,3 +23,9 @@ fn (mut uf UnionFind) unite(i int, j int) bool {
 	uf.par[b]=a
 	return true
 }
+fn (mut uf UnionFind) groups() [][]int {
+	n:=uf.par.len
+	mut res:=[][]int{len:n,init:[]int{}}
+	for i in 0..n { res[uf.root(i)]<<i }
+	return res.filter(it.len!=0)
+}
