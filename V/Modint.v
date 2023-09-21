@@ -2,10 +2,11 @@ struct Modint {
 	num i64
 	mod i64
 }
-fn mint(num_ i64, mod_ i64) Modint {
+fn (mint Modint) str() string { return '${mint.num}' }
+fn mint(num_ i64, m Mod) Modint {
 	return Modint{
-		mod: mod_
-		num: (num_+mod_)%mod_
+		mod: m.mod_
+		num: (num_+m.mod_)%m.mod_
 	}
 }
 fn (a Modint)+(b Modint) Modint {
@@ -73,4 +74,8 @@ fn (a Modint) pow(x_ u64) Modint {
 		x>>=1
 	}
 	return res
+}
+[params]
+struct Mod {
+	mod_ i64=mod998
 }
