@@ -7,7 +7,7 @@ import regex as re
 import rand
 //import datatypes as dt
 
-pub fn main() {
+pub fn solve() {
 	
 }
 
@@ -81,4 +81,9 @@ fn rext(inf i64, sup i64) !i64 { return rand.i64_in_range(inf,sup)! }
 struct Pair[T,U] {
 	first T
 	second U
+}
+pub fn main() {
+	mut t:=1
+	//t=ni()
+	for t-->0 { solve() }
 }
