@@ -7,7 +7,7 @@ import regex as re
 import rand
 //import datatypes as dt
 
-pub fn solve() {
+pub fn solve()! {
 	
 }
 
@@ -85,5 +85,5 @@ struct Pair[T,U] {
 pub fn main() {
 	mut t:=1
 	//t=ni()
-	for t-->0 { solve() }
+	for t-->0 { solve()! }
 }
