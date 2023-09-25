@@ -26,7 +26,7 @@ using Timer = chrono::system_clock::time_point;
 [[maybe_unused]] Timer start, stop;
 #if local
 void now(Timer &t){ t = chrono::system_clock::now(); }
-void time(const Timer &t1, const Timer &t2){ auto tm = chrono::duration_cast<chrono::milliseconds>(t2-t1).count(); cout << tm << "ms\n"; }
+void time(const Timer &t1, const Timer &t2){ auto tm = chrono::duration_cast<chrono::milliseconds>(t2-t1).count(); cerr << tm << "ms\n"; }
 #else
 [[maybe_unused]] void now(Timer &t){ void(0); }
 [[maybe_unused]] void time(const Timer &t1, const Timer &t2){ void(0); }

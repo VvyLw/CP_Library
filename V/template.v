@@ -82,6 +82,13 @@ struct Pair[T,U] {
 	first T
 	second U
 }
+fn (p Pair[T,U]) str() string { return '${p.first} ${p.second}' }
+fn mp[T,U](p T, q U) Pair[T,U] { 
+	return Pair[T,U] {
+		first: p
+		second: q
+	}
+}
 pub fn main() {
 	mut t:=1
 	//t=ni()
