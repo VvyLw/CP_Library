@@ -156,6 +156,7 @@ template <class T> inline T cross(const PP<T>& a, const PP<T>& b){ return dot(ro
 template <class T> inline T square(const PP<T>& a){ return dot(a, a); }
 template <class T> inline ld grad(const PP<T>& a){ assert(a.first); return 1.0L * a.second / a.first; }
 template <class T> inline ld abs(const PP<T>& a){ return hypotl(a.first, a.second); }
+template <class T> inline T lcm(const PP<T>& a){ return lcm(a.first, a.second); }
 template <class T> inline T gcd(const PP<T>& a){ return gcd(a.first, a.second); }
 template <class T> inline PP<T> extgcd(const PP<T> &p) {
   T x=1,y=0,t1=0,t2=0,t3=1,a,b;
