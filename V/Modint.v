@@ -70,7 +70,7 @@ fn (a Modint) pow(x_ u64) Modint {
 	mut x:=x_
 	for x>0 {
 		if x%2==1{ res=res*base }
-		base=base*base
+		base*=base
 		x>>=1
 	}
 	return res
