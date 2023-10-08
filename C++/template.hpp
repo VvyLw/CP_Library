@@ -465,7 +465,6 @@ template <class T> inline T setdif(const T& s, const T& t){ assert(is_sorted(all
 template <class T> inline T setsum(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_union(all(s),all(t),inserter(res,end(res))); return res; }
 template <class T> inline T setmul(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_intersection(all(s),all(t),inserter(res,end(res))); return res; }
 template <class T> inline V<T> adf(const V<T>& v){ V<T> a; adjacent_difference(all(v),back_inserter(a)); rtt(a,1); a.pop_back(); return a; }
-template <class T> inline V<T> psum(const V<T>& v){ V<T> s{0}; partial_sum(all(v),back_inserter(s)); return s; }
 template <class T, class F> inline V<T> isum(const V<T> &v, const F &fn){ V<T> s{0}; inclusive_scan(all(v),back_inserter(s),fn); return s; }
 template <class T> inline V<T> rext(V<T>& v, ll size){ V<T> res; sample(all(v),back_inserter(res),size,Random()); return res; }
 template <class T> inline T rext(V<T>& v){ V<T> res; sample(all(v),back_inserter(res),1,Random()); return res.front(); }
@@ -540,6 +539,13 @@ struct p_fact {
     }
     return m;
   }
+};
+struct asum {
+  vi s;
+  asum(const vi& v): s{0} { partial_sum(all(v),back_inserter(s)); }
+  vi get() const { return s; }
+  // [l, r]
+  ll query(int l, int r) const { return s[r]-s[l]; }
 };
 template <class T, class Boolean=bool> inline T bins(T ok, T ng, const Boolean &fn, const ld eps = 1) {
   while(abs(ok-ng)>eps) {
