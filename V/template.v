@@ -5,6 +5,7 @@ import arrays as ar
 import strings as str
 import regex as re
 import rand
+import time
 //import datatypes as dt
 
 pub fn solve()! {
@@ -35,21 +36,16 @@ fn tl[T](ls []T) (T,T,T) { return ls[0],ls[1],ls[2] }
 fn ql[T](ls []T) (T,T,T,T) { return ls[0],ls[1],ls[2],ls[3] }
 fn aro[T](a []T) string { return a.map(it.str()).join(' ') }
 fn flush[T](arg T) { println(arg) os.flush() }
-fn dbg[T](args ...T) {
-	eprintln('---------------------')
-	for id, el in args { eprintln('arg${id}: ${el}') }
-	eprintln('---------------------')
-}
+fn fin[T](arg T) { println(arg) exit(0) }
+fn dbg[T](arg T) { eprintln('-----------${arg}-----------') }
 fn yes(ok bool) { println(if ok {'Yes'} else {'No'}) }
 fn no(ok bool) { yes(!ok) }
 fn chmin[T, U](mut a T, b U) bool { jdg:=a>b a=ma.min(a,b) return jdg }
 fn chmax[T, U](mut a T, b U) bool { jdg:=a<b a=ma.max(a,b) return jdg }
 fn toc(n i64) string { return u8(n).ascii_str() }
 fn cas(s string) int { return s[0] }
-fn sygcd(a ...i64) i64 { mut g:=i64(0) for el in a { g=ma.gcd(g,el) } return g }
-fn sylcm(a ...i64) i64 { mut l:=i64(1) for el in a { l=ma.lcm(l,el) } return l }
-fn symin(a ...i64) i64 { mut res:=ma.maxof[i64]() for el in a { res=ma.min(res,el) } return res }
-fn symax(a ...i64) i64 { mut res:=ma.minof[i64]() for el in a { res=ma.max(res,el) } return res }
+fn sygcd(a []i64) i64 { mut g:=i64(0) for el in a { g=ma.gcd(g,el) } return g }
+fn sylcm(a []i64) i64 { mut l:=i64(1) for el in a { l=ma.lcm(l,el) } return l }
 fn mod(n i64, m int) i64 { return (n+m)%m }
 fn large(n i64) big.Integer { return big.integer_from_i64(n) }
 fn stol(s string) !big.Integer { return big.integer_from_string(s)! }
@@ -83,14 +79,18 @@ struct Pair[T,U] {
 	second U
 }
 fn (p Pair[T,U]) str() string { return '${p.first} ${p.second}' }
-fn mp[T,U](p T, q U) Pair[T,U] { 
+fn mp[T,U](p T, q U) Pair[T,U] {
 	return Pair[T,U] {
 		first: p
 		second: q
 	}
 }
 pub fn main() {
+	mut tm:=time.StopWatch{}
+	tm.start()
 	mut t:=1
 	//t=ni()
 	for t-->0 { solve()! }
+	tm.stop()
+	eprintln(tm.elapsed())
 }
