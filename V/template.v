@@ -6,7 +6,7 @@ import strings as str
 import regex as re
 import rand
 import time
-//import datatypes as dt
+//import datatypes as dt { Set, Queue, Stack, DoublyLinkedList, MinHeap }
 
 pub fn solve()! {
 	
@@ -28,9 +28,9 @@ fn di() f64 { return si().f64() }
 fn bi() i64 { return si().i64() }
 fn li() []string { return si().split('') }
 fn lsi() []string { return si().split(' ') }
-fn lni() []int { return si().split(' ').map(it.int()) }
-fn ldi() []f64 { return si().split(' ').map(it.f64()) }
-fn lbi() []i64 { return si().split(' ').map(it.i64()) }
+fn lni() []int { return lsi().map(it.int()) }
+fn ldi() []f64 { return lsi().map(it.f64()) }
+fn lbi() []i64 { return lsi().map(it.i64()) }
 fn pl[T](ls []T) (T,T) { return ls[0],ls[1] }
 fn tl[T](ls []T) (T,T,T) { return ls[0],ls[1],ls[2] }
 fn ql[T](ls []T) (T,T,T,T) { return ls[0],ls[1],ls[2],ls[3] }
