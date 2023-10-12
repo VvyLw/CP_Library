@@ -38,7 +38,8 @@ fn aro[T](a []T) string { return a.map(it.str()).join(' ') }
 fn flush[T](arg T) { println(arg) os.flush() }
 fn fin[T](arg T) { println(arg) exit(0) }
 fn dbg[T](arg T) { eprintln('-----------${arg}-----------') }
-fn yes(ok bool) { println(if ok {'Yes'} else {'No'}) }
+fn yn(ok bool, yes string, no string) { println(if ok{yes} else{no}) }
+fn yes(ok bool) { yn(ok, "Yes", "No") }
 fn no(ok bool) { yes(!ok) }
 fn chmin[T, U](mut a T, b U) bool { jdg:=a>b a=ma.min(a,b) return jdg }
 fn chmax[T, U](mut a T, b U) bool { jdg:=a<b a=ma.max(a,b) return jdg }
