@@ -54,7 +54,7 @@ fn sylcm(a []i64) i64 { mut l:=i64(1) for el in a { l=ma.lcm(l,el) } return l }
 fn mod(n i64, m int) i64 { return (n+m)%m }
 fn large(n i64) big.Integer { return big.integer_from_i64(n) }
 fn stol(s string) !big.Integer { return big.integer_from_string(s)! }
-fn iota(n int, dlt i64) []i64 { return []i64{len: n, init: index+dlt} }
+fn iota(n int, dlt int) []int { return []int{len: n, init: index+dlt} }
 fn unq[T](a []T) []T {
 	mut res := []T{cap: a.len / 10}
 	mut j := -1
