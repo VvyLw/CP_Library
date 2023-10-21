@@ -9,8 +9,8 @@ using namespace std;
 struct edge {
 private:
     int to;
-    long long cost;
 public:
+    long long cost;
     edge(int to_, long long cost_): to(to_), cost(cost_){}
     operator long long() const { return to; }
 };
@@ -60,7 +60,7 @@ template <bool undirected=1> struct w_graph {
         auto d=all_dist(u);
         return d[v];
     }
-    vector<long long> dijikstra(int v) {
+    vector<long long> dijkstra(int v) {
         vector<long long> cst(g.size(), 1LL << 60);
         priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<pair<long long, int>>> dj;
         cst[v]=0;
