@@ -308,7 +308,6 @@ inline int bitdigit(const ll x){ return 64-__builtin_clzll(x); }
 inline int popcnt(const ll x){ return __builtin_popcountll(x); }
 inline int fione(const ll x){ return __builtin_ffsll(x); }
 inline int zrcnt(const ll x){ return __builtin_ctzll(x); }
-template <class T=ll> inline bool out_of_scope(const T min, const T cod, const T max){ return cod < min || cod >= max; }
 template <class T=ll> inline bool scope(const T a, const T x, const T b){ return a <= x && x <= b; }
 inline bool isupper(const char c){ return std::isupper(c); }
 inline bool isupper(const string &s){ bool ok=1; each(el,s) ok&=isupper(el); return ok; }
