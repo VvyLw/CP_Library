@@ -415,23 +415,23 @@ template <class K, class V> inline K vlmax_k(const map<K,V> &m){
 
 namespace Lady_sANDy {
 template <class T> inline void rev(T& v){ reverse(all(v)); }
-template <class T> inline void rev(T& v, const ll a, const ll b){ reverse(all(v,a,b+1)); }
+template <class T> inline void rev(T& v, const int a, const int b){ reverse(all(v,a,b+1)); }
 template <class T> inline T revd(const T& v){ auto c=v; rev(c); return c; }
-template <class T> inline T revd(const T& v, const ll a, const ll b){ auto c=v; rev(c,a,b); return c; }
+template <class T> inline T revd(const T& v, const int a, const int b){ auto c=v; rev(c,a,b); return c; }
 template <class T> inline void Sort(T& v){ sort(all(v)); }
-template <class T> inline void Sort(T& v, const ll a, const ll b){ sort(all(v,a,b+1)); }
+template <class T> inline void Sort(T& v, const int a, const int b){ sort(all(v,a,b+1)); }
 template <class T> inline T sorted(const T& v){ auto c=v; Sort(c); return c; }
-template <class T> inline T sorted(const T& v, const ll a, const ll b){ auto c=v; Sort(c,a,b); return c; }
+template <class T> inline T sorted(const T& v, const int a, const int b){ auto c=v; Sort(c,a,b); return c; }
 template <class T> inline void Sortt(T& v){ sort(rall(v)); }
-template <class T> inline void Sortt(T& v, const ll a, const ll b){ sort(rall(v,v.size()-b-1,v.size()-a)); }
+template <class T> inline void Sortt(T& v, const int a, const int b){ sort(rall(v,v.size()-b-1,v.size()-a)); }
 template <class T> inline T Sorted(const T& v){ auto c=v; Sortt(c); return c; }
-template <class T> inline T Sorted(const T& v, const ll a, const ll b){ auto c=v; Sortt(c,a,b); return c; }
+template <class T> inline T Sorted(const T& v, const int a, const int b){ auto c=v; Sortt(c,a,b); return c; }
 template <class T> inline void Sorth(T& v){ make_heap(all(v)); sort_heap(all(v)); }
 template <class T> inline T mrg(const T& a, const T& b){ T res; merge(all(a),all(b),back_inserter(res)); return res; }
 template <class T> inline T Min(const V<T>& v){ return *min_element(all(v)); }
-template <class T> inline T Min(const V<T>& v, const ll a, const ll b){ return *min_element(all(v,a,b+1)); }
+template <class T> inline T Min(const V<T>& v, const int a, const int b){ return *min_element(all(v,a,b+1)); }
 template <class T> inline T Max(const V<T>& v){ return *max_element(all(v)); }
-template <class T> inline T Max(const V<T>& v, const ll a, const ll b){ return *max_element(all(v,a,b+1)); }
+template <class T> inline T Max(const V<T>& v, const int a, const int b){ return *max_element(all(v,a,b+1)); }
 template <class T> inline int Min_i(const T& v){ return min_element(all(v))-v.begin(); }
 template <class T> inline int Max_i(const T& v){ return max_element(all(v))-v.begin(); }
 template <class T, class U> inline int LB(const T& v, const U x){ return lower_bound(all(v),x)-v.begin(); }
@@ -456,7 +456,7 @@ template <class T, class Boolean=bool> int ersif(T& v, const Boolean &fn){ v.era
 template <class T> inline int unq(T& v){ if(!is_sorted(all(v))) Sort(v); v.erase(unique(all(v)),v.end()); return v.size(); }
 template <class T> inline T cp(const T& v){ T res; copy(all(v),back_inserter(res)); return res; }
 template <class T> inline T cp(const T& v, const int a, const int b){ T res; copy(all(v,a,b),back_inserter(res)); return res; }
-template <class T> inline void rtt(T& s, const int idx){ ll id=zia_qu::Mod<ll>(idx,s.size()); rotate(all(s,id),s.end()); }
+template <class T> inline void rtt(T& s, const int idx){ const int id=zia_qu::Mod<int>(idx,s.size()); rotate(all(s,id),s.end()); }
 template <class T> inline void rtt(T& s, const int a, const int b, const int c){ rotate(all(s,a,b),s.end()-c); }
 template <class T> inline T setdif(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_difference(all(s),all(t),inserter(res,end(res))); return res; }
 template <class T> inline T setsum(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_union(all(s),all(t),inserter(res,end(res))); return res; }
