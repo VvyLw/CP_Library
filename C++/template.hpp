@@ -451,13 +451,13 @@ template <class T> inline T Count(V<T>& v, ll x){ if(!is_sorted(all(v))) Sort(v)
 template <class T> inline T IP(const V<T>& v, const V<T>& u, T init){ return inner_product(all(v),u.begin(),init); }
 template <class T> inline V<T> iot(const T n, const ll init=0){ V<T> a(n); iota(all(a),init); return a;}
 template <class T, class U, class F> inline V<T> trans(const V<U>& v, const F &fn){ V<T> res; transform(all(v),back_inserter(res),fn); return res; }
-template <class T, class U> inline int ers(T& v, U x){ v.erase(remove(all(v),x),v.end()); return v.size(); }
+template <class T, class U> inline int ers(T& v, const U x){ v.erase(remove(all(v),x),v.end()); return v.size(); }
 template <class T, class Boolean=bool> int ersif(T& v, const Boolean &fn){ v.erase(remove_if(all(v),fn),v.end()); return v.size(); }
 template <class T> inline int unq(T& v){ if(!is_sorted(all(v))) Sort(v); v.erase(unique(all(v)),v.end()); return v.size(); }
 template <class T> inline T cp(const T& v){ T res; copy(all(v),back_inserter(res)); return res; }
-template <class T> inline T cp(const T& v, ll a, ll b){ T res; copy(all(v,a,b),back_inserter(res)); return res; }
-template <class T> inline void rtt(T& s, ll idx){ ll id=zia_qu::Mod<ll>(idx,s.size()); rotate(all(s,id),s.end()); }
-template <class T> inline void rtt(T& s, ll a, ll b, ll c){ rotate(all(s,a,b),s.end()-c); }
+template <class T> inline T cp(const T& v, const int a, const int b){ T res; copy(all(v,a,b),back_inserter(res)); return res; }
+template <class T> inline void rtt(T& s, const int idx){ ll id=zia_qu::Mod<ll>(idx,s.size()); rotate(all(s,id),s.end()); }
+template <class T> inline void rtt(T& s, const int a, const int b, const int c){ rotate(all(s,a,b),s.end()-c); }
 template <class T> inline T setdif(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_difference(all(s),all(t),inserter(res,end(res))); return res; }
 template <class T> inline T setsum(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_union(all(s),all(t),inserter(res,end(res))); return res; }
 template <class T> inline T setmul(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_intersection(all(s),all(t),inserter(res,end(res))); return res; }
