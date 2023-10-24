@@ -411,8 +411,6 @@ template <class K, class V> inline K vlmax_k(const map<K,V> &m){
   auto pr = *max_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second < y.second; });
   return pr.first;
 }
-template <class T> inline T stmin(const set<T> &s){ return *s.begin(); }
-template <class T> inline T stmax(const set<T> &s){ return *s.rbegin(); }
 } // zia qu
 
 namespace Lady_sANDy {
@@ -451,7 +449,7 @@ template <class T, class U, class Boolean=bool> inline void rplif(T& v, const Bo
 template <class T, class Boolean=bool> inline ul cntif(const T& v, const Boolean &fn){ return count_if(all(v),fn); }
 template <class T> inline T Count(V<T>& v, ll x){ if(!is_sorted(all(v))) Sort(v); return UB(v,x)-LB(v,x); }
 template <class T> inline T IP(const V<T>& v, const V<T>& u, T init){ return inner_product(all(v),u.begin(),init); }
-template <class T> inline V<T> iot(T n, ll init=0){ V<T> a(n); iota(all(a),init); return a;}
+template <class T> inline V<T> iot(const T n, const ll init=0){ V<T> a(n); iota(all(a),init); return a;}
 template <class T, class U, class F> inline V<T> trans(const V<U>& v, const F &fn){ V<T> res; transform(all(v),back_inserter(res),fn); return res; }
 template <class T, class U> inline int ers(T& v, U x){ v.erase(remove(all(v),x),v.end()); return v.size(); }
 template <class T, class Boolean=bool> int ersif(T& v, const Boolean &fn){ v.erase(remove_if(all(v),fn),v.end()); return v.size(); }
@@ -465,8 +463,8 @@ template <class T> inline T setsum(const T& s, const T& t){ assert(is_sorted(all
 template <class T> inline T setmul(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_intersection(all(s),all(t),inserter(res,end(res))); return res; }
 template <class T> inline V<T> adf(const V<T>& v){ V<T> a; adjacent_difference(all(v),back_inserter(a)); rtt(a,1); a.pop_back(); return a; }
 template <class T, class F> inline V<T> isum(const V<T> &v, const F &fn){ V<T> s{0}; inclusive_scan(all(v),back_inserter(s),fn); return s; }
-template <class T> inline V<T> rext(V<T>& v, ll size){ V<T> res; sample(all(v),back_inserter(res),size,Random()); return res; }
-template <class T> inline T rext(V<T>& v){ V<T> res; sample(all(v),back_inserter(res),1,Random()); return res.front(); }
+template <class T> inline V<T> rext(const V<T>& v, const int size){ V<T> res; sample(all(v),back_inserter(res),size,Random()); return res; }
+template <class T> inline T rext(const V<T>& v){ V<T> res; sample(all(v),back_inserter(res),1,Random()); return res.front(); }
 template <class T> inline ll vsum(const T &v){ return accumulate(all(v),0LL); }
 template <class T> inline ll vsum(const T &v, ll a, ll b){ return accumulate(all(v,a,b),0LL); }
 template <class T> inline ld vdsum(const T &v){ return accumulate(all(v),0.0L); }
