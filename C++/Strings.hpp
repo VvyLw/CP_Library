@@ -60,8 +60,8 @@ template <ul mod> struct RollingHash {
     }
     RollingHash(const string &s) {
         const ll n = s.size();
-        hashed.assign(n + 1, 0);
-        power.assign(n + 1, 0);
+        hashed.resize(n + 1);
+        power.resize(n + 1);
         power[0] = 1;
         for(ll i = 0; i < n; ++i) {
             power[i + 1] = mul(power[i], base);
