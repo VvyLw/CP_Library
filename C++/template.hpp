@@ -449,7 +449,7 @@ template <class T, class U, class Boolean=bool> inline void rplif(T& v, const Bo
 template <class T, class Boolean=bool> inline ul cntif(const T& v, const Boolean &fn){ return count_if(all(v),fn); }
 template <class T> inline T Count(V<T>& v, ll x){ if(!is_sorted(all(v))) Sort(v); return UB(v,x)-LB(v,x); }
 template <class T> inline T IP(const V<T>& v, const V<T>& u, T init){ return inner_product(all(v),u.begin(),init); }
-template <class T> inline V<T> iot(const T n, const ll init=0){ V<T> a(n); iota(all(a),init); return a;}
+inline vi iot(int n, ll init=0){ vi a(n); iota(all(a),init); return a; }
 template <class T, class U, class F> inline V<T> trans(const V<U>& v, const F &fn){ V<T> res; transform(all(v),back_inserter(res),fn); return res; }
 template <class T, class U> inline int ers(T& v, const U x){ v.erase(remove(all(v),x),v.end()); return v.size(); }
 template <class T, class Boolean=bool> int ersif(T& v, const Boolean &fn){ v.erase(remove_if(all(v),fn),v.end()); return v.size(); }
