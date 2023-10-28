@@ -50,7 +50,7 @@ vector<ll> zalg(const string &s) {
 const ul mod = (1LL << 61) - 1, base = chrono::duration_cast<chrono::microseconds>(chrono::system_clock::now().time_since_epoch()).count() % mod;
 struct RollingHash {
     vector<ul> hashed, power;
-    static constexpr ull mask(const ll a){ return (1ULL << a) - 1; }
+    static constexpr ul mask(const ll a){ return (1ULL << a) - 1; }
     inline ul mul(const ul a, const ul b) const {
         u128 ans = u128(a) * b;
         ans = (ans >> 61) + (ans & mod);
