@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <algorithm>
+#include <chrono>
 using namespace std;
 typedef long long ll;
 typedef unsigned long long ul;
@@ -91,7 +92,7 @@ struct RollingHash {
     ll LCP(const RollingHash &b, ll l1, ll r1, ll l2, ll r2) {
         ll low = -1, high = min(r1 - l1, r2 - l2) + 1;
         while(high - low > 1) {
-            ll mid = (low + high) / 2;
+            const ll mid = (low + high) / 2;
             if(get(l1, l1 + mid) == b.get(l2, l2 + mid)) low = mid;
             else high = mid;
         }
