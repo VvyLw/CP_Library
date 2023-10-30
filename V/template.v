@@ -40,11 +40,11 @@ fn aro[T](a []T) string { return a.map(it.str()).join(' ') }
 fn flush[T](arg T) { println(arg) os.flush() }
 fn fin[T](arg T) { println(arg) exit(0) }
 fn dbg[T](arg T) { eprintln('-----------${arg}-----------') }
-fn yn(ok bool, yes string, no string) { println(if ok{yes} else{no}) }
-fn yes(ok bool) { yn(ok, "Yes", "No") }
-fn no(ok bool) { yes(!ok) }
+fn yn(ok bool, yes string, no string) string { return if ok{yes} else{no} }
+fn yes(ok bool) string { return yn(ok, "Yes", "No") }
+fn no(ok bool) string { return yes(!ok) }
 fn toc(n i64) string { return u8(n).ascii_str() }
-fn cas(s string) int { return s[0] }
+fn ord(s string) int { return s[0] }
 fn chmin[T, U](mut a T, b U) bool { jdg:=a>b a=ma.min(a,b) return jdg }
 fn chmax[T, U](mut a T, b U) bool { jdg:=a<b a=ma.max(a,b) return jdg }
 fn symin(a ...i64) i64 { mut res:=ma.maxof[i64]() for el in a { res=ma.min(res,el) } return res }
@@ -102,15 +102,15 @@ fn is_prime(n i64) bool {
 }
 fn prmfct(n i64) map[i64]int {
 	mut res:=map[i64]int{}
-	for i:=2; i*i<=n; i++ {
-		if n%i!=0 { continue }
-		mut x:=n
+	mut x:=n
+	for i:=2; i*i<=x; i++ {
+		if x%i!=0 { continue }
 		for x%i==0 {
 			res[i]++
 			x/=i
 		}
 	}
-	if n!=1 { res[n]++ }
+	if x!=1 { res[x]++ }
 	return res
 }
 struct SoE {
