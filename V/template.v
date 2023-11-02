@@ -77,7 +77,6 @@ fn a_filter[T](a []T, filt F2[T]) []T { return ar.filter_indexed(a,filt) }
 fn len(s string) int { return s.split('').len }
 fn scope(a i64, x i64, b i64) bool { return a<=x && x<=b }
 fn to_ten(s string, base int) !i64 { return s.parse_int(base,64)! }
-fn repstr(s string, n int) string { return str.repeat_string(s,n) }
 fn rgxmt(s string, pat string) !bool { r:=re.regex_opt(pat)! return r.matches_string(s) }
 fn rext(inf i64, sup i64) !i64 { return rand.i64_in_range(inf,sup)! }
 fn div(n i64) []i64 {
