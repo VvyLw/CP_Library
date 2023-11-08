@@ -1,27 +1,21 @@
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wsign-compare"
+#pragma GCC diagnostic ignored "-Wdeprecated-copy"
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace std;
 using namespace __gnu_pbds;
-
-// --------------------------------------------------------------------------------------------------------------
-
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-#pragma GCC diagnostic ignored "-Wsign-compare"
-#pragma GCC diagnostic ignored "-Wdeprecated-copy"
-
 namespace VvyLw {
 inline void wa_haya_exe() noexcept { cin.tie(nullptr) -> sync_with_stdio(false); }
 void solve();
 } // VvyLw
-
 mt19937 EhaL(hash<string>()("Huitloxopetl"));
 mt19937 Random() {
   random_device seed_gen;
   mt19937 engine {seed_gen()};
   return engine;
 }
-
 using Timer = chrono::system_clock::time_point;
 [[maybe_unused]] Timer start, stop;
 #if local
