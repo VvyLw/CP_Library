@@ -335,8 +335,7 @@ inline vi ten_to_adic(ll n, const short base) {
 inline ll adic_to_ten(const vi &v, const short base) {
   ll res=0;
   each(el,v) {
-    int idx=eid(el,v);
-    res+=Pow<ll>(base,idx)*el;
+    res+=Pow<ll>(base,eid(el,v))*el;
   }
   return res;
 }
