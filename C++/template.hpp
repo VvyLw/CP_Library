@@ -199,8 +199,8 @@ template <class T> using Tree = tree<T,null_type,less<T>,rb_tree_tag,tree_order_
 template <class T> using TREE = tree<T,null_type,greater<T>,rb_tree_tag,tree_order_statistics_node_update>;
 template <class T, class U> inline bool chmax(T& a, const U& b){ if(a<b){ a=b; return 1; } return 0; }
 template <class T, class U> inline bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
-template <class T, class U> inline bool overflow_if_add(const T a, const U b){ return (numeric_limits<T>::max()-a)<b; }
-template <class T, class U> inline bool overflow_if_mul(const T a, const U b){ return (numeric_limits<T>::max()/a)<b; }
+template <class T, class U> inline bool overflow_if_add(const T a, const U b){ return (LIM<T>-a)<b; }
+template <class T, class U> inline bool overflow_if_mul(const T a, const U b){ return (LIM<T>/a)<b; }
 
 namespace IO {
 ostream &operator<<(ostream &dest, i128 value) {
@@ -244,7 +244,7 @@ template <bool flush=false, class Head, class... Tail> inline void out(const Hea
 template <bool flush=false, class T> inline void vout(const T& v){ cout << v << '\n'; if(flush) cout.flush(); }
 template <bool flush=false, class T> inline void vout(const V<T>& v){ rep(v.size()) cout << v[i] << '\n'; if(flush) cout.flush(); }
 template <bool flush=false, class Head, class... Tail> inline void vout(const Head& head, const Tail&... tail){ cout << head << '\n'; vout<flush>(tail...); }
-inline void fix(short x){ cout << fixed << setprecision(x); }
+inline void fix(const short x){ cout << fixed << setprecision(x); }
 inline void alpha(){ cout << boolalpha; }
 #define INT(...) int __VA_ARGS__; in(__VA_ARGS__)
 #define LL(...) ll __VA_ARGS__; in(__VA_ARGS__)
