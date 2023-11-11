@@ -2,15 +2,14 @@
 #pragma once
 
 #include <iostream>
-using namespace std;
 typedef __int128_t i128;
 typedef __uint128_t u128;
-ostream &operator<<(ostream &dest, i128 value) {
-    ostream::sentry s(dest);
+std::ostream &operator<<(std::ostream &dest, i128 value) {
+    std::ostream::sentry s(dest);
     if(s) {
         u128 tmp = value < 0 ? -value : value;
         char buffer[128];
-        char *d = end(buffer);
+        char *d = std::end(buffer);
         do {
             --d;
             *d = "0123456789"[tmp % 10];
@@ -20,16 +19,16 @@ ostream &operator<<(ostream &dest, i128 value) {
             --d;
             *d = '-';
         }
-        int len = end(buffer) - d;
+        const int len = std::end(buffer) - d;
         if(dest.rdbuf()->sputn(d, len) != len) {
-            dest.setstate(ios_base::badbit);
+            dest.setstate(std::ios_base::badbit);
         }
     }
     return dest;
 }
-inline i128 stoL(string &s) {
+inline i128 stoL(const std::string &s) {
     i128 ret = 0;
-    for(auto el: s) {
+    for(const auto &el: s) {
         if(isdigit(el)) ret = 10 * ret + el - '0';
     }
     if(s.front() == '-') ret = -ret;

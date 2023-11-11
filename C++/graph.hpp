@@ -73,6 +73,18 @@ template <bool undirected=1> struct w_graph {
         }
         return cst;
     }
+    vector<vector<long long>> warshall_floyd() {
+		const int n = g.size();
+		vector cst(n, vector(n, (1LL << 61) - 1));
+		for(int i = 0; i < n; ++i) cst[i][i]=0;
+		for(int i = 0; i < n; ++i) for(const auto &j: g[i]) cst[i][j]=j.cost;
+		for(int k = 0 ; k < n; ++k) {
+            for(int i = 0; i < n; ++i) {
+                for(int j = 0; j < n; ++j) chmin(cst[i][j],cst[i][k]+cst[k][j]);
+            }
+        }
+		return cst;
+	}
 };
 template <bool undirected=1> struct graph {
     vector<vector<int>> g;
