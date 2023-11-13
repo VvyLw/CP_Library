@@ -5,7 +5,7 @@ import arrays as ar
 import regex as re
 import rand
 import time
-import datatypes as dt { Set, Queue, Stack, DoublyLinkedList, MinHeap }
+//import datatypes {  }
 
 pub fn solve()! {
 	
