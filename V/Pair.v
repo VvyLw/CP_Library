@@ -28,18 +28,3 @@ fn (p Pair[T,U]) abs() f64 { return ma.hypot(p.first,p.second) }
 fn (p Pair[T,U]) lcm() i64 { return ma.lcm(p.first,p.second) }
 fn (p Pair[T,U]) gcd() i64 { return ma.gcd(p.first,p.second) }
 fn (p Pair[T,U]) swap() Pair[U,T] { return Pair[U,T]{p.second,p.first} }
-fn swap[T,U](p []Pair[T,U]) []Pair[U,T] {
-	mut ret:=[]Pair[U,T]{}
-	for el in p { ret<<mp(el.first,el.second) }
-	return ret
-}
-fn first[T,U](p []Pair[T,U]) []T {
-	mut ret:=[]T{}
-	for el in p { ret<<el.first }
-	return ret
-}
-fn second[T,U](p []Pair[T,U]) []U {
-	mut ret:=[]U{}
-	for el in p { ret<<el.second }
-	return ret
-}
