@@ -144,7 +144,7 @@ struct a_mint {
         ll t;
         is >> t;
         a=a_mint(t);
-        return (is);
+        return is;
     }
 };
 //#include "template.hpp"
