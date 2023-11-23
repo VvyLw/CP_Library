@@ -64,7 +64,7 @@ data:
   isVerificationFile: false
   path: atcoder/dsu.hpp
   requiredBy: []
-  timestamp: '2023-11-23 12:08:21+09:00'
+  timestamp: '2023-08-28 16:35:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/dsu.hpp

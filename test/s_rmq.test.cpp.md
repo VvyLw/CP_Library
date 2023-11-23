@@ -43,7 +43,7 @@ data:
   isVerificationFile: true
   path: test/s_rmq.test.cpp
   requiredBy: []
-  timestamp: '2023-11-23 12:08:21+09:00'
+  timestamp: '2023-11-09 16:48:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/s_rmq.test.cpp

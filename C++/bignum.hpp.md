@@ -34,7 +34,7 @@ data:
   isVerificationFile: false
   path: C++/bignum.hpp
   requiredBy: []
-  timestamp: '2023-11-23 12:08:21+09:00'
+  timestamp: '2023-11-11 23:39:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/bignum.hpp

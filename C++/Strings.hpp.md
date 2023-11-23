@@ -94,7 +94,7 @@ data:
   isVerificationFile: false
   path: C++/Strings.hpp
   requiredBy: []
-  timestamp: '2023-11-23 12:08:21+09:00'
+  timestamp: '2023-10-28 18:32:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/Strings.hpp

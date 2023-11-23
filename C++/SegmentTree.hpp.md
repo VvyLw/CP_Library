@@ -55,7 +55,7 @@ data:
   isVerificationFile: false
   path: C++/SegmentTree.hpp
   requiredBy: []
-  timestamp: '2023-11-23 12:08:21+09:00'
+  timestamp: '2023-08-31 19:00:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/segtree.test.cpp
