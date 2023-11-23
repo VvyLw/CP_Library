@@ -20,9 +20,9 @@ int main() {
 void VvyLw::solve() {
     INT(n,q);
     VEC(ll,a,n);
-    auto s=psum(a);
+    asum s(a);
     while(q--) {
         INT(l,r);
-        out(s[r]-s[l]);
+        out(s.query(l,r));
     }
 }
