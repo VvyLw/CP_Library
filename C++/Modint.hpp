@@ -51,7 +51,7 @@ template <uint mod> struct Modint{
 };
 using mint = Modint<998244353>;
 //using mint = Modint<1000000007>;
-//#include "template.hpp"
+#include <C++/template.hpp>
 #define MINT(...) mint __VA_ARGS__; in(__VA_ARGS__)
 using vm = V<mint>;
 using wm = V<vm>;

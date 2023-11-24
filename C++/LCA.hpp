@@ -1,39 +1,36 @@
 // inspired by Luzhiled(https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html)
-#pragma once
-
 #include <vector>
-using namespace std;
 template <class G> struct LowestCommonAncestor {
     const int LOG;
-    vi dep;
+    std::vector<int> dep;
     const G &g;
-    wi table;
-    LowestCommonAncestor(const G &g_) : g(g_), dep(g_.size()), LOG(zia_qu::bitdigit(g_.size())) {
-        table.assign(LOG, vi(g_.size(), -1));
+    std::vector<std::vector<int>> table;
+    LowestCommonAncestor(const G &g_) : g(g_), dep(g_.size()), LOG(std::__lg(g_.size()) + 1) {
+        table.assign(LOG, std::vector<int>(g_.size(), -1));
     }
-    void dfs(ll idx, ll par, ll d) {
+    void dfs(int idx, int par, int d) {
         table[0][idx] = par;
         dep[idx] = d;
-        each(to,g[idx]) {
+        for(const auto &to: g[idx]) {
             if(to != par) dfs(to, idx, d + 1);
         }
     }
     void build() {
         dfs(0, -1, 0);
-        rep(k,LOG-1) {
-            rep(table[k].size()) {
+        for(int k = 0; k < LOG-1; ++k) {
+            for(size_t i = 0; i < table[k].size(); ++i) {
                 if(table[k][i] == -1) table[k + 1][i] = -1;
                 else table[k + 1][i] = table[k][table[k][i]];
             }
         }
     }
-    ll query(ll u, ll v) {
-        if(dep[u] > dep[v]) swap(u, v);
-        rvp(LOG) {
+    int query(int u, int v) {
+        if(dep[u] > dep[v]) std::swap(u, v);
+        for(int i = LOG - 1; i >= 0; i--) {
             if(((dep[v] - dep[u]) >> i) & 1) v = table[i][v];
         }
         if(u == v) return u;
-            rvp(LOG) {
+            for(int i = LOG - 1; i >= 0; i--) {
             if(table[i][u] != table[i][v]) {
                 u = table[i][u];
                 v = table[i][v];
@@ -41,5 +38,5 @@ template <class G> struct LowestCommonAncestor {
         }
         return table[0][u];
     }
-    ll dist(ll u, ll v){ return dep[u] + dep[v] - 2 * query(u, v); }
+    int dist(int u, int v){ return dep[u] + dep[v] - 2 * query(u, v); }
 };

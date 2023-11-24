@@ -5,7 +5,7 @@
 #include <queue>
 using namespace std;
 //#include "template.hpp"
-//template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
+template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
 struct edge {
 private:
     int to;
@@ -48,7 +48,7 @@ template <bool undirected=1> struct w_graph {
         while(q.size()) {
             int tmp=q.front();
             q.pop();
-            for(auto el: g[tmp]) {
+            for(const auto &el: g[tmp]) {
                 if(d[el]!=-1) continue;
                 d[el]=d[tmp]+1;
                 q.emplace(el);
@@ -57,7 +57,7 @@ template <bool undirected=1> struct w_graph {
         return d;
     }
     int dist(int u, int v) {
-        auto d=all_dist(u);
+        const auto d=all_dist(u);
         return d[v];
     }
     vector<long long> dijkstra(int v) {
@@ -66,7 +66,7 @@ template <bool undirected=1> struct w_graph {
         cst[v]=0;
         dj.emplace(cst[v],v);
         while(dj.size()) {
-            auto tmp=dj.top();
+            const auto tmp=dj.top();
             dj.pop();
             if(cst[tmp.second]<tmp.first) continue;
             for(auto el: g[tmp.second]) if(chmin(cst[el],tmp.first+el.cost)) dj.emplace(cst[el],el);
@@ -128,34 +128,34 @@ template <bool undirected=1> struct graph {
         return d;
     }
     int dist(int u, int v) {
-        auto d=all_dist(u);
+        const auto d=all_dist(u);
         return d[v];
     }
 };
-// #include <UnionFind.hpp>
+#include <C++/UnionFind.hpp>
 struct Edge {
-	ll a, b, cost;
+	long long a, b, cost;
 	bool operator<(const Edge& e) const {
 		return cost < e.cost;
 	}
 };
 struct Graph {
 	int n;
-	V<Edge> edges;
+	vector<Edge> edges;
 	Graph(const int n_): n(n_){}
-	void input(ll m, uint indexed=1) {
-		rep(m) {
+	void input(ll m, const uint indexed=1) {
+		while(m--) {
 			Edge e;
-			in(e.a,e.b,e.cost);
+            cin >> e.a >> e.b >> e.cost;
 			e.a-=indexed, e.b-=indexed;
 			edges.emplace_back(e);
 		}
 	}
 	ll kruskal() {
-		Lady_sANDy::Sort(edges);
+		sort(edges.begin(), edges.end());
 		UnionFind uf(n);
-		ll res=0;
-		each(ed,edges) {
+		long long res=0;
+		for(const auto &ed: edges) {
 			if(uf.unite(ed.a,ed.b)) res+=ed.cost;
 		}
 		return res;
