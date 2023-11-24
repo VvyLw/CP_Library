@@ -1,8 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: C++/graph.hpp
+    title: C++/graph.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/lca.test.cpp
+    title: test/lca.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
@@ -37,11 +43,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: C++/UnionFind.hpp
-  requiredBy: []
+  requiredBy:
+  - C++/graph.hpp
   timestamp: '2023-09-10 15:30:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/uf.test.cpp
+  - test/lca.test.cpp
 documentation_of: C++/UnionFind.hpp
 layout: document
 redirect_from:

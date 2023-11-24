@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: C++/Modint.hpp
+    title: C++/Modint.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aarray.test.cpp
@@ -841,7 +844,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: C++/template.hpp
-  requiredBy: []
+  requiredBy:
+  - C++/Modint.hpp
   timestamp: '2023-11-09 16:48:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

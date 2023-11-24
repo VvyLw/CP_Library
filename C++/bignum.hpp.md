@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/add128_2.test.cpp
+    title: test/add128_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://kenkoooo.hatenablog.com/entry/2016/11/30/163533)
@@ -35,8 +38,9 @@ data:
   path: C++/bignum.hpp
   requiredBy: []
   timestamp: '2023-11-11 23:39:07+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/add128_2.test.cpp
 documentation_of: C++/bignum.hpp
 layout: document
 redirect_from:

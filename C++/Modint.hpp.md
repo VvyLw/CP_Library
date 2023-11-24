@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: C++/template.hpp
+    title: C++/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -56,8 +59,8 @@ data:
     \    friend ostream& operator<<(ostream& os, const Modint& m){ os << m.num; return\
     \ os; }\n    friend istream &operator>>(istream &is, Modint &a) {\n        ll\
     \ t;\n        is >> t;\n        a=Modint(t);\n        return (is);\n    }\n};\n\
-    using mint = Modint<998244353>;\n//using mint = Modint<1000000007>;\n//#include\
-    \ \"template.hpp\"\n#define MINT(...) mint __VA_ARGS__; in(__VA_ARGS__)\nusing\
+    using mint = Modint<998244353>;\n//using mint = Modint<1000000007>;\n#include\
+    \ <C++/template.hpp>\n#define MINT(...) mint __VA_ARGS__; in(__VA_ARGS__)\nusing\
     \ vm = V<mint>;\nusing wm = V<vm>;\nusing pm = PP<mint>;\ntemplate <class T> inline\
     \ T msum(const V<T> &v){ return accumulate(all(v), mint(0)); }\ntemplate <class\
     \ T> inline T msum(const V<T> &v, ll a, ll b){ return accumulate(all(v,a,b), mint(0));\
@@ -110,11 +113,12 @@ data:
     \        is >> t;\n        a=a_mint(t);\n        return is;\n    }\n};\n//#include\
     \ \"template.hpp\"\n#define AINT(...) a_mint __VA_ARGS__; in(__VA_ARGS__)\nusing\
     \ va = V<a_mint>;\nusing wa = V<va>;\nusing pa = PP<a_mint>;\n"
-  dependsOn: []
+  dependsOn:
+  - C++/template.hpp
   isVerificationFile: false
   path: C++/Modint.hpp
   requiredBy: []
-  timestamp: '2023-11-16 15:39:45+09:00'
+  timestamp: '2023-11-25 04:23:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/Modint.hpp
