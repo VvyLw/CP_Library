@@ -1,3 +1,4 @@
+import math as ma
 struct Pair[T,U] {
 	first T
 	second U
