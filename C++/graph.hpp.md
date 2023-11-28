@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/UnionFind.hpp
     title: C++/UnionFind.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lca.test.cpp
     title: test/lca.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"C++/graph.hpp\"\n\r\n#include <iostream>\r\n#include <vector>\r\
@@ -151,8 +151,8 @@ data:
   isVerificationFile: false
   path: C++/graph.hpp
   requiredBy: []
-  timestamp: '2023-11-25 04:23:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-28 10:57:12+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/lca.test.cpp
 documentation_of: C++/graph.hpp

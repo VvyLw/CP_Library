@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/FenwickTree.hpp
     title: C++/FenwickTree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/template.hpp
     title: C++/template.hpp
   _extendedRequiredBy: []

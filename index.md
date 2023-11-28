@@ -6,7 +6,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/FenwickTree.hpp
       title: C++/FenwickTree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/LCA.hpp
       title: C++/LCA.hpp
     - icon: ':warning:'
@@ -24,19 +24,19 @@ data:
     - icon: ':warning:'
       path: C++/Strings.hpp
       title: C++/Strings.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/UnionFind.hpp
       title: C++/UnionFind.hpp
     - icon: ':heavy_check_mark:'
       path: C++/bignum.hpp
       title: C++/bignum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/graph.hpp
       title: C++/graph.hpp
     - icon: ':warning:'
       path: C++/math.hpp
       title: C++/math.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/template.hpp
       title: C++/template.hpp
   - name: atcoder
@@ -110,7 +110,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/ftree.test.cpp
       title: test/ftree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/lca.test.cpp
       title: test/lca.test.cpp
     - icon: ':heavy_check_mark:'
@@ -131,7 +131,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/stable.test.cpp
       title: test/stable.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/uf.test.cpp
       title: test/uf.test.cpp
 layout: toppage

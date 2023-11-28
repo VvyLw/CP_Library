@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lca.test.cpp
     title: test/lca.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html)
@@ -57,7 +57,7 @@ data:
   path: C++/LCA.hpp
   requiredBy: []
   timestamp: '2023-11-25 04:23:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/lca.test.cpp
 documentation_of: C++/LCA.hpp

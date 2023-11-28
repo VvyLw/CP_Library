@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/graph.hpp
     title: C++/graph.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lca.test.cpp
     title: test/lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)
@@ -26,27 +26,33 @@ data:
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ C++/UnionFind.hpp: line 2: #pragma once found in a non-first line\n"
   code: "// inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)\r\
-    \n#pragma once\r\n\r\n#include <vector>\n#include <algorithm>\r\nusing namespace\
-    \ std;\r\ntypedef long long ll;\r\nstruct UnionFind {\r\nprivate:\r\n    vector<ll>\
-    \ par;\r\npublic:\r\n    UnionFind(ll n): par(n, -1){}\r\n    ll operator[](ll\
-    \ a) {\r\n        while(par[a] >= 0) {\r\n            ll p = par[par[a]];\r\n\
-    \            if(p < 0) return par[a];\r\n            a = par[a] = p;\r\n     \
-    \   }\r\n        return a;\r\n    }\r\n    bool unite(ll x, ll y) {\r\n      \
-    \  x = (*this)[x], y = (*this)[y];\r\n        if(x == y) return 0;\r\n       \
-    \ if(-par[x] < -par[y]) swap(x, y);\r\n        par[x] += par[y], par[y] = x;\r\
-    \n        return 1;\r\n    }\r\n    ll size(ll x) {\r\n        x = (*this)[x];\r\
-    \n        return -par[x];\r\n    }\r\n    vector<vector<ll>> groups() {\r\n  \
-    \      const int n = par.size();\r\n        vector<vector<ll>> res(n);\r\n   \
-    \     for(int i = 0; i < n; ++i) res[(*this)[i]].emplace_back(i);\r\n        res.erase(remove_if(res.begin(),\
-    \ res.end(), [&](const vector<ll> &v){ return v.empty(); }), res.end());\r\n \
-    \       return res;\r\n    }\r\n};\r\n"
+    \n#pragma once\r\n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\
+    \nstruct UnionFind {\r\nprivate:\r\n    std::vector<int> par;\r\npublic:\r\n \
+    \   UnionFind(const int n): par(n, -1){}\r\n    int operator[](int i) {\r\n  \
+    \      while(par[i] >= 0) {\r\n            const int p = par[par[i]];\r\n    \
+    \        if(p < 0) return par[];\r\n            i = par[a] = p;\r\n        }\r\
+    \n        return i;\r\n    }\r\n    bool unite(int x, int y) {\r\n        x =\
+    \ (*this)[x], y = (*this)[y];\r\n        if(x == y) return false;\r\n        if(-par[x]\
+    \ < -par[y]) std::swap(x, y);\r\n        par[x] += par[y], par[y] = x;\r\n   \
+    \     return true;\r\n    }\r\n    int size(const int x){ return -par[(*this)[x]];\
+    \ }\r\n#if __cplusplus >= 202101L\r\n    std::vector<std::vector<int>> groups()\
+    \ {\r\n        const int n = std::ssize(par);\r\n        std::vector<std::vector<int>>\
+    \ res(n);\r\n        for(int i = 0; i < n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\
+    \n        }\r\n        const auto it = std::ranges::remove_if(res, [&](const std::vector<int>\
+    \ &v){ return v.empty(); });\r\n        res.erase(it.begin(), it.end());\r\n \
+    \       return res;\r\n    }\r\n#else\r\n    std::vector<std::vector<int>> groups()\
+    \ {\r\n        const int n = par.size();\r\n        std::vector<std::vector<int>>\
+    \ res(n);\r\n        for(int i = 0; i < n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\
+    \n        }\r\n        res.erase(std::remove_if(res.begin(), res.end(), [&](const\
+    \ std::vector<int> &v){ return v.empty(); }), res.end());\r\n        return res;\r\
+    \n    }\r\n#endif\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: C++/UnionFind.hpp
   requiredBy:
   - C++/graph.hpp
-  timestamp: '2023-09-10 15:30:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-28 10:57:12+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/uf.test.cpp
   - test/lca.test.cpp

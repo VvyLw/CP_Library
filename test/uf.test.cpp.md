@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/UnionFind.hpp
     title: C++/UnionFind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/template.hpp
     title: C++/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind
@@ -43,8 +43,8 @@ data:
   isVerificationFile: true
   path: test/uf.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 16:48:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-28 10:57:12+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/uf.test.cpp
 layout: document
