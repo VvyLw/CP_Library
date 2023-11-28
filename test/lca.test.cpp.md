@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: C++/LCA.hpp
     title: C++/LCA.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/UnionFind.hpp
     title: C++/UnionFind.hpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
   isVerificationFile: true
   path: test/lca.test.cpp
   requiredBy: []
-  timestamp: '2023-11-28 10:58:08+09:00'
+  timestamp: '2023-11-28 11:03:21+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/lca.test.cpp

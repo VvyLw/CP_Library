@@ -24,7 +24,7 @@ data:
     - icon: ':warning:'
       path: C++/Strings.hpp
       title: C++/Strings.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: C++/UnionFind.hpp
       title: C++/UnionFind.hpp
     - icon: ':heavy_check_mark:'
@@ -36,7 +36,7 @@ data:
     - icon: ':warning:'
       path: C++/math.hpp
       title: C++/math.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/template.hpp
       title: C++/template.hpp
   - name: atcoder
@@ -131,7 +131,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/stable.test.cpp
       title: test/stable.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/uf.test.cpp
       title: test/uf.test.cpp
 layout: toppage
