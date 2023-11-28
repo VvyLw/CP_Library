@@ -132,32 +132,3 @@ template <bool undirected=1> struct graph {
         return d[v];
     }
 };
-#include <C++/UnionFind.hpp>
-struct Edge {
-	long long a, b, cost;
-	bool operator<(const Edge& e) const {
-		return cost < e.cost;
-	}
-};
-struct Graph {
-	int n;
-	vector<Edge> edges;
-	Graph(const int n_): n(n_){}
-	void input(ll m, const uint indexed=1) {
-		while(m--) {
-			Edge e;
-            cin >> e.a >> e.b >> e.cost;
-			e.a-=indexed, e.b-=indexed;
-			edges.emplace_back(e);
-		}
-	}
-	ll kruskal() {
-		sort(edges.begin(), edges.end());
-		UnionFind uf(n);
-		long long res=0;
-		for(const auto &ed: edges) {
-			if(uf.unite(ed.a,ed.b)) res+=ed.cost;
-		}
-		return res;
-	}
-};
