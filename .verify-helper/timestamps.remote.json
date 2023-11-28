@@ -9,5 +9,6 @@
 "test/s_rmq.test.cpp": "2023-11-09 16:48:01 +0900",
 "test/segtree.test.cpp": "2023-11-09 16:48:01 +0900",
 "test/sr_sum.test.cpp": "2023-11-23 10:37:43 +0900",
-"test/stable.test.cpp": "2023-11-09 16:48:01 +0900"
+"test/stable.test.cpp": "2023-11-09 16:48:01 +0900",
+"test/uf.test.cpp": "2023-11-28 11:03:21 +0900"
 }
