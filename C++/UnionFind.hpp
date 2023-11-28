@@ -46,4 +46,12 @@ public:
         return res;
     }
 #endif
+    bool is_bipartite(const unsigned n) {
+        assert(par.size() == 2 * n);
+        bool ok = true;
+        for(unsigned i = 0; i < n; ++i) {
+            ok &= (*this)[i] != (*this)[i + n];
+        }
+        return ok;
+    }
 };
