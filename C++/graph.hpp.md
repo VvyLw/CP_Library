@@ -151,7 +151,7 @@ data:
   isVerificationFile: false
   path: C++/graph.hpp
   requiredBy: []
-  timestamp: '2023-11-28 10:57:12+09:00'
+  timestamp: '2023-11-28 10:58:08+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/lca.test.cpp

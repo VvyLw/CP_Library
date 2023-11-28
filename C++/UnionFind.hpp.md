@@ -45,13 +45,16 @@ data:
     \ res(n);\r\n        for(int i = 0; i < n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\
     \n        }\r\n        res.erase(std::remove_if(res.begin(), res.end(), [&](const\
     \ std::vector<int> &v){ return v.empty(); }), res.end());\r\n        return res;\r\
-    \n    }\r\n#endif\r\n};\r\n"
+    \n    }\r\n#endif\r\n    bool is_bipartite(const unsigned n) {\r\n        assert(par.size()\
+    \ == 2 * n);\r\n        bool ok = true;\r\n        for(unsigned i = 0; i < n;\
+    \ ++i) {\r\n            ok &= (*this)[i] != (*this)[i + n];\r\n        }\r\n \
+    \       return ok;\r\n    }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: C++/UnionFind.hpp
   requiredBy:
   - C++/graph.hpp
-  timestamp: '2023-11-28 10:57:12+09:00'
+  timestamp: '2023-11-28 10:58:08+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/uf.test.cpp

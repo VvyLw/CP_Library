@@ -43,7 +43,7 @@ data:
   isVerificationFile: true
   path: test/uf.test.cpp
   requiredBy: []
-  timestamp: '2023-11-28 10:57:12+09:00'
+  timestamp: '2023-11-28 10:58:08+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/uf.test.cpp
