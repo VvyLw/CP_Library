@@ -42,6 +42,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/template.hpp
       title: C++/template.hpp
+  - name: Java
+    pages:
+    - icon: ':warning:'
+      path: Java/template.java
+      title: Java/template.java
   - name: atcoder
     pages:
     - icon: ':warning:'
