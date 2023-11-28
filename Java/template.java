@@ -1,5 +1,6 @@
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -52,7 +53,7 @@ class MyFunction {
 		}
 		return res;
 	}
-	protected static long modPow(long a, long b, final int m) {
+	protected static long intPow(long a, long b, final int m) {
 		long res = 1;
 		while(b > 0) {
 			if(b % 2 == 1) {
@@ -229,14 +230,17 @@ class MyPrinter {
 	<T> void outl(final List<T> args){ IntStream.range(0, args.size()).forEach(i -> out(args.get(i))); }
 	<T> void fin(final T arg) {
 		out(arg);
+		flush();
 		System.exit(0);
 	}
 	<T> void fin(final List<T> args) {
 		out(args);
+		flush();
 		System.exit(0);
 	}
 	<T> void fine(final List<T> args) {
 		outl(args);
+		flush();
 		System.exit(0);
 	}
 	void flush(){ pw.flush(); }
