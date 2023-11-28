@@ -1,3 +1,4 @@
+#include <iostream>
 #include <C++/UnionFind.hpp>
 struct Edge {
 	long long a, b, cost;
@@ -12,7 +13,7 @@ struct Graph {
 	void input(int m, const uint indexed=1) {
 		while(m--) {
 			Edge e;
-            cin >> e.a >> e.b >> e.cost;
+            std::cin >> e.a >> e.b >> e.cost;
 			e.a-=indexed, e.b-=indexed;
 			edges.emplace_back(e);
 		}
