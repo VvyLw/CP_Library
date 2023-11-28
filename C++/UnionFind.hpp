@@ -1,5 +1,4 @@
 // inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)
-#pragma once
 #include <cassert>
 #include <vector>
 #include <algorithm>
@@ -11,8 +10,8 @@ public:
     int operator[](int i) {
         while(par[i] >= 0) {
             const int p = par[par[i]];
-            if(p < 0) return par[];
-            i = par[a] = p;
+            if(p < 0) return par[i];
+            i = par[i] = p;
         }
         return i;
     }
@@ -23,7 +22,9 @@ public:
         par[x] += par[y], par[y] = x;
         return true;
     }
-    int size(const int x){ return -par[(*this)[x]]; }
+    int size(const int x) {
+        return -par[(*this)[x]];
+    }
 #if __cplusplus >= 202101L
     std::vector<std::vector<int>> groups() {
         const int n = std::ssize(par);
