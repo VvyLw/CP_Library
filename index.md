@@ -6,9 +6,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/FenwickTree.hpp
       title: C++/FenwickTree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/LCA.hpp
       title: C++/LCA.hpp
+    - icon: ':warning:'
+      path: C++/MST.hpp
+      title: C++/MST.hpp
     - icon: ':warning:'
       path: C++/Modint.hpp
       title: C++/Modint.hpp
@@ -24,13 +27,13 @@ data:
     - icon: ':warning:'
       path: C++/Strings.hpp
       title: C++/Strings.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/UnionFind.hpp
       title: C++/UnionFind.hpp
     - icon: ':heavy_check_mark:'
       path: C++/bignum.hpp
       title: C++/bignum.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/graph.hpp
       title: C++/graph.hpp
     - icon: ':warning:'
@@ -110,7 +113,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/ftree.test.cpp
       title: test/ftree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/lca.test.cpp
       title: test/lca.test.cpp
     - icon: ':heavy_check_mark:'

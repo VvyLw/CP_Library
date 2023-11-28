@@ -1,17 +1,14 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: C++/UnionFind.hpp
-    title: C++/UnionFind.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/lca.test.cpp
     title: test/lca.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"C++/graph.hpp\"\n\r\n#include <iostream>\r\n#include <vector>\r\
@@ -71,15 +68,7 @@ data:
     \ g[tmp]) {\r\n                if(d[el]!=-1) continue;\r\n                d[el]=d[tmp]+1;\r\
     \n                q.emplace(el);\r\n            }\r\n        }\r\n        return\
     \ d;\r\n    }\r\n    int dist(int u, int v) {\r\n        const auto d=all_dist(u);\r\
-    \n        return d[v];\r\n    }\r\n};\r\n#include <C++/UnionFind.hpp>\r\nstruct\
-    \ Edge {\r\n\tlong long a, b, cost;\r\n\tbool operator<(const Edge& e) const {\r\
-    \n\t\treturn cost < e.cost;\r\n\t}\r\n};\r\nstruct Graph {\r\n\tint n;\r\n\tvector<Edge>\
-    \ edges;\r\n\tGraph(const int n_): n(n_){}\r\n\tvoid input(ll m, const uint indexed=1)\
-    \ {\r\n\t\twhile(m--) {\r\n\t\t\tEdge e;\r\n            cin >> e.a >> e.b >> e.cost;\r\
-    \n\t\t\te.a-=indexed, e.b-=indexed;\r\n\t\t\tedges.emplace_back(e);\r\n\t\t}\r\
-    \n\t}\r\n\tll kruskal() {\r\n\t\tsort(edges.begin(), edges.end());\r\n\t\tUnionFind\
-    \ uf(n);\r\n\t\tlong long res=0;\r\n\t\tfor(const auto &ed: edges) {\r\n\t\t\t\
-    if(uf.unite(ed.a,ed.b)) res+=ed.cost;\r\n\t\t}\r\n\t\treturn res;\r\n\t}\r\n};\n"
+    \n        return d[v];\r\n    }\r\n};\n"
   code: "#pragma once\r\n\r\n#include <iostream>\r\n#include <vector>\r\n#include\
     \ <queue>\r\nusing namespace std;\r\n//#include \"template.hpp\"\r\ntemplate <class\
     \ T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0;\
@@ -137,22 +126,13 @@ data:
     \ g[tmp]) {\r\n                if(d[el]!=-1) continue;\r\n                d[el]=d[tmp]+1;\r\
     \n                q.emplace(el);\r\n            }\r\n        }\r\n        return\
     \ d;\r\n    }\r\n    int dist(int u, int v) {\r\n        const auto d=all_dist(u);\r\
-    \n        return d[v];\r\n    }\r\n};\r\n#include <C++/UnionFind.hpp>\r\nstruct\
-    \ Edge {\r\n\tlong long a, b, cost;\r\n\tbool operator<(const Edge& e) const {\r\
-    \n\t\treturn cost < e.cost;\r\n\t}\r\n};\r\nstruct Graph {\r\n\tint n;\r\n\tvector<Edge>\
-    \ edges;\r\n\tGraph(const int n_): n(n_){}\r\n\tvoid input(ll m, const uint indexed=1)\
-    \ {\r\n\t\twhile(m--) {\r\n\t\t\tEdge e;\r\n            cin >> e.a >> e.b >> e.cost;\r\
-    \n\t\t\te.a-=indexed, e.b-=indexed;\r\n\t\t\tedges.emplace_back(e);\r\n\t\t}\r\
-    \n\t}\r\n\tll kruskal() {\r\n\t\tsort(edges.begin(), edges.end());\r\n\t\tUnionFind\
-    \ uf(n);\r\n\t\tlong long res=0;\r\n\t\tfor(const auto &ed: edges) {\r\n\t\t\t\
-    if(uf.unite(ed.a,ed.b)) res+=ed.cost;\r\n\t\t}\r\n\t\treturn res;\r\n\t}\r\n};"
-  dependsOn:
-  - C++/UnionFind.hpp
+    \n        return d[v];\r\n    }\r\n};"
+  dependsOn: []
   isVerificationFile: false
   path: C++/graph.hpp
   requiredBy: []
-  timestamp: '2023-11-28 11:03:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-28 11:12:59+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lca.test.cpp
 documentation_of: C++/graph.hpp

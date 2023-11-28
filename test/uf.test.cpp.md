@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/UnionFind.hpp
     title: C++/UnionFind.hpp
   - icon: ':heavy_check_mark:'
@@ -43,7 +43,7 @@ data:
   isVerificationFile: true
   path: test/uf.test.cpp
   requiredBy: []
-  timestamp: '2023-11-28 11:03:21+09:00'
+  timestamp: '2023-11-28 11:12:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/uf.test.cpp

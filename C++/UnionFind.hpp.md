@@ -2,19 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
-    path: C++/graph.hpp
-    title: C++/graph.hpp
+  - icon: ':warning:'
+    path: C++/MST.hpp
+    title: C++/MST.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/lca.test.cpp
-    title: test/lca.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)
@@ -38,10 +35,10 @@ data:
     \ res(n);\r\n        for(int i = 0; i < n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\
     \n        }\r\n        res.erase(std::remove_if(res.begin(), res.end(), [&](const\
     \ std::vector<int> &v){ return v.empty(); }), res.end());\r\n        return res;\r\
-    \n    }\r\n#endif\r\n    bool is_bipartite(const unsigned n) {\r\n        assert(par.size()\
-    \ == 2 * n);\r\n        bool ok = true;\r\n        for(unsigned i = 0; i < n;\
-    \ ++i) {\r\n            ok &= (*this)[i] != (*this)[i + n];\r\n        }\r\n \
-    \       return ok;\r\n    }\r\n};\n"
+    \n    }\r\n#endif\r\n    bool is_bipartite() {\r\n        const int n = par.size()\
+    \ / 2;\r\n        bool ok = true;\r\n        for(int i = 0; i < n; ++i) {\r\n\
+    \            ok &= (*this)[i] != (*this)[i + n];\r\n        }\r\n        return\
+    \ ok;\r\n    }\r\n};\n"
   code: "// inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)\r\
     \n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\nstruct UnionFind\
     \ {\r\nprivate:\r\n    std::vector<int> par;\r\npublic:\r\n    UnionFind(const\
@@ -62,20 +59,19 @@ data:
     \ res(n);\r\n        for(int i = 0; i < n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\
     \n        }\r\n        res.erase(std::remove_if(res.begin(), res.end(), [&](const\
     \ std::vector<int> &v){ return v.empty(); }), res.end());\r\n        return res;\r\
-    \n    }\r\n#endif\r\n    bool is_bipartite(const unsigned n) {\r\n        assert(par.size()\
-    \ == 2 * n);\r\n        bool ok = true;\r\n        for(unsigned i = 0; i < n;\
-    \ ++i) {\r\n            ok &= (*this)[i] != (*this)[i + n];\r\n        }\r\n \
-    \       return ok;\r\n    }\r\n};"
+    \n    }\r\n#endif\r\n    bool is_bipartite() {\r\n        const int n = par.size()\
+    \ / 2;\r\n        bool ok = true;\r\n        for(int i = 0; i < n; ++i) {\r\n\
+    \            ok &= (*this)[i] != (*this)[i + n];\r\n        }\r\n        return\
+    \ ok;\r\n    }\r\n};"
   dependsOn: []
   isVerificationFile: false
   path: C++/UnionFind.hpp
   requiredBy:
-  - C++/graph.hpp
-  timestamp: '2023-11-28 11:03:21+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  - C++/MST.hpp
+  timestamp: '2023-11-28 11:12:59+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/uf.test.cpp
-  - test/lca.test.cpp
 documentation_of: C++/UnionFind.hpp
 layout: document
 redirect_from:

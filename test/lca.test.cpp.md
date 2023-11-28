@@ -1,20 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/LCA.hpp
     title: C++/LCA.hpp
-  - icon: ':question:'
-    path: C++/UnionFind.hpp
-    title: C++/UnionFind.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph.hpp
     title: C++/graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -37,12 +34,11 @@ data:
   dependsOn:
   - C++/LCA.hpp
   - C++/graph.hpp
-  - C++/UnionFind.hpp
   isVerificationFile: true
   path: test/lca.test.cpp
   requiredBy: []
-  timestamp: '2023-11-28 11:03:21+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-28 11:12:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lca.test.cpp
 layout: document
