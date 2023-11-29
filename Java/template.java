@@ -2,6 +2,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +19,7 @@ class VvyLw extends MyFunction {
 	static final int mod998 = 998244353;
 	static final int mod107 = (int)1e9 + 7;
 	protected static void solve() {
-		o.out(3, 5, "VvyLw");
+		
 	}
 }
 class Main extends VvyLw {
@@ -236,8 +237,7 @@ class MyPrinter {
 	private PrintWriter pw;
 	MyPrinter(final OutputStream os, final boolean flush){ pw = new PrintWriter(os, flush); }
 	void out(){ pw.println(); }
-	<T> void out(final T arg){ pw.println(arg); }
-	<T, Ts> void out(final T head, @SuppressWarnings("unchecked") final Ts... tail) {
+	void out(final Object head, final Object... tail) {
 		pw.print(head);
 		for(final var el: tail) {
 			pw.print(" " + el);
@@ -249,11 +249,20 @@ class MyPrinter {
 	void out(final long[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
 	void out(final double[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
 	void out(final char[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
-	void out(final String[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
+	void out(final Object[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
 	<T> void out(final List<T> args){ IntStream.range(0, args.size()).forEach(i -> pw.print(args.get(i) + (i + 1 < args.size() ? " " : "\n"))); }
-	<T> void outl(final List<T> args){ IntStream.range(0, args.size()).forEach(i -> out(args.get(i))); }
-	<T> void fin(final T arg) {
-		out(arg);
+	void outl(final Object head, final Object... tail) {
+		out(head);
+		Arrays.stream(tail).forEach(pw::println);
+	}
+	void outl(final int[] args){ Arrays.stream(args).forEach(pw::println); }
+	void outl(final long[] args){ Arrays.stream(args).forEach(pw::println); }
+	void outl(final double[] args){ Arrays.stream(args).forEach(pw::println); }
+	void outl(final char[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	void outl(final Object[] args){ Arrays.stream(args).forEach(pw::println); }
+	<E> void outl(final Collection<E> args){ args.stream().forEach(pw::println); }
+	void fin(final Object head, final Object... tail) {
+		out(head, tail);
 		flush();
 		System.exit(0);
 	}
@@ -262,7 +271,7 @@ class MyPrinter {
 		flush();
 		System.exit(0);
 	}
-	<T> void fine(final List<T> args) {
+	<E> void fine(final Collection<E> args) {
 		outl(args);
 		flush();
 		System.exit(0);
