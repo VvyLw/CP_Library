@@ -21,17 +21,7 @@ class VvyLw extends MyFunction {
 	static final int mod998 = 998244353;
 	static final int mod107 = (int)1e9 + 7;
 	protected static void solve() {
-		final long n = sc.nl();
-		final BigPrime bp = new BigPrime(n);
-		final var ans = bp.primeFactor(n);
-		o.print(ans.size());
-		if(!ans.isEmpty()) {
-			o.print(" ");
-			o.out(ans);
-		}
-		else {
-			o.out();
-		}
+		
 	}
 }
 class Main extends VvyLw {
