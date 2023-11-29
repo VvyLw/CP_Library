@@ -24,7 +24,7 @@ data:
     static final long linf = (1L << 61) - 1;\n\tstatic final int mod998 = 998244353;\n\
     \tstatic final int mod107 = (int)1e9 + 7;\n\tprotected static void solve() {\n\
     \t\t\n\t}\n}\nclass Main extends VvyLw {\n\tpublic static void main(final String[]\
-    \ args) {\n\t\tint t = 1;\n\t\tt = sc.ni();\n\t\twhile(t-- > 0) {\n\t\t\tsolve();\n\
+    \ args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\t\t\tsolve();\n\
     \t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\t}\n\
     }\n\nclass MyFunction {\n\tprotected static String yes(final boolean ok){ return\
     \ ok ? \"Yes\" : \"No\"; }\n\tprotected static String no(final boolean ok){ return\
@@ -175,40 +175,40 @@ data:
     \t\t}\n\t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n\tboolean\
     \ is_bipartite() {\n\t\tfinal int n = par.length / 2;\n\t\tboolean ok = true;\n\
     \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &= root(i) != root(i + n);\n\t\t}\n\
-    \t\treturn ok;\n\t}\n}\n\nclass BigPrime {\n\tprivate long n;\n\tBigPrime(final\
-    \ long n){ this.n = n; }\n\tprivate int bsf(final long x){ return Long.numberOfTrailingZeros(x);\
-    \ }\n\tprivate long gcd(long a, long b) {\n\t\ta = Math.abs(a);\n\t\tb = Math.abs(b);\n\
-    \t\tif(a == 0) {\n\t\t\treturn b;\n\t\t}\n\t\tif(b == 0) {\n\t\t\treturn a;\n\t\
-    \t}\n\t\tfinal int shift = bsf(a|b);\n\t\ta >>= bsf(a);\n\t\tdo {\n\t\t\tb >>=\
-    \ bsf(b);\n\t\t\tif(a > b) {\n\t\t\t\ta ^= b;\n\t\t\t\tb ^= a;\n\t\t\t\ta ^= b;\n\
-    \t\t\t}\n\t\t\tb -= a;\n\t\t} while(b > 0);\n\t\treturn a << shift;\n\t}\n\tboolean\
-    \ isPrime() {\n\t\tif(n <= 1) {\n\t\t\treturn false;\n\t\t}\n\t\tif(n == 2) {\n\
-    \t\t\treturn true;\n\t\t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn false;\n\t\t}\n\t\
-    \tlong d = n - 1;\n\t\twhile(d % 2 == 0) {\n\t\t\td /= 2;\n\t\t}\n\t\tfinal long[]\
-    \ sample = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};\n\t\tfor(final long a:\
-    \ sample) {\n\t\t\tif(n <= a) {\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\tlong t = d;\n\t\
-    \t\tBigInteger y = BigInteger.valueOf(a).modPow(BigInteger.valueOf(t), BigInteger.valueOf(n));\n\
+    \t\treturn ok;\n\t}\n}\n\nclass BigPrime {\n\tprivate int bsf(final long x){ return\
+    \ Long.numberOfTrailingZeros(x); }\n\tprivate long gcd(long a, long b) {\n\t\t\
+    a = Math.abs(a);\n\t\tb = Math.abs(b);\n\t\tif(a == 0) {\n\t\t\treturn b;\n\t\t\
+    }\n\t\tif(b == 0) {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int shift = bsf(a|b);\n\
+    \t\ta >>= bsf(a);\n\t\tdo {\n\t\t\tb >>= bsf(b);\n\t\t\tif(a > b) {\n\t\t\t\t\
+    a ^= b;\n\t\t\t\tb ^= a;\n\t\t\t\ta ^= b;\n\t\t\t}\n\t\t\tb -= a;\n\t\t} while(b\
+    \ > 0);\n\t\treturn a << shift;\n\t}\n\tboolean isPrime(final long n) {\n\t\t\
+    if(n <= 1) {\n\t\t\treturn false;\n\t\t}\n\t\tif(n == 2) {\n\t\t\treturn true;\n\
+    \t\t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn false;\n\t\t}\n\t\tlong d = n - 1;\n\
+    \t\twhile(d % 2 == 0) {\n\t\t\td /= 2;\n\t\t}\n\t\tfinal long[] sample = {2, 3,\
+    \ 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};\n\t\tfor(final long a: sample) {\n\t\t\
+    \tif(n <= a) {\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\tlong t = d;\n\t\t\tBigInteger y\
+    \ = BigInteger.valueOf(a).modPow(BigInteger.valueOf(t), BigInteger.valueOf(n));\n\
     \t\t\twhile(t != n - 1 && !y.equals(BigInteger.ONE) && !y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)))\
     \ {\n\t\t\t\ty = y.multiply(y).mod(BigInteger.valueOf(n));\n\t\t\t\tt <<= 1;\n\
     \t\t\t}\n\t\t\tif(!y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)) &&\
     \ t % 2 == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\
-    \tprivate long find() {\n\t\tif(isPrime()) {\n\t\t\treturn n;\n\t\t}\n\t\tif(n\
-    \ % 2 == 0) {\n\t\t\treturn 2;\n\t\t}\n\t\tlong st = 0;\n\t\tfinal BiFunction<Long,\
-    \ Long, Long> f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue();\
+    \tprivate long find(final long n) {\n\t\tif(isPrime(n)) {\n\t\t\treturn n;\n\t\
+    \t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn 2;\n\t\t}\n\t\tlong st = 0;\n\t\tfinal\
+    \ BiFunction<Long, Long, Long> f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue();\
     \ };\n\t\twhile(true) {\n\t\t\tst++;\n\t\t\tlong x = st, y = f.apply(x, st);\n\
     \t\t\twhile(true) {\n\t\t\t\tfinal long p = gcd(y - x + n, n);\n\t\t\t\tif(p ==\
     \ 0 || p == n) {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\tif(p != 1) {\n\t\t\t\t\t\
     return p;\n\t\t\t\t}\n\t\t\t\tx = f.apply(x, st);\n\t\t\t\ty = f.apply(f.apply(y,\
     \ st), st);\n\t\t\t}\n\t\t}\n\t}\n\tArrayList<Long> primeFactor(final long n)\
-    \ {\n\t\tif(n == 1) return new ArrayList<>();\n\t\tfinal long x = find();\n\t\t\
-    if(x == n) return new ArrayList<>(Arrays.asList(x));\n\t\tArrayList<Long> le =\
-    \ primeFactor(x);\n\t\tfinal ArrayList<Long> ri = primeFactor(n / x);\n\t\tle.addAll(ri);\n\
-    \t\treturn le;\n\t}\n}"
+    \ {\n\t\tif(n == 1) return new ArrayList<>();\n\t\tfinal long x = find(n);\n\t\
+    \tif(x == n) return new ArrayList<>(Arrays.asList(x));\n\t\tArrayList<Long> le\
+    \ = primeFactor(x);\n\t\tfinal ArrayList<Long> ri = primeFactor(n / x);\n\t\t\
+    le.addAll(ri);\n\t\treturn le;\n\t}\n}"
   dependsOn: []
   isVerificationFile: false
   path: Java/template.java
   requiredBy: []
-  timestamp: '2023-11-29 20:40:59+09:00'
+  timestamp: '2023-11-29 22:44:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/template.java
