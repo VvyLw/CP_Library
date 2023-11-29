@@ -860,7 +860,7 @@ class FenwickTree {
 	}
 }
 
-abstract class SegmentTree {
+class SegmentTree {
 	private int n = 1, rank = 0, fini;
 	final BinaryOperator<Long> op;
 	final long e;
