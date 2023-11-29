@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/pf.test.cpp
-    title: test/pf.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"C++/Pollards_rho.hpp\"\n\r\n#include <vector>\r\n#include\
@@ -72,9 +69,8 @@ data:
   path: C++/Pollards_rho.hpp
   requiredBy: []
   timestamp: '2023-11-29 20:57:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/pf.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: C++/Pollards_rho.hpp
 layout: document
 redirect_from:
