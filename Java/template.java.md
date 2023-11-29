@@ -134,8 +134,8 @@ data:
     \ return \"(\" + first + \", \" + second + \")\"; }\n\tpublic static <F, S> Pair<F,\
     \ S> of(final F a, final S b){ return new Pair<>(a, b); }\n\tPair<S, F> swap(){\
     \ return Pair.of(second, first); }\n}\n\nclass NumPair extends Pair<Number, Number>\
-    \ {\n\tNumPair(final Number first, final Number second) {\n\t\tsuper(first, second);\n\
-    \t}\n\tNumPair rotate(){ return new NumPair(-second.doubleValue(), first.doubleValue());\
+    \ {\n\tNumPair(final Number first, final Number second){ super(first, second);\
+    \ }\n\tNumPair rotate(){ return new NumPair(-second.doubleValue(), first.doubleValue());\
     \ } \n\tNumPair rotate(final int ang) {\n\t\tfinal double rad = Math.PI * MyFunction.mod(ang,\
     \ 360) / 180;\n\t\treturn new NumPair(first.doubleValue() * Math.cos(rad) - second.doubleValue()\
     \ * Math.sin(rad),\n\t\t\t\t\t\t\tfirst.doubleValue() * Math.sin(rad) + second.doubleValue()\
@@ -171,7 +171,7 @@ data:
   isVerificationFile: false
   path: Java/template.java
   requiredBy: []
-  timestamp: '2023-11-29 12:03:14+09:00'
+  timestamp: '2023-11-29 12:18:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/template.java
