@@ -15,6 +15,7 @@ import java.util.TreeMap;
 import java.util.function.BiFunction;
 import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 class VvyLw extends MyFunction {
@@ -309,7 +310,7 @@ class MyFunction {
 	}
 	protected static ArrayList<Integer> press(final ArrayList<Long> a) {
 		ArrayList<Integer> res = new ArrayList<>();
-		final var cp = a.stream().sorted().distinct().toList();
+		final var cp = a.stream().sorted().distinct().collect(Collectors.toList());
 		for(final var el: a) {
 			res.add(lowerBound(cp, el));
 		}
@@ -649,7 +650,7 @@ class Tree {
 		this.n = n;
 		this.indexed = indexed;
 	}
-	void add(final Edge e){ edge.add(new Edge(e.src - indexed, e.to - indexed, e.cost)); }
+	void add(final int a, final int b, final long cost){ edge.add(new Edge(a - indexed, b - indexed, cost)); }
 	long kruskal() {
 		Collections.sort(edge, Comparator.comparing(e -> e.cost));
 		UnionFind uf = new UnionFind(n);
