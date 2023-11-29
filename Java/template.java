@@ -293,9 +293,7 @@ class Pair<F, S> {
 }
 
 class NumPair extends Pair<Number, Number> {
-	NumPair(final Number first, final Number second) {
-		super(first, second);
-	}
+	NumPair(final Number first, final Number second){ super(first, second); }
 	NumPair rotate(){ return new NumPair(-second.doubleValue(), first.doubleValue()); } 
 	NumPair rotate(final int ang) {
 		final double rad = Math.PI * MyFunction.mod(ang, 360) / 180;
