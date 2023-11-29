@@ -18,44 +18,44 @@ data:
     import java.util.List;\nimport java.util.PriorityQueue;\nimport java.util.Queue;\n\
     import java.util.Scanner;\nimport java.util.TreeMap;\nimport java.util.function.BiFunction;\n\
     import java.util.function.BinaryOperator;\nimport java.util.function.Predicate;\n\
-    import java.util.stream.IntStream;\n\nclass VvyLw extends MyFunction {\n\tprotected\
-    \ static final MyScanner sc = new MyScanner();\n\tprotected static final MyPrinter\
-    \ o = new MyPrinter(System.out, false);\n\tprotected static final MyPrinter e\
-    \ = new MyPrinter(System.err, true);\n\tstatic final int[] dx = {0, -1, 1, 0,\
-    \ 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\
-    \tstatic final int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\
-    \tstatic final int mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9 +\
-    \ 7;\n\tprotected static void solve() {\n\t\t\n\t}\n}\nclass Main extends VvyLw\
-    \ {\n\tpublic static void main(final String[] args) {\n\t\tint t = 1;\n\t\t//t\
-    \ = sc.ni();\n\t\twhile(t-- > 0) {\n\t\t\tsolve();\n\t\t}\n\t\to.flush();\n\t\t\
-    sc.close();\n\t\to.close();\n\t\te.close();\n\t}\n}\n\nclass MyFunction {\n\t\
-    protected static String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\
-    \tprotected static String no(final boolean ok){ return yes(!ok); }\n\tprotected\
-    \ static long sqr(final long x){ return x * x; }\n\tprotected static int mod(final\
-    \ long n, final int m){ return (int) ((n + m) % m); }\n\tprotected static long\
-    \ intCeil(long a, long b){ return (long) Math.ceil((double)a / b); }\n\tprotected\
-    \ static long intPow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\
-    \t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>=\
-    \ 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static long intPow(long a, long\
-    \ b, final int m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 ==\
-    \ 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\
-    \t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
-    \ static ArrayList<Long> div(final long n) {\n\t\tArrayList<Long> d = new ArrayList<>();\n\
-    \t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\
-    \t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
-    \t\tCollections.sort(d);\n\t\treturn d;\n\t}\n\tprotected static ArrayList<Long>\
-    \ primeFactor(long n) {\n\t\tArrayList<Long> pf = new ArrayList<>();\n\t\tfor(long\
-    \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) continue;\n\t\t\twhile(n % i\
-    \ == 0) {\n\t\t\t\tpf.add(i);\n\t\t\t\tn /= i;\n\t\t\t}\n\t\t}\n\t\tif(n != 1)\
-    \ pf.add(n);\n\t\treturn pf;\n\t}\n\tprotected static long binom(int a, final\
-    \ int b) {\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= b; ++i) {\n\t\t\tres *=\
-    \ a--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static boolean\
-    \ isInt(final double n){ long r = (long) Math.floor(n); return r == n; }\n\tprotected\
-    \ static boolean isSqr(final long n){ return isInt(Math.sqrt(n)); }\n\tprotected\
-    \ static boolean isPrime(final long n) {\n\t\tif(n == 1) return false;\n\t\tfor(long\
-    \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) return false;\n\t\t}\n\t\treturn\
-    \ true;\n\t}\n\tprotected static boolean nextPerm(ArrayList<Integer> a) {\n\t\t\
-    for(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
+    import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nclass\
+    \ VvyLw extends MyFunction {\n\tprotected static final MyScanner sc = new MyScanner();\n\
+    \tprotected static final MyPrinter o = new MyPrinter(System.out, false);\n\tprotected\
+    \ static final MyPrinter e = new MyPrinter(System.err, true);\n\tstatic final\
+    \ int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0,\
+    \ 0, -1, 1, -1, 1, -1, 1};\n\tstatic final int inf = 1 << 30;\n\tstatic final\
+    \ long linf = (1L << 61) - 1;\n\tstatic final int mod998 = 998244353;\n\tstatic\
+    \ final int mod107 = (int)1e9 + 7;\n\tprotected static void solve() {\n\t\t\n\t\
+    }\n}\nclass Main extends VvyLw {\n\tpublic static void main(final String[] args)\
+    \ {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\t\t\tsolve();\n\
+    \t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\t}\n\
+    }\n\nclass MyFunction {\n\tprotected static String yes(final boolean ok){ return\
+    \ ok ? \"Yes\" : \"No\"; }\n\tprotected static String no(final boolean ok){ return\
+    \ yes(!ok); }\n\tprotected static long sqr(final long x){ return x * x; }\n\t\
+    protected static int mod(final long n, final int m){ return (int) ((n + m) % m);\
+    \ }\n\tprotected static long intCeil(long a, long b){ return (long) Math.ceil((double)a\
+    \ / b); }\n\tprotected static long intPow(long a, int b) {\n\t\tlong res = 1;\n\
+    \t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\t\
+    a *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static long\
+    \ intPow(long a, long b, final int m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\
+    \t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t\
+    }\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\tprotected static ArrayList<Long> div(final long n) {\n\t\tArrayList<Long>\
+    \ d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n %\
+    \ i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n /\
+    \ i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\t\treturn d;\n\t\
+    }\n\tprotected static ArrayList<Long> primeFactor(long n) {\n\t\tArrayList<Long>\
+    \ pf = new ArrayList<>();\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n\
+    \ % i != 0) continue;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tpf.add(i);\n\t\t\t\t\
+    n /= i;\n\t\t\t}\n\t\t}\n\t\tif(n != 1) pf.add(n);\n\t\treturn pf;\n\t}\n\tprotected\
+    \ static long binom(int a, final int b) {\n\t\tlong res = 1;\n\t\tfor(int i =\
+    \ 1; i <= b; ++i) {\n\t\t\tres *= a--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\tprotected static boolean isInt(final double n){ long r = (long) Math.floor(n);\
+    \ return r == n; }\n\tprotected static boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
+    \ }\n\tprotected static boolean isPrime(final long n) {\n\t\tif(n == 1) return\
+    \ false;\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) return\
+    \ false;\n\t\t}\n\t\treturn true;\n\t}\n\tprotected static boolean nextPerm(ArrayList<Integer>\
+    \ a) {\n\t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
     \ < 0) {\n\t\t\t\tfinal int j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\
     \tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\
     \t\t\t\treturn true;\n\t\t\t}\n\t\t}\n\t\treturn false;\n\t}\n\tprivate static\
@@ -141,37 +141,38 @@ data:
     if(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\
     \t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static ArrayList<Integer> press(final\
     \ ArrayList<Long> a) {\n\t\tArrayList<Integer> res = new ArrayList<>();\n\t\t\
-    final var cp = a.stream().sorted().distinct().toList();\n\t\tfor(final var el:\
-    \ a) {\n\t\t\tres.add(lowerBound(cp, el));\n\t\t}\n\t\treturn res;\n\t}\n}\n\n\
-    class MyScanner {\n\tprivate Scanner sc = new Scanner(System.in);\n\tint ni(){\
-    \ return sc.nextInt(); }\n\tlong nl(){ return sc.nextLong(); }\n\tdouble nd(){\
-    \ return sc.nextDouble(); }\n\tString ns(){ return sc.next(); }\n\tint[] ni(final\
-    \ int n){\n\t\tint[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i]\
-    \ = ni());\n\t\treturn a;\n\t}\n\tlong[] nl(final int n){\n\t\tlong[] a = new\
-    \ long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\treturn a;\n\
-    \t}\n\tdouble[] nd(final int n){\n\t\tdouble[] a = new double[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tString[] ns(final int n){\n\
-    \t\tString[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] =\
-    \ ns());\n\t\treturn a;\n\t}\n\tArrayList<Integer> nia(final int n) {\n\t\tvar\
-    \ a = new ArrayList<Integer>(n);\n\t\tIntStream.range(0, n).forEach(i -> a.add(i,\
-    \ ni()));\n\t\treturn a;\n\t}\n\tArrayList<Long> nla(final int n) {\n\t\tvar a\
-    \ = new ArrayList<Long>(n);\n\t\tIntStream.range(0, n).forEach(i -> a.add(i, nl()));\n\
-    \t\treturn a;\n\t}\n\tArrayList<Double> nda(final int n) {\n\t\tvar a = new ArrayList<Double>(n);\n\
-    \t\tIntStream.range(0, n).forEach(i -> a.add(i, nd()));\n\t\treturn a;\n\t}\n\t\
-    ArrayList<String> nsa(final int n) {\n\t\tvar a = new ArrayList<String>(n);\n\t\
-    \tIntStream.range(0, n).forEach(i -> a.add(i, ns()));\n\t\treturn a;\n\t}\n\t\
-    void close(){ sc.close(); }\n}\n\nclass MyPrinter {\n\tprivate PrintWriter pw;\n\
-    \tMyPrinter(final OutputStream os, final boolean flush){ pw = new PrintWriter(os,\
-    \ flush); }\n\tvoid print(final Object arg){ pw.print(arg); }\n\tvoid out(){ pw.println();\
-    \ }\n\tvoid out(final Object head, final Object... tail) {\n\t\tpw.print(head);\n\
-    \t\tfor(final var el: tail) {\n\t\t\tpw.print(\" \" + el);\n\t\t}\n\t\tout();\n\
-    \t}\n\t<F, S> void out(final Pair<F, S> arg){ pw.println(arg.first + \" \" + arg.second);\
-    \ }\n\tvoid out(final int[] args){ IntStream.range(0, args.length).forEach(i ->\
-    \ pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tvoid out(final\
-    \ long[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i]\
-    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tvoid out(final double[] args){\
+    final var cp = a.stream().sorted().distinct().collect(Collectors.toList());\n\t\
+    \tfor(final var el: a) {\n\t\t\tres.add(lowerBound(cp, el));\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n}\n\nclass MyScanner {\n\tprivate Scanner sc = new Scanner(System.in);\n\
+    \tint ni(){ return sc.nextInt(); }\n\tlong nl(){ return sc.nextLong(); }\n\tdouble\
+    \ nd(){ return sc.nextDouble(); }\n\tString ns(){ return sc.next(); }\n\tint[]\
+    \ ni(final int n){\n\t\tint[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = ni());\n\t\treturn a;\n\t}\n\tlong[] nl(final int n){\n\t\tlong[]\
+    \ a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\t\
+    return a;\n\t}\n\tdouble[] nd(final int n){\n\t\tdouble[] a = new double[n];\n\
+    \t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tString[]\
+    \ ns(final int n){\n\t\tString[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = ns());\n\t\treturn a;\n\t}\n\tArrayList<Integer> nia(final int n)\
+    \ {\n\t\tvar a = new ArrayList<Integer>(n);\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a.add(i, ni()));\n\t\treturn a;\n\t}\n\tArrayList<Long> nla(final int n)\
+    \ {\n\t\tvar a = new ArrayList<Long>(n);\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a.add(i, nl()));\n\t\treturn a;\n\t}\n\tArrayList<Double> nda(final int n)\
+    \ {\n\t\tvar a = new ArrayList<Double>(n);\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a.add(i, nd()));\n\t\treturn a;\n\t}\n\tArrayList<String> nsa(final int n)\
+    \ {\n\t\tvar a = new ArrayList<String>(n);\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a.add(i, ns()));\n\t\treturn a;\n\t}\n\tvoid close(){ sc.close(); }\n}\n\n\
+    class MyPrinter {\n\tprivate PrintWriter pw;\n\tMyPrinter(final OutputStream os,\
+    \ final boolean flush){ pw = new PrintWriter(os, flush); }\n\tvoid print(final\
+    \ Object arg){ pw.print(arg); }\n\tvoid out(){ pw.println(); }\n\tvoid out(final\
+    \ Object head, final Object... tail) {\n\t\tpw.print(head);\n\t\tfor(final var\
+    \ el: tail) {\n\t\t\tpw.print(\" \" + el);\n\t\t}\n\t\tout();\n\t}\n\t<F, S> void\
+    \ out(final Pair<F, S> arg){ pw.println(arg.first + \" \" + arg.second); }\n\t\
+    void out(final int[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i]\
+    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tvoid out(final long[] args){\
     \ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length\
-    \ ? \" \" : \"\\n\"))); }\n\tvoid out(final char[] args){ IntStream.range(0, args.length).forEach(i\
+    \ ? \" \" : \"\\n\"))); }\n\tvoid out(final double[] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? \" \" :\
+    \ \"\\n\"))); }\n\tvoid out(final char[] args){ IntStream.range(0, args.length).forEach(i\
     \ -> pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tvoid out(final\
     \ Object[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i]\
     \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\t<T> void out(final List<T>\
@@ -276,8 +277,8 @@ data:
     \t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n}\nclass Tree {\n\tpublic\
     \ ArrayList<Edge> edge;\n\tprivate int n, indexed;\n\tTree(final int n, final\
     \ int indexed) {\n\t\tedge = new ArrayList<>(n);\n\t\tthis.n = n;\n\t\tthis.indexed\
-    \ = indexed;\n\t}\n\tvoid add(final Edge e){ edge.add(new Edge(e.src - indexed,\
-    \ e.to - indexed, e.cost)); }\n\tlong kruskal() {\n\t\tCollections.sort(edge,\
+    \ = indexed;\n\t}\n\tvoid add(final int a, final int b, final long cost){ edge.add(new\
+    \ Edge(a - indexed, b - indexed, cost)); }\n\tlong kruskal() {\n\t\tCollections.sort(edge,\
     \ Comparator.comparing(e -> e.cost));\n\t\tUnionFind uf = new UnionFind(n);\n\t\
     \tlong res = 0;\n\t\tfor(final var ed: edge) {\n\t\t\tif(uf.unite(ed.src, ed.to))\
     \ {\n\t\t\t\tres += ed.cost;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n}\n\nclass\
@@ -393,7 +394,7 @@ data:
   isVerificationFile: false
   path: Java/template.java
   requiredBy: []
-  timestamp: '2023-11-30 04:39:20+09:00'
+  timestamp: '2023-11-30 05:11:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/template.java
