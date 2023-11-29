@@ -462,7 +462,7 @@ class BigPrime {
 			return 2;
 		}
 		int st = 0;
-		final BiFunction<Long, Long, Long> f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue(); };
+		final BiFunction<Long, Integer, Long> f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue(); };
 		while(true) {
 			st++;
 			long x = st, y = f.apply(x, st);
