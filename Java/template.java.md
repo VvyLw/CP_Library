@@ -338,63 +338,62 @@ data:
     }\n\t\t}\n\t\treturn x;\n\t}\n\tint upper_bound(long w) {\n\t\tif(w < 0) {\n\t\
     \t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>=\
     \ 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <= w) {\n\t\t\t\tw -= data[x +\
-    \ k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n}\n\nabstract class\
-    \ SegmentTree {\n\tprivate int n = 1, rank = 0, fini;\n\tfinal BinaryOperator<Long>\
-    \ op;\n\tfinal long e;\n\tprivate long[] dat;\n\tSegmentTree(final int fini, final\
-    \ BinaryOperator<Long> op, final long e) {\n\t\tthis.fini = fini;\n\t\tthis.op\
-    \ = op;\n\t\tthis.e = e;\n\t\twhile(this.fini > n) {\n\t\t\tn <<= 1;\n\t\t\trank++;\n\
-    \t\t}\n\t\tdat = new long[2 * n];\n\t\tArrays.fill(dat, e);\n\t}\n\tvoid update(int\
-    \ i, final long x) {\n\t\ti += n;\n\t\tdat[i] = x;\n\t\ti >>= 1;\n\t\twhile(i\
+    \ k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n}\n\nclass SegmentTree\
+    \ {\n\tprivate int n = 1, rank = 0, fini;\n\tfinal BinaryOperator<Long> op;\n\t\
+    final long e;\n\tprivate long[] dat;\n\tSegmentTree(final int fini, final BinaryOperator<Long>\
+    \ op, final long e) {\n\t\tthis.fini = fini;\n\t\tthis.op = op;\n\t\tthis.e =\
+    \ e;\n\t\twhile(this.fini > n) {\n\t\t\tn <<= 1;\n\t\t\trank++;\n\t\t}\n\t\tdat\
+    \ = new long[2 * n];\n\t\tArrays.fill(dat, e);\n\t}\n\tvoid update(int i, final\
+    \ long x) {\n\t\ti += n;\n\t\tdat[i] = x;\n\t\ti >>= 1;\n\t\twhile(i > 0) {\n\t\
+    \t\tdat[i] = op.apply(dat[2 * i], dat[2 * i + 1]);\n\t\t}\n\t}\n\tvoid add(int\
+    \ i, final long x) {\n\t\ti += n;\n\t\tdat[i] += x;\n\t\ti >>= 1;\n\t\twhile(i\
     \ > 0) {\n\t\t\tdat[i] = op.apply(dat[2 * i], dat[2 * i + 1]);\n\t\t}\n\t}\n\t\
-    void add(int i, final long x) {\n\t\ti += n;\n\t\tdat[i] += x;\n\t\ti >>= 1;\n\
-    \t\twhile(i > 0) {\n\t\t\tdat[i] = op.apply(dat[2 * i], dat[2 * i + 1]);\n\t\t\
-    }\n\t}\n\tlong query(int a, int b) {\n\t\tlong l=e,r=e;\n\t\tfor(a += n, b +=\
-    \ n; a < b; a >>= 1, b >>= 1) {\n\t\t\tif(a % 2 == 1) {\n\t\t\t\tl = op.apply(l,\
-    \ dat[a++]);\n\t\t\t}\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tr = op.apply(dat[--b],\
-    \ r);\n\t\t\t}\n\t\t}\n\t\treturn op.apply(l,r);\n\t}\n\tint findLeft(int r, final\
-    \ Predicate<Long> fn) {\n\t\tif(r == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint h =\
-    \ 0, i = r + n;\n\t\tlong val = e;\n\t\tfor(; h <= rank; h++) {\n\t\t\tif(i >>\
-    \ (h & 1) > 0) {\n\t\t\t\tfinal long val2 = op.apply(val, dat[i >> (h ^ 1)]);\n\
-    \t\t\t\tif(fn.test(val2)){\n\t\t\t\t\ti -= 1 << h;\n\t\t\t\t\tif(i == n) {\n\t\
-    \t\t\t\t\treturn 0;\n\t\t\t\t\t}\n\t\t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\telse\
-    \ {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\t\
-    long val2 = op.apply(val, dat[(i >> h) - 1]);\n\t\t\tif(fn.test(val2)){\n\t\t\t\
-    \ti -= 1 << h;\n\t\t\t\tif(i == n) {\n\t\t\t\t\treturn 0;\n\t\t\t\t}\n\t\t\t\t\
-    val = val2;\n\t\t\t}\n\t\t}\n\t\treturn i - n;\n\t}\n\tint findRight(int l, final\
-    \ Predicate<Long> fn) {\n\t\tif(l == fini) {\n\t\t\treturn fini;\n\t\t}\n\t\t\
-    int h = 0, i = l + n;\n\t\tlong val = e;\n\t\tfor(; h <= rank; h++) {\n\t\t\t\
-    if(i >> (h & 1) > 0){\n\t\t\t\tlong val2 = op.apply(val, dat[i >> h]);\n\t\t\t\
-    \tif(fn.test(val2)){\n\t\t\t\t\ti += 1 << h;\n\t\t\t\t\tif(i == n * 2) {\n\t\t\
-    \t\t\t\treturn fini;\n\t\t\t\t\t}\n\t\t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\t\
-    else {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\
-    \t\tlong val2 = op.apply(val, dat[i>>h]);\n\t\t\tif(fn.test(val2)) {\n\t\t\t\t\
-    i += 1 << h;\n\t\t\t\tif(i == n * 2) {\n\t\t\t\t\treturn fini;\n\t\t\t\t}\n\t\t\
-    \t\tval = val2;\n\t\t\t}\n\t\t}\n\t\treturn Math.min(i - n, fini);\n\t}\n}\n\n\
-    class SparseTable {\n\tprivate long[][] st;\n\tprivate int[] lookup;\n\tprivate\
-    \ BinaryOperator<Long> op;\n\tSparseTable(final long[] a, final BinaryOperator<Long>\
-    \ op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\
-    \t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length;\
-    \ i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\
-    \tfor(int j = 0; j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.apply(st[i\
-    \ - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
-    \ + 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
-    \ >> 1] + 1;\n\t\t}\n\t}\n\tlong query(final int l, final int r) {\n\t\tfinal\
-    \ int b = lookup[r - l];\n\t\treturn op.apply(st[b][l], st[b][r - (1 << b)]);\n\
-    \t}\n\tint minLeft(final int x, final Predicate<Long> fn) {\n\t\tif(x == 0) {\n\
-    \t\t\treturn 0;\n\t\t}\n\t\tint ok = x, ng = -1;\n\t\twhile(Math.abs(ok - ng)\
-    \ > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(mid, x)\
-    \ - 1)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t\
-    }\n\t\t}\n\t\treturn ok;\n\t}\n\tint maxRight(final int x, final Predicate<Long>\
-    \ fn) {\n\t\tif(x == lookup.length - 1) {\n\t\t\treturn lookup.length - 1;\n\t\
-    \t}\n\t\tint ok = x, ng = lookup.length;\n\t\twhile(Math.abs(ok - ng) > 1) {\n\
-    \t\t\tint mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(x, mid))) {\n\t\t\t\tok\
-    \ = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ ok;\n\t}\n}"
+    long query(int a, int b) {\n\t\tlong l=e,r=e;\n\t\tfor(a += n, b += n; a < b;\
+    \ a >>= 1, b >>= 1) {\n\t\t\tif(a % 2 == 1) {\n\t\t\t\tl = op.apply(l, dat[a++]);\n\
+    \t\t\t}\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tr = op.apply(dat[--b], r);\n\t\t\t}\n\
+    \t\t}\n\t\treturn op.apply(l,r);\n\t}\n\tint findLeft(int r, final Predicate<Long>\
+    \ fn) {\n\t\tif(r == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint h = 0, i = r + n;\n\
+    \t\tlong val = e;\n\t\tfor(; h <= rank; h++) {\n\t\t\tif(i >> (h & 1) > 0) {\n\
+    \t\t\t\tfinal long val2 = op.apply(val, dat[i >> (h ^ 1)]);\n\t\t\t\tif(fn.test(val2)){\n\
+    \t\t\t\t\ti -= 1 << h;\n\t\t\t\t\tif(i == n) {\n\t\t\t\t\t\treturn 0;\n\t\t\t\t\
+    \t}\n\t\t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\
+    \t}\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\tlong val2 = op.apply(val, dat[(i\
+    \ >> h) - 1]);\n\t\t\tif(fn.test(val2)){\n\t\t\t\ti -= 1 << h;\n\t\t\t\tif(i ==\
+    \ n) {\n\t\t\t\t\treturn 0;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t}\n\t\t}\n\t\
+    \treturn i - n;\n\t}\n\tint findRight(int l, final Predicate<Long> fn) {\n\t\t\
+    if(l == fini) {\n\t\t\treturn fini;\n\t\t}\n\t\tint h = 0, i = l + n;\n\t\tlong\
+    \ val = e;\n\t\tfor(; h <= rank; h++) {\n\t\t\tif(i >> (h & 1) > 0){\n\t\t\t\t\
+    long val2 = op.apply(val, dat[i >> h]);\n\t\t\t\tif(fn.test(val2)){\n\t\t\t\t\t\
+    i += 1 << h;\n\t\t\t\t\tif(i == n * 2) {\n\t\t\t\t\t\treturn fini;\n\t\t\t\t\t\
+    }\n\t\t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\t\
+    }\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\tlong val2 = op.apply(val, dat[i>>h]);\n\
+    \t\t\tif(fn.test(val2)) {\n\t\t\t\ti += 1 << h;\n\t\t\t\tif(i == n * 2) {\n\t\t\
+    \t\t\treturn fini;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ Math.min(i - n, fini);\n\t}\n}\n\nclass SparseTable {\n\tprivate long[][] st;\n\
+    \tprivate int[] lookup;\n\tprivate BinaryOperator<Long> op;\n\tSparseTable(final\
+    \ long[] a, final BinaryOperator<Long> op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\
+    \t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 <<\
+    \ b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\
+    \t\tfor(int i = 1; i < b; i++) {\n\t\t\tfor(int j = 0; j + (1 << i) <= (1 << b);\
+    \ j++) {\n\t\t\t\tst[i][j] = op.apply(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\
+    \t\t\t}\n\t\t}\n\t\tlookup = new int[a.length + 1];\n\t\tfor(int i = 2; i < lookup.length;\
+    \ i++) {\n\t\t\tlookup[i] = lookup[i >> 1] + 1;\n\t\t}\n\t}\n\tlong query(final\
+    \ int l, final int r) {\n\t\tfinal int b = lookup[r - l];\n\t\treturn op.apply(st[b][l],\
+    \ st[b][r - (1 << b)]);\n\t}\n\tint minLeft(final int x, final Predicate<Long>\
+    \ fn) {\n\t\tif(x == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint ok = x, ng = -1;\n\t\
+    \twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\t\
+    if(fn.test(query(mid, x) - 1)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\
+    \t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tint maxRight(final int\
+    \ x, final Predicate<Long> fn) {\n\t\tif(x == lookup.length - 1) {\n\t\t\treturn\
+    \ lookup.length - 1;\n\t\t}\n\t\tint ok = x, ng = lookup.length;\n\t\twhile(Math.abs(ok\
+    \ - ng) > 1) {\n\t\t\tint mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(x, mid)))\
+    \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
+    }\n\t\treturn ok;\n\t}\n}"
   dependsOn: []
   isVerificationFile: false
   path: Java/template.java
   requiredBy: []
-  timestamp: '2023-11-30 04:35:20+09:00'
+  timestamp: '2023-11-30 04:39:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/template.java
