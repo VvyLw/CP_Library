@@ -12,18 +12,22 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/template.java\n"
-  code: "import java.io.OutputStream;\nimport java.io.PrintWriter;\nimport java.util.ArrayList;\n\
-    import java.util.Arrays;\nimport java.util.Collection;\nimport java.util.Collections;\n\
-    import java.util.List;\nimport java.util.Scanner;\nimport java.util.stream.IntStream;\n\
-    \nclass VvyLw extends MyFunction {\n\tprotected static final MyScanner sc = new\
+  code: "import java.io.OutputStream;\nimport java.io.PrintWriter;\nimport java.math.BigInteger;\n\
+    import java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Collection;\n\
+    import java.util.Collections;\nimport java.util.List;\nimport java.util.Scanner;\n\
+    import java.util.function.BiFunction;\nimport java.util.stream.IntStream;\n\n\
+    class VvyLw extends MyFunction {\n\tprotected static final MyScanner sc = new\
     \ MyScanner();\n\tprotected static final MyPrinter o = new MyPrinter(System.out,\
     \ false);\n\tprotected static final MyPrinter e = new MyPrinter(System.err, true);\n\
     \tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final int[]\
     \ dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final int inf = 1 << 30;\n\t\
     static final long linf = (1L << 61) - 1;\n\tstatic final int mod998 = 998244353;\n\
     \tstatic final int mod107 = (int)1e9 + 7;\n\tprotected static void solve() {\n\
-    \t\t\n\t}\n}\nclass Main extends VvyLw {\n\tpublic static void main(final String[]\
-    \ args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\t\t\tsolve();\n\
+    \t\tfinal long n = sc.nl();\n\t\tfinal BigPrime bp = new BigPrime(n);\n\t\tfinal\
+    \ var ans = bp.primeFactor(n);\n\t\to.print(ans.size());\n\t\tif(!ans.isEmpty())\
+    \ {\n\t\t\to.print(\" \");\n\t\t\to.out(ans);\n\t\t}\n\t\telse {\n\t\t\to.out();\n\
+    \t\t}\n\t}\n}\nclass Main extends VvyLw {\n\tpublic static void main(final String[]\
+    \ args) {\n\t\tint t = 1;\n\t\tt = sc.ni();\n\t\twhile(t-- > 0) {\n\t\t\tsolve();\n\
     \t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\t}\n\
     }\n\nclass MyFunction {\n\tprotected static String yes(final boolean ok){ return\
     \ ok ? \"Yes\" : \"No\"; }\n\tprotected static String no(final boolean ok){ return\
@@ -103,16 +107,17 @@ data:
     \ {\n\t\tvar a = new ArrayList<String>(n);\n\t\tIntStream.range(0, n).forEach(i\
     \ -> a.add(i, ns()));\n\t\treturn a;\n\t}\n\tvoid close(){ sc.close(); }\n}\n\n\
     class MyPrinter {\n\tprivate PrintWriter pw;\n\tMyPrinter(final OutputStream os,\
-    \ final boolean flush){ pw = new PrintWriter(os, flush); }\n\tvoid out(){ pw.println();\
-    \ }\n\tvoid out(final Object head, final Object... tail) {\n\t\tpw.print(head);\n\
-    \t\tfor(final var el: tail) {\n\t\t\tpw.print(\" \" + el);\n\t\t}\n\t\tout();\n\
-    \t}\n\t<F, S> void out(final Pair<F, S> arg){ pw.println(arg.first + \" \" + arg.second);\
-    \ }\n\tvoid out(final int[] args){ IntStream.range(0, args.length).forEach(i ->\
-    \ pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tvoid out(final\
-    \ long[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i]\
-    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tvoid out(final double[] args){\
+    \ final boolean flush){ pw = new PrintWriter(os, flush); }\n\tvoid print(final\
+    \ Object arg){ pw.print(arg); }\n\tvoid out(){ pw.println(); }\n\tvoid out(final\
+    \ Object head, final Object... tail) {\n\t\tpw.print(head);\n\t\tfor(final var\
+    \ el: tail) {\n\t\t\tpw.print(\" \" + el);\n\t\t}\n\t\tout();\n\t}\n\t<F, S> void\
+    \ out(final Pair<F, S> arg){ pw.println(arg.first + \" \" + arg.second); }\n\t\
+    void out(final int[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i]\
+    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tvoid out(final long[] args){\
     \ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length\
-    \ ? \" \" : \"\\n\"))); }\n\tvoid out(final char[] args){ IntStream.range(0, args.length).forEach(i\
+    \ ? \" \" : \"\\n\"))); }\n\tvoid out(final double[] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? \" \" :\
+    \ \"\\n\"))); }\n\tvoid out(final char[] args){ IntStream.range(0, args.length).forEach(i\
     \ -> pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tvoid out(final\
     \ Object[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i]\
     \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\t<T> void out(final List<T>\
@@ -173,12 +178,40 @@ data:
     \t\t}\n\t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n\tboolean\
     \ is_bipartite() {\n\t\tfinal int n = par.length / 2;\n\t\tboolean ok = true;\n\
     \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &= root(i) != root(i + n);\n\t\t}\n\
-    \t\treturn ok;\n\t}\n}"
+    \t\treturn ok;\n\t}\n}\n\nclass BigPrime {\n\tprivate long n;\n\tBigPrime(final\
+    \ long n){ this.n = n; }\n\tprivate int bsf(final long x){ return Long.numberOfTrailingZeros(x);\
+    \ }\n\tprivate long gcd(long a, long b) {\n\t\ta = Math.abs(a);\n\t\tb = Math.abs(b);\n\
+    \t\tif(a == 0) {\n\t\t\treturn b;\n\t\t}\n\t\tif(b == 0) {\n\t\t\treturn a;\n\t\
+    \t}\n\t\tfinal int shift = bsf(a|b);\n\t\ta >>= bsf(a);\n\t\tdo {\n\t\t\tb >>=\
+    \ bsf(b);\n\t\t\tif(a > b) {\n\t\t\t\ta ^= b;\n\t\t\t\tb ^= a;\n\t\t\t\ta ^= b;\n\
+    \t\t\t}\n\t\t\tb -= a;\n\t\t} while(b > 0);\n\t\treturn a << shift;\n\t}\n\tboolean\
+    \ isPrime() {\n\t\tif(n <= 1) {\n\t\t\treturn false;\n\t\t}\n\t\tif(n == 2) {\n\
+    \t\t\treturn true;\n\t\t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn false;\n\t\t}\n\t\
+    \tlong d = n - 1;\n\t\twhile(d % 2 == 0) {\n\t\t\td /= 2;\n\t\t}\n\t\tfinal long[]\
+    \ sample = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};\n\t\tfor(final long a:\
+    \ sample) {\n\t\t\tif(n <= a) {\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\tlong t = d;\n\t\
+    \t\tBigInteger y = BigInteger.valueOf(a).modPow(BigInteger.valueOf(t), BigInteger.valueOf(n));\n\
+    \t\t\twhile(t != n - 1 && !y.equals(BigInteger.ONE) && !y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)))\
+    \ {\n\t\t\t\ty = y.multiply(y).mod(BigInteger.valueOf(n));\n\t\t\t\tt <<= 1;\n\
+    \t\t\t}\n\t\t\tif(!y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)) &&\
+    \ t % 2 == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\
+    \tprivate long find() {\n\t\tif(isPrime()) {\n\t\t\treturn n;\n\t\t}\n\t\tif(n\
+    \ % 2 == 0) {\n\t\t\treturn 2;\n\t\t}\n\t\tlong st = 0;\n\t\tfinal BiFunction<Long,\
+    \ Long, Long> f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue();\
+    \ };\n\t\twhile(true) {\n\t\t\tst++;\n\t\t\tlong x = st, y = f.apply(x, st);\n\
+    \t\t\twhile(true) {\n\t\t\t\tfinal long p = gcd(y - x + n, n);\n\t\t\t\tif(p ==\
+    \ 0 || p == n) {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\tif(p != 1) {\n\t\t\t\t\t\
+    return p;\n\t\t\t\t}\n\t\t\t\tx = f.apply(x, st);\n\t\t\t\ty = f.apply(f.apply(y,\
+    \ st), st);\n\t\t\t}\n\t\t}\n\t}\n\tArrayList<Long> primeFactor(final long n)\
+    \ {\n\t\tif(n == 1) return new ArrayList<>();\n\t\tfinal long x = find();\n\t\t\
+    if(x == n) return new ArrayList<>(Arrays.asList(x));\n\t\tArrayList<Long> le =\
+    \ primeFactor(x);\n\t\tfinal ArrayList<Long> ri = primeFactor(n / x);\n\t\tle.addAll(ri);\n\
+    \t\treturn le;\n\t}\n}"
   dependsOn: []
   isVerificationFile: false
   path: Java/template.java
   requiredBy: []
-  timestamp: '2023-11-29 16:44:48+09:00'
+  timestamp: '2023-11-29 20:40:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/template.java

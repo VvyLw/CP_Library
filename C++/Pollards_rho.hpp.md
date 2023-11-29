@@ -7,41 +7,67 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links:
-    - https://atcoder.jp/contests/abc284/submissions/37807522)
-  bundledCode: "Traceback (most recent call last):\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
-    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ C++/Pollards_rho.hpp: line 2: #pragma once found in a non-first line\n"
-  code: "// inspired by Plato_(https://atcoder.jp/contests/abc284/submissions/37807522)\r\
-    \n#pragma once\r\n\r\n#include <vector>\r\n#include <algorithm>\r\n#include <numeric>\r\
-    \ntypedef long long ll;\r\ntypedef unsigned long long ul;\r\nusing namespace std;\r\
-    \nusing vu = vector<ul>;\r\nul modmul(ul a, ul b, ul M) {\r\n    ll ret = a *\
-    \ b - M * ul(1.L / M * a * b);\r\n    return ret + M * (ret < 0) - M * (ret >=\
-    \ (ll)M);\r\n}\r\nul modpow(ul b, ul e, ul mod) {\r\n    ul ans = 1;\r\n    for(;\
-    \ e; b = modmul(b, b, mod), e /= 2)\r\n        if(e & 1) ans = modmul(ans, b,\
-    \ mod);\r\n    return ans;\r\n}\r\nbool isp(ul n) {\r\n    if(n < 2 || n % 6 %\
-    \ 4 != 1) return (n | 1) == 3;\r\n    ul A[] = {2, 325, 9375, 28178, 450775, 9780504,\
-    \ 1795265022};\r\n    ul s = __builtin_ctzll(n - 1), d = n >> s;\r\n    for(auto\
-    \ a: A) {\r\n        ul p = modpow(a % n, d, n), i = s;\r\n        while(p !=\
-    \ 1 && p != n - 1 && a % n && i--) p = modmul(p, p, n);\r\n        if(p != n -\
-    \ 1 && i != s) return 0;\r\n    }\r\n    return 1;\r\n}\r\nul pollard(ul n) {\r\
-    \n    auto f = [n](ul x){ return modmul(x, x, n) + 1; };\r\n    ul x = 0, y(0),\
-    \ t(30), prd(2), i(1), q;\r\n    while(t++ % 40 || gcd(prd, n) == 1) {\r\n   \
-    \     if(x == y) x = ++i, y = f(x);\r\n        if((q = modmul(prd, max(x, y) -\
-    \ min(x, y), n))) prd = q;\r\n        x = f(x), y = f(f(y));\r\n    }\r\n    return\
-    \ gcd(prd, n);\r\n}\r\nvu rho(ul n) {\r\n    if(n == 1) return {};\r\n    if(isp(n))\
-    \ return {n};\r\n    ll x = pollard(n);\r\n    auto l = rho(x), r = rho(n / x);\r\
-    \n    l.insert(l.end(), r.begin(), r.end());\r\n    sort(l.begin(), l.end());\r\
-    \n    return l;\r\n}\r\n"
+    links: []
+  bundledCode: "#line 2 \"C++/Pollards_rho.hpp\"\n\r\n#include <vector>\r\n#include\
+    \ <algorithm>\r\n#include <numeric>\r\ntypedef long long ll;\r\ntypedef unsigned\
+    \ long long ul;\r\nll gcd(ll _a, ll _b) {\r\n    ull a = abs(_a), b = abs(_b);\r\
+    \n    if(a == 0) return b;\r\n    if(b == 0) return a;\r\n    const int shift\
+    \ = __builtin_ctzll(a|b);\r\n    a >>= __builtin_ctzll(a);\r\n    do {\r\n   \
+    \     b >>= bsf(b);\r\n        if (a > b) swap(a, b);\r\n        b -= a;\r\n \
+    \   } while (b);\r\n    return (a << shift);\r\n}\r\n\r\ntemplate<class T, class\
+    \ U>\r\nT pow_mod(T x, U n, T md) {\r\n    T r = 1 % md;\r\n    x %= md;\r\n \
+    \   while (n) {\r\n        if (n & 1) r = (r * x) % md;\r\n        x = (x * x)\
+    \ % md;\r\n        n >>= 1;\r\n    }\r\n    return r;\r\n}\r\n\r\nbool is_prime(ll\
+    \ n) {\r\n    if (n <= 1) return false;\r\n    if (n == 2) return true;\r\n  \
+    \  if (n % 2 == 0) return false;\r\n    ll d = n - 1;\r\n    while (d % 2 == 0)\
+    \ d /= 2;\r\n    for (ll a : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37}) {\r\
+    \n        if (n <= a) break;\r\n        ll t = d;\r\n        ll y = pow_mod<__int128_t>(a,\
+    \ t, n);  // over\r\n        while (t != n - 1 && y != 1 && y != n - 1) {\r\n\
+    \            y = __int128_t(y) * y % n;  // flow\r\n            t <<= 1;\r\n \
+    \       }\r\n        if (y != n - 1 && t % 2 == 0) {\r\n            return false;\r\
+    \n        }\r\n    }\r\n    return true;\r\n}\r\n\r\nll pollard_single(ll n) {\r\
+    \n    if (is_prime(n)) return n;\r\n    if (n % 2 == 0) return 2;\r\n    ll st\
+    \ = 0;\r\n    auto f = [&](ll x) { return (__int128_t(x) * x + st) % n; };\r\n\
+    \    while (true) {\r\n        st++;\r\n        ll x = st, y = f(x);\r\n     \
+    \   while (true) {\r\n            ll p = gcd((y - x + n), n);\r\n            if\
+    \ (p == 0 || p == n) break;\r\n            if (p != 1) return p;\r\n         \
+    \   x = f(x);\r\n            y = f(f(y));\r\n        }\r\n    }\r\n}\r\n\r\nV<ll>\
+    \ pollard(ll n) {\r\n    if (n == 1) return {};\r\n    ll x = pollard_single(n);\r\
+    \n    if (x == n) return {x};\r\n    V<ll> le = pollard(x);\r\n    V<ll> ri =\
+    \ pollard(n / x);\r\n    le.insert(le.end(), ri.begin(), ri.end());\r\n    return\
+    \ le;\r\n}\n"
+  code: "#pragma once\r\n\r\n#include <vector>\r\n#include <algorithm>\r\n#include\
+    \ <numeric>\r\ntypedef long long ll;\r\ntypedef unsigned long long ul;\r\nll gcd(ll\
+    \ _a, ll _b) {\r\n    ull a = abs(_a), b = abs(_b);\r\n    if(a == 0) return b;\r\
+    \n    if(b == 0) return a;\r\n    const int shift = __builtin_ctzll(a|b);\r\n\
+    \    a >>= __builtin_ctzll(a);\r\n    do {\r\n        b >>= bsf(b);\r\n      \
+    \  if (a > b) swap(a, b);\r\n        b -= a;\r\n    } while (b);\r\n    return\
+    \ (a << shift);\r\n}\r\n\r\ntemplate<class T, class U>\r\nT pow_mod(T x, U n,\
+    \ T md) {\r\n    T r = 1 % md;\r\n    x %= md;\r\n    while (n) {\r\n        if\
+    \ (n & 1) r = (r * x) % md;\r\n        x = (x * x) % md;\r\n        n >>= 1;\r\
+    \n    }\r\n    return r;\r\n}\r\n\r\nbool is_prime(ll n) {\r\n    if (n <= 1)\
+    \ return false;\r\n    if (n == 2) return true;\r\n    if (n % 2 == 0) return\
+    \ false;\r\n    ll d = n - 1;\r\n    while (d % 2 == 0) d /= 2;\r\n    for (ll\
+    \ a : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37}) {\r\n        if (n <= a) break;\r\
+    \n        ll t = d;\r\n        ll y = pow_mod<__int128_t>(a, t, n);  // over\r\
+    \n        while (t != n - 1 && y != 1 && y != n - 1) {\r\n            y = __int128_t(y)\
+    \ * y % n;  // flow\r\n            t <<= 1;\r\n        }\r\n        if (y != n\
+    \ - 1 && t % 2 == 0) {\r\n            return false;\r\n        }\r\n    }\r\n\
+    \    return true;\r\n}\r\n\r\nll pollard_single(ll n) {\r\n    if (is_prime(n))\
+    \ return n;\r\n    if (n % 2 == 0) return 2;\r\n    ll st = 0;\r\n    auto f =\
+    \ [&](ll x) { return (__int128_t(x) * x + st) % n; };\r\n    while (true) {\r\n\
+    \        st++;\r\n        ll x = st, y = f(x);\r\n        while (true) {\r\n \
+    \           ll p = gcd((y - x + n), n);\r\n            if (p == 0 || p == n) break;\r\
+    \n            if (p != 1) return p;\r\n            x = f(x);\r\n            y\
+    \ = f(f(y));\r\n        }\r\n    }\r\n}\r\n\r\nV<ll> pollard(ll n) {\r\n    if\
+    \ (n == 1) return {};\r\n    ll x = pollard_single(n);\r\n    if (x == n) return\
+    \ {x};\r\n    V<ll> le = pollard(x);\r\n    V<ll> ri = pollard(n / x);\r\n   \
+    \ le.insert(le.end(), ri.begin(), ri.end());\r\n    return le;\r\n}"
   dependsOn: []
   isVerificationFile: false
   path: C++/Pollards_rho.hpp
   requiredBy: []
-  timestamp: '2023-07-24 19:44:04+00:00'
+  timestamp: '2023-11-29 20:40:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/Pollards_rho.hpp
