@@ -18,7 +18,7 @@ class VvyLw extends MyFunction {
 	static final int mod998 = 998244353;
 	static final int mod107 = (int)1e9 + 7;
 	protected static void solve() {
-		
+		o.out(3, 5, "VvyLw");
 	}
 }
 class Main extends VvyLw {
@@ -237,6 +237,13 @@ class MyPrinter {
 	MyPrinter(final OutputStream os, final boolean flush){ pw = new PrintWriter(os, flush); }
 	void out(){ pw.println(); }
 	<T> void out(final T arg){ pw.println(arg); }
+	<T, Ts> void out(final T head, @SuppressWarnings("unchecked") final Ts... tail) {
+		pw.print(head);
+		for(final var el: tail) {
+			pw.print(" " + el);
+		}
+		out();
+	}
 	<F, S> void out(final Pair<F, S> arg){ pw.println(arg.first + " " + arg.second); }
 	void out(final int[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
 	void out(final long[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
