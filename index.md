@@ -15,7 +15,7 @@ data:
     - icon: ':warning:'
       path: C++/Modint.hpp
       title: C++/Modint.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: C++/Pollards_rho.hpp
       title: C++/Pollards_rho.hpp
     - icon: ':heavy_check_mark:'
@@ -130,6 +130,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/parsum.test.cpp
       title: test/parsum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/pf.test.cpp
+      title: test/pf.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/s_rmq.test.cpp
       title: test/s_rmq.test.cpp
