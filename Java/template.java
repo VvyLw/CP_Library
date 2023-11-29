@@ -65,19 +65,20 @@ class MyFunction {
 		}
 		return res;
 	}
-	protected static ArrayList<Long> div(final Long n) {
+	protected static ArrayList<Long> div(final long n) {
 		ArrayList<Long> d = new ArrayList<>();
-		final long num = n.longValue();
-		for(long i = 1; i * i <= num; ++i) {
-			if(num % i == 0) {
-				d.add(Long.valueOf(i));
-				if(i * i != num) d.add(Long.valueOf(num / i));
+		for(long i = 1; i * i <= n; ++i) {
+			if(n % i == 0) {
+				d.add(i);
+				if(i * i != n) {
+					d.add(n / i);
+				}
 			}
 		}
 		Collections.sort(d);
 		return d;
 	}
-	protected static ArrayList<Long> primeFactor(Long n) {
+	protected static ArrayList<Long> primeFactor(long n) {
 		ArrayList<Long> pf = new ArrayList<>();
 		for(long i = 2; i * i <= n; ++i) {
 			if(n % i != 0) continue;
