@@ -1,11 +1,13 @@
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.BiFunction;
 import java.util.stream.IntStream;
 
 class VvyLw extends MyFunction {
@@ -19,13 +21,23 @@ class VvyLw extends MyFunction {
 	static final int mod998 = 998244353;
 	static final int mod107 = (int)1e9 + 7;
 	protected static void solve() {
-		
+		final long n = sc.nl();
+		final BigPrime bp = new BigPrime(n);
+		final var ans = bp.primeFactor(n);
+		o.print(ans.size());
+		if(!ans.isEmpty()) {
+			o.print(" ");
+			o.out(ans);
+		}
+		else {
+			o.out();
+		}
 	}
 }
 class Main extends VvyLw {
 	public static void main(final String[] args) {
 		int t = 1;
-		//t = sc.ni();
+		t = sc.ni();
 		while(t-- > 0) {
 			solve();
 		}
@@ -236,6 +248,7 @@ class MyScanner {
 class MyPrinter {
 	private PrintWriter pw;
 	MyPrinter(final OutputStream os, final boolean flush){ pw = new PrintWriter(os, flush); }
+	void print(final Object arg){ pw.print(arg); }
 	void out(){ pw.println(); }
 	void out(final Object head, final Object... tail) {
 		pw.print(head);
@@ -393,5 +406,98 @@ class UnionFind {
 			ok &= root(i) != root(i + n);
 		}
 		return ok;
+	}
+}
+
+class BigPrime {
+	private long n;
+	BigPrime(final long n){ this.n = n; }
+	private int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
+	private long gcd(long a, long b) {
+		a = Math.abs(a);
+		b = Math.abs(b);
+		if(a == 0) {
+			return b;
+		}
+		if(b == 0) {
+			return a;
+		}
+		final int shift = bsf(a|b);
+		a >>= bsf(a);
+		do {
+			b >>= bsf(b);
+			if(a > b) {
+				a ^= b;
+				b ^= a;
+				a ^= b;
+			}
+			b -= a;
+		} while(b > 0);
+		return a << shift;
+	}
+	boolean isPrime() {
+		if(n <= 1) {
+			return false;
+		}
+		if(n == 2) {
+			return true;
+		}
+		if(n % 2 == 0) {
+			return false;
+		}
+		long d = n - 1;
+		while(d % 2 == 0) {
+			d /= 2;
+		}
+		final long[] sample = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
+		for(final long a: sample) {
+			if(n <= a) {
+				break;
+			}
+			long t = d;
+			BigInteger y = BigInteger.valueOf(a).modPow(BigInteger.valueOf(t), BigInteger.valueOf(n));
+			while(t != n - 1 && !y.equals(BigInteger.ONE) && !y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE))) {
+				y = y.multiply(y).mod(BigInteger.valueOf(n));
+				t <<= 1;
+			}
+			if(!y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)) && t % 2 == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+	private long find() {
+		if(isPrime()) {
+			return n;
+		}
+		if(n % 2 == 0) {
+			return 2;
+		}
+		long st = 0;
+		final BiFunction<Long, Long, Long> f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue(); };
+		while(true) {
+			st++;
+			long x = st, y = f.apply(x, st);
+			while(true) {
+				final long p = gcd(y - x + n, n);
+				if(p == 0 || p == n) {
+					break;
+				}
+				if(p != 1) {
+					return p;
+				}
+				x = f.apply(x, st);
+				y = f.apply(f.apply(y, st), st);
+			}
+		}
+	}
+	ArrayList<Long> primeFactor(final long n) {
+		if(n == 1) return new ArrayList<>();
+		final long x = find();
+		if(x == n) return new ArrayList<>(Arrays.asList(x));
+		ArrayList<Long> le = primeFactor(x);
+		final ArrayList<Long> ri = primeFactor(n / x);
+		le.addAll(ri);
+		return le;
 	}
 }

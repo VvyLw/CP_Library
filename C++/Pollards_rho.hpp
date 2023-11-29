@@ -1,4 +1,3 @@
-// inspired by Plato_(https://atcoder.jp/contests/abc284/submissions/37807522)
 #pragma once
 
 #include <vector>
@@ -6,45 +5,77 @@
 #include <numeric>
 typedef long long ll;
 typedef unsigned long long ul;
-using namespace std;
-using vu = vector<ul>;
-ul modmul(ul a, ul b, ul M) {
-    ll ret = a * b - M * ul(1.L / M * a * b);
-    return ret + M * (ret < 0) - M * (ret >= (ll)M);
+ll gcd(ll _a, ll _b) {
+    ull a = abs(_a), b = abs(_b);
+    if(a == 0) return b;
+    if(b == 0) return a;
+    const int shift = __builtin_ctzll(a|b);
+    a >>= __builtin_ctzll(a);
+    do {
+        b >>= bsf(b);
+        if (a > b) swap(a, b);
+        b -= a;
+    } while (b);
+    return (a << shift);
 }
-ul modpow(ul b, ul e, ul mod) {
-    ul ans = 1;
-    for(; e; b = modmul(b, b, mod), e /= 2)
-        if(e & 1) ans = modmul(ans, b, mod);
-    return ans;
-}
-bool isp(ul n) {
-    if(n < 2 || n % 6 % 4 != 1) return (n | 1) == 3;
-    ul A[] = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
-    ul s = __builtin_ctzll(n - 1), d = n >> s;
-    for(auto a: A) {
-        ul p = modpow(a % n, d, n), i = s;
-        while(p != 1 && p != n - 1 && a % n && i--) p = modmul(p, p, n);
-        if(p != n - 1 && i != s) return 0;
+
+template<class T, class U>
+T pow_mod(T x, U n, T md) {
+    T r = 1 % md;
+    x %= md;
+    while (n) {
+        if (n & 1) r = (r * x) % md;
+        x = (x * x) % md;
+        n >>= 1;
     }
-    return 1;
+    return r;
 }
-ul pollard(ul n) {
-    auto f = [n](ul x){ return modmul(x, x, n) + 1; };
-    ul x = 0, y(0), t(30), prd(2), i(1), q;
-    while(t++ % 40 || gcd(prd, n) == 1) {
-        if(x == y) x = ++i, y = f(x);
-        if((q = modmul(prd, max(x, y) - min(x, y), n))) prd = q;
-        x = f(x), y = f(f(y));
+
+bool is_prime(ll n) {
+    if (n <= 1) return false;
+    if (n == 2) return true;
+    if (n % 2 == 0) return false;
+    ll d = n - 1;
+    while (d % 2 == 0) d /= 2;
+    for (ll a : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37}) {
+        if (n <= a) break;
+        ll t = d;
+        ll y = pow_mod<__int128_t>(a, t, n);  // over
+        while (t != n - 1 && y != 1 && y != n - 1) {
+            y = __int128_t(y) * y % n;  // flow
+            t <<= 1;
+        }
+        if (y != n - 1 && t % 2 == 0) {
+            return false;
+        }
     }
-    return gcd(prd, n);
+    return true;
 }
-vu rho(ul n) {
-    if(n == 1) return {};
-    if(isp(n)) return {n};
-    ll x = pollard(n);
-    auto l = rho(x), r = rho(n / x);
-    l.insert(l.end(), r.begin(), r.end());
-    sort(l.begin(), l.end());
-    return l;
+
+ll pollard_single(ll n) {
+    if (is_prime(n)) return n;
+    if (n % 2 == 0) return 2;
+    ll st = 0;
+    auto f = [&](ll x) { return (__int128_t(x) * x + st) % n; };
+    while (true) {
+        st++;
+        ll x = st, y = f(x);
+        while (true) {
+            ll p = gcd((y - x + n), n);
+            if (p == 0 || p == n) break;
+            if (p != 1) return p;
+            x = f(x);
+            y = f(f(y));
+        }
+    }
+}
+
+V<ll> pollard(ll n) {
+    if (n == 1) return {};
+    ll x = pollard_single(n);
+    if (x == n) return {x};
+    V<ll> le = pollard(x);
+    V<ll> ri = pollard(n / x);
+    le.insert(le.end(), ri.begin(), ri.end());
+    return le;
 }
