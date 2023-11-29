@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 class VvyLw extends MyFunction {
 	protected static final MyScanner sc = new MyScanner();
 	protected static final MyPrinter o = new MyPrinter(System.out, false);
-	protected static final MyPrinter e = new MyPrinter(System.err, false);
+	protected static final MyPrinter e = new MyPrinter(System.err, true);
 	static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};
 	static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};
 	static final int inf = 1 << 30;
