@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: C++/MST.hpp
     title: C++/MST.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/kruskal.test.cpp
+    title: test/kruskal.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
@@ -72,6 +75,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/uf.test.cpp
+  - test/kruskal.test.cpp
 documentation_of: C++/UnionFind.hpp
 layout: document
 redirect_from:

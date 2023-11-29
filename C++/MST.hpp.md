@@ -5,10 +5,13 @@ data:
     path: C++/UnionFind.hpp
     title: C++/UnionFind.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/kruskal.test.cpp
+    title: test/kruskal.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"C++/MST.hpp\"\n#include <iostream>\n#include <C++/UnionFind.hpp>\n\
@@ -37,8 +40,9 @@ data:
   path: C++/MST.hpp
   requiredBy: []
   timestamp: '2023-11-28 11:57:31+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/kruskal.test.cpp
 documentation_of: C++/MST.hpp
 layout: document
 redirect_from:

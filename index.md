@@ -9,7 +9,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/LCA.hpp
       title: C++/LCA.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: C++/MST.hpp
       title: C++/MST.hpp
     - icon: ':warning:'
@@ -118,6 +118,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/ftree.test.cpp
       title: test/ftree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/kruskal.test.cpp
+      title: test/kruskal.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/lca.test.cpp
       title: test/lca.test.cpp
