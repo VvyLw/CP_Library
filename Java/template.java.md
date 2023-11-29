@@ -23,10 +23,7 @@ data:
     \ dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final int inf = 1 << 30;\n\t\
     static final long linf = (1L << 61) - 1;\n\tstatic final int mod998 = 998244353;\n\
     \tstatic final int mod107 = (int)1e9 + 7;\n\tprotected static void solve() {\n\
-    \t\tfinal long n = sc.nl();\n\t\tfinal BigPrime bp = new BigPrime(n);\n\t\tfinal\
-    \ var ans = bp.primeFactor(n);\n\t\to.print(ans.size());\n\t\tif(!ans.isEmpty())\
-    \ {\n\t\t\to.print(\" \");\n\t\t\to.out(ans);\n\t\t}\n\t\telse {\n\t\t\to.out();\n\
-    \t\t}\n\t}\n}\nclass Main extends VvyLw {\n\tpublic static void main(final String[]\
+    \t\t\n\t}\n}\nclass Main extends VvyLw {\n\tpublic static void main(final String[]\
     \ args) {\n\t\tint t = 1;\n\t\tt = sc.ni();\n\t\twhile(t-- > 0) {\n\t\t\tsolve();\n\
     \t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\t}\n\
     }\n\nclass MyFunction {\n\tprotected static String yes(final boolean ok){ return\
@@ -211,7 +208,7 @@ data:
   isVerificationFile: false
   path: Java/template.java
   requiredBy: []
-  timestamp: '2023-11-29 20:40:26+09:00'
+  timestamp: '2023-11-29 20:40:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/template.java
