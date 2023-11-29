@@ -461,7 +461,7 @@ class BigPrime {
 		if(n % 2 == 0) {
 			return 2;
 		}
-		long st = 0;
+		int st = 0;
 		final BiFunction<Long, Long, Long> f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue(); };
 		while(true) {
 			st++;
