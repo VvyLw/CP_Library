@@ -17,9 +17,9 @@ data:
     import java.util.Scanner;\nimport java.util.stream.IntStream;\n\nclass VvyLw extends\
     \ MyFunction {\n\tprotected static final MyScanner sc = new MyScanner();\n\tprotected\
     \ static final MyPrinter o = new MyPrinter(System.out, false);\n\tprotected static\
-    \ final MyPrinter e = new MyPrinter(System.err, false);\n\tstatic final int[]\
-    \ dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1,\
-    \ 1, -1, 1, -1, 1};\n\tstatic final int inf = 1 << 30;\n\tstatic final long linf\
+    \ final MyPrinter e = new MyPrinter(System.err, true);\n\tstatic final int[] dx\
+    \ = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1,\
+    \ -1, 1, -1, 1};\n\tstatic final int inf = 1 << 30;\n\tstatic final long linf\
     \ = (1L << 61) - 1;\n\tstatic final int mod998 = 998244353;\n\tstatic final int\
     \ mod107 = (int)1e9 + 7;\n\tprotected static void solve() {\n\t\t\n\t}\n}\nclass\
     \ Main extends VvyLw {\n\tpublic static void main(final String[] args) {\n\t\t\
@@ -171,7 +171,7 @@ data:
   isVerificationFile: false
   path: Java/template.java
   requiredBy: []
-  timestamp: '2023-11-29 12:18:09+09:00'
+  timestamp: '2023-11-29 12:20:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/template.java
