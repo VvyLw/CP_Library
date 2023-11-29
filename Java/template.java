@@ -27,7 +27,7 @@ class VvyLw extends MyFunction {
 class Main extends VvyLw {
 	public static void main(final String[] args) {
 		int t = 1;
-		t = sc.ni();
+		//t = sc.ni();
 		while(t-- > 0) {
 			solve();
 		}
@@ -400,8 +400,6 @@ class UnionFind {
 }
 
 class BigPrime {
-	private long n;
-	BigPrime(final long n){ this.n = n; }
 	private int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
 	private long gcd(long a, long b) {
 		a = Math.abs(a);
@@ -425,7 +423,7 @@ class BigPrime {
 		} while(b > 0);
 		return a << shift;
 	}
-	boolean isPrime() {
+	boolean isPrime(final long n) {
 		if(n <= 1) {
 			return false;
 		}
@@ -456,8 +454,8 @@ class BigPrime {
 		}
 		return true;
 	}
-	private long find() {
-		if(isPrime()) {
+	private long find(final long n) {
+		if(isPrime(n)) {
 			return n;
 		}
 		if(n % 2 == 0) {
@@ -483,7 +481,7 @@ class BigPrime {
 	}
 	ArrayList<Long> primeFactor(final long n) {
 		if(n == 1) return new ArrayList<>();
-		final long x = find();
+		final long x = find(n);
 		if(x == n) return new ArrayList<>(Arrays.asList(x));
 		ArrayList<Long> le = primeFactor(x);
 		final ArrayList<Long> ri = primeFactor(n / x);
