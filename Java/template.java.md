@@ -21,76 +21,77 @@ data:
     \ = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1,\
     \ -1, 1, -1, 1};\n\tstatic final int inf = 1 << 30;\n\tstatic final long linf\
     \ = (1L << 61) - 1;\n\tstatic final int mod998 = 998244353;\n\tstatic final int\
-    \ mod107 = (int)1e9 + 7;\n\tprotected static void solve() {\n\t\t\n\t}\n}\nclass\
-    \ Main extends VvyLw {\n\tpublic static void main(final String[] args) {\n\t\t\
-    int t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\t\t\tsolve();\n\t\t}\n\t\
-    \to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\t}\n}\n\nclass\
-    \ MyFunction {\n\tprotected static String yes(final boolean ok){ return ok ? \"\
-    Yes\" : \"No\"; }\n\tprotected static String no(final boolean ok){ return yes(!ok);\
-    \ }\n\tprotected static long sqr(final long x){ return x * x; }\n\tprotected static\
-    \ int mod(final long n, final int m){ return (int) ((n + m) % m); }\n\tprotected\
-    \ static long intCeil(long a, long b){ return (long) Math.ceil((double)a / b);\
-    \ }\n\tprotected static long intPow(long a, int b) {\n\t\tlong res = 1;\n\t\t\
-    while(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *=\
-    \ a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static long intPow(long\
-    \ a, long b, final int m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b\
-    \ % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\t\
-    a *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t\
-    protected static ArrayList<Long> div(final long n) {\n\t\tArrayList<Long> d =\
-    \ new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n % i ==\
-    \ 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n / i);\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\t\treturn d;\n\t}\n\tprotected\
-    \ static ArrayList<Long> primeFactor(long n) {\n\t\tArrayList<Long> pf = new ArrayList<>();\n\
-    \t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) continue;\n\t\t\t\
-    while(n % i == 0) {\n\t\t\t\tpf.add(i);\n\t\t\t\tn /= i;\n\t\t\t}\n\t\t}\n\t\t\
-    if(n != 1) pf.add(n);\n\t\treturn pf;\n\t}\n\tprotected static long binom(int\
-    \ a, final int b) {\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= b; ++i) {\n\t\t\
-    \tres *= a--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ boolean isInt(final double n){ long r = (long) Math.floor(n); return r == n;\
-    \ }\n\tprotected static boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
-    \ }\n\tprotected static boolean isPrime(final long n) {\n\t\tif(n == 1) return\
-    \ false;\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) return\
-    \ false;\n\t\t}\n\t\treturn true;\n\t}\n\tprotected static boolean nextPerm(ArrayList<Integer>\
-    \ a) {\n\t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
-    \ < 0) {\n\t\t\t\tfinal int j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\
-    \tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\
-    \t\t\t\treturn true;\n\t\t\t}\n\t\t}\n\t\treturn false;\n\t}\n\tprivate static\
-    \ <T extends Comparable<? super T>> int find(T dest, ArrayList<T> a, int s, int\
-    \ e) {\n\t\tif (s == e) return s;\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn\
-    \ a.get(m).compareTo(dest) <= 0 ? find(dest, a, s, m - 1):find(dest, a, m, e);\n\
-    \t}\n\tprotected static boolean binarySearch(final int[] a, final int x) {\n\t\
-    \treturn Arrays.binarySearch(a, x) >= 0;\n\t}\n\tprotected static boolean binarySearch(final\
-    \ long[] a, final long x) {\n\t\treturn Arrays.binarySearch(a, x) >= 0;\n\t}\n\
-    \tprotected static int lowerBound(final List<Integer> a, final int x) {\n\t\t\
-    return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) >= 0 ? 1 : -1);\n\
-    \t}\n\tprotected static int lowerBound(final List<Long> a, final long x) {\n\t\
-    \treturn ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) >= 0 ? 1 : -1);\n\
-    \t}\n\tprotected static int upperBound(final List<Integer>a, final int x) {\n\t\
-    \treturn ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) > 0 ? 1 : -1);\n\
-    \t}\n\tprotected static int upperBound(final List<Long> a, final long x) {\n\t\
-    \treturn ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) > 0 ? 1 : -1);\n\
-    \t}\n\tprotected static int[] rotate(final int[] a, final int id) {\n\t\tArrayList<Integer>\
-    \ t = new ArrayList<>();\n\t\tfor(final var el: a) {\n\t\t\tt.add(el);\n\t\t}\n\
-    \t\tCollections.rotate(t, id);\n\t\tint[] res = new int[t.size()];\n\t\tfor(int\
-    \ i = 0; i < t.size(); ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static String rotate(final String s, final int id) {\n\t\tArrayList<Character>\
-    \ t = new ArrayList<>();\n\t\tfor(final char c: s.toCharArray()) {\n\t\t\tt.add(c);\n\
-    \t\t}\n\t\tCollections.rotate(t, id);\n\t\tStringBuilder sb = new StringBuilder();\n\
-    \t\tfor(final var c: t) {\n\t\t\tsb.append(c);\n\t\t}\n\t\treturn sb.toString();\
-    \ \n\t}\n\tprotected static long lcm(final long a, final long b){ return a * b\
-    \ / gcd(a, b); }\n\tprotected static long gcd(final long a, final long b){ return\
-    \ b > 0 ? gcd(b, a % b) : a; }\n\tprotected static <F, S> ArrayList<F> first(final\
-    \ List<Pair<F, S>> p) {\n\t\tArrayList<F> f = new ArrayList<>();\n\t\tfor(final\
-    \ var el: p) {\n\t\t\tf.add(el.first);\n\t\t}\n\t\treturn f;\n\t}\n\tprotected\
-    \ static <F, S> ArrayList<S> second(final List<Pair<F, S>> p) {\n\t\tArrayList<S>\
-    \ s = new ArrayList<>();\n\t\tfor(final var el: p) {\n\t\t\ts.add(el.second);\n\
-    \t\t}\n\t\treturn s;\n\t}\n}\n\nclass MyScanner {\n\tprivate Scanner sc = new\
-    \ Scanner(System.in);\n\tint ni(){ return sc.nextInt(); }\n\tlong nl(){ return\
-    \ sc.nextLong(); }\n\tdouble nd(){ return sc.nextDouble(); }\n\tString ns(){ return\
-    \ sc.next(); }\n\tint[] ni(final int n){\n\t\tint[] a = new int[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = ni());\n\t\treturn a;\n\t}\n\tlong[] nl(final int n){\n\
-    \t\tlong[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\
-    \t\treturn a;\n\t}\n\tdouble[] nd(final int n){\n\t\tdouble[] a = new double[n];\n\
+    \ mod107 = (int)1e9 + 7;\n\tprotected static void solve() {\n\t\to.out(3, 5, \"\
+    VvyLw\");\n\t}\n}\nclass Main extends VvyLw {\n\tpublic static void main(final\
+    \ String[] args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\
+    \t\t\tsolve();\n\t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\
+    \t}\n}\n\nclass MyFunction {\n\tprotected static String yes(final boolean ok){\
+    \ return ok ? \"Yes\" : \"No\"; }\n\tprotected static String no(final boolean\
+    \ ok){ return yes(!ok); }\n\tprotected static long sqr(final long x){ return x\
+    \ * x; }\n\tprotected static int mod(final long n, final int m){ return (int)\
+    \ ((n + m) % m); }\n\tprotected static long intCeil(long a, long b){ return (long)\
+    \ Math.ceil((double)a / b); }\n\tprotected static long intPow(long a, int b) {\n\
+    \t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *=\
+    \ a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t\
+    protected static long intPow(long a, long b, final int m) {\n\t\tlong res = 1;\n\
+    \t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res,\
+    \ m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\
+    \treturn res;\n\t}\n\tprotected static ArrayList<Long> div(final long n) {\n\t\
+    \tArrayList<Long> d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i)\
+    \ {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\
+    \t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\t\t\
+    return d;\n\t}\n\tprotected static ArrayList<Long> primeFactor(long n) {\n\t\t\
+    ArrayList<Long> pf = new ArrayList<>();\n\t\tfor(long i = 2; i * i <= n; ++i)\
+    \ {\n\t\t\tif(n % i != 0) continue;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tpf.add(i);\n\
+    \t\t\t\tn /= i;\n\t\t\t}\n\t\t}\n\t\tif(n != 1) pf.add(n);\n\t\treturn pf;\n\t\
+    }\n\tprotected static long binom(int a, final int b) {\n\t\tlong res = 1;\n\t\t\
+    for(int i = 1; i <= b; ++i) {\n\t\t\tres *= a--;\n\t\t\tres /= i;\n\t\t}\n\t\t\
+    return res;\n\t}\n\tprotected static boolean isInt(final double n){ long r = (long)\
+    \ Math.floor(n); return r == n; }\n\tprotected static boolean isSqr(final long\
+    \ n){ return isInt(Math.sqrt(n)); }\n\tprotected static boolean isPrime(final\
+    \ long n) {\n\t\tif(n == 1) return false;\n\t\tfor(long i = 2; i * i <= n; ++i)\
+    \ {\n\t\t\tif(n % i == 0) return false;\n\t\t}\n\t\treturn true;\n\t}\n\tprotected\
+    \ static boolean nextPerm(ArrayList<Integer> a) {\n\t\tfor(int i = a.size() -\
+    \ 1; i > 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i)) < 0) {\n\t\t\t\t\
+    final int j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\tCollections.swap(a,\
+    \ i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\t\t\t\treturn\
+    \ true;\n\t\t\t}\n\t\t}\n\t\treturn false;\n\t}\n\tprivate static <T extends Comparable<?\
+    \ super T>> int find(T dest, ArrayList<T> a, int s, int e) {\n\t\tif (s == e)\
+    \ return s;\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn a.get(m).compareTo(dest)\
+    \ <= 0 ? find(dest, a, s, m - 1):find(dest, a, m, e);\n\t}\n\tprotected static\
+    \ boolean binarySearch(final int[] a, final int x) {\n\t\treturn Arrays.binarySearch(a,\
+    \ x) >= 0;\n\t}\n\tprotected static boolean binarySearch(final long[] a, final\
+    \ long x) {\n\t\treturn Arrays.binarySearch(a, x) >= 0;\n\t}\n\tprotected static\
+    \ int lowerBound(final List<Integer> a, final int x) {\n\t\treturn ~Collections.binarySearch(a,\
+    \ x, (p, q) -> p.compareTo(q) >= 0 ? 1 : -1);\n\t}\n\tprotected static int lowerBound(final\
+    \ List<Long> a, final long x) {\n\t\treturn ~Collections.binarySearch(a, x, (p,\
+    \ q) -> p.compareTo(q) >= 0 ? 1 : -1);\n\t}\n\tprotected static int upperBound(final\
+    \ List<Integer>a, final int x) {\n\t\treturn ~Collections.binarySearch(a, x, (p,\
+    \ q) -> p.compareTo(q) > 0 ? 1 : -1);\n\t}\n\tprotected static int upperBound(final\
+    \ List<Long> a, final long x) {\n\t\treturn ~Collections.binarySearch(a, x, (p,\
+    \ q) -> p.compareTo(q) > 0 ? 1 : -1);\n\t}\n\tprotected static int[] rotate(final\
+    \ int[] a, final int id) {\n\t\tArrayList<Integer> t = new ArrayList<>();\n\t\t\
+    for(final var el: a) {\n\t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t, id);\n\
+    \t\tint[] res = new int[t.size()];\n\t\tfor(int i = 0; i < t.size(); ++i) {\n\t\
+    \t\tres[i] = t.get(i);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static String\
+    \ rotate(final String s, final int id) {\n\t\tArrayList<Character> t = new ArrayList<>();\n\
+    \t\tfor(final char c: s.toCharArray()) {\n\t\t\tt.add(c);\n\t\t}\n\t\tCollections.rotate(t,\
+    \ id);\n\t\tStringBuilder sb = new StringBuilder();\n\t\tfor(final var c: t) {\n\
+    \t\t\tsb.append(c);\n\t\t}\n\t\treturn sb.toString(); \n\t}\n\tprotected static\
+    \ long lcm(final long a, final long b){ return a * b / gcd(a, b); }\n\tprotected\
+    \ static long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) :\
+    \ a; }\n\tprotected static <F, S> ArrayList<F> first(final List<Pair<F, S>> p)\
+    \ {\n\t\tArrayList<F> f = new ArrayList<>();\n\t\tfor(final var el: p) {\n\t\t\
+    \tf.add(el.first);\n\t\t}\n\t\treturn f;\n\t}\n\tprotected static <F, S> ArrayList<S>\
+    \ second(final List<Pair<F, S>> p) {\n\t\tArrayList<S> s = new ArrayList<>();\n\
+    \t\tfor(final var el: p) {\n\t\t\ts.add(el.second);\n\t\t}\n\t\treturn s;\n\t\
+    }\n}\n\nclass MyScanner {\n\tprivate Scanner sc = new Scanner(System.in);\n\t\
+    int ni(){ return sc.nextInt(); }\n\tlong nl(){ return sc.nextLong(); }\n\tdouble\
+    \ nd(){ return sc.nextDouble(); }\n\tString ns(){ return sc.next(); }\n\tint[]\
+    \ ni(final int n){\n\t\tint[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = ni());\n\t\treturn a;\n\t}\n\tlong[] nl(final int n){\n\t\tlong[]\
+    \ a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\t\
+    return a;\n\t}\n\tdouble[] nd(final int n){\n\t\tdouble[] a = new double[n];\n\
     \t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tString[]\
     \ ns(final int n){\n\t\tString[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i\
     \ -> a[i] = ns());\n\t\treturn a;\n\t}\n\tArrayList<Integer> nia(final int n)\
@@ -104,14 +105,16 @@ data:
     \ -> a.add(i, ns()));\n\t\treturn a;\n\t}\n\tvoid close(){ sc.close(); }\n}\n\n\
     class MyPrinter {\n\tprivate PrintWriter pw;\n\tMyPrinter(final OutputStream os,\
     \ final boolean flush){ pw = new PrintWriter(os, flush); }\n\tvoid out(){ pw.println();\
-    \ }\n\t<T> void out(final T arg){ pw.println(arg); }\n\t<F, S> void out(final\
-    \ Pair<F, S> arg){ pw.println(arg.first + \" \" + arg.second); }\n\tvoid out(final\
-    \ int[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] +\
-    \ (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tvoid out(final long[] args){\
+    \ }\n\t<T> void out(final T arg){ pw.println(arg); }\n\t<T, Ts> void out(final\
+    \ T head, @SuppressWarnings(\"unchecked\") final Ts... tail) {\n\t\tpw.print(head);\n\
+    \t\tfor(final var el: tail) {\n\t\t\tpw.print(\" \" + el);\n\t\t}\n\t\tout();\n\
+    \t}\n\t<F, S> void out(final Pair<F, S> arg){ pw.println(arg.first + \" \" + arg.second);\
+    \ }\n\tvoid out(final int[] args){ IntStream.range(0, args.length).forEach(i ->\
+    \ pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tvoid out(final\
+    \ long[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i]\
+    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tvoid out(final double[] args){\
     \ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length\
-    \ ? \" \" : \"\\n\"))); }\n\tvoid out(final double[] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? \" \" :\
-    \ \"\\n\"))); }\n\tvoid out(final char[] args){ IntStream.range(0, args.length).forEach(i\
+    \ ? \" \" : \"\\n\"))); }\n\tvoid out(final char[] args){ IntStream.range(0, args.length).forEach(i\
     \ -> pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tvoid out(final\
     \ String[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i]\
     \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\t<T> void out(final List<T>\
@@ -170,7 +173,7 @@ data:
   isVerificationFile: false
   path: Java/template.java
   requiredBy: []
-  timestamp: '2023-11-29 12:31:41+09:00'
+  timestamp: '2023-11-29 12:57:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/template.java
