@@ -1,6 +1,5 @@
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -41,7 +40,7 @@ class MyFunction {
 	protected static String no(final boolean ok){ return yes(!ok); }
 	protected static long sqr(final long x){ return x * x; }
 	protected static int mod(final long n, final int m){ return (int) ((n + m) % m); }
-	protected static long intCeil(long a, long b) { return (long) Math.ceil((double)a / b); }
+	protected static long intCeil(long a, long b){ return (long) Math.ceil((double)a / b); }
 	protected static long intPow(long a, int b) {
 		long res = 1;
 		while(b > 0) {
@@ -165,6 +164,22 @@ class MyFunction {
 		}
 		return sb.toString(); 
 	}
+	protected static long lcm(final long a, final long b){ return a * b / gcd(a, b); }
+	protected static long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }
+	protected static <F, S> ArrayList<F> first(final List<Pair<F, S>> p) {
+		ArrayList<F> f = new ArrayList<>();
+		for(final var el: p) {
+			f.add(el.first);
+		}
+		return f;
+	}
+	protected static <F, S> ArrayList<S> second(final List<Pair<F, S>> p) {
+		ArrayList<S> s = new ArrayList<>();
+		for(final var el: p) {
+			s.add(el.second);
+		}
+		return s;
+	}
 }
 
 class MyScanner {
@@ -173,42 +188,42 @@ class MyScanner {
 	long nl(){ return sc.nextLong(); }
 	double nd(){ return sc.nextDouble(); }
 	String ns(){ return sc.next(); }
-	int[] nil(final int n){
+	int[] ni(final int n){
 		int[] a = new int[n];
 		IntStream.range(0, n).forEach(i -> a[i] = ni());
 		return a;
 	}
-	long[] nll(final int n){
+	long[] nl(final int n){
 		long[] a = new long[n];
 		IntStream.range(0, n).forEach(i -> a[i] = nl());
 		return a;
 	}
-	double[] ndl(final int n){
+	double[] nd(final int n){
 		double[] a = new double[n];
 		IntStream.range(0, n).forEach(i -> a[i] = nd());
 		return a;
 	}
-	String[] nsl(final int n){
+	String[] ns(final int n){
 		String[] a = new String[n];
 		IntStream.range(0, n).forEach(i -> a[i] = ns());
 		return a;
 	}
-	ArrayList<Integer> nial(final int n) {
+	ArrayList<Integer> nia(final int n) {
 		var a = new ArrayList<Integer>(n);
 		IntStream.range(0, n).forEach(i -> a.add(i, ni()));
 		return a;
 	}
-	ArrayList<Long> nlal(final int n) {
+	ArrayList<Long> nla(final int n) {
 		var a = new ArrayList<Long>(n);
 		IntStream.range(0, n).forEach(i -> a.add(i, nl()));
 		return a;
 	}
-	ArrayList<Double> ndal(final int n) {
+	ArrayList<Double> nda(final int n) {
 		var a = new ArrayList<Double>(n);
 		IntStream.range(0, n).forEach(i -> a.add(i, nd()));
 		return a;
 	}
-	ArrayList<String> nsal(final int n) {
+	ArrayList<String> nsa(final int n) {
 		var a = new ArrayList<String>(n);
 		IntStream.range(0, n).forEach(i -> a.add(i, ns()));
 		return a;
@@ -221,6 +236,7 @@ class MyPrinter {
 	MyPrinter(final OutputStream os, final boolean flush){ pw = new PrintWriter(os, flush); }
 	void out(){ pw.println(); }
 	<T> void out(final T arg){ pw.println(arg); }
+	<F, S> void out(final Pair<F, S> arg){ pw.println(arg.first + " " + arg.second); }
 	void out(final int[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
 	void out(final long[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
 	void out(final double[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
@@ -245,6 +261,80 @@ class MyPrinter {
 	}
 	void flush(){ pw.flush(); }
 	void close(){ pw.close(); }
+}
+
+class Pair<F, S> {
+	protected final F first;
+	protected final S second;
+	Pair(final F first, final S second) {
+		this.first = first;
+		this.second = second;
+	}
+	@Override
+	public boolean equals(final Object o) {
+		if(this == o) {
+			return true;
+		}
+		if(o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		final Pair<?, ?> p = (Pair<?, ?>) o;
+		if(!first.equals(p.first)) {
+			return false;
+		}
+		return second.equals(p.second);
+	}
+	@Override
+	public int hashCode(){ return 31 * first.hashCode() + second.hashCode(); }
+	@Override
+	public String toString(){ return "(" + first + ", " + second + ")"; }
+	public static <F, S> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }
+	Pair<S, F> swap(){ return Pair.of(second, first); }
+}
+
+class NumPair extends Pair<Number, Number> {
+	NumPair(final Number first, final Number second) {
+		super(first, second);
+	}
+	NumPair rotate(){ return new NumPair(-second.doubleValue(), first.doubleValue()); } 
+	NumPair rotate(final int ang) {
+		final double rad = Math.PI * MyFunction.mod(ang, 360) / 180;
+		return new NumPair(first.doubleValue() * Math.cos(rad) - second.doubleValue() * Math.sin(rad),
+							first.doubleValue() * Math.sin(rad) + second.doubleValue() * Math.cos(rad));
+	}
+	long dot(final NumPair p){ return first.longValue() * p.first.longValue() + second.longValue() + p.second.longValue(); }
+	long cross(final NumPair p){ return this.rotate().dot(p); }
+	long square(){ return this.dot(this); }
+	double grad() { 
+		try {
+			return second.doubleValue() / first.doubleValue();
+		} catch(ArithmeticException e) {
+			e.printStackTrace();
+			return Double.NaN;
+		}
+	}
+	double abs(){ return Math.hypot(first.doubleValue(), second.doubleValue()); }
+	double lcm(){ return MyFunction.lcm(first.longValue(), second.longValue()); }
+	double gcd(){ return MyFunction.gcd(first.longValue(), second.longValue()); }
+	NumPair extgcd() {
+		long x = 1, y = 0, t1 = 0, t2 = 0, t3 = 1, a = first.longValue(), b = second.longValue();
+		while(b > 0) {
+			t1=a / b;
+			a -= t1 * b;
+			a ^= b;
+			b ^= a;
+			a ^= b;
+			x -= t1 * t2;
+			x ^= t2;
+			t2 ^= x;
+			x ^= t2;
+			y -= t1 * t3;
+			y ^= t3;
+			t3 ^= y;
+			y ^= t3;
+		}
+		return new NumPair(x, y);
+	}
 }
 
 class UnionFind {
