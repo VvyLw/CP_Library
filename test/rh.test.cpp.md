@@ -29,7 +29,7 @@ data:
   isVerificationFile: true
   path: test/rh.test.cpp
   requiredBy: []
-  timestamp: '2023-11-30 23:03:49+09:00'
+  timestamp: '2023-11-30 23:34:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/rh.test.cpp

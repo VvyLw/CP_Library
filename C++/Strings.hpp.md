@@ -56,14 +56,9 @@ data:
     \ = hashed[r] + mod - mul(hashed[l], power[r - l]);\n        if(ret >= mod) ret\
     \ -= mod;\n        return ret;\n    }\n    ul connect(const ul h1, const ul h2,\
     \ const ll h2len) const {\n        ul ret = mul(h1, power[h2len]) + h2;\n    \
-    \    if(ret >= mod) ret -= mod;\n        return ret;\n    }\n    void connect(const\
-    \ std::string &s){\n        const ll n = hashed.size() - 1, m = s.size();\n  \
-    \      hashed.resize(n + m + 1);\n        power.resize(n + m + 1);\n        for(ll\
-    \ i = n; i < n + m; ++i) {\n            power[i + 1] = mul(power[i], base);\n\
-    \            hashed[i + 1] = mul(hashed[i], base) + s[i - n];\n            if(hashed[i\
-    \ + 1] >= mod) hashed[i + 1] -= mod;\n        }\n    }\n    ll LCP(const RollingHash\
-    \ &b, ll l1, ll r1, ll l2, ll r2) {\n        ll low = -1, high = std::min(r1 -\
-    \ l1, r2 - l2) + 1;\n        while(high - low > 1) {\n            const ll mid\
+    \    if(ret >= mod) ret -= mod;\n        return ret;\n    }\n    ll LCP(const\
+    \ RollingHash &b, ll l1, ll r1, ll l2, ll r2) {\n        ll low = -1, high = std::min(r1\
+    \ - l1, r2 - l2) + 1;\n        while(high - low > 1) {\n            const ll mid\
     \ = (low + high) / 2;\n            if(get(l1, l1 + mid) == b.get(l2, l2 + mid))\
     \ low = mid;\n            else high = mid;\n        }\n        return low;\n \
     \   }\n};\nusing RH = RollingHash<LINF>;\n"
@@ -104,14 +99,9 @@ data:
     \ = hashed[r] + mod - mul(hashed[l], power[r - l]);\n        if(ret >= mod) ret\
     \ -= mod;\n        return ret;\n    }\n    ul connect(const ul h1, const ul h2,\
     \ const ll h2len) const {\n        ul ret = mul(h1, power[h2len]) + h2;\n    \
-    \    if(ret >= mod) ret -= mod;\n        return ret;\n    }\n    void connect(const\
-    \ std::string &s){\n        const ll n = hashed.size() - 1, m = s.size();\n  \
-    \      hashed.resize(n + m + 1);\n        power.resize(n + m + 1);\n        for(ll\
-    \ i = n; i < n + m; ++i) {\n            power[i + 1] = mul(power[i], base);\n\
-    \            hashed[i + 1] = mul(hashed[i], base) + s[i - n];\n            if(hashed[i\
-    \ + 1] >= mod) hashed[i + 1] -= mod;\n        }\n    }\n    ll LCP(const RollingHash\
-    \ &b, ll l1, ll r1, ll l2, ll r2) {\n        ll low = -1, high = std::min(r1 -\
-    \ l1, r2 - l2) + 1;\n        while(high - low > 1) {\n            const ll mid\
+    \    if(ret >= mod) ret -= mod;\n        return ret;\n    }\n    ll LCP(const\
+    \ RollingHash &b, ll l1, ll r1, ll l2, ll r2) {\n        ll low = -1, high = std::min(r1\
+    \ - l1, r2 - l2) + 1;\n        while(high - low > 1) {\n            const ll mid\
     \ = (low + high) / 2;\n            if(get(l1, l1 + mid) == b.get(l2, l2 + mid))\
     \ low = mid;\n            else high = mid;\n        }\n        return low;\n \
     \   }\n};\nusing RH = RollingHash<LINF>;"
@@ -119,7 +109,7 @@ data:
   isVerificationFile: false
   path: C++/Strings.hpp
   requiredBy: []
-  timestamp: '2023-11-30 23:03:49+09:00'
+  timestamp: '2023-11-30 23:34:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manacher.test.cpp
