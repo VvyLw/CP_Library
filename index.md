@@ -24,7 +24,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/SparseTable.hpp
       title: C++/SparseTable.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: C++/Strings.hpp
       title: C++/Strings.hpp
     - icon: ':heavy_check_mark:'
@@ -128,11 +128,17 @@ data:
       path: test/m_add.test.cpp
       title: test/m_add.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/manacher.test.cpp
+      title: test/manacher.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/parsum.test.cpp
       title: test/parsum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/pf.test.cpp
       title: test/pf.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/rh.test.cpp
+      title: test/rh.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/s_rmq.test.cpp
       title: test/s_rmq.test.cpp
@@ -148,5 +154,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/uf.test.cpp
       title: test/uf.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/zalgo.test.cpp
+      title: test/zalgo.test.cpp
 layout: toppage
 ---
