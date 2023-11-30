@@ -7,11 +7,14 @@
 "test/kruskal.test.cpp": "2023-11-29 10:36:03 +0900",
 "test/lca.test.cpp": "2023-11-28 11:12:59 +0900",
 "test/m_add.test.cpp": "2023-11-09 16:48:01 +0900",
+"test/manacher.test.cpp": "2023-11-30 23:03:49 +0900",
 "test/parsum.test.cpp": "2023-11-09 16:48:01 +0900",
 "test/pf.test.cpp": "2023-11-29 21:29:14 +0900",
+"test/rh.test.cpp": "2023-11-30 23:03:49 +0900",
 "test/s_rmq.test.cpp": "2023-11-09 16:48:01 +0900",
 "test/segtree.test.cpp": "2023-11-09 16:48:01 +0900",
 "test/sr_sum.test.cpp": "2023-11-23 10:37:43 +0900",
 "test/stable.test.cpp": "2023-11-09 16:48:01 +0900",
-"test/uf.test.cpp": "2023-11-28 11:12:59 +0900"
+"test/uf.test.cpp": "2023-11-28 11:12:59 +0900",
+"test/zalgo.test.cpp": "2023-11-30 23:03:49 +0900"
 }
