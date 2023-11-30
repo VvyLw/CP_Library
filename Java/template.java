@@ -89,16 +89,22 @@ class MyFunction {
 		Collections.sort(d);
 		return d;
 	}
-	protected static ArrayList<Long> primeFactor(long n) {
-		ArrayList<Long> pf = new ArrayList<>();
+	protected static ArrayList<Pair<Long, Integer>> primeFactor(long n) {
+		ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();
 		for(long i = 2; i * i <= n; ++i) {
-			if(n % i != 0) continue;
+			if(n % i != 0) {
+				continue;
+			}
+			int cnt = 0;
 			while(n % i == 0) {
-				pf.add(i);
+				cnt++;
 				n /= i;
 			}
+			pf.add(Pair.of(i, cnt));
 		}
-		if(n != 1) pf.add(n);
+		if(n != 1) {
+			pf.add(Pair.of(n, 1));
+		}
 		return pf;
 	}
 	protected static long binom(int a, final int b) {
@@ -129,10 +135,10 @@ class MyFunction {
 		}
 		return false;
 	}
-	private static <T extends Comparable<? super T>> int find(T dest, ArrayList<T> a, int s, int e) {
+	private static <T extends Comparable<? super T>> int find(final T dest, final ArrayList<T> a, final int s, final int e) {
 		if (s == e) return s;
 		final int m = (s + e + 1) / 2;
-		return a.get(m).compareTo(dest) <= 0 ? find(dest, a, s, m - 1):find(dest, a, m, e);
+		return a.get(m).compareTo(dest) <= 0 ? find(dest, a, s, m - 1) : find(dest, a, m, e);
 	}
 	protected static boolean binarySearch(final int[] a, final int x) {
 		return Arrays.binarySearch(a, x) >= 0;
@@ -566,6 +572,7 @@ class Graph {
 			g.get(b).add(new Edge(a));
 		}
 	}
+	protected ArrayList<ArrayList<Edge>> getGraph(){ return g; }
 	protected int[] allDist(final int v) {
 		int[] d = new int[n];
 		Arrays.fill(d, -1);
@@ -587,7 +594,6 @@ class Graph {
 	protected int dist(final int u, final int v){ return allDist(u)[v]; }
 }
 class WeightedGraph extends Graph {
-	ArrayList<ArrayList<Edge>> g;
 	WeightedGraph(final int n, final int indexed, final boolean undirected) {
 		super(n, indexed, undirected);
 		g = new ArrayList<>(n);
@@ -643,7 +649,7 @@ class WeightedGraph extends Graph {
 	}
 }
 class Tree {
-	public ArrayList<Edge> edge;
+	private ArrayList<Edge> edge;
 	private int n, indexed;
 	Tree(final int n, final int indexed) {
 		edge = new ArrayList<>(n);
@@ -715,7 +721,8 @@ class PrimeFactor {
 	}
 }
 
-class BigPrime {
+// N <= 1e18;
+class LongPrime {
 	private int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
 	private long gcd(long a, long b) {
 		a = Math.abs(a);
@@ -777,8 +784,8 @@ class BigPrime {
 		if(n % 2 == 0) {
 			return 2;
 		}
-		int st = 0;
-		final BiFunction<Long, Integer, Long> f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue(); };
+		long st = 0;
+		final BiFunction<Long, Long, Long> f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue(); };
 		while(true) {
 			st++;
 			long x = st, y = f.apply(x, st);
@@ -799,10 +806,108 @@ class BigPrime {
 		if(n == 1) return new ArrayList<>();
 		final long x = find(n);
 		if(x == n) return new ArrayList<>(Arrays.asList(x));
-		ArrayList<Long> le = primeFactor(x);
-		final ArrayList<Long> ri = primeFactor(n / x);
-		le.addAll(ri);
-		return le;
+		ArrayList<Long> l = primeFactor(x);
+		final ArrayList<Long> r = primeFactor(n / x);
+		l.addAll(r);
+		Collections.sort(l);
+		return l;
+	}
+}
+
+// N > 1e18
+class BigPrime {
+	protected int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
+	private BigInteger gcd(BigInteger a, BigInteger b) {
+		a = a.abs();
+		b = b.abs();
+		if(a.equals(BigInteger.ZERO)) {
+			return b;
+		}
+		if(b.equals(BigInteger.ZERO)) {
+			return a;
+		}
+		final int shift = bsf(a.or(b).longValue());
+		a = a.shiftRight(bsf(a.longValue()));
+		do {
+			b = b.shiftRight(bsf(b.longValue()));
+			if(a.compareTo(b) > 0) {
+				final var tmp = b;
+				b = a;
+				a = tmp;
+			}
+			b = b.subtract(a);
+		} while(b.compareTo(BigInteger.ZERO) > 0);
+		return a.shiftLeft(shift);
+	}
+	boolean isPrime(final BigInteger n) {
+		if(n.compareTo(BigInteger.ONE) <= 0) {
+			return false;
+		}
+		if(n.equals(BigInteger.TWO)) {
+			return true;
+		}
+		if(n.and(BigInteger.ONE).equals(BigInteger.valueOf(0))) {
+			return false;
+		}
+		BigInteger d = n.subtract(BigInteger.ONE);
+		while(d.and(BigInteger.ONE).equals(BigInteger.valueOf(0))) {
+			d = d.shiftRight(1);
+		}
+		final long[] sample = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
+		for(final long a: sample) {
+			if(n.compareTo(BigInteger.valueOf(a)) <= 0) {
+				break;
+			}
+			BigInteger t = d;
+			BigInteger y = BigInteger.valueOf(a).modPow(t, n);
+			while(!t.equals(n.subtract(BigInteger.ONE)) && !y.equals(BigInteger.ONE) && !y.equals(n.subtract(BigInteger.ONE))) {
+				y = y.multiply(y).mod(n);
+				t = t.shiftLeft(1);
+			}
+			if(!y.equals(n.subtract(BigInteger.ONE)) && t.and(BigInteger.ONE).equals(BigInteger.ZERO)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	private BigInteger find(final BigInteger n) {
+		if(isPrime(n)) {
+			return n;
+		}
+		if(n.and(BigInteger.ONE).equals(BigInteger.ZERO)) {
+			return BigInteger.TWO;
+		}
+		int st = 0;
+		final BiFunction<BigInteger, Integer, BigInteger> f = (x, y) -> { return x.multiply(x).add(BigInteger.valueOf(y)).mod(n); };
+		while(true) {
+			st++;
+			BigInteger x = BigInteger.valueOf(st), y = f.apply(x, st);
+			while(true) {
+				final BigInteger p = gcd(y.subtract(x).add(n), n);
+				if(p.equals(BigInteger.ZERO) || p.equals(n)) {
+					break;
+				}
+				if(!p.equals(BigInteger.ONE)) {
+					return p;
+				}
+				x = f.apply(x, st);
+				y = f.apply(f.apply(y, st), st);
+			}
+		}
+	}
+	ArrayList<BigInteger> primeFactor(final BigInteger n) {
+		if(n.equals(BigInteger.ONE)) {
+			return new ArrayList<>();
+		}
+		final BigInteger x = find(n);
+		if(x.equals(n)) {
+			return new ArrayList<>(Arrays.asList(x));
+		}
+		var l = primeFactor(x);
+		final var r = primeFactor(n.divide(x));
+		l.addAll(r);
+		Collections.sort(l);
+		return l;
 	}
 }
 
