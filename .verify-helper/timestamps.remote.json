@@ -9,6 +9,7 @@
 "test/m_add.test.cpp": "2023-11-09 16:48:01 +0900",
 "test/manacher.test.cpp": "2023-12-01 00:51:30 +0900",
 "test/parsum.test.cpp": "2023-11-09 16:48:01 +0900",
+"test/pcounter.test.cpp": "2023-12-01 04:17:01 +0900",
 "test/pf.test.cpp": "2023-11-29 21:29:14 +0900",
 "test/rh.test.cpp": "2023-12-01 00:51:30 +0900",
 "test/s_rmq.test.cpp": "2023-11-09 16:48:01 +0900",
