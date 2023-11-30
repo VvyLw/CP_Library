@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/MST.hpp
     title: C++/MST.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/UnionFind.hpp
     title: C++/UnionFind.hpp
   _extendedRequiredBy: []
@@ -31,7 +31,7 @@ data:
   isVerificationFile: true
   path: test/kruskal.test.cpp
   requiredBy: []
-  timestamp: '2023-11-29 10:36:03+09:00'
+  timestamp: '2023-12-01 05:44:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/kruskal.test.cpp

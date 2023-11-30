@@ -6,42 +6,42 @@ data:
     path: C++/Modint.hpp
     title: C++/Modint.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aarray.test.cpp
     title: test/aarray.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/add.test.cpp
     title: test/add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/add128.test.cpp
     title: test/add128.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/ftree.test.cpp
     title: test/ftree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/m_add.test.cpp
     title: test/m_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/s_rmq.test.cpp
     title: test/s_rmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stable.test.cpp
     title: test/stable.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3
@@ -426,14 +426,15 @@ data:
     \ pi(x/primes[i]);\r\n    }\r\n    return sum;\r\n  }\r\n  ll phi(const ll m,\
     \ const ll n) {\r\n    if(m<1) {\r\n      return 0;\r\n    }\r\n    if(n>m) {\r\
     \n      return 1;\r\n    }\r\n    if(n<1) {\r\n      return m;\r\n    }\r\n  \
-    \  if(m<=sqr(primes[n-1])) {\r\n      return pi(m)-n+1;\r\n    }\r\n    if(m<=cub(primes[n-1])\
-    \ && m <= sq) {\r\n      const ll sx = pi(kthrooti(m, 2));\r\n      ll ans=pi(m)-(sx+n-2)*(sx-n+1)/2;\r\
-    \n      rep(i,n,sx-1) {\r\n        ans+=pi(m/primes[i]);\r\n      }\r\n      return\
-    \ ans;\r\n    }\r\n    return phi(m, n-1)-phi(m/primes[n-1], n-1);\r\n  }\r\n\
-    public:\r\n  p_count(const ll lim): sq(kthrooti(lim, 2)), prime_sum(sq + 1) {\r\
-    \n    prime = p_table(sq).SoE;\r\n    for(int i = 1; i <= sq; ++i) {\r\n     \
-    \ prime_sum[i] = prime_sum[i - 1] + prime[i];\r\n    }\r\n    primes.reserve(prime_sum[sq]);\r\
-    \n    for(int i = 1; i <= sq; ++i) {\r\n      if(prime[i]) {\r\n        primes.emplace_back(i);\r\
+    \  if(m<=zia_qu::sqr(primes[n-1])) {\r\n      return pi(m)-n+1;\r\n    }\r\n \
+    \   if(m<=zia_qu::cub(primes[n-1]) && m <= sq) {\r\n      const ll sx = pi(kthrooti(m,\
+    \ 2));\r\n      ll ans=pi(m)-(sx+n-2)*(sx-n+1)/2;\r\n      rep(i,n,sx-1) {\r\n\
+    \        ans+=pi(m/primes[i]);\r\n      }\r\n      return ans;\r\n    }\r\n  \
+    \  return phi(m, n-1)-phi(m/primes[n-1], n-1);\r\n  }\r\npublic:\r\n  p_count(const\
+    \ ll lim): sq(kthrooti(lim, 2)), prime_sum(sq + 1) {\r\n    prime = p_table(sq).SoE;\r\
+    \n    for(int i = 1; i <= sq; ++i) {\r\n      prime_sum[i] = prime_sum[i - 1]\
+    \ + prime[i];\r\n    }\r\n    primes.reserve(prime_sum[sq]);\r\n    for(int i\
+    \ = 1; i <= sq; ++i) {\r\n      if(prime[i]) {\r\n        primes.emplace_back(i);\r\
     \n      }\r\n    }\r\n  }\r\n  ll pi(const ll n) {\r\n    if(n <= sq) {\r\n  \
     \    return prime_sum[n];\r\n    }\r\n    const ll m = kthrooti(n, 3);\r\n   \
     \ const ll a = pi(m);\r\n    return phi(n, a) + a - 1 - p2(n, m);\r\n  }\r\n};\r\
@@ -848,14 +849,15 @@ data:
     \ pi(x/primes[i]);\r\n    }\r\n    return sum;\r\n  }\r\n  ll phi(const ll m,\
     \ const ll n) {\r\n    if(m<1) {\r\n      return 0;\r\n    }\r\n    if(n>m) {\r\
     \n      return 1;\r\n    }\r\n    if(n<1) {\r\n      return m;\r\n    }\r\n  \
-    \  if(m<=sqr(primes[n-1])) {\r\n      return pi(m)-n+1;\r\n    }\r\n    if(m<=cub(primes[n-1])\
-    \ && m <= sq) {\r\n      const ll sx = pi(kthrooti(m, 2));\r\n      ll ans=pi(m)-(sx+n-2)*(sx-n+1)/2;\r\
-    \n      rep(i,n,sx-1) {\r\n        ans+=pi(m/primes[i]);\r\n      }\r\n      return\
-    \ ans;\r\n    }\r\n    return phi(m, n-1)-phi(m/primes[n-1], n-1);\r\n  }\r\n\
-    public:\r\n  p_count(const ll lim): sq(kthrooti(lim, 2)), prime_sum(sq + 1) {\r\
-    \n    prime = p_table(sq).SoE;\r\n    for(int i = 1; i <= sq; ++i) {\r\n     \
-    \ prime_sum[i] = prime_sum[i - 1] + prime[i];\r\n    }\r\n    primes.reserve(prime_sum[sq]);\r\
-    \n    for(int i = 1; i <= sq; ++i) {\r\n      if(prime[i]) {\r\n        primes.emplace_back(i);\r\
+    \  if(m<=zia_qu::sqr(primes[n-1])) {\r\n      return pi(m)-n+1;\r\n    }\r\n \
+    \   if(m<=zia_qu::cub(primes[n-1]) && m <= sq) {\r\n      const ll sx = pi(kthrooti(m,\
+    \ 2));\r\n      ll ans=pi(m)-(sx+n-2)*(sx-n+1)/2;\r\n      rep(i,n,sx-1) {\r\n\
+    \        ans+=pi(m/primes[i]);\r\n      }\r\n      return ans;\r\n    }\r\n  \
+    \  return phi(m, n-1)-phi(m/primes[n-1], n-1);\r\n  }\r\npublic:\r\n  p_count(const\
+    \ ll lim): sq(kthrooti(lim, 2)), prime_sum(sq + 1) {\r\n    prime = p_table(sq).SoE;\r\
+    \n    for(int i = 1; i <= sq; ++i) {\r\n      prime_sum[i] = prime_sum[i - 1]\
+    \ + prime[i];\r\n    }\r\n    primes.reserve(prime_sum[sq]);\r\n    for(int i\
+    \ = 1; i <= sq; ++i) {\r\n      if(prime[i]) {\r\n        primes.emplace_back(i);\r\
     \n      }\r\n    }\r\n  }\r\n  ll pi(const ll n) {\r\n    if(n <= sq) {\r\n  \
     \    return prime_sum[n];\r\n    }\r\n    const ll m = kthrooti(n, 3);\r\n   \
     \ const ll a = pi(m);\r\n    return phi(n, a) + a - 1 - p2(n, m);\r\n  }\r\n};\r\
@@ -894,8 +896,8 @@ data:
   path: C++/template.hpp
   requiredBy:
   - C++/Modint.hpp
-  timestamp: '2023-12-01 04:56:03+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-12-01 05:44:25+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/m_add.test.cpp
   - test/parsum.test.cpp

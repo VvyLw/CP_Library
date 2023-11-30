@@ -9,15 +9,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/kruskal.test.cpp
     title: test/kruskal.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/ufwpotential.test.cpp
+    title: test/ufwpotential.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)
+    - https://github.com/tatyam-prime/kyopro_library/blob/master/UnionFind.cpp)
   bundledCode: "#line 1 \"C++/UnionFind.hpp\"\n// inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)\r\
     \n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\nstruct UnionFind\
     \ {\r\nprivate:\r\n    std::vector<int> par;\r\npublic:\r\n    UnionFind(const\
@@ -41,7 +45,20 @@ data:
     \n    }\r\n#endif\r\n    bool is_bipartite() {\r\n        const int n = par.size()\
     \ / 2;\r\n        bool ok = true;\r\n        for(int i = 0; i < n; ++i) {\r\n\
     \            ok &= (*this)[i] != (*this)[i + n];\r\n        }\r\n        return\
-    \ ok;\r\n    }\r\n};\n"
+    \ ok;\r\n    }\r\n};\r\n\r\n// inspired by tatyam(https://github.com/tatyam-prime/kyopro_library/blob/master/UnionFind.cpp)\r\
+    \nstruct UFPotential {\r\nprivate:\r\n    std::vector<int> par;\r\n    std::vector<long\
+    \ long> diff;\r\npublic:\r\n    UFPotential(const int n): par(n, -1), diff(n){}\r\
+    \n    int root(const int i){\r\n        if(par[i] < 0) {\r\n            return\
+    \ i;\r\n        }\r\n        const int r = root(par[i]);\r\n        diff[i] +=\
+    \ diff[par[i]];\r\n        return par[i] = r;\r\n    }\r\n    long long dist(const\
+    \ int i){\r\n        root(i);\r\n        return diff[i];\r\n    }\r\n    long\
+    \ long dist(const int x, const int y){ return dist(y) - dist(x); }\r\n    int\
+    \ unite(int x, int y, long long w){\r\n        w += dist(y, x);\r\n        x =\
+    \ root(x), y = root(y);\r\n        if(x == y) {\r\n            return w == 0 ?\
+    \ 0 : -1;\r\n        }\r\n        if(par[x] > par[y]) {\r\n            std::swap(x,\
+    \ y);\r\n            w = -w;\r\n        }\r\n        par[x] += par[y];\r\n   \
+    \     par[y] = x;\r\n        diff[y] = w;\r\n        return 1;\r\n    }\r\n  \
+    \  bool same(const int x, const int y){ return root(x) == root(y); }\r\n};\n"
   code: "// inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)\r\
     \n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\nstruct UnionFind\
     \ {\r\nprivate:\r\n    std::vector<int> par;\r\npublic:\r\n    UnionFind(const\
@@ -65,15 +82,29 @@ data:
     \n    }\r\n#endif\r\n    bool is_bipartite() {\r\n        const int n = par.size()\
     \ / 2;\r\n        bool ok = true;\r\n        for(int i = 0; i < n; ++i) {\r\n\
     \            ok &= (*this)[i] != (*this)[i + n];\r\n        }\r\n        return\
-    \ ok;\r\n    }\r\n};"
+    \ ok;\r\n    }\r\n};\r\n\r\n// inspired by tatyam(https://github.com/tatyam-prime/kyopro_library/blob/master/UnionFind.cpp)\r\
+    \nstruct UFPotential {\r\nprivate:\r\n    std::vector<int> par;\r\n    std::vector<long\
+    \ long> diff;\r\npublic:\r\n    UFPotential(const int n): par(n, -1), diff(n){}\r\
+    \n    int root(const int i){\r\n        if(par[i] < 0) {\r\n            return\
+    \ i;\r\n        }\r\n        const int r = root(par[i]);\r\n        diff[i] +=\
+    \ diff[par[i]];\r\n        return par[i] = r;\r\n    }\r\n    long long dist(const\
+    \ int i){\r\n        root(i);\r\n        return diff[i];\r\n    }\r\n    long\
+    \ long dist(const int x, const int y){ return dist(y) - dist(x); }\r\n    int\
+    \ unite(int x, int y, long long w){\r\n        w += dist(y, x);\r\n        x =\
+    \ root(x), y = root(y);\r\n        if(x == y) {\r\n            return w == 0 ?\
+    \ 0 : -1;\r\n        }\r\n        if(par[x] > par[y]) {\r\n            std::swap(x,\
+    \ y);\r\n            w = -w;\r\n        }\r\n        par[x] += par[y];\r\n   \
+    \     par[y] = x;\r\n        diff[y] = w;\r\n        return 1;\r\n    }\r\n  \
+    \  bool same(const int x, const int y){ return root(x) == root(y); }\r\n};"
   dependsOn: []
   isVerificationFile: false
   path: C++/UnionFind.hpp
   requiredBy:
   - C++/MST.hpp
-  timestamp: '2023-11-28 11:12:59+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-12-01 05:44:25+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/ufwpotential.test.cpp
   - test/uf.test.cpp
   - test/kruskal.test.cpp
 documentation_of: C++/UnionFind.hpp

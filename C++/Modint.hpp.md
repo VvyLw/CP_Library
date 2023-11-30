@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/template.hpp
     title: C++/template.hpp
   _extendedRequiredBy: []
@@ -118,7 +118,7 @@ data:
   isVerificationFile: false
   path: C++/Modint.hpp
   requiredBy: []
-  timestamp: '2023-12-01 04:56:03+09:00'
+  timestamp: '2023-12-01 05:44:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/Modint.hpp
