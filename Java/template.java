@@ -387,6 +387,29 @@ class MyFunction {
 		}
 		return rad;
 	}
+	protected static long kthRoot(final long n, final int k) {
+		if(k == 1) {
+			return n;
+		}
+		final Predicate<Long> chk = (x) -> {
+			long mul = 1;
+			for(int j = 0; j < k; ++j) {
+				try {
+					mul = Math.multiplyExact(mul, x);
+				} catch(ArithmeticException e) {
+					return false;
+				}
+			}
+			return mul <= n;
+		};
+		long ret = 0;
+		for(int i = 32; --i >= 0;) {
+			if(chk.test(ret | (1L << i))) {
+				ret |= 1L << i;
+			}
+		}
+		return ret;
+	}
 }
 
 class MyScanner {
@@ -454,6 +477,7 @@ class MyPrinter {
 	void out(final int[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
 	void out(final long[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
 	void out(final double[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
+	void out(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
 	void out(final char[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
 	void out(final Object[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
 	<T> void out(final List<T> args){ IntStream.range(0, args.size()).forEach(i -> pw.print(args.get(i) + (i + 1 < args.size() ? " " : "\n"))); }
@@ -467,6 +491,8 @@ class MyPrinter {
 	void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	void outl(final double[] args){ Arrays.stream(args).forEach(pw::println); }
 	void outl(final double[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	void outl(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	void outl(final boolean[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	void outl(final char[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	void outl(final Object[] args){ Arrays.stream(args).forEach(pw::println); }
 	<E> void outl(final Collection<E> args){ args.stream().forEach(pw::println); }
@@ -794,23 +820,6 @@ class LowestCommonAncestor<G extends Graph> {
 	int dist(final int u, final int v){ return dep[u] + dep[v] - 2 * query(u, v); }
 }
 
-class AccumulateSum {
-	private int n;
-	private long[] s;
-	AccumulateSum(final int[] a) {
-		n = a.length;
-		s = new long[n + 1];
-		IntStream.range(0, n).forEach(i -> s[i + 1] = s[i] + a[i]);
-	}
-	AccumulateSum(final long[] a) {
-		n = a.length;
-		s = new long[n + 1];
-		IntStream.range(0, n).forEach(i -> s[i + 1] = s[i] + a[i]);
-	}
-	long[] get(){ return s; }
-	long query(final int l, final int r){ return s[r] - s[l]; }
-}
-
 class PrimeTable {
 	private int n;
 	private boolean[] sieve;
@@ -818,6 +827,7 @@ class PrimeTable {
 		this.n = n;
 		sieve = new boolean[n + 1];
 		Arrays.fill(sieve, true);
+		sieve[0] = sieve[1] = false;
 		for(long i = 2; i <= n; ++i) {
 			if(!sieve[(int) i]) {
 				continue;
@@ -860,6 +870,74 @@ class PrimeFactor {
 			n /= spf[n];
 		}
 		return m;
+	}
+}
+
+class PrimeCounter {
+	private int sq;
+	private boolean[] p;
+	private int[] psum;
+	private ArrayList<Integer> ps;
+	PrimeCounter(final long lim) {
+		sq = (int) kthRooti(lim, 2);
+		psum = new int[sq + 1];
+		p = new PrimeTable(sq).table();
+		for(int i = 1; i <= sq; ++i) {
+			psum[i] = psum[i - 1] + (p[i] ? 1 : 0);
+		}
+		ps = new ArrayList<>();
+		for(int i = 1; i <= sq; ++i) {
+			if(p[i]) {
+				ps.add(i);
+			}
+		}
+	}
+	private long kthRooti(final long n, final int k){ return MyFunction.kthRoot(n, k); }
+	private long p2(final long x, final long y) {
+		if(x < 4) {
+			return 0;
+		}
+		final long a = pi(y);
+		final long b = pi(kthRooti(x, 2));
+		if(a >= b) {
+			return 0;
+		}
+		long sum = (long) (a - 2) * (a + 1) / 2 - (b - 2) * (b + 1) / 2;
+		for(long i = a; i < b; ++i) {
+			sum += pi(x / ps.get((int) i));
+		}
+		return sum;
+	}
+	private long phi(final long m, final long a) {
+		if(m < 1) {
+			return 0;
+		}
+		if(a > m) {
+			return 1;
+		}
+		if(a < 1) {
+			return m;
+		}
+		if(m <= (long) ps.get((int) (a - 1)) * ps.get((int) (a - 1))) {
+			return pi(m) - a + 1;
+		}
+		if(m <= (long) ps.get((int) (a - 1)) * ps.get((int) (a - 1)) * ps.get((int) (a - 1)) && m <= sq) {
+			final long sx = pi(kthRooti(m, 2));
+			long ans = pi(m) - (long) (sx + a - 2) * (sx - a + 1) / 2;
+			for(long i = a; i < sx; ++i) {
+				ans += pi(m / ps.get((int) i));
+			}
+			return ans;
+		}
+		return phi(m, a - 1) - phi(m / ps.get((int) (a - 1)), a - 1);
+	}
+	long pi(final long n) {
+		if(n <= sq) {
+			return psum[(int) n];
+		}
+		final long m = kthRooti(n, 3);
+		final long a = pi(m);
+		return phi(n, a) + a - 1 - p2(n, m);
 	}
 }
 
@@ -1050,6 +1128,23 @@ class BigPrime {
 		Collections.sort(l);
 		return l;
 	}
+}
+
+class AccumulateSum {
+	private int n;
+	private long[] s;
+	AccumulateSum(final int[] a) {
+		n = a.length;
+		s = new long[n + 1];
+		IntStream.range(0, n).forEach(i -> s[i + 1] = s[i] + a[i]);
+	}
+	AccumulateSum(final long[] a) {
+		n = a.length;
+		s = new long[n + 1];
+		IntStream.range(0, n).forEach(i -> s[i + 1] = s[i] + a[i]);
+	}
+	long[] get(){ return s; }
+	long query(final int l, final int r){ return s[r] - s[l]; }
 }
 
 class FenwickTree {
