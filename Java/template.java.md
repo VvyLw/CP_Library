@@ -284,27 +284,34 @@ data:
     \ b - indexed, cost)); }\n\tlong kruskal() {\n\t\tCollections.sort(edge, Comparator.comparing(e\
     \ -> e.cost));\n\t\tUnionFind uf = new UnionFind(n);\n\t\tlong res = 0;\n\t\t\
     for(final var ed: edge) {\n\t\t\tif(uf.unite(ed.src, ed.to)) {\n\t\t\t\tres +=\
-    \ ed.cost;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n}\n\nclass PrimeTable {\n\t\
-    private int n;\n\tboolean[] sieve;\n\tPrimeTable(final int n) {\n\t\tthis.n =\
-    \ n;\n\t\tsieve = new boolean[n + 1];\n\t\tArrays.fill(sieve, true);\n\t\tfor(long\
-    \ i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[(int) i]) {\n\t\t\t\tcontinue;\n\t\t\t\
-    }\n\t\t\tfor(long j = i * i; j <= n; j += i) {\n\t\t\t\tsieve[(int) j] = false;\n\
-    \t\t\t}\n\t\t}\n\t}\n\tArrayList<Integer> get() {\n\t\tArrayList<Integer> p =\
-    \ new ArrayList<>();;\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\
-    \t\t\t\tp.add(i);\n\t\t\t}\n\t\t}\n\t\treturn p;\n\t}\n}\n\nclass PrimeFactor\
-    \ {\n\tprivate int[] spf;\n\tPrimeFactor(final int n) {\n\t\tspf = IntStream.rangeClosed(0,\
-    \ n).toArray();\n\t\tfor(int i = 2; i * i <= n; ++i) {\n\t\t\tif(spf[i] == i)\
-    \ {\n\t\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\t\tif(spf[j] == j) {\n\
-    \t\t\t\t\t\tspf[j] = i;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tTreeMap<Integer,\
-    \ Integer> get(int n) {\n\t\tTreeMap<Integer, Integer> m = new TreeMap<>();\n\t\
-    \twhile(n != 1) {\n\t\t\tm.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\
-    \t\t}\n\t\treturn m;\n\t}\n}\n\n// N <= 1e18;\nclass LongPrime {\n\tprivate int\
-    \ bsf(final long x){ return Long.numberOfTrailingZeros(x); }\n\tprivate long gcd(long\
-    \ a, long b) {\n\t\ta = Math.abs(a);\n\t\tb = Math.abs(b);\n\t\tif(a == 0) {\n\
-    \t\t\treturn b;\n\t\t}\n\t\tif(b == 0) {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int\
-    \ shift = bsf(a|b);\n\t\ta >>= bsf(a);\n\t\tdo {\n\t\t\tb >>= bsf(b);\n\t\t\t\
-    if(a > b) {\n\t\t\t\ta ^= b;\n\t\t\t\tb ^= a;\n\t\t\t\ta ^= b;\n\t\t\t}\n\t\t\t\
-    b -= a;\n\t\t} while(b > 0);\n\t\treturn a << shift;\n\t}\n\tboolean isPrime(final\
+    \ ed.cost;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n}\n\nclass AccumulateSum {\n\
+    \tprivate int n;\n\tprivate long[] s;\n\tAccumulateSum(final int[] a) {\n\t\t\
+    n = a.length;\n\t\ts = new long[n + 1];\n\t\tIntStream.range(0, n).forEach(i ->\
+    \ s[i + 1] = s[i] + a[i]);\n\t}\n\tAccumulateSum(final long[] a) {\n\t\tn = a.length;\n\
+    \t\ts = new long[n + 1];\n\t\tIntStream.range(0, n).forEach(i -> s[i + 1] = s[i]\
+    \ + a[i]);\n\t}\n\tlong[] get(){ return s; }\n\tlong query(final int l, final\
+    \ int r){ return s[r] - s[l]; }\n}\n\nclass PrimeTable {\n\tprivate int n;\n\t\
+    private boolean[] sieve;\n\tPrimeTable(final int n) {\n\t\tthis.n = n;\n\t\tsieve\
+    \ = new boolean[n + 1];\n\t\tArrays.fill(sieve, true);\n\t\tfor(long i = 2; i\
+    \ <= n; ++i) {\n\t\t\tif(!sieve[(int) i]) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\t\
+    for(long j = i * i; j <= n; j += i) {\n\t\t\t\tsieve[(int) j] = false;\n\t\t\t\
+    }\n\t\t}\n\t}\n\tboolean[] table(){ return sieve; }\n\tArrayList<Integer> get()\
+    \ {\n\t\tArrayList<Integer> p = new ArrayList<>();;\n\t\tfor(int i = 2; i <= n;\
+    \ ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp.add(i);\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ p;\n\t}\n}\n\nclass PrimeFactor {\n\tprivate int[] spf;\n\tPrimeFactor(final\
+    \ int n) {\n\t\tspf = IntStream.rangeClosed(0, n).toArray();\n\t\tfor(int i =\
+    \ 2; i * i <= n; ++i) {\n\t\t\tif(spf[i] == i) {\n\t\t\t\tfor(int j = i * i; j\
+    \ <= n; j += i) {\n\t\t\t\t\tif(spf[j] == j) {\n\t\t\t\t\t\tspf[j] = i;\n\t\t\t\
+    \t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tTreeMap<Integer, Integer> get(int n)\
+    \ {\n\t\tTreeMap<Integer, Integer> m = new TreeMap<>();\n\t\twhile(n != 1) {\n\
+    \t\t\tm.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\t\t}\n\t\t\
+    return m;\n\t}\n}\n\n// N <= 1e18;\nclass LongPrime {\n\tprivate int bsf(final\
+    \ long x){ return Long.numberOfTrailingZeros(x); }\n\tprivate long gcd(long a,\
+    \ long b) {\n\t\ta = Math.abs(a);\n\t\tb = Math.abs(b);\n\t\tif(a == 0) {\n\t\t\
+    \treturn b;\n\t\t}\n\t\tif(b == 0) {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int shift\
+    \ = bsf(a|b);\n\t\ta >>= bsf(a);\n\t\tdo {\n\t\t\tb >>= bsf(b);\n\t\t\tif(a >\
+    \ b) {\n\t\t\t\ta ^= b;\n\t\t\t\tb ^= a;\n\t\t\t\ta ^= b;\n\t\t\t}\n\t\t\tb -=\
+    \ a;\n\t\t} while(b > 0);\n\t\treturn a << shift;\n\t}\n\tboolean isPrime(final\
     \ long n) {\n\t\tif(n <= 1) {\n\t\t\treturn false;\n\t\t}\n\t\tif(n == 2) {\n\t\
     \t\treturn true;\n\t\t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn false;\n\t\t}\n\t\t\
     long d = n - 1;\n\t\twhile(d % 2 == 0) {\n\t\t\td /= 2;\n\t\t}\n\t\tfinal long[]\
@@ -326,13 +333,13 @@ data:
     \ {\n\t\tif(n == 1) return new ArrayList<>();\n\t\tfinal long x = find(n);\n\t\
     \tif(x == n) return new ArrayList<>(Arrays.asList(x));\n\t\tArrayList<Long> l\
     \ = primeFactor(x);\n\t\tfinal ArrayList<Long> r = primeFactor(n / x);\n\t\tl.addAll(r);\n\
-    \t\tCollections.sort(l);\n\t\treturn l;\n\t}\n}\n\n// N > 1e18\nclass BigPrime\
-    \ {\n\tprotected int bsf(final long x){ return Long.numberOfTrailingZeros(x);\
-    \ }\n\tprivate BigInteger gcd(BigInteger a, BigInteger b) {\n\t\ta = a.abs();\n\
-    \t\tb = b.abs();\n\t\tif(a.equals(BigInteger.ZERO)) {\n\t\t\treturn b;\n\t\t}\n\
-    \t\tif(b.equals(BigInteger.ZERO)) {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int shift\
-    \ = bsf(a.or(b).longValue());\n\t\ta = a.shiftRight(bsf(a.longValue()));\n\t\t\
-    do {\n\t\t\tb = b.shiftRight(bsf(b.longValue()));\n\t\t\tif(a.compareTo(b) > 0)\
+    \t\tCollections.sort(l);\n\t\treturn l;\n\t}\n}\n// N > 1e18\nclass BigPrime {\n\
+    \tprotected int bsf(final long x){ return Long.numberOfTrailingZeros(x); }\n\t\
+    private BigInteger gcd(BigInteger a, BigInteger b) {\n\t\ta = a.abs();\n\t\tb\
+    \ = b.abs();\n\t\tif(a.equals(BigInteger.ZERO)) {\n\t\t\treturn b;\n\t\t}\n\t\t\
+    if(b.equals(BigInteger.ZERO)) {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int shift =\
+    \ bsf(a.or(b).longValue());\n\t\ta = a.shiftRight(bsf(a.longValue()));\n\t\tdo\
+    \ {\n\t\t\tb = b.shiftRight(bsf(b.longValue()));\n\t\t\tif(a.compareTo(b) > 0)\
     \ {\n\t\t\t\tfinal var tmp = b;\n\t\t\t\tb = a;\n\t\t\t\ta = tmp;\n\t\t\t}\n\t\
     \t\tb = b.subtract(a);\n\t\t} while(b.compareTo(BigInteger.ZERO) > 0);\n\t\treturn\
     \ a.shiftLeft(shift);\n\t}\n\tboolean isPrime(final BigInteger n) {\n\t\tif(n.compareTo(BigInteger.ONE)\
@@ -363,9 +370,9 @@ data:
     \t\t}\n\t\tvar l = primeFactor(x);\n\t\tfinal var r = primeFactor(n.divide(x));\n\
     \t\tl.addAll(r);\n\t\tCollections.sort(l);\n\t\treturn l;\n\t}\n}\n\nclass FenwickTree\
     \ {\n\tprivate int n;\n\tprivate long[] data;\n\tFenwickTree(final int n) {\n\t\
-    \tthis.n = n + 2;\n\t\tdata = new long[n + 1];\n\t}\n\tlong sum(int k) {\n\t\t\
-    if(k < 0) return 0;\n\t\tlong ret = 0;\n\t\tfor(++k; k > 0; k -= k & -k) {\n\t\
-    \t\tret += data[k];\n\t\t}\n\t\treturn ret;\n\t}\n\tlong sum(final int l, final\
+    \tthis.n = n + 2;\n\t\tdata = new long[this.n + 1];\n\t}\n\tlong sum(int k) {\n\
+    \t\tif(k < 0) return 0;\n\t\tlong ret = 0;\n\t\tfor(++k; k > 0; k -= k & -k) {\n\
+    \t\t\tret += data[k];\n\t\t}\n\t\treturn ret;\n\t}\n\tlong sum(final int l, final\
     \ int r){ return sum(r) - sum(l - 1); }\n\tlong get(final int k){ return sum(k)\
     \ - sum(k - 1); }\n\tvoid add(int k, final long x) {\n\t\tfor(++k; k < n; k +=\
     \ k & -k) {\n\t\t\tdata[k] += x;\n\t\t}\n\t}\n\tvoid imos(final int l, final int\
@@ -378,17 +385,17 @@ data:
     }\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x +\
     \ k <= n - 1 && data[x + k] <= w) {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\
     \t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n}\n\nclass SegmentTree {\n\tprivate int n\
-    \ = 1, rank = 0, fini;\n\tfinal BinaryOperator<Long> op;\n\tfinal long e;\n\t\
-    private long[] dat;\n\tSegmentTree(final int fini, final BinaryOperator<Long>\
+    \ = 1, rank = 0, fini;\n\tprivate BinaryOperator<Long> op;\n\tprivate long e;\n\
+    \tprivate long[] dat;\n\tSegmentTree(final int fini, final BinaryOperator<Long>\
     \ op, final long e) {\n\t\tthis.fini = fini;\n\t\tthis.op = op;\n\t\tthis.e =\
     \ e;\n\t\twhile(this.fini > n) {\n\t\t\tn <<= 1;\n\t\t\trank++;\n\t\t}\n\t\tdat\
     \ = new long[2 * n];\n\t\tArrays.fill(dat, e);\n\t}\n\tvoid update(int i, final\
-    \ long x) {\n\t\ti += n;\n\t\tdat[i] = x;\n\t\ti >>= 1;\n\t\twhile(i > 0) {\n\t\
-    \t\tdat[i] = op.apply(dat[2 * i], dat[2 * i + 1]);\n\t\t}\n\t}\n\tvoid add(int\
-    \ i, final long x) {\n\t\ti += n;\n\t\tdat[i] += x;\n\t\ti >>= 1;\n\t\twhile(i\
-    \ > 0) {\n\t\t\tdat[i] = op.apply(dat[2 * i], dat[2 * i + 1]);\n\t\t}\n\t}\n\t\
-    long query(int a, int b) {\n\t\tlong l=e,r=e;\n\t\tfor(a += n, b += n; a < b;\
-    \ a >>= 1, b >>= 1) {\n\t\t\tif(a % 2 == 1) {\n\t\t\t\tl = op.apply(l, dat[a++]);\n\
+    \ long x) {\n\t\ti += n;\n\t\tdat[i] = x;\n\t\tdo {\n\t\t\ti >>= 1;\n\t\t\tdat[i]\
+    \ = op.apply(dat[2 * i], dat[2 * i + 1]);\n\t\t} while(i > 0);\n\t}\n\tvoid add(int\
+    \ i, final long x) {\n\t\ti += n;\n\t\tdat[i] += x;\n\t\tdo {\n\t\t\ti >>= 1;\n\
+    \t\t\tdat[i] = op.apply(dat[2 * i], dat[2 * i + 1]);\n\t\t} while(i > 0);\n\t\
+    }\n\tlong query(int a, int b) {\n\t\tlong l=e,r=e;\n\t\tfor(a += n, b += n; a\
+    \ < b; a >>= 1, b >>= 1) {\n\t\t\tif(a % 2 == 1) {\n\t\t\t\tl = op.apply(l, dat[a++]);\n\
     \t\t\t}\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tr = op.apply(dat[--b], r);\n\t\t\t}\n\
     \t\t}\n\t\treturn op.apply(l,r);\n\t}\n\tint findLeft(int r, final Predicate<Long>\
     \ fn) {\n\t\tif(r == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint h = 0, i = r + n;\n\
@@ -410,6 +417,13 @@ data:
     \t\t\treturn fini;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t}\n\t\t}\n\t\treturn\
     \ Math.min(i - n, fini);\n\t}\n}\n\nclass SparseTable {\n\tprivate long[][] st;\n\
     \tprivate int[] lookup;\n\tprivate BinaryOperator<Long> op;\n\tSparseTable(final\
+    \ int[] a, final BinaryOperator<Long> op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\
+    \t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 <<\
+    \ b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\
+    \t\tfor(int i = 1; i < b; i++) {\n\t\t\tfor(int j = 0; j + (1 << i) <= (1 << b);\
+    \ j++) {\n\t\t\t\tst[i][j] = op.apply(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\
+    \t\t\t}\n\t\t}\n\t\tlookup = new int[a.length + 1];\n\t\tfor(int i = 2; i < lookup.length;\
+    \ i++) {\n\t\t\tlookup[i] = lookup[i >> 1] + 1;\n\t\t}\n\t}\n\tSparseTable(final\
     \ long[] a, final BinaryOperator<Long> op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\
     \t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 <<\
     \ b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\
@@ -432,7 +446,7 @@ data:
   isVerificationFile: false
   path: Java/template.java
   requiredBy: []
-  timestamp: '2023-11-30 17:25:35+09:00'
+  timestamp: '2023-11-30 18:51:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/template.java
