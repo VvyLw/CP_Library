@@ -2,38 +2,40 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/MST.hpp
     title: C++/MST.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/kruskal.test.cpp
     title: test/kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/ufpotential.test.cpp
     title: test/ufpotential.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
+    - https://ei1333.github.io/luzhiled/snippets/structure/union-find.html)
     - https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)
     - https://github.com/tatyam-prime/kyopro_library/blob/master/UnionFind.cpp)
   bundledCode: "#line 1 \"C++/UnionFind.hpp\"\n// inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)\r\
-    \n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\nstruct UnionFind\
-    \ {\r\nprivate:\r\n    std::vector<int> par;\r\npublic:\r\n    UnionFind(const\
-    \ int n): par(n, -1){}\r\n    int operator[](int i) {\r\n        while(par[i]\
-    \ >= 0) {\r\n            const int p = par[par[i]];\r\n            if(p < 0) return\
-    \ par[i];\r\n            i = par[i] = p;\r\n        }\r\n        return i;\r\n\
-    \    }\r\n    bool unite(int x, int y) {\r\n        x = (*this)[x], y = (*this)[y];\r\
-    \n        if(x == y) return false;\r\n        if(-par[x] < -par[y]) std::swap(x,\
-    \ y);\r\n        par[x] += par[y], par[y] = x;\r\n        return true;\r\n   \
-    \ }\r\n    int size(const int x) {\r\n        return -par[(*this)[x]];\r\n   \
-    \ }\r\n#if __cplusplus >= 202101L\r\n    std::vector<std::vector<int>> groups()\
-    \ {\r\n        const int n = std::ssize(par);\r\n        std::vector<std::vector<int>>\
+    \n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\n#include\
+    \ <stack>\r\nstruct UnionFind {\r\nprivate:\r\n    std::vector<int> par;\r\npublic:\r\
+    \n    UnionFind(const int n): par(n, -1){}\r\n    int operator[](int i) {\r\n\
+    \        while(par[i] >= 0) {\r\n            const int p = par[par[i]];\r\n  \
+    \          if(p < 0) return par[i];\r\n            i = par[i] = p;\r\n       \
+    \ }\r\n        return i;\r\n    }\r\n    bool unite(int x, int y) {\r\n      \
+    \  x = (*this)[x], y = (*this)[y];\r\n        if(x == y) return false;\r\n   \
+    \     if(-par[x] < -par[y]) {\r\n            std::swap(x, y);\r\n        }\r\n\
+    \        par[x] += par[y], par[y] = x;\r\n        return true;\r\n    }\r\n  \
+    \  int size(const int x) {\r\n        return -par[(*this)[x]];\r\n    }\r\n#if\
+    \ __cplusplus >= 202101L\r\n    std::vector<std::vector<int>> groups() {\r\n \
+    \       const int n = std::ssize(par);\r\n        std::vector<std::vector<int>>\
     \ res(n);\r\n        for(int i = 0; i < n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\
     \n        }\r\n        const auto it = std::ranges::remove_if(res, [&](const std::vector<int>\
     \ &v){ return v.empty(); });\r\n        res.erase(it.begin(), it.end());\r\n \
@@ -58,19 +60,33 @@ data:
     \ ? 0 : -1;\r\n        }\r\n        if(par[x] > par[y]) {\r\n            std::swap(x,\
     \ y);\r\n            w = -w;\r\n        }\r\n        par[x] += par[y];\r\n   \
     \     par[y] = x;\r\n        diff[y] = w;\r\n        return 1;\r\n    }\r\n  \
-    \  int operator[](const int i) noexcept { return root(i); }\r\n};\n"
+    \  int operator[](const int i) noexcept { return root(i); }\r\n};\r\n\r\n// inspired\
+    \ by Luzhiled(https://ei1333.github.io/luzhiled/snippets/structure/union-find.html)\r\
+    \nstruct UFUndo {\r\nprivate:\r\n    int[] par;\r\n\tstd::stack<std::pair<int,\
+    \ int>> his;\r\npublic:\r\n\tUFUndo(const int n): par(n, -1){}\r\n    bool unite(int\
+    \ x, int y) {\r\n\t\tx = root(x);\r\n\t\ty = root(y);\r\n\t\this.emplace(std::make_pair(x,\
+    \ par[x]));\r\n\t\this.emplace(std::make_pair(y, par[y]));\r\n\t\tif(x == y) {\r\
+    \n\t\t\treturn false;\r\n\t\t}\r\n\t\tif(par[x] > par[y]) {\r\n\t\t\tstd::swap(x,\
+    \ y);\r\n\t\t}\r\n\t\tpar[x] += par[y];\r\n\t\tpar[y] = x;\r\n\t\treturn true;\r\
+    \n\t}\r\n    int size(const int i){ return -par[root(i)]; }\r\n    void undo()\
+    \ {\r\n\t\tpar[his.top().first] = his.top().second;\r\n        his.pop();\r\n\t\
+    \tpar[his.top().first] = his.top().second;\r\n        his.pop();\r\n\t}\r\n  \
+    \  void snapshot() {\r\n\t\twhile(his.size()) {\r\n\t\t\this.pop();\r\n\t\t}\r\
+    \n\t}\r\n\tvoid rollback() {\r\n\t\twhile(his.size()) {\r\n\t\t\tundo();\r\n\t\
+    \t}\r\n\t}\r\n}\n"
   code: "// inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)\r\
-    \n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\nstruct UnionFind\
-    \ {\r\nprivate:\r\n    std::vector<int> par;\r\npublic:\r\n    UnionFind(const\
-    \ int n): par(n, -1){}\r\n    int operator[](int i) {\r\n        while(par[i]\
-    \ >= 0) {\r\n            const int p = par[par[i]];\r\n            if(p < 0) return\
-    \ par[i];\r\n            i = par[i] = p;\r\n        }\r\n        return i;\r\n\
-    \    }\r\n    bool unite(int x, int y) {\r\n        x = (*this)[x], y = (*this)[y];\r\
-    \n        if(x == y) return false;\r\n        if(-par[x] < -par[y]) std::swap(x,\
-    \ y);\r\n        par[x] += par[y], par[y] = x;\r\n        return true;\r\n   \
-    \ }\r\n    int size(const int x) {\r\n        return -par[(*this)[x]];\r\n   \
-    \ }\r\n#if __cplusplus >= 202101L\r\n    std::vector<std::vector<int>> groups()\
-    \ {\r\n        const int n = std::ssize(par);\r\n        std::vector<std::vector<int>>\
+    \n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\n#include\
+    \ <stack>\r\nstruct UnionFind {\r\nprivate:\r\n    std::vector<int> par;\r\npublic:\r\
+    \n    UnionFind(const int n): par(n, -1){}\r\n    int operator[](int i) {\r\n\
+    \        while(par[i] >= 0) {\r\n            const int p = par[par[i]];\r\n  \
+    \          if(p < 0) return par[i];\r\n            i = par[i] = p;\r\n       \
+    \ }\r\n        return i;\r\n    }\r\n    bool unite(int x, int y) {\r\n      \
+    \  x = (*this)[x], y = (*this)[y];\r\n        if(x == y) return false;\r\n   \
+    \     if(-par[x] < -par[y]) {\r\n            std::swap(x, y);\r\n        }\r\n\
+    \        par[x] += par[y], par[y] = x;\r\n        return true;\r\n    }\r\n  \
+    \  int size(const int x) {\r\n        return -par[(*this)[x]];\r\n    }\r\n#if\
+    \ __cplusplus >= 202101L\r\n    std::vector<std::vector<int>> groups() {\r\n \
+    \       const int n = std::ssize(par);\r\n        std::vector<std::vector<int>>\
     \ res(n);\r\n        for(int i = 0; i < n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\
     \n        }\r\n        const auto it = std::ranges::remove_if(res, [&](const std::vector<int>\
     \ &v){ return v.empty(); });\r\n        res.erase(it.begin(), it.end());\r\n \
@@ -95,14 +111,27 @@ data:
     \ ? 0 : -1;\r\n        }\r\n        if(par[x] > par[y]) {\r\n            std::swap(x,\
     \ y);\r\n            w = -w;\r\n        }\r\n        par[x] += par[y];\r\n   \
     \     par[y] = x;\r\n        diff[y] = w;\r\n        return 1;\r\n    }\r\n  \
-    \  int operator[](const int i) noexcept { return root(i); }\r\n};"
+    \  int operator[](const int i) noexcept { return root(i); }\r\n};\r\n\r\n// inspired\
+    \ by Luzhiled(https://ei1333.github.io/luzhiled/snippets/structure/union-find.html)\r\
+    \nstruct UFUndo {\r\nprivate:\r\n    int[] par;\r\n\tstd::stack<std::pair<int,\
+    \ int>> his;\r\npublic:\r\n\tUFUndo(const int n): par(n, -1){}\r\n    bool unite(int\
+    \ x, int y) {\r\n\t\tx = root(x);\r\n\t\ty = root(y);\r\n\t\this.emplace(std::make_pair(x,\
+    \ par[x]));\r\n\t\this.emplace(std::make_pair(y, par[y]));\r\n\t\tif(x == y) {\r\
+    \n\t\t\treturn false;\r\n\t\t}\r\n\t\tif(par[x] > par[y]) {\r\n\t\t\tstd::swap(x,\
+    \ y);\r\n\t\t}\r\n\t\tpar[x] += par[y];\r\n\t\tpar[y] = x;\r\n\t\treturn true;\r\
+    \n\t}\r\n    int size(const int i){ return -par[root(i)]; }\r\n    void undo()\
+    \ {\r\n\t\tpar[his.top().first] = his.top().second;\r\n        his.pop();\r\n\t\
+    \tpar[his.top().first] = his.top().second;\r\n        his.pop();\r\n\t}\r\n  \
+    \  void snapshot() {\r\n\t\twhile(his.size()) {\r\n\t\t\this.pop();\r\n\t\t}\r\
+    \n\t}\r\n\tvoid rollback() {\r\n\t\twhile(his.size()) {\r\n\t\t\tundo();\r\n\t\
+    \t}\r\n\t}\r\n}"
   dependsOn: []
   isVerificationFile: false
   path: C++/UnionFind.hpp
   requiredBy:
   - C++/MST.hpp
-  timestamp: '2023-12-01 05:58:14+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-12-01 06:41:59+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/ufpotential.test.cpp
   - test/uf.test.cpp

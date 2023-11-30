@@ -36,12 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/stable.test.cpp
     title: test/stable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3
@@ -897,7 +897,7 @@ data:
   requiredBy:
   - C++/Modint.hpp
   timestamp: '2023-12-01 05:44:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/m_add.test.cpp
   - test/parsum.test.cpp

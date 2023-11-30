@@ -9,7 +9,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/LCA.hpp
       title: C++/LCA.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/MST.hpp
       title: C++/MST.hpp
     - icon: ':warning:'
@@ -27,7 +27,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/Strings.hpp
       title: C++/Strings.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/UnionFind.hpp
       title: C++/UnionFind.hpp
     - icon: ':heavy_check_mark:'
@@ -39,7 +39,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math.hpp
       title: C++/math.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/template.hpp
       title: C++/template.hpp
   - name: Java
@@ -118,7 +118,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/ftree.test.cpp
       title: test/ftree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/kruskal.test.cpp
       title: test/kruskal.test.cpp
     - icon: ':heavy_check_mark:'
@@ -154,10 +154,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/stable.test.cpp
       title: test/stable.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/uf.test.cpp
       title: test/uf.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/ufpotential.test.cpp
       title: test/ufpotential.test.cpp
     - icon: ':heavy_check_mark:'

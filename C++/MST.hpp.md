@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/UnionFind.hpp
     title: C++/UnionFind.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/kruskal.test.cpp
     title: test/kruskal.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"C++/MST.hpp\"\n#include <iostream>\n#include <C++/UnionFind.hpp>\n\
@@ -39,8 +39,8 @@ data:
   isVerificationFile: false
   path: C++/MST.hpp
   requiredBy: []
-  timestamp: '2023-12-01 05:58:14+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-12-01 06:41:59+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/kruskal.test.cpp
 documentation_of: C++/MST.hpp

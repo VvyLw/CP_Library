@@ -16,48 +16,48 @@ data:
     import java.util.ArrayDeque;\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
     import java.util.Collection;\nimport java.util.Collections;\nimport java.util.Comparator;\n\
     import java.util.List;\nimport java.util.PriorityQueue;\nimport java.util.Queue;\n\
-    import java.util.Scanner;\nimport java.util.TreeMap;\nimport java.util.function.BiFunction;\n\
-    import java.util.function.BinaryOperator;\nimport java.util.function.Predicate;\n\
-    import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nclass\
-    \ VvyLw extends MyFunction {\n\tprotected static final MyScanner sc = new MyScanner();\n\
-    \tprotected static final MyPrinter o = new MyPrinter(System.out, false);\n\tprotected\
-    \ static final MyPrinter e = new MyPrinter(System.err, true);\n\tstatic final\
-    \ int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0,\
-    \ 0, -1, 1, -1, 1, -1, 1};\n\tstatic final int inf = 1 << 30;\n\tstatic final\
-    \ long linf = (1L << 61) - 1;\n\tstatic final int mod998 = 998244353;\n\tstatic\
-    \ final int mod107 = (int)1e9 + 7;\n\tprotected static void solve() {\n\t\t\n\t\
-    }\n}\nclass Main extends VvyLw {\n\tpublic static void main(final String[] args)\
-    \ {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\t\t\tsolve();\n\
-    \t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\t}\n\
-    }\n\nclass MyFunction {\n\tprotected static String yes(final boolean ok){ return\
-    \ ok ? \"Yes\" : \"No\"; }\n\tprotected static String no(final boolean ok){ return\
-    \ yes(!ok); }\n\tprotected static long sqr(final long x){ return x * x; }\n\t\
-    protected static int mod(final long n, final int m){ return (int) ((n + m) % m);\
-    \ }\n\tprotected static long intCeil(long a, long b){ return (long) Math.ceil((double)a\
-    \ / b); }\n\tprotected static long intPow(long a, int b) {\n\t\tlong res = 1;\n\
-    \t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\t\
-    a *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static long\
-    \ intPow(long a, long b, final int m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\
-    \t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t\
-    }\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static ArrayList<Long> div(final long n) {\n\t\tArrayList<Long>\
-    \ d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n %\
-    \ i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n /\
-    \ i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\t\treturn d;\n\t\
-    }\n\tprotected static ArrayList<Pair<Long, Integer>> primeFactor(long n) {\n\t\
-    \tArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long i = 2;\
-    \ i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\
-    \tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /= i;\n\t\
-    \t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\t\tpf.add(Pair.of(n,\
-    \ 1));\n\t\t}\n\t\treturn pf;\n\t}\n\tprotected static long binom(int a, final\
-    \ int b) {\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= b; ++i) {\n\t\t\tres *=\
-    \ a--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static boolean\
-    \ isInt(final double n){ long r = (long) Math.floor(n); return r == n; }\n\tprotected\
-    \ static boolean isSqr(final long n){ return isInt(Math.sqrt(n)); }\n\tprotected\
-    \ static boolean isPrime(final long n) {\n\t\tif(n == 1) return false;\n\t\tfor(long\
-    \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) return false;\n\t\t}\n\t\treturn\
-    \ true;\n\t}\n\tprotected static boolean nextPerm(ArrayList<Integer> a) {\n\t\t\
-    for(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
+    import java.util.Scanner;\nimport java.util.Stack;\nimport java.util.TreeMap;\n\
+    import java.util.function.BiFunction;\nimport java.util.function.BinaryOperator;\n\
+    import java.util.function.Predicate;\nimport java.util.stream.Collectors;\nimport\
+    \ java.util.stream.IntStream;\n\nclass VvyLw extends Utility {\n\tprotected static\
+    \ final MyScanner sc = new MyScanner();\n\tprotected static final MyPrinter o\
+    \ = new MyPrinter(System.out, false);\n\tprotected static final MyPrinter e =\
+    \ new MyPrinter(System.err, true);\n\tstatic final int[] dx = {0, -1, 1, 0, 0,\
+    \ -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t\
+    static final int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\t\
+    static final int mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9 + 7;\n\
+    \tprotected static void solve() {\n\t\t\n\t}\n}\nclass Main extends VvyLw {\n\t\
+    public static void main(final String[] args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\
+    \t\twhile(t-- > 0) {\n\t\t\tsolve();\n\t\t}\n\t\to.flush();\n\t\tsc.close();\n\
+    \t\to.close();\n\t\te.close();\n\t}\n}\n\nclass Utility {\n\tprotected static\
+    \ String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static\
+    \ String no(final boolean ok){ return yes(!ok); }\n\tprotected static long sqr(final\
+    \ long x){ return x * x; }\n\tprotected static int mod(final long n, final int\
+    \ m){ return (int) ((n + m) % m); }\n\tprotected static long intCeil(long a, long\
+    \ b){ return (long) Math.ceil((double)a / b); }\n\tprotected static long intPow(long\
+    \ a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\
+    \t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\tprotected static long intPow(long a, long b, final int m) {\n\t\tlong res\
+    \ = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\t\
+    res = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>=\
+    \ 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static ArrayList<Long> div(final\
+    \ long n) {\n\t\tArrayList<Long> d = new ArrayList<>();\n\t\tfor(long i = 1; i\
+    \ * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i *\
+    \ i != n) {\n\t\t\t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\
+    \t\treturn d;\n\t}\n\tprotected static ArrayList<Pair<Long, Integer>> primeFactor(long\
+    \ n) {\n\t\tArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long\
+    \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t\
+    }\n\t\t\tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /=\
+    \ i;\n\t\t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\t\t\
+    pf.add(Pair.of(n, 1));\n\t\t}\n\t\treturn pf;\n\t}\n\tprotected static long binom(int\
+    \ a, final int b) {\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= b; ++i) {\n\t\t\
+    \tres *= a--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ boolean isInt(final double n){ long r = (long) Math.floor(n); return r == n;\
+    \ }\n\tprotected static boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
+    \ }\n\tprotected static boolean isPrime(final long n) {\n\t\tif(n == 1) return\
+    \ false;\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) return\
+    \ false;\n\t\t}\n\t\treturn true;\n\t}\n\tprotected static boolean nextPerm(ArrayList<Integer>\
+    \ a) {\n\t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
     \ < 0) {\n\t\t\t\tfinal int j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\
     \tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\
     \t\t\t\treturn true;\n\t\t\t}\n\t\t}\n\t\treturn false;\n\t}\n\tprivate static\
@@ -241,8 +241,8 @@ data:
     \ }\n}\n\nclass NumPair extends Pair<Number, Number> {\n\tNumPair(final Number\
     \ first, final Number second){ super(first, second); }\n\tNumPair rotate(){ return\
     \ new NumPair(-second.doubleValue(), first.doubleValue()); } \n\tNumPair rotate(final\
-    \ int ang) {\n\t\tfinal double rad = Math.toRadians(MyFunction.mod(ang, 360));\n\
-    \t\treturn new NumPair(first.doubleValue() * Math.cos(rad) - second.doubleValue()\
+    \ int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\
+    \treturn new NumPair(first.doubleValue() * Math.cos(rad) - second.doubleValue()\
     \ * Math.sin(rad),\n\t\t\t\t\t\t\tfirst.doubleValue() * Math.sin(rad) + second.doubleValue()\
     \ * Math.cos(rad));\n\t}\n\tlong dot(final NumPair p){ return first.longValue()\
     \ * p.first.longValue() + second.longValue() + p.second.longValue(); }\n\tlong\
@@ -250,8 +250,8 @@ data:
     \ this.dot(this); }\n\tdouble grad() { \n\t\ttry {\n\t\t\treturn second.doubleValue()\
     \ / first.doubleValue();\n\t\t} catch(ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
     \t\t\treturn Double.NaN;\n\t\t}\n\t}\n\tdouble abs(){ return Math.hypot(first.doubleValue(),\
-    \ second.doubleValue()); }\n\tdouble lcm(){ return MyFunction.lcm(first.longValue(),\
-    \ second.longValue()); }\n\tdouble gcd(){ return MyFunction.gcd(first.longValue(),\
+    \ second.doubleValue()); }\n\tdouble lcm(){ return Utility.lcm(first.longValue(),\
+    \ second.longValue()); }\n\tdouble gcd(){ return Utility.gcd(first.longValue(),\
     \ second.longValue()); }\n\tNumPair extgcd() {\n\t\tlong x = 1, y = 0, t1 = 0,\
     \ t2 = 0, t3 = 1, a = first.longValue(), b = second.longValue();\n\t\twhile(b\
     \ > 0) {\n\t\t\tt1=a / b;\n\t\t\ta -= t1 * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\
@@ -271,16 +271,39 @@ data:
     \t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n\tboolean is_bipartite()\
     \ {\n\t\tfinal int n = par.length / 2;\n\t\tboolean ok = true;\n\t\tfor(int i\
     \ = 0; i < n; ++i) {\n\t\t\tok &= root(i) != root(i + n);\n\t\t}\n\t\treturn ok;\n\
-    \t}\n}\n\nclass Edge {\n\tpublic int src;\n\tpublic int to;\n\tpublic long cost;\n\
-    \tEdge(final int to) {\n\t\tthis.to = to;\n\t}\n\tEdge(final int to, final long\
-    \ cost) {\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\tEdge(final int src,\
-    \ final int to, final long cost) {\n\t\tthis.src = src;\n\t\tthis.to = to;\n\t\
-    \tthis.cost = cost;\n\t}\n}\nclass Graph {\n\tprotected boolean undirected;\n\t\
-    protected int n, indexed;\n\tArrayList<ArrayList<Edge>> g;\n\tGraph(final int\
-    \ n, final int indexed, final boolean undirected) {\n\t\tthis.n = n;\n\t\tthis.indexed\
-    \ = indexed;\n\t\tthis.undirected = undirected;\n\t\tg = new ArrayList<>(n);\n\
-    \t\tIntStream.range(0, n).forEach(i -> g.add(new ArrayList<>()));\n\t}\n\tvoid\
-    \ add(int a, int b) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tg.get(a).add(new\
+    \t}\n}\nclass WeightedUnionFind {\n\tprivate int[] par;\n\tprivate long[] weight;\n\
+    \tWeightedUnionFind(final int n) {\n\t\tpar = new int[n];\n\t\tweight = new long[n];\n\
+    \t\tArrays.fill(par, -1);\n\t}\n\tint root(final int i) {\n\t\tif(par[i] < 0)\
+    \ {\n\t\t\treturn i;\n\t\t}\n\t\tfinal int r = root(par[i]);\n\t\tweight[i] +=\
+    \ weight[par[i]];\n\t\treturn par[i] = r;\n\t}\n\tlong get(final int i) {\n\t\t\
+    root(i);\n\t\treturn weight[i];\n\t}\n\tlong diff(final int x, final int y){ return\
+    \ get(y) - get(x); }\n\tint unite(int x, int y, long w) {\n\t\tw += diff(y, x);\n\
+    \t\tx = root(x);\n\t\ty = root(y);\n\t\tif(x == y) {\n\t\t\treturn w == 0 ? 0\
+    \ : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\t\
+    x ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\tweight[y]\
+    \ = w;\n\t\treturn 1;\n\t}\n\tboolean same(final int x, final int y){ return root(x)\
+    \ == root(y); }\n}\nclass UndoUnionFind {\n\tprivate int[] par;\n\tprivate Stack<Pair<Integer,\
+    \ Integer>> his;\n\tUndoUnionFind(final int n) {\n\t    par = new int[n];\n\t\
+    \    Arrays.fill(par, -1);\n\t    his = new Stack<>();\n\t}\n\tboolean unite(int\
+    \ x, int y) {\n\t\tx = root(x);\n\t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\
+    \t\this.add(Pair.of(y, par[y]));\n\t\tif(x == y) {\n\t\t\treturn false;\n\t\t\
+    }\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t\
+    }\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\treturn true;\n\t}\n\tint root(final\
+    \ int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\t\treturn root(par[i]);\n\
+    \t}\n\tint size(final int i){ return -par[root(i)]; }\n\tvoid undo() {\n\t\tfinal\
+    \ Pair<Integer, Integer> pop1 = his.pop(), pop2 = his.pop();\n\t\tpar[pop1.first]\
+    \ = pop1.second;\n\t\tpar[pop2.first] = pop2.second;\n\t}\n\tvoid snapshot() {\n\
+    \t\twhile(!his.empty()) {\n\t\t\this.pop();\n\t\t}\n\t}\n\tvoid rollback() {\n\
+    \t\twhile(!his.empty()) {\n\t\t\tundo();\n\t\t}\n\t}\n}\n\nclass Edge {\n\tpublic\
+    \ int src;\n\tpublic int to;\n\tpublic long cost;\n\tEdge(final int to) {\n\t\t\
+    this.to = to;\n\t}\n\tEdge(final int to, final long cost) {\n\t\tthis.to = to;\n\
+    \t\tthis.cost = cost;\n\t}\n\tEdge(final int src, final int to, final long cost)\
+    \ {\n\t\tthis.src = src;\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n}\nclass\
+    \ Graph {\n\tprotected boolean undirected;\n\tprotected int n, indexed;\n\tArrayList<ArrayList<Edge>>\
+    \ g;\n\tGraph(final int n, final int indexed, final boolean undirected) {\n\t\t\
+    this.n = n;\n\t\tthis.indexed = indexed;\n\t\tthis.undirected = undirected;\n\t\
+    \tg = new ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> g.add(new ArrayList<>()));\n\
+    \t}\n\tvoid add(int a, int b) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tg.get(a).add(new\
     \ Edge(b));\n\t\tif(undirected) {\n\t\t\tg.get(b).add(new Edge(a));\n\t\t}\n\t\
     }\n\tprotected ArrayList<ArrayList<Edge>> getGraph(){ return g; }\n\tprotected\
     \ int[] allDist(final int v) {\n\t\tint[] d = new int[n];\n\t\tArrays.fill(d,\
@@ -356,7 +379,7 @@ data:
     \t\tp = new PrimeTable(sq).table();\n\t\tfor(int i = 1; i <= sq; ++i) {\n\t\t\t\
     psum[i] = psum[i - 1] + (p[i] ? 1 : 0);\n\t\t}\n\t\tps = new ArrayList<>();\n\t\
     \tfor(int i = 1; i <= sq; ++i) {\n\t\t\tif(p[i]) {\n\t\t\t\tps.add(i);\n\t\t\t\
-    }\n\t\t}\n\t}\n\tprivate long kthRooti(final long n, final int k){ return MyFunction.kthRoot(n,\
+    }\n\t\t}\n\t}\n\tprivate long kthRooti(final long n, final int k){ return Utility.kthRoot(n,\
     \ k); }\n\tprivate long p2(final long x, final long y) {\n\t\tif(x < 4) {\n\t\t\
     \treturn 0;\n\t\t}\n\t\tfinal long a = pi(y);\n\t\tfinal long b = pi(kthRooti(x,\
     \ 2));\n\t\tif(a >= b) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong sum = (long) (a - 2)\
@@ -520,7 +543,7 @@ data:
   isVerificationFile: false
   path: Java/template.java
   requiredBy: []
-  timestamp: '2023-12-01 04:17:01+09:00'
+  timestamp: '2023-12-01 06:41:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/template.java
