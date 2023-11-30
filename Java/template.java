@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.Stack;
 import java.util.TreeMap;
 import java.util.function.BiFunction;
 import java.util.function.BinaryOperator;
@@ -18,7 +19,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-class VvyLw extends MyFunction {
+class VvyLw extends Utility {
 	protected static final MyScanner sc = new MyScanner();
 	protected static final MyPrinter o = new MyPrinter(System.out, false);
 	protected static final MyPrinter e = new MyPrinter(System.err, true);
@@ -46,7 +47,7 @@ class Main extends VvyLw {
 	}
 }
 
-class MyFunction {
+class Utility {
 	protected static String yes(final boolean ok){ return ok ? "Yes" : "No"; }
 	protected static String no(final boolean ok){ return yes(!ok); }
 	protected static long sqr(final long x){ return x * x; }
@@ -548,7 +549,7 @@ class NumPair extends Pair<Number, Number> {
 	NumPair(final Number first, final Number second){ super(first, second); }
 	NumPair rotate(){ return new NumPair(-second.doubleValue(), first.doubleValue()); } 
 	NumPair rotate(final int ang) {
-		final double rad = Math.toRadians(MyFunction.mod(ang, 360));
+		final double rad = Math.toRadians(Utility.mod(ang, 360));
 		return new NumPair(first.doubleValue() * Math.cos(rad) - second.doubleValue() * Math.sin(rad),
 							first.doubleValue() * Math.sin(rad) + second.doubleValue() * Math.cos(rad));
 	}
@@ -564,8 +565,8 @@ class NumPair extends Pair<Number, Number> {
 		}
 	}
 	double abs(){ return Math.hypot(first.doubleValue(), second.doubleValue()); }
-	double lcm(){ return MyFunction.lcm(first.longValue(), second.longValue()); }
-	double gcd(){ return MyFunction.gcd(first.longValue(), second.longValue()); }
+	double lcm(){ return Utility.lcm(first.longValue(), second.longValue()); }
+	double gcd(){ return Utility.gcd(first.longValue(), second.longValue()); }
 	NumPair extgcd() {
 		long x = 1, y = 0, t1 = 0, t2 = 0, t3 = 1, a = first.longValue(), b = second.longValue();
 		while(b > 0) {
@@ -624,6 +625,95 @@ class UnionFind {
 			ok &= root(i) != root(i + n);
 		}
 		return ok;
+	}
+}
+class WeightedUnionFind {
+	private int[] par;
+	private long[] weight;
+	WeightedUnionFind(final int n) {
+		par = new int[n];
+		weight = new long[n];
+		Arrays.fill(par, -1);
+	}
+	int root(final int i) {
+		if(par[i] < 0) {
+			return i;
+		}
+		final int r = root(par[i]);
+		weight[i] += weight[par[i]];
+		return par[i] = r;
+	}
+	long get(final int i) {
+		root(i);
+		return weight[i];
+	}
+	long diff(final int x, final int y){ return get(y) - get(x); }
+	int unite(int x, int y, long w) {
+		w += diff(y, x);
+		x = root(x);
+		y = root(y);
+		if(x == y) {
+			return w == 0 ? 0 : -1;
+		}
+		if(par[x] > par[y]) {
+			x ^= y;
+			y ^= x;
+			x ^= y;
+			w = -w;
+		}
+		par[x] += par[y];
+		par[y] = x;
+		weight[y] = w;
+		return 1;
+	}
+	boolean same(final int x, final int y){ return root(x) == root(y); }
+}
+class UndoUnionFind {
+	private int[] par;
+	private Stack<Pair<Integer, Integer>> his;
+	UndoUnionFind(final int n) {
+	    par = new int[n];
+	    Arrays.fill(par, -1);
+	    his = new Stack<>();
+	}
+	boolean unite(int x, int y) {
+		x = root(x);
+		y = root(y);
+		his.add(Pair.of(x, par[x]));
+		his.add(Pair.of(y, par[y]));
+		if(x == y) {
+			return false;
+		}
+		if(par[x] > par[y]) {
+			x ^= y;
+			y ^= x;
+			x ^= y;
+		}
+		par[x] += par[y];
+		par[y] = x;
+		return true;
+	}
+	int root(final int i) {
+		if(par[i] < 0) {
+			return i;
+		}
+		return root(par[i]);
+	}
+	int size(final int i){ return -par[root(i)]; }
+	void undo() {
+		final Pair<Integer, Integer> pop1 = his.pop(), pop2 = his.pop();
+		par[pop1.first] = pop1.second;
+		par[pop2.first] = pop2.second;
+	}
+	void snapshot() {
+		while(!his.empty()) {
+			his.pop();
+		}
+	}
+	void rollback() {
+		while(!his.empty()) {
+			undo();
+		}
 	}
 }
 
@@ -892,7 +982,7 @@ class PrimeCounter {
 			}
 		}
 	}
-	private long kthRooti(final long n, final int k){ return MyFunction.kthRoot(n, k); }
+	private long kthRooti(final long n, final int k){ return Utility.kthRoot(n, k); }
 	private long p2(final long x, final long y) {
 		if(x < 4) {
 			return 0;

@@ -2,6 +2,7 @@
 #include <cassert>
 #include <vector>
 #include <algorithm>
+#include <stack>
 struct UnionFind {
 private:
     std::vector<int> par;
@@ -18,7 +19,9 @@ public:
     bool unite(int x, int y) {
         x = (*this)[x], y = (*this)[y];
         if(x == y) return false;
-        if(-par[x] < -par[y]) std::swap(x, y);
+        if(-par[x] < -par[y]) {
+            std::swap(x, y);
+        }
         par[x] += par[y], par[y] = x;
         return true;
     }
@@ -94,3 +97,44 @@ public:
     }
     int operator[](const int i) noexcept { return root(i); }
 };
+
+// inspired by Luzhiled(https://ei1333.github.io/luzhiled/snippets/structure/union-find.html)
+struct UFUndo {
+private:
+    int[] par;
+	std::stack<std::pair<int, int>> his;
+public:
+	UFUndo(const int n): par(n, -1){}
+    bool unite(int x, int y) {
+		x = root(x);
+		y = root(y);
+		his.emplace(std::make_pair(x, par[x]));
+		his.emplace(std::make_pair(y, par[y]));
+		if(x == y) {
+			return false;
+		}
+		if(par[x] > par[y]) {
+			std::swap(x, y);
+		}
+		par[x] += par[y];
+		par[y] = x;
+		return true;
+	}
+    int size(const int i){ return -par[root(i)]; }
+    void undo() {
+		par[his.top().first] = his.top().second;
+        his.pop();
+		par[his.top().first] = his.top().second;
+        his.pop();
+	}
+    void snapshot() {
+		while(his.size()) {
+			his.pop();
+		}
+	}
+	void rollback() {
+		while(his.size()) {
+			undo();
+		}
+	}
+}
