@@ -36,7 +36,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/graph.hpp
       title: C++/graph.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: C++/math.hpp
       title: C++/math.hpp
     - icon: ':heavy_check_mark:'
@@ -133,6 +133,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/parsum.test.cpp
       title: test/parsum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/pcounter.test.cpp
+      title: test/pcounter.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/pf.test.cpp
       title: test/pf.test.cpp
