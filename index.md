@@ -158,8 +158,8 @@ data:
       path: test/uf.test.cpp
       title: test/uf.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/ufwpotential.test.cpp
-      title: test/ufwpotential.test.cpp
+      path: test/ufpotential.test.cpp
+      title: test/ufpotential.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/zalgo.test.cpp
       title: test/zalgo.test.cpp

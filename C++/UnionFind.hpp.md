@@ -13,8 +13,8 @@ data:
     path: test/uf.test.cpp
     title: test/uf.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/ufwpotential.test.cpp
-    title: test/ufwpotential.test.cpp
+    path: test/ufpotential.test.cpp
+    title: test/ufpotential.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -48,17 +48,17 @@ data:
     \ ok;\r\n    }\r\n};\r\n\r\n// inspired by tatyam(https://github.com/tatyam-prime/kyopro_library/blob/master/UnionFind.cpp)\r\
     \nstruct UFPotential {\r\nprivate:\r\n    std::vector<int> par;\r\n    std::vector<long\
     \ long> diff;\r\npublic:\r\n    UFPotential(const int n): par(n, -1), diff(n){}\r\
-    \n    int root(const int i){\r\n        if(par[i] < 0) {\r\n            return\
+    \n    int root(const int i) {\r\n        if(par[i] < 0) {\r\n            return\
     \ i;\r\n        }\r\n        const int r = root(par[i]);\r\n        diff[i] +=\
     \ diff[par[i]];\r\n        return par[i] = r;\r\n    }\r\n    long long dist(const\
-    \ int i){\r\n        root(i);\r\n        return diff[i];\r\n    }\r\n    long\
+    \ int i) {\r\n        root(i);\r\n        return diff[i];\r\n    }\r\n    long\
     \ long dist(const int x, const int y){ return dist(y) - dist(x); }\r\n    int\
-    \ unite(int x, int y, long long w){\r\n        w += dist(y, x);\r\n        x =\
-    \ root(x), y = root(y);\r\n        if(x == y) {\r\n            return w == 0 ?\
-    \ 0 : -1;\r\n        }\r\n        if(par[x] > par[y]) {\r\n            std::swap(x,\
+    \ unite(int x, int y, long long w) {\r\n        w += dist(y, x);\r\n        x\
+    \ = root(x), y = root(y);\r\n        if(x == y) {\r\n            return w == 0\
+    \ ? 0 : -1;\r\n        }\r\n        if(par[x] > par[y]) {\r\n            std::swap(x,\
     \ y);\r\n            w = -w;\r\n        }\r\n        par[x] += par[y];\r\n   \
     \     par[y] = x;\r\n        diff[y] = w;\r\n        return 1;\r\n    }\r\n  \
-    \  bool same(const int x, const int y){ return root(x) == root(y); }\r\n};\n"
+    \  int operator[](const int i) noexcept { return root(i); }\r\n};\n"
   code: "// inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)\r\
     \n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\nstruct UnionFind\
     \ {\r\nprivate:\r\n    std::vector<int> par;\r\npublic:\r\n    UnionFind(const\
@@ -85,26 +85,26 @@ data:
     \ ok;\r\n    }\r\n};\r\n\r\n// inspired by tatyam(https://github.com/tatyam-prime/kyopro_library/blob/master/UnionFind.cpp)\r\
     \nstruct UFPotential {\r\nprivate:\r\n    std::vector<int> par;\r\n    std::vector<long\
     \ long> diff;\r\npublic:\r\n    UFPotential(const int n): par(n, -1), diff(n){}\r\
-    \n    int root(const int i){\r\n        if(par[i] < 0) {\r\n            return\
+    \n    int root(const int i) {\r\n        if(par[i] < 0) {\r\n            return\
     \ i;\r\n        }\r\n        const int r = root(par[i]);\r\n        diff[i] +=\
     \ diff[par[i]];\r\n        return par[i] = r;\r\n    }\r\n    long long dist(const\
-    \ int i){\r\n        root(i);\r\n        return diff[i];\r\n    }\r\n    long\
+    \ int i) {\r\n        root(i);\r\n        return diff[i];\r\n    }\r\n    long\
     \ long dist(const int x, const int y){ return dist(y) - dist(x); }\r\n    int\
-    \ unite(int x, int y, long long w){\r\n        w += dist(y, x);\r\n        x =\
-    \ root(x), y = root(y);\r\n        if(x == y) {\r\n            return w == 0 ?\
-    \ 0 : -1;\r\n        }\r\n        if(par[x] > par[y]) {\r\n            std::swap(x,\
+    \ unite(int x, int y, long long w) {\r\n        w += dist(y, x);\r\n        x\
+    \ = root(x), y = root(y);\r\n        if(x == y) {\r\n            return w == 0\
+    \ ? 0 : -1;\r\n        }\r\n        if(par[x] > par[y]) {\r\n            std::swap(x,\
     \ y);\r\n            w = -w;\r\n        }\r\n        par[x] += par[y];\r\n   \
     \     par[y] = x;\r\n        diff[y] = w;\r\n        return 1;\r\n    }\r\n  \
-    \  bool same(const int x, const int y){ return root(x) == root(y); }\r\n};"
+    \  int operator[](const int i) noexcept { return root(i); }\r\n};"
   dependsOn: []
   isVerificationFile: false
   path: C++/UnionFind.hpp
   requiredBy:
   - C++/MST.hpp
-  timestamp: '2023-12-01 05:44:25+09:00'
+  timestamp: '2023-12-01 05:58:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/ufwpotential.test.cpp
+  - test/ufpotential.test.cpp
   - test/uf.test.cpp
   - test/kruskal.test.cpp
 documentation_of: C++/UnionFind.hpp

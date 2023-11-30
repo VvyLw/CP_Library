@@ -31,7 +31,7 @@ data:
   isVerificationFile: true
   path: test/kruskal.test.cpp
   requiredBy: []
-  timestamp: '2023-12-01 05:44:25+09:00'
+  timestamp: '2023-12-01 05:58:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/kruskal.test.cpp

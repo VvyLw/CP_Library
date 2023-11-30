@@ -39,7 +39,7 @@ data:
   isVerificationFile: false
   path: C++/MST.hpp
   requiredBy: []
-  timestamp: '2023-12-01 05:44:25+09:00'
+  timestamp: '2023-12-01 05:58:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/kruskal.test.cpp
