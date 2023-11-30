@@ -29,7 +29,7 @@ data:
   isVerificationFile: true
   path: test/manacher.test.cpp
   requiredBy: []
-  timestamp: '2023-11-30 23:34:46+09:00'
+  timestamp: '2023-12-01 00:51:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/manacher.test.cpp

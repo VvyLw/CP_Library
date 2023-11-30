@@ -145,23 +145,44 @@ data:
     \ ArrayList<Long> a) {\n\t\tArrayList<Integer> res = new ArrayList<>();\n\t\t\
     final var cp = a.stream().sorted().distinct().collect(Collectors.toList());\n\t\
     \tfor(final var el: a) {\n\t\t\tres.add(lowerBound(cp, el));\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n}\n\nclass MyScanner {\n\tprivate Scanner sc = new Scanner(System.in);\n\
-    \tint ni(){ return sc.nextInt(); }\n\tlong nl(){ return sc.nextLong(); }\n\tdouble\
-    \ nd(){ return sc.nextDouble(); }\n\tString ns(){ return sc.next(); }\n\tint[]\
-    \ ni(final int n){\n\t\tint[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = ni());\n\t\treturn a;\n\t}\n\tlong[] nl(final int n){\n\t\tlong[]\
-    \ a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\t\
-    return a;\n\t}\n\tdouble[] nd(final int n){\n\t\tdouble[] a = new double[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tString[]\
-    \ ns(final int n){\n\t\tString[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = ns());\n\t\treturn a;\n\t}\n\tArrayList<Integer> nia(final int n)\
-    \ {\n\t\tvar a = new ArrayList<Integer>(n);\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a.add(i, ni()));\n\t\treturn a;\n\t}\n\tArrayList<Long> nla(final int n)\
-    \ {\n\t\tvar a = new ArrayList<Long>(n);\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a.add(i, nl()));\n\t\treturn a;\n\t}\n\tArrayList<Double> nda(final int n)\
-    \ {\n\t\tvar a = new ArrayList<Double>(n);\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a.add(i, nd()));\n\t\treturn a;\n\t}\n\tArrayList<String> nsa(final int n)\
-    \ {\n\t\tvar a = new ArrayList<String>(n);\n\t\tIntStream.range(0, n).forEach(i\
+    \ res;\n\t}\n\tprotected static int[] zAlgorithm(final String s) {\n\t\tfinal\
+    \ int n = s.length();\n\t\tint j = 0;\n\t\tint[] pre = new int[n];\n\t\tfor(int\
+    \ i = 0; ++i < n;) {\n\t\t\tif(i + pre[i - j] < j + pre[j]) {\n\t\t\t\tpre[i]\
+    \ = pre[i - j];\n\t\t\t}\n\t\t\telse {\n\t\t\t\tint k = Math.max(0, j + pre[j]\
+    \ - i);\n\t\t\t\twhile(i + k < n && s.charAt(k) == s.charAt(i + k)) {\n\t\t\t\t\
+    \t++k;\n\t\t\t\t}\n\t\t\t\tpre[i] = k;\n\t\t\t\tj = i;\n\t\t\t}\n\t\t}\n\t\tpre[0]\
+    \ = n;\n\t\treturn pre;\n\t}\n\tprotected static int[] manacher(final String s_,\
+    \ final boolean calcEven) {\n\t\tint n = s_.length();\n\t\tchar[] s;\n\t\tif(calcEven)\
+    \ {\n\t\t\ts = new char[2 * n - 1];\n\t\t\tIntStream.range(0, n).forEach(i ->\
+    \ s[i] = s_.charAt(i));\n\t\t\tfor(int i = n; --i >= 0;) {\n\t\t\t\ts[2 * i] =\
+    \ s_.charAt(i);\n\t\t\t}\n\t\t\tfinal var d = Collections.min(s_.chars().mapToObj(c\
+    \ -> (char) c).collect(Collectors.toList()));\n\t\t\tfor(int i = 0; i < n - 1;\
+    \ ++i) {\n\t\t\t\ts[2 * i + 1] = d;\n\t\t\t}\n\t\t} else {\n\t\t\ts = new char[n];\n\
+    \t\t\tIntStream.range(0, n).forEach(i -> s[i] = s_.charAt(i));\n\t\t}\n\t\tn =\
+    \ s.length;\n\t\tint[] rad = new int[n];\n\t\tfor(int i = 0, j = 0; i < n;) {\n\
+    \t\t\twhile(i - j >= 0 && i + j < n && s[i - j] == s[i + j]) {\n\t\t\t\t++j;\n\
+    \t\t\t}\n\t\t\trad[i] = j;\n\t\t\tint k = 1;\n\t\t\twhile(i - k >= 0 && i + k\
+    \ < n && k + rad[i - k] < j) {\n\t\t\t\trad[i + k] = rad[i - k];\n\t\t\t\t++k;\n\
+    \t\t\t}\n\t\t\ti += k;\n\t\t\tj -= k;\n\t\t}\n\t\tif(calcEven) {\n\t\t\tfor(int\
+    \ i = 0; i < n; ++i) {\n\t\t\t\tif(((i ^ rad[i]) & 1) == 0) {\n\t\t\t\t\trad[i]--;\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t} else {\n\t\t\tfor(var x: rad) {\n\t\t\t\tx = 2 * x -\
+    \ 1;\n\t\t\t}\n\t\t}\n\t\treturn rad;\n\t}\n}\n\nclass MyScanner {\n\tprivate\
+    \ Scanner sc = new Scanner(System.in);\n\tint ni(){ return sc.nextInt(); }\n\t\
+    long nl(){ return sc.nextLong(); }\n\tdouble nd(){ return sc.nextDouble(); }\n\
+    \tString ns(){ return sc.next(); }\n\tint[] ni(final int n){\n\t\tint[] a = new\
+    \ int[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ni());\n\t\treturn a;\n\
+    \t}\n\tlong[] nl(final int n){\n\t\tlong[] a = new long[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = nl());\n\t\treturn a;\n\t}\n\tdouble[] nd(final int n){\n\
+    \t\tdouble[] a = new double[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] =\
+    \ nd());\n\t\treturn a;\n\t}\n\tString[] ns(final int n){\n\t\tString[] a = new\
+    \ String[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ns());\n\t\treturn\
+    \ a;\n\t}\n\tArrayList<Integer> nia(final int n) {\n\t\tvar a = new ArrayList<Integer>(n);\n\
+    \t\tIntStream.range(0, n).forEach(i -> a.add(i, ni()));\n\t\treturn a;\n\t}\n\t\
+    ArrayList<Long> nla(final int n) {\n\t\tvar a = new ArrayList<Long>(n);\n\t\t\
+    IntStream.range(0, n).forEach(i -> a.add(i, nl()));\n\t\treturn a;\n\t}\n\tArrayList<Double>\
+    \ nda(final int n) {\n\t\tvar a = new ArrayList<Double>(n);\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a.add(i, nd()));\n\t\treturn a;\n\t}\n\tArrayList<String> nsa(final\
+    \ int n) {\n\t\tvar a = new ArrayList<String>(n);\n\t\tIntStream.range(0, n).forEach(i\
     \ -> a.add(i, ns()));\n\t\treturn a;\n\t}\n\tvoid close(){ sc.close(); }\n}\n\n\
     class MyPrinter {\n\tprivate PrintWriter pw;\n\tMyPrinter(final OutputStream os,\
     \ final boolean flush){ pw = new PrintWriter(os, flush); }\n\tvoid print(final\
@@ -247,10 +268,10 @@ data:
     \ n, final int indexed, final boolean undirected) {\n\t\tthis.n = n;\n\t\tthis.indexed\
     \ = indexed;\n\t\tthis.undirected = undirected;\n\t\tg = new ArrayList<>(n);\n\
     \t\tIntStream.range(0, n).forEach(i -> g.add(new ArrayList<>()));\n\t}\n\tvoid\
-    \ add(int a, int b, final long cost) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\
-    \t\tg.get(a).add(new Edge(b));\n\t\tif(undirected) {\n\t\t\tg.get(b).add(new Edge(a));\n\
-    \t\t}\n\t}\n\tprotected ArrayList<ArrayList<Edge>> getGraph(){ return g; }\n\t\
-    protected int[] allDist(final int v) {\n\t\tint[] d = new int[n];\n\t\tArrays.fill(d,\
+    \ add(int a, int b) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tg.get(a).add(new\
+    \ Edge(b));\n\t\tif(undirected) {\n\t\t\tg.get(b).add(new Edge(a));\n\t\t}\n\t\
+    }\n\tprotected ArrayList<ArrayList<Edge>> getGraph(){ return g; }\n\tprotected\
+    \ int[] allDist(final int v) {\n\t\tint[] d = new int[n];\n\t\tArrays.fill(d,\
     \ -1);\n\t\tQueue<Integer> q = new ArrayDeque<>();\n\t\td[v] = 0;\n\t\tq.add(v);\n\
     \t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\t\t\tfor(final var\
     \ el: g.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\t\tcontinue;\n\t\t\t\
@@ -284,9 +305,27 @@ data:
     \ b - indexed, cost)); }\n\tlong kruskal() {\n\t\tCollections.sort(edge, Comparator.comparing(e\
     \ -> e.cost));\n\t\tUnionFind uf = new UnionFind(n);\n\t\tlong res = 0;\n\t\t\
     for(final var ed: edge) {\n\t\t\tif(uf.unite(ed.src, ed.to)) {\n\t\t\t\tres +=\
-    \ ed.cost;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n}\n\nclass AccumulateSum {\n\
-    \tprivate int n;\n\tprivate long[] s;\n\tAccumulateSum(final int[] a) {\n\t\t\
-    n = a.length;\n\t\ts = new long[n + 1];\n\t\tIntStream.range(0, n).forEach(i ->\
+    \ ed.cost;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n}\n\nclass LowestCommonAncestor<G\
+    \ extends Graph> {\n\tprivate int log;\n\tint[] dep;\n\tprivate G g;\n\tint[][]\
+    \ table;\n\tLowestCommonAncestor(final G g) {\n\t\tthis.g = g;\n\t\tfinal int\
+    \ n = g.getGraph().size();\n\t\tdep = new int[n];\n\t\tlog = Integer.toBinaryString(n).length();\n\
+    \t\ttable = new int[log][n];\n\t\tIntStream.range(0, log).forEach(i -> Arrays.fill(table[i],\
+    \ -1));\n\t}\n\tprivate void dfs(final int idx, final int par, final int d) {\n\
+    \t\ttable[0][idx] = par;\n\t\tdep[idx] = d;\n\t\tfor(final var el: g.getGraph().get(idx))\
+    \ {\n\t\t\tif(el.to != par) {\n\t\t\t\tdfs(el.to, idx, d + 1);\n\t\t\t}\n\t\t\
+    }\n\t}\n\tvoid build() {\n\t\tdfs(0, -1, 0);\n\t\tfor(int k = 0; k < log - 1;\
+    \ ++k) {\n\t\t\tfor(int i = 0; i < table[k].length; ++i) {\n\t\t\t\tif(table[k][i]\
+    \ == -1) {\n\t\t\t\t\ttable[k + 1][i] = -1;\n\t\t\t\t} else {\n\t\t\t\t\ttable[k\
+    \ + 1][i] = table[k][table[k][i]];\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tint query(int\
+    \ u, int v) {\n\t\tif(dep[u] > dep[v]) {\n\t\t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\t\
+    u ^= v;\n\t\t}\n\t\tfor(int i = log; --i >= 0;) {\n\t\t\tif(((dep[v] - dep[u])\
+    \ >> i) % 2 == 1) {\n\t\t\t\tv = table[i][v];\n\t\t\t}\n\t\t}\n\t\tif(u == v)\
+    \ {\n\t\t\treturn u;\n\t\t}\n\t\tfor(int i = log; --i >= 0;) {\n\t\t\tif(table[i][u]\
+    \ != table[i][v]) {\n\t\t\t\tu = table[i][u];\n\t\t\t\tv = table[i][v];\n\t\t\t\
+    }\n\t\t}\n\t\treturn table[0][u];\n\t}\n\tint dist(final int u, final int v){\
+    \ return dep[u] + dep[v] - 2 * query(u, v); }\n}\n\nclass AccumulateSum {\n\t\
+    private int n;\n\tprivate long[] s;\n\tAccumulateSum(final int[] a) {\n\t\tn =\
+    \ a.length;\n\t\ts = new long[n + 1];\n\t\tIntStream.range(0, n).forEach(i ->\
     \ s[i + 1] = s[i] + a[i]);\n\t}\n\tAccumulateSum(final long[] a) {\n\t\tn = a.length;\n\
     \t\ts = new long[n + 1];\n\t\tIntStream.range(0, n).forEach(i -> s[i + 1] = s[i]\
     \ + a[i]);\n\t}\n\tlong[] get(){ return s; }\n\tlong query(final int l, final\
@@ -446,7 +485,7 @@ data:
   isVerificationFile: false
   path: Java/template.java
   requiredBy: []
-  timestamp: '2023-11-30 18:51:56+09:00'
+  timestamp: '2023-12-01 00:51:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/template.java
