@@ -9,7 +9,7 @@ int main() {
         int t, x, y;
         std::cin >> t >> x >> y;
         if(t) {
-            if(uf.same(x, y)) {
+            if(uf[x] == uf[y]) {
                 std::cout << uf.dist(x, y) << '\n';
             }
             else {
