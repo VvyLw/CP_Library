@@ -72,6 +72,7 @@ std::vector<ll> zalg(const std::string &s) {
 // inspired by tatyam(https://github.com/tatyam-prime/kyopro_library/blob/master/RollingHash.cpp)
 const ul LINF = (1LL << 61) - 1, base = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count() % LINF;
 template <ul mod> struct RollingHash {
+private:
     std::vector<ul> hashed, power;
     static constexpr ul mask(const ll a){ return (1ULL << a) - 1; }
     inline ul mul(const ul a, const ul b) const {
@@ -80,6 +81,7 @@ template <ul mod> struct RollingHash {
         if(ans >= mod) ans -= mod;
         return ans;
     }
+public:
     RollingHash(const std::string &s) {
         const ll n = s.size();
         hashed.resize(n + 1);

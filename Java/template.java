@@ -322,6 +322,71 @@ class MyFunction {
 		}
 		return res;
 	}
+	protected static int[] zAlgorithm(final String s) {
+		final int n = s.length();
+		int j = 0;
+		int[] pre = new int[n];
+		for(int i = 0; ++i < n;) {
+			if(i + pre[i - j] < j + pre[j]) {
+				pre[i] = pre[i - j];
+			}
+			else {
+				int k = Math.max(0, j + pre[j] - i);
+				while(i + k < n && s.charAt(k) == s.charAt(i + k)) {
+					++k;
+				}
+				pre[i] = k;
+				j = i;
+			}
+		}
+		pre[0] = n;
+		return pre;
+	}
+	protected static int[] manacher(final String s_, final boolean calcEven) {
+		int n = s_.length();
+		char[] s;
+		if(calcEven) {
+			s = new char[2 * n - 1];
+			IntStream.range(0, n).forEach(i -> s[i] = s_.charAt(i));
+			for(int i = n; --i >= 0;) {
+				s[2 * i] = s_.charAt(i);
+			}
+			final var d = Collections.min(s_.chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
+			for(int i = 0; i < n - 1; ++i) {
+				s[2 * i + 1] = d;
+			}
+		} else {
+			s = new char[n];
+			IntStream.range(0, n).forEach(i -> s[i] = s_.charAt(i));
+		}
+		n = s.length;
+		int[] rad = new int[n];
+		for(int i = 0, j = 0; i < n;) {
+			while(i - j >= 0 && i + j < n && s[i - j] == s[i + j]) {
+				++j;
+			}
+			rad[i] = j;
+			int k = 1;
+			while(i - k >= 0 && i + k < n && k + rad[i - k] < j) {
+				rad[i + k] = rad[i - k];
+				++k;
+			}
+			i += k;
+			j -= k;
+		}
+		if(calcEven) {
+			for(int i = 0; i < n; ++i) {
+				if(((i ^ rad[i]) & 1) == 0) {
+					rad[i]--;
+				}
+			}
+		} else {
+			for(var x: rad) {
+				x = 2 * x - 1;
+			}
+		}
+		return rad;
+	}
 }
 
 class MyScanner {
@@ -564,7 +629,7 @@ class Graph {
 		g = new ArrayList<>(n);
 		IntStream.range(0, n).forEach(i -> g.add(new ArrayList<>()));
 	}
-	void add(int a, int b, final long cost) {
+	void add(int a, int b) {
 		a -= indexed;
 		b -= indexed;
 		g.get(a).add(new Edge(b));
@@ -668,6 +733,65 @@ class Tree {
 		}
 		return res;
 	}
+}
+
+class LowestCommonAncestor<G extends Graph> {
+	private int log;
+	int[] dep;
+	private G g;
+	int[][] table;
+	LowestCommonAncestor(final G g) {
+		this.g = g;
+		final int n = g.getGraph().size();
+		dep = new int[n];
+		log = Integer.toBinaryString(n).length();
+		table = new int[log][n];
+		IntStream.range(0, log).forEach(i -> Arrays.fill(table[i], -1));
+	}
+	private void dfs(final int idx, final int par, final int d) {
+		table[0][idx] = par;
+		dep[idx] = d;
+		for(final var el: g.getGraph().get(idx)) {
+			if(el.to != par) {
+				dfs(el.to, idx, d + 1);
+			}
+		}
+	}
+	void build() {
+		dfs(0, -1, 0);
+		for(int k = 0; k < log - 1; ++k) {
+			for(int i = 0; i < table[k].length; ++i) {
+				if(table[k][i] == -1) {
+					table[k + 1][i] = -1;
+				} else {
+					table[k + 1][i] = table[k][table[k][i]];
+				}
+			}
+		}
+	}
+	int query(int u, int v) {
+		if(dep[u] > dep[v]) {
+			u ^= v;
+			v ^= u;
+			u ^= v;
+		}
+		for(int i = log; --i >= 0;) {
+			if(((dep[v] - dep[u]) >> i) % 2 == 1) {
+				v = table[i][v];
+			}
+		}
+		if(u == v) {
+			return u;
+		}
+		for(int i = log; --i >= 0;) {
+			if(table[i][u] != table[i][v]) {
+				u = table[i][u];
+				v = table[i][v];
+			}
+		}
+		return table[0][u];
+	}
+	int dist(final int u, final int v){ return dep[u] + dep[v] - 2 * query(u, v); }
 }
 
 class AccumulateSum {
