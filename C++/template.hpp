@@ -584,10 +584,10 @@ private:
     if(n<1) {
       return m;
     }
-    if(m<=sqr(primes[n-1])) {
+    if(m<=zia_qu::sqr(primes[n-1])) {
       return pi(m)-n+1;
     }
-    if(m<=cub(primes[n-1]) && m <= sq) {
+    if(m<=zia_qu::cub(primes[n-1]) && m <= sq) {
       const ll sx = pi(kthrooti(m, 2));
       ll ans=pi(m)-(sx+n-2)*(sx-n+1)/2;
       rep(i,n,sx-1) {
