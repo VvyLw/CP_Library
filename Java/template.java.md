@@ -44,81 +44,83 @@ data:
     \ d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n %\
     \ i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n /\
     \ i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\t\treturn d;\n\t\
-    }\n\tprotected static ArrayList<Long> primeFactor(long n) {\n\t\tArrayList<Long>\
-    \ pf = new ArrayList<>();\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n\
-    \ % i != 0) continue;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tpf.add(i);\n\t\t\t\t\
-    n /= i;\n\t\t\t}\n\t\t}\n\t\tif(n != 1) pf.add(n);\n\t\treturn pf;\n\t}\n\tprotected\
-    \ static long binom(int a, final int b) {\n\t\tlong res = 1;\n\t\tfor(int i =\
-    \ 1; i <= b; ++i) {\n\t\t\tres *= a--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static boolean isInt(final double n){ long r = (long) Math.floor(n);\
-    \ return r == n; }\n\tprotected static boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
-    \ }\n\tprotected static boolean isPrime(final long n) {\n\t\tif(n == 1) return\
-    \ false;\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) return\
-    \ false;\n\t\t}\n\t\treturn true;\n\t}\n\tprotected static boolean nextPerm(ArrayList<Integer>\
-    \ a) {\n\t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
+    }\n\tprotected static ArrayList<Pair<Long, Integer>> primeFactor(long n) {\n\t\
+    \tArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long i = 2;\
+    \ i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\
+    \tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /= i;\n\t\
+    \t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\t\tpf.add(Pair.of(n,\
+    \ 1));\n\t\t}\n\t\treturn pf;\n\t}\n\tprotected static long binom(int a, final\
+    \ int b) {\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= b; ++i) {\n\t\t\tres *=\
+    \ a--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static boolean\
+    \ isInt(final double n){ long r = (long) Math.floor(n); return r == n; }\n\tprotected\
+    \ static boolean isSqr(final long n){ return isInt(Math.sqrt(n)); }\n\tprotected\
+    \ static boolean isPrime(final long n) {\n\t\tif(n == 1) return false;\n\t\tfor(long\
+    \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) return false;\n\t\t}\n\t\treturn\
+    \ true;\n\t}\n\tprotected static boolean nextPerm(ArrayList<Integer> a) {\n\t\t\
+    for(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
     \ < 0) {\n\t\t\t\tfinal int j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\
     \tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\
     \t\t\t\treturn true;\n\t\t\t}\n\t\t}\n\t\treturn false;\n\t}\n\tprivate static\
-    \ <T extends Comparable<? super T>> int find(T dest, ArrayList<T> a, int s, int\
-    \ e) {\n\t\tif (s == e) return s;\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn\
-    \ a.get(m).compareTo(dest) <= 0 ? find(dest, a, s, m - 1):find(dest, a, m, e);\n\
-    \t}\n\tprotected static boolean binarySearch(final int[] a, final int x) {\n\t\
-    \treturn Arrays.binarySearch(a, x) >= 0;\n\t}\n\tprotected static boolean binarySearch(final\
-    \ long[] a, final long x) {\n\t\treturn Arrays.binarySearch(a, x) >= 0;\n\t}\n\
-    \tprotected static int lowerBound(final List<Integer> a, final int x) {\n\t\t\
-    return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) >= 0 ? 1 : -1);\n\
-    \t}\n\tprotected static int lowerBound(final List<Long> a, final long x) {\n\t\
-    \treturn ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) >= 0 ? 1 : -1);\n\
-    \t}\n\tprotected static int upperBound(final List<Integer>a, final int x) {\n\t\
-    \treturn ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) > 0 ? 1 : -1);\n\
-    \t}\n\tprotected static int upperBound(final List<Long> a, final long x) {\n\t\
-    \treturn ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) > 0 ? 1 : -1);\n\
-    \t}\n\tprotected static int[] reverse(final int[] a) {\n\t\tfinal int n = a.length;\n\
-    \t\tint[] b = new int[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] =\
-    \ a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected\
-    \ static long[] reverse(final long[] a) {\n\t\tfinal int n = a.length;\n\t\tlong[]\
-    \ b = new long[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n -\
-    \ 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected\
-    \ static double[] reverse(final double[] a) {\n\t\tfinal int n = a.length;\n\t\
-    \tdouble[] b = new double[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i]\
-    \ = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected\
-    \ static Object[] reverse(final Object[] a) {\n\t\tfinal int n = a.length;\n\t\
-    \tObject[] b = new Object[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i]\
-    \ = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected\
-    \ static int[] rotate(final int[] a, final int id) {\n\t\tArrayList<Integer> t\
-    \ = new ArrayList<>(a.length);\n\t\tfor(final var el: a) {\n\t\t\tt.add(el);\n\
-    \t\t}\n\t\tCollections.rotate(t, id);\n\t\tint[] res = new int[t.size()];\n\t\t\
-    for(int i = 0; i < t.size(); ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\tprotected static long[] rotate(final long[] a, final int id) {\n\
-    \t\tArrayList<Long> t = new ArrayList<>(a.length);\n\t\tfor(final var el: a) {\n\
-    \t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t, id);\n\t\tlong[] res = new\
-    \ long[t.size()];\n\t\tfor(int i = 0; i < t.size(); ++i) {\n\t\t\tres[i] = t.get(i);\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static double[] rotate(final double[]\
-    \ a, final int id) {\n\t\tArrayList<Double> t = new ArrayList<>(a.length);\n\t\
-    \tfor(final var el: a) {\n\t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t, id);\n\
-    \t\tdouble[] res = new double[t.size()];\n\t\tfor(int i = 0; i < t.size(); ++i)\
+    \ <T extends Comparable<? super T>> int find(final T dest, final ArrayList<T>\
+    \ a, final int s, final int e) {\n\t\tif (s == e) return s;\n\t\tfinal int m =\
+    \ (s + e + 1) / 2;\n\t\treturn a.get(m).compareTo(dest) <= 0 ? find(dest, a, s,\
+    \ m - 1) : find(dest, a, m, e);\n\t}\n\tprotected static boolean binarySearch(final\
+    \ int[] a, final int x) {\n\t\treturn Arrays.binarySearch(a, x) >= 0;\n\t}\n\t\
+    protected static boolean binarySearch(final long[] a, final long x) {\n\t\treturn\
+    \ Arrays.binarySearch(a, x) >= 0;\n\t}\n\tprotected static int lowerBound(final\
+    \ List<Integer> a, final int x) {\n\t\treturn ~Collections.binarySearch(a, x,\
+    \ (p, q) -> p.compareTo(q) >= 0 ? 1 : -1);\n\t}\n\tprotected static int lowerBound(final\
+    \ List<Long> a, final long x) {\n\t\treturn ~Collections.binarySearch(a, x, (p,\
+    \ q) -> p.compareTo(q) >= 0 ? 1 : -1);\n\t}\n\tprotected static int upperBound(final\
+    \ List<Integer>a, final int x) {\n\t\treturn ~Collections.binarySearch(a, x, (p,\
+    \ q) -> p.compareTo(q) > 0 ? 1 : -1);\n\t}\n\tprotected static int upperBound(final\
+    \ List<Long> a, final long x) {\n\t\treturn ~Collections.binarySearch(a, x, (p,\
+    \ q) -> p.compareTo(q) > 0 ? 1 : -1);\n\t}\n\tprotected static int[] reverse(final\
+    \ int[] a) {\n\t\tfinal int n = a.length;\n\t\tint[] b = new int[n];\n\t\tfor(int\
+    \ i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] =\
+    \ a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected static long[] reverse(final long[]\
+    \ a) {\n\t\tfinal int n = a.length;\n\t\tlong[] b = new long[n];\n\t\tfor(int\
+    \ i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] =\
+    \ a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected static double[] reverse(final\
+    \ double[] a) {\n\t\tfinal int n = a.length;\n\t\tdouble[] b = new double[n];\n\
+    \t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n -\
+    \ 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected static Object[] reverse(final\
+    \ Object[] a) {\n\t\tfinal int n = a.length;\n\t\tObject[] b = new Object[n];\n\
+    \t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n -\
+    \ 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected static int[] rotate(final\
+    \ int[] a, final int id) {\n\t\tArrayList<Integer> t = new ArrayList<>(a.length);\n\
+    \t\tfor(final var el: a) {\n\t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t,\
+    \ id);\n\t\tint[] res = new int[t.size()];\n\t\tfor(int i = 0; i < t.size(); ++i)\
     \ {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ String rotate(final String s, final int id) {\n\t\tArrayList<Character> t =\
-    \ new ArrayList<>();\n\t\tfor(final char c: s.toCharArray()) {\n\t\t\tt.add(c);\n\
-    \t\t}\n\t\tCollections.rotate(t, id);\n\t\tStringBuilder sb = new StringBuilder();\n\
-    \t\tfor(final var c: t) {\n\t\t\tsb.append(c);\n\t\t}\n\t\treturn sb.toString();\
-    \ \n\t}\n\tprotected static int[][] rotate(final int[][] a) {\n\t\tfinal int h\
-    \ = a.length, w = a[0].length;\n\t\tint[][] b = new int[w][h];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);\n\
-    \t\t});\n\t\tIntStream.range(0, w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn\
-    \ b;\n\t}\n\tprotected static long[][] rotate(final long[][] a) {\n\t\tfinal int\
-    \ h = a.length, w = a[0].length;\n\t\tlong[][] b = new long[w][h];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);\n\
-    \t\t});\n\t\tIntStream.range(0, w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn\
-    \ b;\n\t}\n\tprotected static double[][] rotate(final double[][] a) {\n\t\tfinal\
-    \ int h = a.length, w = a[0].length;\n\t\tdouble[][] b = new double[w][h];\n\t\
-    \tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j\
-    \ -> b[j][i] = a[i][j]);\n\t\t});\n\t\tIntStream.range(0, w).forEach(i -> b[i]\
-    \ = reverse(b[i]));\n\t\treturn b;\n\t}\n\tprotected static String[] rotate(final\
-    \ String[] s) {\n\t\tfinal int h = s.length, w = s[0].length();\n\t\tchar[][]\
-    \ t = new char[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0,\
-    \ w).forEach(j -> t[j][i] = s[i].charAt(j));\n\t\t});\n\t\tIntStream.range(0,\
-    \ w).forEach(i -> t[i] = new StringBuilder(new String(t[i])).reverse().toString().toCharArray());\n\
+    \ long[] rotate(final long[] a, final int id) {\n\t\tArrayList<Long> t = new ArrayList<>(a.length);\n\
+    \t\tfor(final var el: a) {\n\t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t,\
+    \ id);\n\t\tlong[] res = new long[t.size()];\n\t\tfor(int i = 0; i < t.size();\
+    \ ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ double[] rotate(final double[] a, final int id) {\n\t\tArrayList<Double> t =\
+    \ new ArrayList<>(a.length);\n\t\tfor(final var el: a) {\n\t\t\tt.add(el);\n\t\
+    \t}\n\t\tCollections.rotate(t, id);\n\t\tdouble[] res = new double[t.size()];\n\
+    \t\tfor(int i = 0; i < t.size(); ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\t\
+    return res;\n\t}\n\tprotected static String rotate(final String s, final int id)\
+    \ {\n\t\tArrayList<Character> t = new ArrayList<>();\n\t\tfor(final char c: s.toCharArray())\
+    \ {\n\t\t\tt.add(c);\n\t\t}\n\t\tCollections.rotate(t, id);\n\t\tStringBuilder\
+    \ sb = new StringBuilder();\n\t\tfor(final var c: t) {\n\t\t\tsb.append(c);\n\t\
+    \t}\n\t\treturn sb.toString(); \n\t}\n\tprotected static int[][] rotate(final\
+    \ int[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\t\tint[][] b =\
+    \ new int[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0,\
+    \ w).forEach(j -> b[j][i] = a[i][j]);\n\t\t});\n\t\tIntStream.range(0, w).forEach(i\
+    \ -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\tprotected static long[][] rotate(final\
+    \ long[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\t\tlong[][] b\
+    \ = new long[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0,\
+    \ w).forEach(j -> b[j][i] = a[i][j]);\n\t\t});\n\t\tIntStream.range(0, w).forEach(i\
+    \ -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\tprotected static double[][]\
+    \ rotate(final double[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\
+    \t\tdouble[][] b = new double[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\
+    \t\t\tIntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);\n\t\t});\n\t\tIntStream.range(0,\
+    \ w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\tprotected static\
+    \ String[] rotate(final String[] s) {\n\t\tfinal int h = s.length, w = s[0].length();\n\
+    \t\tchar[][] t = new char[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\
+    \t\tIntStream.range(0, w).forEach(j -> t[j][i] = s[i].charAt(j));\n\t\t});\n\t\
+    \tIntStream.range(0, w).forEach(i -> t[i] = new StringBuilder(new String(t[i])).reverse().toString().toCharArray());\n\
     \t\tString[] res = new String[w];\n\t\tIntStream.range(0, w).forEach(i -> res[i]\
     \ = new String(t[i]));\n\t\treturn res;\n\t}\n\tprotected static long lcm(final\
     \ long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static long\
@@ -247,101 +249,137 @@ data:
     \t\tIntStream.range(0, n).forEach(i -> g.add(new ArrayList<>()));\n\t}\n\tvoid\
     \ add(int a, int b, final long cost) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\
     \t\tg.get(a).add(new Edge(b));\n\t\tif(undirected) {\n\t\t\tg.get(b).add(new Edge(a));\n\
-    \t\t}\n\t}\n\tprotected int[] allDist(final int v) {\n\t\tint[] d = new int[n];\n\
-    \t\tArrays.fill(d, -1);\n\t\tQueue<Integer> q = new ArrayDeque<>();\n\t\td[v]\
-    \ = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\
-    \t\t\tfor(final var el: g.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\t\t\
-    continue;\n\t\t\t\t}\n\t\t\t\td[el.to]=d[tmp]+1;\n\t\t\t\tq.add(el.to);\n\t\t\t\
-    }\n\t\t}\n\t\treturn d;\n\t}\n\tprotected int dist(final int u, final int v){\
-    \ return allDist(u)[v]; }\n}\nclass WeightedGraph extends Graph {\n\tArrayList<ArrayList<Edge>>\
-    \ g;\n\tWeightedGraph(final int n, final int indexed, final boolean undirected)\
-    \ {\n\t\tsuper(n, indexed, undirected);\n\t\tg = new ArrayList<>(n);\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> g.add(new ArrayList<>()));\n\t}\n\tvoid add(int a, int b, final\
-    \ long cost) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tg.get(a).add(new Edge(b,\
-    \ cost));\n\t\tif(undirected) {\n\t\t\tg.get(b).add(new Edge(a, cost));\n\t\t\
-    }\n\t}\n\tlong[] dijkstra(final int v) {\n\t\tlong[] cost = new long[n];\n\t\t\
-    Arrays.fill(cost, Long.MAX_VALUE);\n\t\tQueue<NumPair> dj = new PriorityQueue<>(Collections.reverseOrder());\n\
-    \t\tcost[v] = 0;\n\t\tdj.add(new NumPair(cost[v], v));\n\t\twhile(!dj.isEmpty())\
-    \ {\n\t\t\tfinal var tmp = dj.poll();\n\t\t\tif(cost[tmp.second.intValue()] <\
-    \ tmp.first.longValue()) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final var el:\
-    \ g.get(tmp.second.intValue())) {\n\t\t\t\tif(cost[el.to] > tmp.first.longValue()\
-    \ + el.cost) {\n\t\t\t\t\tcost[el.to] = tmp.first.longValue() + el.cost;\n\t\t\
-    \t\t\tdj.add(new NumPair(cost[el.to], el.to));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\t\
-    return cost;\n\t}\n\tlong[][] warshallFloyd() {\n\t\tlong[][] cost = new long[n][n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], Long.MAX_VALUE));\n\
-    \t\tIntStream.range(0, n).forEach(i -> cost[i][i] = 0);\n\t\tfor(int i = 0; i\
-    \ < n; ++i) {\n\t\t\tfor(final var j: g.get(i)) {\n\t\t\t\tcost[i][j.to] = j.cost;\n\
-    \t\t\t}\n\t\t}\n\t\tfor(int k = 0 ; k < n; ++k) {\n\t\t\tfor(int i = 0; i < n;\
-    \ ++i) {\n\t\t\t\tfor(int j = 0; j < n; ++j) {\n\t\t\t\t\tif(cost[i][j] > cost[i][k]\
-    \ + cost[k][j]) {\n\t\t\t\t\t\tcost[i][j] = cost[i][k] + cost[k][j];\n\t\t\t\t\
-    \t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n}\nclass Tree {\n\tpublic\
-    \ ArrayList<Edge> edge;\n\tprivate int n, indexed;\n\tTree(final int n, final\
-    \ int indexed) {\n\t\tedge = new ArrayList<>(n);\n\t\tthis.n = n;\n\t\tthis.indexed\
-    \ = indexed;\n\t}\n\tvoid add(final int a, final int b, final long cost){ edge.add(new\
-    \ Edge(a - indexed, b - indexed, cost)); }\n\tlong kruskal() {\n\t\tCollections.sort(edge,\
-    \ Comparator.comparing(e -> e.cost));\n\t\tUnionFind uf = new UnionFind(n);\n\t\
-    \tlong res = 0;\n\t\tfor(final var ed: edge) {\n\t\t\tif(uf.unite(ed.src, ed.to))\
-    \ {\n\t\t\t\tres += ed.cost;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n}\n\nclass\
-    \ PrimeTable {\n\tprivate int n;\n\tboolean[] sieve;\n\tPrimeTable(final int n)\
-    \ {\n\t\tthis.n = n;\n\t\tsieve = new boolean[n + 1];\n\t\tArrays.fill(sieve,\
-    \ true);\n\t\tfor(long i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[(int) i]) {\n\t\t\
-    \t\tcontinue;\n\t\t\t}\n\t\t\tfor(long j = i * i; j <= n; j += i) {\n\t\t\t\t\
-    sieve[(int) j] = false;\n\t\t\t}\n\t\t}\n\t}\n\tArrayList<Integer> get() {\n\t\
-    \tArrayList<Integer> p = new ArrayList<>();;\n\t\tfor(int i = 2; i <= n; ++i)\
-    \ {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp.add(i);\n\t\t\t}\n\t\t}\n\t\treturn p;\n\t\
-    }\n}\n\nclass PrimeFactor {\n\tprivate int[] spf;\n\tPrimeFactor(final int n)\
-    \ {\n\t\tspf = IntStream.rangeClosed(0, n).toArray();\n\t\tfor(int i = 2; i *\
-    \ i <= n; ++i) {\n\t\t\tif(spf[i] == i) {\n\t\t\t\tfor(int j = i * i; j <= n;\
-    \ j += i) {\n\t\t\t\t\tif(spf[j] == j) {\n\t\t\t\t\t\tspf[j] = i;\n\t\t\t\t\t\
-    }\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tTreeMap<Integer, Integer> get(int n) {\n\t\
-    \tTreeMap<Integer, Integer> m = new TreeMap<>();\n\t\twhile(n != 1) {\n\t\t\t\
-    m.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\t\t}\n\t\treturn\
-    \ m;\n\t}\n}\n\nclass BigPrime {\n\tprivate int bsf(final long x){ return Long.numberOfTrailingZeros(x);\
-    \ }\n\tprivate long gcd(long a, long b) {\n\t\ta = Math.abs(a);\n\t\tb = Math.abs(b);\n\
-    \t\tif(a == 0) {\n\t\t\treturn b;\n\t\t}\n\t\tif(b == 0) {\n\t\t\treturn a;\n\t\
-    \t}\n\t\tfinal int shift = bsf(a|b);\n\t\ta >>= bsf(a);\n\t\tdo {\n\t\t\tb >>=\
-    \ bsf(b);\n\t\t\tif(a > b) {\n\t\t\t\ta ^= b;\n\t\t\t\tb ^= a;\n\t\t\t\ta ^= b;\n\
-    \t\t\t}\n\t\t\tb -= a;\n\t\t} while(b > 0);\n\t\treturn a << shift;\n\t}\n\tboolean\
-    \ isPrime(final long n) {\n\t\tif(n <= 1) {\n\t\t\treturn false;\n\t\t}\n\t\t\
-    if(n == 2) {\n\t\t\treturn true;\n\t\t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn false;\n\
-    \t\t}\n\t\tlong d = n - 1;\n\t\twhile(d % 2 == 0) {\n\t\t\td /= 2;\n\t\t}\n\t\t\
-    final long[] sample = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};\n\t\tfor(final\
-    \ long a: sample) {\n\t\t\tif(n <= a) {\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\tlong t\
-    \ = d;\n\t\t\tBigInteger y = BigInteger.valueOf(a).modPow(BigInteger.valueOf(t),\
-    \ BigInteger.valueOf(n));\n\t\t\twhile(t != n - 1 && !y.equals(BigInteger.ONE)\
-    \ && !y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE))) {\n\t\t\t\ty =\
-    \ y.multiply(y).mod(BigInteger.valueOf(n));\n\t\t\t\tt <<= 1;\n\t\t\t}\n\t\t\t\
-    if(!y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)) && t % 2 == 0) {\n\
-    \t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\tprivate long find(final\
-    \ long n) {\n\t\tif(isPrime(n)) {\n\t\t\treturn n;\n\t\t}\n\t\tif(n % 2 == 0)\
-    \ {\n\t\t\treturn 2;\n\t\t}\n\t\tint st = 0;\n\t\tfinal BiFunction<Long, Integer,\
-    \ Long> f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue();\
+    \t\t}\n\t}\n\tprotected ArrayList<ArrayList<Edge>> getGraph(){ return g; }\n\t\
+    protected int[] allDist(final int v) {\n\t\tint[] d = new int[n];\n\t\tArrays.fill(d,\
+    \ -1);\n\t\tQueue<Integer> q = new ArrayDeque<>();\n\t\td[v] = 0;\n\t\tq.add(v);\n\
+    \t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\t\t\tfor(final var\
+    \ el: g.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\t\tcontinue;\n\t\t\t\
+    \t}\n\t\t\t\td[el.to]=d[tmp]+1;\n\t\t\t\tq.add(el.to);\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ d;\n\t}\n\tprotected int dist(final int u, final int v){ return allDist(u)[v];\
+    \ }\n}\nclass WeightedGraph extends Graph {\n\tWeightedGraph(final int n, final\
+    \ int indexed, final boolean undirected) {\n\t\tsuper(n, indexed, undirected);\n\
+    \t\tg = new ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> g.add(new\
+    \ ArrayList<>()));\n\t}\n\tvoid add(int a, int b, final long cost) {\n\t\ta -=\
+    \ indexed;\n\t\tb -= indexed;\n\t\tg.get(a).add(new Edge(b, cost));\n\t\tif(undirected)\
+    \ {\n\t\t\tg.get(b).add(new Edge(a, cost));\n\t\t}\n\t}\n\tlong[] dijkstra(final\
+    \ int v) {\n\t\tlong[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
+    \t\tQueue<NumPair> dj = new PriorityQueue<>(Collections.reverseOrder());\n\t\t\
+    cost[v] = 0;\n\t\tdj.add(new NumPair(cost[v], v));\n\t\twhile(!dj.isEmpty()) {\n\
+    \t\t\tfinal var tmp = dj.poll();\n\t\t\tif(cost[tmp.second.intValue()] < tmp.first.longValue())\
+    \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final var el: g.get(tmp.second.intValue()))\
+    \ {\n\t\t\t\tif(cost[el.to] > tmp.first.longValue() + el.cost) {\n\t\t\t\t\tcost[el.to]\
+    \ = tmp.first.longValue() + el.cost;\n\t\t\t\t\tdj.add(new NumPair(cost[el.to],\
+    \ el.to));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tlong[][] warshallFloyd()\
+    \ {\n\t\tlong[][] cost = new long[n][n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> Arrays.fill(cost[i], Long.MAX_VALUE));\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> cost[i][i] = 0);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final var j:\
+    \ g.get(i)) {\n\t\t\t\tcost[i][j.to] = j.cost;\n\t\t\t}\n\t\t}\n\t\tfor(int k\
+    \ = 0 ; k < n; ++k) {\n\t\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\tfor(int j =\
+    \ 0; j < n; ++j) {\n\t\t\t\t\tif(cost[i][j] > cost[i][k] + cost[k][j]) {\n\t\t\
+    \t\t\t\tcost[i][j] = cost[i][k] + cost[k][j];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\
+    }\n\t\t}\n\t\treturn cost;\n\t}\n}\nclass Tree {\n\tprivate ArrayList<Edge> edge;\n\
+    \tprivate int n, indexed;\n\tTree(final int n, final int indexed) {\n\t\tedge\
+    \ = new ArrayList<>(n);\n\t\tthis.n = n;\n\t\tthis.indexed = indexed;\n\t}\n\t\
+    void add(final int a, final int b, final long cost){ edge.add(new Edge(a - indexed,\
+    \ b - indexed, cost)); }\n\tlong kruskal() {\n\t\tCollections.sort(edge, Comparator.comparing(e\
+    \ -> e.cost));\n\t\tUnionFind uf = new UnionFind(n);\n\t\tlong res = 0;\n\t\t\
+    for(final var ed: edge) {\n\t\t\tif(uf.unite(ed.src, ed.to)) {\n\t\t\t\tres +=\
+    \ ed.cost;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n}\n\nclass PrimeTable {\n\t\
+    private int n;\n\tboolean[] sieve;\n\tPrimeTable(final int n) {\n\t\tthis.n =\
+    \ n;\n\t\tsieve = new boolean[n + 1];\n\t\tArrays.fill(sieve, true);\n\t\tfor(long\
+    \ i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[(int) i]) {\n\t\t\t\tcontinue;\n\t\t\t\
+    }\n\t\t\tfor(long j = i * i; j <= n; j += i) {\n\t\t\t\tsieve[(int) j] = false;\n\
+    \t\t\t}\n\t\t}\n\t}\n\tArrayList<Integer> get() {\n\t\tArrayList<Integer> p =\
+    \ new ArrayList<>();;\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\
+    \t\t\t\tp.add(i);\n\t\t\t}\n\t\t}\n\t\treturn p;\n\t}\n}\n\nclass PrimeFactor\
+    \ {\n\tprivate int[] spf;\n\tPrimeFactor(final int n) {\n\t\tspf = IntStream.rangeClosed(0,\
+    \ n).toArray();\n\t\tfor(int i = 2; i * i <= n; ++i) {\n\t\t\tif(spf[i] == i)\
+    \ {\n\t\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\t\tif(spf[j] == j) {\n\
+    \t\t\t\t\t\tspf[j] = i;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tTreeMap<Integer,\
+    \ Integer> get(int n) {\n\t\tTreeMap<Integer, Integer> m = new TreeMap<>();\n\t\
+    \twhile(n != 1) {\n\t\t\tm.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\
+    \t\t}\n\t\treturn m;\n\t}\n}\n\n// N <= 1e18;\nclass LongPrime {\n\tprivate int\
+    \ bsf(final long x){ return Long.numberOfTrailingZeros(x); }\n\tprivate long gcd(long\
+    \ a, long b) {\n\t\ta = Math.abs(a);\n\t\tb = Math.abs(b);\n\t\tif(a == 0) {\n\
+    \t\t\treturn b;\n\t\t}\n\t\tif(b == 0) {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int\
+    \ shift = bsf(a|b);\n\t\ta >>= bsf(a);\n\t\tdo {\n\t\t\tb >>= bsf(b);\n\t\t\t\
+    if(a > b) {\n\t\t\t\ta ^= b;\n\t\t\t\tb ^= a;\n\t\t\t\ta ^= b;\n\t\t\t}\n\t\t\t\
+    b -= a;\n\t\t} while(b > 0);\n\t\treturn a << shift;\n\t}\n\tboolean isPrime(final\
+    \ long n) {\n\t\tif(n <= 1) {\n\t\t\treturn false;\n\t\t}\n\t\tif(n == 2) {\n\t\
+    \t\treturn true;\n\t\t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn false;\n\t\t}\n\t\t\
+    long d = n - 1;\n\t\twhile(d % 2 == 0) {\n\t\t\td /= 2;\n\t\t}\n\t\tfinal long[]\
+    \ sample = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};\n\t\tfor(final long a:\
+    \ sample) {\n\t\t\tif(n <= a) {\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\tlong t = d;\n\t\
+    \t\tBigInteger y = BigInteger.valueOf(a).modPow(BigInteger.valueOf(t), BigInteger.valueOf(n));\n\
+    \t\t\twhile(t != n - 1 && !y.equals(BigInteger.ONE) && !y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)))\
+    \ {\n\t\t\t\ty = y.multiply(y).mod(BigInteger.valueOf(n));\n\t\t\t\tt <<= 1;\n\
+    \t\t\t}\n\t\t\tif(!y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)) &&\
+    \ t % 2 == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\
+    \tprivate long find(final long n) {\n\t\tif(isPrime(n)) {\n\t\t\treturn n;\n\t\
+    \t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn 2;\n\t\t}\n\t\tlong st = 0;\n\t\tfinal\
+    \ BiFunction<Long, Long, Long> f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue();\
     \ };\n\t\twhile(true) {\n\t\t\tst++;\n\t\t\tlong x = st, y = f.apply(x, st);\n\
     \t\t\twhile(true) {\n\t\t\t\tfinal long p = gcd(y - x + n, n);\n\t\t\t\tif(p ==\
     \ 0 || p == n) {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\tif(p != 1) {\n\t\t\t\t\t\
     return p;\n\t\t\t\t}\n\t\t\t\tx = f.apply(x, st);\n\t\t\t\ty = f.apply(f.apply(y,\
     \ st), st);\n\t\t\t}\n\t\t}\n\t}\n\tArrayList<Long> primeFactor(final long n)\
     \ {\n\t\tif(n == 1) return new ArrayList<>();\n\t\tfinal long x = find(n);\n\t\
-    \tif(x == n) return new ArrayList<>(Arrays.asList(x));\n\t\tArrayList<Long> le\
-    \ = primeFactor(x);\n\t\tfinal ArrayList<Long> ri = primeFactor(n / x);\n\t\t\
-    le.addAll(ri);\n\t\treturn le;\n\t}\n}\n\nclass FenwickTree {\n\tprivate int n;\n\
-    \tprivate long[] data;\n\tFenwickTree(final int n) {\n\t\tthis.n = n + 2;\n\t\t\
-    data = new long[n + 1];\n\t}\n\tlong sum(int k) {\n\t\tif(k < 0) return 0;\n\t\
-    \tlong ret = 0;\n\t\tfor(++k; k > 0; k -= k & -k) {\n\t\t\tret += data[k];\n\t\
-    \t}\n\t\treturn ret;\n\t}\n\tlong sum(final int l, final int r){ return sum(r)\
-    \ - sum(l - 1); }\n\tlong get(final int k){ return sum(k) - sum(k - 1); }\n\t\
-    void add(int k, final long x) {\n\t\tfor(++k; k < n; k += k & -k) {\n\t\t\tdata[k]\
-    \ += x;\n\t\t}\n\t}\n\tvoid imos(final int l, final int r, long x) {\n\t\tadd(l,\
-    \ x);\n\t\tadd(r + 1, -x);\n\t}\n\tprivate int lg(final int n){ return 63 - Integer.numberOfLeadingZeros(n);\
-    \ }\n\tint lowerBound(long w) {\n\t\tif(w <= 0) {\n\t\t\treturn 0;\n\t\t}\n\t\t\
-    int x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x + k <= n\
-    \ - 1 && data[x + k] < w) {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t\
-    }\n\t\t}\n\t\treturn x;\n\t}\n\tint upper_bound(long w) {\n\t\tif(w < 0) {\n\t\
-    \t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>=\
-    \ 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <= w) {\n\t\t\t\tw -= data[x +\
-    \ k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n}\n\nclass SegmentTree\
-    \ {\n\tprivate int n = 1, rank = 0, fini;\n\tfinal BinaryOperator<Long> op;\n\t\
-    final long e;\n\tprivate long[] dat;\n\tSegmentTree(final int fini, final BinaryOperator<Long>\
+    \tif(x == n) return new ArrayList<>(Arrays.asList(x));\n\t\tArrayList<Long> l\
+    \ = primeFactor(x);\n\t\tfinal ArrayList<Long> r = primeFactor(n / x);\n\t\tl.addAll(r);\n\
+    \t\tCollections.sort(l);\n\t\treturn l;\n\t}\n}\n\n// N > 1e18\nclass BigPrime\
+    \ {\n\tprotected int bsf(final long x){ return Long.numberOfTrailingZeros(x);\
+    \ }\n\tprivate BigInteger gcd(BigInteger a, BigInteger b) {\n\t\ta = a.abs();\n\
+    \t\tb = b.abs();\n\t\tif(a.equals(BigInteger.ZERO)) {\n\t\t\treturn b;\n\t\t}\n\
+    \t\tif(b.equals(BigInteger.ZERO)) {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int shift\
+    \ = bsf(a.or(b).longValue());\n\t\ta = a.shiftRight(bsf(a.longValue()));\n\t\t\
+    do {\n\t\t\tb = b.shiftRight(bsf(b.longValue()));\n\t\t\tif(a.compareTo(b) > 0)\
+    \ {\n\t\t\t\tfinal var tmp = b;\n\t\t\t\tb = a;\n\t\t\t\ta = tmp;\n\t\t\t}\n\t\
+    \t\tb = b.subtract(a);\n\t\t} while(b.compareTo(BigInteger.ZERO) > 0);\n\t\treturn\
+    \ a.shiftLeft(shift);\n\t}\n\tboolean isPrime(final BigInteger n) {\n\t\tif(n.compareTo(BigInteger.ONE)\
+    \ <= 0) {\n\t\t\treturn false;\n\t\t}\n\t\tif(n.equals(BigInteger.TWO)) {\n\t\t\
+    \treturn true;\n\t\t}\n\t\tif(n.and(BigInteger.ONE).equals(BigInteger.valueOf(0)))\
+    \ {\n\t\t\treturn false;\n\t\t}\n\t\tBigInteger d = n.subtract(BigInteger.ONE);\n\
+    \t\twhile(d.and(BigInteger.ONE).equals(BigInteger.valueOf(0))) {\n\t\t\td = d.shiftRight(1);\n\
+    \t\t}\n\t\tfinal long[] sample = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};\n\
+    \t\tfor(final long a: sample) {\n\t\t\tif(n.compareTo(BigInteger.valueOf(a)) <=\
+    \ 0) {\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\tBigInteger t = d;\n\t\t\tBigInteger y =\
+    \ BigInteger.valueOf(a).modPow(t, n);\n\t\t\twhile(!t.equals(n.subtract(BigInteger.ONE))\
+    \ && !y.equals(BigInteger.ONE) && !y.equals(n.subtract(BigInteger.ONE))) {\n\t\
+    \t\t\ty = y.multiply(y).mod(n);\n\t\t\t\tt = t.shiftLeft(1);\n\t\t\t}\n\t\t\t\
+    if(!y.equals(n.subtract(BigInteger.ONE)) && t.and(BigInteger.ONE).equals(BigInteger.ZERO))\
+    \ {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\tprivate BigInteger\
+    \ find(final BigInteger n) {\n\t\tif(isPrime(n)) {\n\t\t\treturn n;\n\t\t}\n\t\
+    \tif(n.and(BigInteger.ONE).equals(BigInteger.ZERO)) {\n\t\t\treturn BigInteger.TWO;\n\
+    \t\t}\n\t\tint st = 0;\n\t\tfinal BiFunction<BigInteger, Integer, BigInteger>\
+    \ f = (x, y) -> { return x.multiply(x).add(BigInteger.valueOf(y)).mod(n); };\n\
+    \t\twhile(true) {\n\t\t\tst++;\n\t\t\tBigInteger x = BigInteger.valueOf(st), y\
+    \ = f.apply(x, st);\n\t\t\twhile(true) {\n\t\t\t\tfinal BigInteger p = gcd(y.subtract(x).add(n),\
+    \ n);\n\t\t\t\tif(p.equals(BigInteger.ZERO) || p.equals(n)) {\n\t\t\t\t\tbreak;\n\
+    \t\t\t\t}\n\t\t\t\tif(!p.equals(BigInteger.ONE)) {\n\t\t\t\t\treturn p;\n\t\t\t\
+    \t}\n\t\t\t\tx = f.apply(x, st);\n\t\t\t\ty = f.apply(f.apply(y, st), st);\n\t\
+    \t\t}\n\t\t}\n\t}\n\tArrayList<BigInteger> primeFactor(final BigInteger n) {\n\
+    \t\tif(n.equals(BigInteger.ONE)) {\n\t\t\treturn new ArrayList<>();\n\t\t}\n\t\
+    \tfinal BigInteger x = find(n);\n\t\tif(x.equals(n)) {\n\t\t\treturn new ArrayList<>(Arrays.asList(x));\n\
+    \t\t}\n\t\tvar l = primeFactor(x);\n\t\tfinal var r = primeFactor(n.divide(x));\n\
+    \t\tl.addAll(r);\n\t\tCollections.sort(l);\n\t\treturn l;\n\t}\n}\n\nclass FenwickTree\
+    \ {\n\tprivate int n;\n\tprivate long[] data;\n\tFenwickTree(final int n) {\n\t\
+    \tthis.n = n + 2;\n\t\tdata = new long[n + 1];\n\t}\n\tlong sum(int k) {\n\t\t\
+    if(k < 0) return 0;\n\t\tlong ret = 0;\n\t\tfor(++k; k > 0; k -= k & -k) {\n\t\
+    \t\tret += data[k];\n\t\t}\n\t\treturn ret;\n\t}\n\tlong sum(final int l, final\
+    \ int r){ return sum(r) - sum(l - 1); }\n\tlong get(final int k){ return sum(k)\
+    \ - sum(k - 1); }\n\tvoid add(int k, final long x) {\n\t\tfor(++k; k < n; k +=\
+    \ k & -k) {\n\t\t\tdata[k] += x;\n\t\t}\n\t}\n\tvoid imos(final int l, final int\
+    \ r, long x) {\n\t\tadd(l, x);\n\t\tadd(r + 1, -x);\n\t}\n\tprivate int lg(final\
+    \ int n){ return 63 - Integer.numberOfLeadingZeros(n); }\n\tint lowerBound(long\
+    \ w) {\n\t\tif(w <= 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int\
+    \ k = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <\
+    \ w) {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ x;\n\t}\n\tint upper_bound(long w) {\n\t\tif(w < 0) {\n\t\t\treturn 0;\n\t\t\
+    }\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x +\
+    \ k <= n - 1 && data[x + k] <= w) {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\
+    \t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n}\n\nclass SegmentTree {\n\tprivate int n\
+    \ = 1, rank = 0, fini;\n\tfinal BinaryOperator<Long> op;\n\tfinal long e;\n\t\
+    private long[] dat;\n\tSegmentTree(final int fini, final BinaryOperator<Long>\
     \ op, final long e) {\n\t\tthis.fini = fini;\n\t\tthis.op = op;\n\t\tthis.e =\
     \ e;\n\t\twhile(this.fini > n) {\n\t\t\tn <<= 1;\n\t\t\trank++;\n\t\t}\n\t\tdat\
     \ = new long[2 * n];\n\t\tArrays.fill(dat, e);\n\t}\n\tvoid update(int i, final\
@@ -394,7 +432,7 @@ data:
   isVerificationFile: false
   path: Java/template.java
   requiredBy: []
-  timestamp: '2023-11-30 05:11:40+09:00'
+  timestamp: '2023-11-30 17:25:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/template.java
