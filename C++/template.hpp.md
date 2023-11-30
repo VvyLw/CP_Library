@@ -6,42 +6,42 @@ data:
     path: C++/Modint.hpp
     title: C++/Modint.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aarray.test.cpp
     title: test/aarray.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/add.test.cpp
     title: test/add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/add128.test.cpp
     title: test/add128.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/ftree.test.cpp
     title: test/ftree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/m_add.test.cpp
     title: test/m_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/s_rmq.test.cpp
     title: test/s_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/stable.test.cpp
     title: test/stable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3
@@ -413,7 +413,31 @@ data:
     \   rep(j,i*i,n,i) {\r\n          if(spf[j]==j) spf[j]=i;\r\n        }\r\n   \
     \   }\r\n    }\r\n  }\r\n  map<int,int> get(int n) {\r\n    map<int,int> m;\r\n\
     \    while(n!=1) {\r\n      m[spf[n]]++;\r\n      n/=spf[n];\r\n    }\r\n    return\
-    \ m;\r\n  }\r\n};\r\nstruct asum {\r\n  vi s;\r\n  asum(const vi& v): s{0} { partial_sum(all(v),back_inserter(s));\
+    \ m;\r\n  }\r\n};\r\ninline ul kthrooti(const ul n, const int k) {\r\n  if(k==1)\
+    \ {\r\n\t\treturn n;\r\n\t}\r\n\tconst auto chk=[=](const uint x) {\r\n\t\tul\
+    \ mul=1;\r\n\t\trep(k) {\r\n      if(overflow_if_mul(mul, x)) {\r\n        return\
+    \ false;\r\n      }\r\n      mul*=x;\r\n    }\r\n\t\treturn mul<=n;\r\n\t};\r\n\
+    \tul ret=0;\r\n\trvp(32) {\r\n\t\tif(chk(ret|(1U<<i))) {\r\n\t\t\tret|=1U<<i;\r\
+    \n\t\t}\r\n\t}\r\n\treturn ret;\r\n}\r\nstruct p_count {\r\nprivate:\r\n  ll sq;\r\
+    \n  vb prime;\r\n  vi prime_sum, primes;\r\n  ll p2(const ll x, const ll y) {\r\
+    \n    if(x < 4) {\r\n      return 0;\r\n    }\r\n    const ll a=pi(y);\r\n   \
+    \ const ll b=pi(kthrooti(x, 2));\r\n    if(a>=b) {\r\n      return 0;\r\n    }\r\
+    \n    ll sum=(a-2)*(a+1)/2-(b-2)*(b+1)/2;\r\n    rep(i,a,b-1) {\r\n      sum +=\
+    \ pi(x/primes[i]);\r\n    }\r\n    return sum;\r\n  }\r\n  ll phi(const ll m,\
+    \ const ll n) {\r\n    if(m<1) {\r\n      return 0;\r\n    }\r\n    if(n>m) {\r\
+    \n      return 1;\r\n    }\r\n    if(n<1) {\r\n      return m;\r\n    }\r\n  \
+    \  if(m<=sqr(primes[n-1])) {\r\n      return pi(m)-n+1;\r\n    }\r\n    if(m<=cub(primes[n-1])\
+    \ && m <= sq) {\r\n      const ll sx = pi(kthrooti(m, 2));\r\n      ll ans=pi(m)-(sx+n-2)*(sx-n+1)/2;\r\
+    \n      rep(i,n,sx-1) {\r\n        ans+=pi(m/primes[i]);\r\n      }\r\n      return\
+    \ ans;\r\n    }\r\n    return phi(m, n-1)-phi(m/primes[n-1], n-1);\r\n  }\r\n\
+    public:\r\n  p_count(const ll lim): sq(kthrooti(lim, 2)), prime_sum(sq + 1) {\r\
+    \n    prime = p_table(sq).SoE;\r\n    for(int i = 1; i <= sq; ++i) {\r\n     \
+    \ prime_sum[i] = prime_sum[i - 1] + prime[i];\r\n    }\r\n    primes.reserve(prime_sum[sq]);\r\
+    \n    for(int i = 1; i <= sq; ++i) {\r\n      if(prime[i]) {\r\n        primes.emplace_back(i);\r\
+    \n      }\r\n    }\r\n  }\r\n  ll pi(const ll n) {\r\n    if(n <= sq) {\r\n  \
+    \    return prime_sum[n];\r\n    }\r\n    const ll m = kthrooti(n, 3);\r\n   \
+    \ const ll a = pi(m);\r\n    return phi(n, a) + a - 1 - p2(n, m);\r\n  }\r\n};\r\
+    \nstruct asum {\r\n  vi s;\r\n  asum(const vi& v): s{0} { partial_sum(all(v),back_inserter(s));\
     \ }\r\n  vi get() const { return s; }\r\n  // [l, r]\r\n  ll query(int l, int\
     \ r) const { return s[r]-s[l]; }\r\n};\r\ntemplate <class T, class Boolean=bool>\
     \ inline T bins(T ok, T ng, const Boolean &fn, const ld eps = 1) {\r\n  while(abs(ok-ng)>eps)\
@@ -811,7 +835,31 @@ data:
     \   rep(j,i*i,n,i) {\r\n          if(spf[j]==j) spf[j]=i;\r\n        }\r\n   \
     \   }\r\n    }\r\n  }\r\n  map<int,int> get(int n) {\r\n    map<int,int> m;\r\n\
     \    while(n!=1) {\r\n      m[spf[n]]++;\r\n      n/=spf[n];\r\n    }\r\n    return\
-    \ m;\r\n  }\r\n};\r\nstruct asum {\r\n  vi s;\r\n  asum(const vi& v): s{0} { partial_sum(all(v),back_inserter(s));\
+    \ m;\r\n  }\r\n};\r\ninline ul kthrooti(const ul n, const int k) {\r\n  if(k==1)\
+    \ {\r\n\t\treturn n;\r\n\t}\r\n\tconst auto chk=[=](const uint x) {\r\n\t\tul\
+    \ mul=1;\r\n\t\trep(k) {\r\n      if(overflow_if_mul(mul, x)) {\r\n        return\
+    \ false;\r\n      }\r\n      mul*=x;\r\n    }\r\n\t\treturn mul<=n;\r\n\t};\r\n\
+    \tul ret=0;\r\n\trvp(32) {\r\n\t\tif(chk(ret|(1U<<i))) {\r\n\t\t\tret|=1U<<i;\r\
+    \n\t\t}\r\n\t}\r\n\treturn ret;\r\n}\r\nstruct p_count {\r\nprivate:\r\n  ll sq;\r\
+    \n  vb prime;\r\n  vi prime_sum, primes;\r\n  ll p2(const ll x, const ll y) {\r\
+    \n    if(x < 4) {\r\n      return 0;\r\n    }\r\n    const ll a=pi(y);\r\n   \
+    \ const ll b=pi(kthrooti(x, 2));\r\n    if(a>=b) {\r\n      return 0;\r\n    }\r\
+    \n    ll sum=(a-2)*(a+1)/2-(b-2)*(b+1)/2;\r\n    rep(i,a,b-1) {\r\n      sum +=\
+    \ pi(x/primes[i]);\r\n    }\r\n    return sum;\r\n  }\r\n  ll phi(const ll m,\
+    \ const ll n) {\r\n    if(m<1) {\r\n      return 0;\r\n    }\r\n    if(n>m) {\r\
+    \n      return 1;\r\n    }\r\n    if(n<1) {\r\n      return m;\r\n    }\r\n  \
+    \  if(m<=sqr(primes[n-1])) {\r\n      return pi(m)-n+1;\r\n    }\r\n    if(m<=cub(primes[n-1])\
+    \ && m <= sq) {\r\n      const ll sx = pi(kthrooti(m, 2));\r\n      ll ans=pi(m)-(sx+n-2)*(sx-n+1)/2;\r\
+    \n      rep(i,n,sx-1) {\r\n        ans+=pi(m/primes[i]);\r\n      }\r\n      return\
+    \ ans;\r\n    }\r\n    return phi(m, n-1)-phi(m/primes[n-1], n-1);\r\n  }\r\n\
+    public:\r\n  p_count(const ll lim): sq(kthrooti(lim, 2)), prime_sum(sq + 1) {\r\
+    \n    prime = p_table(sq).SoE;\r\n    for(int i = 1; i <= sq; ++i) {\r\n     \
+    \ prime_sum[i] = prime_sum[i - 1] + prime[i];\r\n    }\r\n    primes.reserve(prime_sum[sq]);\r\
+    \n    for(int i = 1; i <= sq; ++i) {\r\n      if(prime[i]) {\r\n        primes.emplace_back(i);\r\
+    \n      }\r\n    }\r\n  }\r\n  ll pi(const ll n) {\r\n    if(n <= sq) {\r\n  \
+    \    return prime_sum[n];\r\n    }\r\n    const ll m = kthrooti(n, 3);\r\n   \
+    \ const ll a = pi(m);\r\n    return phi(n, a) + a - 1 - p2(n, m);\r\n  }\r\n};\r\
+    \nstruct asum {\r\n  vi s;\r\n  asum(const vi& v): s{0} { partial_sum(all(v),back_inserter(s));\
     \ }\r\n  vi get() const { return s; }\r\n  // [l, r]\r\n  ll query(int l, int\
     \ r) const { return s[r]-s[l]; }\r\n};\r\ntemplate <class T, class Boolean=bool>\
     \ inline T bins(T ok, T ng, const Boolean &fn, const ld eps = 1) {\r\n  while(abs(ok-ng)>eps)\
@@ -846,8 +894,8 @@ data:
   path: C++/template.hpp
   requiredBy:
   - C++/Modint.hpp
-  timestamp: '2023-11-09 16:48:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-12-01 04:56:03+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/m_add.test.cpp
   - test/parsum.test.cpp

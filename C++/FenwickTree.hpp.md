@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/ftree.test.cpp
     title: test/ftree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/NyaanNyaan/library/blob/master/data-structure/binary-indexed-tree.hpp)
@@ -50,7 +50,7 @@ data:
   path: C++/FenwickTree.hpp
   requiredBy: []
   timestamp: '2023-08-31 19:00:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/parsum.test.cpp
   - test/ftree.test.cpp

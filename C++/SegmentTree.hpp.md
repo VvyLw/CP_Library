@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp)
@@ -56,7 +56,7 @@ data:
   path: C++/SegmentTree.hpp
   requiredBy: []
   timestamp: '2023-08-31 19:00:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/segtree.test.cpp
 documentation_of: C++/SegmentTree.hpp

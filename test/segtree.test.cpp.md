@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/SegmentTree.hpp
     title: C++/SegmentTree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/template.hpp
     title: C++/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
@@ -45,8 +45,8 @@ data:
   isVerificationFile: true
   path: test/segtree.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 16:48:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-12-01 04:56:03+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/segtree.test.cpp
 layout: document

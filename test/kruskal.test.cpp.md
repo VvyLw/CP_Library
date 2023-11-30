@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/MST.hpp
     title: C++/MST.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/UnionFind.hpp
     title: C++/UnionFind.hpp
   _extendedRequiredBy: []

@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/kruskal.test.cpp
     title: test/kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)
@@ -72,7 +72,7 @@ data:
   requiredBy:
   - C++/MST.hpp
   timestamp: '2023-11-28 11:12:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/uf.test.cpp
   - test/kruskal.test.cpp
