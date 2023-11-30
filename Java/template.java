@@ -670,9 +670,26 @@ class Tree {
 	}
 }
 
+class AccumulateSum {
+	private int n;
+	private long[] s;
+	AccumulateSum(final int[] a) {
+		n = a.length;
+		s = new long[n + 1];
+		IntStream.range(0, n).forEach(i -> s[i + 1] = s[i] + a[i]);
+	}
+	AccumulateSum(final long[] a) {
+		n = a.length;
+		s = new long[n + 1];
+		IntStream.range(0, n).forEach(i -> s[i + 1] = s[i] + a[i]);
+	}
+	long[] get(){ return s; }
+	long query(final int l, final int r){ return s[r] - s[l]; }
+}
+
 class PrimeTable {
 	private int n;
-	boolean[] sieve;
+	private boolean[] sieve;
 	PrimeTable(final int n) {
 		this.n = n;
 		sieve = new boolean[n + 1];
@@ -686,6 +703,7 @@ class PrimeTable {
 			}
 		}
 	}
+	boolean[] table(){ return sieve; }
 	ArrayList<Integer> get() {
 		ArrayList<Integer> p = new ArrayList<>();;
 		for(int i = 2; i <= n; ++i) {
@@ -813,7 +831,6 @@ class LongPrime {
 		return l;
 	}
 }
-
 // N > 1e18
 class BigPrime {
 	protected int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
@@ -916,7 +933,7 @@ class FenwickTree {
 	private long[] data;
 	FenwickTree(final int n) {
 		this.n = n + 2;
-		data = new long[n + 1];
+		data = new long[this.n + 1];
 	}
 	long sum(int k) {
 		if(k < 0) return 0;
@@ -968,8 +985,8 @@ class FenwickTree {
 
 class SegmentTree {
 	private int n = 1, rank = 0, fini;
-	final BinaryOperator<Long> op;
-	final long e;
+	private BinaryOperator<Long> op;
+	private long e;
 	private long[] dat;
 	SegmentTree(final int fini, final BinaryOperator<Long> op, final long e) {
 		this.fini = fini;
@@ -985,18 +1002,18 @@ class SegmentTree {
 	void update(int i, final long x) {
 		i += n;
 		dat[i] = x;
-		i >>= 1;
-		while(i > 0) {
+		do {
+			i >>= 1;
 			dat[i] = op.apply(dat[2 * i], dat[2 * i + 1]);
-		}
+		} while(i > 0);
 	}
 	void add(int i, final long x) {
 		i += n;
 		dat[i] += x;
-		i >>= 1;
-		while(i > 0) {
+		do {
+			i >>= 1;
 			dat[i] = op.apply(dat[2 * i], dat[2 * i + 1]);
-		}
+		} while(i > 0);
 	}
 	long query(int a, int b) {
 		long l=e,r=e;
@@ -1082,6 +1099,26 @@ class SparseTable {
 	private long[][] st;
 	private int[] lookup;
 	private BinaryOperator<Long> op;
+	SparseTable(final int[] a, final BinaryOperator<Long> op) {
+		this.op = op;
+		int b = 0;
+		while((1 << b) <= a.length) {
+			++b;
+		}
+		st = new long[b][1 << b];
+		for(int i = 0; i < a.length; i++) {
+			st[0][i] = a[i];
+		}
+		for(int i = 1; i < b; i++) {
+			for(int j = 0; j + (1 << i) <= (1 << b); j++) {
+				st[i][j] = op.apply(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);
+			}
+		}
+		lookup = new int[a.length + 1];
+		for(int i = 2; i < lookup.length; i++) {
+			lookup[i] = lookup[i >> 1] + 1;
+		}
+	}
 	SparseTable(final long[] a, final BinaryOperator<Long> op) {
 		this.op = op;
 		int b = 0;
