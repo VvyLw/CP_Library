@@ -532,6 +532,93 @@ struct p_fact {
     return m;
   }
 };
+inline ul kthrooti(const ul n, const int k) {
+  if(k==1) {
+		return n;
+	}
+	const auto chk=[=](const uint x) {
+		ul mul=1;
+		rep(k) {
+      if(overflow_if_mul(mul, x)) {
+        return false;
+      }
+      mul*=x;
+    }
+		return mul<=n;
+	};
+	ul ret=0;
+	rvp(32) {
+		if(chk(ret|(1U<<i))) {
+			ret|=1U<<i;
+		}
+	}
+	return ret;
+}
+struct p_count {
+private:
+  ll sq;
+  vb prime;
+  vi prime_sum, primes;
+  ll p2(const ll x, const ll y) {
+    if(x < 4) {
+      return 0;
+    }
+    const ll a=pi(y);
+    const ll b=pi(kthrooti(x, 2));
+    if(a>=b) {
+      return 0;
+    }
+    ll sum=(a-2)*(a+1)/2-(b-2)*(b+1)/2;
+    rep(i,a,b-1) {
+      sum += pi(x/primes[i]);
+    }
+    return sum;
+  }
+  ll phi(const ll m, const ll n) {
+    if(m<1) {
+      return 0;
+    }
+    if(n>m) {
+      return 1;
+    }
+    if(n<1) {
+      return m;
+    }
+    if(m<=sqr(primes[n-1])) {
+      return pi(m)-n+1;
+    }
+    if(m<=cub(primes[n-1]) && m <= sq) {
+      const ll sx = pi(kthrooti(m, 2));
+      ll ans=pi(m)-(sx+n-2)*(sx-n+1)/2;
+      rep(i,n,sx-1) {
+        ans+=pi(m/primes[i]);
+      }
+      return ans;
+    }
+    return phi(m, n-1)-phi(m/primes[n-1], n-1);
+  }
+public:
+  p_count(const ll lim): sq(kthrooti(lim, 2)), prime_sum(sq + 1) {
+    prime = p_table(sq).SoE;
+    for(int i = 1; i <= sq; ++i) {
+      prime_sum[i] = prime_sum[i - 1] + prime[i];
+    }
+    primes.reserve(prime_sum[sq]);
+    for(int i = 1; i <= sq; ++i) {
+      if(prime[i]) {
+        primes.emplace_back(i);
+      }
+    }
+  }
+  ll pi(const ll n) {
+    if(n <= sq) {
+      return prime_sum[n];
+    }
+    const ll m = kthrooti(n, 3);
+    const ll a = pi(m);
+    return phi(n, a) + a - 1 - p2(n, m);
+  }
+};
 struct asum {
   vi s;
   asum(const vi& v): s{0} { partial_sum(all(v),back_inserter(s)); }
