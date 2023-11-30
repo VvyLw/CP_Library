@@ -101,16 +101,6 @@ template <ul mod> struct RollingHash {
         if(ret >= mod) ret -= mod;
         return ret;
     }
-    void connect(const std::string &s){
-        const ll n = hashed.size() - 1, m = s.size();
-        hashed.resize(n + m + 1);
-        power.resize(n + m + 1);
-        for(ll i = n; i < n + m; ++i) {
-            power[i + 1] = mul(power[i], base);
-            hashed[i + 1] = mul(hashed[i], base) + s[i - n];
-            if(hashed[i + 1] >= mod) hashed[i + 1] -= mod;
-        }
-    }
     ll LCP(const RollingHash &b, ll l1, ll r1, ll l2, ll r2) {
         ll low = -1, high = std::min(r1 - l1, r2 - l2) + 1;
         while(high - low > 1) {
