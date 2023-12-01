@@ -225,7 +225,7 @@ public:
     int h = 0;
     for(int i = 0; i <= n; ++i) {
       if(rank[i] < n) {
-        int j = (*this)[rank[i] + 1];
+        const int j = (*this)[rank[i] + 1];
         for(; j + h < n && i + h < n; ++h) {
           if(vs[j + h] != vs[i + h]) {
             break;
