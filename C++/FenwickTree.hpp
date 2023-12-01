@@ -1,4 +1,4 @@
-// inspired by Nyaan(https://github.com/NyaanNyaan/library/blob/master/data-structure/binary-indexed-tree.hpp)
+// inspired by Nyaan( https://github.com/NyaanNyaan/library/blob/master/data-structure/binary-indexed-tree.hpp )
 #pragma once
 
 #include <vector>

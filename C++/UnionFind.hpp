@@ -60,7 +60,7 @@ public:
     }
 };
 
-// inspired by tatyam(https://github.com/tatyam-prime/kyopro_library/blob/master/UnionFind.cpp)
+// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/UnionFind.cpp )
 struct UFPotential {
 private:
     std::vector<int> par;
@@ -98,7 +98,7 @@ public:
     int operator[](const int i) noexcept { return root(i); }
 };
 
-// inspired by Luzhiled(https://ei1333.github.io/luzhiled/snippets/structure/union-find.html)
+// inspired by Luzhiled( https://ei1333.github.io/luzhiled/snippets/structure/union-find.html )
 struct UFUndo {
 private:
     std::vector<int> par;

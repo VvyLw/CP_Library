@@ -1,4 +1,4 @@
-// inspired by kenkoooo(https://kenkoooo.hatenablog.com/entry/2016/11/30/163533)
+// inspired by kenkoooo( https://kenkoooo.hatenablog.com/entry/2016/11/30/163533 )
 #pragma once
 
 #include <iostream>

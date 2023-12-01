@@ -1,4 +1,4 @@
-// inspired by tatyam(https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp)
+// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp )
 #pragma once
 
 #include <vector>
