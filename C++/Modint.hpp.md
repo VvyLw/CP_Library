@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links:
-    - https://atcoder.jp/contests/arc151/submissions/35526971)
+    - https://atcoder.jp/contests/arc151/submissions/35526971
   bundledCode: "Traceback (most recent call last):\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
@@ -19,15 +19,15 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ C++/Modint.hpp: line 2: #pragma once found in a non-first line\n"
-  code: "// inspired by tatyam(https://atcoder.jp/contests/arc151/submissions/35526971)\n\
-    #pragma once\n\n#include <iostream>\n#include <cassert>\n#include <vector>\n#include\
-    \ <utility>\n#include <type_traits>\nusing namespace std;\ntypedef long long ll;\n\
-    typedef unsigned uint;\ntypedef unsigned long long ul;\ntemplate <uint mod> struct\
-    \ Modint{\n    uint num = 0;\n    constexpr Modint() noexcept {}\n    constexpr\
-    \ Modint(const Modint &x) noexcept : num(x.num){}\n    constexpr operator ll()\
-    \ const noexcept { return num; }\n    constexpr static uint get_mod(){ return\
-    \ mod; }\n    constexpr Modint& operator+=(Modint x) noexcept { num += x.num;\
-    \ if(num >= mod) num -= mod; return *this; }\n    constexpr Modint& operator++()\
+  code: "// inspired by tatyam( https://atcoder.jp/contests/arc151/submissions/35526971\
+    \ )\n#pragma once\n\n#include <iostream>\n#include <cassert>\n#include <vector>\n\
+    #include <utility>\n#include <type_traits>\nusing namespace std;\ntypedef long\
+    \ long ll;\ntypedef unsigned uint;\ntypedef unsigned long long ul;\ntemplate <uint\
+    \ mod> struct Modint{\n    uint num = 0;\n    constexpr Modint() noexcept {}\n\
+    \    constexpr Modint(const Modint &x) noexcept : num(x.num){}\n    constexpr\
+    \ operator ll() const noexcept { return num; }\n    constexpr static uint get_mod(){\
+    \ return mod; }\n    constexpr Modint& operator+=(Modint x) noexcept { num +=\
+    \ x.num; if(num >= mod) num -= mod; return *this; }\n    constexpr Modint& operator++()\
     \ noexcept { if(num == mod - 1) num = 0; else num++; return *this; }\n    constexpr\
     \ Modint operator++(int) noexcept { Modint ans(*this); operator++(); return ans;\
     \ }\n    constexpr Modint operator-() const noexcept { return Modint(0) -= *this;\
@@ -118,7 +118,7 @@ data:
   isVerificationFile: false
   path: C++/Modint.hpp
   requiredBy: []
-  timestamp: '2023-12-01 05:44:25+09:00'
+  timestamp: '2023-12-02 08:23:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/Modint.hpp

@@ -14,7 +14,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
-    - https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html)
+    - https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html
   bundledCode: "Traceback (most recent call last):\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
@@ -22,11 +22,11 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ C++/SparseTable.hpp: line 2: #pragma once found in a non-first line\n"
-  code: "// inspired by Luzhiled(https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html)\r\
-    \n#pragma once\r\n\r\n#include <vector>\r\n#include <functional>\r\nusing namespace\
-    \ std;\r\ntemplate <class T> struct SparseTable {\r\nprivate:\r\n    using F =\
-    \ function<T(T,T)>;\r\n    vector<vector<T>> st;\r\n    vector<T> lookup;\r\n\
-    \    F f;\r\npublic:\r\n    SparseTable(const vector<T> &v, const F &f_) : f(f_)\
+  code: "// inspired by Luzhiled( https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html\
+    \ )\r\n#pragma once\r\n\r\n#include <vector>\r\n#include <functional>\r\nusing\
+    \ namespace std;\r\ntemplate <class T> struct SparseTable {\r\nprivate:\r\n  \
+    \  using F = function<T(T,T)>;\r\n    vector<vector<T>> st;\r\n    vector<T> lookup;\r\
+    \n    F f;\r\npublic:\r\n    SparseTable(const vector<T> &v, const F &f_) : f(f_)\
     \ { init(v); }\r\n    void init(const vector<T> &v) {\r\n        int b = 0;\r\n\
     \        while((1 << b) <= v.size()) ++b;\r\n        st.assign(b, vector<T>(1\
     \ << b));\r\n        for(int i = 0; i < v.size(); i++) {\r\n            st[0][i]\
@@ -49,7 +49,7 @@ data:
   isVerificationFile: false
   path: C++/SparseTable.hpp
   requiredBy: []
-  timestamp: '2023-08-31 19:00:45+09:00'
+  timestamp: '2023-12-02 08:23:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/s_rmq.test.cpp

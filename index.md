@@ -146,6 +146,9 @@ data:
       path: test/s_rmq.test.cpp
       title: test/s_rmq.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/sa.test.cpp
+      title: test/sa.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/segtree.test.cpp
       title: test/segtree.test.cpp
     - icon: ':heavy_check_mark:'

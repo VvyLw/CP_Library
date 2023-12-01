@@ -20,9 +20,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
-    - https://ei1333.github.io/luzhiled/snippets/structure/union-find.html)
+    - https://ei1333.github.io/luzhiled/snippets/structure/union-find.html
     - https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)
-    - https://github.com/tatyam-prime/kyopro_library/blob/master/UnionFind.cpp)
+    - https://github.com/tatyam-prime/kyopro_library/blob/master/UnionFind.cpp
   bundledCode: "#line 1 \"C++/UnionFind.hpp\"\n// inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)\r\
     \n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\n#include\
     \ <stack>\r\nstruct UnionFind {\r\nprivate:\r\n    std::vector<int> par;\r\npublic:\r\
@@ -47,8 +47,8 @@ data:
     \n    }\r\n#endif\r\n    bool is_bipartite() {\r\n        const int n = par.size()\
     \ / 2;\r\n        bool ok = true;\r\n        for(int i = 0; i < n; ++i) {\r\n\
     \            ok &= (*this)[i] != (*this)[i + n];\r\n        }\r\n        return\
-    \ ok;\r\n    }\r\n};\r\n\r\n// inspired by tatyam(https://github.com/tatyam-prime/kyopro_library/blob/master/UnionFind.cpp)\r\
-    \nstruct UFPotential {\r\nprivate:\r\n    std::vector<int> par;\r\n    std::vector<long\
+    \ ok;\r\n    }\r\n};\r\n\r\n// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/UnionFind.cpp\
+    \ )\r\nstruct UFPotential {\r\nprivate:\r\n    std::vector<int> par;\r\n    std::vector<long\
     \ long> diff;\r\npublic:\r\n    UFPotential(const int n): par(n, -1), diff(n){}\r\
     \n    int root(const int i) {\r\n        if(par[i] < 0) {\r\n            return\
     \ i;\r\n        }\r\n        const int r = root(par[i]);\r\n        diff[i] +=\
@@ -61,8 +61,8 @@ data:
     \ y);\r\n            w = -w;\r\n        }\r\n        par[x] += par[y];\r\n   \
     \     par[y] = x;\r\n        diff[y] = w;\r\n        return 1;\r\n    }\r\n  \
     \  int operator[](const int i) noexcept { return root(i); }\r\n};\r\n\r\n// inspired\
-    \ by Luzhiled(https://ei1333.github.io/luzhiled/snippets/structure/union-find.html)\r\
-    \nstruct UFUndo {\r\nprivate:\r\n    std::vector<int> par;\r\n\tstd::stack<std::pair<int,\
+    \ by Luzhiled( https://ei1333.github.io/luzhiled/snippets/structure/union-find.html\
+    \ )\r\nstruct UFUndo {\r\nprivate:\r\n    std::vector<int> par;\r\n\tstd::stack<std::pair<int,\
     \ int>> his;\r\npublic:\r\n\tUFUndo(const int n): par(n, -1){}\r\n    bool unite(int\
     \ x, int y) {\r\n\t\tx = root(x);\r\n\t\ty = root(y);\r\n\t\this.emplace(std::make_pair(x,\
     \ par[x]));\r\n\t\this.emplace(std::make_pair(y, par[y]));\r\n\t\tif(x == y) {\r\
@@ -99,8 +99,8 @@ data:
     \n    }\r\n#endif\r\n    bool is_bipartite() {\r\n        const int n = par.size()\
     \ / 2;\r\n        bool ok = true;\r\n        for(int i = 0; i < n; ++i) {\r\n\
     \            ok &= (*this)[i] != (*this)[i + n];\r\n        }\r\n        return\
-    \ ok;\r\n    }\r\n};\r\n\r\n// inspired by tatyam(https://github.com/tatyam-prime/kyopro_library/blob/master/UnionFind.cpp)\r\
-    \nstruct UFPotential {\r\nprivate:\r\n    std::vector<int> par;\r\n    std::vector<long\
+    \ ok;\r\n    }\r\n};\r\n\r\n// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/UnionFind.cpp\
+    \ )\r\nstruct UFPotential {\r\nprivate:\r\n    std::vector<int> par;\r\n    std::vector<long\
     \ long> diff;\r\npublic:\r\n    UFPotential(const int n): par(n, -1), diff(n){}\r\
     \n    int root(const int i) {\r\n        if(par[i] < 0) {\r\n            return\
     \ i;\r\n        }\r\n        const int r = root(par[i]);\r\n        diff[i] +=\
@@ -113,8 +113,8 @@ data:
     \ y);\r\n            w = -w;\r\n        }\r\n        par[x] += par[y];\r\n   \
     \     par[y] = x;\r\n        diff[y] = w;\r\n        return 1;\r\n    }\r\n  \
     \  int operator[](const int i) noexcept { return root(i); }\r\n};\r\n\r\n// inspired\
-    \ by Luzhiled(https://ei1333.github.io/luzhiled/snippets/structure/union-find.html)\r\
-    \nstruct UFUndo {\r\nprivate:\r\n    std::vector<int> par;\r\n\tstd::stack<std::pair<int,\
+    \ by Luzhiled( https://ei1333.github.io/luzhiled/snippets/structure/union-find.html\
+    \ )\r\nstruct UFUndo {\r\nprivate:\r\n    std::vector<int> par;\r\n\tstd::stack<std::pair<int,\
     \ int>> his;\r\npublic:\r\n\tUFUndo(const int n): par(n, -1){}\r\n    bool unite(int\
     \ x, int y) {\r\n\t\tx = root(x);\r\n\t\ty = root(y);\r\n\t\this.emplace(std::make_pair(x,\
     \ par[x]));\r\n\t\this.emplace(std::make_pair(y, par[y]));\r\n\t\tif(x == y) {\r\
@@ -132,7 +132,7 @@ data:
   path: C++/UnionFind.hpp
   requiredBy:
   - C++/MST.hpp
-  timestamp: '2023-12-01 11:27:33+09:00'
+  timestamp: '2023-12-02 08:23:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/ufpotential.test.cpp

@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
-    - https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html)
+    - https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html
   bundledCode: "Traceback (most recent call last):\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
@@ -19,8 +19,8 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ C++/LCA.hpp: line 2: #pragma once found in a non-first line\n"
-  code: "// inspired by Luzhiled(https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html)\r\
-    \n#pragma once\r\n#include <vector>\r\ntemplate <class G> struct LowestCommonAncestor\
+  code: "// inspired by Luzhiled( https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html\
+    \ )\r\n#pragma once\r\n#include <vector>\r\ntemplate <class G> struct LowestCommonAncestor\
     \ {\r\n    const int LOG;\r\n    std::vector<int> dep;\r\n    const G &g;\r\n\
     \    std::vector<std::vector<int>> table;\r\n    LowestCommonAncestor(const G\
     \ &g_) : g(g_), dep(g_.size()), LOG(std::__lg(g_.size()) + 1) {\r\n        table.assign(LOG,\
@@ -43,7 +43,7 @@ data:
   isVerificationFile: false
   path: C++/LCA.hpp
   requiredBy: []
-  timestamp: '2023-11-28 11:12:59+09:00'
+  timestamp: '2023-12-02 08:23:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lca.test.cpp

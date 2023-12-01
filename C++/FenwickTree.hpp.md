@@ -14,7 +14,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
-    - https://github.com/NyaanNyaan/library/blob/master/data-structure/binary-indexed-tree.hpp)
+    - https://github.com/NyaanNyaan/library/blob/master/data-structure/binary-indexed-tree.hpp
   bundledCode: "Traceback (most recent call last):\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
@@ -22,12 +22,12 @@ data:
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ C++/FenwickTree.hpp: line 2: #pragma once found in a non-first line\n"
-  code: "// inspired by Nyaan(https://github.com/NyaanNyaan/library/blob/master/data-structure/binary-indexed-tree.hpp)\r\
-    \n#pragma once\r\n\r\n#include <vector>\r\nusing namespace std;\r\ntemplate <class\
-    \ T> struct FenwickTree {\r\nprivate:\r\n    int N;\r\n    vector<T> data;\r\n\
-    public:\r\n    FenwickTree(){}\r\n    FenwickTree(int size){ init(size); }\r\n\
-    \    void init(int size) {\r\n        N = size + 2;\r\n        data.assign(N +\
-    \ 1, {});\r\n    }\r\n    // get sum of [0,k]\r\n    T sum(int k) const {\r\n\
+  code: "// inspired by Nyaan( https://github.com/NyaanNyaan/library/blob/master/data-structure/binary-indexed-tree.hpp\
+    \ )\r\n#pragma once\r\n\r\n#include <vector>\r\nusing namespace std;\r\ntemplate\
+    \ <class T> struct FenwickTree {\r\nprivate:\r\n    int N;\r\n    vector<T> data;\r\
+    \npublic:\r\n    FenwickTree(){}\r\n    FenwickTree(int size){ init(size); }\r\
+    \n    void init(int size) {\r\n        N = size + 2;\r\n        data.assign(N\
+    \ + 1, {});\r\n    }\r\n    // get sum of [0,k]\r\n    T sum(int k) const {\r\n\
     \        if(k < 0) return T{};  // return 0 if k < 0\r\n        T ret{};\r\n \
     \       for(++k; k > 0; k -= k & -k) ret += data[k];\r\n        return ret;\r\n\
     \    }\r\n    // getsum of [l,r]\r\n    inline T sum(int l, int r) const { return\
@@ -49,7 +49,7 @@ data:
   isVerificationFile: false
   path: C++/FenwickTree.hpp
   requiredBy: []
-  timestamp: '2023-08-31 19:00:45+09:00'
+  timestamp: '2023-12-02 08:23:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/parsum.test.cpp

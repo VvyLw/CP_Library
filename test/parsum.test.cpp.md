@@ -45,7 +45,7 @@ data:
   isVerificationFile: true
   path: test/parsum.test.cpp
   requiredBy: []
-  timestamp: '2023-12-01 05:44:25+09:00'
+  timestamp: '2023-12-02 08:23:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/parsum.test.cpp
