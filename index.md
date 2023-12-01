@@ -125,6 +125,9 @@ data:
       path: test/lca.test.cpp
       title: test/lca.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/lcpa.test.cpp
+      title: test/lcpa.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/m_add.test.cpp
       title: test/m_add.test.cpp
     - icon: ':heavy_check_mark:'

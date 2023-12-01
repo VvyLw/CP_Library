@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/lcpa.test.cpp
+    title: test/lcpa.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/manacher.test.cpp
     title: test/manacher.test.cpp
   - icon: ':heavy_check_mark:'
@@ -98,7 +101,14 @@ data:
     \ {\n    const int low = lower_bound(t);\n    int ng = low - 1, ok = size();\n\
     \    t.back()++;\n    while(ok - ng > 1) {\n      int mid = (ok + ng) / 2;\n \
     \     (lt_substr(t, (*this)[mid]) ? ng : ok) = mid;\n    }\n    t.back()--;\n\
-    \    return {low, ok};\n  }\n};\n\n// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/RollingHash.cpp\
+    \    return {low, ok};\n  }\n  std::vector<int> lcp_array() {\n    const int n\
+    \ = size() - 1;\n    std::vector<int> lcp(n + 1), rank(n + 1);\n    for(int i\
+    \ = 0; i <= n; ++i) {\n      rank[(*this)[i]] = i;\n    }\n    int h = 0;\n  \
+    \  for(int i = 0; i <= n; ++i) {\n      if(rank[i] < n) {\n        int j = (*this)[rank[i]\
+    \ + 1];\n        for(; j + h < n && i + h < n; ++h) {\n          if(vs[j + h]\
+    \ != vs[i + h]) {\n            break;\n          }\n        }\n        lcp[rank[i]\
+    \ + 1] = h;\n        if(h > 0) {\n          h--;\n        }\n      }\n    }\n\
+    \    return lcp;\n  }\n};\n\n// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/RollingHash.cpp\
     \ )\nconst ul LINF = (1LL << 61) - 1, base = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count()\
     \ % LINF;\ntemplate <ul mod> struct RollingHash {\nprivate:\n    std::vector<ul>\
     \ hashed, power;\n    static constexpr ul mask(const ll a){ return (1ULL << a)\
@@ -195,7 +205,14 @@ data:
     \ {\n    const int low = lower_bound(t);\n    int ng = low - 1, ok = size();\n\
     \    t.back()++;\n    while(ok - ng > 1) {\n      int mid = (ok + ng) / 2;\n \
     \     (lt_substr(t, (*this)[mid]) ? ng : ok) = mid;\n    }\n    t.back()--;\n\
-    \    return {low, ok};\n  }\n};\n\n// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/RollingHash.cpp\
+    \    return {low, ok};\n  }\n  std::vector<int> lcp_array() {\n    const int n\
+    \ = size() - 1;\n    std::vector<int> lcp(n + 1), rank(n + 1);\n    for(int i\
+    \ = 0; i <= n; ++i) {\n      rank[(*this)[i]] = i;\n    }\n    int h = 0;\n  \
+    \  for(int i = 0; i <= n; ++i) {\n      if(rank[i] < n) {\n        int j = (*this)[rank[i]\
+    \ + 1];\n        for(; j + h < n && i + h < n; ++h) {\n          if(vs[j + h]\
+    \ != vs[i + h]) {\n            break;\n          }\n        }\n        lcp[rank[i]\
+    \ + 1] = h;\n        if(h > 0) {\n          h--;\n        }\n      }\n    }\n\
+    \    return lcp;\n  }\n};\n\n// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/RollingHash.cpp\
     \ )\nconst ul LINF = (1LL << 61) - 1, base = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count()\
     \ % LINF;\ntemplate <ul mod> struct RollingHash {\nprivate:\n    std::vector<ul>\
     \ hashed, power;\n    static constexpr ul mask(const ll a){ return (1ULL << a)\
@@ -220,12 +237,13 @@ data:
   isVerificationFile: false
   path: C++/Strings.hpp
   requiredBy: []
-  timestamp: '2023-12-02 08:23:51+09:00'
+  timestamp: '2023-12-02 08:38:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manacher.test.cpp
   - test/sa.test.cpp
   - test/rh.test.cpp
+  - test/lcpa.test.cpp
   - test/zalgo.test.cpp
 documentation_of: C++/Strings.hpp
 layout: document
