@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/SegmentTree.hpp
     title: C++/SegmentTree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/template.hpp
     title: C++/template.hpp
   _extendedRequiredBy: []

@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/MST.hpp
     title: C++/MST.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/kruskal.test.cpp
     title: test/kruskal.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/ufpotential.test.cpp
     title: test/ufpotential.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://ei1333.github.io/luzhiled/snippets/structure/union-find.html)
@@ -62,18 +62,19 @@ data:
     \     par[y] = x;\r\n        diff[y] = w;\r\n        return 1;\r\n    }\r\n  \
     \  int operator[](const int i) noexcept { return root(i); }\r\n};\r\n\r\n// inspired\
     \ by Luzhiled(https://ei1333.github.io/luzhiled/snippets/structure/union-find.html)\r\
-    \nstruct UFUndo {\r\nprivate:\r\n    int[] par;\r\n\tstd::stack<std::pair<int,\
+    \nstruct UFUndo {\r\nprivate:\r\n    std::vector<int> par;\r\n\tstd::stack<std::pair<int,\
     \ int>> his;\r\npublic:\r\n\tUFUndo(const int n): par(n, -1){}\r\n    bool unite(int\
     \ x, int y) {\r\n\t\tx = root(x);\r\n\t\ty = root(y);\r\n\t\this.emplace(std::make_pair(x,\
     \ par[x]));\r\n\t\this.emplace(std::make_pair(y, par[y]));\r\n\t\tif(x == y) {\r\
     \n\t\t\treturn false;\r\n\t\t}\r\n\t\tif(par[x] > par[y]) {\r\n\t\t\tstd::swap(x,\
     \ y);\r\n\t\t}\r\n\t\tpar[x] += par[y];\r\n\t\tpar[y] = x;\r\n\t\treturn true;\r\
-    \n\t}\r\n    int size(const int i){ return -par[root(i)]; }\r\n    void undo()\
-    \ {\r\n\t\tpar[his.top().first] = his.top().second;\r\n        his.pop();\r\n\t\
-    \tpar[his.top().first] = his.top().second;\r\n        his.pop();\r\n\t}\r\n  \
-    \  void snapshot() {\r\n\t\twhile(his.size()) {\r\n\t\t\this.pop();\r\n\t\t}\r\
-    \n\t}\r\n\tvoid rollback() {\r\n\t\twhile(his.size()) {\r\n\t\t\tundo();\r\n\t\
-    \t}\r\n\t}\r\n}\n"
+    \n\t}\r\n    int root(int k) {\r\n        if(par[k] < 0) {\r\n            return\
+    \ k;\r\n        }\r\n        return root(par[k]);\r\n    }\r\n    int size(const\
+    \ int i){ return -par[root(i)]; }\r\n    void undo() {\r\n\t\tpar[his.top().first]\
+    \ = his.top().second;\r\n        his.pop();\r\n\t\tpar[his.top().first] = his.top().second;\r\
+    \n        his.pop();\r\n\t}\r\n    void snapshot() {\r\n\t\twhile(his.size())\
+    \ {\r\n\t\t\this.pop();\r\n\t\t}\r\n\t}\r\n\tvoid rollback() {\r\n\t\twhile(his.size())\
+    \ {\r\n\t\t\tundo();\r\n\t\t}\r\n\t}\r\n};\n"
   code: "// inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)\r\
     \n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\n#include\
     \ <stack>\r\nstruct UnionFind {\r\nprivate:\r\n    std::vector<int> par;\r\npublic:\r\
@@ -113,25 +114,26 @@ data:
     \     par[y] = x;\r\n        diff[y] = w;\r\n        return 1;\r\n    }\r\n  \
     \  int operator[](const int i) noexcept { return root(i); }\r\n};\r\n\r\n// inspired\
     \ by Luzhiled(https://ei1333.github.io/luzhiled/snippets/structure/union-find.html)\r\
-    \nstruct UFUndo {\r\nprivate:\r\n    int[] par;\r\n\tstd::stack<std::pair<int,\
+    \nstruct UFUndo {\r\nprivate:\r\n    std::vector<int> par;\r\n\tstd::stack<std::pair<int,\
     \ int>> his;\r\npublic:\r\n\tUFUndo(const int n): par(n, -1){}\r\n    bool unite(int\
     \ x, int y) {\r\n\t\tx = root(x);\r\n\t\ty = root(y);\r\n\t\this.emplace(std::make_pair(x,\
     \ par[x]));\r\n\t\this.emplace(std::make_pair(y, par[y]));\r\n\t\tif(x == y) {\r\
     \n\t\t\treturn false;\r\n\t\t}\r\n\t\tif(par[x] > par[y]) {\r\n\t\t\tstd::swap(x,\
     \ y);\r\n\t\t}\r\n\t\tpar[x] += par[y];\r\n\t\tpar[y] = x;\r\n\t\treturn true;\r\
-    \n\t}\r\n    int size(const int i){ return -par[root(i)]; }\r\n    void undo()\
-    \ {\r\n\t\tpar[his.top().first] = his.top().second;\r\n        his.pop();\r\n\t\
-    \tpar[his.top().first] = his.top().second;\r\n        his.pop();\r\n\t}\r\n  \
-    \  void snapshot() {\r\n\t\twhile(his.size()) {\r\n\t\t\this.pop();\r\n\t\t}\r\
-    \n\t}\r\n\tvoid rollback() {\r\n\t\twhile(his.size()) {\r\n\t\t\tundo();\r\n\t\
-    \t}\r\n\t}\r\n}"
+    \n\t}\r\n    int root(int k) {\r\n        if(par[k] < 0) {\r\n            return\
+    \ k;\r\n        }\r\n        return root(par[k]);\r\n    }\r\n    int size(const\
+    \ int i){ return -par[root(i)]; }\r\n    void undo() {\r\n\t\tpar[his.top().first]\
+    \ = his.top().second;\r\n        his.pop();\r\n\t\tpar[his.top().first] = his.top().second;\r\
+    \n        his.pop();\r\n\t}\r\n    void snapshot() {\r\n\t\twhile(his.size())\
+    \ {\r\n\t\t\this.pop();\r\n\t\t}\r\n\t}\r\n\tvoid rollback() {\r\n\t\twhile(his.size())\
+    \ {\r\n\t\t\tundo();\r\n\t\t}\r\n\t}\r\n};"
   dependsOn: []
   isVerificationFile: false
   path: C++/UnionFind.hpp
   requiredBy:
   - C++/MST.hpp
-  timestamp: '2023-12-01 06:41:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-12-01 11:27:33+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/ufpotential.test.cpp
   - test/uf.test.cpp
