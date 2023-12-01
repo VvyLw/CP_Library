@@ -101,7 +101,7 @@ public:
 // inspired by Luzhiled(https://ei1333.github.io/luzhiled/snippets/structure/union-find.html)
 struct UFUndo {
 private:
-    int[] par;
+    std::vector<int> par;
 	std::stack<std::pair<int, int>> his;
 public:
 	UFUndo(const int n): par(n, -1){}
@@ -120,6 +120,12 @@ public:
 		par[y] = x;
 		return true;
 	}
+    int root(int k) {
+        if(par[k] < 0) {
+            return k;
+        }
+        return root(par[k]);
+    }
     int size(const int i){ return -par[root(i)]; }
     void undo() {
 		par[his.top().first] = his.top().second;
@@ -137,4 +143,4 @@ public:
 			undo();
 		}
 	}
-}
+};
