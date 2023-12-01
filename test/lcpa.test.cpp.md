@@ -29,7 +29,7 @@ data:
   isVerificationFile: true
   path: test/lcpa.test.cpp
   requiredBy: []
-  timestamp: '2023-12-02 08:38:12+09:00'
+  timestamp: '2023-12-02 08:43:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lcpa.test.cpp
