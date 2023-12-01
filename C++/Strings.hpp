@@ -216,6 +216,29 @@ public:
     t.back()--;
     return {low, ok};
   }
+  std::vector<int> lcp_array() {
+    const int n = size() - 1;
+    std::vector<int> lcp(n + 1), rank(n + 1);
+    for(int i = 0; i <= n; ++i) {
+      rank[(*this)[i]] = i;
+    }
+    int h = 0;
+    for(int i = 0; i <= n; ++i) {
+      if(rank[i] < n) {
+        int j = (*this)[rank[i] + 1];
+        for(; j + h < n && i + h < n; ++h) {
+          if(vs[j + h] != vs[i + h]) {
+            break;
+          }
+        }
+        lcp[rank[i] + 1] = h;
+        if(h > 0) {
+          h--;
+        }
+      }
+    }
+    return lcp;
+  }
 };
 
 // inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/RollingHash.cpp )
