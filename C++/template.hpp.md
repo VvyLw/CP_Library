@@ -63,9 +63,9 @@ data:
     \ name\r\n#define rep1(n) for(ll i=0; i<(n); ++i)\r\n#define rep2(i,n) for(ll\
     \ i=0; i<(n); ++i)\r\n#define rep3(i,a,b) for(ll i=(a); i<=(b); ++i)\r\n#define\
     \ rep4(i,a,b,c) for(ll i=(a); i<=(b); i+=(c))\r\n#define rep(...) overload4(__VA_ARGS__,rep4,rep3,rep2,rep1)(__VA_ARGS__)\r\
-    \n#define rvp1(n) for(ll i=(n)-1; i>=0; i--)\r\n#define rvp2(i,n) for(ll i=(n)-1;\
-    \ i>=0; i--)\r\n#define rvp3(i,a,b) for(ll i=(a); i>=(b); i--)\r\n#define rvp4(i,a,b,c)\
-    \ for(ll i=(a); i>=(b); i-=(c))\r\n#define rvp(...) overload4(__VA_ARGS__,rvp4,rvp3,rvp2,rvp1)(__VA_ARGS__)\r\
+    \n#define rvp1(n) for(ll i=(n); --i>=0;)\r\n#define rvp2(i,n) for(ll i=(n); --i>=0;)\r\
+    \n#define rvp3(i,a,b) for(ll i=(a); i>=(b); i--)\r\n#define rvp4(i,a,b,c) for(ll\
+    \ i=(a); i>=(b); i-=(c))\r\n#define rvp(...) overload4(__VA_ARGS__,rvp4,rvp3,rvp2,rvp1)(__VA_ARGS__)\r\
     \n#define all1(v) v.begin(),v.end()\r\n#define all2(v,a) v.begin(),v.begin()+a\r\
     \n#define all3(v,a,b) v.begin()+a,v.begin()+b\r\n#define all(...) overload3(__VA_ARGS__,all3,all2,all1)(__VA_ARGS__)\r\
     \n#define rall1(v) v.rbegin(),v.rend()\r\n#define rall2(v,a) v.rbegin(),v.rbegin()+a\r\
@@ -486,9 +486,9 @@ data:
     \ name\r\n#define rep1(n) for(ll i=0; i<(n); ++i)\r\n#define rep2(i,n) for(ll\
     \ i=0; i<(n); ++i)\r\n#define rep3(i,a,b) for(ll i=(a); i<=(b); ++i)\r\n#define\
     \ rep4(i,a,b,c) for(ll i=(a); i<=(b); i+=(c))\r\n#define rep(...) overload4(__VA_ARGS__,rep4,rep3,rep2,rep1)(__VA_ARGS__)\r\
-    \n#define rvp1(n) for(ll i=(n)-1; i>=0; i--)\r\n#define rvp2(i,n) for(ll i=(n)-1;\
-    \ i>=0; i--)\r\n#define rvp3(i,a,b) for(ll i=(a); i>=(b); i--)\r\n#define rvp4(i,a,b,c)\
-    \ for(ll i=(a); i>=(b); i-=(c))\r\n#define rvp(...) overload4(__VA_ARGS__,rvp4,rvp3,rvp2,rvp1)(__VA_ARGS__)\r\
+    \n#define rvp1(n) for(ll i=(n); --i>=0;)\r\n#define rvp2(i,n) for(ll i=(n); --i>=0;)\r\
+    \n#define rvp3(i,a,b) for(ll i=(a); i>=(b); i--)\r\n#define rvp4(i,a,b,c) for(ll\
+    \ i=(a); i>=(b); i-=(c))\r\n#define rvp(...) overload4(__VA_ARGS__,rvp4,rvp3,rvp2,rvp1)(__VA_ARGS__)\r\
     \n#define all1(v) v.begin(),v.end()\r\n#define all2(v,a) v.begin(),v.begin()+a\r\
     \n#define all3(v,a,b) v.begin()+a,v.begin()+b\r\n#define all(...) overload3(__VA_ARGS__,all3,all2,all1)(__VA_ARGS__)\r\
     \n#define rall1(v) v.rbegin(),v.rend()\r\n#define rall2(v,a) v.rbegin(),v.rbegin()+a\r\
@@ -896,7 +896,7 @@ data:
   path: C++/template.hpp
   requiredBy:
   - C++/Modint.hpp
-  timestamp: '2023-12-01 05:44:25+09:00'
+  timestamp: '2023-12-02 12:45:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/m_add.test.cpp

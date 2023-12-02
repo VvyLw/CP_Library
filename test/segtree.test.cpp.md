@@ -45,7 +45,7 @@ data:
   isVerificationFile: true
   path: test/segtree.test.cpp
   requiredBy: []
-  timestamp: '2023-12-02 08:23:51+09:00'
+  timestamp: '2023-12-02 12:45:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segtree.test.cpp

@@ -35,7 +35,7 @@ data:
   isVerificationFile: true
   path: test/add.test.cpp
   requiredBy: []
-  timestamp: '2023-12-01 05:44:25+09:00'
+  timestamp: '2023-12-02 12:45:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/add.test.cpp
