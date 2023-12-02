@@ -217,7 +217,7 @@ public:
     t.back()--;
     return {low, ok};
   }
-  std::vector<int> lcp_array() {
+  std::vector<int> lcp_array() const {
     const int n = size() - 1;
     std::vector<int> lcp(n + 1), rank(n + 1);
     for(int i = 0; i <= n; ++i) {
