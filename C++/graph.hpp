@@ -17,7 +17,8 @@ public:
 template <bool undirected=1> struct w_graph {
     vector<vector<edge>> g;
     vector<int> pr;
-    w_graph(int n): g(n), pr(n){}
+    int indexed;
+    w_graph(const int n, const int indexed_ = 1): g(n), pr(n), indexed(indexed_){}
     vector<edge>& operator[](int x){ return g[x]; }
     const vector<edge>& operator[](int x) const { return g[x]; }
     operator vector<vector<edge>>&(){ return g; }
@@ -25,13 +26,13 @@ template <bool undirected=1> struct w_graph {
     auto begin() const { return g.cbegin(); }
     auto end() const { return g.cend(); }
     int size() const { return g.size(); }
-    void add(int a, int b, long long cost, int indexed=1) {
+    void add(int a, int b, const long long cost) {
         a-=indexed,b-=indexed;
         g[a].emplace_back(b, cost);
         pr[b] = a;
         if(undirected) g[b].emplace_back(a, cost);
     }
-    void input(int m, int indexed=1) {
+    void input(const int m) {
         for(int i = 0; i < m; ++i) {
             int a, b;
             long long c;
@@ -89,7 +90,8 @@ template <bool undirected=1> struct w_graph {
 template <bool undirected=1> struct graph {
     vector<vector<int>> g;
     vector<int> pr;
-    graph(int n): g(n), pr(n){}
+    int indexed;
+    graph(const int n, const int indexed_ = 1): g(n), pr(n), indexed(indexed_){}
     vector<int>& operator[](int x){ return g[x]; }
     const vector<int>& operator[](int x) const { return g[x]; }
     operator vector<vector<int>>&(){ return g; }
@@ -97,13 +99,13 @@ template <bool undirected=1> struct graph {
     auto begin() const { return g.cbegin(); }
     auto end() const { return g.cend(); }
     int size() const { return g.size(); }
-    void add(int a, int b, int indexed=1) {
+    void add(int a, int b) {
         a-=indexed,b-=indexed;
         g[a].emplace_back(b);
         pr[b] = a;
         if(undirected) g[b].emplace_back(a);
     }
-    void input(int m, int indexed=1) {
+    void input(const int m) {
         for(int i = 0; i < m; ++i) {
             int a, b;
             cin >> a >> b;

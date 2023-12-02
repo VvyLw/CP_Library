@@ -7,10 +7,10 @@ struct Edge {
 	}
 };
 struct Graph {
-	int n;
+	int n, indexed;
 	std::vector<Edge> edges;
-	Graph(const int n_): n(n_){}
-	void input(int m, const uint indexed=1) {
+	Graph(const int n_, const int indexed_ = 1): n(n_), indexed(indexed_){}
+	void input(int m) {
 		while(m--) {
 			Edge e;
             std::cin >> e.a >> e.b >> e.cost;

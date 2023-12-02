@@ -2,18 +2,18 @@
 #pragma once
 #include <vector>
 template <class G> struct LowestCommonAncestor {
+private:
     const int LOG;
     std::vector<int> dep;
     const G &g;
     std::vector<std::vector<int>> table;
-    LowestCommonAncestor(const G &g_) : g(g_), dep(g_.size()), LOG(std::__lg(g_.size()) + 1) {
-        table.assign(LOG, std::vector<int>(g_.size(), -1));
-    }
-    void dfs(int idx, int par, int d) {
+    void dfs(const int idx, const int par, const int d) {
         table[0][idx] = par;
         dep[idx] = d;
         for(const auto &to: g[idx]) {
-            if(to != par) dfs(to, idx, d + 1);
+            if(to != par) {
+                dfs(to, idx, d + 1);
+            }
         }
     }
     void build() {
@@ -25,10 +25,17 @@ template <class G> struct LowestCommonAncestor {
             }
         }
     }
+public:
+    LowestCommonAncestor(const G &g_) : g(g_), dep(g_.size()), LOG(std::__lg(g_.size()) + 1) {
+        table.assign(LOG, std::vector<int>(g_.size(), -1));
+        build();
+    }
     int query(int u, int v) {
         if(dep[u] > dep[v]) std::swap(u, v);
         for(int i = LOG - 1; i >= 0; i--) {
-            if(((dep[v] - dep[u]) >> i) & 1) v = table[i][v];
+            if(((dep[v] - dep[u]) >> i) & 1) {
+                v = table[i][v];
+            }
         }
         if(u == v) return u;
             for(int i = LOG - 1; i >= 0; i--) {
