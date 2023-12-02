@@ -50,51 +50,52 @@ data:
     // inspired by ei1333( https://ei1333.github.io/library/string/suffix-array.hpp\
     \ )\nstruct SuffixArray : std::vector<int> {\nprivate:\n    std::vector<int> sa_is(const\
     \ std::vector< int > &s) const {\n    const int n = s.size();\n    std::vector<int>\
-    \ ret(n), is_s(n), is_lms(n);\n    int m = 0;\n    for(int i = n - 2; i >= 0;\
-    \ i--) {\n      is_s[i] = (s[i] > s[i + 1]) || (s[i] == s[i + 1] && is_s[i + 1]);\n\
-    \      m += (is_lms[i + 1] = is_s[i] && !is_s[i + 1]);\n    }\n    const auto\
-    \ induced_sort = [&](const std::vector<int> &lms) -> void {\n      const int upper\
-    \ = *std::max_element(s.begin(), s.end());\n      std::vector<int> l(upper + 2),\
-    \ r(upper + 2);\n      for(const auto &v: s) {\n        ++l[v + 1];\n        ++r[v];\n\
-    \      }\n      std::partial_sum(l.begin(), l.end(), l.begin());\n      std::partial_sum(r.begin(),\
-    \ r.end(), r.begin());\n      ret.assign(ret.size(), -1);\n      for(int i = std::ssize(lms)\
-    \ - 1; i >= 0; i--) {\n        ret[--r[s[lms[i]]]] = lms[i];\n      }\n      for(const\
-    \ auto &v: ret) {\n        if(v >= 1 && is_s[v - 1]) {\n          ret[l[s[v -\
-    \ 1]]++] = v - 1;\n        }\n      }\n      r.assign(r.size(), 0);\n      for(const\
-    \ auto &v: s) {\n        ++r[v];\n      }\n      std::partial_sum(r.begin(), r.end(),\
-    \ r.begin());\n      for(int k = std::ssize(ret) - 1, i = ret[k]; k >= 1; i =\
-    \ ret[--k]) {\n        if(i >= 1 && !is_s[i - 1]) {\n          ret[--r[s[i - 1]]]\
-    \ = i - 1;\n        }\n      }\n    };\n    std::vector<int> lms;\n    lms.reserve(m);\n\
-    \    for(int i = 1; i < n; i++) {\n      if(is_lms[i]) {\n        lms.emplace_back(i);\n\
-    \      }\n    }\n    induced_sort(lms);\n    std::vector<int> new_lms;\n    new_lms.reserve(m);\n\
-    \    for(int i = 0; i < n; i++) {\n      if(!is_s[ret[i]] && ret[i] > 0 && is_s[ret[i]\
-    \ - 1]) {\n        new_lms.emplace_back(ret[i]);\n      }\n    }\n    const auto\
-    \ same = [&](int a, int b) -> bool {\n      if(s[a++] != s[b++]) {\n        return\
-    \ false;\n      }\n      while(1) {\n        if(s[a] != s[b]) return false;\n\
-    \        if(is_lms[a] || is_lms[b]) {\n          return is_lms[a] && is_lms[b];\n\
-    \        }\n        a++, b++;\n      }\n    };\n    int rank = 0;\n    ret[n -\
-    \ 1] = 0;\n    for(int i = 1; i < m; ++i) {\n      if(!same(new_lms[i - 1], new_lms[i]))\
-    \ {\n        ++rank;\n      }\n      ret[new_lms[i]] = rank;\n    }\n    if(rank\
-    \ + 1 < m) {\n      std::vector<int> new_s(m);\n      for(int i = 0; i < m; ++i)\
-    \ {\n        new_s[i] = ret[lms[i]];\n      }\n      const auto lms_sa = sa_is(new_s);\n\
-    \      for(int i = 0; i < m; ++i) {\n        new_lms[i] = lms[lms_sa[i]];\n  \
-    \    }\n    }\n    induced_sort(new_lms);\n    return ret;\n  }\npublic:\n  std::string\
-    \ vs;\n  explicit SuffixArray(const std::string &vs, bool compress = false): vs(vs)\
-    \ {\n    std::vector<int> new_vs(vs.size() + 1);\n    if(compress) {\n      std::string\
-    \ xs = vs;\n      std::sort(xs.begin(), xs.end());\n      xs.erase(std::unique(xs.begin(),\
-    \ xs.end()), xs.end());\n      for(size_t i = 0; i < vs.size(); ++i) {\n     \
-    \   new_vs[i] = std::lower_bound(xs.begin(), xs.end(), vs[i]) - xs.begin() + 1;\n\
-    \      }\n    }\n    else {\n      const auto d = *std::min_element(vs.begin(),\
-    \ vs.end());\n      for(size_t i = 0; i < vs.size(); ++i) {\n        new_vs[i]\
-    \ = vs[i] - d + 1;\n      }\n    }\n    const auto ret = sa_is(new_vs);\n    assign(ret.begin(),\
-    \ ret.end());\n  }\n  void output() const {\n    for(size_t i = 0; i < size();\
-    \ ++i) {\n      std::cout << i << \":[\" << (*this)[i] << \"]\";\n      for(size_t\
-    \ j = (*this)[i]; j < vs.size(); ++j) {\n        std::cout << \" \" << vs[j];\n\
-    \      }\n      std::cout << \"\\n\";\n    }\n  }\n  bool lt_substr(const std::string\
-    \ &t, int si = 0, int ti = 0) {\n    int sn = vs.size(), tn = t.size();\n    while(si\
-    \ < sn && ti < tn) {\n      if(vs[si] < t[ti]) {\n        return true;\n     \
-    \ }\n      if(vs[si] > t[ti]) {\n        return false;\n      }\n      ++si, ++ti;\n\
-    \    }\n    return si >= sn && ti < tn;\n  }\n  int lower_bound(const std::string\
+    \ ret(n);\n    std::vector<bool> is_s(n), is_lms(n);\n    int m = 0;\n    for(int\
+    \ i = n - 2; i >= 0; i--) {\n      is_s[i] = (s[i] > s[i + 1]) || (s[i] == s[i\
+    \ + 1] && is_s[i + 1]);\n      m += is_lms[i + 1] = is_s[i] && !is_s[i + 1];\n\
+    \    }\n    const auto induced_sort = [&](const std::vector<int> &lms) -> void\
+    \ {\n      const int upper = *std::max_element(s.begin(), s.end());\n      std::vector<int>\
+    \ l(upper + 2), r(upper + 2);\n      for(const auto &v: s) {\n        ++l[v +\
+    \ 1];\n        ++r[v];\n      }\n      std::partial_sum(l.begin(), l.end(), l.begin());\n\
+    \      std::partial_sum(r.begin(), r.end(), r.begin());\n      ret.assign(ret.size(),\
+    \ -1);\n      for(int i = std::ssize(lms); --i >= 0;) {\n        ret[--r[s[lms[i]]]]\
+    \ = lms[i];\n      }\n      for(const auto &v: ret) {\n        if(v >= 1 && is_s[v\
+    \ - 1]) {\n          ret[l[s[v - 1]]++] = v - 1;\n        }\n      }\n      r.assign(r.size(),\
+    \ 0);\n      for(const auto &v: s) {\n        ++r[v];\n      }\n      std::partial_sum(r.begin(),\
+    \ r.end(), r.begin());\n      for(int k = std::ssize(ret) - 1, i = ret[k]; k >=\
+    \ 1; i = ret[--k]) {\n        if(i >= 1 && !is_s[i - 1]) {\n          ret[--r[s[i\
+    \ - 1]]] = i - 1;\n        }\n      }\n    };\n    std::vector<int> lms;\n   \
+    \ lms.reserve(m);\n    for(int i = 0; ++i < n;) {\n      if(is_lms[i]) {\n   \
+    \     lms.emplace_back(i);\n      }\n    }\n    induced_sort(lms);\n    std::vector<int>\
+    \ new_lms;\n    new_lms.reserve(m);\n    for(int i = 0; i < n; ++i) {\n      if(!is_s[ret[i]]\
+    \ && ret[i] > 0 && is_s[ret[i] - 1]) {\n        new_lms.emplace_back(ret[i]);\n\
+    \      }\n    }\n    const auto same = [&](int a, int b) -> bool {\n      if(s[a++]\
+    \ != s[b++]) {\n        return false;\n      }\n      while(1) {\n        if(s[a]\
+    \ != s[b]) return false;\n        if(is_lms[a] || is_lms[b]) {\n          return\
+    \ is_lms[a] && is_lms[b];\n        }\n        a++, b++;\n      }\n    };\n   \
+    \ int rank = 0;\n    ret[n - 1] = 0;\n    for(int i = 0; ++i < m;) {\n      if(!same(new_lms[i\
+    \ - 1], new_lms[i])) {\n        ++rank;\n      }\n      ret[new_lms[i]] = rank;\n\
+    \    }\n    if(rank + 1 < m) {\n      std::vector<int> new_s(m);\n      for(int\
+    \ i = 0; i < m; ++i) {\n        new_s[i] = ret[lms[i]];\n      }\n      const\
+    \ auto lms_sa = sa_is(new_s);\n      for(int i = 0; i < m; ++i) {\n        new_lms[i]\
+    \ = lms[lms_sa[i]];\n      }\n    }\n    induced_sort(new_lms);\n    return ret;\n\
+    \  }\npublic:\n  std::string vs;\n  explicit SuffixArray(const std::string &vs,\
+    \ bool compress = false): vs(vs) {\n    std::vector<int> new_vs(vs.size() + 1);\n\
+    \    if(compress) {\n      std::string xs = vs;\n      std::sort(xs.begin(), xs.end());\n\
+    \      xs.erase(std::unique(xs.begin(), xs.end()), xs.end());\n      for(size_t\
+    \ i = 0; i < vs.size(); ++i) {\n        new_vs[i] = std::lower_bound(xs.begin(),\
+    \ xs.end(), vs[i]) - xs.begin() + 1;\n      }\n    }\n    else {\n      const\
+    \ auto d = *std::min_element(vs.begin(), vs.end());\n      for(size_t i = 0; i\
+    \ < vs.size(); ++i) {\n        new_vs[i] = vs[i] - d + 1;\n      }\n    }\n  \
+    \  const auto ret = sa_is(new_vs);\n    assign(ret.begin(), ret.end());\n  }\n\
+    \  void output() const {\n    for(size_t i = 0; i < size(); ++i) {\n      std::cout\
+    \ << i << \":[\" << (*this)[i] << \"]\";\n      for(size_t j = (*this)[i]; j <\
+    \ vs.size(); ++j) {\n        std::cout << \" \" << vs[j];\n      }\n      std::cout\
+    \ << \"\\n\";\n    }\n  }\n  bool lt_substr(const std::string &t, int si = 0,\
+    \ int ti = 0) {\n    int sn = vs.size(), tn = t.size();\n    while(si < sn &&\
+    \ ti < tn) {\n      if(vs[si] < t[ti]) {\n        return true;\n      }\n    \
+    \  if(vs[si] > t[ti]) {\n        return false;\n      }\n      ++si, ++ti;\n \
+    \   }\n    return si >= sn && ti < tn;\n  }\n  int lower_bound(const std::string\
     \ &t) {\n    int ng = 0, ok = size();\n    while(ok - ng > 1) {\n      const int\
     \ mid = (ok + ng) / 2;\n      (lt_substr(t, (*this)[mid]) ? ng : ok) = mid;\n\
     \    }\n    return ok;\n  }\n  std::pair<int, int> equal_range(std::string t)\
@@ -153,52 +154,53 @@ data:
     \       }\n    }\n    pre.front() = n;\n    return pre;\n}\n\n// inspired by ei1333(\
     \ https://ei1333.github.io/library/string/suffix-array.hpp )\nstruct SuffixArray\
     \ : std::vector<int> {\nprivate:\n    std::vector<int> sa_is(const std::vector<\
-    \ int > &s) const {\n    const int n = s.size();\n    std::vector<int> ret(n),\
-    \ is_s(n), is_lms(n);\n    int m = 0;\n    for(int i = n - 2; i >= 0; i--) {\n\
-    \      is_s[i] = (s[i] > s[i + 1]) || (s[i] == s[i + 1] && is_s[i + 1]);\n   \
-    \   m += (is_lms[i + 1] = is_s[i] && !is_s[i + 1]);\n    }\n    const auto induced_sort\
-    \ = [&](const std::vector<int> &lms) -> void {\n      const int upper = *std::max_element(s.begin(),\
-    \ s.end());\n      std::vector<int> l(upper + 2), r(upper + 2);\n      for(const\
-    \ auto &v: s) {\n        ++l[v + 1];\n        ++r[v];\n      }\n      std::partial_sum(l.begin(),\
-    \ l.end(), l.begin());\n      std::partial_sum(r.begin(), r.end(), r.begin());\n\
-    \      ret.assign(ret.size(), -1);\n      for(int i = std::ssize(lms) - 1; i >=\
-    \ 0; i--) {\n        ret[--r[s[lms[i]]]] = lms[i];\n      }\n      for(const auto\
-    \ &v: ret) {\n        if(v >= 1 && is_s[v - 1]) {\n          ret[l[s[v - 1]]++]\
-    \ = v - 1;\n        }\n      }\n      r.assign(r.size(), 0);\n      for(const\
-    \ auto &v: s) {\n        ++r[v];\n      }\n      std::partial_sum(r.begin(), r.end(),\
-    \ r.begin());\n      for(int k = std::ssize(ret) - 1, i = ret[k]; k >= 1; i =\
-    \ ret[--k]) {\n        if(i >= 1 && !is_s[i - 1]) {\n          ret[--r[s[i - 1]]]\
-    \ = i - 1;\n        }\n      }\n    };\n    std::vector<int> lms;\n    lms.reserve(m);\n\
-    \    for(int i = 1; i < n; i++) {\n      if(is_lms[i]) {\n        lms.emplace_back(i);\n\
-    \      }\n    }\n    induced_sort(lms);\n    std::vector<int> new_lms;\n    new_lms.reserve(m);\n\
-    \    for(int i = 0; i < n; i++) {\n      if(!is_s[ret[i]] && ret[i] > 0 && is_s[ret[i]\
-    \ - 1]) {\n        new_lms.emplace_back(ret[i]);\n      }\n    }\n    const auto\
-    \ same = [&](int a, int b) -> bool {\n      if(s[a++] != s[b++]) {\n        return\
-    \ false;\n      }\n      while(1) {\n        if(s[a] != s[b]) return false;\n\
-    \        if(is_lms[a] || is_lms[b]) {\n          return is_lms[a] && is_lms[b];\n\
-    \        }\n        a++, b++;\n      }\n    };\n    int rank = 0;\n    ret[n -\
-    \ 1] = 0;\n    for(int i = 1; i < m; ++i) {\n      if(!same(new_lms[i - 1], new_lms[i]))\
-    \ {\n        ++rank;\n      }\n      ret[new_lms[i]] = rank;\n    }\n    if(rank\
-    \ + 1 < m) {\n      std::vector<int> new_s(m);\n      for(int i = 0; i < m; ++i)\
-    \ {\n        new_s[i] = ret[lms[i]];\n      }\n      const auto lms_sa = sa_is(new_s);\n\
-    \      for(int i = 0; i < m; ++i) {\n        new_lms[i] = lms[lms_sa[i]];\n  \
-    \    }\n    }\n    induced_sort(new_lms);\n    return ret;\n  }\npublic:\n  std::string\
-    \ vs;\n  explicit SuffixArray(const std::string &vs, bool compress = false): vs(vs)\
-    \ {\n    std::vector<int> new_vs(vs.size() + 1);\n    if(compress) {\n      std::string\
-    \ xs = vs;\n      std::sort(xs.begin(), xs.end());\n      xs.erase(std::unique(xs.begin(),\
-    \ xs.end()), xs.end());\n      for(size_t i = 0; i < vs.size(); ++i) {\n     \
-    \   new_vs[i] = std::lower_bound(xs.begin(), xs.end(), vs[i]) - xs.begin() + 1;\n\
-    \      }\n    }\n    else {\n      const auto d = *std::min_element(vs.begin(),\
-    \ vs.end());\n      for(size_t i = 0; i < vs.size(); ++i) {\n        new_vs[i]\
-    \ = vs[i] - d + 1;\n      }\n    }\n    const auto ret = sa_is(new_vs);\n    assign(ret.begin(),\
-    \ ret.end());\n  }\n  void output() const {\n    for(size_t i = 0; i < size();\
-    \ ++i) {\n      std::cout << i << \":[\" << (*this)[i] << \"]\";\n      for(size_t\
-    \ j = (*this)[i]; j < vs.size(); ++j) {\n        std::cout << \" \" << vs[j];\n\
-    \      }\n      std::cout << \"\\n\";\n    }\n  }\n  bool lt_substr(const std::string\
-    \ &t, int si = 0, int ti = 0) {\n    int sn = vs.size(), tn = t.size();\n    while(si\
-    \ < sn && ti < tn) {\n      if(vs[si] < t[ti]) {\n        return true;\n     \
-    \ }\n      if(vs[si] > t[ti]) {\n        return false;\n      }\n      ++si, ++ti;\n\
-    \    }\n    return si >= sn && ti < tn;\n  }\n  int lower_bound(const std::string\
+    \ int > &s) const {\n    const int n = s.size();\n    std::vector<int> ret(n);\n\
+    \    std::vector<bool> is_s(n), is_lms(n);\n    int m = 0;\n    for(int i = n\
+    \ - 2; i >= 0; i--) {\n      is_s[i] = (s[i] > s[i + 1]) || (s[i] == s[i + 1]\
+    \ && is_s[i + 1]);\n      m += is_lms[i + 1] = is_s[i] && !is_s[i + 1];\n    }\n\
+    \    const auto induced_sort = [&](const std::vector<int> &lms) -> void {\n  \
+    \    const int upper = *std::max_element(s.begin(), s.end());\n      std::vector<int>\
+    \ l(upper + 2), r(upper + 2);\n      for(const auto &v: s) {\n        ++l[v +\
+    \ 1];\n        ++r[v];\n      }\n      std::partial_sum(l.begin(), l.end(), l.begin());\n\
+    \      std::partial_sum(r.begin(), r.end(), r.begin());\n      ret.assign(ret.size(),\
+    \ -1);\n      for(int i = std::ssize(lms); --i >= 0;) {\n        ret[--r[s[lms[i]]]]\
+    \ = lms[i];\n      }\n      for(const auto &v: ret) {\n        if(v >= 1 && is_s[v\
+    \ - 1]) {\n          ret[l[s[v - 1]]++] = v - 1;\n        }\n      }\n      r.assign(r.size(),\
+    \ 0);\n      for(const auto &v: s) {\n        ++r[v];\n      }\n      std::partial_sum(r.begin(),\
+    \ r.end(), r.begin());\n      for(int k = std::ssize(ret) - 1, i = ret[k]; k >=\
+    \ 1; i = ret[--k]) {\n        if(i >= 1 && !is_s[i - 1]) {\n          ret[--r[s[i\
+    \ - 1]]] = i - 1;\n        }\n      }\n    };\n    std::vector<int> lms;\n   \
+    \ lms.reserve(m);\n    for(int i = 0; ++i < n;) {\n      if(is_lms[i]) {\n   \
+    \     lms.emplace_back(i);\n      }\n    }\n    induced_sort(lms);\n    std::vector<int>\
+    \ new_lms;\n    new_lms.reserve(m);\n    for(int i = 0; i < n; ++i) {\n      if(!is_s[ret[i]]\
+    \ && ret[i] > 0 && is_s[ret[i] - 1]) {\n        new_lms.emplace_back(ret[i]);\n\
+    \      }\n    }\n    const auto same = [&](int a, int b) -> bool {\n      if(s[a++]\
+    \ != s[b++]) {\n        return false;\n      }\n      while(1) {\n        if(s[a]\
+    \ != s[b]) return false;\n        if(is_lms[a] || is_lms[b]) {\n          return\
+    \ is_lms[a] && is_lms[b];\n        }\n        a++, b++;\n      }\n    };\n   \
+    \ int rank = 0;\n    ret[n - 1] = 0;\n    for(int i = 0; ++i < m;) {\n      if(!same(new_lms[i\
+    \ - 1], new_lms[i])) {\n        ++rank;\n      }\n      ret[new_lms[i]] = rank;\n\
+    \    }\n    if(rank + 1 < m) {\n      std::vector<int> new_s(m);\n      for(int\
+    \ i = 0; i < m; ++i) {\n        new_s[i] = ret[lms[i]];\n      }\n      const\
+    \ auto lms_sa = sa_is(new_s);\n      for(int i = 0; i < m; ++i) {\n        new_lms[i]\
+    \ = lms[lms_sa[i]];\n      }\n    }\n    induced_sort(new_lms);\n    return ret;\n\
+    \  }\npublic:\n  std::string vs;\n  explicit SuffixArray(const std::string &vs,\
+    \ bool compress = false): vs(vs) {\n    std::vector<int> new_vs(vs.size() + 1);\n\
+    \    if(compress) {\n      std::string xs = vs;\n      std::sort(xs.begin(), xs.end());\n\
+    \      xs.erase(std::unique(xs.begin(), xs.end()), xs.end());\n      for(size_t\
+    \ i = 0; i < vs.size(); ++i) {\n        new_vs[i] = std::lower_bound(xs.begin(),\
+    \ xs.end(), vs[i]) - xs.begin() + 1;\n      }\n    }\n    else {\n      const\
+    \ auto d = *std::min_element(vs.begin(), vs.end());\n      for(size_t i = 0; i\
+    \ < vs.size(); ++i) {\n        new_vs[i] = vs[i] - d + 1;\n      }\n    }\n  \
+    \  const auto ret = sa_is(new_vs);\n    assign(ret.begin(), ret.end());\n  }\n\
+    \  void output() const {\n    for(size_t i = 0; i < size(); ++i) {\n      std::cout\
+    \ << i << \":[\" << (*this)[i] << \"]\";\n      for(size_t j = (*this)[i]; j <\
+    \ vs.size(); ++j) {\n        std::cout << \" \" << vs[j];\n      }\n      std::cout\
+    \ << \"\\n\";\n    }\n  }\n  bool lt_substr(const std::string &t, int si = 0,\
+    \ int ti = 0) {\n    int sn = vs.size(), tn = t.size();\n    while(si < sn &&\
+    \ ti < tn) {\n      if(vs[si] < t[ti]) {\n        return true;\n      }\n    \
+    \  if(vs[si] > t[ti]) {\n        return false;\n      }\n      ++si, ++ti;\n \
+    \   }\n    return si >= sn && ti < tn;\n  }\n  int lower_bound(const std::string\
     \ &t) {\n    int ng = 0, ok = size();\n    while(ok - ng > 1) {\n      const int\
     \ mid = (ok + ng) / 2;\n      (lt_substr(t, (*this)[mid]) ? ng : ok) = mid;\n\
     \    }\n    return ok;\n  }\n  std::pair<int, int> equal_range(std::string t)\
@@ -237,7 +239,7 @@ data:
   isVerificationFile: false
   path: C++/Strings.hpp
   requiredBy: []
-  timestamp: '2023-12-02 08:43:54+09:00'
+  timestamp: '2023-12-02 09:13:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manacher.test.cpp
