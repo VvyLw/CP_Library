@@ -69,10 +69,9 @@ std::vector<ll> zalg(const std::string &s) {
 // inspired by ei1333( https://ei1333.github.io/library/string/suffix-array.hpp )
 struct SuffixArray : std::vector<int> {
 private:
-    std::vector<int> sa_is(const std::vector< int > &s) const {
+    std::vector<int> sa_is(const std::vector<int> &s) const {
     const int n = s.size();
-    std::vector<int> ret(n);
-    std::vector<bool> is_s(n), is_lms(n);
+    std::vector<int> ret(n), is_s(n), is_lms(n);;
     int m = 0;
     for(int i = n - 2; i >= 0; i--) {
       is_s[i] = (s[i] > s[i + 1]) || (s[i] == s[i + 1] && is_s[i + 1]);
