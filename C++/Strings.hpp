@@ -71,11 +71,12 @@ struct SuffixArray : std::vector<int> {
 private:
     std::vector<int> sa_is(const std::vector< int > &s) const {
     const int n = s.size();
-    std::vector<int> ret(n), is_s(n), is_lms(n);
+    std::vector<int> ret(n);
+    std::vector<bool> is_s(n), is_lms(n);
     int m = 0;
     for(int i = n - 2; i >= 0; i--) {
       is_s[i] = (s[i] > s[i + 1]) || (s[i] == s[i + 1] && is_s[i + 1]);
-      m += (is_lms[i + 1] = is_s[i] && !is_s[i + 1]);
+      m += is_lms[i + 1] = is_s[i] && !is_s[i + 1];
     }
     const auto induced_sort = [&](const std::vector<int> &lms) -> void {
       const int upper = *std::max_element(s.begin(), s.end());
@@ -87,7 +88,7 @@ private:
       std::partial_sum(l.begin(), l.end(), l.begin());
       std::partial_sum(r.begin(), r.end(), r.begin());
       ret.assign(ret.size(), -1);
-      for(int i = std::ssize(lms) - 1; i >= 0; i--) {
+      for(int i = std::ssize(lms); --i >= 0;) {
         ret[--r[s[lms[i]]]] = lms[i];
       }
       for(const auto &v: ret) {
@@ -108,7 +109,7 @@ private:
     };
     std::vector<int> lms;
     lms.reserve(m);
-    for(int i = 1; i < n; i++) {
+    for(int i = 0; ++i < n;) {
       if(is_lms[i]) {
         lms.emplace_back(i);
       }
@@ -116,7 +117,7 @@ private:
     induced_sort(lms);
     std::vector<int> new_lms;
     new_lms.reserve(m);
-    for(int i = 0; i < n; i++) {
+    for(int i = 0; i < n; ++i) {
       if(!is_s[ret[i]] && ret[i] > 0 && is_s[ret[i] - 1]) {
         new_lms.emplace_back(ret[i]);
       }
@@ -135,7 +136,7 @@ private:
     };
     int rank = 0;
     ret[n - 1] = 0;
-    for(int i = 1; i < m; ++i) {
+    for(int i = 0; ++i < m;) {
       if(!same(new_lms[i - 1], new_lms[i])) {
         ++rank;
       }
