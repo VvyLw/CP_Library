@@ -107,7 +107,7 @@ private:
         }
       }
     };
-    std::vector<int> lms;
+    std::vector<int> lms, new_lms;
     lms.reserve(m);
     for(int i = 0; ++i < n;) {
       if(is_lms[i]) {
@@ -115,7 +115,6 @@ private:
       }
     }
     induced_sort(lms);
-    std::vector<int> new_lms;
     new_lms.reserve(m);
     for(int i = 0; i < n; ++i) {
       if(!is_s[ret[i]] && ret[i] > 0 && is_s[ret[i] - 1]) {
