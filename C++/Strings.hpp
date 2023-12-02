@@ -186,7 +186,7 @@ public:
     }
   }
   bool lt_substr(const std::string &t, int si = 0, int ti = 0) {
-    int sn = vs.size(), tn = t.size();
+    const int sn = vs.size(), tn = t.size();
     while(si < sn && ti < tn) {
       if(vs[si] < t[ti]) {
         return true;
