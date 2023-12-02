@@ -14,7 +14,9 @@ import java.util.Scanner;
 import java.util.Stack;
 import java.util.TreeMap;
 import java.util.function.BiFunction;
+import java.util.function.BiPredicate;
 import java.util.function.BinaryOperator;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -733,27 +735,51 @@ class Edge {
 		this.to = to;
 		this.cost = cost;
 	}
+	@Override
+	public boolean equals(final Object o) {
+		if(this == o) {
+			return true;
+		}
+		if(o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		final Edge e = (Edge) o;
+		if(src != e.src) {
+			return false;
+		}
+		if(to != e.to) {
+			return false;
+		}
+		return cost == e.cost;
+	}
+	@Override
+	public int hashCode() {
+		int result = 17;
+		result = 31 * result + src;
+		result = 31 * result + to;
+		result = 31 * result + (int) (cost ^ (cost >>> 32)); // XOR for long values
+		return result;
+	}
+	@Override
+	public String toString(){ return src + " " + to + " " + cost; }
 }
-class Graph {
+class Graph extends ArrayList<ArrayList<Edge>> {
 	protected boolean undirected;
 	protected int n, indexed;
-	ArrayList<ArrayList<Edge>> g;
 	Graph(final int n, final int indexed, final boolean undirected) {
 		this.n = n;
 		this.indexed = indexed;
 		this.undirected = undirected;
-		g = new ArrayList<>(n);
-		IntStream.range(0, n).forEach(i -> g.add(new ArrayList<>()));
+		IntStream.range(0, n).forEach(i -> this.add(new ArrayList<>()));
 	}
-	void add(int a, int b) {
+	void addEdge(int a, int b) {
 		a -= indexed;
 		b -= indexed;
-		g.get(a).add(new Edge(b));
+		this.get(a).add(new Edge(b));
 		if(undirected) {
-			g.get(b).add(new Edge(a));
+			this.get(b).add(new Edge(a));
 		}
 	}
-	protected ArrayList<ArrayList<Edge>> getGraph(){ return g; }
 	protected int[] allDist(final int v) {
 		int[] d = new int[n];
 		Arrays.fill(d, -1);
@@ -762,7 +788,7 @@ class Graph {
 		q.add(v);
 		while(!q.isEmpty()) {
 			final int tmp = q.poll();
-			for(final var el: g.get(tmp)) {
+			for(final var el: this.get(tmp)) {
 				if(d[el.to] != -1) {
 					continue;
 				}
@@ -777,15 +803,13 @@ class Graph {
 class WeightedGraph extends Graph {
 	WeightedGraph(final int n, final int indexed, final boolean undirected) {
 		super(n, indexed, undirected);
-		g = new ArrayList<>(n);
-		IntStream.range(0, n).forEach(i -> g.add(new ArrayList<>()));
 	}
-	void add(int a, int b, final long cost) {
+	void addEdge(int a, int b, final long cost) {
 		a -= indexed;
 		b -= indexed;
-		g.get(a).add(new Edge(b, cost));
+		this.get(a).add(new Edge(b, cost));
 		if(undirected) {
-			g.get(b).add(new Edge(a, cost));
+			this.get(b).add(new Edge(a, cost));
 		}
 	}
 	long[] dijkstra(final int v) {
@@ -799,7 +823,7 @@ class WeightedGraph extends Graph {
 			if(cost[tmp.second.intValue()] < tmp.first.longValue()) {
 				continue;
 			}
-			for(final var el: g.get(tmp.second.intValue())) {
+			for(final var el: this.get(tmp.second.intValue())) {
 				if(cost[el.to] > tmp.first.longValue() + el.cost) {
 					cost[el.to] = tmp.first.longValue() + el.cost;
 					dj.add(new NumPair(cost[el.to], el.to));
@@ -813,7 +837,7 @@ class WeightedGraph extends Graph {
 		IntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], Long.MAX_VALUE));
 		IntStream.range(0, n).forEach(i -> cost[i][i] = 0);
 		for(int i = 0; i < n; ++i) {
-			for(final var j: g.get(i)) {
+			for(final var j: this.get(i)) {
 				cost[i][j.to] = j.cost;
 			}
 		}
@@ -837,7 +861,7 @@ class Tree {
 		this.n = n;
 		this.indexed = indexed;
 	}
-	void add(final int a, final int b, final long cost){ edge.add(new Edge(a - indexed, b - indexed, cost)); }
+	void addEdge(final int a, final int b, final long cost){ edge.add(new Edge(a - indexed, b - indexed, cost)); }
 	long kruskal() {
 		Collections.sort(edge, Comparator.comparing(e -> e.cost));
 		UnionFind uf = new UnionFind(n);
@@ -858,16 +882,17 @@ class LowestCommonAncestor<G extends Graph> {
 	int[][] table;
 	LowestCommonAncestor(final G g) {
 		this.g = g;
-		final int n = g.getGraph().size();
+		final int n = g.size();
 		dep = new int[n];
 		log = Integer.toBinaryString(n).length();
 		table = new int[log][n];
 		IntStream.range(0, log).forEach(i -> Arrays.fill(table[i], -1));
+		build();
 	}
 	private void dfs(final int idx, final int par, final int d) {
 		table[0][idx] = par;
 		dep[idx] = d;
-		for(final var el: g.getGraph().get(idx)) {
+		for(final var el: g.get(idx)) {
 			if(el.to != par) {
 				dfs(el.to, idx, d + 1);
 			}
@@ -1220,15 +1245,15 @@ class BigPrime {
 	}
 }
 
-class AccumulateSum {
+class PrefixSum {
 	private int n;
 	private long[] s;
-	AccumulateSum(final int[] a) {
+	PrefixSum(final int[] a) {
 		n = a.length;
 		s = new long[n + 1];
 		IntStream.range(0, n).forEach(i -> s[i + 1] = s[i] + a[i]);
 	}
-	AccumulateSum(final long[] a) {
+	PrefixSum(final long[] a) {
 		n = a.length;
 		s = new long[n + 1];
 		IntStream.range(0, n).forEach(i -> s[i + 1] = s[i] + a[i]);
@@ -1483,5 +1508,192 @@ class SparseTable {
 			}
 		}
 		return ok;
+	}
+}
+
+// Not Verified
+class SuffixArray extends ArrayList<Integer> {
+	private String vs;
+	private int[] ret;
+	private boolean[] isS, isLMS;
+	SuffixArray(final String vs, final boolean compress) {
+		this.vs = vs;
+		int[] newVS = new int[vs.length() + 1];
+		if(compress) {
+			final var xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());
+			for(int i = 0; i < vs.length(); ++i) {
+				newVS[i] = Utility.lowerBound(xs, vs.charAt(i)) + 1;
+			}
+		} else {
+			final int d = vs.chars().min().getAsInt();
+			for(int i = 0; i < vs.length(); ++i) {
+				newVS[i] = vs.charAt(i) - d + 1;
+			}
+		}
+		this.addAll(Arrays.stream(SAIS(newVS)).boxed().collect(Collectors.toList()));
+	}
+	private int[] SAIS(final int[] s) {
+		final int n = s.length;
+		ret = new int[n];
+		isS = new boolean[n];
+		isLMS = new boolean[n];
+		int m = 0;
+		for(int i = n - 2; i >= 0; i--) {
+			isS[i] = (s[i] > s[i + 1]) || (s[i] == s[i + 1] && isS[i + 1]);
+			m += (isLMS[i + 1] = isS[i] && !isS[i + 1]) ? 1 : 0;
+		}
+		final Consumer<ArrayList<Integer>> inducedSort = (lms) -> {
+			final int upper = Collections.max(Arrays.stream(s).boxed().collect(Collectors.toList()));
+			int[] l = new int[upper + 2], r = new int[upper + 2];
+			for(final var v: s) {
+				++l[v + 1];
+				++r[v];
+			}
+			Arrays.parallelPrefix(l, (x, y) -> x + y);
+			Arrays.parallelPrefix(r, (x, y) -> x + y);
+			Arrays.fill(ret, -1);
+			for(int i = lms.size(); --i >= 0;) {
+				ret[--r[s[lms.get(i)]]] = lms.get(i);
+			}
+			for(final var v: ret) {
+				if(v >= 1 && isS[v - 1]) {
+					ret[l[s[v - 1]]++] = v - 1;
+				}
+			}
+			Arrays.fill(r, 0);
+			for(final var v: s) {
+				++r[v];
+			}
+			Arrays.parallelPrefix(r, (x, y) -> x + y);
+			for(int k = ret.length - 1, i = ret[k]; k >= 1; i = ret[--k]) {
+				if(i >= 1 && !isS[i - 1]) {
+					ret[--r[s[i - 1]]] = i - 1;
+				}
+			}
+		};
+		ArrayList<Integer> lms = new ArrayList<>(), newLMS = new ArrayList<>();
+		for(int i = 0; ++i < n;) {
+			if(isLMS[i]) {
+				lms.add(i);
+			}
+		}
+		inducedSort.accept(lms);
+		for(int i = 0; i < n; ++i) {
+			if(!isS[ret[i]] && ret[i] > 0 && isS[ret[i] - 1]) {
+				newLMS.add(ret[i]);
+			}
+		}
+		final BiPredicate<Integer, Integer> same = (a, b) -> {
+			if(s[a++] != s[b++]) {
+				return false;
+			}
+			while(true) {
+				if(s[a] != s[b]) {
+					return false;
+				}
+				if(isLMS[a] || isLMS[b]) {
+					return isLMS[a] && isLMS[b];
+				}
+				a++;
+				b++;
+			}
+		};
+		int rank = 0;
+		ret[n - 1] = 0;
+		for(int i = 0; ++i < m;) {
+			if(!same.test(newLMS.get(i - 1), newLMS.get(i))) {
+				++rank;
+			}
+			ret[newLMS.get(i)] = rank;
+		}
+		if(rank + 1 < m) {
+			int[] newS = new int[m];
+			for(int i = 0; i < m; ++i) {
+				newS[i] = ret[lms.get(i)];
+			}
+			final var lmsSA = SAIS(newS);
+			IntStream.range(0, m).forEach(i -> newLMS.add(i, lms.get(lmsSA[i])));
+		}
+		inducedSort.accept(newLMS);
+		return ret;
+	}
+	boolean ltSubstr(final String t, int si, int ti) {
+		final int sn = vs.length(), tn = t.length();
+		while(si < sn && ti < tn) {
+			if(vs.charAt(si) < t.charAt(ti)) {
+				return true;
+			}
+			if(vs.charAt(si) > t.charAt(ti)) {
+				return false;
+			}
+			++si;
+			++ti;
+		}
+		return si >= sn && ti < tn;
+	}
+	int lowerBound(final String t) {
+		int ok = this.size(), ng = 0;
+		while(ok - ng > 1) {
+			final int mid = (ok + ng) / 2;
+			if(ltSubstr(t, this.get(mid), 0)) {
+				ng = mid;
+			} else {
+				ok = mid;
+			}
+		}
+		return ok;
+	}
+	Pair<Integer, Integer> equalRange(final String t) {
+		final int low = lowerBound(t);
+		int ng = low - 1, ok = this.size();
+		var sb = new StringBuilder(t);
+		sb.setCharAt(t.length() - 1, (char)(sb.charAt(sb.length() - 1) - 1));
+		final String u = sb.toString();
+		while(ok - ng > 1) {
+			final int mid = (ok + ng) / 2;
+			if(ltSubstr(u, this.get(mid), 0)) {
+				ng = mid;
+			} else {
+				ok = mid;
+			}
+		}
+		final int end = this.size() - 1;
+		this.add(end, this.get(end) - 1);
+		return Pair.of(low, ok);
+	}
+	int[] lcpArray() {
+		final int n = this.size() - 1;
+		int[] lcp = new int[n + 1], rank = new int[n + 1];
+		for(int i = 0; i <= n; ++i) {
+			rank[this.get(i)] = i;
+		}
+		int h = 0;
+		for(int i = 0; i <= n; ++i) {
+			if(rank[i] < n) {
+				final int j = this.get(rank[i] + 1);
+				for(; j + h < n && i + h < n; ++h) {
+					if(this.vs.charAt(j + h) != this.vs.charAt(i + h)) {
+						break;
+					}
+				}
+				lcp[rank[i] + 1] = h;
+				if(h > 0) {
+					h--;
+				}
+			}
+		}
+		return lcp;
+	}
+	@Override
+	public String toString() { 
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < this.size(); ++i) {
+			sb.append(i + ":[" + this.get(i) + "]");
+			for(int j = this.get(i); j < vs.length(); ++j) {
+				sb.append(" " + vs.charAt(j));
+			}
+			sb.append("\n");
+		}
+		return sb.toString();
 	}
 }
