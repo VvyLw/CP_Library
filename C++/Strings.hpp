@@ -126,7 +126,9 @@ private:
         return false;
       }
       while(1) {
-        if(s[a] != s[b]) return false;
+        if(s[a] != s[b]) {
+          return false;
+        }
         if(is_lms[a] || is_lms[b]) {
           return is_lms[a] && is_lms[b];
         }
