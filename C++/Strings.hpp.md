@@ -49,24 +49,24 @@ data:
     \       j = i;\n        }\n    }\n    pre.front() = n;\n    return pre;\n}\n\n\
     // inspired by ei1333( https://ei1333.github.io/library/string/suffix-array.hpp\
     \ )\nstruct SuffixArray : std::vector<int> {\nprivate:\n    std::vector<int> sa_is(const\
-    \ std::vector< int > &s) const {\n    const int n = s.size();\n    std::vector<int>\
-    \ ret(n);\n    std::vector<bool> is_s(n), is_lms(n);\n    int m = 0;\n    for(int\
-    \ i = n - 2; i >= 0; i--) {\n      is_s[i] = (s[i] > s[i + 1]) || (s[i] == s[i\
-    \ + 1] && is_s[i + 1]);\n      m += is_lms[i + 1] = is_s[i] && !is_s[i + 1];\n\
-    \    }\n    const auto induced_sort = [&](const std::vector<int> &lms) -> void\
-    \ {\n      const int upper = *std::max_element(s.begin(), s.end());\n      std::vector<int>\
-    \ l(upper + 2), r(upper + 2);\n      for(const auto &v: s) {\n        ++l[v +\
-    \ 1];\n        ++r[v];\n      }\n      std::partial_sum(l.begin(), l.end(), l.begin());\n\
-    \      std::partial_sum(r.begin(), r.end(), r.begin());\n      ret.assign(ret.size(),\
-    \ -1);\n      for(int i = std::ssize(lms); --i >= 0;) {\n        ret[--r[s[lms[i]]]]\
-    \ = lms[i];\n      }\n      for(const auto &v: ret) {\n        if(v >= 1 && is_s[v\
-    \ - 1]) {\n          ret[l[s[v - 1]]++] = v - 1;\n        }\n      }\n      r.assign(r.size(),\
-    \ 0);\n      for(const auto &v: s) {\n        ++r[v];\n      }\n      std::partial_sum(r.begin(),\
-    \ r.end(), r.begin());\n      for(int k = std::ssize(ret) - 1, i = ret[k]; k >=\
-    \ 1; i = ret[--k]) {\n        if(i >= 1 && !is_s[i - 1]) {\n          ret[--r[s[i\
-    \ - 1]]] = i - 1;\n        }\n      }\n    };\n    std::vector<int> lms, new_lms;\n\
-    \    lms.reserve(m);\n    for(int i = 0; ++i < n;) {\n      if(is_lms[i]) {\n\
-    \        lms.emplace_back(i);\n      }\n    }\n    induced_sort(lms);\n    new_lms.reserve(m);\n\
+    \ std::vector<int> &s) const {\n    const int n = s.size();\n    std::vector<int>\
+    \ ret(n), is_s(n), is_lms(n);;\n    int m = 0;\n    for(int i = n - 2; i >= 0;\
+    \ i--) {\n      is_s[i] = (s[i] > s[i + 1]) || (s[i] == s[i + 1] && is_s[i + 1]);\n\
+    \      m += is_lms[i + 1] = is_s[i] && !is_s[i + 1];\n    }\n    const auto induced_sort\
+    \ = [&](const std::vector<int> &lms) -> void {\n      const int upper = *std::max_element(s.begin(),\
+    \ s.end());\n      std::vector<int> l(upper + 2), r(upper + 2);\n      for(const\
+    \ auto &v: s) {\n        ++l[v + 1];\n        ++r[v];\n      }\n      std::partial_sum(l.begin(),\
+    \ l.end(), l.begin());\n      std::partial_sum(r.begin(), r.end(), r.begin());\n\
+    \      ret.assign(ret.size(), -1);\n      for(int i = std::ssize(lms); --i >=\
+    \ 0;) {\n        ret[--r[s[lms[i]]]] = lms[i];\n      }\n      for(const auto\
+    \ &v: ret) {\n        if(v >= 1 && is_s[v - 1]) {\n          ret[l[s[v - 1]]++]\
+    \ = v - 1;\n        }\n      }\n      r.assign(r.size(), 0);\n      for(const\
+    \ auto &v: s) {\n        ++r[v];\n      }\n      std::partial_sum(r.begin(), r.end(),\
+    \ r.begin());\n      for(int k = std::ssize(ret) - 1, i = ret[k]; k >= 1; i =\
+    \ ret[--k]) {\n        if(i >= 1 && !is_s[i - 1]) {\n          ret[--r[s[i - 1]]]\
+    \ = i - 1;\n        }\n      }\n    };\n    std::vector<int> lms, new_lms;\n \
+    \   lms.reserve(m);\n    for(int i = 0; ++i < n;) {\n      if(is_lms[i]) {\n \
+    \       lms.emplace_back(i);\n      }\n    }\n    induced_sort(lms);\n    new_lms.reserve(m);\n\
     \    for(int i = 0; i < n; ++i) {\n      if(!is_s[ret[i]] && ret[i] > 0 && is_s[ret[i]\
     \ - 1]) {\n        new_lms.emplace_back(ret[i]);\n      }\n    }\n    const auto\
     \ same = [&](int a, int b) -> bool {\n      if(s[a++] != s[b++]) {\n        return\
@@ -153,25 +153,25 @@ data:
     \ n && s[k] == s[i + k]) ++k;\n            pre[i] = k;\n            j = i;\n \
     \       }\n    }\n    pre.front() = n;\n    return pre;\n}\n\n// inspired by ei1333(\
     \ https://ei1333.github.io/library/string/suffix-array.hpp )\nstruct SuffixArray\
-    \ : std::vector<int> {\nprivate:\n    std::vector<int> sa_is(const std::vector<\
-    \ int > &s) const {\n    const int n = s.size();\n    std::vector<int> ret(n);\n\
-    \    std::vector<bool> is_s(n), is_lms(n);\n    int m = 0;\n    for(int i = n\
-    \ - 2; i >= 0; i--) {\n      is_s[i] = (s[i] > s[i + 1]) || (s[i] == s[i + 1]\
-    \ && is_s[i + 1]);\n      m += is_lms[i + 1] = is_s[i] && !is_s[i + 1];\n    }\n\
-    \    const auto induced_sort = [&](const std::vector<int> &lms) -> void {\n  \
-    \    const int upper = *std::max_element(s.begin(), s.end());\n      std::vector<int>\
-    \ l(upper + 2), r(upper + 2);\n      for(const auto &v: s) {\n        ++l[v +\
-    \ 1];\n        ++r[v];\n      }\n      std::partial_sum(l.begin(), l.end(), l.begin());\n\
-    \      std::partial_sum(r.begin(), r.end(), r.begin());\n      ret.assign(ret.size(),\
-    \ -1);\n      for(int i = std::ssize(lms); --i >= 0;) {\n        ret[--r[s[lms[i]]]]\
-    \ = lms[i];\n      }\n      for(const auto &v: ret) {\n        if(v >= 1 && is_s[v\
-    \ - 1]) {\n          ret[l[s[v - 1]]++] = v - 1;\n        }\n      }\n      r.assign(r.size(),\
-    \ 0);\n      for(const auto &v: s) {\n        ++r[v];\n      }\n      std::partial_sum(r.begin(),\
-    \ r.end(), r.begin());\n      for(int k = std::ssize(ret) - 1, i = ret[k]; k >=\
-    \ 1; i = ret[--k]) {\n        if(i >= 1 && !is_s[i - 1]) {\n          ret[--r[s[i\
-    \ - 1]]] = i - 1;\n        }\n      }\n    };\n    std::vector<int> lms, new_lms;\n\
-    \    lms.reserve(m);\n    for(int i = 0; ++i < n;) {\n      if(is_lms[i]) {\n\
-    \        lms.emplace_back(i);\n      }\n    }\n    induced_sort(lms);\n    new_lms.reserve(m);\n\
+    \ : std::vector<int> {\nprivate:\n    std::vector<int> sa_is(const std::vector<int>\
+    \ &s) const {\n    const int n = s.size();\n    std::vector<int> ret(n), is_s(n),\
+    \ is_lms(n);;\n    int m = 0;\n    for(int i = n - 2; i >= 0; i--) {\n      is_s[i]\
+    \ = (s[i] > s[i + 1]) || (s[i] == s[i + 1] && is_s[i + 1]);\n      m += is_lms[i\
+    \ + 1] = is_s[i] && !is_s[i + 1];\n    }\n    const auto induced_sort = [&](const\
+    \ std::vector<int> &lms) -> void {\n      const int upper = *std::max_element(s.begin(),\
+    \ s.end());\n      std::vector<int> l(upper + 2), r(upper + 2);\n      for(const\
+    \ auto &v: s) {\n        ++l[v + 1];\n        ++r[v];\n      }\n      std::partial_sum(l.begin(),\
+    \ l.end(), l.begin());\n      std::partial_sum(r.begin(), r.end(), r.begin());\n\
+    \      ret.assign(ret.size(), -1);\n      for(int i = std::ssize(lms); --i >=\
+    \ 0;) {\n        ret[--r[s[lms[i]]]] = lms[i];\n      }\n      for(const auto\
+    \ &v: ret) {\n        if(v >= 1 && is_s[v - 1]) {\n          ret[l[s[v - 1]]++]\
+    \ = v - 1;\n        }\n      }\n      r.assign(r.size(), 0);\n      for(const\
+    \ auto &v: s) {\n        ++r[v];\n      }\n      std::partial_sum(r.begin(), r.end(),\
+    \ r.begin());\n      for(int k = std::ssize(ret) - 1, i = ret[k]; k >= 1; i =\
+    \ ret[--k]) {\n        if(i >= 1 && !is_s[i - 1]) {\n          ret[--r[s[i - 1]]]\
+    \ = i - 1;\n        }\n      }\n    };\n    std::vector<int> lms, new_lms;\n \
+    \   lms.reserve(m);\n    for(int i = 0; ++i < n;) {\n      if(is_lms[i]) {\n \
+    \       lms.emplace_back(i);\n      }\n    }\n    induced_sort(lms);\n    new_lms.reserve(m);\n\
     \    for(int i = 0; i < n; ++i) {\n      if(!is_s[ret[i]] && ret[i] > 0 && is_s[ret[i]\
     \ - 1]) {\n        new_lms.emplace_back(ret[i]);\n      }\n    }\n    const auto\
     \ same = [&](int a, int b) -> bool {\n      if(s[a++] != s[b++]) {\n        return\
@@ -239,7 +239,7 @@ data:
   isVerificationFile: false
   path: C++/Strings.hpp
   requiredBy: []
-  timestamp: '2023-12-02 09:22:30+09:00'
+  timestamp: '2023-12-02 12:10:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manacher.test.cpp
