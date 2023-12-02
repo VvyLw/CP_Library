@@ -64,16 +64,16 @@ data:
     \ 0);\n      for(const auto &v: s) {\n        ++r[v];\n      }\n      std::partial_sum(r.begin(),\
     \ r.end(), r.begin());\n      for(int k = std::ssize(ret) - 1, i = ret[k]; k >=\
     \ 1; i = ret[--k]) {\n        if(i >= 1 && !is_s[i - 1]) {\n          ret[--r[s[i\
-    \ - 1]]] = i - 1;\n        }\n      }\n    };\n    std::vector<int> lms;\n   \
-    \ lms.reserve(m);\n    for(int i = 0; ++i < n;) {\n      if(is_lms[i]) {\n   \
-    \     lms.emplace_back(i);\n      }\n    }\n    induced_sort(lms);\n    std::vector<int>\
-    \ new_lms;\n    new_lms.reserve(m);\n    for(int i = 0; i < n; ++i) {\n      if(!is_s[ret[i]]\
-    \ && ret[i] > 0 && is_s[ret[i] - 1]) {\n        new_lms.emplace_back(ret[i]);\n\
-    \      }\n    }\n    const auto same = [&](int a, int b) -> bool {\n      if(s[a++]\
-    \ != s[b++]) {\n        return false;\n      }\n      while(1) {\n        if(s[a]\
-    \ != s[b]) return false;\n        if(is_lms[a] || is_lms[b]) {\n          return\
-    \ is_lms[a] && is_lms[b];\n        }\n        a++, b++;\n      }\n    };\n   \
-    \ int rank = 0;\n    ret[n - 1] = 0;\n    for(int i = 0; ++i < m;) {\n      if(!same(new_lms[i\
+    \ - 1]]] = i - 1;\n        }\n      }\n    };\n    std::vector<int> lms, new_lms;\n\
+    \    lms.reserve(m);\n    for(int i = 0; ++i < n;) {\n      if(is_lms[i]) {\n\
+    \        lms.emplace_back(i);\n      }\n    }\n    induced_sort(lms);\n    new_lms.reserve(m);\n\
+    \    for(int i = 0; i < n; ++i) {\n      if(!is_s[ret[i]] && ret[i] > 0 && is_s[ret[i]\
+    \ - 1]) {\n        new_lms.emplace_back(ret[i]);\n      }\n    }\n    const auto\
+    \ same = [&](int a, int b) -> bool {\n      if(s[a++] != s[b++]) {\n        return\
+    \ false;\n      }\n      while(1) {\n        if(s[a] != s[b]) {\n          return\
+    \ false;\n        }\n        if(is_lms[a] || is_lms[b]) {\n          return is_lms[a]\
+    \ && is_lms[b];\n        }\n        a++, b++;\n      }\n    };\n    int rank =\
+    \ 0;\n    ret[n - 1] = 0;\n    for(int i = 0; ++i < m;) {\n      if(!same(new_lms[i\
     \ - 1], new_lms[i])) {\n        ++rank;\n      }\n      ret[new_lms[i]] = rank;\n\
     \    }\n    if(rank + 1 < m) {\n      std::vector<int> new_s(m);\n      for(int\
     \ i = 0; i < m; ++i) {\n        new_s[i] = ret[lms[i]];\n      }\n      const\
@@ -169,16 +169,16 @@ data:
     \ 0);\n      for(const auto &v: s) {\n        ++r[v];\n      }\n      std::partial_sum(r.begin(),\
     \ r.end(), r.begin());\n      for(int k = std::ssize(ret) - 1, i = ret[k]; k >=\
     \ 1; i = ret[--k]) {\n        if(i >= 1 && !is_s[i - 1]) {\n          ret[--r[s[i\
-    \ - 1]]] = i - 1;\n        }\n      }\n    };\n    std::vector<int> lms;\n   \
-    \ lms.reserve(m);\n    for(int i = 0; ++i < n;) {\n      if(is_lms[i]) {\n   \
-    \     lms.emplace_back(i);\n      }\n    }\n    induced_sort(lms);\n    std::vector<int>\
-    \ new_lms;\n    new_lms.reserve(m);\n    for(int i = 0; i < n; ++i) {\n      if(!is_s[ret[i]]\
-    \ && ret[i] > 0 && is_s[ret[i] - 1]) {\n        new_lms.emplace_back(ret[i]);\n\
-    \      }\n    }\n    const auto same = [&](int a, int b) -> bool {\n      if(s[a++]\
-    \ != s[b++]) {\n        return false;\n      }\n      while(1) {\n        if(s[a]\
-    \ != s[b]) return false;\n        if(is_lms[a] || is_lms[b]) {\n          return\
-    \ is_lms[a] && is_lms[b];\n        }\n        a++, b++;\n      }\n    };\n   \
-    \ int rank = 0;\n    ret[n - 1] = 0;\n    for(int i = 0; ++i < m;) {\n      if(!same(new_lms[i\
+    \ - 1]]] = i - 1;\n        }\n      }\n    };\n    std::vector<int> lms, new_lms;\n\
+    \    lms.reserve(m);\n    for(int i = 0; ++i < n;) {\n      if(is_lms[i]) {\n\
+    \        lms.emplace_back(i);\n      }\n    }\n    induced_sort(lms);\n    new_lms.reserve(m);\n\
+    \    for(int i = 0; i < n; ++i) {\n      if(!is_s[ret[i]] && ret[i] > 0 && is_s[ret[i]\
+    \ - 1]) {\n        new_lms.emplace_back(ret[i]);\n      }\n    }\n    const auto\
+    \ same = [&](int a, int b) -> bool {\n      if(s[a++] != s[b++]) {\n        return\
+    \ false;\n      }\n      while(1) {\n        if(s[a] != s[b]) {\n          return\
+    \ false;\n        }\n        if(is_lms[a] || is_lms[b]) {\n          return is_lms[a]\
+    \ && is_lms[b];\n        }\n        a++, b++;\n      }\n    };\n    int rank =\
+    \ 0;\n    ret[n - 1] = 0;\n    for(int i = 0; ++i < m;) {\n      if(!same(new_lms[i\
     \ - 1], new_lms[i])) {\n        ++rank;\n      }\n      ret[new_lms[i]] = rank;\n\
     \    }\n    if(rank + 1 < m) {\n      std::vector<int> new_s(m);\n      for(int\
     \ i = 0; i < m; ++i) {\n        new_s[i] = ret[lms[i]];\n      }\n      const\
@@ -239,7 +239,7 @@ data:
   isVerificationFile: false
   path: C++/Strings.hpp
   requiredBy: []
-  timestamp: '2023-12-02 09:13:29+09:00'
+  timestamp: '2023-12-02 09:22:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manacher.test.cpp
