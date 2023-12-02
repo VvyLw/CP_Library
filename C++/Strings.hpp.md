@@ -92,10 +92,10 @@ data:
     \ << i << \":[\" << (*this)[i] << \"]\";\n      for(size_t j = (*this)[i]; j <\
     \ vs.size(); ++j) {\n        std::cout << \" \" << vs[j];\n      }\n      std::cout\
     \ << \"\\n\";\n    }\n  }\n  bool lt_substr(const std::string &t, int si = 0,\
-    \ int ti = 0) {\n    int sn = vs.size(), tn = t.size();\n    while(si < sn &&\
-    \ ti < tn) {\n      if(vs[si] < t[ti]) {\n        return true;\n      }\n    \
-    \  if(vs[si] > t[ti]) {\n        return false;\n      }\n      ++si, ++ti;\n \
-    \   }\n    return si >= sn && ti < tn;\n  }\n  int lower_bound(const std::string\
+    \ int ti = 0) {\n    const int sn = vs.size(), tn = t.size();\n    while(si <\
+    \ sn && ti < tn) {\n      if(vs[si] < t[ti]) {\n        return true;\n      }\n\
+    \      if(vs[si] > t[ti]) {\n        return false;\n      }\n      ++si, ++ti;\n\
+    \    }\n    return si >= sn && ti < tn;\n  }\n  int lower_bound(const std::string\
     \ &t) {\n    int ng = 0, ok = size();\n    while(ok - ng > 1) {\n      const int\
     \ mid = (ok + ng) / 2;\n      (lt_substr(t, (*this)[mid]) ? ng : ok) = mid;\n\
     \    }\n    return ok;\n  }\n  std::pair<int, int> equal_range(std::string t)\
@@ -197,10 +197,10 @@ data:
     \ << i << \":[\" << (*this)[i] << \"]\";\n      for(size_t j = (*this)[i]; j <\
     \ vs.size(); ++j) {\n        std::cout << \" \" << vs[j];\n      }\n      std::cout\
     \ << \"\\n\";\n    }\n  }\n  bool lt_substr(const std::string &t, int si = 0,\
-    \ int ti = 0) {\n    int sn = vs.size(), tn = t.size();\n    while(si < sn &&\
-    \ ti < tn) {\n      if(vs[si] < t[ti]) {\n        return true;\n      }\n    \
-    \  if(vs[si] > t[ti]) {\n        return false;\n      }\n      ++si, ++ti;\n \
-    \   }\n    return si >= sn && ti < tn;\n  }\n  int lower_bound(const std::string\
+    \ int ti = 0) {\n    const int sn = vs.size(), tn = t.size();\n    while(si <\
+    \ sn && ti < tn) {\n      if(vs[si] < t[ti]) {\n        return true;\n      }\n\
+    \      if(vs[si] > t[ti]) {\n        return false;\n      }\n      ++si, ++ti;\n\
+    \    }\n    return si >= sn && ti < tn;\n  }\n  int lower_bound(const std::string\
     \ &t) {\n    int ng = 0, ok = size();\n    while(ok - ng > 1) {\n      const int\
     \ mid = (ok + ng) / 2;\n      (lt_substr(t, (*this)[mid]) ? ng : ok) = mid;\n\
     \    }\n    return ok;\n  }\n  std::pair<int, int> equal_range(std::string t)\
@@ -239,7 +239,7 @@ data:
   isVerificationFile: false
   path: C++/Strings.hpp
   requiredBy: []
-  timestamp: '2023-12-02 12:44:55+09:00'
+  timestamp: '2023-12-02 12:58:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manacher.test.cpp
