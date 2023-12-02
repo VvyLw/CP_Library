@@ -19,11 +19,11 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A
   bundledCode: "#line 1 \"test/kruskal.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A\"\
     \n#include <C++/MST.hpp>\nint main() {\n    std::cin.tie(nullptr) -> sync_with_stdio(false);\n\
-    \    int n, m;\n    std::cin >> n >> m;\n    Graph g(n);\n    g.input(m, 0);\n\
+    \    int n, m;\n    std::cin >> n >> m;\n    Graph g(n, 0);\n    g.input(m);\n\
     \    std::cout << g.kruskal() << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A\"\
     \n#include <C++/MST.hpp>\nint main() {\n    std::cin.tie(nullptr) -> sync_with_stdio(false);\n\
-    \    int n, m;\n    std::cin >> n >> m;\n    Graph g(n);\n    g.input(m, 0);\n\
+    \    int n, m;\n    std::cin >> n >> m;\n    Graph g(n, 0);\n    g.input(m);\n\
     \    std::cout << g.kruskal() << '\\n';\n}"
   dependsOn:
   - C++/MST.hpp
@@ -31,7 +31,7 @@ data:
   isVerificationFile: true
   path: test/kruskal.test.cpp
   requiredBy: []
-  timestamp: '2023-12-02 08:23:51+09:00'
+  timestamp: '2023-12-02 22:41:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/kruskal.test.cpp

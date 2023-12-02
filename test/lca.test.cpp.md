@@ -20,24 +20,24 @@ data:
   bundledCode: "#line 1 \"test/lca.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\
     \n#include <iostream>\n#include <C++/LCA.hpp>\n#include <C++/graph.hpp>\nint main()\
     \ {\n    cin.tie(nullptr) -> sync_with_stdio(false);\n    int n, q;\n    cin >>\
-    \ n >> q;\n    graph<false> g(n);\n    for(int i = 1; i < n; ++i) {\n        int\
-    \ p;\n        cin >> p;\n        g.add(p, i, 0);\n    }\n    LowestCommonAncestor\
-    \ lca(g);\n    lca.build();\n    while(q--) {\n        int u, v;\n        std::cin\
-    \ >> u >> v;\n        std::cout << lca.query(u, v) << '\\n';\n    }\n}\n"
+    \ n >> q;\n    graph<false> g(n, 0);\n    for(int i = 1; i < n; ++i) {\n     \
+    \   int p;\n        cin >> p;\n        g.add(p, i);\n    }\n    LowestCommonAncestor\
+    \ lca(g);\n    while(q--) {\n        int u, v;\n        std::cin >> u >> v;\n\
+    \        std::cout << lca.query(u, v) << '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n#include <iostream>\n\
     #include <C++/LCA.hpp>\n#include <C++/graph.hpp>\nint main() {\n    cin.tie(nullptr)\
     \ -> sync_with_stdio(false);\n    int n, q;\n    cin >> n >> q;\n    graph<false>\
-    \ g(n);\n    for(int i = 1; i < n; ++i) {\n        int p;\n        cin >> p;\n\
-    \        g.add(p, i, 0);\n    }\n    LowestCommonAncestor lca(g);\n    lca.build();\n\
-    \    while(q--) {\n        int u, v;\n        std::cin >> u >> v;\n        std::cout\
-    \ << lca.query(u, v) << '\\n';\n    }\n}"
+    \ g(n, 0);\n    for(int i = 1; i < n; ++i) {\n        int p;\n        cin >> p;\n\
+    \        g.add(p, i);\n    }\n    LowestCommonAncestor lca(g);\n    while(q--)\
+    \ {\n        int u, v;\n        std::cin >> u >> v;\n        std::cout << lca.query(u,\
+    \ v) << '\\n';\n    }\n}"
   dependsOn:
   - C++/LCA.hpp
   - C++/graph.hpp
   isVerificationFile: true
   path: test/lca.test.cpp
   requiredBy: []
-  timestamp: '2023-12-02 08:23:51+09:00'
+  timestamp: '2023-12-02 22:41:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lca.test.cpp
