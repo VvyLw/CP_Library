@@ -28,7 +28,7 @@ class Pair<F, S> {
 	public static <F, S> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }
 	Pair<S, F> swap(){ return Pair.of(second, first); }
 }
-class NumPair extends Pair<Number, Number> {
+class NumPair extends Pair<Number, Number> implements Comparable<NumPair>  {
 	NumPair(final Number first, final Number second){ super(first, second); }
 	NumPair rotate(){ return new NumPair(-second.doubleValue(), first.doubleValue()); } 
 	NumPair rotate(final int ang) {
@@ -53,7 +53,7 @@ class NumPair extends Pair<Number, Number> {
 	NumPair extgcd() {
 		long x = 1, y = 0, t1 = 0, t2 = 0, t3 = 1, a = first.longValue(), b = second.longValue();
 		while(b > 0) {
-			t1=a / b;
+			t1 = a / b;
 			a -= t1 * b;
 			a ^= b;
 			b ^= a;
@@ -68,5 +68,12 @@ class NumPair extends Pair<Number, Number> {
 			y ^= t3;
 		}
 		return new NumPair(x, y);
+	}
+	@Override
+	public int compareTo(final NumPair o) {
+		if(first.doubleValue() == o.first.doubleValue()) {
+			return Double.compare(second.doubleValue(), o.second.doubleValue());
+		}
+		return Double.compare(first.doubleValue(), o.first.doubleValue());
 	}
 }

@@ -138,7 +138,7 @@ class Utility {
 		}
 		return false;
 	}
-	private static <T extends Comparable<? super T>> int find(final T dest, final ArrayList<T> a, final int s, final int e) {
+	private static int find(final int dest, final ArrayList<Integer> a, final int s, final int e) {
 		if (s == e) return s;
 		final int m = (s + e + 1) / 2;
 		return a.get(m).compareTo(dest) <= 0 ? find(dest, a, s, m - 1) : find(dest, a, m, e);
