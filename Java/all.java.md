@@ -136,7 +136,7 @@ data:
     static final int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\t\
     static final int mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9 + 7;\n\
     \tprotected static void solve() {\n\t\t\n\t}\n}\nclass Main extends VvyLw {\n\t\
-    public static void main(final String[] args) {\n\t\tint t = 1;\n\t\tt = sc.ni();\n\
+    public static void main(final String[] args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\
     \t\twhile(t-- > 0) {\n\t\t\tsolve();\n\t\t}\n\t\to.flush();\n\t\tsc.close();\n\
     \t\to.close();\n\t\te.close();\n\t}\n}\n\nclass Utility {\n\tprotected static\
     \ String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static\
@@ -165,71 +165,99 @@ data:
     \ }\n\tprotected static boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
     \ }\n\tprotected static boolean isPrime(final long n) {\n\t\tif(n == 1) return\
     \ false;\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) return\
-    \ false;\n\t\t}\n\t\treturn true;\n\t}\n\tprotected static boolean nextPerm(ArrayList<Integer>\
-    \ a) {\n\t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
-    \ < 0) {\n\t\t\t\tfinal int j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\
-    \tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\
-    \t\t\t\treturn true;\n\t\t\t}\n\t\t}\n\t\treturn false;\n\t}\n\tprivate static\
-    \ int find(final int dest, final ArrayList<Integer> a, final int s, final int\
-    \ e) {\n\t\tif (s == e) return s;\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn\
-    \ a.get(m).compareTo(dest) <= 0 ? find(dest, a, s, m - 1) : find(dest, a, m, e);\n\
-    \t}\n\tprotected static boolean binarySearch(final int[] a, final int x) {\n\t\
-    \treturn Arrays.binarySearch(a, x) >= 0;\n\t}\n\tprotected static boolean binarySearch(final\
-    \ long[] a, final long x) {\n\t\treturn Arrays.binarySearch(a, x) >= 0;\n\t}\n\
-    \tprotected static int lowerBound(final List<Integer> a, final int x) {\n\t\t\
-    return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) >= 0 ? 1 : -1);\n\
-    \t}\n\tprotected static int lowerBound(final List<Long> a, final long x) {\n\t\
-    \treturn ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) >= 0 ? 1 : -1);\n\
-    \t}\n\tprotected static int upperBound(final List<Integer>a, final int x) {\n\t\
-    \treturn ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) > 0 ? 1 : -1);\n\
-    \t}\n\tprotected static int upperBound(final List<Long> a, final long x) {\n\t\
-    \treturn ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) > 0 ? 1 : -1);\n\
-    \t}\n\tprotected static int[] reverse(final int[] a) {\n\t\tfinal int n = a.length;\n\
-    \t\tint[] b = new int[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] =\
-    \ a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected\
-    \ static long[] reverse(final long[] a) {\n\t\tfinal int n = a.length;\n\t\tlong[]\
-    \ b = new long[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n -\
-    \ 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected\
-    \ static double[] reverse(final double[] a) {\n\t\tfinal int n = a.length;\n\t\
-    \tdouble[] b = new double[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i]\
-    \ = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected\
-    \ static Object[] reverse(final Object[] a) {\n\t\tfinal int n = a.length;\n\t\
-    \tObject[] b = new Object[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i]\
-    \ = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected\
-    \ static int[] rotate(final int[] a, final int id) {\n\t\tArrayList<Integer> t\
-    \ = new ArrayList<>(a.length);\n\t\tfor(final var el: a) {\n\t\t\tt.add(el);\n\
-    \t\t}\n\t\tCollections.rotate(t, id);\n\t\tint[] res = new int[t.size()];\n\t\t\
-    for(int i = 0; i < t.size(); ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\tprotected static long[] rotate(final long[] a, final int id) {\n\
-    \t\tArrayList<Long> t = new ArrayList<>(a.length);\n\t\tfor(final var el: a) {\n\
-    \t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t, id);\n\t\tlong[] res = new\
-    \ long[t.size()];\n\t\tfor(int i = 0; i < t.size(); ++i) {\n\t\t\tres[i] = t.get(i);\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static double[] rotate(final double[]\
-    \ a, final int id) {\n\t\tArrayList<Double> t = new ArrayList<>(a.length);\n\t\
+    \ false;\n\t\t}\n\t\treturn true;\n\t}\n\tprotected static boolean nextPerm(ArrayList<?\
+    \ extends Number> a) {\n\t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i\
+    \ - 1).longValue() < a.get(i).longValue()) {\n\t\t\t\tfinal int j = find(a.get(i\
+    \ - 1).longValue(), a, i, a.size() - 1);\n\t\t\t\tCollections.swap(a, i - 1, j);\n\
+    \t\t\t\tCollections.sort(a.subList(i, a.size()), (x, y) -> Long.compare(x.longValue(),\
+    \ y.longValue()));\n\t\t\t\treturn true;\n\t\t\t}\n\t\t}\n\t\treturn false;\n\t\
+    }\n\tprotected static String nextPerm(final String s) {\n\t\tvar a = s.chars().mapToObj(i\
+    \ -> (char)i).collect(Collectors.toList());\n\t\tfor(int i = a.size() - 1; i >\
+    \ 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i)) < 0) {\n\t\t\t\tfinal int\
+    \ j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\tCollections.swap(a, i -\
+    \ 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
+    \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static boolean prevPerm(ArrayList<?\
+    \ extends Number> a) {\n\t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i\
+    \ - 1).longValue() > a.get(i).longValue()) {\n\t\t\t\tfinal int j = findRev(a.get(i\
+    \ - 1).longValue(), a, i, a.size() - 1);\n\t\t\t\tCollections.swap(a, i - 1, j);\n\
+    \t\t\t\tCollections.sort(a.subList(i, a.size()), Collections.reverseOrder());\n\
+    \t\t\t\treturn true;\n\t\t\t}\n\t\t}\n\t\treturn false;\n\t}\n\tprotected static\
+    \ String prevPerm(final String s) {\n\t\tvar a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());\n\
+    \t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
+    \ > 0) {\n\t\t\t\tfinal int j = findRev(a.get(i - 1), a, i, a.size() - 1);\n\t\
+    \t\t\tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()),\
+    \ Collections.reverseOrder());\n\t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
+    \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprivate static int find(final long dest,\
+    \ final List<? extends Number> a, final int s, final int e) {\n\t\tif(s == e)\
+    \ {\n\t\t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn a.get(m).longValue()\
+    \ <= dest ? find(dest, a, s, m - 1) : find(dest, a, m, e);\n\t}\n\tprivate static\
+    \ int find(final char dest, final List<Character> a, final int s, final int e)\
+    \ {\n\t\tif(s == e) {\n\t\t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1) /\
+    \ 2;\n\t\treturn a.get(m).compareTo(dest) <= 0 ? find(dest, a, s, m - 1) : find(dest,\
+    \ a, m, e);\n\t}\n\tprivate static int findRev(final long dest, final List<? extends\
+    \ Number> a, final int s, final int e) {\n\t\tif(s == e) {\n\t\t\treturn s;\n\t\
+    \t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn a.get(m).longValue() > dest\
+    \ ? findRev(dest, a, s, m - 1) : findRev(dest, a, m, e);\n\t}\n\tprivate static\
+    \ int findRev(final char dest, final List<Character> a, final int s, final int\
+    \ e) {\n\t\tif(s == e) {\n\t\t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1)\
+    \ / 2;\n\t\treturn a.get(m).compareTo(dest) > 0 ? find(dest, a, s, m - 1) : find(dest,\
+    \ a, m, e);\n\t}\n\tprotected static boolean binarySearch(final int[] a, final\
+    \ int x) {\n\t\treturn Arrays.binarySearch(a, x) >= 0;\n\t}\n\tprotected static\
+    \ boolean binarySearch(final long[] a, final long x) {\n\t\treturn Arrays.binarySearch(a,\
+    \ x) >= 0;\n\t}\n\tprotected static int lowerBound(final List<Integer> a, final\
+    \ int x) {\n\t\treturn ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q)\
+    \ >= 0 ? 1 : -1);\n\t}\n\tprotected static int lowerBound(final List<Long> a,\
+    \ final long x) {\n\t\treturn ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q)\
+    \ >= 0 ? 1 : -1);\n\t}\n\tprotected static int upperBound(final List<Integer>a,\
+    \ final int x) {\n\t\treturn ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q)\
+    \ > 0 ? 1 : -1);\n\t}\n\tprotected static int upperBound(final List<Long> a, final\
+    \ long x) {\n\t\treturn ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q)\
+    \ > 0 ? 1 : -1);\n\t}\n\tprotected static int[] reverse(final int[] a) {\n\t\t\
+    final int n = a.length;\n\t\tint[] b = new int[n];\n\t\tfor(int i = 0; i <= n\
+    \ / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\
+    \t\treturn b;\n\t}\n\tprotected static long[] reverse(final long[] a) {\n\t\t\
+    final int n = a.length;\n\t\tlong[] b = new long[n];\n\t\tfor(int i = 0; i <=\
+    \ n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t\
+    }\n\t\treturn b;\n\t}\n\tprotected static double[] reverse(final double[] a) {\n\
+    \t\tfinal int n = a.length;\n\t\tdouble[] b = new double[n];\n\t\tfor(int i =\
+    \ 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\
+    \t\t}\n\t\treturn b;\n\t}\n\tprotected static Object[] reverse(final Object[]\
+    \ a) {\n\t\tfinal int n = a.length;\n\t\tObject[] b = new Object[n];\n\t\tfor(int\
+    \ i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] =\
+    \ a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected static int[] rotate(final int[]\
+    \ a, final int id) {\n\t\tArrayList<Integer> t = new ArrayList<>(a.length);\n\t\
     \tfor(final var el: a) {\n\t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t, id);\n\
-    \t\tdouble[] res = new double[t.size()];\n\t\tfor(int i = 0; i < t.size(); ++i)\
-    \ {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ String rotate(final String s, final int id) {\n\t\tArrayList<Character> t =\
-    \ new ArrayList<>();\n\t\tfor(final char c: s.toCharArray()) {\n\t\t\tt.add(c);\n\
-    \t\t}\n\t\tCollections.rotate(t, id);\n\t\tStringBuilder sb = new StringBuilder();\n\
-    \t\tfor(final var c: t) {\n\t\t\tsb.append(c);\n\t\t}\n\t\treturn sb.toString();\
-    \ \n\t}\n\tprotected static int[][] rotate(final int[][] a) {\n\t\tfinal int h\
-    \ = a.length, w = a[0].length;\n\t\tint[][] b = new int[w][h];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);\n\
-    \t\t});\n\t\tIntStream.range(0, w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn\
-    \ b;\n\t}\n\tprotected static long[][] rotate(final long[][] a) {\n\t\tfinal int\
-    \ h = a.length, w = a[0].length;\n\t\tlong[][] b = new long[w][h];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);\n\
-    \t\t});\n\t\tIntStream.range(0, w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn\
-    \ b;\n\t}\n\tprotected static double[][] rotate(final double[][] a) {\n\t\tfinal\
-    \ int h = a.length, w = a[0].length;\n\t\tdouble[][] b = new double[w][h];\n\t\
-    \tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j\
-    \ -> b[j][i] = a[i][j]);\n\t\t});\n\t\tIntStream.range(0, w).forEach(i -> b[i]\
-    \ = reverse(b[i]));\n\t\treturn b;\n\t}\n\tprotected static String[] rotate(final\
-    \ String[] s) {\n\t\tfinal int h = s.length, w = s[0].length();\n\t\tchar[][]\
-    \ t = new char[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0,\
-    \ w).forEach(j -> t[j][i] = s[i].charAt(j));\n\t\t});\n\t\tIntStream.range(0,\
-    \ w).forEach(i -> t[i] = new StringBuilder(new String(t[i])).reverse().toString().toCharArray());\n\
+    \t\tint[] res = new int[t.size()];\n\t\tfor(int i = 0; i < t.size(); ++i) {\n\t\
+    \t\tres[i] = t.get(i);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static long[]\
+    \ rotate(final long[] a, final int id) {\n\t\tArrayList<Long> t = new ArrayList<>(a.length);\n\
+    \t\tfor(final var el: a) {\n\t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t,\
+    \ id);\n\t\tlong[] res = new long[t.size()];\n\t\tfor(int i = 0; i < t.size();\
+    \ ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ double[] rotate(final double[] a, final int id) {\n\t\tArrayList<Double> t =\
+    \ new ArrayList<>(a.length);\n\t\tfor(final var el: a) {\n\t\t\tt.add(el);\n\t\
+    \t}\n\t\tCollections.rotate(t, id);\n\t\tdouble[] res = new double[t.size()];\n\
+    \t\tfor(int i = 0; i < t.size(); ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\t\
+    return res;\n\t}\n\tprotected static String rotate(final String s, final int id)\
+    \ {\n\t\tArrayList<Character> t = new ArrayList<>();\n\t\tfor(final char c: s.toCharArray())\
+    \ {\n\t\t\tt.add(c);\n\t\t}\n\t\tCollections.rotate(t, id);\n\t\tStringBuilder\
+    \ sb = new StringBuilder();\n\t\tfor(final var c: t) {\n\t\t\tsb.append(c);\n\t\
+    \t}\n\t\treturn sb.toString(); \n\t}\n\tprotected static int[][] rotate(final\
+    \ int[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\t\tint[][] b =\
+    \ new int[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0,\
+    \ w).forEach(j -> b[j][i] = a[i][j]);\n\t\t});\n\t\tIntStream.range(0, w).forEach(i\
+    \ -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\tprotected static long[][] rotate(final\
+    \ long[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\t\tlong[][] b\
+    \ = new long[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0,\
+    \ w).forEach(j -> b[j][i] = a[i][j]);\n\t\t});\n\t\tIntStream.range(0, w).forEach(i\
+    \ -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\tprotected static double[][]\
+    \ rotate(final double[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\
+    \t\tdouble[][] b = new double[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\
+    \t\t\tIntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);\n\t\t});\n\t\tIntStream.range(0,\
+    \ w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\tprotected static\
+    \ String[] rotate(final String[] s) {\n\t\tfinal int h = s.length, w = s[0].length();\n\
+    \t\tchar[][] t = new char[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\
+    \t\tIntStream.range(0, w).forEach(j -> t[j][i] = s[i].charAt(j));\n\t\t});\n\t\
+    \tIntStream.range(0, w).forEach(i -> t[i] = new StringBuilder(new String(t[i])).reverse().toString().toCharArray());\n\
     \t\tString[] res = new String[w];\n\t\tIntStream.range(0, w).forEach(i -> res[i]\
     \ = new String(t[i]));\n\t\treturn res;\n\t}\n\tprotected static long lcm(final\
     \ long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static long\
@@ -347,11 +375,11 @@ data:
     \ }\n\t@Override\n\tpublic String toString(){ return \"(\" + first + \", \" +\
     \ second + \")\"; }\n\tpublic static <F, S> Pair<F, S> of(final F a, final S b){\
     \ return new Pair<>(a, b); }\n\tPair<S, F> swap(){ return Pair.of(second, first);\
-    \ }\n}\nclass NumPair extends Pair<Number, Number> {\n\tNumPair(final Number first,\
-    \ final Number second){ super(first, second); }\n\tNumPair rotate(){ return new\
-    \ NumPair(-second.doubleValue(), first.doubleValue()); } \n\tNumPair rotate(final\
-    \ int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\
-    \treturn new NumPair(first.doubleValue() * Math.cos(rad) - second.doubleValue()\
+    \ }\n}\nclass NumPair extends Pair<Number, Number> implements Comparable<NumPair>\
+    \  {\n\tNumPair(final Number first, final Number second){ super(first, second);\
+    \ }\n\tNumPair rotate(){ return new NumPair(-second.doubleValue(), first.doubleValue());\
+    \ } \n\tNumPair rotate(final int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang,\
+    \ 360));\n\t\treturn new NumPair(first.doubleValue() * Math.cos(rad) - second.doubleValue()\
     \ * Math.sin(rad),\n\t\t\t\t\t\t\tfirst.doubleValue() * Math.sin(rad) + second.doubleValue()\
     \ * Math.cos(rad));\n\t}\n\tlong dot(final NumPair p){ return first.longValue()\
     \ * p.first.longValue() + second.longValue() + p.second.longValue(); }\n\tlong\
@@ -363,67 +391,71 @@ data:
     \ second.longValue()); }\n\tdouble gcd(){ return Utility.gcd(first.longValue(),\
     \ second.longValue()); }\n\tNumPair extgcd() {\n\t\tlong x = 1, y = 0, t1 = 0,\
     \ t2 = 0, t3 = 1, a = first.longValue(), b = second.longValue();\n\t\twhile(b\
-    \ > 0) {\n\t\t\tt1=a / b;\n\t\t\ta -= t1 * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\
-    \t\ta ^= b;\n\t\t\tx -= t1 * t2;\n\t\t\tx ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^= t2;\n\
-    \t\t\ty -= t1 * t3;\n\t\t\ty ^= t3;\n\t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\t}\n\t\
-    \treturn new NumPair(x, y);\n\t}\n}\n\nclass UnionFind {\n\tprivate int[] par;\n\
-    \tUnionFind(final int n) {\n\t\tpar = new int[n];\n\t\tArrays.fill(par, -1);\n\
-    \t}\n\tint root(final int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i;\
-    \ }\n\tint size(final int i){ return -par[root(i)]; }\n\tboolean unite(int i,\
-    \ int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) return false;\n\
-    \t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i]\
-    \ += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\t}\n\tboolean same(final int\
-    \ i, final int j){ return root(i) == root(j); }\n\tArrayList<ArrayList<Integer>>\
-    \ groups() {\n\t\tfinal int n = par.length;\n\t\tArrayList<ArrayList<Integer>>\
-    \ res = new ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> res.add(new\
-    \ ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\
-    \t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n\tboolean is_bipartite()\
-    \ {\n\t\tfinal int n = par.length / 2;\n\t\tboolean ok = true;\n\t\tfor(int i\
-    \ = 0; i < n; ++i) {\n\t\t\tok &= root(i) != root(i + n);\n\t\t}\n\t\treturn ok;\n\
-    \t}\n}\n\nclass WeightedUnionFind {\n\tprivate int[] par;\n\tprivate long[] weight;\n\
-    \tWeightedUnionFind(final int n) {\n\t\tpar = new int[n];\n\t\tweight = new long[n];\n\
-    \t\tArrays.fill(par, -1);\n\t}\n\tint root(final int i) {\n\t\tif(par[i] < 0)\
-    \ {\n\t\t\treturn i;\n\t\t}\n\t\tfinal int r = root(par[i]);\n\t\tweight[i] +=\
-    \ weight[par[i]];\n\t\treturn par[i] = r;\n\t}\n\tlong get(final int i) {\n\t\t\
-    root(i);\n\t\treturn weight[i];\n\t}\n\tlong diff(final int x, final int y){ return\
-    \ get(y) - get(x); }\n\tint unite(int x, int y, long w) {\n\t\tw += diff(y, x);\n\
-    \t\tx = root(x);\n\t\ty = root(y);\n\t\tif(x == y) {\n\t\t\treturn w == 0 ? 0\
-    \ : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\t\
-    x ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\tweight[y]\
-    \ = w;\n\t\treturn 1;\n\t}\n\tboolean same(final int x, final int y){ return root(x)\
-    \ == root(y); }\n}\n\nclass UndoUnionFind {\n\tprivate int[] par;\n\tprivate Stack<Pair<Integer,\
-    \ Integer>> his;\n\tUndoUnionFind(final int n) {\n\t    par = new int[n];\n\t\
-    \    Arrays.fill(par, -1);\n\t    his = new Stack<>();\n\t}\n\tboolean unite(int\
-    \ x, int y) {\n\t\tx = root(x);\n\t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\
-    \t\this.add(Pair.of(y, par[y]));\n\t\tif(x == y) {\n\t\t\treturn false;\n\t\t\
-    }\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t\
-    }\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\treturn true;\n\t}\n\tint root(final\
-    \ int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\t\treturn root(par[i]);\n\
-    \t}\n\tint size(final int i){ return -par[root(i)]; }\n\tvoid undo() {\n\t\tfinal\
-    \ Pair<Integer, Integer> pop1 = his.pop(), pop2 = his.pop();\n\t\tpar[pop1.first]\
-    \ = pop1.second;\n\t\tpar[pop2.first] = pop2.second;\n\t}\n\tvoid snapshot() {\n\
-    \t\twhile(!his.empty()) {\n\t\t\this.pop();\n\t\t}\n\t}\n\tvoid rollback() {\n\
-    \t\twhile(!his.empty()) {\n\t\t\tundo();\n\t\t}\n\t}\n}\n\nclass Edge {\n\tpublic\
-    \ int src;\n\tpublic int to;\n\tpublic long cost;\n\tEdge(final int to) {\n\t\t\
-    this.to = to;\n\t}\n\tEdge(final int to, final long cost) {\n\t\tthis.to = to;\n\
-    \t\tthis.cost = cost;\n\t}\n\tEdge(final int src, final int to, final long cost)\
-    \ {\n\t\tthis.src = src;\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\t@Override\n\
-    \tpublic boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\
-    \t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\
-    \t\t}\n\t\tfinal Edge e = (Edge) o;\n\t\tif(src != e.src) {\n\t\t\treturn false;\n\
-    \t\t}\n\t\tif(to != e.to) {\n\t\t\treturn false;\n\t\t}\n\t\treturn cost == e.cost;\n\
-    \t}\n\t@Override\n\tpublic int hashCode() {\n\t\tint result = 17;\n\t\tresult\
-    \ = 31 * result + src;\n\t\tresult = 31 * result + to;\n\t\tresult = 31 * result\
-    \ + (int) (cost ^ (cost >>> 32)); // XOR for long values\n\t\treturn result;\n\
-    \t}\n\t@Override\n\tpublic String toString(){ return src + \" \" + to + \" \"\
-    \ + cost; }\n}\nclass Graph extends ArrayList<ArrayList<Edge>> {\n\tprotected\
-    \ boolean undirected;\n\tprotected int n, indexed;\n\tGraph(final int n, final\
-    \ int indexed, final boolean undirected) {\n\t\tthis.n = n;\n\t\tthis.indexed\
-    \ = indexed;\n\t\tthis.undirected = undirected;\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> this.add(new ArrayList<>()));\n\t}\n\tvoid addEdge(int a, int b) {\n\t\t\
-    a -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(b));\n\t\tif(undirected)\
-    \ {\n\t\t\tthis.get(b).add(new Edge(a));\n\t\t}\n\t}\n\tprotected int[] allDist(final\
-    \ int v) {\n\t\tint[] d = new int[n];\n\t\tArrays.fill(d, -1);\n\t\tQueue<Integer>\
+    \ > 0) {\n\t\t\tt1 = a / b;\n\t\t\ta -= t1 * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\
+    \t\t\ta ^= b;\n\t\t\tx -= t1 * t2;\n\t\t\tx ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^=\
+    \ t2;\n\t\t\ty -= t1 * t3;\n\t\t\ty ^= t3;\n\t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\
+    \t}\n\t\treturn new NumPair(x, y);\n\t}\n\t@Override\n\tpublic int compareTo(final\
+    \ NumPair o) {\n\t\tif(first.doubleValue() == o.first.doubleValue()) {\n\t\t\t\
+    return Double.compare(second.doubleValue(), o.second.doubleValue());\n\t\t}\n\t\
+    \treturn Double.compare(first.doubleValue(), o.first.doubleValue());\n\t}\n}\n\
+    \nclass UnionFind {\n\tprivate int[] par;\n\tUnionFind(final int n) {\n\t\tpar\
+    \ = new int[n];\n\t\tArrays.fill(par, -1);\n\t}\n\tint root(final int i){ return\
+    \ par[i] >= 0 ? par[i] = root(par[i]) : i; }\n\tint size(final int i){ return\
+    \ -par[root(i)]; }\n\tboolean unite(int i, int j) {\n\t\ti = root(i);\n\t\tj =\
+    \ root(j);\n\t\tif(i == j) return false;\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\
+    \tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\t\
+    return true;\n\t}\n\tboolean same(final int i, final int j){ return root(i) ==\
+    \ root(j); }\n\tArrayList<ArrayList<Integer>> groups() {\n\t\tfinal int n = par.length;\n\
+    \t\tArrayList<ArrayList<Integer>> res = new ArrayList<>(n);\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> res.add(new ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn\
+    \ res;\n\t}\n\tboolean is_bipartite() {\n\t\tfinal int n = par.length / 2;\n\t\
+    \tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &= root(i) !=\
+    \ root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n}\n\nclass WeightedUnionFind {\n\t\
+    private int[] par;\n\tprivate long[] weight;\n\tWeightedUnionFind(final int n)\
+    \ {\n\t\tpar = new int[n];\n\t\tweight = new long[n];\n\t\tArrays.fill(par, -1);\n\
+    \t}\n\tint root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\
+    \t\tfinal int r = root(par[i]);\n\t\tweight[i] += weight[par[i]];\n\t\treturn\
+    \ par[i] = r;\n\t}\n\tlong get(final int i) {\n\t\troot(i);\n\t\treturn weight[i];\n\
+    \t}\n\tlong diff(final int x, final int y){ return get(y) - get(x); }\n\tint unite(int\
+    \ x, int y, long w) {\n\t\tw += diff(y, x);\n\t\tx = root(x);\n\t\ty = root(y);\n\
+    \t\tif(x == y) {\n\t\t\treturn w == 0 ? 0 : -1;\n\t\t}\n\t\tif(par[x] > par[y])\
+    \ {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x]\
+    \ += par[y];\n\t\tpar[y] = x;\n\t\tweight[y] = w;\n\t\treturn 1;\n\t}\n\tboolean\
+    \ same(final int x, final int y){ return root(x) == root(y); }\n}\n\nclass UndoUnionFind\
+    \ {\n\tprivate int[] par;\n\tprivate Stack<Pair<Integer, Integer>> his;\n\tUndoUnionFind(final\
+    \ int n) {\n\t    par = new int[n];\n\t    Arrays.fill(par, -1);\n\t    his =\
+    \ new Stack<>();\n\t}\n\tboolean unite(int x, int y) {\n\t\tx = root(x);\n\t\t\
+    y = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\t\this.add(Pair.of(y, par[y]));\n\
+    \t\tif(x == y) {\n\t\t\treturn false;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\t\
+    x ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y]\
+    \ = x;\n\t\treturn true;\n\t}\n\tint root(final int i) {\n\t\tif(par[i] < 0) {\n\
+    \t\t\treturn i;\n\t\t}\n\t\treturn root(par[i]);\n\t}\n\tint size(final int i){\
+    \ return -par[root(i)]; }\n\tvoid undo() {\n\t\tfinal Pair<Integer, Integer> pop1\
+    \ = his.pop(), pop2 = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\t\tpar[pop2.first]\
+    \ = pop2.second;\n\t}\n\tvoid snapshot() {\n\t\twhile(!his.empty()) {\n\t\t\t\
+    his.pop();\n\t\t}\n\t}\n\tvoid rollback() {\n\t\twhile(!his.empty()) {\n\t\t\t\
+    undo();\n\t\t}\n\t}\n}\n\nclass Edge {\n\tpublic int src;\n\tpublic int to;\n\t\
+    public long cost;\n\tEdge(final int to) {\n\t\tthis.to = to;\n\t}\n\tEdge(final\
+    \ int to, final long cost) {\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\t\
+    Edge(final int src, final int to, final long cost) {\n\t\tthis.src = src;\n\t\t\
+    this.to = to;\n\t\tthis.cost = cost;\n\t}\n\t@Override\n\tpublic boolean equals(final\
+    \ Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null\
+    \ || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Edge\
+    \ e = (Edge) o;\n\t\tif(src != e.src) {\n\t\t\treturn false;\n\t\t}\n\t\tif(to\
+    \ != e.to) {\n\t\t\treturn false;\n\t\t}\n\t\treturn cost == e.cost;\n\t}\n\t\
+    @Override\n\tpublic int hashCode() {\n\t\tint result = 17;\n\t\tresult = 31 *\
+    \ result + src;\n\t\tresult = 31 * result + to;\n\t\tresult = 31 * result + (int)\
+    \ (cost ^ (cost >>> 32)); // XOR for long values\n\t\treturn result;\n\t}\n\t\
+    @Override\n\tpublic String toString(){ return src + \" \" + to + \" \" + cost;\
+    \ }\n}\nclass Graph extends ArrayList<ArrayList<Edge>> {\n\tprotected boolean\
+    \ undirected;\n\tprotected int n, indexed;\n\tGraph(final int n, final int indexed,\
+    \ final boolean undirected) {\n\t\tthis.n = n;\n\t\tthis.indexed = indexed;\n\t\
+    \tthis.undirected = undirected;\n\t\tIntStream.range(0, n).forEach(i -> this.add(new\
+    \ ArrayList<>()));\n\t}\n\tvoid addEdge(int a, int b) {\n\t\ta -= indexed;\n\t\
+    \tb -= indexed;\n\t\tthis.get(a).add(new Edge(b));\n\t\tif(undirected) {\n\t\t\
+    \tthis.get(b).add(new Edge(a));\n\t\t}\n\t}\n\tprotected int[] allDist(final int\
+    \ v) {\n\t\tint[] d = new int[n];\n\t\tArrays.fill(d, -1);\n\t\tQueue<Integer>\
     \ q = new ArrayDeque<>();\n\t\td[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty())\
     \ {\n\t\t\tfinal int tmp = q.poll();\n\t\t\tfor(final var el: this.get(tmp)) {\n\
     \t\t\t\tif(d[el.to] != -1) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to]=d[tmp]+1;\n\
@@ -758,7 +790,7 @@ data:
   - Java/extension/SegmentTree.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
-  timestamp: '2023-12-03 17:45:27+09:00'
+  timestamp: '2023-12-03 19:46:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
