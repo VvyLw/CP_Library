@@ -1020,7 +1020,7 @@ class PrimeTable {
 	}
 	boolean[] table(){ return sieve; }
 	ArrayList<Integer> get() {
-		ArrayList<Integer> p = new ArrayList<>();;
+		ArrayList<Integer> p = new ArrayList<>();
 		for(int i = 2; i <= n; ++i) {
 			if(sieve[i]) {
 				p.add(i);
