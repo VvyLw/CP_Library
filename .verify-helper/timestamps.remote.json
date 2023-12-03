@@ -5,6 +5,7 @@
 "test/add128_2.test.cpp": "2023-12-02 08:23:51 +0900",
 "test/ftree.test.cpp": "2023-12-02 12:45:43 +0900",
 "test/kruskal.test.cpp": "2023-12-02 22:41:14 +0900",
+"test/kthrooti.test.cpp": "2023-12-03 13:05:02 +0900",
 "test/lca.test.cpp": "2023-12-02 22:41:14 +0900",
 "test/lcpa.test.cpp": "2023-12-02 12:58:26 +0900",
 "test/m_add.test.cpp": "2023-12-02 12:45:43 +0900",
