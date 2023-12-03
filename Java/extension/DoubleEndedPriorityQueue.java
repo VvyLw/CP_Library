@@ -39,7 +39,7 @@ class DoubleEndedPriorityQueue<T extends Number> {
 		used.set(res.second.intValue(), false);
 		return res.first;
 	}
-	void push(final T x) {
+	void add(final T x) {
 		pq1.add(new NumPair(x, idx));
 		pq2.add(new NumPair(x, idx));
 		used.add(true);
