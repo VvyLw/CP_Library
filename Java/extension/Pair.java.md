@@ -131,25 +131,29 @@ data:
     \ toString(){ return \"(\" + first + \", \" + second + \")\"; }\n\tpublic static\
     \ <F, S> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }\n\tPair<S,\
     \ F> swap(){ return Pair.of(second, first); }\n}\nclass NumPair extends Pair<Number,\
-    \ Number> {\n\tNumPair(final Number first, final Number second){ super(first,\
-    \ second); }\n\tNumPair rotate(){ return new NumPair(-second.doubleValue(), first.doubleValue());\
-    \ } \n\tNumPair rotate(final int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang,\
-    \ 360));\n\t\treturn new NumPair(first.doubleValue() * Math.cos(rad) - second.doubleValue()\
-    \ * Math.sin(rad),\n\t\t\t\t\t\t\tfirst.doubleValue() * Math.sin(rad) + second.doubleValue()\
-    \ * Math.cos(rad));\n\t}\n\tlong dot(final NumPair p){ return first.longValue()\
-    \ * p.first.longValue() + second.longValue() + p.second.longValue(); }\n\tlong\
-    \ cross(final NumPair p){ return this.rotate().dot(p); }\n\tlong square(){ return\
-    \ this.dot(this); }\n\tdouble grad() { \n\t\ttry {\n\t\t\treturn second.doubleValue()\
-    \ / first.doubleValue();\n\t\t} catch(ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
-    \t\t\treturn Double.NaN;\n\t\t}\n\t}\n\tdouble abs(){ return Math.hypot(first.doubleValue(),\
-    \ second.doubleValue()); }\n\tdouble lcm(){ return Utility.lcm(first.longValue(),\
-    \ second.longValue()); }\n\tdouble gcd(){ return Utility.gcd(first.longValue(),\
-    \ second.longValue()); }\n\tNumPair extgcd() {\n\t\tlong x = 1, y = 0, t1 = 0,\
-    \ t2 = 0, t3 = 1, a = first.longValue(), b = second.longValue();\n\t\twhile(b\
-    \ > 0) {\n\t\t\tt1=a / b;\n\t\t\ta -= t1 * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\
-    \t\ta ^= b;\n\t\t\tx -= t1 * t2;\n\t\t\tx ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^= t2;\n\
-    \t\t\ty -= t1 * t3;\n\t\t\ty ^= t3;\n\t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\t}\n\t\
-    \treturn new NumPair(x, y);\n\t}\n}"
+    \ Number> implements Comparable<NumPair>  {\n\tNumPair(final Number first, final\
+    \ Number second){ super(first, second); }\n\tNumPair rotate(){ return new NumPair(-second.doubleValue(),\
+    \ first.doubleValue()); } \n\tNumPair rotate(final int ang) {\n\t\tfinal double\
+    \ rad = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn new NumPair(first.doubleValue()\
+    \ * Math.cos(rad) - second.doubleValue() * Math.sin(rad),\n\t\t\t\t\t\t\tfirst.doubleValue()\
+    \ * Math.sin(rad) + second.doubleValue() * Math.cos(rad));\n\t}\n\tlong dot(final\
+    \ NumPair p){ return first.longValue() * p.first.longValue() + second.longValue()\
+    \ + p.second.longValue(); }\n\tlong cross(final NumPair p){ return this.rotate().dot(p);\
+    \ }\n\tlong square(){ return this.dot(this); }\n\tdouble grad() { \n\t\ttry {\n\
+    \t\t\treturn second.doubleValue() / first.doubleValue();\n\t\t} catch(ArithmeticException\
+    \ e) {\n\t\t\te.printStackTrace();\n\t\t\treturn Double.NaN;\n\t\t}\n\t}\n\tdouble\
+    \ abs(){ return Math.hypot(first.doubleValue(), second.doubleValue()); }\n\tdouble\
+    \ lcm(){ return Utility.lcm(first.longValue(), second.longValue()); }\n\tdouble\
+    \ gcd(){ return Utility.gcd(first.longValue(), second.longValue()); }\n\tNumPair\
+    \ extgcd() {\n\t\tlong x = 1, y = 0, t1 = 0, t2 = 0, t3 = 1, a = first.longValue(),\
+    \ b = second.longValue();\n\t\twhile(b > 0) {\n\t\t\tt1 = a / b;\n\t\t\ta -= t1\
+    \ * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\t\tx -= t1 * t2;\n\t\t\
+    \tx ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^= t2;\n\t\t\ty -= t1 * t3;\n\t\t\ty ^= t3;\n\
+    \t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\t}\n\t\treturn new NumPair(x, y);\n\t}\n\t\
+    @Override\n\tpublic int compareTo(final NumPair o) {\n\t\tif(first.doubleValue()\
+    \ == o.first.doubleValue()) {\n\t\t\treturn Double.compare(second.doubleValue(),\
+    \ o.second.doubleValue());\n\t\t}\n\t\treturn Double.compare(first.doubleValue(),\
+    \ o.first.doubleValue());\n\t}\n}"
   dependsOn:
   - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
@@ -190,7 +194,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-03 15:09:07+09:00'
+  timestamp: '2023-12-03 17:45:27+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Pair.java
