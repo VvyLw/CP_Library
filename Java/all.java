@@ -32,19 +32,7 @@ class VvyLw extends Utility {
 	static final int mod998 = 998244353;
 	static final int mod107 = (int)1e9 + 7;
 	protected static void solve() {
-		final int n = sc.ni(), q = sc.ni();
-		final var s = sc.nia(n);
-		var depq = new DoubleEndedPriorityQueue<>(s);
-		IntStream.range(0, q).forEach(i -> {
-			final int t = sc.ni();
-			if(t == 0) {
-				depq.push(sc.ni());
-			} else if(t == 1) {
-				o.out(depq.popMin());
-			} else {
-				o.out(depq.popMax());
-			}
-		});
+		
 	}
 }
 class Main extends VvyLw {
@@ -1398,12 +1386,12 @@ class FenwickTree {
 	}
 }
 
-class SegmentTree {
+class SegmentTree<T extends Number> {
 	private int n = 1, rank = 0, fini;
-	private BinaryOperator<Long> op;
-	private long e;
-	private long[] dat;
-	SegmentTree(final int fini, final BinaryOperator<Long> op, final long e) {
+	private BinaryOperator<T> op;
+	private T e;
+	private Object[] dat;
+	SegmentTree(final int fini, final BinaryOperator<T> op, final T e) {
 		this.fini = fini;
 		this.op = op;
 		this.e = e;
@@ -1411,46 +1399,41 @@ class SegmentTree {
 			n <<= 1;
 			rank++;
 		}
-		dat = new long[2 * n];
+		dat = new Object[2 * n];
 		Arrays.fill(dat, e);
 	}
-	void update(int i, final long x) {
+	@SuppressWarnings("unchecked")
+	void update(int i, final T x) {
 		i += n;
 		dat[i] = x;
 		do {
 			i >>= 1;
-			dat[i] = op.apply(dat[2 * i], dat[2 * i + 1]);
+			dat[i] = op.apply((T) dat[2 * i], (T) dat[2 * i + 1]);
 		} while(i > 0);
 	}
-	void add(int i, final long x) {
-		i += n;
-		dat[i] += x;
-		do {
-			i >>= 1;
-			dat[i] = op.apply(dat[2 * i], dat[2 * i + 1]);
-		} while(i > 0);
-	}
-	long query(int a, int b) {
-		long l=e,r=e;
+	@SuppressWarnings("unchecked")
+	T query(int a, int b) {
+		T l = e, r = e;
 		for(a += n, b += n; a < b; a >>= 1, b >>= 1) {
 			if(a % 2 == 1) {
-				l = op.apply(l, dat[a++]);
+				l = op.apply(l, (T) dat[a++]);
 			}
 			if(b % 2 == 1) {
-				r = op.apply(dat[--b], r);
+				r = op.apply((T) dat[--b], r);
 			}
 		}
 		return op.apply(l,r);
 	}
-	int findLeft(int r, final Predicate<Long> fn) {
+	@SuppressWarnings("unchecked")
+	int findLeft(int r, final Predicate<T> fn) {
 		if(r == 0) {
 			return 0;
 		}
 		int h = 0, i = r + n;
-		long val = e;
+		T val = e;
 		for(; h <= rank; h++) {
 			if(i >> (h & 1) > 0) {
-				final long val2 = op.apply(val, dat[i >> (h ^ 1)]);
+				final T val2 = op.apply(val, (T) dat[i >> (h ^ 1)]);
 				if(fn.test(val2)){
 					i -= 1 << h;
 					if(i == n) {
@@ -1464,7 +1447,7 @@ class SegmentTree {
 			}
 		}
 		for(; h-- > 0;) {
-			long val2 = op.apply(val, dat[(i >> h) - 1]);
+			final T val2 = op.apply(val, (T) dat[(i >> h) - 1]);
 			if(fn.test(val2)){
 				i -= 1 << h;
 				if(i == n) {
@@ -1475,15 +1458,16 @@ class SegmentTree {
 		}
 		return i - n;
 	}
-	int findRight(int l, final Predicate<Long> fn) {
+	@SuppressWarnings("unchecked")
+	int findRight(int l, final Predicate<T> fn) {
 		if(l == fini) {
 			return fini;
 		}
 		int h = 0, i = l + n;
-		long val = e;
+		T val = e;
 		for(; h <= rank; h++) {
 			if(i >> (h & 1) > 0){
-				long val2 = op.apply(val, dat[i >> h]);
+				final T val2 = op.apply(val, (T) dat[i >> h]);
 				if(fn.test(val2)){
 					i += 1 << h;
 					if(i == n * 2) {
@@ -1497,7 +1481,7 @@ class SegmentTree {
 			}
 		}
 		for(; h-- > 0;) {
-			long val2 = op.apply(val, dat[i>>h]);
+			final T val2 = op.apply(val, (T) dat[i>>h]);
 			if(fn.test(val2)) {
 				i += 1 << h;
 				if(i == n * 2) {
