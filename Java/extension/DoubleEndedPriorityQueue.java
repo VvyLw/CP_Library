@@ -98,5 +98,5 @@ class DoubleEndedPriorityQueue<T extends Number> {
 	T getMin(){ return d.size() < 2 ? d.get(0) : d.get(1); }
 	T getMax(){ return d.get(0); }
 	int size(){ return d.size(); }
-    boolean isEmpty(){ return d.isEmpty(); }
+	boolean isEmpty(){ return d.isEmpty(); }
 }
