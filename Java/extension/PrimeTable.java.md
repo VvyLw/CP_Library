@@ -127,7 +127,7 @@ data:
     \t\t\tif(!sieve[(int) i]) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(long j = i\
     \ * i; j <= n; j += i) {\n\t\t\t\tsieve[(int) j] = false;\n\t\t\t}\n\t\t}\n\t\
     }\n\tboolean[] table(){ return sieve; }\n\tArrayList<Integer> get() {\n\t\tArrayList<Integer>\
-    \ p = new ArrayList<>();;\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i])\
+    \ p = new ArrayList<>();\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i])\
     \ {\n\t\t\t\tp.add(i);\n\t\t\t}\n\t\t}\n\t\treturn p;\n\t}\n}"
   dependsOn:
   - Java/extension/MyScanner.java
@@ -169,7 +169,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-03 19:46:01+09:00'
+  timestamp: '2023-12-03 19:51:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/PrimeTable.java

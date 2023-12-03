@@ -512,7 +512,7 @@ data:
     \t\t\tif(!sieve[(int) i]) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(long j = i\
     \ * i; j <= n; j += i) {\n\t\t\t\tsieve[(int) j] = false;\n\t\t\t}\n\t\t}\n\t\
     }\n\tboolean[] table(){ return sieve; }\n\tArrayList<Integer> get() {\n\t\tArrayList<Integer>\
-    \ p = new ArrayList<>();;\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i])\
+    \ p = new ArrayList<>();\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i])\
     \ {\n\t\t\t\tp.add(i);\n\t\t\t}\n\t\t}\n\t\treturn p;\n\t}\n}\n\nclass PrimeFactor\
     \ {\n\tprivate int[] spf;\n\tPrimeFactor(final int n) {\n\t\tspf = IntStream.rangeClosed(0,\
     \ n).toArray();\n\t\tfor(int i = 2; i * i <= n; ++i) {\n\t\t\tif(spf[i] == i)\
@@ -790,7 +790,7 @@ data:
   - Java/extension/SegmentTree.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
-  timestamp: '2023-12-03 19:46:01+09:00'
+  timestamp: '2023-12-03 19:51:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
