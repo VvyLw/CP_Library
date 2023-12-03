@@ -25,7 +25,7 @@ class VvyLw extends Utility {
 class Main extends VvyLw {
 	public static void main(final String[] args) {
 		int t = 1;
-		t = sc.ni();
+		//t = sc.ni();
 		while(t-- > 0) {
 			solve();
 		}
@@ -114,21 +114,79 @@ class Utility {
 		}
 		return true;
 	}
-	protected static boolean nextPerm(ArrayList<Integer> a) {
+	protected static boolean nextPerm(ArrayList<? extends Number> a) {
 		for(int i = a.size() - 1; i > 0; i--) {
-			if(a.get(i - 1).compareTo(a.get(i)) < 0) {
-				final int j = find(a.get(i - 1), a, i, a.size() - 1);
+			if(a.get(i - 1).longValue() < a.get(i).longValue()) {
+				final int j = find(a.get(i - 1).longValue(), a, i, a.size() - 1);
 				Collections.swap(a, i - 1, j);
-				Collections.sort(a.subList(i, a.size()));
+				Collections.sort(a.subList(i, a.size()), (x, y) -> Long.compare(x.longValue(), y.longValue()));
 				return true;
 			}
 		}
 		return false;
 	}
-	private static int find(final int dest, final ArrayList<Integer> a, final int s, final int e) {
-		if (s == e) return s;
+	protected static String nextPerm(final String s) {
+		var a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
+		for(int i = a.size() - 1; i > 0; i--) {
+			if(a.get(i - 1).compareTo(a.get(i)) < 0) {
+				final int j = find(a.get(i - 1), a, i, a.size() - 1);
+				Collections.swap(a, i - 1, j);
+				Collections.sort(a.subList(i, a.size()));
+				return a.stream().map(String::valueOf).collect(Collectors.joining());
+			}
+		}
+		return null;
+	}
+	protected static boolean prevPerm(ArrayList<? extends Number> a) {
+		for(int i = a.size() - 1; i > 0; i--) {
+			if(a.get(i - 1).longValue() > a.get(i).longValue()) {
+				final int j = findRev(a.get(i - 1).longValue(), a, i, a.size() - 1);
+				Collections.swap(a, i - 1, j);
+				Collections.sort(a.subList(i, a.size()), Collections.reverseOrder());
+				return true;
+			}
+		}
+		return false;
+	}
+	protected static String prevPerm(final String s) {
+		var a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
+		for(int i = a.size() - 1; i > 0; i--) {
+			if(a.get(i - 1).compareTo(a.get(i)) > 0) {
+				final int j = findRev(a.get(i - 1), a, i, a.size() - 1);
+				Collections.swap(a, i - 1, j);
+				Collections.sort(a.subList(i, a.size()), Collections.reverseOrder());
+				return a.stream().map(String::valueOf).collect(Collectors.joining());
+			}
+		}
+		return null;
+	}
+	private static int find(final long dest, final List<? extends Number> a, final int s, final int e) {
+		if(s == e) {
+			return s;
+		}
+		final int m = (s + e + 1) / 2;
+		return a.get(m).longValue() <= dest ? find(dest, a, s, m - 1) : find(dest, a, m, e);
+	}
+	private static int find(final char dest, final List<Character> a, final int s, final int e) {
+		if(s == e) {
+			return s;
+		}
 		final int m = (s + e + 1) / 2;
 		return a.get(m).compareTo(dest) <= 0 ? find(dest, a, s, m - 1) : find(dest, a, m, e);
+	}
+	private static int findRev(final long dest, final List<? extends Number> a, final int s, final int e) {
+		if(s == e) {
+			return s;
+		}
+		final int m = (s + e + 1) / 2;
+		return a.get(m).longValue() > dest ? findRev(dest, a, s, m - 1) : findRev(dest, a, m, e);
+	}
+	private static int findRev(final char dest, final List<Character> a, final int s, final int e) {
+		if(s == e) {
+			return s;
+		}
+		final int m = (s + e + 1) / 2;
+		return a.get(m).compareTo(dest) > 0 ? find(dest, a, s, m - 1) : find(dest, a, m, e);
 	}
 	protected static boolean binarySearch(final int[] a, final int x) {
 		return Arrays.binarySearch(a, x) >= 0;
