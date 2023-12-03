@@ -38,7 +38,7 @@ class VvyLw extends Utility {
 class Main extends VvyLw {
 	public static void main(final String[] args) {
 		int t = 1;
-		//t = sc.ni();
+		t = sc.ni();
 		while(t-- > 0) {
 			solve();
 		}
@@ -546,7 +546,6 @@ class Pair<F, S> {
 	public static <F, S> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }
 	Pair<S, F> swap(){ return Pair.of(second, first); }
 }
-
 class NumPair extends Pair<Number, Number> {
 	NumPair(final Number first, final Number second){ super(first, second); }
 	NumPair rotate(){ return new NumPair(-second.doubleValue(), first.doubleValue()); } 
@@ -629,6 +628,7 @@ class UnionFind {
 		return ok;
 	}
 }
+
 class WeightedUnionFind {
 	private int[] par;
 	private long[] weight;
@@ -670,6 +670,7 @@ class WeightedUnionFind {
 	}
 	boolean same(final int x, final int y){ return root(x) == root(y); }
 }
+
 class UndoUnionFind {
 	private int[] par;
 	private Stack<Pair<Integer, Integer>> his;
