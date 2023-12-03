@@ -790,7 +790,7 @@ data:
     \tpopBack(d);\n\t\t} else {\n\t\t\tCollections.swap(d, 0, d.size() - 1);\n\t\t\
     \tpopBack(d);\n\t\t\tup(down(0), 1);\n\t\t}\n\t\treturn res;\n\t}\n\tT getMin(){\
     \ return d.size() < 2 ? d.get(0) : d.get(1); }\n\tT getMax(){ return d.get(0);\
-    \ }\n\tint size(){ return d.size(); }\n    boolean isEmpty(){ return d.isEmpty();\
+    \ }\n\tint size(){ return d.size(); }\n\tboolean isEmpty(){ return d.isEmpty();\
     \ }\n}"
   dependsOn:
   - Java/extension/MyScanner.java
@@ -834,7 +834,7 @@ data:
   - Java/extension/SegmentTree.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
-  timestamp: '2023-12-04 00:59:12+09:00'
+  timestamp: '2023-12-04 01:33:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
