@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
+    path: Java/extension/DoubleEndedPriorityQueue.java
+    title: Java/extension/DoubleEndedPriorityQueue.java
+  - icon: ':warning:'
     path: Java/extension/FenwickTree.java
     title: Java/extension/FenwickTree.java
   - icon: ':warning:'
@@ -56,6 +59,9 @@ data:
     path: Java/extension/WeightedUnionFind.java
     title: Java/extension/WeightedUnionFind.java
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Java/extension/DoubleEndedPriorityQueue.java
+    title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
     path: Java/extension/FenwickTree.java
     title: Java/extension/FenwickTree.java
@@ -135,47 +141,52 @@ data:
     \ -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t\
     static final int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\t\
     static final int mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9 + 7;\n\
-    \tprotected static void solve() {\n\t\t\n\t}\n}\nclass Main extends VvyLw {\n\t\
-    public static void main(final String[] args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\
-    \t\twhile(t-- > 0) {\n\t\t\tsolve();\n\t\t}\n\t\to.flush();\n\t\tsc.close();\n\
-    \t\to.close();\n\t\te.close();\n\t}\n}\n\nclass Utility {\n\tprotected static\
-    \ String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static\
-    \ String no(final boolean ok){ return yes(!ok); }\n\tprotected static long sqr(final\
-    \ long x){ return x * x; }\n\tprotected static int mod(final long n, final int\
-    \ m){ return (int) ((n + m) % m); }\n\tprotected static long intCeil(long a, long\
-    \ b){ return (long) Math.ceil((double)a / b); }\n\tprotected static long intPow(long\
-    \ a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\
-    \t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static long intPow(long a, long b, final int m) {\n\t\tlong res\
-    \ = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\t\
-    res = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>=\
-    \ 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static ArrayList<Long> div(final\
-    \ long n) {\n\t\tArrayList<Long> d = new ArrayList<>();\n\t\tfor(long i = 1; i\
-    \ * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i *\
-    \ i != n) {\n\t\t\t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\
-    \t\treturn d;\n\t}\n\tprotected static ArrayList<Pair<Long, Integer>> primeFactor(long\
-    \ n) {\n\t\tArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long\
-    \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t\
-    }\n\t\t\tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /=\
-    \ i;\n\t\t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\t\t\
-    pf.add(Pair.of(n, 1));\n\t\t}\n\t\treturn pf;\n\t}\n\tprotected static long binom(int\
-    \ a, final int b) {\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= b; ++i) {\n\t\t\
-    \tres *= a--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ boolean isInt(final double n){ long r = (long) Math.floor(n); return r == n;\
-    \ }\n\tprotected static boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
-    \ }\n\tprotected static boolean isPrime(final long n) {\n\t\tif(n == 1) return\
-    \ false;\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) return\
-    \ false;\n\t\t}\n\t\treturn true;\n\t}\n\tprotected static boolean nextPerm(ArrayList<?\
-    \ extends Number> a) {\n\t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i\
-    \ - 1).longValue() < a.get(i).longValue()) {\n\t\t\t\tfinal int j = find(a.get(i\
-    \ - 1).longValue(), a, i, a.size() - 1);\n\t\t\t\tCollections.swap(a, i - 1, j);\n\
-    \t\t\t\tCollections.sort(a.subList(i, a.size()), (x, y) -> Long.compare(x.longValue(),\
-    \ y.longValue()));\n\t\t\t\treturn true;\n\t\t\t}\n\t\t}\n\t\treturn false;\n\t\
-    }\n\tprotected static String nextPerm(final String s) {\n\t\tvar a = s.chars().mapToObj(i\
-    \ -> (char)i).collect(Collectors.toList());\n\t\tfor(int i = a.size() - 1; i >\
-    \ 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i)) < 0) {\n\t\t\t\tfinal int\
-    \ j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\tCollections.swap(a, i -\
-    \ 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
+    \tprotected static void solve() {\n\t\tfinal int n = sc.ni(), q = sc.ni();\n\t\
+    \tfinal var s = sc.nia(n);\n\t\tvar depq = new DoubleEndedPriorityQueue<>(s);\n\
+    \t\tIntStream.range(0, q).forEach(i -> {\n\t\t\tfinal int t = sc.ni();\n\t\t\t\
+    if(t == 0) {\n\t\t\t\tdepq.push(sc.ni());\n\t\t\t} else if(t == 1) {\n\t\t\t\t\
+    o.out(depq.popMin());\n\t\t\t} else {\n\t\t\t\to.out(depq.popMax());\n\t\t\t}\n\
+    \t\t});\n\t}\n}\nclass Main extends VvyLw {\n\tpublic static void main(final String[]\
+    \ args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\t\t\tsolve();\n\
+    \t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\t}\n\
+    }\n\nclass Utility {\n\tprotected static String yes(final boolean ok){ return\
+    \ ok ? \"Yes\" : \"No\"; }\n\tprotected static String no(final boolean ok){ return\
+    \ yes(!ok); }\n\tprotected static long sqr(final long x){ return x * x; }\n\t\
+    protected static int mod(final long n, final int m){ return (int) ((n + m) % m);\
+    \ }\n\tprotected static long intCeil(long a, long b){ return (long) Math.ceil((double)a\
+    \ / b); }\n\tprotected static long intPow(long a, int b) {\n\t\tlong res = 1;\n\
+    \t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\t\
+    a *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static long\
+    \ intPow(long a, long b, final int m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\
+    \t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t\
+    }\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\tprotected static ArrayList<Long> div(final long n) {\n\t\tArrayList<Long>\
+    \ d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n %\
+    \ i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n /\
+    \ i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\t\treturn d;\n\t\
+    }\n\tprotected static ArrayList<Pair<Long, Integer>> primeFactor(long n) {\n\t\
+    \tArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long i = 2;\
+    \ i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\
+    \tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /= i;\n\t\
+    \t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\t\tpf.add(Pair.of(n,\
+    \ 1));\n\t\t}\n\t\treturn pf;\n\t}\n\tprotected static long binom(int a, final\
+    \ int b) {\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= b; ++i) {\n\t\t\tres *=\
+    \ a--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static boolean\
+    \ isInt(final double n){ long r = (long) Math.floor(n); return r == n; }\n\tprotected\
+    \ static boolean isSqr(final long n){ return isInt(Math.sqrt(n)); }\n\tprotected\
+    \ static boolean isPrime(final long n) {\n\t\tif(n == 1) return false;\n\t\tfor(long\
+    \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) return false;\n\t\t}\n\t\treturn\
+    \ true;\n\t}\n\tprotected static boolean nextPerm(ArrayList<? extends Number>\
+    \ a) {\n\t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i - 1).longValue()\
+    \ < a.get(i).longValue()) {\n\t\t\t\tfinal int j = find(a.get(i - 1).longValue(),\
+    \ a, i, a.size() - 1);\n\t\t\t\tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i,\
+    \ a.size()), (x, y) -> Long.compare(x.longValue(), y.longValue()));\n\t\t\t\t\
+    return true;\n\t\t\t}\n\t\t}\n\t\treturn false;\n\t}\n\tprotected static String\
+    \ nextPerm(final String s) {\n\t\tvar a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());\n\
+    \t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
+    \ < 0) {\n\t\t\t\tfinal int j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\
+    \tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\
+    \t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
     \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static boolean prevPerm(ArrayList<?\
     \ extends Number> a) {\n\t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i\
     \ - 1).longValue() > a.get(i).longValue()) {\n\t\t\t\tfinal int j = findRev(a.get(i\
@@ -752,7 +763,23 @@ data:
     \ = new StringBuilder();\n\t\tfor(int i = 0; i < this.size(); ++i) {\n\t\t\tsb.append(i\
     \ + \":[\" + this.get(i) + \"]\");\n\t\t\tfor(int j = this.get(i); j < vs.length();\
     \ ++j) {\n\t\t\t\tsb.append(\" \" + vs.charAt(j));\n\t\t\t}\n\t\t\tsb.append(\"\
-    \\n\");\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
+    \\n\");\n\t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nclass DoubleEndedPriorityQueue<T\
+    \ extends Number> {\n\tprivate Queue<NumPair> pq1;\n\tprivate Queue<NumPair> pq2;\n\
+    \tprivate int idx;\n\tprivate ArrayList<Boolean> used;\n\tDoubleEndedPriorityQueue(final\
+    \ ArrayList<T> depq) {\n\t\tfinal int n = depq.size();\n\t\tused = new ArrayList<>();\n\
+    \t\tIntStream.range(0, n).forEach(i -> used.add(true));\n\t\tidx = n;\n\t\tpq1\
+    \ = new PriorityQueue<>(Collections.reverseOrder());\n\t\tpq2 = new PriorityQueue<>();\n\
+    \t\tIntStream.range(0, n).forEach(i -> {\n\t\t\tpq1.add(new NumPair(depq.get(i),\
+    \ i));\n\t\t\tpq2.add(new NumPair(depq.get(i), i));\n\t\t});\n\t}\n\tNumber popMax()\
+    \ {\n\t\twhile(!used.get(pq1.peek().second.intValue()) && used.get(pq1.peek().second.intValue())\
+    \ != null) {\n\t\t\tpq1.poll();\n\t\t}\n\t\tfinal var res = pq1.poll();\n\t\t\
+    used.set(res.second.intValue(), false);\n\t\treturn res.first;\n\t}\n\tNumber\
+    \ popMin() {\n\t\twhile(!used.get(pq2.peek().second.intValue()) && used.get(pq2.peek().second.intValue())\
+    \ != null) {\n\t\t\tpq2.poll();\n\t\t}\n\t\tfinal var res = pq2.poll();\n\t\t\
+    used.set(res.second.intValue(), false);\n\t\treturn res.first;\n\t}\n\tvoid push(final\
+    \ T x) {\n\t\tpq1.add(new NumPair(x, idx));\n\t\tpq2.add(new NumPair(x, idx));\n\
+    \t\tused.add(true);\n\t\tidx++;\n\t}\n\tNumber getMax(){ return pq1.peek().first;\
+    \ }\n\tNumber getMin(){ return pq2.peek().first; }\n}"
   dependsOn:
   - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
@@ -764,6 +791,7 @@ data:
   - Java/extension/UnionFind.java
   - Java/extension/SuffixArray.java
   - Java/extension/LargePrime.java
+  - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
   - Java/extension/Graph.java
@@ -785,6 +813,7 @@ data:
   - Java/extension/UnionFind.java
   - Java/extension/SuffixArray.java
   - Java/extension/LargePrime.java
+  - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
   - Java/extension/Graph.java
@@ -793,7 +822,7 @@ data:
   - Java/extension/SegmentTree.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
-  timestamp: '2023-12-03 20:12:57+09:00'
+  timestamp: '2023-12-03 22:43:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java

@@ -5,6 +5,9 @@ data:
     path: Java/all.java
     title: Java/all.java
   - icon: ':warning:'
+    path: Java/extension/DoubleEndedPriorityQueue.java
+    title: Java/extension/DoubleEndedPriorityQueue.java
+  - icon: ':warning:'
     path: Java/extension/FenwickTree.java
     title: Java/extension/FenwickTree.java
   - icon: ':warning:'
@@ -59,6 +62,9 @@ data:
   - icon: ':warning:'
     path: Java/all.java
     title: Java/all.java
+  - icon: ':warning:'
+    path: Java/extension/DoubleEndedPriorityQueue.java
+    title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
     path: Java/extension/FenwickTree.java
     title: Java/extension/FenwickTree.java
@@ -139,6 +145,7 @@ data:
   - Java/extension/UnionFind.java
   - Java/extension/SuffixArray.java
   - Java/extension/LargePrime.java
+  - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
   - Java/extension/Graph.java
@@ -160,6 +167,7 @@ data:
   - Java/extension/UnionFind.java
   - Java/extension/SuffixArray.java
   - Java/extension/LargePrime.java
+  - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
   - Java/extension/Graph.java
@@ -168,7 +176,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-03 20:12:57+09:00'
+  timestamp: '2023-12-03 22:43:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/PrimeFactor.java

@@ -5,9 +5,6 @@ data:
     path: Java/all.java
     title: Java/all.java
   - icon: ':warning:'
-    path: Java/extension/DoubleEndedPriorityQueue.java
-    title: Java/extension/DoubleEndedPriorityQueue.java
-  - icon: ':warning:'
     path: Java/extension/FenwickTree.java
     title: Java/extension/FenwickTree.java
   - icon: ':warning:'
@@ -52,6 +49,9 @@ data:
   - icon: ':warning:'
     path: Java/extension/Template.java
     title: Java/extension/Template.java
+  - icon: ':warning:'
+    path: Java/extension/UndoUnionFind.java
+    title: Java/extension/UndoUnionFind.java
   - icon: ':warning:'
     path: Java/extension/UnionFind.java
     title: Java/extension/UnionFind.java
@@ -63,9 +63,6 @@ data:
     path: Java/all.java
     title: Java/all.java
   - icon: ':warning:'
-    path: Java/extension/DoubleEndedPriorityQueue.java
-    title: Java/extension/DoubleEndedPriorityQueue.java
-  - icon: ':warning:'
     path: Java/extension/FenwickTree.java
     title: Java/extension/FenwickTree.java
   - icon: ':warning:'
@@ -110,6 +107,9 @@ data:
   - icon: ':warning:'
     path: Java/extension/Template.java
     title: Java/extension/Template.java
+  - icon: ':warning:'
+    path: Java/extension/UndoUnionFind.java
+    title: Java/extension/UndoUnionFind.java
   - icon: ':warning:'
     path: Java/extension/UnionFind.java
     title: Java/extension/UnionFind.java
@@ -125,21 +125,26 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/extension/UndoUnionFind.java\n"
-  code: "package extension;\n\nimport java.util.Arrays;\nimport java.util.Stack;\n\
-    \nclass UndoUnionFind {\n\tprivate int[] par;\n\tprivate Stack<Pair<Integer, Integer>>\
-    \ his;\n\tUndoUnionFind(final int n) {\n\t    par = new int[n];\n\t    Arrays.fill(par,\
-    \ -1);\n\t    his = new Stack<>();\n\t}\n\tboolean unite(int x, int y) {\n\t\t\
-    x = root(x);\n\t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\t\this.add(Pair.of(y,\
-    \ par[y]));\n\t\tif(x == y) {\n\t\t\treturn false;\n\t\t}\n\t\tif(par[x] > par[y])\
-    \ {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t}\n\t\tpar[x] += par[y];\n\
-    \t\tpar[y] = x;\n\t\treturn true;\n\t}\n\tint root(final int i) {\n\t\tif(par[i]\
-    \ < 0) {\n\t\t\treturn i;\n\t\t}\n\t\treturn root(par[i]);\n\t}\n\tint size(final\
-    \ int i){ return -par[root(i)]; }\n\tvoid undo() {\n\t\tfinal Pair<Integer, Integer>\
-    \ pop1 = his.pop(), pop2 = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\t\t\
-    par[pop2.first] = pop2.second;\n\t}\n\tvoid snapshot() {\n\t\twhile(!his.empty())\
-    \ {\n\t\t\this.pop();\n\t\t}\n\t}\n\tvoid rollback() {\n\t\twhile(!his.empty())\
-    \ {\n\t\t\tundo();\n\t\t}\n\t}\n}"
+    RuntimeError: bundler is not specified: Java/extension/DoubleEndedPriorityQueue.java\n"
+  code: "package extension;\n\nimport java.util.ArrayList;\nimport java.util.Collections;\n\
+    import java.util.PriorityQueue;\nimport java.util.Queue;\nimport java.util.stream.IntStream;\n\
+    \nclass DoubleEndedPriorityQueue<T extends Number> {\n\tprivate Queue<NumPair>\
+    \ pq1;\n\tprivate Queue<NumPair> pq2;\n\tprivate int idx;\n\tprivate ArrayList<Boolean>\
+    \ used;\n\tDoubleEndedPriorityQueue(final ArrayList<T> depq) {\n\t\tfinal int\
+    \ n = depq.size();\n\t\tused = new ArrayList<>();\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> used.add(true));\n\t\tidx = n;\n\t\tpq1 = new PriorityQueue<>(Collections.reverseOrder());\n\
+    \t\tpq2 = new PriorityQueue<>();\n\t\tIntStream.range(0, n).forEach(i -> {\n\t\
+    \t\tpq1.add(new NumPair(depq.get(i), i));\n\t\t\tpq2.add(new NumPair(depq.get(i),\
+    \ i));\n\t\t});\n\t}\n\tNumber popMax() {\n\t\twhile(!used.get(pq1.peek().second.intValue())\
+    \ && used.get(pq1.peek().second.intValue()) != null) {\n\t\t\tpq1.poll();\n\t\t\
+    }\n\t\tfinal var res = pq1.poll();\n\t\tused.set(res.second.intValue(), false);\n\
+    \t\treturn res.first;\n\t}\n\tNumber popMin() {\n\t\twhile(!used.get(pq2.peek().second.intValue())\
+    \ && used.get(pq2.peek().second.intValue()) != null) {\n\t\t\tpq2.poll();\n\t\t\
+    }\n\t\tfinal var res = pq2.poll();\n\t\tused.set(res.second.intValue(), false);\n\
+    \t\treturn res.first;\n\t}\n\tvoid push(final T x) {\n\t\tpq1.add(new NumPair(x,\
+    \ idx));\n\t\tpq2.add(new NumPair(x, idx));\n\t\tused.add(true);\n\t\tidx++;\n\
+    \t}\n\tNumber getMax(){ return pq1.peek().first; }\n\tNumber getMin(){ return\
+    \ pq2.peek().first; }\n}"
   dependsOn:
   - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
@@ -151,17 +156,17 @@ data:
   - Java/extension/UnionFind.java
   - Java/extension/SuffixArray.java
   - Java/extension/LargePrime.java
-  - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
   - Java/extension/Graph.java
   - Java/extension/PrimeFactor.java
   - Java/extension/PrimeCounter.java
   - Java/extension/SegmentTree.java
+  - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
   isVerificationFile: false
-  path: Java/extension/UndoUnionFind.java
+  path: Java/extension/DoubleEndedPriorityQueue.java
   requiredBy:
   - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
@@ -173,22 +178,22 @@ data:
   - Java/extension/UnionFind.java
   - Java/extension/SuffixArray.java
   - Java/extension/LargePrime.java
-  - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
   - Java/extension/Graph.java
   - Java/extension/PrimeFactor.java
   - Java/extension/PrimeCounter.java
   - Java/extension/SegmentTree.java
+  - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
   timestamp: '2023-12-03 22:43:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/extension/UndoUnionFind.java
+documentation_of: Java/extension/DoubleEndedPriorityQueue.java
 layout: document
 redirect_from:
-- /library/Java/extension/UndoUnionFind.java
-- /library/Java/extension/UndoUnionFind.java.html
-title: Java/extension/UndoUnionFind.java
+- /library/Java/extension/DoubleEndedPriorityQueue.java
+- /library/Java/extension/DoubleEndedPriorityQueue.java.html
+title: Java/extension/DoubleEndedPriorityQueue.java
 ---
