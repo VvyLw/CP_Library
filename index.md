@@ -47,6 +47,62 @@ data:
     - icon: ':warning:'
       path: Java/all.java
       title: Java/all.java
+  - name: Java/extension
+    pages:
+    - icon: ':warning:'
+      path: Java/extension/FenwickTree.java
+      title: Java/extension/FenwickTree.java
+    - icon: ':warning:'
+      path: Java/extension/Graph.java
+      title: Java/extension/Graph.java
+    - icon: ':warning:'
+      path: Java/extension/LargePrime.java
+      title: Java/extension/LargePrime.java
+    - icon: ':warning:'
+      path: Java/extension/LowestCommonAncestor.java
+      title: Java/extension/LowestCommonAncestor.java
+    - icon: ':warning:'
+      path: Java/extension/MyPrinter.java
+      title: Java/extension/MyPrinter.java
+    - icon: ':warning:'
+      path: Java/extension/MyScanner.java
+      title: Java/extension/MyScanner.java
+    - icon: ':warning:'
+      path: Java/extension/Pair.java
+      title: Java/extension/Pair.java
+    - icon: ':warning:'
+      path: Java/extension/PrefixSum.java
+      title: Java/extension/PrefixSum.java
+    - icon: ':warning:'
+      path: Java/extension/PrimeCounter.java
+      title: Java/extension/PrimeCounter.java
+    - icon: ':warning:'
+      path: Java/extension/PrimeFactor.java
+      title: Java/extension/PrimeFactor.java
+    - icon: ':warning:'
+      path: Java/extension/PrimeTable.java
+      title: Java/extension/PrimeTable.java
+    - icon: ':warning:'
+      path: Java/extension/SegmentTree.java
+      title: Java/extension/SegmentTree.java
+    - icon: ':warning:'
+      path: Java/extension/SparseTable.java
+      title: Java/extension/SparseTable.java
+    - icon: ':warning:'
+      path: Java/extension/SuffixArray.java
+      title: Java/extension/SuffixArray.java
+    - icon: ':warning:'
+      path: Java/extension/Template.java
+      title: Java/extension/Template.java
+    - icon: ':warning:'
+      path: Java/extension/UndoUnionFind.java
+      title: Java/extension/UndoUnionFind.java
+    - icon: ':warning:'
+      path: Java/extension/UnionFind.java
+      title: Java/extension/UnionFind.java
+    - icon: ':warning:'
+      path: Java/extension/WeightedUnionFind.java
+      title: Java/extension/WeightedUnionFind.java
   - name: atcoder
     pages:
     - icon: ':warning:'

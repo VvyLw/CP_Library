@@ -1,7 +1,115 @@
 ---
 data:
-  _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedDependsOn:
+  - icon: ':warning:'
+    path: Java/extension/FenwickTree.java
+    title: Java/extension/FenwickTree.java
+  - icon: ':warning:'
+    path: Java/extension/Graph.java
+    title: Java/extension/Graph.java
+  - icon: ':warning:'
+    path: Java/extension/LargePrime.java
+    title: Java/extension/LargePrime.java
+  - icon: ':warning:'
+    path: Java/extension/LowestCommonAncestor.java
+    title: Java/extension/LowestCommonAncestor.java
+  - icon: ':warning:'
+    path: Java/extension/MyPrinter.java
+    title: Java/extension/MyPrinter.java
+  - icon: ':warning:'
+    path: Java/extension/MyScanner.java
+    title: Java/extension/MyScanner.java
+  - icon: ':warning:'
+    path: Java/extension/Pair.java
+    title: Java/extension/Pair.java
+  - icon: ':warning:'
+    path: Java/extension/PrefixSum.java
+    title: Java/extension/PrefixSum.java
+  - icon: ':warning:'
+    path: Java/extension/PrimeCounter.java
+    title: Java/extension/PrimeCounter.java
+  - icon: ':warning:'
+    path: Java/extension/PrimeFactor.java
+    title: Java/extension/PrimeFactor.java
+  - icon: ':warning:'
+    path: Java/extension/PrimeTable.java
+    title: Java/extension/PrimeTable.java
+  - icon: ':warning:'
+    path: Java/extension/SegmentTree.java
+    title: Java/extension/SegmentTree.java
+  - icon: ':warning:'
+    path: Java/extension/SparseTable.java
+    title: Java/extension/SparseTable.java
+  - icon: ':warning:'
+    path: Java/extension/SuffixArray.java
+    title: Java/extension/SuffixArray.java
+  - icon: ':warning:'
+    path: Java/extension/Template.java
+    title: Java/extension/Template.java
+  - icon: ':warning:'
+    path: Java/extension/UndoUnionFind.java
+    title: Java/extension/UndoUnionFind.java
+  - icon: ':warning:'
+    path: Java/extension/UnionFind.java
+    title: Java/extension/UnionFind.java
+  - icon: ':warning:'
+    path: Java/extension/WeightedUnionFind.java
+    title: Java/extension/WeightedUnionFind.java
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Java/extension/FenwickTree.java
+    title: Java/extension/FenwickTree.java
+  - icon: ':warning:'
+    path: Java/extension/Graph.java
+    title: Java/extension/Graph.java
+  - icon: ':warning:'
+    path: Java/extension/LargePrime.java
+    title: Java/extension/LargePrime.java
+  - icon: ':warning:'
+    path: Java/extension/LowestCommonAncestor.java
+    title: Java/extension/LowestCommonAncestor.java
+  - icon: ':warning:'
+    path: Java/extension/MyPrinter.java
+    title: Java/extension/MyPrinter.java
+  - icon: ':warning:'
+    path: Java/extension/MyScanner.java
+    title: Java/extension/MyScanner.java
+  - icon: ':warning:'
+    path: Java/extension/Pair.java
+    title: Java/extension/Pair.java
+  - icon: ':warning:'
+    path: Java/extension/PrefixSum.java
+    title: Java/extension/PrefixSum.java
+  - icon: ':warning:'
+    path: Java/extension/PrimeCounter.java
+    title: Java/extension/PrimeCounter.java
+  - icon: ':warning:'
+    path: Java/extension/PrimeFactor.java
+    title: Java/extension/PrimeFactor.java
+  - icon: ':warning:'
+    path: Java/extension/PrimeTable.java
+    title: Java/extension/PrimeTable.java
+  - icon: ':warning:'
+    path: Java/extension/SegmentTree.java
+    title: Java/extension/SegmentTree.java
+  - icon: ':warning:'
+    path: Java/extension/SparseTable.java
+    title: Java/extension/SparseTable.java
+  - icon: ':warning:'
+    path: Java/extension/SuffixArray.java
+    title: Java/extension/SuffixArray.java
+  - icon: ':warning:'
+    path: Java/extension/Template.java
+    title: Java/extension/Template.java
+  - icon: ':warning:'
+    path: Java/extension/UndoUnionFind.java
+    title: Java/extension/UndoUnionFind.java
+  - icon: ':warning:'
+    path: Java/extension/UnionFind.java
+    title: Java/extension/UnionFind.java
+  - icon: ':warning:'
+    path: Java/extension/WeightedUnionFind.java
+    title: Java/extension/WeightedUnionFind.java
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: java
@@ -28,7 +136,7 @@ data:
     static final int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\t\
     static final int mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9 + 7;\n\
     \tprotected static void solve() {\n\t\t\n\t}\n}\nclass Main extends VvyLw {\n\t\
-    public static void main(final String[] args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\
+    public static void main(final String[] args) {\n\t\tint t = 1;\n\t\tt = sc.ni();\n\
     \t\twhile(t-- > 0) {\n\t\t\tsolve();\n\t\t}\n\t\to.flush();\n\t\tsc.close();\n\
     \t\to.close();\n\t\te.close();\n\t}\n}\n\nclass Utility {\n\tprotected static\
     \ String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static\
@@ -239,9 +347,9 @@ data:
     \ }\n\t@Override\n\tpublic String toString(){ return \"(\" + first + \", \" +\
     \ second + \")\"; }\n\tpublic static <F, S> Pair<F, S> of(final F a, final S b){\
     \ return new Pair<>(a, b); }\n\tPair<S, F> swap(){ return Pair.of(second, first);\
-    \ }\n}\n\nclass NumPair extends Pair<Number, Number> {\n\tNumPair(final Number\
-    \ first, final Number second){ super(first, second); }\n\tNumPair rotate(){ return\
-    \ new NumPair(-second.doubleValue(), first.doubleValue()); } \n\tNumPair rotate(final\
+    \ }\n}\nclass NumPair extends Pair<Number, Number> {\n\tNumPair(final Number first,\
+    \ final Number second){ super(first, second); }\n\tNumPair rotate(){ return new\
+    \ NumPair(-second.doubleValue(), first.doubleValue()); } \n\tNumPair rotate(final\
     \ int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\
     \treturn new NumPair(first.doubleValue() * Math.cos(rad) - second.doubleValue()\
     \ * Math.sin(rad),\n\t\t\t\t\t\t\tfirst.doubleValue() * Math.sin(rad) + second.doubleValue()\
@@ -272,7 +380,7 @@ data:
     \t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n\tboolean is_bipartite()\
     \ {\n\t\tfinal int n = par.length / 2;\n\t\tboolean ok = true;\n\t\tfor(int i\
     \ = 0; i < n; ++i) {\n\t\t\tok &= root(i) != root(i + n);\n\t\t}\n\t\treturn ok;\n\
-    \t}\n}\nclass WeightedUnionFind {\n\tprivate int[] par;\n\tprivate long[] weight;\n\
+    \t}\n}\n\nclass WeightedUnionFind {\n\tprivate int[] par;\n\tprivate long[] weight;\n\
     \tWeightedUnionFind(final int n) {\n\t\tpar = new int[n];\n\t\tweight = new long[n];\n\
     \t\tArrays.fill(par, -1);\n\t}\n\tint root(final int i) {\n\t\tif(par[i] < 0)\
     \ {\n\t\t\treturn i;\n\t\t}\n\t\tfinal int r = root(par[i]);\n\t\tweight[i] +=\
@@ -283,7 +391,7 @@ data:
     \ : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\t\
     x ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\tweight[y]\
     \ = w;\n\t\treturn 1;\n\t}\n\tboolean same(final int x, final int y){ return root(x)\
-    \ == root(y); }\n}\nclass UndoUnionFind {\n\tprivate int[] par;\n\tprivate Stack<Pair<Integer,\
+    \ == root(y); }\n}\n\nclass UndoUnionFind {\n\tprivate int[] par;\n\tprivate Stack<Pair<Integer,\
     \ Integer>> his;\n\tUndoUnionFind(final int n) {\n\t    par = new int[n];\n\t\
     \    Arrays.fill(par, -1);\n\t    his = new Stack<>();\n\t}\n\tboolean unite(int\
     \ x, int y) {\n\t\tx = root(x);\n\t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\
@@ -610,11 +718,47 @@ data:
     \ + \":[\" + this.get(i) + \"]\");\n\t\t\tfor(int j = this.get(i); j < vs.length();\
     \ ++j) {\n\t\t\t\tsb.append(\" \" + vs.charAt(j));\n\t\t\t}\n\t\t\tsb.append(\"\
     \\n\");\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
-  dependsOn: []
+  dependsOn:
+  - Java/extension/MyScanner.java
+  - Java/extension/LowestCommonAncestor.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/Pair.java
+  - Java/extension/MyPrinter.java
+  - Java/extension/PrefixSum.java
+  - Java/extension/UnionFind.java
+  - Java/extension/SuffixArray.java
+  - Java/extension/LargePrime.java
+  - Java/extension/SparseTable.java
+  - Java/extension/PrimeTable.java
+  - Java/extension/Graph.java
+  - Java/extension/PrimeFactor.java
+  - Java/extension/PrimeCounter.java
+  - Java/extension/SegmentTree.java
+  - Java/extension/UndoUnionFind.java
+  - Java/extension/Template.java
   isVerificationFile: false
   path: Java/all.java
-  requiredBy: []
-  timestamp: '2023-12-03 14:41:44+09:00'
+  requiredBy:
+  - Java/extension/MyScanner.java
+  - Java/extension/LowestCommonAncestor.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/Pair.java
+  - Java/extension/MyPrinter.java
+  - Java/extension/PrefixSum.java
+  - Java/extension/UnionFind.java
+  - Java/extension/SuffixArray.java
+  - Java/extension/LargePrime.java
+  - Java/extension/SparseTable.java
+  - Java/extension/PrimeTable.java
+  - Java/extension/Graph.java
+  - Java/extension/PrimeFactor.java
+  - Java/extension/PrimeCounter.java
+  - Java/extension/SegmentTree.java
+  - Java/extension/UndoUnionFind.java
+  - Java/extension/Template.java
+  timestamp: '2023-12-03 15:09:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
