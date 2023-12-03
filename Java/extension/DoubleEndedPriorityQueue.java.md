@@ -141,7 +141,7 @@ data:
     \t\treturn res.first;\n\t}\n\tNumber popMin() {\n\t\twhile(!used.get(pq2.peek().second.intValue())\
     \ && used.get(pq2.peek().second.intValue()) != null) {\n\t\t\tpq2.poll();\n\t\t\
     }\n\t\tfinal var res = pq2.poll();\n\t\tused.set(res.second.intValue(), false);\n\
-    \t\treturn res.first;\n\t}\n\tvoid push(final T x) {\n\t\tpq1.add(new NumPair(x,\
+    \t\treturn res.first;\n\t}\n\tvoid add(final T x) {\n\t\tpq1.add(new NumPair(x,\
     \ idx));\n\t\tpq2.add(new NumPair(x, idx));\n\t\tused.add(true);\n\t\tidx++;\n\
     \t}\n\tNumber getMax(){ return pq1.peek().first; }\n\tNumber getMin(){ return\
     \ pq2.peek().first; }\n}"
@@ -187,7 +187,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-03 22:43:45+09:00'
+  timestamp: '2023-12-03 22:45:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/DoubleEndedPriorityQueue.java
