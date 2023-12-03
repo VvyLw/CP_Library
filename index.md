@@ -122,6 +122,9 @@ data:
       path: test/kruskal.test.cpp
       title: test/kruskal.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/kthrooti.test.cpp
+      title: test/kthrooti.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/lca.test.cpp
       title: test/lca.test.cpp
     - icon: ':heavy_check_mark:'

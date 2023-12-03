@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/kthrooti.test.cpp
+    title: test/kthrooti.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/pcounter.test.cpp
     title: test/pcounter.test.cpp
   _isVerificationFailed: false
@@ -180,6 +183,7 @@ data:
   timestamp: '2023-12-01 04:17:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/kthrooti.test.cpp
   - test/pcounter.test.cpp
 documentation_of: C++/math.hpp
 layout: document
