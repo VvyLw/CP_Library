@@ -141,52 +141,47 @@ data:
     \ -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t\
     static final int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\t\
     static final int mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9 + 7;\n\
-    \tprotected static void solve() {\n\t\tfinal int n = sc.ni(), q = sc.ni();\n\t\
-    \tfinal var s = sc.nia(n);\n\t\tvar depq = new DoubleEndedPriorityQueue<>(s);\n\
-    \t\tIntStream.range(0, q).forEach(i -> {\n\t\t\tfinal int t = sc.ni();\n\t\t\t\
-    if(t == 0) {\n\t\t\t\tdepq.push(sc.ni());\n\t\t\t} else if(t == 1) {\n\t\t\t\t\
-    o.out(depq.popMin());\n\t\t\t} else {\n\t\t\t\to.out(depq.popMax());\n\t\t\t}\n\
-    \t\t});\n\t}\n}\nclass Main extends VvyLw {\n\tpublic static void main(final String[]\
-    \ args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\t\t\tsolve();\n\
-    \t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\t}\n\
-    }\n\nclass Utility {\n\tprotected static String yes(final boolean ok){ return\
-    \ ok ? \"Yes\" : \"No\"; }\n\tprotected static String no(final boolean ok){ return\
-    \ yes(!ok); }\n\tprotected static long sqr(final long x){ return x * x; }\n\t\
-    protected static int mod(final long n, final int m){ return (int) ((n + m) % m);\
-    \ }\n\tprotected static long intCeil(long a, long b){ return (long) Math.ceil((double)a\
-    \ / b); }\n\tprotected static long intPow(long a, int b) {\n\t\tlong res = 1;\n\
-    \t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\t\
-    a *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static long\
-    \ intPow(long a, long b, final int m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\
-    \t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t\
-    }\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static ArrayList<Long> div(final long n) {\n\t\tArrayList<Long>\
-    \ d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n %\
-    \ i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n /\
-    \ i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\t\treturn d;\n\t\
-    }\n\tprotected static ArrayList<Pair<Long, Integer>> primeFactor(long n) {\n\t\
-    \tArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long i = 2;\
-    \ i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\
-    \tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /= i;\n\t\
-    \t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\t\tpf.add(Pair.of(n,\
-    \ 1));\n\t\t}\n\t\treturn pf;\n\t}\n\tprotected static long binom(int a, final\
-    \ int b) {\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= b; ++i) {\n\t\t\tres *=\
-    \ a--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static boolean\
-    \ isInt(final double n){ long r = (long) Math.floor(n); return r == n; }\n\tprotected\
-    \ static boolean isSqr(final long n){ return isInt(Math.sqrt(n)); }\n\tprotected\
-    \ static boolean isPrime(final long n) {\n\t\tif(n == 1) return false;\n\t\tfor(long\
-    \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) return false;\n\t\t}\n\t\treturn\
-    \ true;\n\t}\n\tprotected static boolean nextPerm(ArrayList<? extends Number>\
-    \ a) {\n\t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i - 1).longValue()\
-    \ < a.get(i).longValue()) {\n\t\t\t\tfinal int j = find(a.get(i - 1).longValue(),\
-    \ a, i, a.size() - 1);\n\t\t\t\tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i,\
-    \ a.size()), (x, y) -> Long.compare(x.longValue(), y.longValue()));\n\t\t\t\t\
-    return true;\n\t\t\t}\n\t\t}\n\t\treturn false;\n\t}\n\tprotected static String\
-    \ nextPerm(final String s) {\n\t\tvar a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());\n\
-    \t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
-    \ < 0) {\n\t\t\t\tfinal int j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\
-    \tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\
-    \t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
+    \tprotected static void solve() {\n\t\t\n\t}\n}\nclass Main extends VvyLw {\n\t\
+    public static void main(final String[] args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\
+    \t\twhile(t-- > 0) {\n\t\t\tsolve();\n\t\t}\n\t\to.flush();\n\t\tsc.close();\n\
+    \t\to.close();\n\t\te.close();\n\t}\n}\n\nclass Utility {\n\tprotected static\
+    \ String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static\
+    \ String no(final boolean ok){ return yes(!ok); }\n\tprotected static long sqr(final\
+    \ long x){ return x * x; }\n\tprotected static int mod(final long n, final int\
+    \ m){ return (int) ((n + m) % m); }\n\tprotected static long intCeil(long a, long\
+    \ b){ return (long) Math.ceil((double)a / b); }\n\tprotected static long intPow(long\
+    \ a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\
+    \t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\tprotected static long intPow(long a, long b, final int m) {\n\t\tlong res\
+    \ = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\t\
+    res = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>=\
+    \ 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static ArrayList<Long> div(final\
+    \ long n) {\n\t\tArrayList<Long> d = new ArrayList<>();\n\t\tfor(long i = 1; i\
+    \ * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i *\
+    \ i != n) {\n\t\t\t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\
+    \t\treturn d;\n\t}\n\tprotected static ArrayList<Pair<Long, Integer>> primeFactor(long\
+    \ n) {\n\t\tArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long\
+    \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t\
+    }\n\t\t\tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /=\
+    \ i;\n\t\t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\t\t\
+    pf.add(Pair.of(n, 1));\n\t\t}\n\t\treturn pf;\n\t}\n\tprotected static long binom(int\
+    \ a, final int b) {\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= b; ++i) {\n\t\t\
+    \tres *= a--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ boolean isInt(final double n){ long r = (long) Math.floor(n); return r == n;\
+    \ }\n\tprotected static boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
+    \ }\n\tprotected static boolean isPrime(final long n) {\n\t\tif(n == 1) return\
+    \ false;\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) return\
+    \ false;\n\t\t}\n\t\treturn true;\n\t}\n\tprotected static boolean nextPerm(ArrayList<?\
+    \ extends Number> a) {\n\t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i\
+    \ - 1).longValue() < a.get(i).longValue()) {\n\t\t\t\tfinal int j = find(a.get(i\
+    \ - 1).longValue(), a, i, a.size() - 1);\n\t\t\t\tCollections.swap(a, i - 1, j);\n\
+    \t\t\t\tCollections.sort(a.subList(i, a.size()), (x, y) -> Long.compare(x.longValue(),\
+    \ y.longValue()));\n\t\t\t\treturn true;\n\t\t\t}\n\t\t}\n\t\treturn false;\n\t\
+    }\n\tprotected static String nextPerm(final String s) {\n\t\tvar a = s.chars().mapToObj(i\
+    \ -> (char)i).collect(Collectors.toList());\n\t\tfor(int i = a.size() - 1; i >\
+    \ 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i)) < 0) {\n\t\t\t\tfinal int\
+    \ j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\tCollections.swap(a, i -\
+    \ 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
     \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static boolean prevPerm(ArrayList<?\
     \ extends Number> a) {\n\t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i\
     \ - 1).longValue() > a.get(i).longValue()) {\n\t\t\t\tfinal int j = findRev(a.get(i\
@@ -641,45 +636,45 @@ data:
     }\n\t\t}\n\t\treturn x;\n\t}\n\tint upper_bound(long w) {\n\t\tif(w < 0) {\n\t\
     \t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>=\
     \ 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <= w) {\n\t\t\t\tw -= data[x +\
-    \ k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n}\n\nclass SegmentTree\
-    \ {\n\tprivate int n = 1, rank = 0, fini;\n\tprivate BinaryOperator<Long> op;\n\
-    \tprivate long e;\n\tprivate long[] dat;\n\tSegmentTree(final int fini, final\
-    \ BinaryOperator<Long> op, final long e) {\n\t\tthis.fini = fini;\n\t\tthis.op\
+    \ k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n}\n\nclass SegmentTree<T\
+    \ extends Number> {\n\tprivate int n = 1, rank = 0, fini;\n\tprivate BinaryOperator<T>\
+    \ op;\n\tprivate T e;\n\tprivate Object[] dat;\n\tSegmentTree(final int fini,\
+    \ final BinaryOperator<T> op, final T e) {\n\t\tthis.fini = fini;\n\t\tthis.op\
     \ = op;\n\t\tthis.e = e;\n\t\twhile(this.fini > n) {\n\t\t\tn <<= 1;\n\t\t\trank++;\n\
-    \t\t}\n\t\tdat = new long[2 * n];\n\t\tArrays.fill(dat, e);\n\t}\n\tvoid update(int\
-    \ i, final long x) {\n\t\ti += n;\n\t\tdat[i] = x;\n\t\tdo {\n\t\t\ti >>= 1;\n\
-    \t\t\tdat[i] = op.apply(dat[2 * i], dat[2 * i + 1]);\n\t\t} while(i > 0);\n\t\
-    }\n\tvoid add(int i, final long x) {\n\t\ti += n;\n\t\tdat[i] += x;\n\t\tdo {\n\
-    \t\t\ti >>= 1;\n\t\t\tdat[i] = op.apply(dat[2 * i], dat[2 * i + 1]);\n\t\t} while(i\
-    \ > 0);\n\t}\n\tlong query(int a, int b) {\n\t\tlong l=e,r=e;\n\t\tfor(a += n,\
-    \ b += n; a < b; a >>= 1, b >>= 1) {\n\t\t\tif(a % 2 == 1) {\n\t\t\t\tl = op.apply(l,\
-    \ dat[a++]);\n\t\t\t}\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tr = op.apply(dat[--b],\
-    \ r);\n\t\t\t}\n\t\t}\n\t\treturn op.apply(l,r);\n\t}\n\tint findLeft(int r, final\
-    \ Predicate<Long> fn) {\n\t\tif(r == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint h =\
-    \ 0, i = r + n;\n\t\tlong val = e;\n\t\tfor(; h <= rank; h++) {\n\t\t\tif(i >>\
-    \ (h & 1) > 0) {\n\t\t\t\tfinal long val2 = op.apply(val, dat[i >> (h ^ 1)]);\n\
-    \t\t\t\tif(fn.test(val2)){\n\t\t\t\t\ti -= 1 << h;\n\t\t\t\t\tif(i == n) {\n\t\
-    \t\t\t\t\treturn 0;\n\t\t\t\t\t}\n\t\t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\telse\
-    \ {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\t\
-    long val2 = op.apply(val, dat[(i >> h) - 1]);\n\t\t\tif(fn.test(val2)){\n\t\t\t\
-    \ti -= 1 << h;\n\t\t\t\tif(i == n) {\n\t\t\t\t\treturn 0;\n\t\t\t\t}\n\t\t\t\t\
-    val = val2;\n\t\t\t}\n\t\t}\n\t\treturn i - n;\n\t}\n\tint findRight(int l, final\
-    \ Predicate<Long> fn) {\n\t\tif(l == fini) {\n\t\t\treturn fini;\n\t\t}\n\t\t\
-    int h = 0, i = l + n;\n\t\tlong val = e;\n\t\tfor(; h <= rank; h++) {\n\t\t\t\
-    if(i >> (h & 1) > 0){\n\t\t\t\tlong val2 = op.apply(val, dat[i >> h]);\n\t\t\t\
-    \tif(fn.test(val2)){\n\t\t\t\t\ti += 1 << h;\n\t\t\t\t\tif(i == n * 2) {\n\t\t\
-    \t\t\t\treturn fini;\n\t\t\t\t\t}\n\t\t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\t\
-    else {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\
-    \t\tlong val2 = op.apply(val, dat[i>>h]);\n\t\t\tif(fn.test(val2)) {\n\t\t\t\t\
-    i += 1 << h;\n\t\t\t\tif(i == n * 2) {\n\t\t\t\t\treturn fini;\n\t\t\t\t}\n\t\t\
-    \t\tval = val2;\n\t\t\t}\n\t\t}\n\t\treturn Math.min(i - n, fini);\n\t}\n}\n\n\
-    class SparseTable {\n\tprivate long[][] st;\n\tprivate int[] lookup;\n\tprivate\
-    \ BinaryOperator<Long> op;\n\tSparseTable(final int[] a, final BinaryOperator<Long>\
-    \ op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\
-    \t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length;\
-    \ i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\
-    \tfor(int j = 0; j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.apply(st[i\
-    \ - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
+    \t\t}\n\t\tdat = new Object[2 * n];\n\t\tArrays.fill(dat, e);\n\t}\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tvoid update(int i, final T x) {\n\t\ti += n;\n\t\tdat[i] = x;\n\
+    \t\tdo {\n\t\t\ti >>= 1;\n\t\t\tdat[i] = op.apply((T) dat[2 * i], (T) dat[2 *\
+    \ i + 1]);\n\t\t} while(i > 0);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tT\
+    \ query(int a, int b) {\n\t\tT l = e, r = e;\n\t\tfor(a += n, b += n; a < b; a\
+    \ >>= 1, b >>= 1) {\n\t\t\tif(a % 2 == 1) {\n\t\t\t\tl = op.apply(l, (T) dat[a++]);\n\
+    \t\t\t}\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tr = op.apply((T) dat[--b], r);\n\t\t\t\
+    }\n\t\t}\n\t\treturn op.apply(l,r);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\
+    \tint findLeft(int r, final Predicate<T> fn) {\n\t\tif(r == 0) {\n\t\t\treturn\
+    \ 0;\n\t\t}\n\t\tint h = 0, i = r + n;\n\t\tT val = e;\n\t\tfor(; h <= rank; h++)\
+    \ {\n\t\t\tif(i >> (h & 1) > 0) {\n\t\t\t\tfinal T val2 = op.apply(val, (T) dat[i\
+    \ >> (h ^ 1)]);\n\t\t\t\tif(fn.test(val2)){\n\t\t\t\t\ti -= 1 << h;\n\t\t\t\t\t\
+    if(i == n) {\n\t\t\t\t\t\treturn 0;\n\t\t\t\t\t}\n\t\t\t\t\tval = val2;\n\t\t\t\
+    \t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h--\
+    \ > 0;) {\n\t\t\tfinal T val2 = op.apply(val, (T) dat[(i >> h) - 1]);\n\t\t\t\
+    if(fn.test(val2)){\n\t\t\t\ti -= 1 << h;\n\t\t\t\tif(i == n) {\n\t\t\t\t\treturn\
+    \ 0;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t}\n\t\t}\n\t\treturn i - n;\n\t}\n\
+    \t@SuppressWarnings(\"unchecked\")\n\tint findRight(int l, final Predicate<T>\
+    \ fn) {\n\t\tif(l == fini) {\n\t\t\treturn fini;\n\t\t}\n\t\tint h = 0, i = l\
+    \ + n;\n\t\tT val = e;\n\t\tfor(; h <= rank; h++) {\n\t\t\tif(i >> (h & 1) > 0){\n\
+    \t\t\t\tfinal T val2 = op.apply(val, (T) dat[i >> h]);\n\t\t\t\tif(fn.test(val2)){\n\
+    \t\t\t\t\ti += 1 << h;\n\t\t\t\t\tif(i == n * 2) {\n\t\t\t\t\t\treturn fini;\n\
+    \t\t\t\t\t}\n\t\t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\tfinal T val2 = op.apply(val,\
+    \ (T) dat[i>>h]);\n\t\t\tif(fn.test(val2)) {\n\t\t\t\ti += 1 << h;\n\t\t\t\tif(i\
+    \ == n * 2) {\n\t\t\t\t\treturn fini;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t\
+    }\n\t\t}\n\t\treturn Math.min(i - n, fini);\n\t}\n}\n\nclass SparseTable {\n\t\
+    private long[][] st;\n\tprivate int[] lookup;\n\tprivate BinaryOperator<Long>\
+    \ op;\n\tSparseTable(final int[] a, final BinaryOperator<Long> op) {\n\t\tthis.op\
+    \ = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\
+    \t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\t\t\t\
+    st[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\tfor(int j = 0;\
+    \ j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.apply(st[i - 1][j],\
+    \ st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
     \ + 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
     \ >> 1] + 1;\n\t\t}\n\t}\n\tSparseTable(final long[] a, final BinaryOperator<Long>\
     \ op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\
@@ -822,7 +817,7 @@ data:
   - Java/extension/SegmentTree.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
-  timestamp: '2023-12-03 22:45:45+09:00'
+  timestamp: '2023-12-03 23:57:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
