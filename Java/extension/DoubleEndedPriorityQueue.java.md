@@ -127,24 +127,39 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/extension/DoubleEndedPriorityQueue.java\n"
   code: "package extension;\n\nimport java.util.ArrayList;\nimport java.util.Collections;\n\
-    import java.util.PriorityQueue;\nimport java.util.Queue;\nimport java.util.stream.IntStream;\n\
-    \nclass DoubleEndedPriorityQueue<T extends Number> {\n\tprivate Queue<NumPair>\
-    \ pq1;\n\tprivate Queue<NumPair> pq2;\n\tprivate int idx;\n\tprivate ArrayList<Boolean>\
-    \ used;\n\tDoubleEndedPriorityQueue(final ArrayList<T> depq) {\n\t\tfinal int\
-    \ n = depq.size();\n\t\tused = new ArrayList<>();\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> used.add(true));\n\t\tidx = n;\n\t\tpq1 = new PriorityQueue<>(Collections.reverseOrder());\n\
-    \t\tpq2 = new PriorityQueue<>();\n\t\tIntStream.range(0, n).forEach(i -> {\n\t\
-    \t\tpq1.add(new NumPair(depq.get(i), i));\n\t\t\tpq2.add(new NumPair(depq.get(i),\
-    \ i));\n\t\t});\n\t}\n\tNumber popMax() {\n\t\twhile(!used.get(pq1.peek().second.intValue())\
-    \ && used.get(pq1.peek().second.intValue()) != null) {\n\t\t\tpq1.poll();\n\t\t\
-    }\n\t\tfinal var res = pq1.poll();\n\t\tused.set(res.second.intValue(), false);\n\
-    \t\treturn res.first;\n\t}\n\tNumber popMin() {\n\t\twhile(!used.get(pq2.peek().second.intValue())\
-    \ && used.get(pq2.peek().second.intValue()) != null) {\n\t\t\tpq2.poll();\n\t\t\
-    }\n\t\tfinal var res = pq2.poll();\n\t\tused.set(res.second.intValue(), false);\n\
-    \t\treturn res.first;\n\t}\n\tvoid add(final T x) {\n\t\tpq1.add(new NumPair(x,\
-    \ idx));\n\t\tpq2.add(new NumPair(x, idx));\n\t\tused.add(true);\n\t\tidx++;\n\
-    \t}\n\tNumber getMax(){ return pq1.peek().first; }\n\tNumber getMin(){ return\
-    \ pq2.peek().first; }\n}"
+    \nclass DoubleEndedPriorityQueue<T extends Number> {\n\tprivate ArrayList<T> d;\n\
+    \tDoubleEndedPriorityQueue(final ArrayList<T> d) {\n\t\tthis.d = d;\n\t\tmake_heap();\n\
+    \t}\n\tprivate void make_heap() {\n\t\tfor(int i = d.size(); i-- > 0;) {\n\t\t\
+    \tif (i % 2 == 1 && d.get(i - 1).longValue() < d.get(i).longValue()) {\n\t\t\t\
+    \tCollections.swap(d, i - 1, i);\n\t\t\t}\n\t\t\tup(down(i), i);\n\t\t}\n\t}\n\
+    \tprivate int down(int k) {\n\t\tfinal int n = d.size();\n\t\tif(k % 2 == 1) {\n\
+    \t\t\twhile(2 * k + 1 < n) {\n\t\t\t\tint c = 2 * k + 3;\n\t\t\t\tif(n <= c ||\
+    \ d.get(c - 2).longValue() < d.get(c).longValue()) {\n\t\t\t\t\t c -= 2;\n\t\t\
+    \t\t}\n\t\t\t\tif(c < n && d.get(c).longValue() < d.get(k).longValue()) {\n\t\t\
+    \t\t\tCollections.swap(d, k, c);\n\t\t\t\t\tk = c;\n\t\t\t\t}\n\t\t\t\telse {\n\
+    \t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t} else {\n\t\t\twhile(2 * k + 2 < n)\
+    \ {\n\t\t\t\tint c = 2 * k + 4;\n\t\t\t\tif(n <= c || d.get(c).longValue() < d.get(c\
+    \ - 2).longValue()) {\n\t\t\t\t\tc -= 2;\n\t\t\t\t}\n\t\t\t\tif(c < n && d.get(k).longValue()\
+    \ < d.get(c).longValue()) {\n\t\t\t\t\tCollections.swap(d, k, c);\n\t\t\t\t\t\
+    k = c;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t\
+    }\n\t\treturn k;\n\t}\n\tprivate int up(int k, final int root) {\n\t\tif((k |\
+    \ 1) < d.size() && d.get(k & ~1).longValue() < d.get(k | 1).longValue()) {\n\t\
+    \t\tCollections.swap(d, k & ~1, k | 1);\n\t\t\tk ^= 1;\n\t\t}\n\t\tint p;\n\t\t\
+    while(root < k && d.get(p = parent(k)).longValue() < d.get(k).longValue()) {\n\
+    \t\t\tCollections.swap(d, p, k);\n\t\t\tk = p;\n\t\t}\n\t\twhile(root < k && d.get(k).longValue()\
+    \ < d.get(p = parent(k) | 1).longValue()) {\n\t\t\tCollections.swap(d, p, k);\n\
+    \t\t\tk = p;\n\t\t}\n\t\treturn k;\n\t}\n\tprivate int parent(final int k){ return\
+    \ ((k >> 1) - 1) & ~1; }\n\tprivate void popBack(final ArrayList<T> d){ d.remove(d.size()\
+    \ - 1); } \n\tvoid push(final T x) {\n\t\tfinal int k = d.size();\n\t\td.add(x);\n\
+    \t\tup(k, 1);\n\t}\n\tT popMin() {\n\t\tfinal var res = getMin();\n\t\tif(d.size()\
+    \ < 3) {\n\t\t\tpopBack(d); \n\t\t} else {\n\t\t\tCollections.swap(d, 1, d.size()\
+    \ - 1);\n\t\t\tpopBack(d);\n\t\t\tup(down(1), 1);\n\t\t}\n\t\treturn res;\n\t\
+    }\n\tT popMax() {\n\t\tfinal var res = getMax();\n\t\tif(d.size() < 2) { \n\t\t\
+    \tpopBack(d);\n\t\t} else {\n\t\t\tCollections.swap(d, 0, d.size() - 1);\n\t\t\
+    \tpopBack(d);\n\t\t\tup(down(0), 1);\n\t\t}\n\t\treturn res;\n\t}\n\tT getMin(){\
+    \ return d.size() < 2 ? d.get(0) : d.get(1); }\n\tT getMax(){ return d.get(0);\
+    \ }\n\tint size(){ return d.size(); }\n    boolean isEmpty(){ return d.isEmpty();\
+    \ }\n}"
   dependsOn:
   - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
@@ -187,7 +202,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-03 23:57:21+09:00'
+  timestamp: '2023-12-04 00:59:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/DoubleEndedPriorityQueue.java

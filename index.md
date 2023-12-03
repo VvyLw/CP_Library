@@ -34,6 +34,9 @@ data:
       path: C++/bignum.hpp
       title: C++/bignum.hpp
     - icon: ':heavy_check_mark:'
+      path: C++/depq.hpp
+      title: C++/depq.hpp
+    - icon: ':heavy_check_mark:'
       path: C++/graph.hpp
       title: C++/graph.hpp
     - icon: ':heavy_check_mark:'
@@ -174,6 +177,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/add128_2.test.cpp
       title: test/add128_2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/depq.test.cpp
+      title: test/depq.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/ftree.test.cpp
       title: test/ftree.test.cpp
