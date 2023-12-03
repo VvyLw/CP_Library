@@ -11,7 +11,7 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/template.java\n"
+    RuntimeError: bundler is not specified: Java/all.java\n"
   code: "import java.io.OutputStream;\nimport java.io.PrintWriter;\nimport java.math.BigInteger;\n\
     import java.util.ArrayDeque;\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
     import java.util.Collection;\nimport java.util.Collections;\nimport java.util.Comparator;\n\
@@ -355,10 +355,10 @@ data:
     \tIntStream.range(0, log).forEach(i -> Arrays.fill(table[i], -1));\n\t\tbuild();\n\
     \t}\n\tprivate void dfs(final int idx, final int par, final int d) {\n\t\ttable[0][idx]\
     \ = par;\n\t\tdep[idx] = d;\n\t\tfor(final var el: g.get(idx)) {\n\t\t\tif(el.to\
-    \ != par) {\n\t\t\t\tdfs(el.to, idx, d + 1);\n\t\t\t}\n\t\t}\n\t}\n\tvoid build()\
-    \ {\n\t\tdfs(0, -1, 0);\n\t\tfor(int k = 0; k < log - 1; ++k) {\n\t\t\tfor(int\
-    \ i = 0; i < table[k].length; ++i) {\n\t\t\t\tif(table[k][i] == -1) {\n\t\t\t\t\
-    \ttable[k + 1][i] = -1;\n\t\t\t\t} else {\n\t\t\t\t\ttable[k + 1][i] = table[k][table[k][i]];\n\
+    \ != par) {\n\t\t\t\tdfs(el.to, idx, d + 1);\n\t\t\t}\n\t\t}\n\t}\n\tprivate void\
+    \ build() {\n\t\tdfs(0, -1, 0);\n\t\tfor(int k = 0; k < log - 1; ++k) {\n\t\t\t\
+    for(int i = 0; i < table[k].length; ++i) {\n\t\t\t\tif(table[k][i] == -1) {\n\t\
+    \t\t\t\ttable[k + 1][i] = -1;\n\t\t\t\t} else {\n\t\t\t\t\ttable[k + 1][i] = table[k][table[k][i]];\n\
     \t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tint query(int u, int v) {\n\t\tif(dep[u] > dep[v])\
     \ {\n\t\t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\tfor(int i = log;\
     \ --i >= 0;) {\n\t\t\tif(((dep[v] - dep[u]) >> i) % 2 == 1) {\n\t\t\t\tv = table[i][v];\n\
@@ -545,22 +545,21 @@ data:
     \t}\n\t\tint ok = x, ng = lookup.length;\n\t\twhile(Math.abs(ok - ng) > 1) {\n\
     \t\t\tint mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(x, mid))) {\n\t\t\t\tok\
     \ = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ ok;\n\t}\n}\n\n// Not Verified\nclass SuffixArray extends ArrayList<Integer>\
-    \ {\n\tprivate String vs;\n\tprivate int[] ret;\n\tprivate boolean[] isS, isLMS;\n\
-    \tSuffixArray(final String vs, final boolean compress) {\n\t\tthis.vs = vs;\n\t\
-    \tint[] newVS = new int[vs.length() + 1];\n\t\tif(compress) {\n\t\t\tfinal var\
-    \ xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());\n\t\
-    \t\tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = Utility.lowerBound(xs,\
+    \ ok;\n\t}\n}\n\nclass SuffixArray extends ArrayList<Integer> {\n\tprivate String\
+    \ vs;\n\tSuffixArray(final String vs, final boolean compress) {\n\t\tthis.vs =\
+    \ vs;\n\t\tint[] newVS = new int[vs.length() + 1];\n\t\tif(compress) {\n\t\t\t\
+    final var xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());\n\
+    \t\t\tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = Utility.lowerBound(xs,\
     \ vs.charAt(i)) + 1;\n\t\t\t}\n\t\t} else {\n\t\t\tfinal int d = vs.chars().min().getAsInt();\n\
     \t\t\tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = vs.charAt(i)\
     \ - d + 1;\n\t\t\t}\n\t\t}\n\t\tthis.addAll(Arrays.stream(SAIS(newVS)).boxed().collect(Collectors.toList()));\n\
     \t}\n\tprivate int[] SAIS(final int[] s) {\n\t\tfinal int n = s.length;\n\t\t\
-    ret = new int[n];\n\t\tisS = new boolean[n];\n\t\tisLMS = new boolean[n];\n\t\t\
-    int m = 0;\n\t\tfor(int i = n - 2; i >= 0; i--) {\n\t\t\tisS[i] = (s[i] > s[i\
-    \ + 1]) || (s[i] == s[i + 1] && isS[i + 1]);\n\t\t\tm += (isLMS[i + 1] = isS[i]\
+    int[] ret = new int[n];\n\t\tboolean[] isS = new boolean[n], isLMS = new boolean[n];\n\
+    \t\tint m = 0;\n\t\tfor(int i = n - 2; i >= 0; i--) {\n\t\t\tisS[i] = (s[i] >\
+    \ s[i + 1]) || (s[i] == s[i + 1] && isS[i + 1]);\n\t\t\tm += (isLMS[i + 1] = isS[i]\
     \ && !isS[i + 1]) ? 1 : 0;\n\t\t}\n\t\tfinal Consumer<ArrayList<Integer>> inducedSort\
-    \ = (lms) -> {\n\t\t\tfinal int upper = Collections.max(Arrays.stream(s).boxed().collect(Collectors.toList()));\n\
-    \t\t\tint[] l = new int[upper + 2], r = new int[upper + 2];\n\t\t\tfor(final var\
+    \ = (lms) -> {\n\t\t\tfinal int upper = Arrays.stream(s).max().getAsInt();\n\t\
+    \t\tint[] l = new int[upper + 2], r = new int[upper + 2];\n\t\t\tfor(final var\
     \ v: s) {\n\t\t\t\t++l[v + 1];\n\t\t\t\t++r[v];\n\t\t\t}\n\t\t\tArrays.parallelPrefix(l,\
     \ (x, y) -> x + y);\n\t\t\tArrays.parallelPrefix(r, (x, y) -> x + y);\n\t\t\t\
     Arrays.fill(ret, -1);\n\t\t\tfor(int i = lms.size(); --i >= 0;) {\n\t\t\t\tret[--r[s[lms.get(i)]]]\
@@ -582,7 +581,7 @@ data:
     \ - 1), newLMS.get(i))) {\n\t\t\t\t++rank;\n\t\t\t}\n\t\t\tret[newLMS.get(i)]\
     \ = rank;\n\t\t}\n\t\tif(rank + 1 < m) {\n\t\t\tint[] newS = new int[m];\n\t\t\
     \tfor(int i = 0; i < m; ++i) {\n\t\t\t\tnewS[i] = ret[lms.get(i)];\n\t\t\t}\n\t\
-    \t\tfinal var lmsSA = SAIS(newS);\n\t\t\tIntStream.range(0, m).forEach(i -> newLMS.add(i,\
+    \t\tfinal var lmsSA = SAIS(newS);\n\t\t\tIntStream.range(0, m).forEach(i -> newLMS.set(i,\
     \ lms.get(lmsSA[i])));\n\t\t}\n\t\tinducedSort.accept(newLMS);\n\t\treturn ret;\n\
     \t}\n\tboolean ltSubstr(final String t, int si, int ti) {\n\t\tfinal int sn =\
     \ vs.length(), tn = t.length();\n\t\twhile(si < sn && ti < tn) {\n\t\t\tif(vs.charAt(si)\
@@ -603,25 +602,25 @@ data:
     \ int[n + 1], rank = new int[n + 1];\n\t\tfor(int i = 0; i <= n; ++i) {\n\t\t\t\
     rank[this.get(i)] = i;\n\t\t}\n\t\tint h = 0;\n\t\tfor(int i = 0; i <= n; ++i)\
     \ {\n\t\t\tif(rank[i] < n) {\n\t\t\t\tfinal int j = this.get(rank[i] + 1);\n\t\
-    \t\t\tfor(; j + h < n && i + h < n; ++h) {\n\t\t\t\t\tif(this.vs.charAt(j + h)\
-    \ != this.vs.charAt(i + h)) {\n\t\t\t\t\t\tbreak;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\
-    \t\tlcp[rank[i] + 1] = h;\n\t\t\t\tif(h > 0) {\n\t\t\t\t\th--;\n\t\t\t\t}\n\t\t\
-    \t}\n\t\t}\n\t\treturn lcp;\n\t}\n\t@Override\n\tpublic String toString() { \n\
-    \t\tStringBuilder sb = new StringBuilder();\n\t\tfor(int i = 0; i < this.size();\
-    \ ++i) {\n\t\t\tsb.append(i + \":[\" + this.get(i) + \"]\");\n\t\t\tfor(int j\
-    \ = this.get(i); j < vs.length(); ++j) {\n\t\t\t\tsb.append(\" \" + vs.charAt(j));\n\
-    \t\t\t}\n\t\t\tsb.append(\"\\n\");\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
+    \t\t\tfor(; j + h < n && i + h < n; ++h) {\n\t\t\t\t\tif(vs.charAt(j + h) != vs.charAt(i\
+    \ + h)) {\n\t\t\t\t\t\tbreak;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tlcp[rank[i] + 1]\
+    \ = h;\n\t\t\t\tif(h > 0) {\n\t\t\t\t\th--;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ lcp;\n\t}\n\t@Override\n\tpublic String toString() { \n\t\tStringBuilder sb\
+    \ = new StringBuilder();\n\t\tfor(int i = 0; i < this.size(); ++i) {\n\t\t\tsb.append(i\
+    \ + \":[\" + this.get(i) + \"]\");\n\t\t\tfor(int j = this.get(i); j < vs.length();\
+    \ ++j) {\n\t\t\t\tsb.append(\" \" + vs.charAt(j));\n\t\t\t}\n\t\t\tsb.append(\"\
+    \\n\");\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
   dependsOn: []
   isVerificationFile: false
-  path: Java/template.java
+  path: Java/all.java
   requiredBy: []
-  timestamp: '2023-12-02 11:01:51+09:00'
+  timestamp: '2023-12-03 14:41:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/template.java
+documentation_of: Java/all.java
 layout: document
 redirect_from:
-- /library/Java/template.java
-- /library/Java/template.java.html
-title: Java/template.java
+- /library/Java/all.java
+- /library/Java/all.java.html
+title: Java/all.java
 ---

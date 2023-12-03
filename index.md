@@ -45,8 +45,8 @@ data:
   - name: Java
     pages:
     - icon: ':warning:'
-      path: Java/template.java
-      title: Java/template.java
+      path: Java/all.java
+      title: Java/all.java
   - name: atcoder
     pages:
     - icon: ':warning:'
