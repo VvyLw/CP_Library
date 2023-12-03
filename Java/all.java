@@ -898,7 +898,7 @@ class LowestCommonAncestor<G extends Graph> {
 			}
 		}
 	}
-	void build() {
+	private void build() {
 		dfs(0, -1, 0);
 		for(int k = 0; k < log - 1; ++k) {
 			for(int i = 0; i < table[k].length; ++i) {
@@ -1511,11 +1511,8 @@ class SparseTable {
 	}
 }
 
-// Not Verified
 class SuffixArray extends ArrayList<Integer> {
 	private String vs;
-	private int[] ret;
-	private boolean[] isS, isLMS;
 	SuffixArray(final String vs, final boolean compress) {
 		this.vs = vs;
 		int[] newVS = new int[vs.length() + 1];
@@ -1534,16 +1531,15 @@ class SuffixArray extends ArrayList<Integer> {
 	}
 	private int[] SAIS(final int[] s) {
 		final int n = s.length;
-		ret = new int[n];
-		isS = new boolean[n];
-		isLMS = new boolean[n];
+		int[] ret = new int[n];
+		boolean[] isS = new boolean[n], isLMS = new boolean[n];
 		int m = 0;
 		for(int i = n - 2; i >= 0; i--) {
 			isS[i] = (s[i] > s[i + 1]) || (s[i] == s[i + 1] && isS[i + 1]);
 			m += (isLMS[i + 1] = isS[i] && !isS[i + 1]) ? 1 : 0;
 		}
 		final Consumer<ArrayList<Integer>> inducedSort = (lms) -> {
-			final int upper = Collections.max(Arrays.stream(s).boxed().collect(Collectors.toList()));
+			final int upper = Arrays.stream(s).max().getAsInt();
 			int[] l = new int[upper + 2], r = new int[upper + 2];
 			for(final var v: s) {
 				++l[v + 1];
@@ -1612,7 +1608,7 @@ class SuffixArray extends ArrayList<Integer> {
 				newS[i] = ret[lms.get(i)];
 			}
 			final var lmsSA = SAIS(newS);
-			IntStream.range(0, m).forEach(i -> newLMS.add(i, lms.get(lmsSA[i])));
+			IntStream.range(0, m).forEach(i -> newLMS.set(i, lms.get(lmsSA[i])));
 		}
 		inducedSort.accept(newLMS);
 		return ret;
@@ -1672,7 +1668,7 @@ class SuffixArray extends ArrayList<Integer> {
 			if(rank[i] < n) {
 				final int j = this.get(rank[i] + 1);
 				for(; j + h < n && i + h < n; ++h) {
-					if(this.vs.charAt(j + h) != this.vs.charAt(i + h)) {
+					if(vs.charAt(j + h) != vs.charAt(i + h)) {
 						break;
 					}
 				}
