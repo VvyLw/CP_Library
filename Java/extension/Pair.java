@@ -37,19 +37,22 @@ class NumPair extends Pair<Number, Number> implements Comparable<NumPair>  {
 							first.doubleValue() * Math.sin(rad) + second.doubleValue() * Math.cos(rad));
 	}
 	long dot(final NumPair p){ return first.longValue() * p.first.longValue() + second.longValue() + p.second.longValue(); }
+	double dotf(final NumPair p){ return first.doubleValue() * p.first.doubleValue() + second.doubleValue() + p.second.doubleValue(); }
 	long cross(final NumPair p){ return this.rotate().dot(p); }
-	long square(){ return this.dot(this); }
+	double crossf(final NumPair p){ return this.rotate().dotf(p); }
+	long sqr(){ return this.dot(this); }
+	double sqrf(){ return this.dotf(this); }
 	double grad() { 
 		try {
 			return second.doubleValue() / first.doubleValue();
 		} catch(ArithmeticException e) {
 			e.printStackTrace();
-			return Double.NaN;
 		}
+		return Double.NaN;
 	}
 	double abs(){ return Math.hypot(first.doubleValue(), second.doubleValue()); }
-	double lcm(){ return Utility.lcm(first.longValue(), second.longValue()); }
-	double gcd(){ return Utility.gcd(first.longValue(), second.longValue()); }
+	long lcm(){ return Utility.lcm(first.longValue(), second.longValue()); }
+	long gcd(){ return Utility.gcd(first.longValue(), second.longValue()); }
 	NumPair extgcd() {
 		long x = 1, y = 0, t1 = 0, t2 = 0, t3 = 1, a = first.longValue(), b = second.longValue();
 		while(b > 0) {
