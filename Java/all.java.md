@@ -382,13 +382,16 @@ data:
     \ 360));\n\t\treturn new NumPair(first.doubleValue() * Math.cos(rad) - second.doubleValue()\
     \ * Math.sin(rad),\n\t\t\t\t\t\t\tfirst.doubleValue() * Math.sin(rad) + second.doubleValue()\
     \ * Math.cos(rad));\n\t}\n\tlong dot(final NumPair p){ return first.longValue()\
-    \ * p.first.longValue() + second.longValue() + p.second.longValue(); }\n\tlong\
-    \ cross(final NumPair p){ return this.rotate().dot(p); }\n\tlong square(){ return\
-    \ this.dot(this); }\n\tdouble grad() { \n\t\ttry {\n\t\t\treturn second.doubleValue()\
+    \ * p.first.longValue() + second.longValue() + p.second.longValue(); }\n\tdouble\
+    \ dotf(final NumPair p){ return first.doubleValue() * p.first.doubleValue() +\
+    \ second.doubleValue() + p.second.doubleValue(); }\n\tlong cross(final NumPair\
+    \ p){ return this.rotate().dot(p); }\n\tdouble crossf(final NumPair p){ return\
+    \ this.rotate().dotf(p); }\n\tlong sqr(){ return this.dot(this); }\n\tdouble sqrf(){\
+    \ return this.dotf(this); }\n\tdouble grad() { \n\t\ttry {\n\t\t\treturn second.doubleValue()\
     \ / first.doubleValue();\n\t\t} catch(ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
-    \t\t\treturn Double.NaN;\n\t\t}\n\t}\n\tdouble abs(){ return Math.hypot(first.doubleValue(),\
-    \ second.doubleValue()); }\n\tdouble lcm(){ return Utility.lcm(first.longValue(),\
-    \ second.longValue()); }\n\tdouble gcd(){ return Utility.gcd(first.longValue(),\
+    \t\t}\n\t\treturn Double.NaN;\n\t}\n\tdouble abs(){ return Math.hypot(first.doubleValue(),\
+    \ second.doubleValue()); }\n\tlong lcm(){ return Utility.lcm(first.longValue(),\
+    \ second.longValue()); }\n\tlong gcd(){ return Utility.gcd(first.longValue(),\
     \ second.longValue()); }\n\tNumPair extgcd() {\n\t\tlong x = 1, y = 0, t1 = 0,\
     \ t2 = 0, t3 = 1, a = first.longValue(), b = second.longValue();\n\t\twhile(b\
     \ > 0) {\n\t\t\tt1 = a / b;\n\t\t\ta -= t1 * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\
@@ -790,7 +793,7 @@ data:
   - Java/extension/SegmentTree.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
-  timestamp: '2023-12-03 19:51:45+09:00'
+  timestamp: '2023-12-03 20:12:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
