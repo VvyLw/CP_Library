@@ -138,7 +138,7 @@ data:
     \ groups() {\n\t\tfinal int n = par.length;\n\t\tArrayList<ArrayList<Integer>>\
     \ res = new ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> res.add(new\
     \ ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\
-    \t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n\tboolean is_bipartite()\
+    \t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n\tboolean isBipartite()\
     \ {\n\t\tfinal int n = par.length / 2;\n\t\tboolean ok = true;\n\t\tfor(int i\
     \ = 0; i < n; ++i) {\n\t\t\tok &= root(i) != root(i + n);\n\t\t}\n\t\treturn ok;\n\
     \t}\n}"
@@ -184,7 +184,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-04 01:33:40+09:00'
+  timestamp: '2023-12-04 13:13:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/UnionFind.java

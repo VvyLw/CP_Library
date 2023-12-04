@@ -418,15 +418,15 @@ data:
     \t\tArrayList<ArrayList<Integer>> res = new ArrayList<>(n);\n\t\tIntStream.range(0,\
     \ n).forEach(i -> res.add(new ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i\
     \ -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn\
-    \ res;\n\t}\n\tboolean is_bipartite() {\n\t\tfinal int n = par.length / 2;\n\t\
-    \tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &= root(i) !=\
-    \ root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n}\n\nclass WeightedUnionFind {\n\t\
-    private int[] par;\n\tprivate long[] weight;\n\tWeightedUnionFind(final int n)\
-    \ {\n\t\tpar = new int[n];\n\t\tweight = new long[n];\n\t\tArrays.fill(par, -1);\n\
-    \t}\n\tint root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\
-    \t\tfinal int r = root(par[i]);\n\t\tweight[i] += weight[par[i]];\n\t\treturn\
-    \ par[i] = r;\n\t}\n\tlong get(final int i) {\n\t\troot(i);\n\t\treturn weight[i];\n\
-    \t}\n\tlong diff(final int x, final int y){ return get(y) - get(x); }\n\tint unite(int\
+    \ res;\n\t}\n\tboolean isBipartite() {\n\t\tfinal int n = par.length / 2;\n\t\t\
+    boolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &= root(i) != root(i\
+    \ + n);\n\t\t}\n\t\treturn ok;\n\t}\n}\n\nclass WeightedUnionFind {\n\tprivate\
+    \ int[] par;\n\tprivate long[] weight;\n\tWeightedUnionFind(final int n) {\n\t\
+    \tpar = new int[n];\n\t\tweight = new long[n];\n\t\tArrays.fill(par, -1);\n\t\
+    }\n\tint root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\t\
+    \tfinal int r = root(par[i]);\n\t\tweight[i] += weight[par[i]];\n\t\treturn par[i]\
+    \ = r;\n\t}\n\tlong get(final int i) {\n\t\troot(i);\n\t\treturn weight[i];\n\t\
+    }\n\tlong diff(final int x, final int y){ return get(y) - get(x); }\n\tint unite(int\
     \ x, int y, long w) {\n\t\tw += diff(y, x);\n\t\tx = root(x);\n\t\ty = root(y);\n\
     \t\tif(x == y) {\n\t\t\treturn w == 0 ? 0 : -1;\n\t\t}\n\t\tif(par[x] > par[y])\
     \ {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x]\
@@ -834,7 +834,7 @@ data:
   - Java/extension/SegmentTree.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
-  timestamp: '2023-12-04 01:33:40+09:00'
+  timestamp: '2023-12-04 13:13:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
