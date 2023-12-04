@@ -34,7 +34,7 @@ class UnionFind {
 		res.removeIf(ArrayList::isEmpty);
 		return res;
 	}
-	boolean is_bipartite() {
+	boolean isBipartite() {
 		final int n = par.length / 2;
 		boolean ok = true;
 		for(int i = 0; i < n; ++i) {
