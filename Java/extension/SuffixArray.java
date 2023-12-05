@@ -15,7 +15,7 @@ class SuffixArray extends ArrayList<Integer> {
 		if(compress) {
 			final var xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());
 			for(int i = 0; i < vs.length(); ++i) {
-				newVS[i] = Utility.lowerBound(xs, vs.charAt(i)) + 1;
+				newVS[i] = Utility.lowerBound(xs, (int) vs.charAt(i)) + 1;
 			}
 		} else {
 			final int d = vs.chars().min().getAsInt();
