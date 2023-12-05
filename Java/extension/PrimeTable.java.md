@@ -132,15 +132,16 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/extension/PrimeTable.java\n"
-  code: "package extension;\n\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
-    \nclass PrimeTable {\n\tprivate int n;\n\tprivate boolean[] sieve;\n\tPrimeTable(final\
+  code: "package extension;\n\nimport java.util.Arrays;\nimport java.util.stream.IntStream;\n\
+    \nclass PrimeTable {\n\tprivate int n, size;\n\tprivate boolean[] sieve;\n\tPrimeTable(final\
     \ int n) {\n\t\tthis.n = n;\n\t\tsieve = new boolean[n + 1];\n\t\tArrays.fill(sieve,\
     \ true);\n\t\tsieve[0] = sieve[1] = false;\n\t\tfor(long i = 2; i <= n; ++i) {\n\
     \t\t\tif(!sieve[(int) i]) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(long j = i\
-    \ * i; j <= n; j += i) {\n\t\t\t\tsieve[(int) j] = false;\n\t\t\t}\n\t\t}\n\t\
-    }\n\tboolean[] table(){ return sieve; }\n\tArrayList<Integer> get() {\n\t\tArrayList<Integer>\
-    \ p = new ArrayList<>();\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i])\
-    \ {\n\t\t\t\tp.add(i);\n\t\t\t}\n\t\t}\n\t\treturn p;\n\t}\n}"
+    \ * i; j <= n; j += i) {\n\t\t\t\tsieve[(int) j] = false;\n\t\t\t}\n\t\t}\n\t\t\
+    size = (int) IntStream.rangeClosed(0, n).filter(i -> sieve[i]).count();\n\t}\n\
+    \tboolean[] table(){ return sieve; }\n\tint[] get() {\n\t\tint j = 0;\n\t\tint[]\
+    \ p = new int[size];\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\
+    \t\t\t\tp[j++] = i; \n\t\t\t}\n\t\t}\n\t\treturn p;\n\t}\n}"
   dependsOn:
   - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
@@ -185,7 +186,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-05 14:30:22+09:00'
+  timestamp: '2023-12-05 15:10:49+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/PrimeTable.java

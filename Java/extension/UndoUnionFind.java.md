@@ -190,7 +190,7 @@ data:
   - Java/extension/SegmentTree.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-05 14:30:22+09:00'
+  timestamp: '2023-12-05 15:10:49+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/UndoUnionFind.java
