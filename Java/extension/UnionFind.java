@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-class UnionFind {
-	private int[] par;
+final class UnionFind {
+	private final int[] par;
 	UnionFind(final int n) {
 		par = new int[n];
 		Arrays.fill(par, -1);
 	}
-	int root(final int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i; }
-	int size(final int i){ return -par[root(i)]; }
-	boolean unite(int i, int j) {
+	final int root(final int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i; }
+	final int size(final int i){ return -par[root(i)]; }
+	final boolean unite(int i, int j) {
 		i = root(i);
 		j = root(j);
 		if(i == j) return false;
@@ -25,8 +25,8 @@ class UnionFind {
 		par[j] = i;
 		return true;
 	}
-	boolean same(final int i, final int j){ return root(i) == root(j); }
-	ArrayList<ArrayList<Integer>> groups() {
+	final boolean same(final int i, final int j){ return root(i) == root(j); }
+	final ArrayList<ArrayList<Integer>> groups() {
 		final int n = par.length;
 		ArrayList<ArrayList<Integer>> res = new ArrayList<>(n);
 		IntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));
@@ -34,7 +34,7 @@ class UnionFind {
 		res.removeIf(ArrayList::isEmpty);
 		return res;
 	}
-	boolean isBipartite() {
+	final boolean isBipartite() {
 		final int n = par.length / 2;
 		boolean ok = true;
 		for(int i = 0; i < n; ++i) {

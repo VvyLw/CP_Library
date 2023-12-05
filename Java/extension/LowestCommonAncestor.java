@@ -3,11 +3,11 @@ package extension;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-class LowestCommonAncestor<G extends Graph> {
-	private int log;
-	int[] dep;
-	private G g;
-	int[][] table;
+final class LowestCommonAncestor<G extends Graph> {
+	private final int log;
+	final int[] dep;
+	private final G g;
+	final int[][] table;
 	LowestCommonAncestor(final G g) {
 		this.g = g;
 		final int n = g.size();
@@ -17,7 +17,7 @@ class LowestCommonAncestor<G extends Graph> {
 		IntStream.range(0, log).forEach(i -> Arrays.fill(table[i], -1));
 		build();
 	}
-	private void dfs(final int idx, final int par, final int d) {
+	private final void dfs(final int idx, final int par, final int d) {
 		table[0][idx] = par;
 		dep[idx] = d;
 		for(final var el: g.get(idx)) {
@@ -26,7 +26,7 @@ class LowestCommonAncestor<G extends Graph> {
 			}
 		}
 	}
-	private void build() {
+	private final void build() {
 		dfs(0, -1, 0);
 		for(int k = 0; k < log - 1; ++k) {
 			for(int i = 0; i < table[k].length; ++i) {
@@ -38,7 +38,7 @@ class LowestCommonAncestor<G extends Graph> {
 			}
 		}
 	}
-	int query(int u, int v) {
+	final int query(int u, int v) {
 		if(dep[u] > dep[v]) {
 			u ^= v;
 			v ^= u;
@@ -60,5 +60,5 @@ class LowestCommonAncestor<G extends Graph> {
 		}
 		return table[0][u];
 	}
-	int dist(final int u, final int v){ return dep[u] + dep[v] - 2 * query(u, v); }
+	final int dist(final int u, final int v){ return dep[u] + dep[v] - 2 * query(u, v); }
 }

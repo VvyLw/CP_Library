@@ -6,10 +6,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.function.BiFunction;
 
-//N <= 1e18;
-class LongPrime {
-	private int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
-	private long gcd(long a, long b) {
+// N <= 1e18;
+final class LongPrime {
+	private final int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
+	private final long gcd(long a, long b) {
 		a = Math.abs(a);
 		b = Math.abs(b);
 		if(a == 0) {
@@ -31,7 +31,7 @@ class LongPrime {
 		} while(b > 0);
 		return a << shift;
 	}
-	boolean isPrime(final long n) {
+	final boolean isPrime(final long n) {
 		if(n <= 1) {
 			return false;
 		}
@@ -62,7 +62,7 @@ class LongPrime {
 		}
 		return true;
 	}
-	private long find(final long n) {
+	final private long find(final long n) {
 		if(isPrime(n)) {
 			return n;
 		}
@@ -87,7 +87,7 @@ class LongPrime {
 			}
 		}
 	}
-	ArrayList<Long> primeFactor(final long n) {
+	final ArrayList<Long> primeFactor(final long n) {
 		if(n == 1) return new ArrayList<>();
 		final long x = find(n);
 		if(x == n) return new ArrayList<>(Arrays.asList(x));
@@ -98,10 +98,10 @@ class LongPrime {
 		return l;
 	}
 }
-//N > 1e18
-class BigPrime {
-	protected int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
-	private BigInteger gcd(BigInteger a, BigInteger b) {
+// N > 1e18
+final class BigPrime {
+	protected final int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
+	private final BigInteger gcd(BigInteger a, BigInteger b) {
 		a = a.abs();
 		b = b.abs();
 		if(a.equals(BigInteger.ZERO)) {
@@ -123,7 +123,7 @@ class BigPrime {
 		} while(b.compareTo(BigInteger.ZERO) > 0);
 		return a.shiftLeft(shift);
 	}
-	boolean isPrime(final BigInteger n) {
+	final boolean isPrime(final BigInteger n) {
 		if(n.compareTo(BigInteger.ONE) <= 0) {
 			return false;
 		}
@@ -154,7 +154,7 @@ class BigPrime {
 		}
 		return true;
 	}
-	private BigInteger find(final BigInteger n) {
+	private final BigInteger find(final BigInteger n) {
 		if(isPrime(n)) {
 			return n;
 		}
@@ -179,7 +179,7 @@ class BigPrime {
 			}
 		}
 	}
-	ArrayList<BigInteger> primeFactor(final BigInteger n) {
+	final ArrayList<BigInteger> primeFactor(final BigInteger n) {
 		if(n.equals(BigInteger.ONE)) {
 			return new ArrayList<>();
 		}

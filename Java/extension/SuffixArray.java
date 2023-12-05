@@ -7,8 +7,8 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-class SuffixArray extends ArrayList<Integer> {
-	private String vs;
+final class SuffixArray extends ArrayList<Integer> {
+	private final String vs;
 	SuffixArray(final String vs, final boolean compress) {
 		this.vs = vs;
 		int[] newVS = new int[vs.length() + 1];
@@ -25,10 +25,10 @@ class SuffixArray extends ArrayList<Integer> {
 		}
 		this.addAll(Arrays.stream(SAIS(newVS)).boxed().collect(Collectors.toList()));
 	}
-	private int[] SAIS(final int[] s) {
+	private final int[] SAIS(final int[] s) {
 		final int n = s.length;
-		int[] ret = new int[n];
-		boolean[] isS = new boolean[n], isLMS = new boolean[n];
+		final int[] ret = new int[n];
+		final boolean[] isS = new boolean[n], isLMS = new boolean[n];
 		int m = 0;
 		for(int i = n - 2; i >= 0; i--) {
 			isS[i] = (s[i] > s[i + 1]) || (s[i] == s[i + 1] && isS[i + 1]);
@@ -63,7 +63,7 @@ class SuffixArray extends ArrayList<Integer> {
 				}
 			}
 		};
-		ArrayList<Integer> lms = new ArrayList<>(), newLMS = new ArrayList<>();
+		final ArrayList<Integer> lms = new ArrayList<>(), newLMS = new ArrayList<>();
 		for(int i = 0; ++i < n;) {
 			if(isLMS[i]) {
 				lms.add(i);
@@ -109,7 +109,7 @@ class SuffixArray extends ArrayList<Integer> {
 		inducedSort.accept(newLMS);
 		return ret;
 	}
-	boolean ltSubstr(final String t, int si, int ti) {
+	final boolean ltSubstr(final String t, int si, int ti) {
 		final int sn = vs.length(), tn = t.length();
 		while(si < sn && ti < tn) {
 			if(vs.charAt(si) < t.charAt(ti)) {
@@ -123,7 +123,7 @@ class SuffixArray extends ArrayList<Integer> {
 		}
 		return si >= sn && ti < tn;
 	}
-	int lowerBound(final String t) {
+	final int lowerBound(final String t) {
 		int ok = this.size(), ng = 0;
 		while(ok - ng > 1) {
 			final int mid = (ok + ng) / 2;
@@ -135,7 +135,7 @@ class SuffixArray extends ArrayList<Integer> {
 		}
 		return ok;
 	}
-	Pair<Integer, Integer> equalRange(final String t) {
+	final Pair<Integer, Integer> equalRange(final String t) {
 		final int low = lowerBound(t);
 		int ng = low - 1, ok = this.size();
 		var sb = new StringBuilder(t);
@@ -153,7 +153,7 @@ class SuffixArray extends ArrayList<Integer> {
 		this.add(end, this.get(end) - 1);
 		return Pair.of(low, ok);
 	}
-	int[] lcpArray() {
+	final int[] lcpArray() {
 		final int n = this.size() - 1;
 		int[] lcp = new int[n + 1], rank = new int[n + 1];
 		for(int i = 0; i <= n; ++i) {
@@ -177,7 +177,7 @@ class SuffixArray extends ArrayList<Integer> {
 		return lcp;
 	}
 	@Override
-	public String toString() { 
+	public final String toString() { 
 		StringBuilder sb = new StringBuilder();
 		for(int i = 0; i < this.size(); ++i) {
 			sb.append(i + ":[" + this.get(i) + "]");

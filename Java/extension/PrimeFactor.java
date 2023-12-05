@@ -3,8 +3,8 @@ package extension;
 import java.util.TreeMap;
 import java.util.stream.IntStream;
 
-class PrimeFactor {
-	private int[] spf;
+final class PrimeFactor {
+	private final int[] spf;
 	PrimeFactor(final int n) {
 		spf = IntStream.rangeClosed(0, n).toArray();
 		for(int i = 2; i * i <= n; ++i) {
@@ -17,8 +17,8 @@ class PrimeFactor {
 			}
 		}
 	}
-	TreeMap<Integer, Integer> get(int n) {
-		TreeMap<Integer, Integer> m = new TreeMap<>();
+	final TreeMap<Integer, Integer> get(int n) {
+		final TreeMap<Integer, Integer> m = new TreeMap<>();
 		while(n != 1) {
 			m.merge(spf[n], 1, (a, b) -> (a + b));
 			n /= spf[n];

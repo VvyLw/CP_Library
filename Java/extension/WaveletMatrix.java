@@ -1,36 +1,37 @@
 package extension;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
-class SuccinctIndexableDictionary {
-	private int blk;
-	private int[] bit, sum;
+final class SuccinctIndexableDictionary {
+	private final int blk;
+	private final int[] bit, sum;
 	SuccinctIndexableDictionary(final int len) {
 		blk = (len + 31) >> 5;
 		bit = new int[blk];
 		sum = new int[blk];
 	}
-	void set(final int k){ bit[k >> 5] |= 1 << (k & 31); }
-	void build() {
+	final void set(final int k){ bit[k >> 5] |= 1 << (k & 31); }
+	final void build() {
 		sum[0] = 0;
 		for(int i = 0; ++i < blk;) {
 			sum[i] = sum[i - 1] + Integer.bitCount(bit[i - 1]);
 		}
 	}
-	boolean get(final int k){ return ((bit[k >> 5] >> (k & 31)) & 1) == 1; }
-	int rank(final int k){ return (sum[k >> 5] + Integer.bitCount(bit[k >> 5] & ((1 << (k & 31)) - 1))); }
-	int rank(final boolean val, final int k){ return val ? rank(k) : k - rank(k); }
+	final boolean get(final int k){ return ((bit[k >> 5] >> (k & 31)) & 1) == 1; }
+	final int rank(final int k){ return (sum[k >> 5] + Integer.bitCount(bit[k >> 5] & ((1 << (k & 31)) - 1))); }
+	final int rank(final boolean val, final int k){ return val ? rank(k) : k - rank(k); }
 }
-class WaveletMatrixBeta {
-	private int log;
-	private SuccinctIndexableDictionary[] matrix;
-	private int[] mid;
+final class WaveletMatrixBeta {
+	private final int log;
+	private final SuccinctIndexableDictionary[] matrix;
+	private final int[] mid;
 	WaveletMatrixBeta(long[] arr, final int log) {
 		final int len = arr.length;
 		this.log = log;
 		matrix = new SuccinctIndexableDictionary[log];
 		mid = new int[log];
-		long[] l = new long[len], r = new long[len];
+		final long[] l = new long[len], r = new long[len];
 		for(int level = log; --level >= 0;) {
 			matrix[level] = new SuccinctIndexableDictionary(len + 1);
 			int left = 0, right = 0;
@@ -53,8 +54,8 @@ class WaveletMatrixBeta {
 			}
 		}
 	}
-	NumPair succ(final boolean f, final int l, final int r, final int level){ return new NumPair(matrix[level].rank(f, l) + mid[level] * (f ? 1 : 0), matrix[level].rank(f, r) + mid[level] * (f ? 1 : 0)); }
-	long access(int k) {
+	final NumPair succ(final boolean f, final int l, final int r, final int level){ return new NumPair(matrix[level].rank(f, l) + mid[level] * (f ? 1 : 0), matrix[level].rank(f, r) + mid[level] * (f ? 1 : 0)); }
+	final long access(int k) {
 		long ret = 0;
 		for(int level = log; --level >= 0;) {
 			final boolean f = matrix[level].get(k);
@@ -65,7 +66,7 @@ class WaveletMatrixBeta {
 		}	
 		return ret;
 	}
-	int rank(final long x, int r) {
+	final int rank(final long x, int r) {
 		int l = 0;
 		for(int level = log; --level >= 0;) {
 			final var p = succ(((x >> level) & 1) == 1, l, r, level);
@@ -74,7 +75,7 @@ class WaveletMatrixBeta {
 		}
 		return r - l;
 	}
-	long kthSmallest(int l, int r, int k) {
+	final long kthSmallest(int l, int r, int k) {
 		assert(0 <= k && k < r - l);
 		long ret = 0;
 		for(int level = log; --level >= 0;) {
@@ -90,8 +91,8 @@ class WaveletMatrixBeta {
 		}
 		return ret;
 	}
-	long kthLargest(final int l, final int r, final int k){ return kthSmallest(l, r, r - l - k - 1); }
-	int rangeFreq(int l, int r, final long upper) {
+	final long kthLargest(final int l, final int r, final int k){ return kthSmallest(l, r, r - l - k - 1); }
+	final int rangeFreq(int l, int r, final long upper) {
 		int ret = 0;
 		for(int level = log; --level >= 0;) {
 			final boolean f = ((upper >> level) & 1) == 1;
@@ -104,49 +105,47 @@ class WaveletMatrixBeta {
 		}
 		return ret;
 	}
-	int rangeFreq(final int l, final int r, final long lower, final long upper){ return rangeFreq(l, r, upper) - rangeFreq(l, r, lower); }
-	long prevValue(final int l, final int r, final long upper) {
+	final int rangeFreq(final int l, final int r, final long lower, final long upper){ return rangeFreq(l, r, upper) - rangeFreq(l, r, lower); }
+	final long prevValue(final int l, final int r, final long upper) {
 		final int cnt = rangeFreq(l, r, upper);
 		return cnt == 0 ? -1 : kthSmallest(l, r, cnt - 1);
 	}
-	long nextValue(final int l, final int r, final long lower) {
+	final long nextValue(final int l, final int r, final long lower) {
 		final int cnt = rangeFreq(l, r, lower);
 		return cnt == r - l ? -1 : kthSmallest(l, r, cnt);
 	}
 }
-class WaveletMatrix {
-	private WaveletMatrixBeta mat;
-	private long[] ys;
+final class WaveletMatrix {
+	private final WaveletMatrixBeta mat;
+	private final long[] ys;
 	WaveletMatrix(final long[] arr, final int log) {
 		ys = Arrays.stream(arr).sorted().distinct().toArray();
-		long[] t = new long[arr.length];
-		for(int i = 0; i < arr.length; ++i) {
-			t[i] = get(arr[i]);
-		}
+		final long[] t = new long[arr.length];
+		IntStream.range(0, arr.length).forEach(i -> t[i] = get(arr[i]));
 		mat = new WaveletMatrixBeta(t, log);
 	}
 	private int lowerBound(final long[] arr, final long x) {
 		final int id = Arrays.binarySearch(arr, x);
 		return id < 0 ? -(id - 1) : id;
 	}
-	private int get(final long x){ return lowerBound(ys, x); }
-	long access(final int k){ return ys[(int) mat.access(k)]; }
-	int rank(final long x, final int r) {
+	private final int get(final long x){ return lowerBound(ys, x); }
+	final long access(final int k){ return ys[(int) mat.access(k)]; }
+	final int rank(final long x, final int r) {
 		final var pos = get(x);
 		if(pos == ys.length || ys[pos] != x) {
 			return 0;
 		}
 		return mat.rank(pos, r);
 	}
-	long kthSmallest(final int l, final int r, final int k){ return ys[(int) mat.kthSmallest(l, r, k)]; }
-	long kthLargest(final int l, final int r, final int k){ return ys[(int) mat.kthLargest(l, r, k)]; }
-	int rangeFreq(final int l, final int r, final long upper){ return mat.rangeFreq(l, r, get(upper)); }
-	int rangeFreq(final int l, final int r, final long lower, final long upper){ return mat.rangeFreq(l, r, get(lower), get(upper)); }
-	long prevValue(final int l, final int r, final long upper) {
+	final long kthSmallest(final int l, final int r, final int k){ return ys[(int) mat.kthSmallest(l, r, k)]; }
+	final long kthLargest(final int l, final int r, final int k){ return ys[(int) mat.kthLargest(l, r, k)]; }
+	final int rangeFreq(final int l, final int r, final long upper){ return mat.rangeFreq(l, r, get(upper)); }
+	final int rangeFreq(final int l, final int r, final long lower, final long upper){ return mat.rangeFreq(l, r, get(lower), get(upper)); }
+	final long prevValue(final int l, final int r, final long upper) {
 		final var ret = mat.prevValue(l, r, get(upper));
 		return ret == -1 ? -1 : ys[(int) ret];
 	}
-	long nextValue(final int l, final int r, final long lower) {
+	final long nextValue(final int l, final int r, final long lower) {
 		final var ret = mat.nextValue(l, r, get(lower));
 		return ret == -1 ? -1 : ys[(int) ret];
 	}

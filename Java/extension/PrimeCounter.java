@@ -2,11 +2,11 @@ package extension;
 
 import java.util.ArrayList;
 
-class PrimeCounter {
-	private int sq;
-	private boolean[] p;
-	private int[] psum;
-	private ArrayList<Integer> ps;
+final class PrimeCounter {
+	private final int sq;
+	private final boolean[] p;
+	private final int[] psum;
+	private final ArrayList<Integer> ps;
 	PrimeCounter(final long lim) {
 		sq = (int) kthRooti(lim, 2);
 		psum = new int[sq + 1];
@@ -21,8 +21,8 @@ class PrimeCounter {
 			}
 		}
 	}
-	private long kthRooti(final long n, final int k){ return Utility.kthRoot(n, k); }
-	private long p2(final long x, final long y) {
+	private final long kthRooti(final long n, final int k){ return Utility.kthRoot(n, k); }
+	private final long p2(final long x, final long y) {
 		if(x < 4) {
 			return 0;
 		}
@@ -37,7 +37,7 @@ class PrimeCounter {
 		}
 		return sum;
 	}
-	private long phi(final long m, final long a) {
+	private final long phi(final long m, final long a) {
 		if(m < 1) {
 			return 0;
 		}
@@ -60,7 +60,7 @@ class PrimeCounter {
 		}
 		return phi(m, a - 1) - phi(m / ps.get((int) (a - 1)), a - 1);
 	}
-	long pi(final long n) {
+	final long pi(final long n) {
 		if(n <= sq) {
 			return psum[(int) n];
 		}

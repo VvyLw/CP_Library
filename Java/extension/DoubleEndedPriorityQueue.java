@@ -3,13 +3,13 @@ package extension;
 import java.util.ArrayList;
 import java.util.Collections;
 
-class DoubleEndedPriorityQueue<T extends Number> {
-	private ArrayList<T> d;
+final class DoubleEndedPriorityQueue<T extends Number> {
+	private final ArrayList<T> d;
 	DoubleEndedPriorityQueue(final ArrayList<T> d) {
 		this.d = d;
 		make_heap();
 	}
-	private void make_heap() {
+	private final void make_heap() {
 		for(int i = d.size(); i-- > 0;) {
 			if (i % 2 == 1 && d.get(i - 1).longValue() < d.get(i).longValue()) {
 				Collections.swap(d, i - 1, i);
@@ -17,7 +17,7 @@ class DoubleEndedPriorityQueue<T extends Number> {
 			up(down(i), i);
 		}
 	}
-	private int down(int k) {
+	private final int down(int k) {
 		final int n = d.size();
 		if(k % 2 == 1) {
 			while(2 * k + 1 < n) {
@@ -50,7 +50,7 @@ class DoubleEndedPriorityQueue<T extends Number> {
 		}
 		return k;
 	}
-	private int up(int k, final int root) {
+	private final int up(int k, final int root) {
 		if((k | 1) < d.size() && d.get(k & ~1).longValue() < d.get(k | 1).longValue()) {
 			Collections.swap(d, k & ~1, k | 1);
 			k ^= 1;
@@ -66,14 +66,14 @@ class DoubleEndedPriorityQueue<T extends Number> {
 		}
 		return k;
 	}
-	private int parent(final int k){ return ((k >> 1) - 1) & ~1; }
-	private void popBack(final ArrayList<T> d){ d.remove(d.size() - 1); } 
-	void push(final T x) {
+	private final int parent(final int k){ return ((k >> 1) - 1) & ~1; }
+	private final void popBack(final ArrayList<T> d){ d.remove(d.size() - 1); } 
+	final void push(final T x) {
 		final int k = d.size();
 		d.add(x);
 		up(k, 1);
 	}
-	T popMin() {
+	final T popMin() {
 		final var res = getMin();
 		if(d.size() < 3) {
 			popBack(d); 
@@ -84,7 +84,7 @@ class DoubleEndedPriorityQueue<T extends Number> {
 		}
 		return res;
 	}
-	T popMax() {
+	final T popMax() {
 		final var res = getMax();
 		if(d.size() < 2) { 
 			popBack(d);
@@ -95,8 +95,8 @@ class DoubleEndedPriorityQueue<T extends Number> {
 		}
 		return res;
 	}
-	T getMin(){ return d.size() < 2 ? d.get(0) : d.get(1); }
-	T getMax(){ return d.get(0); }
-	int size(){ return d.size(); }
-	boolean isEmpty(){ return d.isEmpty(); }
+	final T getMin(){ return d.size() < 2 ? d.get(0) : d.get(1); }
+	final T getMax(){ return d.get(0); }
+	final int size(){ return d.size(); }
+	final boolean isEmpty(){ return d.isEmpty(); }
 }

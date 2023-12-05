@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.stream.IntStream;
 
-class Edge {
+final class Edge {
 	public int src;
 	public int to;
 	public long cost;
@@ -26,7 +26,7 @@ class Edge {
 		this.cost = cost;
 	}
 	@Override
-	public boolean equals(final Object o) {
+	public final boolean equals(final Object o) {
 		if(this == o) {
 			return true;
 		}
@@ -43,7 +43,7 @@ class Edge {
 		return cost == e.cost;
 	}
 	@Override
-	public int hashCode() {
+	public final int hashCode() {
 		int result = 17;
 		result = 31 * result + src;
 		result = 31 * result + to;
@@ -51,18 +51,18 @@ class Edge {
 		return result;
 	}
 	@Override
-	public String toString(){ return src + " " + to + " " + cost; }
+	public final String toString(){ return src + " " + to + " " + cost; }
 }
 class Graph extends ArrayList<ArrayList<Edge>> {
-	protected boolean undirected;
-	protected int n, indexed;
+	protected final boolean undirected;
+	protected final int n, indexed;
 	Graph(final int n, final int indexed, final boolean undirected) {
 		this.n = n;
 		this.indexed = indexed;
 		this.undirected = undirected;
 		IntStream.range(0, n).forEach(i -> this.add(new ArrayList<>()));
 	}
-	void addEdge(int a, int b) {
+	final void addEdge(int a, int b) {
 		a -= indexed;
 		b -= indexed;
 		this.get(a).add(new Edge(b));
@@ -70,7 +70,7 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 			this.get(b).add(new Edge(a));
 		}
 	}
-	protected int[] allDist(final int v) {
+	protected final int[] allDist(final int v) {
 		int[] d = new int[n];
 		Arrays.fill(d, -1);
 		Queue<Integer> q = new ArrayDeque<>();
@@ -88,13 +88,13 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		}
 		return d;
 	}
-	protected int dist(final int u, final int v){ return allDist(u)[v]; }
+	protected final int dist(final int u, final int v){ return allDist(u)[v]; }
 }
-class WeightedGraph extends Graph {
+final class WeightedGraph extends Graph {
 	WeightedGraph(final int n, final int indexed, final boolean undirected) {
 		super(n, indexed, undirected);
 	}
-	void addEdge(int a, int b, final long cost) {
+	final void addEdge(int a, int b, final long cost) {
 		a -= indexed;
 		b -= indexed;
 		this.get(a).add(new Edge(b, cost));
@@ -102,7 +102,7 @@ class WeightedGraph extends Graph {
 			this.get(b).add(new Edge(a, cost));
 		}
 	}
-	long[] dijkstra(final int v) {
+	final long[] dijkstra(final int v) {
 		long[] cost = new long[n];
 		Arrays.fill(cost, Long.MAX_VALUE);
 		Queue<NumPair> dj = new PriorityQueue<>(Collections.reverseOrder());
@@ -122,7 +122,7 @@ class WeightedGraph extends Graph {
 		}
 		return cost;
 	}
-	long[][] warshallFloyd() {
+	final long[][] warshallFloyd() {
 		long[][] cost = new long[n][n];
 		IntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], Long.MAX_VALUE));
 		IntStream.range(0, n).forEach(i -> cost[i][i] = 0);
@@ -144,17 +144,17 @@ class WeightedGraph extends Graph {
 	}
 }
 class Tree {
-	private ArrayList<Edge> edge;
-	private int n, indexed;
+	private final ArrayList<Edge> edge;
+	private final int n, indexed;
 	Tree(final int n, final int indexed) {
 		edge = new ArrayList<>(n);
 		this.n = n;
 		this.indexed = indexed;
 	}
-	void addEdge(final int a, final int b, final long cost){ edge.add(new Edge(a - indexed, b - indexed, cost)); }
-	long kruskal() {
+	final void addEdge(final int a, final int b, final long cost){ edge.add(new Edge(a - indexed, b - indexed, cost)); }
+	final long kruskal() {
 		Collections.sort(edge, Comparator.comparing(e -> e.cost));
-		UnionFind uf = new UnionFind(n);
+		final UnionFind uf = new UnionFind(n);
 		long res = 0;
 		for(final var ed: edge) {
 			if(uf.unite(ed.src, ed.to)) {

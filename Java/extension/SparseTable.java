@@ -3,10 +3,10 @@ package extension;
 import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
 
-class SparseTable {
-	private long[][] st;
-	private int[] lookup;
-	private BinaryOperator<Long> op;
+final class SparseTable {
+	private final long[][] st;
+	private final int[] lookup;
+	private final BinaryOperator<Long> op;
 	SparseTable(final int[] a, final BinaryOperator<Long> op) {
 		this.op = op;
 		int b = 0;
@@ -47,11 +47,11 @@ class SparseTable {
 			lookup[i] = lookup[i >> 1] + 1;
 		}
 	}
-	long query(final int l, final int r) {
+	final long query(final int l, final int r) {
 		final int b = lookup[r - l];
 		return op.apply(st[b][l], st[b][r - (1 << b)]);
 	}
-	int minLeft(final int x, final Predicate<Long> fn) {
+	final int minLeft(final int x, final Predicate<Long> fn) {
 		if(x == 0) {
 			return 0;
 		}
@@ -67,7 +67,7 @@ class SparseTable {
 		}
 		return ok;
 	}
-	int maxRight(final int x, final Predicate<Long> fn) {
+	final int maxRight(final int x, final Predicate<Long> fn) {
 		if(x == lookup.length - 1) {
 			return lookup.length - 1;
 		}
