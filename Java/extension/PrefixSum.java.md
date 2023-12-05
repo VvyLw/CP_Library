@@ -132,13 +132,13 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/extension/PrefixSum.java\n"
-  code: "package extension;\n\nimport java.util.stream.IntStream;\n\nclass PrefixSum\
-    \ {\n\tprivate int n;\n\tprivate long[] s;\n\tPrefixSum(final int[] a) {\n\t\t\
-    n = a.length;\n\t\ts = new long[n + 1];\n\t\tIntStream.range(0, n).forEach(i ->\
-    \ s[i + 1] = s[i] + a[i]);\n\t}\n\tPrefixSum(final long[] a) {\n\t\tn = a.length;\n\
+  code: "package extension;\n\nimport java.util.stream.IntStream;\n\nfinal class PrefixSum\
+    \ {\n\tprivate final int n;\n\tprivate final long[] s;\n\tPrefixSum(final int[]\
+    \ a) {\n\t\tn = a.length;\n\t\ts = new long[n + 1];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> s[i + 1] = s[i] + a[i]);\n\t}\n\tPrefixSum(final long[] a) {\n\t\tn = a.length;\n\
     \t\ts = new long[n + 1];\n\t\tIntStream.range(0, n).forEach(i -> s[i + 1] = s[i]\
-    \ + a[i]);\n\t}\n\tlong[] get(){ return s; }\n\tlong query(final int l, final\
-    \ int r){ return s[r] - s[l]; }\n}"
+    \ + a[i]);\n\t}\n\tfinal long[] get(){ return s; }\n\tfinal long query(final int\
+    \ l, final int r){ return s[r] - s[l]; }\n}"
   dependsOn:
   - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
@@ -183,7 +183,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-05 19:17:08+09:00'
+  timestamp: '2023-12-05 22:25:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/PrefixSum.java

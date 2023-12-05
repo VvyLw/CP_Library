@@ -133,24 +133,26 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/extension/MyScanner.java\n"
   code: "package extension;\n\nimport java.util.ArrayList;\nimport java.util.Scanner;\n\
-    import java.util.stream.IntStream;\n\nclass MyScanner {\n\tprivate Scanner sc\
-    \ = new Scanner(System.in);\n\tint ni(){ return sc.nextInt(); }\n\tlong nl(){\
-    \ return sc.nextLong(); }\n\tdouble nd(){ return sc.nextDouble(); }\n\tString\
-    \ ns(){ return sc.next(); }\n\tint[] ni(final int n){\n\t\tint[] a = new int[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = ni());\n\t\treturn a;\n\t}\n\tlong[]\
-    \ nl(final int n){\n\t\tlong[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = nl());\n\t\treturn a;\n\t}\n\tdouble[] nd(final int n){\n\t\tdouble[]\
-    \ a = new double[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\
-    \treturn a;\n\t}\n\tString[] ns(final int n){\n\t\tString[] a = new String[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = ns());\n\t\treturn a;\n\t}\n\tArrayList<Integer>\
-    \ nia(final int n) {\n\t\tvar a = new ArrayList<Integer>(n);\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a.add(i, ni()));\n\t\treturn a;\n\t}\n\tArrayList<Long> nla(final\
-    \ int n) {\n\t\tvar a = new ArrayList<Long>(n);\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a.add(i, nl()));\n\t\treturn a;\n\t}\n\tArrayList<Double> nda(final int n)\
-    \ {\n\t\tvar a = new ArrayList<Double>(n);\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a.add(i, nd()));\n\t\treturn a;\n\t}\n\tArrayList<String> nsa(final int n)\
-    \ {\n\t\tvar a = new ArrayList<String>(n);\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a.add(i, ns()));\n\t\treturn a;\n\t}\n\tvoid close(){ sc.close(); }\n}"
+    import java.util.stream.IntStream;\n\nfinal class MyScanner {\n\tprivate final\
+    \ Scanner sc = new Scanner(System.in);\n\tfinal int ni(){ return sc.nextInt();\
+    \ }\n\tfinal long nl(){ return sc.nextLong(); }\n\tfinal double nd(){ return sc.nextDouble();\
+    \ }\n\tfinal String ns(){ return sc.next(); }\n\tfinal int[] ni(final int n){\n\
+    \t\tint[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ni());\n\
+    \t\treturn a;\n\t}\n\tfinal long[] nl(final int n){\n\t\tlong[] a = new long[n];\n\
+    \t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\treturn a;\n\t}\n\tfinal\
+    \ double[] nd(final int n){\n\t\tdouble[] a = new double[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal String[] ns(final\
+    \ int n){\n\t\tString[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal ArrayList<Integer> nia(final int\
+    \ n) {\n\t\tvar a = new ArrayList<Integer>(n);\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a.add(i, ni()));\n\t\treturn a;\n\t}\n\tfinal ArrayList<Long> nla(final int\
+    \ n) {\n\t\tvar a = new ArrayList<Long>(n);\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a.add(i, nl()));\n\t\treturn a;\n\t}\n\tfinal ArrayList<Double> nda(final\
+    \ int n) {\n\t\tvar a = new ArrayList<Double>(n);\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a.add(i, nd()));\n\t\treturn a;\n\t}\n\tfinal ArrayList<String> nsa(final\
+    \ int n) {\n\t\tvar a = new ArrayList<String>(n);\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a.add(i, ns()));\n\t\treturn a;\n\t}\n\tfinal void close(){ sc.close(); }\n\
+    }"
   dependsOn:
   - Java/extension/LowestCommonAncestor.java
   - Java/extension/WeightedUnionFind.java
@@ -195,7 +197,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-05 19:17:08+09:00'
+  timestamp: '2023-12-05 22:25:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/MyScanner.java

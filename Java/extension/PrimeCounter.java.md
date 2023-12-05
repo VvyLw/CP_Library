@@ -132,30 +132,30 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/extension/PrimeCounter.java\n"
-  code: "package extension;\n\nimport java.util.ArrayList;\n\nclass PrimeCounter {\n\
-    \tprivate int sq;\n\tprivate boolean[] p;\n\tprivate int[] psum;\n\tprivate ArrayList<Integer>\
-    \ ps;\n\tPrimeCounter(final long lim) {\n\t\tsq = (int) kthRooti(lim, 2);\n\t\t\
-    psum = new int[sq + 1];\n\t\tp = new PrimeTable(sq).table();\n\t\tfor(int i =\
-    \ 1; i <= sq; ++i) {\n\t\t\tpsum[i] = psum[i - 1] + (p[i] ? 1 : 0);\n\t\t}\n\t\
-    \tps = new ArrayList<>();\n\t\tfor(int i = 1; i <= sq; ++i) {\n\t\t\tif(p[i])\
-    \ {\n\t\t\t\tps.add(i);\n\t\t\t}\n\t\t}\n\t}\n\tprivate long kthRooti(final long\
-    \ n, final int k){ return Utility.kthRoot(n, k); }\n\tprivate long p2(final long\
-    \ x, final long y) {\n\t\tif(x < 4) {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal long\
-    \ a = pi(y);\n\t\tfinal long b = pi(kthRooti(x, 2));\n\t\tif(a >= b) {\n\t\t\t\
-    return 0;\n\t\t}\n\t\tlong sum = (long) (a - 2) * (a + 1) / 2 - (b - 2) * (b +\
-    \ 1) / 2;\n\t\tfor(long i = a; i < b; ++i) {\n\t\t\tsum += pi(x / ps.get((int)\
-    \ i));\n\t\t}\n\t\treturn sum;\n\t}\n\tprivate long phi(final long m, final long\
-    \ a) {\n\t\tif(m < 1) {\n\t\t\treturn 0;\n\t\t}\n\t\tif(a > m) {\n\t\t\treturn\
-    \ 1;\n\t\t}\n\t\tif(a < 1) {\n\t\t\treturn m;\n\t\t}\n\t\tif(m <= (long) ps.get((int)\
-    \ (a - 1)) * ps.get((int) (a - 1))) {\n\t\t\treturn pi(m) - a + 1;\n\t\t}\n\t\t\
-    if(m <= (long) ps.get((int) (a - 1)) * ps.get((int) (a - 1)) * ps.get((int) (a\
-    \ - 1)) && m <= sq) {\n\t\t\tfinal long sx = pi(kthRooti(m, 2));\n\t\t\tlong ans\
-    \ = pi(m) - (long) (sx + a - 2) * (sx - a + 1) / 2;\n\t\t\tfor(long i = a; i <\
-    \ sx; ++i) {\n\t\t\t\tans += pi(m / ps.get((int) i));\n\t\t\t}\n\t\t\treturn ans;\n\
-    \t\t}\n\t\treturn phi(m, a - 1) - phi(m / ps.get((int) (a - 1)), a - 1);\n\t}\n\
-    \tlong pi(final long n) {\n\t\tif(n <= sq) {\n\t\t\treturn psum[(int) n];\n\t\t\
-    }\n\t\tfinal long m = kthRooti(n, 3);\n\t\tfinal long a = pi(m);\n\t\treturn phi(n,\
-    \ a) + a - 1 - p2(n, m);\n\t}\n}"
+  code: "package extension;\n\nimport java.util.ArrayList;\n\nfinal class PrimeCounter\
+    \ {\n\tprivate final int sq;\n\tprivate final boolean[] p;\n\tprivate final int[]\
+    \ psum;\n\tprivate final ArrayList<Integer> ps;\n\tPrimeCounter(final long lim)\
+    \ {\n\t\tsq = (int) kthRooti(lim, 2);\n\t\tpsum = new int[sq + 1];\n\t\tp = new\
+    \ PrimeTable(sq).table();\n\t\tfor(int i = 1; i <= sq; ++i) {\n\t\t\tpsum[i] =\
+    \ psum[i - 1] + (p[i] ? 1 : 0);\n\t\t}\n\t\tps = new ArrayList<>();\n\t\tfor(int\
+    \ i = 1; i <= sq; ++i) {\n\t\t\tif(p[i]) {\n\t\t\t\tps.add(i);\n\t\t\t}\n\t\t\
+    }\n\t}\n\tprivate final long kthRooti(final long n, final int k){ return Utility.kthRoot(n,\
+    \ k); }\n\tprivate final long p2(final long x, final long y) {\n\t\tif(x < 4)\
+    \ {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal long a = pi(y);\n\t\tfinal long b = pi(kthRooti(x,\
+    \ 2));\n\t\tif(a >= b) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong sum = (long) (a - 2)\
+    \ * (a + 1) / 2 - (b - 2) * (b + 1) / 2;\n\t\tfor(long i = a; i < b; ++i) {\n\t\
+    \t\tsum += pi(x / ps.get((int) i));\n\t\t}\n\t\treturn sum;\n\t}\n\tprivate final\
+    \ long phi(final long m, final long a) {\n\t\tif(m < 1) {\n\t\t\treturn 0;\n\t\
+    \t}\n\t\tif(a > m) {\n\t\t\treturn 1;\n\t\t}\n\t\tif(a < 1) {\n\t\t\treturn m;\n\
+    \t\t}\n\t\tif(m <= (long) ps.get((int) (a - 1)) * ps.get((int) (a - 1))) {\n\t\
+    \t\treturn pi(m) - a + 1;\n\t\t}\n\t\tif(m <= (long) ps.get((int) (a - 1)) * ps.get((int)\
+    \ (a - 1)) * ps.get((int) (a - 1)) && m <= sq) {\n\t\t\tfinal long sx = pi(kthRooti(m,\
+    \ 2));\n\t\t\tlong ans = pi(m) - (long) (sx + a - 2) * (sx - a + 1) / 2;\n\t\t\
+    \tfor(long i = a; i < sx; ++i) {\n\t\t\t\tans += pi(m / ps.get((int) i));\n\t\t\
+    \t}\n\t\t\treturn ans;\n\t\t}\n\t\treturn phi(m, a - 1) - phi(m / ps.get((int)\
+    \ (a - 1)), a - 1);\n\t}\n\tfinal long pi(final long n) {\n\t\tif(n <= sq) {\n\
+    \t\t\treturn psum[(int) n];\n\t\t}\n\t\tfinal long m = kthRooti(n, 3);\n\t\tfinal\
+    \ long a = pi(m);\n\t\treturn phi(n, a) + a - 1 - p2(n, m);\n\t}\n}"
   dependsOn:
   - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
@@ -200,7 +200,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-05 19:17:08+09:00'
+  timestamp: '2023-12-05 22:25:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/PrimeCounter.java

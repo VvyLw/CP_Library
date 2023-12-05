@@ -134,41 +134,42 @@ data:
     RuntimeError: bundler is not specified: Java/extension/Pair.java\n"
   code: "package extension;\n\nclass Pair<F, S> {\n\tprotected final F first;\n\t\
     protected final S second;\n\tPair(final F first, final S second) {\n\t\tthis.first\
-    \ = first;\n\t\tthis.second = second;\n\t}\n\t@Override\n\tpublic boolean equals(final\
-    \ Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null\
-    \ || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?,\
-    \ ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first)) {\n\t\t\treturn false;\n\
-    \t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t@Override\n\tpublic int hashCode(){\
-    \ return 31 * first.hashCode() + second.hashCode(); }\n\t@Override\n\tpublic String\
-    \ toString(){ return \"(\" + first + \", \" + second + \")\"; }\n\tpublic static\
-    \ <F, S> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }\n\tPair<S,\
-    \ F> swap(){ return Pair.of(second, first); }\n}\nclass NumPair extends Pair<Number,\
-    \ Number> implements Comparable<NumPair>  {\n\tNumPair(final Number first, final\
-    \ Number second){ super(first, second); }\n\tNumPair rotate(){ return new NumPair(-second.doubleValue(),\
-    \ first.doubleValue()); } \n\tNumPair rotate(final int ang) {\n\t\tfinal double\
-    \ rad = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn new NumPair(first.doubleValue()\
-    \ * Math.cos(rad) - second.doubleValue() * Math.sin(rad),\n\t\t\t\t\t\t\tfirst.doubleValue()\
-    \ * Math.sin(rad) + second.doubleValue() * Math.cos(rad));\n\t}\n\tlong dot(final\
-    \ NumPair p){ return first.longValue() * p.first.longValue() + second.longValue()\
-    \ + p.second.longValue(); }\n\tdouble dotf(final NumPair p){ return first.doubleValue()\
-    \ * p.first.doubleValue() + second.doubleValue() + p.second.doubleValue(); }\n\
-    \tlong cross(final NumPair p){ return this.rotate().dot(p); }\n\tdouble crossf(final\
-    \ NumPair p){ return this.rotate().dotf(p); }\n\tlong sqr(){ return this.dot(this);\
-    \ }\n\tdouble sqrf(){ return this.dotf(this); }\n\tdouble grad() { \n\t\ttry {\n\
-    \t\t\treturn second.doubleValue() / first.doubleValue();\n\t\t} catch(ArithmeticException\
-    \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn Double.NaN;\n\t}\n\tdouble\
-    \ abs(){ return Math.hypot(first.doubleValue(), second.doubleValue()); }\n\tlong\
-    \ lcm(){ return Utility.lcm(first.longValue(), second.longValue()); }\n\tlong\
-    \ gcd(){ return Utility.gcd(first.longValue(), second.longValue()); }\n\tNumPair\
-    \ extgcd() {\n\t\tlong x = 1, y = 0, t1 = 0, t2 = 0, t3 = 1, a = first.longValue(),\
-    \ b = second.longValue();\n\t\twhile(b > 0) {\n\t\t\tt1 = a / b;\n\t\t\ta -= t1\
-    \ * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\t\tx -= t1 * t2;\n\t\t\
-    \tx ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^= t2;\n\t\t\ty -= t1 * t3;\n\t\t\ty ^= t3;\n\
-    \t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\t}\n\t\treturn new NumPair(x, y);\n\t}\n\t\
-    @Override\n\tpublic int compareTo(final NumPair o) {\n\t\tif(first.doubleValue()\
-    \ == o.first.doubleValue()) {\n\t\t\treturn Double.compare(second.doubleValue(),\
-    \ o.second.doubleValue());\n\t\t}\n\t\treturn Double.compare(first.doubleValue(),\
-    \ o.first.doubleValue());\n\t}\n}"
+    \ = first;\n\t\tthis.second = second;\n\t}\n\t@Override\n\tpublic final boolean\
+    \ equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\
+    \tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\
+    \tfinal Pair<?, ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first)) {\n\t\t\
+    \treturn false;\n\t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t@Override\n\
+    \tpublic final int hashCode(){ return 31 * first.hashCode() + second.hashCode();\
+    \ }\n\t@Override\n\tpublic final String toString(){ return \"(\" + first + \"\
+    , \" + second + \")\"; }\n\tpublic static final <F, S> Pair<F, S> of(final F a,\
+    \ final S b){ return new Pair<>(a, b); }\n\tfinal Pair<S, F> swap(){ return Pair.of(second,\
+    \ first); }\n}\nfinal class NumPair extends Pair<Number, Number> implements Comparable<NumPair>\
+    \  {\n\tNumPair(final Number first, final Number second){ super(first, second);\
+    \ }\n\tfinal NumPair rotate(){ return new NumPair(-second.doubleValue(), first.doubleValue());\
+    \ } \n\tfinal NumPair rotate(final int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang,\
+    \ 360));\n\t\treturn new NumPair(first.doubleValue() * Math.cos(rad) - second.doubleValue()\
+    \ * Math.sin(rad),\n\t\t\t\t\t\t\tfirst.doubleValue() * Math.sin(rad) + second.doubleValue()\
+    \ * Math.cos(rad));\n\t}\n\tfinal long dot(final NumPair p){ return first.longValue()\
+    \ * p.first.longValue() + second.longValue() + p.second.longValue(); }\n\tfinal\
+    \ double dotf(final NumPair p){ return first.doubleValue() * p.first.doubleValue()\
+    \ + second.doubleValue() + p.second.doubleValue(); }\n\tfinal long cross(final\
+    \ NumPair p){ return this.rotate().dot(p); }\n\tfinal double crossf(final NumPair\
+    \ p){ return this.rotate().dotf(p); }\n\tfinal long sqr(){ return this.dot(this);\
+    \ }\n\tfinal double sqrf(){ return this.dotf(this); }\n\tfinal double grad() {\
+    \ \n\t\ttry {\n\t\t\treturn second.doubleValue() / first.doubleValue();\n\t\t\
+    } catch(ArithmeticException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn\
+    \ Double.NaN;\n\t}\n\tfinal double abs(){ return Math.hypot(first.doubleValue(),\
+    \ second.doubleValue()); }\n\tfinal long lcm(){ return Utility.lcm(first.longValue(),\
+    \ second.longValue()); }\n\tfinal long gcd(){ return Utility.gcd(first.longValue(),\
+    \ second.longValue()); }\n\tfinal NumPair extgcd() {\n\t\tlong x = 1, y = 0, t1\
+    \ = 0, t2 = 0, t3 = 1, a = first.longValue(), b = second.longValue();\n\t\twhile(b\
+    \ > 0) {\n\t\t\tt1 = a / b;\n\t\t\ta -= t1 * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\
+    \t\t\ta ^= b;\n\t\t\tx -= t1 * t2;\n\t\t\tx ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^=\
+    \ t2;\n\t\t\ty -= t1 * t3;\n\t\t\ty ^= t3;\n\t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\
+    \t}\n\t\treturn new NumPair(x, y);\n\t}\n\t@Override\n\tfinal public int compareTo(final\
+    \ NumPair o) {\n\t\tif(first.doubleValue() == o.first.doubleValue()) {\n\t\t\t\
+    return Double.compare(second.doubleValue(), o.second.doubleValue());\n\t\t}\n\t\
+    \treturn Double.compare(first.doubleValue(), o.first.doubleValue());\n\t}\n}"
   dependsOn:
   - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
@@ -213,7 +214,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-05 19:17:08+09:00'
+  timestamp: '2023-12-05 22:25:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Pair.java

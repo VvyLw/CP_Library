@@ -133,18 +133,18 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/extension/UnionFind.java\n"
   code: "package extension;\n\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
-    import java.util.stream.IntStream;\n\nclass UnionFind {\n\tprivate int[] par;\n\
-    \tUnionFind(final int n) {\n\t\tpar = new int[n];\n\t\tArrays.fill(par, -1);\n\
-    \t}\n\tint root(final int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i;\
-    \ }\n\tint size(final int i){ return -par[root(i)]; }\n\tboolean unite(int i,\
-    \ int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) return false;\n\
-    \t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i]\
-    \ += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\t}\n\tboolean same(final int\
-    \ i, final int j){ return root(i) == root(j); }\n\tArrayList<ArrayList<Integer>>\
+    import java.util.stream.IntStream;\n\nfinal class UnionFind {\n\tprivate final\
+    \ int[] par;\n\tUnionFind(final int n) {\n\t\tpar = new int[n];\n\t\tArrays.fill(par,\
+    \ -1);\n\t}\n\tfinal int root(final int i){ return par[i] >= 0 ? par[i] = root(par[i])\
+    \ : i; }\n\tfinal int size(final int i){ return -par[root(i)]; }\n\tfinal boolean\
+    \ unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) return\
+    \ false;\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\
+    \t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\t}\n\tfinal boolean\
+    \ same(final int i, final int j){ return root(i) == root(j); }\n\tfinal ArrayList<ArrayList<Integer>>\
     \ groups() {\n\t\tfinal int n = par.length;\n\t\tArrayList<ArrayList<Integer>>\
     \ res = new ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> res.add(new\
     \ ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\
-    \t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n\tboolean isBipartite()\
+    \t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n\tfinal boolean isBipartite()\
     \ {\n\t\tfinal int n = par.length / 2;\n\t\tboolean ok = true;\n\t\tfor(int i\
     \ = 0; i < n; ++i) {\n\t\t\tok &= root(i) != root(i + n);\n\t\t}\n\t\treturn ok;\n\
     \t}\n}"
@@ -192,7 +192,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-05 19:17:08+09:00'
+  timestamp: '2023-12-05 22:25:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/UnionFind.java

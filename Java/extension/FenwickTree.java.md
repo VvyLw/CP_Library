@@ -132,22 +132,23 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/extension/FenwickTree.java\n"
-  code: "package extension;\n\nclass FenwickTree {\n\tprivate int n;\n\tprivate long[]\
-    \ data;\n\tFenwickTree(final int n) {\n\t\tthis.n = n + 2;\n\t\tdata = new long[this.n\
-    \ + 1];\n\t}\n\tlong sum(int k) {\n\t\tif(k < 0) return 0;\n\t\tlong ret = 0;\n\
-    \t\tfor(++k; k > 0; k -= k & -k) {\n\t\t\tret += data[k];\n\t\t}\n\t\treturn ret;\n\
-    \t}\n\tlong sum(final int l, final int r){ return sum(r) - sum(l - 1); }\n\tlong\
-    \ get(final int k){ return sum(k) - sum(k - 1); }\n\tvoid add(int k, final long\
-    \ x) {\n\t\tfor(++k; k < n; k += k & -k) {\n\t\t\tdata[k] += x;\n\t\t}\n\t}\n\t\
-    void imos(final int l, final int r, long x) {\n\t\tadd(l, x);\n\t\tadd(r + 1,\
-    \ -x);\n\t}\n\tprivate int lg(final int n){ return 63 - Integer.numberOfLeadingZeros(n);\
-    \ }\n\tint lowerBound(long w) {\n\t\tif(w <= 0) {\n\t\t\treturn 0;\n\t\t}\n\t\t\
-    int x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x + k <= n\
-    \ - 1 && data[x + k] < w) {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t\
-    }\n\t\t}\n\t\treturn x;\n\t}\n\tint upper_bound(long w) {\n\t\tif(w < 0) {\n\t\
-    \t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>=\
-    \ 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <= w) {\n\t\t\t\tw -= data[x +\
-    \ k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n}"
+  code: "package extension;\n\nfinal class FenwickTree {\n\tprivate final int n;\n\
+    \tprivate final long[] data;\n\tFenwickTree(final int n) {\n\t\tthis.n = n + 2;\n\
+    \t\tdata = new long[this.n + 1];\n\t}\n\tfinal long sum(int k) {\n\t\tif(k < 0)\
+    \ return 0;\n\t\tlong ret = 0;\n\t\tfor(++k; k > 0; k -= k & -k) {\n\t\t\tret\
+    \ += data[k];\n\t\t}\n\t\treturn ret;\n\t}\n\tfinal long sum(final int l, final\
+    \ int r){ return sum(r) - sum(l - 1); }\n\tfinal long get(final int k){ return\
+    \ sum(k) - sum(k - 1); }\n\tfinal void add(int k, final long x) {\n\t\tfor(++k;\
+    \ k < n; k += k & -k) {\n\t\t\tdata[k] += x;\n\t\t}\n\t}\n\tfinal void imos(final\
+    \ int l, final int r, long x) {\n\t\tadd(l, x);\n\t\tadd(r + 1, -x);\n\t}\n\t\
+    private final int lg(final int n){ return 63 - Integer.numberOfLeadingZeros(n);\
+    \ }\n\tfinal int lowerBound(long w) {\n\t\tif(w <= 0) {\n\t\t\treturn 0;\n\t\t\
+    }\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x +\
+    \ k <= n - 1 && data[x + k] < w) {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\
+    \t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\tfinal int upperBound(long w) {\n\t\tif(w\
+    \ < 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n);\
+    \ k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <= w) {\n\t\t\t\t\
+    w -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n}"
   dependsOn:
   - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
@@ -192,7 +193,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-05 19:17:08+09:00'
+  timestamp: '2023-12-05 22:25:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/FenwickTree.java

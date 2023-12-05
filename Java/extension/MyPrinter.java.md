@@ -134,43 +134,45 @@ data:
     RuntimeError: bundler is not specified: Java/extension/MyPrinter.java\n"
   code: "package extension;\n\nimport java.io.OutputStream;\nimport java.io.PrintWriter;\n\
     import java.util.Arrays;\nimport java.util.Collection;\nimport java.util.List;\n\
-    import java.util.stream.IntStream;\n\nclass MyPrinter {\n\tprivate PrintWriter\
-    \ pw;\n\tMyPrinter(final OutputStream os, final boolean flush){ pw = new PrintWriter(os,\
-    \ flush); }\n\tvoid print(final Object arg){ pw.print(arg); }\n\tvoid out(){ pw.println();\
-    \ }\n\tvoid out(final Object head, final Object... tail) {\n\t\tpw.print(head);\n\
-    \t\tfor(final var el: tail) {\n\t\t\tpw.print(\" \" + el);\n\t\t}\n\t\tout();\n\
-    \t}\n\t<F, S> void out(final Pair<F, S> arg){ pw.println(arg.first + \" \" + arg.second);\
-    \ }\n\tvoid out(final int[] args){ IntStream.range(0, args.length).forEach(i ->\
-    \ pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tvoid out(final\
-    \ long[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i]\
-    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tvoid out(final double[] args){\
+    import java.util.stream.IntStream;\n\nfinal class MyPrinter {\n\tprivate final\
+    \ PrintWriter pw;\n\tMyPrinter(final OutputStream os, final boolean flush){ pw\
+    \ = new PrintWriter(os, flush); }\n\tfinal void print(final Object arg){ pw.print(arg);\
+    \ }\n\tfinal void out(){ pw.println(); }\n\tfinal void out(final Object head,\
+    \ final Object... tail) {\n\t\tpw.print(head);\n\t\tfor(final var el: tail) {\n\
+    \t\t\tpw.print(\" \" + el);\n\t\t}\n\t\tout();\n\t}\n\tfinal <F, S> void out(final\
+    \ Pair<F, S> arg){ pw.println(arg.first + \" \" + arg.second); }\n\tfinal void\
+    \ out(final int[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i]\
+    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final long[]\
+    \ args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i +\
+    \ 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final double[] args){\
     \ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length\
-    \ ? \" \" : \"\\n\"))); }\n\tvoid out(final boolean[] args){ IntStream.range(0,\
+    \ ? \" \" : \"\\n\"))); }\n\tfinal void out(final boolean[] args){ IntStream.range(0,\
     \ args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? \" \" :\
-    \ \"\\n\"))); }\n\tvoid out(final char[] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tvoid out(final\
-    \ Object[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i]\
-    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\t<T> void out(final List<T>\
-    \ args){ IntStream.range(0, args.size()).forEach(i -> pw.print(args.get(i) + (i\
-    \ + 1 < args.size() ? \" \" : \"\\n\"))); }\n\tvoid outl(final Object head, final\
-    \ Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(pw::println);\n\
-    \t}\n\tvoid outl(final int[] args){ Arrays.stream(args).forEach(pw::println);\
-    \ }\n\tvoid outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> out(args[i])); }\n\tvoid outl(final long[] args){ Arrays.stream(args).forEach(pw::println);\
-    \ }\n\tvoid outl(final long[][] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> out(args[i])); }\n\tvoid outl(final double[] args){ Arrays.stream(args).forEach(pw::println);\
-    \ }\n\tvoid outl(final double[][] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> out(args[i])); }\n\tvoid outl(final boolean[] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> out(args[i])); }\n\tvoid outl(final boolean[][] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> out(args[i])); }\n\tvoid outl(final char[] args){\
-    \ IntStream.range(0, args.length).forEach(i -> out(args[i])); }\n\tvoid outl(final\
-    \ Object[] args){ Arrays.stream(args).forEach(pw::println); }\n\t<E> void outl(final\
-    \ Collection<E> args){ args.stream().forEach(pw::println); }\n\tvoid fin(final\
-    \ Object head, final Object... tail) {\n\t\tout(head, tail);\n\t\tflush();\n\t\
-    \tSystem.exit(0);\n\t}\n\t<T> void fin(final List<T> args) {\n\t\tout(args);\n\
-    \t\tflush();\n\t\tSystem.exit(0);\n\t}\n\t<E> void fine(final Collection<E> args)\
-    \ {\n\t\toutl(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\tvoid flush(){\
-    \ pw.flush(); }\n\tvoid close(){ pw.close(); }\n}"
+    \ \"\\n\"))); }\n\tfinal void out(final char[] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal\
+    \ void out(final Object[] args){ IntStream.range(0, args.length).forEach(i ->\
+    \ pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal <T>\
+    \ void out(final List<T> args){ IntStream.range(0, args.size()).forEach(i -> pw.print(args.get(i)\
+    \ + (i + 1 < args.size() ? \" \" : \"\\n\"))); }\n\tfinal void outl(final Object\
+    \ head, final Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(pw::println);\n\
+    \t}\n\tfinal void outl(final int[] args){ Arrays.stream(args).forEach(pw::println);\
+    \ }\n\tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> out(args[i])); }\n\tfinal void outl(final long[] args){ Arrays.stream(args).forEach(pw::println);\
+    \ }\n\tfinal void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> out(args[i])); }\n\tfinal void outl(final double[] args){ Arrays.stream(args).forEach(pw::println);\
+    \ }\n\tfinal void outl(final double[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> out(args[i])); }\n\tfinal void outl(final boolean[] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> out(args[i])); }\n\tfinal void outl(final boolean[][]\
+    \ args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }\n\tfinal\
+    \ void outl(final char[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i]));\
+    \ }\n\tfinal void outl(final Object[] args){ Arrays.stream(args).forEach(pw::println);\
+    \ }\n\tfinal <E> void outl(final Collection<E> args){ args.stream().forEach(pw::println);\
+    \ }\n\tfinal void fin(final Object head, final Object... tail) {\n\t\tout(head,\
+    \ tail);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\tfinal <T> void fin(final List<T>\
+    \ args) {\n\t\tout(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\tfinal <E>\
+    \ void fine(final Collection<E> args) {\n\t\toutl(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\
+    \t}\n\tfinal void flush(){ pw.flush(); }\n\tfinal void close(){ pw.close(); }\n\
+    }"
   dependsOn:
   - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
@@ -215,7 +217,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-05 19:17:08+09:00'
+  timestamp: '2023-12-05 22:25:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/MyPrinter.java
