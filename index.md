@@ -31,6 +31,9 @@ data:
       path: C++/UnionFind.hpp
       title: C++/UnionFind.hpp
     - icon: ':heavy_check_mark:'
+      path: C++/WM.hpp
+      title: C++/WM.hpp
+    - icon: ':heavy_check_mark:'
       path: C++/bignum.hpp
       title: C++/bignum.hpp
     - icon: ':heavy_check_mark:'
@@ -168,6 +171,9 @@ data:
   verificationCategories:
   - name: test
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/WM.test.cpp
+      title: test/WM.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aarray.test.cpp
       title: test/aarray.test.cpp

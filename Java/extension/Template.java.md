@@ -142,15 +142,12 @@ data:
     \ 0, -1, 1, -1, 1, -1, 1};\n\tstatic final int inf = 1 << 30;\n\tstatic final\
     \ long linf = (1L << 61) - 1;\n\tstatic final int mod998 = 998244353;\n\tstatic\
     \ final int mod107 = (int)1e9 + 7;\n\tprotected static final void solve() {\n\t\
-    \tfinal int n = sc.ni(), q = sc.ni();\n\t\tfinal var a = sc.nl(n);\n\t\tfinal\
-    \ var wm = new WaveletMatrix(a, 18);\n\t\tIntStream.range(0, q).forEach(i -> {\n\
-    \t\t\to.out(wm.kthSmallest(sc.ni(), sc.ni(), sc.ni()));\n\t\t});\n\t}\n}\nfinal\
-    \ class Main extends VvyLw {\n\tpublic static final void main(final String[] args)\
-    \ {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\t\t\tsolve();\n\
-    \t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\t}\n\
-    }\n\nclass Utility {\n\tprotected static final String yes(final boolean ok){ return\
-    \ ok ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean ok){\
-    \ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
+    \t\n\t}\n}\nfinal class Main extends VvyLw {\n\tpublic static final void main(final\
+    \ String[] args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\
+    \t\t\tsolve();\n\t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\
+    \t}\n}\n\nclass Utility {\n\tprotected static final String yes(final boolean ok){\
+    \ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean\
+    \ ok){ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
     \ x * x; }\n\tprotected static final int mod(final long n, final int m){ return\
     \ (int) ((n + m) % m); }\n\tprotected static final long intCeil(long a, long b){\
     \ return (long) Math.ceil((double)a / b); }\n\tprotected static final long intPow(long\
@@ -176,13 +173,14 @@ data:
     \ }\n\tprotected static final boolean isPrime(final long n) {\n\t\tif(n == 1)\
     \ return false;\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0)\
     \ return false;\n\t\t}\n\t\treturn true;\n\t}\n\tprotected static final boolean\
-    \ nextPerm(ArrayList<? extends Number> a) {\n\t\tfor(int i = a.size() - 1; i >\
-    \ 0; i--) {\n\t\t\tif(a.get(i - 1).longValue() < a.get(i).longValue()) {\n\t\t\
-    \t\tfinal int j = find(a.get(i - 1).longValue(), a, i, a.size() - 1);\n\t\t\t\t\
-    Collections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()),\
-    \ (x, y) -> Long.compare(x.longValue(), y.longValue()));\n\t\t\t\treturn true;\n\
-    \t\t\t}\n\t\t}\n\t\treturn false;\n\t}\n\tprotected static final String nextPerm(final\
-    \ String s) {\n\t\tvar a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());\n\
+    \ scope(final int l, final int x, final int r){ return l <= x && x <= r; }\n\t\
+    protected static final boolean nextPerm(ArrayList<? extends Number> a) {\n\t\t\
+    for(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i - 1).longValue() < a.get(i).longValue())\
+    \ {\n\t\t\t\tfinal int j = find(a.get(i - 1).longValue(), a, i, a.size() - 1);\n\
+    \t\t\t\tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i,\
+    \ a.size()), (x, y) -> Long.compare(x.longValue(), y.longValue()));\n\t\t\t\t\
+    return true;\n\t\t\t}\n\t\t}\n\t\treturn false;\n\t}\n\tprotected static final\
+    \ String nextPerm(final String s) {\n\t\tvar a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());\n\
     \t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
     \ < 0) {\n\t\t\t\tfinal int j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\
     \tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\
@@ -380,7 +378,7 @@ data:
   - Java/extension/SegmentTree.java
   - Java/extension/UndoUnionFind.java
   - Java/all.java
-  timestamp: '2023-12-05 22:25:14+09:00'
+  timestamp: '2023-12-06 01:59:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java

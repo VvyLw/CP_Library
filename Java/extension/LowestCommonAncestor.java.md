@@ -196,7 +196,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-05 22:25:14+09:00'
+  timestamp: '2023-12-06 01:59:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/LowestCommonAncestor.java
