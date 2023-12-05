@@ -139,7 +139,7 @@ data:
     \ String vs, final boolean compress) {\n\t\tthis.vs = vs;\n\t\tint[] newVS = new\
     \ int[vs.length() + 1];\n\t\tif(compress) {\n\t\t\tfinal var xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());\n\
     \t\t\tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = Utility.lowerBound(xs,\
-    \ vs.charAt(i)) + 1;\n\t\t\t}\n\t\t} else {\n\t\t\tfinal int d = vs.chars().min().getAsInt();\n\
+    \ (int) vs.charAt(i)) + 1;\n\t\t\t}\n\t\t} else {\n\t\t\tfinal int d = vs.chars().min().getAsInt();\n\
     \t\t\tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = vs.charAt(i)\
     \ - d + 1;\n\t\t\t}\n\t\t}\n\t\tthis.addAll(Arrays.stream(SAIS(newVS)).boxed().collect(Collectors.toList()));\n\
     \t}\n\tprivate int[] SAIS(final int[] s) {\n\t\tfinal int n = s.length;\n\t\t\
@@ -243,7 +243,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-05 15:10:49+09:00'
+  timestamp: '2023-12-05 19:17:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/SuffixArray.java
