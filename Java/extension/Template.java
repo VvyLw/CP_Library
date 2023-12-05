@@ -19,12 +19,7 @@ class VvyLw extends Utility {
 	static final int mod998 = 998244353;
 	static final int mod107 = (int)1e9 + 7;
 	protected static final void solve() {
-		final int n = sc.ni(), q = sc.ni();
-		final var a = sc.nl(n);
-		final var wm = new WaveletMatrix(a, 18);
-		IntStream.range(0, q).forEach(i -> {
-			o.out(wm.kthSmallest(sc.ni(), sc.ni(), sc.ni()));
-		});
+		
 	}
 }
 final class Main extends VvyLw {
@@ -119,6 +114,7 @@ class Utility {
 		}
 		return true;
 	}
+	protected static final boolean scope(final int l, final int x, final int r){ return l <= x && x <= r; }
 	protected static final boolean nextPerm(ArrayList<? extends Number> a) {
 		for(int i = a.size() - 1; i > 0; i--) {
 			if(a.get(i - 1).longValue() < a.get(i).longValue()) {
