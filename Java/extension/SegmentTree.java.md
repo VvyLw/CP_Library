@@ -56,6 +56,9 @@ data:
     path: Java/extension/UnionFind.java
     title: Java/extension/UnionFind.java
   - icon: ':warning:'
+    path: Java/extension/WaveletMatrix.java
+    title: Java/extension/WaveletMatrix.java
+  - icon: ':warning:'
     path: Java/extension/WeightedUnionFind.java
     title: Java/extension/WeightedUnionFind.java
   _extendedRequiredBy:
@@ -114,6 +117,9 @@ data:
     path: Java/extension/UnionFind.java
     title: Java/extension/UnionFind.java
   - icon: ':warning:'
+    path: Java/extension/WaveletMatrix.java
+    title: Java/extension/WaveletMatrix.java
+  - icon: ':warning:'
     path: Java/extension/WeightedUnionFind.java
     title: Java/extension/WeightedUnionFind.java
   _extendedVerifiedWith: []
@@ -166,6 +172,7 @@ data:
   - Java/extension/FenwickTree.java
   - Java/extension/Pair.java
   - Java/extension/MyPrinter.java
+  - Java/extension/WaveletMatrix.java
   - Java/extension/PrefixSum.java
   - Java/extension/UnionFind.java
   - Java/extension/SuffixArray.java
@@ -188,6 +195,7 @@ data:
   - Java/extension/FenwickTree.java
   - Java/extension/Pair.java
   - Java/extension/MyPrinter.java
+  - Java/extension/WaveletMatrix.java
   - Java/extension/PrefixSum.java
   - Java/extension/UnionFind.java
   - Java/extension/SuffixArray.java
@@ -201,7 +209,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-04 13:13:07+09:00'
+  timestamp: '2023-12-05 14:30:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/SegmentTree.java

@@ -107,6 +107,9 @@ data:
       path: Java/extension/UnionFind.java
       title: Java/extension/UnionFind.java
     - icon: ':warning:'
+      path: Java/extension/WaveletMatrix.java
+      title: Java/extension/WaveletMatrix.java
+    - icon: ':warning:'
       path: Java/extension/WeightedUnionFind.java
       title: Java/extension/WeightedUnionFind.java
   - name: atcoder

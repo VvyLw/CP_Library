@@ -56,6 +56,9 @@ data:
     path: Java/extension/UnionFind.java
     title: Java/extension/UnionFind.java
   - icon: ':warning:'
+    path: Java/extension/WaveletMatrix.java
+    title: Java/extension/WaveletMatrix.java
+  - icon: ':warning:'
     path: Java/extension/WeightedUnionFind.java
     title: Java/extension/WeightedUnionFind.java
   _extendedRequiredBy:
@@ -113,6 +116,9 @@ data:
   - icon: ':warning:'
     path: Java/extension/UnionFind.java
     title: Java/extension/UnionFind.java
+  - icon: ':warning:'
+    path: Java/extension/WaveletMatrix.java
+    title: Java/extension/WaveletMatrix.java
   - icon: ':warning:'
     path: Java/extension/WeightedUnionFind.java
     title: Java/extension/WeightedUnionFind.java
@@ -791,7 +797,75 @@ data:
     \tpopBack(d);\n\t\t\tup(down(0), 1);\n\t\t}\n\t\treturn res;\n\t}\n\tT getMin(){\
     \ return d.size() < 2 ? d.get(0) : d.get(1); }\n\tT getMax(){ return d.get(0);\
     \ }\n\tint size(){ return d.size(); }\n\tboolean isEmpty(){ return d.isEmpty();\
-    \ }\n}"
+    \ }\n}\n\nclass SuccinctIndexableDictionary {\n\tprivate int blk;\n\tprivate int[]\
+    \ bit, sum;\n\tSuccinctIndexableDictionary(final int len) {\n\t\tblk = (len +\
+    \ 31) >> 5;\n\t\tbit = new int[blk];\n\t\tsum = new int[blk];\n\t}\n\tvoid set(final\
+    \ int k){ bit[k >> 5] |= 1 << (k & 31); }\n\tvoid build() {\n\t\tsum[0] = 0;\n\
+    \t\tfor(int i = 0; ++i < blk;) {\n\t\t\tsum[i] = sum[i - 1] + Integer.bitCount(bit[i\
+    \ - 1]);\n\t\t}\n\t}\n\tboolean get(final int k){ return ((bit[k >> 5] >> (k &\
+    \ 31)) & 1) == 1; }\n\tint rank(final int k){ return (sum[k >> 5] + Integer.bitCount(bit[k\
+    \ >> 5] & ((1 << (k & 31)) - 1))); }\n\tint rank(final boolean val, final int\
+    \ k){ return val ? rank(k) : k - rank(k); }\n}\nclass WaveletMatrixBeta {\n\t\
+    private int log;\n\tprivate SuccinctIndexableDictionary[] matrix;\n\tprivate int[]\
+    \ mid;\n\tWaveletMatrixBeta(long[] arr, final int log) {\n\t\tfinal int len =\
+    \ arr.length;\n\t\tthis.log = log;\n\t\tmatrix = new SuccinctIndexableDictionary[log];\n\
+    \t\tmid = new int[log];\n\t\tlong[] l = new long[len], r = new long[len];\n\t\t\
+    for(int level = log; --level >= 0;) {\n\t\t\tmatrix[level] = new SuccinctIndexableDictionary(len\
+    \ + 1);\n\t\t\tint left = 0, right = 0;\n\t\t\tfor(int i = 0; i < len; ++i) {\n\
+    \t\t\t\tif(((arr[i] >> level) & 1) == 1) {\n\t\t\t\t\tmatrix[level].set(i);\n\t\
+    \t\t\t\tr[right++] = arr[i];\n\t\t\t\t} else {\n\t\t\t\t\tl[left++] = arr[i];\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t\tmid[level] = left;\n\t\t\tmatrix[level].build();\n\t\
+    \t\tfinal long[] tmp = new long[len];\n\t\t\tSystem.arraycopy(arr, 0, tmp, 0,\
+    \ len);\n\t\t\tSystem.arraycopy(l, 0, arr, 0, len);\n\t\t\tSystem.arraycopy(tmp,\
+    \ 0, l, 0, len);\n\t\t\tfor(int i = 0; i < right; i++) {\n\t\t\t\tarr[left + i]\
+    \ = r[i];\n\t\t\t}\n\t\t}\n\t}\n\tNumPair succ(final boolean f, final int l, final\
+    \ int r, final int level){ return new NumPair(matrix[level].rank(f, l) + mid[level]\
+    \ * (f ? 1 : 0), matrix[level].rank(f, r) + mid[level] * (f ? 1 : 0)); }\n\tlong\
+    \ access(int k) {\n\t\tlong ret = 0;\n\t\tfor(int level = log; --level >= 0;)\
+    \ {\n\t\t\tfinal boolean f = matrix[level].get(k);\n\t\t\tif(f) {\n\t\t\t\tret\
+    \ |= 1L << level;\n\t\t\t}\n\t\t\tk = matrix[level].rank(f, k) + mid[level] *\
+    \ (f ? 1 : 0);\n\t\t}\t\n\t\treturn ret;\n\t}\n\tint rank(final long x, int r)\
+    \ {\n\t\tint l = 0;\n\t\tfor(int level = log; --level >= 0;) {\n\t\t\tfinal var\
+    \ p = succ(((x >> level) & 1) == 1, l, r, level);\n\t\t\tl = p.first.intValue();\n\
+    \t\t\tr = p.second.intValue();\n\t\t}\n\t\treturn r - l;\n\t}\n\tlong kthSmallest(int\
+    \ l, int r, int k) {\n\t\tassert(0 <= k && k < r - l);\n\t\tlong ret = 0;\n\t\t\
+    for(int level = log; --level >= 0;) {\n\t\t\tfinal int cnt = matrix[level].rank(false,\
+    \ r) - matrix[level].rank(false, l);\n\t\t\tfinal boolean f = cnt <= k;\n\t\t\t\
+    if(f) {\n\t\t\t\tret |= 1 << level;\n\t\t\t\tk -= cnt;\n\t\t\t}\n\t\t\tfinal var\
+    \ p = succ(f, l, r, level);\n\t\t\tl = p.first.intValue();\n\t\t\tr = p.second.intValue();\n\
+    \t\t}\n\t\treturn ret;\n\t}\n\tlong kthLargest(final int l, final int r, final\
+    \ int k){ return kthSmallest(l, r, r - l - k - 1); }\n\tint rangeFreq(int l, int\
+    \ r, final long upper) {\n\t\tint ret = 0;\n\t\tfor(int level = log; --level >=\
+    \ 0;) {\n\t\t\tfinal boolean f = ((upper >> level) & 1) == 1;\n\t\t\tif(f) {\n\
+    \t\t\t\tret += matrix[level].rank(false, r) - matrix[level].rank(false, l);\n\t\
+    \t\t}\n\t\t\tfinal var p = succ(f, l, r, level); \n\t\t\tl = p.first.intValue();\n\
+    \t\t\tr = p.second.intValue();\n\t\t}\n\t\treturn ret;\n\t}\n\tint rangeFreq(final\
+    \ int l, final int r, final long lower, final long upper){ return rangeFreq(l,\
+    \ r, upper) - rangeFreq(l, r, lower); }\n\tlong prevValue(final int l, final int\
+    \ r, final long upper) {\n\t\tfinal int cnt = rangeFreq(l, r, upper);\n\t\treturn\
+    \ cnt == 0 ? -1 : kthSmallest(l, r, cnt - 1);\n\t}\n\tlong nextValue(final int\
+    \ l, final int r, final long lower) {\n\t\tfinal int cnt = rangeFreq(l, r, lower);\n\
+    \t\treturn cnt == r - l ? -1 : kthSmallest(l, r, cnt);\n\t}\n}\nclass WaveletMatrix\
+    \ {\n\tprivate WaveletMatrixBeta mat;\n\tprivate long[] ys;\n\tWaveletMatrix(final\
+    \ long[] arr, final int log) {\n\t\tys = Arrays.stream(arr).sorted().distinct().toArray();\n\
+    \t\tlong[] t = new long[arr.length];\n\t\tfor(int i = 0; i < arr.length; ++i)\
+    \ {\n\t\t\tt[i] = get(arr[i]);\n\t\t}\n\t\tmat = new WaveletMatrixBeta(t, log);\n\
+    \t}\n\tprivate int lowerBound(final long[] arr, final long x) {\n\t\tfinal int\
+    \ id = Arrays.binarySearch(arr, x);\n\t\treturn id < 0 ? -(id - 1) : id;\n\t}\n\
+    \tprivate int get(final long x){ return lowerBound(ys, x); }\n\tlong access(final\
+    \ int k){ return ys[(int) mat.access(k)]; }\n\tint rank(final long x, final int\
+    \ r) {\n\t\tfinal var pos = get(x);\n\t\tif(pos == ys.length || ys[pos] != x)\
+    \ {\n\t\t\treturn 0;\n\t\t}\n\t\treturn mat.rank(pos, r);\n\t}\n\tlong kthSmallest(final\
+    \ int l, final int r, final int k){ return ys[(int) mat.kthSmallest(l, r, k)];\
+    \ }\n\tlong kthLargest(final int l, final int r, final int k){ return ys[(int)\
+    \ mat.kthLargest(l, r, k)]; }\n\tint rangeFreq(final int l, final int r, final\
+    \ long upper){ return mat.rangeFreq(l, r, get(upper)); }\n\tint rangeFreq(final\
+    \ int l, final int r, final long lower, final long upper){ return mat.rangeFreq(l,\
+    \ r, get(lower), get(upper)); }\n\tlong prevValue(final int l, final int r, final\
+    \ long upper) {\n\t\tfinal var ret = mat.prevValue(l, r, get(upper));\n\t\treturn\
+    \ ret == -1 ? -1 : ys[(int) ret];\n\t}\n\tlong nextValue(final int l, final int\
+    \ r, final long lower) {\n\t\tfinal var ret = mat.nextValue(l, r, get(lower));\n\
+    \t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n}"
   dependsOn:
   - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
@@ -799,6 +873,7 @@ data:
   - Java/extension/FenwickTree.java
   - Java/extension/Pair.java
   - Java/extension/MyPrinter.java
+  - Java/extension/WaveletMatrix.java
   - Java/extension/PrefixSum.java
   - Java/extension/UnionFind.java
   - Java/extension/SuffixArray.java
@@ -821,6 +896,7 @@ data:
   - Java/extension/FenwickTree.java
   - Java/extension/Pair.java
   - Java/extension/MyPrinter.java
+  - Java/extension/WaveletMatrix.java
   - Java/extension/PrefixSum.java
   - Java/extension/UnionFind.java
   - Java/extension/SuffixArray.java
@@ -834,7 +910,7 @@ data:
   - Java/extension/SegmentTree.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
-  timestamp: '2023-12-04 13:13:07+09:00'
+  timestamp: '2023-12-05 14:30:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
