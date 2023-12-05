@@ -1,10 +1,10 @@
 package extension;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 class PrimeTable {
-	private int n;
+	private int n, size;
 	private boolean[] sieve;
 	PrimeTable(final int n) {
 		this.n = n;
@@ -19,13 +19,15 @@ class PrimeTable {
 				sieve[(int) j] = false;
 			}
 		}
+		size = (int) IntStream.rangeClosed(0, n).filter(i -> sieve[i]).count();
 	}
 	boolean[] table(){ return sieve; }
-	ArrayList<Integer> get() {
-		ArrayList<Integer> p = new ArrayList<>();
+	int[] get() {
+		int j = 0;
+		int[] p = new int[size];
 		for(int i = 2; i <= n; ++i) {
 			if(sieve[i]) {
-				p.add(i);
+				p[j++] = i; 
 			}
 		}
 		return p;

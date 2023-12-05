@@ -207,6 +207,42 @@ class Utility {
 	protected static boolean binarySearch(final long[] a, final long x) {
 		return Arrays.binarySearch(a, x) >= 0;
 	}
+	protected static int lowerBound(final int[] a, final int x) {
+		final int id = Arrays.binarySearch(a, x);
+		return id < 0 ? -(id + 1) : id;
+	}
+	protected static int lowerBound(final long[] a, final long x) {
+		final int id = Arrays.binarySearch(a, x);
+		return id < 0 ? -(id + 1) : id;
+	}
+	protected static int upperBound(final int[] a, final int x) {
+		int id = Arrays.binarySearch(a, x);
+		if(id >= 0) {
+			while(id < a.length && a[id] == x) {
+				id++;
+			}
+		} else {
+			id = -(id + 1);
+		}
+		return id;
+	}
+	protected static int upperBound(final long[] a, final long x) {
+		int id = Arrays.binarySearch(a, x);
+		if(id >= 0) {
+			while(id < a.length && a[id] == x) {
+				id++;
+			}
+		} else {
+			id = -(id + 1);
+		}
+		return id;
+	}
+	protected static boolean binarySearch(final List<Integer> a, final int x) {
+		return Collections.binarySearch(a, x) >= 0;
+	}
+	protected static boolean binarySearch(final List<Long> a, final long x) {
+		return Collections.binarySearch(a, x) >= 0;
+	}
 	protected static int lowerBound(final List<Integer> a, final int x) {
 		return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) >= 0 ? 1 : -1);
 	}
@@ -1005,7 +1041,7 @@ class LowestCommonAncestor<G extends Graph> {
 }
 
 class PrimeTable {
-	private int n;
+	private int n, size;
 	private boolean[] sieve;
 	PrimeTable(final int n) {
 		this.n = n;
@@ -1020,13 +1056,15 @@ class PrimeTable {
 				sieve[(int) j] = false;
 			}
 		}
+		size = (int) IntStream.rangeClosed(0, n).filter(i -> sieve[i]).count();
 	}
 	boolean[] table(){ return sieve; }
-	ArrayList<Integer> get() {
-		ArrayList<Integer> p = new ArrayList<>();
+	int[] get() {
+		int j = 0;
+		int[] p = new int[size];
 		for(int i = 2; i <= n; ++i) {
 			if(sieve[i]) {
-				p.add(i);
+				p[j++] = i; 
 			}
 		}
 		return p;
