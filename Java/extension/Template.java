@@ -1,9 +1,13 @@
 package extension;
 
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -18,12 +22,13 @@ class VvyLw extends Utility {
 	static final long linf = (1L << 61) - 1;
 	static final int mod998 = 998244353;
 	static final int mod107 = (int)1e9 + 7;
+	static final double eps = 1e-18;
 	protected static final void solve() {
 		
 	}
 }
 final class Main extends VvyLw {
-	public static final void main(final String[] args) {
+	public static void main(final String[] args) {
 		int t = 1;
 		//t = sc.ni();
 		while(t-- > 0) {
@@ -381,6 +386,18 @@ class Utility {
 		}
 		return ok;
 	}
+	protected static final double bins(double ok, double ng, final Predicate<Double> fn) {
+		while(Math.abs(ok - ng) > VvyLw.eps) {
+			final double mid = (ok + ng) / 2;
+			if(fn.test(mid)) {
+				ok = mid;
+			}
+			else {
+				ng = mid;
+			}
+		}
+		return ok;
+	}
 	protected static final ArrayList<Integer> press(final ArrayList<Long> a) {
 		ArrayList<Integer> res = new ArrayList<>();
 		final var cp = a.stream().sorted().distinct().collect(Collectors.toList());
@@ -476,5 +493,189 @@ class Utility {
 			}
 		}
 		return ret;
+	}
+}
+
+final class MyScanner {
+	private final Scanner sc = new Scanner(System.in);
+	final int ni(){ return sc.nextInt(); }
+	final long nl(){ return sc.nextLong(); }
+	final double nd(){ return sc.nextDouble(); }
+	final String ns(){ return sc.next(); }
+	final int[] ni(final int n){
+		int[] a = new int[n];
+		IntStream.range(0, n).forEach(i -> a[i] = ni());
+		return a;
+	}
+	final long[] nl(final int n){
+		long[] a = new long[n];
+		IntStream.range(0, n).forEach(i -> a[i] = nl());
+		return a;
+	}
+	final double[] nd(final int n){
+		double[] a = new double[n];
+		IntStream.range(0, n).forEach(i -> a[i] = nd());
+		return a;
+	}
+	final String[] ns(final int n){
+		String[] a = new String[n];
+		IntStream.range(0, n).forEach(i -> a[i] = ns());
+		return a;
+	}
+	final ArrayList<Integer> nia(final int n) {
+		var a = new ArrayList<Integer>(n);
+		IntStream.range(0, n).forEach(i -> a.add(i, ni()));
+		return a;
+	}
+	final ArrayList<Long> nla(final int n) {
+		var a = new ArrayList<Long>(n);
+		IntStream.range(0, n).forEach(i -> a.add(i, nl()));
+		return a;
+	}
+	final ArrayList<Double> nda(final int n) {
+		var a = new ArrayList<Double>(n);
+		IntStream.range(0, n).forEach(i -> a.add(i, nd()));
+		return a;
+	}
+	final ArrayList<String> nsa(final int n) {
+		var a = new ArrayList<String>(n);
+		IntStream.range(0, n).forEach(i -> a.add(i, ns()));
+		return a;
+	}
+	final void close(){ sc.close(); }
+}
+
+final class MyPrinter {
+	private final PrintWriter pw;
+	MyPrinter(final OutputStream os, final boolean flush){ pw = new PrintWriter(os, flush); }
+	final void print(final Object arg){ pw.print(arg); }
+	final void out(){ pw.println(); }
+	final void out(final Object head, final Object... tail) {
+		pw.print(head);
+		for(final var el: tail) {
+			pw.print(" " + el);
+		}
+		out();
+	}
+	final <F, S> void out(final Pair<F, S> arg){ pw.println(arg.first + " " + arg.second); }
+	final void out(final int[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
+	final void out(final long[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
+	final void out(final double[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
+	final void out(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
+	final void out(final char[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
+	final void out(final Object[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
+	final <T> void out(final List<T> args){ IntStream.range(0, args.size()).forEach(i -> pw.print(args.get(i) + (i + 1 < args.size() ? " " : "\n"))); }
+	final void outl(final Object head, final Object... tail) {
+		out(head);
+		Arrays.stream(tail).forEach(pw::println);
+	}
+	final void outl(final int[] args){ Arrays.stream(args).forEach(pw::println); }
+	final void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	final void outl(final long[] args){ Arrays.stream(args).forEach(pw::println); }
+	final void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	final void outl(final double[] args){ Arrays.stream(args).forEach(pw::println); }
+	final void outl(final double[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	final void outl(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	final void outl(final boolean[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	final void outl(final char[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	final void outl(final Object[] args){ Arrays.stream(args).forEach(pw::println); }
+	final <E> void outl(final Collection<E> args){ args.stream().forEach(pw::println); }
+	final void fin(final Object head, final Object... tail) {
+		out(head, tail);
+		flush();
+		System.exit(0);
+	}
+	final <T> void fin(final List<T> args) {
+		out(args);
+		flush();
+		System.exit(0);
+	}
+	final <E> void fine(final Collection<E> args) {
+		outl(args);
+		flush();
+		System.exit(0);
+	}
+	final void flush(){ pw.flush(); }
+	final void close(){ pw.close(); }
+}
+
+class Pair<F, S> {
+	protected final F first;
+	protected final S second;
+	Pair(final F first, final S second) {
+		this.first = first;
+		this.second = second;
+	}
+	@Override
+	public final boolean equals(final Object o) {
+		if(this == o) {
+			return true;
+		}
+		if(o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		final Pair<?, ?> p = (Pair<?, ?>) o;
+		if(!first.equals(p.first)) {
+			return false;
+		}
+		return second.equals(p.second);
+	}
+	@Override
+	public final int hashCode(){ return 31 * first.hashCode() + second.hashCode(); }
+	@Override
+	public final String toString(){ return "(" + first + ", " + second + ")"; }
+	public static final <F, S> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }
+	final Pair<S, F> swap(){ return Pair.of(second, first); }
+}
+final class NumPair extends Pair<Number, Number> implements Comparable<NumPair>  {
+	NumPair(final Number first, final Number second){ super(first, second); }
+	final NumPair rotate(){ return new NumPair(-second.doubleValue(), first.doubleValue()); } 
+	final NumPair rotate(final int ang) {
+		final double rad = Math.toRadians(Utility.mod(ang, 360));
+		return new NumPair(first.doubleValue() * Math.cos(rad) - second.doubleValue() * Math.sin(rad),
+							first.doubleValue() * Math.sin(rad) + second.doubleValue() * Math.cos(rad));
+	}
+	final long dot(final NumPair p){ return first.longValue() * p.first.longValue() + second.longValue() + p.second.longValue(); }
+	final double dotf(final NumPair p){ return first.doubleValue() * p.first.doubleValue() + second.doubleValue() + p.second.doubleValue(); }
+	final long cross(final NumPair p){ return this.rotate().dot(p); }
+	final double crossf(final NumPair p){ return this.rotate().dotf(p); }
+	final long sqr(){ return this.dot(this); }
+	final double sqrf(){ return this.dotf(this); }
+	final double grad() { 
+		try {
+			return second.doubleValue() / first.doubleValue();
+		} catch(ArithmeticException e) {
+			e.printStackTrace();
+		}
+		return Double.NaN;
+	}
+	final double abs(){ return Math.hypot(first.doubleValue(), second.doubleValue()); }
+	final long lcm(){ return Utility.lcm(first.longValue(), second.longValue()); }
+	final long gcd(){ return Utility.gcd(first.longValue(), second.longValue()); }
+	final NumPair extgcd() {
+		long x = 1, y = 0, t1 = 0, t2 = 0, t3 = 1, a = first.longValue(), b = second.longValue();
+		while(b > 0) {
+			t1 = a / b;
+			a -= t1 * b;
+			a ^= b;
+			b ^= a;
+			a ^= b;
+			x -= t1 * t2;
+			x ^= t2;
+			t2 ^= x;
+			x ^= t2;
+			y -= t1 * t3;
+			y ^= t3;
+			t3 ^= y;
+			y ^= t3;
+		}
+		return new NumPair(x, y);
+	}
+	@Override
+	final public int compareTo(final NumPair o) {
+		if(first.doubleValue() == o.first.doubleValue()) {
+			return Double.compare(second.doubleValue(), o.second.doubleValue());
+		}
+		return Double.compare(first.doubleValue(), o.first.doubleValue());
 	}
 }

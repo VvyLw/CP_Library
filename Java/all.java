@@ -31,12 +31,13 @@ class VvyLw extends Utility {
 	static final long linf = (1L << 61) - 1;
 	static final int mod998 = 998244353;
 	static final int mod107 = (int)1e9 + 7;
+	static final double eps = 1e-18;
 	protected static final void solve() {
 		
 	}
 }
 final class Main extends VvyLw {
-	public static final void main(final String[] args) {
+	public static void main(final String[] args) {
 		int t = 1;
 		//t = sc.ni();
 		while(t-- > 0) {
@@ -385,6 +386,18 @@ class Utility {
 	protected static final long bins(long ok, long ng, final Predicate<Long> fn) {
 		while(Math.abs(ok - ng) > 1) {
 			final long mid = (ok + ng) / 2;
+			if(fn.test(mid)) {
+				ok = mid;
+			}
+			else {
+				ng = mid;
+			}
+		}
+		return ok;
+	}
+	protected static final double bins(double ok, double ng, final Predicate<Double> fn) {
+		while(Math.abs(ok - ng) > VvyLw.eps) {
+			final double mid = (ok + ng) / 2;
 			if(fn.test(mid)) {
 				ok = mid;
 			}
