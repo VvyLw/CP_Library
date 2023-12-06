@@ -108,11 +108,11 @@ final class WaveletMatrixBeta {
 		return ret;
 	}
 	final int rangeFreq(final int l, final int r, final long lower, final long upper){ return rangeFreq(l, r, upper) - rangeFreq(l, r, lower); }
-	final long prevValue(final int l, final int r, final long upper) {
+	final long prev(final int l, final int r, final long upper) {
 		final int cnt = rangeFreq(l, r, upper);
 		return cnt == 0 ? -1 : kthMin(l, r, cnt - 1);
 	}
-	final long nextValue(final int l, final int r, final long lower) {
+	final long next(final int l, final int r, final long lower) {
 		final int cnt = rangeFreq(l, r, lower);
 		return cnt == r - l ? -1 : kthMin(l, r, cnt);
 	}
@@ -143,12 +143,12 @@ final class WaveletMatrix {
 	final long kthMax(final int l, final int r, final int k){ return ys[(int) mat.kthMax(l, r, k)]; }
 	final int rangeFreq(final int l, final int r, final long upper){ return mat.rangeFreq(l, r, get(upper)); }
 	final int rangeFreq(final int l, final int r, final long lower, final long upper){ return mat.rangeFreq(l, r, get(lower), get(upper)); }
-	final long prevValue(final int l, final int r, final long upper) {
-		final var ret = mat.prevValue(l, r, get(upper));
+	final long prev(final int l, final int r, final long upper) {
+		final var ret = mat.prev(l, r, get(upper));
 		return ret == -1 ? -1 : ys[(int) ret];
 	}
-	final long nextValue(final int l, final int r, final long lower) {
-		final var ret = mat.nextValue(l, r, get(lower));
+	final long next(final int l, final int r, final long lower) {
+		final var ret = mat.next(l, r, get(lower));
 		return ret == -1 ? -1 : ys[(int) ret];
 	}
 }

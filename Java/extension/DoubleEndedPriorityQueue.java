@@ -7,9 +7,9 @@ final class DoubleEndedPriorityQueue<T extends Number> {
 	private final ArrayList<T> d;
 	DoubleEndedPriorityQueue(final ArrayList<T> d) {
 		this.d = d;
-		make_heap();
+		makeHeap();
 	}
-	private final void make_heap() {
+	private final void makeHeap() {
 		for(int i = d.size(); i-- > 0;) {
 			if (i % 2 == 1 && d.get(i - 1).longValue() < d.get(i).longValue()) {
 				Collections.swap(d, i - 1, i);
