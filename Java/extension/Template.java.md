@@ -20,15 +20,6 @@ data:
     path: Java/extension/LowestCommonAncestor.java
     title: Java/extension/LowestCommonAncestor.java
   - icon: ':warning:'
-    path: Java/extension/MyPrinter.java
-    title: Java/extension/MyPrinter.java
-  - icon: ':warning:'
-    path: Java/extension/MyScanner.java
-    title: Java/extension/MyScanner.java
-  - icon: ':warning:'
-    path: Java/extension/Pair.java
-    title: Java/extension/Pair.java
-  - icon: ':warning:'
     path: Java/extension/PrefixSum.java
     title: Java/extension/PrefixSum.java
   - icon: ':warning:'
@@ -81,15 +72,6 @@ data:
     path: Java/extension/LowestCommonAncestor.java
     title: Java/extension/LowestCommonAncestor.java
   - icon: ':warning:'
-    path: Java/extension/MyPrinter.java
-    title: Java/extension/MyPrinter.java
-  - icon: ':warning:'
-    path: Java/extension/MyScanner.java
-    title: Java/extension/MyScanner.java
-  - icon: ':warning:'
-    path: Java/extension/Pair.java
-    title: Java/extension/Pair.java
-  - icon: ':warning:'
     path: Java/extension/PrefixSum.java
     title: Java/extension/PrefixSum.java
   - icon: ':warning:'
@@ -132,17 +114,19 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/extension/Template.java\n"
-  code: "package extension;\n\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
-    import java.util.Collections;\nimport java.util.List;\nimport java.util.function.Predicate;\n\
-    import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nclass\
-    \ VvyLw extends Utility {\n\tprotected static final MyScanner sc = new MyScanner();\n\
-    \tprotected static final MyPrinter o = new MyPrinter(System.out, false);\n\tprotected\
-    \ static final MyPrinter e = new MyPrinter(System.err, true);\n\tstatic final\
-    \ int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0,\
-    \ 0, -1, 1, -1, 1, -1, 1};\n\tstatic final int inf = 1 << 30;\n\tstatic final\
-    \ long linf = (1L << 61) - 1;\n\tstatic final int mod998 = 998244353;\n\tstatic\
-    \ final int mod107 = (int)1e9 + 7;\n\tprotected static final void solve() {\n\t\
-    \t\n\t}\n}\nfinal class Main extends VvyLw {\n\tpublic static final void main(final\
+  code: "package extension;\n\nimport java.io.OutputStream;\nimport java.io.PrintWriter;\n\
+    import java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Collection;\n\
+    import java.util.Collections;\nimport java.util.List;\nimport java.util.Scanner;\n\
+    import java.util.function.Predicate;\nimport java.util.stream.Collectors;\nimport\
+    \ java.util.stream.IntStream;\n\nclass VvyLw extends Utility {\n\tprotected static\
+    \ final MyScanner sc = new MyScanner();\n\tprotected static final MyPrinter o\
+    \ = new MyPrinter(System.out, false);\n\tprotected static final MyPrinter e =\
+    \ new MyPrinter(System.err, true);\n\tstatic final int[] dx = {0, -1, 1, 0, 0,\
+    \ -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t\
+    static final int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\t\
+    static final int mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9 + 7;\n\
+    \tstatic final double eps = 1e-18;\n\tprotected static final void solve() {\n\t\
+    \t\n\t}\n}\nfinal class Main extends VvyLw {\n\tpublic static void main(final\
     \ String[] args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\
     \t\t\tsolve();\n\t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\
     \t}\n}\n\nclass Utility {\n\tprotected static final String yes(final boolean ok){\
@@ -301,10 +285,13 @@ data:
     \ static final long bins(long ok, long ng, final Predicate<Long> fn) {\n\t\twhile(Math.abs(ok\
     \ - ng) > 1) {\n\t\t\tfinal long mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid))\
     \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
-    }\n\t\treturn ok;\n\t}\n\tprotected static final ArrayList<Integer> press(final\
-    \ ArrayList<Long> a) {\n\t\tArrayList<Integer> res = new ArrayList<>();\n\t\t\
-    final var cp = a.stream().sorted().distinct().collect(Collectors.toList());\n\t\
-    \tfor(final var el: a) {\n\t\t\tres.add(lowerBound(cp, el));\n\t\t}\n\t\treturn\
+    }\n\t\treturn ok;\n\t}\n\tprotected static final double bins(double ok, double\
+    \ ng, final Predicate<Double> fn) {\n\t\twhile(Math.abs(ok - ng) > VvyLw.eps)\
+    \ {\n\t\t\tfinal double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\
+    \tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ ok;\n\t}\n\tprotected static final ArrayList<Integer> press(final ArrayList<Long>\
+    \ a) {\n\t\tArrayList<Integer> res = new ArrayList<>();\n\t\tfinal var cp = a.stream().sorted().distinct().collect(Collectors.toList());\n\
+    \t\tfor(final var el: a) {\n\t\t\tres.add(lowerBound(cp, el));\n\t\t}\n\t\treturn\
     \ res;\n\t}\n\tprotected static final int[] zAlgorithm(final String s) {\n\t\t\
     final int n = s.length();\n\t\tint j = 0;\n\t\tint[] pre = new int[n];\n\t\tfor(int\
     \ i = 0; ++i < n;) {\n\t\t\tif(i + pre[i - j] < j + pre[j]) {\n\t\t\t\tpre[i]\
@@ -333,14 +320,105 @@ data:
     \t\t} catch(ArithmeticException e) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\
     \t}\n\t\t\treturn mul <= n;\n\t\t};\n\t\tlong ret = 0;\n\t\tfor(int i = 32; --i\
     \ >= 0;) {\n\t\t\tif(chk.test(ret | (1L << i))) {\n\t\t\t\tret |= 1L << i;\n\t\
-    \t\t}\n\t\t}\n\t\treturn ret;\n\t}\n}"
+    \t\t}\n\t\t}\n\t\treturn ret;\n\t}\n}\n\nfinal class MyScanner {\n\tprivate final\
+    \ Scanner sc = new Scanner(System.in);\n\tfinal int ni(){ return sc.nextInt();\
+    \ }\n\tfinal long nl(){ return sc.nextLong(); }\n\tfinal double nd(){ return sc.nextDouble();\
+    \ }\n\tfinal String ns(){ return sc.next(); }\n\tfinal int[] ni(final int n){\n\
+    \t\tint[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ni());\n\
+    \t\treturn a;\n\t}\n\tfinal long[] nl(final int n){\n\t\tlong[] a = new long[n];\n\
+    \t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\treturn a;\n\t}\n\tfinal\
+    \ double[] nd(final int n){\n\t\tdouble[] a = new double[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal String[] ns(final\
+    \ int n){\n\t\tString[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal ArrayList<Integer> nia(final int\
+    \ n) {\n\t\tvar a = new ArrayList<Integer>(n);\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a.add(i, ni()));\n\t\treturn a;\n\t}\n\tfinal ArrayList<Long> nla(final int\
+    \ n) {\n\t\tvar a = new ArrayList<Long>(n);\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a.add(i, nl()));\n\t\treturn a;\n\t}\n\tfinal ArrayList<Double> nda(final\
+    \ int n) {\n\t\tvar a = new ArrayList<Double>(n);\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a.add(i, nd()));\n\t\treturn a;\n\t}\n\tfinal ArrayList<String> nsa(final\
+    \ int n) {\n\t\tvar a = new ArrayList<String>(n);\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a.add(i, ns()));\n\t\treturn a;\n\t}\n\tfinal void close(){ sc.close(); }\n\
+    }\n\nfinal class MyPrinter {\n\tprivate final PrintWriter pw;\n\tMyPrinter(final\
+    \ OutputStream os, final boolean flush){ pw = new PrintWriter(os, flush); }\n\t\
+    final void print(final Object arg){ pw.print(arg); }\n\tfinal void out(){ pw.println();\
+    \ }\n\tfinal void out(final Object head, final Object... tail) {\n\t\tpw.print(head);\n\
+    \t\tfor(final var el: tail) {\n\t\t\tpw.print(\" \" + el);\n\t\t}\n\t\tout();\n\
+    \t}\n\tfinal <F, S> void out(final Pair<F, S> arg){ pw.println(arg.first + \"\
+    \ \" + arg.second); }\n\tfinal void out(final int[] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? \" \" :\
+    \ \"\\n\"))); }\n\tfinal void out(final long[] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal\
+    \ void out(final double[] args){ IntStream.range(0, args.length).forEach(i ->\
+    \ pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void\
+    \ out(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i]\
+    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final char[]\
+    \ args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i +\
+    \ 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final Object[] args){\
+    \ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length\
+    \ ? \" \" : \"\\n\"))); }\n\tfinal <T> void out(final List<T> args){ IntStream.range(0,\
+    \ args.size()).forEach(i -> pw.print(args.get(i) + (i + 1 < args.size() ? \" \"\
+    \ : \"\\n\"))); }\n\tfinal void outl(final Object head, final Object... tail)\
+    \ {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(pw::println);\n\t}\n\tfinal\
+    \ void outl(final int[] args){ Arrays.stream(args).forEach(pw::println); }\n\t\
+    final void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> out(args[i])); }\n\tfinal void outl(final long[] args){ Arrays.stream(args).forEach(pw::println);\
+    \ }\n\tfinal void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> out(args[i])); }\n\tfinal void outl(final double[] args){ Arrays.stream(args).forEach(pw::println);\
+    \ }\n\tfinal void outl(final double[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> out(args[i])); }\n\tfinal void outl(final boolean[] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> out(args[i])); }\n\tfinal void outl(final boolean[][]\
+    \ args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }\n\tfinal\
+    \ void outl(final char[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i]));\
+    \ }\n\tfinal void outl(final Object[] args){ Arrays.stream(args).forEach(pw::println);\
+    \ }\n\tfinal <E> void outl(final Collection<E> args){ args.stream().forEach(pw::println);\
+    \ }\n\tfinal void fin(final Object head, final Object... tail) {\n\t\tout(head,\
+    \ tail);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\tfinal <T> void fin(final List<T>\
+    \ args) {\n\t\tout(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\tfinal <E>\
+    \ void fine(final Collection<E> args) {\n\t\toutl(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\
+    \t}\n\tfinal void flush(){ pw.flush(); }\n\tfinal void close(){ pw.close(); }\n\
+    }\n\nclass Pair<F, S> {\n\tprotected final F first;\n\tprotected final S second;\n\
+    \tPair(final F first, final S second) {\n\t\tthis.first = first;\n\t\tthis.second\
+    \ = second;\n\t}\n\t@Override\n\tpublic final boolean equals(final Object o) {\n\
+    \t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass()\
+    \ != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?,\
+    \ ?>) o;\n\t\tif(!first.equals(p.first)) {\n\t\t\treturn false;\n\t\t}\n\t\treturn\
+    \ second.equals(p.second);\n\t}\n\t@Override\n\tpublic final int hashCode(){ return\
+    \ 31 * first.hashCode() + second.hashCode(); }\n\t@Override\n\tpublic final String\
+    \ toString(){ return \"(\" + first + \", \" + second + \")\"; }\n\tpublic static\
+    \ final <F, S> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }\n\
+    \tfinal Pair<S, F> swap(){ return Pair.of(second, first); }\n}\nfinal class NumPair\
+    \ extends Pair<Number, Number> implements Comparable<NumPair>  {\n\tNumPair(final\
+    \ Number first, final Number second){ super(first, second); }\n\tfinal NumPair\
+    \ rotate(){ return new NumPair(-second.doubleValue(), first.doubleValue()); }\
+    \ \n\tfinal NumPair rotate(final int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang,\
+    \ 360));\n\t\treturn new NumPair(first.doubleValue() * Math.cos(rad) - second.doubleValue()\
+    \ * Math.sin(rad),\n\t\t\t\t\t\t\tfirst.doubleValue() * Math.sin(rad) + second.doubleValue()\
+    \ * Math.cos(rad));\n\t}\n\tfinal long dot(final NumPair p){ return first.longValue()\
+    \ * p.first.longValue() + second.longValue() + p.second.longValue(); }\n\tfinal\
+    \ double dotf(final NumPair p){ return first.doubleValue() * p.first.doubleValue()\
+    \ + second.doubleValue() + p.second.doubleValue(); }\n\tfinal long cross(final\
+    \ NumPair p){ return this.rotate().dot(p); }\n\tfinal double crossf(final NumPair\
+    \ p){ return this.rotate().dotf(p); }\n\tfinal long sqr(){ return this.dot(this);\
+    \ }\n\tfinal double sqrf(){ return this.dotf(this); }\n\tfinal double grad() {\
+    \ \n\t\ttry {\n\t\t\treturn second.doubleValue() / first.doubleValue();\n\t\t\
+    } catch(ArithmeticException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn\
+    \ Double.NaN;\n\t}\n\tfinal double abs(){ return Math.hypot(first.doubleValue(),\
+    \ second.doubleValue()); }\n\tfinal long lcm(){ return Utility.lcm(first.longValue(),\
+    \ second.longValue()); }\n\tfinal long gcd(){ return Utility.gcd(first.longValue(),\
+    \ second.longValue()); }\n\tfinal NumPair extgcd() {\n\t\tlong x = 1, y = 0, t1\
+    \ = 0, t2 = 0, t3 = 1, a = first.longValue(), b = second.longValue();\n\t\twhile(b\
+    \ > 0) {\n\t\t\tt1 = a / b;\n\t\t\ta -= t1 * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\
+    \t\t\ta ^= b;\n\t\t\tx -= t1 * t2;\n\t\t\tx ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^=\
+    \ t2;\n\t\t\ty -= t1 * t3;\n\t\t\ty ^= t3;\n\t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\
+    \t}\n\t\treturn new NumPair(x, y);\n\t}\n\t@Override\n\tfinal public int compareTo(final\
+    \ NumPair o) {\n\t\tif(first.doubleValue() == o.first.doubleValue()) {\n\t\t\t\
+    return Double.compare(second.doubleValue(), o.second.doubleValue());\n\t\t}\n\t\
+    \treturn Double.compare(first.doubleValue(), o.first.doubleValue());\n\t}\n}"
   dependsOn:
-  - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
   - Java/extension/WeightedUnionFind.java
   - Java/extension/FenwickTree.java
-  - Java/extension/Pair.java
-  - Java/extension/MyPrinter.java
   - Java/extension/WaveletMatrix.java
   - Java/extension/PrefixSum.java
   - Java/extension/UnionFind.java
@@ -358,12 +436,9 @@ data:
   isVerificationFile: false
   path: Java/extension/Template.java
   requiredBy:
-  - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
   - Java/extension/WeightedUnionFind.java
   - Java/extension/FenwickTree.java
-  - Java/extension/Pair.java
-  - Java/extension/MyPrinter.java
   - Java/extension/WaveletMatrix.java
   - Java/extension/PrefixSum.java
   - Java/extension/UnionFind.java
@@ -378,7 +453,7 @@ data:
   - Java/extension/SegmentTree.java
   - Java/extension/UndoUnionFind.java
   - Java/all.java
-  timestamp: '2023-12-06 12:17:35+09:00'
+  timestamp: '2023-12-06 15:33:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java

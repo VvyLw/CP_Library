@@ -20,15 +20,6 @@ data:
     path: Java/extension/LowestCommonAncestor.java
     title: Java/extension/LowestCommonAncestor.java
   - icon: ':warning:'
-    path: Java/extension/MyPrinter.java
-    title: Java/extension/MyPrinter.java
-  - icon: ':warning:'
-    path: Java/extension/MyScanner.java
-    title: Java/extension/MyScanner.java
-  - icon: ':warning:'
-    path: Java/extension/Pair.java
-    title: Java/extension/Pair.java
-  - icon: ':warning:'
     path: Java/extension/PrimeCounter.java
     title: Java/extension/PrimeCounter.java
   - icon: ':warning:'
@@ -81,15 +72,6 @@ data:
     path: Java/extension/LowestCommonAncestor.java
     title: Java/extension/LowestCommonAncestor.java
   - icon: ':warning:'
-    path: Java/extension/MyPrinter.java
-    title: Java/extension/MyPrinter.java
-  - icon: ':warning:'
-    path: Java/extension/MyScanner.java
-    title: Java/extension/MyScanner.java
-  - icon: ':warning:'
-    path: Java/extension/Pair.java
-    title: Java/extension/Pair.java
-  - icon: ':warning:'
     path: Java/extension/PrimeCounter.java
     title: Java/extension/PrimeCounter.java
   - icon: ':warning:'
@@ -140,12 +122,9 @@ data:
     \ + a[i]);\n\t}\n\tfinal long[] get(){ return s; }\n\tfinal long query(final int\
     \ l, final int r){ return s[r] - s[l]; }\n}"
   dependsOn:
-  - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
   - Java/extension/WeightedUnionFind.java
   - Java/extension/FenwickTree.java
-  - Java/extension/Pair.java
-  - Java/extension/MyPrinter.java
   - Java/extension/WaveletMatrix.java
   - Java/extension/UnionFind.java
   - Java/extension/SuffixArray.java
@@ -163,12 +142,9 @@ data:
   isVerificationFile: false
   path: Java/extension/PrefixSum.java
   requiredBy:
-  - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
   - Java/extension/WeightedUnionFind.java
   - Java/extension/FenwickTree.java
-  - Java/extension/Pair.java
-  - Java/extension/MyPrinter.java
   - Java/extension/WaveletMatrix.java
   - Java/extension/UnionFind.java
   - Java/extension/SuffixArray.java
@@ -183,7 +159,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-06 12:17:35+09:00'
+  timestamp: '2023-12-06 15:33:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/PrefixSum.java

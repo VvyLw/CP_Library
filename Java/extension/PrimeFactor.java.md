@@ -20,15 +20,6 @@ data:
     path: Java/extension/LowestCommonAncestor.java
     title: Java/extension/LowestCommonAncestor.java
   - icon: ':warning:'
-    path: Java/extension/MyPrinter.java
-    title: Java/extension/MyPrinter.java
-  - icon: ':warning:'
-    path: Java/extension/MyScanner.java
-    title: Java/extension/MyScanner.java
-  - icon: ':warning:'
-    path: Java/extension/Pair.java
-    title: Java/extension/Pair.java
-  - icon: ':warning:'
     path: Java/extension/PrefixSum.java
     title: Java/extension/PrefixSum.java
   - icon: ':warning:'
@@ -80,15 +71,6 @@ data:
   - icon: ':warning:'
     path: Java/extension/LowestCommonAncestor.java
     title: Java/extension/LowestCommonAncestor.java
-  - icon: ':warning:'
-    path: Java/extension/MyPrinter.java
-    title: Java/extension/MyPrinter.java
-  - icon: ':warning:'
-    path: Java/extension/MyScanner.java
-    title: Java/extension/MyScanner.java
-  - icon: ':warning:'
-    path: Java/extension/Pair.java
-    title: Java/extension/Pair.java
   - icon: ':warning:'
     path: Java/extension/PrefixSum.java
     title: Java/extension/PrefixSum.java
@@ -142,12 +124,9 @@ data:
     \ 1) {\n\t\t\tm.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\t\t\
     }\n\t\treturn m;\n\t}\n}"
   dependsOn:
-  - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
   - Java/extension/WeightedUnionFind.java
   - Java/extension/FenwickTree.java
-  - Java/extension/Pair.java
-  - Java/extension/MyPrinter.java
   - Java/extension/WaveletMatrix.java
   - Java/extension/PrefixSum.java
   - Java/extension/UnionFind.java
@@ -165,12 +144,9 @@ data:
   isVerificationFile: false
   path: Java/extension/PrimeFactor.java
   requiredBy:
-  - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
   - Java/extension/WeightedUnionFind.java
   - Java/extension/FenwickTree.java
-  - Java/extension/Pair.java
-  - Java/extension/MyPrinter.java
   - Java/extension/WaveletMatrix.java
   - Java/extension/PrefixSum.java
   - Java/extension/UnionFind.java
@@ -185,7 +161,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-06 12:17:35+09:00'
+  timestamp: '2023-12-06 15:33:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/PrimeFactor.java

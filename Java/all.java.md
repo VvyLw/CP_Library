@@ -17,15 +17,6 @@ data:
     path: Java/extension/LowestCommonAncestor.java
     title: Java/extension/LowestCommonAncestor.java
   - icon: ':warning:'
-    path: Java/extension/MyPrinter.java
-    title: Java/extension/MyPrinter.java
-  - icon: ':warning:'
-    path: Java/extension/MyScanner.java
-    title: Java/extension/MyScanner.java
-  - icon: ':warning:'
-    path: Java/extension/Pair.java
-    title: Java/extension/Pair.java
-  - icon: ':warning:'
     path: Java/extension/PrefixSum.java
     title: Java/extension/PrefixSum.java
   - icon: ':warning:'
@@ -77,15 +68,6 @@ data:
   - icon: ':warning:'
     path: Java/extension/LowestCommonAncestor.java
     title: Java/extension/LowestCommonAncestor.java
-  - icon: ':warning:'
-    path: Java/extension/MyPrinter.java
-    title: Java/extension/MyPrinter.java
-  - icon: ':warning:'
-    path: Java/extension/MyScanner.java
-    title: Java/extension/MyScanner.java
-  - icon: ':warning:'
-    path: Java/extension/Pair.java
-    title: Java/extension/Pair.java
   - icon: ':warning:'
     path: Java/extension/PrefixSum.java
     title: Java/extension/PrefixSum.java
@@ -147,26 +129,26 @@ data:
     \ -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t\
     static final int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\t\
     static final int mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9 + 7;\n\
-    \tprotected static final void solve() {\n\t\t\n\t}\n}\nfinal class Main extends\
-    \ VvyLw {\n\tpublic static final void main(final String[] args) {\n\t\tint t =\
-    \ 1;\n\t\t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\t\t\tsolve();\n\t\t}\n\t\to.flush();\n\
-    \t\tsc.close();\n\t\to.close();\n\t\te.close();\n\t}\n}\n\nclass Utility {\n\t\
-    protected static final String yes(final boolean ok){ return ok ? \"Yes\" : \"\
-    No\"; }\n\tprotected static final String no(final boolean ok){ return yes(!ok);\
-    \ }\n\tprotected static final long sqr(final long x){ return x * x; }\n\tprotected\
-    \ static final int mod(final long n, final int m){ return (int) ((n + m) % m);\
-    \ }\n\tprotected static final long intCeil(long a, long b){ return (long) Math.ceil((double)a\
-    \ / b); }\n\tprotected static final long intPow(long a, int b) {\n\t\tlong res\
-    \ = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\
-    }\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final long intPow(long a, long b, final int m) {\n\t\tlong res = 1;\n\t\twhile(b\
-    \ > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\
-    \t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\tprotected static final ArrayList<Long> div(final long n) {\n\t\t\
-    ArrayList<Long> d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\
-    \t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\t\
-    d.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\t\treturn\
-    \ d;\n\t}\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long\
+    \tstatic final double eps = 1e-18;\n\tprotected static final void solve() {\n\t\
+    \t\n\t}\n}\nfinal class Main extends VvyLw {\n\tpublic static void main(final\
+    \ String[] args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\
+    \t\t\tsolve();\n\t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\
+    \t}\n}\n\nclass Utility {\n\tprotected static final String yes(final boolean ok){\
+    \ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean\
+    \ ok){ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
+    \ x * x; }\n\tprotected static final int mod(final long n, final int m){ return\
+    \ (int) ((n + m) % m); }\n\tprotected static final long intCeil(long a, long b){\
+    \ return (long) Math.ceil((double)a / b); }\n\tprotected static final long intPow(long\
+    \ a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\
+    \t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\tprotected static final long intPow(long a, long b, final int m) {\n\t\t\
+    long res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
+    \t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\
+    \tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final ArrayList<Long>\
+    \ div(final long n) {\n\t\tArrayList<Long> d = new ArrayList<>();\n\t\tfor(long\
+    \ i = 1; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\
+    \tif(i * i != n) {\n\t\t\t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\
+    \t\treturn d;\n\t}\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long\
     \ n) {\n\t\tArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long\
     \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t\
     }\n\t\t\tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /=\
@@ -307,10 +289,13 @@ data:
     \ static final long bins(long ok, long ng, final Predicate<Long> fn) {\n\t\twhile(Math.abs(ok\
     \ - ng) > 1) {\n\t\t\tfinal long mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid))\
     \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
-    }\n\t\treturn ok;\n\t}\n\tprotected static final ArrayList<Integer> press(final\
-    \ ArrayList<Long> a) {\n\t\tArrayList<Integer> res = new ArrayList<>();\n\t\t\
-    final var cp = a.stream().sorted().distinct().collect(Collectors.toList());\n\t\
-    \tfor(final var el: a) {\n\t\t\tres.add(lowerBound(cp, el));\n\t\t}\n\t\treturn\
+    }\n\t\treturn ok;\n\t}\n\tprotected static final double bins(double ok, double\
+    \ ng, final Predicate<Double> fn) {\n\t\twhile(Math.abs(ok - ng) > VvyLw.eps)\
+    \ {\n\t\t\tfinal double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\
+    \tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ ok;\n\t}\n\tprotected static final ArrayList<Integer> press(final ArrayList<Long>\
+    \ a) {\n\t\tArrayList<Integer> res = new ArrayList<>();\n\t\tfinal var cp = a.stream().sorted().distinct().collect(Collectors.toList());\n\
+    \t\tfor(final var el: a) {\n\t\t\tres.add(lowerBound(cp, el));\n\t\t}\n\t\treturn\
     \ res;\n\t}\n\tprotected static final int[] zAlgorithm(final String s) {\n\t\t\
     final int n = s.length();\n\t\tint j = 0;\n\t\tint[] pre = new int[n];\n\t\tfor(int\
     \ i = 0; ++i < n;) {\n\t\t\tif(i + pre[i - j] < j + pre[j]) {\n\t\t\t\tpre[i]\
@@ -904,12 +889,9 @@ data:
     \ final long lower) {\n\t\tfinal var ret = mat.next(l, r, get(lower));\n\t\treturn\
     \ ret == -1 ? -1 : ys[(int) ret];\n\t}\n}"
   dependsOn:
-  - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
   - Java/extension/WeightedUnionFind.java
   - Java/extension/FenwickTree.java
-  - Java/extension/Pair.java
-  - Java/extension/MyPrinter.java
   - Java/extension/WaveletMatrix.java
   - Java/extension/PrefixSum.java
   - Java/extension/UnionFind.java
@@ -927,12 +909,9 @@ data:
   isVerificationFile: false
   path: Java/all.java
   requiredBy:
-  - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
   - Java/extension/WeightedUnionFind.java
   - Java/extension/FenwickTree.java
-  - Java/extension/Pair.java
-  - Java/extension/MyPrinter.java
   - Java/extension/WaveletMatrix.java
   - Java/extension/PrefixSum.java
   - Java/extension/UnionFind.java
@@ -947,7 +926,7 @@ data:
   - Java/extension/SegmentTree.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
-  timestamp: '2023-12-06 12:17:35+09:00'
+  timestamp: '2023-12-06 15:33:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java

@@ -71,15 +71,6 @@ data:
       path: Java/extension/LowestCommonAncestor.java
       title: Java/extension/LowestCommonAncestor.java
     - icon: ':warning:'
-      path: Java/extension/MyPrinter.java
-      title: Java/extension/MyPrinter.java
-    - icon: ':warning:'
-      path: Java/extension/MyScanner.java
-      title: Java/extension/MyScanner.java
-    - icon: ':warning:'
-      path: Java/extension/Pair.java
-      title: Java/extension/Pair.java
-    - icon: ':warning:'
       path: Java/extension/PrefixSum.java
       title: Java/extension/PrefixSum.java
     - icon: ':warning:'
