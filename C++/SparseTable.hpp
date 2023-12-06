@@ -3,20 +3,18 @@
 
 #include <vector>
 #include <functional>
-using namespace std;
 template <class T> struct SparseTable {
 private:
     using F = function<T(T,T)>;
-    vector<vector<T>> st;
-    vector<T> lookup;
+    std::vector<std::vector<T>> st;
+    std::vector<T> lookup;
     F f;
 public:
-    SparseTable(const vector<T> &v, const F &f_) : f(f_) { init(v); }
-    void init(const vector<T> &v) {
+    SparseTable(const std::vector<T> &v, const F &f_) : f(f_) {
         int b = 0;
         while((1 << b) <= v.size()) ++b;
-        st.assign(b, vector<T>(1 << b));
-        for(int i = 0; i < v.size(); i++) {
+        st.assign(b, std::vector<T>(1 << b));
+        for(size_t i = 0; i < v.size(); i++) {
             st[0][i] = v[i];
         }
         for(int i = 1; i < b; i++) {

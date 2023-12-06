@@ -2,11 +2,10 @@
 #pragma once
 
 #include <vector>
-using namespace std;
 template <class T> struct FenwickTree {
 private:
     int N;
-    vector<T> data;
+    std::vector<T> data;
 public:
     FenwickTree(){}
     FenwickTree(int size){ init(size); }
@@ -38,7 +37,7 @@ public:
     int lower_bound(T w) {
         if(w <= 0) return 0;
         int x = 0;
-        for(int k = 1 << __lg(N); k; k >>= 1) {
+        for(int k = 1 << std::__lg(N); k; k >>= 1) {
             if(x + k <= N - 1 && data[x + k] < w) {
                 w -= data[x + k];
                 x += k;
@@ -50,7 +49,7 @@ public:
     int upper_bound(T w) {
         if(w < 0) return 0;
         int x = 0;
-        for(int k = 1 << __lg(N); k; k >>= 1) {
+        for(int k = 1 << std::__lg(N); k; k >>= 1) {
             if(x + k <= N - 1 && data[x + k] <= w) {
                 w -= data[x + k];
                 x += k;
