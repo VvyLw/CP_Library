@@ -54,7 +54,7 @@ final class WaveletMatrixBeta {
 			}
 		}
 	}
-	final NumPair succ(final boolean f, final int l, final int r, final int level){ return new NumPair(matrix[level].rank(f, l) + mid[level] * (f ? 1 : 0), matrix[level].rank(f, r) + mid[level] * (f ? 1 : 0)); }
+	private final NumPair succ(final boolean f, final int l, final int r, final int level){ return new NumPair(matrix[level].rank(f, l) + mid[level] * (f ? 1 : 0), matrix[level].rank(f, r) + mid[level] * (f ? 1 : 0)); }
 	final long access(int k) {
 		long ret = 0;
 		for(int level = log; --level >= 0;) {
@@ -76,7 +76,7 @@ final class WaveletMatrixBeta {
 		return r - l;
 	}
 	final long kthMin(int l, int r, int k) {
-		if(Utility.scope(0, k, r - l - 1)) {
+		if(!Utility.scope(0, k, r - l - 1)) {
 			throw new IndexOutOfBoundsException();
 		}
 		long ret = 0;
@@ -128,7 +128,7 @@ final class WaveletMatrix {
 	}
 	private int lowerBound(final long[] arr, final long x) {
 		final int id = Arrays.binarySearch(arr, x);
-		return id < 0 ? -(id - 1) : id;
+		return id < 0 ? -(id + 1) : id;
 	}
 	private final int get(final long x){ return lowerBound(ys, x); }
 	final long access(final int k){ return ys[(int) mat.access(k)]; }
