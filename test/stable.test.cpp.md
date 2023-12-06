@@ -43,7 +43,7 @@ data:
   isVerificationFile: true
   path: test/stable.test.cpp
   requiredBy: []
-  timestamp: '2023-12-02 12:45:43+09:00'
+  timestamp: '2023-12-06 12:38:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/stable.test.cpp
