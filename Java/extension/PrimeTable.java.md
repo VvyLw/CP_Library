@@ -133,16 +133,18 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/extension/PrimeTable.java\n"
   code: "package extension;\n\nimport java.util.Arrays;\nimport java.util.stream.IntStream;\n\
-    \nfinal class PrimeTable {\n\tprivate final int n, size;\n\tprivate final boolean[]\
-    \ sieve;\n\tPrimeTable(final int n) {\n\t\tthis.n = n;\n\t\tsieve = new boolean[n\
-    \ + 1];\n\t\tArrays.fill(sieve, true);\n\t\tsieve[0] = sieve[1] = false;\n\t\t\
-    for(long i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[(int) i]) {\n\t\t\t\tcontinue;\n\
+    \nfinal class PrimeTable {\n\tprivate final int size;\n\tprivate final int[] p;\n\
+    \tprivate final boolean[] sieve;\n\tPrimeTable(final int n) {\n\t\tsieve = new\
+    \ boolean[n + 1];\n\t\tArrays.fill(sieve, true);\n\t\tsieve[0] = sieve[1] = false;\n\
+    \t\tfor(long i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[(int) i]) {\n\t\t\t\tcontinue;\n\
     \t\t\t}\n\t\t\tfor(long j = i * i; j <= n; j += i) {\n\t\t\t\tsieve[(int) j] =\
     \ false;\n\t\t\t}\n\t\t}\n\t\tsize = (int) IntStream.rangeClosed(0, n).filter(i\
-    \ -> sieve[i]).count();\n\t}\n\tfinal boolean[] table(){ return sieve; }\n\tfinal\
-    \ int[] get() {\n\t\tint j = 0;\n\t\tfinal int[] p = new int[size];\n\t\tfor(int\
-    \ i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\t\t}\n\
-    \t\t}\n\t\treturn p;\n\t}\n}"
+    \ -> sieve[i]).count();\n\t\tint j = 0;\n\t\tp = new int[size];\n\t\tfor(int i\
+    \ = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\t\t}\n\t\
+    \t}\n\t}\n\tfinal boolean[] table(){ return sieve; }\n\tfinal int[] get(){ return\
+    \ p; }\n\tfinal boolean binarySearch(final int x){ return Arrays.binarySearch(p,\
+    \ x) >= 0; }\n\tfinal int lowerBound(final int x) {\n\t\tfinal int id = Arrays.binarySearch(p,\
+    \ x);\n\t\treturn id < 0 ? -(id + 1) : id; \n\t}\n}"
   dependsOn:
   - Java/extension/MyScanner.java
   - Java/extension/LowestCommonAncestor.java
@@ -187,7 +189,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-06 01:59:37+09:00'
+  timestamp: '2023-12-06 12:17:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/PrimeTable.java

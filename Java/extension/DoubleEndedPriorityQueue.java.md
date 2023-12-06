@@ -135,7 +135,7 @@ data:
   code: "package extension;\n\nimport java.util.ArrayList;\nimport java.util.Collections;\n\
     \nfinal class DoubleEndedPriorityQueue<T extends Number> {\n\tprivate final ArrayList<T>\
     \ d;\n\tDoubleEndedPriorityQueue(final ArrayList<T> d) {\n\t\tthis.d = d;\n\t\t\
-    make_heap();\n\t}\n\tprivate final void make_heap() {\n\t\tfor(int i = d.size();\
+    makeHeap();\n\t}\n\tprivate final void makeHeap() {\n\t\tfor(int i = d.size();\
     \ i-- > 0;) {\n\t\t\tif (i % 2 == 1 && d.get(i - 1).longValue() < d.get(i).longValue())\
     \ {\n\t\t\t\tCollections.swap(d, i - 1, i);\n\t\t\t}\n\t\t\tup(down(i), i);\n\t\
     \t}\n\t}\n\tprivate final int down(int k) {\n\t\tfinal int n = d.size();\n\t\t\
@@ -210,7 +210,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-06 01:59:37+09:00'
+  timestamp: '2023-12-06 12:17:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/DoubleEndedPriorityQueue.java
