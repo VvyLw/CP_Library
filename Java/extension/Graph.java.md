@@ -164,7 +164,7 @@ data:
     \ > cost[i][k] + cost[k][j]) {\n\t\t\t\t\t\tcost[i][j] = cost[i][k] + cost[k][j];\n\
     \t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n}\nclass Tree {\n\
     \tprivate final ArrayList<Edge> edge;\n\tprivate final int n, indexed;\n\tTree(final\
-    \ int n, final int indexed) {\n\t\tedge = new ArrayList<>(n);\n\t\tthis.n = n;\n\
+    \ int n, final int indexed) {\n\t\tedge = new ArrayList<>();\n\t\tthis.n = n;\n\
     \t\tthis.indexed = indexed;\n\t}\n\tfinal void addEdge(final int a, final int\
     \ b, final long cost){ edge.add(new Edge(a - indexed, b - indexed, cost)); }\n\
     \tfinal long kruskal() {\n\t\tCollections.sort(edge, Comparator.comparing(e ->\
@@ -172,44 +172,44 @@ data:
     \tfor(final var ed: edge) {\n\t\t\tif(uf.unite(ed.src, ed.to)) {\n\t\t\t\tres\
     \ += ed.cost;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n}"
   dependsOn:
-  - Java/extension/LowestCommonAncestor.java
-  - Java/extension/WeightedUnionFind.java
-  - Java/extension/FenwickTree.java
-  - Java/extension/WaveletMatrix.java
-  - Java/extension/PrefixSum.java
-  - Java/extension/UnionFind.java
-  - Java/extension/SuffixArray.java
-  - Java/extension/LargePrime.java
-  - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
+  - Java/extension/PrefixSum.java
   - Java/extension/PrimeFactor.java
-  - Java/extension/PrimeCounter.java
-  - Java/extension/SegmentTree.java
+  - Java/extension/LargePrime.java
+  - Java/extension/LowestCommonAncestor.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
+  - Java/extension/SuffixArray.java
+  - Java/extension/WaveletMatrix.java
+  - Java/extension/SegmentTree.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/UnionFind.java
+  - Java/extension/PrimeCounter.java
   - Java/all.java
   isVerificationFile: false
   path: Java/extension/Graph.java
   requiredBy:
-  - Java/extension/LowestCommonAncestor.java
-  - Java/extension/WeightedUnionFind.java
-  - Java/extension/FenwickTree.java
-  - Java/extension/WaveletMatrix.java
-  - Java/extension/PrefixSum.java
-  - Java/extension/UnionFind.java
-  - Java/extension/SuffixArray.java
-  - Java/extension/LargePrime.java
-  - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
+  - Java/extension/PrefixSum.java
   - Java/extension/PrimeFactor.java
-  - Java/extension/PrimeCounter.java
-  - Java/extension/SegmentTree.java
+  - Java/extension/LargePrime.java
+  - Java/extension/LowestCommonAncestor.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
+  - Java/extension/SuffixArray.java
+  - Java/extension/WaveletMatrix.java
+  - Java/extension/SegmentTree.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/UnionFind.java
+  - Java/extension/PrimeCounter.java
   - Java/all.java
-  timestamp: '2023-12-07 20:54:24+09:00'
+  timestamp: '2023-12-08 03:00:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Graph.java

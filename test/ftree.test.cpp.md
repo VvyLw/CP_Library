@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/FenwickTree.hpp
     title: C++/FenwickTree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/template.hpp
     title: C++/template.hpp
   _extendedRequiredBy: []
@@ -43,7 +43,7 @@ data:
   isVerificationFile: true
   path: test/ftree.test.cpp
   requiredBy: []
-  timestamp: '2023-12-06 12:38:24+09:00'
+  timestamp: '2023-12-08 03:00:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/ftree.test.cpp

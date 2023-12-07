@@ -514,7 +514,7 @@ data:
     \t\t\t\t\t\tcost[i][j] = cost[i][k] + cost[k][j];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\
     \t}\n\t\t}\n\t\treturn cost;\n\t}\n}\nclass Tree {\n\tprivate final ArrayList<Edge>\
     \ edge;\n\tprivate final int n, indexed;\n\tTree(final int n, final int indexed)\
-    \ {\n\t\tedge = new ArrayList<>(n);\n\t\tthis.n = n;\n\t\tthis.indexed = indexed;\n\
+    \ {\n\t\tedge = new ArrayList<>();\n\t\tthis.n = n;\n\t\tthis.indexed = indexed;\n\
     \t}\n\tfinal void addEdge(final int a, final int b, final long cost){ edge.add(new\
     \ Edge(a - indexed, b - indexed, cost)); }\n\tfinal long kruskal() {\n\t\tCollections.sort(edge,\
     \ Comparator.comparing(e -> e.cost));\n\t\tfinal UnionFind uf = new UnionFind(n);\n\
@@ -898,44 +898,44 @@ data:
     \ final long lower) {\n\t\tfinal var ret = mat.next(l, r, get(lower));\n\t\treturn\
     \ ret == -1 ? -1 : ys[(int) ret];\n\t}\n}"
   dependsOn:
-  - Java/extension/LowestCommonAncestor.java
-  - Java/extension/WeightedUnionFind.java
-  - Java/extension/FenwickTree.java
-  - Java/extension/WaveletMatrix.java
-  - Java/extension/PrefixSum.java
-  - Java/extension/UnionFind.java
-  - Java/extension/SuffixArray.java
-  - Java/extension/LargePrime.java
-  - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
-  - Java/extension/Graph.java
+  - Java/extension/PrefixSum.java
   - Java/extension/PrimeFactor.java
-  - Java/extension/PrimeCounter.java
-  - Java/extension/SegmentTree.java
+  - Java/extension/LargePrime.java
+  - Java/extension/LowestCommonAncestor.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
+  - Java/extension/SuffixArray.java
+  - Java/extension/WaveletMatrix.java
+  - Java/extension/SegmentTree.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/Graph.java
+  - Java/extension/UnionFind.java
+  - Java/extension/PrimeCounter.java
   isVerificationFile: false
   path: Java/all.java
   requiredBy:
-  - Java/extension/LowestCommonAncestor.java
-  - Java/extension/WeightedUnionFind.java
-  - Java/extension/FenwickTree.java
-  - Java/extension/WaveletMatrix.java
-  - Java/extension/PrefixSum.java
-  - Java/extension/UnionFind.java
-  - Java/extension/SuffixArray.java
-  - Java/extension/LargePrime.java
-  - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
-  - Java/extension/Graph.java
+  - Java/extension/PrefixSum.java
   - Java/extension/PrimeFactor.java
-  - Java/extension/PrimeCounter.java
-  - Java/extension/SegmentTree.java
+  - Java/extension/LargePrime.java
+  - Java/extension/LowestCommonAncestor.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
-  timestamp: '2023-12-07 20:54:24+09:00'
+  - Java/extension/SuffixArray.java
+  - Java/extension/WaveletMatrix.java
+  - Java/extension/SegmentTree.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/Graph.java
+  - Java/extension/UnionFind.java
+  - Java/extension/PrimeCounter.java
+  timestamp: '2023-12-08 03:00:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java

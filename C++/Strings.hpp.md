@@ -243,10 +243,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manacher.test.cpp
-  - test/sa.test.cpp
-  - test/rh.test.cpp
-  - test/lcpa.test.cpp
   - test/zalgo.test.cpp
+  - test/sa.test.cpp
+  - test/lcpa.test.cpp
+  - test/rh.test.cpp
 documentation_of: C++/Strings.hpp
 layout: document
 redirect_from:

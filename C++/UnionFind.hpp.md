@@ -3,12 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: C++/MST.hpp
-    title: C++/MST.hpp
+    path: C++/graph.hpp
+    title: C++/graph.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/kruskal.test.cpp
     title: test/kruskal.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/lca.test.cpp
+    title: test/lca.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
@@ -131,13 +134,14 @@ data:
   isVerificationFile: false
   path: C++/UnionFind.hpp
   requiredBy:
-  - C++/MST.hpp
+  - C++/graph.hpp
   timestamp: '2023-12-02 08:23:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/ufpotential.test.cpp
-  - test/uf.test.cpp
+  - test/lca.test.cpp
   - test/kruskal.test.cpp
+  - test/uf.test.cpp
 documentation_of: C++/UnionFind.hpp
 layout: document
 redirect_from:

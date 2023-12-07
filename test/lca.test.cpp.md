@@ -5,6 +5,9 @@ data:
     path: C++/LCA.hpp
     title: C++/LCA.hpp
   - icon: ':heavy_check_mark:'
+    path: C++/UnionFind.hpp
+    title: C++/UnionFind.hpp
+  - icon: ':heavy_check_mark:'
     path: C++/graph.hpp
     title: C++/graph.hpp
   _extendedRequiredBy: []
@@ -34,10 +37,11 @@ data:
   dependsOn:
   - C++/LCA.hpp
   - C++/graph.hpp
+  - C++/UnionFind.hpp
   isVerificationFile: true
   path: test/lca.test.cpp
   requiredBy: []
-  timestamp: '2023-12-02 22:41:14+09:00'
+  timestamp: '2023-12-08 03:00:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lca.test.cpp

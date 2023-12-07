@@ -9,9 +9,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/LCA.hpp
       title: C++/LCA.hpp
-    - icon: ':heavy_check_mark:'
-      path: C++/MST.hpp
-      title: C++/MST.hpp
     - icon: ':warning:'
       path: C++/Modint.hpp
       title: C++/Modint.hpp
@@ -21,7 +18,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/SegmentTree.hpp
       title: C++/SegmentTree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/SparseTable.hpp
       title: C++/SparseTable.hpp
     - icon: ':heavy_check_mark:'
@@ -45,7 +42,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math.hpp
       title: C++/math.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/template.hpp
       title: C++/template.hpp
   - name: Java
@@ -165,7 +162,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/WM.test.cpp
       title: test/WM.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aarray.test.cpp
       title: test/aarray.test.cpp
     - icon: ':heavy_check_mark:'
@@ -213,7 +210,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/rh.test.cpp
       title: test/rh.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/s_rmq.test.cpp
       title: test/s_rmq.test.cpp
     - icon: ':heavy_check_mark:'
@@ -225,7 +222,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/sr_sum.test.cpp
       title: test/sr_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/stable.test.cpp
       title: test/stable.test.cpp
     - icon: ':heavy_check_mark:'
