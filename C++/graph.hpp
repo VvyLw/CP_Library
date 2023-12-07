@@ -7,130 +7,140 @@ using namespace std;
 //#include "template.hpp"
 template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
 struct edge {
-private:
-    int to;
-public:
+    int src, to;
     long long cost;
-    edge(int to_, long long cost_): to(to_), cost(cost_){}
-    operator long long() const { return to; }
+    edge(){}
+    edge(const int to_): to(to_){}
+    edge(const int to_, const long long cost_): to(to_), cost(cost_){}
+    edge(const int src_, const int to_, const long long cost_): src(src_), to(to_), cost(cost_){}
 };
-template <bool undirected=1> struct w_graph {
-    vector<vector<edge>> g;
-    vector<int> pr;
-    int indexed;
-    w_graph(const int n, const int indexed_ = 1): g(n), pr(n), indexed(indexed_){}
-    vector<edge>& operator[](int x){ return g[x]; }
-    const vector<edge>& operator[](int x) const { return g[x]; }
-    operator vector<vector<edge>>&(){ return g; }
-    operator const vector<vector<edge>>&() const { return g; }
-    auto begin() const { return g.cbegin(); }
-    auto end() const { return g.cend(); }
-    int size() const { return g.size(); }
+template <bool undirected = true> struct graph: std::vector<std::vector<edge>> {
+private:
+    const int indexed;
+public:
+    graph(const int n, const int indexed_ = 1): indexed(indexed_) {
+        this -> resize(n);
+    }
+    void add(int a, int b) {
+        a -= indexed, b-= indexed;
+        (*this)[a].emplace_back(edge(b));
+        if(undirected) {
+            (*this)[b].emplace_back(edge(a));
+        }
+    }
+    void input(const int m) {
+        for(int i = 0; i < m; ++i) {
+            int a, b;
+            std::cin >> a >> b;
+            add(a, b);
+        }
+    }
+protected:
+    std::vector<int> all_dist(const int v) {
+        std::vector<int> d(this -> size(), -1);
+        std::queue<int> q;
+        d[v] = 0;
+        q.emplace(v);
+        while(q.size()) {
+            const int tmp = q.front();
+            q.pop();
+            for(const auto &el: (*this)[tmp]) {
+                if(d[el.to] != -1) {
+                    continue;
+                }
+                d[el.to] = d[tmp] + 1;
+                q.emplace(el.to);
+            }
+        }
+        return d;
+    }
+    int dist(const int u, const int v) const { return all_dist(u)[v]; }
+};
+template <bool undirected = true> struct w_graph: graph<undirected> {
+private:
+    const int indexed;
+public:
+    w_graph(const int n, const int indexed_ = 1): graph<undirected>(n, indexed_){}
     void add(int a, int b, const long long cost) {
-        a-=indexed,b-=indexed;
-        g[a].emplace_back(b, cost);
-        pr[b] = a;
-        if(undirected) g[b].emplace_back(a, cost);
+        a -= indexed, b -= indexed;
+        (*this)[a].emplace_back(edge(b, cost));
+        if(undirected) {
+            (*this)[b].emplace_back(edge(a, cost));
+        }
     }
     void input(const int m) {
         for(int i = 0; i < m; ++i) {
             int a, b;
             long long c;
-            cin >> a >> b >> c;
-            add(a, b, c, indexed);
+            std::cin >> a >> b >> c;
+            add(a, b, c);
         }
     }
-    vector<edge> par(int v){ return g[pr[v]]; }
-    vector<int> all_dist(int v) {
-        vector<int> d(g.size(),-1);
-        queue<int> q;
-        d[v]=0;
-        q.emplace(v);
-        while(q.size()) {
-            int tmp=q.front();
-            q.pop();
-            for(const auto &el: g[tmp]) {
-                if(d[el]!=-1) continue;
-                d[el]=d[tmp]+1;
-                q.emplace(el);
-            }
-        }
-        return d;
-    }
-    int dist(int u, int v) {
-        const auto d=all_dist(u);
-        return d[v];
-    }
-    vector<long long> dijkstra(int v) {
-        vector<long long> cst(g.size(), 1LL << 60);
-        priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<pair<long long, int>>> dj;
-        cst[v]=0;
-        dj.emplace(cst[v],v);
+    std::vector<long long> dijkstra(const int v) {
+        std::vector<long long> cst(this -> size(), (1LL << 61) - 1);
+        std::priority_queue<std::pair<long long, int>, std::vector<std::pair<long long, int>>, std::greater<std::pair<long long, int>>> dj;
+        cst[v] = 0;
+        dj.emplace(cst[v], v);
         while(dj.size()) {
-            const auto tmp=dj.top();
+            const auto tmp = dj.top();
             dj.pop();
-            if(cst[tmp.second]<tmp.first) continue;
-            for(auto el: g[tmp.second]) if(chmin(cst[el],tmp.first+el.cost)) dj.emplace(cst[el],el);
+            if(cst[tmp.second] < tmp.first) {
+                continue;
+            }
+            for(const auto &el: (*this)[tmp.second]) {
+                if(chmin(cst[el], tmp.first + el.cost)) {
+                    dj.emplace(cst[el.to], el.to);
+                }
+            }
         }
         return cst;
     }
-    vector<vector<long long>> warshall_floyd() {
-		const int n = g.size();
-		vector cst(n, vector(n, (1LL << 61) - 1));
-		for(int i = 0; i < n; ++i) cst[i][i]=0;
-		for(int i = 0; i < n; ++i) for(const auto &j: g[i]) cst[i][j]=j.cost;
+    std::vector<std::vector<long long>> warshall_floyd() {
+		const int n = this -> size();
+		std::vector cst(n, std::vector(n, (1LL << 61) - 1));
+		for(int i = 0; i < n; ++i) {
+            cst[i][i] = 0;
+        }
+		for(int i = 0; i < n; ++i) {
+            for(const auto &j: (*this)[i]) {
+                cst[i][j] = j.cost;
+            }
+        }
 		for(int k = 0 ; k < n; ++k) {
             for(int i = 0; i < n; ++i) {
-                for(int j = 0; j < n; ++j) chmin(cst[i][j],cst[i][k]+cst[k][j]);
+                for(int j = 0; j < n; ++j) {
+                    chmin(cst[i][j], cst[i][k] + cst[k][j]);
+                }
             }
         }
 		return cst;
 	}
 };
-template <bool undirected=1> struct graph {
-    vector<vector<int>> g;
-    vector<int> pr;
-    int indexed;
-    graph(const int n, const int indexed_ = 1): g(n), pr(n), indexed(indexed_){}
-    vector<int>& operator[](int x){ return g[x]; }
-    const vector<int>& operator[](int x) const { return g[x]; }
-    operator vector<vector<int>>&(){ return g; }
-    operator const vector<vector<int>>&() const { return g; }
-    auto begin() const { return g.cbegin(); }
-    auto end() const { return g.cend(); }
-    int size() const { return g.size(); }
-    void add(int a, int b) {
-        a-=indexed,b-=indexed;
-        g[a].emplace_back(b);
-        pr[b] = a;
-        if(undirected) g[b].emplace_back(a);
-    }
-    void input(const int m) {
-        for(int i = 0; i < m; ++i) {
-            int a, b;
-            cin >> a >> b;
-            add(a,b,indexed);
-        }
-    }
-    vector<int> par(int v){ return g[pr[v]]; }
-    vector<int> all_dist(int v) {
-        vector<int> d(g.size(),-1);
-        queue<int> q;
-        d[v]=0;
-        q.emplace(v);
-        while(q.size()) {
-            int tmp=q.front();
-            q.pop();
-            for(auto el: g[tmp]) {
-                if(d[el]!=-1) continue;
-                d[el]=d[tmp]+1;
-                q.emplace(el);
+
+#include <C++/UnionFind.hpp>
+struct tree {
+private:
+	int n, indexed;
+	std::vector<edge> edges;
+public:
+	tree(const int n_, const int indexed_ = 1): n(n_), indexed(indexed_){}
+	void input(int m) {
+		while(m--) {
+            edge e;
+            std::cin >> e.src >> e.to >> e.cost;
+			e.src -= indexed, e.to -= indexed;
+			edges.emplace_back(e);
+		}
+	}
+	long long kruskal() {
+        std::sort(edges.begin(), edges.end(), [&](const edge &e, const edge &f){ return e.cost < f.cost; });
+		UnionFind uf(n);
+		long long res = 0;
+		for(const auto &ed: edges) {
+			if(uf.unite(ed.src, ed.to)) {
+                res += ed.cost;
             }
-        }
-        return d;
-    }
-    int dist(int u, int v) {
-        const auto d=all_dist(u);
-        return d[v];
-    }
+		}
+		return res;
+	}
 };

@@ -4,23 +4,21 @@
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
-using namespace std;
-using namespace __gnu_pbds;
 namespace VvyLw {
-inline void wa_haya_exe() noexcept { cin.tie(nullptr) -> sync_with_stdio(false); }
+inline void wa_haya_exe() noexcept { std::cin.tie(nullptr) -> sync_with_stdio(false); }
 void solve();
 } // VvyLw
-mt19937 EhaL(hash<string>()("Huitloxopetl"));
-mt19937 Random() {
-  random_device seed_gen;
-  mt19937 engine {seed_gen()};
+std::mt19937 EhaL(std::hash<std::string>()("Huitloxopetl"));
+std::mt19937 Random() {
+  std::random_device seed_gen;
+  std::mt19937 engine {seed_gen()};
   return engine;
 }
-using Timer = chrono::system_clock::time_point;
+using Timer = std::chrono::system_clock::time_point;
 [[maybe_unused]] Timer start, stop;
 #if local
-void now(Timer &t){ t = chrono::system_clock::now(); }
-void time(const Timer &t1, const Timer &t2){ cerr << chrono::duration_cast<chrono::milliseconds>(t2-t1).count() << "ms\n"; }
+void now(Timer &t){ t = std::chrono::system_clock::now(); }
+void time(const Timer &t1, const Timer &t2){ std::cerr << std::chrono::duration_cast<std::chrono::milliseconds>(t2-t1).count() << "ms\n"; }
 #else
 [[maybe_unused]] void now(Timer &t){ void(0); }
 [[maybe_unused]] void time(const Timer &t1, const Timer &t2){ void(0); }
@@ -63,29 +61,29 @@ using uint = unsigned;
 using ul = unsigned long long;
 using i128 = __int128_t;
 using u128 = __uint128_t;
-template <class T> using L = numeric_limits<T>;
+template <class T> using L = std::numeric_limits<T>;
 constexpr int dx[]={0,0,0,-1,1,-1,-1,1,1};
 constexpr int dy[]={0,-1,1,0,0,-1,1,-1,1};
 constexpr int MOD = 0x3b800001;
-constexpr int M0D = 1e9+7;
-constexpr int INF = 1<<30;
-constexpr ll LINF = (1LL<<61)-1;
+constexpr int M0D = 1e9 + 7;
+constexpr int INF = 1 << 30;
+constexpr ll LINF = (1LL << 61) - 1;
 constexpr ld DINF = L<ld>::infinity();
 template <class T> constexpr T LIM = L<T>::max();
 #if __cplusplus >= 202100L
-constexpr ld PI = numbers::pi;
-constexpr ld E = numbers::e;
+constexpr ld PI = std::numbers::pi;
+constexpr ld E = std::numbers::e;
 #else
-const ld PI = acos(-1);
+const ld PI = std::acos(-1);
 const ld E = 2.718281828459045;
 #endif
 namespace vectors {
-template <class T> using V = vector<T>;
+template <class T> using V = std::vector<T>;
 using vi = V<ll>;
 using vu = V<ul>;
 using vd = V<ld>;
 using vc = V<char>;
-using vs = V<string>;
+using vs = V<std::string>;
 using vb = V<bool>;
 using wi = V<vi>;
 using wu = V<vu>;
@@ -94,10 +92,10 @@ using wc = V<vc>;
 using ws = V<vs>;
 using wb = V<vb>;
 template <class T, class U> inline V<U> ndiv(T&& n, U&& v) noexcept {
-  return V<U>(forward<T>(n), forward<U>(v));
+  return V<U>(std::forward<T>(n), std::forward<U>(v));
 }
 template <class T, class... Ts> inline decltype(auto) ndiv(T&& n, Ts&&... v) noexcept {
-  return V<decltype(ndiv(forward<Ts>(v)...))>(forward<T>(n), ndiv(forward<Ts>(v)...));
+  return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n), ndiv(std::forward<Ts>(v)...));
 }
 template <class T> constexpr V<T>& operator++(V<T>& v) noexcept { each(el,v) el++; return v; }
 template <class T> constexpr V<T>& operator--(V<T>& v) noexcept { each(el,v) el--; return v; }
@@ -114,12 +112,12 @@ template <class T, class U> constexpr V<T> operator%(const V<T>& v, const U x) n
 } // vectors
 using namespace vectors;
 namespace pairs {
-template <class T, class U> using P = pair<T, U>;
+template <class T, class U> using P = std::pair<T, U>;
 template <class T> using PP = P<T,T>;
 using pi = PP<ll>;
 using pd = PP<ld>;
 using pc = PP<char>;
-using ps = PP<string>;
+using ps = PP<std::string>;
 template <class T> constexpr PP<T> operator+(const PP<T>& a, const PP<T>& b) noexcept { return {a.first + b.first, a.second + b.second}; }
 template <class T> constexpr PP<T> operator-(const PP<T>& a, const PP<T>& b) noexcept { return {a.first - b.first, a.second - b.second}; }
 template <class T> constexpr PP<T> operator-(const PP<T>& a) noexcept { return {-a.first, -a.second}; }
@@ -145,13 +143,13 @@ template <class T> inline PP<T> rotate(const PP<T>& a){ return {-a.second, a.fir
 template <class T> inline pd rotate(const PP<T>& a, const int ang) {
   assert(0<=ang && ang<360);
   const ld rad=PI*ang/180;
-  return {a.first*cosl(rad)-a.second*sinl(rad), a.first*sinl(rad)+a.second*cosl(rad)};
+  return {a.first*std::cos(rad)-a.second*std::sin(rad), a.first*std::sin(rad)+a.second*std::cos(rad)};
 }
 template <class T> inline T dot(const PP<T>& a, const PP<T>& b){ return a.first * b.first + a.second * b.second; }
 template <class T> inline T cross(const PP<T>& a, const PP<T>& b){ return dot(rotate(a), b); }
 template <class T> inline T square(const PP<T>& a){ return dot(a, a); }
 template <class T> inline ld grad(const PP<T>& a){ assert(a.first); return 1.0L * a.second / a.first; }
-template <class T> inline ld abs(const PP<T>& a){ return hypotl(a.first, a.second); }
+template <class T> inline ld abs(const PP<T>& a){ return std::hypotl(a.first, a.second); }
 template <class T> inline T lcm(const PP<T>& a){ return std::lcm(a.first, a.second); }
 template <class T> inline T gcd(const PP<T>& a){ return std::gcd(a.first, a.second); }
 template <class T> inline PP<T> extgcd(const PP<T> &p) {
@@ -191,24 +189,24 @@ template <class T, class U> inline V<U> second(const V<P<T,U>> &vp) {
 }
 } // pairs
 using namespace pairs;
-template <size_t N> using ti = array<ll, N>;
+template <size_t N> using ti = std::array<ll, N>;
 using tri = ti<3>;
-template <class T> using pq = priority_queue<T>;
-template <class T> using pqr = priority_queue<T,V<T>,greater<T>>;
-template <class T> using Tree = tree<T,null_type,less<T>,rb_tree_tag,tree_order_statistics_node_update>;
-template <class T> using TREE = tree<T,null_type,greater<T>,rb_tree_tag,tree_order_statistics_node_update>;
+template <class T> using pq = std::priority_queue<T>;
+template <class T> using pqr = std::priority_queue<T,V<T>,std::greater<T>>;
+template <class T> using Tree = __gnu_pbds::tree<T,__gnu_pbds::null_type,std::less<T>,__gnu_pbds::rb_tree_tag,__gnu_pbds::tree_order_statistics_node_update>;
+template <class T> using TREE = __gnu_pbds::tree<T,__gnu_pbds::null_type,std::greater<T>,__gnu_pbds::rb_tree_tag,__gnu_pbds::tree_order_statistics_node_update>;
 template <class T, class U> inline bool chmax(T& a, const U& b){ if(a<b){ a=b; return 1; } return 0; }
 template <class T, class U> inline bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
 template <class T, class U> inline bool overflow_if_add(const T a, const U b){ return (LIM<T>-a)<b; }
 template <class T, class U> inline bool overflow_if_mul(const T a, const U b){ return (LIM<T>/a)<b; }
 
 namespace IO {
-ostream &operator<<(ostream &dest, i128 value) {
-  ostream::sentry s(dest);
+std::ostream &operator<<(std::ostream &dest, i128 value) {
+  std::ostream::sentry s(dest);
   if(s) {
     u128 tmp = value < 0 ? -value : value;
     char buffer[128];
-    char *d = end(buffer);
+    char *d = std::end(buffer);
     do {
       --d;
       *d = "0123456789"[tmp % 10];
@@ -218,40 +216,40 @@ ostream &operator<<(ostream &dest, i128 value) {
       --d;
       *d = '-';
     }
-    int len = end(buffer) - d;
+    int len = std::end(buffer) - d;
     if(dest.rdbuf()->sputn(d, len) != len) {
-      dest.setstate(ios_base::badbit);
+      dest.setstate(std::ios_base::badbit);
     }
   }
   return dest;
 }
-template <class T, class U> istream& operator>>(istream &is, P<T, U> &p){ is >> p.first >> p.second; return is; }
-template <class T, size_t N> istream& operator>>(istream &is, array<T, N> &a){ each(el,a) is >> el; return is; }
-template <class T> istream& operator>>(istream &is, V<T> &v){ each(el,v) is >> el; return is; }
-template <class T> istream& operator>>(istream &is, deque<T> &dq){ each(el,dq) is >> el; return is; }
-template <class T> inline bool in(T& x){ cin >> x; return 1; }
+template <class T, class U> std::istream& operator>>(std::istream &is, P<T, U> &p){ is >> p.first >> p.second; return is; }
+template <class T, size_t N> std::istream& operator>>(std::istream &is, std::array<T, N> &a){ each(el,a) is >> el; return is; }
+template <class T> std::istream& operator>>(std::istream &is, V<T> &v){ each(el,v) is >> el; return is; }
+template <class T> std::istream& operator>>(std::istream &is, std::deque<T> &dq){ each(el,dq) is >> el; return is; }
+template <class T> inline bool in(T& x){ std::cin >> x; return 1; }
 template <class Head, class... Tail> inline bool in(Head& head, Tail&... tail){ in(head); in(tail...); return 1; }
-template <class T, class U> ostream& operator<<(ostream &os, const P<T, U> &p){ os << p.first << ' ' << p.second; return os; }
-template <class T, size_t N> ostream& operator<<(ostream &os, const array<T, N> &a){ if(a.size()){ os << a.front(); for(auto i=a.begin(); ++i!=a.end();){ os << ' ' << *i; } } return os; }
-template <class T> ostream& operator<<(ostream &os, const V<T> &v){ if(v.size()){ os << v.front(); for(auto i=v.begin(); ++i!=v.end();){ os << ' ' << *i; } } return os; }
-template <class K, class V> ostream& operator<<(ostream &os, const map<K, V> &m){ if(m.size()){ os << m.begin()->first << ' ' << m.begin()->second; for(auto i=m.begin(); ++i!=m.end();){ os << '\n' << i->first << ' ' << i->second; } } return os; }
-template <class T> ostream& operator<<(ostream &os, const set<T> &st){ if(st.size()){ os << *st.begin(); for(auto i=st.begin(); ++i!=st.end();){ os << ' ' << *i; } } return os; }
-template <class T> ostream& operator<<(ostream &os, const multiset<T> &ms){ if(ms.size()){ os << *ms.begin(); for(auto i=ms.begin(); ++i!=ms.end();){ os << ' ' << *i; } } return os; }
-template <class T> ostream& operator<<(ostream &os, const deque<T> &dq){ if(dq.size()){ os << dq.front(); for(auto i=dq.begin(); ++i!=dq.end();){ os << ' ' << *i; } } return os; }
-inline void out(){ cout << '\n'; }
-template <bool flush=false, class T> inline void out(const T& x){ cout << x << '\n'; if(flush) cout.flush(); }
-template <bool flush=false, class Head, class... Tail> inline void out(const Head& head, const Tail&... tail){ cout << head << ' '; out<flush>(tail...); }
-template <bool flush=false, class T> inline void vout(const T& v){ cout << v << '\n'; if(flush) cout.flush(); }
-template <bool flush=false, class T> inline void vout(const V<T>& v){ rep(v.size()) cout << v[i] << '\n'; if(flush) cout.flush(); }
-template <bool flush=false, class Head, class... Tail> inline void vout(const Head& head, const Tail&... tail){ cout << head << '\n'; vout<flush>(tail...); }
-inline void fix(const short x){ cout << fixed << setprecision(x); }
-inline void alpha(){ cout << boolalpha; }
+template <class T, class U> std::ostream& operator<<(std::ostream &os, const P<T, U> &p){ os << p.first << ' ' << p.second; return os; }
+template <class T, size_t N> std::ostream& operator<<(std::ostream &os, const std::array<T, N> &a){ if(a.size()){ os << a.front(); for(auto i=a.begin(); ++i!=a.end();){ os << ' ' << *i; } } return os; }
+template <class T> std::ostream& operator<<(std::ostream &os, const V<T> &v){ if(v.size()){ os << v.front(); for(auto i=v.begin(); ++i!=v.end();){ os << ' ' << *i; } } return os; }
+template <class K, class V> std::ostream& operator<<(std::ostream &os, const std::map<K, V> &m){ if(m.size()){ os << m.begin()->first << ' ' << m.begin()->second; for(auto i=m.begin(); ++i!=m.end();){ os << '\n' << i->first << ' ' << i->second; } } return os; }
+template <class T> std::ostream& operator<<(std::ostream &os, const std::set<T> &st){ if(st.size()){ os << *st.begin(); for(auto i=st.begin(); ++i!=st.end();){ os << ' ' << *i; } } return os; }
+template <class T> std::ostream& operator<<(std::ostream &os, const std::multiset<T> &ms){ if(ms.size()){ os << *ms.begin(); for(auto i=ms.begin(); ++i!=ms.end();){ os << ' ' << *i; } } return os; }
+template <class T> std::ostream& operator<<(std::ostream &os, const std::deque<T> &dq){ if(dq.size()){ os << dq.front(); for(auto i=dq.begin(); ++i!=dq.end();){ os << ' ' << *i; } } return os; }
+inline void out(){ std::cout << '\n'; }
+template <bool flush=false, class T> inline void out(const T& x){ std::cout << x << '\n'; if(flush) std::cout.flush(); }
+template <bool flush=false, class Head, class... Tail> inline void out(const Head& head, const Tail&... tail){ std::cout << head << ' '; out<flush>(tail...); }
+template <bool flush=false, class T> inline void vout(const T& v){ std::cout << v << '\n'; if(flush) std::cout.flush(); }
+template <bool flush=false, class T> inline void vout(const V<T>& v){ rep(v.size()) std::cout << v[i] << '\n'; if(flush) std::cout.flush(); }
+template <bool flush=false, class Head, class... Tail> inline void vout(const Head& head, const Tail&... tail){ std::cout << head << '\n'; vout<flush>(tail...); }
+inline void fix(const short x){ std::cout << std::fixed << std::setprecision(x); }
+inline void alpha(){ std::cout << std::boolalpha; }
 #define INT(...) int __VA_ARGS__; in(__VA_ARGS__)
 #define LL(...) ll __VA_ARGS__; in(__VA_ARGS__)
 #define UL(...) ul __VA_ARGS__; in(__VA_ARGS__)
 #define LD(...) ld __VA_ARGS__; in(__VA_ARGS__)
 #define CHR(...) char __VA_ARGS__; in(__VA_ARGS__)
-#define STR(...) string __VA_ARGS__; in(__VA_ARGS__)
+#define STR(...) std::string __VA_ARGS__; in(__VA_ARGS__)
 #define VEC(type,name,size) V<type> name(size); in(name)
 #define WEC(type,name,h,w) V<V<type>> name(h,V<type>(w)); in(name)
 #define fin(...) do{ out(__VA_ARGS__); return; }while(false)
@@ -269,10 +267,10 @@ namespace zia_qu {
 #define elif else if
 #define eid(el,v) size_t(&el-&v[0])
 #define bif(bit,tar) if(((bit)>>(tar))&1)
-#define nxp(x) next_permutation(all(x))
-#define prp(x) prev_permutation(all(x))
-#define strpl(s,a,b) regex_replace(s,regex(a),b)
-#define rgxsr(s,rgx) regex_search(s,regex(rgx))
+#define nxp(x) std::next_permutation(all(x))
+#define prp(x) std::prev_permutation(all(x))
+#define strpl(s,a,b) std::regex_replace(s,std::regex(a),b)
+#define rgxsr(s,rgx) std::regex_search(s,std::regex(rgx))
 inline void YES(const bool ok=1){ out(ok?"YES":"NO"); }
 inline void NO(const bool ok=1){ YES(!ok); }
 inline void Yes(const bool ok=1){ out(ok?"Yes":"No"); }
@@ -297,33 +295,33 @@ template <class T> inline T Pow(T a, T b, const T mod=0) {
   }
   return res;
 }
-inline ll Ceil(const ld x, const ll m){ return ceil(x/m); }
-inline ld Round(const ld x, const ll m, const short fx=0){ if(!fx) return round(x/m); const ul y=Pow<ul>(10,fx); return round((x*y)/m)/y; }
-inline ld Log(const ll x, const ld base=2){ return log2(x)/log2(base); }
+inline ll Ceil(const ld x, const ll m){ return std::ceil(x/m); }
+inline ld Round(const ld x, const ll m, const short fx=0){ if(!fx) return std::round(x/m); const ul y=Pow<ul>(10,fx); return std::round((x*y)/m)/y; }
+inline ld Log(const ll x, const ld base=2){ return std::log2(x)/std::log2(base); }
 inline int bitdigit(const ll x){ return 64-__builtin_clzll(x); }
 inline int popcnt(const ll x){ return __builtin_popcountll(x); }
 inline int fione(const ll x){ return __builtin_ffsll(x); }
 inline int zrcnt(const ll x){ return __builtin_ctzll(x); }
 template <class T=ll> inline bool scope(const T a, const T x, const T b){ return a <= x && x <= b; }
 inline bool isupper(const char c){ return std::isupper(c); }
-inline bool isupper(const string &s){ bool ok=1; each(el,s) ok&=isupper(el); return ok; }
+inline bool isupper(const std::string &s){ bool ok=1; each(el,s) ok&=isupper(el); return ok; }
 inline bool islower(const char c){ return std::islower(c); }
-inline bool islower(const string &s){ bool ok=1; each(el,s) ok&=islower(el); return ok; }
+inline bool islower(const std::string &s){ bool ok=1; each(el,s) ok&=islower(el); return ok; }
 inline bool isalpha(const char c){ return std::isalpha(c); }
-inline bool isalpha(const string &s){ bool ok=1; each(el,s) ok&=isalpha(el); return ok; }
+inline bool isalpha(const std::string &s){ bool ok=1; each(el,s) ok&=isalpha(el); return ok; }
 inline bool isdigit(const char c){ return std::isdigit(c); }
-inline bool isdigit(const string &s){ bool ok=1, neg=s.front()=='-'; each(el,s){ if(neg){ neg=0; continue; } ok&=isdigit(el); } return ok; }
+inline bool isdigit(const std::string &s){ bool ok=1, neg=s.front()=='-'; each(el,s){ if(neg){ neg=0; continue; } ok&=isdigit(el); } return ok; }
 inline bool isalnum(const char c){ return std::isalnum(c); }
-inline bool isalnum(const string &s){ bool ok=1; each(el,s) ok&=isalnum(el); return ok; }
+inline bool isalnum(const std::string &s){ bool ok=1; each(el,s) ok&=isalnum(el); return ok; }
 inline bool isspace(const char c){ return std::isspace(c); }
-inline bool isspace(const string &s){ bool ok=1; each(el,s) ok&=isspace(el); return ok; }
+inline bool isspace(const std::string &s){ bool ok=1; each(el,s) ok&=isspace(el); return ok; }
 inline bool ispunct(const char c){ return std::ispunct(c); }
-inline bool ispunct(const string &s){ bool ok=1; each(el,s) ok&=ispunct(el); return ok; }
+inline bool ispunct(const std::string &s){ bool ok=1; each(el,s) ok&=ispunct(el); return ok; }
 inline bool isprint(const char c){ return std::isprint(c); }
-inline bool isprint(const string &s){ bool ok=1; each(el,s) ok&=isprint(el); return ok; }
-inline ll strins(string &s, const ll id, const string &t){ s.insert(id,t); return s.size(); }
-inline string toupper(string s){ each(c,s) c=std::toupper(c); return s; }
-inline string tolower(string s){ each(c,s) c=std::tolower(c); return s; }
+inline bool isprint(const std::string &s){ bool ok=1; each(el,s) ok&=isprint(el); return ok; }
+inline ll strins(std::string &s, const int id, const std::string &t){ s.insert(id,t); return s.size(); }
+inline std::string toupper(std::string s){ each(c,s) c=std::toupper(c); return s; }
+inline std::string tolower(std::string s){ each(c,s) c=std::tolower(c); return s; }
 inline vi ten_to_adic(ll n, const short base) {
   vi res;
   while(n) {
@@ -339,29 +337,29 @@ inline ll adic_to_ten(const vi &v, const short base) {
   }
   return res;
 }
-inline string to_hex(const ll x) {
-  stringstream ss;
-  ss<<hex<<x;
-  string s=ss.str();
+inline std::string to_hex(const ll x) {
+  std::stringstream ss;
+  ss << std::hex << x;
+  std::string s = ss.str();
   //s=toupper(s);
   return s;
 }
-inline string to_oct(const ll x) {
-  stringstream s;
-  s<<oct<<x;
+inline std::string to_oct(const ll x) {
+  std::stringstream s;
+  s << std::oct <<x;
   return s.str();
 }
-inline string to_bin(const ll x) {
-  stringstream ss;
-  ss<<bitset<64>(x);
-  string s=ss.str();
-  reverse(all(s));
+inline std::string to_bin(const ll x) {
+  std::stringstream ss;
+  ss<<std::bitset<64>(x);
+  std::string s=ss.str();
+  std::reverse(all(s));
   s.resize(ten_to_adic(x,2).size());
-  reverse(all(s));
+  std::reverse(all(s));
   return s;
 }
-inline ll to_ten(const string &s, const short base){ return stoll(s,nullptr,base); }
-inline i128 stoL(const string &s) {
+inline ll to_ten(const std::string &s, const short base){ return std::stoll(s,nullptr,base); }
+inline i128 stoL(const std::string &s) {
   assert(isdigit(s));
   bool neg=s.front()=='-';
   i128 ret = 0;
@@ -375,99 +373,99 @@ inline i128 stoL(const string &s) {
   if(s.front()=='-') ret=-ret;
   return ret;
 }
-template <class... Ts> constexpr ul sygcd(const Ts... a) noexcept { vector v=initializer_list<common_type_t<Ts...>>{a...}; ul g=0; each(el,v) g=gcd(g,el); return g; }
-template <class... Ts> constexpr ul sylcm(const Ts... a) noexcept { vector v=initializer_list<common_type_t<Ts...>>{a...}; ul l=1; each(el,v) l=lcm(l,el); return l; }
-template <class... Ts> constexpr auto symin(const Ts... a) noexcept { return min(initializer_list<common_type_t<Ts...>>{a...}); }
-template <class... Ts> constexpr auto symax(const Ts... a) noexcept { return max(initializer_list<common_type_t<Ts...>>{a...}); }
-template <class K, class U> inline V<K> kyl(const map<K,U> &m, const U val) {
+template <class... Ts> constexpr ul sygcd(const Ts... a) noexcept { std::vector v=std::initializer_list<std::common_type_t<Ts...>>{a...}; ul g=0; each(el,v) g=std::gcd(g,el); return g; }
+template <class... Ts> constexpr ul sylcm(const Ts... a) noexcept { std::vector v=std::initializer_list<std::common_type_t<Ts...>>{a...}; ul l=1; each(el,v) l=std::lcm(l,el); return l; }
+template <class... Ts> constexpr auto symin(const Ts... a) noexcept { return std::min(std::initializer_list<std::common_type_t<Ts...>>{a...}); }
+template <class... Ts> constexpr auto symax(const Ts... a) noexcept { return std::max(std::initializer_list<std::common_type_t<Ts...>>{a...}); }
+template <class K, class U> inline V<K> kyl(const std::map<K,U> &m, const U val) {
   V<K> keys;
   for(auto it=m.cbegin(); it!=m.cend(); ++it) {
     if(it->second==val) keys.emplace_back(it->first);
   }
   return keys;
 }
-template <class K, class V> inline K kymin(const map<K,V> &m){ return m.begin()->first; }
-template <class K, class V> inline K kymax(const map<K,V> &m){ return m.rbegin()->first; }
-template <class K, class V> inline V kymin_v(const map<K,V> &m){ return m.begin()->second; }
-template <class K, class V> inline V kymax_v(const map<K,V> &m){ return m.rbegin()->second; }
-template <class K, class V> inline V vlmin(const map<K,V> &m){
-  const auto pr = *min_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second < y.second; });
+template <class K, class V> inline K kymin(const std::map<K,V> &m){ return m.begin()->first; }
+template <class K, class V> inline K kymax(const std::map<K,V> &m){ return m.rbegin()->first; }
+template <class K, class V> inline V kymin_v(const std::map<K,V> &m){ return m.begin()->second; }
+template <class K, class V> inline V kymax_v(const std::map<K,V> &m){ return m.rbegin()->second; }
+template <class K, class V> inline V vlmin(const std::map<K,V> &m){
+  const auto pr = *std::min_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second < y.second; });
   return pr.second;
 }
-template <class K, class V> inline V vlmax(const map<K,V> &m){
-  const auto pr = *max_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second < y.second; });
+template <class K, class V> inline V vlmax(const std::map<K,V> &m){
+  const auto pr = *std::max_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second < y.second; });
   return pr.second;
 }
-template <class K, class V> inline K vlmin_k(const map<K,V> &m){
-  const auto pr = *min_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second < y.second; });
+template <class K, class V> inline K vlmin_k(const std::map<K,V> &m){
+  const auto pr = *std::min_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second < y.second; });
   return pr.first;
 }
-template <class K, class V> inline K vlmax_k(const map<K,V> &m){
-  const auto pr = *max_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second < y.second; });
+template <class K, class V> inline K vlmax_k(const std::map<K,V> &m){
+  const auto pr = *std::max_element(all(m),[](P<K,V> const &x, P<K,V> const &y){ return x.second < y.second; });
   return pr.first;
 }
 } // zia qu
 
 namespace Lady_sANDy {
-template <class T> inline void rev(T& v){ reverse(all(v)); }
-template <class T> inline void rev(T& v, const int a, const int b){ reverse(all(v,a,b+1)); }
+template <class T> inline void rev(T& v){ std::reverse(all(v)); }
+template <class T> inline void rev(T& v, const int a, const int b){ std::reverse(all(v,a,b+1)); }
 template <class T> inline T revd(const T& v){ auto c=v; rev(c); return c; }
 template <class T> inline T revd(const T& v, const int a, const int b){ auto c=v; rev(c,a,b); return c; }
-template <class T> inline void Sort(T& v){ sort(all(v)); }
-template <class T> inline void Sort(T& v, const int a, const int b){ sort(all(v,a,b+1)); }
+template <class T> inline void Sort(T& v){ std::sort(all(v)); }
+template <class T> inline void Sort(T& v, const int a, const int b){ std::sort(all(v,a,b+1)); }
 template <class T> inline T sorted(const T& v){ auto c=v; Sort(c); return c; }
 template <class T> inline T sorted(const T& v, const int a, const int b){ auto c=v; Sort(c,a,b); return c; }
-template <class T> inline void Sortt(T& v){ sort(rall(v)); }
-template <class T> inline void Sortt(T& v, const int a, const int b){ sort(rall(v,v.size()-b-1,v.size()-a)); }
+template <class T> inline void Sortt(T& v){ std::sort(rall(v)); }
+template <class T> inline void Sortt(T& v, const int a, const int b){ std::sort(rall(v,v.size()-b-1,v.size()-a)); }
 template <class T> inline T Sorted(const T& v){ auto c=v; Sortt(c); return c; }
 template <class T> inline T Sorted(const T& v, const int a, const int b){ auto c=v; Sortt(c,a,b); return c; }
-template <class T> inline void Sorth(T& v){ make_heap(all(v)); sort_heap(all(v)); }
-template <class T> inline T mrg(const T& a, const T& b){ T res; merge(all(a),all(b),back_inserter(res)); return res; }
-template <class T> inline T Min(const V<T>& v){ return *min_element(all(v)); }
-template <class T> inline T Min(const V<T>& v, const int a, const int b){ return *min_element(all(v,a,b+1)); }
-template <class T> inline T Max(const V<T>& v){ return *max_element(all(v)); }
-template <class T> inline T Max(const V<T>& v, const int a, const int b){ return *max_element(all(v,a,b+1)); }
-template <class T> inline int Min_i(const T& v){ return min_element(all(v))-v.begin(); }
-template <class T> inline int Max_i(const T& v){ return max_element(all(v))-v.begin(); }
-template <class T, class U> inline int LB(const T& v, const U x){ return lower_bound(all(v),x)-v.begin(); }
-template <class T, class U> inline int UB(const T& v, const U x){ return upper_bound(all(v),x)-v.begin(); }
-template <class T, class U> inline bool BS(const T& v, const U x){ return binary_search(all(v),x); }
-template <class T, class U, class Boolean=bool> inline bool BS(const T& v, const U x, const Boolean &fn){ return binary_search(all(v),x,fn); }
-template <class T, class Boolean=bool> inline bool All(const T& v, const Boolean &fn){ return all_of(all(v),fn); }
-template <class T, class Boolean=bool> inline bool Exist(const T& v, const Boolean &fn){ return any_of(all(v),fn); }
-template <class T, class Boolean=bool> inline int pt(T& v, const Boolean &fn){ auto p=partition(all(v),fn); return p-v.begin(); }
-template <class T, class Boolean=bool> inline int ptp(const T& v, const Boolean &fn){ return partition_point(all(v),fn)-v.begin(); }
-template <class T, class U> inline int fnd(const T& v, const U x){ auto itr=find(all(v),x); return itr!=v.end()?itr-v.begin():-1; }
-template <class T> inline int src(const T& s, const T& t){ auto itr=search(all(s),all(t)); return itr!=s.end()?itr-s.begin():-1; }
-template <class T, class U> inline void rpl(T& v, const U fn, const U r){ replace(all(v),fn,r); }
-template <class T, class U, class Boolean=bool> inline void rplif(T& v, const Boolean &fn, const U r){ replace_if(all(v),fn,r); }
-template <class T, class Boolean=bool> inline ul cntif(const T& v, const Boolean &fn){ return count_if(all(v),fn); }
-template <class T> inline T Count(V<T>& v, ll x){ if(!is_sorted(all(v))) Sort(v); return UB(v,x)-LB(v,x); }
-template <class T> inline T IP(const V<T>& v, const V<T>& u, T init){ return inner_product(all(v),u.begin(),init); }
-inline vi iot(int n, ll init=0){ vi a(n); iota(all(a),init); return a; }
-template <class T, class U, class F> inline V<T> trans(const V<U>& v, const F &fn){ V<T> res; transform(all(v),back_inserter(res),fn); return res; }
-template <class T, class U> inline int ers(T& v, const U x){ v.erase(remove(all(v),x),v.end()); return v.size(); }
-template <class T, class Boolean=bool> int ersif(T& v, const Boolean &fn){ v.erase(remove_if(all(v),fn),v.end()); return v.size(); }
-template <class T> inline int unq(T& v){ if(!is_sorted(all(v))) Sort(v); v.erase(unique(all(v)),v.end()); return v.size(); }
+template <class T> inline void Sorth(T& v){ std::make_heap(all(v)); std::sort_heap(all(v)); }
+template <class T> inline T mrg(const T& a, const T& b){ T res; std::merge(all(a),all(b),std::back_inserter(res)); return res; }
+template <class T> inline T Min(const V<T>& v){ return *std::min_element(all(v)); }
+template <class T> inline T Min(const V<T>& v, const int a, const int b){ return *std::min_element(all(v,a,b+1)); }
+template <class T> inline T Max(const V<T>& v){ return *std::max_element(all(v)); }
+template <class T> inline T Max(const V<T>& v, const int a, const int b){ return *std::max_element(all(v,a,b+1)); }
+template <class T> inline int Min_i(const T& v){ return std::min_element(all(v))-v.begin(); }
+template <class T> inline int Max_i(const T& v){ return std::max_element(all(v))-v.begin(); }
+template <class T, class U> inline int LB(const T& v, const U x){ return std::lower_bound(all(v),x)-v.begin(); }
+template <class T, class U> inline int UB(const T& v, const U x){ return std::upper_bound(all(v),x)-v.begin(); }
+template <class T, class U> inline bool BS(const T& v, const U x){ return std::binary_search(all(v),x); }
+template <class T, class U, class Boolean=bool> inline bool BS(const T& v, const U x, const Boolean &fn){ return std::binary_search(all(v),x,fn); }
+template <class T, class Boolean=bool> inline bool All(const T& v, const Boolean &fn){ return std::all_of(all(v),fn); }
+template <class T, class Boolean=bool> inline bool Exist(const T& v, const Boolean &fn){ return std::any_of(all(v),fn); }
+template <class T, class Boolean=bool> inline int pt(T& v, const Boolean &fn){ auto p=std::partition(all(v),fn); return p-v.begin(); }
+template <class T, class Boolean=bool> inline int ptp(const T& v, const Boolean &fn){ return std::partition_point(all(v),fn)-v.begin(); }
+template <class T, class U> inline int fnd(const T& v, const U x){ auto itr=std::find(all(v),x); return itr!=v.end()?itr-v.begin():-1; }
+template <class T> inline int src(const T& s, const T& t){ auto itr=std::search(all(s),all(t)); return itr!=s.end()?itr-s.begin():-1; }
+template <class T, class U> inline void rpl(T& v, const U fn, const U r){ std::replace(all(v),fn,r); }
+template <class T, class U, class Boolean=bool> inline void rplif(T& v, const Boolean &fn, const U r){ std::replace_if(all(v),fn,r); }
+template <class T, class Boolean=bool> inline ul cntif(const T& v, const Boolean &fn){ return std::count_if(all(v),fn); }
+template <class T> inline T Count(V<T>& v, ll x){ if(!std::is_sorted(all(v))) Sort(v); return UB(v,x)-LB(v,x); }
+template <class T> inline T IP(const V<T>& v, const V<T>& u, T init){ return std::inner_product(all(v),u.begin(),init); }
+inline vi iot(int n, ll init=0){ vi a(n); std::iota(all(a),init); return a; }
+template <class T, class U, class F> inline V<T> trans(const V<U>& v, const F &fn){ V<T> res; std::transform(all(v),std::back_inserter(res),fn); return res; }
+template <class T, class U> inline int ers(T& v, const U x){ v.erase(std::remove(all(v),x),v.end()); return v.size(); }
+template <class T, class Boolean=bool> int ersif(T& v, const Boolean &fn){ v.erase(std::remove_if(all(v),fn),v.end()); return v.size(); }
+template <class T> inline int unq(T& v){ if(!std::is_sorted(all(v))) Sort(v); v.erase(unique(all(v)),v.end()); return v.size(); }
 template <class T> inline T cp(const T& v){ T res; copy(all(v),back_inserter(res)); return res; }
-template <class T> inline T cp(const T& v, const int a, const int b){ T res; copy(all(v,a,b),back_inserter(res)); return res; }
-template <class T> inline void rtt(T& s, const int idx){ const int id=zia_qu::Mod<int>(idx,s.size()); rotate(all(s,id),s.end()); }
-template <class T> inline void rtt(T& s, const int a, const int b, const int c){ rotate(all(s,a,b),s.end()-c); }
-template <class T> inline T setdif(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_difference(all(s),all(t),inserter(res,end(res))); return res; }
-template <class T> inline T setsum(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_union(all(s),all(t),inserter(res,end(res))); return res; }
-template <class T> inline T setmul(const T& s, const T& t){ assert(is_sorted(all(s))&&is_sorted(all(t))); T res; set_intersection(all(s),all(t),inserter(res,end(res))); return res; }
-template <class T> inline V<T> adf(const V<T>& v){ V<T> a; adjacent_difference(all(v),back_inserter(a)); rtt(a,1); a.pop_back(); return a; }
-template <class T, class F> inline V<T> isum(const V<T> &v, const F &fn){ V<T> s{0}; inclusive_scan(all(v),back_inserter(s),fn); return s; }
-template <class T> inline V<T> rext(const V<T>& v, const int size){ V<T> res; sample(all(v),back_inserter(res),size,Random()); return res; }
-template <class T> inline T rext(const V<T>& v){ V<T> res; sample(all(v),back_inserter(res),1,Random()); return res.front(); }
-template <class T> inline ll vsum(const T &v){ return accumulate(all(v),0LL); }
-template <class T> inline ll vsum(const T &v, ll a, ll b){ return accumulate(all(v,a,b),0LL); }
-template <class T> inline ld vdsum(const T &v){ return accumulate(all(v),0.0L); }
-template <class T> inline ld vdsum(const T &v, ll a, ll b){ return accumulate(all(v,a,b),0.0L); }
-template <class T> inline ll vmul(const T &v){ return accumulate(all(v),1LL,[](ll acc,ll i){ return acc*i; }); }
-template <class T> inline ll vmul(const T &v, ll a, ll b){ return accumulate(all(v,a,b),1LL,[](ll acc,ll i){ return acc*i; }); }
-template <class T> inline ld vdmul(const T &v){ return accumulate(all(v),1.0L,[](ll acc,ll i){ return acc*i; }); }
-template <class T> inline ld vdmul(const T &v, ll a, ll b){ return accumulate(all(v,a,b),1.0L,[](ll acc,ll i){ return acc*i; }); }
+template <class T> inline T cp(const T& v, const int a, const int b){ T res; std::copy(all(v,a,b),std::back_inserter(res)); return res; }
+template <class T> inline void rtt(T& s, const int idx){ const int id=zia_qu::Mod<int>(idx,s.size()); std::rotate(all(s,id),s.end()); }
+template <class T> inline void rtt(T& s, const int a, const int b, const int c){ std::rotate(all(s,a,b),s.end()-c); }
+template <class T> inline T setdif(const T& s, const T& t){ assert(std::is_sorted(all(s))&&std::is_sorted(all(t))); T res; std::set_difference(all(s),all(t),std::inserter(res,std::end(res))); return res; }
+template <class T> inline T setsum(const T& s, const T& t){ assert(std::is_sorted(all(s))&&std::is_sorted(all(t))); T res; std::set_union(all(s),all(t),std::inserter(res,std::end(res))); return res; }
+template <class T> inline T setmul(const T& s, const T& t){ assert(std::is_sorted(all(s))&&std::is_sorted(all(t))); T res; std::set_intersection(all(s),all(t),std::inserter(res,std::end(res))); return res; }
+template <class T> inline V<T> adf(const V<T>& v){ V<T> a; std::adjacent_difference(all(v),std::back_inserter(a)); rtt(a,1); a.pop_back(); return a; }
+template <class T, class F> inline V<T> isum(const V<T> &v, const F &fn){ V<T> s{0}; std::inclusive_scan(all(v),std::back_inserter(s),fn); return s; }
+template <class T> inline V<T> rext(const V<T>& v, const int size){ V<T> res; std::sample(all(v),std::back_inserter(res),size,Random()); return res; }
+template <class T> inline T rext(const V<T>& v){ V<T> res; std::sample(all(v),std::back_inserter(res),1,Random()); return res.front(); }
+template <class T> inline ll vsum(const T &v){ return std::accumulate(all(v),0LL); }
+template <class T> inline ll vsum(const T &v, ll a, ll b){ return std::accumulate(all(v,a,b),0LL); }
+template <class T> inline ld vdsum(const T &v){ return std::accumulate(all(v),0.0L); }
+template <class T> inline ld vdsum(const T &v, ll a, ll b){ return std::accumulate(all(v,a,b),0.0L); }
+template <class T> inline ll vmul(const T &v){ return std::accumulate(all(v),1LL,[](ll acc,ll i){ return acc*i; }); }
+template <class T> inline ll vmul(const T &v, ll a, ll b){ return std::accumulate(all(v,a,b),1LL,[](ll acc,ll i){ return acc*i; }); }
+template <class T> inline ld vdmul(const T &v){ return std::accumulate(all(v),1.0L,[](ll acc,ll i){ return acc*i; }); }
+template <class T> inline ld vdmul(const T &v, ll a, ll b){ return std::accumulate(all(v,a,b),1.0L,[](ll acc,ll i){ return acc*i; }); }
 } // Lady s&y
 
 namespace Heileden {
@@ -514,7 +512,7 @@ struct p_table {
 struct p_fact {
   vi spf;
   p_fact(int n): spf(n + 1){
-    iota(all(spf),0);
+    std::iota(all(spf),0);
     sqrp(i,2,n) {
       if(spf[i]==i) {
         rep(j,i*i,n,i) {
@@ -523,8 +521,8 @@ struct p_fact {
       }
     }
   }
-  map<int,int> get(int n) {
-    map<int,int> m;
+  std::map<int,int> get(int n) {
+    std::map<int,int> m;
     while(n!=1) {
       m[spf[n]]++;
       n/=spf[n];
@@ -621,13 +619,13 @@ public:
 };
 struct asum {
   vi s;
-  asum(const vi& v): s{0} { partial_sum(all(v),back_inserter(s)); }
+  asum(const vi& v): s{0} { std::partial_sum(all(v),back_inserter(s)); }
   vi get() const { return s; }
   // [l, r]
   ll query(int l, int r) const { return s[r]-s[l]; }
 };
 template <class T, class Boolean=bool> inline T bins(T ok, T ng, const Boolean &fn, const ld eps = 1) {
-  while(abs(ok-ng)>eps) {
+  while(std::abs(ok-ng)>eps) {
     T mid=(ok+ng)/2;
     (fn(mid)?ok:ng) = mid;
   }
@@ -659,7 +657,7 @@ template <class T> inline V<T> press(V<T> &c1, V<T> &c2) {
 }
 inline vs rtt(const vs &s) {
   const int h=s.size(), w=s.front().size();
-  vs t(w,string(h,{}));
+  vs t(w,std::string(h,{}));
   rep(h) rep(j,w) t[j][i]=s[i][j];
   rep(w) Lady_sANDy::rev(t[i]);
   return t;
@@ -704,6 +702,6 @@ inline bool is_prime(const ul n) {
   sqrp(i,2,n) if(n%i==0) return 0;
   return 1;
 }
-inline bool is_int(const ld n){ ll r=floor(n); return r==n; }
-inline bool is_sqr(const ll n){ return is_int(sqrtl(n)); }
+inline bool is_int(const ld n){ ll r=std::floor(n); return r==n; }
+inline bool is_sqr(const ll n){ return is_int(std::sqrt(n)); }
 } // Heileden

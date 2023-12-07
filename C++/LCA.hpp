@@ -10,9 +10,9 @@ private:
     void dfs(const int idx, const int par, const int d) {
         table[0][idx] = par;
         dep[idx] = d;
-        for(const auto &to: g[idx]) {
-            if(to != par) {
-                dfs(to, idx, d + 1);
+        for(const auto &el: g[idx]) {
+            if(el.to != par) {
+                dfs(el.to, idx, d + 1);
             }
         }
     }
@@ -37,8 +37,10 @@ public:
                 v = table[i][v];
             }
         }
-        if(u == v) return u;
-            for(int i = LOG - 1; i >= 0; i--) {
+        if(u == v) {
+            return u;
+        }
+        for(int i = LOG - 1; i >= 0; i--) {
             if(table[i][u] != table[i][v]) {
                 u = table[i][u];
                 v = table[i][v];

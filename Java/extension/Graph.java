@@ -147,7 +147,7 @@ class Tree {
 	private final ArrayList<Edge> edge;
 	private final int n, indexed;
 	Tree(final int n, final int indexed) {
-		edge = new ArrayList<>(n);
+		edge = new ArrayList<>();
 		this.n = n;
 		this.indexed = indexed;
 	}
