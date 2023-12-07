@@ -137,19 +137,22 @@ data:
     \ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean\
     \ ok){ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
     \ x * x; }\n\tprotected static final int mod(final long n, final int m){ return\
-    \ (int) ((n + m) % m); }\n\tprotected static final long intCeil(long a, long b){\
-    \ return (long) Math.ceil((double)a / b); }\n\tprotected static final long intPow(long\
-    \ a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\
-    \t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static final long intPow(long a, long b, final int m) {\n\t\t\
-    long res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
-    \t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\
-    \tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final ArrayList<Long>\
-    \ div(final long n) {\n\t\tArrayList<Long> d = new ArrayList<>();\n\t\tfor(long\
-    \ i = 1; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\
-    \tif(i * i != n) {\n\t\t\t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\
-    \t\treturn d;\n\t}\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long\
-    \ n) {\n\t\tArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long\
+    \ (int) ((n + m) % m); }\n\tprotected static final long ceil(final long a, final\
+    \ long b){ return (long) Math.ceil((double) a / b); }\n\tprotected static final\
+    \ double round(final double a, final long b, final int c) {\n\t\tfinal long d\
+    \ = intPow(10, c);\n\t\treturn (double) Math.round((a * d) / b) / d;\n\t}\n\t\
+    protected static final long intPow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b\
+    \ > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\
+    \t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long intPow(long\
+    \ a, long b, final int m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b\
+    \ % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\t\
+    a *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t\
+    protected static final ArrayList<Long> div(final long n) {\n\t\tArrayList<Long>\
+    \ d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n %\
+    \ i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n /\
+    \ i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\t\treturn d;\n\t\
+    }\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long n)\
+    \ {\n\t\tArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long\
     \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t\
     }\n\t\t\tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /=\
     \ i;\n\t\t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\t\t\
@@ -334,15 +337,7 @@ data:
     \ double[] nd(final int n){\n\t\tdouble[] a = new double[n];\n\t\tIntStream.range(0,\
     \ n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal String[] ns(final\
     \ int n){\n\t\tString[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal ArrayList<Integer> nia(final int\
-    \ n) {\n\t\tvar a = new ArrayList<Integer>(n);\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a.add(i, ni()));\n\t\treturn a;\n\t}\n\tfinal ArrayList<Long> nla(final int\
-    \ n) {\n\t\tvar a = new ArrayList<Long>(n);\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a.add(i, nl()));\n\t\treturn a;\n\t}\n\tfinal ArrayList<Double> nda(final\
-    \ int n) {\n\t\tvar a = new ArrayList<Double>(n);\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a.add(i, nd()));\n\t\treturn a;\n\t}\n\tfinal ArrayList<String> nsa(final\
-    \ int n) {\n\t\tvar a = new ArrayList<String>(n);\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a.add(i, ns()));\n\t\treturn a;\n\t}\n\tfinal void close(){ sc.close(); }\n\
+    \ -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal void close(){ sc.close(); }\n\
     }\n\nfinal class MyPrinter {\n\tprivate final PrintWriter pw;\n\tMyPrinter(final\
     \ OutputStream os, final boolean flush){ pw = new PrintWriter(os, flush); }\n\t\
     final void print(final Object arg){ pw.print(arg); }\n\tfinal void out(){ pw.println();\
@@ -940,7 +935,7 @@ data:
   - Java/extension/SegmentTree.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
-  timestamp: '2023-12-07 15:32:35+09:00'
+  timestamp: '2023-12-07 20:54:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
