@@ -585,12 +585,72 @@ final class MyPrinter {
 		flush();
 		System.exit(0);
 	}
+	final void fin(final int[] args) {
+		out(args);
+		flush();
+		System.exit(0);
+	}
+	final void fin(final long[] args) {
+		out(args);
+		flush();
+		System.exit(0);
+	}
+	final void fin(final double[] args) {
+		out(args);
+		flush();
+		System.exit(0);
+	}
+	final void fin(final boolean[] args) {
+		out(args);
+		flush();
+		System.exit(0);
+	}
+	final void fin(final char[] args) {
+		out(args);
+		flush();
+		System.exit(0);
+	}
+	final void fin(final Object[] args) {
+		out(args);
+		flush();
+		System.exit(0);
+	}
 	final <T> void fin(final List<T> args) {
 		out(args);
 		flush();
 		System.exit(0);
 	}
-	final <E> void fine(final Collection<E> args) {
+	final void ende(final int[] args) {
+		outl(args);
+		flush();
+		System.exit(0);
+	}
+	final void ende(final long[] args) {
+		outl(args);
+		flush();
+		System.exit(0);
+	}
+	final void ende(final double[] args) {
+		outl(args);
+		flush();
+		System.exit(0);
+	}
+	final void ende(final boolean[] args) {
+		outl(args);
+		flush();
+		System.exit(0);
+	}
+	final void ende(final char[] args) {
+		outl(args);
+		flush();
+		System.exit(0);
+	}
+	final void ende(final Object[] args) {
+		outl(args);
+		flush();
+		System.exit(0);
+	}
+	final <E> void ende(final Collection<E> args) {
 		outl(args);
 		flush();
 		System.exit(0);
