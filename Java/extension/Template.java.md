@@ -373,25 +373,39 @@ data:
     \ }\n\tfinal void outl(final Object[] args){ Arrays.stream(args).forEach(pw::println);\
     \ }\n\tfinal <E> void outl(final Collection<E> args){ args.stream().forEach(pw::println);\
     \ }\n\tfinal void fin(final Object head, final Object... tail) {\n\t\tout(head,\
-    \ tail);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\tfinal <T> void fin(final List<T>\
-    \ args) {\n\t\tout(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\tfinal <E>\
-    \ void fine(final Collection<E> args) {\n\t\toutl(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\
-    \t}\n\tfinal void flush(){ pw.flush(); }\n\tfinal void close(){ pw.close(); }\n\
-    }\n\nclass Pair<F, S> {\n\tprotected final F first;\n\tprotected final S second;\n\
-    \tPair(final F first, final S second) {\n\t\tthis.first = first;\n\t\tthis.second\
-    \ = second;\n\t}\n\t@Override\n\tpublic final boolean equals(final Object o) {\n\
-    \t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass()\
-    \ != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?,\
-    \ ?>) o;\n\t\tif(!first.equals(p.first)) {\n\t\t\treturn false;\n\t\t}\n\t\treturn\
-    \ second.equals(p.second);\n\t}\n\t@Override\n\tpublic final int hashCode(){ return\
-    \ 31 * first.hashCode() + second.hashCode(); }\n\t@Override\n\tpublic final String\
-    \ toString(){ return \"(\" + first + \", \" + second + \")\"; }\n\tpublic static\
-    \ final <F, S> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }\n\
-    \tfinal Pair<S, F> swap(){ return Pair.of(second, first); }\n}\nfinal class NumPair\
-    \ extends Pair<Number, Number> implements Comparable<NumPair>  {\n\tNumPair(final\
-    \ Number first, final Number second){ super(first, second); }\n\tfinal NumPair\
-    \ rotate(){ return new NumPair(-second.doubleValue(), first.doubleValue()); }\
-    \ \n\tfinal NumPair rotate(final int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang,\
+    \ tail);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\tfinal void fin(final int[]\
+    \ args) {\n\t\tout(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\tfinal void\
+    \ fin(final long[] args) {\n\t\tout(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\
+    \t}\n\tfinal void fin(final double[] args) {\n\t\tout(args);\n\t\tflush();\n\t\
+    \tSystem.exit(0);\n\t}\n\tfinal void fin(final boolean[] args) {\n\t\tout(args);\n\
+    \t\tflush();\n\t\tSystem.exit(0);\n\t}\n\tfinal void fin(final char[] args) {\n\
+    \t\tout(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\tfinal void fin(final\
+    \ Object[] args) {\n\t\tout(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\t\
+    final <T> void fin(final List<T> args) {\n\t\tout(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\
+    \t}\n\tfinal void ende(final int[] args) {\n\t\toutl(args);\n\t\tflush();\n\t\t\
+    System.exit(0);\n\t}\n\tfinal void ende(final long[] args) {\n\t\toutl(args);\n\
+    \t\tflush();\n\t\tSystem.exit(0);\n\t}\n\tfinal void ende(final double[] args)\
+    \ {\n\t\toutl(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\tfinal void ende(final\
+    \ boolean[] args) {\n\t\toutl(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\
+    \tfinal void ende(final char[] args) {\n\t\toutl(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\
+    \t}\n\tfinal void ende(final Object[] args) {\n\t\toutl(args);\n\t\tflush();\n\
+    \t\tSystem.exit(0);\n\t}\n\tfinal <E> void ende(final Collection<E> args) {\n\t\
+    \toutl(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\tfinal void flush(){ pw.flush();\
+    \ }\n\tfinal void close(){ pw.close(); }\n}\n\nclass Pair<F, S> {\n\tprotected\
+    \ final F first;\n\tprotected final S second;\n\tPair(final F first, final S second)\
+    \ {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\t@Override\n\t\
+    public final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn\
+    \ true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn\
+    \ false;\n\t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first))\
+    \ {\n\t\t\treturn false;\n\t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t\
+    @Override\n\tpublic final int hashCode(){ return 31 * first.hashCode() + second.hashCode();\
+    \ }\n\t@Override\n\tpublic final String toString(){ return \"(\" + first + \"\
+    , \" + second + \")\"; }\n\tpublic static final <F, S> Pair<F, S> of(final F a,\
+    \ final S b){ return new Pair<>(a, b); }\n\tfinal Pair<S, F> swap(){ return Pair.of(second,\
+    \ first); }\n}\nfinal class NumPair extends Pair<Number, Number> implements Comparable<NumPair>\
+    \  {\n\tNumPair(final Number first, final Number second){ super(first, second);\
+    \ }\n\tfinal NumPair rotate(){ return new NumPair(-second.doubleValue(), first.doubleValue());\
+    \ } \n\tfinal NumPair rotate(final int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang,\
     \ 360));\n\t\treturn new NumPair(first.doubleValue() * Math.cos(rad) - second.doubleValue()\
     \ * Math.sin(rad),\n\t\t\t\t\t\t\tfirst.doubleValue() * Math.sin(rad) + second.doubleValue()\
     \ * Math.cos(rad));\n\t}\n\tfinal long dot(final NumPair p){ return first.longValue()\
@@ -453,7 +467,7 @@ data:
   - Java/extension/SegmentTree.java
   - Java/extension/UndoUnionFind.java
   - Java/all.java
-  timestamp: '2023-12-06 15:33:04+09:00'
+  timestamp: '2023-12-07 15:32:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java
