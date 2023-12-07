@@ -5,7 +5,7 @@
 #include <functional>
 template <class T> struct SparseTable {
 private:
-    using F = function<T(T,T)>;
+    using F = std::function<T(T,T)>;
     std::vector<std::vector<T>> st;
     std::vector<T> lookup;
     F f;
