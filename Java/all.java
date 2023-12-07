@@ -55,7 +55,11 @@ class Utility {
 	protected static final String no(final boolean ok){ return yes(!ok); }
 	protected static final long sqr(final long x){ return x * x; }
 	protected static final int mod(final long n, final int m){ return (int) ((n + m) % m); }
-	protected static final long intCeil(long a, long b){ return (long) Math.ceil((double)a / b); }
+	protected static final long ceil(final long a, final long b){ return (long) Math.ceil((double) a / b); }
+	protected static final double round(final double a, final long b, final int c) {
+		final long d = intPow(10, c);
+		return (double) Math.round((a * d) / b) / d;
+	}
 	protected static final long intPow(long a, int b) {
 		long res = 1;
 		while(b > 0) {
@@ -529,26 +533,6 @@ final class MyScanner {
 	final String[] ns(final int n){
 		String[] a = new String[n];
 		IntStream.range(0, n).forEach(i -> a[i] = ns());
-		return a;
-	}
-	final ArrayList<Integer> nia(final int n) {
-		var a = new ArrayList<Integer>(n);
-		IntStream.range(0, n).forEach(i -> a.add(i, ni()));
-		return a;
-	}
-	final ArrayList<Long> nla(final int n) {
-		var a = new ArrayList<Long>(n);
-		IntStream.range(0, n).forEach(i -> a.add(i, nl()));
-		return a;
-	}
-	final ArrayList<Double> nda(final int n) {
-		var a = new ArrayList<Double>(n);
-		IntStream.range(0, n).forEach(i -> a.add(i, nd()));
-		return a;
-	}
-	final ArrayList<String> nsa(final int n) {
-		var a = new ArrayList<String>(n);
-		IntStream.range(0, n).forEach(i -> a.add(i, ns()));
 		return a;
 	}
 	final void close(){ sc.close(); }
