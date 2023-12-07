@@ -6,7 +6,7 @@ data:
     path: C++/Modint.hpp
     title: C++/Modint.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aarray.test.cpp
     title: test/aarray.test.cpp
   - icon: ':heavy_check_mark:'
@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/s_rmq.test.cpp
     title: test/s_rmq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -33,15 +33,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stable.test.cpp
     title: test/stable.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3
@@ -917,19 +917,19 @@ data:
   requiredBy:
   - C++/Modint.hpp
   timestamp: '2023-12-08 03:00:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/m_add.test.cpp
+  - test/parsum.test.cpp
+  - test/uf.test.cpp
   - test/ftree.test.cpp
-  - test/segtree.test.cpp
-  - test/sr_sum.test.cpp
   - test/add128.test.cpp
   - test/aarray.test.cpp
-  - test/m_add.test.cpp
+  - test/sr_sum.test.cpp
+  - test/segtree.test.cpp
   - test/s_rmq.test.cpp
   - test/stable.test.cpp
-  - test/parsum.test.cpp
   - test/add.test.cpp
-  - test/uf.test.cpp
 documentation_of: C++/template.hpp
 layout: document
 redirect_from:

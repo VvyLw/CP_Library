@@ -139,42 +139,42 @@ data:
     \t\t\treturn psum[(int) n];\n\t\t}\n\t\tfinal long m = kthRooti(n, 3);\n\t\tfinal\
     \ long a = pi(m);\n\t\treturn phi(n, a) + a - 1 - p2(n, m);\n\t}\n}"
   dependsOn:
+  - Java/extension/LowestCommonAncestor.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/WaveletMatrix.java
+  - Java/extension/PrefixSum.java
+  - Java/extension/UnionFind.java
+  - Java/extension/SuffixArray.java
+  - Java/extension/LargePrime.java
+  - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
-  - Java/extension/PrefixSum.java
+  - Java/extension/Graph.java
   - Java/extension/PrimeFactor.java
-  - Java/extension/LargePrime.java
-  - Java/extension/LowestCommonAncestor.java
+  - Java/extension/SegmentTree.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
-  - Java/extension/SuffixArray.java
-  - Java/extension/WaveletMatrix.java
-  - Java/extension/SegmentTree.java
-  - Java/extension/FenwickTree.java
-  - Java/extension/WeightedUnionFind.java
-  - Java/extension/DoubleEndedPriorityQueue.java
-  - Java/extension/Graph.java
-  - Java/extension/UnionFind.java
   - Java/all.java
   isVerificationFile: false
   path: Java/extension/PrimeCounter.java
   requiredBy:
+  - Java/extension/LowestCommonAncestor.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/WaveletMatrix.java
+  - Java/extension/PrefixSum.java
+  - Java/extension/UnionFind.java
+  - Java/extension/SuffixArray.java
+  - Java/extension/LargePrime.java
+  - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
-  - Java/extension/PrefixSum.java
+  - Java/extension/Graph.java
   - Java/extension/PrimeFactor.java
-  - Java/extension/LargePrime.java
-  - Java/extension/LowestCommonAncestor.java
+  - Java/extension/SegmentTree.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
-  - Java/extension/SuffixArray.java
-  - Java/extension/WaveletMatrix.java
-  - Java/extension/SegmentTree.java
-  - Java/extension/FenwickTree.java
-  - Java/extension/WeightedUnionFind.java
-  - Java/extension/DoubleEndedPriorityQueue.java
-  - Java/extension/Graph.java
-  - Java/extension/UnionFind.java
   - Java/all.java
   timestamp: '2023-12-08 03:00:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS

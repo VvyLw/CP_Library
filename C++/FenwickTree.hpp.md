@@ -52,8 +52,8 @@ data:
   timestamp: '2023-12-06 12:38:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/ftree.test.cpp
   - test/parsum.test.cpp
+  - test/ftree.test.cpp
 documentation_of: C++/FenwickTree.hpp
 layout: document
 redirect_from:
