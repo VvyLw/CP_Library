@@ -234,6 +234,7 @@ class Utility {
 	protected static final <T extends Comparable<? super T>> int upperBound(final List<T> a, final T x) {
 		return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) > 0 ? 1 : -1);
 	}
+	protected static final String reverse(final String s){ return new StringBuilder(s).reverse().toString(); }
 	protected static final int[] reverse(final int[] a) {
 		final int n = a.length;
 		int[] b = new int[n];
