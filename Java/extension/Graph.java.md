@@ -209,7 +209,7 @@ data:
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-08 03:00:55+09:00'
+  timestamp: '2023-12-08 14:48:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Graph.java

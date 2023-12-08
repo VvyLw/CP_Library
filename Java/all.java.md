@@ -224,53 +224,55 @@ data:
     \t\treturn ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) >= 0 ? 1 :\
     \ -1);\n\t}\n\tprotected static final <T extends Comparable<? super T>> int upperBound(final\
     \ List<T> a, final T x) {\n\t\treturn ~Collections.binarySearch(a, x, (p, q) ->\
-    \ p.compareTo(q) > 0 ? 1 : -1);\n\t}\n\tprotected static final int[] reverse(final\
-    \ int[] a) {\n\t\tfinal int n = a.length;\n\t\tint[] b = new int[n];\n\t\tfor(int\
-    \ i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] =\
-    \ a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected static final long[] reverse(final\
-    \ long[] a) {\n\t\tfinal int n = a.length;\n\t\tlong[] b = new long[n];\n\t\t\
-    for(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 -\
-    \ i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected static final double[] reverse(final\
-    \ double[] a) {\n\t\tfinal int n = a.length;\n\t\tdouble[] b = new double[n];\n\
-    \t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n -\
-    \ 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected static final Object[]\
-    \ reverse(final Object[] a) {\n\t\tfinal int n = a.length;\n\t\tObject[] b = new\
-    \ Object[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\
-    \t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected static final\
-    \ int[] rotate(final int[] a, final int id) {\n\t\tArrayList<Integer> t = new\
-    \ ArrayList<>(a.length);\n\t\tfor(final var el: a) {\n\t\t\tt.add(el);\n\t\t}\n\
-    \t\tCollections.rotate(t, id);\n\t\tint[] res = new int[t.size()];\n\t\tfor(int\
-    \ i = 0; i < t.size(); ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static final long[] rotate(final long[] a, final int id) {\n\t\
-    \tArrayList<Long> t = new ArrayList<>(a.length);\n\t\tfor(final var el: a) {\n\
-    \t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t, id);\n\t\tlong[] res = new\
-    \ long[t.size()];\n\t\tfor(int i = 0; i < t.size(); ++i) {\n\t\t\tres[i] = t.get(i);\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final double[] rotate(final double[]\
-    \ a, final int id) {\n\t\tArrayList<Double> t = new ArrayList<>(a.length);\n\t\
-    \tfor(final var el: a) {\n\t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t, id);\n\
-    \t\tdouble[] res = new double[t.size()];\n\t\tfor(int i = 0; i < t.size(); ++i)\
-    \ {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final String rotate(final String s, final int id) {\n\t\tArrayList<Character>\
-    \ t = new ArrayList<>();\n\t\tfor(final char c: s.toCharArray()) {\n\t\t\tt.add(c);\n\
-    \t\t}\n\t\tCollections.rotate(t, id);\n\t\tStringBuilder sb = new StringBuilder();\n\
-    \t\tfor(final var c: t) {\n\t\t\tsb.append(c);\n\t\t}\n\t\treturn sb.toString();\
-    \ \n\t}\n\tprotected static final int[][] rotate(final int[][] a) {\n\t\tfinal\
-    \ int h = a.length, w = a[0].length;\n\t\tint[][] b = new int[w][h];\n\t\tIntStream.range(0,\
+    \ p.compareTo(q) > 0 ? 1 : -1);\n\t}\n\tprotected static final String reverse(final\
+    \ String s){ return new StringBuilder(s).reverse().toString(); }\n\tprotected\
+    \ static final int[] reverse(final int[] a) {\n\t\tfinal int n = a.length;\n\t\
+    \tint[] b = new int[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n\
+    \ - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected\
+    \ static final long[] reverse(final long[] a) {\n\t\tfinal int n = a.length;\n\
+    \t\tlong[] b = new long[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i]\
+    \ = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected\
+    \ static final double[] reverse(final double[] a) {\n\t\tfinal int n = a.length;\n\
+    \t\tdouble[] b = new double[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\t\
+    b[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\t\
+    protected static final Object[] reverse(final Object[] a) {\n\t\tfinal int n =\
+    \ a.length;\n\t\tObject[] b = new Object[n];\n\t\tfor(int i = 0; i <= n / 2; ++i)\
+    \ {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn\
+    \ b;\n\t}\n\tprotected static final int[] rotate(final int[] a, final int id)\
+    \ {\n\t\tArrayList<Integer> t = new ArrayList<>(a.length);\n\t\tfor(final var\
+    \ el: a) {\n\t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t, id);\n\t\tint[]\
+    \ res = new int[t.size()];\n\t\tfor(int i = 0; i < t.size(); ++i) {\n\t\t\tres[i]\
+    \ = t.get(i);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long[] rotate(final\
+    \ long[] a, final int id) {\n\t\tArrayList<Long> t = new ArrayList<>(a.length);\n\
+    \t\tfor(final var el: a) {\n\t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t,\
+    \ id);\n\t\tlong[] res = new long[t.size()];\n\t\tfor(int i = 0; i < t.size();\
+    \ ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ final double[] rotate(final double[] a, final int id) {\n\t\tArrayList<Double>\
+    \ t = new ArrayList<>(a.length);\n\t\tfor(final var el: a) {\n\t\t\tt.add(el);\n\
+    \t\t}\n\t\tCollections.rotate(t, id);\n\t\tdouble[] res = new double[t.size()];\n\
+    \t\tfor(int i = 0; i < t.size(); ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\t\
+    return res;\n\t}\n\tprotected static final String rotate(final String s, final\
+    \ int id) {\n\t\tArrayList<Character> t = new ArrayList<>();\n\t\tfor(final char\
+    \ c: s.toCharArray()) {\n\t\t\tt.add(c);\n\t\t}\n\t\tCollections.rotate(t, id);\n\
+    \t\tStringBuilder sb = new StringBuilder();\n\t\tfor(final var c: t) {\n\t\t\t\
+    sb.append(c);\n\t\t}\n\t\treturn sb.toString(); \n\t}\n\tprotected static final\
+    \ int[][] rotate(final int[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\
+    \t\tint[][] b = new int[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\t\
+    \tIntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);\n\t\t});\n\t\tIntStream.range(0,\
+    \ w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\tprotected static\
+    \ final long[][] rotate(final long[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\
+    \t\tlong[][] b = new long[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\
+    \t\tIntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);\n\t\t});\n\t\tIntStream.range(0,\
+    \ w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\tprotected static\
+    \ final double[][] rotate(final double[][] a) {\n\t\tfinal int h = a.length, w\
+    \ = a[0].length;\n\t\tdouble[][] b = new double[w][h];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);\n\
     \t\t});\n\t\tIntStream.range(0, w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn\
-    \ b;\n\t}\n\tprotected static final long[][] rotate(final long[][] a) {\n\t\t\
-    final int h = a.length, w = a[0].length;\n\t\tlong[][] b = new long[w][h];\n\t\
-    \tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j\
-    \ -> b[j][i] = a[i][j]);\n\t\t});\n\t\tIntStream.range(0, w).forEach(i -> b[i]\
-    \ = reverse(b[i]));\n\t\treturn b;\n\t}\n\tprotected static final double[][] rotate(final\
-    \ double[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\t\tdouble[][]\
-    \ b = new double[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0,\
-    \ w).forEach(j -> b[j][i] = a[i][j]);\n\t\t});\n\t\tIntStream.range(0, w).forEach(i\
-    \ -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\tprotected static final String[]\
-    \ rotate(final String[] s) {\n\t\tfinal int h = s.length, w = s[0].length();\n\
-    \t\tchar[][] t = new char[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\
-    \t\tIntStream.range(0, w).forEach(j -> t[j][i] = s[i].charAt(j));\n\t\t});\n\t\
-    \tIntStream.range(0, w).forEach(i -> t[i] = new StringBuilder(new String(t[i])).reverse().toString().toCharArray());\n\
+    \ b;\n\t}\n\tprotected static final String[] rotate(final String[] s) {\n\t\t\
+    final int h = s.length, w = s[0].length();\n\t\tchar[][] t = new char[w][h];\n\
+    \t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j\
+    \ -> t[j][i] = s[i].charAt(j));\n\t\t});\n\t\tIntStream.range(0, w).forEach(i\
+    \ -> t[i] = new StringBuilder(new String(t[i])).reverse().toString().toCharArray());\n\
     \t\tString[] res = new String[w];\n\t\tIntStream.range(0, w).forEach(i -> res[i]\
     \ = new String(t[i]));\n\t\treturn res;\n\t}\n\tprotected static final long lcm(final\
     \ long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static final\
@@ -935,7 +937,7 @@ data:
   - Java/extension/SegmentTree.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
-  timestamp: '2023-12-08 03:00:55+09:00'
+  timestamp: '2023-12-08 14:48:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
