@@ -1,12 +1,11 @@
 package extension;
 
 import java.util.TreeMap;
-import java.util.stream.IntStream;
 
 final class PrimeFactor {
 	private final int[] spf;
 	PrimeFactor(final int n) {
-		spf = IntStream.rangeClosed(0, n).toArray();
+		spf = Utility.iota(n + 1);
 		for(int i = 2; i * i <= n; ++i) {
 			if(spf[i] == i) {
 				for(int j = i * i; j <= n; j += i) {
