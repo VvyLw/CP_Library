@@ -159,6 +159,19 @@ class Utility {
 		}
 		return null;
 	}
+	protected static final double[] nextPerm(double[] a) {
+		for(int i = a.length - 1; i > 0; i--) {
+			if(a[i - 1] < a[i]) {
+				final int j = find(a[i - 1], a, i, a.length - 1);
+				final var tmp = a[i - 1];
+				a[i - 1] = a[j];
+				a[j] = tmp;
+				Arrays.sort(a, i, a.length);
+				return a;
+			}
+		}
+		return null;
+	}
 	protected static final String nextPerm(final String s) {
 		var a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
 		for(int i = a.size() - 1; i > 0; i--) {
@@ -197,6 +210,19 @@ class Utility {
 		}
 		return null;
 	}
+	protected static final double[] prevPerm(double[] a) {
+		for(int i = a.length - 1; i > 0; i--) {
+			if(a[i - 1] > a[i]) {
+				final int j = findRev(a[i - 1], a, i, a.length - 1);
+				final var tmp = a[i - 1];
+				a[i - 1] = a[j];
+				a[j] = tmp;
+				Arrays.sort(a, i, a.length);
+				return reverse(a);
+			}
+		}
+		return null;
+	}
 	protected static final String prevPerm(final String s) {
 		var a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
 		for(int i = a.size() - 1; i > 0; i--) {
@@ -223,6 +249,13 @@ class Utility {
 		final int m = (s + e + 1) / 2;
 		return a[m] <= dest ? find(dest, a, s, m - 1) : find(dest, a, m, e);
 	}
+	private static final int find(final double dest, final double[] a, final int s, final int e) {
+		if(s == e) {
+			return s;
+		}
+		final int m = (s + e + 1) / 2;
+		return a[m] <= dest ? find(dest, a, s, m - 1) : find(dest, a, m, e);
+	}
 	private static final int find(final char dest, final List<Character> a, final int s, final int e) {
 		if(s == e) {
 			return s;
@@ -238,6 +271,13 @@ class Utility {
 		return a[m] > dest ? findRev(dest, a, s, m - 1) : findRev(dest, a, m, e);
 	}
 	private static final int findRev(final long dest, final long[] a, final int s, final int e) {
+		if(s == e) {
+			return s;
+		}
+		final int m = (s + e + 1) / 2;
+		return a[m] > dest ? findRev(dest, a, s, m - 1) : findRev(dest, a, m, e);
+	}
+	private static final int findRev(final double dest, final double[] a, final int s, final int e) {
 		if(s == e) {
 			return s;
 		}
