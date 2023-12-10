@@ -536,6 +536,21 @@ final class MyScanner {
 		IntStream.range(0, n).forEach(i -> a[i] = ns());
 		return a;
 	}
+	final int[][] ni(final int h, final int w) {
+		int[][] a = new int[h][w];
+		IntStream.range(0, h).forEach(i -> a[i] = ni(w));
+		return a;
+	}
+	final long[][] nl(final int h, final int w) {
+		long[][] a = new long[h][w];
+		IntStream.range(0, h).forEach(i -> a[i] = nl(w));
+		return a;
+	}
+	final double[][] nd(final int h, final int w) {
+		double[][] a = new double[h][w];
+		IntStream.range(0, h).forEach(i -> a[i] = nd(w));
+		return a;
+	}
 	final void close(){ sc.close(); }
 }
 
