@@ -114,54 +114,53 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/extension/PrimeFactor.java\n"
-  code: "package extension;\n\nimport java.util.TreeMap;\nimport java.util.stream.IntStream;\n\
-    \nfinal class PrimeFactor {\n\tprivate final int[] spf;\n\tPrimeFactor(final int\
-    \ n) {\n\t\tspf = IntStream.rangeClosed(0, n).toArray();\n\t\tfor(int i = 2; i\
-    \ * i <= n; ++i) {\n\t\t\tif(spf[i] == i) {\n\t\t\t\tfor(int j = i * i; j <= n;\
-    \ j += i) {\n\t\t\t\t\tif(spf[j] == j) {\n\t\t\t\t\t\tspf[j] = i;\n\t\t\t\t\t\
-    }\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal TreeMap<Integer, Integer> get(int n)\
-    \ {\n\t\tfinal TreeMap<Integer, Integer> m = new TreeMap<>();\n\t\twhile(n !=\
-    \ 1) {\n\t\t\tm.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\t\t\
-    }\n\t\treturn m;\n\t}\n}"
+  code: "package extension;\n\nimport java.util.TreeMap;\n\nfinal class PrimeFactor\
+    \ {\n\tprivate final int[] spf;\n\tPrimeFactor(final int n) {\n\t\tspf = Utility.iota(n\
+    \ + 1);\n\t\tfor(int i = 2; i * i <= n; ++i) {\n\t\t\tif(spf[i] == i) {\n\t\t\t\
+    \tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\t\tif(spf[j] == j) {\n\t\t\t\t\t\
+    \tspf[j] = i;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal TreeMap<Integer,\
+    \ Integer> get(int n) {\n\t\tfinal TreeMap<Integer, Integer> m = new TreeMap<>();\n\
+    \t\twhile(n != 1) {\n\t\t\tm.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /=\
+    \ spf[n];\n\t\t}\n\t\treturn m;\n\t}\n}"
   dependsOn:
-  - Java/extension/LowestCommonAncestor.java
-  - Java/extension/WeightedUnionFind.java
-  - Java/extension/FenwickTree.java
-  - Java/extension/WaveletMatrix.java
-  - Java/extension/PrefixSum.java
-  - Java/extension/UnionFind.java
-  - Java/extension/SuffixArray.java
-  - Java/extension/LargePrime.java
-  - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
-  - Java/extension/Graph.java
-  - Java/extension/PrimeCounter.java
-  - Java/extension/SegmentTree.java
+  - Java/extension/PrefixSum.java
+  - Java/extension/LargePrime.java
+  - Java/extension/LowestCommonAncestor.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
+  - Java/extension/SuffixArray.java
+  - Java/extension/WaveletMatrix.java
+  - Java/extension/SegmentTree.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/Graph.java
+  - Java/extension/UnionFind.java
+  - Java/extension/PrimeCounter.java
   - Java/all.java
   isVerificationFile: false
   path: Java/extension/PrimeFactor.java
   requiredBy:
-  - Java/extension/LowestCommonAncestor.java
-  - Java/extension/WeightedUnionFind.java
-  - Java/extension/FenwickTree.java
-  - Java/extension/WaveletMatrix.java
-  - Java/extension/PrefixSum.java
-  - Java/extension/UnionFind.java
-  - Java/extension/SuffixArray.java
-  - Java/extension/LargePrime.java
-  - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
-  - Java/extension/Graph.java
-  - Java/extension/PrimeCounter.java
-  - Java/extension/SegmentTree.java
+  - Java/extension/PrefixSum.java
+  - Java/extension/LargePrime.java
+  - Java/extension/LowestCommonAncestor.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
+  - Java/extension/SuffixArray.java
+  - Java/extension/WaveletMatrix.java
+  - Java/extension/SegmentTree.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/Graph.java
+  - Java/extension/UnionFind.java
+  - Java/extension/PrimeCounter.java
   - Java/all.java
-  timestamp: '2023-12-08 14:48:11+09:00'
+  timestamp: '2023-12-10 14:57:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/PrimeFactor.java

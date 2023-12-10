@@ -139,9 +139,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/ufpotential.test.cpp
-  - test/uf.test.cpp
   - test/lca.test.cpp
   - test/kruskal.test.cpp
+  - test/uf.test.cpp
 documentation_of: C++/UnionFind.hpp
 layout: document
 redirect_from:

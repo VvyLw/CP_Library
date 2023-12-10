@@ -553,29 +553,29 @@ data:
     \ p; }\n\tfinal boolean binarySearch(final int x){ return Arrays.binarySearch(p,\
     \ x) >= 0; }\n\tfinal int lowerBound(final int x) {\n\t\tfinal int id = Arrays.binarySearch(p,\
     \ x);\n\t\treturn id < 0 ? -(id + 1) : id; \n\t}\n}\n\nfinal class PrimeFactor\
-    \ {\n\tprivate final int[] spf;\n\tPrimeFactor(final int n) {\n\t\tspf = IntStream.rangeClosed(0,\
-    \ n).toArray();\n\t\tfor(int i = 2; i * i <= n; ++i) {\n\t\t\tif(spf[i] == i)\
-    \ {\n\t\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\t\tif(spf[j] == j) {\n\
-    \t\t\t\t\t\tspf[j] = i;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal\
-    \ TreeMap<Integer, Integer> get(int n) {\n\t\tfinal TreeMap<Integer, Integer>\
-    \ m = new TreeMap<>();\n\t\twhile(n != 1) {\n\t\t\tm.merge(spf[n], 1, (a, b) ->\
-    \ (a + b));\n\t\t\tn /= spf[n];\n\t\t}\n\t\treturn m;\n\t}\n}\n\nfinal class PrimeCounter\
-    \ {\n\tprivate final int sq;\n\tprivate final boolean[] p;\n\tprivate final int[]\
-    \ psum;\n\tprivate final ArrayList<Integer> ps;\n\tPrimeCounter(final long lim)\
-    \ {\n\t\tsq = (int) kthRooti(lim, 2);\n\t\tpsum = new int[sq + 1];\n\t\tp = new\
-    \ PrimeTable(sq).table();\n\t\tfor(int i = 1; i <= sq; ++i) {\n\t\t\tpsum[i] =\
-    \ psum[i - 1] + (p[i] ? 1 : 0);\n\t\t}\n\t\tps = new ArrayList<>();\n\t\tfor(int\
-    \ i = 1; i <= sq; ++i) {\n\t\t\tif(p[i]) {\n\t\t\t\tps.add(i);\n\t\t\t}\n\t\t\
-    }\n\t}\n\tprivate final long kthRooti(final long n, final int k){ return Utility.kthRoot(n,\
-    \ k); }\n\tprivate final long p2(final long x, final long y) {\n\t\tif(x < 4)\
-    \ {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal long a = pi(y);\n\t\tfinal long b = pi(kthRooti(x,\
-    \ 2));\n\t\tif(a >= b) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong sum = (long) (a - 2)\
-    \ * (a + 1) / 2 - (b - 2) * (b + 1) / 2;\n\t\tfor(long i = a; i < b; ++i) {\n\t\
-    \t\tsum += pi(x / ps.get((int) i));\n\t\t}\n\t\treturn sum;\n\t}\n\tprivate final\
-    \ long phi(final long m, final long a) {\n\t\tif(m < 1) {\n\t\t\treturn 0;\n\t\
-    \t}\n\t\tif(a > m) {\n\t\t\treturn 1;\n\t\t}\n\t\tif(a < 1) {\n\t\t\treturn m;\n\
-    \t\t}\n\t\tif(m <= (long) ps.get((int) (a - 1)) * ps.get((int) (a - 1))) {\n\t\
-    \t\treturn pi(m) - a + 1;\n\t\t}\n\t\tif(m <= (long) ps.get((int) (a - 1)) * ps.get((int)\
+    \ {\n\tprivate final int[] spf;\n\tPrimeFactor(final int n) {\n\t\tspf = Utility.iota(n\
+    \ + 1);\n\t\tfor(int i = 2; i * i <= n; ++i) {\n\t\t\tif(spf[i] == i) {\n\t\t\t\
+    \tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\t\tif(spf[j] == j) {\n\t\t\t\t\t\
+    \tspf[j] = i;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal TreeMap<Integer,\
+    \ Integer> get(int n) {\n\t\tfinal TreeMap<Integer, Integer> m = new TreeMap<>();\n\
+    \t\twhile(n != 1) {\n\t\t\tm.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /=\
+    \ spf[n];\n\t\t}\n\t\treturn m;\n\t}\n}\n\nfinal class PrimeCounter {\n\tprivate\
+    \ final int sq;\n\tprivate final boolean[] p;\n\tprivate final int[] psum;\n\t\
+    private final ArrayList<Integer> ps;\n\tPrimeCounter(final long lim) {\n\t\tsq\
+    \ = (int) kthRooti(lim, 2);\n\t\tpsum = new int[sq + 1];\n\t\tp = new PrimeTable(sq).table();\n\
+    \t\tfor(int i = 1; i <= sq; ++i) {\n\t\t\tpsum[i] = psum[i - 1] + (p[i] ? 1 :\
+    \ 0);\n\t\t}\n\t\tps = new ArrayList<>();\n\t\tfor(int i = 1; i <= sq; ++i) {\n\
+    \t\t\tif(p[i]) {\n\t\t\t\tps.add(i);\n\t\t\t}\n\t\t}\n\t}\n\tprivate final long\
+    \ kthRooti(final long n, final int k){ return Utility.kthRoot(n, k); }\n\tprivate\
+    \ final long p2(final long x, final long y) {\n\t\tif(x < 4) {\n\t\t\treturn 0;\n\
+    \t\t}\n\t\tfinal long a = pi(y);\n\t\tfinal long b = pi(kthRooti(x, 2));\n\t\t\
+    if(a >= b) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong sum = (long) (a - 2) * (a + 1)\
+    \ / 2 - (b - 2) * (b + 1) / 2;\n\t\tfor(long i = a; i < b; ++i) {\n\t\t\tsum +=\
+    \ pi(x / ps.get((int) i));\n\t\t}\n\t\treturn sum;\n\t}\n\tprivate final long\
+    \ phi(final long m, final long a) {\n\t\tif(m < 1) {\n\t\t\treturn 0;\n\t\t}\n\
+    \t\tif(a > m) {\n\t\t\treturn 1;\n\t\t}\n\t\tif(a < 1) {\n\t\t\treturn m;\n\t\t\
+    }\n\t\tif(m <= (long) ps.get((int) (a - 1)) * ps.get((int) (a - 1))) {\n\t\t\t\
+    return pi(m) - a + 1;\n\t\t}\n\t\tif(m <= (long) ps.get((int) (a - 1)) * ps.get((int)\
     \ (a - 1)) * ps.get((int) (a - 1)) && m <= sq) {\n\t\t\tfinal long sx = pi(kthRooti(m,\
     \ 2));\n\t\t\tlong ans = pi(m) - (long) (sx + a - 2) * (sx - a + 1) / 2;\n\t\t\
     \tfor(long i = a; i < sx; ++i) {\n\t\t\t\tans += pi(m / ps.get((int) i));\n\t\t\
@@ -900,44 +900,44 @@ data:
     \ final long lower) {\n\t\tfinal var ret = mat.next(l, r, get(lower));\n\t\treturn\
     \ ret == -1 ? -1 : ys[(int) ret];\n\t}\n}"
   dependsOn:
-  - Java/extension/LowestCommonAncestor.java
-  - Java/extension/WeightedUnionFind.java
-  - Java/extension/FenwickTree.java
-  - Java/extension/WaveletMatrix.java
-  - Java/extension/PrefixSum.java
-  - Java/extension/UnionFind.java
-  - Java/extension/SuffixArray.java
-  - Java/extension/LargePrime.java
-  - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
-  - Java/extension/Graph.java
+  - Java/extension/PrefixSum.java
   - Java/extension/PrimeFactor.java
-  - Java/extension/PrimeCounter.java
-  - Java/extension/SegmentTree.java
+  - Java/extension/LargePrime.java
+  - Java/extension/LowestCommonAncestor.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
+  - Java/extension/SuffixArray.java
+  - Java/extension/WaveletMatrix.java
+  - Java/extension/SegmentTree.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/Graph.java
+  - Java/extension/UnionFind.java
+  - Java/extension/PrimeCounter.java
   isVerificationFile: false
   path: Java/all.java
   requiredBy:
-  - Java/extension/LowestCommonAncestor.java
-  - Java/extension/WeightedUnionFind.java
-  - Java/extension/FenwickTree.java
-  - Java/extension/WaveletMatrix.java
-  - Java/extension/PrefixSum.java
-  - Java/extension/UnionFind.java
-  - Java/extension/SuffixArray.java
-  - Java/extension/LargePrime.java
-  - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
-  - Java/extension/Graph.java
+  - Java/extension/PrefixSum.java
   - Java/extension/PrimeFactor.java
-  - Java/extension/PrimeCounter.java
-  - Java/extension/SegmentTree.java
+  - Java/extension/LargePrime.java
+  - Java/extension/LowestCommonAncestor.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
-  timestamp: '2023-12-08 14:48:11+09:00'
+  - Java/extension/SuffixArray.java
+  - Java/extension/WaveletMatrix.java
+  - Java/extension/SegmentTree.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/Graph.java
+  - Java/extension/UnionFind.java
+  - Java/extension/PrimeCounter.java
+  timestamp: '2023-12-10 14:57:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
