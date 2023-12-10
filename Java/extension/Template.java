@@ -125,7 +125,7 @@ class Utility {
 	}
 	protected static final boolean scope(final int l, final int x, final int r){ return l <= x && x <= r; }
 	protected static final int[] nextPerm(int[] a) {
-		for(int i = a.length - 1; i > 0; i--) {
+		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] < a[i]) {
 				final int j = find(a[i - 1], a, i, a.length - 1);
 				a[i - 1] ^= a[j];
@@ -138,7 +138,7 @@ class Utility {
 		return null;
 	}
 	protected static final long[] nextPerm(long[] a) {
-		for(int i = a.length - 1; i > 0; i--) {
+		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] < a[i]) {
 				final int j = find(a[i - 1], a, i, a.length - 1);
 				a[i - 1] ^= a[j];
@@ -151,7 +151,7 @@ class Utility {
 		return null;
 	}
 	protected static final double[] nextPerm(double[] a) {
-		for(int i = a.length - 1; i > 0; i--) {
+		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] < a[i]) {
 				final int j = find(a[i - 1], a, i, a.length - 1);
 				final var tmp = a[i - 1];
@@ -165,7 +165,7 @@ class Utility {
 	}
 	protected static final String nextPerm(final String s) {
 		var a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
-		for(int i = a.size() - 1; i > 0; i--) {
+		for(int i = a.size(); --i > 0;) {
 			if(a.get(i - 1).compareTo(a.get(i)) < 0) {
 				final int j = find(a.get(i - 1), a, i, a.size() - 1);
 				Collections.swap(a, i - 1, j);
@@ -176,7 +176,7 @@ class Utility {
 		return null;
 	}
 	protected static final int[] prevPerm(int[] a) {
-		for(int i = a.length - 1; i > 0; i--) {
+		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] > a[i]) {
 				final int j = findRev(a[i - 1], a, i, a.length - 1);
 				a[i - 1] ^= a[j];
@@ -189,7 +189,7 @@ class Utility {
 		return null;
 	}
 	protected static final long[] prevPerm(long[] a) {
-		for(int i = a.length - 1; i > 0; i--) {
+		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] > a[i]) {
 				final int j = findRev(a[i - 1], a, i, a.length - 1);
 				a[i - 1] ^= a[j];
@@ -202,7 +202,7 @@ class Utility {
 		return null;
 	}
 	protected static final double[] prevPerm(double[] a) {
-		for(int i = a.length - 1; i > 0; i--) {
+		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] > a[i]) {
 				final int j = findRev(a[i - 1], a, i, a.length - 1);
 				final var tmp = a[i - 1];
@@ -216,7 +216,7 @@ class Utility {
 	}
 	protected static final String prevPerm(final String s) {
 		var a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
-		for(int i = a.size() - 1; i > 0; i--) {
+		for(int i = a.size(); --i > 0;) {
 			if(a.get(i - 1).compareTo(a.get(i)) > 0) {
 				final int j = findRev(a.get(i - 1), a, i, a.size() - 1);
 				Collections.swap(a, i - 1, j);
