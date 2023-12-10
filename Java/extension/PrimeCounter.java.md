@@ -176,7 +176,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/UnionFind.java
   - Java/all.java
-  timestamp: '2023-12-10 14:57:44+09:00'
+  timestamp: '2023-12-10 23:52:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/PrimeCounter.java
