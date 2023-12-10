@@ -159,46 +159,45 @@ data:
     \ return false;\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0)\
     \ return false;\n\t\t}\n\t\treturn true;\n\t}\n\tprotected static final boolean\
     \ scope(final int l, final int x, final int r){ return l <= x && x <= r; }\n\t\
-    protected static final int[] nextPerm(int[] a) {\n\t\tfor(int i = a.length - 1;\
-    \ i > 0; i--) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal int j = find(a[i -\
-    \ 1], a, i, a.length - 1);\n\t\t\t\ta[i - 1] ^= a[j];\n\t\t\t\ta[j] ^= a[i - 1];\n\
-    \t\t\t\ta[i - 1] ^= a[j];\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn\
-    \ a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final long[] nextPerm(long[]\
-    \ a) {\n\t\tfor(int i = a.length - 1; i > 0; i--) {\n\t\t\tif(a[i - 1] < a[i])\
-    \ {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\ta[i -\
-    \ 1] ^= a[j];\n\t\t\t\ta[j] ^= a[i - 1];\n\t\t\t\ta[i - 1] ^= a[j];\n\t\t\t\t\
-    Arrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\
-    \t}\n\tprotected static final double[] nextPerm(double[] a) {\n\t\tfor(int i =\
-    \ a.length - 1; i > 0; i--) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal int\
-    \ j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tfinal var tmp = a[i - 1];\n\
-    \t\t\t\ta[i - 1] = a[j];\n\t\t\t\ta[j] = tmp;\n\t\t\t\tArrays.sort(a, i, a.length);\n\
-    \t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final\
-    \ String nextPerm(final String s) {\n\t\tvar a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());\n\
-    \t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
+    protected static final int[] nextPerm(int[] a) {\n\t\tfor(int i = a.length; --i\
+    \ > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal int j = find(a[i - 1], a,\
+    \ i, a.length - 1);\n\t\t\t\ta[i - 1] ^= a[j];\n\t\t\t\ta[j] ^= a[i - 1];\n\t\t\
+    \t\ta[i - 1] ^= a[j];\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\
+    \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final long[] nextPerm(long[]\
+    \ a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\
+    \t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\ta[i - 1] ^= a[j];\n\
+    \t\t\t\ta[j] ^= a[i - 1];\n\t\t\t\ta[i - 1] ^= a[j];\n\t\t\t\tArrays.sort(a, i,\
+    \ a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected\
+    \ static final double[] nextPerm(double[] a) {\n\t\tfor(int i = a.length; --i\
+    \ > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal int j = find(a[i - 1], a,\
+    \ i, a.length - 1);\n\t\t\t\tfinal var tmp = a[i - 1];\n\t\t\t\ta[i - 1] = a[j];\n\
+    \t\t\t\ta[j] = tmp;\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\
+    \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final String nextPerm(final\
+    \ String s) {\n\t\tvar a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());\n\
+    \t\tfor(int i = a.size(); --i > 0;) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
     \ < 0) {\n\t\t\t\tfinal int j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\
     \tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\
     \t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
     \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final int[] prevPerm(int[]\
-    \ a) {\n\t\tfor(int i = a.length - 1; i > 0; i--) {\n\t\t\tif(a[i - 1] > a[i])\
-    \ {\n\t\t\t\tfinal int j = findRev(a[i - 1], a, i, a.length - 1);\n\t\t\t\ta[i\
-    \ - 1] ^= a[j];\n\t\t\t\ta[j] ^= a[i - 1];\n\t\t\t\ta[i - 1] ^= a[j];\n\t\t\t\t\
-    Arrays.sort(a, i, a.length);\n\t\t\t\treturn reverse(a);\n\t\t\t}\n\t\t}\n\t\t\
-    return null;\n\t}\n\tprotected static final long[] prevPerm(long[] a) {\n\t\t\
-    for(int i = a.length - 1; i > 0; i--) {\n\t\t\tif(a[i - 1] > a[i]) {\n\t\t\t\t\
-    final int j = findRev(a[i - 1], a, i, a.length - 1);\n\t\t\t\ta[i - 1] ^= a[j];\n\
-    \t\t\t\ta[j] ^= a[i - 1];\n\t\t\t\ta[i - 1] ^= a[j];\n\t\t\t\tArrays.sort(a, i,\
-    \ a.length);\n\t\t\t\treturn reverse(a);\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t\
-    }\n\tprotected static final double[] prevPerm(double[] a) {\n\t\tfor(int i = a.length\
-    \ - 1; i > 0; i--) {\n\t\t\tif(a[i - 1] > a[i]) {\n\t\t\t\tfinal int j = findRev(a[i\
-    \ - 1], a, i, a.length - 1);\n\t\t\t\tfinal var tmp = a[i - 1];\n\t\t\t\ta[i -\
-    \ 1] = a[j];\n\t\t\t\ta[j] = tmp;\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\
+    \ a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] > a[i]) {\n\t\
+    \t\t\tfinal int j = findRev(a[i - 1], a, i, a.length - 1);\n\t\t\t\ta[i - 1] ^=\
+    \ a[j];\n\t\t\t\ta[j] ^= a[i - 1];\n\t\t\t\ta[i - 1] ^= a[j];\n\t\t\t\tArrays.sort(a,\
+    \ i, a.length);\n\t\t\t\treturn reverse(a);\n\t\t\t}\n\t\t}\n\t\treturn null;\n\
+    \t}\n\tprotected static final long[] prevPerm(long[] a) {\n\t\tfor(int i = a.length;\
+    \ --i > 0;) {\n\t\t\tif(a[i - 1] > a[i]) {\n\t\t\t\tfinal int j = findRev(a[i\
+    \ - 1], a, i, a.length - 1);\n\t\t\t\ta[i - 1] ^= a[j];\n\t\t\t\ta[j] ^= a[i -\
+    \ 1];\n\t\t\t\ta[i - 1] ^= a[j];\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\
     \treturn reverse(a);\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static\
-    \ final String prevPerm(final String s) {\n\t\tvar a = s.chars().mapToObj(i ->\
-    \ (char)i).collect(Collectors.toList());\n\t\tfor(int i = a.size() - 1; i > 0;\
-    \ i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i)) > 0) {\n\t\t\t\tfinal int\
-    \ j = findRev(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\tCollections.swap(a,\
-    \ i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()), Collections.reverseOrder());\n\
-    \t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
+    \ final double[] prevPerm(double[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\
+    \t\t\tif(a[i - 1] > a[i]) {\n\t\t\t\tfinal int j = findRev(a[i - 1], a, i, a.length\
+    \ - 1);\n\t\t\t\tfinal var tmp = a[i - 1];\n\t\t\t\ta[i - 1] = a[j];\n\t\t\t\t\
+    a[j] = tmp;\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn reverse(a);\n\
+    \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final String prevPerm(final\
+    \ String s) {\n\t\tvar a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());\n\
+    \t\tfor(int i = a.size(); --i > 0;) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
+    \ > 0) {\n\t\t\t\tfinal int j = findRev(a.get(i - 1), a, i, a.size() - 1);\n\t\
+    \t\t\tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()),\
+    \ Collections.reverseOrder());\n\t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
     \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprivate static final int find(final int\
     \ dest, final int[] a, final int s, final int e) {\n\t\tif(s == e) {\n\t\t\treturn\
     \ s;\n\t\t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn a[m] <= dest ? find(dest,\
@@ -968,7 +967,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
-  timestamp: '2023-12-11 01:34:41+09:00'
+  timestamp: '2023-12-11 02:44:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
