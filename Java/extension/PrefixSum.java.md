@@ -151,7 +151,7 @@ data:
   - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
   - Java/all.java
-  timestamp: '2023-12-11 01:03:52+09:00'
+  timestamp: '2023-12-11 01:34:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/PrefixSum.java

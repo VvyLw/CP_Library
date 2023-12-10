@@ -164,11 +164,16 @@ data:
     \ {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\ta[i -\
     \ 1] ^= a[j];\n\t\t\t\ta[j] ^= a[i - 1];\n\t\t\t\ta[i - 1] ^= a[j];\n\t\t\t\t\
     Arrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\
-    \t}\n\tprotected static final String nextPerm(final String s) {\n\t\tvar a = s.chars().mapToObj(i\
-    \ -> (char)i).collect(Collectors.toList());\n\t\tfor(int i = a.size() - 1; i >\
-    \ 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i)) < 0) {\n\t\t\t\tfinal int\
-    \ j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\tCollections.swap(a, i -\
-    \ 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
+    \t}\n\tprotected static final double[] nextPerm(double[] a) {\n\t\tfor(int i =\
+    \ a.length - 1; i > 0; i--) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal int\
+    \ j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tfinal var tmp = a[i - 1];\n\
+    \t\t\t\ta[i - 1] = a[j];\n\t\t\t\ta[j] = tmp;\n\t\t\t\tArrays.sort(a, i, a.length);\n\
+    \t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final\
+    \ String nextPerm(final String s) {\n\t\tvar a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());\n\
+    \t\tfor(int i = a.size() - 1; i > 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
+    \ < 0) {\n\t\t\t\tfinal int j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\
+    \tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\
+    \t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
     \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final int[] prevPerm(int[]\
     \ a) {\n\t\tfor(int i = a.length - 1; i > 0; i--) {\n\t\t\tif(a[i - 1] > a[i])\
     \ {\n\t\t\t\tfinal int j = findRev(a[i - 1], a, i, a.length - 1);\n\t\t\t\ta[i\
@@ -179,9 +184,14 @@ data:
     final int j = findRev(a[i - 1], a, i, a.length - 1);\n\t\t\t\ta[i - 1] ^= a[j];\n\
     \t\t\t\ta[j] ^= a[i - 1];\n\t\t\t\ta[i - 1] ^= a[j];\n\t\t\t\tArrays.sort(a, i,\
     \ a.length);\n\t\t\t\treturn reverse(a);\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t\
-    }\n\tprotected static final String prevPerm(final String s) {\n\t\tvar a = s.chars().mapToObj(i\
-    \ -> (char)i).collect(Collectors.toList());\n\t\tfor(int i = a.size() - 1; i >\
-    \ 0; i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i)) > 0) {\n\t\t\t\tfinal int\
+    }\n\tprotected static final double[] prevPerm(double[] a) {\n\t\tfor(int i = a.length\
+    \ - 1; i > 0; i--) {\n\t\t\tif(a[i - 1] > a[i]) {\n\t\t\t\tfinal int j = findRev(a[i\
+    \ - 1], a, i, a.length - 1);\n\t\t\t\tfinal var tmp = a[i - 1];\n\t\t\t\ta[i -\
+    \ 1] = a[j];\n\t\t\t\ta[j] = tmp;\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\
+    \treturn reverse(a);\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static\
+    \ final String prevPerm(final String s) {\n\t\tvar a = s.chars().mapToObj(i ->\
+    \ (char)i).collect(Collectors.toList());\n\t\tfor(int i = a.size() - 1; i > 0;\
+    \ i--) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i)) > 0) {\n\t\t\t\tfinal int\
     \ j = findRev(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\tCollections.swap(a,\
     \ i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()), Collections.reverseOrder());\n\
     \t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
@@ -192,24 +202,31 @@ data:
     \ long dest, final long[] a, final int s, final int e) {\n\t\tif(s == e) {\n\t\
     \t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn a[m] <= dest\
     \ ? find(dest, a, s, m - 1) : find(dest, a, m, e);\n\t}\n\tprivate static final\
-    \ int find(final char dest, final List<Character> a, final int s, final int e)\
+    \ int find(final double dest, final double[] a, final int s, final int e) {\n\t\
+    \tif(s == e) {\n\t\t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\
+    \treturn a[m] <= dest ? find(dest, a, s, m - 1) : find(dest, a, m, e);\n\t}\n\t\
+    private static final int find(final char dest, final List<Character> a, final\
+    \ int s, final int e) {\n\t\tif(s == e) {\n\t\t\treturn s;\n\t\t}\n\t\tfinal int\
+    \ m = (s + e + 1) / 2;\n\t\treturn a.get(m).compareTo(dest) <= 0 ? find(dest,\
+    \ a, s, m - 1) : find(dest, a, m, e);\n\t}\n\tprivate static final int findRev(final\
+    \ int dest, final int[] a, final int s, final int e) {\n\t\tif(s == e) {\n\t\t\
+    \treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn a[m] > dest\
+    \ ? findRev(dest, a, s, m - 1) : findRev(dest, a, m, e);\n\t}\n\tprivate static\
+    \ final int findRev(final long dest, final long[] a, final int s, final int e)\
     \ {\n\t\tif(s == e) {\n\t\t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1) /\
-    \ 2;\n\t\treturn a.get(m).compareTo(dest) <= 0 ? find(dest, a, s, m - 1) : find(dest,\
-    \ a, m, e);\n\t}\n\tprivate static final int findRev(final int dest, final int[]\
+    \ 2;\n\t\treturn a[m] > dest ? findRev(dest, a, s, m - 1) : findRev(dest, a, m,\
+    \ e);\n\t}\n\tprivate static final int findRev(final double dest, final double[]\
     \ a, final int s, final int e) {\n\t\tif(s == e) {\n\t\t\treturn s;\n\t\t}\n\t\
     \tfinal int m = (s + e + 1) / 2;\n\t\treturn a[m] > dest ? findRev(dest, a, s,\
     \ m - 1) : findRev(dest, a, m, e);\n\t}\n\tprivate static final int findRev(final\
-    \ long dest, final long[] a, final int s, final int e) {\n\t\tif(s == e) {\n\t\
-    \t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn a[m] > dest\
-    \ ? findRev(dest, a, s, m - 1) : findRev(dest, a, m, e);\n\t}\n\tprivate static\
-    \ final int findRev(final char dest, final List<Character> a, final int s, final\
-    \ int e) {\n\t\tif(s == e) {\n\t\t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e\
-    \ + 1) / 2;\n\t\treturn a.get(m).compareTo(dest) > 0 ? find(dest, a, s, m - 1)\
-    \ : find(dest, a, m, e);\n\t}\n\tprotected static final boolean binarySearch(final\
-    \ int[] a, final int x) {\n\t\treturn Arrays.binarySearch(a, x) >= 0;\n\t}\n\t\
-    protected static final boolean binarySearch(final long[] a, final long x) {\n\t\
-    \treturn Arrays.binarySearch(a, x) >= 0;\n\t}\n    protected static final boolean\
-    \ binarySearch(final Object[] a, final Object x) {\n        return binarySearch(Arrays.stream(a).collect(Collectors.toList()),\
+    \ char dest, final List<Character> a, final int s, final int e) {\n\t\tif(s ==\
+    \ e) {\n\t\t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn\
+    \ a.get(m).compareTo(dest) > 0 ? find(dest, a, s, m - 1) : find(dest, a, m, e);\n\
+    \t}\n\tprotected static final boolean binarySearch(final int[] a, final int x)\
+    \ {\n\t\treturn Arrays.binarySearch(a, x) >= 0;\n\t}\n\tprotected static final\
+    \ boolean binarySearch(final long[] a, final long x) {\n\t\treturn Arrays.binarySearch(a,\
+    \ x) >= 0;\n\t}\n    protected static final boolean binarySearch(final Object[]\
+    \ a, final Object x) {\n        return binarySearch(Arrays.stream(a).collect(Collectors.toList()),\
     \ x);\n    }\n\tprotected static final int lowerBound(final int[] a, final int\
     \ x) {\n\t\treturn lowerBound(Arrays.stream(a).boxed().collect(Collectors.toList()),\
     \ x);\n\t}\n\tprotected static final int lowerBound(final long[] a, final long\
@@ -495,7 +512,7 @@ data:
   - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
   - Java/all.java
-  timestamp: '2023-12-11 01:03:52+09:00'
+  timestamp: '2023-12-11 01:34:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java
