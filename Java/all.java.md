@@ -5,9 +5,6 @@ data:
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
-    path: Java/extension/FenwickTree.java
-    title: Java/extension/FenwickTree.java
-  - icon: ':warning:'
     path: Java/extension/Graph.java
     title: Java/extension/Graph.java
   - icon: ':warning:'
@@ -56,9 +53,6 @@ data:
   - icon: ':warning:'
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
-  - icon: ':warning:'
-    path: Java/extension/FenwickTree.java
-    title: Java/extension/FenwickTree.java
   - icon: ':warning:'
     path: Java/extension/Graph.java
     title: Java/extension/Graph.java
@@ -342,7 +336,7 @@ data:
     \t\t} catch(ArithmeticException e) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\
     \t}\n\t\t\treturn mul <= n;\n\t\t};\n\t\tlong ret = 0;\n\t\tfor(int i = 32; --i\
     \ >= 0;) {\n\t\t\tif(chk.test(ret | (1L << i))) {\n\t\t\t\tret |= 1L << i;\n\t\
-    \t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\tprotected static final long invNum(final\
+    \t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\tprotected static final int invNum(final\
     \ int[] a) {\n\t\tfinal var bit = new FenwickTree(a.length);\n\t\tint res = 0;\n\
     \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(a[i]);\n\t\t\
     \tbit.add(a[i], 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class MyScanner {\n\
@@ -933,7 +927,6 @@ data:
   - Java/extension/SuffixArray.java
   - Java/extension/WaveletMatrix.java
   - Java/extension/SegmentTree.java
-  - Java/extension/FenwickTree.java
   - Java/extension/WeightedUnionFind.java
   - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/Graph.java
@@ -953,13 +946,12 @@ data:
   - Java/extension/SuffixArray.java
   - Java/extension/WaveletMatrix.java
   - Java/extension/SegmentTree.java
-  - Java/extension/FenwickTree.java
   - Java/extension/WeightedUnionFind.java
   - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/Graph.java
   - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
-  timestamp: '2023-12-11 00:53:41+09:00'
+  timestamp: '2023-12-11 01:03:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java

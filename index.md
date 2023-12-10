@@ -56,9 +56,6 @@ data:
       path: Java/extension/DoubleEndedPriorityQueue.java
       title: Java/extension/DoubleEndedPriorityQueue.java
     - icon: ':warning:'
-      path: Java/extension/FenwickTree.java
-      title: Java/extension/FenwickTree.java
-    - icon: ':warning:'
       path: Java/extension/Graph.java
       title: Java/extension/Graph.java
     - icon: ':warning:'

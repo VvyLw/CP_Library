@@ -5,9 +5,6 @@ data:
     path: Java/all.java
     title: Java/all.java
   - icon: ':warning:'
-    path: Java/extension/FenwickTree.java
-    title: Java/extension/FenwickTree.java
-  - icon: ':warning:'
     path: Java/extension/Graph.java
     title: Java/extension/Graph.java
   - icon: ':warning:'
@@ -56,9 +53,6 @@ data:
   - icon: ':warning:'
     path: Java/all.java
     title: Java/all.java
-  - icon: ':warning:'
-    path: Java/extension/FenwickTree.java
-    title: Java/extension/FenwickTree.java
   - icon: ':warning:'
     path: Java/extension/Graph.java
     title: Java/extension/Graph.java
@@ -160,7 +154,6 @@ data:
   - Java/extension/SuffixArray.java
   - Java/extension/WaveletMatrix.java
   - Java/extension/SegmentTree.java
-  - Java/extension/FenwickTree.java
   - Java/extension/WeightedUnionFind.java
   - Java/extension/Graph.java
   - Java/extension/UnionFind.java
@@ -180,13 +173,12 @@ data:
   - Java/extension/SuffixArray.java
   - Java/extension/WaveletMatrix.java
   - Java/extension/SegmentTree.java
-  - Java/extension/FenwickTree.java
   - Java/extension/WeightedUnionFind.java
   - Java/extension/Graph.java
   - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
   - Java/all.java
-  timestamp: '2023-12-11 00:53:41+09:00'
+  timestamp: '2023-12-11 01:03:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/DoubleEndedPriorityQueue.java
