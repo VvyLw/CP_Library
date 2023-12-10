@@ -552,7 +552,7 @@ class Utility {
 		}
 		return ret;
 	}
-	protected static final long invNum(final int[] a) {
+	protected static final int invNum(final int[] a) {
 		final var bit = new FenwickTree(a.length);
 		int res = 0;
 		for(int i = 0; i < a.length; ++i) {
