@@ -508,6 +508,15 @@ class Utility {
 		}
 		return ret;
 	}
+	protected static final long invNum(final int[] a) {
+		final var bit = new FenwickTree(a.length);
+		int res = 0;
+		for(int i = 0; i < a.length; ++i) {
+			res += i - bit.sum(a[i]);
+			bit.add(a[i], 1);
+		}
+		return res;
+	}
 }
 
 final class MyScanner {

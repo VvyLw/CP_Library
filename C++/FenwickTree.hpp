@@ -58,3 +58,13 @@ public:
         return x;
     }
 };
+
+template <class T> inline int inv_num(const std::vector<T> &a) {
+    FenwickTree<T> bit(a.size());
+    int res = 0;
+    for(size_t i = 0; i < a.size(); ++i) {
+        res += i - bit.sum(a[i]);
+        bit.add(a[i], 1);
+    }
+    return res;
+}
