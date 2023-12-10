@@ -133,16 +133,31 @@ class Utility {
 		return true;
 	}
 	protected static final boolean scope(final int l, final int x, final int r){ return l <= x && x <= r; }
-	protected static final boolean nextPerm(ArrayList<? extends Number> a) {
-		for(int i = a.size() - 1; i > 0; i--) {
-			if(a.get(i - 1).longValue() < a.get(i).longValue()) {
-				final int j = find(a.get(i - 1).longValue(), a, i, a.size() - 1);
-				Collections.swap(a, i - 1, j);
-				Collections.sort(a.subList(i, a.size()), (x, y) -> Long.compare(x.longValue(), y.longValue()));
-				return true;
+	protected static final int[] nextPerm(int[] a) {
+		for(int i = a.length - 1; i > 0; i--) {
+			if(a[i - 1] < a[i]) {
+				final int j = find(a[i - 1], a, i, a.length - 1);
+				a[i - 1] ^= a[j];
+				a[j] ^= a[i - 1];
+				a[i - 1] ^= a[j];
+				Arrays.sort(a, i, a.length);
+				return a;
 			}
 		}
-		return false;
+		return null;
+	}
+	protected static final long[] nextPerm(long[] a) {
+		for(int i = a.length - 1; i > 0; i--) {
+			if(a[i - 1] < a[i]) {
+				final int j = find(a[i - 1], a, i, a.length - 1);
+				a[i - 1] ^= a[j];
+				a[j] ^= a[i - 1];
+				a[i - 1] ^= a[j];
+				Arrays.sort(a, i, a.length);
+				return a;
+			}
+		}
+		return null;
 	}
 	protected static final String nextPerm(final String s) {
 		var a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
@@ -156,16 +171,31 @@ class Utility {
 		}
 		return null;
 	}
-	protected static final boolean prevPerm(ArrayList<? extends Number> a) {
-		for(int i = a.size() - 1; i > 0; i--) {
-			if(a.get(i - 1).longValue() > a.get(i).longValue()) {
-				final int j = findRev(a.get(i - 1).longValue(), a, i, a.size() - 1);
-				Collections.swap(a, i - 1, j);
-				Collections.sort(a.subList(i, a.size()), Collections.reverseOrder());
-				return true;
+	protected static final int[] prevPerm(int[] a) {
+		for(int i = a.length - 1; i > 0; i--) {
+			if(a[i - 1] > a[i]) {
+				final int j = findRev(a[i - 1], a, i, a.length - 1);
+				a[i - 1] ^= a[j];
+				a[j] ^= a[i - 1];
+				a[i - 1] ^= a[j];
+				Arrays.sort(a, i, a.length);
+				return reverse(a);
 			}
 		}
-		return false;
+		return null;
+	}
+	protected static final long[] prevPerm(long[] a) {
+		for(int i = a.length - 1; i > 0; i--) {
+			if(a[i - 1] > a[i]) {
+				final int j = findRev(a[i - 1], a, i, a.length - 1);
+				a[i - 1] ^= a[j];
+				a[j] ^= a[i - 1];
+				a[i - 1] ^= a[j];
+				Arrays.sort(a, i, a.length);
+				return reverse(a);
+			}
+		}
+		return null;
 	}
 	protected static final String prevPerm(final String s) {
 		var a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
@@ -179,12 +209,19 @@ class Utility {
 		}
 		return null;
 	}
-	private static final int find(final long dest, final List<? extends Number> a, final int s, final int e) {
+	private static final int find(final int dest, final int[] a, final int s, final int e) {
 		if(s == e) {
 			return s;
 		}
 		final int m = (s + e + 1) / 2;
-		return a.get(m).longValue() <= dest ? find(dest, a, s, m - 1) : find(dest, a, m, e);
+		return a[m] <= dest ? find(dest, a, s, m - 1) : find(dest, a, m, e);
+	}
+	private static final int find(final long dest, final long[] a, final int s, final int e) {
+		if(s == e) {
+			return s;
+		}
+		final int m = (s + e + 1) / 2;
+		return a[m] <= dest ? find(dest, a, s, m - 1) : find(dest, a, m, e);
 	}
 	private static final int find(final char dest, final List<Character> a, final int s, final int e) {
 		if(s == e) {
@@ -193,12 +230,19 @@ class Utility {
 		final int m = (s + e + 1) / 2;
 		return a.get(m).compareTo(dest) <= 0 ? find(dest, a, s, m - 1) : find(dest, a, m, e);
 	}
-	private static final int findRev(final long dest, final List<? extends Number> a, final int s, final int e) {
+	private static final int findRev(final int dest, final int[] a, final int s, final int e) {
 		if(s == e) {
 			return s;
 		}
 		final int m = (s + e + 1) / 2;
-		return a.get(m).longValue() > dest ? findRev(dest, a, s, m - 1) : findRev(dest, a, m, e);
+		return a[m] > dest ? findRev(dest, a, s, m - 1) : findRev(dest, a, m, e);
+	}
+	private static final int findRev(final long dest, final long[] a, final int s, final int e) {
+		if(s == e) {
+			return s;
+		}
+		final int m = (s + e + 1) / 2;
+		return a[m] > dest ? findRev(dest, a, s, m - 1) : findRev(dest, a, m, e);
 	}
 	private static final int findRev(final char dest, final List<Character> a, final int s, final int e) {
 		if(s == e) {
@@ -387,7 +431,7 @@ class Utility {
 		return s;
 	}
 	protected static final int[] iota(final int n){ return IntStream.range(0, n).toArray(); }
-	protected static final int[] iota(final int n, final int init){ return IntStream.range(0 + init, n + init).toArray(); }
+	protected static final int[] iota(final int n, final int init){ return IntStream.range(0 + init, n + init).toArray(); } 
 	protected static final long bins(long ok, long ng, final Predicate<Long> fn) {
 		while(Math.abs(ok - ng) > 1) {
 			final long mid = (ok + ng) / 2;
