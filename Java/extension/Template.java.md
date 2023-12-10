@@ -339,15 +339,21 @@ data:
     \ a = new double[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\
     \treturn a;\n\t}\n\tfinal String[] ns(final int n){\n\t\tString[] a = new String[n];\n\
     \t\tIntStream.range(0, n).forEach(i -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal\
-    \ void close(){ sc.close(); }\n}\n\nfinal class MyPrinter {\n\tprivate final PrintWriter\
-    \ pw;\n\tMyPrinter(final OutputStream os, final boolean flush){ pw = new PrintWriter(os,\
-    \ flush); }\n\tfinal void print(final Object arg){ pw.print(arg); }\n\tfinal void\
-    \ out(){ pw.println(); }\n\tfinal void out(final Object head, final Object...\
-    \ tail) {\n\t\tpw.print(head);\n\t\tfor(final var el: tail) {\n\t\t\tpw.print(\"\
-    \ \" + el);\n\t\t}\n\t\tout();\n\t}\n\tfinal <F, S> void out(final Pair<F, S>\
-    \ arg){ pw.println(arg.first + \" \" + arg.second); }\n\tfinal void out(final\
-    \ int[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] +\
-    \ (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final long[]\
+    \ int[][] ni(final int h, final int w) {\n\t\tint[][] a = new int[h][w];\n\t\t\
+    IntStream.range(0, h).forEach(i -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal\
+    \ long[][] nl(final int h, final int w) {\n\t\tlong[][] a = new long[h][w];\n\t\
+    \tIntStream.range(0, h).forEach(i -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal\
+    \ double[][] nd(final int h, final int w) {\n\t\tdouble[][] a = new double[h][w];\n\
+    \t\tIntStream.range(0, h).forEach(i -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\t\
+    final void close(){ sc.close(); }\n}\n\nfinal class MyPrinter {\n\tprivate final\
+    \ PrintWriter pw;\n\tMyPrinter(final OutputStream os, final boolean flush){ pw\
+    \ = new PrintWriter(os, flush); }\n\tfinal void print(final Object arg){ pw.print(arg);\
+    \ }\n\tfinal void out(){ pw.println(); }\n\tfinal void out(final Object head,\
+    \ final Object... tail) {\n\t\tpw.print(head);\n\t\tfor(final var el: tail) {\n\
+    \t\t\tpw.print(\" \" + el);\n\t\t}\n\t\tout();\n\t}\n\tfinal <F, S> void out(final\
+    \ Pair<F, S> arg){ pw.println(arg.first + \" \" + arg.second); }\n\tfinal void\
+    \ out(final int[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i]\
+    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final long[]\
     \ args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i +\
     \ 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final double[] args){\
     \ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length\
@@ -484,7 +490,7 @@ data:
   - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
   - Java/all.java
-  timestamp: '2023-12-10 23:52:59+09:00'
+  timestamp: '2023-12-10 23:59:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java
