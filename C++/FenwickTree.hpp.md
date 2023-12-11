@@ -44,16 +44,18 @@ data:
     \ 0;\r\n        int x = 0;\r\n        for(int k = 1 << std::__lg(N); k; k >>=\
     \ 1) {\r\n            if(x + k <= N - 1 && data[x + k] <= w) {\r\n           \
     \     w -= data[x + k];\r\n                x += k;\r\n            }\r\n      \
-    \  }\r\n        return x;\r\n    }\r\n};\r\n\r\ntemplate <class T> inline int\
-    \ inv_num(const std::vector<T> &a) {\r\n    FenwickTree<T> bit(a.size());\r\n\
-    \    int res = 0;\r\n    for(size_t i = 0; i < a.size(); ++i) {\r\n        res\
-    \ += i - bit.sum(a[i]);\r\n        bit.add(a[i], 1);\r\n    }\r\n    return res;\r\
-    \n}"
+    \  }\r\n        return x;\r\n    }\r\n};\r\n\r\n#include <unordered_map>\r\n#include\
+    \ <algorithm>\r\ntemplate <class T> inline long long inv_num(const std::vector<T>\
+    \ &a) {\r\n    auto b = a;\r\n    std::sort(b.begin(), b.end());\r\n    std::unordered_map<T,\
+    \ int> id;\r\n    for(size_t i = 0; i < b.size(); ++i) {\r\n        id[b[i]] =\
+    \ i;\r\n    }\r\n    FenwickTree<T> bit(a.size());\r\n    long long res = 0;\r\
+    \n    for(size_t i = 0; i < a.size(); ++i) {\r\n        res += i - bit.sum(id[a[i]]);\r\
+    \n        bit.add(id[a[i]], 1);\r\n    }\r\n    return res;\r\n}"
   dependsOn: []
   isVerificationFile: false
   path: C++/FenwickTree.hpp
   requiredBy: []
-  timestamp: '2023-12-10 23:52:59+09:00'
+  timestamp: '2023-12-11 13:19:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/ftree.test.cpp
