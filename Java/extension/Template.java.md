@@ -110,17 +110,17 @@ data:
     RuntimeError: bundler is not specified: Java/extension/Template.java\n"
   code: "package extension;\n\nimport java.io.OutputStream;\nimport java.io.PrintWriter;\n\
     import java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Collection;\n\
-    import java.util.Collections;\nimport java.util.List;\nimport java.util.Scanner;\n\
-    import java.util.function.Predicate;\nimport java.util.stream.Collectors;\nimport\
-    \ java.util.stream.IntStream;\n\nclass VvyLw extends Utility {\n\tprotected static\
-    \ final MyScanner sc = new MyScanner();\n\tprotected static final MyPrinter o\
-    \ = new MyPrinter(System.out, false);\n\tprotected static final MyPrinter e =\
-    \ new MyPrinter(System.err, true);\n\tstatic final int[] dx = {0, -1, 1, 0, 0,\
-    \ -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t\
-    static final int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\t\
-    static final int mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9 + 7;\n\
-    \tstatic final double eps = 1e-18;\n\tprotected static final void solve() {\n\t\
-    \t\n\t}\n}\nfinal class Main extends VvyLw {\n\tpublic static void main(final\
+    import java.util.Collections;\nimport java.util.HashMap;\nimport java.util.List;\n\
+    import java.util.Scanner;\nimport java.util.function.Predicate;\nimport java.util.stream.Collectors;\n\
+    import java.util.stream.IntStream;\n\nclass VvyLw extends Utility {\n\tprotected\
+    \ static final MyScanner sc = new MyScanner();\n\tprotected static final MyPrinter\
+    \ o = new MyPrinter(System.out, false);\n\tprotected static final MyPrinter e\
+    \ = new MyPrinter(System.err, true);\n\tstatic final int[] dx = {0, -1, 1, 0,\
+    \ 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\
+    \tstatic final int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\
+    \tstatic final int mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9 +\
+    \ 7;\n\tstatic final double eps = 1e-18;\n\tprotected static final void solve()\
+    \ {\n\t\t\n\t}\n}\nfinal class Main extends VvyLw {\n\tpublic static void main(final\
     \ String[] args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\
     \t\t\tsolve();\n\t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\
     \t}\n}\n\nclass Utility {\n\tprotected static final String yes(final boolean ok){\
@@ -243,55 +243,59 @@ data:
     \t\treturn ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) >= 0 ? 1 :\
     \ -1);\n\t}\n\tprotected static final <T extends Comparable<? super T>> int upperBound(final\
     \ List<T> a, final T x) {\n\t\treturn ~Collections.binarySearch(a, x, (p, q) ->\
-    \ p.compareTo(q) > 0 ? 1 : -1);\n\t}\n\tprotected static final String reverse(final\
-    \ String s){ return new StringBuilder(s).reverse().toString(); }\n\tprotected\
-    \ static final int[] reverse(final int[] a) {\n\t\tfinal int n = a.length;\n\t\
-    \tint[] b = new int[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n\
-    \ - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected\
-    \ static final long[] reverse(final long[] a) {\n\t\tfinal int n = a.length;\n\
-    \t\tlong[] b = new long[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i]\
-    \ = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected\
-    \ static final double[] reverse(final double[] a) {\n\t\tfinal int n = a.length;\n\
-    \t\tdouble[] b = new double[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\t\
-    b[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\t\
-    protected static final Object[] reverse(final Object[] a) {\n\t\tfinal int n =\
-    \ a.length;\n\t\tObject[] b = new Object[n];\n\t\tfor(int i = 0; i <= n / 2; ++i)\
+    \ p.compareTo(q) > 0 ? 1 : -1);\n\t}\n\tprotected static final String sorted(final\
+    \ String s){ return s.chars().sorted().mapToObj(Character::toString).collect(Collectors.joining());\
+    \ }\n\tprotected static final int[] sorted(final int[] a){ return Arrays.stream(a).sorted().toArray();\
+    \ }\n\tprotected static final long[] sorted(final long[] a){ return Arrays.stream(a).sorted().toArray();\
+    \ }\n\tprotected static final double[] sorted(final double[] a){ return Arrays.stream(a).sorted().toArray();\
+    \ }\n\tprotected static final String reverse(final String s){ return new StringBuilder(s).reverse().toString();\
+    \ }\n\tprotected static final int[] reverse(final int[] a) {\n\t\tfinal int n\
+    \ = a.length;\n\t\tint[] b = new int[n];\n\t\tfor(int i = 0; i <= n / 2; ++i)\
     \ {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn\
-    \ b;\n\t}\n\tprotected static final int[] rotate(final int[] a, final int id)\
-    \ {\n\t\tArrayList<Integer> t = new ArrayList<>(a.length);\n\t\tfor(final var\
-    \ el: a) {\n\t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t, id);\n\t\tint[]\
-    \ res = new int[t.size()];\n\t\tfor(int i = 0; i < t.size(); ++i) {\n\t\t\tres[i]\
-    \ = t.get(i);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long[] rotate(final\
-    \ long[] a, final int id) {\n\t\tArrayList<Long> t = new ArrayList<>(a.length);\n\
+    \ b;\n\t}\n\tprotected static final long[] reverse(final long[] a) {\n\t\tfinal\
+    \ int n = a.length;\n\t\tlong[] b = new long[n];\n\t\tfor(int i = 0; i <= n /\
+    \ 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\
+    \treturn b;\n\t}\n\tprotected static final double[] reverse(final double[] a)\
+    \ {\n\t\tfinal int n = a.length;\n\t\tdouble[] b = new double[n];\n\t\tfor(int\
+    \ i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] =\
+    \ a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected static final Object[] reverse(final\
+    \ Object[] a) {\n\t\tfinal int n = a.length;\n\t\tObject[] b = new Object[n];\n\
+    \t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n -\
+    \ 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected static final int[] rotate(final\
+    \ int[] a, final int id) {\n\t\tArrayList<Integer> t = new ArrayList<>(a.length);\n\
     \t\tfor(final var el: a) {\n\t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t,\
-    \ id);\n\t\tlong[] res = new long[t.size()];\n\t\tfor(int i = 0; i < t.size();\
-    \ ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final double[] rotate(final double[] a, final int id) {\n\t\tArrayList<Double>\
-    \ t = new ArrayList<>(a.length);\n\t\tfor(final var el: a) {\n\t\t\tt.add(el);\n\
-    \t\t}\n\t\tCollections.rotate(t, id);\n\t\tdouble[] res = new double[t.size()];\n\
-    \t\tfor(int i = 0; i < t.size(); ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\t\
-    return res;\n\t}\n\tprotected static final String rotate(final String s, final\
-    \ int id) {\n\t\tArrayList<Character> t = new ArrayList<>();\n\t\tfor(final char\
-    \ c: s.toCharArray()) {\n\t\t\tt.add(c);\n\t\t}\n\t\tCollections.rotate(t, id);\n\
-    \t\tStringBuilder sb = new StringBuilder();\n\t\tfor(final var c: t) {\n\t\t\t\
-    sb.append(c);\n\t\t}\n\t\treturn sb.toString(); \n\t}\n\tprotected static final\
-    \ int[][] rotate(final int[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\
-    \t\tint[][] b = new int[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\t\
-    \tIntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);\n\t\t});\n\t\tIntStream.range(0,\
-    \ w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\tprotected static\
-    \ final long[][] rotate(final long[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\
-    \t\tlong[][] b = new long[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\
-    \t\tIntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);\n\t\t});\n\t\tIntStream.range(0,\
-    \ w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\tprotected static\
-    \ final double[][] rotate(final double[][] a) {\n\t\tfinal int h = a.length, w\
-    \ = a[0].length;\n\t\tdouble[][] b = new double[w][h];\n\t\tIntStream.range(0,\
+    \ id);\n\t\tint[] res = new int[t.size()];\n\t\tfor(int i = 0; i < t.size(); ++i)\
+    \ {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ final long[] rotate(final long[] a, final int id) {\n\t\tArrayList<Long> t =\
+    \ new ArrayList<>(a.length);\n\t\tfor(final var el: a) {\n\t\t\tt.add(el);\n\t\
+    \t}\n\t\tCollections.rotate(t, id);\n\t\tlong[] res = new long[t.size()];\n\t\t\
+    for(int i = 0; i < t.size(); ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\tprotected static final double[] rotate(final double[] a, final\
+    \ int id) {\n\t\tArrayList<Double> t = new ArrayList<>(a.length);\n\t\tfor(final\
+    \ var el: a) {\n\t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t, id);\n\t\t\
+    double[] res = new double[t.size()];\n\t\tfor(int i = 0; i < t.size(); ++i) {\n\
+    \t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
+    \ String rotate(final String s, final int id) {\n\t\tArrayList<Character> t =\
+    \ new ArrayList<>();\n\t\tfor(final char c: s.toCharArray()) {\n\t\t\tt.add(c);\n\
+    \t\t}\n\t\tCollections.rotate(t, id);\n\t\tStringBuilder sb = new StringBuilder();\n\
+    \t\tfor(final var c: t) {\n\t\t\tsb.append(c);\n\t\t}\n\t\treturn sb.toString();\
+    \ \n\t}\n\tprotected static final int[][] rotate(final int[][] a) {\n\t\tfinal\
+    \ int h = a.length, w = a[0].length;\n\t\tint[][] b = new int[w][h];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);\n\
     \t\t});\n\t\tIntStream.range(0, w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn\
-    \ b;\n\t}\n\tprotected static final String[] rotate(final String[] s) {\n\t\t\
-    final int h = s.length, w = s[0].length();\n\t\tchar[][] t = new char[w][h];\n\
-    \t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j\
-    \ -> t[j][i] = s[i].charAt(j));\n\t\t});\n\t\tIntStream.range(0, w).forEach(i\
-    \ -> t[i] = new StringBuilder(new String(t[i])).reverse().toString().toCharArray());\n\
+    \ b;\n\t}\n\tprotected static final long[][] rotate(final long[][] a) {\n\t\t\
+    final int h = a.length, w = a[0].length;\n\t\tlong[][] b = new long[w][h];\n\t\
+    \tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j\
+    \ -> b[j][i] = a[i][j]);\n\t\t});\n\t\tIntStream.range(0, w).forEach(i -> b[i]\
+    \ = reverse(b[i]));\n\t\treturn b;\n\t}\n\tprotected static final double[][] rotate(final\
+    \ double[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\t\tdouble[][]\
+    \ b = new double[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0,\
+    \ w).forEach(j -> b[j][i] = a[i][j]);\n\t\t});\n\t\tIntStream.range(0, w).forEach(i\
+    \ -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\tprotected static final String[]\
+    \ rotate(final String[] s) {\n\t\tfinal int h = s.length, w = s[0].length();\n\
+    \t\tchar[][] t = new char[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\
+    \t\tIntStream.range(0, w).forEach(j -> t[j][i] = s[i].charAt(j));\n\t\t});\n\t\
+    \tIntStream.range(0, w).forEach(i -> t[i] = new StringBuilder(new String(t[i])).reverse().toString().toCharArray());\n\
     \t\tString[] res = new String[w];\n\t\tIntStream.range(0, w).forEach(i -> res[i]\
     \ = new String(t[i]));\n\t\treturn res;\n\t}\n\tprotected static final long lcm(final\
     \ long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static final\
@@ -348,14 +352,21 @@ data:
     \t\t} catch(ArithmeticException e) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\
     \t}\n\t\t\treturn mul <= n;\n\t\t};\n\t\tlong ret = 0;\n\t\tfor(int i = 32; --i\
     \ >= 0;) {\n\t\t\tif(chk.test(ret | (1L << i))) {\n\t\t\t\tret |= 1L << i;\n\t\
-    \t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\tprotected static final int invNum(final\
-    \ int[] a) {\n\t\tfinal var bit = new FenwickTree(a.length);\n\t\tint res = 0;\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(a[i]);\n\t\t\
-    \tbit.add(a[i], 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class MyScanner {\n\
-    \tprivate final Scanner sc = new Scanner(System.in);\n\tfinal int ni(){ return\
-    \ sc.nextInt(); }\n\tfinal long nl(){ return sc.nextLong(); }\n\tfinal double\
-    \ nd(){ return sc.nextDouble(); }\n\tfinal String ns(){ return sc.next(); }\n\t\
-    final int[] ni(final int n){\n\t\tint[] a = new int[n];\n\t\tIntStream.range(0,\
+    \t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\tprotected static final long invNum(final\
+    \ int[] a) {\n\t\tfinal var b = sorted(a);\n\t\tfinal var id = new HashMap<Integer,\
+    \ Integer>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\
+    \t\t}\n\t\tfinal var bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\t\
+    for(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
+    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ final long invNum(final long[] a) {\n\t\tfinal var b = sorted(a);\n\t\tfinal\
+    \ var id = new HashMap<Long, Integer>();\n\t\tfor(int i = 0; i < a.length; ++i)\
+    \ {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal var bit = new FenwickTree(a.length);\n\
+    \t\tlong res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
+    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class\
+    \ MyScanner {\n\tprivate final Scanner sc = new Scanner(System.in);\n\tfinal int\
+    \ ni(){ return sc.nextInt(); }\n\tfinal long nl(){ return sc.nextLong(); }\n\t\
+    final double nd(){ return sc.nextDouble(); }\n\tfinal String ns(){ return sc.next();\
+    \ }\n\tfinal int[] ni(final int n){\n\t\tint[] a = new int[n];\n\t\tIntStream.range(0,\
     \ n).forEach(i -> a[i] = ni());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int\
     \ n){\n\t\tlong[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i]\
     \ = nl());\n\t\treturn a;\n\t}\n\tfinal double[] nd(final int n){\n\t\tdouble[]\
@@ -511,7 +522,7 @@ data:
   - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
   - Java/all.java
-  timestamp: '2023-12-11 02:44:44+09:00'
+  timestamp: '2023-12-11 13:07:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java
