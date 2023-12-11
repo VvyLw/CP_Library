@@ -599,15 +599,15 @@ class Utility {
 	}
 	protected static final long invNum(final int[] a) {
 		final var b = sorted(a);
-		final var id = new HashMap<Integer, Integer>();
+		final var id = new int[a.length];
 		for(int i = 0; i < a.length; ++i) {
-			id.put(b[i], i);
+			id[b[i]] = i;
 		}
 		final var bit = new FenwickTree(a.length);
 		long res = 0;
 		for(int i = 0; i < a.length; ++i) {
-			res += i - bit.sum(id.get(a[i]));
-			bit.add(id.get(a[i]), 1);
+			res += i - bit.sum(id[a[i]]);
+			bit.add(id[a[i]], 1);
 		}
 		return res;
 	}

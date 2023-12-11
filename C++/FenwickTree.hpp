@@ -59,20 +59,22 @@ public:
     }
 };
 
-#include <unordered_map>
 #include <algorithm>
 template <class T> inline long long inv_num(const std::vector<T> &a) {
-    auto b = a;
-    std::sort(b.begin(), b.end());
-    std::unordered_map<T, int> id;
-    for(size_t i = 0; i < b.size(); ++i) {
-        id[b[i]] = i;
+    std::vector<std::pair<T, int>> p(a.size());
+    for(size_t i = 0; i < a.size(); ++i) {
+        p[i] = {a[i], i};
+    }
+    std::sort(p.begin(), p.end());
+    std::vector<int> id(a.size());
+    for(int i = 0; i < a.size(); ++i) {
+        id[p[i].second] = i;
     }
     FenwickTree<T> bit(a.size());
     long long res = 0;
     for(size_t i = 0; i < a.size(); ++i) {
-        res += i - bit.sum(id[a[i]]);
-        bit.add(id[a[i]], 1);
+        res += i - bit.sum(id[i]);
+        bit.add(id[i], 1);
     }
     return res;
 }

@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_kth_smallest"
 #include <iostream>
-#include <C++/WM.hpp>
+#include "C++/WM.hpp"
 int main() {
     int n, q;
     std::cin >> n >> q;

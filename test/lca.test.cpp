@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/lca"
 #include <iostream>
-#include <C++/LCA.hpp>
-#include <C++/graph.hpp>
+#include "C++/LCA.hpp"
+#include "C++/graph.hpp"
 int main() {
     cin.tie(nullptr) -> sync_with_stdio(false);
     int n, q;
