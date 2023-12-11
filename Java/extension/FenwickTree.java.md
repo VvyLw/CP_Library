@@ -5,8 +5,8 @@ data:
     path: Java/all.java
     title: Java/all.java
   - icon: ':warning:'
-    path: Java/extension/FenwickTree.java
-    title: Java/extension/FenwickTree.java
+    path: Java/extension/DoubleEndedPriorityQueue.java
+    title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
     path: Java/extension/Graph.java
     title: Java/extension/Graph.java
@@ -60,8 +60,8 @@ data:
     path: Java/all.java
     title: Java/all.java
   - icon: ':warning:'
-    path: Java/extension/FenwickTree.java
-    title: Java/extension/FenwickTree.java
+    path: Java/extension/DoubleEndedPriorityQueue.java
+    title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
     path: Java/extension/Graph.java
     title: Java/extension/Graph.java
@@ -119,41 +119,24 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/extension/DoubleEndedPriorityQueue.java\n"
-  code: "package extension;\n\nimport java.util.ArrayList;\nimport java.util.Collections;\n\
-    \nfinal class DoubleEndedPriorityQueue<T extends Number> {\n\tprivate final ArrayList<T>\
-    \ d;\n\tDoubleEndedPriorityQueue(final ArrayList<T> d) {\n\t\tthis.d = d;\n\t\t\
-    makeHeap();\n\t}\n\tprivate final void makeHeap() {\n\t\tfor(int i = d.size();\
-    \ i-- > 0;) {\n\t\t\tif (i % 2 == 1 && d.get(i - 1).longValue() < d.get(i).longValue())\
-    \ {\n\t\t\t\tCollections.swap(d, i - 1, i);\n\t\t\t}\n\t\t\tup(down(i), i);\n\t\
-    \t}\n\t}\n\tprivate final int down(int k) {\n\t\tfinal int n = d.size();\n\t\t\
-    if(k % 2 == 1) {\n\t\t\twhile(2 * k + 1 < n) {\n\t\t\t\tint c = 2 * k + 3;\n\t\
-    \t\t\tif(n <= c || d.get(c - 2).longValue() < d.get(c).longValue()) {\n\t\t\t\t\
-    \t c -= 2;\n\t\t\t\t}\n\t\t\t\tif(c < n && d.get(c).longValue() < d.get(k).longValue())\
-    \ {\n\t\t\t\t\tCollections.swap(d, k, c);\n\t\t\t\t\tk = c;\n\t\t\t\t}\n\t\t\t\
-    \telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t} else {\n\t\t\twhile(2 *\
-    \ k + 2 < n) {\n\t\t\t\tint c = 2 * k + 4;\n\t\t\t\tif(n <= c || d.get(c).longValue()\
-    \ < d.get(c - 2).longValue()) {\n\t\t\t\t\tc -= 2;\n\t\t\t\t}\n\t\t\t\tif(c <\
-    \ n && d.get(k).longValue() < d.get(c).longValue()) {\n\t\t\t\t\tCollections.swap(d,\
-    \ k, c);\n\t\t\t\t\tk = c;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\
-    \t}\n\t\t\t}\n\t\t}\n\t\treturn k;\n\t}\n\tprivate final int up(int k, final int\
-    \ root) {\n\t\tif((k | 1) < d.size() && d.get(k & ~1).longValue() < d.get(k |\
-    \ 1).longValue()) {\n\t\t\tCollections.swap(d, k & ~1, k | 1);\n\t\t\tk ^= 1;\n\
-    \t\t}\n\t\tint p;\n\t\twhile(root < k && d.get(p = parent(k)).longValue() < d.get(k).longValue())\
-    \ {\n\t\t\tCollections.swap(d, p, k);\n\t\t\tk = p;\n\t\t}\n\t\twhile(root < k\
-    \ && d.get(k).longValue() < d.get(p = parent(k) | 1).longValue()) {\n\t\t\tCollections.swap(d,\
-    \ p, k);\n\t\t\tk = p;\n\t\t}\n\t\treturn k;\n\t}\n\tprivate final int parent(final\
-    \ int k){ return ((k >> 1) - 1) & ~1; }\n\tprivate final void popBack(final ArrayList<T>\
-    \ d){ d.remove(d.size() - 1); } \n\tfinal void push(final T x) {\n\t\tfinal int\
-    \ k = d.size();\n\t\td.add(x);\n\t\tup(k, 1);\n\t}\n\tfinal T popMin() {\n\t\t\
-    final var res = getMin();\n\t\tif(d.size() < 3) {\n\t\t\tpopBack(d); \n\t\t} else\
-    \ {\n\t\t\tCollections.swap(d, 1, d.size() - 1);\n\t\t\tpopBack(d);\n\t\t\tup(down(1),\
-    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal T popMax() {\n\t\tfinal var res =\
-    \ getMax();\n\t\tif(d.size() < 2) { \n\t\t\tpopBack(d);\n\t\t} else {\n\t\t\t\
-    Collections.swap(d, 0, d.size() - 1);\n\t\t\tpopBack(d);\n\t\t\tup(down(0), 1);\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tfinal T getMin(){ return d.size() < 2 ? d.get(0)\
-    \ : d.get(1); }\n\tfinal T getMax(){ return d.get(0); }\n\tfinal int size(){ return\
-    \ d.size(); }\n\tfinal boolean isEmpty(){ return d.isEmpty(); }\n}"
+    RuntimeError: bundler is not specified: Java/extension/FenwickTree.java\n"
+  code: "package extension;\n\nfinal class FenwickTree {\n\tprivate final int n;\n\
+    \tprivate final long[] data;\n\tFenwickTree(final int n) {\n\t\tthis.n = n + 2;\n\
+    \t\tdata = new long[this.n + 1];\n\t}\n\tfinal long sum(int k) {\n\t\tif(k < 0)\
+    \ return 0;\n\t\tlong ret = 0;\n\t\tfor(++k; k > 0; k -= k & -k) {\n\t\t\tret\
+    \ += data[k];\n\t\t}\n\t\treturn ret;\n\t}\n\tfinal long sum(final int l, final\
+    \ int r){ return sum(r) - sum(l - 1); }\n\tfinal long get(final int k){ return\
+    \ sum(k) - sum(k - 1); }\n\tfinal void add(int k, final long x) {\n\t\tfor(++k;\
+    \ k < n; k += k & -k) {\n\t\t\tdata[k] += x;\n\t\t}\n\t}\n\tfinal void imos(final\
+    \ int l, final int r, long x) {\n\t\tadd(l, x);\n\t\tadd(r + 1, -x);\n\t}\n\t\
+    private final int lg(final int n){ return 63 - Integer.numberOfLeadingZeros(n);\
+    \ }\n\tfinal int lowerBound(long w) {\n\t\tif(w <= 0) {\n\t\t\treturn 0;\n\t\t\
+    }\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x +\
+    \ k <= n - 1 && data[x + k] < w) {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\
+    \t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\tfinal int upperBound(long w) {\n\t\tif(w\
+    \ < 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n);\
+    \ k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <= w) {\n\t\t\t\t\
+    w -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n}"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
@@ -167,14 +150,14 @@ data:
   - Java/extension/SuffixArray.java
   - Java/extension/WaveletMatrix.java
   - Java/extension/SegmentTree.java
-  - Java/extension/FenwickTree.java
   - Java/extension/WeightedUnionFind.java
+  - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/Graph.java
   - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
   - Java/all.java
   isVerificationFile: false
-  path: Java/extension/DoubleEndedPriorityQueue.java
+  path: Java/extension/FenwickTree.java
   requiredBy:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
@@ -188,8 +171,8 @@ data:
   - Java/extension/SuffixArray.java
   - Java/extension/WaveletMatrix.java
   - Java/extension/SegmentTree.java
-  - Java/extension/FenwickTree.java
   - Java/extension/WeightedUnionFind.java
+  - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/Graph.java
   - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
@@ -197,10 +180,10 @@ data:
   timestamp: '2023-12-12 02:56:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/extension/DoubleEndedPriorityQueue.java
+documentation_of: Java/extension/FenwickTree.java
 layout: document
 redirect_from:
-- /library/Java/extension/DoubleEndedPriorityQueue.java
-- /library/Java/extension/DoubleEndedPriorityQueue.java.html
-title: Java/extension/DoubleEndedPriorityQueue.java
+- /library/Java/extension/FenwickTree.java
+- /library/Java/extension/FenwickTree.java.html
+title: Java/extension/FenwickTree.java
 ---

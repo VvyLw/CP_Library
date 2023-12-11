@@ -454,7 +454,7 @@ data:
     \ ld n){ ll r=std::floor(n); return r==n; }\r\ninline bool is_sqr(const ll n){\
     \ return is_int(std::sqrt(n)); }\r\n} // Heileden\n#line 2 \"C++/UnionFind.hpp\"\
     \n\r\n// inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)\r\
-    \n#line 8 \"C++/UnionFind.hpp\"\nstruct UnionFind {\r\nprivate:\r\n    std::vector<int>\
+    \n#line 7 \"C++/UnionFind.hpp\"\nstruct UnionFind {\r\nprivate:\r\n    std::vector<int>\
     \ par;\r\npublic:\r\n    UnionFind(const int n): par(n, -1){}\r\n    int operator[](int\
     \ i) {\r\n        while(par[i] >= 0) {\r\n            const int p = par[par[i]];\r\
     \n            if(p < 0) return par[i];\r\n            i = par[i] = p;\r\n    \
@@ -476,37 +476,10 @@ data:
     \n    }\r\n#endif\r\n    bool is_bipartite() {\r\n        const int n = par.size()\
     \ / 2;\r\n        bool ok = true;\r\n        for(int i = 0; i < n; ++i) {\r\n\
     \            ok &= (*this)[i] != (*this)[i + n];\r\n        }\r\n        return\
-    \ ok;\r\n    }\r\n};\r\n\r\n// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/UnionFind.cpp\
-    \ )\r\nstruct UFPotential {\r\nprivate:\r\n    std::vector<int> par;\r\n    std::vector<long\
-    \ long> diff;\r\npublic:\r\n    UFPotential(const int n): par(n, -1), diff(n){}\r\
-    \n    int root(const int i) {\r\n        if(par[i] < 0) {\r\n            return\
-    \ i;\r\n        }\r\n        const int r = root(par[i]);\r\n        diff[i] +=\
-    \ diff[par[i]];\r\n        return par[i] = r;\r\n    }\r\n    long long dist(const\
-    \ int i) {\r\n        root(i);\r\n        return diff[i];\r\n    }\r\n    long\
-    \ long dist(const int x, const int y){ return dist(y) - dist(x); }\r\n    int\
-    \ unite(int x, int y, long long w) {\r\n        w += dist(y, x);\r\n        x\
-    \ = root(x), y = root(y);\r\n        if(x == y) {\r\n            return w == 0\
-    \ ? 0 : -1;\r\n        }\r\n        if(par[x] > par[y]) {\r\n            std::swap(x,\
-    \ y);\r\n            w = -w;\r\n        }\r\n        par[x] += par[y];\r\n   \
-    \     par[y] = x;\r\n        diff[y] = w;\r\n        return 1;\r\n    }\r\n  \
-    \  int operator[](const int i) noexcept { return root(i); }\r\n};\r\n\r\n// inspired\
-    \ by Luzhiled( https://ei1333.github.io/luzhiled/snippets/structure/union-find.html\
-    \ )\r\nstruct UFUndo {\r\nprivate:\r\n    std::vector<int> par;\r\n\tstd::stack<std::pair<int,\
-    \ int>> his;\r\npublic:\r\n\tUFUndo(const int n): par(n, -1){}\r\n    bool unite(int\
-    \ x, int y) {\r\n\t\tx = root(x);\r\n\t\ty = root(y);\r\n\t\this.emplace(std::make_pair(x,\
-    \ par[x]));\r\n\t\this.emplace(std::make_pair(y, par[y]));\r\n\t\tif(x == y) {\r\
-    \n\t\t\treturn false;\r\n\t\t}\r\n\t\tif(par[x] > par[y]) {\r\n\t\t\tstd::swap(x,\
-    \ y);\r\n\t\t}\r\n\t\tpar[x] += par[y];\r\n\t\tpar[y] = x;\r\n\t\treturn true;\r\
-    \n\t}\r\n    int root(int k) {\r\n        if(par[k] < 0) {\r\n            return\
-    \ k;\r\n        }\r\n        return root(par[k]);\r\n    }\r\n    int size(const\
-    \ int i){ return -par[root(i)]; }\r\n    void undo() {\r\n\t\tpar[his.top().first]\
-    \ = his.top().second;\r\n        his.pop();\r\n\t\tpar[his.top().first] = his.top().second;\r\
-    \n        his.pop();\r\n\t}\r\n    void snapshot() {\r\n\t\twhile(his.size())\
-    \ {\r\n\t\t\this.pop();\r\n\t\t}\r\n\t}\r\n\tvoid rollback() {\r\n\t\twhile(his.size())\
-    \ {\r\n\t\t\tundo();\r\n\t\t}\r\n\t}\r\n};\n#line 7 \"test/uf.test.cpp\"\nusing\
-    \ namespace zia_qu;\nusing namespace Lady_sANDy;\nusing namespace Heileden;\n\
-    int main() {\n  \tVvyLw::wa_haya_exe();\n  \tnow(start);\n  \t//INT(t); while(t--)\n\
-    \  \tVvyLw::solve();\n  \tnow(stop);\n  \ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
+    \ ok;\r\n    }\r\n};\n#line 7 \"test/uf.test.cpp\"\nusing namespace zia_qu;\n\
+    using namespace Lady_sANDy;\nusing namespace Heileden;\nint main() {\n  \tVvyLw::wa_haya_exe();\n\
+    \  \tnow(start);\n  \t//INT(t); while(t--)\n  \tVvyLw::solve();\n  \tnow(stop);\n\
+    \  \ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
     \nvoid VvyLw::solve() {\n    INT(n,q);\n    UnionFind uf(n);\n    while(q--) {\n\
     \        INT(t,a,b);\n        if(t) out(uf[a]==uf[b]);\n        else uf.unite(a,b);\n\
     \    }\n}\n"
@@ -526,7 +499,7 @@ data:
   isVerificationFile: true
   path: test/uf.test.cpp
   requiredBy: []
-  timestamp: '2023-12-11 21:48:09+09:00'
+  timestamp: '2023-12-12 02:56:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/uf.test.cpp

@@ -8,8 +8,14 @@ data:
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
+    path: Java/extension/FenwickTree.java
+    title: Java/extension/FenwickTree.java
+  - icon: ':warning:'
     path: Java/extension/Graph.java
     title: Java/extension/Graph.java
+  - icon: ':warning:'
+    path: Java/extension/Huitloxopetl.java
+    title: Java/extension/Huitloxopetl.java
   - icon: ':warning:'
     path: Java/extension/LargePrime.java
     title: Java/extension/LargePrime.java
@@ -57,8 +63,14 @@ data:
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
+    path: Java/extension/FenwickTree.java
+    title: Java/extension/FenwickTree.java
+  - icon: ':warning:'
     path: Java/extension/Graph.java
     title: Java/extension/Graph.java
+  - icon: ':warning:'
+    path: Java/extension/Huitloxopetl.java
+    title: Java/extension/Huitloxopetl.java
   - icon: ':warning:'
     path: Java/extension/LargePrime.java
     title: Java/extension/LargePrime.java
@@ -110,17 +122,17 @@ data:
     RuntimeError: bundler is not specified: Java/extension/Template.java\n"
   code: "package extension;\n\nimport java.io.OutputStream;\nimport java.io.PrintWriter;\n\
     import java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Collection;\n\
-    import java.util.Collections;\nimport java.util.HashMap;\nimport java.util.List;\n\
-    import java.util.Scanner;\nimport java.util.function.Predicate;\nimport java.util.stream.Collectors;\n\
-    import java.util.stream.IntStream;\n\nclass VvyLw extends Utility {\n\tprotected\
-    \ static final MyScanner sc = new MyScanner();\n\tprotected static final MyPrinter\
-    \ o = new MyPrinter(System.out, false);\n\tprotected static final MyPrinter e\
-    \ = new MyPrinter(System.err, true);\n\tstatic final int[] dx = {0, -1, 1, 0,\
-    \ 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\
-    \tstatic final int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\
-    \tstatic final int mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9 +\
-    \ 7;\n\tstatic final double eps = 1e-18;\n\tprotected static final void solve()\
-    \ {\n\t\t\n\t}\n}\nfinal class Main extends VvyLw {\n\tpublic static void main(final\
+    import java.util.Collections;\nimport java.util.List;\nimport java.util.Scanner;\n\
+    import java.util.function.Predicate;\nimport java.util.stream.Collectors;\nimport\
+    \ java.util.stream.IntStream;\n\nclass VvyLw extends Utility {\n\tprotected static\
+    \ final MyScanner sc = new MyScanner();\n\tprotected static final MyPrinter o\
+    \ = new MyPrinter(System.out, false);\n\tprotected static final MyPrinter e =\
+    \ new MyPrinter(System.err, true);\n\tstatic final int[] dx = {0, -1, 1, 0, 0,\
+    \ -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t\
+    static final int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\t\
+    static final int mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9 + 7;\n\
+    \tstatic final double eps = 1e-18;\n\tprotected static final void solve() {\n\t\
+    \t\n\t}\n}\nfinal class Main extends VvyLw {\n\tpublic static void main(final\
     \ String[] args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\
     \t\t\tsolve();\n\t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\
     \t}\n}\n\nclass Utility {\n\tprotected static final String yes(final boolean ok){\
@@ -313,7 +325,7 @@ data:
     \ ArrayList<>();\n\t\tfor(final var el: p) {\n\t\t\ts.add(el.second);\n\t\t}\n\
     \t\treturn s;\n\t}\n\tprotected static final int[] iota(final int n){ return IntStream.range(0,\
     \ n).toArray(); }\n\tprotected static final int[] iota(final int n, final int\
-    \ init){ return IntStream.range(0 + init, n + init).toArray(); }\n\tprotected\
+    \ init){ return IntStream.range(0 + init, n + init).toArray(); } \n\tprotected\
     \ static final long bins(long ok, long ng, final Predicate<Long> fn) {\n\t\twhile(Math.abs(ok\
     \ - ng) > 1) {\n\t\t\tfinal long mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid))\
     \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
@@ -352,56 +364,46 @@ data:
     \t\t} catch(ArithmeticException e) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\
     \t}\n\t\t\treturn mul <= n;\n\t\t};\n\t\tlong ret = 0;\n\t\tfor(int i = 32; --i\
     \ >= 0;) {\n\t\t\tif(chk.test(ret | (1L << i))) {\n\t\t\t\tret |= 1L << i;\n\t\
-    \t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\tprotected static final long invNum(final\
-    \ int[] a) {\n\t\tfinal var b = sorted(a);\n\t\tfinal var id = new int[a.length];\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid[b[i]] = i;\n\t\t}\n\t\tfinal\
-    \ var bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0;\
-    \ i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id[a[i]]);\n\t\t\tbit.add(id[a[i]],\
-    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long invNum(final\
-    \ long[] a) {\n\t\tfinal var b = sorted(a);\n\t\tfinal var id = new HashMap<Long,\
-    \ Integer>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\
-    \t\t}\n\t\tfinal var bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\t\
-    for(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
-    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class\
-    \ MyScanner {\n\tprivate final Scanner sc = new Scanner(System.in);\n\tfinal int\
-    \ ni(){ return sc.nextInt(); }\n\tfinal long nl(){ return sc.nextLong(); }\n\t\
-    final double nd(){ return sc.nextDouble(); }\n\tfinal String ns(){ return sc.next();\
-    \ }\n\tfinal int[] ni(final int n){\n\t\tint[] a = new int[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = ni());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int\
-    \ n){\n\t\tlong[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i]\
-    \ = nl());\n\t\treturn a;\n\t}\n\tfinal double[] nd(final int n){\n\t\tdouble[]\
-    \ a = new double[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\
-    \treturn a;\n\t}\n\tfinal String[] ns(final int n){\n\t\tString[] a = new String[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal\
-    \ int[][] ni(final int h, final int w) {\n\t\tint[][] a = new int[h][w];\n\t\t\
-    IntStream.range(0, h).forEach(i -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal\
-    \ long[][] nl(final int h, final int w) {\n\t\tlong[][] a = new long[h][w];\n\t\
-    \tIntStream.range(0, h).forEach(i -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal\
-    \ double[][] nd(final int h, final int w) {\n\t\tdouble[][] a = new double[h][w];\n\
-    \t\tIntStream.range(0, h).forEach(i -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\t\
-    final void close(){ sc.close(); }\n}\n\nfinal class MyPrinter {\n\tprivate final\
-    \ PrintWriter pw;\n\tMyPrinter(final OutputStream os, final boolean flush){ pw\
-    \ = new PrintWriter(os, flush); }\n\tfinal void print(final Object arg){ pw.print(arg);\
-    \ }\n\tfinal void out(){ pw.println(); }\n\tfinal void out(final Object head,\
-    \ final Object... tail) {\n\t\tpw.print(head);\n\t\tfor(final var el: tail) {\n\
-    \t\t\tpw.print(\" \" + el);\n\t\t}\n\t\tout();\n\t}\n\tfinal <F, S> void out(final\
-    \ Pair<F, S> arg){ pw.println(arg.first + \" \" + arg.second); }\n\tfinal void\
-    \ out(final int[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i]\
-    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final long[]\
-    \ args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i +\
-    \ 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final double[] args){\
-    \ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length\
-    \ ? \" \" : \"\\n\"))); }\n\tfinal void out(final boolean[] args){ IntStream.range(0,\
+    \t\t}\n\t\t}\n\t\treturn ret;\n\t}\n}\n\nfinal class MyScanner {\n\tprivate final\
+    \ Scanner sc = new Scanner(System.in);\n\tfinal int ni(){ return sc.nextInt();\
+    \ }\n\tfinal long nl(){ return sc.nextLong(); }\n\tfinal double nd(){ return sc.nextDouble();\
+    \ }\n\tfinal String ns(){ return sc.next(); }\n\tfinal int[] ni(final int n){\n\
+    \t\tint[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ni());\n\
+    \t\treturn a;\n\t}\n\tfinal long[] nl(final int n){\n\t\tlong[] a = new long[n];\n\
+    \t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\treturn a;\n\t}\n\tfinal\
+    \ double[] nd(final int n){\n\t\tdouble[] a = new double[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal String[] ns(final\
+    \ int n){\n\t\tString[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final int h, final\
+    \ int w) {\n\t\tint[][] a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final int h, final\
+    \ int w) {\n\t\tlong[][] a = new long[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final int h, final\
+    \ int w) {\n\t\tdouble[][] a = new double[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\tfinal void close(){ sc.close(); }\n\
+    }\n\nfinal class MyPrinter {\n\tprivate final PrintWriter pw;\n\tMyPrinter(final\
+    \ OutputStream os, final boolean flush){ pw = new PrintWriter(os, flush); }\n\t\
+    final void print(final Object arg){ pw.print(arg); }\n\tfinal void out(){ pw.println();\
+    \ }\n\tfinal void out(final Object head, final Object... tail) {\n\t\tpw.print(head);\n\
+    \t\tfor(final var el: tail) {\n\t\t\tpw.print(\" \" + el);\n\t\t}\n\t\tout();\n\
+    \t}\n\tfinal <F, S> void out(final Pair<F, S> arg){ pw.println(arg.first + \"\
+    \ \" + arg.second); }\n\tfinal void out(final int[] args){ IntStream.range(0,\
     \ args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? \" \" :\
-    \ \"\\n\"))); }\n\tfinal void out(final char[] args){ IntStream.range(0, args.length).forEach(i\
+    \ \"\\n\"))); }\n\tfinal void out(final long[] args){ IntStream.range(0, args.length).forEach(i\
     \ -> pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal\
-    \ void out(final Object[] args){ IntStream.range(0, args.length).forEach(i ->\
-    \ pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal <T>\
-    \ void out(final List<T> args){ IntStream.range(0, args.size()).forEach(i -> pw.print(args.get(i)\
-    \ + (i + 1 < args.size() ? \" \" : \"\\n\"))); }\n\tfinal void outl(final Object\
-    \ head, final Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(pw::println);\n\
-    \t}\n\tfinal void outl(final int[] args){ Arrays.stream(args).forEach(pw::println);\
-    \ }\n\tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ void out(final double[] args){ IntStream.range(0, args.length).forEach(i ->\
+    \ pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void\
+    \ out(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i]\
+    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final char[]\
+    \ args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i +\
+    \ 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final Object[] args){\
+    \ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length\
+    \ ? \" \" : \"\\n\"))); }\n\tfinal <T> void out(final List<T> args){ IntStream.range(0,\
+    \ args.size()).forEach(i -> pw.print(args.get(i) + (i + 1 < args.size() ? \" \"\
+    \ : \"\\n\"))); }\n\tfinal void outl(final Object head, final Object... tail)\
+    \ {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(pw::println);\n\t}\n\tfinal\
+    \ void outl(final int[] args){ Arrays.stream(args).forEach(pw::println); }\n\t\
+    final void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final long[] args){ Arrays.stream(args).forEach(pw::println);\
     \ }\n\tfinal void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final double[] args){ Arrays.stream(args).forEach(pw::println);\
@@ -468,24 +470,7 @@ data:
     \t}\n\t\treturn new NumPair(x, y);\n\t}\n\t@Override\n\tfinal public int compareTo(final\
     \ NumPair o) {\n\t\tif(first.doubleValue() == o.first.doubleValue()) {\n\t\t\t\
     return Double.compare(second.doubleValue(), o.second.doubleValue());\n\t\t}\n\t\
-    \treturn Double.compare(first.doubleValue(), o.first.doubleValue());\n\t}\n}\n\
-    \nfinal class FenwickTree {\n\tprivate final int n;\n\tprivate final long[] data;\n\
-    \tFenwickTree(final int n) {\n\t\tthis.n = n + 2;\n\t\tdata = new long[this.n\
-    \ + 1];\n\t}\n\tfinal long sum(int k) {\n\t\tif(k < 0) return 0;\n\t\tlong ret\
-    \ = 0;\n\t\tfor(++k; k > 0; k -= k & -k) {\n\t\t\tret += data[k];\n\t\t}\n\t\t\
-    return ret;\n\t}\n\tfinal long sum(final int l, final int r){ return sum(r) -\
-    \ sum(l - 1); }\n\tfinal long get(final int k){ return sum(k) - sum(k - 1); }\n\
-    \tfinal void add(int k, final long x) {\n\t\tfor(++k; k < n; k += k & -k) {\n\t\
-    \t\tdata[k] += x;\n\t\t}\n\t}\n\tfinal void imos(final int l, final int r, long\
-    \ x) {\n\t\tadd(l, x);\n\t\tadd(r + 1, -x);\n\t}\n\tprivate final int lg(final\
-    \ int n){ return 63 - Integer.numberOfLeadingZeros(n); }\n\tfinal int lowerBound(long\
-    \ w) {\n\t\tif(w <= 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int\
-    \ k = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <\
-    \ w) {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ x;\n\t}\n\tfinal int upperBound(long w) {\n\t\tif(w < 0) {\n\t\t\treturn 0;\n\
-    \t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x\
-    \ + k <= n - 1 && data[x + k] <= w) {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx +=\
-    \ k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n}"
+    \treturn Double.compare(first.doubleValue(), o.first.doubleValue());\n\t}\n}"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeTable.java
@@ -493,10 +478,12 @@ data:
   - Java/extension/PrimeFactor.java
   - Java/extension/LargePrime.java
   - Java/extension/LowestCommonAncestor.java
+  - Java/extension/Huitloxopetl.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/SuffixArray.java
   - Java/extension/WaveletMatrix.java
   - Java/extension/SegmentTree.java
+  - Java/extension/FenwickTree.java
   - Java/extension/WeightedUnionFind.java
   - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/Graph.java
@@ -512,17 +499,19 @@ data:
   - Java/extension/PrimeFactor.java
   - Java/extension/LargePrime.java
   - Java/extension/LowestCommonAncestor.java
+  - Java/extension/Huitloxopetl.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/SuffixArray.java
   - Java/extension/WaveletMatrix.java
   - Java/extension/SegmentTree.java
+  - Java/extension/FenwickTree.java
   - Java/extension/WeightedUnionFind.java
   - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/Graph.java
   - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
   - Java/all.java
-  timestamp: '2023-12-11 21:08:07+09:00'
+  timestamp: '2023-12-12 02:56:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java

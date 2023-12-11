@@ -28,6 +28,12 @@ data:
       path: C++/Strings.hpp
       title: C++/Strings.hpp
     - icon: ':heavy_check_mark:'
+      path: C++/UFPotential.hpp
+      title: C++/UFPotential.hpp
+    - icon: ':warning:'
+      path: C++/UFUndo.hpp
+      title: C++/UFUndo.hpp
+    - icon: ':heavy_check_mark:'
       path: C++/UnionFind.hpp
       title: C++/UnionFind.hpp
     - icon: ':heavy_check_mark:'
@@ -62,8 +68,14 @@ data:
       path: Java/extension/DoubleEndedPriorityQueue.java
       title: Java/extension/DoubleEndedPriorityQueue.java
     - icon: ':warning:'
+      path: Java/extension/FenwickTree.java
+      title: Java/extension/FenwickTree.java
+    - icon: ':warning:'
       path: Java/extension/Graph.java
       title: Java/extension/Graph.java
+    - icon: ':warning:'
+      path: Java/extension/Huitloxopetl.java
+      title: Java/extension/Huitloxopetl.java
     - icon: ':warning:'
       path: Java/extension/LargePrime.java
       title: Java/extension/LargePrime.java

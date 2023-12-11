@@ -5,8 +5,14 @@ data:
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
+    path: Java/extension/FenwickTree.java
+    title: Java/extension/FenwickTree.java
+  - icon: ':warning:'
     path: Java/extension/Graph.java
     title: Java/extension/Graph.java
+  - icon: ':warning:'
+    path: Java/extension/Huitloxopetl.java
+    title: Java/extension/Huitloxopetl.java
   - icon: ':warning:'
     path: Java/extension/LargePrime.java
     title: Java/extension/LargePrime.java
@@ -54,8 +60,14 @@ data:
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
+    path: Java/extension/FenwickTree.java
+    title: Java/extension/FenwickTree.java
+  - icon: ':warning:'
     path: Java/extension/Graph.java
     title: Java/extension/Graph.java
+  - icon: ':warning:'
+    path: Java/extension/Huitloxopetl.java
+    title: Java/extension/Huitloxopetl.java
   - icon: ':warning:'
     path: Java/extension/LargePrime.java
     title: Java/extension/LargePrime.java
@@ -119,34 +131,38 @@ data:
     \ java.util.stream.IntStream;\n\nclass VvyLw extends Utility {\n\tprotected static\
     \ final MyScanner sc = new MyScanner();\n\tprotected static final MyPrinter o\
     \ = new MyPrinter(System.out, false);\n\tprotected static final MyPrinter e =\
-    \ new MyPrinter(System.err, true);\n\tstatic final int[] dx = {0, -1, 1, 0, 0,\
-    \ -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t\
-    static final int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\t\
-    static final int mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9 + 7;\n\
-    \tstatic final double eps = 1e-18;\n\tprotected static final void solve() {\n\t\
-    \t\n\t}\n}\nfinal class Main extends VvyLw {\n\tpublic static void main(final\
-    \ String[] args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\
-    \t\t\tsolve();\n\t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\
-    \t}\n}\n\nclass Utility {\n\tprotected static final String yes(final boolean ok){\
-    \ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean\
-    \ ok){ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
-    \ x * x; }\n\tprotected static final int mod(final long n, final int m){ return\
-    \ (int) ((n + m) % m); }\n\tprotected static final long ceil(final long a, final\
-    \ long b){ return (long) Math.ceil((double) a / b); }\n\tprotected static final\
-    \ double round(final double a, final long b, final int c) {\n\t\tfinal long d\
-    \ = intPow(10, c);\n\t\treturn (double) Math.round((a * d) / b) / d;\n\t}\n\t\
-    protected static final long intPow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b\
-    \ > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\
-    \t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long intPow(long\
-    \ a, long b, final int m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b\
-    \ % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\t\
-    a *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t\
-    protected static final ArrayList<Long> div(final long n) {\n\t\tArrayList<Long>\
-    \ d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n %\
-    \ i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n /\
-    \ i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\t\treturn d;\n\t\
-    }\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long n)\
-    \ {\n\t\tArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long\
+    \ new MyPrinter(System.err, true);\n\tstatic final Huitloxopetl why = new Huitloxopetl();\n\
+    \tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final int[]\
+    \ dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final int inf = 1 << 30;\n\t\
+    static final long linf = (1L << 61) - 1;\n\tstatic final int mod998 = 998244353;\n\
+    \tstatic final int mod107 = (int)1e9 + 7;\n\tstatic final double eps = 1e-18;\n\
+    \tprotected static final void solve() {\n\t\tfinal int n = sc.ni();\n\t\tint[]\
+    \ x = new int[n], y = new int[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tx[i]\
+    \ = sc.ni();\n\t\t\ty[i] = sc.ni();\n\t\t}\n\t\tfinal var ans = why.kruskal(why.manhattan(x,\
+    \ y), n);\n\t\to.out(ans.cost);\n\t\tfor(final var ed: ans.tree) {\n\t\t\to.out(ed.src,\
+    \ ed.to);\n\t\t}\n\t}\n}\nfinal class Main extends VvyLw {\n\tpublic static void\
+    \ main(final String[] args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t--\
+    \ > 0) {\n\t\t\tsolve();\n\t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\
+    \t\te.close();\n\t}\n}\n\nclass Utility {\n\tprotected static final String yes(final\
+    \ boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String\
+    \ no(final boolean ok){ return yes(!ok); }\n\tprotected static final long sqr(final\
+    \ long x){ return x * x; }\n\tprotected static final int mod(final long n, final\
+    \ int m){ return (int) ((n + m) % m); }\n\tprotected static final long ceil(final\
+    \ long a, final long b){ return (long) Math.ceil((double) a / b); }\n\tprotected\
+    \ static final double round(final double a, final long b, final int c) {\n\t\t\
+    final long d = intPow(10, c);\n\t\treturn (double) Math.round((a * d) / b) / d;\n\
+    \t}\n\tprotected static final long intPow(long a, int b) {\n\t\tlong res = 1;\n\
+    \t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\t\
+    a *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
+    \ long intPow(long a, long b, final int m) {\n\t\tlong res = 1;\n\t\twhile(b >\
+    \ 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\
+    \t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\tprotected static final ArrayList<Long> div(final long n) {\n\t\t\
+    ArrayList<Long> d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\
+    \t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\t\
+    d.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\t\treturn\
+    \ d;\n\t}\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long\
+    \ n) {\n\t\tArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long\
     \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t\
     }\n\t\t\tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /=\
     \ i;\n\t\t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\t\t\
@@ -356,56 +372,46 @@ data:
     \t\t} catch(ArithmeticException e) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\
     \t}\n\t\t\treturn mul <= n;\n\t\t};\n\t\tlong ret = 0;\n\t\tfor(int i = 32; --i\
     \ >= 0;) {\n\t\t\tif(chk.test(ret | (1L << i))) {\n\t\t\t\tret |= 1L << i;\n\t\
-    \t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\tprotected static final long invNum(final\
-    \ int[] a) {\n\t\tfinal var b = sorted(a);\n\t\tfinal var id = new int[a.length];\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid[b[i]] = i;\n\t\t}\n\t\tfinal\
-    \ var bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0;\
-    \ i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id[a[i]]);\n\t\t\tbit.add(id[a[i]],\
-    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long invNum(final\
-    \ long[] a) {\n\t\tfinal var b = sorted(a);\n\t\tfinal var id = new HashMap<Long,\
-    \ Integer>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\
-    \t\t}\n\t\tfinal var bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\t\
-    for(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
-    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class\
-    \ MyScanner {\n\tprivate final Scanner sc = new Scanner(System.in);\n\tfinal int\
-    \ ni(){ return sc.nextInt(); }\n\tfinal long nl(){ return sc.nextLong(); }\n\t\
-    final double nd(){ return sc.nextDouble(); }\n\tfinal String ns(){ return sc.next();\
-    \ }\n\tfinal int[] ni(final int n){\n\t\tint[] a = new int[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = ni());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int\
-    \ n){\n\t\tlong[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i]\
-    \ = nl());\n\t\treturn a;\n\t}\n\tfinal double[] nd(final int n){\n\t\tdouble[]\
-    \ a = new double[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\
-    \treturn a;\n\t}\n\tfinal String[] ns(final int n){\n\t\tString[] a = new String[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal\
-    \ int[][] ni(final int h, final int w) {\n\t\tint[][] a = new int[h][w];\n\t\t\
-    IntStream.range(0, h).forEach(i -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal\
-    \ long[][] nl(final int h, final int w) {\n\t\tlong[][] a = new long[h][w];\n\t\
-    \tIntStream.range(0, h).forEach(i -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal\
-    \ double[][] nd(final int h, final int w) {\n\t\tdouble[][] a = new double[h][w];\n\
-    \t\tIntStream.range(0, h).forEach(i -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\t\
-    final void close(){ sc.close(); }\n}\n\nfinal class MyPrinter {\n\tprivate final\
-    \ PrintWriter pw;\n\tMyPrinter(final OutputStream os, final boolean flush){ pw\
-    \ = new PrintWriter(os, flush); }\n\tfinal void print(final Object arg){ pw.print(arg);\
-    \ }\n\tfinal void out(){ pw.println(); }\n\tfinal void out(final Object head,\
-    \ final Object... tail) {\n\t\tpw.print(head);\n\t\tfor(final var el: tail) {\n\
-    \t\t\tpw.print(\" \" + el);\n\t\t}\n\t\tout();\n\t}\n\tfinal <F, S> void out(final\
-    \ Pair<F, S> arg){ pw.println(arg.first + \" \" + arg.second); }\n\tfinal void\
-    \ out(final int[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i]\
-    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final long[]\
-    \ args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i +\
-    \ 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final double[] args){\
-    \ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length\
-    \ ? \" \" : \"\\n\"))); }\n\tfinal void out(final boolean[] args){ IntStream.range(0,\
+    \t\t}\n\t\t}\n\t\treturn ret;\n\t}\n}\n\nfinal class MyScanner {\n\tprivate final\
+    \ Scanner sc = new Scanner(System.in);\n\tfinal int ni(){ return sc.nextInt();\
+    \ }\n\tfinal long nl(){ return sc.nextLong(); }\n\tfinal double nd(){ return sc.nextDouble();\
+    \ }\n\tfinal String ns(){ return sc.next(); }\n\tfinal int[] ni(final int n){\n\
+    \t\tint[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ni());\n\
+    \t\treturn a;\n\t}\n\tfinal long[] nl(final int n){\n\t\tlong[] a = new long[n];\n\
+    \t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\treturn a;\n\t}\n\tfinal\
+    \ double[] nd(final int n){\n\t\tdouble[] a = new double[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal String[] ns(final\
+    \ int n){\n\t\tString[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final int h, final\
+    \ int w) {\n\t\tint[][] a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final int h, final\
+    \ int w) {\n\t\tlong[][] a = new long[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final int h, final\
+    \ int w) {\n\t\tdouble[][] a = new double[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\tfinal void close(){ sc.close(); }\n\
+    }\n\nfinal class MyPrinter {\n\tprivate final PrintWriter pw;\n\tMyPrinter(final\
+    \ OutputStream os, final boolean flush){ pw = new PrintWriter(os, flush); }\n\t\
+    final void print(final Object arg){ pw.print(arg); }\n\tfinal void out(){ pw.println();\
+    \ }\n\tfinal void out(final Object head, final Object... tail) {\n\t\tpw.print(head);\n\
+    \t\tfor(final var el: tail) {\n\t\t\tpw.print(\" \" + el);\n\t\t}\n\t\tout();\n\
+    \t}\n\tfinal <F, S> void out(final Pair<F, S> arg){ pw.println(arg.first + \"\
+    \ \" + arg.second); }\n\tfinal void out(final int[] args){ IntStream.range(0,\
     \ args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? \" \" :\
-    \ \"\\n\"))); }\n\tfinal void out(final char[] args){ IntStream.range(0, args.length).forEach(i\
+    \ \"\\n\"))); }\n\tfinal void out(final long[] args){ IntStream.range(0, args.length).forEach(i\
     \ -> pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal\
-    \ void out(final Object[] args){ IntStream.range(0, args.length).forEach(i ->\
-    \ pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal <T>\
-    \ void out(final List<T> args){ IntStream.range(0, args.size()).forEach(i -> pw.print(args.get(i)\
-    \ + (i + 1 < args.size() ? \" \" : \"\\n\"))); }\n\tfinal void outl(final Object\
-    \ head, final Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(pw::println);\n\
-    \t}\n\tfinal void outl(final int[] args){ Arrays.stream(args).forEach(pw::println);\
-    \ }\n\tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ void out(final double[] args){ IntStream.range(0, args.length).forEach(i ->\
+    \ pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void\
+    \ out(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i]\
+    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final char[]\
+    \ args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i +\
+    \ 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final Object[] args){\
+    \ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length\
+    \ ? \" \" : \"\\n\"))); }\n\tfinal <T> void out(final List<T> args){ IntStream.range(0,\
+    \ args.size()).forEach(i -> pw.print(args.get(i) + (i + 1 < args.size() ? \" \"\
+    \ : \"\\n\"))); }\n\tfinal void outl(final Object head, final Object... tail)\
+    \ {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(pw::println);\n\t}\n\tfinal\
+    \ void outl(final int[] args){ Arrays.stream(args).forEach(pw::println); }\n\t\
+    final void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final long[] args){ Arrays.stream(args).forEach(pw::println);\
     \ }\n\tfinal void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final double[] args){ Arrays.stream(args).forEach(pw::println);\
@@ -473,61 +479,109 @@ data:
     \ NumPair o) {\n\t\tif(first.doubleValue() == o.first.doubleValue()) {\n\t\t\t\
     return Double.compare(second.doubleValue(), o.second.doubleValue());\n\t\t}\n\t\
     \treturn Double.compare(first.doubleValue(), o.first.doubleValue());\n\t}\n}\n\
-    \nfinal class UnionFind {\n\tprivate final int[] par;\n\tUnionFind(final int n)\
-    \ {\n\t\tpar = new int[n];\n\t\tArrays.fill(par, -1);\n\t}\n\tfinal int root(final\
-    \ int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i; }\n\tfinal int size(final\
-    \ int i){ return -par[root(i)]; }\n\tfinal boolean unite(int i, int j) {\n\t\t\
-    i = root(i);\n\t\tj = root(j);\n\t\tif(i == j) return false;\n\t\tif(i > j) {\n\
-    \t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\t\
-    par[j] = i;\n\t\treturn true;\n\t}\n\tfinal boolean same(final int i, final int\
-    \ j){ return root(i) == root(j); }\n\tfinal ArrayList<ArrayList<Integer>> groups()\
-    \ {\n\t\tfinal int n = par.length;\n\t\tArrayList<ArrayList<Integer>> res = new\
-    \ ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));\n\
-    \t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\
-    \t\treturn res;\n\t}\n\tfinal boolean isBipartite() {\n\t\tfinal int n = par.length\
-    \ / 2;\n\t\tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &=\
-    \ root(i) != root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n}\n\nfinal class WeightedUnionFind\
-    \ {\n\tprivate final int[] par;\n\tprivate final long[] weight;\n\tWeightedUnionFind(final\
-    \ int n) {\n\t\tpar = new int[n];\n\t\tweight = new long[n];\n\t\tArrays.fill(par,\
-    \ -1);\n\t}\n\tfinal int root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn\
-    \ i;\n\t\t}\n\t\tfinal int r = root(par[i]);\n\t\tweight[i] += weight[par[i]];\n\
-    \t\treturn par[i] = r;\n\t}\n\tfinal long get(final int i) {\n\t\troot(i);\n\t\
-    \treturn weight[i];\n\t}\n\tfinal long diff(final int x, final int y){ return\
-    \ get(y) - get(x); }\n\tfinal int unite(int x, int y, long w) {\n\t\tw += diff(y,\
-    \ x);\n\t\tx = root(x);\n\t\ty = root(y);\n\t\tif(x == y) {\n\t\t\treturn w ==\
-    \ 0 ? 0 : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\
-    \t\t\tx ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\
-    \tweight[y] = w;\n\t\treturn 1;\n\t}\n\tfinal boolean same(final int x, final\
-    \ int y){ return root(x) == root(y); }\n}\n\nfinal class UndoUnionFind {\n\tprivate\
-    \ final int[] par;\n\tprivate final Stack<Pair<Integer, Integer>> his;\n\tUndoUnionFind(final\
-    \ int n) {\n\t    par = new int[n];\n\t    Arrays.fill(par, -1);\n\t    his =\
-    \ new Stack<>();\n\t}\n\tfinal boolean unite(int x, int y) {\n\t\tx = root(x);\n\
-    \t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\t\this.add(Pair.of(y, par[y]));\n\
-    \t\tif(x == y) {\n\t\t\treturn false;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\t\
-    x ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y]\
-    \ = x;\n\t\treturn true;\n\t}\n\tfinal int root(final int i) {\n\t\tif(par[i]\
-    \ < 0) {\n\t\t\treturn i;\n\t\t}\n\t\treturn root(par[i]);\n\t}\n\tfinal int size(final\
-    \ int i){ return -par[root(i)]; }\n\tfinal void undo() {\n\t\tfinal Pair<Integer,\
-    \ Integer> pop1 = his.pop(), pop2 = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\
-    \t\tpar[pop2.first] = pop2.second;\n\t}\n\tfinal void snapshot() {\n\t\twhile(!his.empty())\
-    \ {\n\t\t\this.pop();\n\t\t}\n\t}\n\tfinal void rollback() {\n\t\twhile(!his.empty())\
-    \ {\n\t\t\tundo();\n\t\t}\n\t}\n}\n\nfinal class Edge {\n\tpublic int src;\n\t\
-    public int to;\n\tpublic long cost;\n\tEdge(final int to) {\n\t\tthis.to = to;\n\
-    \t}\n\tEdge(final int to, final long cost) {\n\t\tthis.to = to;\n\t\tthis.cost\
-    \ = cost;\n\t}\n\tEdge(final int src, final int to, final long cost) {\n\t\tthis.src\
-    \ = src;\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\t@Override\n\tpublic\
-    \ final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\
-    \t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\
-    \t\t}\n\t\tfinal Edge e = (Edge) o;\n\t\tif(src != e.src) {\n\t\t\treturn false;\n\
-    \t\t}\n\t\tif(to != e.to) {\n\t\t\treturn false;\n\t\t}\n\t\treturn cost == e.cost;\n\
-    \t}\n\t@Override\n\tpublic final int hashCode() {\n\t\tint result = 17;\n\t\t\
-    result = 31 * result + src;\n\t\tresult = 31 * result + to;\n\t\tresult = 31 *\
-    \ result + (int) (cost ^ (cost >>> 32)); // XOR for long values\n\t\treturn result;\n\
+    \nclass Huitloxopetl {\n\tfinal long invNum(final int[] a) {\n\t\tfinal var b\
+    \ = Utility.sorted(a);\n\t\tfinal var id = new int[a.length];\n\t\tfor(int i =\
+    \ 0; i < a.length; ++i) {\n\t\t\tid[b[i]] = i;\n\t\t}\n\t\tfinal var bit = new\
+    \ FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0; i < a.length;\
+    \ ++i) {\n\t\t\tres += i - bit.sum(id[a[i]]);\n\t\t\tbit.add(id[a[i]], 1);\n\t\
+    \t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final long[] a) {\n\t\tfinal var\
+    \ b = Utility.sorted(a);\n\t\tfinal var id = new HashMap<Long, Integer>();\n\t\
+    \tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
+    \ var bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0;\
+    \ i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\tbit.add(id.get(a[i]),\
+    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal MST kruskal(final ArrayList<Edge>\
+    \ edge, final int n) {\n\t\tCollections.sort(edge, Comparator.comparing(e -> e.cost));\n\
+    \t\tfinal UnionFind uf = new UnionFind(n);\n\t\tfinal var e = new ArrayList<Edge>();\n\
+    \t\tlong res = 0;\n\t\tfor(final var ed: edge) {\n\t\t\tif(uf.unite(ed.src, ed.to))\
+    \ {\n\t\t\t\te.add(ed);\n\t\t\t\tres += ed.cost;\n\t\t\t}\n\t\t}\n\t\treturn new\
+    \ MST(e, res);\n\t}\n\t// DO NOT USE\n\tfinal ArrayList<Edge> manhattan(int[]\
+    \ x, int[] y) {\n\t\tif(x.length != y.length) {\n\t\t\tthrow new AssertionError(\"\
+    x.length != y.length\");\n\t\t}\n\t\tfinal var res = new ArrayList<Edge>();\n\t\
+    \tint[] id = Utility.iota(x.length);\n\t\tfor(int s = 0; s < 2; ++s) {\n\t\t\t\
+    for(int t = 0; t < 2; ++t) {\n\t\t\t\tid = Arrays.stream(id).boxed().sorted((i,\
+    \ j) -> Integer.compare(x[i] + y[i], x[j] + y[j])).mapToInt(i -> i).toArray();\n\
+    \t\t\t\tfinal var idx = new TreeMap<Integer, Integer>();\n\t\t\t\tfor(final var\
+    \ i: id) {\n\t\t\t\t\tfinal var it = idx.tailMap(y[i]).entrySet().iterator();\n\
+    \t\t\t\t\twhile(it.hasNext()) {\n\t\t\t\t\t\tfinal int j = it.next().getValue();\n\
+    \t\t\t\t\t\tSystem.err.println(j);\n\t\t\t\t\t\tif(x[i] - x[j] < y[i] - y[j])\
+    \ {\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tres.add(new Edge(i, j, Math.abs(x[i]\
+    \ - x[j]) + Math.abs(y[i] - y[j])));\n\t\t\t\t\t\tit.remove();\n\t\t\t\t\t}\n\t\
+    \t\t\t\tidx.put(-y[i], i);\n\t\t\t\t}\n\t\t\t\tfinal var tmp = y;\n\t\t\t\tSystem.arraycopy(x,\
+    \ 0, y, 0, x.length);\n\t\t\t\tSystem.arraycopy(tmp, 0, x, 0, x.length);\n\t\t\
+    \t}\n\t\t\tfor(int i = 0; i < x.length; ++i) {\n\t\t\t\tx[i] = -x[i];\n\t\t\t\
+    }\n\t\t}\n\t\treturn res;\n\t}\n\tfinal ArrayList<Edge> manhattan(long[] x, long[]\
+    \ y) {\n\t\tif(x.length != y.length) {\n\t\t\tthrow new AssertionError(\"x.length\
+    \ != y.length\");\n\t\t}\n\t\tfinal var res = new ArrayList<Edge>();\n\t\tint[]\
+    \ id = Utility.iota(x.length);\n\t\tfor(int s = 0; s < 2; ++s) {\n\t\t\tfor(int\
+    \ t = 0; t < 2; ++t) {\n\t\t\t\tid = Arrays.stream(id).boxed().sorted((i, j) ->\
+    \ Long.compare(x[i] + y[i], x[j] + y[j])).mapToInt(i -> i).toArray();\n\t\t\t\t\
+    final var idx = new TreeMap<Long, Integer>();\n\t\t\t\tfor(final var i: id) {\n\
+    \t\t\t\t\tfinal var it = idx.tailMap(y[i]).entrySet().iterator();\n\t\t\t\t\t\
+    while(it.hasNext()) {\n\t\t\t\t\t\tfinal int j = it.next().getValue();\n\t\t\t\
+    \t\t\tif(x[i] - x[j] < y[i] - y[j]) {\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t}\n\t\
+    \t\t\t\t\tres.add(new Edge(i, j, Math.abs(x[i] - x[j]) + Math.abs(y[i] - y[j])));\n\
+    \t\t\t\t\t\tit.remove();\n\t\t\t\t\t}\n\t\t\t\t\tidx.put(-y[i], i);\n\t\t\t\t\
+    }\n\t\t\t\tfinal var tmp = y;\n\t\t\t\tSystem.arraycopy(x, 0, y, 0, x.length);\n\
+    \t\t\t\tSystem.arraycopy(tmp, 0, x, 0, x.length);\n\t\t\t}\n\t\t\tfor(int i =\
+    \ 0; i < x.length; ++i) {\n\t\t\t\tx[i] = -x[i];\n\t\t\t}\n\t\t}\n\t\treturn res;\n\
+    \t}\n}\n\nfinal class UnionFind {\n\tprivate final int[] par;\n\tUnionFind(final\
+    \ int n) {\n\t\tpar = new int[n];\n\t\tArrays.fill(par, -1);\n\t}\n\tfinal int\
+    \ root(final int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i; }\n\tfinal\
+    \ int size(final int i){ return -par[root(i)]; }\n\tfinal boolean unite(int i,\
+    \ int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) return false;\n\
+    \t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i]\
+    \ += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\t}\n\tfinal boolean same(final\
+    \ int i, final int j){ return root(i) == root(j); }\n\tfinal ArrayList<ArrayList<Integer>>\
+    \ groups() {\n\t\tfinal int n = par.length;\n\t\tArrayList<ArrayList<Integer>>\
+    \ res = new ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> res.add(new\
+    \ ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\
+    \t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n\tfinal boolean isBipartite()\
+    \ {\n\t\tfinal int n = par.length / 2;\n\t\tboolean ok = true;\n\t\tfor(int i\
+    \ = 0; i < n; ++i) {\n\t\t\tok &= root(i) != root(i + n);\n\t\t}\n\t\treturn ok;\n\
+    \t}\n}\n\nfinal class WeightedUnionFind {\n\tprivate final int[] par;\n\tprivate\
+    \ final long[] weight;\n\tWeightedUnionFind(final int n) {\n\t\tpar = new int[n];\n\
+    \t\tweight = new long[n];\n\t\tArrays.fill(par, -1);\n\t}\n\tfinal int root(final\
+    \ int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\t\tfinal int r = root(par[i]);\n\
+    \t\tweight[i] += weight[par[i]];\n\t\treturn par[i] = r;\n\t}\n\tfinal long get(final\
+    \ int i) {\n\t\troot(i);\n\t\treturn weight[i];\n\t}\n\tfinal long diff(final\
+    \ int x, final int y){ return get(y) - get(x); }\n\tfinal int unite(int x, int\
+    \ y, long w) {\n\t\tw += diff(y, x);\n\t\tx = root(x);\n\t\ty = root(y);\n\t\t\
+    if(x == y) {\n\t\t\treturn w == 0 ? 0 : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\
+    \t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x]\
+    \ += par[y];\n\t\tpar[y] = x;\n\t\tweight[y] = w;\n\t\treturn 1;\n\t}\n\tfinal\
+    \ boolean same(final int x, final int y){ return root(x) == root(y); }\n}\n\n\
+    final class UndoUnionFind {\n\tprivate final int[] par;\n\tprivate final Stack<Pair<Integer,\
+    \ Integer>> his;\n\tUndoUnionFind(final int n) {\n\t    par = new int[n];\n\t\
+    \    Arrays.fill(par, -1);\n\t    his = new Stack<>();\n\t}\n\tfinal boolean unite(int\
+    \ x, int y) {\n\t\tx = root(x);\n\t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\
+    \t\this.add(Pair.of(y, par[y]));\n\t\tif(x == y) {\n\t\t\treturn false;\n\t\t\
+    }\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t\
+    }\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\treturn true;\n\t}\n\tfinal int\
+    \ root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\t\treturn\
+    \ root(par[i]);\n\t}\n\tfinal int size(final int i){ return -par[root(i)]; }\n\
+    \tfinal void undo() {\n\t\tfinal Pair<Integer, Integer> pop1 = his.pop(), pop2\
+    \ = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\t\tpar[pop2.first] = pop2.second;\n\
+    \t}\n\tfinal void snapshot() {\n\t\twhile(!his.empty()) {\n\t\t\this.pop();\n\t\
+    \t}\n\t}\n\tfinal void rollback() {\n\t\twhile(!his.empty()) {\n\t\t\tundo();\n\
+    \t\t}\n\t}\n}\n\nfinal class Edge {\n\tpublic int src;\n\tpublic int to;\n\tpublic\
+    \ long cost;\n\tEdge(final int to) {\n\t\tthis.to = to;\n\t}\n\tEdge(final int\
+    \ to, final long cost) {\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\tEdge(final\
+    \ int src, final int to, final long cost) {\n\t\tthis.src = src;\n\t\tthis.to\
+    \ = to;\n\t\tthis.cost = cost;\n\t}\n\t@Override\n\tpublic final boolean equals(final\
+    \ Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null\
+    \ || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Edge\
+    \ e = (Edge) o;\n\t\tif(src != e.src) {\n\t\t\treturn false;\n\t\t}\n\t\tif(to\
+    \ != e.to) {\n\t\t\treturn false;\n\t\t}\n\t\treturn cost == e.cost;\n\t}\n\t\
+    @Override\n\tpublic final int hashCode() {\n\t\tint result = 17;\n\t\tresult =\
+    \ 31 * result + src;\n\t\tresult = 31 * result + to;\n\t\tresult = 31 * result\
+    \ + (int) (cost ^ (cost >>> 32)); // XOR for long values\n\t\treturn result;\n\
     \t}\n\t@Override\n\tpublic final String toString(){ return src + \" \" + to +\
-    \ \" \" + cost; }\n}\nclass Graph extends ArrayList<ArrayList<Edge>> {\n\tprotected\
-    \ final boolean undirected;\n\tprotected final int n, indexed;\n\tGraph(final\
-    \ int n, final int indexed, final boolean undirected) {\n\t\tthis.n = n;\n\t\t\
-    this.indexed = indexed;\n\t\tthis.undirected = undirected;\n\t\tIntStream.range(0,\
+    \ \" \" + cost; }\n}\nclass MST {\n\tpublic final ArrayList<Edge> tree;\n\tpublic\
+    \ final long cost;\n\tMST(final ArrayList<Edge> tree, final long cost) {\n\t\t\
+    this.tree = tree;\n\t\tthis.cost = cost;\n\t}\n}\nclass Graph extends ArrayList<ArrayList<Edge>>\
+    \ {\n\tprotected final boolean undirected;\n\tprotected final int n, indexed;\n\
+    \tGraph(final int n, final int indexed, final boolean undirected) {\n\t\tthis.n\
+    \ = n;\n\t\tthis.indexed = indexed;\n\t\tthis.undirected = undirected;\n\t\tIntStream.range(0,\
     \ n).forEach(i -> this.add(new ArrayList<>()));\n\t}\n\tfinal void addEdge(int\
     \ a, int b) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(b));\n\
     \t\tif(undirected) {\n\t\t\tthis.get(b).add(new Edge(a));\n\t\t}\n\t}\n\tprotected\
@@ -557,43 +611,35 @@ data:
     for(int k = 0 ; k < n; ++k) {\n\t\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\tfor(int\
     \ j = 0; j < n; ++j) {\n\t\t\t\t\tif(cost[i][j] > cost[i][k] + cost[k][j]) {\n\
     \t\t\t\t\t\tcost[i][j] = cost[i][k] + cost[k][j];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\
-    \t}\n\t\t}\n\t\treturn cost;\n\t}\n}\nclass Tree {\n\tprivate final ArrayList<Edge>\
-    \ edge;\n\tprivate final int n, indexed;\n\tTree(final int n, final int indexed)\
-    \ {\n\t\tedge = new ArrayList<>();\n\t\tthis.n = n;\n\t\tthis.indexed = indexed;\n\
-    \t}\n\tfinal void addEdge(final int a, final int b, final long cost){ edge.add(new\
-    \ Edge(a - indexed, b - indexed, cost)); }\n\tfinal long kruskal() {\n\t\tCollections.sort(edge,\
-    \ Comparator.comparing(e -> e.cost));\n\t\tfinal UnionFind uf = new UnionFind(n);\n\
-    \t\tlong res = 0;\n\t\tfor(final var ed: edge) {\n\t\t\tif(uf.unite(ed.src, ed.to))\
-    \ {\n\t\t\t\tres += ed.cost;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal\
-    \ class LowestCommonAncestor<G extends Graph> {\n\tprivate final int log;\n\t\
-    final int[] dep;\n\tprivate final G g;\n\tfinal int[][] table;\n\tLowestCommonAncestor(final\
-    \ G g) {\n\t\tthis.g = g;\n\t\tfinal int n = g.size();\n\t\tdep = new int[n];\n\
-    \t\tlog = Integer.toBinaryString(n).length();\n\t\ttable = new int[log][n];\n\t\
-    \tIntStream.range(0, log).forEach(i -> Arrays.fill(table[i], -1));\n\t\tbuild();\n\
-    \t}\n\tprivate final void dfs(final int idx, final int par, final int d) {\n\t\
-    \ttable[0][idx] = par;\n\t\tdep[idx] = d;\n\t\tfor(final var el: g.get(idx)) {\n\
-    \t\t\tif(el.to != par) {\n\t\t\t\tdfs(el.to, idx, d + 1);\n\t\t\t}\n\t\t}\n\t\
-    }\n\tprivate final void build() {\n\t\tdfs(0, -1, 0);\n\t\tfor(int k = 0; k <\
-    \ log - 1; ++k) {\n\t\t\tfor(int i = 0; i < table[k].length; ++i) {\n\t\t\t\t\
-    if(table[k][i] == -1) {\n\t\t\t\t\ttable[k + 1][i] = -1;\n\t\t\t\t} else {\n\t\
-    \t\t\t\ttable[k + 1][i] = table[k][table[k][i]];\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\
-    }\n\tfinal int query(int u, int v) {\n\t\tif(dep[u] > dep[v]) {\n\t\t\tu ^= v;\n\
-    \t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\tfor(int i = log; --i >= 0;) {\n\t\t\t\
-    if(((dep[v] - dep[u]) >> i) % 2 == 1) {\n\t\t\t\tv = table[i][v];\n\t\t\t}\n\t\
-    \t}\n\t\tif(u == v) {\n\t\t\treturn u;\n\t\t}\n\t\tfor(int i = log; --i >= 0;)\
-    \ {\n\t\t\tif(table[i][u] != table[i][v]) {\n\t\t\t\tu = table[i][u];\n\t\t\t\t\
-    v = table[i][v];\n\t\t\t}\n\t\t}\n\t\treturn table[0][u];\n\t}\n\tfinal int dist(final\
-    \ int u, final int v){ return dep[u] + dep[v] - 2 * query(u, v); }\n}\n\nfinal\
-    \ class PrimeTable {\n\tprivate final int size;\n\tprivate final int[] p;\n\t\
-    private final boolean[] sieve;\n\tPrimeTable(final int n) {\n\t\tsieve = new boolean[n\
-    \ + 1];\n\t\tArrays.fill(sieve, true);\n\t\tsieve[0] = sieve[1] = false;\n\t\t\
-    for(long i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[(int) i]) {\n\t\t\t\tcontinue;\n\
-    \t\t\t}\n\t\t\tfor(long j = i * i; j <= n; j += i) {\n\t\t\t\tsieve[(int) j] =\
-    \ false;\n\t\t\t}\n\t\t}\n\t\tsize = (int) IntStream.rangeClosed(0, n).filter(i\
-    \ -> sieve[i]).count();\n\t\tint j = 0;\n\t\tp = new int[size];\n\t\tfor(int i\
-    \ = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\t\t}\n\t\
-    \t}\n\t}\n\tfinal boolean[] table(){ return sieve; }\n\tfinal int[] get(){ return\
-    \ p; }\n\tfinal boolean binarySearch(final int x){ return Arrays.binarySearch(p,\
+    \t}\n\t\t}\n\t\treturn cost;\n\t}\n}\n\nfinal class LowestCommonAncestor<G extends\
+    \ Graph> {\n\tprivate final int log;\n\tfinal int[] dep;\n\tprivate final G g;\n\
+    \tfinal int[][] table;\n\tLowestCommonAncestor(final G g) {\n\t\tthis.g = g;\n\
+    \t\tfinal int n = g.size();\n\t\tdep = new int[n];\n\t\tlog = Integer.toBinaryString(n).length();\n\
+    \t\ttable = new int[log][n];\n\t\tIntStream.range(0, log).forEach(i -> Arrays.fill(table[i],\
+    \ -1));\n\t\tbuild();\n\t}\n\tprivate final void dfs(final int idx, final int\
+    \ par, final int d) {\n\t\ttable[0][idx] = par;\n\t\tdep[idx] = d;\n\t\tfor(final\
+    \ var el: g.get(idx)) {\n\t\t\tif(el.to != par) {\n\t\t\t\tdfs(el.to, idx, d +\
+    \ 1);\n\t\t\t}\n\t\t}\n\t}\n\tprivate final void build() {\n\t\tdfs(0, -1, 0);\n\
+    \t\tfor(int k = 0; k < log - 1; ++k) {\n\t\t\tfor(int i = 0; i < table[k].length;\
+    \ ++i) {\n\t\t\t\tif(table[k][i] == -1) {\n\t\t\t\t\ttable[k + 1][i] = -1;\n\t\
+    \t\t\t} else {\n\t\t\t\t\ttable[k + 1][i] = table[k][table[k][i]];\n\t\t\t\t}\n\
+    \t\t\t}\n\t\t}\n\t}\n\tfinal int query(int u, int v) {\n\t\tif(dep[u] > dep[v])\
+    \ {\n\t\t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\tfor(int i = log;\
+    \ --i >= 0;) {\n\t\t\tif(((dep[v] - dep[u]) >> i) % 2 == 1) {\n\t\t\t\tv = table[i][v];\n\
+    \t\t\t}\n\t\t}\n\t\tif(u == v) {\n\t\t\treturn u;\n\t\t}\n\t\tfor(int i = log;\
+    \ --i >= 0;) {\n\t\t\tif(table[i][u] != table[i][v]) {\n\t\t\t\tu = table[i][u];\n\
+    \t\t\t\tv = table[i][v];\n\t\t\t}\n\t\t}\n\t\treturn table[0][u];\n\t}\n\tfinal\
+    \ int dist(final int u, final int v){ return dep[u] + dep[v] - 2 * query(u, v);\
+    \ }\n}\n\nfinal class PrimeTable {\n\tprivate final int size;\n\tprivate final\
+    \ int[] p;\n\tprivate final boolean[] sieve;\n\tPrimeTable(final int n) {\n\t\t\
+    sieve = new boolean[n + 1];\n\t\tArrays.fill(sieve, true);\n\t\tsieve[0] = sieve[1]\
+    \ = false;\n\t\tfor(long i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[(int) i]) {\n\t\
+    \t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(long j = i * i; j <= n; j += i) {\n\t\t\t\t\
+    sieve[(int) j] = false;\n\t\t\t}\n\t\t}\n\t\tsize = (int) IntStream.rangeClosed(0,\
+    \ n).filter(i -> sieve[i]).count();\n\t\tint j = 0;\n\t\tp = new int[size];\n\t\
+    \tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\
+    \t\t}\n\t\t}\n\t}\n\tfinal boolean[] table(){ return sieve; }\n\tfinal int[] get(){\
+    \ return p; }\n\tfinal boolean binarySearch(final int x){ return Arrays.binarySearch(p,\
     \ x) >= 0; }\n\tfinal int lowerBound(final int x) {\n\t\tfinal int id = Arrays.binarySearch(p,\
     \ x);\n\t\treturn id < 0 ? -(id + 1) : id; \n\t}\n}\n\nfinal class PrimeFactor\
     \ {\n\tprivate final int[] spf;\n\tPrimeFactor(final int n) {\n\t\tspf = Utility.iota(n\
@@ -949,11 +995,13 @@ data:
   - Java/extension/PrimeFactor.java
   - Java/extension/LargePrime.java
   - Java/extension/LowestCommonAncestor.java
+  - Java/extension/Huitloxopetl.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/extension/SuffixArray.java
   - Java/extension/WaveletMatrix.java
   - Java/extension/SegmentTree.java
+  - Java/extension/FenwickTree.java
   - Java/extension/WeightedUnionFind.java
   - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/Graph.java
@@ -968,17 +1016,19 @@ data:
   - Java/extension/PrimeFactor.java
   - Java/extension/LargePrime.java
   - Java/extension/LowestCommonAncestor.java
+  - Java/extension/Huitloxopetl.java
   - Java/extension/UndoUnionFind.java
   - Java/extension/Template.java
   - Java/extension/SuffixArray.java
   - Java/extension/WaveletMatrix.java
   - Java/extension/SegmentTree.java
+  - Java/extension/FenwickTree.java
   - Java/extension/WeightedUnionFind.java
   - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/Graph.java
   - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
-  timestamp: '2023-12-11 21:08:07+09:00'
+  timestamp: '2023-12-12 02:56:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
