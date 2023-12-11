@@ -353,15 +353,15 @@ data:
     \t}\n\t\t\treturn mul <= n;\n\t\t};\n\t\tlong ret = 0;\n\t\tfor(int i = 32; --i\
     \ >= 0;) {\n\t\t\tif(chk.test(ret | (1L << i))) {\n\t\t\t\tret |= 1L << i;\n\t\
     \t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\tprotected static final long invNum(final\
-    \ int[] a) {\n\t\tfinal var b = sorted(a);\n\t\tfinal var id = new HashMap<Integer,\
+    \ int[] a) {\n\t\tfinal var b = sorted(a);\n\t\tfinal var id = new int[a.length];\n\
+    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid[b[i]] = i;\n\t\t}\n\t\tfinal\
+    \ var bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0;\
+    \ i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id[a[i]]);\n\t\t\tbit.add(id[a[i]],\
+    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long invNum(final\
+    \ long[] a) {\n\t\tfinal var b = sorted(a);\n\t\tfinal var id = new HashMap<Long,\
     \ Integer>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\
     \t\t}\n\t\tfinal var bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\t\
     for(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
-    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final long invNum(final long[] a) {\n\t\tfinal var b = sorted(a);\n\t\tfinal\
-    \ var id = new HashMap<Long, Integer>();\n\t\tfor(int i = 0; i < a.length; ++i)\
-    \ {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal var bit = new FenwickTree(a.length);\n\
-    \t\tlong res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
     \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class\
     \ MyScanner {\n\tprivate final Scanner sc = new Scanner(System.in);\n\tfinal int\
     \ ni(){ return sc.nextInt(); }\n\tfinal long nl(){ return sc.nextLong(); }\n\t\
@@ -522,7 +522,7 @@ data:
   - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
   - Java/all.java
-  timestamp: '2023-12-11 13:07:12+09:00'
+  timestamp: '2023-12-11 21:08:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java

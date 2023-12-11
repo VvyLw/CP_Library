@@ -67,16 +67,68 @@ data:
     \n            for(int i = 0; i < n; ++i) {\r\n                for(int j = 0; j\
     \ < n; ++j) {\r\n                    chmin(cst[i][j], cst[i][k] + cst[k][j]);\r\
     \n                }\r\n            }\r\n        }\r\n\t\treturn cst;\r\n\t}\r\n\
-    };\r\n\r\n#include <C++/UnionFind.hpp>\r\nstruct tree {\r\nprivate:\r\n\tint n,\
-    \ indexed;\r\n\tstd::vector<edge> edges;\r\npublic:\r\n\ttree(const int n_, const\
-    \ int indexed_ = 1): n(n_), indexed(indexed_){}\r\n\tvoid input(int m) {\r\n\t\
-    \twhile(m--) {\r\n            edge e;\r\n            std::cin >> e.src >> e.to\
-    \ >> e.cost;\r\n\t\t\te.src -= indexed, e.to -= indexed;\r\n\t\t\tedges.emplace_back(e);\r\
-    \n\t\t}\r\n\t}\r\n\tlong long kruskal() {\r\n        std::sort(edges.begin(),\
-    \ edges.end(), [&](const edge &e, const edge &f){ return e.cost < f.cost; });\r\
-    \n\t\tUnionFind uf(n);\r\n\t\tlong long res = 0;\r\n\t\tfor(const auto &ed: edges)\
-    \ {\r\n\t\t\tif(uf.unite(ed.src, ed.to)) {\r\n                res += ed.cost;\r\
-    \n            }\r\n\t\t}\r\n\t\treturn res;\r\n\t}\r\n};\n"
+    };\r\n\r\n#line 1 \"C++/UnionFind.hpp\"\n// inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)\r\
+    \n#include <cassert>\r\n#line 4 \"C++/UnionFind.hpp\"\n#include <algorithm>\r\n\
+    #include <stack>\r\nstruct UnionFind {\r\nprivate:\r\n    std::vector<int> par;\r\
+    \npublic:\r\n    UnionFind(const int n): par(n, -1){}\r\n    int operator[](int\
+    \ i) {\r\n        while(par[i] >= 0) {\r\n            const int p = par[par[i]];\r\
+    \n            if(p < 0) return par[i];\r\n            i = par[i] = p;\r\n    \
+    \    }\r\n        return i;\r\n    }\r\n    bool unite(int x, int y) {\r\n   \
+    \     x = (*this)[x], y = (*this)[y];\r\n        if(x == y) return false;\r\n\
+    \        if(-par[x] < -par[y]) {\r\n            std::swap(x, y);\r\n        }\r\
+    \n        par[x] += par[y], par[y] = x;\r\n        return true;\r\n    }\r\n \
+    \   int size(const int x) {\r\n        return -par[(*this)[x]];\r\n    }\r\n#if\
+    \ __cplusplus >= 202101L\r\n    std::vector<std::vector<int>> groups() {\r\n \
+    \       const int n = std::ssize(par);\r\n        std::vector<std::vector<int>>\
+    \ res(n);\r\n        for(int i = 0; i < n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\
+    \n        }\r\n        const auto it = std::ranges::remove_if(res, [&](const std::vector<int>\
+    \ &v){ return v.empty(); });\r\n        res.erase(it.begin(), it.end());\r\n \
+    \       return res;\r\n    }\r\n#else\r\n    std::vector<std::vector<int>> groups()\
+    \ {\r\n        const int n = par.size();\r\n        std::vector<std::vector<int>>\
+    \ res(n);\r\n        for(int i = 0; i < n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\
+    \n        }\r\n        res.erase(std::remove_if(res.begin(), res.end(), [&](const\
+    \ std::vector<int> &v){ return v.empty(); }), res.end());\r\n        return res;\r\
+    \n    }\r\n#endif\r\n    bool is_bipartite() {\r\n        const int n = par.size()\
+    \ / 2;\r\n        bool ok = true;\r\n        for(int i = 0; i < n; ++i) {\r\n\
+    \            ok &= (*this)[i] != (*this)[i + n];\r\n        }\r\n        return\
+    \ ok;\r\n    }\r\n};\r\n\r\n// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/UnionFind.cpp\
+    \ )\r\nstruct UFPotential {\r\nprivate:\r\n    std::vector<int> par;\r\n    std::vector<long\
+    \ long> diff;\r\npublic:\r\n    UFPotential(const int n): par(n, -1), diff(n){}\r\
+    \n    int root(const int i) {\r\n        if(par[i] < 0) {\r\n            return\
+    \ i;\r\n        }\r\n        const int r = root(par[i]);\r\n        diff[i] +=\
+    \ diff[par[i]];\r\n        return par[i] = r;\r\n    }\r\n    long long dist(const\
+    \ int i) {\r\n        root(i);\r\n        return diff[i];\r\n    }\r\n    long\
+    \ long dist(const int x, const int y){ return dist(y) - dist(x); }\r\n    int\
+    \ unite(int x, int y, long long w) {\r\n        w += dist(y, x);\r\n        x\
+    \ = root(x), y = root(y);\r\n        if(x == y) {\r\n            return w == 0\
+    \ ? 0 : -1;\r\n        }\r\n        if(par[x] > par[y]) {\r\n            std::swap(x,\
+    \ y);\r\n            w = -w;\r\n        }\r\n        par[x] += par[y];\r\n   \
+    \     par[y] = x;\r\n        diff[y] = w;\r\n        return 1;\r\n    }\r\n  \
+    \  int operator[](const int i) noexcept { return root(i); }\r\n};\r\n\r\n// inspired\
+    \ by Luzhiled( https://ei1333.github.io/luzhiled/snippets/structure/union-find.html\
+    \ )\r\nstruct UFUndo {\r\nprivate:\r\n    std::vector<int> par;\r\n\tstd::stack<std::pair<int,\
+    \ int>> his;\r\npublic:\r\n\tUFUndo(const int n): par(n, -1){}\r\n    bool unite(int\
+    \ x, int y) {\r\n\t\tx = root(x);\r\n\t\ty = root(y);\r\n\t\this.emplace(std::make_pair(x,\
+    \ par[x]));\r\n\t\this.emplace(std::make_pair(y, par[y]));\r\n\t\tif(x == y) {\r\
+    \n\t\t\treturn false;\r\n\t\t}\r\n\t\tif(par[x] > par[y]) {\r\n\t\t\tstd::swap(x,\
+    \ y);\r\n\t\t}\r\n\t\tpar[x] += par[y];\r\n\t\tpar[y] = x;\r\n\t\treturn true;\r\
+    \n\t}\r\n    int root(int k) {\r\n        if(par[k] < 0) {\r\n            return\
+    \ k;\r\n        }\r\n        return root(par[k]);\r\n    }\r\n    int size(const\
+    \ int i){ return -par[root(i)]; }\r\n    void undo() {\r\n\t\tpar[his.top().first]\
+    \ = his.top().second;\r\n        his.pop();\r\n\t\tpar[his.top().first] = his.top().second;\r\
+    \n        his.pop();\r\n\t}\r\n    void snapshot() {\r\n\t\twhile(his.size())\
+    \ {\r\n\t\t\this.pop();\r\n\t\t}\r\n\t}\r\n\tvoid rollback() {\r\n\t\twhile(his.size())\
+    \ {\r\n\t\t\tundo();\r\n\t\t}\r\n\t}\r\n};\n#line 121 \"C++/graph.hpp\"\nstruct\
+    \ tree {\r\nprivate:\r\n\tint n, indexed;\r\n\tstd::vector<edge> edges;\r\npublic:\r\
+    \n\ttree(const int n_, const int indexed_ = 1): n(n_), indexed(indexed_){}\r\n\
+    \tvoid input(int m) {\r\n\t\twhile(m--) {\r\n            edge e;\r\n         \
+    \   std::cin >> e.src >> e.to >> e.cost;\r\n\t\t\te.src -= indexed, e.to -= indexed;\r\
+    \n\t\t\tedges.emplace_back(e);\r\n\t\t}\r\n\t}\r\n\tlong long kruskal() {\r\n\
+    \        std::sort(edges.begin(), edges.end(), [&](const edge &e, const edge &f){\
+    \ return e.cost < f.cost; });\r\n\t\tUnionFind uf(n);\r\n\t\tlong long res = 0;\r\
+    \n\t\tfor(const auto &ed: edges) {\r\n\t\t\tif(uf.unite(ed.src, ed.to)) {\r\n\
+    \                res += ed.cost;\r\n            }\r\n\t\t}\r\n\t\treturn res;\r\
+    \n\t}\r\n};\n"
   code: "#pragma once\r\n\r\n#include <iostream>\r\n#include <vector>\r\n#include\
     \ <queue>\r\nusing namespace std;\r\n//#include \"template.hpp\"\r\ntemplate <class\
     \ T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0;\
@@ -126,11 +178,11 @@ data:
     \n            for(int i = 0; i < n; ++i) {\r\n                for(int j = 0; j\
     \ < n; ++j) {\r\n                    chmin(cst[i][j], cst[i][k] + cst[k][j]);\r\
     \n                }\r\n            }\r\n        }\r\n\t\treturn cst;\r\n\t}\r\n\
-    };\r\n\r\n#include <C++/UnionFind.hpp>\r\nstruct tree {\r\nprivate:\r\n\tint n,\
-    \ indexed;\r\n\tstd::vector<edge> edges;\r\npublic:\r\n\ttree(const int n_, const\
-    \ int indexed_ = 1): n(n_), indexed(indexed_){}\r\n\tvoid input(int m) {\r\n\t\
-    \twhile(m--) {\r\n            edge e;\r\n            std::cin >> e.src >> e.to\
-    \ >> e.cost;\r\n\t\t\te.src -= indexed, e.to -= indexed;\r\n\t\t\tedges.emplace_back(e);\r\
+    };\r\n\r\n#include \"C++/UnionFind.hpp\"\r\nstruct tree {\r\nprivate:\r\n\tint\
+    \ n, indexed;\r\n\tstd::vector<edge> edges;\r\npublic:\r\n\ttree(const int n_,\
+    \ const int indexed_ = 1): n(n_), indexed(indexed_){}\r\n\tvoid input(int m) {\r\
+    \n\t\twhile(m--) {\r\n            edge e;\r\n            std::cin >> e.src >>\
+    \ e.to >> e.cost;\r\n\t\t\te.src -= indexed, e.to -= indexed;\r\n\t\t\tedges.emplace_back(e);\r\
     \n\t\t}\r\n\t}\r\n\tlong long kruskal() {\r\n        std::sort(edges.begin(),\
     \ edges.end(), [&](const edge &e, const edge &f){ return e.cost < f.cost; });\r\
     \n\t\tUnionFind uf(n);\r\n\t\tlong long res = 0;\r\n\t\tfor(const auto &ed: edges)\
@@ -141,7 +193,7 @@ data:
   isVerificationFile: false
   path: C++/graph.hpp
   requiredBy: []
-  timestamp: '2023-12-08 03:00:55+09:00'
+  timestamp: '2023-12-11 21:08:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lca.test.cpp

@@ -17,21 +17,19 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
     links:
     - https://judge.yosupo.jp/problem/point_add_range_sum
-  bundledCode: "#line 1 \"test/segtree.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\
-    \n/*#pragma GCC optimize(\"O3\")\n#pragma GCC optimize(\"unroll-loops\")//*/\n\
-    //#pragma GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native\"\
-    )\n#include <C++/template.hpp>\n#include <C++/SegmentTree.hpp>\nusing namespace\
-    \ zia_qu;\nusing namespace Lady_sANDy;\nusing namespace Heileden;\n\nint main()\
-    \ {\n\tVvyLw::wa_haya_exe();\n\tnow(start);\n\t/*INT(t); while(t--)//*/\n\tVvyLw::solve();\n\
-    \tnow(stop);\n\ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
-    \n\nvoid VvyLw::solve() {\n\tINT(n,q);\n\tSegTree<ll> rsq(n,[](ll a, ll b){ return\
-    \ a+b; },0);\n\trep(n) {\n\t\tINT(a);\n        rsq.update(i,a);\n\t}\n\twhile(q--)\
-    \ {\n\t\tINT(t,p,q);\n\t\tif(t) out(rsq.query(p,q));\n\t\telse rsq.add(p,q);\n\
-    \t}\n}\n"
+  bundledCode: "Traceback (most recent call last):\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
+    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
+    \ C++/SegmentTree.hpp: line 2: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
     /*#pragma GCC optimize(\"O3\")\n#pragma GCC optimize(\"unroll-loops\")//*/\n//#pragma\
     \ GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native\")\n#include\
-    \ <C++/template.hpp>\n#include <C++/SegmentTree.hpp>\nusing namespace zia_qu;\n\
+    \ \"C++/template.hpp\"\n#include \"C++/SegmentTree.hpp\"\nusing namespace zia_qu;\n\
     using namespace Lady_sANDy;\nusing namespace Heileden;\n\nint main() {\n\tVvyLw::wa_haya_exe();\n\
     \tnow(start);\n\t/*INT(t); while(t--)//*/\n\tVvyLw::solve();\n\tnow(stop);\n\t\
     time(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
@@ -45,7 +43,7 @@ data:
   isVerificationFile: true
   path: test/segtree.test.cpp
   requiredBy: []
-  timestamp: '2023-12-08 03:00:55+09:00'
+  timestamp: '2023-12-11 21:08:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segtree.test.cpp

@@ -178,6 +178,9 @@ data:
       path: test/ftree.test.cpp
       title: test/ftree.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/inv_num.test.cpp
+      title: test/inv_num.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/kruskal.test.cpp
       title: test/kruskal.test.cpp
     - icon: ':heavy_check_mark:'

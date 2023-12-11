@@ -7,6 +7,9 @@ data:
     path: test/ftree.test.cpp
     title: test/ftree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/inv_num.test.cpp
+    title: test/inv_num.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
   _isVerificationFailed: false
@@ -44,21 +47,23 @@ data:
     \ 0;\r\n        int x = 0;\r\n        for(int k = 1 << std::__lg(N); k; k >>=\
     \ 1) {\r\n            if(x + k <= N - 1 && data[x + k] <= w) {\r\n           \
     \     w -= data[x + k];\r\n                x += k;\r\n            }\r\n      \
-    \  }\r\n        return x;\r\n    }\r\n};\r\n\r\n#include <unordered_map>\r\n#include\
-    \ <algorithm>\r\ntemplate <class T> inline long long inv_num(const std::vector<T>\
-    \ &a) {\r\n    auto b = a;\r\n    std::sort(b.begin(), b.end());\r\n    std::unordered_map<T,\
-    \ int> id;\r\n    for(size_t i = 0; i < b.size(); ++i) {\r\n        id[b[i]] =\
-    \ i;\r\n    }\r\n    FenwickTree<T> bit(a.size());\r\n    long long res = 0;\r\
-    \n    for(size_t i = 0; i < a.size(); ++i) {\r\n        res += i - bit.sum(id[a[i]]);\r\
-    \n        bit.add(id[a[i]], 1);\r\n    }\r\n    return res;\r\n}"
+    \  }\r\n        return x;\r\n    }\r\n};\r\n\r\n#include <algorithm>\r\ntemplate\
+    \ <class T> inline long long inv_num(const std::vector<T> &a) {\r\n    std::vector<std::pair<T,\
+    \ int>> p(a.size());\r\n    for(size_t i = 0; i < a.size(); ++i) {\r\n       \
+    \ p[i] = {a[i], i};\r\n    }\r\n    std::sort(p.begin(), p.end());\r\n    std::vector<int>\
+    \ id(a.size());\r\n    for(int i = 0; i < a.size(); ++i) {\r\n        id[p[i].second]\
+    \ = i;\r\n    }\r\n    FenwickTree<T> bit(a.size());\r\n    long long res = 0;\r\
+    \n    for(size_t i = 0; i < a.size(); ++i) {\r\n        res += i - bit.sum(id[i]);\r\
+    \n        bit.add(id[i], 1);\r\n    }\r\n    return res;\r\n}"
   dependsOn: []
   isVerificationFile: false
   path: C++/FenwickTree.hpp
   requiredBy: []
-  timestamp: '2023-12-11 13:19:03+09:00'
+  timestamp: '2023-12-11 21:08:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/ftree.test.cpp
+  - test/inv_num.test.cpp
   - test/parsum.test.cpp
 documentation_of: C++/FenwickTree.hpp
 layout: document

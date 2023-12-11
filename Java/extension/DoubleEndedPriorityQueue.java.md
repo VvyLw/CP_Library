@@ -178,7 +178,7 @@ data:
   - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
   - Java/all.java
-  timestamp: '2023-12-11 13:07:12+09:00'
+  timestamp: '2023-12-11 21:08:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/DoubleEndedPriorityQueue.java
