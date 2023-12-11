@@ -4,7 +4,6 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.stream.IntStream;
@@ -52,6 +51,14 @@ final class Edge {
 	}
 	@Override
 	public final String toString(){ return src + " " + to + " " + cost; }
+}
+class MST {
+	public final ArrayList<Edge> tree;
+	public final long cost;
+	MST(final ArrayList<Edge> tree, final long cost) {
+		this.tree = tree;
+		this.cost = cost;
+	}
 }
 class Graph extends ArrayList<ArrayList<Edge>> {
 	protected final boolean undirected;
@@ -141,26 +148,5 @@ final class WeightedGraph extends Graph {
 			}
 		}
 		return cost;
-	}
-}
-class Tree {
-	private final ArrayList<Edge> edge;
-	private final int n, indexed;
-	Tree(final int n, final int indexed) {
-		edge = new ArrayList<>();
-		this.n = n;
-		this.indexed = indexed;
-	}
-	final void addEdge(final int a, final int b, final long cost){ edge.add(new Edge(a - indexed, b - indexed, cost)); }
-	final long kruskal() {
-		Collections.sort(edge, Comparator.comparing(e -> e.cost));
-		final UnionFind uf = new UnionFind(n);
-		long res = 0;
-		for(final var ed: edge) {
-			if(uf.unite(ed.src, ed.to)) {
-				res += ed.cost;
-			}
-		}
-		return res;
 	}
 }

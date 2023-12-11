@@ -26,6 +26,7 @@ class VvyLw extends Utility {
 	protected static final MyScanner sc = new MyScanner();
 	protected static final MyPrinter o = new MyPrinter(System.out, false);
 	protected static final MyPrinter e = new MyPrinter(System.err, true);
+	static final Huitloxopetl why = new Huitloxopetl();
 	static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};
 	static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};
 	static final int inf = 1 << 30;
@@ -34,7 +35,17 @@ class VvyLw extends Utility {
 	static final int mod107 = (int)1e9 + 7;
 	static final double eps = 1e-18;
 	protected static final void solve() {
-		
+		final int n = sc.ni();
+		int[] x = new int[n], y = new int[n];
+		for(int i = 0; i < n; ++i) {
+			x[i] = sc.ni();
+			y[i] = sc.ni();
+		}
+		final var ans = why.kruskal(why.manhattan(x, y), n);
+		o.out(ans.cost);
+		for(final var ed: ans.tree) {
+			o.out(ed.src, ed.to);
+		}
 	}
 }
 final class Main extends VvyLw {
@@ -597,34 +608,6 @@ class Utility {
 		}
 		return ret;
 	}
-	protected static final long invNum(final int[] a) {
-		final var b = sorted(a);
-		final var id = new int[a.length];
-		for(int i = 0; i < a.length; ++i) {
-			id[b[i]] = i;
-		}
-		final var bit = new FenwickTree(a.length);
-		long res = 0;
-		for(int i = 0; i < a.length; ++i) {
-			res += i - bit.sum(id[a[i]]);
-			bit.add(id[a[i]], 1);
-		}
-		return res;
-	}
-	protected static final long invNum(final long[] a) {
-		final var b = sorted(a);
-		final var id = new HashMap<Long, Integer>();
-		for(int i = 0; i < a.length; ++i) {
-			id.put(b[i], i);
-		}
-		final var bit = new FenwickTree(a.length);
-		long res = 0;
-		for(int i = 0; i < a.length; ++i) {
-			res += i - bit.sum(id.get(a[i]));
-			bit.add(id.get(a[i]), 1);
-		}
-		return res;
-	}
 }
 
 final class MyScanner {
@@ -866,6 +849,116 @@ final class NumPair extends Pair<Number, Number> implements Comparable<NumPair> 
 	}
 }
 
+class Huitloxopetl {
+	final long invNum(final int[] a) {
+		final var b = Utility.sorted(a);
+		final var id = new int[a.length];
+		for(int i = 0; i < a.length; ++i) {
+			id[b[i]] = i;
+		}
+		final var bit = new FenwickTree(a.length);
+		long res = 0;
+		for(int i = 0; i < a.length; ++i) {
+			res += i - bit.sum(id[a[i]]);
+			bit.add(id[a[i]], 1);
+		}
+		return res;
+	}
+	final long invNum(final long[] a) {
+		final var b = Utility.sorted(a);
+		final var id = new HashMap<Long, Integer>();
+		for(int i = 0; i < a.length; ++i) {
+			id.put(b[i], i);
+		}
+		final var bit = new FenwickTree(a.length);
+		long res = 0;
+		for(int i = 0; i < a.length; ++i) {
+			res += i - bit.sum(id.get(a[i]));
+			bit.add(id.get(a[i]), 1);
+		}
+		return res;
+	}
+	final MST kruskal(final ArrayList<Edge> edge, final int n) {
+		Collections.sort(edge, Comparator.comparing(e -> e.cost));
+		final UnionFind uf = new UnionFind(n);
+		final var e = new ArrayList<Edge>();
+		long res = 0;
+		for(final var ed: edge) {
+			if(uf.unite(ed.src, ed.to)) {
+				e.add(ed);
+				res += ed.cost;
+			}
+		}
+		return new MST(e, res);
+	}
+	// DO NOT USE
+	final ArrayList<Edge> manhattan(int[] x, int[] y) {
+		if(x.length != y.length) {
+			throw new AssertionError("x.length != y.length");
+		}
+		final var res = new ArrayList<Edge>();
+		int[] id = Utility.iota(x.length);
+		for(int s = 0; s < 2; ++s) {
+			for(int t = 0; t < 2; ++t) {
+				id = Arrays.stream(id).boxed().sorted((i, j) -> Integer.compare(x[i] + y[i], x[j] + y[j])).mapToInt(i -> i).toArray();
+				final var idx = new TreeMap<Integer, Integer>();
+				for(final var i: id) {
+					final var it = idx.tailMap(y[i]).entrySet().iterator();
+					while(it.hasNext()) {
+						final int j = it.next().getValue();
+						System.err.println(j);
+						if(x[i] - x[j] < y[i] - y[j]) {
+							break;
+						}
+						res.add(new Edge(i, j, Math.abs(x[i] - x[j]) + Math.abs(y[i] - y[j])));
+						it.remove();
+					}
+					idx.put(-y[i], i);
+				}
+				final var tmp = y;
+				System.arraycopy(x, 0, y, 0, x.length);
+				System.arraycopy(tmp, 0, x, 0, x.length);
+			}
+			for(int i = 0; i < x.length; ++i) {
+				x[i] = -x[i];
+			}
+		}
+		return res;
+	}
+	final ArrayList<Edge> manhattan(long[] x, long[] y) {
+		if(x.length != y.length) {
+			throw new AssertionError("x.length != y.length");
+		}
+		final var res = new ArrayList<Edge>();
+		int[] id = Utility.iota(x.length);
+		for(int s = 0; s < 2; ++s) {
+			for(int t = 0; t < 2; ++t) {
+				id = Arrays.stream(id).boxed().sorted((i, j) -> Long.compare(x[i] + y[i], x[j] + y[j])).mapToInt(i -> i).toArray();
+				final var idx = new TreeMap<Long, Integer>();
+				for(final var i: id) {
+					final var it = idx.tailMap(y[i]).entrySet().iterator();
+					while(it.hasNext()) {
+						final int j = it.next().getValue();
+						if(x[i] - x[j] < y[i] - y[j]) {
+							break;
+						}
+						res.add(new Edge(i, j, Math.abs(x[i] - x[j]) + Math.abs(y[i] - y[j])));
+						it.remove();
+					}
+					idx.put(-y[i], i);
+				}
+				final var tmp = y;
+				System.arraycopy(x, 0, y, 0, x.length);
+				System.arraycopy(tmp, 0, x, 0, x.length);
+			}
+			for(int i = 0; i < x.length; ++i) {
+				x[i] = -x[i];
+			}
+		}
+		return res;
+	}
+}
+
 final class UnionFind {
 	private final int[] par;
 	UnionFind(final int n) {
@@ -1041,6 +1134,14 @@ final class Edge {
 	@Override
 	public final String toString(){ return src + " " + to + " " + cost; }
 }
+class MST {
+	public final ArrayList<Edge> tree;
+	public final long cost;
+	MST(final ArrayList<Edge> tree, final long cost) {
+		this.tree = tree;
+		this.cost = cost;
+	}
+}
 class Graph extends ArrayList<ArrayList<Edge>> {
 	protected final boolean undirected;
 	protected final int n, indexed;
@@ -1129,27 +1230,6 @@ final class WeightedGraph extends Graph {
 			}
 		}
 		return cost;
-	}
-}
-class Tree {
-	private final ArrayList<Edge> edge;
-	private final int n, indexed;
-	Tree(final int n, final int indexed) {
-		edge = new ArrayList<>();
-		this.n = n;
-		this.indexed = indexed;
-	}
-	final void addEdge(final int a, final int b, final long cost){ edge.add(new Edge(a - indexed, b - indexed, cost)); }
-	final long kruskal() {
-		Collections.sort(edge, Comparator.comparing(e -> e.cost));
-		final UnionFind uf = new UnionFind(n);
-		long res = 0;
-		for(final var ed: edge) {
-			if(uf.unite(ed.src, ed.to)) {
-				res += ed.cost;
-			}
-		}
-		return res;
 	}
 }
 
