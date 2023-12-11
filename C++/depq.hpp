@@ -1,7 +1,6 @@
-// inspired by natsugiri( https://natsugiri.hatenablog.com/entry/2016/10/10/035445 )
-
 #pragma once
 
+// inspired by natsugiri( https://natsugiri.hatenablog.com/entry/2016/10/10/035445 )
 #include <vector>
 #include <algorithm>
 template <class T> struct depq {

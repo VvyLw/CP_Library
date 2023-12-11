@@ -1,3 +1,5 @@
+#pragma once
+
 // inspired by Nyaan( https://github.com/NyaanNyaan/library/blob/master/data-structure/binary-indexed-tree.hpp )
 #include <vector>
 template <class T> struct FenwickTree {

@@ -1,5 +1,6 @@
-// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp )
+#pragma once
 
+// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp )
 #include <vector>
 #include <functional>
 typedef long long ll;
