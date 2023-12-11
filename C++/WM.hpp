@@ -1,3 +1,7 @@
+// inspired by ei1333( https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp )
+
+#pragma once
+
 #include <cassert>
 #include <vector>
 #include <algorithm>

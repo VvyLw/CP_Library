@@ -1,5 +1,5 @@
 // inspired by Luzhiled( https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html )
-#pragma once
+
 #include <vector>
 template <class G> struct LowestCommonAncestor {
 private:

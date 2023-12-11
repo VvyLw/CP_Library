@@ -1,5 +1,4 @@
 // inspired by Luzhiled( https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html )
-#pragma once
 
 #include <vector>
 #include <functional>

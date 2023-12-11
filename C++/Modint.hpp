@@ -1,5 +1,4 @@
 // inspired by tatyam( https://atcoder.jp/contests/arc151/submissions/35526971 )
-#pragma once
 
 #include <iostream>
 #include <cassert>
