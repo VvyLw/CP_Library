@@ -3,17 +3,9 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-using namespace std;
 //#include "template.hpp"
 template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
-struct edge {
-    int src, to;
-    long long cost;
-    edge(){}
-    edge(const int to_): to(to_){}
-    edge(const int to_, const long long cost_): to(to_), cost(cost_){}
-    edge(const int src_, const int to_, const long long cost_): src(src_), to(to_), cost(cost_){}
-};
+#include "C++/edge.hpp"
 template <bool undirected = true> struct graph: std::vector<std::vector<edge>> {
 private:
     const int indexed;
@@ -114,33 +106,5 @@ public:
             }
         }
 		return cst;
-	}
-};
-
-#include "C++/UnionFind.hpp"
-struct tree {
-private:
-	int n, indexed;
-	std::vector<edge> edges;
-public:
-	tree(const int n_, const int indexed_ = 1): n(n_), indexed(indexed_){}
-	void input(int m) {
-		while(m--) {
-            edge e;
-            std::cin >> e.src >> e.to >> e.cost;
-			e.src -= indexed, e.to -= indexed;
-			edges.emplace_back(e);
-		}
-	}
-	long long kruskal() {
-        std::sort(edges.begin(), edges.end(), [&](const edge &e, const edge &f){ return e.cost < f.cost; });
-		UnionFind uf(n);
-		long long res = 0;
-		for(const auto &ed: edges) {
-			if(uf.unite(ed.src, ed.to)) {
-                res += ed.cost;
-            }
-		}
-		return res;
 	}
 };
