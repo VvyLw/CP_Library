@@ -26,9 +26,11 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
     \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ C++/LCA.hpp: line 2: #pragma once found in a non-first line\n"
+    \ C++/UnionFind.hpp: line 3: #pragma once found in a non-first line\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n#include <iostream>\n\
     #include \"C++/LCA.hpp\"\n#include \"C++/graph.hpp\"\nint main() {\n    cin.tie(nullptr)\
     \ -> sync_with_stdio(false);\n    int n, q;\n    cin >> n >> q;\n    graph<false>\
@@ -43,7 +45,7 @@ data:
   isVerificationFile: true
   path: test/lca.test.cpp
   requiredBy: []
-  timestamp: '2023-12-11 21:08:07+09:00'
+  timestamp: '2023-12-11 21:29:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lca.test.cpp
