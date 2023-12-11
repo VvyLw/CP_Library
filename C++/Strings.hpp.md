@@ -25,7 +25,7 @@ data:
     links:
     - https://ei1333.github.io/library/string/suffix-array.hpp
     - https://github.com/tatyam-prime/kyopro_library/blob/master/RollingHash.cpp
-  bundledCode: "#line 2 \"C++/Strings.hpp\"\n#include <iostream>\n#include <cassert>\n\
+  bundledCode: "#line 2 \"C++/Strings.hpp\"\n\n#include <iostream>\n#include <cassert>\n\
     #include <vector>\n#include <algorithm>\n#include <numeric>\n#include <chrono>\n\
     typedef long long ll;\ntypedef unsigned long long ul;\ntypedef __uint128_t u128;\n\
     \nstd::vector<int> manacher(std::string s, const bool calc_even = true) {\n  \
@@ -130,7 +130,7 @@ data:
     \          const ll mid = (low + high) / 2;\n            if(get(l1, l1 + mid)\
     \ == b.get(l2, l2 + mid)) low = mid;\n            else high = mid;\n        }\n\
     \        return low;\n    }\n};\nusing RH = RollingHash<LINF>;\n"
-  code: "#pragma once\n#include <iostream>\n#include <cassert>\n#include <vector>\n\
+  code: "#pragma once\n\n#include <iostream>\n#include <cassert>\n#include <vector>\n\
     #include <algorithm>\n#include <numeric>\n#include <chrono>\ntypedef long long\
     \ ll;\ntypedef unsigned long long ul;\ntypedef __uint128_t u128;\n\nstd::vector<int>\
     \ manacher(std::string s, const bool calc_even = true) {\n    int n = s.size();\n\
@@ -239,7 +239,7 @@ data:
   isVerificationFile: false
   path: C++/Strings.hpp
   requiredBy: []
-  timestamp: '2023-12-02 12:58:26+09:00'
+  timestamp: '2023-12-11 21:48:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manacher.test.cpp

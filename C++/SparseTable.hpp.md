@@ -15,8 +15,8 @@ data:
   attributes:
     links:
     - https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html
-  bundledCode: "#line 1 \"C++/SparseTable.hpp\"\n// inspired by Luzhiled( https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html\
-    \ )\r\n\r\n#include <vector>\r\n#include <functional>\r\ntemplate <class T> struct\
+  bundledCode: "#line 2 \"C++/SparseTable.hpp\"\n\r\n// inspired by Luzhiled( https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html\
+    \ )\r\n#include <vector>\r\n#include <functional>\r\ntemplate <class T> struct\
     \ SparseTable {\r\nprivate:\r\n    using F = std::function<T(T,T)>;\r\n    std::vector<std::vector<T>>\
     \ st;\r\n    std::vector<T> lookup;\r\n    F f;\r\npublic:\r\n    SparseTable(const\
     \ std::vector<T> &v, const F &f_) : f(f_) {\r\n        int b = 0;\r\n        while((1\
@@ -37,8 +37,8 @@ data:
     \n        int ok=x, ng=lookup.size();\r\n        while(abs(ok-ng)>1) {\r\n   \
     \         int mid=(ok+ng)/2;\r\n            (fn(query(x,mid))?ok:ng)=mid;\r\n\
     \        }\r\n        return ok;\r\n    }\r\n};\r\n"
-  code: "// inspired by Luzhiled( https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html\
-    \ )\r\n\r\n#include <vector>\r\n#include <functional>\r\ntemplate <class T> struct\
+  code: "#pragma once\r\n\r\n// inspired by Luzhiled( https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html\
+    \ )\r\n#include <vector>\r\n#include <functional>\r\ntemplate <class T> struct\
     \ SparseTable {\r\nprivate:\r\n    using F = std::function<T(T,T)>;\r\n    std::vector<std::vector<T>>\
     \ st;\r\n    std::vector<T> lookup;\r\n    F f;\r\npublic:\r\n    SparseTable(const\
     \ std::vector<T> &v, const F &f_) : f(f_) {\r\n        int b = 0;\r\n        while((1\
@@ -63,7 +63,7 @@ data:
   isVerificationFile: false
   path: C++/SparseTable.hpp
   requiredBy: []
-  timestamp: '2023-12-11 21:29:48+09:00'
+  timestamp: '2023-12-11 21:48:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/s_rmq.test.cpp

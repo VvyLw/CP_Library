@@ -12,8 +12,8 @@ data:
   attributes:
     links:
     - https://atcoder.jp/contests/arc151/submissions/35526971
-  bundledCode: "#line 1 \"C++/Modint.hpp\"\n// inspired by tatyam( https://atcoder.jp/contests/arc151/submissions/35526971\
-    \ )\n\n#include <iostream>\n#include <cassert>\n#include <vector>\n#include <utility>\n\
+  bundledCode: "#line 2 \"C++/Modint.hpp\"\n\n// inspired by tatyam( https://atcoder.jp/contests/arc151/submissions/35526971\
+    \ )\n#include <iostream>\n#include <cassert>\n#include <vector>\n#include <utility>\n\
     #include <type_traits>\nusing namespace std;\ntypedef long long ll;\ntypedef unsigned\
     \ uint;\ntypedef unsigned long long ul;\ntemplate <uint mod> struct Modint{\n\
     \    uint num = 0;\n    constexpr Modint() noexcept {}\n    constexpr Modint(const\
@@ -105,8 +105,8 @@ data:
     \        is >> t;\n        a=a_mint(t);\n        return is;\n    }\n};\n//#include\
     \ \"template.hpp\"\n#define AINT(...) a_mint __VA_ARGS__; in(__VA_ARGS__)\nusing\
     \ va = V<a_mint>;\nusing wa = V<va>;\nusing pa = PP<a_mint>;\n"
-  code: "// inspired by tatyam( https://atcoder.jp/contests/arc151/submissions/35526971\
-    \ )\n\n#include <iostream>\n#include <cassert>\n#include <vector>\n#include <utility>\n\
+  code: "#pragma once\n\n// inspired by tatyam( https://atcoder.jp/contests/arc151/submissions/35526971\
+    \ )\n#include <iostream>\n#include <cassert>\n#include <vector>\n#include <utility>\n\
     #include <type_traits>\nusing namespace std;\ntypedef long long ll;\ntypedef unsigned\
     \ uint;\ntypedef unsigned long long ul;\ntemplate <uint mod> struct Modint{\n\
     \    uint num = 0;\n    constexpr Modint() noexcept {}\n    constexpr Modint(const\
@@ -203,7 +203,7 @@ data:
   isVerificationFile: false
   path: C++/Modint.hpp
   requiredBy: []
-  timestamp: '2023-12-11 21:29:48+09:00'
+  timestamp: '2023-12-11 21:48:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/Modint.hpp

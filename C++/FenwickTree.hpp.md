@@ -18,7 +18,7 @@ data:
   attributes:
     links:
     - https://github.com/NyaanNyaan/library/blob/master/data-structure/binary-indexed-tree.hpp
-  bundledCode: "#line 1 \"C++/FenwickTree.hpp\"\n// inspired by Nyaan( https://github.com/NyaanNyaan/library/blob/master/data-structure/binary-indexed-tree.hpp\
+  bundledCode: "#line 2 \"C++/FenwickTree.hpp\"\n\r\n// inspired by Nyaan( https://github.com/NyaanNyaan/library/blob/master/data-structure/binary-indexed-tree.hpp\
     \ )\r\n#include <vector>\r\ntemplate <class T> struct FenwickTree {\r\nprivate:\r\
     \n    int N;\r\n    std::vector<T> data;\r\npublic:\r\n    FenwickTree(){}\r\n\
     \    FenwickTree(int size){ init(size); }\r\n    void init(int size) {\r\n   \
@@ -48,7 +48,7 @@ data:
     \ = i;\r\n    }\r\n    FenwickTree<T> bit(a.size());\r\n    long long res = 0;\r\
     \n    for(size_t i = 0; i < a.size(); ++i) {\r\n        res += i - bit.sum(id[i]);\r\
     \n        bit.add(id[i], 1);\r\n    }\r\n    return res;\r\n}\n"
-  code: "// inspired by Nyaan( https://github.com/NyaanNyaan/library/blob/master/data-structure/binary-indexed-tree.hpp\
+  code: "#pragma once\r\n\r\n// inspired by Nyaan( https://github.com/NyaanNyaan/library/blob/master/data-structure/binary-indexed-tree.hpp\
     \ )\r\n#include <vector>\r\ntemplate <class T> struct FenwickTree {\r\nprivate:\r\
     \n    int N;\r\n    std::vector<T> data;\r\npublic:\r\n    FenwickTree(){}\r\n\
     \    FenwickTree(int size){ init(size); }\r\n    void init(int size) {\r\n   \
@@ -82,7 +82,7 @@ data:
   isVerificationFile: false
   path: C++/FenwickTree.hpp
   requiredBy: []
-  timestamp: '2023-12-11 21:29:48+09:00'
+  timestamp: '2023-12-11 21:48:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/ftree.test.cpp

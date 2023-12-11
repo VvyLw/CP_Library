@@ -12,9 +12,9 @@ data:
   attributes:
     links:
     - https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp
-  bundledCode: "#line 1 \"C++/SegmentTree.hpp\"\n// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp\
-    \ )\r\n\r\n#include <vector>\r\n#include <functional>\r\ntypedef long long ll;\r\
-    \ntemplate <class T> struct SegTree {\r\nprivate:\r\n    using F = std::function<T(T,\
+  bundledCode: "#line 2 \"C++/SegmentTree.hpp\"\n\r\n// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp\
+    \ )\r\n#include <vector>\r\n#include <functional>\r\ntypedef long long ll;\r\n\
+    template <class T> struct SegTree {\r\nprivate:\r\n    using F = std::function<T(T,\
     \ T)>;\r\n    ll n, rank, fine;\r\n    const F f;\r\n    const T e;\r\n    std::vector<T>\
     \ dat;\r\npublic:\r\n    SegTree(const ll n_, const F f_, const T& e_): f(f_),\
     \ e(e_), fine(n_) {\r\n        n=1,rank=0;\r\n        while(fine>n) n<<=1LL,rank++;\r\
@@ -44,9 +44,9 @@ data:
     \          i+=1LL<<h;\r\n                if(i==n*2) return fine;\r\n         \
     \       val=val2;\r\n            }\r\n        }\r\n        return std::min(i-n,fine);\r\
     \n    }\r\n};\r\n"
-  code: "// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp\
-    \ )\r\n\r\n#include <vector>\r\n#include <functional>\r\ntypedef long long ll;\r\
-    \ntemplate <class T> struct SegTree {\r\nprivate:\r\n    using F = std::function<T(T,\
+  code: "#pragma once\r\n\r\n// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp\
+    \ )\r\n#include <vector>\r\n#include <functional>\r\ntypedef long long ll;\r\n\
+    template <class T> struct SegTree {\r\nprivate:\r\n    using F = std::function<T(T,\
     \ T)>;\r\n    ll n, rank, fine;\r\n    const F f;\r\n    const T e;\r\n    std::vector<T>\
     \ dat;\r\npublic:\r\n    SegTree(const ll n_, const F f_, const T& e_): f(f_),\
     \ e(e_), fine(n_) {\r\n        n=1,rank=0;\r\n        while(fine>n) n<<=1LL,rank++;\r\
@@ -80,7 +80,7 @@ data:
   isVerificationFile: false
   path: C++/SegmentTree.hpp
   requiredBy: []
-  timestamp: '2023-12-11 21:29:48+09:00'
+  timestamp: '2023-12-11 21:48:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/segtree.test.cpp

@@ -452,9 +452,9 @@ data:
     \ res;\r\n}\r\ninline bool is_prime(const ul n) {\r\n  if(n==1) return 0;\r\n\
     \  sqrp(i,2,n) if(n%i==0) return 0;\r\n  return 1;\r\n}\r\ninline bool is_int(const\
     \ ld n){ ll r=std::floor(n); return r==n; }\r\ninline bool is_sqr(const ll n){\
-    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\n#line 1 \"C++/SparseTable.hpp\"\
-    \n// inspired by Luzhiled( https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html\
-    \ )\r\n\r\n#line 5 \"C++/SparseTable.hpp\"\ntemplate <class T> struct SparseTable\
+    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\n#line 2 \"C++/SparseTable.hpp\"\
+    \n\r\n// inspired by Luzhiled( https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html\
+    \ )\r\n#line 6 \"C++/SparseTable.hpp\"\ntemplate <class T> struct SparseTable\
     \ {\r\nprivate:\r\n    using F = std::function<T(T,T)>;\r\n    std::vector<std::vector<T>>\
     \ st;\r\n    std::vector<T> lookup;\r\n    F f;\r\npublic:\r\n    SparseTable(const\
     \ std::vector<T> &v, const F &f_) : f(f_) {\r\n        int b = 0;\r\n        while((1\
@@ -498,7 +498,7 @@ data:
   isVerificationFile: true
   path: test/s_rmq.test.cpp
   requiredBy: []
-  timestamp: '2023-12-11 21:29:48+09:00'
+  timestamp: '2023-12-11 21:48:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/s_rmq.test.cpp

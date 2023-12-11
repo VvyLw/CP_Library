@@ -15,7 +15,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/number_of_substrings
   bundledCode: "#line 1 \"test/lcpa.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_substrings\"\
-    \n#line 2 \"C++/Strings.hpp\"\n#include <iostream>\n#include <cassert>\n#include\
+    \n#line 2 \"C++/Strings.hpp\"\n\n#include <iostream>\n#include <cassert>\n#include\
     \ <vector>\n#include <algorithm>\n#include <numeric>\n#include <chrono>\ntypedef\
     \ long long ll;\ntypedef unsigned long long ul;\ntypedef __uint128_t u128;\n\n\
     std::vector<int> manacher(std::string s, const bool calc_even = true) {\n    int\
@@ -134,7 +134,7 @@ data:
   isVerificationFile: true
   path: test/lcpa.test.cpp
   requiredBy: []
-  timestamp: '2023-12-11 21:08:07+09:00'
+  timestamp: '2023-12-11 21:48:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lcpa.test.cpp

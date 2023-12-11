@@ -452,11 +452,11 @@ data:
     \ res;\r\n}\r\ninline bool is_prime(const ul n) {\r\n  if(n==1) return 0;\r\n\
     \  sqrp(i,2,n) if(n%i==0) return 0;\r\n  return 1;\r\n}\r\ninline bool is_int(const\
     \ ld n){ ll r=std::floor(n); return r==n; }\r\ninline bool is_sqr(const ll n){\
-    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\n#line 1 \"C++/SegmentTree.hpp\"\
-    \n// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp\
-    \ )\r\n\r\n#line 5 \"C++/SegmentTree.hpp\"\ntypedef long long ll;\r\ntemplate\
-    \ <class T> struct SegTree {\r\nprivate:\r\n    using F = std::function<T(T, T)>;\r\
-    \n    ll n, rank, fine;\r\n    const F f;\r\n    const T e;\r\n    std::vector<T>\
+    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\n#line 2 \"C++/SegmentTree.hpp\"\
+    \n\r\n// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp\
+    \ )\r\n#line 6 \"C++/SegmentTree.hpp\"\ntypedef long long ll;\r\ntemplate <class\
+    \ T> struct SegTree {\r\nprivate:\r\n    using F = std::function<T(T, T)>;\r\n\
+    \    ll n, rank, fine;\r\n    const F f;\r\n    const T e;\r\n    std::vector<T>\
     \ dat;\r\npublic:\r\n    SegTree(const ll n_, const F f_, const T& e_): f(f_),\
     \ e(e_), fine(n_) {\r\n        n=1,rank=0;\r\n        while(fine>n) n<<=1LL,rank++;\r\
     \n        dat.assign(2*n,e_);\r\n    }\r\n    T operator[](ll i) const { return\
@@ -509,7 +509,7 @@ data:
   isVerificationFile: true
   path: test/segtree.test.cpp
   requiredBy: []
-  timestamp: '2023-12-11 21:29:48+09:00'
+  timestamp: '2023-12-11 21:48:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segtree.test.cpp

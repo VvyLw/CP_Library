@@ -15,7 +15,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_5_D
   bundledCode: "#line 1 \"test/inv_num.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_5_D\"\
-    \n#include <iostream>\n#line 1 \"C++/FenwickTree.hpp\"\n// inspired by Nyaan(\
+    \n#include <iostream>\n#line 2 \"C++/FenwickTree.hpp\"\n\r\n// inspired by Nyaan(\
     \ https://github.com/NyaanNyaan/library/blob/master/data-structure/binary-indexed-tree.hpp\
     \ )\r\n#include <vector>\r\ntemplate <class T> struct FenwickTree {\r\nprivate:\r\
     \n    int N;\r\n    std::vector<T> data;\r\npublic:\r\n    FenwickTree(){}\r\n\
@@ -58,7 +58,7 @@ data:
   isVerificationFile: true
   path: test/inv_num.test.cpp
   requiredBy: []
-  timestamp: '2023-12-11 21:29:48+09:00'
+  timestamp: '2023-12-11 21:48:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/inv_num.test.cpp
