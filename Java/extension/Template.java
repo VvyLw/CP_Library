@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Predicate;
@@ -318,6 +319,10 @@ class Utility {
 	protected static final <T extends Comparable<? super T>> int upperBound(final List<T> a, final T x) {
 		return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) > 0 ? 1 : -1);
 	}
+	protected static final String sorted(final String s){ return s.chars().sorted().mapToObj(Character::toString).collect(Collectors.joining()); }
+	protected static final int[] sorted(final int[] a){ return Arrays.stream(a).sorted().toArray(); }
+	protected static final long[] sorted(final long[] a){ return Arrays.stream(a).sorted().toArray(); }
+	protected static final double[] sorted(final double[] a){ return Arrays.stream(a).sorted().toArray(); }
 	protected static final String reverse(final String s){ return new StringBuilder(s).reverse().toString(); }
 	protected static final int[] reverse(final int[] a) {
 		final int n = a.length;
@@ -583,12 +588,31 @@ class Utility {
 		}
 		return ret;
 	}
-	protected static final int invNum(final int[] a) {
-		final var bit = new FenwickTree(a.length);
-		int res = 0;
+	protected static final long invNum(final int[] a) {
+		final var b = sorted(a);
+		final var id = new HashMap<Integer, Integer>();
 		for(int i = 0; i < a.length; ++i) {
-			res += i - bit.sum(a[i]);
-			bit.add(a[i], 1);
+			id.put(b[i], i);
+		}
+		final var bit = new FenwickTree(a.length);
+		long res = 0;
+		for(int i = 0; i < a.length; ++i) {
+			res += i - bit.sum(id.get(a[i]));
+			bit.add(id.get(a[i]), 1);
+		}
+		return res;
+	}
+	protected static final long invNum(final long[] a) {
+		final var b = sorted(a);
+		final var id = new HashMap<Long, Integer>();
+		for(int i = 0; i < a.length; ++i) {
+			id.put(b[i], i);
+		}
+		final var bit = new FenwickTree(a.length);
+		long res = 0;
+		for(int i = 0; i < a.length; ++i) {
+			res += i - bit.sum(id.get(a[i]));
+			bit.add(id.get(a[i]), 1);
 		}
 		return res;
 	}
