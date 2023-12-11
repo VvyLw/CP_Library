@@ -9,6 +9,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/LCA.hpp
       title: C++/LCA.hpp
+    - icon: ':heavy_check_mark:'
+      path: C++/MST.hpp
+      title: C++/MST.hpp
     - icon: ':warning:'
       path: C++/Modint.hpp
       title: C++/Modint.hpp
@@ -36,6 +39,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/depq.hpp
       title: C++/depq.hpp
+    - icon: ':heavy_check_mark:'
+      path: C++/edge.hpp
+      title: C++/edge.hpp
     - icon: ':heavy_check_mark:'
       path: C++/graph.hpp
       title: C++/graph.hpp
@@ -198,6 +204,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/manacher.test.cpp
       title: test/manacher.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/manhattan.test.cpp
+      title: test/manhattan.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/parsum.test.cpp
       title: test/parsum.test.cpp

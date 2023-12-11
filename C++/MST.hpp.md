@@ -2,30 +2,29 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: C++/MST.hpp
-    title: C++/MST.hpp
-  - icon: ':heavy_check_mark:'
     path: C++/UnionFind.hpp
     title: C++/UnionFind.hpp
   - icon: ':heavy_check_mark:'
     path: C++/edge.hpp
     title: C++/edge.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/kruskal.test.cpp
+    title: test/kruskal.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/manhattan.test.cpp
+    title: test/manhattan.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A
-  bundledCode: "#line 1 \"test/kruskal.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A\"\
-    \n#include <iostream>\n#line 2 \"C++/MST.hpp\"\n\n#include <cassert>\n#include\
-    \ <map>\n#include <numeric>\n#line 2 \"C++/edge.hpp\"\n\nstruct edge {\n    int\
-    \ src, to;\n    long long cost;\n    edge(){}\n    edge(const int to_): to(to_){}\n\
-    \    edge(const int to_, const long long cost_): to(to_), cost(cost_){}\n    edge(const\
-    \ int src_, const int to_, const long long cost_): src(src_), to(to_), cost(cost_){}\n\
+    links: []
+  bundledCode: "#line 2 \"C++/MST.hpp\"\n\n#include <cassert>\n#include <map>\n#include\
+    \ <numeric>\n#line 2 \"C++/edge.hpp\"\n\nstruct edge {\n    int src, to;\n   \
+    \ long long cost;\n    edge(){}\n    edge(const int to_): to(to_){}\n    edge(const\
+    \ int to_, const long long cost_): to(to_), cost(cost_){}\n    edge(const int\
+    \ src_, const int to_, const long long cost_): src(src_), to(to_), cost(cost_){}\n\
     };\n#line 2 \"C++/UnionFind.hpp\"\n\r\n// inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)\r\
     \n#line 5 \"C++/UnionFind.hpp\"\n#include <vector>\r\n#include <algorithm>\r\n\
     #include <stack>\r\nstruct UnionFind {\r\nprivate:\r\n    std::vector<int> par;\r\
@@ -96,31 +95,43 @@ data:
     \ j, std::abs(x[i] - x[j]) + std::abs(y[i] - y[j]));\n                }\n    \
     \            idx[-y[i]] = i;\n            }\n            x.swap(y);\n        }\n\
     \        for(size_t i = 0; i < x.size(); ++i) {\n            x[i] *= -1;\n   \
-    \     }\n    }\n    return res;\n}\n#line 4 \"test/kruskal.test.cpp\"\nint main()\
-    \ {\n    std::cin.tie(nullptr) -> sync_with_stdio(false);\n    int n, m;\n   \
-    \ std::cin >> n >> m;\n    std::vector<edge> e;\n    while(m--) {\n        int\
-    \ s, t, w;\n        std::cin >> s >> t >> w;\n        e.emplace_back(s, t, w);\n\
-    \    }\n    std::cout << kruskal(e, n).cost << '\\n';\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A\"\
-    \n#include <iostream>\n#include \"C++/MST.hpp\"\nint main() {\n    std::cin.tie(nullptr)\
-    \ -> sync_with_stdio(false);\n    int n, m;\n    std::cin >> n >> m;\n    std::vector<edge>\
-    \ e;\n    while(m--) {\n        int s, t, w;\n        std::cin >> s >> t >> w;\n\
-    \        e.emplace_back(s, t, w);\n    }\n    std::cout << kruskal(e, n).cost\
-    \ << '\\n';\n}"
+    \     }\n    }\n    return res;\n}\n"
+  code: "#pragma once\n\n#include <cassert>\n#include <map>\n#include <numeric>\n\
+    #include \"C++/edge.hpp\"\n#include \"C++/UnionFind.hpp\"\n\nstruct MST {\n  \
+    \  std::vector<edge> tree;\n    long long cost;\n};\n\ninline MST kruskal(std::vector<edge>\
+    \ edges, const int n) {\n    std::sort(edges.begin(), edges.end(), [&](const edge\
+    \ &e, const edge &f){ return e.cost < f.cost; });\n    UnionFind uf(n);\n    std::vector<edge>\
+    \ e;\n    long long res = 0;\n    for(const auto &ed: edges) {\n        if(uf.unite(ed.src,\
+    \ ed.to)) {\n            e.emplace_back(ed);\n            res += ed.cost;\n  \
+    \      }\n    }\n    return MST{e, res};\n}\ntemplate <class T> inline std::vector<edge>\
+    \ manhattan(std::vector<T> x, std::vector<T> y) {\n    assert(x.size() == y.size());\n\
+    \    std::vector<edge> res;\n    std::vector<int> id(x.size());\n    std::iota(id.begin(),\
+    \ id.end(), 0);\n    for(int s = 0; s < 2; ++s) {\n        for(int t = 0; t <\
+    \ 2; ++t) {\n            std::sort(id.begin(), id.end(), [&](const int i, const\
+    \ int j){ return x[i] + y[i] < x[j] + y[j]; });\n            std::map<T, int>\
+    \ idx;\n            for(const auto i: id) {\n                for(auto it = idx.lower_bound(-y[i]);\
+    \ it != idx.end(); it = idx.erase(it)) {\n                    const int j = it\
+    \ -> second;\n                    if(x[i] - x[j] < y[i] - y[j]) {\n          \
+    \              break;\n                    }\n                    res.emplace_back(i,\
+    \ j, std::abs(x[i] - x[j]) + std::abs(y[i] - y[j]));\n                }\n    \
+    \            idx[-y[i]] = i;\n            }\n            x.swap(y);\n        }\n\
+    \        for(size_t i = 0; i < x.size(); ++i) {\n            x[i] *= -1;\n   \
+    \     }\n    }\n    return res;\n}"
   dependsOn:
-  - C++/MST.hpp
   - C++/edge.hpp
   - C++/UnionFind.hpp
-  isVerificationFile: true
-  path: test/kruskal.test.cpp
+  isVerificationFile: false
+  path: C++/MST.hpp
   requiredBy: []
   timestamp: '2023-12-12 00:31:50+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/kruskal.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/manhattan.test.cpp
+  - test/kruskal.test.cpp
+documentation_of: C++/MST.hpp
 layout: document
 redirect_from:
-- /verify/test/kruskal.test.cpp
-- /verify/test/kruskal.test.cpp.html
-title: test/kruskal.test.cpp
+- /library/C++/MST.hpp
+- /library/C++/MST.hpp.html
+title: C++/MST.hpp
 ---
