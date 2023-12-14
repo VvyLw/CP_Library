@@ -126,11 +126,7 @@ final class WaveletMatrix {
 		IntStream.range(0, arr.length).forEach(i -> t[i] = get(arr[i]));
 		mat = new WaveletMatrixBeta(t, log);
 	}
-	private int lowerBound(final long[] arr, final long x) {
-		final int id = Arrays.binarySearch(arr, x);
-		return id < 0 ? -(id + 1) : id;
-	}
-	private final int get(final long x){ return lowerBound(ys, x); }
+	private final int get(final long x){ return Utility.lowerBound(ys, x); }
 	final long access(final int k){ return ys[(int) mat.access(k)]; }
 	final int rank(final long x, final int r) {
 		final var pos = get(x);

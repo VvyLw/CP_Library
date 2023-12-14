@@ -293,42 +293,18 @@ class Utility {
 		final int m = (s + e + 1) / 2;
 		return a.get(m).compareTo(dest) > 0 ? find(dest, a, s, m - 1) : find(dest, a, m, e);
 	}
-	protected static final boolean binarySearch(final int[] a, final int x) {
-		return Arrays.binarySearch(a, x) >= 0;
-	}
-	protected static final boolean binarySearch(final long[] a, final long x) {
-		return Arrays.binarySearch(a, x) >= 0;
-	}
-    protected static final boolean binarySearch(final Object[] a, final Object x) {
-        return binarySearch(Arrays.stream(a).collect(Collectors.toList()), x);
-    }
-	protected static final int lowerBound(final int[] a, final int x) {
-		return lowerBound(Arrays.stream(a).boxed().collect(Collectors.toList()), x);
-	}
-	protected static final int lowerBound(final long[] a, final long x) {
-		return lowerBound(Arrays.stream(a).boxed().collect(Collectors.toList()), x);
-	}
-    protected static final <T extends Comparable<? super T>> int lowerBound(final T[] a, final T x) {
-		return lowerBound(Arrays.asList(a), x);
-	}
-	protected static final int upperBound(final int[] a, final int x) {
-		return upperBound(Arrays.stream(a).boxed().collect(Collectors.toList()), x);
-	}
-	protected static final int upperBound(final long[] a, final long x) {
-		return upperBound(Arrays.stream(a).boxed().collect(Collectors.toList()), x);
-	}
-    protected static final <T extends Comparable<? super T>> int upperBound(final T[] a, final T x) {
-		return upperBound(Arrays.asList(a), x);
-	}
-	protected static final <T> boolean binarySearch(final List<T> a, final T x) {
-		return Collections.binarySearch(a, x, null) >= 0;
-	}
-	protected static final <T extends Comparable<? super T>> int lowerBound(final List<T> a, final T x) {
-		return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) >= 0 ? 1 : -1);
-	}
-	protected static final <T extends Comparable<? super T>> int upperBound(final List<T> a, final T x) {
-		return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) > 0 ? 1 : -1);
-	}
+	protected static final boolean binarySearch(final int[] a, final int x){ return Arrays.binarySearch(a, x) >= 0; }
+	protected static final boolean binarySearch(final long[] a, final long x){ return Arrays.binarySearch(a, x) >= 0; }
+	protected static final boolean binarySearch(final Object[] a, final Object x){ return Arrays.binarySearch(a, x) >= 0; }
+	protected static final boolean binarySearch(final List<Object> a, final Object x){ return Collections.binarySearch(a, x, null) >= 0; }
+	protected static final int lowerBound(final int[] a, final int x){ return bins(a.length, -1, (Predicate<Integer>) y -> a[y] >= x); }
+	protected static final int lowerBound(final long[] a, final long x){ return bins(a.length, -1, (Predicate<Integer>) y -> a[y] >= x); }
+	protected static final <T extends Comparable<? super T>> int lowerBound(final T[] a, final T x){ return lowerBound(Arrays.asList(a), x); }
+	protected static final <T extends Comparable<? super T>> int lowerBound(final List<T> a, final T x){ return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) >= 0 ? 1 : -1); }
+	protected static final int upperBound(final int[] a, final int x){ return bins(a.length, -1, (Predicate<Integer>) y -> a[y] > x); }
+	protected static final int upperBound(final long[] a, final long x){ return bins(a.length, -1, (Predicate<Integer>) y -> a[y] > x); }
+	protected static final <T extends Comparable<? super T>> int upperBound(final T[] a, final T x){ return upperBound(Arrays.asList(a), x); }
+	protected static final <T extends Comparable<? super T>> int upperBound(final List<T> a, final T x){ return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) > 0 ? 1 : -1); }
 	protected static final String sorted(final String s){ return s.chars().sorted().mapToObj(Character::toString).collect(Collectors.joining()); }
 	protected static final int[] sorted(final int[] a){ return Arrays.stream(a).sorted().toArray(); }
 	protected static final long[] sorted(final long[] a){ return Arrays.stream(a).sorted().toArray(); }
@@ -477,7 +453,19 @@ class Utility {
 		return s;
 	}
 	protected static final int[] iota(final int n){ return IntStream.range(0, n).toArray(); }
-	protected static final int[] iota(final int n, final int init){ return IntStream.range(0 + init, n + init).toArray(); } 
+	protected static final int[] iota(final int n, final int init){ return IntStream.range(0 + init, n + init).toArray(); }
+	protected static final int bins(int ok, int ng, final Predicate<Integer> fn) {
+		while(Math.abs(ok - ng) > 1) {
+			final int mid = (ok + ng) / 2;
+			if(fn.test(mid)) {
+				ok = mid;
+			}
+			else {
+				ng = mid;
+			}
+		}
+		return ok;
+	}
 	protected static final long bins(long ok, long ng, final Predicate<Long> fn) {
 		while(Math.abs(ok - ng) > 1) {
 			final long mid = (ok + ng) / 2;
@@ -597,6 +585,12 @@ class Utility {
 			}
 		}
 		return ret;
+	}
+	protected interface TriFunction<T, U, V, W> {
+		public W apply(final T a, final U b, final V c);
+	}
+	protected interface QuadFunction<A, B, C, D, E> {
+		public E apply(final A a, final B b, final C c, final D d);
 	}
 }
 
@@ -2198,11 +2192,7 @@ final class WaveletMatrix {
 		IntStream.range(0, arr.length).forEach(i -> t[i] = get(arr[i]));
 		mat = new WaveletMatrixBeta(t, log);
 	}
-	private int lowerBound(final long[] arr, final long x) {
-		final int id = Arrays.binarySearch(arr, x);
-		return id < 0 ? -(id + 1) : id;
-	}
-	private final int get(final long x){ return lowerBound(ys, x); }
+	private final int get(final long x){ return Utility.lowerBound(ys, x); }
 	final long access(final int k){ return ys[(int) mat.access(k)]; }
 	final int rank(final long x, final int r) {
 		final var pos = get(x);
