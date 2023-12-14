@@ -242,11 +242,11 @@ data:
   timestamp: '2023-12-11 21:48:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/manacher.test.cpp
   - test/zalgo.test.cpp
-  - test/sa.test.cpp
   - test/lcpa.test.cpp
+  - test/sa.test.cpp
   - test/rh.test.cpp
+  - test/manacher.test.cpp
 documentation_of: C++/Strings.hpp
 layout: document
 redirect_from:

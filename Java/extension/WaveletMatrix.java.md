@@ -176,63 +176,61 @@ data:
     \ long[] arr, final int log) {\n\t\tys = Arrays.stream(arr).sorted().distinct().toArray();\n\
     \t\tfinal long[] t = new long[arr.length];\n\t\tIntStream.range(0, arr.length).forEach(i\
     \ -> t[i] = get(arr[i]));\n\t\tmat = new WaveletMatrixBeta(t, log);\n\t}\n\tprivate\
-    \ int lowerBound(final long[] arr, final long x) {\n\t\tfinal int id = Arrays.binarySearch(arr,\
-    \ x);\n\t\treturn id < 0 ? -(id + 1) : id;\n\t}\n\tprivate final int get(final\
-    \ long x){ return lowerBound(ys, x); }\n\tfinal long access(final int k){ return\
-    \ ys[(int) mat.access(k)]; }\n\tfinal int rank(final long x, final int r) {\n\t\
-    \tfinal var pos = get(x);\n\t\tif(pos == ys.length || ys[pos] != x) {\n\t\t\t\
-    return 0;\n\t\t}\n\t\treturn mat.rank(pos, r);\n\t}\n\tfinal long kthMin(final\
-    \ int l, final int r, final int k){ return ys[(int) mat.kthMin(l, r, k)]; }\n\t\
-    final long kthMax(final int l, final int r, final int k){ return ys[(int) mat.kthMax(l,\
-    \ r, k)]; }\n\tfinal int rangeFreq(final int l, final int r, final long upper){\
-    \ return mat.rangeFreq(l, r, get(upper)); }\n\tfinal int rangeFreq(final int l,\
-    \ final int r, final long lower, final long upper){ return mat.rangeFreq(l, r,\
-    \ get(lower), get(upper)); }\n\tfinal long prev(final int l, final int r, final\
-    \ long upper) {\n\t\tfinal var ret = mat.prev(l, r, get(upper));\n\t\treturn ret\
-    \ == -1 ? -1 : ys[(int) ret];\n\t}\n\tfinal long next(final int l, final int r,\
-    \ final long lower) {\n\t\tfinal var ret = mat.next(l, r, get(lower));\n\t\treturn\
-    \ ret == -1 ? -1 : ys[(int) ret];\n\t}\n}"
+    \ final int get(final long x){ return Utility.lowerBound(ys, x); }\n\tfinal long\
+    \ access(final int k){ return ys[(int) mat.access(k)]; }\n\tfinal int rank(final\
+    \ long x, final int r) {\n\t\tfinal var pos = get(x);\n\t\tif(pos == ys.length\
+    \ || ys[pos] != x) {\n\t\t\treturn 0;\n\t\t}\n\t\treturn mat.rank(pos, r);\n\t\
+    }\n\tfinal long kthMin(final int l, final int r, final int k){ return ys[(int)\
+    \ mat.kthMin(l, r, k)]; }\n\tfinal long kthMax(final int l, final int r, final\
+    \ int k){ return ys[(int) mat.kthMax(l, r, k)]; }\n\tfinal int rangeFreq(final\
+    \ int l, final int r, final long upper){ return mat.rangeFreq(l, r, get(upper));\
+    \ }\n\tfinal int rangeFreq(final int l, final int r, final long lower, final long\
+    \ upper){ return mat.rangeFreq(l, r, get(lower), get(upper)); }\n\tfinal long\
+    \ prev(final int l, final int r, final long upper) {\n\t\tfinal var ret = mat.prev(l,\
+    \ r, get(upper));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n\tfinal long\
+    \ next(final int l, final int r, final long lower) {\n\t\tfinal var ret = mat.next(l,\
+    \ r, get(lower));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n}"
   dependsOn:
   - Java/extension/SparseTable.java
-  - Java/extension/PrimeTable.java
-  - Java/extension/PrefixSum.java
-  - Java/extension/PrimeFactor.java
-  - Java/extension/LargePrime.java
-  - Java/extension/LowestCommonAncestor.java
-  - Java/extension/Huitloxopetl.java
-  - Java/extension/UndoUnionFind.java
-  - Java/extension/Template.java
-  - Java/extension/SuffixArray.java
-  - Java/extension/SegmentTree.java
-  - Java/extension/FenwickTree.java
-  - Java/extension/WeightedUnionFind.java
-  - Java/extension/DoubleEndedPriorityQueue.java
-  - Java/extension/Graph.java
-  - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
+  - Java/extension/PrefixSum.java
+  - Java/extension/SegmentTree.java
+  - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/PrimeFactor.java
+  - Java/extension/UnionFind.java
+  - Java/extension/PrimeTable.java
+  - Java/extension/Huitloxopetl.java
+  - Java/extension/LowestCommonAncestor.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/UndoUnionFind.java
+  - Java/extension/LargePrime.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/SuffixArray.java
+  - Java/extension/Graph.java
+  - Java/extension/Template.java
   - Java/all.java
   isVerificationFile: false
   path: Java/extension/WaveletMatrix.java
   requiredBy:
   - Java/extension/SparseTable.java
-  - Java/extension/PrimeTable.java
-  - Java/extension/PrefixSum.java
-  - Java/extension/PrimeFactor.java
-  - Java/extension/LargePrime.java
-  - Java/extension/LowestCommonAncestor.java
-  - Java/extension/Huitloxopetl.java
-  - Java/extension/UndoUnionFind.java
-  - Java/extension/Template.java
-  - Java/extension/SuffixArray.java
-  - Java/extension/SegmentTree.java
-  - Java/extension/FenwickTree.java
-  - Java/extension/WeightedUnionFind.java
-  - Java/extension/DoubleEndedPriorityQueue.java
-  - Java/extension/Graph.java
-  - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
+  - Java/extension/PrefixSum.java
+  - Java/extension/SegmentTree.java
+  - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/PrimeFactor.java
+  - Java/extension/UnionFind.java
+  - Java/extension/PrimeTable.java
+  - Java/extension/Huitloxopetl.java
+  - Java/extension/LowestCommonAncestor.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/UndoUnionFind.java
+  - Java/extension/LargePrime.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/SuffixArray.java
+  - Java/extension/Graph.java
+  - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-14 15:50:00+09:00'
+  timestamp: '2023-12-15 05:55:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/WaveletMatrix.java

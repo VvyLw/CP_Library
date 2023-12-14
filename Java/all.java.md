@@ -237,30 +237,28 @@ data:
     \ char dest, final List<Character> a, final int s, final int e) {\n\t\tif(s ==\
     \ e) {\n\t\t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn\
     \ a.get(m).compareTo(dest) > 0 ? find(dest, a, s, m - 1) : find(dest, a, m, e);\n\
-    \t}\n\tprotected static final boolean binarySearch(final int[] a, final int x)\
-    \ {\n\t\treturn Arrays.binarySearch(a, x) >= 0;\n\t}\n\tprotected static final\
-    \ boolean binarySearch(final long[] a, final long x) {\n\t\treturn Arrays.binarySearch(a,\
-    \ x) >= 0;\n\t}\n    protected static final boolean binarySearch(final Object[]\
-    \ a, final Object x) {\n        return binarySearch(Arrays.stream(a).collect(Collectors.toList()),\
-    \ x);\n    }\n\tprotected static final int lowerBound(final int[] a, final int\
-    \ x) {\n\t\treturn lowerBound(Arrays.stream(a).boxed().collect(Collectors.toList()),\
-    \ x);\n\t}\n\tprotected static final int lowerBound(final long[] a, final long\
-    \ x) {\n\t\treturn lowerBound(Arrays.stream(a).boxed().collect(Collectors.toList()),\
-    \ x);\n\t}\n    protected static final <T extends Comparable<? super T>> int lowerBound(final\
-    \ T[] a, final T x) {\n\t\treturn lowerBound(Arrays.asList(a), x);\n\t}\n\tprotected\
-    \ static final int upperBound(final int[] a, final int x) {\n\t\treturn upperBound(Arrays.stream(a).boxed().collect(Collectors.toList()),\
-    \ x);\n\t}\n\tprotected static final int upperBound(final long[] a, final long\
-    \ x) {\n\t\treturn upperBound(Arrays.stream(a).boxed().collect(Collectors.toList()),\
-    \ x);\n\t}\n    protected static final <T extends Comparable<? super T>> int upperBound(final\
-    \ T[] a, final T x) {\n\t\treturn upperBound(Arrays.asList(a), x);\n\t}\n\tprotected\
-    \ static final <T> boolean binarySearch(final List<T> a, final T x) {\n\t\treturn\
-    \ Collections.binarySearch(a, x, null) >= 0;\n\t}\n\tprotected static final <T\
-    \ extends Comparable<? super T>> int lowerBound(final List<T> a, final T x) {\n\
-    \t\treturn ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) >= 0 ? 1 :\
-    \ -1);\n\t}\n\tprotected static final <T extends Comparable<? super T>> int upperBound(final\
-    \ List<T> a, final T x) {\n\t\treturn ~Collections.binarySearch(a, x, (p, q) ->\
-    \ p.compareTo(q) > 0 ? 1 : -1);\n\t}\n\tprotected static final String sorted(final\
-    \ String s){ return s.chars().sorted().mapToObj(Character::toString).collect(Collectors.joining());\
+    \t}\n\tprotected static final boolean binarySearch(final int[] a, final int x){\
+    \ return Arrays.binarySearch(a, x) >= 0; }\n\tprotected static final boolean binarySearch(final\
+    \ long[] a, final long x){ return Arrays.binarySearch(a, x) >= 0; }\n\tprotected\
+    \ static final boolean binarySearch(final Object[] a, final Object x){ return\
+    \ Arrays.binarySearch(a, x) >= 0; }\n\tprotected static final boolean binarySearch(final\
+    \ List<Object> a, final Object x){ return Collections.binarySearch(a, x, null)\
+    \ >= 0; }\n\tprotected static final int lowerBound(final int[] a, final int x){\
+    \ return bins(a.length, -1, (Predicate<Integer>) y -> a[y] >= x); }\n\tprotected\
+    \ static final int lowerBound(final long[] a, final long x){ return bins(a.length,\
+    \ -1, (Predicate<Integer>) y -> a[y] >= x); }\n\tprotected static final <T extends\
+    \ Comparable<? super T>> int lowerBound(final T[] a, final T x){ return lowerBound(Arrays.asList(a),\
+    \ x); }\n\tprotected static final <T extends Comparable<? super T>> int lowerBound(final\
+    \ List<T> a, final T x){ return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q)\
+    \ >= 0 ? 1 : -1); }\n\tprotected static final int upperBound(final int[] a, final\
+    \ int x){ return bins(a.length, -1, (Predicate<Integer>) y -> a[y] > x); }\n\t\
+    protected static final int upperBound(final long[] a, final long x){ return bins(a.length,\
+    \ -1, (Predicate<Integer>) y -> a[y] > x); }\n\tprotected static final <T extends\
+    \ Comparable<? super T>> int upperBound(final T[] a, final T x){ return upperBound(Arrays.asList(a),\
+    \ x); }\n\tprotected static final <T extends Comparable<? super T>> int upperBound(final\
+    \ List<T> a, final T x){ return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q)\
+    \ > 0 ? 1 : -1); }\n\tprotected static final String sorted(final String s){ return\
+    \ s.chars().sorted().mapToObj(Character::toString).collect(Collectors.joining());\
     \ }\n\tprotected static final int[] sorted(final int[] a){ return Arrays.stream(a).sorted().toArray();\
     \ }\n\tprotected static final long[] sorted(final long[] a){ return Arrays.stream(a).sorted().toArray();\
     \ }\n\tprotected static final double[] sorted(final double[] a){ return Arrays.stream(a).sorted().toArray();\
@@ -329,16 +327,20 @@ data:
     \ ArrayList<>();\n\t\tfor(final var el: p) {\n\t\t\ts.add(el.second);\n\t\t}\n\
     \t\treturn s;\n\t}\n\tprotected static final int[] iota(final int n){ return IntStream.range(0,\
     \ n).toArray(); }\n\tprotected static final int[] iota(final int n, final int\
-    \ init){ return IntStream.range(0 + init, n + init).toArray(); } \n\tprotected\
-    \ static final long bins(long ok, long ng, final Predicate<Long> fn) {\n\t\twhile(Math.abs(ok\
-    \ - ng) > 1) {\n\t\t\tfinal long mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid))\
-    \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
-    }\n\t\treturn ok;\n\t}\n\tprotected static final double bins(double ok, double\
-    \ ng, final Predicate<Double> fn) {\n\t\twhile(Math.abs(ok - ng) > VvyLw.eps)\
-    \ {\n\t\t\tfinal double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\
-    \tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ ok;\n\t}\n\tprotected static final ArrayList<Integer> press(final ArrayList<Long>\
-    \ a) {\n\t\tArrayList<Integer> res = new ArrayList<>();\n\t\tfinal var cp = a.stream().sorted().distinct().collect(Collectors.toList());\n\
+    \ init){ return IntStream.range(0 + init, n + init).toArray(); }\n\tprotected\
+    \ static final int bins(int ok, int ng, final Predicate<Integer> fn) {\n\t\twhile(Math.abs(ok\
+    \ - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\
+    \t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\
+    \treturn ok;\n\t}\n\tprotected static final long bins(long ok, long ng, final\
+    \ Predicate<Long> fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal long\
+    \ mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\
+    \t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected\
+    \ static final double bins(double ok, double ng, final Predicate<Double> fn) {\n\
+    \t\twhile(Math.abs(ok - ng) > VvyLw.eps) {\n\t\t\tfinal double mid = (ok + ng)\
+    \ / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\
+    \t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final\
+    \ ArrayList<Integer> press(final ArrayList<Long> a) {\n\t\tArrayList<Integer>\
+    \ res = new ArrayList<>();\n\t\tfinal var cp = a.stream().sorted().distinct().collect(Collectors.toList());\n\
     \t\tfor(final var el: a) {\n\t\t\tres.add(lowerBound(cp, el));\n\t\t}\n\t\treturn\
     \ res;\n\t}\n\tprotected static final int[] zAlgorithm(final String s) {\n\t\t\
     final int n = s.length();\n\t\tint j = 0;\n\t\tint[] pre = new int[n];\n\t\tfor(int\
@@ -368,7 +370,10 @@ data:
     \t\t} catch(ArithmeticException e) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\
     \t}\n\t\t\treturn mul <= n;\n\t\t};\n\t\tlong ret = 0;\n\t\tfor(int i = 32; --i\
     \ >= 0;) {\n\t\t\tif(chk.test(ret | (1L << i))) {\n\t\t\t\tret |= 1L << i;\n\t\
-    \t\t}\n\t\t}\n\t\treturn ret;\n\t}\n}\n\nfinal class MyScanner {\n\tprivate final\
+    \t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\tprotected interface TriFunction<T, U, V,\
+    \ W> {\n\t\tpublic W apply(final T a, final U b, final V c);\n\t}\n\tprotected\
+    \ interface QuadFunction<A, B, C, D, E> {\n\t\tpublic E apply(final A a, final\
+    \ B b, final C c, final D d);\n\t}\n}\n\nfinal class MyScanner {\n\tprivate final\
     \ Scanner sc = new Scanner(System.in);\n\tfinal int ni(){ return sc.nextInt();\
     \ }\n\tfinal long nl(){ return sc.nextLong(); }\n\tfinal double nd(){ return sc.nextDouble();\
     \ }\n\tfinal String ns(){ return sc.next(); }\n\tfinal int[] ni(final int n){\n\
@@ -938,63 +943,61 @@ data:
     \ long[] arr, final int log) {\n\t\tys = Arrays.stream(arr).sorted().distinct().toArray();\n\
     \t\tfinal long[] t = new long[arr.length];\n\t\tIntStream.range(0, arr.length).forEach(i\
     \ -> t[i] = get(arr[i]));\n\t\tmat = new WaveletMatrixBeta(t, log);\n\t}\n\tprivate\
-    \ int lowerBound(final long[] arr, final long x) {\n\t\tfinal int id = Arrays.binarySearch(arr,\
-    \ x);\n\t\treturn id < 0 ? -(id + 1) : id;\n\t}\n\tprivate final int get(final\
-    \ long x){ return lowerBound(ys, x); }\n\tfinal long access(final int k){ return\
-    \ ys[(int) mat.access(k)]; }\n\tfinal int rank(final long x, final int r) {\n\t\
-    \tfinal var pos = get(x);\n\t\tif(pos == ys.length || ys[pos] != x) {\n\t\t\t\
-    return 0;\n\t\t}\n\t\treturn mat.rank(pos, r);\n\t}\n\tfinal long kthMin(final\
-    \ int l, final int r, final int k){ return ys[(int) mat.kthMin(l, r, k)]; }\n\t\
-    final long kthMax(final int l, final int r, final int k){ return ys[(int) mat.kthMax(l,\
-    \ r, k)]; }\n\tfinal int rangeFreq(final int l, final int r, final long upper){\
-    \ return mat.rangeFreq(l, r, get(upper)); }\n\tfinal int rangeFreq(final int l,\
-    \ final int r, final long lower, final long upper){ return mat.rangeFreq(l, r,\
-    \ get(lower), get(upper)); }\n\tfinal long prev(final int l, final int r, final\
-    \ long upper) {\n\t\tfinal var ret = mat.prev(l, r, get(upper));\n\t\treturn ret\
-    \ == -1 ? -1 : ys[(int) ret];\n\t}\n\tfinal long next(final int l, final int r,\
-    \ final long lower) {\n\t\tfinal var ret = mat.next(l, r, get(lower));\n\t\treturn\
-    \ ret == -1 ? -1 : ys[(int) ret];\n\t}\n}"
+    \ final int get(final long x){ return Utility.lowerBound(ys, x); }\n\tfinal long\
+    \ access(final int k){ return ys[(int) mat.access(k)]; }\n\tfinal int rank(final\
+    \ long x, final int r) {\n\t\tfinal var pos = get(x);\n\t\tif(pos == ys.length\
+    \ || ys[pos] != x) {\n\t\t\treturn 0;\n\t\t}\n\t\treturn mat.rank(pos, r);\n\t\
+    }\n\tfinal long kthMin(final int l, final int r, final int k){ return ys[(int)\
+    \ mat.kthMin(l, r, k)]; }\n\tfinal long kthMax(final int l, final int r, final\
+    \ int k){ return ys[(int) mat.kthMax(l, r, k)]; }\n\tfinal int rangeFreq(final\
+    \ int l, final int r, final long upper){ return mat.rangeFreq(l, r, get(upper));\
+    \ }\n\tfinal int rangeFreq(final int l, final int r, final long lower, final long\
+    \ upper){ return mat.rangeFreq(l, r, get(lower), get(upper)); }\n\tfinal long\
+    \ prev(final int l, final int r, final long upper) {\n\t\tfinal var ret = mat.prev(l,\
+    \ r, get(upper));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n\tfinal long\
+    \ next(final int l, final int r, final long lower) {\n\t\tfinal var ret = mat.next(l,\
+    \ r, get(lower));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n}"
   dependsOn:
   - Java/extension/SparseTable.java
-  - Java/extension/PrimeTable.java
-  - Java/extension/PrefixSum.java
-  - Java/extension/PrimeFactor.java
-  - Java/extension/LargePrime.java
-  - Java/extension/LowestCommonAncestor.java
-  - Java/extension/Huitloxopetl.java
-  - Java/extension/UndoUnionFind.java
-  - Java/extension/Template.java
-  - Java/extension/SuffixArray.java
-  - Java/extension/WaveletMatrix.java
-  - Java/extension/SegmentTree.java
-  - Java/extension/FenwickTree.java
-  - Java/extension/WeightedUnionFind.java
-  - Java/extension/DoubleEndedPriorityQueue.java
-  - Java/extension/Graph.java
-  - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
+  - Java/extension/PrefixSum.java
+  - Java/extension/SegmentTree.java
+  - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/PrimeFactor.java
+  - Java/extension/UnionFind.java
+  - Java/extension/PrimeTable.java
+  - Java/extension/Huitloxopetl.java
+  - Java/extension/LowestCommonAncestor.java
+  - Java/extension/WaveletMatrix.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/UndoUnionFind.java
+  - Java/extension/LargePrime.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/SuffixArray.java
+  - Java/extension/Graph.java
+  - Java/extension/Template.java
   isVerificationFile: false
   path: Java/all.java
   requiredBy:
   - Java/extension/SparseTable.java
-  - Java/extension/PrimeTable.java
-  - Java/extension/PrefixSum.java
-  - Java/extension/PrimeFactor.java
-  - Java/extension/LargePrime.java
-  - Java/extension/LowestCommonAncestor.java
-  - Java/extension/Huitloxopetl.java
-  - Java/extension/UndoUnionFind.java
-  - Java/extension/Template.java
-  - Java/extension/SuffixArray.java
-  - Java/extension/WaveletMatrix.java
-  - Java/extension/SegmentTree.java
-  - Java/extension/FenwickTree.java
-  - Java/extension/WeightedUnionFind.java
-  - Java/extension/DoubleEndedPriorityQueue.java
-  - Java/extension/Graph.java
-  - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
-  timestamp: '2023-12-14 15:50:00+09:00'
+  - Java/extension/PrefixSum.java
+  - Java/extension/SegmentTree.java
+  - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/PrimeFactor.java
+  - Java/extension/UnionFind.java
+  - Java/extension/PrimeTable.java
+  - Java/extension/Huitloxopetl.java
+  - Java/extension/LowestCommonAncestor.java
+  - Java/extension/WaveletMatrix.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/UndoUnionFind.java
+  - Java/extension/LargePrime.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/SuffixArray.java
+  - Java/extension/Graph.java
+  - Java/extension/Template.java
+  timestamp: '2023-12-15 05:55:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java

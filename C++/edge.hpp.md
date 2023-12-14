@@ -42,8 +42,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manhattan.test.cpp
-  - test/lca.test.cpp
   - test/kruskal.test.cpp
+  - test/lca.test.cpp
 documentation_of: C++/edge.hpp
 layout: document
 redirect_from:

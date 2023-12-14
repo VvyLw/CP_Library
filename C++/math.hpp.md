@@ -183,8 +183,8 @@ data:
   timestamp: '2023-12-01 04:17:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/kthrooti.test.cpp
   - test/pcounter.test.cpp
+  - test/kthrooti.test.cpp
 documentation_of: C++/math.hpp
 layout: document
 redirect_from:

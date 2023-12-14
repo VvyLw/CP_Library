@@ -130,45 +130,45 @@ data:
     \ spf[n];\n\t\t}\n\t\treturn m;\n\t}\n}"
   dependsOn:
   - Java/extension/SparseTable.java
-  - Java/extension/PrimeTable.java
-  - Java/extension/PrefixSum.java
-  - Java/extension/LargePrime.java
-  - Java/extension/LowestCommonAncestor.java
-  - Java/extension/Huitloxopetl.java
-  - Java/extension/UndoUnionFind.java
-  - Java/extension/Template.java
-  - Java/extension/SuffixArray.java
-  - Java/extension/WaveletMatrix.java
-  - Java/extension/SegmentTree.java
-  - Java/extension/FenwickTree.java
-  - Java/extension/WeightedUnionFind.java
-  - Java/extension/DoubleEndedPriorityQueue.java
-  - Java/extension/Graph.java
-  - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
+  - Java/extension/PrefixSum.java
+  - Java/extension/SegmentTree.java
+  - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/UnionFind.java
+  - Java/extension/PrimeTable.java
+  - Java/extension/Huitloxopetl.java
+  - Java/extension/LowestCommonAncestor.java
+  - Java/extension/WaveletMatrix.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/UndoUnionFind.java
+  - Java/extension/LargePrime.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/SuffixArray.java
+  - Java/extension/Graph.java
+  - Java/extension/Template.java
   - Java/all.java
   isVerificationFile: false
   path: Java/extension/PrimeFactor.java
   requiredBy:
   - Java/extension/SparseTable.java
-  - Java/extension/PrimeTable.java
-  - Java/extension/PrefixSum.java
-  - Java/extension/LargePrime.java
-  - Java/extension/LowestCommonAncestor.java
-  - Java/extension/Huitloxopetl.java
-  - Java/extension/UndoUnionFind.java
-  - Java/extension/Template.java
-  - Java/extension/SuffixArray.java
-  - Java/extension/WaveletMatrix.java
-  - Java/extension/SegmentTree.java
-  - Java/extension/FenwickTree.java
-  - Java/extension/WeightedUnionFind.java
-  - Java/extension/DoubleEndedPriorityQueue.java
-  - Java/extension/Graph.java
-  - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
+  - Java/extension/PrefixSum.java
+  - Java/extension/SegmentTree.java
+  - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/UnionFind.java
+  - Java/extension/PrimeTable.java
+  - Java/extension/Huitloxopetl.java
+  - Java/extension/LowestCommonAncestor.java
+  - Java/extension/WaveletMatrix.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/UndoUnionFind.java
+  - Java/extension/LargePrime.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/SuffixArray.java
+  - Java/extension/Graph.java
+  - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-14 15:50:00+09:00'
+  timestamp: '2023-12-15 05:55:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/PrimeFactor.java

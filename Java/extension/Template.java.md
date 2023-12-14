@@ -127,34 +127,34 @@ data:
     \ java.util.stream.IntStream;\n\nclass VvyLw extends Utility {\n\tprotected static\
     \ final MyScanner sc = new MyScanner();\n\tprotected static final MyPrinter o\
     \ = new MyPrinter(System.out, false);\n\tprotected static final MyPrinter e =\
-    \ new MyPrinter(System.err, true);\n\tstatic final int[] dx = {0, -1, 1, 0, 0,\
-    \ -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t\
-    static final int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\t\
-    static final int mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9 + 7;\n\
-    \tstatic final double eps = 1e-18;\n\tprotected static final void solve() {\n\t\
-    \t\n\t}\n}\nfinal class Main extends VvyLw {\n\tpublic static void main(final\
-    \ String[] args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\
-    \t\t\tsolve();\n\t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\
-    \t}\n}\n\nclass Utility {\n\tprotected static final String yes(final boolean ok){\
-    \ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean\
-    \ ok){ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
-    \ x * x; }\n\tprotected static final int mod(final long n, final int m){ return\
-    \ (int) ((n + m) % m); }\n\tprotected static final long ceil(final long a, final\
-    \ long b){ return (long) Math.ceil((double) a / b); }\n\tprotected static final\
-    \ double round(final double a, final long b, final int c) {\n\t\tfinal long d\
-    \ = intPow(10, c);\n\t\treturn (double) Math.round((a * d) / b) / d;\n\t}\n\t\
-    protected static final long intPow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b\
-    \ > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\
-    \t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long intPow(long\
-    \ a, long b, final int m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b\
-    \ % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\t\
-    a *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t\
-    protected static final ArrayList<Long> div(final long n) {\n\t\tArrayList<Long>\
-    \ d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n %\
-    \ i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n /\
-    \ i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\t\treturn d;\n\t\
-    }\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long n)\
-    \ {\n\t\tArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long\
+    \ new MyPrinter(System.err, true);\n\tstatic final Huitloxopetl why = new Huitloxopetl();\n\
+    \tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final int[]\
+    \ dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final int inf = 1 << 30;\n\t\
+    static final long linf = (1L << 61) - 1;\n\tstatic final int mod998 = 998244353;\n\
+    \tstatic final int mod107 = (int)1e9 + 7;\n\tstatic final double eps = 1e-18;\n\
+    \tprotected static final void solve() {\n\t\t\n\t}\n}\nfinal class Main extends\
+    \ VvyLw {\n\tpublic static void main(final String[] args) {\n\t\tint t = 1;\n\t\
+    \t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\t\t\tsolve();\n\t\t}\n\t\to.flush();\n\
+    \t\tsc.close();\n\t\to.close();\n\t\te.close();\n\t}\n}\n\nclass Utility {\n\t\
+    protected static final String yes(final boolean ok){ return ok ? \"Yes\" : \"\
+    No\"; }\n\tprotected static final String no(final boolean ok){ return yes(!ok);\
+    \ }\n\tprotected static final long sqr(final long x){ return x * x; }\n\tprotected\
+    \ static final int mod(final long n, final int m){ return (int) ((n + m) % m);\
+    \ }\n\tprotected static final long ceil(final long a, final long b){ return (long)\
+    \ Math.ceil((double) a / b); }\n\tprotected static final double round(final double\
+    \ a, final long b, final int c) {\n\t\tfinal long d = intPow(10, c);\n\t\treturn\
+    \ (double) Math.round((a * d) / b) / d;\n\t}\n\tprotected static final long intPow(long\
+    \ a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\
+    \t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\tprotected static final long intPow(long a, long b, final int m) {\n\t\t\
+    long res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
+    \t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\
+    \tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final ArrayList<Long>\
+    \ div(final long n) {\n\t\tArrayList<Long> d = new ArrayList<>();\n\t\tfor(long\
+    \ i = 1; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\
+    \tif(i * i != n) {\n\t\t\t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\
+    \t\treturn d;\n\t}\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long\
+    \ n) {\n\t\tArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long\
     \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t\
     }\n\t\t\tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /=\
     \ i;\n\t\t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\t\t\
@@ -233,30 +233,28 @@ data:
     \ char dest, final List<Character> a, final int s, final int e) {\n\t\tif(s ==\
     \ e) {\n\t\t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn\
     \ a.get(m).compareTo(dest) > 0 ? find(dest, a, s, m - 1) : find(dest, a, m, e);\n\
-    \t}\n\tprotected static final boolean binarySearch(final int[] a, final int x)\
-    \ {\n\t\treturn Arrays.binarySearch(a, x) >= 0;\n\t}\n\tprotected static final\
-    \ boolean binarySearch(final long[] a, final long x) {\n\t\treturn Arrays.binarySearch(a,\
-    \ x) >= 0;\n\t}\n    protected static final boolean binarySearch(final Object[]\
-    \ a, final Object x) {\n        return binarySearch(Arrays.stream(a).collect(Collectors.toList()),\
-    \ x);\n    }\n\tprotected static final int lowerBound(final int[] a, final int\
-    \ x) {\n\t\treturn lowerBound(Arrays.stream(a).boxed().collect(Collectors.toList()),\
-    \ x);\n\t}\n\tprotected static final int lowerBound(final long[] a, final long\
-    \ x) {\n\t\treturn lowerBound(Arrays.stream(a).boxed().collect(Collectors.toList()),\
-    \ x);\n\t}\n    protected static final <T extends Comparable<? super T>> int lowerBound(final\
-    \ T[] a, final T x) {\n\t\treturn lowerBound(Arrays.asList(a), x);\n\t}\n\tprotected\
-    \ static final int upperBound(final int[] a, final int x) {\n\t\treturn upperBound(Arrays.stream(a).boxed().collect(Collectors.toList()),\
-    \ x);\n\t}\n\tprotected static final int upperBound(final long[] a, final long\
-    \ x) {\n\t\treturn upperBound(Arrays.stream(a).boxed().collect(Collectors.toList()),\
-    \ x);\n\t}\n    protected static final <T extends Comparable<? super T>> int upperBound(final\
-    \ T[] a, final T x) {\n\t\treturn upperBound(Arrays.asList(a), x);\n\t}\n\tprotected\
-    \ static final <T> boolean binarySearch(final List<T> a, final T x) {\n\t\treturn\
-    \ Collections.binarySearch(a, x, null) >= 0;\n\t}\n\tprotected static final <T\
-    \ extends Comparable<? super T>> int lowerBound(final List<T> a, final T x) {\n\
-    \t\treturn ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) >= 0 ? 1 :\
-    \ -1);\n\t}\n\tprotected static final <T extends Comparable<? super T>> int upperBound(final\
-    \ List<T> a, final T x) {\n\t\treturn ~Collections.binarySearch(a, x, (p, q) ->\
-    \ p.compareTo(q) > 0 ? 1 : -1);\n\t}\n\tprotected static final String sorted(final\
-    \ String s){ return s.chars().sorted().mapToObj(Character::toString).collect(Collectors.joining());\
+    \t}\n\tprotected static final boolean binarySearch(final int[] a, final int x){\
+    \ return Arrays.binarySearch(a, x) >= 0; }\n\tprotected static final boolean binarySearch(final\
+    \ long[] a, final long x){ return Arrays.binarySearch(a, x) >= 0; }\n\tprotected\
+    \ static final boolean binarySearch(final Object[] a, final Object x){ return\
+    \ Arrays.binarySearch(a, x) >= 0; }\n\tprotected static final boolean binarySearch(final\
+    \ List<Object> a, final Object x){ return Collections.binarySearch(a, x, null)\
+    \ >= 0; }\n\tprotected static final int lowerBound(final int[] a, final int x){\
+    \ return bins(a.length, -1, (Predicate<Integer>) y -> a[y] >= x); }\n\tprotected\
+    \ static final int lowerBound(final long[] a, final long x){ return bins(a.length,\
+    \ -1, (Predicate<Integer>) y -> a[y] >= x); }\n\tprotected static final <T extends\
+    \ Comparable<? super T>> int lowerBound(final T[] a, final T x){ return lowerBound(Arrays.asList(a),\
+    \ x); }\n\tprotected static final <T extends Comparable<? super T>> int lowerBound(final\
+    \ List<T> a, final T x){ return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q)\
+    \ >= 0 ? 1 : -1); }\n\tprotected static final int upperBound(final int[] a, final\
+    \ int x){ return bins(a.length, -1, (Predicate<Integer>) y -> a[y] > x); }\n\t\
+    protected static final int upperBound(final long[] a, final long x){ return bins(a.length,\
+    \ -1, (Predicate<Integer>) y -> a[y] > x); }\n\tprotected static final <T extends\
+    \ Comparable<? super T>> int upperBound(final T[] a, final T x){ return upperBound(Arrays.asList(a),\
+    \ x); }\n\tprotected static final <T extends Comparable<? super T>> int upperBound(final\
+    \ List<T> a, final T x){ return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q)\
+    \ > 0 ? 1 : -1); }\n\tprotected static final String sorted(final String s){ return\
+    \ s.chars().sorted().mapToObj(Character::toString).collect(Collectors.joining());\
     \ }\n\tprotected static final int[] sorted(final int[] a){ return Arrays.stream(a).sorted().toArray();\
     \ }\n\tprotected static final long[] sorted(final long[] a){ return Arrays.stream(a).sorted().toArray();\
     \ }\n\tprotected static final double[] sorted(final double[] a){ return Arrays.stream(a).sorted().toArray();\
@@ -325,16 +323,20 @@ data:
     \ ArrayList<>();\n\t\tfor(final var el: p) {\n\t\t\ts.add(el.second);\n\t\t}\n\
     \t\treturn s;\n\t}\n\tprotected static final int[] iota(final int n){ return IntStream.range(0,\
     \ n).toArray(); }\n\tprotected static final int[] iota(final int n, final int\
-    \ init){ return IntStream.range(0 + init, n + init).toArray(); } \n\tprotected\
-    \ static final long bins(long ok, long ng, final Predicate<Long> fn) {\n\t\twhile(Math.abs(ok\
-    \ - ng) > 1) {\n\t\t\tfinal long mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid))\
-    \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
-    }\n\t\treturn ok;\n\t}\n\tprotected static final double bins(double ok, double\
-    \ ng, final Predicate<Double> fn) {\n\t\twhile(Math.abs(ok - ng) > VvyLw.eps)\
-    \ {\n\t\t\tfinal double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\
-    \tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ ok;\n\t}\n\tprotected static final ArrayList<Integer> press(final ArrayList<Long>\
-    \ a) {\n\t\tArrayList<Integer> res = new ArrayList<>();\n\t\tfinal var cp = a.stream().sorted().distinct().collect(Collectors.toList());\n\
+    \ init){ return IntStream.range(0 + init, n + init).toArray(); }\n\tprotected\
+    \ static final int bins(int ok, int ng, final Predicate<Integer> fn) {\n\t\twhile(Math.abs(ok\
+    \ - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\
+    \t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\
+    \treturn ok;\n\t}\n\tprotected static final long bins(long ok, long ng, final\
+    \ Predicate<Long> fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal long\
+    \ mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\
+    \t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected\
+    \ static final double bins(double ok, double ng, final Predicate<Double> fn) {\n\
+    \t\twhile(Math.abs(ok - ng) > VvyLw.eps) {\n\t\t\tfinal double mid = (ok + ng)\
+    \ / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\
+    \t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final\
+    \ ArrayList<Integer> press(final ArrayList<Long> a) {\n\t\tArrayList<Integer>\
+    \ res = new ArrayList<>();\n\t\tfinal var cp = a.stream().sorted().distinct().collect(Collectors.toList());\n\
     \t\tfor(final var el: a) {\n\t\t\tres.add(lowerBound(cp, el));\n\t\t}\n\t\treturn\
     \ res;\n\t}\n\tprotected static final int[] zAlgorithm(final String s) {\n\t\t\
     final int n = s.length();\n\t\tint j = 0;\n\t\tint[] pre = new int[n];\n\t\tfor(int\
@@ -364,7 +366,10 @@ data:
     \t\t} catch(ArithmeticException e) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\
     \t}\n\t\t\treturn mul <= n;\n\t\t};\n\t\tlong ret = 0;\n\t\tfor(int i = 32; --i\
     \ >= 0;) {\n\t\t\tif(chk.test(ret | (1L << i))) {\n\t\t\t\tret |= 1L << i;\n\t\
-    \t\t}\n\t\t}\n\t\treturn ret;\n\t}\n}\n\nfinal class MyScanner {\n\tprivate final\
+    \t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\tprotected interface TriFunction<T, U, V,\
+    \ W> {\n\t\tpublic W apply(final T a, final U b, final V c);\n\t}\n\tprotected\
+    \ interface QuadFunction<A, B, C, D, E> {\n\t\tpublic E apply(final A a, final\
+    \ B b, final C c, final D d);\n\t}\n}\n\nfinal class MyScanner {\n\tprivate final\
     \ Scanner sc = new Scanner(System.in);\n\tfinal int ni(){ return sc.nextInt();\
     \ }\n\tfinal long nl(){ return sc.nextLong(); }\n\tfinal double nd(){ return sc.nextDouble();\
     \ }\n\tfinal String ns(){ return sc.next(); }\n\tfinal int[] ni(final int n){\n\
@@ -473,45 +478,45 @@ data:
     \treturn Double.compare(first.doubleValue(), o.first.doubleValue());\n\t}\n}"
   dependsOn:
   - Java/extension/SparseTable.java
-  - Java/extension/PrimeTable.java
-  - Java/extension/PrefixSum.java
-  - Java/extension/PrimeFactor.java
-  - Java/extension/LargePrime.java
-  - Java/extension/LowestCommonAncestor.java
-  - Java/extension/Huitloxopetl.java
-  - Java/extension/UndoUnionFind.java
-  - Java/extension/SuffixArray.java
-  - Java/extension/WaveletMatrix.java
-  - Java/extension/SegmentTree.java
-  - Java/extension/FenwickTree.java
-  - Java/extension/WeightedUnionFind.java
-  - Java/extension/DoubleEndedPriorityQueue.java
-  - Java/extension/Graph.java
-  - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
+  - Java/extension/PrefixSum.java
+  - Java/extension/SegmentTree.java
+  - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/PrimeFactor.java
+  - Java/extension/UnionFind.java
+  - Java/extension/PrimeTable.java
+  - Java/extension/Huitloxopetl.java
+  - Java/extension/LowestCommonAncestor.java
+  - Java/extension/WaveletMatrix.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/UndoUnionFind.java
+  - Java/extension/LargePrime.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/SuffixArray.java
+  - Java/extension/Graph.java
   - Java/all.java
   isVerificationFile: false
   path: Java/extension/Template.java
   requiredBy:
   - Java/extension/SparseTable.java
-  - Java/extension/PrimeTable.java
-  - Java/extension/PrefixSum.java
-  - Java/extension/PrimeFactor.java
-  - Java/extension/LargePrime.java
-  - Java/extension/LowestCommonAncestor.java
-  - Java/extension/Huitloxopetl.java
-  - Java/extension/UndoUnionFind.java
-  - Java/extension/SuffixArray.java
-  - Java/extension/WaveletMatrix.java
-  - Java/extension/SegmentTree.java
-  - Java/extension/FenwickTree.java
-  - Java/extension/WeightedUnionFind.java
-  - Java/extension/DoubleEndedPriorityQueue.java
-  - Java/extension/Graph.java
-  - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
+  - Java/extension/PrefixSum.java
+  - Java/extension/SegmentTree.java
+  - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/PrimeFactor.java
+  - Java/extension/UnionFind.java
+  - Java/extension/PrimeTable.java
+  - Java/extension/Huitloxopetl.java
+  - Java/extension/LowestCommonAncestor.java
+  - Java/extension/WaveletMatrix.java
+  - Java/extension/WeightedUnionFind.java
+  - Java/extension/UndoUnionFind.java
+  - Java/extension/LargePrime.java
+  - Java/extension/FenwickTree.java
+  - Java/extension/SuffixArray.java
+  - Java/extension/Graph.java
   - Java/all.java
-  timestamp: '2023-12-14 15:50:00+09:00'
+  timestamp: '2023-12-15 05:55:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java
