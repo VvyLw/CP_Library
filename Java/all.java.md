@@ -136,32 +136,28 @@ data:
     \ dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final int inf = 1 << 30;\n\t\
     static final long linf = (1L << 61) - 1;\n\tstatic final int mod998 = 998244353;\n\
     \tstatic final int mod107 = (int)1e9 + 7;\n\tstatic final double eps = 1e-18;\n\
-    \tprotected static final void solve() {\n\t\tfinal int n = sc.ni();\n\t\tint[]\
-    \ x = new int[n], y = new int[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tx[i]\
-    \ = sc.ni();\n\t\t\ty[i] = sc.ni();\n\t\t}\n\t\tfinal var ans = why.kruskal(why.manhattan(x,\
-    \ y), n);\n\t\to.out(ans.cost);\n\t\tfor(final var ed: ans.tree) {\n\t\t\to.out(ed.src,\
-    \ ed.to);\n\t\t}\n\t}\n}\nfinal class Main extends VvyLw {\n\tpublic static void\
-    \ main(final String[] args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t--\
-    \ > 0) {\n\t\t\tsolve();\n\t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\
-    \t\te.close();\n\t}\n}\n\nclass Utility {\n\tprotected static final String yes(final\
-    \ boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String\
-    \ no(final boolean ok){ return yes(!ok); }\n\tprotected static final long sqr(final\
-    \ long x){ return x * x; }\n\tprotected static final int mod(final long n, final\
-    \ int m){ return (int) ((n + m) % m); }\n\tprotected static final long ceil(final\
-    \ long a, final long b){ return (long) Math.ceil((double) a / b); }\n\tprotected\
-    \ static final double round(final double a, final long b, final int c) {\n\t\t\
-    final long d = intPow(10, c);\n\t\treturn (double) Math.round((a * d) / b) / d;\n\
-    \t}\n\tprotected static final long intPow(long a, int b) {\n\t\tlong res = 1;\n\
-    \t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\t\
-    a *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
-    \ long intPow(long a, long b, final int m) {\n\t\tlong res = 1;\n\t\twhile(b >\
-    \ 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\
-    \t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\tprotected static final ArrayList<Long> div(final long n) {\n\t\t\
-    ArrayList<Long> d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\
-    \t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\t\
-    d.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\t\treturn\
-    \ d;\n\t}\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long\
+    \tprotected static final void solve() {\n\t\t\n\t}\n}\nfinal class Main extends\
+    \ VvyLw {\n\tpublic static void main(final String[] args) {\n\t\tint t = 1;\n\t\
+    \t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\t\t\tsolve();\n\t\t}\n\t\to.flush();\n\
+    \t\tsc.close();\n\t\to.close();\n\t\te.close();\n\t}\n}\n\nclass Utility {\n\t\
+    protected static final String yes(final boolean ok){ return ok ? \"Yes\" : \"\
+    No\"; }\n\tprotected static final String no(final boolean ok){ return yes(!ok);\
+    \ }\n\tprotected static final long sqr(final long x){ return x * x; }\n\tprotected\
+    \ static final int mod(final long n, final int m){ return (int) ((n + m) % m);\
+    \ }\n\tprotected static final long ceil(final long a, final long b){ return (long)\
+    \ Math.ceil((double) a / b); }\n\tprotected static final double round(final double\
+    \ a, final long b, final int c) {\n\t\tfinal long d = intPow(10, c);\n\t\treturn\
+    \ (double) Math.round((a * d) / b) / d;\n\t}\n\tprotected static final long intPow(long\
+    \ a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\
+    \t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\tprotected static final long intPow(long a, long b, final int m) {\n\t\t\
+    long res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
+    \t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\
+    \tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final ArrayList<Long>\
+    \ div(final long n) {\n\t\tArrayList<Long> d = new ArrayList<>();\n\t\tfor(long\
+    \ i = 1; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\
+    \tif(i * i != n) {\n\t\t\t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\
+    \t\treturn d;\n\t}\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long\
     \ n) {\n\t\tArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long\
     \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t\
     }\n\t\t\tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /=\
@@ -494,44 +490,14 @@ data:
     \t\tfinal UnionFind uf = new UnionFind(n);\n\t\tfinal var e = new ArrayList<Edge>();\n\
     \t\tlong res = 0;\n\t\tfor(final var ed: edge) {\n\t\t\tif(uf.unite(ed.src, ed.to))\
     \ {\n\t\t\t\te.add(ed);\n\t\t\t\tres += ed.cost;\n\t\t\t}\n\t\t}\n\t\treturn new\
-    \ MST(e, res);\n\t}\n\t// DO NOT USE\n\tfinal ArrayList<Edge> manhattan(int[]\
-    \ x, int[] y) {\n\t\tif(x.length != y.length) {\n\t\t\tthrow new AssertionError(\"\
-    x.length != y.length\");\n\t\t}\n\t\tfinal var res = new ArrayList<Edge>();\n\t\
-    \tint[] id = Utility.iota(x.length);\n\t\tfor(int s = 0; s < 2; ++s) {\n\t\t\t\
-    for(int t = 0; t < 2; ++t) {\n\t\t\t\tid = Arrays.stream(id).boxed().sorted((i,\
-    \ j) -> Integer.compare(x[i] + y[i], x[j] + y[j])).mapToInt(i -> i).toArray();\n\
-    \t\t\t\tfinal var idx = new TreeMap<Integer, Integer>();\n\t\t\t\tfor(final var\
-    \ i: id) {\n\t\t\t\t\tfinal var it = idx.tailMap(y[i]).entrySet().iterator();\n\
-    \t\t\t\t\twhile(it.hasNext()) {\n\t\t\t\t\t\tfinal int j = it.next().getValue();\n\
-    \t\t\t\t\t\tSystem.err.println(j);\n\t\t\t\t\t\tif(x[i] - x[j] < y[i] - y[j])\
-    \ {\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tres.add(new Edge(i, j, Math.abs(x[i]\
-    \ - x[j]) + Math.abs(y[i] - y[j])));\n\t\t\t\t\t\tit.remove();\n\t\t\t\t\t}\n\t\
-    \t\t\t\tidx.put(-y[i], i);\n\t\t\t\t}\n\t\t\t\tfinal var tmp = y;\n\t\t\t\tSystem.arraycopy(x,\
-    \ 0, y, 0, x.length);\n\t\t\t\tSystem.arraycopy(tmp, 0, x, 0, x.length);\n\t\t\
-    \t}\n\t\t\tfor(int i = 0; i < x.length; ++i) {\n\t\t\t\tx[i] = -x[i];\n\t\t\t\
-    }\n\t\t}\n\t\treturn res;\n\t}\n\tfinal ArrayList<Edge> manhattan(long[] x, long[]\
-    \ y) {\n\t\tif(x.length != y.length) {\n\t\t\tthrow new AssertionError(\"x.length\
-    \ != y.length\");\n\t\t}\n\t\tfinal var res = new ArrayList<Edge>();\n\t\tint[]\
-    \ id = Utility.iota(x.length);\n\t\tfor(int s = 0; s < 2; ++s) {\n\t\t\tfor(int\
-    \ t = 0; t < 2; ++t) {\n\t\t\t\tid = Arrays.stream(id).boxed().sorted((i, j) ->\
-    \ Long.compare(x[i] + y[i], x[j] + y[j])).mapToInt(i -> i).toArray();\n\t\t\t\t\
-    final var idx = new TreeMap<Long, Integer>();\n\t\t\t\tfor(final var i: id) {\n\
-    \t\t\t\t\tfinal var it = idx.tailMap(y[i]).entrySet().iterator();\n\t\t\t\t\t\
-    while(it.hasNext()) {\n\t\t\t\t\t\tfinal int j = it.next().getValue();\n\t\t\t\
-    \t\t\tif(x[i] - x[j] < y[i] - y[j]) {\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t}\n\t\
-    \t\t\t\t\tres.add(new Edge(i, j, Math.abs(x[i] - x[j]) + Math.abs(y[i] - y[j])));\n\
-    \t\t\t\t\t\tit.remove();\n\t\t\t\t\t}\n\t\t\t\t\tidx.put(-y[i], i);\n\t\t\t\t\
-    }\n\t\t\t\tfinal var tmp = y;\n\t\t\t\tSystem.arraycopy(x, 0, y, 0, x.length);\n\
-    \t\t\t\tSystem.arraycopy(tmp, 0, x, 0, x.length);\n\t\t\t}\n\t\t\tfor(int i =\
-    \ 0; i < x.length; ++i) {\n\t\t\t\tx[i] = -x[i];\n\t\t\t}\n\t\t}\n\t\treturn res;\n\
-    \t}\n}\n\nfinal class UnionFind {\n\tprivate final int[] par;\n\tUnionFind(final\
-    \ int n) {\n\t\tpar = new int[n];\n\t\tArrays.fill(par, -1);\n\t}\n\tfinal int\
-    \ root(final int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i; }\n\tfinal\
-    \ int size(final int i){ return -par[root(i)]; }\n\tfinal boolean unite(int i,\
-    \ int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) return false;\n\
-    \t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i]\
-    \ += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\t}\n\tfinal boolean same(final\
-    \ int i, final int j){ return root(i) == root(j); }\n\tfinal ArrayList<ArrayList<Integer>>\
+    \ MST(e, res);\n\t}\n}\n\nfinal class UnionFind {\n\tprivate final int[] par;\n\
+    \tUnionFind(final int n) {\n\t\tpar = new int[n];\n\t\tArrays.fill(par, -1);\n\
+    \t}\n\tfinal int root(final int i){ return par[i] >= 0 ? par[i] = root(par[i])\
+    \ : i; }\n\tfinal int size(final int i){ return -par[root(i)]; }\n\tfinal boolean\
+    \ unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) return\
+    \ false;\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\
+    \t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\t}\n\tfinal boolean\
+    \ same(final int i, final int j){ return root(i) == root(j); }\n\tfinal ArrayList<ArrayList<Integer>>\
     \ groups() {\n\t\tfinal int n = par.length;\n\t\tArrayList<ArrayList<Integer>>\
     \ res = new ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> res.add(new\
     \ ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\
@@ -1028,7 +994,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
-  timestamp: '2023-12-12 02:56:10+09:00'
+  timestamp: '2023-12-14 15:50:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java

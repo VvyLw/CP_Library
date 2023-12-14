@@ -230,7 +230,7 @@ data:
   - Java/extension/UnionFind.java
   - Java/extension/PrimeCounter.java
   - Java/all.java
-  timestamp: '2023-12-12 02:56:10+09:00'
+  timestamp: '2023-12-14 15:50:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/SuffixArray.java
