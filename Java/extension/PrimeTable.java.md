@@ -8,6 +8,9 @@ data:
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
+    path: Java/extension/EulerPhiTable.java
+    title: Java/extension/EulerPhiTable.java
+  - icon: ':warning:'
     path: Java/extension/FenwickTree.java
     title: Java/extension/FenwickTree.java
   - icon: ':warning:'
@@ -52,6 +55,9 @@ data:
   - icon: ':warning:'
     path: Java/extension/WaveletMatrix.java
     title: Java/extension/WaveletMatrix.java
+  - icon: ':warning:'
+    path: Java/extension/WeightedGraph.java
+    title: Java/extension/WeightedGraph.java
   - icon: ':warning:'
     path: Java/extension/WeightedUnionFind.java
     title: Java/extension/WeightedUnionFind.java
@@ -63,6 +69,9 @@ data:
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
+    path: Java/extension/EulerPhiTable.java
+    title: Java/extension/EulerPhiTable.java
+  - icon: ':warning:'
     path: Java/extension/FenwickTree.java
     title: Java/extension/FenwickTree.java
   - icon: ':warning:'
@@ -107,6 +116,9 @@ data:
   - icon: ':warning:'
     path: Java/extension/WaveletMatrix.java
     title: Java/extension/WaveletMatrix.java
+  - icon: ':warning:'
+    path: Java/extension/WeightedGraph.java
+    title: Java/extension/WeightedGraph.java
   - icon: ':warning:'
     path: Java/extension/WeightedUnionFind.java
     title: Java/extension/WeightedUnionFind.java
@@ -139,8 +151,10 @@ data:
   - Java/extension/PrefixSum.java
   - Java/extension/SegmentTree.java
   - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/WeightedGraph.java
   - Java/extension/PrimeFactor.java
   - Java/extension/UnionFind.java
+  - Java/extension/EulerPhiTable.java
   - Java/extension/Huitloxopetl.java
   - Java/extension/LowestCommonAncestor.java
   - Java/extension/WaveletMatrix.java
@@ -160,8 +174,10 @@ data:
   - Java/extension/PrefixSum.java
   - Java/extension/SegmentTree.java
   - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/WeightedGraph.java
   - Java/extension/PrimeFactor.java
   - Java/extension/UnionFind.java
+  - Java/extension/EulerPhiTable.java
   - Java/extension/Huitloxopetl.java
   - Java/extension/LowestCommonAncestor.java
   - Java/extension/WaveletMatrix.java
@@ -173,7 +189,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-15 05:55:57+09:00'
+  timestamp: '2023-12-16 07:59:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/PrimeTable.java

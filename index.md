@@ -68,6 +68,9 @@ data:
       path: Java/extension/DoubleEndedPriorityQueue.java
       title: Java/extension/DoubleEndedPriorityQueue.java
     - icon: ':warning:'
+      path: Java/extension/EulerPhiTable.java
+      title: Java/extension/EulerPhiTable.java
+    - icon: ':warning:'
       path: Java/extension/FenwickTree.java
       title: Java/extension/FenwickTree.java
     - icon: ':warning:'
@@ -115,6 +118,9 @@ data:
     - icon: ':warning:'
       path: Java/extension/WaveletMatrix.java
       title: Java/extension/WaveletMatrix.java
+    - icon: ':warning:'
+      path: Java/extension/WeightedGraph.java
+      title: Java/extension/WeightedGraph.java
     - icon: ':warning:'
       path: Java/extension/WeightedUnionFind.java
       title: Java/extension/WeightedUnionFind.java

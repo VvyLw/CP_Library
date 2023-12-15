@@ -8,6 +8,9 @@ data:
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
+    path: Java/extension/EulerPhiTable.java
+    title: Java/extension/EulerPhiTable.java
+  - icon: ':warning:'
     path: Java/extension/FenwickTree.java
     title: Java/extension/FenwickTree.java
   - icon: ':warning:'
@@ -52,6 +55,9 @@ data:
   - icon: ':warning:'
     path: Java/extension/WaveletMatrix.java
     title: Java/extension/WaveletMatrix.java
+  - icon: ':warning:'
+    path: Java/extension/WeightedGraph.java
+    title: Java/extension/WeightedGraph.java
   - icon: ':warning:'
     path: Java/extension/WeightedUnionFind.java
     title: Java/extension/WeightedUnionFind.java
@@ -63,6 +69,9 @@ data:
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
+    path: Java/extension/EulerPhiTable.java
+    title: Java/extension/EulerPhiTable.java
+  - icon: ':warning:'
     path: Java/extension/FenwickTree.java
     title: Java/extension/FenwickTree.java
   - icon: ':warning:'
@@ -107,6 +116,9 @@ data:
   - icon: ':warning:'
     path: Java/extension/WaveletMatrix.java
     title: Java/extension/WaveletMatrix.java
+  - icon: ':warning:'
+    path: Java/extension/WeightedGraph.java
+    title: Java/extension/WeightedGraph.java
   - icon: ':warning:'
     path: Java/extension/WeightedUnionFind.java
     title: Java/extension/WeightedUnionFind.java
@@ -121,65 +133,53 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/extension/Graph.java\n"
   code: "package extension;\n\nimport java.util.ArrayDeque;\nimport java.util.ArrayList;\n\
-    import java.util.Arrays;\nimport java.util.Collections;\nimport java.util.PriorityQueue;\n\
-    import java.util.Queue;\nimport java.util.stream.IntStream;\n\nfinal class Edge\
-    \ {\n\tpublic int src;\n\tpublic int to;\n\tpublic long cost;\n\tEdge(final int\
-    \ to) {\n\t\tthis.to = to;\n\t}\n\tEdge(final int to, final long cost) {\n\t\t\
-    this.to = to;\n\t\tthis.cost = cost;\n\t}\n\tEdge(final int src, final int to,\
-    \ final long cost) {\n\t\tthis.src = src;\n\t\tthis.to = to;\n\t\tthis.cost =\
-    \ cost;\n\t}\n\t@Override\n\tpublic final boolean equals(final Object o) {\n\t\
-    \tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() !=\
-    \ o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Edge e = (Edge) o;\n\t\
-    \tif(src != e.src) {\n\t\t\treturn false;\n\t\t}\n\t\tif(to != e.to) {\n\t\t\t\
-    return false;\n\t\t}\n\t\treturn cost == e.cost;\n\t}\n\t@Override\n\tpublic final\
-    \ int hashCode() {\n\t\tint result = 17;\n\t\tresult = 31 * result + src;\n\t\t\
-    result = 31 * result + to;\n\t\tresult = 31 * result + (int) (cost ^ (cost >>>\
-    \ 32)); // XOR for long values\n\t\treturn result;\n\t}\n\t@Override\n\tpublic\
-    \ final String toString(){ return src + \" \" + to + \" \" + cost; }\n}\nclass\
-    \ MST {\n\tpublic final ArrayList<Edge> tree;\n\tpublic final long cost;\n\tMST(final\
-    \ ArrayList<Edge> tree, final long cost) {\n\t\tthis.tree = tree;\n\t\tthis.cost\
-    \ = cost;\n\t}\n}\nclass Graph extends ArrayList<ArrayList<Edge>> {\n\tprotected\
-    \ final boolean undirected;\n\tprotected final int n, indexed;\n\tGraph(final\
-    \ int n, final int indexed, final boolean undirected) {\n\t\tthis.n = n;\n\t\t\
-    this.indexed = indexed;\n\t\tthis.undirected = undirected;\n\t\tIntStream.range(0,\
+    import java.util.Arrays;\nimport java.util.Queue;\nimport java.util.Stack;\nimport\
+    \ java.util.stream.IntStream;\n\nfinal class Edge {\n\tpublic int src;\n\tpublic\
+    \ int to;\n\tpublic long cost;\n\tEdge(final int to) {\n\t\tthis.to = to;\n\t\
+    }\n\tEdge(final int to, final long cost) {\n\t\tthis.to = to;\n\t\tthis.cost =\
+    \ cost;\n\t}\n\tEdge(final int src, final int to, final long cost) {\n\t\tthis.src\
+    \ = src;\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\t@Override\n\tpublic\
+    \ final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\
+    \t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\
+    \t\t}\n\t\tfinal Edge e = (Edge) o;\n\t\tif(src != e.src) {\n\t\t\treturn false;\n\
+    \t\t}\n\t\tif(to != e.to) {\n\t\t\treturn false;\n\t\t}\n\t\treturn cost == e.cost;\n\
+    \t}\n\t@Override\n\tpublic final int hashCode() {\n\t\tint result = 17;\n\t\t\
+    result = 31 * result + src;\n\t\tresult = 31 * result + to;\n\t\tresult = 31 *\
+    \ result + (int) (cost ^ (cost >>> 32)); // XOR for long values\n\t\treturn result;\n\
+    \t}\n\t@Override\n\tpublic final String toString(){ return \"(\" + src + \", \"\
+    \ + to + \", \" + cost + \")\"; }\n}\nclass Graph extends ArrayList<ArrayList<Edge>>\
+    \ {\n\tprotected final boolean undirected;\n\tprotected final int n, indexed;\n\
+    \tprotected final ArrayList<Edge> edge;\n\tGraph(final int n, final int indexed,\
+    \ final boolean undirected) {\n\t\tthis.n = n;\n\t\tthis.indexed = indexed;\n\t\
+    \tthis.undirected = undirected;\n\t\tedge = new ArrayList<>();\n\t\tIntStream.range(0,\
     \ n).forEach(i -> this.add(new ArrayList<>()));\n\t}\n\tfinal void addEdge(int\
     \ a, int b) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(b));\n\
-    \t\tif(undirected) {\n\t\t\tthis.get(b).add(new Edge(a));\n\t\t}\n\t}\n\tprotected\
-    \ final int[] allDist(final int v) {\n\t\tint[] d = new int[n];\n\t\tArrays.fill(d,\
-    \ -1);\n\t\tQueue<Integer> q = new ArrayDeque<>();\n\t\td[v] = 0;\n\t\tq.add(v);\n\
-    \t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\t\t\tfor(final var\
-    \ el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\t\tcontinue;\n\t\t\
-    \t\t}\n\t\t\t\td[el.to]=d[tmp]+1;\n\t\t\t\tq.add(el.to);\n\t\t\t}\n\t\t}\n\t\t\
-    return d;\n\t}\n\tprotected final int dist(final int u, final int v){ return allDist(u)[v];\
-    \ }\n}\nfinal class WeightedGraph extends Graph {\n\tWeightedGraph(final int n,\
-    \ final int indexed, final boolean undirected) {\n\t\tsuper(n, indexed, undirected);\n\
-    \t}\n\tfinal void addEdge(int a, int b, final long cost) {\n\t\ta -= indexed;\n\
-    \t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(b, cost));\n\t\tif(undirected)\
-    \ {\n\t\t\tthis.get(b).add(new Edge(a, cost));\n\t\t}\n\t}\n\tfinal long[] dijkstra(final\
-    \ int v) {\n\t\tlong[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
-    \t\tQueue<NumPair> dj = new PriorityQueue<>(Collections.reverseOrder());\n\t\t\
-    cost[v] = 0;\n\t\tdj.add(new NumPair(cost[v], v));\n\t\twhile(!dj.isEmpty()) {\n\
-    \t\t\tfinal var tmp = dj.poll();\n\t\t\tif(cost[tmp.second.intValue()] < tmp.first.longValue())\
-    \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final var el: this.get(tmp.second.intValue()))\
-    \ {\n\t\t\t\tif(cost[el.to] > tmp.first.longValue() + el.cost) {\n\t\t\t\t\tcost[el.to]\
-    \ = tmp.first.longValue() + el.cost;\n\t\t\t\t\tdj.add(new NumPair(cost[el.to],\
-    \ el.to));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[][]\
-    \ warshallFloyd() {\n\t\tlong[][] cost = new long[n][n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> Arrays.fill(cost[i], Long.MAX_VALUE));\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> cost[i][i] = 0);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final\
-    \ var j: this.get(i)) {\n\t\t\t\tcost[i][j.to] = j.cost;\n\t\t\t}\n\t\t}\n\t\t\
-    for(int k = 0 ; k < n; ++k) {\n\t\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\tfor(int\
-    \ j = 0; j < n; ++j) {\n\t\t\t\t\tif(cost[i][j] > cost[i][k] + cost[k][j]) {\n\
-    \t\t\t\t\t\tcost[i][j] = cost[i][k] + cost[k][j];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\
-    \t}\n\t\t}\n\t\treturn cost;\n\t}\n}"
+    \t\tedge.add(new Edge(a, b, 0));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new\
+    \ Edge(a));\n\t\t}\n\t}\n\tprotected final int[] allDist(final int v) {\n\t\t\
+    int[] d = new int[n];\n\t\tArrays.fill(d, -1);\n\t\tQueue<Integer> q = new ArrayDeque<>();\n\
+    \t\td[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp =\
+    \ q.poll();\n\t\t\tfor(final var el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] !=\
+    \ -1) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to]=d[tmp]+1;\n\t\t\t\t\
+    q.add(el.to);\n\t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\tprotected final int dist(final\
+    \ int u, final int v){ return allDist(u)[v]; }\n\tprotected final ArrayList<Integer>\
+    \ topologicalSort() {\n\t\tint[] deg = new int[n];\n\t\tfor(int i = 0; i < n;\
+    \ ++i) {\n\t\t\tfor(final var ed: this.get(i)) {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t\
+    }\n\t\t}\n\t\tfinal var sk = new Stack<Integer>();\n\t\tfor(int i = 0; i < n;\
+    \ ++i) {\n\t\t\tif(deg[i] == 0) {\n\t\t\t\tsk.add(i);\n\t\t\t}\n\t\t}\n\t\tfinal\
+    \ var ord = new ArrayList<Integer>();\n\t\twhile(!sk.isEmpty()) {\n\t\t\tfinal\
+    \ var tmp = sk.pop();\n\t\t\tord.add(tmp);\n\t\t\tfor(final var ed: this.get(tmp))\
+    \ {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\t\t\t\t}\n\t\t\
+    \t}\n\t\t}\n\t\treturn ord.size() == size() ? ord : new ArrayList<>();\n\t}\n}"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
   - Java/extension/PrefixSum.java
   - Java/extension/SegmentTree.java
   - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/WeightedGraph.java
   - Java/extension/PrimeFactor.java
   - Java/extension/UnionFind.java
+  - Java/extension/EulerPhiTable.java
   - Java/extension/PrimeTable.java
   - Java/extension/Huitloxopetl.java
   - Java/extension/LowestCommonAncestor.java
@@ -199,8 +199,10 @@ data:
   - Java/extension/PrefixSum.java
   - Java/extension/SegmentTree.java
   - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/WeightedGraph.java
   - Java/extension/PrimeFactor.java
   - Java/extension/UnionFind.java
+  - Java/extension/EulerPhiTable.java
   - Java/extension/PrimeTable.java
   - Java/extension/Huitloxopetl.java
   - Java/extension/LowestCommonAncestor.java
@@ -212,7 +214,7 @@ data:
   - Java/extension/SuffixArray.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-15 05:55:57+09:00'
+  timestamp: '2023-12-16 07:59:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Graph.java

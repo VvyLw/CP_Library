@@ -8,6 +8,9 @@ data:
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
+    path: Java/extension/EulerPhiTable.java
+    title: Java/extension/EulerPhiTable.java
+  - icon: ':warning:'
     path: Java/extension/FenwickTree.java
     title: Java/extension/FenwickTree.java
   - icon: ':warning:'
@@ -52,6 +55,9 @@ data:
   - icon: ':warning:'
     path: Java/extension/WaveletMatrix.java
     title: Java/extension/WaveletMatrix.java
+  - icon: ':warning:'
+    path: Java/extension/WeightedGraph.java
+    title: Java/extension/WeightedGraph.java
   - icon: ':warning:'
     path: Java/extension/WeightedUnionFind.java
     title: Java/extension/WeightedUnionFind.java
@@ -63,6 +69,9 @@ data:
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
+    path: Java/extension/EulerPhiTable.java
+    title: Java/extension/EulerPhiTable.java
+  - icon: ':warning:'
     path: Java/extension/FenwickTree.java
     title: Java/extension/FenwickTree.java
   - icon: ':warning:'
@@ -107,6 +116,9 @@ data:
   - icon: ':warning:'
     path: Java/extension/WaveletMatrix.java
     title: Java/extension/WaveletMatrix.java
+  - icon: ':warning:'
+    path: Java/extension/WeightedGraph.java
+    title: Java/extension/WeightedGraph.java
   - icon: ':warning:'
     path: Java/extension/WeightedUnionFind.java
     title: Java/extension/WeightedUnionFind.java
@@ -120,31 +132,27 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/extension/Huitloxopetl.java\n"
-  code: "//package extension;\n\nimport java.util.ArrayList;\nimport java.util.Collections;\n\
-    import java.util.Comparator;\nimport java.util.HashMap;\n\nclass Huitloxopetl\
-    \ {\n\tfinal long invNum(final int[] a) {\n\t\tfinal var b = Utility.sorted(a);\n\
-    \t\tfinal var id = new int[a.length];\n\t\tfor(int i = 0; i < a.length; ++i) {\n\
-    \t\t\tid[b[i]] = i;\n\t\t}\n\t\tfinal var bit = new FenwickTree(a.length);\n\t\
-    \tlong res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id[a[i]]);\n\
-    \t\t\tbit.add(id[a[i]], 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final\
-    \ long[] a) {\n\t\tfinal var b = Utility.sorted(a);\n\t\tfinal var id = new HashMap<Long,\
-    \ Integer>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\
-    \t\t}\n\t\tfinal var bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\t\
-    for(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
-    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal MST kruskal(final\
-    \ ArrayList<Edge> edge, final int n) {\n\t\tCollections.sort(edge, Comparator.comparing(e\
-    \ -> e.cost));\n\t\tfinal UnionFind uf = new UnionFind(n);\n\t\tfinal var e =\
-    \ new ArrayList<Edge>();\n\t\tlong res = 0;\n\t\tfor(final var ed: edge) {\n\t\
-    \t\tif(uf.unite(ed.src, ed.to)) {\n\t\t\t\te.add(ed);\n\t\t\t\tres += ed.cost;\n\
-    \t\t\t}\n\t\t}\n\t\treturn new MST(e, res);\n\t}\n}"
+  code: "import java.util.HashMap;\n\nclass Huitloxopetl {\n\tfinal long invNum(final\
+    \ int[] a) {\n\t\tfinal var b = Utility.sorted(a);\n\t\tfinal var id = new int[a.length];\n\
+    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid[b[i]] = i;\n\t\t}\n\t\tfinal\
+    \ var bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0;\
+    \ i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id[a[i]]);\n\t\t\tbit.add(id[a[i]],\
+    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final long[] a) {\n\t\t\
+    final var b = Utility.sorted(a);\n\t\tfinal var id = new HashMap<Long, Integer>();\n\
+    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
+    \ var bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0;\
+    \ i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\tbit.add(id.get(a[i]),\
+    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n}"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
   - Java/extension/PrefixSum.java
   - Java/extension/SegmentTree.java
   - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/WeightedGraph.java
   - Java/extension/PrimeFactor.java
   - Java/extension/UnionFind.java
+  - Java/extension/EulerPhiTable.java
   - Java/extension/PrimeTable.java
   - Java/extension/LowestCommonAncestor.java
   - Java/extension/WaveletMatrix.java
@@ -164,8 +172,10 @@ data:
   - Java/extension/PrefixSum.java
   - Java/extension/SegmentTree.java
   - Java/extension/DoubleEndedPriorityQueue.java
+  - Java/extension/WeightedGraph.java
   - Java/extension/PrimeFactor.java
   - Java/extension/UnionFind.java
+  - Java/extension/EulerPhiTable.java
   - Java/extension/PrimeTable.java
   - Java/extension/LowestCommonAncestor.java
   - Java/extension/WaveletMatrix.java
@@ -177,7 +187,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-15 05:55:57+09:00'
+  timestamp: '2023-12-16 07:59:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Huitloxopetl.java
