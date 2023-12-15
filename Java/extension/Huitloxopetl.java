@@ -1,8 +1,3 @@
-//package extension;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 
 class Huitloxopetl {
@@ -33,18 +28,5 @@ class Huitloxopetl {
 			bit.add(id.get(a[i]), 1);
 		}
 		return res;
-	}
-	final MST kruskal(final ArrayList<Edge> edge, final int n) {
-		Collections.sort(edge, Comparator.comparing(e -> e.cost));
-		final UnionFind uf = new UnionFind(n);
-		final var e = new ArrayList<Edge>();
-		long res = 0;
-		for(final var ed: edge) {
-			if(uf.unite(ed.src, ed.to)) {
-				e.add(ed);
-				res += ed.cost;
-			}
-		}
-		return new MST(e, res);
 	}
 }

@@ -3,9 +3,8 @@ package extension;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Stack;
 import java.util.stream.IntStream;
 
 final class Edge {
@@ -50,29 +49,24 @@ final class Edge {
 		return result;
 	}
 	@Override
-	public final String toString(){ return src + " " + to + " " + cost; }
-}
-class MST {
-	public final ArrayList<Edge> tree;
-	public final long cost;
-	MST(final ArrayList<Edge> tree, final long cost) {
-		this.tree = tree;
-		this.cost = cost;
-	}
+	public final String toString(){ return "(" + src + ", " + to + ", " + cost + ")"; }
 }
 class Graph extends ArrayList<ArrayList<Edge>> {
 	protected final boolean undirected;
 	protected final int n, indexed;
+	protected final ArrayList<Edge> edge;
 	Graph(final int n, final int indexed, final boolean undirected) {
 		this.n = n;
 		this.indexed = indexed;
 		this.undirected = undirected;
+		edge = new ArrayList<>();
 		IntStream.range(0, n).forEach(i -> this.add(new ArrayList<>()));
 	}
 	final void addEdge(int a, int b) {
 		a -= indexed;
 		b -= indexed;
 		this.get(a).add(new Edge(b));
+		edge.add(new Edge(a, b, 0));
 		if(undirected) {
 			this.get(b).add(new Edge(a));
 		}
@@ -96,57 +90,29 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		return d;
 	}
 	protected final int dist(final int u, final int v){ return allDist(u)[v]; }
-}
-final class WeightedGraph extends Graph {
-	WeightedGraph(final int n, final int indexed, final boolean undirected) {
-		super(n, indexed, undirected);
-	}
-	final void addEdge(int a, int b, final long cost) {
-		a -= indexed;
-		b -= indexed;
-		this.get(a).add(new Edge(b, cost));
-		if(undirected) {
-			this.get(b).add(new Edge(a, cost));
-		}
-	}
-	final long[] dijkstra(final int v) {
-		long[] cost = new long[n];
-		Arrays.fill(cost, Long.MAX_VALUE);
-		Queue<NumPair> dj = new PriorityQueue<>(Collections.reverseOrder());
-		cost[v] = 0;
-		dj.add(new NumPair(cost[v], v));
-		while(!dj.isEmpty()) {
-			final var tmp = dj.poll();
-			if(cost[tmp.second.intValue()] < tmp.first.longValue()) {
-				continue;
-			}
-			for(final var el: this.get(tmp.second.intValue())) {
-				if(cost[el.to] > tmp.first.longValue() + el.cost) {
-					cost[el.to] = tmp.first.longValue() + el.cost;
-					dj.add(new NumPair(cost[el.to], el.to));
-				}
-			}
-		}
-		return cost;
-	}
-	final long[][] warshallFloyd() {
-		long[][] cost = new long[n][n];
-		IntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], Long.MAX_VALUE));
-		IntStream.range(0, n).forEach(i -> cost[i][i] = 0);
+	protected final ArrayList<Integer> topologicalSort() {
+		int[] deg = new int[n];
 		for(int i = 0; i < n; ++i) {
-			for(final var j: this.get(i)) {
-				cost[i][j.to] = j.cost;
+			for(final var ed: this.get(i)) {
+				deg[ed.to]++;
 			}
 		}
-		for(int k = 0 ; k < n; ++k) {
-			for(int i = 0; i < n; ++i) {
-				for(int j = 0; j < n; ++j) {
-					if(cost[i][j] > cost[i][k] + cost[k][j]) {
-						cost[i][j] = cost[i][k] + cost[k][j];
-					}
+		final var sk = new Stack<Integer>();
+		for(int i = 0; i < n; ++i) {
+			if(deg[i] == 0) {
+				sk.add(i);
+			}
+		}
+		final var ord = new ArrayList<Integer>();
+		while(!sk.isEmpty()) {
+			final var tmp = sk.pop();
+			ord.add(tmp);
+			for(final var ed: this.get(tmp)) {
+				if(--deg[ed.to] == 0) {
+					sk.add(ed.to);
 				}
 			}
 		}
-		return cost;
+		return ord.size() == size() ? ord : new ArrayList<>();
 	}
 }

@@ -18,6 +18,7 @@ import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -40,11 +41,8 @@ class VvyLw extends Utility {
 }
 final class Main extends VvyLw {
 	public static void main(final String[] args) {
-		int t = 1;
-		//t = sc.ni();
-		while(t-- > 0) {
-			solve();
-		}
+		final int t = 1;//sc.ni();
+		IntStream.range(0, t).forEach(i -> solve());
 		o.flush();
 		sc.close();
 		o.close();
@@ -56,7 +54,7 @@ class Utility {
 	protected static final String yes(final boolean ok){ return ok ? "Yes" : "No"; }
 	protected static final String no(final boolean ok){ return yes(!ok); }
 	protected static final long sqr(final long x){ return x * x; }
-	protected static final int mod(final long n, final int m){ return (int) ((n + m) % m); }
+	protected static final long mod(final long n, final long m){ return (n + m) % m; }
 	protected static final long ceil(final long a, final long b){ return (long) Math.ceil((double) a / b); }
 	protected static final double round(final double a, final long b, final int c) {
 		final long d = intPow(10, c);
@@ -73,7 +71,7 @@ class Utility {
 		}
 		return res;
 	}
-	protected static final long intPow(long a, long b, final int m) {
+	protected static final long intPow(long a, long b, final long m) {
 		long res = 1;
 		while(b > 0) {
 			if(b % 2 == 1) {
@@ -86,6 +84,16 @@ class Utility {
 		}
 		return res;
 	}
+	protected static final long lcm(final long a, final long b){ return a * b / gcd(a, b); }
+	protected static final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1, (x, y) -> lcm(x, y)); }
+	protected static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }
+	protected static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }
+	protected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }
+	protected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }
+	protected static final int min(final int... a){ return Arrays.stream(a).reduce(Integer.MAX_VALUE, (x, y) -> Math.min(x, y)); }
+	protected static final long min(final long... a){ return Arrays.stream(a).reduce(Long.MAX_VALUE, (x, y) -> Math.min(x, y)); }
+	protected static final int max(final int... a){ return Arrays.stream(a).reduce(Integer.MIN_VALUE, (x, y) -> Math.max(x, y)); }
+	protected static final long max(final long... a){ return Arrays.stream(a).reduce(Long.MIN_VALUE, (x, y) -> Math.max(x, y)); }
 	protected static final ArrayList<Long> div(final long n) {
 		ArrayList<Long> d = new ArrayList<>();
 		for(long i = 1; i * i <= n; ++i) {
@@ -116,6 +124,21 @@ class Utility {
 			pf.add(Pair.of(n, 1));
 		}
 		return pf;
+	}
+	protected static final long eulerPhi(long n) {
+		long res = n;
+		for(long i = 2; i * i <= n; ++i) {
+			if(n % i == 0) {
+				res -= res / i;
+				while(n % i == 0) {
+					n /= i;
+				}
+			}
+		}
+		if(n > 1) {
+			res -= res / n;
+		}
+		return res;
 	}
 	protected static final long binom(int a, final int b) {
 		long res = 1;
@@ -432,12 +455,6 @@ class Utility {
 		IntStream.range(0, w).forEach(i -> res[i] = new String(t[i]));
 		return res;
 	}
-	protected static final long lcm(final long a, final long b){ return a * b / gcd(a, b); }
-	protected static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }
-	protected static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }
-	protected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }
-	protected static final long min(final long... a){ return Arrays.stream(a).reduce(Long.MAX_VALUE, (x, y) -> Math.min(x, y)); }
-	protected static final long max(final long... a){ return Arrays.stream(a).reduce(Long.MIN_VALUE, (x, y) -> Math.max(x, y)); }
 	protected static final <F, S> ArrayList<F> first(final List<Pair<F, S>> p) {
 		ArrayList<F> f = new ArrayList<>();
 		for(final var el: p) {
@@ -490,11 +507,19 @@ class Utility {
 		}
 		return ok;
 	}
-	protected static final ArrayList<Integer> press(final ArrayList<Long> a) {
+	protected static final ArrayList<Integer> press(final int[] a) {
 		ArrayList<Integer> res = new ArrayList<>();
-		final var cp = a.stream().sorted().distinct().collect(Collectors.toList());
+		final var x = Arrays.stream(a).sorted().distinct().toArray();
 		for(final var el: a) {
-			res.add(lowerBound(cp, el));
+			res.add(lowerBound(x, el));
+		}
+		return res;
+	}
+	protected static final ArrayList<Integer> press(final long[] a) {
+		ArrayList<Integer> res = new ArrayList<>();
+		final var x = Arrays.stream(a).sorted().distinct().toArray();
+		for(final var el: a) {
+			res.add(lowerBound(x, el));
 		}
 		return res;
 	}
@@ -585,6 +610,29 @@ class Utility {
 			}
 		}
 		return ret;
+	}
+	protected static final long tetration(final long a, final long b, final long m) {
+		if(m == 1) {
+			return 0;
+		}
+		if(a == 0) {
+			return (b & 1) == 0 ? 1 : 0;
+		}
+		if(b == 0) {
+			return 1;
+		}
+		if(b == 1) {
+			return a % m;
+		}
+		if(b == 2) {
+			return intPow(a, a, m);
+		}
+		final var phi = eulerPhi(m);
+		var tmp = tetration(a, b - 1, phi);
+		if(tmp == 0) {
+			tmp += phi;
+		}
+		return intPow(a, tmp, m);
 	}
 	protected interface TriFunction<T, U, V, W> {
 		public W apply(final T a, final U b, final V c);
@@ -862,19 +910,6 @@ class Huitloxopetl {
 		}
 		return res;
 	}
-	final MST kruskal(final ArrayList<Edge> edge, final int n) {
-		Collections.sort(edge, Comparator.comparing(e -> e.cost));
-		final UnionFind uf = new UnionFind(n);
-		final var e = new ArrayList<Edge>();
-		long res = 0;
-		for(final var ed: edge) {
-			if(uf.unite(ed.src, ed.to)) {
-				e.add(ed);
-				res += ed.cost;
-			}
-		}
-		return new MST(e, res);
-	}
 }
 
 final class UnionFind {
@@ -1050,29 +1085,24 @@ final class Edge {
 		return result;
 	}
 	@Override
-	public final String toString(){ return src + " " + to + " " + cost; }
-}
-class MST {
-	public final ArrayList<Edge> tree;
-	public final long cost;
-	MST(final ArrayList<Edge> tree, final long cost) {
-		this.tree = tree;
-		this.cost = cost;
-	}
+	public final String toString(){ return "(" + src + ", " + to + ", " + cost + ")"; }
 }
 class Graph extends ArrayList<ArrayList<Edge>> {
 	protected final boolean undirected;
 	protected final int n, indexed;
+	protected final ArrayList<Edge> edge;
 	Graph(final int n, final int indexed, final boolean undirected) {
 		this.n = n;
 		this.indexed = indexed;
 		this.undirected = undirected;
+		edge = new ArrayList<>();
 		IntStream.range(0, n).forEach(i -> this.add(new ArrayList<>()));
 	}
 	final void addEdge(int a, int b) {
 		a -= indexed;
 		b -= indexed;
 		this.get(a).add(new Edge(b));
+		edge.add(new Edge(a, b, 0));
 		if(undirected) {
 			this.get(b).add(new Edge(a));
 		}
@@ -1096,6 +1126,40 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		return d;
 	}
 	protected final int dist(final int u, final int v){ return allDist(u)[v]; }
+	protected final ArrayList<Integer> topologicalSort() {
+		int[] deg = new int[n];
+		for(int i = 0; i < n; ++i) {
+			for(final var ed: this.get(i)) {
+				deg[ed.to]++;
+			}
+		}
+		final var sk = new Stack<Integer>();
+		for(int i = 0; i < n; ++i) {
+			if(deg[i] == 0) {
+				sk.add(i);
+			}
+		}
+		final var ord = new ArrayList<Integer>();
+		while(!sk.isEmpty()) {
+			final var tmp = sk.pop();
+			ord.add(tmp);
+			for(final var ed: this.get(tmp)) {
+				if(--deg[ed.to] == 0) {
+					sk.add(ed.to);
+				}
+			}
+		}
+		return ord.size() == size() ? ord : new ArrayList<>();
+	}
+}
+
+final class MST {
+	public final ArrayList<Edge> tree;
+	public final long cost;
+	MST(final ArrayList<Edge> tree, final long cost) {
+		this.tree = tree;
+		this.cost = cost;
+	}
 }
 final class WeightedGraph extends Graph {
 	WeightedGraph(final int n, final int indexed, final boolean undirected) {
@@ -1105,6 +1169,7 @@ final class WeightedGraph extends Graph {
 		a -= indexed;
 		b -= indexed;
 		this.get(a).add(new Edge(b, cost));
+		edge.add(new Edge(a, b, cost));
 		if(undirected) {
 			this.get(b).add(new Edge(a, cost));
 		}
@@ -1112,7 +1177,7 @@ final class WeightedGraph extends Graph {
 	final long[] dijkstra(final int v) {
 		long[] cost = new long[n];
 		Arrays.fill(cost, Long.MAX_VALUE);
-		Queue<NumPair> dj = new PriorityQueue<>(Collections.reverseOrder());
+		Queue<NumPair> dj = new PriorityQueue<>();
 		cost[v] = 0;
 		dj.add(new NumPair(cost[v], v));
 		while(!dj.isEmpty()) {
@@ -1129,9 +1194,31 @@ final class WeightedGraph extends Graph {
 		}
 		return cost;
 	}
+	final long[] bellmanFord(final int v) {
+		long[] cost = new long[n];
+		Arrays.fill(cost, Long.MAX_VALUE);
+		cost[v] = 0;
+		for(int i = 0; i < edge.size() - 1; ++i) {
+			for(final var e: edge) {
+				if(cost[e.src] == Long.MAX_VALUE) {
+					continue;
+				}
+				cost[e.to] = Math.min(cost[e.to], cost[e.src] + e.cost);
+			}
+		}
+		for(final var e: edge) {
+			if(cost[e.src] == Long.MAX_VALUE) {
+				continue;
+			}
+			if(cost[e.src] + e.cost < cost[e.to]) {
+				return null;
+			}
+		}
+		return cost;
+	}
 	final long[][] warshallFloyd() {
 		long[][] cost = new long[n][n];
-		IntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], Long.MAX_VALUE));
+		IntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], VvyLw.linf));
 		IntStream.range(0, n).forEach(i -> cost[i][i] = 0);
 		for(int i = 0; i < n; ++i) {
 			for(final var j: this.get(i)) {
@@ -1141,6 +1228,9 @@ final class WeightedGraph extends Graph {
 		for(int k = 0 ; k < n; ++k) {
 			for(int i = 0; i < n; ++i) {
 				for(int j = 0; j < n; ++j) {
+					if(cost[i][k] == VvyLw.linf || cost[k][j] == VvyLw.linf) {
+						continue;
+					}
 					if(cost[i][j] > cost[i][k] + cost[k][j]) {
 						cost[i][j] = cost[i][k] + cost[k][j];
 					}
@@ -1149,17 +1239,159 @@ final class WeightedGraph extends Graph {
 		}
 		return cost;
 	}
+	final MST kruskal() {
+		final UnionFind uf = new UnionFind(n);
+		final var e = new ArrayList<Edge>();
+		long res = 0;
+		for(final var ed: edge.stream().sorted(Comparator.comparing(ed -> ed.cost)).collect(Collectors.toList())) {
+			if(uf.unite(ed.src, ed.to)) {
+				e.add(ed);
+				res += ed.cost;
+			}
+		}
+		return new MST(e, res);
+	}
+	final MST directed(final int v) {
+		@SuppressWarnings("unchecked")
+		final var ed = (ArrayList<Edge>) edge.clone();
+		for(int i = 0; i < n; ++i) {
+			if(i != v) {
+				ed.add(new Edge(i, v, 0));
+			}
+		}
+		int x = 0;
+		int[] par = new int[2 * n], vis = new int[2 * n], link = new int[2 * n];
+		Arrays.fill(par, -1);
+		Arrays.fill(vis, -1);
+		Arrays.fill(link, -1);
+		final var heap = new SkewHeap(true);
+		Node[] ins = new Node[2 * n];
+		Arrays.fill(ins, null);
+		for(int i = 0; i < ed.size(); i++) {
+			final var e = ed.get(i);
+			ins[e.to] = heap.push(ins[e.to], e.cost, i);
+		}
+		final var st = new ArrayList<Integer>();
+		final Function<Integer, Integer> go = z -> {
+			z = ed.get(ins[z].idx).src;
+			while(link[z] != -1) {
+				st.add(z);
+				z = link[z];
+			}
+			for(final var p: st) {
+				link[p] = z;
+			}
+			st.clear();
+			return z;
+		};
+		for(int i = n; ins[x] != null; ++i) {
+			while(vis[x] == -1) {
+				vis[x] = 0;
+				x = go.apply(x);
+			}
+			while(x != i) {
+				final var w = ins[x].key;
+				var z = heap.pop(ins[x]);
+				z = heap.add(z, -w);
+				ins[i] = heap.meld(ins[i], z);
+				par[x] = i;
+				link[x] = i;
+				x = go.apply(x);
+			}
+			while(ins[x] != null && go.apply(x) == x) {
+				ins[x] = heap.pop(ins[x]);
+			}
+		}
+		for(int i = v; i != -1; i = par[i]) {
+			vis[i] = 1;
+		}
+		long cost = 0;
+		ArrayList<Edge> e = new ArrayList<>();
+		for(int i = x; i >= 0; i--) {
+			if(vis[i] == 1) {
+				continue;
+			}
+			cost += ed.get(ins[i].idx).cost;
+			e.add(ed.get(ins[i].idx));
+			for(int j = ed.get(ins[i].idx).to; j != -1 && vis[j] == 0; j = par[j]) {
+				vis[j] = 1;
+			}
+		}
+		return new MST(e, cost);
+	}
+}
+class Node {
+	long key, lazy;
+	Node l, r;
+	int idx;
+	Node(final long key, final int idx) {
+		this.key = key;
+		this.idx = idx;
+		lazy = 0;
+		l = null;
+		r = null;
+	}
+}
+class SkewHeap {
+	private final boolean isMin;	
+	SkewHeap(final boolean isMin){ this.isMin = isMin; }
+	private final Node alloc(final long key, final int idx){ return new Node(key, idx); }
+	private final Node propagate(final Node t) {
+		if(t != null && t.lazy != 0) {
+			if(t.l != null) {
+				t.l.lazy += t.lazy;
+			}
+			if(t.r != null) {
+				t.r.lazy += t.lazy;
+			}
+			t.key += t.lazy;
+			t.lazy = 0;
+		}
+		return t;
+	}
+	final Node meld(Node x, Node y) {
+		propagate(x);
+		propagate(y);
+		if(x == null || y == null) {
+			return x != null ? x : y;
+		}
+		if((x.key < y.key) ^ isMin) {
+			final var tmp = x;
+			x = y;
+			y = tmp;
+		}
+		x.r = meld(y, x.r);
+		final var tmp = x.l;
+		x.l = x.r;
+		x.r = tmp;
+		return x;
+	}
+	final Node push(final Node t, final long key, int idx){ return meld(t, alloc(key, idx)); }
+	final Node pop(final Node t) {
+		if(t == null) {
+			throw new NullPointerException();
+		}
+		return meld(t.l, t.r);
+	}
+	final Node add(Node t, final long lazy) {
+		if(t != null) {
+			t.lazy += lazy;
+			propagate(t);
+		}
+		return t;
+	}
 }
 
 final class LowestCommonAncestor<G extends Graph> {
 	private final int log;
-	final int[] dep;
+	final int[] dep, sum;
 	private final G g;
 	final int[][] table;
 	LowestCommonAncestor(final G g) {
 		this.g = g;
 		final int n = g.size();
 		dep = new int[n];
+		sum = new int[n];
 		log = Integer.toBinaryString(n).length();
 		table = new int[log][n];
 		IntStream.range(0, log).forEach(i -> Arrays.fill(table[i], -1));
@@ -1170,6 +1402,7 @@ final class LowestCommonAncestor<G extends Graph> {
 		dep[idx] = d;
 		for(final var el: g.get(idx)) {
 			if(el.to != par) {
+				sum[el.to] = (int) (sum[idx] + el.cost); 
 				dfs(el.to, idx, d + 1);
 			}
 		}
@@ -1192,11 +1425,7 @@ final class LowestCommonAncestor<G extends Graph> {
 			v ^= u;
 			u ^= v;
 		}
-		for(int i = log; --i >= 0;) {
-			if(((dep[v] - dep[u]) >> i) % 2 == 1) {
-				v = table[i][v];
-			}
-		}
+		v = climb(v, dep[v] - dep[u]);
 		if(u == v) {
 			return u;
 		}
@@ -1208,7 +1437,16 @@ final class LowestCommonAncestor<G extends Graph> {
 		}
 		return table[0][u];
 	}
-	final int dist(final int u, final int v){ return dep[u] + dep[v] - 2 * query(u, v); }
+	final int climb(int u, final int k) {
+		if(dep[u] < k) {
+			return -1;
+		}
+		for(int i = log; --i >= 0;) {
+			if(((k >> i) % 2) == 1) u = table[i][u];
+		}
+		return u;
+	}
+	final int dist(final int u, final int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }
 }
 
 final class PrimeTable {
@@ -1238,11 +1476,6 @@ final class PrimeTable {
 	}
 	final boolean[] table(){ return sieve; }
 	final int[] get(){ return p; }
-	final boolean binarySearch(final int x){ return Arrays.binarySearch(p, x) >= 0; }
-	final int lowerBound(final int x) {
-		final int id = Arrays.binarySearch(p, x);
-		return id < 0 ? -(id + 1) : id; 
-	}
 }
 
 final class PrimeFactor {
@@ -1523,6 +1756,31 @@ final class BigPrime {
 		l.addAll(r);
 		Collections.sort(l);
 		return l;
+	}
+}
+
+final class EulerPhiTable {
+	private final int n;
+	private final int[] euler;
+	EulerPhiTable(final int n) {
+		this.n = n;
+		euler = Utility.iota(n + 1);
+		for(int i = 2; i <= n; ++i) {
+			if(euler[i] == i) {
+				for(int j = i; j <= n; j += i) {
+					euler[j] = euler[j] / i * (i - 1);
+				}
+			}
+		}
+	}
+	final int[] get(){ return euler; }
+	final long[] acc() {
+		long[] ret = new long[n + 1];
+		ret[1] = 2;
+		for(int i = 2; i <= n; ++i) {
+			ret[i] = ret[i - 1] + euler[i];
+		}
+		return ret;
 	}
 }
 

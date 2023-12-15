@@ -16,7 +16,6 @@ class VvyLw extends Utility {
 	protected static final MyScanner sc = new MyScanner();
 	protected static final MyPrinter o = new MyPrinter(System.out, false);
 	protected static final MyPrinter e = new MyPrinter(System.err, true);
-	static final Huitloxopetl why = new Huitloxopetl();
 	static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};
 	static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};
 	static final int inf = 1 << 30;
@@ -46,7 +45,7 @@ class Utility {
 	protected static final String yes(final boolean ok){ return ok ? "Yes" : "No"; }
 	protected static final String no(final boolean ok){ return yes(!ok); }
 	protected static final long sqr(final long x){ return x * x; }
-	protected static final int mod(final long n, final int m){ return (int) ((n + m) % m); }
+	protected static final long mod(final long n, final long m){ return (n + m) % m; }
 	protected static final long ceil(final long a, final long b){ return (long) Math.ceil((double) a / b); }
 	protected static final double round(final double a, final long b, final int c) {
 		final long d = intPow(10, c);
@@ -63,7 +62,7 @@ class Utility {
 		}
 		return res;
 	}
-	protected static final long intPow(long a, long b, final int m) {
+	protected static final long intPow(long a, long b, final long m) {
 		long res = 1;
 		while(b > 0) {
 			if(b % 2 == 1) {
@@ -76,6 +75,16 @@ class Utility {
 		}
 		return res;
 	}
+	protected static final long lcm(final long a, final long b){ return a * b / gcd(a, b); }
+	protected static final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1, (x, y) -> lcm(x, y)); }
+	protected static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }
+	protected static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }
+	protected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }
+	protected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }
+	protected static final int min(final int... a){ return Arrays.stream(a).reduce(Integer.MAX_VALUE, (x, y) -> Math.min(x, y)); }
+	protected static final long min(final long... a){ return Arrays.stream(a).reduce(Long.MAX_VALUE, (x, y) -> Math.min(x, y)); }
+	protected static final int max(final int... a){ return Arrays.stream(a).reduce(Integer.MIN_VALUE, (x, y) -> Math.max(x, y)); }
+	protected static final long max(final long... a){ return Arrays.stream(a).reduce(Long.MIN_VALUE, (x, y) -> Math.max(x, y)); }
 	protected static final ArrayList<Long> div(final long n) {
 		ArrayList<Long> d = new ArrayList<>();
 		for(long i = 1; i * i <= n; ++i) {
@@ -106,6 +115,21 @@ class Utility {
 			pf.add(Pair.of(n, 1));
 		}
 		return pf;
+	}
+	protected static final long eulerPhi(long n) {
+		long res = n;
+		for(long i = 2; i * i <= n; ++i) {
+			if(n % i == 0) {
+				res -= res / i;
+				while(n % i == 0) {
+					n /= i;
+				}
+			}
+		}
+		if(n > 1) {
+			res -= res / n;
+		}
+		return res;
 	}
 	protected static final long binom(int a, final int b) {
 		long res = 1;
@@ -422,12 +446,6 @@ class Utility {
 		IntStream.range(0, w).forEach(i -> res[i] = new String(t[i]));
 		return res;
 	}
-	protected static final long lcm(final long a, final long b){ return a * b / gcd(a, b); }
-	protected static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }
-	protected static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }
-	protected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }
-	protected static final long min(final long... a){ return Arrays.stream(a).reduce(Long.MAX_VALUE, (x, y) -> Math.min(x, y)); }
-	protected static final long max(final long... a){ return Arrays.stream(a).reduce(Long.MIN_VALUE, (x, y) -> Math.max(x, y)); }
 	protected static final <F, S> ArrayList<F> first(final List<Pair<F, S>> p) {
 		ArrayList<F> f = new ArrayList<>();
 		for(final var el: p) {
@@ -480,11 +498,19 @@ class Utility {
 		}
 		return ok;
 	}
-	protected static final ArrayList<Integer> press(final ArrayList<Long> a) {
+	protected static final ArrayList<Integer> press(final int[] a) {
 		ArrayList<Integer> res = new ArrayList<>();
-		final var cp = a.stream().sorted().distinct().collect(Collectors.toList());
+		final var x = Arrays.stream(a).sorted().distinct().toArray();
 		for(final var el: a) {
-			res.add(lowerBound(cp, el));
+			res.add(lowerBound(x, el));
+		}
+		return res;
+	}
+	protected static final ArrayList<Integer> press(final long[] a) {
+		ArrayList<Integer> res = new ArrayList<>();
+		final var x = Arrays.stream(a).sorted().distinct().toArray();
+		for(final var el: a) {
+			res.add(lowerBound(x, el));
 		}
 		return res;
 	}
@@ -575,6 +601,29 @@ class Utility {
 			}
 		}
 		return ret;
+	}
+	protected static final long tetration(final long a, final long b, final long m) {
+		if(m == 1) {
+			return 0;
+		}
+		if(a == 0) {
+			return (b & 1) == 0 ? 1 : 0;
+		}
+		if(b == 0) {
+			return 1;
+		}
+		if(b == 1) {
+			return a % m;
+		}
+		if(b == 2) {
+			return intPow(a, a, m);
+		}
+		final var phi = eulerPhi(m);
+		var tmp = tetration(a, b - 1, phi);
+		if(tmp == 0) {
+			tmp += phi;
+		}
+		return intPow(a, tmp, m);
 	}
 	protected interface TriFunction<T, U, V, W> {
 		public W apply(final T a, final U b, final V c);

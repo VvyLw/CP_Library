@@ -5,13 +5,14 @@ import java.util.stream.IntStream;
 
 final class LowestCommonAncestor<G extends Graph> {
 	private final int log;
-	final int[] dep;
+	final int[] dep, sum;
 	private final G g;
 	final int[][] table;
 	LowestCommonAncestor(final G g) {
 		this.g = g;
 		final int n = g.size();
 		dep = new int[n];
+		sum = new int[n];
 		log = Integer.toBinaryString(n).length();
 		table = new int[log][n];
 		IntStream.range(0, log).forEach(i -> Arrays.fill(table[i], -1));
@@ -22,6 +23,7 @@ final class LowestCommonAncestor<G extends Graph> {
 		dep[idx] = d;
 		for(final var el: g.get(idx)) {
 			if(el.to != par) {
+				sum[el.to] = (int) (sum[idx] + el.cost); 
 				dfs(el.to, idx, d + 1);
 			}
 		}
@@ -44,11 +46,7 @@ final class LowestCommonAncestor<G extends Graph> {
 			v ^= u;
 			u ^= v;
 		}
-		for(int i = log; --i >= 0;) {
-			if(((dep[v] - dep[u]) >> i) % 2 == 1) {
-				v = table[i][v];
-			}
-		}
+		v = climb(v, dep[v] - dep[u]);
 		if(u == v) {
 			return u;
 		}
@@ -60,5 +58,14 @@ final class LowestCommonAncestor<G extends Graph> {
 		}
 		return table[0][u];
 	}
-	final int dist(final int u, final int v){ return dep[u] + dep[v] - 2 * query(u, v); }
+	final int climb(int u, final int k) {
+		if(dep[u] < k) {
+			return -1;
+		}
+		for(int i = log; --i >= 0;) {
+			if(((k >> i) % 2) == 1) u = table[i][u];
+		}
+		return u;
+	}
+	final int dist(final int u, final int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }
 }
