@@ -45,10 +45,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/depq.hpp
       title: C++/depq.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/edge.hpp
       title: C++/edge.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/graph.hpp
       title: C++/graph.hpp
     - icon: ':heavy_check_mark:'
@@ -195,7 +195,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/add128_2.test.cpp
       title: test/add128_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/bermanford.test.cpp
       title: test/bermanford.test.cpp
     - icon: ':heavy_check_mark:'
@@ -279,7 +279,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/ufpotential.test.cpp
       title: test/ufpotential.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/warshallfloyd.test.cpp
       title: test/warshallfloyd.test.cpp
     - icon: ':heavy_check_mark:'

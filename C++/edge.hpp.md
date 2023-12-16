@@ -5,11 +5,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/MST.hpp
     title: C++/MST.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph.hpp
     title: C++/graph.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/bermanford.test.cpp
     title: test/bermanford.test.cpp
   - icon: ':heavy_check_mark:'
@@ -27,12 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/manhattan.test.cpp
     title: test/manhattan.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/warshallfloyd.test.cpp
     title: test/warshallfloyd.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"C++/edge.hpp\"\n\nstruct edge {\n    int src, to;\n    long\
@@ -51,7 +51,7 @@ data:
   - C++/graph.hpp
   - C++/MST.hpp
   timestamp: '2023-12-12 00:31:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manhattan.test.cpp
   - test/kruskal.test.cpp
