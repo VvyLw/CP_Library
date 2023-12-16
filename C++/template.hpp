@@ -1,3 +1,6 @@
+#ifndef TEMPLATE
+#define TEMPLATE
+#endif
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 #pragma GCC diagnostic ignored "-Wsign-compare"
 #pragma GCC diagnostic ignored "-Wdeprecated-copy"

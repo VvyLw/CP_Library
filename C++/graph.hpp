@@ -5,7 +5,7 @@
 #include <queue>
 #include <stack>
 #include <limits>
-#if !__has_include("C++/template.hpp")
+#if !TEMPLATE
 template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
 #endif
 #include "C++/edge.hpp"
