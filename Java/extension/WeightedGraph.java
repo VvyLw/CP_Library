@@ -26,6 +26,7 @@ final class WeightedGraph extends Graph {
 		edge.add(new Edge(a, b, cost));
 		if(undirected) {
 			this.get(b).add(new Edge(a, cost));
+			edge.add(new Edge(b, a, cost));
 		}
 	}
 	final long[] dijkstra(final int v) {
@@ -79,7 +80,7 @@ final class WeightedGraph extends Graph {
 				cost[i][j.to] = j.cost;
 			}
 		}
-		for(int k = 0 ; k < n; ++k) {
+		for(int k = 0; k < n; ++k) {
 			for(int i = 0; i < n; ++i) {
 				for(int j = 0; j < n; ++j) {
 					if(cost[i][j] > cost[i][k] + cost[k][j]) {

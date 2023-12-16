@@ -154,14 +154,14 @@ template <class T> inline T lcm(const PP<T>& a){ return std::lcm(a.first, a.seco
 template <class T> inline T gcd(const PP<T>& a){ return std::gcd(a.first, a.second); }
 template <class T> inline PP<T> extgcd(const PP<T> &p) {
   T x=1,y=0,t1=0,t2=0,t3=1,a,b;
-  tie(a,b)=p;
+  std::tie(a,b)=p;
   while(b) {
     t1=a/b,a-=t1*b;
-    swap(a,b);
+    std::swap(a,b);
     x-=t1*t2;
-    swap(x,t2);
+    std::swap(x,t2);
     y-=t1*t3;
-    swap(y,t3);
+    std::swap(y,t3);
   }
   return {x,y};
 }
@@ -494,6 +494,21 @@ template <class T> inline V<PP<T>> prmfct(T n) {
   if(n!=1) res.emplace_back(n,1);
   return res;
 }
+template <class T> inline T euler_phi(T n) {
+	T res = n;
+	for(T i = 2; i * i <= n; ++i) {
+	  if(n % i == 0) {
+			res -= res / i;
+			while(n % i == 0) {
+				n /= i;
+			}
+		}
+	}
+	if(n > 1) {
+		res -= res / n;
+	}
+	return res;
+}
 struct p_table {
   vb SoE;
   p_table(int n): SoE(n+1,1){
@@ -618,11 +633,61 @@ public:
   }
 };
 struct asum {
+private:
   vi s;
+public:
   asum(const vi& v): s{0} { std::partial_sum(all(v),back_inserter(s)); }
   vi get() const { return s; }
   // [l, r]
   ll query(int l, int r) const { return s[r]-s[l]; }
+};
+template <class T> inline T tetration(const T a, const T b, const T m) {
+  if(m == 1) {
+    return 0;
+  }
+  if(a == 0) {
+    return (b & 1) ? 0 : 1;
+  }
+  if(b == 0) {
+    return 1;
+  }
+  if(b == 1) {
+    return a % m;
+  }
+  if(b == 2) {
+    return zia_qu::Pow(a, a, m);
+  }
+  const auto phi = euler_phi(m);
+  auto tmp = tetration(a, b - 1, phi);
+  if(!tmp) {
+    tmp += phi;
+  }
+  return Pow(a, tmp, m);
+}
+struct phi_table {
+private:
+  int n;
+	std::vector<int> euler;
+public:
+	phi_table(const int n_): n(n_), euler(n_ + 1) {
+		std::iota(euler.begin(), euler.end(), 0);
+		for(int i = 2; i <= n; ++i) {
+			if(euler[i] == i) {
+				for(int j = i; j <= n; j += i) {
+					euler[j] = euler[j] / i * (i - 1);
+				}
+			}
+		}
+	}
+	std::vector<int> get() const { return euler; }
+	std::vector<long long> acc() const {
+		std::vector<long long> ret(n + 1);
+		ret[1] = 2;
+		for(int i = 2; i <= n; ++i) {
+			ret[i] = ret[i - 1] + euler[i];
+		}
+		return ret;
+	}
 };
 template <class T, class Boolean=bool> inline T bins(T ok, T ng, const Boolean &fn, const ld eps = 1) {
   while(std::abs(ok-ng)>eps) {

@@ -41,7 +41,7 @@ class VvyLw extends Utility {
 }
 final class Main extends VvyLw {
 	public static void main(final String[] args) {
-		final int t = 1;//sc.ni();
+		final int t = sc.ni();
 		IntStream.range(0, t).forEach(i -> solve());
 		o.flush();
 		sc.close();
@@ -1105,6 +1105,7 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		edge.add(new Edge(a, b, 0));
 		if(undirected) {
 			this.get(b).add(new Edge(a));
+			edge.add(new Edge(b, a, 0));
 		}
 	}
 	protected final int[] allDist(final int v) {
@@ -1172,6 +1173,7 @@ final class WeightedGraph extends Graph {
 		edge.add(new Edge(a, b, cost));
 		if(undirected) {
 			this.get(b).add(new Edge(a, cost));
+			edge.add(new Edge(b, a, cost));
 		}
 	}
 	final long[] dijkstra(final int v) {
@@ -1203,7 +1205,9 @@ final class WeightedGraph extends Graph {
 				if(cost[e.src] == Long.MAX_VALUE) {
 					continue;
 				}
-				cost[e.to] = Math.min(cost[e.to], cost[e.src] + e.cost);
+				if(cost[e.to] > cost[e.src] + e.cost) {
+					cost[e.to] = cost[e.src] + e.cost;
+				}
 			}
 		}
 		for(final var e: edge) {
@@ -1225,7 +1229,7 @@ final class WeightedGraph extends Graph {
 				cost[i][j.to] = j.cost;
 			}
 		}
-		for(int k = 0 ; k < n; ++k) {
+		for(int k = 0; k < n; ++k) {
 			for(int i = 0; i < n; ++i) {
 				for(int j = 0; j < n; ++j) {
 					if(cost[i][k] == VvyLw.linf || cost[k][j] == VvyLw.linf) {
@@ -1442,7 +1446,9 @@ final class LowestCommonAncestor<G extends Graph> {
 			return -1;
 		}
 		for(int i = log; --i >= 0;) {
-			if(((k >> i) % 2) == 1) u = table[i][u];
+			if(((k >> i) % 2) == 1) {
+				u = table[i][u];
+			}
 		}
 		return u;
 	}

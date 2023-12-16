@@ -10,4 +10,6 @@
 
 
 Javaのライブラリはpackage extension;をコメントアウトするか、削除するかして使用してください。  
-その他バグ等あればIssueを投げるなりDMするなりお願いします。
+その他バグ等あればIssueを投げるなりDMするなりお願いします。  
+  
+[Luzhiled's Library](https://ei1333.github.io/library/)を基本的に参考にしています。

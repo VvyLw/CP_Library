@@ -63,7 +63,9 @@ final class LowestCommonAncestor<G extends Graph> {
 			return -1;
 		}
 		for(int i = log; --i >= 0;) {
-			if(((k >> i) % 2) == 1) u = table[i][u];
+			if(((k >> i) % 2) == 1) {
+				u = table[i][u];
+			}
 		}
 		return u;
 	}

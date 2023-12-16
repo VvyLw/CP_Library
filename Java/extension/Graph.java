@@ -69,6 +69,7 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		edge.add(new Edge(a, b, 0));
 		if(undirected) {
 			this.get(b).add(new Edge(a));
+			edge.add(new Edge(b, a, 0));
 		}
 	}
 	protected final int[] allDist(final int v) {

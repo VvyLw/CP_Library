@@ -207,6 +207,72 @@ public:
     }
 };
 
+template <class T> inline T euler_phi(T n) {
+	T res = n;
+	for(T i = 2; i * i <= n; ++i) {
+	  if(n % i == 0) {
+			res -= res / i;
+			while(n % i == 0) {
+				n /= i;
+			}
+		}
+	}
+	if(n > 1) {
+		res -= res / n;
+	}
+	return res;
+}
+
+template <class T> inline T tetration(const T a, const T b, const T m) {
+    if(m == 1) {
+        return 0;
+    }
+    if(a == 0) {
+        return (b & 1) ? 0 : 1;
+    }
+    if(b == 0) {
+        return 1;
+    }
+    if(b == 1) {
+        return a % m;
+    }
+    if(b == 2) {
+        return Pow(a, a, m);
+    }
+    const auto phi = euler_phi(m);
+    auto tmp = tetration(a, b - 1, phi);
+    if(!tmp) {
+        tmp += phi;
+    }
+    return Pow(a, tmp, m);
+}
+
+struct phi_table {
+private:
+    const int n;
+	std::vector<int> euler;
+public:
+	phi_table(const int n_): n(n_), euler(n_ + 1) {
+		std::iota(euler.begin(), euler.end(), 0);
+		for(int i = 2; i <= n; ++i) {
+			if(euler[i] == i) {
+				for(int j = i; j <= n; j += i) {
+					euler[j] = euler[j] / i * (i - 1);
+				}
+			}
+		}
+	}
+	std::vector<int> get() const { return euler; }
+	std::vector<long long> acc() const {
+		std::vector<long long> ret(n + 1);
+		ret[1] = 2;
+		for(int i = 2; i <= n; ++i) {
+			ret[i] = ret[i - 1] + euler[i];
+		}
+		return ret;
+	}
+};
+
 template <class T=ll> T factor(T n, T mod=0) {
     T res=1;
     while(n>0) {
