@@ -31,13 +31,13 @@ data:
     \ u, const int k) {\r\n\t\tif(dep[u] < k) {\r\n\t\t\treturn -1;\r\n\t\t}\r\n\t\
     \tfor(int i = LOG; --i >= 0;) {\r\n\t\t\tif((k >> i) & 1) {\r\n              \
     \  u = table[i][u];\r\n            }\r\n\t\t}\r\n\t\treturn u;\r\n\t}\r\n    int\
-    \ query(int u, int v) {\r\n        if(dep[u] > dep[v]) std::swap(u, v);\r\n  \
-    \      v = climb(v, dep[v] - dep[u]);\r\n        if(u == v) {\r\n            return\
-    \ u;\r\n        }\r\n        for(int i = LOG; --i >= 0;) {\r\n            if(table[i][u]\
-    \ != table[i][v]) {\r\n                u = table[i][u];\r\n                v =\
-    \ table[i][v];\r\n            }\r\n        }\r\n        return table[0][u];\r\n\
-    \    }\r\n    int dist(int u, int v) const { return sum[u] + sum[v] - 2 * sum[query(u,\
-    \ v)]; }\r\n};\n"
+    \ query(int u, int v) {\r\n        if(dep[u] > dep[v]) {\r\n            std::swap(u,\
+    \ v);\r\n        }\r\n        v = climb(v, dep[v] - dep[u]);\r\n        if(u ==\
+    \ v) {\r\n            return u;\r\n        }\r\n        for(int i = LOG; --i >=\
+    \ 0;) {\r\n            if(table[i][u] != table[i][v]) {\r\n                u =\
+    \ table[i][u];\r\n                v = table[i][v];\r\n            }\r\n      \
+    \  }\r\n        return table[0][u];\r\n    }\r\n    int dist(const int u, const\
+    \ int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }\r\n};\n"
   code: "#pragma once\r\n\r\n// inspired by Luzhiled( https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html\
     \ )\r\n#include <vector>\r\ntemplate <class G> struct LowestCommonAncestor {\r\
     \nprivate:\r\n    const int LOG;\r\n    std::vector<int> dep, sum;\r\n    const\
@@ -57,18 +57,18 @@ data:
     \ u, const int k) {\r\n\t\tif(dep[u] < k) {\r\n\t\t\treturn -1;\r\n\t\t}\r\n\t\
     \tfor(int i = LOG; --i >= 0;) {\r\n\t\t\tif((k >> i) & 1) {\r\n              \
     \  u = table[i][u];\r\n            }\r\n\t\t}\r\n\t\treturn u;\r\n\t}\r\n    int\
-    \ query(int u, int v) {\r\n        if(dep[u] > dep[v]) std::swap(u, v);\r\n  \
-    \      v = climb(v, dep[v] - dep[u]);\r\n        if(u == v) {\r\n            return\
-    \ u;\r\n        }\r\n        for(int i = LOG; --i >= 0;) {\r\n            if(table[i][u]\
-    \ != table[i][v]) {\r\n                u = table[i][u];\r\n                v =\
-    \ table[i][v];\r\n            }\r\n        }\r\n        return table[0][u];\r\n\
-    \    }\r\n    int dist(int u, int v) const { return sum[u] + sum[v] - 2 * sum[query(u,\
-    \ v)]; }\r\n};"
+    \ query(int u, int v) {\r\n        if(dep[u] > dep[v]) {\r\n            std::swap(u,\
+    \ v);\r\n        }\r\n        v = climb(v, dep[v] - dep[u]);\r\n        if(u ==\
+    \ v) {\r\n            return u;\r\n        }\r\n        for(int i = LOG; --i >=\
+    \ 0;) {\r\n            if(table[i][u] != table[i][v]) {\r\n                u =\
+    \ table[i][u];\r\n                v = table[i][v];\r\n            }\r\n      \
+    \  }\r\n        return table[0][u];\r\n    }\r\n    int dist(const int u, const\
+    \ int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }\r\n};"
   dependsOn: []
   isVerificationFile: false
   path: C++/LCA.hpp
   requiredBy: []
-  timestamp: '2023-12-16 20:41:25+09:00'
+  timestamp: '2023-12-16 23:45:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lca.test.cpp

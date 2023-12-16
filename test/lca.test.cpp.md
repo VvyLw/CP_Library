@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/LCA.hpp
     title: C++/LCA.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/edge.hpp
     title: C++/edge.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph.hpp
     title: C++/graph.hpp
   _extendedRequiredBy: []
@@ -40,27 +40,27 @@ data:
     \ u, const int k) {\r\n\t\tif(dep[u] < k) {\r\n\t\t\treturn -1;\r\n\t\t}\r\n\t\
     \tfor(int i = LOG; --i >= 0;) {\r\n\t\t\tif((k >> i) & 1) {\r\n              \
     \  u = table[i][u];\r\n            }\r\n\t\t}\r\n\t\treturn u;\r\n\t}\r\n    int\
-    \ query(int u, int v) {\r\n        if(dep[u] > dep[v]) std::swap(u, v);\r\n  \
-    \      v = climb(v, dep[v] - dep[u]);\r\n        if(u == v) {\r\n            return\
-    \ u;\r\n        }\r\n        for(int i = LOG; --i >= 0;) {\r\n            if(table[i][u]\
-    \ != table[i][v]) {\r\n                u = table[i][u];\r\n                v =\
-    \ table[i][v];\r\n            }\r\n        }\r\n        return table[0][u];\r\n\
-    \    }\r\n    int dist(int u, int v) const { return sum[u] + sum[v] - 2 * sum[query(u,\
-    \ v)]; }\r\n};\n#line 2 \"C++/graph.hpp\"\n\r\n#include <iostream>\r\n#line 5\
-    \ \"C++/graph.hpp\"\n#include <queue>\r\n#include <stack>\r\n#include <limits>\r\
-    \n//#include \"template.hpp\"\r\ntemplate <class T, class U> bool chmin(T& a,\
-    \ const U& b){ if(a>b){ a=b; return 1; } return 0; }\r\n#line 2 \"C++/edge.hpp\"\
-    \n\nstruct edge {\n    int src, to;\n    long long cost;\n    edge(){}\n    edge(const\
-    \ int to_): to(to_){}\n    edge(const int to_, const long long cost_): to(to_),\
-    \ cost(cost_){}\n    edge(const int src_, const int to_, const long long cost_):\
-    \ src(src_), to(to_), cost(cost_){}\n};\n#line 11 \"C++/graph.hpp\"\ntemplate\
-    \ <bool undirected = true> struct graph: public std::vector<std::vector<edge>>\
-    \ {\r\n    const int indexed;\r\n    std::vector<edge> edges;\r\n    graph(const\
-    \ int n, const int indexed_ = 1): indexed(indexed_){ this -> resize(n); }\r\n\
-    \    void add(int a, int b) {\r\n        a -= indexed, b-= indexed;\r\n      \
-    \  (*this)[a].emplace_back(b);\r\n        edges.emplace_back(a, b, 0);\r\n   \
-    \     if(undirected) {\r\n            (*this)[b].emplace_back(a);\r\n        \
-    \    edges.emplace_back(b, a, 0);\r\n        }\r\n    }\r\n    void input(const\
+    \ query(int u, int v) {\r\n        if(dep[u] > dep[v]) {\r\n            std::swap(u,\
+    \ v);\r\n        }\r\n        v = climb(v, dep[v] - dep[u]);\r\n        if(u ==\
+    \ v) {\r\n            return u;\r\n        }\r\n        for(int i = LOG; --i >=\
+    \ 0;) {\r\n            if(table[i][u] != table[i][v]) {\r\n                u =\
+    \ table[i][u];\r\n                v = table[i][v];\r\n            }\r\n      \
+    \  }\r\n        return table[0][u];\r\n    }\r\n    int dist(const int u, const\
+    \ int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }\r\n};\n#line 2 \"C++/graph.hpp\"\
+    \n\r\n#include <iostream>\r\n#line 5 \"C++/graph.hpp\"\n#include <queue>\r\n#include\
+    \ <stack>\r\n#include <limits>\r\n#if !__has_include(\"C++/template.hpp\")\r\n\
+    template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return\
+    \ 1; } return 0; }\r\n#endif\r\n#line 2 \"C++/edge.hpp\"\n\nstruct edge {\n  \
+    \  int src, to;\n    long long cost;\n    edge(){}\n    edge(const int to_): to(to_){}\n\
+    \    edge(const int to_, const long long cost_): to(to_), cost(cost_){}\n    edge(const\
+    \ int src_, const int to_, const long long cost_): src(src_), to(to_), cost(cost_){}\n\
+    };\n#line 12 \"C++/graph.hpp\"\ntemplate <bool undirected = true> struct graph:\
+    \ public std::vector<std::vector<edge>> {\r\n    const int indexed;\r\n    std::vector<edge>\
+    \ edges;\r\n    graph(const int n, const int indexed_ = 1): indexed(indexed_){\
+    \ this -> resize(n); }\r\n    void add(int a, int b) {\r\n        a -= indexed,\
+    \ b-= indexed;\r\n        (*this)[a].emplace_back(b);\r\n        edges.emplace_back(a,\
+    \ b, 0);\r\n        if(undirected) {\r\n            (*this)[b].emplace_back(a);\r\
+    \n            edges.emplace_back(b, a, 0);\r\n        }\r\n    }\r\n    void input(const\
     \ int m) {\r\n        for(int i = 0; i < m; ++i) {\r\n            int a, b;\r\n\
     \            std::cin >> a >> b;\r\n            add(a, b);\r\n        }\r\n  \
     \  }\r\n    std::vector<int> all_dist(const int v) {\r\n        std::vector<int>\
@@ -140,7 +140,7 @@ data:
   isVerificationFile: true
   path: test/lca.test.cpp
   requiredBy: []
-  timestamp: '2023-12-16 20:41:25+09:00'
+  timestamp: '2023-12-16 23:45:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lca.test.cpp

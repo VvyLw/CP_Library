@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/edge.hpp
     title: C++/edge.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph.hpp
     title: C++/graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_C
@@ -19,19 +19,20 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_C
   bundledCode: "#line 1 \"test/warshallfloyd.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_C\"\
     \n#line 2 \"C++/graph.hpp\"\n\r\n#include <iostream>\r\n#include <vector>\r\n\
-    #include <queue>\r\n#include <stack>\r\n#include <limits>\r\n//#include \"template.hpp\"\
-    \r\ntemplate <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return\
-    \ 1; } return 0; }\r\n#line 2 \"C++/edge.hpp\"\n\nstruct edge {\n    int src,\
-    \ to;\n    long long cost;\n    edge(){}\n    edge(const int to_): to(to_){}\n\
-    \    edge(const int to_, const long long cost_): to(to_), cost(cost_){}\n    edge(const\
-    \ int src_, const int to_, const long long cost_): src(src_), to(to_), cost(cost_){}\n\
-    };\n#line 11 \"C++/graph.hpp\"\ntemplate <bool undirected = true> struct graph:\
-    \ public std::vector<std::vector<edge>> {\r\n    const int indexed;\r\n    std::vector<edge>\
-    \ edges;\r\n    graph(const int n, const int indexed_ = 1): indexed(indexed_){\
-    \ this -> resize(n); }\r\n    void add(int a, int b) {\r\n        a -= indexed,\
-    \ b-= indexed;\r\n        (*this)[a].emplace_back(b);\r\n        edges.emplace_back(a,\
-    \ b, 0);\r\n        if(undirected) {\r\n            (*this)[b].emplace_back(a);\r\
-    \n            edges.emplace_back(b, a, 0);\r\n        }\r\n    }\r\n    void input(const\
+    #include <queue>\r\n#include <stack>\r\n#include <limits>\r\n#if !__has_include(\"\
+    C++/template.hpp\")\r\ntemplate <class T, class U> bool chmin(T& a, const U& b){\
+    \ if(a>b){ a=b; return 1; } return 0; }\r\n#endif\r\n#line 2 \"C++/edge.hpp\"\n\
+    \nstruct edge {\n    int src, to;\n    long long cost;\n    edge(){}\n    edge(const\
+    \ int to_): to(to_){}\n    edge(const int to_, const long long cost_): to(to_),\
+    \ cost(cost_){}\n    edge(const int src_, const int to_, const long long cost_):\
+    \ src(src_), to(to_), cost(cost_){}\n};\n#line 12 \"C++/graph.hpp\"\ntemplate\
+    \ <bool undirected = true> struct graph: public std::vector<std::vector<edge>>\
+    \ {\r\n    const int indexed;\r\n    std::vector<edge> edges;\r\n    graph(const\
+    \ int n, const int indexed_ = 1): indexed(indexed_){ this -> resize(n); }\r\n\
+    \    void add(int a, int b) {\r\n        a -= indexed, b-= indexed;\r\n      \
+    \  (*this)[a].emplace_back(b);\r\n        edges.emplace_back(a, b, 0);\r\n   \
+    \     if(undirected) {\r\n            (*this)[b].emplace_back(a);\r\n        \
+    \    edges.emplace_back(b, a, 0);\r\n        }\r\n    }\r\n    void input(const\
     \ int m) {\r\n        for(int i = 0; i < m; ++i) {\r\n            int a, b;\r\n\
     \            std::cin >> a >> b;\r\n            add(a, b);\r\n        }\r\n  \
     \  }\r\n    std::vector<int> all_dist(const int v) {\r\n        std::vector<int>\
@@ -116,8 +117,8 @@ data:
   isVerificationFile: true
   path: test/warshallfloyd.test.cpp
   requiredBy: []
-  timestamp: '2023-12-16 20:41:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-12-16 23:45:11+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/warshallfloyd.test.cpp
 layout: document
