@@ -48,7 +48,9 @@ public:
 		return u;
 	}
     int query(int u, int v) {
-        if(dep[u] > dep[v]) std::swap(u, v);
+        if(dep[u] > dep[v]) {
+            std::swap(u, v);
+        }
         v = climb(v, dep[v] - dep[u]);
         if(u == v) {
             return u;
@@ -61,5 +63,5 @@ public:
         }
         return table[0][u];
     }
-    int dist(int u, int v) const { return sum[u] + sum[v] - 2 * sum[query(u, v)]; }
+    int dist(const int u, const int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }
 };
