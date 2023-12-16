@@ -11,10 +11,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/associative_array
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_E
     links:
-    - https://judge.yosupo.jp/problem/associative_array
-  bundledCode: "#line 1 \"test/aarray.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/associative_array\"\
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_E
+  bundledCode: "#line 1 \"test/extgcd.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_E\"\
     \n/*#pragma GCC optimize(\"O3\")\n#pragma GCC optimize(\"unroll-loops\")//*/\n\
     //#pragma GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native\"\
     )\n#line 1 \"C++/template.hpp\"\n#pragma GCC diagnostic ignored \"-Wunused-parameter\"\
@@ -467,36 +467,32 @@ data:
     \ res;\r\n}\r\ninline bool is_prime(const ul n) {\r\n  if(n==1) return 0;\r\n\
     \  sqrp(i,2,n) if(n%i==0) return 0;\r\n  return 1;\r\n}\r\ninline bool is_int(const\
     \ ld n){ ll r=std::floor(n); return r==n; }\r\ninline bool is_sqr(const ll n){\
-    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\n#line 6 \"test/aarray.test.cpp\"\
+    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\n#line 6 \"test/extgcd.test.cpp\"\
     \nusing namespace std;\nusing namespace zia_qu;\nusing namespace Lady_sANDy;\n\
-    using namespace Heileden;\nint main() {\n  \tVvyLw::wa_haya_exe();\n  \tnow(start);\n\
-    \  \t//INT(t); while(t--)\n  \tVvyLw::solve();\n  \tnow(stop);\n  \ttime(start,\
-    \ stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
-    \nvoid VvyLw::solve() {\n    INT(q);\n    unordered_map<ll,ll> um;\n    while(q--)\
-    \ {\n        LL(t,k);\n        if(t) {\n            out(um[k]);\n        }\n \
-    \       else {\n            LL(v);\n            um[k]=v;\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/associative_array\"\n/*#pragma\
-    \ GCC optimize(\"O3\")\n#pragma GCC optimize(\"unroll-loops\")//*/\n//#pragma\
-    \ GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native\")\n#include\
-    \ \"C++/template.hpp\"\nusing namespace std;\nusing namespace zia_qu;\nusing namespace\
-    \ Lady_sANDy;\nusing namespace Heileden;\nint main() {\n  \tVvyLw::wa_haya_exe();\n\
-    \  \tnow(start);\n  \t//INT(t); while(t--)\n  \tVvyLw::solve();\n  \tnow(stop);\n\
-    \  \ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
-    \nvoid VvyLw::solve() {\n    INT(q);\n    unordered_map<ll,ll> um;\n    while(q--)\
-    \ {\n        LL(t,k);\n        if(t) {\n            out(um[k]);\n        }\n \
-    \       else {\n            LL(v);\n            um[k]=v;\n        }\n    }\n}"
+    using namespace Heileden;\n\nint main() {\n    VvyLw::wa_haya_exe();\n    now(start);\n\
+    \    int T=1;\n    //in(T);\n    while(T--) VvyLw::solve();\n    now(stop);\n\
+    \    time(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
+    \n\nvoid VvyLw::solve() {\n    INT(a,b);\n    out(extgcd(make_pair(a,b)));\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_E\"\
+    \n/*#pragma GCC optimize(\"O3\")\n#pragma GCC optimize(\"unroll-loops\")//*/\n\
+    //#pragma GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native\"\
+    )\n#include \"C++/template.hpp\"\nusing namespace std;\nusing namespace zia_qu;\n\
+    using namespace Lady_sANDy;\nusing namespace Heileden;\n\nint main() {\n    VvyLw::wa_haya_exe();\n\
+    \    now(start);\n    int T=1;\n    //in(T);\n    while(T--) VvyLw::solve();\n\
+    \    now(stop);\n    time(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
+    \n\nvoid VvyLw::solve() {\n    INT(a,b);\n    out(extgcd(make_pair(a,b)));\n}"
   dependsOn:
   - C++/template.hpp
   isVerificationFile: true
-  path: test/aarray.test.cpp
+  path: test/extgcd.test.cpp
   requiredBy: []
   timestamp: '2023-12-16 20:41:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aarray.test.cpp
+documentation_of: test/extgcd.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aarray.test.cpp
-- /verify/test/aarray.test.cpp.html
-title: test/aarray.test.cpp
+- /verify/test/extgcd.test.cpp
+- /verify/test/extgcd.test.cpp.html
+title: test/extgcd.test.cpp
 ---

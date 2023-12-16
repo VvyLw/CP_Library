@@ -150,7 +150,7 @@ data:
     \ - 1;\n\tstatic final int mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9\
     \ + 7;\n\tstatic final double eps = 1e-18;\n\tprotected static final void solve()\
     \ {\n\t\t\n\t}\n}\nfinal class Main extends VvyLw {\n\tpublic static void main(final\
-    \ String[] args) {\n\t\tfinal int t = 1;//sc.ni();\n\t\tIntStream.range(0, t).forEach(i\
+    \ String[] args) {\n\t\tfinal int t = sc.ni();\n\t\tIntStream.range(0, t).forEach(i\
     \ -> solve());\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\
     \t}\n}\n\nclass Utility {\n\tprotected static final String yes(final boolean ok){\
     \ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean\
@@ -581,55 +581,56 @@ data:
     \ n).forEach(i -> this.add(new ArrayList<>()));\n\t}\n\tfinal void addEdge(int\
     \ a, int b) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(b));\n\
     \t\tedge.add(new Edge(a, b, 0));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new\
-    \ Edge(a));\n\t\t}\n\t}\n\tprotected final int[] allDist(final int v) {\n\t\t\
-    int[] d = new int[n];\n\t\tArrays.fill(d, -1);\n\t\tQueue<Integer> q = new ArrayDeque<>();\n\
-    \t\td[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp =\
-    \ q.poll();\n\t\t\tfor(final var el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] !=\
-    \ -1) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to]=d[tmp]+1;\n\t\t\t\t\
-    q.add(el.to);\n\t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\tprotected final int dist(final\
-    \ int u, final int v){ return allDist(u)[v]; }\n\tprotected final ArrayList<Integer>\
-    \ topologicalSort() {\n\t\tint[] deg = new int[n];\n\t\tfor(int i = 0; i < n;\
-    \ ++i) {\n\t\t\tfor(final var ed: this.get(i)) {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t\
-    }\n\t\t}\n\t\tfinal var sk = new Stack<Integer>();\n\t\tfor(int i = 0; i < n;\
-    \ ++i) {\n\t\t\tif(deg[i] == 0) {\n\t\t\t\tsk.add(i);\n\t\t\t}\n\t\t}\n\t\tfinal\
-    \ var ord = new ArrayList<Integer>();\n\t\twhile(!sk.isEmpty()) {\n\t\t\tfinal\
-    \ var tmp = sk.pop();\n\t\t\tord.add(tmp);\n\t\t\tfor(final var ed: this.get(tmp))\
-    \ {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\t\t\t\t}\n\t\t\
-    \t}\n\t\t}\n\t\treturn ord.size() == size() ? ord : new ArrayList<>();\n\t}\n\
-    }\n\nfinal class MST {\n\tpublic final ArrayList<Edge> tree;\n\tpublic final long\
-    \ cost;\n\tMST(final ArrayList<Edge> tree, final long cost) {\n\t\tthis.tree =\
-    \ tree;\n\t\tthis.cost = cost;\n\t}\n}\nfinal class WeightedGraph extends Graph\
+    \ Edge(a));\n\t\t\tedge.add(new Edge(b, a, 0));\n\t\t}\n\t}\n\tprotected final\
+    \ int[] allDist(final int v) {\n\t\tint[] d = new int[n];\n\t\tArrays.fill(d,\
+    \ -1);\n\t\tQueue<Integer> q = new ArrayDeque<>();\n\t\td[v] = 0;\n\t\tq.add(v);\n\
+    \t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\t\t\tfor(final var\
+    \ el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\t\tcontinue;\n\t\t\
+    \t\t}\n\t\t\t\td[el.to]=d[tmp]+1;\n\t\t\t\tq.add(el.to);\n\t\t\t}\n\t\t}\n\t\t\
+    return d;\n\t}\n\tprotected final int dist(final int u, final int v){ return allDist(u)[v];\
+    \ }\n\tprotected final ArrayList<Integer> topologicalSort() {\n\t\tint[] deg =\
+    \ new int[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final var ed: this.get(i))\
+    \ {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t}\n\t\t}\n\t\tfinal var sk = new Stack<Integer>();\n\
+    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(deg[i] == 0) {\n\t\t\t\tsk.add(i);\n\
+    \t\t\t}\n\t\t}\n\t\tfinal var ord = new ArrayList<Integer>();\n\t\twhile(!sk.isEmpty())\
+    \ {\n\t\t\tfinal var tmp = sk.pop();\n\t\t\tord.add(tmp);\n\t\t\tfor(final var\
+    \ ed: this.get(tmp)) {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ord.size() == size() ? ord : new ArrayList<>();\n\
+    \t}\n}\n\nfinal class MST {\n\tpublic final ArrayList<Edge> tree;\n\tpublic final\
+    \ long cost;\n\tMST(final ArrayList<Edge> tree, final long cost) {\n\t\tthis.tree\
+    \ = tree;\n\t\tthis.cost = cost;\n\t}\n}\nfinal class WeightedGraph extends Graph\
     \ {\n\tWeightedGraph(final int n, final int indexed, final boolean undirected)\
     \ {\n\t\tsuper(n, indexed, undirected);\n\t}\n\tfinal void addEdge(int a, int\
     \ b, final long cost) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new\
     \ Edge(b, cost));\n\t\tedge.add(new Edge(a, b, cost));\n\t\tif(undirected) {\n\
-    \t\t\tthis.get(b).add(new Edge(a, cost));\n\t\t}\n\t}\n\tfinal long[] dijkstra(final\
-    \ int v) {\n\t\tlong[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
-    \t\tQueue<NumPair> dj = new PriorityQueue<>();\n\t\tcost[v] = 0;\n\t\tdj.add(new\
-    \ NumPair(cost[v], v));\n\t\twhile(!dj.isEmpty()) {\n\t\t\tfinal var tmp = dj.poll();\n\
-    \t\t\tif(cost[tmp.second.intValue()] < tmp.first.longValue()) {\n\t\t\t\tcontinue;\n\
-    \t\t\t}\n\t\t\tfor(final var el: this.get(tmp.second.intValue())) {\n\t\t\t\t\
-    if(cost[el.to] > tmp.first.longValue() + el.cost) {\n\t\t\t\t\tcost[el.to] = tmp.first.longValue()\
-    \ + el.cost;\n\t\t\t\t\tdj.add(new NumPair(cost[el.to], el.to));\n\t\t\t\t}\n\t\
-    \t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[] bellmanFord(final int v) {\n\
-    \t\tlong[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tcost[v]\
-    \ = 0;\n\t\tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final var e:\
-    \ edge) {\n\t\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\t\tcontinue;\n\t\
-    \t\t\t}\n\t\t\t\tcost[e.to] = Math.min(cost[e.to], cost[e.src] + e.cost);\n\t\t\
-    \t}\n\t\t}\n\t\tfor(final var e: edge) {\n\t\t\tif(cost[e.src] == Long.MAX_VALUE)\
-    \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tif(cost[e.src] + e.cost < cost[e.to]) {\n\
-    \t\t\t\treturn null;\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[][]\
-    \ warshallFloyd() {\n\t\tlong[][] cost = new long[n][n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> Arrays.fill(cost[i], VvyLw.linf));\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> cost[i][i] = 0);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final var j:\
-    \ this.get(i)) {\n\t\t\t\tcost[i][j.to] = j.cost;\n\t\t\t}\n\t\t}\n\t\tfor(int\
-    \ k = 0 ; k < n; ++k) {\n\t\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\tfor(int j\
-    \ = 0; j < n; ++j) {\n\t\t\t\t\tif(cost[i][k] == VvyLw.linf || cost[k][j] == VvyLw.linf)\
-    \ {\n\t\t\t\t\t\tcontinue;\n\t\t\t\t\t}\n\t\t\t\t\tif(cost[i][j] > cost[i][k]\
-    \ + cost[k][j]) {\n\t\t\t\t\t\tcost[i][j] = cost[i][k] + cost[k][j];\n\t\t\t\t\
-    \t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal MST kruskal() {\n\
-    \t\tfinal UnionFind uf = new UnionFind(n);\n\t\tfinal var e = new ArrayList<Edge>();\n\
-    \t\tlong res = 0;\n\t\tfor(final var ed: edge.stream().sorted(Comparator.comparing(ed\
+    \t\t\tthis.get(b).add(new Edge(a, cost));\n\t\t\tedge.add(new Edge(b, a, cost));\n\
+    \t\t}\n\t}\n\tfinal long[] dijkstra(final int v) {\n\t\tlong[] cost = new long[n];\n\
+    \t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tQueue<NumPair> dj = new PriorityQueue<>();\n\
+    \t\tcost[v] = 0;\n\t\tdj.add(new NumPair(cost[v], v));\n\t\twhile(!dj.isEmpty())\
+    \ {\n\t\t\tfinal var tmp = dj.poll();\n\t\t\tif(cost[tmp.second.intValue()] <\
+    \ tmp.first.longValue()) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final var el:\
+    \ this.get(tmp.second.intValue())) {\n\t\t\t\tif(cost[el.to] > tmp.first.longValue()\
+    \ + el.cost) {\n\t\t\t\t\tcost[el.to] = tmp.first.longValue() + el.cost;\n\t\t\
+    \t\t\tdj.add(new NumPair(cost[el.to], el.to));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\t\
+    return cost;\n\t}\n\tfinal long[] bellmanFord(final int v) {\n\t\tlong[] cost\
+    \ = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tcost[v] = 0;\n\t\
+    \tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final var e: edge) {\n\
+    \t\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\
+    \t\t\tif(cost[e.to] > cost[e.src] + e.cost) {\n\t\t\t\t\tcost[e.to] = cost[e.src]\
+    \ + e.cost;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(final var e: edge) {\n\t\t\tif(cost[e.src]\
+    \ == Long.MAX_VALUE) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tif(cost[e.src] + e.cost\
+    \ < cost[e.to]) {\n\t\t\t\treturn null;\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t\
+    }\n\tfinal long[][] warshallFloyd() {\n\t\tlong[][] cost = new long[n][n];\n\t\
+    \tIntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], VvyLw.linf));\n\t\t\
+    IntStream.range(0, n).forEach(i -> cost[i][i] = 0);\n\t\tfor(int i = 0; i < n;\
+    \ ++i) {\n\t\t\tfor(final var j: this.get(i)) {\n\t\t\t\tcost[i][j.to] = j.cost;\n\
+    \t\t\t}\n\t\t}\n\t\tfor(int k = 0; k < n; ++k) {\n\t\t\tfor(int i = 0; i < n;\
+    \ ++i) {\n\t\t\t\tfor(int j = 0; j < n; ++j) {\n\t\t\t\t\tif(cost[i][k] == VvyLw.linf\
+    \ || cost[k][j] == VvyLw.linf) {\n\t\t\t\t\t\tcontinue;\n\t\t\t\t\t}\n\t\t\t\t\
+    \tif(cost[i][j] > cost[i][k] + cost[k][j]) {\n\t\t\t\t\t\tcost[i][j] = cost[i][k]\
+    \ + cost[k][j];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t\
+    }\n\tfinal MST kruskal() {\n\t\tfinal UnionFind uf = new UnionFind(n);\n\t\tfinal\
+    \ var e = new ArrayList<Edge>();\n\t\tlong res = 0;\n\t\tfor(final var ed: edge.stream().sorted(Comparator.comparing(ed\
     \ -> ed.cost)).collect(Collectors.toList())) {\n\t\t\tif(uf.unite(ed.src, ed.to))\
     \ {\n\t\t\t\te.add(ed);\n\t\t\t\tres += ed.cost;\n\t\t\t}\n\t\t}\n\t\treturn new\
     \ MST(e, res);\n\t}\n\tfinal MST directed(final int v) {\n\t\t@SuppressWarnings(\"\
@@ -692,41 +693,41 @@ data:
     if(table[i][u] != table[i][v]) {\n\t\t\t\tu = table[i][u];\n\t\t\t\tv = table[i][v];\n\
     \t\t\t}\n\t\t}\n\t\treturn table[0][u];\n\t}\n\tfinal int climb(int u, final int\
     \ k) {\n\t\tif(dep[u] < k) {\n\t\t\treturn -1;\n\t\t}\n\t\tfor(int i = log; --i\
-    \ >= 0;) {\n\t\t\tif(((k >> i) % 2) == 1) u = table[i][u];\n\t\t}\n\t\treturn\
-    \ u;\n\t}\n\tfinal int dist(final int u, final int v){ return sum[u] + sum[v]\
-    \ - 2 * sum[query(u, v)]; }\n}\n\nfinal class PrimeTable {\n\tprivate final int\
-    \ size;\n\tprivate final int[] p;\n\tprivate final boolean[] sieve;\n\tPrimeTable(final\
-    \ int n) {\n\t\tsieve = new boolean[n + 1];\n\t\tArrays.fill(sieve, true);\n\t\
-    \tsieve[0] = sieve[1] = false;\n\t\tfor(long i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[(int)\
-    \ i]) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(long j = i * i; j <= n; j += i)\
-    \ {\n\t\t\t\tsieve[(int) j] = false;\n\t\t\t}\n\t\t}\n\t\tsize = (int) IntStream.rangeClosed(0,\
-    \ n).filter(i -> sieve[i]).count();\n\t\tint j = 0;\n\t\tp = new int[size];\n\t\
-    \tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\
-    \t\t}\n\t\t}\n\t}\n\tfinal boolean[] table(){ return sieve; }\n\tfinal int[] get(){\
-    \ return p; }\n}\n\nfinal class PrimeFactor {\n\tprivate final int[] spf;\n\t\
-    PrimeFactor(final int n) {\n\t\tspf = Utility.iota(n + 1);\n\t\tfor(int i = 2;\
-    \ i * i <= n; ++i) {\n\t\t\tif(spf[i] == i) {\n\t\t\t\tfor(int j = i * i; j <=\
-    \ n; j += i) {\n\t\t\t\t\tif(spf[j] == j) {\n\t\t\t\t\t\tspf[j] = i;\n\t\t\t\t\
-    \t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal TreeMap<Integer, Integer> get(int\
-    \ n) {\n\t\tfinal TreeMap<Integer, Integer> m = new TreeMap<>();\n\t\twhile(n\
-    \ != 1) {\n\t\t\tm.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\t\
-    \t}\n\t\treturn m;\n\t}\n}\n\nfinal class PrimeCounter {\n\tprivate final int\
-    \ sq;\n\tprivate final boolean[] p;\n\tprivate final int[] psum;\n\tprivate final\
-    \ ArrayList<Integer> ps;\n\tPrimeCounter(final long lim) {\n\t\tsq = (int) kthRooti(lim,\
-    \ 2);\n\t\tpsum = new int[sq + 1];\n\t\tp = new PrimeTable(sq).table();\n\t\t\
-    for(int i = 1; i <= sq; ++i) {\n\t\t\tpsum[i] = psum[i - 1] + (p[i] ? 1 : 0);\n\
-    \t\t}\n\t\tps = new ArrayList<>();\n\t\tfor(int i = 1; i <= sq; ++i) {\n\t\t\t\
-    if(p[i]) {\n\t\t\t\tps.add(i);\n\t\t\t}\n\t\t}\n\t}\n\tprivate final long kthRooti(final\
-    \ long n, final int k){ return Utility.kthRoot(n, k); }\n\tprivate final long\
-    \ p2(final long x, final long y) {\n\t\tif(x < 4) {\n\t\t\treturn 0;\n\t\t}\n\t\
-    \tfinal long a = pi(y);\n\t\tfinal long b = pi(kthRooti(x, 2));\n\t\tif(a >= b)\
-    \ {\n\t\t\treturn 0;\n\t\t}\n\t\tlong sum = (long) (a - 2) * (a + 1) / 2 - (b\
-    \ - 2) * (b + 1) / 2;\n\t\tfor(long i = a; i < b; ++i) {\n\t\t\tsum += pi(x /\
-    \ ps.get((int) i));\n\t\t}\n\t\treturn sum;\n\t}\n\tprivate final long phi(final\
-    \ long m, final long a) {\n\t\tif(m < 1) {\n\t\t\treturn 0;\n\t\t}\n\t\tif(a >\
-    \ m) {\n\t\t\treturn 1;\n\t\t}\n\t\tif(a < 1) {\n\t\t\treturn m;\n\t\t}\n\t\t\
-    if(m <= (long) ps.get((int) (a - 1)) * ps.get((int) (a - 1))) {\n\t\t\treturn\
-    \ pi(m) - a + 1;\n\t\t}\n\t\tif(m <= (long) ps.get((int) (a - 1)) * ps.get((int)\
+    \ >= 0;) {\n\t\t\tif(((k >> i) % 2) == 1) {\n\t\t\t\tu = table[i][u];\n\t\t\t\
+    }\n\t\t}\n\t\treturn u;\n\t}\n\tfinal int dist(final int u, final int v){ return\
+    \ sum[u] + sum[v] - 2 * sum[query(u, v)]; }\n}\n\nfinal class PrimeTable {\n\t\
+    private final int size;\n\tprivate final int[] p;\n\tprivate final boolean[] sieve;\n\
+    \tPrimeTable(final int n) {\n\t\tsieve = new boolean[n + 1];\n\t\tArrays.fill(sieve,\
+    \ true);\n\t\tsieve[0] = sieve[1] = false;\n\t\tfor(long i = 2; i <= n; ++i) {\n\
+    \t\t\tif(!sieve[(int) i]) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(long j = i\
+    \ * i; j <= n; j += i) {\n\t\t\t\tsieve[(int) j] = false;\n\t\t\t}\n\t\t}\n\t\t\
+    size = (int) IntStream.rangeClosed(0, n).filter(i -> sieve[i]).count();\n\t\t\
+    int j = 0;\n\t\tp = new int[size];\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\t\
+    if(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\t\t}\n\t\t}\n\t}\n\tfinal boolean[] table(){\
+    \ return sieve; }\n\tfinal int[] get(){ return p; }\n}\n\nfinal class PrimeFactor\
+    \ {\n\tprivate final int[] spf;\n\tPrimeFactor(final int n) {\n\t\tspf = Utility.iota(n\
+    \ + 1);\n\t\tfor(int i = 2; i * i <= n; ++i) {\n\t\t\tif(spf[i] == i) {\n\t\t\t\
+    \tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\t\tif(spf[j] == j) {\n\t\t\t\t\t\
+    \tspf[j] = i;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal TreeMap<Integer,\
+    \ Integer> get(int n) {\n\t\tfinal TreeMap<Integer, Integer> m = new TreeMap<>();\n\
+    \t\twhile(n != 1) {\n\t\t\tm.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /=\
+    \ spf[n];\n\t\t}\n\t\treturn m;\n\t}\n}\n\nfinal class PrimeCounter {\n\tprivate\
+    \ final int sq;\n\tprivate final boolean[] p;\n\tprivate final int[] psum;\n\t\
+    private final ArrayList<Integer> ps;\n\tPrimeCounter(final long lim) {\n\t\tsq\
+    \ = (int) kthRooti(lim, 2);\n\t\tpsum = new int[sq + 1];\n\t\tp = new PrimeTable(sq).table();\n\
+    \t\tfor(int i = 1; i <= sq; ++i) {\n\t\t\tpsum[i] = psum[i - 1] + (p[i] ? 1 :\
+    \ 0);\n\t\t}\n\t\tps = new ArrayList<>();\n\t\tfor(int i = 1; i <= sq; ++i) {\n\
+    \t\t\tif(p[i]) {\n\t\t\t\tps.add(i);\n\t\t\t}\n\t\t}\n\t}\n\tprivate final long\
+    \ kthRooti(final long n, final int k){ return Utility.kthRoot(n, k); }\n\tprivate\
+    \ final long p2(final long x, final long y) {\n\t\tif(x < 4) {\n\t\t\treturn 0;\n\
+    \t\t}\n\t\tfinal long a = pi(y);\n\t\tfinal long b = pi(kthRooti(x, 2));\n\t\t\
+    if(a >= b) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong sum = (long) (a - 2) * (a + 1)\
+    \ / 2 - (b - 2) * (b + 1) / 2;\n\t\tfor(long i = a; i < b; ++i) {\n\t\t\tsum +=\
+    \ pi(x / ps.get((int) i));\n\t\t}\n\t\treturn sum;\n\t}\n\tprivate final long\
+    \ phi(final long m, final long a) {\n\t\tif(m < 1) {\n\t\t\treturn 0;\n\t\t}\n\
+    \t\tif(a > m) {\n\t\t\treturn 1;\n\t\t}\n\t\tif(a < 1) {\n\t\t\treturn m;\n\t\t\
+    }\n\t\tif(m <= (long) ps.get((int) (a - 1)) * ps.get((int) (a - 1))) {\n\t\t\t\
+    return pi(m) - a + 1;\n\t\t}\n\t\tif(m <= (long) ps.get((int) (a - 1)) * ps.get((int)\
     \ (a - 1)) * ps.get((int) (a - 1)) && m <= sq) {\n\t\t\tfinal long sx = pi(kthRooti(m,\
     \ 2));\n\t\t\tlong ans = pi(m) - (long) (sx + a - 2) * (sx - a + 1) / 2;\n\t\t\
     \tfor(long i = a; i < sx; ++i) {\n\t\t\t\tans += pi(m / ps.get((int) i));\n\t\t\
@@ -1099,7 +1100,7 @@ data:
   - Java/extension/SuffixArray.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2023-12-16 07:59:52+09:00'
+  timestamp: '2023-12-16 20:41:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java

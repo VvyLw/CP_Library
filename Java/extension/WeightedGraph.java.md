@@ -142,30 +142,30 @@ data:
     \ undirected);\n\t}\n\tfinal void addEdge(int a, int b, final long cost) {\n\t\
     \ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(b, cost));\n\t\
     \tedge.add(new Edge(a, b, cost));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new\
-    \ Edge(a, cost));\n\t\t}\n\t}\n\tfinal long[] dijkstra(final int v) {\n\t\tlong[]\
-    \ cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tQueue<NumPair>\
-    \ dj = new PriorityQueue<>();\n\t\tcost[v] = 0;\n\t\tdj.add(new NumPair(cost[v],\
-    \ v));\n\t\twhile(!dj.isEmpty()) {\n\t\t\tfinal var tmp = dj.poll();\n\t\t\tif(cost[tmp.second.intValue()]\
-    \ < tmp.first.longValue()) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final var\
-    \ el: this.get(tmp.second.intValue())) {\n\t\t\t\tif(cost[el.to] > tmp.first.longValue()\
-    \ + el.cost) {\n\t\t\t\t\tcost[el.to] = tmp.first.longValue() + el.cost;\n\t\t\
-    \t\t\tdj.add(new NumPair(cost[el.to], el.to));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\t\
-    return cost;\n\t}\n\tfinal long[] bellmanFord(final int v) {\n\t\tlong[] cost\
-    \ = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tcost[v] = 0;\n\t\
-    \tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final var e: edge) {\n\
-    \t\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\
-    \t\t\tcost[e.to] = Math.min(cost[e.to], cost[e.src] + e.cost);\n\t\t\t}\n\t\t\
-    }\n\t\tfor(final var e: edge) {\n\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\
-    \t\t\tcontinue;\n\t\t\t}\n\t\t\tif(cost[e.src] + e.cost < cost[e.to]) {\n\t\t\t\
-    \treturn null;\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[][] warshallFloyd()\
-    \ {\n\t\tlong[][] cost = new long[n][n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> Arrays.fill(cost[i], Long.MAX_VALUE));\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> cost[i][i] = 0);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final var j:\
-    \ this.get(i)) {\n\t\t\t\tcost[i][j.to] = j.cost;\n\t\t\t}\n\t\t}\n\t\tfor(int\
-    \ k = 0 ; k < n; ++k) {\n\t\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\tfor(int j\
-    \ = 0; j < n; ++j) {\n\t\t\t\t\tif(cost[i][j] > cost[i][k] + cost[k][j]) {\n\t\
-    \t\t\t\t\tcost[i][j] = cost[i][k] + cost[k][j];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\
-    }\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal MST kruskal() {\n\t\tfinal UnionFind\
+    \ Edge(a, cost));\n\t\t\tedge.add(new Edge(b, a, cost));\n\t\t}\n\t}\n\tfinal\
+    \ long[] dijkstra(final int v) {\n\t\tlong[] cost = new long[n];\n\t\tArrays.fill(cost,\
+    \ Long.MAX_VALUE);\n\t\tQueue<NumPair> dj = new PriorityQueue<>();\n\t\tcost[v]\
+    \ = 0;\n\t\tdj.add(new NumPair(cost[v], v));\n\t\twhile(!dj.isEmpty()) {\n\t\t\
+    \tfinal var tmp = dj.poll();\n\t\t\tif(cost[tmp.second.intValue()] < tmp.first.longValue())\
+    \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final var el: this.get(tmp.second.intValue()))\
+    \ {\n\t\t\t\tif(cost[el.to] > tmp.first.longValue() + el.cost) {\n\t\t\t\t\tcost[el.to]\
+    \ = tmp.first.longValue() + el.cost;\n\t\t\t\t\tdj.add(new NumPair(cost[el.to],\
+    \ el.to));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[] bellmanFord(final\
+    \ int v) {\n\t\tlong[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
+    \t\tcost[v] = 0;\n\t\tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final\
+    \ var e: edge) {\n\t\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\t\tcontinue;\n\
+    \t\t\t\t}\n\t\t\t\tcost[e.to] = Math.min(cost[e.to], cost[e.src] + e.cost);\n\t\
+    \t\t}\n\t\t}\n\t\tfor(final var e: edge) {\n\t\t\tif(cost[e.src] == Long.MAX_VALUE)\
+    \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tif(cost[e.src] + e.cost < cost[e.to]) {\n\
+    \t\t\t\treturn null;\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[][]\
+    \ warshallFloyd() {\n\t\tlong[][] cost = new long[n][n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> Arrays.fill(cost[i], Long.MAX_VALUE));\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> cost[i][i] = 0);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final\
+    \ var j: this.get(i)) {\n\t\t\t\tcost[i][j.to] = j.cost;\n\t\t\t}\n\t\t}\n\t\t\
+    for(int k = 0; k < n; ++k) {\n\t\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\tfor(int\
+    \ j = 0; j < n; ++j) {\n\t\t\t\t\tif(cost[i][j] > cost[i][k] + cost[k][j]) {\n\
+    \t\t\t\t\t\tcost[i][j] = cost[i][k] + cost[k][j];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\
+    \t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal MST kruskal() {\n\t\tfinal UnionFind\
     \ uf = new UnionFind(n);\n\t\tfinal var e = new ArrayList<Edge>();\n\t\tlong res\
     \ = 0;\n\t\tfor(final var ed: edge.stream().sorted(Comparator.comparing(ed ->\
     \ ed.cost)).collect(Collectors.toList())) {\n\t\t\tif(uf.unite(ed.src, ed.to))\
@@ -256,7 +256,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-16 07:59:52+09:00'
+  timestamp: '2023-12-16 20:41:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/WeightedGraph.java

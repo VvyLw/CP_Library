@@ -88,6 +88,25 @@ data:
     \r\n    ll pi(const ll n) {\r\n        if(n <= sq) {\r\n            return prime_sum[n];\r\
     \n        }\r\n        const ll m = kthrooti(n, 3);\r\n        const ll a = pi(m);\r\
     \n        return phi(n, a) + a - 1 - p2(n, m);\r\n    }\r\n};\r\n\r\ntemplate\
+    \ <class T> inline T euler_phi(T n) {\r\n\tT res = n;\r\n\tfor(T i = 2; i * i\
+    \ <= n; ++i) {\r\n\t  if(n % i == 0) {\r\n\t\t\tres -= res / i;\r\n\t\t\twhile(n\
+    \ % i == 0) {\r\n\t\t\t\tn /= i;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\tif(n > 1) {\r\
+    \n\t\tres -= res / n;\r\n\t}\r\n\treturn res;\r\n}\r\n\r\ntemplate <class T> inline\
+    \ T tetration(const T a, const T b, const T m) {\r\n    if(m == 1) {\r\n     \
+    \   return 0;\r\n    }\r\n    if(a == 0) {\r\n        return (b & 1) ? 0 : 1;\r\
+    \n    }\r\n    if(b == 0) {\r\n        return 1;\r\n    }\r\n    if(b == 1) {\r\
+    \n        return a % m;\r\n    }\r\n    if(b == 2) {\r\n        return Pow(a,\
+    \ a, m);\r\n    }\r\n    const auto phi = euler_phi(m);\r\n    auto tmp = tetration(a,\
+    \ b - 1, phi);\r\n    if(!tmp) {\r\n        tmp += phi;\r\n    }\r\n    return\
+    \ Pow(a, tmp, m);\r\n}\r\n\r\nstruct phi_table {\r\nprivate:\r\n    const int\
+    \ n;\r\n\tstd::vector<int> euler;\r\npublic:\r\n\tphi_table(const int n_): n(n_),\
+    \ euler(n_ + 1) {\r\n\t\tstd::iota(euler.begin(), euler.end(), 0);\r\n\t\tfor(int\
+    \ i = 2; i <= n; ++i) {\r\n\t\t\tif(euler[i] == i) {\r\n\t\t\t\tfor(int j = i;\
+    \ j <= n; j += i) {\r\n\t\t\t\t\teuler[j] = euler[j] / i * (i - 1);\r\n\t\t\t\t\
+    }\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\tstd::vector<int> get() const { return euler;\
+    \ }\r\n\tstd::vector<long long> acc() const {\r\n\t\tstd::vector<long long> ret(n\
+    \ + 1);\r\n\t\tret[1] = 2;\r\n\t\tfor(int i = 2; i <= n; ++i) {\r\n\t\t\tret[i]\
+    \ = ret[i - 1] + euler[i];\r\n\t\t}\r\n\t\treturn ret;\r\n\t}\r\n};\r\n\r\ntemplate\
     \ <class T=ll> T factor(T n, T mod=0) {\r\n    T res=1;\r\n    while(n>0) {\r\n\
     \        res*=n--;\r\n        if(mod) res%=mod;\r\n    }\r\n    return res;\r\n\
     }\r\n\r\ntemplate <class T=ll> T perm(T n, T r, T mod=0) {\r\n    const T tmp=n;\r\
@@ -110,7 +129,7 @@ data:
   isVerificationFile: true
   path: test/kthrooti.test.cpp
   requiredBy: []
-  timestamp: '2023-12-11 21:08:07+09:00'
+  timestamp: '2023-12-16 20:41:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/kthrooti.test.cpp

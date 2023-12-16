@@ -152,9 +152,9 @@ data:
     if(table[i][u] != table[i][v]) {\n\t\t\t\tu = table[i][u];\n\t\t\t\tv = table[i][v];\n\
     \t\t\t}\n\t\t}\n\t\treturn table[0][u];\n\t}\n\tfinal int climb(int u, final int\
     \ k) {\n\t\tif(dep[u] < k) {\n\t\t\treturn -1;\n\t\t}\n\t\tfor(int i = log; --i\
-    \ >= 0;) {\n\t\t\tif(((k >> i) % 2) == 1) u = table[i][u];\n\t\t}\n\t\treturn\
-    \ u;\n\t}\n\tfinal int dist(final int u, final int v){ return sum[u] + sum[v]\
-    \ - 2 * sum[query(u, v)]; }\n}"
+    \ >= 0;) {\n\t\t\tif(((k >> i) % 2) == 1) {\n\t\t\t\tu = table[i][u];\n\t\t\t\
+    }\n\t\t}\n\t\treturn u;\n\t}\n\tfinal int dist(final int u, final int v){ return\
+    \ sum[u] + sum[v] - 2 * sum[query(u, v)]; }\n}"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -199,7 +199,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-16 07:59:52+09:00'
+  timestamp: '2023-12-16 20:41:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/LowestCommonAncestor.java

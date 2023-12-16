@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: C++/LCA.hpp
-    title: C++/LCA.hpp
-  - icon: ':heavy_check_mark:'
     path: C++/edge.hpp
     title: C++/edge.hpp
   - icon: ':heavy_check_mark:'
@@ -17,50 +14,24 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/lca
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_C
     links:
-    - https://judge.yosupo.jp/problem/lca
-  bundledCode: "#line 1 \"test/lca.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\
-    \n#line 2 \"C++/LCA.hpp\"\n\r\n// inspired by Luzhiled( https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html\
-    \ )\r\n#include <vector>\r\ntemplate <class G> struct LowestCommonAncestor {\r\
-    \nprivate:\r\n    const int LOG;\r\n    std::vector<int> dep, sum;\r\n    const\
-    \ G &g;\r\n    std::vector<std::vector<int>> table;\r\n    void dfs(const int\
-    \ idx, const int par, const int d) {\r\n        table[0][idx] = par;\r\n     \
-    \   dep[idx] = d;\r\n        for(const auto &el: g[idx]) {\r\n            if(el.to\
-    \ != par) {\r\n                sum[el.to] = sum[idx] + el.cost;\r\n          \
-    \      dfs(el.to, idx, d + 1);\r\n            }\r\n        }\r\n    }\r\n    void\
-    \ build() {\r\n        dfs(0, -1, 0);\r\n        for(int k = 0; k < LOG - 1; ++k)\
-    \ {\r\n            for(size_t i = 0; i < table[k].size(); ++i) {\r\n         \
-    \       if(table[k][i] == -1) {\r\n                    table[k + 1][i] = -1;\r\
-    \n                }\r\n                else {\r\n                    table[k +\
-    \ 1][i] = table[k][table[k][i]];\r\n                }\r\n            }\r\n   \
-    \     }\r\n    }\r\npublic:\r\n    LowestCommonAncestor(const G &g_) : g(g_),\
-    \ dep(g_.size()), sum(g_.size()), LOG(std::__lg(g_.size()) + 1) {\r\n        table.assign(LOG,\
-    \ std::vector<int>(g_.size(), -1));\r\n        build();\r\n    }\r\n    int climb(int\
-    \ u, const int k) {\r\n\t\tif(dep[u] < k) {\r\n\t\t\treturn -1;\r\n\t\t}\r\n\t\
-    \tfor(int i = LOG; --i >= 0;) {\r\n\t\t\tif((k >> i) & 1) {\r\n              \
-    \  u = table[i][u];\r\n            }\r\n\t\t}\r\n\t\treturn u;\r\n\t}\r\n    int\
-    \ query(int u, int v) {\r\n        if(dep[u] > dep[v]) std::swap(u, v);\r\n  \
-    \      v = climb(v, dep[v] - dep[u]);\r\n        if(u == v) {\r\n            return\
-    \ u;\r\n        }\r\n        for(int i = LOG; --i >= 0;) {\r\n            if(table[i][u]\
-    \ != table[i][v]) {\r\n                u = table[i][u];\r\n                v =\
-    \ table[i][v];\r\n            }\r\n        }\r\n        return table[0][u];\r\n\
-    \    }\r\n    int dist(int u, int v) const { return sum[u] + sum[v] - 2 * sum[query(u,\
-    \ v)]; }\r\n};\n#line 2 \"C++/graph.hpp\"\n\r\n#include <iostream>\r\n#line 5\
-    \ \"C++/graph.hpp\"\n#include <queue>\r\n#include <stack>\r\n#include <limits>\r\
-    \n//#include \"template.hpp\"\r\ntemplate <class T, class U> bool chmin(T& a,\
-    \ const U& b){ if(a>b){ a=b; return 1; } return 0; }\r\n#line 2 \"C++/edge.hpp\"\
-    \n\nstruct edge {\n    int src, to;\n    long long cost;\n    edge(){}\n    edge(const\
-    \ int to_): to(to_){}\n    edge(const int to_, const long long cost_): to(to_),\
-    \ cost(cost_){}\n    edge(const int src_, const int to_, const long long cost_):\
-    \ src(src_), to(to_), cost(cost_){}\n};\n#line 11 \"C++/graph.hpp\"\ntemplate\
-    \ <bool undirected = true> struct graph: public std::vector<std::vector<edge>>\
-    \ {\r\n    const int indexed;\r\n    std::vector<edge> edges;\r\n    graph(const\
-    \ int n, const int indexed_ = 1): indexed(indexed_){ this -> resize(n); }\r\n\
-    \    void add(int a, int b) {\r\n        a -= indexed, b-= indexed;\r\n      \
-    \  (*this)[a].emplace_back(b);\r\n        edges.emplace_back(a, b, 0);\r\n   \
-    \     if(undirected) {\r\n            (*this)[b].emplace_back(a);\r\n        \
-    \    edges.emplace_back(b, a, 0);\r\n        }\r\n    }\r\n    void input(const\
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_C
+  bundledCode: "#line 1 \"test/warshallfloyd.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_C\"\
+    \n#line 2 \"C++/graph.hpp\"\n\r\n#include <iostream>\r\n#include <vector>\r\n\
+    #include <queue>\r\n#include <stack>\r\n#include <limits>\r\n//#include \"template.hpp\"\
+    \r\ntemplate <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return\
+    \ 1; } return 0; }\r\n#line 2 \"C++/edge.hpp\"\n\nstruct edge {\n    int src,\
+    \ to;\n    long long cost;\n    edge(){}\n    edge(const int to_): to(to_){}\n\
+    \    edge(const int to_, const long long cost_): to(to_), cost(cost_){}\n    edge(const\
+    \ int src_, const int to_, const long long cost_): src(src_), to(to_), cost(cost_){}\n\
+    };\n#line 11 \"C++/graph.hpp\"\ntemplate <bool undirected = true> struct graph:\
+    \ public std::vector<std::vector<edge>> {\r\n    const int indexed;\r\n    std::vector<edge>\
+    \ edges;\r\n    graph(const int n, const int indexed_ = 1): indexed(indexed_){\
+    \ this -> resize(n); }\r\n    void add(int a, int b) {\r\n        a -= indexed,\
+    \ b-= indexed;\r\n        (*this)[a].emplace_back(b);\r\n        edges.emplace_back(a,\
+    \ b, 0);\r\n        if(undirected) {\r\n            (*this)[b].emplace_back(a);\r\
+    \n            edges.emplace_back(b, a, 0);\r\n        }\r\n    }\r\n    void input(const\
     \ int m) {\r\n        for(int i = 0; i < m; ++i) {\r\n            int a, b;\r\n\
     \            std::cin >> a >> b;\r\n            add(a, b);\r\n        }\r\n  \
     \  }\r\n    std::vector<int> all_dist(const int v) {\r\n        std::vector<int>\
@@ -120,33 +91,38 @@ data:
     \ == lim || cst[k][j] == lim) {\r\n                        continue;\r\n     \
     \               }\r\n                    chmin(cst[i][j], cst[i][k] + cst[k][j]);\r\
     \n                }\r\n            }\r\n        }\r\n\t\treturn cst;\r\n\t}\r\n\
-    };\n#line 4 \"test/lca.test.cpp\"\nint main() {\n    std::cin.tie(nullptr) ->\
-    \ sync_with_stdio(false);\n    int n, q;\n    std::cin >> n >> q;\n    graph<false>\
-    \ g(n, 0);\n    for(int i = 1; i < n; ++i) {\n        int p;\n        std::cin\
-    \ >> p;\n        g.add(p, i);\n    }\n    LowestCommonAncestor lca(g);\n    while(q--)\
-    \ {\n        int u, v;\n        std::cin >> u >> v;\n        std::cout << lca.query(u,\
-    \ v) << '\\n';\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n#include \"C++/LCA.hpp\"\
-    \n#include \"C++/graph.hpp\"\nint main() {\n    std::cin.tie(nullptr) -> sync_with_stdio(false);\n\
-    \    int n, q;\n    std::cin >> n >> q;\n    graph<false> g(n, 0);\n    for(int\
-    \ i = 1; i < n; ++i) {\n        int p;\n        std::cin >> p;\n        g.add(p,\
-    \ i);\n    }\n    LowestCommonAncestor lca(g);\n    while(q--) {\n        int\
-    \ u, v;\n        std::cin >> u >> v;\n        std::cout << lca.query(u, v) <<\
-    \ '\\n';\n    }\n}"
+    };\n#line 3 \"test/warshallfloyd.test.cpp\"\nconstexpr long long lim = (1LL <<\
+    \ 61) - 1;\nint main() {\n    int v, e;\n    std::cin >> v >> e;\n    w_graph<false>\
+    \ g(v, 0);\n    g.input(e);\n    const auto res = g.warshall_floyd();\n    for(int\
+    \ i = 0; i < v; ++i) {\n        if(res[i][i] < 0) {\n            std::cout <<\
+    \ \"NEGATIVE CYCLE\\n\";\n            std::exit(0);\n        }\n    }\n    for(const\
+    \ auto &w: res) {\n        for(size_t i = 0; i < v; ++i) {\n            if(w[i]\
+    \ == lim) {\n                std::cout << \"INF\" << \" \\n\"[i + 1 == v];\n \
+    \           }\n            else {\n                std::cout << w[i] << \" \\\
+    n\"[i + 1 == v];\n            }\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_C\"\
+    \n#include \"C++/graph.hpp\"\nconstexpr long long lim = (1LL << 61) - 1;\nint\
+    \ main() {\n    int v, e;\n    std::cin >> v >> e;\n    w_graph<false> g(v, 0);\n\
+    \    g.input(e);\n    const auto res = g.warshall_floyd();\n    for(int i = 0;\
+    \ i < v; ++i) {\n        if(res[i][i] < 0) {\n            std::cout << \"NEGATIVE\
+    \ CYCLE\\n\";\n            std::exit(0);\n        }\n    }\n    for(const auto\
+    \ &w: res) {\n        for(size_t i = 0; i < v; ++i) {\n            if(w[i] ==\
+    \ lim) {\n                std::cout << \"INF\" << \" \\n\"[i + 1 == v];\n    \
+    \        }\n            else {\n                std::cout << w[i] << \" \\n\"\
+    [i + 1 == v];\n            }\n        }\n    }\n}"
   dependsOn:
-  - C++/LCA.hpp
   - C++/graph.hpp
   - C++/edge.hpp
   isVerificationFile: true
-  path: test/lca.test.cpp
+  path: test/warshallfloyd.test.cpp
   requiredBy: []
   timestamp: '2023-12-16 20:41:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/lca.test.cpp
+documentation_of: test/warshallfloyd.test.cpp
 layout: document
 redirect_from:
-- /verify/test/lca.test.cpp
-- /verify/test/lca.test.cpp.html
-title: test/lca.test.cpp
+- /verify/test/warshallfloyd.test.cpp
+- /verify/test/warshallfloyd.test.cpp.html
+title: test/warshallfloyd.test.cpp
 ---

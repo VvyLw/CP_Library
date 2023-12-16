@@ -203,7 +203,7 @@ data:
   isVerificationFile: false
   path: C++/Modint.hpp
   requiredBy: []
-  timestamp: '2023-12-11 21:48:09+09:00'
+  timestamp: '2023-12-16 20:41:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/Modint.hpp

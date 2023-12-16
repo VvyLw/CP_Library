@@ -196,8 +196,20 @@ data:
       path: test/add128_2.test.cpp
       title: test/add128_2.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/bermanford.test.cpp
+      title: test/bermanford.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/dag_check.test.cpp
+      title: test/dag_check.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/depq.test.cpp
       title: test/depq.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/directed.test.cpp
+      title: test/directed.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/extgcd.test.cpp
+      title: test/extgcd.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/ftree.test.cpp
       title: test/ftree.test.cpp
@@ -235,6 +247,12 @@ data:
       path: test/pf.test.cpp
       title: test/pf.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/phi.test.cpp
+      title: test/phi.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/phi_table.test.cpp
+      title: test/phi_table.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/rh.test.cpp
       title: test/rh.test.cpp
     - icon: ':heavy_check_mark:'
@@ -253,11 +271,17 @@ data:
       path: test/stable.test.cpp
       title: test/stable.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/tetration.test.cpp
+      title: test/tetration.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/uf.test.cpp
       title: test/uf.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/ufpotential.test.cpp
       title: test/ufpotential.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/warshallfloyd.test.cpp
+      title: test/warshallfloyd.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/zalgo.test.cpp
       title: test/zalgo.test.cpp

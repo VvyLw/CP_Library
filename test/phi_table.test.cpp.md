@@ -11,10 +11,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/counting_primes
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/2286
     links:
-    - https://judge.yosupo.jp/problem/counting_primes
-  bundledCode: "#line 1 \"test/pcounter.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/counting_primes\"\
+    - https://onlinejudge.u-aizu.ac.jp/problems/2286
+  bundledCode: "#line 1 \"test/phi_table.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/2286\"\
     \n#include <iostream>\n#line 2 \"C++/math.hpp\"\n\r\n#include <vector>\r\n#include\
     \ <cmath>\r\n#include <algorithm>\r\n#include <numeric>\r\n#include <map>\r\n\
     #include <limits>\r\n#include <numbers>\r\ntypedef long long ll;\r\ntypedef long\
@@ -115,23 +115,26 @@ data:
     \ n, T r, T mod=0) {\r\n    if(r < 0 || n < r) return 0;\r\n    T ret = 1;\r\n\
     \    for(T i = 1; i <= r; ++i) {\r\n        ret *= n--;\r\n        if(mod) ret%=mod;\r\
     \n        ret /= i;\r\n        if(mod) ret%=mod;\r\n    }\r\n    return ret;\r\
-    \n}\r\n#line 4 \"test/pcounter.test.cpp\"\nint main() {\n    ll n;\n    std::cin\
-    \ >> n;\n    std::cout << p_count(ll(1e11)).pi(n) << '\\n';\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/counting_primes\"\n#include\
-    \ <iostream>\n#include \"C++/math.hpp\"\nint main() {\n    ll n;\n    std::cin\
-    \ >> n;\n    std::cout << p_count(ll(1e11)).pi(n) << '\\n';\n}"
+    \n}\r\n#line 4 \"test/phi_table.test.cpp\"\nint main() {\n    const auto phi =\
+    \ phi_table(int(1e6)).acc();\n    int t;\n    std::cin >> t;\n    while(t--) {\n\
+    \        int i;\n        std::cin >> i;\n        std::cout << phi[i] << '\\n';\n\
+    \    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/2286\"\n#include\
+    \ <iostream>\n#include \"C++/math.hpp\"\nint main() {\n    const auto phi = phi_table(int(1e6)).acc();\n\
+    \    int t;\n    std::cin >> t;\n    while(t--) {\n        int i;\n        std::cin\
+    \ >> i;\n        std::cout << phi[i] << '\\n';\n    }\n}"
   dependsOn:
   - C++/math.hpp
   isVerificationFile: true
-  path: test/pcounter.test.cpp
+  path: test/phi_table.test.cpp
   requiredBy: []
   timestamp: '2023-12-16 20:41:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/pcounter.test.cpp
+documentation_of: test/phi_table.test.cpp
 layout: document
 redirect_from:
-- /verify/test/pcounter.test.cpp
-- /verify/test/pcounter.test.cpp.html
-title: test/pcounter.test.cpp
+- /verify/test/phi_table.test.cpp
+- /verify/test/phi_table.test.cpp.html
+title: test/phi_table.test.cpp
 ---

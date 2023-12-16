@@ -138,21 +138,21 @@ data:
     \ntemplate <class T> inline T lcm(const PP<T>& a){ return std::lcm(a.first, a.second);\
     \ }\r\ntemplate <class T> inline T gcd(const PP<T>& a){ return std::gcd(a.first,\
     \ a.second); }\r\ntemplate <class T> inline PP<T> extgcd(const PP<T> &p) {\r\n\
-    \  T x=1,y=0,t1=0,t2=0,t3=1,a,b;\r\n  tie(a,b)=p;\r\n  while(b) {\r\n    t1=a/b,a-=t1*b;\r\
-    \n    swap(a,b);\r\n    x-=t1*t2;\r\n    swap(x,t2);\r\n    y-=t1*t3;\r\n    swap(y,t3);\r\
-    \n  }\r\n  return {x,y};\r\n}\r\ntemplate <class T> inline PP<T> normalize(PP<T>\
-    \ a) {\r\n  if(a == PP<T>{}) return a;\r\n  a /= gcd(a);\r\n  if(a < PP<T>{})\
-    \ a = -a;\r\n  return a;\r\n}\r\ntemplate <class T, class U> inline P<U,T> swap(const\
-    \ P<T,U> &p){ P<U,T> ret={p.second,p.first}; return ret; }\r\ntemplate <class\
-    \ T, class U> inline V<P<U,T>> swap(const V<P<T,U>> &vp) {\r\n  V<P<U,T>> ret;\r\
-    \n  each(el,vp) ret.emplace_back(swap(el));\r\n  return ret;\r\n}\r\ntemplate\
-    \ <class T, class U> inline V<T> first(const V<P<T,U>> &vp) {\r\n  V<T> res;\r\
-    \n  each(el,vp) res.emplace_back(el.first);\r\n  return res;\r\n}\r\ntemplate\
-    \ <class T, class U> inline V<U> second(const V<P<T,U>> &vp) {\r\n  V<U> res;\r\
-    \n  each(el,vp) res.emplace_back(el.second);\r\n  return res;\r\n}\r\n} // pairs\r\
-    \nusing namespace pairs;\r\ntemplate <size_t N> using ti = std::array<ll, N>;\r\
-    \nusing tri = ti<3>;\r\ntemplate <class T> using pq = std::priority_queue<T>;\r\
-    \ntemplate <class T> using pqr = std::priority_queue<T,V<T>,std::greater<T>>;\r\
+    \  T x=1,y=0,t1=0,t2=0,t3=1,a,b;\r\n  std::tie(a,b)=p;\r\n  while(b) {\r\n   \
+    \ t1=a/b,a-=t1*b;\r\n    std::swap(a,b);\r\n    x-=t1*t2;\r\n    std::swap(x,t2);\r\
+    \n    y-=t1*t3;\r\n    std::swap(y,t3);\r\n  }\r\n  return {x,y};\r\n}\r\ntemplate\
+    \ <class T> inline PP<T> normalize(PP<T> a) {\r\n  if(a == PP<T>{}) return a;\r\
+    \n  a /= gcd(a);\r\n  if(a < PP<T>{}) a = -a;\r\n  return a;\r\n}\r\ntemplate\
+    \ <class T, class U> inline P<U,T> swap(const P<T,U> &p){ P<U,T> ret={p.second,p.first};\
+    \ return ret; }\r\ntemplate <class T, class U> inline V<P<U,T>> swap(const V<P<T,U>>\
+    \ &vp) {\r\n  V<P<U,T>> ret;\r\n  each(el,vp) ret.emplace_back(swap(el));\r\n\
+    \  return ret;\r\n}\r\ntemplate <class T, class U> inline V<T> first(const V<P<T,U>>\
+    \ &vp) {\r\n  V<T> res;\r\n  each(el,vp) res.emplace_back(el.first);\r\n  return\
+    \ res;\r\n}\r\ntemplate <class T, class U> inline V<U> second(const V<P<T,U>>\
+    \ &vp) {\r\n  V<U> res;\r\n  each(el,vp) res.emplace_back(el.second);\r\n  return\
+    \ res;\r\n}\r\n} // pairs\r\nusing namespace pairs;\r\ntemplate <size_t N> using\
+    \ ti = std::array<ll, N>;\r\nusing tri = ti<3>;\r\ntemplate <class T> using pq\
+    \ = std::priority_queue<T>;\r\ntemplate <class T> using pqr = std::priority_queue<T,V<T>,std::greater<T>>;\r\
     \ntemplate <class T> using Tree = __gnu_pbds::tree<T,__gnu_pbds::null_type,std::less<T>,__gnu_pbds::rb_tree_tag,__gnu_pbds::tree_order_statistics_node_update>;\r\
     \ntemplate <class T> using TREE = __gnu_pbds::tree<T,__gnu_pbds::null_type,std::greater<T>,__gnu_pbds::rb_tree_tag,__gnu_pbds::tree_order_statistics_node_update>;\r\
     \ntemplate <class T, class U> inline bool chmax(T& a, const U& b){ if(a<b){ a=b;\
@@ -389,43 +389,61 @@ data:
     \ T> inline V<PP<T>> prmfct(T n) {\r\n  V<PP<T>> res;\r\n  sqrp(i,2,n) {\r\n \
     \   if(n%i!=0) continue;\r\n    T tmp=0;\r\n    while(n%i==0) {\r\n      tmp++;\r\
     \n      n/=i;\r\n    }\r\n    res.emplace_back(i,tmp);\r\n  }\r\n  if(n!=1) res.emplace_back(n,1);\r\
-    \n  return res;\r\n}\r\nstruct p_table {\r\n  vb SoE;\r\n  p_table(int n): SoE(n+1,1){\r\
-    \n    SoE[0]=SoE[1]=0;\r\n    rep(i,2,n) {\r\n      if(!SoE[i]) continue;\r\n\
-    \      rep(j,i*i,n,i) SoE[j] = 0;\r\n    }\r\n  }\r\n  vi get() {\r\n    vi p;\r\
-    \n    rep(i,2,SoE.size()-1) if(SoE[i]) p.emplace_back(i);\r\n    return p;\r\n\
-    \  }\r\n};\r\nstruct p_fact {\r\n  vi spf;\r\n  p_fact(int n): spf(n + 1){\r\n\
-    \    std::iota(all(spf),0);\r\n    sqrp(i,2,n) {\r\n      if(spf[i]==i) {\r\n\
-    \        rep(j,i*i,n,i) {\r\n          if(spf[j]==j) spf[j]=i;\r\n        }\r\n\
-    \      }\r\n    }\r\n  }\r\n  std::map<int,int> get(int n) {\r\n    std::map<int,int>\
-    \ m;\r\n    while(n!=1) {\r\n      m[spf[n]]++;\r\n      n/=spf[n];\r\n    }\r\
-    \n    return m;\r\n  }\r\n};\r\ninline ul kthrooti(const ul n, const int k) {\r\
-    \n  if(k==1) {\r\n\t\treturn n;\r\n\t}\r\n\tconst auto chk=[=](const uint x) {\r\
-    \n\t\tul mul=1;\r\n\t\trep(k) {\r\n      if(overflow_if_mul(mul, x)) {\r\n   \
-    \     return false;\r\n      }\r\n      mul*=x;\r\n    }\r\n\t\treturn mul<=n;\r\
-    \n\t};\r\n\tul ret=0;\r\n\trvp(32) {\r\n\t\tif(chk(ret|(1U<<i))) {\r\n\t\t\tret|=1U<<i;\r\
-    \n\t\t}\r\n\t}\r\n\treturn ret;\r\n}\r\nstruct p_count {\r\nprivate:\r\n  ll sq;\r\
-    \n  vb prime;\r\n  vi prime_sum, primes;\r\n  ll p2(const ll x, const ll y) {\r\
-    \n    if(x < 4) {\r\n      return 0;\r\n    }\r\n    const ll a=pi(y);\r\n   \
-    \ const ll b=pi(kthrooti(x, 2));\r\n    if(a>=b) {\r\n      return 0;\r\n    }\r\
-    \n    ll sum=(a-2)*(a+1)/2-(b-2)*(b+1)/2;\r\n    rep(i,a,b-1) {\r\n      sum +=\
-    \ pi(x/primes[i]);\r\n    }\r\n    return sum;\r\n  }\r\n  ll phi(const ll m,\
-    \ const ll n) {\r\n    if(m<1) {\r\n      return 0;\r\n    }\r\n    if(n>m) {\r\
-    \n      return 1;\r\n    }\r\n    if(n<1) {\r\n      return m;\r\n    }\r\n  \
-    \  if(m<=zia_qu::sqr(primes[n-1])) {\r\n      return pi(m)-n+1;\r\n    }\r\n \
-    \   if(m<=zia_qu::cub(primes[n-1]) && m <= sq) {\r\n      const ll sx = pi(kthrooti(m,\
-    \ 2));\r\n      ll ans=pi(m)-(sx+n-2)*(sx-n+1)/2;\r\n      rep(i,n,sx-1) {\r\n\
-    \        ans+=pi(m/primes[i]);\r\n      }\r\n      return ans;\r\n    }\r\n  \
-    \  return phi(m, n-1)-phi(m/primes[n-1], n-1);\r\n  }\r\npublic:\r\n  p_count(const\
-    \ ll lim): sq(kthrooti(lim, 2)), prime_sum(sq + 1) {\r\n    prime = p_table(sq).SoE;\r\
-    \n    for(int i = 1; i <= sq; ++i) {\r\n      prime_sum[i] = prime_sum[i - 1]\
-    \ + prime[i];\r\n    }\r\n    primes.reserve(prime_sum[sq]);\r\n    for(int i\
-    \ = 1; i <= sq; ++i) {\r\n      if(prime[i]) {\r\n        primes.emplace_back(i);\r\
+    \n  return res;\r\n}\r\ntemplate <class T> inline T euler_phi(T n) {\r\n\tT res\
+    \ = n;\r\n\tfor(T i = 2; i * i <= n; ++i) {\r\n\t  if(n % i == 0) {\r\n\t\t\t\
+    res -= res / i;\r\n\t\t\twhile(n % i == 0) {\r\n\t\t\t\tn /= i;\r\n\t\t\t}\r\n\
+    \t\t}\r\n\t}\r\n\tif(n > 1) {\r\n\t\tres -= res / n;\r\n\t}\r\n\treturn res;\r\
+    \n}\r\nstruct p_table {\r\n  vb SoE;\r\n  p_table(int n): SoE(n+1,1){\r\n    SoE[0]=SoE[1]=0;\r\
+    \n    rep(i,2,n) {\r\n      if(!SoE[i]) continue;\r\n      rep(j,i*i,n,i) SoE[j]\
+    \ = 0;\r\n    }\r\n  }\r\n  vi get() {\r\n    vi p;\r\n    rep(i,2,SoE.size()-1)\
+    \ if(SoE[i]) p.emplace_back(i);\r\n    return p;\r\n  }\r\n};\r\nstruct p_fact\
+    \ {\r\n  vi spf;\r\n  p_fact(int n): spf(n + 1){\r\n    std::iota(all(spf),0);\r\
+    \n    sqrp(i,2,n) {\r\n      if(spf[i]==i) {\r\n        rep(j,i*i,n,i) {\r\n \
+    \         if(spf[j]==j) spf[j]=i;\r\n        }\r\n      }\r\n    }\r\n  }\r\n\
+    \  std::map<int,int> get(int n) {\r\n    std::map<int,int> m;\r\n    while(n!=1)\
+    \ {\r\n      m[spf[n]]++;\r\n      n/=spf[n];\r\n    }\r\n    return m;\r\n  }\r\
+    \n};\r\ninline ul kthrooti(const ul n, const int k) {\r\n  if(k==1) {\r\n\t\t\
+    return n;\r\n\t}\r\n\tconst auto chk=[=](const uint x) {\r\n\t\tul mul=1;\r\n\t\
+    \trep(k) {\r\n      if(overflow_if_mul(mul, x)) {\r\n        return false;\r\n\
+    \      }\r\n      mul*=x;\r\n    }\r\n\t\treturn mul<=n;\r\n\t};\r\n\tul ret=0;\r\
+    \n\trvp(32) {\r\n\t\tif(chk(ret|(1U<<i))) {\r\n\t\t\tret|=1U<<i;\r\n\t\t}\r\n\t\
+    }\r\n\treturn ret;\r\n}\r\nstruct p_count {\r\nprivate:\r\n  ll sq;\r\n  vb prime;\r\
+    \n  vi prime_sum, primes;\r\n  ll p2(const ll x, const ll y) {\r\n    if(x < 4)\
+    \ {\r\n      return 0;\r\n    }\r\n    const ll a=pi(y);\r\n    const ll b=pi(kthrooti(x,\
+    \ 2));\r\n    if(a>=b) {\r\n      return 0;\r\n    }\r\n    ll sum=(a-2)*(a+1)/2-(b-2)*(b+1)/2;\r\
+    \n    rep(i,a,b-1) {\r\n      sum += pi(x/primes[i]);\r\n    }\r\n    return sum;\r\
+    \n  }\r\n  ll phi(const ll m, const ll n) {\r\n    if(m<1) {\r\n      return 0;\r\
+    \n    }\r\n    if(n>m) {\r\n      return 1;\r\n    }\r\n    if(n<1) {\r\n    \
+    \  return m;\r\n    }\r\n    if(m<=zia_qu::sqr(primes[n-1])) {\r\n      return\
+    \ pi(m)-n+1;\r\n    }\r\n    if(m<=zia_qu::cub(primes[n-1]) && m <= sq) {\r\n\
+    \      const ll sx = pi(kthrooti(m, 2));\r\n      ll ans=pi(m)-(sx+n-2)*(sx-n+1)/2;\r\
+    \n      rep(i,n,sx-1) {\r\n        ans+=pi(m/primes[i]);\r\n      }\r\n      return\
+    \ ans;\r\n    }\r\n    return phi(m, n-1)-phi(m/primes[n-1], n-1);\r\n  }\r\n\
+    public:\r\n  p_count(const ll lim): sq(kthrooti(lim, 2)), prime_sum(sq + 1) {\r\
+    \n    prime = p_table(sq).SoE;\r\n    for(int i = 1; i <= sq; ++i) {\r\n     \
+    \ prime_sum[i] = prime_sum[i - 1] + prime[i];\r\n    }\r\n    primes.reserve(prime_sum[sq]);\r\
+    \n    for(int i = 1; i <= sq; ++i) {\r\n      if(prime[i]) {\r\n        primes.emplace_back(i);\r\
     \n      }\r\n    }\r\n  }\r\n  ll pi(const ll n) {\r\n    if(n <= sq) {\r\n  \
     \    return prime_sum[n];\r\n    }\r\n    const ll m = kthrooti(n, 3);\r\n   \
     \ const ll a = pi(m);\r\n    return phi(n, a) + a - 1 - p2(n, m);\r\n  }\r\n};\r\
-    \nstruct asum {\r\n  vi s;\r\n  asum(const vi& v): s{0} { std::partial_sum(all(v),back_inserter(s));\
-    \ }\r\n  vi get() const { return s; }\r\n  // [l, r]\r\n  ll query(int l, int\
-    \ r) const { return s[r]-s[l]; }\r\n};\r\ntemplate <class T, class Boolean=bool>\
+    \nstruct asum {\r\nprivate:\r\n  vi s;\r\npublic:\r\n  asum(const vi& v): s{0}\
+    \ { std::partial_sum(all(v),back_inserter(s)); }\r\n  vi get() const { return\
+    \ s; }\r\n  // [l, r]\r\n  ll query(int l, int r) const { return s[r]-s[l]; }\r\
+    \n};\r\ntemplate <class T> inline T tetration(const T a, const T b, const T m)\
+    \ {\r\n  if(m == 1) {\r\n    return 0;\r\n  }\r\n  if(a == 0) {\r\n    return\
+    \ (b & 1) ? 0 : 1;\r\n  }\r\n  if(b == 0) {\r\n    return 1;\r\n  }\r\n  if(b\
+    \ == 1) {\r\n    return a % m;\r\n  }\r\n  if(b == 2) {\r\n    return zia_qu::Pow(a,\
+    \ a, m);\r\n  }\r\n  const auto phi = euler_phi(m);\r\n  auto tmp = tetration(a,\
+    \ b - 1, phi);\r\n  if(!tmp) {\r\n    tmp += phi;\r\n  }\r\n  return Pow(a, tmp,\
+    \ m);\r\n}\r\nstruct phi_table {\r\nprivate:\r\n  int n;\r\n\tstd::vector<int>\
+    \ euler;\r\npublic:\r\n\tphi_table(const int n_): n(n_), euler(n_ + 1) {\r\n\t\
+    \tstd::iota(euler.begin(), euler.end(), 0);\r\n\t\tfor(int i = 2; i <= n; ++i)\
+    \ {\r\n\t\t\tif(euler[i] == i) {\r\n\t\t\t\tfor(int j = i; j <= n; j += i) {\r\
+    \n\t\t\t\t\teuler[j] = euler[j] / i * (i - 1);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\
+    }\r\n\t}\r\n\tstd::vector<int> get() const { return euler; }\r\n\tstd::vector<long\
+    \ long> acc() const {\r\n\t\tstd::vector<long long> ret(n + 1);\r\n\t\tret[1]\
+    \ = 2;\r\n\t\tfor(int i = 2; i <= n; ++i) {\r\n\t\t\tret[i] = ret[i - 1] + euler[i];\r\
+    \n\t\t}\r\n\t\treturn ret;\r\n\t}\r\n};\r\ntemplate <class T, class Boolean=bool>\
     \ inline T bins(T ok, T ng, const Boolean &fn, const ld eps = 1) {\r\n  while(std::abs(ok-ng)>eps)\
     \ {\r\n    T mid=(ok+ng)/2;\r\n    (fn(mid)?ok:ng) = mid;\r\n  }\r\n  return ok;\r\
     \n}\r\ntemplate <class T> inline V<T> press(const V<T>& v) {\r\n  V<T> res,cp=v;\r\
@@ -509,7 +527,7 @@ data:
   isVerificationFile: true
   path: test/segtree.test.cpp
   requiredBy: []
-  timestamp: '2023-12-11 21:48:09+09:00'
+  timestamp: '2023-12-16 20:41:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segtree.test.cpp

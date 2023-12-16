@@ -17,10 +17,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_2_B
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A
-  bundledCode: "#line 1 \"test/kruskal.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A\"\
+    - https://onlinejudge.u-aizu.ac.jp/problems/GRL_2_B
+  bundledCode: "#line 1 \"test/directed.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_2_B\"\
     \n#include <iostream>\n#line 2 \"C++/MST.hpp\"\n\n#include <cassert>\n#include\
     \ <map>\n#include <numeric>\n#line 2 \"C++/edge.hpp\"\n\nstruct edge {\n    int\
     \ src, to;\n    long long cost;\n    edge(){}\n    edge(const int to_): to(to_){}\n\
@@ -110,30 +110,29 @@ data:
     \ - y[j]));\n                }\n                idx[-y[i]] = i;\n            }\n\
     \            x.swap(y);\n        }\n        for(size_t i = 0; i < x.size(); ++i)\
     \ {\n            x[i] *= -1;\n        }\n    }\n    return res;\n}\n#line 4 \"\
-    test/kruskal.test.cpp\"\nint main() {\n    std::cin.tie(nullptr) -> sync_with_stdio(false);\n\
-    \    int n, m;\n    std::cin >> n >> m;\n    std::vector<edge> e;\n    while(m--)\
-    \ {\n        int s, t, w;\n        std::cin >> s >> t >> w;\n        e.emplace_back(s,\
-    \ t, w);\n    }\n    std::cout << kruskal(e, n).cost << '\\n';\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A\"\
-    \n#include <iostream>\n#include \"C++/MST.hpp\"\nint main() {\n    std::cin.tie(nullptr)\
-    \ -> sync_with_stdio(false);\n    int n, m;\n    std::cin >> n >> m;\n    std::vector<edge>\
-    \ e;\n    while(m--) {\n        int s, t, w;\n        std::cin >> s >> t >> w;\n\
-    \        e.emplace_back(s, t, w);\n    }\n    std::cout << kruskal(e, n).cost\
-    \ << '\\n';\n}"
+    test/directed.test.cpp\"\nint main() {\n    int v, e, r;\n    std::cin >> v >>\
+    \ e >> r;\n    std::vector<edge> edges;\n    while(e--) {\n        int s, t, w;\n\
+    \        std::cin >> s >> t >> w;\n        edges.emplace_back(s, t, w);\n    }\n\
+    \    std::cout << directed(edges, v, r).cost << '\\n';\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_2_B\"\n#include\
+    \ <iostream>\n#include \"C++/MST.hpp\"\nint main() {\n    int v, e, r;\n    std::cin\
+    \ >> v >> e >> r;\n    std::vector<edge> edges;\n    while(e--) {\n        int\
+    \ s, t, w;\n        std::cin >> s >> t >> w;\n        edges.emplace_back(s, t,\
+    \ w);\n    }\n    std::cout << directed(edges, v, r).cost << '\\n';\n}"
   dependsOn:
   - C++/MST.hpp
   - C++/edge.hpp
   - C++/UnionFind.hpp
   isVerificationFile: true
-  path: test/kruskal.test.cpp
+  path: test/directed.test.cpp
   requiredBy: []
   timestamp: '2023-12-16 20:41:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/kruskal.test.cpp
+documentation_of: test/directed.test.cpp
 layout: document
 redirect_from:
-- /verify/test/kruskal.test.cpp
-- /verify/test/kruskal.test.cpp.html
-title: test/kruskal.test.cpp
+- /verify/test/directed.test.cpp
+- /verify/test/directed.test.cpp.html
+title: test/directed.test.cpp
 ---

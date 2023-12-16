@@ -10,6 +10,15 @@ data:
     title: C++/graph.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/bermanford.test.cpp
+    title: test/bermanford.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/dag_check.test.cpp
+    title: test/dag_check.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/directed.test.cpp
+    title: test/directed.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/kruskal.test.cpp
     title: test/kruskal.test.cpp
   - icon: ':heavy_check_mark:'
@@ -18,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/manhattan.test.cpp
     title: test/manhattan.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/warshallfloyd.test.cpp
+    title: test/warshallfloyd.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -43,7 +55,11 @@ data:
   verifiedWith:
   - test/manhattan.test.cpp
   - test/kruskal.test.cpp
+  - test/bermanford.test.cpp
+  - test/dag_check.test.cpp
   - test/lca.test.cpp
+  - test/warshallfloyd.test.cpp
+  - test/directed.test.cpp
 documentation_of: C++/edge.hpp
 layout: document
 redirect_from:

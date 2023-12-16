@@ -7,6 +7,9 @@ data:
     title: C++/MST.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/directed.test.cpp
+    title: test/directed.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/kruskal.test.cpp
     title: test/kruskal.test.cpp
   - icon: ':heavy_check_mark:'
@@ -79,6 +82,7 @@ data:
   verifiedWith:
   - test/manhattan.test.cpp
   - test/kruskal.test.cpp
+  - test/directed.test.cpp
   - test/uf.test.cpp
 documentation_of: C++/UnionFind.hpp
 layout: document

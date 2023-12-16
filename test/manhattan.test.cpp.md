@@ -56,25 +56,65 @@ data:
     \ const edge &f){ return e.cost < f.cost; });\n    UnionFind uf(n);\n    std::vector<edge>\
     \ e;\n    long long res = 0;\n    for(const auto &ed: edges) {\n        if(uf.unite(ed.src,\
     \ ed.to)) {\n            e.emplace_back(ed);\n            res += ed.cost;\n  \
-    \      }\n    }\n    return MST{e, res};\n}\ntemplate <class T> inline std::vector<edge>\
-    \ manhattan(std::vector<T> x, std::vector<T> y) {\n    assert(x.size() == y.size());\n\
-    \    std::vector<edge> res;\n    std::vector<int> id(x.size());\n    std::iota(id.begin(),\
-    \ id.end(), 0);\n    for(int s = 0; s < 2; ++s) {\n        for(int t = 0; t <\
-    \ 2; ++t) {\n            std::sort(id.begin(), id.end(), [&](const int i, const\
-    \ int j){ return x[i] + y[i] < x[j] + y[j]; });\n            std::map<T, int>\
-    \ idx;\n            for(const auto i: id) {\n                for(auto it = idx.lower_bound(-y[i]);\
-    \ it != idx.end(); it = idx.erase(it)) {\n                    const int j = it\
-    \ -> second;\n                    if(x[i] - x[j] < y[i] - y[j]) {\n          \
-    \              break;\n                    }\n                    res.emplace_back(i,\
-    \ j, std::abs(x[i] - x[j]) + std::abs(y[i] - y[j]));\n                }\n    \
-    \            idx[-y[i]] = i;\n            }\n            x.swap(y);\n        }\n\
-    \        for(size_t i = 0; i < x.size(); ++i) {\n            x[i] *= -1;\n   \
-    \     }\n    }\n    return res;\n}\n#line 4 \"test/manhattan.test.cpp\"\nint main()\
-    \ {\n    int n;\n    std::cin >> n;\n    std::vector<int> x(n), y(n);\n    for(int\
-    \ i = 0; i < n; ++i) {\n        std::cin >> x[i] >> y[i];\n    }\n    const auto\
-    \ ans = kruskal(manhattan(x, y), n);\n    std::cout << ans.cost << '\\n';\n  \
-    \  for(const auto &e: ans.tree) {\n        std::cout << e.src << ' ' << e.to <<\
-    \ '\\n';\n    }\n}\n"
+    \      }\n    }\n    return MST{e, res};\n}\ntemplate<bool is_min = true> struct\
+    \ SkewHeap {\n    struct Node {\n        long long key, lazy;\n        Node *l,\
+    \ *r;\n        int idx;\n        explicit Node(const long long &key, const int\
+    \ idx): key(key), idx(idx), lazy(0), l(nullptr), r(nullptr){}\n    };\nprivate:\n\
+    \    Node *alloc(const long long &key, int idx = -1) {\n        return new Node(key,\
+    \ idx);\n    }\n    Node *propagate(Node *t) {\n        if(t && t -> lazy != 0)\
+    \ {\n            if(t -> l) {\n                t -> l -> lazy += t -> lazy;\n\
+    \            }\n            if(t -> r) {\n                t -> r -> lazy += t\
+    \ -> lazy;\n            }\n            t -> key += t -> lazy;\n            t ->\
+    \ lazy = 0;\n        }\n        return t;\n    }\npublic:\n    SkewHeap(){}\n\
+    \    Node *meld(Node *x, Node *y) {\n        propagate(x), propagate(y);\n   \
+    \     if(!x || !y) {\n            return x ? x : y;\n        }\n        if((x\
+    \ -> key < y -> key) ^ is_min) {\n            std::swap(x, y);\n        }\n  \
+    \      x -> r = meld(y, x -> r);\n        std::swap(x -> l, x -> r);\n       \
+    \ return x;\n    }\n    Node *push(Node *t, const long long &key, int idx = -1){\
+    \ return meld(t, alloc(key, idx)); }\n    Node *pop(Node *t) {\n        assert(t);\n\
+    \        return meld(t -> l, t -> r);\n    }\n    Node *add(Node *t, const long\
+    \ long &lazy) {\n        if(t) {\n            t -> lazy += lazy;\n           \
+    \ propagate(t);\n        }\n        return t;\n    }\n};\ninline MST directed(std::vector<edge>\
+    \ edges, const int n, const int v) {\n    for(int i = 0; i < n; ++i) {\n     \
+    \   if(i != v) {\n            edges.emplace_back(i, v, 0);\n        }\n    }\n\
+    \    int x = 0;\n    std::vector<int> par(2 * n, -1), vis(par), link(par), st;\n\
+    \    using Node = typename SkewHeap<>::Node;\n    SkewHeap heap;\n    std::vector<Node*>\
+    \ ins(2 * n, nullptr);\n    for(size_t i = 0; i < edges.size(); ++i) {\n     \
+    \   const auto &e = edges[i];\n        ins[e.to] = heap.push(ins[e.to], e.cost,\
+    \ i);\n    }\n    const auto go = [&](int z) -> int {\n        z = edges[ins[z]\
+    \ -> idx].src;\n        while(link[z] != -1) {\n            st.emplace_back(z);\n\
+    \            z = link[z];\n        }\n        for(const auto &p : st) {\n    \
+    \        link[p] = z;\n        }\n        st.clear();\n        return z;\n   \
+    \ };\n    for(int i = n; ins[x]; ++i) {\n        while(vis[x] == -1) {\n     \
+    \       vis[x] = 0;\n            x = go(x);\n        }\n        while(x != i)\
+    \ {\n            const auto w = ins[x] -> key;\n            auto z = heap.pop(ins[x]);\n\
+    \            z = heap.add(z, -w);\n            ins[i] = heap.meld(ins[i], z);\n\
+    \            par[x] = i;\n            link[x] = i;\n            x = go(x);\n \
+    \       }\n        while(ins[x] && go(x) == x) {\n            ins[x] = heap.pop(ins[x]);\n\
+    \        }\n    }\n    for(int i = v; i != -1; i = par[i]) {\n\t\tvis[i] = 1;\n\
+    \t}\n    long long cost = 0;\n    std::vector<edge> e;\n    for(int i = x; i >=\
+    \ 0; i--) {\n\t\tif(vis[i] == 1) {\n\t\t\tcontinue;\n\t\t}\n        cost += edges[ins[i]\
+    \ -> idx].cost;\n        e.emplace_back(edges[ins[i] -> idx]);\n        for(int\
+    \ j = edges[ins[i] -> idx].to; j != -1 && vis[j] == 0; j = par[j]) {\n       \
+    \     vis[j] = 1;\n        }\n    }\n    return MST{e, cost};\n}\ntemplate <class\
+    \ T> inline std::vector<edge> manhattan(std::vector<T> x, std::vector<T> y) {\n\
+    \    assert(x.size() == y.size());\n    std::vector<edge> res;\n    std::vector<int>\
+    \ id(x.size());\n    std::iota(id.begin(), id.end(), 0);\n    for(int s = 0; s\
+    \ < 2; ++s) {\n        for(int t = 0; t < 2; ++t) {\n            std::sort(id.begin(),\
+    \ id.end(), [&](const int i, const int j){ return x[i] + y[i] < x[j] + y[j]; });\n\
+    \            std::map<T, int> idx;\n            for(const auto i: id) {\n    \
+    \            for(auto it = idx.lower_bound(-y[i]); it != idx.end(); it = idx.erase(it))\
+    \ {\n                    const int j = it -> second;\n                    if(x[i]\
+    \ - x[j] < y[i] - y[j]) {\n                        break;\n                  \
+    \  }\n                    res.emplace_back(i, j, std::abs(x[i] - x[j]) + std::abs(y[i]\
+    \ - y[j]));\n                }\n                idx[-y[i]] = i;\n            }\n\
+    \            x.swap(y);\n        }\n        for(size_t i = 0; i < x.size(); ++i)\
+    \ {\n            x[i] *= -1;\n        }\n    }\n    return res;\n}\n#line 4 \"\
+    test/manhattan.test.cpp\"\nint main() {\n    int n;\n    std::cin >> n;\n    std::vector<int>\
+    \ x(n), y(n);\n    for(int i = 0; i < n; ++i) {\n        std::cin >> x[i] >> y[i];\n\
+    \    }\n    const auto ans = kruskal(manhattan(x, y), n);\n    std::cout << ans.cost\
+    \ << '\\n';\n    for(const auto &e: ans.tree) {\n        std::cout << e.src <<\
+    \ ' ' << e.to << '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/manhattanmst\"\n#include\
     \ <iostream>\n#include \"C++/MST.hpp\"\nint main() {\n    int n;\n    std::cin\
     \ >> n;\n    std::vector<int> x(n), y(n);\n    for(int i = 0; i < n; ++i) {\n\
@@ -88,7 +128,7 @@ data:
   isVerificationFile: true
   path: test/manhattan.test.cpp
   requiredBy: []
-  timestamp: '2023-12-12 02:56:10+09:00'
+  timestamp: '2023-12-16 20:41:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/manhattan.test.cpp
