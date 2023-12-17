@@ -1,3 +1,4 @@
+#pragma once
 #ifndef TEMPLATE
 #define TEMPLATE
 #endif
