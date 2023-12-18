@@ -9,7 +9,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.Predicate;
+import java.util.function.DoublePredicate;
+import java.util.function.IntPredicate;
+import java.util.function.LongPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -148,6 +150,11 @@ class Utility {
 		return true;
 	}
 	protected static final boolean scope(final int l, final int x, final int r){ return l <= x && x <= r; }
+	protected static final boolean scope(final long l, final long x, final long r){ return l <= x && x <= r; }
+	protected static final boolean scope(final double l, final double x, final double r){ return l <= x && x <= r; }
+	protected static final int clamp(final int l, final int x, final int r){ return x < l ? l : x > r ? r : x; }
+	protected static final long clamp(final long l, final long x, final long r){ return x < l ? l : x > r ? r : x; }
+	protected static final double clamp(final double l, final double x, final double r){ return x < l ? l : x > r ? r : x; }
 	protected static final int[] nextPerm(int[] a) {
 		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] < a[i]) {
@@ -310,12 +317,12 @@ class Utility {
 	protected static final boolean binarySearch(final long[] a, final long x){ return Arrays.binarySearch(a, x) >= 0; }
 	protected static final boolean binarySearch(final Object[] a, final Object x){ return Arrays.binarySearch(a, x) >= 0; }
 	protected static final boolean binarySearch(final List<Object> a, final Object x){ return Collections.binarySearch(a, x, null) >= 0; }
-	protected static final int lowerBound(final int[] a, final int x){ return bins(a.length, -1, (Predicate<Integer>) y -> a[y] >= x); }
-	protected static final int lowerBound(final long[] a, final long x){ return bins(a.length, -1, (Predicate<Integer>) y -> a[y] >= x); }
+	protected static final int lowerBound(final int[] a, final int x){ return bins(a.length, -1, (IntPredicate) y -> a[y] >= x); }
+	protected static final int lowerBound(final long[] a, final long x){ return bins(a.length, -1, (IntPredicate) y -> a[y] >= x); }
 	protected static final <T extends Comparable<? super T>> int lowerBound(final T[] a, final T x){ return lowerBound(Arrays.asList(a), x); }
 	protected static final <T extends Comparable<? super T>> int lowerBound(final List<T> a, final T x){ return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) >= 0 ? 1 : -1); }
-	protected static final int upperBound(final int[] a, final int x){ return bins(a.length, -1, (Predicate<Integer>) y -> a[y] > x); }
-	protected static final int upperBound(final long[] a, final long x){ return bins(a.length, -1, (Predicate<Integer>) y -> a[y] > x); }
+	protected static final int upperBound(final int[] a, final int x){ return bins(a.length, -1, (IntPredicate) y -> a[y] > x); }
+	protected static final int upperBound(final long[] a, final long x){ return bins(a.length, -1, (IntPredicate) y -> a[y] > x); }
 	protected static final <T extends Comparable<? super T>> int upperBound(final T[] a, final T x){ return upperBound(Arrays.asList(a), x); }
 	protected static final <T extends Comparable<? super T>> int upperBound(final List<T> a, final T x){ return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) > 0 ? 1 : -1); }
 	protected static final String sorted(final String s){ return s.chars().sorted().mapToObj(Character::toString).collect(Collectors.joining()); }
@@ -445,7 +452,7 @@ class Utility {
 	}
 	protected static final int[] iota(final int n){ return IntStream.range(0, n).toArray(); }
 	protected static final int[] iota(final int n, final int init){ return IntStream.range(0 + init, n + init).toArray(); }
-	protected static final int bins(int ok, int ng, final Predicate<Integer> fn) {
+	protected static final int bins(int ok, int ng, final IntPredicate fn) {
 		while(Math.abs(ok - ng) > 1) {
 			final int mid = (ok + ng) / 2;
 			if(fn.test(mid)) {
@@ -457,7 +464,7 @@ class Utility {
 		}
 		return ok;
 	}
-	protected static final long bins(long ok, long ng, final Predicate<Long> fn) {
+	protected static final long bins(long ok, long ng, final LongPredicate fn) {
 		while(Math.abs(ok - ng) > 1) {
 			final long mid = (ok + ng) / 2;
 			if(fn.test(mid)) {
@@ -469,7 +476,7 @@ class Utility {
 		}
 		return ok;
 	}
-	protected static final double bins(double ok, double ng, final Predicate<Double> fn) {
+	protected static final double bins(double ok, double ng, final DoublePredicate fn) {
 		while(Math.abs(ok - ng) > VvyLw.eps) {
 			final double mid = (ok + ng) / 2;
 			if(fn.test(mid)) {
@@ -566,7 +573,7 @@ class Utility {
 		if(k == 1) {
 			return n;
 		}
-		final Predicate<Long> chk = x -> {
+		final LongPredicate chk = x -> {
 			long mul = 1;
 			for(int j = 0; j < k; ++j) {
 				try {
@@ -661,6 +668,16 @@ final class MyScanner {
 	final double[][] nd(final int h, final int w) {
 		final double[][] a = new double[h][w];
 		IntStream.range(0, h).forEach(i -> a[i] = nd(w));
+		return a;
+	}
+	final String[][] ns(final int h, final int w) {
+		final String[][] a = new String[h][w];
+		IntStream.range(0, h).forEach(i -> a[i] = ns(w));
+		return a;
+	}
+	final BigInteger[][] nb(final int h, final int w) {
+		final BigInteger[][] a = new BigInteger[h][w];
+		IntStream.range(0, h).forEach(i -> a[i] = nb(w));
 		return a;
 	}
 	final void close(){ sc.close(); }
