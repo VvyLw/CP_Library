@@ -91,7 +91,8 @@ data:
     \ == lim || cst[k][j] == lim) {\r\n                        continue;\r\n     \
     \               }\r\n                    chmin(cst[i][j], cst[i][k] + cst[k][j]);\r\
     \n                }\r\n            }\r\n        }\r\n\t\treturn cst;\r\n\t}\r\n\
-    };\n#line 3 \"test/bermanford.test.cpp\"\nconstexpr long long lim = std::numeric_limits<long\
+    };\r\ntypedef std::vector<edge> ve;\r\ntypedef std::vector<ve> we;\n#line 3 \"\
+    test/bermanford.test.cpp\"\nconstexpr long long lim = std::numeric_limits<long\
     \ long>::max();\nint main() {\n    int v, e, r;\n    std::cin >> v >> e >> r;\n\
     \    w_graph<false> g(v, 0);\n    g.input(e);\n    const auto res = g.bellman_ford(r);\n\
     \    if(res.empty()) {\n        std::cout << \"NEGATIVE CYCLE\\n\";\n        std::exit(0);\n\
@@ -112,7 +113,7 @@ data:
   isVerificationFile: true
   path: test/bermanford.test.cpp
   requiredBy: []
-  timestamp: '2023-12-17 00:18:18+09:00'
+  timestamp: '2023-12-18 23:04:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/bermanford.test.cpp

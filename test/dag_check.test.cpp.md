@@ -91,8 +91,9 @@ data:
     \ == lim || cst[k][j] == lim) {\r\n                        continue;\r\n     \
     \               }\r\n                    chmin(cst[i][j], cst[i][k] + cst[k][j]);\r\
     \n                }\r\n            }\r\n        }\r\n\t\treturn cst;\r\n\t}\r\n\
-    };\n#line 3 \"test/dag_check.test.cpp\"\nint main() {\n    int v, e;\n    std::cin\
-    \ >> v >> e;\n    graph<false> g(v, 0);\n    g.input(e);\n    std::cout << g.t_sort().empty()\
+    };\r\ntypedef std::vector<edge> ve;\r\ntypedef std::vector<ve> we;\n#line 3 \"\
+    test/dag_check.test.cpp\"\nint main() {\n    int v, e;\n    std::cin >> v >> e;\n\
+    \    graph<false> g(v, 0);\n    g.input(e);\n    std::cout << g.t_sort().empty()\
     \ << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_A\"\
     \n#include \"C++/graph.hpp\"\nint main() {\n    int v, e;\n    std::cin >> v >>\
@@ -104,7 +105,7 @@ data:
   isVerificationFile: true
   path: test/dag_check.test.cpp
   requiredBy: []
-  timestamp: '2023-12-17 00:18:18+09:00'
+  timestamp: '2023-12-18 23:04:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/dag_check.test.cpp

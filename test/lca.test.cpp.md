@@ -120,12 +120,13 @@ data:
     \ == lim || cst[k][j] == lim) {\r\n                        continue;\r\n     \
     \               }\r\n                    chmin(cst[i][j], cst[i][k] + cst[k][j]);\r\
     \n                }\r\n            }\r\n        }\r\n\t\treturn cst;\r\n\t}\r\n\
-    };\n#line 4 \"test/lca.test.cpp\"\nint main() {\n    std::cin.tie(nullptr) ->\
-    \ sync_with_stdio(false);\n    int n, q;\n    std::cin >> n >> q;\n    graph<false>\
-    \ g(n, 0);\n    for(int i = 1; i < n; ++i) {\n        int p;\n        std::cin\
-    \ >> p;\n        g.add(p, i);\n    }\n    LowestCommonAncestor lca(g);\n    while(q--)\
-    \ {\n        int u, v;\n        std::cin >> u >> v;\n        std::cout << lca.query(u,\
-    \ v) << '\\n';\n    }\n}\n"
+    };\r\ntypedef std::vector<edge> ve;\r\ntypedef std::vector<ve> we;\n#line 4 \"\
+    test/lca.test.cpp\"\nint main() {\n    std::cin.tie(nullptr) -> sync_with_stdio(false);\n\
+    \    int n, q;\n    std::cin >> n >> q;\n    graph<false> g(n, 0);\n    for(int\
+    \ i = 1; i < n; ++i) {\n        int p;\n        std::cin >> p;\n        g.add(p,\
+    \ i);\n    }\n    LowestCommonAncestor lca(g);\n    while(q--) {\n        int\
+    \ u, v;\n        std::cin >> u >> v;\n        std::cout << lca.query(u, v) <<\
+    \ '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n#include \"C++/LCA.hpp\"\
     \n#include \"C++/graph.hpp\"\nint main() {\n    std::cin.tie(nullptr) -> sync_with_stdio(false);\n\
     \    int n, q;\n    std::cin >> n >> q;\n    graph<false> g(n, 0);\n    for(int\
@@ -140,7 +141,7 @@ data:
   isVerificationFile: true
   path: test/lca.test.cpp
   requiredBy: []
-  timestamp: '2023-12-17 00:18:18+09:00'
+  timestamp: '2023-12-18 23:04:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lca.test.cpp

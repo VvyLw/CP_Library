@@ -96,7 +96,7 @@ data:
     \ == lim || cst[k][j] == lim) {\r\n                        continue;\r\n     \
     \               }\r\n                    chmin(cst[i][j], cst[i][k] + cst[k][j]);\r\
     \n                }\r\n            }\r\n        }\r\n\t\treturn cst;\r\n\t}\r\n\
-    };\n"
+    };\r\ntypedef std::vector<edge> ve;\r\ntypedef std::vector<ve> we;\n"
   code: "#pragma once\r\n\r\n#include <iostream>\r\n#include <vector>\r\n#include\
     \ <queue>\r\n#include <stack>\r\n#include <limits>\r\n#if !TEMPLATE\r\ntemplate\
     \ <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return\
@@ -167,13 +167,13 @@ data:
     \ == lim || cst[k][j] == lim) {\r\n                        continue;\r\n     \
     \               }\r\n                    chmin(cst[i][j], cst[i][k] + cst[k][j]);\r\
     \n                }\r\n            }\r\n        }\r\n\t\treturn cst;\r\n\t}\r\n\
-    };"
+    };\r\ntypedef std::vector<edge> ve;\r\ntypedef std::vector<ve> we;"
   dependsOn:
   - C++/edge.hpp
   isVerificationFile: false
   path: C++/graph.hpp
   requiredBy: []
-  timestamp: '2023-12-17 00:18:18+09:00'
+  timestamp: '2023-12-18 23:04:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/bermanford.test.cpp
