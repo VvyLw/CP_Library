@@ -132,13 +132,18 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/extension/PrefixSum.java\n"
-  code: "package extension;\n\nimport java.util.stream.IntStream;\n\nfinal class PrefixSum\
-    \ {\n\tprivate final int n;\n\tprivate final long[] s;\n\tPrefixSum(final int[]\
-    \ a) {\n\t\tn = a.length;\n\t\ts = new long[n + 1];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> s[i + 1] = s[i] + a[i]);\n\t}\n\tPrefixSum(final long[] a) {\n\t\tn = a.length;\n\
-    \t\ts = new long[n + 1];\n\t\tIntStream.range(0, n).forEach(i -> s[i + 1] = s[i]\
-    \ + a[i]);\n\t}\n\tfinal long[] get(){ return s; }\n\tfinal long query(final int\
-    \ l, final int r){ return s[r] - s[l]; }\n}"
+  code: "package extension;\n\nimport java.util.Arrays;\nimport java.util.function.LongBinaryOperator;\n\
+    import java.util.stream.IntStream;\n\nclass InclusiveScan {\n\tprotected final\
+    \ int n;\n\tprotected final long[] s;\n\tInclusiveScan(final int[] a, final LongBinaryOperator\
+    \ op) {\n\t\tn = a.length;\n\t\ts = new long[n + 1];\n\t\tIntStream.rangeClosed(1,\
+    \ n).forEach(i -> s[i] = a[i - 1]);\n\t\tArrays.parallelPrefix(s, op);\n\t}\n\t\
+    InclusiveScan(final long[] a, final LongBinaryOperator op) {\n\t\tn = a.length;\n\
+    \t\ts = new long[n + 1];\n\t\tIntStream.rangeClosed(1, n).forEach(i -> s[i] =\
+    \ a[i - 1]);\n\t\tArrays.parallelPrefix(s, op);\n\t}\n\tprotected long[] get(){\
+    \ return s; }\n\tprotected long query(final int l, final int r){ return s[r] -\
+    \ s[l]; }\n}\n\nfinal class PrefixSum extends InclusiveScan {\n\tPrefixSum(final\
+    \ int[] a){ super(a, (x, y) -> x + y); }\n\tPrefixSum(final long[] a){ super(a,\
+    \ (x, y) -> x + y); }\n}"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -183,7 +188,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-16 20:41:25+09:00'
+  timestamp: '2023-12-18 10:39:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/PrefixSum.java

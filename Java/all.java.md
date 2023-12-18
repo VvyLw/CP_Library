@@ -139,39 +139,40 @@ data:
     import java.util.Queue;\nimport java.util.Scanner;\nimport java.util.Stack;\n\
     import java.util.TreeMap;\nimport java.util.function.BiFunction;\nimport java.util.function.BiPredicate;\n\
     import java.util.function.BinaryOperator;\nimport java.util.function.Consumer;\n\
-    import java.util.function.Function;\nimport java.util.function.Predicate;\nimport\
-    \ java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nclass VvyLw\
-    \ extends Utility {\n\tprotected static final MyScanner sc = new MyScanner();\n\
-    \tprotected static final MyPrinter o = new MyPrinter(System.out, false);\n\tprotected\
-    \ static final MyPrinter e = new MyPrinter(System.err, true);\n\tstatic final\
-    \ Huitloxopetl why = new Huitloxopetl();\n\tstatic final int[] dx = {0, -1, 1,\
-    \ 0, 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1,\
-    \ 1};\n\tstatic final int inf = 1 << 30;\n\tstatic final long linf = (1L << 61)\
-    \ - 1;\n\tstatic final int mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9\
-    \ + 7;\n\tstatic final double eps = 1e-18;\n\tprotected static final void solve()\
-    \ {\n\t\t\n\t}\n}\nfinal class Main extends VvyLw {\n\tpublic static void main(final\
-    \ String[] args) {\n\t\tfinal int t = sc.ni();\n\t\tIntStream.range(0, t).forEach(i\
-    \ -> solve());\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\
-    \t}\n}\n\nclass Utility {\n\tprotected static final String yes(final boolean ok){\
-    \ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean\
-    \ ok){ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
-    \ x * x; }\n\tprotected static final long mod(final long n, final long m){ return\
-    \ (n + m) % m; }\n\tprotected static final long ceil(final long a, final long\
-    \ b){ return (long) Math.ceil((double) a / b); }\n\tprotected static final double\
-    \ round(final double a, final long b, final int c) {\n\t\tfinal long d = intPow(10,\
-    \ c);\n\t\treturn (double) Math.round((a * d) / b) / d;\n\t}\n\tprotected static\
-    \ final long intPow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\
-    \t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long intPow(long a, long\
-    \ b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 ==\
-    \ 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\
-    \t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
-    \ static final long lcm(final long a, final long b){ return a * b / gcd(a, b);\
-    \ }\n\tprotected static final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i\
-    \ -> i).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final\
-    \ long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
-    \ static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a %\
-    \ b) : a; }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
+    import java.util.function.Function;\nimport java.util.function.LongBinaryOperator;\n\
+    import java.util.function.Predicate;\nimport java.util.stream.Collectors;\nimport\
+    \ java.util.stream.IntStream;\n\nclass VvyLw extends Utility {\n\tprotected static\
+    \ final MyScanner sc = new MyScanner();\n\tprotected static final MyPrinter o\
+    \ = new MyPrinter(System.out, false);\n\tprotected static final MyPrinter e =\
+    \ new MyPrinter(System.err, true);\n\tstatic final Huitloxopetl why = new Huitloxopetl();\n\
+    \tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final int[]\
+    \ dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final int inf = 1 << 30;\n\t\
+    static final long linf = (1L << 61) - 1;\n\tstatic final int mod998 = 998244353;\n\
+    \tstatic final int mod107 = (int)1e9 + 7;\n\tstatic final double eps = 1e-18;\n\
+    \tprotected static final void solve() {\n\t\t\n\t}\n}\nfinal class Main extends\
+    \ VvyLw {\n\tpublic static void main(final String[] args) {\n\t\tfinal int t =\
+    \ 1;//sc.ni();\n\t\tIntStream.range(0, t).forEach(i -> solve());\n\t\to.flush();\n\
+    \t\tsc.close();\n\t\to.close();\n\t\te.close();\n\t}\n}\n\nclass Utility {\n\t\
+    protected static final String yes(final boolean ok){ return ok ? \"Yes\" : \"\
+    No\"; }\n\tprotected static final String no(final boolean ok){ return yes(!ok);\
+    \ }\n\tprotected static final long sqr(final long x){ return x * x; }\n\tprotected\
+    \ static final long mod(final long n, final long m){ return (n + m) % m; }\n\t\
+    protected static final long ceil(final long a, final long b){ return (long) Math.ceil((double)\
+    \ a / b); }\n\tprotected static final double round(final double a, final long\
+    \ b, final int c) {\n\t\tfinal long d = intPow(10, c);\n\t\treturn (double) Math.round((a\
+    \ * d) / b) / d;\n\t}\n\tprotected static final long intPow(long a, int b) {\n\
+    \t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *=\
+    \ a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t\
+    protected static final long intPow(long a, long b, final long m) {\n\t\tlong res\
+    \ = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\t\
+    res = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>=\
+    \ 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long lcm(final long\
+    \ a, final long b){ return a * b / gcd(a, b); }\n\tprotected static final long\
+    \ lcm(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1, (x,\
+    \ y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){ return\
+    \ Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static final\
+    \ long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }\n\t\
+    protected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
     \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
     \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
     \ final int min(final int... a){ return Arrays.stream(a).reduce(Integer.MAX_VALUE,\
@@ -407,53 +408,54 @@ data:
     \ B b, final C c, final D d);\n\t}\n}\n\nfinal class MyScanner {\n\tprivate final\
     \ Scanner sc = new Scanner(System.in);\n\tfinal int ni(){ return sc.nextInt();\
     \ }\n\tfinal long nl(){ return sc.nextLong(); }\n\tfinal double nd(){ return sc.nextDouble();\
-    \ }\n\tfinal String ns(){ return sc.next(); }\n\tfinal int[] ni(final int n){\n\
-    \t\tint[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ni());\n\
-    \t\treturn a;\n\t}\n\tfinal long[] nl(final int n){\n\t\tlong[] a = new long[n];\n\
+    \ }\n\tfinal String ns(){ return sc.next(); }\n\tfinal BigInteger nb(){ return\
+    \ sc.nextBigInteger(); }\n\tfinal int[] ni(final int n) {\n\t\tfinal int[] a =\
+    \ new int[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ni());\n\t\treturn\
+    \ a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\tfinal long[] a = new long[n];\n\
     \t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\treturn a;\n\t}\n\tfinal\
-    \ double[] nd(final int n){\n\t\tdouble[] a = new double[n];\n\t\tIntStream.range(0,\
+    \ double[] nd(final int n) {\n\t\tfinal double[] a = new double[n];\n\t\tIntStream.range(0,\
     \ n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal String[] ns(final\
-    \ int n){\n\t\tString[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final int h, final\
-    \ int w) {\n\t\tint[][] a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ int n) {\n\t\tfinal String[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final int n) {\n\
+    \t\tfinal BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final int h, final\
+    \ int w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i\
     \ -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final int h, final\
-    \ int w) {\n\t\tlong[][] a = new long[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0, h).forEach(i\
     \ -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final int h, final\
-    \ int w) {\n\t\tdouble[][] a = new double[h][w];\n\t\tIntStream.range(0, h).forEach(i\
-    \ -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\tfinal void close(){ sc.close(); }\n\
-    }\n\nfinal class MyPrinter {\n\tprivate final PrintWriter pw;\n\tMyPrinter(final\
-    \ OutputStream os, final boolean flush){ pw = new PrintWriter(os, flush); }\n\t\
-    final void print(final Object arg){ pw.print(arg); }\n\tfinal void out(){ pw.println();\
-    \ }\n\tfinal void out(final Object head, final Object... tail) {\n\t\tpw.print(head);\n\
-    \t\tfor(final var el: tail) {\n\t\t\tpw.print(\" \" + el);\n\t\t}\n\t\tout();\n\
-    \t}\n\tfinal <F, S> void out(final Pair<F, S> arg){ pw.println(arg.first + \"\
-    \ \" + arg.second); }\n\tfinal void out(final int[] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length ? \" \" :\
-    \ \"\\n\"))); }\n\tfinal void out(final long[] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal\
-    \ void out(final double[] args){ IntStream.range(0, args.length).forEach(i ->\
-    \ pw.print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void\
-    \ out(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i]\
-    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final char[]\
-    \ args){ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i +\
-    \ 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final Object[] args){\
-    \ IntStream.range(0, args.length).forEach(i -> pw.print(args[i] + (i + 1 < args.length\
-    \ ? \" \" : \"\\n\"))); }\n\tfinal <T> void out(final List<T> args){ IntStream.range(0,\
-    \ args.size()).forEach(i -> pw.print(args.get(i) + (i + 1 < args.size() ? \" \"\
-    \ : \"\\n\"))); }\n\tfinal void outl(final Object head, final Object... tail)\
-    \ {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(pw::println);\n\t}\n\tfinal\
-    \ void outl(final int[] args){ Arrays.stream(args).forEach(pw::println); }\n\t\
-    final void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> out(args[i])); }\n\tfinal void outl(final long[] args){ Arrays.stream(args).forEach(pw::println);\
+    \ int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
+    \ h).forEach(i -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\tfinal void close(){ sc.close();\
+    \ }\n}\n\nfinal class MyPrinter extends PrintWriter {\n\tMyPrinter(final OutputStream\
+    \ os, final boolean flush){ super(os, flush); }\n\tfinal void out(){ println();\
+    \ }\n\tfinal void out(final Object head, final Object... tail) {\n\t\tprint(head);\n\
+    \t\tfor(final var el: tail) {\n\t\t\tprint(\" \" + el);\n\t\t}\n\t\tout();\n\t\
+    }\n\tfinal <F, S> void out(final Pair<F, S> arg){ println(arg.first + \" \" +\
+    \ arg.second); }\n\tfinal void out(final int[] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void\
+    \ out(final long[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i]\
+    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final double[]\
+    \ args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 <\
+    \ args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final boolean[] args){\
+    \ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length\
+    \ ? \" \" : \"\\n\"))); }\n\tfinal void out(final char[] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\\
+    n\"))); }\n\tfinal void out(final Object[] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal <T>\
+    \ void out(final List<T> args){ IntStream.range(0, args.size()).forEach(i -> print(args.get(i)\
+    \ + (i + 1 < args.size() ? \" \" : \"\\n\"))); }\n\tfinal void outl(final Object\
+    \ head, final Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::println);\n\
+    \t}\n\tfinal void outl(final int[] args){ Arrays.stream(args).forEach(this::println);\
+    \ }\n\tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> out(args[i])); }\n\tfinal void outl(final long[] args){ Arrays.stream(args).forEach(this::println);\
     \ }\n\tfinal void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> out(args[i])); }\n\tfinal void outl(final double[] args){ Arrays.stream(args).forEach(pw::println);\
+    \ -> out(args[i])); }\n\tfinal void outl(final double[] args){ Arrays.stream(args).forEach(this::println);\
     \ }\n\tfinal void outl(final double[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final boolean[] args){ IntStream.range(0,\
     \ args.length).forEach(i -> out(args[i])); }\n\tfinal void outl(final boolean[][]\
     \ args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }\n\tfinal\
     \ void outl(final char[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i]));\
-    \ }\n\tfinal void outl(final Object[] args){ Arrays.stream(args).forEach(pw::println);\
-    \ }\n\tfinal <E> void outl(final Collection<E> args){ args.stream().forEach(pw::println);\
+    \ }\n\tfinal void outl(final Object[] args){ Arrays.stream(args).forEach(this::println);\
+    \ }\n\tfinal <E> void outl(final Collection<E> args){ args.stream().forEach(this::println);\
     \ }\n\tfinal void fin(final Object head, final Object... tail) {\n\t\tout(head,\
     \ tail);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\tfinal void fin(final int[]\
     \ args) {\n\t\tout(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\tfinal void\
@@ -472,23 +474,23 @@ data:
     \tfinal void ende(final char[] args) {\n\t\toutl(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\
     \t}\n\tfinal void ende(final Object[] args) {\n\t\toutl(args);\n\t\tflush();\n\
     \t\tSystem.exit(0);\n\t}\n\tfinal <E> void ende(final Collection<E> args) {\n\t\
-    \toutl(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\tfinal void flush(){ pw.flush();\
-    \ }\n\tfinal void close(){ pw.close(); }\n}\n\nclass Pair<F, S> {\n\tprotected\
-    \ final F first;\n\tprotected final S second;\n\tPair(final F first, final S second)\
-    \ {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\t@Override\n\t\
-    public final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn\
-    \ true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn\
-    \ false;\n\t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first))\
-    \ {\n\t\t\treturn false;\n\t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t\
-    @Override\n\tpublic final int hashCode(){ return 31 * first.hashCode() + second.hashCode();\
-    \ }\n\t@Override\n\tpublic final String toString(){ return \"(\" + first + \"\
-    , \" + second + \")\"; }\n\tpublic static final <F, S> Pair<F, S> of(final F a,\
-    \ final S b){ return new Pair<>(a, b); }\n\tfinal Pair<S, F> swap(){ return Pair.of(second,\
-    \ first); }\n}\nfinal class NumPair extends Pair<Number, Number> implements Comparable<NumPair>\
-    \  {\n\tNumPair(final Number first, final Number second){ super(first, second);\
-    \ }\n\tfinal NumPair rotate(){ return new NumPair(-second.doubleValue(), first.doubleValue());\
-    \ } \n\tfinal NumPair rotate(final int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang,\
-    \ 360));\n\t\treturn new NumPair(first.doubleValue() * Math.cos(rad) - second.doubleValue()\
+    \toutl(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n}\n\nclass Pair<F, S> {\n\
+    \tprotected final F first;\n\tprotected final S second;\n\tPair(final F first,\
+    \ final S second) {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\
+    \t@Override\n\tpublic final boolean equals(final Object o) {\n\t\tif(this == o)\
+    \ {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass())\
+    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?, ?>) o;\n\t\t\
+    if(!first.equals(p.first)) {\n\t\t\treturn false;\n\t\t}\n\t\treturn second.equals(p.second);\n\
+    \t}\n\t@Override\n\tpublic final int hashCode(){ return 31 * first.hashCode()\
+    \ + second.hashCode(); }\n\t@Override\n\tpublic final String toString(){ return\
+    \ \"(\" + first + \", \" + second + \")\"; }\n\tpublic static final <F, S> Pair<F,\
+    \ S> of(final F a, final S b){ return new Pair<>(a, b); }\n\tfinal Pair<S, F>\
+    \ swap(){ return Pair.of(second, first); }\n}\nfinal class NumPair extends Pair<Number,\
+    \ Number> implements Comparable<NumPair>  {\n\tNumPair(final Number first, final\
+    \ Number second){ super(first, second); }\n\tfinal NumPair rotate(){ return new\
+    \ NumPair(-second.doubleValue(), first.doubleValue()); } \n\tfinal NumPair rotate(final\
+    \ int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\
+    \treturn new NumPair(first.doubleValue() * Math.cos(rad) - second.doubleValue()\
     \ * Math.sin(rad),\n\t\t\t\t\t\t\tfirst.doubleValue() * Math.sin(rad) + second.doubleValue()\
     \ * Math.cos(rad));\n\t}\n\tfinal long dot(final NumPair p){ return first.longValue()\
     \ * p.first.longValue() + second.longValue() + p.second.longValue(); }\n\tfinal\
@@ -806,22 +808,26 @@ data:
     \ / i * (i - 1);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal int[] get(){ return\
     \ euler; }\n\tfinal long[] acc() {\n\t\tlong[] ret = new long[n + 1];\n\t\tret[1]\
     \ = 2;\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tret[i] = ret[i - 1] + euler[i];\n\
-    \t\t}\n\t\treturn ret;\n\t}\n}\n\nfinal class PrefixSum {\n\tprivate final int\
-    \ n;\n\tprivate final long[] s;\n\tPrefixSum(final int[] a) {\n\t\tn = a.length;\n\
-    \t\ts = new long[n + 1];\n\t\tIntStream.range(0, n).forEach(i -> s[i + 1] = s[i]\
-    \ + a[i]);\n\t}\n\tPrefixSum(final long[] a) {\n\t\tn = a.length;\n\t\ts = new\
-    \ long[n + 1];\n\t\tIntStream.range(0, n).forEach(i -> s[i + 1] = s[i] + a[i]);\n\
-    \t}\n\tfinal long[] get(){ return s; }\n\tfinal long query(final int l, final\
-    \ int r){ return s[r] - s[l]; }\n}\n\nfinal class FenwickTree {\n\tprivate final\
-    \ int n;\n\tprivate final long[] data;\n\tFenwickTree(final int n) {\n\t\tthis.n\
-    \ = n + 2;\n\t\tdata = new long[this.n + 1];\n\t}\n\tfinal long sum(int k) {\n\
-    \t\tif(k < 0) return 0;\n\t\tlong ret = 0;\n\t\tfor(++k; k > 0; k -= k & -k) {\n\
-    \t\t\tret += data[k];\n\t\t}\n\t\treturn ret;\n\t}\n\tfinal long sum(final int\
-    \ l, final int r){ return sum(r) - sum(l - 1); }\n\tfinal long get(final int k){\
-    \ return sum(k) - sum(k - 1); }\n\tfinal void add(int k, final long x) {\n\t\t\
-    for(++k; k < n; k += k & -k) {\n\t\t\tdata[k] += x;\n\t\t}\n\t}\n\tfinal void\
-    \ imos(final int l, final int r, long x) {\n\t\tadd(l, x);\n\t\tadd(r + 1, -x);\n\
-    \t}\n\tprivate final int lg(final int n){ return 63 - Integer.numberOfLeadingZeros(n);\
+    \t\t}\n\t\treturn ret;\n\t}\n}\n\nclass InclusiveScan {\n\tprotected final int\
+    \ n;\n\tprotected final long[] s;\n\tInclusiveScan(final int[] a, final LongBinaryOperator\
+    \ op) {\n\t\tn = a.length;\n\t\ts = new long[n + 1];\n\t\tIntStream.rangeClosed(1,\
+    \ n).forEach(i -> s[i] = a[i - 1]);\n\t\tArrays.parallelPrefix(s, op);\n\t}\n\t\
+    InclusiveScan(final long[] a, final LongBinaryOperator op) {\n\t\tn = a.length;\n\
+    \t\ts = new long[n + 1];\n\t\tIntStream.rangeClosed(1, n).forEach(i -> s[i] =\
+    \ a[i - 1]);\n\t\tArrays.parallelPrefix(s, op);\n\t}\n\tprotected long[] get(){\
+    \ return s; }\n\tprotected long query(final int l, final int r){ return s[r] -\
+    \ s[l]; }\n}\n\nfinal class PrefixSum extends InclusiveScan {\n\tPrefixSum(final\
+    \ int[] a){ super(a, (x, y) -> x + y); }\n\tPrefixSum(final long[] a){ super(a,\
+    \ (x, y) -> x + y); }\n}\n\nfinal class FenwickTree {\n\tprivate final int n;\n\
+    \tprivate final long[] data;\n\tFenwickTree(final int n) {\n\t\tthis.n = n + 2;\n\
+    \t\tdata = new long[this.n + 1];\n\t}\n\tfinal long sum(int k) {\n\t\tif(k < 0)\
+    \ return 0;\n\t\tlong ret = 0;\n\t\tfor(++k; k > 0; k -= k & -k) {\n\t\t\tret\
+    \ += data[k];\n\t\t}\n\t\treturn ret;\n\t}\n\tfinal long sum(final int l, final\
+    \ int r){ return sum(r) - sum(l - 1); }\n\tfinal long get(final int k){ return\
+    \ sum(k) - sum(k - 1); }\n\tfinal void add(int k, final long x) {\n\t\tfor(++k;\
+    \ k < n; k += k & -k) {\n\t\t\tdata[k] += x;\n\t\t}\n\t}\n\tfinal void imos(final\
+    \ int l, final int r, long x) {\n\t\tadd(l, x);\n\t\tadd(r + 1, -x);\n\t}\n\t\
+    private final int lg(final int n){ return 63 - Integer.numberOfLeadingZeros(n);\
     \ }\n\tfinal int lowerBound(long w) {\n\t\tif(w <= 0) {\n\t\t\treturn 0;\n\t\t\
     }\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x +\
     \ k <= n - 1 && data[x + k] < w) {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\
@@ -1100,7 +1106,7 @@ data:
   - Java/extension/SuffixArray.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2023-12-16 20:41:25+09:00'
+  timestamp: '2023-12-18 10:39:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java

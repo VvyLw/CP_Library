@@ -215,7 +215,7 @@ data:
   - Java/extension/SuffixArray.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-16 20:41:25+09:00'
+  timestamp: '2023-12-18 10:39:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Graph.java
