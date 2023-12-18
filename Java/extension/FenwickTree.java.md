@@ -193,7 +193,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-19 01:03:04+09:00'
+  timestamp: '2023-12-19 01:42:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/FenwickTree.java

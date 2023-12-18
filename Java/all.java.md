@@ -766,11 +766,11 @@ data:
     \ t % 2 == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\
     \tfinal private long find(final long n) {\n\t\tif(isPrime(n)) {\n\t\t\treturn\
     \ n;\n\t\t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn 2;\n\t\t}\n\t\tlong st = 0;\n\t\
-    \tfinal BiFunction<Long, Long, Long> f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue();\
-    \ };\n\t\twhile(true) {\n\t\t\tst++;\n\t\t\tlong x = st, y = f.apply(x, st);\n\
-    \t\t\twhile(true) {\n\t\t\t\tfinal long p = gcd(y - x + n, n);\n\t\t\t\tif(p ==\
-    \ 0 || p == n) {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\tif(p != 1) {\n\t\t\t\t\t\
-    return p;\n\t\t\t\t}\n\t\t\t\tx = f.apply(x, st);\n\t\t\t\ty = f.apply(f.apply(y,\
+    \tfinal LongBinaryOperator f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue();\
+    \ };\n\t\twhile(true) {\n\t\t\tst++;\n\t\t\tlong x = st, y = f.applyAsLong(x,\
+    \ st);\n\t\t\twhile(true) {\n\t\t\t\tfinal long p = gcd(y - x + n, n);\n\t\t\t\
+    \tif(p == 0 || p == n) {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\tif(p != 1) {\n\t\
+    \t\t\t\treturn p;\n\t\t\t\t}\n\t\t\t\tx = f.applyAsLong(x, st);\n\t\t\t\ty = f.applyAsLong(f.applyAsLong(y,\
     \ st), st);\n\t\t\t}\n\t\t}\n\t}\n\tfinal ArrayList<Long> primeFactor(final long\
     \ n) {\n\t\tif(n == 1) return new ArrayList<>();\n\t\tfinal long x = find(n);\n\
     \t\tif(x == n) return new ArrayList<>(Arrays.asList(x));\n\t\tArrayList<Long>\
@@ -1116,7 +1116,7 @@ data:
   - Java/extension/SuffixArray.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2023-12-19 01:03:04+09:00'
+  timestamp: '2023-12-19 01:42:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
