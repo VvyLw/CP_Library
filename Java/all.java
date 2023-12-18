@@ -20,6 +20,7 @@ import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.LongBinaryOperator;
+import java.util.function.LongPredicate;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -28,7 +29,6 @@ class VvyLw extends Utility {
 	protected static final MyScanner sc = new MyScanner();
 	protected static final MyPrinter o = new MyPrinter(System.out, false);
 	protected static final MyPrinter e = new MyPrinter(System.err, true);
-	static final Huitloxopetl why = new Huitloxopetl();
 	static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};
 	static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};
 	static final int inf = 1 << 30;
@@ -42,7 +42,8 @@ class VvyLw extends Utility {
 }
 final class Main extends VvyLw {
 	public static void main(final String[] args) {
-		final int t = 1;//sc.ni();
+		final boolean multi = false;
+		final int t = multi ? sc.ni() : 1;
 		IntStream.range(0, t).forEach(i -> solve());
 		o.flush();
 		sc.close();
@@ -56,12 +57,12 @@ class Utility {
 	protected static final String no(final boolean ok){ return yes(!ok); }
 	protected static final long sqr(final long x){ return x * x; }
 	protected static final long mod(final long n, final long m){ return (n + m) % m; }
-	protected static final long ceil(final long a, final long b){ return (long) Math.ceil((double) a / b); }
+	protected static final long ceil(final long a, final long b){ return (a - 1) / b + 1; }
 	protected static final double round(final double a, final long b, final int c) {
-		final long d = intPow(10, c);
+		final long d = pow(10, c);
 		return (double) Math.round((a * d) / b) / d;
 	}
-	protected static final long intPow(long a, int b) {
+	protected static final long pow(long a, int b) {
 		long res = 1;
 		while(b > 0) {
 			if(b % 2 == 1) {
@@ -72,7 +73,7 @@ class Utility {
 		}
 		return res;
 	}
-	protected static final long intPow(long a, long b, final long m) {
+	protected static final long pow(long a, long b, final long m) {
 		long res = 1;
 		while(b > 0) {
 			if(b % 2 == 1) {
@@ -371,52 +372,36 @@ class Utility {
 		return b;
 	}
 	protected static final int[] rotate(final int[] a, final int id) {
-		ArrayList<Integer> t = new ArrayList<>(a.length);
-		for(final var el: a) {
-			t.add(el);
-		}
+		final var t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
-		int[] res = new int[t.size()];
-		for(int i = 0; i < t.size(); ++i) {
+		final int[] res = new int[a.length];
+		for(int i = 0; i < a.length; ++i) {
 			res[i] = t.get(i);
 		}
 		return res;
 	}
 	protected static final long[] rotate(final long[] a, final int id) {
-		ArrayList<Long> t = new ArrayList<>(a.length);
-		for(final var el: a) {
-			t.add(el);
-		}
+		final var t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
-		long[] res = new long[t.size()];
-		for(int i = 0; i < t.size(); ++i) {
+		final long[] res = new long[a.length];
+		for(int i = 0; i < a.length; ++i) {
 			res[i] = t.get(i);
 		}
 		return res;
 	}
 	protected static final double[] rotate(final double[] a, final int id) {
-		ArrayList<Double> t = new ArrayList<>(a.length);
-		for(final var el: a) {
-			t.add(el);
-		}
+		final var t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
-		double[] res = new double[t.size()];
-		for(int i = 0; i < t.size(); ++i) {
+		final double[] res = new double[a.length];
+		for(int i = 0; i < a.length; ++i) {
 			res[i] = t.get(i);
 		}
 		return res;
 	}
 	protected static final String rotate(final String s, final int id) {
-		ArrayList<Character> t = new ArrayList<>();
-		for(final char c: s.toCharArray()) {
-			t.add(c);
-		}
+		final var t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
 		Collections.rotate(t, id);
-		StringBuilder sb = new StringBuilder();
-		for(final var c: t) {
-			sb.append(c);
-		}
-		return sb.toString(); 
+		return t.stream().map(i -> i.toString()).collect(Collectors.joining());
 	}
 	protected static final int[][] rotate(final int[][] a) {
 		final int h = a.length, w = a[0].length;
@@ -593,7 +578,7 @@ class Utility {
 		if(k == 1) {
 			return n;
 		}
-		final Predicate<Long> chk = (x) -> {
+		final Predicate<Long> chk = x -> {
 			long mul = 1;
 			for(int j = 0; j < k; ++j) {
 				try {
@@ -626,14 +611,14 @@ class Utility {
 			return a % m;
 		}
 		if(b == 2) {
-			return intPow(a, a, m);
+			return pow(a, a, m);
 		}
 		final var phi = eulerPhi(m);
 		var tmp = tetration(a, b - 1, phi);
 		if(tmp == 0) {
 			tmp += phi;
 		}
-		return intPow(a, tmp, m);
+		return pow(a, tmp, m);
 	}
 	protected interface TriFunction<T, U, V, W> {
 		public W apply(final T a, final U b, final V c);
@@ -1795,26 +1780,29 @@ final class EulerPhiTable {
 
 class InclusiveScan {
 	protected final int n;
-	protected final long[] s;
+	protected long[] s;
 	InclusiveScan(final int[] a, final LongBinaryOperator op) {
 		n = a.length;
-		s = new long[n + 1];
-		IntStream.rangeClosed(1, n).forEach(i -> s[i] = a[i - 1]);
+		s = Arrays.stream(a).mapToLong(i -> i).toArray();
 		Arrays.parallelPrefix(s, op);
 	}
 	InclusiveScan(final long[] a, final LongBinaryOperator op) {
 		n = a.length;
-		s = new long[n + 1];
-		IntStream.rangeClosed(1, n).forEach(i -> s[i] = a[i - 1]);
+		s = a.clone();
 		Arrays.parallelPrefix(s, op);
 	}
 	protected long[] get(){ return s; }
 	protected long query(final int l, final int r){ return s[r] - s[l]; }
 }
-
 final class PrefixSum extends InclusiveScan {
-	PrefixSum(final int[] a){ super(a, (x, y) -> x + y); }
-	PrefixSum(final long[] a){ super(a, (x, y) -> x + y); }
+	PrefixSum(final int[] a) {
+		super(a, (x, y) -> x + y);
+		s = Utility.rotate(Arrays.copyOf(s, n + 1), 1);
+	}
+	PrefixSum(final long[] a) {
+		super(a, (x, y) -> x + y);
+		s = Utility.rotate(Arrays.copyOf(s, n + 1), 1);
+	}
 }
 
 final class FenwickTree {
@@ -1983,8 +1971,8 @@ final class SegmentTree<T extends Number> {
 final class SparseTable {
 	private final long[][] st;
 	private final int[] lookup;
-	private final BinaryOperator<Long> op;
-	SparseTable(final int[] a, final BinaryOperator<Long> op) {
+	private final LongBinaryOperator op;
+	SparseTable(final int[] a, final LongBinaryOperator op) {
 		this.op = op;
 		int b = 0;
 		while((1 << b) <= a.length) {
@@ -1996,7 +1984,7 @@ final class SparseTable {
 		}
 		for(int i = 1; i < b; i++) {
 			for(int j = 0; j + (1 << i) <= (1 << b); j++) {
-				st[i][j] = op.apply(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);
+				st[i][j] = op.applyAsLong(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);
 			}
 		}
 		lookup = new int[a.length + 1];
@@ -2004,7 +1992,7 @@ final class SparseTable {
 			lookup[i] = lookup[i >> 1] + 1;
 		}
 	}
-	SparseTable(final long[] a, final BinaryOperator<Long> op) {
+	SparseTable(final long[] a, final LongBinaryOperator op) {
 		this.op = op;
 		int b = 0;
 		while((1 << b) <= a.length) {
@@ -2016,7 +2004,7 @@ final class SparseTable {
 		}
 		for(int i = 1; i < b; i++) {
 			for(int j = 0; j + (1 << i) <= (1 << b); j++) {
-				st[i][j] = op.apply(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);
+				st[i][j] = op.applyAsLong(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);
 			}
 		}
 		lookup = new int[a.length + 1];
@@ -2026,9 +2014,9 @@ final class SparseTable {
 	}
 	final long query(final int l, final int r) {
 		final int b = lookup[r - l];
-		return op.apply(st[b][l], st[b][r - (1 << b)]);
+		return op.applyAsLong(st[b][l], st[b][r - (1 << b)]);
 	}
-	final int minLeft(final int x, final Predicate<Long> fn) {
+	final int minLeft(final int x, final LongPredicate fn) {
 		if(x == 0) {
 			return 0;
 		}
@@ -2044,7 +2032,7 @@ final class SparseTable {
 		}
 		return ok;
 	}
-	final int maxRight(final int x, final Predicate<Long> fn) {
+	final int maxRight(final int x, final LongPredicate fn) {
 		if(x == lookup.length - 1) {
 			return lookup.length - 1;
 		}

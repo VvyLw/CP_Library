@@ -30,11 +30,9 @@ class VvyLw extends Utility {
 }
 final class Main extends VvyLw {
 	public static void main(final String[] args) {
-		int t = 1;
-		//t = sc.ni();
-		while(t-- > 0) {
-			solve();
-		}
+		final boolean multi = false;
+		final int t = multi ? sc.ni() : 1;
+		IntStream.range(0, t).forEach(i -> solve());
 		o.flush();
 		sc.close();
 		o.close();
@@ -47,12 +45,12 @@ class Utility {
 	protected static final String no(final boolean ok){ return yes(!ok); }
 	protected static final long sqr(final long x){ return x * x; }
 	protected static final long mod(final long n, final long m){ return (n + m) % m; }
-	protected static final long ceil(final long a, final long b){ return (long) Math.ceil((double) a / b); }
+	protected static final long ceil(final long a, final long b){ return (a - 1) / b + 1; }
 	protected static final double round(final double a, final long b, final int c) {
-		final long d = intPow(10, c);
+		final long d = pow(10, c);
 		return (double) Math.round((a * d) / b) / d;
 	}
-	protected static final long intPow(long a, int b) {
+	protected static final long pow(long a, int b) {
 		long res = 1;
 		while(b > 0) {
 			if(b % 2 == 1) {
@@ -63,7 +61,7 @@ class Utility {
 		}
 		return res;
 	}
-	protected static final long intPow(long a, long b, final long m) {
+	protected static final long pow(long a, long b, final long m) {
 		long res = 1;
 		while(b > 0) {
 			if(b % 2 == 1) {
@@ -362,52 +360,36 @@ class Utility {
 		return b;
 	}
 	protected static final int[] rotate(final int[] a, final int id) {
-		ArrayList<Integer> t = new ArrayList<>(a.length);
-		for(final var el: a) {
-			t.add(el);
-		}
+		final var t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
-		int[] res = new int[t.size()];
-		for(int i = 0; i < t.size(); ++i) {
+		final int[] res = new int[a.length];
+		for(int i = 0; i < a.length; ++i) {
 			res[i] = t.get(i);
 		}
 		return res;
 	}
 	protected static final long[] rotate(final long[] a, final int id) {
-		ArrayList<Long> t = new ArrayList<>(a.length);
-		for(final var el: a) {
-			t.add(el);
-		}
+		final var t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
-		long[] res = new long[t.size()];
-		for(int i = 0; i < t.size(); ++i) {
+		final long[] res = new long[a.length];
+		for(int i = 0; i < a.length; ++i) {
 			res[i] = t.get(i);
 		}
 		return res;
 	}
 	protected static final double[] rotate(final double[] a, final int id) {
-		ArrayList<Double> t = new ArrayList<>(a.length);
-		for(final var el: a) {
-			t.add(el);
-		}
+		final var t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
-		double[] res = new double[t.size()];
-		for(int i = 0; i < t.size(); ++i) {
+		final double[] res = new double[a.length];
+		for(int i = 0; i < a.length; ++i) {
 			res[i] = t.get(i);
 		}
 		return res;
 	}
 	protected static final String rotate(final String s, final int id) {
-		ArrayList<Character> t = new ArrayList<>();
-		for(final char c: s.toCharArray()) {
-			t.add(c);
-		}
+		final var t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
 		Collections.rotate(t, id);
-		StringBuilder sb = new StringBuilder();
-		for(final var c: t) {
-			sb.append(c);
-		}
-		return sb.toString(); 
+		return t.stream().map(i -> i.toString()).collect(Collectors.joining());
 	}
 	protected static final int[][] rotate(final int[][] a) {
 		final int h = a.length, w = a[0].length;
@@ -584,7 +566,7 @@ class Utility {
 		if(k == 1) {
 			return n;
 		}
-		final Predicate<Long> chk = (x) -> {
+		final Predicate<Long> chk = x -> {
 			long mul = 1;
 			for(int j = 0; j < k; ++j) {
 				try {
@@ -617,14 +599,14 @@ class Utility {
 			return a % m;
 		}
 		if(b == 2) {
-			return intPow(a, a, m);
+			return pow(a, a, m);
 		}
 		final var phi = eulerPhi(m);
 		var tmp = tetration(a, b - 1, phi);
 		if(tmp == 0) {
 			tmp += phi;
 		}
-		return intPow(a, tmp, m);
+		return pow(a, tmp, m);
 	}
 	protected interface TriFunction<T, U, V, W> {
 		public W apply(final T a, final U b, final V c);
