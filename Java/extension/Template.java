@@ -48,7 +48,7 @@ class Utility {
 	protected static final long ceil(final long a, final long b){ return (a - 1) / b + 1; }
 	protected static final double round(final double a, final long b, final int c) {
 		final long d = pow(10, c);
-		return (double) Math.round((a * d) / b) / d;
+		return Math.rint((a * d) / b) / d;
 	}
 	protected static final long pow(long a, int b) {
 		long res = 1;
