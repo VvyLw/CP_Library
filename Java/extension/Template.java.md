@@ -145,42 +145,42 @@ data:
     \tstatic final int mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9 +\
     \ 7;\n\tstatic final double eps = 1e-18;\n\tprotected static final void solve()\
     \ {\n\t\t\n\t}\n}\nfinal class Main extends VvyLw {\n\tpublic static void main(final\
-    \ String[] args) {\n\t\tint t = 1;\n\t\t//t = sc.ni();\n\t\twhile(t-- > 0) {\n\
-    \t\t\tsolve();\n\t\t}\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\
-    \t}\n}\n\nclass Utility {\n\tprotected static final String yes(final boolean ok){\
-    \ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean\
-    \ ok){ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
-    \ x * x; }\n\tprotected static final long mod(final long n, final long m){ return\
-    \ (n + m) % m; }\n\tprotected static final long ceil(final long a, final long\
-    \ b){ return (long) Math.ceil((double) a / b); }\n\tprotected static final double\
-    \ round(final double a, final long b, final int c) {\n\t\tfinal long d = intPow(10,\
-    \ c);\n\t\treturn (double) Math.round((a * d) / b) / d;\n\t}\n\tprotected static\
-    \ final long intPow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\
-    \t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long intPow(long a, long\
-    \ b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 ==\
-    \ 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\
-    \t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
-    \ static final long lcm(final long a, final long b){ return a * b / gcd(a, b);\
-    \ }\n\tprotected static final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i\
-    \ -> i).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final\
-    \ long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
-    \ static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a %\
-    \ b) : a; }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
-    \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
-    \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
-    \ final int min(final int... a){ return Arrays.stream(a).reduce(Integer.MAX_VALUE,\
-    \ (x, y) -> Math.min(x, y)); }\n\tprotected static final long min(final long...\
-    \ a){ return Arrays.stream(a).reduce(Long.MAX_VALUE, (x, y) -> Math.min(x, y));\
-    \ }\n\tprotected static final int max(final int... a){ return Arrays.stream(a).reduce(Integer.MIN_VALUE,\
-    \ (x, y) -> Math.max(x, y)); }\n\tprotected static final long max(final long...\
-    \ a){ return Arrays.stream(a).reduce(Long.MIN_VALUE, (x, y) -> Math.max(x, y));\
-    \ }\n\tprotected static final ArrayList<Long> div(final long n) {\n\t\tArrayList<Long>\
-    \ d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n %\
-    \ i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n /\
-    \ i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\t\treturn d;\n\t\
-    }\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long n)\
-    \ {\n\t\tArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long\
+    \ String[] args) {\n\t\tfinal boolean multi = false;\n\t\tfinal int t = multi\
+    \ ? sc.ni() : 1;\n\t\tIntStream.range(0, t).forEach(i -> solve());\n\t\to.flush();\n\
+    \t\tsc.close();\n\t\to.close();\n\t\te.close();\n\t}\n}\n\nclass Utility {\n\t\
+    protected static final String yes(final boolean ok){ return ok ? \"Yes\" : \"\
+    No\"; }\n\tprotected static final String no(final boolean ok){ return yes(!ok);\
+    \ }\n\tprotected static final long sqr(final long x){ return x * x; }\n\tprotected\
+    \ static final long mod(final long n, final long m){ return (n + m) % m; }\n\t\
+    protected static final long ceil(final long a, final long b){ return (a - 1) /\
+    \ b + 1; }\n\tprotected static final double round(final double a, final long b,\
+    \ final int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn (double) Math.round((a\
+    \ * d) / b) / d;\n\t}\n\tprotected static final long pow(long a, int b) {\n\t\t\
+    long res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
+    \t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
+    \ static final long pow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\
+    \twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res,\
+    \ m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\
+    \treturn res;\n\t}\n\tprotected static final long lcm(final long a, final long\
+    \ b){ return a * b / gcd(a, b); }\n\tprotected static final long lcm(final int...\
+    \ a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1, (x, y) -> lcm(x, y));\
+    \ }\n\tprotected static final long lcm(final long... a){ return Arrays.stream(a).reduce(1,\
+    \ (x, y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final\
+    \ long b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
+    \ int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\
+    \tprotected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0,\
+    \ (x, y) -> gcd(x, y)); }\n\tprotected static final int min(final int... a){ return\
+    \ Arrays.stream(a).reduce(Integer.MAX_VALUE, (x, y) -> Math.min(x, y)); }\n\t\
+    protected static final long min(final long... a){ return Arrays.stream(a).reduce(Long.MAX_VALUE,\
+    \ (x, y) -> Math.min(x, y)); }\n\tprotected static final int max(final int...\
+    \ a){ return Arrays.stream(a).reduce(Integer.MIN_VALUE, (x, y) -> Math.max(x,\
+    \ y)); }\n\tprotected static final long max(final long... a){ return Arrays.stream(a).reduce(Long.MIN_VALUE,\
+    \ (x, y) -> Math.max(x, y)); }\n\tprotected static final ArrayList<Long> div(final\
+    \ long n) {\n\t\tArrayList<Long> d = new ArrayList<>();\n\t\tfor(long i = 1; i\
+    \ * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i *\
+    \ i != n) {\n\t\t\t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\
+    \t\treturn d;\n\t}\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long\
+    \ n) {\n\t\tArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long\
     \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t\
     }\n\t\t\tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /=\
     \ i;\n\t\t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\t\t\
@@ -302,25 +302,22 @@ data:
     \ Object[] a) {\n\t\tfinal int n = a.length;\n\t\tObject[] b = new Object[n];\n\
     \t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n -\
     \ 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected static final int[] rotate(final\
-    \ int[] a, final int id) {\n\t\tArrayList<Integer> t = new ArrayList<>(a.length);\n\
-    \t\tfor(final var el: a) {\n\t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t,\
-    \ id);\n\t\tint[] res = new int[t.size()];\n\t\tfor(int i = 0; i < t.size(); ++i)\
-    \ {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final long[] rotate(final long[] a, final int id) {\n\t\tArrayList<Long> t =\
-    \ new ArrayList<>(a.length);\n\t\tfor(final var el: a) {\n\t\t\tt.add(el);\n\t\
-    \t}\n\t\tCollections.rotate(t, id);\n\t\tlong[] res = new long[t.size()];\n\t\t\
-    for(int i = 0; i < t.size(); ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn\
+    \ int[] a, final int id) {\n\t\tfinal var t = Arrays.stream(a).boxed().collect(Collectors.toList());\n\
+    \t\tCollections.rotate(t, id);\n\t\tfinal int[] res = new int[a.length];\n\t\t\
+    for(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\tprotected static final long[] rotate(final long[] a, final int\
+    \ id) {\n\t\tfinal var t = Arrays.stream(a).boxed().collect(Collectors.toList());\n\
+    \t\tCollections.rotate(t, id);\n\t\tfinal long[] res = new long[a.length];\n\t\
+    \tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn\
     \ res;\n\t}\n\tprotected static final double[] rotate(final double[] a, final\
-    \ int id) {\n\t\tArrayList<Double> t = new ArrayList<>(a.length);\n\t\tfor(final\
-    \ var el: a) {\n\t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t, id);\n\t\t\
-    double[] res = new double[t.size()];\n\t\tfor(int i = 0; i < t.size(); ++i) {\n\
-    \t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
-    \ String rotate(final String s, final int id) {\n\t\tArrayList<Character> t =\
-    \ new ArrayList<>();\n\t\tfor(final char c: s.toCharArray()) {\n\t\t\tt.add(c);\n\
-    \t\t}\n\t\tCollections.rotate(t, id);\n\t\tStringBuilder sb = new StringBuilder();\n\
-    \t\tfor(final var c: t) {\n\t\t\tsb.append(c);\n\t\t}\n\t\treturn sb.toString();\
-    \ \n\t}\n\tprotected static final int[][] rotate(final int[][] a) {\n\t\tfinal\
-    \ int h = a.length, w = a[0].length;\n\t\tint[][] b = new int[w][h];\n\t\tIntStream.range(0,\
+    \ int id) {\n\t\tfinal var t = Arrays.stream(a).boxed().collect(Collectors.toList());\n\
+    \t\tCollections.rotate(t, id);\n\t\tfinal double[] res = new double[a.length];\n\
+    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\t\
+    return res;\n\t}\n\tprotected static final String rotate(final String s, final\
+    \ int id) {\n\t\tfinal var t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());\n\
+    \t\tCollections.rotate(t, id);\n\t\treturn t.stream().map(i -> i.toString()).collect(Collectors.joining());\n\
+    \t}\n\tprotected static final int[][] rotate(final int[][] a) {\n\t\tfinal int\
+    \ h = a.length, w = a[0].length;\n\t\tint[][] b = new int[w][h];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);\n\
     \t\t});\n\t\tIntStream.range(0, w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn\
     \ b;\n\t}\n\tprotected static final long[][] rotate(final long[][] a) {\n\t\t\
@@ -385,19 +382,19 @@ data:
     \t\t\t\t}\n\t\t\t}\n\t\t} else {\n\t\t\tfor(var x: rad) {\n\t\t\t\tx = 2 * x -\
     \ 1;\n\t\t\t}\n\t\t}\n\t\treturn rad;\n\t}\n\tprotected static final long kthRoot(final\
     \ long n, final int k) {\n\t\tif(k == 1) {\n\t\t\treturn n;\n\t\t}\n\t\tfinal\
-    \ Predicate<Long> chk = (x) -> {\n\t\t\tlong mul = 1;\n\t\t\tfor(int j = 0; j\
-    \ < k; ++j) {\n\t\t\t\ttry {\n\t\t\t\t\tmul = Math.multiplyExact(mul, x);\n\t\t\
-    \t\t} catch(ArithmeticException e) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\
-    \t}\n\t\t\treturn mul <= n;\n\t\t};\n\t\tlong ret = 0;\n\t\tfor(int i = 32; --i\
+    \ Predicate<Long> chk = x -> {\n\t\t\tlong mul = 1;\n\t\t\tfor(int j = 0; j <\
+    \ k; ++j) {\n\t\t\t\ttry {\n\t\t\t\t\tmul = Math.multiplyExact(mul, x);\n\t\t\t\
+    \t} catch(ArithmeticException e) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t\
+    }\n\t\t\treturn mul <= n;\n\t\t};\n\t\tlong ret = 0;\n\t\tfor(int i = 32; --i\
     \ >= 0;) {\n\t\t\tif(chk.test(ret | (1L << i))) {\n\t\t\t\tret |= 1L << i;\n\t\
     \t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\tprotected static final long tetration(final\
     \ long a, final long b, final long m) {\n\t\tif(m == 1) {\n\t\t\treturn 0;\n\t\
     \t}\n\t\tif(a == 0) {\n\t\t\treturn (b & 1) == 0 ? 1 : 0;\n\t\t}\n\t\tif(b ==\
     \ 0) {\n\t\t\treturn 1;\n\t\t}\n\t\tif(b == 1) {\n\t\t\treturn a % m;\n\t\t}\n\
-    \t\tif(b == 2) {\n\t\t\treturn intPow(a, a, m);\n\t\t}\n\t\tfinal var phi = eulerPhi(m);\n\
+    \t\tif(b == 2) {\n\t\t\treturn pow(a, a, m);\n\t\t}\n\t\tfinal var phi = eulerPhi(m);\n\
     \t\tvar tmp = tetration(a, b - 1, phi);\n\t\tif(tmp == 0) {\n\t\t\ttmp += phi;\n\
-    \t\t}\n\t\treturn intPow(a, tmp, m);\n\t}\n\tprotected interface TriFunction<T,\
-    \ U, V, W> {\n\t\tpublic W apply(final T a, final U b, final V c);\n\t}\n\tprotected\
+    \t\t}\n\t\treturn pow(a, tmp, m);\n\t}\n\tprotected interface TriFunction<T, U,\
+    \ V, W> {\n\t\tpublic W apply(final T a, final U b, final V c);\n\t}\n\tprotected\
     \ interface QuadFunction<A, B, C, D, E> {\n\t\tpublic E apply(final A a, final\
     \ B b, final C c, final D d);\n\t}\n}\n\nfinal class MyScanner {\n\tprivate final\
     \ Scanner sc = new Scanner(System.in);\n\tfinal int ni(){ return sc.nextInt();\
@@ -551,7 +548,7 @@ data:
   - Java/extension/SuffixArray.java
   - Java/extension/Graph.java
   - Java/all.java
-  timestamp: '2023-12-18 10:39:58+09:00'
+  timestamp: '2023-12-18 19:31:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java

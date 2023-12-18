@@ -140,39 +140,39 @@ data:
     import java.util.TreeMap;\nimport java.util.function.BiFunction;\nimport java.util.function.BiPredicate;\n\
     import java.util.function.BinaryOperator;\nimport java.util.function.Consumer;\n\
     import java.util.function.Function;\nimport java.util.function.LongBinaryOperator;\n\
-    import java.util.function.Predicate;\nimport java.util.stream.Collectors;\nimport\
-    \ java.util.stream.IntStream;\n\nclass VvyLw extends Utility {\n\tprotected static\
-    \ final MyScanner sc = new MyScanner();\n\tprotected static final MyPrinter o\
-    \ = new MyPrinter(System.out, false);\n\tprotected static final MyPrinter e =\
-    \ new MyPrinter(System.err, true);\n\tstatic final Huitloxopetl why = new Huitloxopetl();\n\
-    \tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final int[]\
-    \ dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final int inf = 1 << 30;\n\t\
-    static final long linf = (1L << 61) - 1;\n\tstatic final int mod998 = 998244353;\n\
-    \tstatic final int mod107 = (int)1e9 + 7;\n\tstatic final double eps = 1e-18;\n\
-    \tprotected static final void solve() {\n\t\t\n\t}\n}\nfinal class Main extends\
-    \ VvyLw {\n\tpublic static void main(final String[] args) {\n\t\tfinal int t =\
-    \ 1;//sc.ni();\n\t\tIntStream.range(0, t).forEach(i -> solve());\n\t\to.flush();\n\
-    \t\tsc.close();\n\t\to.close();\n\t\te.close();\n\t}\n}\n\nclass Utility {\n\t\
-    protected static final String yes(final boolean ok){ return ok ? \"Yes\" : \"\
-    No\"; }\n\tprotected static final String no(final boolean ok){ return yes(!ok);\
-    \ }\n\tprotected static final long sqr(final long x){ return x * x; }\n\tprotected\
-    \ static final long mod(final long n, final long m){ return (n + m) % m; }\n\t\
-    protected static final long ceil(final long a, final long b){ return (long) Math.ceil((double)\
-    \ a / b); }\n\tprotected static final double round(final double a, final long\
-    \ b, final int c) {\n\t\tfinal long d = intPow(10, c);\n\t\treturn (double) Math.round((a\
-    \ * d) / b) / d;\n\t}\n\tprotected static final long intPow(long a, int b) {\n\
-    \t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *=\
-    \ a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t\
-    protected static final long intPow(long a, long b, final long m) {\n\t\tlong res\
-    \ = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\t\
-    res = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>=\
-    \ 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long lcm(final long\
-    \ a, final long b){ return a * b / gcd(a, b); }\n\tprotected static final long\
-    \ lcm(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1, (x,\
-    \ y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){ return\
-    \ Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static final\
-    \ long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }\n\t\
-    protected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
+    import java.util.function.LongPredicate;\nimport java.util.function.Predicate;\n\
+    import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nclass\
+    \ VvyLw extends Utility {\n\tprotected static final MyScanner sc = new MyScanner();\n\
+    \tprotected static final MyPrinter o = new MyPrinter(System.out, false);\n\tprotected\
+    \ static final MyPrinter e = new MyPrinter(System.err, true);\n\tstatic final\
+    \ int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0,\
+    \ 0, -1, 1, -1, 1, -1, 1};\n\tstatic final int inf = 1 << 30;\n\tstatic final\
+    \ long linf = (1L << 61) - 1;\n\tstatic final int mod998 = 998244353;\n\tstatic\
+    \ final int mod107 = (int)1e9 + 7;\n\tstatic final double eps = 1e-18;\n\tprotected\
+    \ static final void solve() {\n\t\t\n\t}\n}\nfinal class Main extends VvyLw {\n\
+    \tpublic static void main(final String[] args) {\n\t\tfinal boolean multi = false;\n\
+    \t\tfinal int t = multi ? sc.ni() : 1;\n\t\tIntStream.range(0, t).forEach(i ->\
+    \ solve());\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\
+    \t}\n}\n\nclass Utility {\n\tprotected static final String yes(final boolean ok){\
+    \ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean\
+    \ ok){ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
+    \ x * x; }\n\tprotected static final long mod(final long n, final long m){ return\
+    \ (n + m) % m; }\n\tprotected static final long ceil(final long a, final long\
+    \ b){ return (a - 1) / b + 1; }\n\tprotected static final double round(final double\
+    \ a, final long b, final int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn\
+    \ (double) Math.round((a * d) / b) / d;\n\t}\n\tprotected static final long pow(long\
+    \ a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\
+    \t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\tprotected static final long pow(long a, long b, final long m) {\n\t\tlong\
+    \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
+    \t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb\
+    \ >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long lcm(final\
+    \ long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static final\
+    \ long lcm(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1,\
+    \ (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){\
+    \ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static\
+    \ final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a;\
+    \ }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
     \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
     \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
     \ final int min(final int... a){ return Arrays.stream(a).reduce(Integer.MAX_VALUE,\
@@ -308,25 +308,22 @@ data:
     \ Object[] a) {\n\t\tfinal int n = a.length;\n\t\tObject[] b = new Object[n];\n\
     \t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n -\
     \ 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected static final int[] rotate(final\
-    \ int[] a, final int id) {\n\t\tArrayList<Integer> t = new ArrayList<>(a.length);\n\
-    \t\tfor(final var el: a) {\n\t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t,\
-    \ id);\n\t\tint[] res = new int[t.size()];\n\t\tfor(int i = 0; i < t.size(); ++i)\
-    \ {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final long[] rotate(final long[] a, final int id) {\n\t\tArrayList<Long> t =\
-    \ new ArrayList<>(a.length);\n\t\tfor(final var el: a) {\n\t\t\tt.add(el);\n\t\
-    \t}\n\t\tCollections.rotate(t, id);\n\t\tlong[] res = new long[t.size()];\n\t\t\
-    for(int i = 0; i < t.size(); ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn\
+    \ int[] a, final int id) {\n\t\tfinal var t = Arrays.stream(a).boxed().collect(Collectors.toList());\n\
+    \t\tCollections.rotate(t, id);\n\t\tfinal int[] res = new int[a.length];\n\t\t\
+    for(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\tprotected static final long[] rotate(final long[] a, final int\
+    \ id) {\n\t\tfinal var t = Arrays.stream(a).boxed().collect(Collectors.toList());\n\
+    \t\tCollections.rotate(t, id);\n\t\tfinal long[] res = new long[a.length];\n\t\
+    \tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn\
     \ res;\n\t}\n\tprotected static final double[] rotate(final double[] a, final\
-    \ int id) {\n\t\tArrayList<Double> t = new ArrayList<>(a.length);\n\t\tfor(final\
-    \ var el: a) {\n\t\t\tt.add(el);\n\t\t}\n\t\tCollections.rotate(t, id);\n\t\t\
-    double[] res = new double[t.size()];\n\t\tfor(int i = 0; i < t.size(); ++i) {\n\
-    \t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
-    \ String rotate(final String s, final int id) {\n\t\tArrayList<Character> t =\
-    \ new ArrayList<>();\n\t\tfor(final char c: s.toCharArray()) {\n\t\t\tt.add(c);\n\
-    \t\t}\n\t\tCollections.rotate(t, id);\n\t\tStringBuilder sb = new StringBuilder();\n\
-    \t\tfor(final var c: t) {\n\t\t\tsb.append(c);\n\t\t}\n\t\treturn sb.toString();\
-    \ \n\t}\n\tprotected static final int[][] rotate(final int[][] a) {\n\t\tfinal\
-    \ int h = a.length, w = a[0].length;\n\t\tint[][] b = new int[w][h];\n\t\tIntStream.range(0,\
+    \ int id) {\n\t\tfinal var t = Arrays.stream(a).boxed().collect(Collectors.toList());\n\
+    \t\tCollections.rotate(t, id);\n\t\tfinal double[] res = new double[a.length];\n\
+    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\t\
+    return res;\n\t}\n\tprotected static final String rotate(final String s, final\
+    \ int id) {\n\t\tfinal var t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());\n\
+    \t\tCollections.rotate(t, id);\n\t\treturn t.stream().map(i -> i.toString()).collect(Collectors.joining());\n\
+    \t}\n\tprotected static final int[][] rotate(final int[][] a) {\n\t\tfinal int\
+    \ h = a.length, w = a[0].length;\n\t\tint[][] b = new int[w][h];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);\n\
     \t\t});\n\t\tIntStream.range(0, w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn\
     \ b;\n\t}\n\tprotected static final long[][] rotate(final long[][] a) {\n\t\t\
@@ -391,19 +388,19 @@ data:
     \t\t\t\t}\n\t\t\t}\n\t\t} else {\n\t\t\tfor(var x: rad) {\n\t\t\t\tx = 2 * x -\
     \ 1;\n\t\t\t}\n\t\t}\n\t\treturn rad;\n\t}\n\tprotected static final long kthRoot(final\
     \ long n, final int k) {\n\t\tif(k == 1) {\n\t\t\treturn n;\n\t\t}\n\t\tfinal\
-    \ Predicate<Long> chk = (x) -> {\n\t\t\tlong mul = 1;\n\t\t\tfor(int j = 0; j\
-    \ < k; ++j) {\n\t\t\t\ttry {\n\t\t\t\t\tmul = Math.multiplyExact(mul, x);\n\t\t\
-    \t\t} catch(ArithmeticException e) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\
-    \t}\n\t\t\treturn mul <= n;\n\t\t};\n\t\tlong ret = 0;\n\t\tfor(int i = 32; --i\
+    \ Predicate<Long> chk = x -> {\n\t\t\tlong mul = 1;\n\t\t\tfor(int j = 0; j <\
+    \ k; ++j) {\n\t\t\t\ttry {\n\t\t\t\t\tmul = Math.multiplyExact(mul, x);\n\t\t\t\
+    \t} catch(ArithmeticException e) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t\
+    }\n\t\t\treturn mul <= n;\n\t\t};\n\t\tlong ret = 0;\n\t\tfor(int i = 32; --i\
     \ >= 0;) {\n\t\t\tif(chk.test(ret | (1L << i))) {\n\t\t\t\tret |= 1L << i;\n\t\
     \t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\tprotected static final long tetration(final\
     \ long a, final long b, final long m) {\n\t\tif(m == 1) {\n\t\t\treturn 0;\n\t\
     \t}\n\t\tif(a == 0) {\n\t\t\treturn (b & 1) == 0 ? 1 : 0;\n\t\t}\n\t\tif(b ==\
     \ 0) {\n\t\t\treturn 1;\n\t\t}\n\t\tif(b == 1) {\n\t\t\treturn a % m;\n\t\t}\n\
-    \t\tif(b == 2) {\n\t\t\treturn intPow(a, a, m);\n\t\t}\n\t\tfinal var phi = eulerPhi(m);\n\
+    \t\tif(b == 2) {\n\t\t\treturn pow(a, a, m);\n\t\t}\n\t\tfinal var phi = eulerPhi(m);\n\
     \t\tvar tmp = tetration(a, b - 1, phi);\n\t\tif(tmp == 0) {\n\t\t\ttmp += phi;\n\
-    \t\t}\n\t\treturn intPow(a, tmp, m);\n\t}\n\tprotected interface TriFunction<T,\
-    \ U, V, W> {\n\t\tpublic W apply(final T a, final U b, final V c);\n\t}\n\tprotected\
+    \t\t}\n\t\treturn pow(a, tmp, m);\n\t}\n\tprotected interface TriFunction<T, U,\
+    \ V, W> {\n\t\tpublic W apply(final T a, final U b, final V c);\n\t}\n\tprotected\
     \ interface QuadFunction<A, B, C, D, E> {\n\t\tpublic E apply(final A a, final\
     \ B b, final C c, final D d);\n\t}\n}\n\nfinal class MyScanner {\n\tprivate final\
     \ Scanner sc = new Scanner(System.in);\n\tfinal int ni(){ return sc.nextInt();\
@@ -809,17 +806,17 @@ data:
     \ euler; }\n\tfinal long[] acc() {\n\t\tlong[] ret = new long[n + 1];\n\t\tret[1]\
     \ = 2;\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tret[i] = ret[i - 1] + euler[i];\n\
     \t\t}\n\t\treturn ret;\n\t}\n}\n\nclass InclusiveScan {\n\tprotected final int\
-    \ n;\n\tprotected final long[] s;\n\tInclusiveScan(final int[] a, final LongBinaryOperator\
-    \ op) {\n\t\tn = a.length;\n\t\ts = new long[n + 1];\n\t\tIntStream.rangeClosed(1,\
-    \ n).forEach(i -> s[i] = a[i - 1]);\n\t\tArrays.parallelPrefix(s, op);\n\t}\n\t\
-    InclusiveScan(final long[] a, final LongBinaryOperator op) {\n\t\tn = a.length;\n\
-    \t\ts = new long[n + 1];\n\t\tIntStream.rangeClosed(1, n).forEach(i -> s[i] =\
-    \ a[i - 1]);\n\t\tArrays.parallelPrefix(s, op);\n\t}\n\tprotected long[] get(){\
-    \ return s; }\n\tprotected long query(final int l, final int r){ return s[r] -\
-    \ s[l]; }\n}\n\nfinal class PrefixSum extends InclusiveScan {\n\tPrefixSum(final\
-    \ int[] a){ super(a, (x, y) -> x + y); }\n\tPrefixSum(final long[] a){ super(a,\
-    \ (x, y) -> x + y); }\n}\n\nfinal class FenwickTree {\n\tprivate final int n;\n\
-    \tprivate final long[] data;\n\tFenwickTree(final int n) {\n\t\tthis.n = n + 2;\n\
+    \ n;\n\tprotected long[] s;\n\tInclusiveScan(final int[] a, final LongBinaryOperator\
+    \ op) {\n\t\tn = a.length;\n\t\ts = Arrays.stream(a).mapToLong(i -> i).toArray();\n\
+    \t\tArrays.parallelPrefix(s, op);\n\t}\n\tInclusiveScan(final long[] a, final\
+    \ LongBinaryOperator op) {\n\t\tn = a.length;\n\t\ts = a.clone();\n\t\tArrays.parallelPrefix(s,\
+    \ op);\n\t}\n\tprotected long[] get(){ return s; }\n\tprotected long query(final\
+    \ int l, final int r){ return s[r] - s[l]; }\n}\nfinal class PrefixSum extends\
+    \ InclusiveScan {\n\tPrefixSum(final int[] a) {\n\t\tsuper(a, (x, y) -> x + y);\n\
+    \t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), 1);\n\t}\n\tPrefixSum(final long[]\
+    \ a) {\n\t\tsuper(a, (x, y) -> x + y);\n\t\ts = Utility.rotate(Arrays.copyOf(s,\
+    \ n + 1), 1);\n\t}\n}\n\nfinal class FenwickTree {\n\tprivate final int n;\n\t\
+    private final long[] data;\n\tFenwickTree(final int n) {\n\t\tthis.n = n + 2;\n\
     \t\tdata = new long[this.n + 1];\n\t}\n\tfinal long sum(int k) {\n\t\tif(k < 0)\
     \ return 0;\n\t\tlong ret = 0;\n\t\tfor(++k; k > 0; k -= k & -k) {\n\t\t\tret\
     \ += data[k];\n\t\t}\n\t\treturn ret;\n\t}\n\tfinal long sum(final int l, final\
@@ -868,27 +865,27 @@ data:
     \ == n * 2) {\n\t\t\t\t\treturn fini;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t\
     }\n\t\t}\n\t\treturn Math.min(i - n, fini);\n\t}\n}\n\nfinal class SparseTable\
     \ {\n\tprivate final long[][] st;\n\tprivate final int[] lookup;\n\tprivate final\
-    \ BinaryOperator<Long> op;\n\tSparseTable(final int[] a, final BinaryOperator<Long>\
+    \ LongBinaryOperator op;\n\tSparseTable(final int[] a, final LongBinaryOperator\
     \ op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\
     \t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length;\
     \ i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\
-    \tfor(int j = 0; j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.apply(st[i\
+    \tfor(int j = 0; j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i\
     \ - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
     \ + 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
-    \ >> 1] + 1;\n\t\t}\n\t}\n\tSparseTable(final long[] a, final BinaryOperator<Long>\
+    \ >> 1] + 1;\n\t\t}\n\t}\n\tSparseTable(final long[] a, final LongBinaryOperator\
     \ op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\
     \t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length;\
     \ i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\
-    \tfor(int j = 0; j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.apply(st[i\
+    \tfor(int j = 0; j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i\
     \ - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
     \ + 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
     \ >> 1] + 1;\n\t\t}\n\t}\n\tfinal long query(final int l, final int r) {\n\t\t\
-    final int b = lookup[r - l];\n\t\treturn op.apply(st[b][l], st[b][r - (1 << b)]);\n\
-    \t}\n\tfinal int minLeft(final int x, final Predicate<Long> fn) {\n\t\tif(x ==\
-    \ 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint ok = x, ng = -1;\n\t\twhile(Math.abs(ok\
+    final int b = lookup[r - l];\n\t\treturn op.applyAsLong(st[b][l], st[b][r - (1\
+    \ << b)]);\n\t}\n\tfinal int minLeft(final int x, final LongPredicate fn) {\n\t\
+    \tif(x == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint ok = x, ng = -1;\n\t\twhile(Math.abs(ok\
     \ - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(mid,\
     \ x) - 1)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\
-    \t}\n\t\t}\n\t\treturn ok;\n\t}\n\tfinal int maxRight(final int x, final Predicate<Long>\
+    \t}\n\t\t}\n\t\treturn ok;\n\t}\n\tfinal int maxRight(final int x, final LongPredicate\
     \ fn) {\n\t\tif(x == lookup.length - 1) {\n\t\t\treturn lookup.length - 1;\n\t\
     \t}\n\t\tint ok = x, ng = lookup.length;\n\t\twhile(Math.abs(ok - ng) > 1) {\n\
     \t\t\tint mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(x, mid))) {\n\t\t\t\tok\
@@ -1106,7 +1103,7 @@ data:
   - Java/extension/SuffixArray.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2023-12-18 10:39:58+09:00'
+  timestamp: '2023-12-18 19:31:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java

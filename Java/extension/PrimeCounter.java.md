@@ -200,7 +200,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-18 10:39:58+09:00'
+  timestamp: '2023-12-18 19:31:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/PrimeCounter.java
