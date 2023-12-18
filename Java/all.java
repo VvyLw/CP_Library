@@ -1645,10 +1645,10 @@ final class LongPrime {
 			return 2;
 		}
 		long st = 0;
-		final BiFunction<Long, Long, Long> f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue(); };
+		final LongBinaryOperator f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue(); };
 		while(true) {
 			st++;
-			long x = st, y = f.apply(x, st);
+			long x = st, y = f.applyAsLong(x, st);
 			while(true) {
 				final long p = gcd(y - x + n, n);
 				if(p == 0 || p == n) {
@@ -1657,8 +1657,8 @@ final class LongPrime {
 				if(p != 1) {
 					return p;
 				}
-				x = f.apply(x, st);
-				y = f.apply(f.apply(y, st), st);
+				x = f.applyAsLong(x, st);
+				y = f.applyAsLong(f.applyAsLong(y, st), st);
 			}
 		}
 	}
