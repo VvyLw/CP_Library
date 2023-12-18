@@ -139,7 +139,8 @@ data:
     import java.util.Queue;\nimport java.util.Scanner;\nimport java.util.Stack;\n\
     import java.util.TreeMap;\nimport java.util.function.BiFunction;\nimport java.util.function.BiPredicate;\n\
     import java.util.function.BinaryOperator;\nimport java.util.function.Consumer;\n\
-    import java.util.function.Function;\nimport java.util.function.LongBinaryOperator;\n\
+    import java.util.function.DoublePredicate;\nimport java.util.function.Function;\n\
+    import java.util.function.IntPredicate;\nimport java.util.function.LongBinaryOperator;\n\
     import java.util.function.LongPredicate;\nimport java.util.function.Predicate;\n\
     import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nclass\
     \ VvyLw extends Utility {\n\tprotected static final MyScanner sc = new MyScanner();\n\
@@ -203,25 +204,32 @@ data:
     \ return false;\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0)\
     \ return false;\n\t\t}\n\t\treturn true;\n\t}\n\tprotected static final boolean\
     \ scope(final int l, final int x, final int r){ return l <= x && x <= r; }\n\t\
-    protected static final int[] nextPerm(int[] a) {\n\t\tfor(int i = a.length; --i\
-    \ > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal int j = find(a[i - 1], a,\
-    \ i, a.length - 1);\n\t\t\t\ta[i - 1] ^= a[j];\n\t\t\t\ta[j] ^= a[i - 1];\n\t\t\
-    \t\ta[i - 1] ^= a[j];\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\
-    \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final long[] nextPerm(long[]\
-    \ a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\
-    \t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\ta[i - 1] ^= a[j];\n\
+    protected static final boolean scope(final long l, final long x, final long r){\
+    \ return l <= x && x <= r; }\n\tprotected static final boolean scope(final double\
+    \ l, final double x, final double r){ return l <= x && x <= r; }\n\tprotected\
+    \ static final int clamp(final int l, final int x, final int r){ return x < l\
+    \ ? l : x > r ? r : x; }\n\tprotected static final long clamp(final long l, final\
+    \ long x, final long r){ return x < l ? l : x > r ? r : x; }\n\tprotected static\
+    \ final double clamp(final double l, final double x, final double r){ return x\
+    \ < l ? l : x > r ? r : x; }\n\tprotected static final int[] nextPerm(int[] a)\
+    \ {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\
+    \tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\ta[i - 1] ^= a[j];\n\
     \t\t\t\ta[j] ^= a[i - 1];\n\t\t\t\ta[i - 1] ^= a[j];\n\t\t\t\tArrays.sort(a, i,\
     \ a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected\
-    \ static final double[] nextPerm(double[] a) {\n\t\tfor(int i = a.length; --i\
-    \ > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal int j = find(a[i - 1], a,\
-    \ i, a.length - 1);\n\t\t\t\tfinal var tmp = a[i - 1];\n\t\t\t\ta[i - 1] = a[j];\n\
-    \t\t\t\ta[j] = tmp;\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\
-    \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final String nextPerm(final\
-    \ String s) {\n\t\tvar a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());\n\
-    \t\tfor(int i = a.size(); --i > 0;) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
-    \ < 0) {\n\t\t\t\tfinal int j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\
-    \tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\
-    \t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
+    \ static final long[] nextPerm(long[] a) {\n\t\tfor(int i = a.length; --i > 0;)\
+    \ {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length\
+    \ - 1);\n\t\t\t\ta[i - 1] ^= a[j];\n\t\t\t\ta[j] ^= a[i - 1];\n\t\t\t\ta[i - 1]\
+    \ ^= a[j];\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\
+    \t\t}\n\t\treturn null;\n\t}\n\tprotected static final double[] nextPerm(double[]\
+    \ a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\
+    \t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tfinal var tmp\
+    \ = a[i - 1];\n\t\t\t\ta[i - 1] = a[j];\n\t\t\t\ta[j] = tmp;\n\t\t\t\tArrays.sort(a,\
+    \ i, a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\t\
+    protected static final String nextPerm(final String s) {\n\t\tvar a = s.chars().mapToObj(i\
+    \ -> (char)i).collect(Collectors.toList());\n\t\tfor(int i = a.size(); --i > 0;)\
+    \ {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i)) < 0) {\n\t\t\t\tfinal int j = find(a.get(i\
+    \ - 1), a, i, a.size() - 1);\n\t\t\t\tCollections.swap(a, i - 1, j);\n\t\t\t\t\
+    Collections.sort(a.subList(i, a.size()));\n\t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
     \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final int[] prevPerm(int[]\
     \ a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] > a[i]) {\n\t\
     \t\t\tfinal int j = findRev(a[i - 1], a, i, a.length - 1);\n\t\t\t\ta[i - 1] ^=\
@@ -276,17 +284,17 @@ data:
     \ Arrays.binarySearch(a, x) >= 0; }\n\tprotected static final boolean binarySearch(final\
     \ List<Object> a, final Object x){ return Collections.binarySearch(a, x, null)\
     \ >= 0; }\n\tprotected static final int lowerBound(final int[] a, final int x){\
-    \ return bins(a.length, -1, (Predicate<Integer>) y -> a[y] >= x); }\n\tprotected\
-    \ static final int lowerBound(final long[] a, final long x){ return bins(a.length,\
-    \ -1, (Predicate<Integer>) y -> a[y] >= x); }\n\tprotected static final <T extends\
-    \ Comparable<? super T>> int lowerBound(final T[] a, final T x){ return lowerBound(Arrays.asList(a),\
+    \ return bins(a.length, -1, (IntPredicate) y -> a[y] >= x); }\n\tprotected static\
+    \ final int lowerBound(final long[] a, final long x){ return bins(a.length, -1,\
+    \ (IntPredicate) y -> a[y] >= x); }\n\tprotected static final <T extends Comparable<?\
+    \ super T>> int lowerBound(final T[] a, final T x){ return lowerBound(Arrays.asList(a),\
     \ x); }\n\tprotected static final <T extends Comparable<? super T>> int lowerBound(final\
     \ List<T> a, final T x){ return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q)\
     \ >= 0 ? 1 : -1); }\n\tprotected static final int upperBound(final int[] a, final\
-    \ int x){ return bins(a.length, -1, (Predicate<Integer>) y -> a[y] > x); }\n\t\
-    protected static final int upperBound(final long[] a, final long x){ return bins(a.length,\
-    \ -1, (Predicate<Integer>) y -> a[y] > x); }\n\tprotected static final <T extends\
-    \ Comparable<? super T>> int upperBound(final T[] a, final T x){ return upperBound(Arrays.asList(a),\
+    \ int x){ return bins(a.length, -1, (IntPredicate) y -> a[y] > x); }\n\tprotected\
+    \ static final int upperBound(final long[] a, final long x){ return bins(a.length,\
+    \ -1, (IntPredicate) y -> a[y] > x); }\n\tprotected static final <T extends Comparable<?\
+    \ super T>> int upperBound(final T[] a, final T x){ return upperBound(Arrays.asList(a),\
     \ x); }\n\tprotected static final <T extends Comparable<? super T>> int upperBound(final\
     \ List<T> a, final T x){ return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q)\
     \ > 0 ? 1 : -1); }\n\tprotected static final String sorted(final String s){ return\
@@ -349,16 +357,16 @@ data:
     \ iota(final int n){ return IntStream.range(0, n).toArray(); }\n\tprotected static\
     \ final int[] iota(final int n, final int init){ return IntStream.range(0 + init,\
     \ n + init).toArray(); }\n\tprotected static final int bins(int ok, int ng, final\
-    \ Predicate<Integer> fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal int\
-    \ mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\
-    \t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected\
-    \ static final long bins(long ok, long ng, final Predicate<Long> fn) {\n\t\twhile(Math.abs(ok\
+    \ IntPredicate fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal int mid\
+    \ = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\
+    \telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected\
+    \ static final long bins(long ok, long ng, final LongPredicate fn) {\n\t\twhile(Math.abs(ok\
     \ - ng) > 1) {\n\t\t\tfinal long mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid))\
     \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
     }\n\t\treturn ok;\n\t}\n\tprotected static final double bins(double ok, double\
-    \ ng, final Predicate<Double> fn) {\n\t\twhile(Math.abs(ok - ng) > VvyLw.eps)\
-    \ {\n\t\t\tfinal double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\
-    \tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ ng, final DoublePredicate fn) {\n\t\twhile(Math.abs(ok - ng) > VvyLw.eps) {\n\
+    \t\t\tfinal double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok\
+    \ = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
     \ ok;\n\t}\n\tprotected static final ArrayList<Integer> press(final int[] a) {\n\
     \t\tArrayList<Integer> res = new ArrayList<>();\n\t\tfinal var x = Arrays.stream(a).sorted().distinct().toArray();\n\
     \t\tfor(final var el: a) {\n\t\t\tres.add(lowerBound(x, el));\n\t\t}\n\t\treturn\
@@ -388,12 +396,12 @@ data:
     \t\t\t\t}\n\t\t\t}\n\t\t} else {\n\t\t\tfor(var x: rad) {\n\t\t\t\tx = 2 * x -\
     \ 1;\n\t\t\t}\n\t\t}\n\t\treturn rad;\n\t}\n\tprotected static final long kthRoot(final\
     \ long n, final int k) {\n\t\tif(k == 1) {\n\t\t\treturn n;\n\t\t}\n\t\tfinal\
-    \ Predicate<Long> chk = x -> {\n\t\t\tlong mul = 1;\n\t\t\tfor(int j = 0; j <\
-    \ k; ++j) {\n\t\t\t\ttry {\n\t\t\t\t\tmul = Math.multiplyExact(mul, x);\n\t\t\t\
-    \t} catch(ArithmeticException e) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t\
-    }\n\t\t\treturn mul <= n;\n\t\t};\n\t\tlong ret = 0;\n\t\tfor(int i = 32; --i\
-    \ >= 0;) {\n\t\t\tif(chk.test(ret | (1L << i))) {\n\t\t\t\tret |= 1L << i;\n\t\
-    \t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\tprotected static final long tetration(final\
+    \ LongPredicate chk = x -> {\n\t\t\tlong mul = 1;\n\t\t\tfor(int j = 0; j < k;\
+    \ ++j) {\n\t\t\t\ttry {\n\t\t\t\t\tmul = Math.multiplyExact(mul, x);\n\t\t\t\t\
+    } catch(ArithmeticException e) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\
+    \t\t\treturn mul <= n;\n\t\t};\n\t\tlong ret = 0;\n\t\tfor(int i = 32; --i >=\
+    \ 0;) {\n\t\t\tif(chk.test(ret | (1L << i))) {\n\t\t\t\tret |= 1L << i;\n\t\t\t\
+    }\n\t\t}\n\t\treturn ret;\n\t}\n\tprotected static final long tetration(final\
     \ long a, final long b, final long m) {\n\t\tif(m == 1) {\n\t\t\treturn 0;\n\t\
     \t}\n\t\tif(a == 0) {\n\t\t\treturn (b & 1) == 0 ? 1 : 0;\n\t\t}\n\t\tif(b ==\
     \ 0) {\n\t\t\treturn 1;\n\t\t}\n\t\tif(b == 1) {\n\t\t\treturn a % m;\n\t\t}\n\
@@ -421,28 +429,33 @@ data:
     \ int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0, h).forEach(i\
     \ -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final int h, final\
     \ int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\tfinal void close(){ sc.close();\
-    \ }\n}\n\nfinal class MyPrinter extends PrintWriter {\n\tMyPrinter(final OutputStream\
-    \ os, final boolean flush){ super(os, flush); }\n\tfinal void out(){ println();\
-    \ }\n\tfinal void out(final Object head, final Object... tail) {\n\t\tprint(head);\n\
-    \t\tfor(final var el: tail) {\n\t\t\tprint(\" \" + el);\n\t\t}\n\t\tout();\n\t\
-    }\n\tfinal <F, S> void out(final Pair<F, S> arg){ println(arg.first + \" \" +\
-    \ arg.second); }\n\tfinal void out(final int[] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void\
-    \ out(final long[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i]\
-    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final double[]\
+    \ h).forEach(i -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\tfinal String[][] ns(final\
+    \ int h, final int w) {\n\t\tfinal String[][] a = new String[h][w];\n\t\tIntStream.range(0,\
+    \ h).forEach(i -> a[i] = ns(w));\n\t\treturn a;\n\t}\n\tfinal BigInteger[][] nb(final\
+    \ int h, final int w) {\n\t\tfinal BigInteger[][] a = new BigInteger[h][w];\n\t\
+    \tIntStream.range(0, h).forEach(i -> a[i] = nb(w));\n\t\treturn a;\n\t}\n\tfinal\
+    \ void close(){ sc.close(); }\n}\n\nfinal class MyPrinter extends PrintWriter\
+    \ {\n\tMyPrinter(final OutputStream os, final boolean flush){ super(os, flush);\
+    \ }\n\tfinal void out(){ println(); }\n\tfinal void out(final Object head, final\
+    \ Object... tail) {\n\t\tprint(head);\n\t\tfor(final var el: tail) {\n\t\t\tprint(\"\
+    \ \" + el);\n\t\t}\n\t\tout();\n\t}\n\tfinal <F, S> void out(final Pair<F, S>\
+    \ arg){ println(arg.first + \" \" + arg.second); }\n\tfinal void out(final int[]\
     \ args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 <\
-    \ args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final boolean[] args){\
-    \ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length\
-    \ ? \" \" : \"\\n\"))); }\n\tfinal void out(final char[] args){ IntStream.range(0,\
+    \ args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final long[] args){ IntStream.range(0,\
     \ args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\\
-    n\"))); }\n\tfinal void out(final Object[] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal <T>\
-    \ void out(final List<T> args){ IntStream.range(0, args.size()).forEach(i -> print(args.get(i)\
-    \ + (i + 1 < args.size() ? \" \" : \"\\n\"))); }\n\tfinal void outl(final Object\
-    \ head, final Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::println);\n\
-    \t}\n\tfinal void outl(final int[] args){ Arrays.stream(args).forEach(this::println);\
-    \ }\n\tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
+    n\"))); }\n\tfinal void out(final double[] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void\
+    \ out(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i]\
+    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final char[]\
+    \ args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 <\
+    \ args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final Object[] args){\
+    \ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length\
+    \ ? \" \" : \"\\n\"))); }\n\tfinal <T> void out(final List<T> args){ IntStream.range(0,\
+    \ args.size()).forEach(i -> print(args.get(i) + (i + 1 < args.size() ? \" \" :\
+    \ \"\\n\"))); }\n\tfinal void outl(final Object head, final Object... tail) {\n\
+    \t\tout(head);\n\t\tArrays.stream(tail).forEach(this::println);\n\t}\n\tfinal\
+    \ void outl(final int[] args){ Arrays.stream(args).forEach(this::println); }\n\
+    \tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final long[] args){ Arrays.stream(args).forEach(this::println);\
     \ }\n\tfinal void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final double[] args){ Arrays.stream(args).forEach(this::println);\
@@ -1103,7 +1116,7 @@ data:
   - Java/extension/SuffixArray.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2023-12-18 20:08:16+09:00'
+  timestamp: '2023-12-19 01:03:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
