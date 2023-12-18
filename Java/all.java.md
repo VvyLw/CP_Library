@@ -160,9 +160,9 @@ data:
     \ (n + m) % m; }\n\tprotected static final long ceil(final long a, final long\
     \ b){ return (a - 1) / b + 1; }\n\tprotected static final double round(final double\
     \ a, final long b, final int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn\
-    \ (double) Math.round((a * d) / b) / d;\n\t}\n\tprotected static final long pow(long\
-    \ a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\
-    \t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
+    \ Math.rint((a * d) / b) / d;\n\t}\n\tprotected static final long pow(long a,\
+    \ int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\
+    \t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
     \t}\n\tprotected static final long pow(long a, long b, final long m) {\n\t\tlong\
     \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
     \t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb\
@@ -1103,7 +1103,7 @@ data:
   - Java/extension/SuffixArray.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2023-12-18 19:31:26+09:00'
+  timestamp: '2023-12-18 20:08:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
