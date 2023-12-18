@@ -6,11 +6,11 @@
 #include <vector>
 #include <utility>
 #include <type_traits>
-using namespace std;
+#include <numeric>
 typedef long long ll;
 typedef unsigned uint;
 typedef unsigned long long ul;
-template <uint mod> struct Modint{
+template <uint mod> struct Modint {
     uint num = 0;
     constexpr Modint() noexcept {}
     constexpr Modint(const Modint &x) noexcept : num(x.num){}
@@ -27,7 +27,7 @@ template <uint mod> struct Modint{
     constexpr Modint& operator/=(Modint x) noexcept { return operator*=(x.inv()); }
     constexpr void operator%=(Modint x) noexcept { void(0); }
     template <class T> constexpr Modint(T x) noexcept {
-        using U = typename conditional<sizeof(T)>= 4, T, int>::type;
+        using U = typename std::conditional<sizeof(T)>= 4, T, int>::type;
         U y = x; y %= U(mod); if(y < 0) y += mod; num = uint(y);
     }
     template <class T> constexpr Modint operator+(T x) const noexcept { return Modint(*this) += x; }
@@ -41,8 +41,8 @@ template <uint mod> struct Modint{
     constexpr Modint inv() const noexcept { ll x = 0, y = 0; extgcd(num, mod, x, y); return x; }
     static constexpr ll extgcd(ll a, ll b, ll &x, ll &y) noexcept { ll g = a; x = 1; y = 0; if(b){ g = extgcd(b, a % b, y, x); y -= a / b * x; } return g; }
     constexpr Modint pow(ul x) const noexcept { Modint ans = 1, cnt = *this; while(x){ if(x & 1) ans *= cnt; cnt *= cnt; x /= 2; } return ans; }
-    friend ostream& operator<<(ostream& os, const Modint& m){ os << m.num; return os; }
-    friend istream &operator>>(istream &is, Modint &a) {
+    friend std::ostream& operator<<(std::ostream& os, const Modint& m){ os << m.num; return os; }
+    friend std::istream &operator>>(std::istream &is, Modint &a) {
         ll t;
         is >> t;
         a=Modint(t);
@@ -51,17 +51,15 @@ template <uint mod> struct Modint{
 };
 using mint = Modint<998244353>;
 //using mint = Modint<1000000007>;
-#include <C++/template.hpp>
-#define MINT(...) mint __VA_ARGS__; in(__VA_ARGS__)
-using vm = V<mint>;
-using wm = V<vm>;
-using pm = PP<mint>;
-template <class T> inline T msum(const V<T> &v){ return accumulate(all(v), mint(0)); }
-template <class T> inline T msum(const V<T> &v, ll a, ll b){ return accumulate(all(v,a,b), mint(0)); }
-template <class T> inline T mmul(const V<T> &v){ return accumulate(all(v), mint(1), [](T acc, T i){ return acc*i; }); }
-template <class T> inline T mmul(const V<T> &v, ll a, ll b){ return accumulate(all(v,a,b), mint(1), [](T acc, T i){ return acc*i; }); }
+using vm = std::vector<mint>;
+using wm = std::vector<vm>;
+using pm = std::pair<mint, mint>;
+template <class T> inline T msum(const std::vector<T> &v){ return std::accumulate(v.begin(), v.end(), mint(0)); }
+template <class T> inline T msum(const std::vector<T> &v, ll a, ll b){ return std::accumulate(v.begin() + a, v.begin() + b, mint(0)); }
+template <class T> inline T mmul(const std::vector<T> &v){ return std::accumulate(v.begin(), v.end(), mint(1), [](T acc, T i){ return acc*i; }); }
+template <class T> inline T mmul(const std::vector<T> &v, ll a, ll b){ return std::accumulate(v.begin() + a, v.begin() + b, mint(1), [](T acc, T i){ return acc*i; }); }
 vm fac(1,1),inv(1,1);
-void reserve(ll a){
+void reserve(ul a){
     if(fac.size()>=a) return;
     if(a<fac.size()*2) a=fac.size()*2;
     if(a>=mint::get_mod()) a=mint::get_mod();
@@ -73,10 +71,10 @@ void reserve(ll a){
 mint fact(ll n){ if(n<0) return 0; reserve(n + 1); return fac[n]; }
 mint nPr(ll n,ll r){
     if(r<0 || n<r) return 0;
-    if(n>>24){ mint ans=1; rep(r) ans*=n--; return ans; }
+    if(n>>24){ mint ans=1; for(int i = 0; i < r; ++i) ans*=n--; return ans; }
     reserve(n+1); return fac[n]*inv[n-r];
 }
-mint nCr(ll n,ll r){ if(r<0 || n<r) return 0; r=min(r,n-r); reserve(r+1); return nPr(n,r)*inv[r]; }
+mint nCr(ll n,ll r){ if(r<0 || n<r) return 0; r=std::min(r,n-r); reserve(r+1); return nPr(n,r)*inv[r]; }
 mint nHr(ll n,ll r){ if(!n && !r) return 1; if(n<=0 || r<0) return 0; return nCr(n+r-1,r); }
 
 struct a_mint {
@@ -125,8 +123,8 @@ struct a_mint {
         int a=val, b=get_mod(), u=1, v=0, t;
         while(b>0) {
             t=a/b;
-            swap(a -= t*b,b);
-            swap(u -= t*v,v);
+            std::swap(a -= t*b,b);
+            std::swap(u -= t*v,v);
         }
         return a_mint(u);
     }
@@ -139,16 +137,18 @@ struct a_mint {
         }
         return res;
     }
-    friend ostream &operator<<(ostream &os, const a_mint &p) { return os << p.val; }
-    friend istream &operator>>(istream &is, a_mint &a) {
+    friend std::ostream &operator<<(std::ostream &os, const a_mint &p) { return os << p.val; }
+    friend std::istream &operator>>(std::istream &is, a_mint &a) {
         ll t;
         is >> t;
         a=a_mint(t);
         return is;
     }
 };
-//#include "template.hpp"
+using va = std::vector<a_mint>;
+using wa = std::vector<va>;
+using pa = std::pair<a_mint, a_mint>;
+#ifdef TEMPLATE
+#define MINT(...) mint __VA_ARGS__; in(__VA_ARGS__)
 #define AINT(...) a_mint __VA_ARGS__; in(__VA_ARGS__)
-using va = V<a_mint>;
-using wa = V<va>;
-using pa = PP<a_mint>;
+#endif

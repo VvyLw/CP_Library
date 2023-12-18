@@ -168,3 +168,5 @@ public:
 		return cst;
 	}
 };
+typedef std::vector<edge> ve;
+typedef std::vector<ve> we;
