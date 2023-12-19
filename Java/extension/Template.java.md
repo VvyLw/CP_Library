@@ -140,18 +140,20 @@ data:
     import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nclass\
     \ VvyLw extends Utility {\n\tprotected static final MyScanner sc = new MyScanner();\n\
     \tprotected static final MyPrinter o = new MyPrinter(System.out, false);\n\tprotected\
-    \ static final MyPrinter e = new MyPrinter(System.err, true);\n\tstatic final\
-    \ int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0,\
-    \ 0, -1, 1, -1, 1, -1, 1};\n\tstatic final int inf = 1 << 30;\n\tstatic final\
-    \ long linf = (1L << 61) - 1;\n\tstatic final int mod998 = 998244353;\n\tstatic\
-    \ final int mod107 = (int)1e9 + 7;\n\tstatic final double eps = 1e-18;\n\tprotected\
-    \ static final void solve() {\n\t\t\n\t}\n}\nfinal class Main extends VvyLw {\n\
-    \tpublic static void main(final String[] args) {\n\t\tfinal boolean multi = false;\n\
-    \t\tfinal int t = multi ? sc.ni() : 1;\n\t\tIntStream.range(0, t).forEach(i ->\
-    \ solve());\n\t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\
-    \t}\n}\n\nclass Utility {\n\tprotected static final String yes(final boolean ok){\
-    \ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean\
-    \ ok){ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
+    \ static final MyPrinter e = new MyPrinter(System.err, true);\n\t@SuppressWarnings(\"\
+    unused\")\n\tprivate static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\
+    \t@SuppressWarnings(\"unused\")\n\tprivate static final int[] dy = {0, 0, 0, -1,\
+    \ 1, -1, 1, -1, 1};\n\t@SuppressWarnings(\"unused\")\n\tprivate static final int\
+    \ mod998 = 998244353;\n\t@SuppressWarnings(\"unused\")\n\tprivate static final\
+    \ int mod107 = (int)1e9 + 7;\n\tstatic final int inf = 1 << 30;\n\tstatic final\
+    \ long linf = (1L << 61) - 1;\n\tstatic final double eps = 1e-18;\n\tprotected\
+    \ static final boolean multi = false;\n\tprotected static final void solve() {\n\
+    \t\t\n\t}\n}\nfinal class Main extends VvyLw {\n\tpublic static void main(final\
+    \ String[] args) {\n\t\tIntStream.range(0, multi ? sc.ni() : 1).forEach(i -> solve());\n\
+    \t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\t}\n}\n\nclass\
+    \ Utility {\n\tprotected static final String yes(final boolean ok){ return ok\
+    \ ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean ok){\
+    \ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
     \ x * x; }\n\tprotected static final long mod(final long n, final long m){ return\
     \ (n + m) % m; }\n\tprotected static final long ceil(final long a, final long\
     \ b){ return (a - 1) / b + 1; }\n\tprotected static final double round(final double\
@@ -562,7 +564,7 @@ data:
   - Java/extension/SuffixArray.java
   - Java/extension/Graph.java
   - Java/all.java
-  timestamp: '2023-12-19 01:42:15+09:00'
+  timestamp: '2023-12-19 19:38:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java
