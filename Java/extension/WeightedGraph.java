@@ -117,7 +117,7 @@ final class WeightedGraph extends Graph {
 		Arrays.fill(vis, -1);
 		Arrays.fill(link, -1);
 		final var heap = new SkewHeap(true);
-		Node[] ins = new Node[2 * n];
+		final var ins = new SkewHeap.Node[2 * n];
 		Arrays.fill(ins, null);
 		for(int i = 0; i < ed.size(); i++) {
 			final var e = ed.get(i);
@@ -172,21 +172,20 @@ final class WeightedGraph extends Graph {
 		return new MST(e, cost);
 	}
 }
-
-class Node {
-	long key, lazy;
-	Node l, r;
-	int idx;
-	Node(final long key, final int idx) {
-		this.key = key;
-		this.idx = idx;
-		lazy = 0;
-		l = null;
-		r = null;
+final class SkewHeap {
+	static final class Node {
+		long key, lazy;
+		Node l, r;
+		final int idx;
+		Node(final long key, final int idx) {
+			this.key = key;
+			this.idx = idx;
+			lazy = 0;
+			l = null;
+			r = null;
+		}
 	}
-}
-class SkewHeap {
-	private final boolean isMin;	
+	private final boolean isMin;
 	SkewHeap(final boolean isMin){ this.isMin = isMin; }
 	private final Node alloc(final long key, final int idx){ return new Node(key, idx); }
 	private final Node propagate(final Node t) {
@@ -220,7 +219,7 @@ class SkewHeap {
 		return x;
 	}
 	final Node push(final Node t, final long key, int idx){ return meld(t, alloc(key, idx)); }
-	final Node pop(final Node t) throws NullPointerException {
+	final Node pop(final Node t) {
 		if(t == null) {
 			throw new NullPointerException();
 		}
