@@ -514,31 +514,30 @@ data:
     \ * p.first.longValue() + second.longValue() + p.second.longValue(); }\n\tfinal\
     \ double dotf(final NumPair p){ return first.doubleValue() * p.first.doubleValue()\
     \ + second.doubleValue() + p.second.doubleValue(); }\n\tfinal long cross(final\
-    \ NumPair p){ return this.rotate().dot(p); }\n\tfinal double crossf(final NumPair\
-    \ p){ return this.rotate().dotf(p); }\n\tfinal long sqr(){ return this.dot(this);\
-    \ }\n\tfinal double sqrf(){ return this.dotf(this); }\n\tfinal double grad() {\
-    \ \n\t\ttry {\n\t\t\treturn second.doubleValue() / first.doubleValue();\n\t\t\
-    } catch(ArithmeticException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn\
-    \ Double.NaN;\n\t}\n\tfinal double abs(){ return Math.hypot(first.doubleValue(),\
-    \ second.doubleValue()); }\n\tfinal long lcm(){ return Utility.lcm(first.longValue(),\
-    \ second.longValue()); }\n\tfinal long gcd(){ return Utility.gcd(first.longValue(),\
-    \ second.longValue()); }\n\tfinal NumPair extgcd() {\n\t\tlong x = 1, y = 0, t1\
-    \ = 0, t2 = 0, t3 = 1, a = first.longValue(), b = second.longValue();\n\t\twhile(b\
-    \ > 0) {\n\t\t\tt1 = a / b;\n\t\t\ta -= t1 * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\
-    \t\t\ta ^= b;\n\t\t\tx -= t1 * t2;\n\t\t\tx ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^=\
-    \ t2;\n\t\t\ty -= t1 * t3;\n\t\t\ty ^= t3;\n\t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\
-    \t}\n\t\treturn new NumPair(x, y);\n\t}\n\t@Override\n\tfinal public int compareTo(final\
-    \ NumPair o) {\n\t\tif(first.doubleValue() == o.first.doubleValue()) {\n\t\t\t\
-    return Double.compare(second.doubleValue(), o.second.doubleValue());\n\t\t}\n\t\
-    \treturn Double.compare(first.doubleValue(), o.first.doubleValue());\n\t}\n}\n\
-    \nclass Huitloxopetl {\n\tfinal long invNum(final int[] a) {\n\t\tfinal var b\
-    \ = Utility.sorted(a);\n\t\tfinal var id = new int[a.length];\n\t\tfor(int i =\
-    \ 0; i < a.length; ++i) {\n\t\t\tid[b[i]] = i;\n\t\t}\n\t\tfinal var bit = new\
-    \ FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0; i < a.length;\
-    \ ++i) {\n\t\t\tres += i - bit.sum(id[a[i]]);\n\t\t\tbit.add(id[a[i]], 1);\n\t\
-    \t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final long[] a) {\n\t\tfinal var\
-    \ b = Utility.sorted(a);\n\t\tfinal var id = new HashMap<Long, Integer>();\n\t\
-    \tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
+    \ NumPair p){ return rotate().dot(p); }\n\tfinal double crossf(final NumPair p){\
+    \ return rotate().dotf(p); }\n\tfinal long sqr(){ return dot(this); }\n\tfinal\
+    \ double sqrf(){ return dotf(this); }\n\tfinal double grad() { \n\t\ttry {\n\t\
+    \t\treturn second.doubleValue() / first.doubleValue();\n\t\t} catch(ArithmeticException\
+    \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn Double.NaN;\n\t}\n\tfinal\
+    \ double abs(){ return Math.hypot(first.doubleValue(), second.doubleValue());\
+    \ }\n\tfinal long lcm(){ return Utility.lcm(first.longValue(), second.longValue());\
+    \ }\n\tfinal long gcd(){ return Utility.gcd(first.longValue(), second.longValue());\
+    \ }\n\tfinal NumPair extgcd() {\n\t\tlong x = 1, y = 0, t1 = 0, t2 = 0, t3 = 1,\
+    \ a = first.longValue(), b = second.longValue();\n\t\twhile(b > 0) {\n\t\t\tt1\
+    \ = a / b;\n\t\t\ta -= t1 * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\
+    \t\tx -= t1 * t2;\n\t\t\tx ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^= t2;\n\t\t\ty -=\
+    \ t1 * t3;\n\t\t\ty ^= t3;\n\t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\t}\n\t\treturn\
+    \ new NumPair(x, y);\n\t}\n\t@Override\n\tfinal public int compareTo(final NumPair\
+    \ o) {\n\t\tif(first.doubleValue() == o.first.doubleValue()) {\n\t\t\treturn Double.compare(second.doubleValue(),\
+    \ o.second.doubleValue());\n\t\t}\n\t\treturn Double.compare(first.doubleValue(),\
+    \ o.first.doubleValue());\n\t}\n}\n\nclass Huitloxopetl {\n\tfinal long invNum(final\
+    \ int[] a) {\n\t\tfinal var b = Utility.sorted(a);\n\t\tfinal var id = new int[a.length];\n\
+    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid[b[i]] = i;\n\t\t}\n\t\tfinal\
+    \ var bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0;\
+    \ i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id[a[i]]);\n\t\t\tbit.add(id[a[i]],\
+    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final long[] a) {\n\t\t\
+    final var b = Utility.sorted(a);\n\t\tfinal var id = new HashMap<Long, Integer>();\n\
+    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
     \ var bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0;\
     \ i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\tbit.add(id.get(a[i]),\
     \ 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class UnionFind {\n\tprivate final\
@@ -1172,7 +1171,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2023-12-20 03:54:08+09:00'
+  timestamp: '2023-12-20 04:05:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
