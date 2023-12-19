@@ -1171,9 +1171,7 @@ final class MST {
 	}
 }
 final class WeightedGraph extends Graph {
-	WeightedGraph(final int n, final int indexed, final boolean undirected) {
-		super(n, indexed, undirected);
-	}
+	WeightedGraph(final int n, final int indexed, final boolean undirected){ super(n, indexed, undirected); }
 	final void addEdge(int a, int b, final long cost) {
 		a -= indexed;
 		b -= indexed;
