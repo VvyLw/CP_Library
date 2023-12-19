@@ -5,6 +5,9 @@ data:
     path: Java/all.java
     title: Java/all.java
   - icon: ':warning:'
+    path: Java/extension/AVLTree.java
+    title: Java/extension/AVLTree.java
+  - icon: ':warning:'
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
@@ -65,6 +68,9 @@ data:
   - icon: ':warning:'
     path: Java/all.java
     title: Java/all.java
+  - icon: ':warning:'
+    path: Java/extension/AVLTree.java
+    title: Java/extension/AVLTree.java
   - icon: ':warning:'
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
@@ -176,9 +182,9 @@ data:
     \t\t\t}\n\t\t}\n\t\tint x = 0;\n\t\tint[] par = new int[2 * n], vis = new int[2\
     \ * n], link = new int[2 * n];\n\t\tArrays.fill(par, -1);\n\t\tArrays.fill(vis,\
     \ -1);\n\t\tArrays.fill(link, -1);\n\t\tfinal var heap = new SkewHeap(true);\n\
-    \t\tNode[] ins = new Node[2 * n];\n\t\tArrays.fill(ins, null);\n\t\tfor(int i\
-    \ = 0; i < ed.size(); i++) {\n\t\t\tfinal var e = ed.get(i);\n\t\t\tins[e.to]\
-    \ = heap.push(ins[e.to], e.cost, i);\n\t\t}\n\t\tfinal var st = new ArrayList<Integer>();\n\
+    \t\tfinal var ins = new SkewHeap.Node[2 * n];\n\t\tArrays.fill(ins, null);\n\t\
+    \tfor(int i = 0; i < ed.size(); i++) {\n\t\t\tfinal var e = ed.get(i);\n\t\t\t\
+    ins[e.to] = heap.push(ins[e.to], e.cost, i);\n\t\t}\n\t\tfinal var st = new ArrayList<Integer>();\n\
     \t\tfinal Function<Integer, Integer> go = z -> {\n\t\t\tz = ed.get(ins[z].idx).src;\n\
     \t\t\twhile(link[z] != -1) {\n\t\t\t\tst.add(z);\n\t\t\t\tz = link[z];\n\t\t\t\
     }\n\t\t\tfor(final var p: st) {\n\t\t\t\tlink[p] = z;\n\t\t\t}\n\t\t\tst.clear();\n\
@@ -193,25 +199,25 @@ data:
     \ x; i >= 0; i--) {\n\t\t\tif(vis[i] == 1) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\
     \tcost += ed.get(ins[i].idx).cost;\n\t\t\te.add(ed.get(ins[i].idx));\n\t\t\tfor(int\
     \ j = ed.get(ins[i].idx).to; j != -1 && vis[j] == 0; j = par[j]) {\n\t\t\t\tvis[j]\
-    \ = 1;\n\t\t\t}\n\t\t}\n\t\treturn new MST(e, cost);\n\t}\n}\n\nclass Node {\n\
-    \tlong key, lazy;\n\tNode l, r;\n\tint idx;\n\tNode(final long key, final int\
-    \ idx) {\n\t\tthis.key = key;\n\t\tthis.idx = idx;\n\t\tlazy = 0;\n\t\tl = null;\n\
-    \t\tr = null;\n\t}\n}\nclass SkewHeap {\n\tprivate final boolean isMin;\t\n\t\
-    SkewHeap(final boolean isMin){ this.isMin = isMin; }\n\tprivate final Node alloc(final\
-    \ long key, final int idx){ return new Node(key, idx); }\n\tprivate final Node\
-    \ propagate(final Node t) {\n\t\tif(t != null && t.lazy != 0) {\n\t\t\tif(t.l\
-    \ != null) {\n\t\t\t\tt.l.lazy += t.lazy;\n\t\t\t}\n\t\t\tif(t.r != null) {\n\t\
-    \t\t\tt.r.lazy += t.lazy;\n\t\t\t}\n\t\t\tt.key += t.lazy;\n\t\t\tt.lazy = 0;\n\
-    \t\t}\n\t\treturn t;\n\t}\n\tfinal Node meld(Node x, Node y) {\n\t\tpropagate(x);\n\
-    \t\tpropagate(y);\n\t\tif(x == null || y == null) {\n\t\t\treturn x != null ?\
-    \ x : y;\n\t\t}\n\t\tif((x.key < y.key) ^ isMin) {\n\t\t\tfinal var tmp = x;\n\
-    \t\t\tx = y;\n\t\t\ty = tmp;\n\t\t}\n\t\tx.r = meld(y, x.r);\n\t\tfinal var tmp\
-    \ = x.l;\n\t\tx.l = x.r;\n\t\tx.r = tmp;\n\t\treturn x;\n\t}\n\tfinal Node push(final\
-    \ Node t, final long key, int idx){ return meld(t, alloc(key, idx)); }\n\tfinal\
-    \ Node pop(final Node t) throws NullPointerException {\n\t\tif(t == null) {\n\t\
-    \t\tthrow new NullPointerException();\n\t\t}\n\t\treturn meld(t.l, t.r);\n\t}\n\
-    \tfinal Node add(Node t, final long lazy) {\n\t\tif(t != null) {\n\t\t\tt.lazy\
-    \ += lazy;\n\t\t\tpropagate(t);\n\t\t}\n\t\treturn t;\n\t}\n}"
+    \ = 1;\n\t\t\t}\n\t\t}\n\t\treturn new MST(e, cost);\n\t}\n}\nfinal class SkewHeap\
+    \ {\n\tstatic final class Node {\n\t\tlong key, lazy;\n\t\tNode l, r;\n\t\tfinal\
+    \ int idx;\n\t\tNode(final long key, final int idx) {\n\t\t\tthis.key = key;\n\
+    \t\t\tthis.idx = idx;\n\t\t\tlazy = 0;\n\t\t\tl = null;\n\t\t\tr = null;\n\t\t\
+    }\n\t}\n\tprivate final boolean isMin;\n\tSkewHeap(final boolean isMin){ this.isMin\
+    \ = isMin; }\n\tprivate final Node alloc(final long key, final int idx){ return\
+    \ new Node(key, idx); }\n\tprivate final Node propagate(final Node t) {\n\t\t\
+    if(t != null && t.lazy != 0) {\n\t\t\tif(t.l != null) {\n\t\t\t\tt.l.lazy += t.lazy;\n\
+    \t\t\t}\n\t\t\tif(t.r != null) {\n\t\t\t\tt.r.lazy += t.lazy;\n\t\t\t}\n\t\t\t\
+    t.key += t.lazy;\n\t\t\tt.lazy = 0;\n\t\t}\n\t\treturn t;\n\t}\n\tfinal Node meld(Node\
+    \ x, Node y) {\n\t\tpropagate(x);\n\t\tpropagate(y);\n\t\tif(x == null || y ==\
+    \ null) {\n\t\t\treturn x != null ? x : y;\n\t\t}\n\t\tif((x.key < y.key) ^ isMin)\
+    \ {\n\t\t\tfinal var tmp = x;\n\t\t\tx = y;\n\t\t\ty = tmp;\n\t\t}\n\t\tx.r =\
+    \ meld(y, x.r);\n\t\tfinal var tmp = x.l;\n\t\tx.l = x.r;\n\t\tx.r = tmp;\n\t\t\
+    return x;\n\t}\n\tfinal Node push(final Node t, final long key, int idx){ return\
+    \ meld(t, alloc(key, idx)); }\n\tfinal Node pop(final Node t) {\n\t\tif(t == null)\
+    \ {\n\t\t\tthrow new NullPointerException();\n\t\t}\n\t\treturn meld(t.l, t.r);\n\
+    \t}\n\tfinal Node add(Node t, final long lazy) {\n\t\tif(t != null) {\n\t\t\t\
+    t.lazy += lazy;\n\t\t\tpropagate(t);\n\t\t}\n\t\treturn t;\n\t}\n}"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -230,6 +236,7 @@ data:
   - Java/extension/LargePrime.java
   - Java/extension/FenwickTree.java
   - Java/extension/SuffixArray.java
+  - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
@@ -253,10 +260,11 @@ data:
   - Java/extension/LargePrime.java
   - Java/extension/FenwickTree.java
   - Java/extension/SuffixArray.java
+  - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-19 19:38:38+09:00'
+  timestamp: '2023-12-20 03:49:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/WeightedGraph.java

@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
+    path: Java/extension/AVLTree.java
+    title: Java/extension/AVLTree.java
+  - icon: ':warning:'
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
@@ -62,6 +65,9 @@ data:
     path: Java/extension/WeightedUnionFind.java
     title: Java/extension/WeightedUnionFind.java
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Java/extension/AVLTree.java
+    title: Java/extension/AVLTree.java
   - icon: ':warning:'
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
@@ -653,9 +659,9 @@ data:
     \t\t\t}\n\t\t}\n\t\tint x = 0;\n\t\tint[] par = new int[2 * n], vis = new int[2\
     \ * n], link = new int[2 * n];\n\t\tArrays.fill(par, -1);\n\t\tArrays.fill(vis,\
     \ -1);\n\t\tArrays.fill(link, -1);\n\t\tfinal var heap = new SkewHeap(true);\n\
-    \t\tNode[] ins = new Node[2 * n];\n\t\tArrays.fill(ins, null);\n\t\tfor(int i\
-    \ = 0; i < ed.size(); i++) {\n\t\t\tfinal var e = ed.get(i);\n\t\t\tins[e.to]\
-    \ = heap.push(ins[e.to], e.cost, i);\n\t\t}\n\t\tfinal var st = new ArrayList<Integer>();\n\
+    \t\tfinal var ins = new SkewHeap.Node[2 * n];\n\t\tArrays.fill(ins, null);\n\t\
+    \tfor(int i = 0; i < ed.size(); i++) {\n\t\t\tfinal var e = ed.get(i);\n\t\t\t\
+    ins[e.to] = heap.push(ins[e.to], e.cost, i);\n\t\t}\n\t\tfinal var st = new ArrayList<Integer>();\n\
     \t\tfinal Function<Integer, Integer> go = z -> {\n\t\t\tz = ed.get(ins[z].idx).src;\n\
     \t\t\twhile(link[z] != -1) {\n\t\t\t\tst.add(z);\n\t\t\t\tz = link[z];\n\t\t\t\
     }\n\t\t\tfor(final var p: st) {\n\t\t\t\tlink[p] = z;\n\t\t\t}\n\t\t\tst.clear();\n\
@@ -670,29 +676,30 @@ data:
     \ x; i >= 0; i--) {\n\t\t\tif(vis[i] == 1) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\
     \tcost += ed.get(ins[i].idx).cost;\n\t\t\te.add(ed.get(ins[i].idx));\n\t\t\tfor(int\
     \ j = ed.get(ins[i].idx).to; j != -1 && vis[j] == 0; j = par[j]) {\n\t\t\t\tvis[j]\
-    \ = 1;\n\t\t\t}\n\t\t}\n\t\treturn new MST(e, cost);\n\t}\n}\nclass Node {\n\t\
-    long key, lazy;\n\tNode l, r;\n\tint idx;\n\tNode(final long key, final int idx)\
-    \ {\n\t\tthis.key = key;\n\t\tthis.idx = idx;\n\t\tlazy = 0;\n\t\tl = null;\n\t\
-    \tr = null;\n\t}\n}\nclass SkewHeap {\n\tprivate final boolean isMin;\t\n\tSkewHeap(final\
-    \ boolean isMin){ this.isMin = isMin; }\n\tprivate final Node alloc(final long\
-    \ key, final int idx){ return new Node(key, idx); }\n\tprivate final Node propagate(final\
-    \ Node t) {\n\t\tif(t != null && t.lazy != 0) {\n\t\t\tif(t.l != null) {\n\t\t\
-    \t\tt.l.lazy += t.lazy;\n\t\t\t}\n\t\t\tif(t.r != null) {\n\t\t\t\tt.r.lazy +=\
-    \ t.lazy;\n\t\t\t}\n\t\t\tt.key += t.lazy;\n\t\t\tt.lazy = 0;\n\t\t}\n\t\treturn\
-    \ t;\n\t}\n\tfinal Node meld(Node x, Node y) {\n\t\tpropagate(x);\n\t\tpropagate(y);\n\
-    \t\tif(x == null || y == null) {\n\t\t\treturn x != null ? x : y;\n\t\t}\n\t\t\
-    if((x.key < y.key) ^ isMin) {\n\t\t\tfinal var tmp = x;\n\t\t\tx = y;\n\t\t\t\
-    y = tmp;\n\t\t}\n\t\tx.r = meld(y, x.r);\n\t\tfinal var tmp = x.l;\n\t\tx.l =\
-    \ x.r;\n\t\tx.r = tmp;\n\t\treturn x;\n\t}\n\tfinal Node push(final Node t, final\
-    \ long key, int idx){ return meld(t, alloc(key, idx)); }\n\tfinal Node pop(final\
-    \ Node t) {\n\t\tif(t == null) {\n\t\t\tthrow new NullPointerException();\n\t\t\
-    }\n\t\treturn meld(t.l, t.r);\n\t}\n\tfinal Node add(Node t, final long lazy)\
-    \ {\n\t\tif(t != null) {\n\t\t\tt.lazy += lazy;\n\t\t\tpropagate(t);\n\t\t}\n\t\
-    \treturn t;\n\t}\n}\n\nfinal class LowestCommonAncestor<G extends Graph> {\n\t\
-    private final int log;\n\tfinal int[] dep, sum;\n\tprivate final G g;\n\tfinal\
-    \ int[][] table;\n\tLowestCommonAncestor(final G g) {\n\t\tthis.g = g;\n\t\tfinal\
-    \ int n = g.size();\n\t\tdep = new int[n];\n\t\tsum = new int[n];\n\t\tlog = Integer.toBinaryString(n).length();\n\
-    \t\ttable = new int[log][n];\n\t\tIntStream.range(0, log).forEach(i -> Arrays.fill(table[i],\
+    \ = 1;\n\t\t\t}\n\t\t}\n\t\treturn new MST(e, cost);\n\t}\n}\nfinal class SkewHeap\
+    \ {\n\tstatic final class Node {\n\t\tlong key, lazy;\n\t\tNode l, r;\n\t\tfinal\
+    \ int idx;\n\t\tNode(final long key, final int idx) {\n\t\t\tthis.key = key;\n\
+    \t\t\tthis.idx = idx;\n\t\t\tlazy = 0;\n\t\t\tl = null;\n\t\t\tr = null;\n\t\t\
+    }\n\t}\n\tprivate final boolean isMin;\n\tSkewHeap(final boolean isMin){ this.isMin\
+    \ = isMin; }\n\tprivate final Node alloc(final long key, final int idx){ return\
+    \ new Node(key, idx); }\n\tprivate final Node propagate(final Node t) {\n\t\t\
+    if(t != null && t.lazy != 0) {\n\t\t\tif(t.l != null) {\n\t\t\t\tt.l.lazy += t.lazy;\n\
+    \t\t\t}\n\t\t\tif(t.r != null) {\n\t\t\t\tt.r.lazy += t.lazy;\n\t\t\t}\n\t\t\t\
+    t.key += t.lazy;\n\t\t\tt.lazy = 0;\n\t\t}\n\t\treturn t;\n\t}\n\tfinal Node meld(Node\
+    \ x, Node y) {\n\t\tpropagate(x);\n\t\tpropagate(y);\n\t\tif(x == null || y ==\
+    \ null) {\n\t\t\treturn x != null ? x : y;\n\t\t}\n\t\tif((x.key < y.key) ^ isMin)\
+    \ {\n\t\t\tfinal var tmp = x;\n\t\t\tx = y;\n\t\t\ty = tmp;\n\t\t}\n\t\tx.r =\
+    \ meld(y, x.r);\n\t\tfinal var tmp = x.l;\n\t\tx.l = x.r;\n\t\tx.r = tmp;\n\t\t\
+    return x;\n\t}\n\tfinal Node push(final Node t, final long key, int idx){ return\
+    \ meld(t, alloc(key, idx)); }\n\tfinal Node pop(final Node t) {\n\t\tif(t == null)\
+    \ {\n\t\t\tthrow new NullPointerException();\n\t\t}\n\t\treturn meld(t.l, t.r);\n\
+    \t}\n\tfinal Node add(Node t, final long lazy) {\n\t\tif(t != null) {\n\t\t\t\
+    t.lazy += lazy;\n\t\t\tpropagate(t);\n\t\t}\n\t\treturn t;\n\t}\n}\n\nfinal class\
+    \ LowestCommonAncestor<G extends Graph> {\n\tprivate final int log;\n\tfinal int[]\
+    \ dep, sum;\n\tprivate final G g;\n\tfinal int[][] table;\n\tLowestCommonAncestor(final\
+    \ G g) {\n\t\tthis.g = g;\n\t\tfinal int n = g.size();\n\t\tdep = new int[n];\n\
+    \t\tsum = new int[n];\n\t\tlog = Integer.toBinaryString(n).length();\n\t\ttable\
+    \ = new int[log][n];\n\t\tIntStream.range(0, log).forEach(i -> Arrays.fill(table[i],\
     \ -1));\n\t\tbuild();\n\t}\n\tprivate final void dfs(final int idx, final int\
     \ par, final int d) {\n\t\ttable[0][idx] = par;\n\t\tdep[idx] = d;\n\t\tfor(final\
     \ var el: g.get(idx)) {\n\t\t\tif(el.to != par) {\n\t\t\t\tsum[el.to] = (int)\
@@ -1073,7 +1080,52 @@ data:
     \ prev(final int l, final int r, final long upper) {\n\t\tfinal var ret = mat.prev(l,\
     \ r, get(upper));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n\tfinal long\
     \ next(final int l, final int r, final long lower) {\n\t\tfinal var ret = mat.next(l,\
-    \ r, get(lower));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n}"
+    \ r, get(lower));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n}\n\nfinal\
+    \ class AVLTree<T extends Comparable<? super T>> {\n\tstatic final class Node<T\
+    \ extends Comparable<? super T>> {\n\t\tT val;\n\t\t@SuppressWarnings(\"unchecked\"\
+    )\n\t\tNode<T>[] ch = new Node[2];\n\t\tint dep, size;\n\t\tNode(final T val,\
+    \ Node<T> l, Node<T> r) {\n\t\t\tthis.val = val;\n\t\t\tdep = size = 1;\n\t\t\t\
+    ch[0] = l;\n\t\t\tch[1] = r;\n\t\t}\n\t}\n\tprivate Node<T> root;\n\tprivate final\
+    \ int depth(final Node<T> t){ return t == null ? 0 : t.dep; }\n\tprivate final\
+    \ int count(final Node<T> t){ return t == null ? 0 : t.size; }\n\tprivate final\
+    \ Node<T> update(final Node<T> t) {\n\t\tt.dep = Math.max(depth(t.ch[0]), depth(t.ch[1]))\
+    \ + 1;\n\t\tt.size = count(t.ch[0]) + count(t.ch[1]) + 1;\n\t\treturn t;\n\t}\n\
+    \tprivate final Node<T> rotate(Node<T> t, final int b) {\n\t\tvar s = t.ch[1 -\
+    \ b];\n\t\tt.ch[1 - b] = s.ch[b];\n\t\ts.ch[b] = t;\n\t\tt = update(t);\n\t\t\
+    s = update(s);\n\t\treturn s;\n\t}\n\tprivate final Node<T> fetch(Node<T> t) {\n\
+    \t\tif(t == null) {\n\t\t\treturn t;\n\t\t}\n\t\tif(depth(t.ch[0]) - depth(t.ch[1])\
+    \ == 2) {\n\t\t\tif(depth(t.ch[0].ch[1]) > depth(t.ch[0].ch[0])) {\n\t\t\t\tt.ch[0]\
+    \ = rotate(t.ch[0], 0);\n\t\t\t}\n\t\t\tt = rotate(t, 1);\n\t\t}\n\t\telse if(depth(t.ch[0])\
+    \ - depth(t.ch[1]) == -2) {\n\t\t\tif (depth(t.ch[1].ch[0]) > depth(t.ch[1].ch[1]))\
+    \ {\n\t\t\t\tt.ch[1] = rotate(t.ch[1], 1);\n\t\t\t}\n\t\t\tt = rotate(t, 0);\n\
+    \t\t}\n\t\treturn t;\n\t}\n\tprivate final Node<T> insert(final Node<T> t, final\
+    \ int k, final T v) {\n\t\tif(t == null) {\n\t\t\treturn new Node<T>(v, null,\
+    \ null);\n\t\t}\n\t\tfinal int c = count(t.ch[0]), b = (k > c) ? 1 : 0;\n\t\t\
+    t.ch[b] = insert(t.ch[b], k - (b == 1 ? (c + 1) : 0), v);\n\t\tupdate(t);\n\t\t\
+    return fetch(t);\n\t}\n\tprivate final Node<T> erase(final Node<T> t) {\n\t\t\
+    if(t == null || t.ch[0] == null && t.ch[1] == null) {\n\t\t\treturn null;\n\t\t\
+    }\n\t\tif(t.ch[0] == null || t.ch[1] == null) {\n\t\t\treturn t.ch[t.ch[0] ==\
+    \ null ? 1 : 0];\n\t\t}\n\t\treturn fetch(update(new Node<T>(find(t.ch[1], 0).val,\
+    \ t.ch[0], erase(t.ch[1], 0))));\n\t}\n\tprivate final Node<T> erase(Node<T> t,\
+    \ final int k) {\n\t\tif(t == null) {\n\t\t\treturn null;\n\t\t}\n\t\tfinal int\
+    \ c = count(t.ch[0]);\n\t\tif(k < c) {\n\t\t\tt.ch[0] = erase(t.ch[0], k);\n\t\
+    \t\tt = update(t);\n\t\t}\n\t\telse if(k > c) {\n\t\t\tt.ch[1] = erase(t.ch[1],\
+    \ k - (c + 1));\n\t\t\tt = update(t);\n\t\t}\n\t\telse {\n\t\t\tt = erase(t);\n\
+    \t\t}\n\t\treturn fetch(t);\n\t}\n\tprivate final Node<T> find(final Node<T> t,\
+    \ final int k) {\n\t\tif(t == null) {\n\t\t\treturn t;\n\t\t}\n\t\tfinal int c\
+    \ = count(t.ch[0]);\n\t\treturn k < c ? find(t.ch[0], k) : k == c ? t : find(t.ch[1],\
+    \ k - (c + 1));\n\t}\n\tprivate final int cnt(final Node<T> t, final T v) {\n\t\
+    \tif(t == null) {\n\t\t\treturn 0;\n\t\t}\n\t\tif(t.val.compareTo(v) < 0) {\n\t\
+    \t\treturn count(t.ch[0]) + 1 + cnt(t.ch[1], v);\n\t\t}\n\t\tif(t.val.equals(v))\
+    \ {\n\t\t\treturn count(t.ch[0]);\n\t\t}\n\t\treturn cnt(t.ch[0], v);\n\t}\n\t\
+    AVLTree(){ root = null; }\n\tfinal void add(final T val){ root = insert(root,\
+    \ cnt(root, val), val); }\n\tfinal void remove(final int k){ root = erase(root,\
+    \ k); }\n\tfinal T get(final int k){ return find(root, k).val; }\n\tfinal int\
+    \ count(final T val){ return cnt(root, val); }\n\tfinal int size(){ return root.size;\
+    \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal var sb = new StringBuilder();\n\
+    \t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < root.size;) {\n\t\t\tsb.append(\"\
+    \ \");\n\t\t\tsb.append(get(i));\n\t\t}\n\t\treturn \"[\" + sb.toString() + \"\
+    ]\";\n\t}\n}"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -1093,6 +1145,7 @@ data:
   - Java/extension/LargePrime.java
   - Java/extension/FenwickTree.java
   - Java/extension/SuffixArray.java
+  - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
   isVerificationFile: false
@@ -1116,9 +1169,10 @@ data:
   - Java/extension/LargePrime.java
   - Java/extension/FenwickTree.java
   - Java/extension/SuffixArray.java
+  - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2023-12-19 19:38:38+09:00'
+  timestamp: '2023-12-20 03:49:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java

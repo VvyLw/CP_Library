@@ -5,6 +5,9 @@ data:
     path: Java/all.java
     title: Java/all.java
   - icon: ':warning:'
+    path: Java/extension/AVLTree.java
+    title: Java/extension/AVLTree.java
+  - icon: ':warning:'
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
@@ -65,6 +68,9 @@ data:
   - icon: ':warning:'
     path: Java/all.java
     title: Java/all.java
+  - icon: ':warning:'
+    path: Java/extension/AVLTree.java
+    title: Java/extension/AVLTree.java
   - icon: ':warning:'
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
@@ -165,6 +171,7 @@ data:
   - Java/extension/LargePrime.java
   - Java/extension/FenwickTree.java
   - Java/extension/SuffixArray.java
+  - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
@@ -188,10 +195,11 @@ data:
   - Java/extension/LargePrime.java
   - Java/extension/FenwickTree.java
   - Java/extension/SuffixArray.java
+  - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-19 19:38:38+09:00'
+  timestamp: '2023-12-20 03:49:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/UndoUnionFind.java

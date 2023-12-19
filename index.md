@@ -65,6 +65,9 @@ data:
   - name: Java/extension
     pages:
     - icon: ':warning:'
+      path: Java/extension/AVLTree.java
+      title: Java/extension/AVLTree.java
+    - icon: ':warning:'
       path: Java/extension/DoubleEndedPriorityQueue.java
       title: Java/extension/DoubleEndedPriorityQueue.java
     - icon: ':warning:'
