@@ -834,10 +834,10 @@ final class NumPair extends Pair<Number, Number> implements Comparable<NumPair> 
 	}
 	final long dot(final NumPair p){ return first.longValue() * p.first.longValue() + second.longValue() + p.second.longValue(); }
 	final double dotf(final NumPair p){ return first.doubleValue() * p.first.doubleValue() + second.doubleValue() + p.second.doubleValue(); }
-	final long cross(final NumPair p){ return this.rotate().dot(p); }
-	final double crossf(final NumPair p){ return this.rotate().dotf(p); }
-	final long sqr(){ return this.dot(this); }
-	final double sqrf(){ return this.dotf(this); }
+	final long cross(final NumPair p){ return rotate().dot(p); }
+	final double crossf(final NumPair p){ return rotate().dotf(p); }
+	final long sqr(){ return dot(this); }
+	final double sqrf(){ return dotf(this); }
 	final double grad() { 
 		try {
 			return second.doubleValue() / first.doubleValue();
