@@ -619,163 +619,163 @@ data:
     \t}\n}\n\nfinal class MST {\n\tpublic final ArrayList<Edge> tree;\n\tpublic final\
     \ long cost;\n\tMST(final ArrayList<Edge> tree, final long cost) {\n\t\tthis.tree\
     \ = tree;\n\t\tthis.cost = cost;\n\t}\n}\nfinal class WeightedGraph extends Graph\
-    \ {\n\tWeightedGraph(final int n, final int indexed, final boolean undirected)\
-    \ {\n\t\tsuper(n, indexed, undirected);\n\t}\n\tfinal void addEdge(int a, int\
-    \ b, final long cost) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new\
-    \ Edge(b, cost));\n\t\tedge.add(new Edge(a, b, cost));\n\t\tif(undirected) {\n\
-    \t\t\tthis.get(b).add(new Edge(a, cost));\n\t\t\tedge.add(new Edge(b, a, cost));\n\
-    \t\t}\n\t}\n\tfinal long[] dijkstra(final int v) {\n\t\tlong[] cost = new long[n];\n\
-    \t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tQueue<NumPair> dj = new PriorityQueue<>();\n\
-    \t\tcost[v] = 0;\n\t\tdj.add(new NumPair(cost[v], v));\n\t\twhile(!dj.isEmpty())\
-    \ {\n\t\t\tfinal var tmp = dj.poll();\n\t\t\tif(cost[tmp.second.intValue()] <\
-    \ tmp.first.longValue()) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final var el:\
-    \ this.get(tmp.second.intValue())) {\n\t\t\t\tif(cost[el.to] > tmp.first.longValue()\
-    \ + el.cost) {\n\t\t\t\t\tcost[el.to] = tmp.first.longValue() + el.cost;\n\t\t\
-    \t\t\tdj.add(new NumPair(cost[el.to], el.to));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\t\
-    return cost;\n\t}\n\tfinal long[] bellmanFord(final int v) {\n\t\tlong[] cost\
-    \ = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tcost[v] = 0;\n\t\
-    \tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final var e: edge) {\n\
-    \t\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\
-    \t\t\tif(cost[e.to] > cost[e.src] + e.cost) {\n\t\t\t\t\tcost[e.to] = cost[e.src]\
-    \ + e.cost;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(final var e: edge) {\n\t\t\tif(cost[e.src]\
-    \ == Long.MAX_VALUE) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tif(cost[e.src] + e.cost\
-    \ < cost[e.to]) {\n\t\t\t\treturn null;\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t\
-    }\n\tfinal long[][] warshallFloyd() {\n\t\tlong[][] cost = new long[n][n];\n\t\
-    \tIntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], VvyLw.linf));\n\t\t\
-    IntStream.range(0, n).forEach(i -> cost[i][i] = 0);\n\t\tfor(int i = 0; i < n;\
-    \ ++i) {\n\t\t\tfor(final var j: this.get(i)) {\n\t\t\t\tcost[i][j.to] = j.cost;\n\
-    \t\t\t}\n\t\t}\n\t\tfor(int k = 0; k < n; ++k) {\n\t\t\tfor(int i = 0; i < n;\
-    \ ++i) {\n\t\t\t\tfor(int j = 0; j < n; ++j) {\n\t\t\t\t\tif(cost[i][k] == VvyLw.linf\
-    \ || cost[k][j] == VvyLw.linf) {\n\t\t\t\t\t\tcontinue;\n\t\t\t\t\t}\n\t\t\t\t\
-    \tif(cost[i][j] > cost[i][k] + cost[k][j]) {\n\t\t\t\t\t\tcost[i][j] = cost[i][k]\
-    \ + cost[k][j];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t\
-    }\n\tfinal MST kruskal() {\n\t\tfinal UnionFind uf = new UnionFind(n);\n\t\tfinal\
-    \ var e = new ArrayList<Edge>();\n\t\tlong res = 0;\n\t\tfor(final var ed: edge.stream().sorted(Comparator.comparing(ed\
-    \ -> ed.cost)).collect(Collectors.toList())) {\n\t\t\tif(uf.unite(ed.src, ed.to))\
-    \ {\n\t\t\t\te.add(ed);\n\t\t\t\tres += ed.cost;\n\t\t\t}\n\t\t}\n\t\treturn new\
-    \ MST(e, res);\n\t}\n\tfinal MST directed(final int v) {\n\t\t@SuppressWarnings(\"\
-    unchecked\")\n\t\tfinal var ed = (ArrayList<Edge>) edge.clone();\n\t\tfor(int\
-    \ i = 0; i < n; ++i) {\n\t\t\tif(i != v) {\n\t\t\t\ted.add(new Edge(i, v, 0));\n\
-    \t\t\t}\n\t\t}\n\t\tint x = 0;\n\t\tint[] par = new int[2 * n], vis = new int[2\
-    \ * n], link = new int[2 * n];\n\t\tArrays.fill(par, -1);\n\t\tArrays.fill(vis,\
-    \ -1);\n\t\tArrays.fill(link, -1);\n\t\tfinal var heap = new SkewHeap(true);\n\
-    \t\tfinal var ins = new SkewHeap.Node[2 * n];\n\t\tArrays.fill(ins, null);\n\t\
-    \tfor(int i = 0; i < ed.size(); i++) {\n\t\t\tfinal var e = ed.get(i);\n\t\t\t\
-    ins[e.to] = heap.push(ins[e.to], e.cost, i);\n\t\t}\n\t\tfinal var st = new ArrayList<Integer>();\n\
-    \t\tfinal Function<Integer, Integer> go = z -> {\n\t\t\tz = ed.get(ins[z].idx).src;\n\
-    \t\t\twhile(link[z] != -1) {\n\t\t\t\tst.add(z);\n\t\t\t\tz = link[z];\n\t\t\t\
-    }\n\t\t\tfor(final var p: st) {\n\t\t\t\tlink[p] = z;\n\t\t\t}\n\t\t\tst.clear();\n\
-    \t\t\treturn z;\n\t\t};\n\t\tfor(int i = n; ins[x] != null; ++i) {\n\t\t\twhile(vis[x]\
-    \ == -1) {\n\t\t\t\tvis[x] = 0;\n\t\t\t\tx = go.apply(x);\n\t\t\t}\n\t\t\twhile(x\
-    \ != i) {\n\t\t\t\tfinal var w = ins[x].key;\n\t\t\t\tvar z = heap.pop(ins[x]);\n\
-    \t\t\t\tz = heap.add(z, -w);\n\t\t\t\tins[i] = heap.meld(ins[i], z);\n\t\t\t\t\
-    par[x] = i;\n\t\t\t\tlink[x] = i;\n\t\t\t\tx = go.apply(x);\n\t\t\t}\n\t\t\twhile(ins[x]\
-    \ != null && go.apply(x) == x) {\n\t\t\t\tins[x] = heap.pop(ins[x]);\n\t\t\t}\n\
-    \t\t}\n\t\tfor(int i = v; i != -1; i = par[i]) {\n\t\t\tvis[i] = 1;\n\t\t}\n\t\
-    \tlong cost = 0;\n\t\tArrayList<Edge> e = new ArrayList<>();\n\t\tfor(int i =\
-    \ x; i >= 0; i--) {\n\t\t\tif(vis[i] == 1) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\
-    \tcost += ed.get(ins[i].idx).cost;\n\t\t\te.add(ed.get(ins[i].idx));\n\t\t\tfor(int\
-    \ j = ed.get(ins[i].idx).to; j != -1 && vis[j] == 0; j = par[j]) {\n\t\t\t\tvis[j]\
-    \ = 1;\n\t\t\t}\n\t\t}\n\t\treturn new MST(e, cost);\n\t}\n}\nfinal class SkewHeap\
-    \ {\n\tstatic final class Node {\n\t\tlong key, lazy;\n\t\tNode l, r;\n\t\tfinal\
-    \ int idx;\n\t\tNode(final long key, final int idx) {\n\t\t\tthis.key = key;\n\
-    \t\t\tthis.idx = idx;\n\t\t\tlazy = 0;\n\t\t\tl = null;\n\t\t\tr = null;\n\t\t\
-    }\n\t}\n\tprivate final boolean isMin;\n\tSkewHeap(final boolean isMin){ this.isMin\
-    \ = isMin; }\n\tprivate final Node alloc(final long key, final int idx){ return\
-    \ new Node(key, idx); }\n\tprivate final Node propagate(final Node t) {\n\t\t\
-    if(t != null && t.lazy != 0) {\n\t\t\tif(t.l != null) {\n\t\t\t\tt.l.lazy += t.lazy;\n\
-    \t\t\t}\n\t\t\tif(t.r != null) {\n\t\t\t\tt.r.lazy += t.lazy;\n\t\t\t}\n\t\t\t\
-    t.key += t.lazy;\n\t\t\tt.lazy = 0;\n\t\t}\n\t\treturn t;\n\t}\n\tfinal Node meld(Node\
-    \ x, Node y) {\n\t\tpropagate(x);\n\t\tpropagate(y);\n\t\tif(x == null || y ==\
-    \ null) {\n\t\t\treturn x != null ? x : y;\n\t\t}\n\t\tif((x.key < y.key) ^ isMin)\
-    \ {\n\t\t\tfinal var tmp = x;\n\t\t\tx = y;\n\t\t\ty = tmp;\n\t\t}\n\t\tx.r =\
-    \ meld(y, x.r);\n\t\tfinal var tmp = x.l;\n\t\tx.l = x.r;\n\t\tx.r = tmp;\n\t\t\
-    return x;\n\t}\n\tfinal Node push(final Node t, final long key, int idx){ return\
-    \ meld(t, alloc(key, idx)); }\n\tfinal Node pop(final Node t) {\n\t\tif(t == null)\
-    \ {\n\t\t\tthrow new NullPointerException();\n\t\t}\n\t\treturn meld(t.l, t.r);\n\
-    \t}\n\tfinal Node add(Node t, final long lazy) {\n\t\tif(t != null) {\n\t\t\t\
-    t.lazy += lazy;\n\t\t\tpropagate(t);\n\t\t}\n\t\treturn t;\n\t}\n}\n\nfinal class\
-    \ LowestCommonAncestor<G extends Graph> {\n\tprivate final int log;\n\tfinal int[]\
-    \ dep, sum;\n\tprivate final G g;\n\tfinal int[][] table;\n\tLowestCommonAncestor(final\
-    \ G g) {\n\t\tthis.g = g;\n\t\tfinal int n = g.size();\n\t\tdep = new int[n];\n\
-    \t\tsum = new int[n];\n\t\tlog = Integer.toBinaryString(n).length();\n\t\ttable\
-    \ = new int[log][n];\n\t\tIntStream.range(0, log).forEach(i -> Arrays.fill(table[i],\
-    \ -1));\n\t\tbuild();\n\t}\n\tprivate final void dfs(final int idx, final int\
-    \ par, final int d) {\n\t\ttable[0][idx] = par;\n\t\tdep[idx] = d;\n\t\tfor(final\
-    \ var el: g.get(idx)) {\n\t\t\tif(el.to != par) {\n\t\t\t\tsum[el.to] = (int)\
-    \ (sum[idx] + el.cost); \n\t\t\t\tdfs(el.to, idx, d + 1);\n\t\t\t}\n\t\t}\n\t\
-    }\n\tprivate final void build() {\n\t\tdfs(0, -1, 0);\n\t\tfor(int k = 0; k <\
-    \ log - 1; ++k) {\n\t\t\tfor(int i = 0; i < table[k].length; ++i) {\n\t\t\t\t\
-    if(table[k][i] == -1) {\n\t\t\t\t\ttable[k + 1][i] = -1;\n\t\t\t\t} else {\n\t\
-    \t\t\t\ttable[k + 1][i] = table[k][table[k][i]];\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\
-    }\n\tfinal int query(int u, int v) {\n\t\tif(dep[u] > dep[v]) {\n\t\t\tu ^= v;\n\
-    \t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\tv = climb(v, dep[v] - dep[u]);\n\t\t\
-    if(u == v) {\n\t\t\treturn u;\n\t\t}\n\t\tfor(int i = log; --i >= 0;) {\n\t\t\t\
-    if(table[i][u] != table[i][v]) {\n\t\t\t\tu = table[i][u];\n\t\t\t\tv = table[i][v];\n\
-    \t\t\t}\n\t\t}\n\t\treturn table[0][u];\n\t}\n\tfinal int climb(int u, final int\
-    \ k) {\n\t\tif(dep[u] < k) {\n\t\t\treturn -1;\n\t\t}\n\t\tfor(int i = log; --i\
-    \ >= 0;) {\n\t\t\tif(((k >> i) % 2) == 1) {\n\t\t\t\tu = table[i][u];\n\t\t\t\
-    }\n\t\t}\n\t\treturn u;\n\t}\n\tfinal int dist(final int u, final int v){ return\
-    \ sum[u] + sum[v] - 2 * sum[query(u, v)]; }\n}\n\nfinal class PrimeTable {\n\t\
-    private final int size;\n\tprivate final int[] p;\n\tprivate final boolean[] sieve;\n\
-    \tPrimeTable(final int n) {\n\t\tsieve = new boolean[n + 1];\n\t\tArrays.fill(sieve,\
-    \ true);\n\t\tsieve[0] = sieve[1] = false;\n\t\tfor(long i = 2; i <= n; ++i) {\n\
-    \t\t\tif(!sieve[(int) i]) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(long j = i\
-    \ * i; j <= n; j += i) {\n\t\t\t\tsieve[(int) j] = false;\n\t\t\t}\n\t\t}\n\t\t\
-    size = (int) IntStream.rangeClosed(0, n).filter(i -> sieve[i]).count();\n\t\t\
-    int j = 0;\n\t\tp = new int[size];\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\t\
-    if(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\t\t}\n\t\t}\n\t}\n\tfinal boolean[] table(){\
-    \ return sieve; }\n\tfinal int[] get(){ return p; }\n}\n\nfinal class PrimeFactor\
-    \ {\n\tprivate final int[] spf;\n\tPrimeFactor(final int n) {\n\t\tspf = Utility.iota(n\
-    \ + 1);\n\t\tfor(int i = 2; i * i <= n; ++i) {\n\t\t\tif(spf[i] == i) {\n\t\t\t\
-    \tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\t\tif(spf[j] == j) {\n\t\t\t\t\t\
-    \tspf[j] = i;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal TreeMap<Integer,\
-    \ Integer> get(int n) {\n\t\tfinal TreeMap<Integer, Integer> m = new TreeMap<>();\n\
-    \t\twhile(n != 1) {\n\t\t\tm.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /=\
-    \ spf[n];\n\t\t}\n\t\treturn m;\n\t}\n}\n\nfinal class PrimeCounter {\n\tprivate\
-    \ final int sq;\n\tprivate final boolean[] p;\n\tprivate final int[] psum;\n\t\
-    private final ArrayList<Integer> ps;\n\tPrimeCounter(final long lim) {\n\t\tsq\
-    \ = (int) kthRooti(lim, 2);\n\t\tpsum = new int[sq + 1];\n\t\tp = new PrimeTable(sq).table();\n\
-    \t\tfor(int i = 1; i <= sq; ++i) {\n\t\t\tpsum[i] = psum[i - 1] + (p[i] ? 1 :\
-    \ 0);\n\t\t}\n\t\tps = new ArrayList<>();\n\t\tfor(int i = 1; i <= sq; ++i) {\n\
-    \t\t\tif(p[i]) {\n\t\t\t\tps.add(i);\n\t\t\t}\n\t\t}\n\t}\n\tprivate final long\
-    \ kthRooti(final long n, final int k){ return Utility.kthRoot(n, k); }\n\tprivate\
-    \ final long p2(final long x, final long y) {\n\t\tif(x < 4) {\n\t\t\treturn 0;\n\
-    \t\t}\n\t\tfinal long a = pi(y);\n\t\tfinal long b = pi(kthRooti(x, 2));\n\t\t\
-    if(a >= b) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong sum = (long) (a - 2) * (a + 1)\
-    \ / 2 - (b - 2) * (b + 1) / 2;\n\t\tfor(long i = a; i < b; ++i) {\n\t\t\tsum +=\
-    \ pi(x / ps.get((int) i));\n\t\t}\n\t\treturn sum;\n\t}\n\tprivate final long\
-    \ phi(final long m, final long a) {\n\t\tif(m < 1) {\n\t\t\treturn 0;\n\t\t}\n\
-    \t\tif(a > m) {\n\t\t\treturn 1;\n\t\t}\n\t\tif(a < 1) {\n\t\t\treturn m;\n\t\t\
-    }\n\t\tif(m <= (long) ps.get((int) (a - 1)) * ps.get((int) (a - 1))) {\n\t\t\t\
-    return pi(m) - a + 1;\n\t\t}\n\t\tif(m <= (long) ps.get((int) (a - 1)) * ps.get((int)\
-    \ (a - 1)) * ps.get((int) (a - 1)) && m <= sq) {\n\t\t\tfinal long sx = pi(kthRooti(m,\
-    \ 2));\n\t\t\tlong ans = pi(m) - (long) (sx + a - 2) * (sx - a + 1) / 2;\n\t\t\
-    \tfor(long i = a; i < sx; ++i) {\n\t\t\t\tans += pi(m / ps.get((int) i));\n\t\t\
-    \t}\n\t\t\treturn ans;\n\t\t}\n\t\treturn phi(m, a - 1) - phi(m / ps.get((int)\
-    \ (a - 1)), a - 1);\n\t}\n\tfinal long pi(final long n) {\n\t\tif(n <= sq) {\n\
-    \t\t\treturn psum[(int) n];\n\t\t}\n\t\tfinal long m = kthRooti(n, 3);\n\t\tfinal\
-    \ long a = pi(m);\n\t\treturn phi(n, a) + a - 1 - p2(n, m);\n\t}\n}\n\n// N <=\
-    \ 1e18;\nfinal class LongPrime {\n\tprivate final int bsf(final long x){ return\
-    \ Long.numberOfTrailingZeros(x); }\n\tprivate final long gcd(long a, long b) {\n\
-    \t\ta = Math.abs(a);\n\t\tb = Math.abs(b);\n\t\tif(a == 0) {\n\t\t\treturn b;\n\
-    \t\t}\n\t\tif(b == 0) {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int shift = bsf(a|b);\n\
-    \t\ta >>= bsf(a);\n\t\tdo {\n\t\t\tb >>= bsf(b);\n\t\t\tif(a > b) {\n\t\t\t\t\
-    a ^= b;\n\t\t\t\tb ^= a;\n\t\t\t\ta ^= b;\n\t\t\t}\n\t\t\tb -= a;\n\t\t} while(b\
-    \ > 0);\n\t\treturn a << shift;\n\t}\n\tfinal boolean isPrime(final long n) {\n\
-    \t\tif(n <= 1) {\n\t\t\treturn false;\n\t\t}\n\t\tif(n == 2) {\n\t\t\treturn true;\n\
-    \t\t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn false;\n\t\t}\n\t\tlong d = n - 1;\n\
-    \t\twhile(d % 2 == 0) {\n\t\t\td /= 2;\n\t\t}\n\t\tfinal long[] sample = {2, 3,\
-    \ 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};\n\t\tfor(final long a: sample) {\n\t\t\
-    \tif(n <= a) {\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\tlong t = d;\n\t\t\tBigInteger y\
-    \ = BigInteger.valueOf(a).modPow(BigInteger.valueOf(t), BigInteger.valueOf(n));\n\
-    \t\t\twhile(t != n - 1 && !y.equals(BigInteger.ONE) && !y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)))\
-    \ {\n\t\t\t\ty = y.multiply(y).mod(BigInteger.valueOf(n));\n\t\t\t\tt <<= 1;\n\
-    \t\t\t}\n\t\t\tif(!y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)) &&\
-    \ t % 2 == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\
-    \tfinal private long find(final long n) {\n\t\tif(isPrime(n)) {\n\t\t\treturn\
-    \ n;\n\t\t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn 2;\n\t\t}\n\t\tlong st = 0;\n\t\
-    \tfinal LongBinaryOperator f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue();\
+    \ {\n\tWeightedGraph(final int n, final int indexed, final boolean undirected){\
+    \ super(n, indexed, undirected); }\n\tfinal void addEdge(int a, int b, final long\
+    \ cost) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(b,\
+    \ cost));\n\t\tedge.add(new Edge(a, b, cost));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new\
+    \ Edge(a, cost));\n\t\t\tedge.add(new Edge(b, a, cost));\n\t\t}\n\t}\n\tfinal\
+    \ long[] dijkstra(final int v) {\n\t\tlong[] cost = new long[n];\n\t\tArrays.fill(cost,\
+    \ Long.MAX_VALUE);\n\t\tQueue<NumPair> dj = new PriorityQueue<>();\n\t\tcost[v]\
+    \ = 0;\n\t\tdj.add(new NumPair(cost[v], v));\n\t\twhile(!dj.isEmpty()) {\n\t\t\
+    \tfinal var tmp = dj.poll();\n\t\t\tif(cost[tmp.second.intValue()] < tmp.first.longValue())\
+    \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final var el: this.get(tmp.second.intValue()))\
+    \ {\n\t\t\t\tif(cost[el.to] > tmp.first.longValue() + el.cost) {\n\t\t\t\t\tcost[el.to]\
+    \ = tmp.first.longValue() + el.cost;\n\t\t\t\t\tdj.add(new NumPair(cost[el.to],\
+    \ el.to));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[] bellmanFord(final\
+    \ int v) {\n\t\tlong[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
+    \t\tcost[v] = 0;\n\t\tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final\
+    \ var e: edge) {\n\t\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\t\tcontinue;\n\
+    \t\t\t\t}\n\t\t\t\tif(cost[e.to] > cost[e.src] + e.cost) {\n\t\t\t\t\tcost[e.to]\
+    \ = cost[e.src] + e.cost;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(final var e: edge)\
+    \ {\n\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\
+    \t\tif(cost[e.src] + e.cost < cost[e.to]) {\n\t\t\t\treturn null;\n\t\t\t}\n\t\
+    \t}\n\t\treturn cost;\n\t}\n\tfinal long[][] warshallFloyd() {\n\t\tlong[][] cost\
+    \ = new long[n][n];\n\t\tIntStream.range(0, n).forEach(i -> Arrays.fill(cost[i],\
+    \ VvyLw.linf));\n\t\tIntStream.range(0, n).forEach(i -> cost[i][i] = 0);\n\t\t\
+    for(int i = 0; i < n; ++i) {\n\t\t\tfor(final var j: this.get(i)) {\n\t\t\t\t\
+    cost[i][j.to] = j.cost;\n\t\t\t}\n\t\t}\n\t\tfor(int k = 0; k < n; ++k) {\n\t\t\
+    \tfor(int i = 0; i < n; ++i) {\n\t\t\t\tfor(int j = 0; j < n; ++j) {\n\t\t\t\t\
+    \tif(cost[i][k] == VvyLw.linf || cost[k][j] == VvyLw.linf) {\n\t\t\t\t\t\tcontinue;\n\
+    \t\t\t\t\t}\n\t\t\t\t\tif(cost[i][j] > cost[i][k] + cost[k][j]) {\n\t\t\t\t\t\t\
+    cost[i][j] = cost[i][k] + cost[k][j];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
+    \t\treturn cost;\n\t}\n\tfinal MST kruskal() {\n\t\tfinal UnionFind uf = new UnionFind(n);\n\
+    \t\tfinal var e = new ArrayList<Edge>();\n\t\tlong res = 0;\n\t\tfor(final var\
+    \ ed: edge.stream().sorted(Comparator.comparing(ed -> ed.cost)).collect(Collectors.toList()))\
+    \ {\n\t\t\tif(uf.unite(ed.src, ed.to)) {\n\t\t\t\te.add(ed);\n\t\t\t\tres += ed.cost;\n\
+    \t\t\t}\n\t\t}\n\t\treturn new MST(e, res);\n\t}\n\tfinal MST directed(final int\
+    \ v) {\n\t\t@SuppressWarnings(\"unchecked\")\n\t\tfinal var ed = (ArrayList<Edge>)\
+    \ edge.clone();\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(i != v) {\n\t\t\t\t\
+    ed.add(new Edge(i, v, 0));\n\t\t\t}\n\t\t}\n\t\tint x = 0;\n\t\tint[] par = new\
+    \ int[2 * n], vis = new int[2 * n], link = new int[2 * n];\n\t\tArrays.fill(par,\
+    \ -1);\n\t\tArrays.fill(vis, -1);\n\t\tArrays.fill(link, -1);\n\t\tfinal var heap\
+    \ = new SkewHeap(true);\n\t\tfinal var ins = new SkewHeap.Node[2 * n];\n\t\tArrays.fill(ins,\
+    \ null);\n\t\tfor(int i = 0; i < ed.size(); i++) {\n\t\t\tfinal var e = ed.get(i);\n\
+    \t\t\tins[e.to] = heap.push(ins[e.to], e.cost, i);\n\t\t}\n\t\tfinal var st =\
+    \ new ArrayList<Integer>();\n\t\tfinal Function<Integer, Integer> go = z -> {\n\
+    \t\t\tz = ed.get(ins[z].idx).src;\n\t\t\twhile(link[z] != -1) {\n\t\t\t\tst.add(z);\n\
+    \t\t\t\tz = link[z];\n\t\t\t}\n\t\t\tfor(final var p: st) {\n\t\t\t\tlink[p] =\
+    \ z;\n\t\t\t}\n\t\t\tst.clear();\n\t\t\treturn z;\n\t\t};\n\t\tfor(int i = n;\
+    \ ins[x] != null; ++i) {\n\t\t\twhile(vis[x] == -1) {\n\t\t\t\tvis[x] = 0;\n\t\
+    \t\t\tx = go.apply(x);\n\t\t\t}\n\t\t\twhile(x != i) {\n\t\t\t\tfinal var w =\
+    \ ins[x].key;\n\t\t\t\tvar z = heap.pop(ins[x]);\n\t\t\t\tz = heap.add(z, -w);\n\
+    \t\t\t\tins[i] = heap.meld(ins[i], z);\n\t\t\t\tpar[x] = i;\n\t\t\t\tlink[x] =\
+    \ i;\n\t\t\t\tx = go.apply(x);\n\t\t\t}\n\t\t\twhile(ins[x] != null && go.apply(x)\
+    \ == x) {\n\t\t\t\tins[x] = heap.pop(ins[x]);\n\t\t\t}\n\t\t}\n\t\tfor(int i =\
+    \ v; i != -1; i = par[i]) {\n\t\t\tvis[i] = 1;\n\t\t}\n\t\tlong cost = 0;\n\t\t\
+    ArrayList<Edge> e = new ArrayList<>();\n\t\tfor(int i = x; i >= 0; i--) {\n\t\t\
+    \tif(vis[i] == 1) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tcost += ed.get(ins[i].idx).cost;\n\
+    \t\t\te.add(ed.get(ins[i].idx));\n\t\t\tfor(int j = ed.get(ins[i].idx).to; j !=\
+    \ -1 && vis[j] == 0; j = par[j]) {\n\t\t\t\tvis[j] = 1;\n\t\t\t}\n\t\t}\n\t\t\
+    return new MST(e, cost);\n\t}\n}\nfinal class SkewHeap {\n\tstatic final class\
+    \ Node {\n\t\tlong key, lazy;\n\t\tNode l, r;\n\t\tfinal int idx;\n\t\tNode(final\
+    \ long key, final int idx) {\n\t\t\tthis.key = key;\n\t\t\tthis.idx = idx;\n\t\
+    \t\tlazy = 0;\n\t\t\tl = null;\n\t\t\tr = null;\n\t\t}\n\t}\n\tprivate final boolean\
+    \ isMin;\n\tSkewHeap(final boolean isMin){ this.isMin = isMin; }\n\tprivate final\
+    \ Node alloc(final long key, final int idx){ return new Node(key, idx); }\n\t\
+    private final Node propagate(final Node t) {\n\t\tif(t != null && t.lazy != 0)\
+    \ {\n\t\t\tif(t.l != null) {\n\t\t\t\tt.l.lazy += t.lazy;\n\t\t\t}\n\t\t\tif(t.r\
+    \ != null) {\n\t\t\t\tt.r.lazy += t.lazy;\n\t\t\t}\n\t\t\tt.key += t.lazy;\n\t\
+    \t\tt.lazy = 0;\n\t\t}\n\t\treturn t;\n\t}\n\tfinal Node meld(Node x, Node y)\
+    \ {\n\t\tpropagate(x);\n\t\tpropagate(y);\n\t\tif(x == null || y == null) {\n\t\
+    \t\treturn x != null ? x : y;\n\t\t}\n\t\tif((x.key < y.key) ^ isMin) {\n\t\t\t\
+    final var tmp = x;\n\t\t\tx = y;\n\t\t\ty = tmp;\n\t\t}\n\t\tx.r = meld(y, x.r);\n\
+    \t\tfinal var tmp = x.l;\n\t\tx.l = x.r;\n\t\tx.r = tmp;\n\t\treturn x;\n\t}\n\
+    \tfinal Node push(final Node t, final long key, int idx){ return meld(t, alloc(key,\
+    \ idx)); }\n\tfinal Node pop(final Node t) {\n\t\tif(t == null) {\n\t\t\tthrow\
+    \ new NullPointerException();\n\t\t}\n\t\treturn meld(t.l, t.r);\n\t}\n\tfinal\
+    \ Node add(Node t, final long lazy) {\n\t\tif(t != null) {\n\t\t\tt.lazy += lazy;\n\
+    \t\t\tpropagate(t);\n\t\t}\n\t\treturn t;\n\t}\n}\n\nfinal class LowestCommonAncestor<G\
+    \ extends Graph> {\n\tprivate final int log;\n\tfinal int[] dep, sum;\n\tprivate\
+    \ final G g;\n\tfinal int[][] table;\n\tLowestCommonAncestor(final G g) {\n\t\t\
+    this.g = g;\n\t\tfinal int n = g.size();\n\t\tdep = new int[n];\n\t\tsum = new\
+    \ int[n];\n\t\tlog = Integer.toBinaryString(n).length();\n\t\ttable = new int[log][n];\n\
+    \t\tIntStream.range(0, log).forEach(i -> Arrays.fill(table[i], -1));\n\t\tbuild();\n\
+    \t}\n\tprivate final void dfs(final int idx, final int par, final int d) {\n\t\
+    \ttable[0][idx] = par;\n\t\tdep[idx] = d;\n\t\tfor(final var el: g.get(idx)) {\n\
+    \t\t\tif(el.to != par) {\n\t\t\t\tsum[el.to] = (int) (sum[idx] + el.cost); \n\t\
+    \t\t\tdfs(el.to, idx, d + 1);\n\t\t\t}\n\t\t}\n\t}\n\tprivate final void build()\
+    \ {\n\t\tdfs(0, -1, 0);\n\t\tfor(int k = 0; k < log - 1; ++k) {\n\t\t\tfor(int\
+    \ i = 0; i < table[k].length; ++i) {\n\t\t\t\tif(table[k][i] == -1) {\n\t\t\t\t\
+    \ttable[k + 1][i] = -1;\n\t\t\t\t} else {\n\t\t\t\t\ttable[k + 1][i] = table[k][table[k][i]];\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal int query(int u, int v) {\n\t\tif(dep[u]\
+    \ > dep[v]) {\n\t\t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\tv = climb(v,\
+    \ dep[v] - dep[u]);\n\t\tif(u == v) {\n\t\t\treturn u;\n\t\t}\n\t\tfor(int i =\
+    \ log; --i >= 0;) {\n\t\t\tif(table[i][u] != table[i][v]) {\n\t\t\t\tu = table[i][u];\n\
+    \t\t\t\tv = table[i][v];\n\t\t\t}\n\t\t}\n\t\treturn table[0][u];\n\t}\n\tfinal\
+    \ int climb(int u, final int k) {\n\t\tif(dep[u] < k) {\n\t\t\treturn -1;\n\t\t\
+    }\n\t\tfor(int i = log; --i >= 0;) {\n\t\t\tif(((k >> i) % 2) == 1) {\n\t\t\t\t\
+    u = table[i][u];\n\t\t\t}\n\t\t}\n\t\treturn u;\n\t}\n\tfinal int dist(final int\
+    \ u, final int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }\n}\n\nfinal\
+    \ class PrimeTable {\n\tprivate final int size;\n\tprivate final int[] p;\n\t\
+    private final boolean[] sieve;\n\tPrimeTable(final int n) {\n\t\tsieve = new boolean[n\
+    \ + 1];\n\t\tArrays.fill(sieve, true);\n\t\tsieve[0] = sieve[1] = false;\n\t\t\
+    for(long i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[(int) i]) {\n\t\t\t\tcontinue;\n\
+    \t\t\t}\n\t\t\tfor(long j = i * i; j <= n; j += i) {\n\t\t\t\tsieve[(int) j] =\
+    \ false;\n\t\t\t}\n\t\t}\n\t\tsize = (int) IntStream.rangeClosed(0, n).filter(i\
+    \ -> sieve[i]).count();\n\t\tint j = 0;\n\t\tp = new int[size];\n\t\tfor(int i\
+    \ = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\t\t}\n\t\
+    \t}\n\t}\n\tfinal boolean[] table(){ return sieve; }\n\tfinal int[] get(){ return\
+    \ p; }\n}\n\nfinal class PrimeFactor {\n\tprivate final int[] spf;\n\tPrimeFactor(final\
+    \ int n) {\n\t\tspf = Utility.iota(n + 1);\n\t\tfor(int i = 2; i * i <= n; ++i)\
+    \ {\n\t\t\tif(spf[i] == i) {\n\t\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\
+    \t\t\t\tif(spf[j] == j) {\n\t\t\t\t\t\tspf[j] = i;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\
+    \t\t}\n\t\t}\n\t}\n\tfinal TreeMap<Integer, Integer> get(int n) {\n\t\tfinal TreeMap<Integer,\
+    \ Integer> m = new TreeMap<>();\n\t\twhile(n != 1) {\n\t\t\tm.merge(spf[n], 1,\
+    \ (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\t\t}\n\t\treturn m;\n\t}\n}\n\nfinal\
+    \ class PrimeCounter {\n\tprivate final int sq;\n\tprivate final boolean[] p;\n\
+    \tprivate final int[] psum;\n\tprivate final ArrayList<Integer> ps;\n\tPrimeCounter(final\
+    \ long lim) {\n\t\tsq = (int) kthRooti(lim, 2);\n\t\tpsum = new int[sq + 1];\n\
+    \t\tp = new PrimeTable(sq).table();\n\t\tfor(int i = 1; i <= sq; ++i) {\n\t\t\t\
+    psum[i] = psum[i - 1] + (p[i] ? 1 : 0);\n\t\t}\n\t\tps = new ArrayList<>();\n\t\
+    \tfor(int i = 1; i <= sq; ++i) {\n\t\t\tif(p[i]) {\n\t\t\t\tps.add(i);\n\t\t\t\
+    }\n\t\t}\n\t}\n\tprivate final long kthRooti(final long n, final int k){ return\
+    \ Utility.kthRoot(n, k); }\n\tprivate final long p2(final long x, final long y)\
+    \ {\n\t\tif(x < 4) {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal long a = pi(y);\n\t\t\
+    final long b = pi(kthRooti(x, 2));\n\t\tif(a >= b) {\n\t\t\treturn 0;\n\t\t}\n\
+    \t\tlong sum = (long) (a - 2) * (a + 1) / 2 - (b - 2) * (b + 1) / 2;\n\t\tfor(long\
+    \ i = a; i < b; ++i) {\n\t\t\tsum += pi(x / ps.get((int) i));\n\t\t}\n\t\treturn\
+    \ sum;\n\t}\n\tprivate final long phi(final long m, final long a) {\n\t\tif(m\
+    \ < 1) {\n\t\t\treturn 0;\n\t\t}\n\t\tif(a > m) {\n\t\t\treturn 1;\n\t\t}\n\t\t\
+    if(a < 1) {\n\t\t\treturn m;\n\t\t}\n\t\tif(m <= (long) ps.get((int) (a - 1))\
+    \ * ps.get((int) (a - 1))) {\n\t\t\treturn pi(m) - a + 1;\n\t\t}\n\t\tif(m <=\
+    \ (long) ps.get((int) (a - 1)) * ps.get((int) (a - 1)) * ps.get((int) (a - 1))\
+    \ && m <= sq) {\n\t\t\tfinal long sx = pi(kthRooti(m, 2));\n\t\t\tlong ans = pi(m)\
+    \ - (long) (sx + a - 2) * (sx - a + 1) / 2;\n\t\t\tfor(long i = a; i < sx; ++i)\
+    \ {\n\t\t\t\tans += pi(m / ps.get((int) i));\n\t\t\t}\n\t\t\treturn ans;\n\t\t\
+    }\n\t\treturn phi(m, a - 1) - phi(m / ps.get((int) (a - 1)), a - 1);\n\t}\n\t\
+    final long pi(final long n) {\n\t\tif(n <= sq) {\n\t\t\treturn psum[(int) n];\n\
+    \t\t}\n\t\tfinal long m = kthRooti(n, 3);\n\t\tfinal long a = pi(m);\n\t\treturn\
+    \ phi(n, a) + a - 1 - p2(n, m);\n\t}\n}\n\n// N <= 1e18;\nfinal class LongPrime\
+    \ {\n\tprivate final int bsf(final long x){ return Long.numberOfTrailingZeros(x);\
+    \ }\n\tprivate final long gcd(long a, long b) {\n\t\ta = Math.abs(a);\n\t\tb =\
+    \ Math.abs(b);\n\t\tif(a == 0) {\n\t\t\treturn b;\n\t\t}\n\t\tif(b == 0) {\n\t\
+    \t\treturn a;\n\t\t}\n\t\tfinal int shift = bsf(a|b);\n\t\ta >>= bsf(a);\n\t\t\
+    do {\n\t\t\tb >>= bsf(b);\n\t\t\tif(a > b) {\n\t\t\t\ta ^= b;\n\t\t\t\tb ^= a;\n\
+    \t\t\t\ta ^= b;\n\t\t\t}\n\t\t\tb -= a;\n\t\t} while(b > 0);\n\t\treturn a <<\
+    \ shift;\n\t}\n\tfinal boolean isPrime(final long n) {\n\t\tif(n <= 1) {\n\t\t\
+    \treturn false;\n\t\t}\n\t\tif(n == 2) {\n\t\t\treturn true;\n\t\t}\n\t\tif(n\
+    \ % 2 == 0) {\n\t\t\treturn false;\n\t\t}\n\t\tlong d = n - 1;\n\t\twhile(d %\
+    \ 2 == 0) {\n\t\t\td /= 2;\n\t\t}\n\t\tfinal long[] sample = {2, 3, 5, 7, 11,\
+    \ 13, 17, 19, 23, 29, 31, 37};\n\t\tfor(final long a: sample) {\n\t\t\tif(n <=\
+    \ a) {\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\tlong t = d;\n\t\t\tBigInteger y = BigInteger.valueOf(a).modPow(BigInteger.valueOf(t),\
+    \ BigInteger.valueOf(n));\n\t\t\twhile(t != n - 1 && !y.equals(BigInteger.ONE)\
+    \ && !y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE))) {\n\t\t\t\ty =\
+    \ y.multiply(y).mod(BigInteger.valueOf(n));\n\t\t\t\tt <<= 1;\n\t\t\t}\n\t\t\t\
+    if(!y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)) && t % 2 == 0) {\n\
+    \t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\tfinal private\
+    \ long find(final long n) {\n\t\tif(isPrime(n)) {\n\t\t\treturn n;\n\t\t}\n\t\t\
+    if(n % 2 == 0) {\n\t\t\treturn 2;\n\t\t}\n\t\tlong st = 0;\n\t\tfinal LongBinaryOperator\
+    \ f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue();\
     \ };\n\t\twhile(true) {\n\t\t\tst++;\n\t\t\tlong x = st, y = f.applyAsLong(x,\
     \ st);\n\t\t\twhile(true) {\n\t\t\t\tfinal long p = gcd(y - x + n, n);\n\t\t\t\
     \tif(p == 0 || p == n) {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\tif(p != 1) {\n\t\
@@ -1172,7 +1172,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2023-12-20 03:49:06+09:00'
+  timestamp: '2023-12-20 03:54:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
