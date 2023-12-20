@@ -148,40 +148,39 @@ data:
     import java.util.function.DoublePredicate;\nimport java.util.function.Function;\n\
     import java.util.function.IntPredicate;\nimport java.util.function.LongBinaryOperator;\n\
     import java.util.function.LongPredicate;\nimport java.util.function.Predicate;\n\
-    import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nclass\
-    \ VvyLw extends Utility {\n\tprotected static final MyScanner sc = new MyScanner();\n\
-    \tprotected static final MyPrinter o = new MyPrinter(System.out, false);\n\tprotected\
-    \ static final MyPrinter e = new MyPrinter(System.err, true);\n\t@SuppressWarnings(\"\
-    unused\")\n\tprivate static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\
-    \t@SuppressWarnings(\"unused\")\n\tprivate static final int[] dy = {0, 0, 0, -1,\
-    \ 1, -1, 1, -1, 1};\n\t@SuppressWarnings(\"unused\")\n\tprivate static final int\
-    \ mod998 = 998244353;\n\t@SuppressWarnings(\"unused\")\n\tprivate static final\
-    \ int mod107 = (int)1e9 + 7;\n\tstatic final int inf = 1 << 30;\n\tstatic final\
-    \ long linf = (1L << 61) - 1;\n\tstatic final double eps = 1e-18;\n\tprotected\
-    \ static final boolean multi = false;\n\tprotected static final void solve() {\n\
-    \t\t\n\t}\n}\nfinal class Main extends VvyLw {\n\tpublic static void main(final\
-    \ String[] args) {\n\t\tIntStream.range(0, multi ? sc.ni() : 1).forEach(i -> solve());\n\
-    \t\to.flush();\n\t\tsc.close();\n\t\to.close();\n\t\te.close();\n\t}\n}\n\nclass\
-    \ Utility {\n\tprotected static final String yes(final boolean ok){ return ok\
-    \ ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean ok){\
-    \ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
-    \ x * x; }\n\tprotected static final long mod(final long n, final long m){ return\
-    \ (n + m) % m; }\n\tprotected static final long ceil(final long a, final long\
-    \ b){ return (a - 1) / b + 1; }\n\tprotected static final double round(final double\
-    \ a, final long b, final int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn\
-    \ Math.rint((a * d) / b) / d;\n\t}\n\tprotected static final long pow(long a,\
-    \ int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\
-    \t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static final long pow(long a, long b, final long m) {\n\t\tlong\
-    \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
-    \t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb\
-    \ >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long lcm(final\
-    \ long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static final\
-    \ long lcm(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1,\
-    \ (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){\
-    \ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static\
-    \ final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a;\
-    \ }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
+    import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nfinal\
+    \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
+    \ VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
+    \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.e.close();\n\t}\n}\n\n\
+    class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner();\n\
+    \tstatic final MyPrinter o = new MyPrinter(System.out, false);\n\tstatic final\
+    \ MyPrinter e = new MyPrinter(System.err, true);\n\tstatic final boolean multi\
+    \ = false;\n\tstatic final int inf = 1 << 30;\n\tstatic final long linf = (1L\
+    \ << 61) - 1;\n\tstatic final double eps = 1e-18;\n\t@SuppressWarnings(\"unused\"\
+    )\n\tprivate static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\t@SuppressWarnings(\"\
+    unused\")\n\tprivate static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\
+    \t@SuppressWarnings(\"unused\")\n\tprivate static final int mod998 = 998244353;\n\
+    \t@SuppressWarnings(\"unused\")\n\tprivate static final int mod107 = (int)1e9\
+    \ + 7;\n\tstatic final void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected\
+    \ static final String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\
+    \tprotected static final String no(final boolean ok){ return yes(!ok); }\n\tprotected\
+    \ static final long sqr(final long x){ return x * x; }\n\tprotected static final\
+    \ long mod(final long n, final long m){ return (n + m) % m; }\n\tprotected static\
+    \ final long ceil(final long a, final long b){ return (a - 1) / b + 1; }\n\tprotected\
+    \ static final double round(final double a, final long b, final int c) {\n\t\t\
+    final long d = pow(10, c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\tprotected\
+    \ static final long pow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0)\
+    \ {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\t\
+    b >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long pow(long\
+    \ a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b\
+    \ % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\t\
+    a *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t\
+    protected static final long lcm(final long a, final long b){ return a * b / gcd(a,\
+    \ b); }\n\tprotected static final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i\
+    \ -> i).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final\
+    \ long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
+    \ static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a %\
+    \ b) : a; }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
     \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
     \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
     \ final int min(final int... a){ return Arrays.stream(a).reduce(Integer.MAX_VALUE,\
@@ -1171,7 +1170,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2023-12-20 04:05:44+09:00'
+  timestamp: '2023-12-21 01:58:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
