@@ -135,20 +135,72 @@ class Utility {
 		}
 		return res;
 	}
-	protected static final long binom(int a, final int b) {
+	protected static final long factor(int n) {
 		long res = 1;
-		for(int i = 1; i <= b; ++i) {
-			res *= a--;
+		while(n > 0) {
+			res *= n--;
+		}
+		return res;
+	}
+	protected static final long factor(int n, final long mod) {
+		long res = 1;
+		while(n > 0) {
+			res *= n--;
+			res %= mod;
+		}
+		return res;
+	}
+	protected static final long perm(int n, final int r) {
+		final int og = n;
+		long res = 1;
+		while(n > og - r) {
+			res *= n--;
+		}
+		return res;
+	}
+	protected static final long perm(int n, final int r, final long mod) {
+		final int og = n;
+		long res = 1;
+		while(n > og - r) {
+			res *= n--;
+			res %= mod; 
+		}
+		return res;
+	}
+	protected static final long binom(int n, final int r) {
+		if(r < 0 || n < r) {
+			return 0;
+		}
+		long res = 1;
+		for(int i = 1; i <= r; ++i) {
+			res *= n--;
 			res /= i;
+		}
+		return res;
+	}
+	protected static final long binom(int n, final int r, final long mod) {
+		if(r < 0 || n < r) {
+			return 0;
+		}
+		long res = 1;
+		for(int i = 1; i <= r; ++i) {
+			res *= n--;
+			res %= mod;
+			res /= i;
+			res %= mod;
 		}
 		return res;
 	}
 	protected static final boolean isInt(final double n){ long r = (long) Math.floor(n); return r == n; }
 	protected static final boolean isSqr(final long n){ return isInt(Math.sqrt(n)); }
 	protected static final boolean isPrime(final long n) {
-		if(n == 1) return false;
+		if(n == 1) {
+			return false;
+		}
 		for(long i = 2; i * i <= n; ++i) {
-			if(n % i == 0) return false;
+			if(n % i == 0) {
+				return false;
+			}
 		}
 		return true;
 	}
@@ -158,39 +210,33 @@ class Utility {
 	protected static final int clamp(final int l, final int x, final int r){ return x < l ? l : x > r ? r : x; }
 	protected static final long clamp(final long l, final long x, final long r){ return x < l ? l : x > r ? r : x; }
 	protected static final double clamp(final double l, final double x, final double r){ return x < l ? l : x > r ? r : x; }
-	protected static final int[] nextPerm(int[] a) {
+	protected static final int[] nextPerm(final int[] a) {
 		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] < a[i]) {
 				final int j = find(a[i - 1], a, i, a.length - 1);
-				a[i - 1] ^= a[j];
-				a[j] ^= a[i - 1];
-				a[i - 1] ^= a[j];
+				swap(a, i - 1, j);
 				Arrays.sort(a, i, a.length);
 				return a;
 			}
 		}
 		return null;
 	}
-	protected static final long[] nextPerm(long[] a) {
+	protected static final long[] nextPerm(final long[] a) {
 		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] < a[i]) {
 				final int j = find(a[i - 1], a, i, a.length - 1);
-				a[i - 1] ^= a[j];
-				a[j] ^= a[i - 1];
-				a[i - 1] ^= a[j];
+				swap(a, i - 1, j);
 				Arrays.sort(a, i, a.length);
 				return a;
 			}
 		}
 		return null;
 	}
-	protected static final double[] nextPerm(double[] a) {
+	protected static final double[] nextPerm(final double[] a) {
 		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] < a[i]) {
 				final int j = find(a[i - 1], a, i, a.length - 1);
-				final var tmp = a[i - 1];
-				a[i - 1] = a[j];
-				a[j] = tmp;
+				swap(a, i - 1, j);
 				Arrays.sort(a, i, a.length);
 				return a;
 			}
@@ -198,7 +244,7 @@ class Utility {
 		return null;
 	}
 	protected static final String nextPerm(final String s) {
-		var a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
+		final var a = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
 		for(int i = a.size(); --i > 0;) {
 			if(a.get(i - 1).compareTo(a.get(i)) < 0) {
 				final int j = find(a.get(i - 1), a, i, a.size() - 1);
@@ -209,39 +255,33 @@ class Utility {
 		}
 		return null;
 	}
-	protected static final int[] prevPerm(int[] a) {
+	protected static final int[] prevPerm(final int[] a) {
 		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] > a[i]) {
 				final int j = findRev(a[i - 1], a, i, a.length - 1);
-				a[i - 1] ^= a[j];
-				a[j] ^= a[i - 1];
-				a[i - 1] ^= a[j];
+				swap(a, i - 1, j);
 				Arrays.sort(a, i, a.length);
 				return reverse(a);
 			}
 		}
 		return null;
 	}
-	protected static final long[] prevPerm(long[] a) {
+	protected static final long[] prevPerm(final long[] a) {
 		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] > a[i]) {
 				final int j = findRev(a[i - 1], a, i, a.length - 1);
-				a[i - 1] ^= a[j];
-				a[j] ^= a[i - 1];
-				a[i - 1] ^= a[j];
+				swap(a, i - 1, j);
 				Arrays.sort(a, i, a.length);
 				return reverse(a);
 			}
 		}
 		return null;
 	}
-	protected static final double[] prevPerm(double[] a) {
+	protected static final double[] prevPerm(final double[] a) {
 		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] > a[i]) {
 				final int j = findRev(a[i - 1], a, i, a.length - 1);
-				final var tmp = a[i - 1];
-				a[i - 1] = a[j];
-				a[j] = tmp;
+				swap(a, i - 1, j);
 				Arrays.sort(a, i, a.length);
 				return reverse(a);
 			}
@@ -316,6 +356,102 @@ class Utility {
 		final int m = (s + e + 1) / 2;
 		return a.get(m).compareTo(dest) > 0 ? find(dest, a, s, m - 1) : find(dest, a, m, e);
 	}
+	protected static final int find(final int[] a, final int x) {
+		for(int i = 0; i < a.length; ++i) {
+			if(a[i] == x) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	protected static final int find(final long[] a, final long x) {
+		for(int i = 0; i < a.length; ++i) {
+			if(a[i] == x) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	protected static final int find(final double[] a, final double x) {
+		for(int i = 0; i < a.length; ++i) {
+			if(a[i] == x) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	protected static final int find(final String s, final char c) {
+		for(int i = 0; i < s.length(); ++i) {
+			if(s.charAt(i) == c) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	protected static final int find(final char[] s, final char c) {
+		for(int i = 0; i < s.length; ++i) {
+			if(s[i] == c) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	protected static final int find(final Object[] a, final Object x) {
+		for(int i = 0; i < a.length; ++i) {
+			if(a[i].equals(x)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	protected static final int findRev(final int[] a, final int x) {
+		for(int i = a.length; --i >= 0;) {
+			if(a[i] == x) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	protected static final int findRev(final long[] a, final long x) {
+		for(int i = a.length; --i >= 0;) {
+			if(a[i] == x) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	protected static final int findRev(final double[] a, final double x) {
+		for(int i = a.length; --i >= 0;) {
+			if(a[i] == x) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	protected static final int findRev(final String s, final char c) {
+		for(int i = s.length(); --i >= 0;) {
+			if(s.charAt(i) == c) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	protected static final int findRev(final char[] s, final char c) {
+		for(int i = s.length; --i >= 0;) {
+			if(s[i] == c) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	protected static final int findRev(final Object[] a, final Object x) {
+		for(int i = a.length; --i >= 0;) {
+			if(a[i].equals(x)) {
+				return i;
+			}
+		}
+		return -1;
+	}
 	protected static final boolean binarySearch(final int[] a, final int x){ return Arrays.binarySearch(a, x) >= 0; }
 	protected static final boolean binarySearch(final long[] a, final long x){ return Arrays.binarySearch(a, x) >= 0; }
 	protected static final boolean binarySearch(final Object[] a, final Object x){ return Arrays.binarySearch(a, x) >= 0; }
@@ -335,7 +471,7 @@ class Utility {
 	protected static final String reverse(final String s){ return new StringBuilder(s).reverse().toString(); }
 	protected static final int[] reverse(final int[] a) {
 		final int n = a.length;
-		int[] b = new int[n];
+		final int[] b = new int[n];
 		for(int i = 0; i <= n / 2; ++i) {
 			b[i] = a[n - 1 - i];
 			b[n - 1 - i] = a[i];
@@ -344,7 +480,7 @@ class Utility {
 	}
 	protected static final long[] reverse(final long[] a) {
 		final int n = a.length;
-		long[] b = new long[n];
+		final long[] b = new long[n];
 		for(int i = 0; i <= n / 2; ++i) {
 			b[i] = a[n - 1 - i];
 			b[n - 1 - i] = a[i];
@@ -353,7 +489,7 @@ class Utility {
 	}
 	protected static final double[] reverse(final double[] a) {
 		final int n = a.length;
-		double[] b = new double[n];
+		final double[] b = new double[n];
 		for(int i = 0; i <= n / 2; ++i) {
 			b[i] = a[n - 1 - i];
 			b[n - 1 - i] = a[i];
@@ -362,7 +498,7 @@ class Utility {
 	}
 	protected static final Object[] reverse(final Object[] a) {
 		final int n = a.length;
-		Object[] b = new Object[n];
+		final Object[] b = new Object[n];
 		for(int i = 0; i <= n / 2; ++i) {
 			b[i] = a[n - 1 - i];
 			b[n - 1 - i] = a[i];
@@ -401,58 +537,150 @@ class Utility {
 		Collections.rotate(t, id);
 		return t.stream().map(i -> i.toString()).collect(Collectors.joining());
 	}
-	protected static final int[][] rotate(final int[][] a) {
+	protected static final int[][] rotateR(final int[][] a) {
 		final int h = a.length, w = a[0].length;
-		int[][] b = new int[w][h];
+		final int[][] b = new int[w][h];
 		IntStream.range(0, h).forEach(i -> {
-			IntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);
+			Arrays.setAll(b[i], j -> a[j][i]);
 		});
 		IntStream.range(0, w).forEach(i -> b[i] = reverse(b[i]));
 		return b;
 	}
-	protected static final long[][] rotate(final long[][] a) {
+	protected static final long[][] rotateR(final long[][] a) {
 		final int h = a.length, w = a[0].length;
-		long[][] b = new long[w][h];
+		final long[][] b = new long[w][h];
 		IntStream.range(0, h).forEach(i -> {
-			IntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);
+			Arrays.setAll(b[i], j -> a[j][i]);
 		});
 		IntStream.range(0, w).forEach(i -> b[i] = reverse(b[i]));
 		return b;
 	}
-	protected static final double[][] rotate(final double[][] a) {
+	protected static final double[][] rotateR(final double[][] a) {
 		final int h = a.length, w = a[0].length;
-		double[][] b = new double[w][h];
+		final double[][] b = new double[w][h];
 		IntStream.range(0, h).forEach(i -> {
-			IntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);
+			Arrays.setAll(b[i], j -> a[j][i]);
 		});
 		IntStream.range(0, w).forEach(i -> b[i] = reverse(b[i]));
 		return b;
 	}
-	protected static final String[] rotate(final String[] s) {
+	protected static final String[] rotateR(final String[] s) {
 		final int h = s.length, w = s[0].length();
-		char[][] t = new char[w][h];
+		final char[][] t = new char[w][h];
 		IntStream.range(0, h).forEach(i -> {
 			IntStream.range(0, w).forEach(j -> t[j][i] = s[i].charAt(j));
 		});
 		IntStream.range(0, w).forEach(i -> t[i] = new StringBuilder(new String(t[i])).reverse().toString().toCharArray());
-		String[] res = new String[w];
-		IntStream.range(0, w).forEach(i -> res[i] = new String(t[i]));
+		final String[] res = new String[w];
+		Arrays.setAll(res, i -> String.valueOf(t[i]));
 		return res;
 	}
-	protected static final <F, S> ArrayList<F> first(final List<Pair<F, S>> p) {
-		ArrayList<F> f = new ArrayList<>();
-		for(final var el: p) {
-			f.add(el.first);
-		}
-		return f;
+	protected static final int[][] rotateL(final int[][] a) {
+		final int h = a.length, w = a[0].length;
+		final int[][] b = new int[w][h];
+		IntStream.range(0, h).forEach(i -> {
+			Arrays.setAll(b[i], j -> a[j][w - i - 1]);
+		});
+		return b;
 	}
-	protected static final <F, S> ArrayList<S> second(final List<Pair<F, S>> p) {
-		ArrayList<S> s = new ArrayList<>();
-		for(final var el: p) {
-			s.add(el.second);
-		}
-		return s;
+	protected static final long[][] rotateL(final long[][] a) {
+		final int h = a.length, w = a[0].length;
+		final long[][] b = new long[w][h];
+		IntStream.range(0, h).forEach(i -> {
+			Arrays.setAll(b[i], j -> a[j][w - i - 1]);
+		});
+		return b;
 	}
+	protected static final double[][] rotateL(final double[][] a) {
+		final int h = a.length, w = a[0].length;
+		final double[][] b = new double[w][h];
+		IntStream.range(0, h).forEach(i -> {
+			Arrays.setAll(b[i], j -> a[j][w - i - 1]);
+		});
+		return b;
+	}
+	protected static final String[] rotateL(final String[] s) {
+		final int h = s.length, w = s[0].length();
+		final char[][] t = new char[w][h];
+		IntStream.range(0, h).forEach(i -> {
+			IntStream.range(0, w).forEach(j -> t[w - j - 1][i] = s[i].charAt(j));
+		});
+		final String[] res = new String[w];
+		Arrays.setAll(res, i -> String.valueOf(t[i]));
+		return res;
+	}
+	protected static final void swap(final int[] a, final int i, final int j) {
+		a[i] ^= a[j];
+		a[j] ^= a[i];
+		a[i] ^= a[j];
+	}
+	protected static final void swap(final long[] a, final int i, final int j) {
+		a[i] ^= a[j];
+		a[j] ^= a[i];
+		a[i] ^= a[j];
+	}
+	protected static final void swap(final double[] a, final int i, final int j) {
+		final var tmp = a[i];
+		a[i] = a[j];
+		a[j] = tmp;
+	}
+	protected static final void swap(final char[] a, final int i, final int j) {
+		final var tmp = a[i];
+		a[i] = a[j];
+		a[j] = tmp;
+	}
+	protected static final void swap(final Object[] a, final int i, final int j) {
+		final var tmp = a[i];
+		a[i] = a[j];
+		a[j] = tmp;
+	}
+	protected static final void swap(final int[] a, final int[] b) {
+		if(a.length != b.length) {
+			throw new AssertionError("a.length != b.length");
+		}
+		final int n = a.length;
+		final var c = a.clone();
+		System.arraycopy(b, 0, a, 0, n);
+		System.arraycopy(c, 0, b, 0, n);
+	}
+	protected static final void swap(final long[] a, final long[] b) {
+		if(a.length != b.length) {
+			throw new AssertionError("a.length != b.length");
+		}
+		final int n = a.length;
+		final var c = a.clone();
+		System.arraycopy(b, 0, a, 0, n);
+		System.arraycopy(c, 0, b, 0, n);
+	}
+	protected static final void swap(final double[] a, final double[] b) {
+		if(a.length != b.length) {
+			throw new AssertionError("a.length != b.length");
+		}
+		final int n = a.length;
+		final var c = a.clone();
+		System.arraycopy(b, 0, a, 0, n);
+		System.arraycopy(c, 0, b, 0, n);
+	}
+	protected static final void swap(final char[] a, final char[] b) {
+		if(a.length != b.length) {
+			throw new AssertionError("a.length != b.length");
+		}
+		final int n = a.length;
+		final var c = a.clone();
+		System.arraycopy(b, 0, a, 0, n);
+		System.arraycopy(c, 0, b, 0, n);
+	}
+	protected static final void swap(final Object[] a, final Object[] b) {
+		if(a.length != b.length) {
+			throw new AssertionError("a.length != b.length");
+		}
+		final int n = a.length;
+		final var c = a.clone();
+		System.arraycopy(b, 0, a, 0, n);
+		System.arraycopy(c, 0, b, 0, n);
+	}
+	protected static final <F, S> List<F> first(final List<Pair<F, S>> p){ return p.stream().map(i -> i.first).collect(Collectors.toList()); }
+	protected static final <F, S> List<S> second(final List<Pair<F, S>> p){ return p.stream().map(i -> i.second).collect(Collectors.toList()); }
 	protected static final int[] iota(final int n){ return IntStream.range(0, n).toArray(); }
 	protected static final int[] iota(final int n, final int init){ return IntStream.range(0 + init, n + init).toArray(); }
 	protected static final int bins(int ok, int ng, final IntPredicate fn) {
@@ -491,26 +719,26 @@ class Utility {
 		}
 		return ok;
 	}
-	protected static final ArrayList<Integer> press(final int[] a) {
-		ArrayList<Integer> res = new ArrayList<>();
+	protected static final int[] press(final int[] a) {
+		final int[] res = new int[a.length];
 		final var x = Arrays.stream(a).sorted().distinct().toArray();
-		for(final var el: a) {
-			res.add(lowerBound(x, el));
+		for(int i = 0; i < a.length; ++i) {
+			res[i] = lowerBound(x, a[i]);
 		}
 		return res;
 	}
-	protected static final ArrayList<Integer> press(final long[] a) {
-		ArrayList<Integer> res = new ArrayList<>();
+	protected static final int[] press(final long[] a) {
+		final int[] res = new int[a.length];
 		final var x = Arrays.stream(a).sorted().distinct().toArray();
-		for(final var el: a) {
-			res.add(lowerBound(x, el));
+		for(int i = 0; i < a.length; ++i) {
+			res[i] = lowerBound(x, a[i]);
 		}
 		return res;
 	}
 	protected static final int[] zAlgorithm(final String s) {
 		final int n = s.length();
 		int j = 0;
-		int[] pre = new int[n];
+		final int[] pre = new int[n];
 		for(int i = 0; ++i < n;) {
 			if(i + pre[i - j] < j + pre[j]) {
 				pre[i] = pre[i - j];
@@ -529,7 +757,7 @@ class Utility {
 	}
 	protected static final int[] manacher(final String s_, final boolean calcEven) {
 		int n = s_.length();
-		char[] s;
+		final char[] s;
 		if(calcEven) {
 			s = new char[2 * n - 1];
 			IntStream.range(0, n).forEach(i -> s[i] = s_.charAt(i));
@@ -545,7 +773,7 @@ class Utility {
 			IntStream.range(0, n).forEach(i -> s[i] = s_.charAt(i));
 		}
 		n = s.length;
-		int[] rad = new int[n];
+		final int[] rad = new int[n];
 		for(int i = 0, j = 0; i < n;) {
 			while(i - j >= 0 && i + j < n && s[i - j] == s[i + j]) {
 				++j;
