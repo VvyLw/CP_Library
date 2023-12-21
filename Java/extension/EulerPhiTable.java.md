@@ -200,7 +200,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-22 01:39:31+09:00'
+  timestamp: '2023-12-22 06:49:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/EulerPhiTable.java

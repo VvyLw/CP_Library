@@ -1245,12 +1245,12 @@ data:
     \ int a, final int b) {\n\t\tfinal int i = index(a);\n\t\tfinal int j = index(b);\n\
     \t\tfinal T num = (T) buf[i];\n\t\tbuf[i] = buf[j];\n\t\tbuf[j] = num;\n\t}\n\t\
     final void clear(){ head = tail = 0; }\n\t@SuppressWarnings(\"unchecked\")\n\t\
-    final T[] toArray(){ return (T[]) buf.clone(); }\n\t@Override\n\tpublic final\
-    \ String toString(){ return Arrays.toString(Arrays.copyOf(buf, size())); }\n\t\
-    @Override\n\tpublic final Iterator<T> iterator(){ return new DequeIterator();\
-    \ }\n\tprivate class DequeIterator implements Iterator<T> {\n\t\tprivate int now\
-    \ = head;\n\t\tprivate int rem = size();\n\t\t@Override\n\t\tpublic boolean hasNext(){\
-    \ return rem > 0; }\n\t\t@Override\n\t\tpublic final T next() {\n\t\t\tif(!hasNext())\
+    final T[] toArray(){ return (T[]) Arrays.copyOf(buf, size()); }\n\t@Override\n\
+    \tpublic final String toString(){ return Arrays.toString(toArray()); }\n\t@Override\n\
+    \tpublic final Iterator<T> iterator(){ return new DequeIterator(); }\n\tprivate\
+    \ class DequeIterator implements Iterator<T> {\n\t\tprivate int now = head;\n\t\
+    \tprivate int rem = size();\n\t\t@Override\n\t\tpublic boolean hasNext(){ return\
+    \ rem > 0; }\n\t\t@Override\n\t\tpublic final T next() {\n\t\t\tif(!hasNext())\
     \ {\n\t\t\t\tthrow new NoSuchElementException();\n\t\t\t}\n\t\t\t@SuppressWarnings(\"\
     unchecked\")\n\t\t\tfinal T res = (T) buf[now];\n\t\t\tnow = (now + 1) % n;\n\t\
     \t\trem--;\n\t\t\treturn res;\n\t\t}\n\t\t@Override\n\t\tpublic final void remove()\
@@ -1290,8 +1290,8 @@ data:
     \ long peek(){ return peekFirst(); }\n\tfinal void swap(final int a, final int\
     \ b) {\n\t\tfinal int i = index(a);\n\t\tfinal int j = index(b);\n\t\tfinal long\
     \ num = buf[i];\n\t\tbuf[i] = buf[j];\n\t\tbuf[j] = num;\n\t}\n\tfinal void clear(){\
-    \ head = tail = 0; }\n\tfinal long[] toArray(){ return buf.clone(); }\n\t@Override\n\
-    \tpublic final String toString(){ return Arrays.toString(Arrays.copyOf(buf, size()));\
+    \ head = tail = 0; }\n\tfinal long[] toArray(){ return Arrays.copyOf(buf, size());\
+    \ }\n\t@Override\n\tpublic final String toString(){ return Arrays.toString(toArray());\
     \ }\n}"
   dependsOn:
   - Java/extension/SparseTable.java
@@ -1341,7 +1341,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2023-12-22 01:39:31+09:00'
+  timestamp: '2023-12-22 06:49:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java

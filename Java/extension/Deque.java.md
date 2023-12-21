@@ -144,26 +144,27 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/extension/Deque.java\n"
-  code: "import java.util.Arrays;\nimport java.util.Iterator;\nimport java.util.NoSuchElementException;\n\
-    \nfinal class Deque<T> implements Iterable<T> {\n\tprivate int n, head, tail;\n\
-    \tprivate Object[] buf;\n\tDeque(){ this(16); }\n\tDeque(final int n) {\n\t\t\
-    this.n = n;\n\t\thead = tail = 0;\n\t\tbuf = new Object[n];\n\t}\n\tDeque(final\
-    \ T[] a) {\n\t\tthis(a.length);\n\t\tArrays.stream(a).forEach(i -> add(i));\n\t\
-    }\n\tprivate final int next(final int index) {\n\t\tfinal int next = index + 1;\n\
-    \t\treturn next == n ? 0 : next;\n\t}\n\tprivate final int prev(final int index)\
-    \ {\n\t\tfinal int prev = index - 1;\n\t\treturn prev == -1 ? n - 1 : prev;\n\t\
-    }\n\tprivate final int index(final int i) {\n\t\tfinal int size = size();\n\t\t\
-    if(i >= size) {\n\t\t\tthrow new IndexOutOfBoundsException(\"Index \"+ i +\" out\
-    \ of bounds for length \" + size);\n\t\t}\n\t\tfinal int id = head + i;\n\t\t\
-    return n <= id ? id - n : id;\n\t}\n\tprivate final void extend() {\n\t\tbuf =\
-    \ Arrays.copyOf(buf, n << 1);\n\t\tn = buf.length;\n\t}\n\tfinal boolean isEmpty(){\
-    \ return size() == 0; }\n\tfinal int size(){\n\t\tfinal int size = tail - head;\n\
-    \t\treturn size < 0 ? size + n : size;\n\t}\n\tfinal void addFirst(final T x)\
-    \ {\n\t\thead = prev(head);\n\t\tif(head == tail) {\n\t\t\textend();\n\t\t}\n\t\
-    \tbuf[head] = x;\n\t}\n\tfinal void addLast(final T x) {\n\t\tif(next(tail) ==\
-    \ head) {\n\t\t\textend();\n\t\t}\n\t\tbuf[tail] = x;\n\t\ttail = next(tail);\n\
-    \t}\n\tfinal void removeFirst(){\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"\
-    Buffer is empty\");\n\t\t}\n\t\thead = next(head);\n\t}\n\tfinal void removeLast(){\n\
+  code: "package extension;\n\nimport java.util.Arrays;\nimport java.util.Iterator;\n\
+    import java.util.NoSuchElementException;\n\nfinal class Deque<T> implements Iterable<T>\
+    \ {\n\tprivate int n, head, tail;\n\tprivate Object[] buf;\n\tDeque(){ this(1\
+    \ << 17); }\n\tDeque(final int n) {\n\t\tthis.n = n;\n\t\thead = tail = 0;\n\t\
+    \tbuf = new Object[n];\n\t}\n\tDeque(final T[] a) {\n\t\tthis(a.length);\n\t\t\
+    Arrays.stream(a).forEach(i -> add(i));\n\t}\n\tprivate final int next(final int\
+    \ index) {\n\t\tfinal int next = index + 1;\n\t\treturn next == n ? 0 : next;\n\
+    \t}\n\tprivate final int prev(final int index) {\n\t\tfinal int prev = index -\
+    \ 1;\n\t\treturn prev == -1 ? n - 1 : prev;\n\t}\n\tprivate final int index(final\
+    \ int i) {\n\t\tfinal int size = size();\n\t\tif(i >= size) {\n\t\t\tthrow new\
+    \ IndexOutOfBoundsException(\"Index \"+ i +\" out of bounds for length \" + size);\n\
+    \t\t}\n\t\tfinal int id = head + i;\n\t\treturn n <= id ? id - n : id;\n\t}\n\t\
+    private final void extend() {\n\t\tbuf = Arrays.copyOf(buf, n << 1);\n\t\tn =\
+    \ buf.length;\n\t}\n\tfinal boolean isEmpty(){ return size() == 0; }\n\tfinal\
+    \ int size() {\n\t\tfinal int size = tail - head;\n\t\treturn size < 0 ? size\
+    \ + n : size;\n\t}\n\tfinal void addFirst(final T x) {\n\t\thead = prev(head);\n\
+    \t\tif(head == tail) {\n\t\t\textend();\n\t\t}\n\t\tbuf[head] = x;\n\t}\n\tfinal\
+    \ void addLast(final T x) {\n\t\tif(next(tail) == head) {\n\t\t\textend();\n\t\
+    \t}\n\t\tbuf[tail] = x;\n\t\ttail = next(tail);\n\t}\n\tfinal void removeFirst()\
+    \ {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is\
+    \ empty\");\n\t\t}\n\t\thead = next(head);\n\t}\n\tfinal void removeLast() {\n\
     \t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is empty\"\
     );\n\t\t}\n\t\ttail = prev(tail);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\t\
     final T pollFirst() {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"\
@@ -179,8 +180,8 @@ data:
     )\n\tfinal void swap(final int a, final int b) {\n\t\tfinal int i = index(a);\n\
     \t\tfinal int j = index(b);\n\t\tfinal T num = (T) buf[i];\n\t\tbuf[i] = buf[j];\n\
     \t\tbuf[j] = num;\n\t}\n\tfinal void clear(){ head = tail = 0; }\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tfinal T[] toArray(){ return (T[]) buf.clone(); }\n\t@Override\n\
-    \tpublic final String toString(){ return Arrays.toString(Arrays.copyOf(buf, size()));\
+    unchecked\")\n\tfinal T[] toArray(){ return (T[]) Arrays.copyOf(buf, size());\
+    \ }\n\t@Override\n\tpublic final String toString(){ return Arrays.toString(toArray());\
     \ }\n\t@Override\n\tpublic final Iterator<T> iterator(){ return new DequeIterator();\
     \ }\n\tprivate class DequeIterator implements Iterator<T> {\n\t\tprivate int now\
     \ = head;\n\t\tprivate int rem = size();\n\t\t@Override\n\t\tpublic boolean hasNext(){\
@@ -191,7 +192,7 @@ data:
     \ {\n\t\t\tif(isEmpty()) {\n\t\t\t\tthrow new IllegalStateException();\n\t\t\t\
     }\n\t\t\tnow = (now - 1 + n) % n;\n\t\t\tbuf[now] = null;\n\t\t\thead = (head\
     \ + 1) % n;\n\t\t\trem++;\n\t\t}\n\t}\n}\nfinal class IntDeque {\n\tprivate int\
-    \ n, head, tail;\n\tprivate long[] buf;\n\tIntDeque(){ this(16); }\n\tIntDeque(final\
+    \ n, head, tail;\n\tprivate long[] buf;\n\tIntDeque(){ this(1 << 17); }\n\tIntDeque(final\
     \ int n) {\n\t\tthis.n = n;\n\t\thead = tail = 0;\n\t\tbuf = new long[n];\n\t\
     }\n\tIntDeque(final int[] a) {\n\t\tthis(a.length);\n\t\tArrays.stream(a).forEach(i\
     \ -> add(i));\n\t}\n\tIntDeque(final long[] a) {\n\t\tthis(a.length);\n\t\tArrays.stream(a).forEach(i\
@@ -203,14 +204,14 @@ data:
     Index \"+ i +\" out of bounds for length \" + size);\n\t\t}\n\t\tfinal int id\
     \ = head + i;\n\t\treturn n <= id ? id - n : id;\n\t}\n\tprivate final void extend()\
     \ {\n\t\tbuf = Arrays.copyOf(buf, n << 1);\n\t\tn = buf.length;\n\t}\n\tfinal\
-    \ boolean isEmpty(){ return size() == 0; }\n\tfinal int size(){\n\t\tfinal int\
+    \ boolean isEmpty(){ return size() == 0; }\n\tfinal int size() {\n\t\tfinal int\
     \ size = tail - head;\n\t\treturn size < 0 ? size + n : size;\n\t}\n\tfinal void\
     \ addFirst(final long x) {\n\t\thead = prev(head);\n\t\tif(head == tail) {\n\t\
     \t\textend();\n\t\t}\n\t\tbuf[head] = x;\n\t}\n\tfinal void addLast(final long\
     \ x) {\n\t\tif(next(tail) == head) {\n\t\t\textend();\n\t\t}\n\t\tbuf[tail] =\
-    \ x;\n\t\ttail = next(tail);\n\t}\n\tfinal void removeFirst(){\n\t\tif(head ==\
+    \ x;\n\t\ttail = next(tail);\n\t}\n\tfinal void removeFirst() {\n\t\tif(head ==\
     \ tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is empty\");\n\t\t\
-    }\n\t\thead = next(head);\n\t}\n\tfinal void removeLast(){\n\t\tif(head == tail)\
+    }\n\t\thead = next(head);\n\t}\n\tfinal void removeLast() {\n\t\tif(head == tail)\
     \ {\n\t\t\tthrow new NoSuchElementException(\"Buffer is empty\");\n\t\t}\n\t\t\
     tail = prev(tail);\n\t}\n\tfinal long pollFirst() {\n\t\tif(head == tail) {\n\t\
     \t\tthrow new NoSuchElementException(\"Buffer is empty\");\n\t\t}\n\t\tfinal long\
@@ -224,8 +225,8 @@ data:
     \ long peek(){ return peekFirst(); }\n\tfinal void swap(final int a, final int\
     \ b) {\n\t\tfinal int i = index(a);\n\t\tfinal int j = index(b);\n\t\tfinal long\
     \ num = buf[i];\n\t\tbuf[i] = buf[j];\n\t\tbuf[j] = num;\n\t}\n\tfinal void clear(){\
-    \ head = tail = 0; }\n\tfinal long[] toArray(){ return buf.clone(); }\n\t@Override\n\
-    \tpublic final String toString(){ return Arrays.toString(Arrays.copyOf(buf, size()));\
+    \ head = tail = 0; }\n\tfinal long[] toArray(){ return Arrays.copyOf(buf, size());\
+    \ }\n\t@Override\n\tpublic final String toString(){ return Arrays.toString(toArray());\
     \ }\n}"
   dependsOn:
   - Java/extension/SparseTable.java
@@ -275,7 +276,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-22 01:39:31+09:00'
+  timestamp: '2023-12-22 06:49:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Deque.java
