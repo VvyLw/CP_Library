@@ -1,3 +1,5 @@
+package extension;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -5,7 +7,7 @@ import java.util.NoSuchElementException;
 final class Deque<T> implements Iterable<T> {
 	private int n, head, tail;
 	private Object[] buf;
-	Deque(){ this(16); }
+	Deque(){ this(1 << 17); }
 	Deque(final int n) {
 		this.n = n;
 		head = tail = 0;
@@ -36,7 +38,7 @@ final class Deque<T> implements Iterable<T> {
 		n = buf.length;
 	}
 	final boolean isEmpty(){ return size() == 0; }
-	final int size(){
+	final int size() {
 		final int size = tail - head;
 		return size < 0 ? size + n : size;
 	}
@@ -54,13 +56,13 @@ final class Deque<T> implements Iterable<T> {
 		buf[tail] = x;
 		tail = next(tail);
 	}
-	final void removeFirst(){
+	final void removeFirst() {
 		if(head == tail) {
 			throw new NoSuchElementException("Buffer is empty");
 		}
 		head = next(head);
 	}
-	final void removeLast(){
+	final void removeLast() {
 		if(head == tail) {
 			throw new NoSuchElementException("Buffer is empty");
 		}
@@ -101,9 +103,9 @@ final class Deque<T> implements Iterable<T> {
 	}
 	final void clear(){ head = tail = 0; }
 	@SuppressWarnings("unchecked")
-	final T[] toArray(){ return (T[]) buf.clone(); }
+	final T[] toArray(){ return (T[]) Arrays.copyOf(buf, size()); }
 	@Override
-	public final String toString(){ return Arrays.toString(Arrays.copyOf(buf, size())); }
+	public final String toString(){ return Arrays.toString(toArray()); }
 	@Override
 	public final Iterator<T> iterator(){ return new DequeIterator(); }
 	private class DequeIterator implements Iterator<T> {
@@ -137,7 +139,7 @@ final class Deque<T> implements Iterable<T> {
 final class IntDeque {
 	private int n, head, tail;
 	private long[] buf;
-	IntDeque(){ this(16); }
+	IntDeque(){ this(1 << 17); }
 	IntDeque(final int n) {
 		this.n = n;
 		head = tail = 0;
@@ -172,7 +174,7 @@ final class IntDeque {
 		n = buf.length;
 	}
 	final boolean isEmpty(){ return size() == 0; }
-	final int size(){
+	final int size() {
 		final int size = tail - head;
 		return size < 0 ? size + n : size;
 	}
@@ -190,13 +192,13 @@ final class IntDeque {
 		buf[tail] = x;
 		tail = next(tail);
 	}
-	final void removeFirst(){
+	final void removeFirst() {
 		if(head == tail) {
 			throw new NoSuchElementException("Buffer is empty");
 		}
 		head = next(head);
 	}
-	final void removeLast(){
+	final void removeLast() {
 		if(head == tail) {
 			throw new NoSuchElementException("Buffer is empty");
 		}
@@ -232,7 +234,7 @@ final class IntDeque {
 		buf[j] = num;
 	}
 	final void clear(){ head = tail = 0; }
-	final long[] toArray(){ return buf.clone(); }
+	final long[] toArray(){ return Arrays.copyOf(buf, size()); }
 	@Override
-	public final String toString(){ return Arrays.toString(Arrays.copyOf(buf, size())); }
+	public final String toString(){ return Arrays.toString(toArray()); }
 }

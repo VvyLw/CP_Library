@@ -2944,9 +2944,9 @@ final class Deque<T> implements Iterable<T> {
 	}
 	final void clear(){ head = tail = 0; }
 	@SuppressWarnings("unchecked")
-	final T[] toArray(){ return (T[]) buf.clone(); }
+	final T[] toArray(){ return (T[]) Arrays.copyOf(buf, size()); }
 	@Override
-	public final String toString(){ return Arrays.toString(Arrays.copyOf(buf, size())); }
+	public final String toString(){ return Arrays.toString(toArray()); }
 	@Override
 	public final Iterator<T> iterator(){ return new DequeIterator(); }
 	private class DequeIterator implements Iterator<T> {
@@ -3075,7 +3075,7 @@ final class IntDeque {
 		buf[j] = num;
 	}
 	final void clear(){ head = tail = 0; }
-	final long[] toArray(){ return buf.clone(); }
+	final long[] toArray(){ return Arrays.copyOf(buf, size()); }
 	@Override
-	public final String toString(){ return Arrays.toString(Arrays.copyOf(buf, size())); }
+	public final String toString(){ return Arrays.toString(toArray()); }
 }
