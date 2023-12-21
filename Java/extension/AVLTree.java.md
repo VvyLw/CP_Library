@@ -5,6 +5,9 @@ data:
     path: Java/all.java
     title: Java/all.java
   - icon: ':warning:'
+    path: Java/extension/Deque.java
+    title: Java/extension/Deque.java
+  - icon: ':warning:'
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
@@ -68,6 +71,9 @@ data:
   - icon: ':warning:'
     path: Java/all.java
     title: Java/all.java
+  - icon: ':warning:'
+    path: Java/extension/Deque.java
+    title: Java/extension/Deque.java
   - icon: ':warning:'
     path: Java/extension/DoubleEndedPriorityQueue.java
     title: Java/extension/DoubleEndedPriorityQueue.java
@@ -191,6 +197,7 @@ data:
   - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/WeightedGraph.java
   - Java/extension/PrimeFactor.java
+  - Java/extension/Deque.java
   - Java/extension/UnionFind.java
   - Java/extension/EulerPhiTable.java
   - Java/extension/PrimeTable.java
@@ -215,6 +222,7 @@ data:
   - Java/extension/DoubleEndedPriorityQueue.java
   - Java/extension/WeightedGraph.java
   - Java/extension/PrimeFactor.java
+  - Java/extension/Deque.java
   - Java/extension/UnionFind.java
   - Java/extension/EulerPhiTable.java
   - Java/extension/PrimeTable.java
@@ -229,7 +237,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-21 01:58:53+09:00'
+  timestamp: '2023-12-22 01:39:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/AVLTree.java
