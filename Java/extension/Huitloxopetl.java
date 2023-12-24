@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-class Huitloxopetl {
+final class Huitloxopetl {
 	final long invNum(final int[] a) {
 		final var b = Utility.sorted(a);
 		final var id = new int[a.length];
