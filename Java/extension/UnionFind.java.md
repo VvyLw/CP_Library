@@ -149,17 +149,17 @@ data:
     \ int[] par;\n\tUnionFind(final int n) {\n\t\tpar = new int[n];\n\t\tArrays.fill(par,\
     \ -1);\n\t}\n\tfinal int root(final int i){ return par[i] >= 0 ? par[i] = root(par[i])\
     \ : i; }\n\tfinal int size(final int i){ return -par[root(i)]; }\n\tfinal boolean\
-    \ unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) return\
-    \ false;\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\
-    \t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\t}\n\tfinal boolean\
-    \ same(final int i, final int j){ return root(i) == root(j); }\n\tfinal ArrayList<ArrayList<Integer>>\
-    \ groups() {\n\t\tfinal int n = par.length;\n\t\tArrayList<ArrayList<Integer>>\
-    \ res = new ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> res.add(new\
-    \ ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\
-    \t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n\tfinal boolean isBipartite()\
-    \ {\n\t\tfinal int n = par.length / 2;\n\t\tboolean ok = true;\n\t\tfor(int i\
-    \ = 0; i < n; ++i) {\n\t\t\tok &= root(i) != root(i + n);\n\t\t}\n\t\treturn ok;\n\
-    \t}\n}"
+    \ unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) {\n\
+    \t\t\treturn false;\n\t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\
+    \ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\t\
+    }\n\tfinal boolean same(final int i, final int j){ return root(i) == root(j);\
+    \ }\n\tfinal ArrayList<ArrayList<Integer>> groups() {\n\t\tfinal int n = par.length;\n\
+    \t\tArrayList<ArrayList<Integer>> res = new ArrayList<>();\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> res.add(new ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn\
+    \ res;\n\t}\n\tfinal boolean isBipartite() {\n\t\tfinal int n = par.length / 2;\n\
+    \t\tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &= root(i)\
+    \ != root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n}\n"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -208,7 +208,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-24 20:52:49+09:00'
+  timestamp: '2023-12-25 01:56:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/UnionFind.java
