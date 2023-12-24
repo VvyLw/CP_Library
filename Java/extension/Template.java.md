@@ -153,7 +153,7 @@ data:
     \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
     \ VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
     \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.e.close();\n\t}\n}\n\n\
-    class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner();\n\
+    final class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner();\n\
     \tstatic final MyPrinter o = new MyPrinter(System.out, false);\n\tstatic final\
     \ MyPrinter e = new MyPrinter(System.err, true);\n\tstatic final boolean multi\
     \ = false;\n\tstatic final int inf = 1 << 30;\n\tstatic final long linf = (1L\
@@ -610,7 +610,7 @@ data:
     \ new NumPair(x, y);\n\t}\n\t@Override\n\tfinal public int compareTo(final NumPair\
     \ o) {\n\t\tif(first.doubleValue() == o.first.doubleValue()) {\n\t\t\treturn Double.compare(second.doubleValue(),\
     \ o.second.doubleValue());\n\t\t}\n\t\treturn Double.compare(first.doubleValue(),\
-    \ o.first.doubleValue());\n\t}\n}"
+    \ o.first.doubleValue());\n\t}\n}\n"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -659,7 +659,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/all.java
-  timestamp: '2023-12-24 20:34:05+09:00'
+  timestamp: '2023-12-24 20:35:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java
