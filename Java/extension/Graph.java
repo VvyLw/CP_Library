@@ -72,6 +72,10 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 			edge.add(new Edge(b, a, 0));
 		}
 	}
+	void input(final int m) {
+		final var sc = new MyScanner();
+		IntStream.range(0, m).forEach(i -> addEdge(sc.ni(), sc.ni()));
+	}
 	protected final int[] allDist(final int v) {
 		int[] d = new int[n];
 		Arrays.fill(d, -1);
