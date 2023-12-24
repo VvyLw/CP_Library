@@ -39,10 +39,11 @@ final class Main {
 	}
 }
 
-class VvyLw extends Utility {
+final class VvyLw extends Utility {
 	static final MyScanner sc = new MyScanner();
 	static final MyPrinter o = new MyPrinter(System.out, false);
 	static final MyPrinter e = new MyPrinter(System.err, true);
+	static final Huitloxopetl why = new Huitloxopetl();
 	static final boolean multi = false;
 	static final int inf = 1 << 30;
 	static final long linf = (1L << 61) - 1;
@@ -1119,7 +1120,7 @@ final class NumPair extends Pair<Number, Number> implements Comparable<NumPair> 
 	}
 }
 
-class Huitloxopetl {
+final class Huitloxopetl {
 	final long invNum(final int[] a) {
 		final var b = Utility.sorted(a);
 		final var id = new int[a.length];
