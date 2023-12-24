@@ -155,8 +155,10 @@ data:
     \ b, final long cost) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new\
     \ Edge(b, cost));\n\t\tedge.add(new Edge(a, b, cost));\n\t\tif(undirected) {\n\
     \t\t\tthis.get(b).add(new Edge(a, cost));\n\t\t\tedge.add(new Edge(b, a, cost));\n\
-    \t\t}\n\t}\n\tfinal long[] dijkstra(final int v) {\n\t\tlong[] cost = new long[n];\n\
-    \t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tQueue<NumPair> dj = new PriorityQueue<>();\n\
+    \t\t}\n\t}\n\tfinal void input(final int m) {\n\t\tfinal var sc = new MyScanner();\n\
+    \t\tIntStream.range(0, m).forEach(i -> addEdge(sc.ni(), sc.ni(), sc.ni()));\n\t\
+    }\n\tfinal long[] dijkstra(final int v) {\n\t\tlong[] cost = new long[n];\n\t\t\
+    Arrays.fill(cost, Long.MAX_VALUE);\n\t\tQueue<NumPair> dj = new PriorityQueue<>();\n\
     \t\tcost[v] = 0;\n\t\tdj.add(new NumPair(cost[v], v));\n\t\twhile(!dj.isEmpty())\
     \ {\n\t\t\tfinal var tmp = dj.poll();\n\t\t\tif(cost[tmp.second.intValue()] <\
     \ tmp.first.longValue()) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final var el:\
@@ -224,7 +226,7 @@ data:
     \ meld(t, alloc(key, idx)); }\n\tfinal Node pop(final Node t) {\n\t\tif(t == null)\
     \ {\n\t\t\tthrow new NullPointerException();\n\t\t}\n\t\treturn meld(t.l, t.r);\n\
     \t}\n\tfinal Node add(Node t, final long lazy) {\n\t\tif(t != null) {\n\t\t\t\
-    t.lazy += lazy;\n\t\t\tpropagate(t);\n\t\t}\n\t\treturn t;\n\t}\n}"
+    t.lazy += lazy;\n\t\t\tpropagate(t);\n\t\t}\n\t\treturn t;\n\t}\n}\n"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -273,7 +275,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-24 20:51:18+09:00'
+  timestamp: '2023-12-24 20:52:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/WeightedGraph.java
