@@ -25,7 +25,7 @@ final class Main {
 	}
 }
 
-class VvyLw extends Utility {
+final class VvyLw extends Utility {
 	static final MyScanner sc = new MyScanner();
 	static final MyPrinter o = new MyPrinter(System.out, false);
 	static final MyPrinter e = new MyPrinter(System.err, true);
