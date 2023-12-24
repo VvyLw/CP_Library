@@ -1162,7 +1162,9 @@ final class UnionFind {
 	final boolean unite(int i, int j) {
 		i = root(i);
 		j = root(j);
-		if(i == j) return false;
+		if(i == j) {
+			return false;
+		}
 		if(i > j) {
 			i ^= j;
 			j ^= i;
@@ -1175,7 +1177,7 @@ final class UnionFind {
 	final boolean same(final int i, final int j){ return root(i) == root(j); }
 	final ArrayList<ArrayList<Integer>> groups() {
 		final int n = par.length;
-		ArrayList<ArrayList<Integer>> res = new ArrayList<>(n);
+		ArrayList<ArrayList<Integer>> res = new ArrayList<>();
 		IntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));
 		IntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));
 		res.removeIf(ArrayList::isEmpty);
