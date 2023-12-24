@@ -167,22 +167,24 @@ data:
     \ n).forEach(i -> this.add(new ArrayList<>()));\n\t}\n\tfinal void addEdge(int\
     \ a, int b) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(b));\n\
     \t\tedge.add(new Edge(a, b, 0));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new\
-    \ Edge(a));\n\t\t\tedge.add(new Edge(b, a, 0));\n\t\t}\n\t}\n\tprotected final\
-    \ int[] allDist(final int v) {\n\t\tint[] d = new int[n];\n\t\tArrays.fill(d,\
-    \ -1);\n\t\tQueue<Integer> q = new ArrayDeque<>();\n\t\td[v] = 0;\n\t\tq.add(v);\n\
-    \t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\t\t\tfor(final var\
-    \ el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\t\tcontinue;\n\t\t\
-    \t\t}\n\t\t\t\td[el.to]=d[tmp]+1;\n\t\t\t\tq.add(el.to);\n\t\t\t}\n\t\t}\n\t\t\
-    return d;\n\t}\n\tprotected final int dist(final int u, final int v){ return allDist(u)[v];\
-    \ }\n\tprotected final ArrayList<Integer> topologicalSort() {\n\t\tint[] deg =\
-    \ new int[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final var ed: this.get(i))\
-    \ {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t}\n\t\t}\n\t\tfinal var sk = new Stack<Integer>();\n\
-    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(deg[i] == 0) {\n\t\t\t\tsk.add(i);\n\
-    \t\t\t}\n\t\t}\n\t\tfinal var ord = new ArrayList<Integer>();\n\t\twhile(!sk.isEmpty())\
-    \ {\n\t\t\tfinal var tmp = sk.pop();\n\t\t\tord.add(tmp);\n\t\t\tfor(final var\
-    \ ed: this.get(tmp)) {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ord.size() == size() ? ord : new ArrayList<>();\n\
-    \t}\n}"
+    \ Edge(a));\n\t\t\tedge.add(new Edge(b, a, 0));\n\t\t}\n\t}\n\tvoid input(final\
+    \ int m) {\n\t\tfinal var sc = new MyScanner();\n\t\tIntStream.range(0, m).forEach(i\
+    \ -> addEdge(sc.ni(), sc.ni()));\n\t}\n\tprotected final int[] allDist(final int\
+    \ v) {\n\t\tint[] d = new int[n];\n\t\tArrays.fill(d, -1);\n\t\tQueue<Integer>\
+    \ q = new ArrayDeque<>();\n\t\td[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty())\
+    \ {\n\t\t\tfinal int tmp = q.poll();\n\t\t\tfor(final var el: this.get(tmp)) {\n\
+    \t\t\t\tif(d[el.to] != -1) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to]=d[tmp]+1;\n\
+    \t\t\t\tq.add(el.to);\n\t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\tprotected final int\
+    \ dist(final int u, final int v){ return allDist(u)[v]; }\n\tprotected final ArrayList<Integer>\
+    \ topologicalSort() {\n\t\tint[] deg = new int[n];\n\t\tfor(int i = 0; i < n;\
+    \ ++i) {\n\t\t\tfor(final var ed: this.get(i)) {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t\
+    }\n\t\t}\n\t\tfinal var sk = new Stack<Integer>();\n\t\tfor(int i = 0; i < n;\
+    \ ++i) {\n\t\t\tif(deg[i] == 0) {\n\t\t\t\tsk.add(i);\n\t\t\t}\n\t\t}\n\t\tfinal\
+    \ var ord = new ArrayList<Integer>();\n\t\twhile(!sk.isEmpty()) {\n\t\t\tfinal\
+    \ var tmp = sk.pop();\n\t\t\tord.add(tmp);\n\t\t\tfor(final var ed: this.get(tmp))\
+    \ {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\t\t\t\t}\n\t\t\
+    \t}\n\t\t}\n\t\treturn ord.size() == size() ? ord : new ArrayList<>();\n\t}\n\
+    }\n"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -231,7 +233,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-24 20:35:05+09:00'
+  timestamp: '2023-12-24 20:51:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Graph.java
