@@ -159,35 +159,36 @@ data:
     \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
     \ VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
     \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.e.close();\n\t}\n}\n\n\
-    class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner();\n\
+    final class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner();\n\
     \tstatic final MyPrinter o = new MyPrinter(System.out, false);\n\tstatic final\
-    \ MyPrinter e = new MyPrinter(System.err, true);\n\tstatic final boolean multi\
-    \ = false;\n\tstatic final int inf = 1 << 30;\n\tstatic final long linf = (1L\
-    \ << 61) - 1;\n\tstatic final double eps = 1e-18;\n\t@SuppressWarnings(\"unused\"\
-    )\n\tprivate static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\t@SuppressWarnings(\"\
-    unused\")\n\tprivate static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\
-    \t@SuppressWarnings(\"unused\")\n\tprivate static final int mod998 = 998244353;\n\
-    \t@SuppressWarnings(\"unused\")\n\tprivate static final int mod107 = (int)1e9\
-    \ + 7;\n\tstatic final void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected\
-    \ static final String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\
-    \tprotected static final String no(final boolean ok){ return yes(!ok); }\n\tprotected\
-    \ static final long sqr(final long x){ return x * x; }\n\tprotected static final\
-    \ long mod(final long n, final long m){ return (n + m) % m; }\n\tprotected static\
-    \ final long ceil(final long a, final long b){ return (a - 1) / b + 1; }\n\tprotected\
-    \ static final double round(final double a, final long b, final int c) {\n\t\t\
-    final long d = pow(10, c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\tprotected\
-    \ static final long pow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0)\
-    \ {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\t\
-    b >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long pow(long\
-    \ a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b\
-    \ % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\t\
-    a *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t\
-    protected static final long lcm(final long a, final long b){ return a * b / gcd(a,\
-    \ b); }\n\tprotected static final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i\
-    \ -> i).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final\
-    \ long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
-    \ static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a %\
-    \ b) : a; }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
+    \ MyPrinter e = new MyPrinter(System.err, true);\n\tstatic final Huitloxopetl\
+    \ why = new Huitloxopetl();\n\tstatic final boolean multi = false;\n\tstatic final\
+    \ int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\tstatic final\
+    \ double eps = 1e-18;\n\t@SuppressWarnings(\"unused\")\n\tprivate static final\
+    \ int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\t@SuppressWarnings(\"unused\")\n\
+    \tprivate static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t@SuppressWarnings(\"\
+    unused\")\n\tprivate static final int mod998 = 998244353;\n\t@SuppressWarnings(\"\
+    unused\")\n\tprivate static final int mod107 = (int)1e9 + 7;\n\tstatic final void\
+    \ solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String yes(final\
+    \ boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String\
+    \ no(final boolean ok){ return yes(!ok); }\n\tprotected static final long sqr(final\
+    \ long x){ return x * x; }\n\tprotected static final long mod(final long n, final\
+    \ long m){ return (n + m) % m; }\n\tprotected static final long ceil(final long\
+    \ a, final long b){ return (a - 1) / b + 1; }\n\tprotected static final double\
+    \ round(final double a, final long b, final int c) {\n\t\tfinal long d = pow(10,\
+    \ c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\tprotected static final long\
+    \ pow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2\
+    \ == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\
+    \treturn res;\n\t}\n\tprotected static final long pow(long a, long b, final long\
+    \ m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\t\
+    res *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a,\
+    \ m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long\
+    \ lcm(final long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static\
+    \ final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1,\
+    \ (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){\
+    \ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static\
+    \ final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a;\
+    \ }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
     \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
     \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
     \ final int min(final int... a){ return Arrays.stream(a).reduce(Integer.MAX_VALUE,\
@@ -616,67 +617,67 @@ data:
     \ new NumPair(x, y);\n\t}\n\t@Override\n\tfinal public int compareTo(final NumPair\
     \ o) {\n\t\tif(first.doubleValue() == o.first.doubleValue()) {\n\t\t\treturn Double.compare(second.doubleValue(),\
     \ o.second.doubleValue());\n\t\t}\n\t\treturn Double.compare(first.doubleValue(),\
-    \ o.first.doubleValue());\n\t}\n}\n\nclass Huitloxopetl {\n\tfinal long invNum(final\
-    \ int[] a) {\n\t\tfinal var b = Utility.sorted(a);\n\t\tfinal var id = new int[a.length];\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid[b[i]] = i;\n\t\t}\n\t\tfinal\
-    \ var bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0;\
-    \ i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id[a[i]]);\n\t\t\tbit.add(id[a[i]],\
-    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final long[] a) {\n\t\t\
-    final var b = Utility.sorted(a);\n\t\tfinal var id = new HashMap<Long, Integer>();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
-    \ var bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0;\
-    \ i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\tbit.add(id.get(a[i]),\
-    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class UnionFind {\n\tprivate final\
-    \ int[] par;\n\tUnionFind(final int n) {\n\t\tpar = new int[n];\n\t\tArrays.fill(par,\
-    \ -1);\n\t}\n\tfinal int root(final int i){ return par[i] >= 0 ? par[i] = root(par[i])\
-    \ : i; }\n\tfinal int size(final int i){ return -par[root(i)]; }\n\tfinal boolean\
-    \ unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) return\
-    \ false;\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\
-    \t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\t}\n\tfinal boolean\
-    \ same(final int i, final int j){ return root(i) == root(j); }\n\tfinal ArrayList<ArrayList<Integer>>\
-    \ groups() {\n\t\tfinal int n = par.length;\n\t\tArrayList<ArrayList<Integer>>\
-    \ res = new ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> res.add(new\
-    \ ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\
-    \t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n\tfinal boolean isBipartite()\
-    \ {\n\t\tfinal int n = par.length / 2;\n\t\tboolean ok = true;\n\t\tfor(int i\
-    \ = 0; i < n; ++i) {\n\t\t\tok &= root(i) != root(i + n);\n\t\t}\n\t\treturn ok;\n\
-    \t}\n}\n\nfinal class WeightedUnionFind {\n\tprivate final int[] par;\n\tprivate\
-    \ final long[] weight;\n\tWeightedUnionFind(final int n) {\n\t\tpar = new int[n];\n\
-    \t\tweight = new long[n];\n\t\tArrays.fill(par, -1);\n\t}\n\tfinal int root(final\
-    \ int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\t\tfinal int r = root(par[i]);\n\
-    \t\tweight[i] += weight[par[i]];\n\t\treturn par[i] = r;\n\t}\n\tfinal long get(final\
-    \ int i) {\n\t\troot(i);\n\t\treturn weight[i];\n\t}\n\tfinal long diff(final\
-    \ int x, final int y){ return get(y) - get(x); }\n\tfinal int unite(int x, int\
-    \ y, long w) {\n\t\tw += diff(y, x);\n\t\tx = root(x);\n\t\ty = root(y);\n\t\t\
-    if(x == y) {\n\t\t\treturn w == 0 ? 0 : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\
-    \t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x]\
-    \ += par[y];\n\t\tpar[y] = x;\n\t\tweight[y] = w;\n\t\treturn 1;\n\t}\n\tfinal\
-    \ boolean same(final int x, final int y){ return root(x) == root(y); }\n}\n\n\
-    final class UndoUnionFind {\n\tprivate final int[] par;\n\tprivate final Stack<Pair<Integer,\
-    \ Integer>> his;\n\tUndoUnionFind(final int n) {\n\t    par = new int[n];\n\t\
-    \    Arrays.fill(par, -1);\n\t    his = new Stack<>();\n\t}\n\tfinal boolean unite(int\
-    \ x, int y) {\n\t\tx = root(x);\n\t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\
-    \t\this.add(Pair.of(y, par[y]));\n\t\tif(x == y) {\n\t\t\treturn false;\n\t\t\
-    }\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t\
-    }\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\treturn true;\n\t}\n\tfinal int\
-    \ root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\t\treturn\
-    \ root(par[i]);\n\t}\n\tfinal int size(final int i){ return -par[root(i)]; }\n\
-    \tfinal void undo() {\n\t\tfinal Pair<Integer, Integer> pop1 = his.pop(), pop2\
-    \ = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\t\tpar[pop2.first] = pop2.second;\n\
-    \t}\n\tfinal void snapshot() {\n\t\twhile(!his.empty()) {\n\t\t\this.pop();\n\t\
-    \t}\n\t}\n\tfinal void rollback() {\n\t\twhile(!his.empty()) {\n\t\t\tundo();\n\
-    \t\t}\n\t}\n}\n\nfinal class Edge {\n\tpublic int src;\n\tpublic int to;\n\tpublic\
-    \ long cost;\n\tEdge(final int to) {\n\t\tthis.to = to;\n\t}\n\tEdge(final int\
-    \ to, final long cost) {\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\tEdge(final\
-    \ int src, final int to, final long cost) {\n\t\tthis.src = src;\n\t\tthis.to\
-    \ = to;\n\t\tthis.cost = cost;\n\t}\n\t@Override\n\tpublic final boolean equals(final\
-    \ Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null\
-    \ || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Edge\
-    \ e = (Edge) o;\n\t\tif(src != e.src) {\n\t\t\treturn false;\n\t\t}\n\t\tif(to\
-    \ != e.to) {\n\t\t\treturn false;\n\t\t}\n\t\treturn cost == e.cost;\n\t}\n\t\
-    @Override\n\tpublic final int hashCode() {\n\t\tint result = 17;\n\t\tresult =\
-    \ 31 * result + src;\n\t\tresult = 31 * result + to;\n\t\tresult = 31 * result\
-    \ + (int) (cost ^ (cost >>> 32)); // XOR for long values\n\t\treturn result;\n\
+    \ o.first.doubleValue());\n\t}\n}\n\nfinal class Huitloxopetl {\n\tfinal long\
+    \ invNum(final int[] a) {\n\t\tfinal var b = Utility.sorted(a);\n\t\tfinal var\
+    \ id = new int[a.length];\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid[b[i]]\
+    \ = i;\n\t\t}\n\t\tfinal var bit = new FenwickTree(a.length);\n\t\tlong res =\
+    \ 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id[a[i]]);\n\
+    \t\t\tbit.add(id[a[i]], 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final\
+    \ long[] a) {\n\t\tfinal var b = Utility.sorted(a);\n\t\tfinal var id = new HashMap<Long,\
+    \ Integer>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\
+    \t\t}\n\t\tfinal var bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\t\
+    for(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
+    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class\
+    \ UnionFind {\n\tprivate final int[] par;\n\tUnionFind(final int n) {\n\t\tpar\
+    \ = new int[n];\n\t\tArrays.fill(par, -1);\n\t}\n\tfinal int root(final int i){\
+    \ return par[i] >= 0 ? par[i] = root(par[i]) : i; }\n\tfinal int size(final int\
+    \ i){ return -par[root(i)]; }\n\tfinal boolean unite(int i, int j) {\n\t\ti =\
+    \ root(i);\n\t\tj = root(j);\n\t\tif(i == j) return false;\n\t\tif(i > j) {\n\t\
+    \t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\t\
+    par[j] = i;\n\t\treturn true;\n\t}\n\tfinal boolean same(final int i, final int\
+    \ j){ return root(i) == root(j); }\n\tfinal ArrayList<ArrayList<Integer>> groups()\
+    \ {\n\t\tfinal int n = par.length;\n\t\tArrayList<ArrayList<Integer>> res = new\
+    \ ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));\n\
+    \t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\
+    \t\treturn res;\n\t}\n\tfinal boolean isBipartite() {\n\t\tfinal int n = par.length\
+    \ / 2;\n\t\tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &=\
+    \ root(i) != root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n}\n\nfinal class WeightedUnionFind\
+    \ {\n\tprivate final int[] par;\n\tprivate final long[] weight;\n\tWeightedUnionFind(final\
+    \ int n) {\n\t\tpar = new int[n];\n\t\tweight = new long[n];\n\t\tArrays.fill(par,\
+    \ -1);\n\t}\n\tfinal int root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn\
+    \ i;\n\t\t}\n\t\tfinal int r = root(par[i]);\n\t\tweight[i] += weight[par[i]];\n\
+    \t\treturn par[i] = r;\n\t}\n\tfinal long get(final int i) {\n\t\troot(i);\n\t\
+    \treturn weight[i];\n\t}\n\tfinal long diff(final int x, final int y){ return\
+    \ get(y) - get(x); }\n\tfinal int unite(int x, int y, long w) {\n\t\tw += diff(y,\
+    \ x);\n\t\tx = root(x);\n\t\ty = root(y);\n\t\tif(x == y) {\n\t\t\treturn w ==\
+    \ 0 ? 0 : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\
+    \t\t\tx ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\
+    \tweight[y] = w;\n\t\treturn 1;\n\t}\n\tfinal boolean same(final int x, final\
+    \ int y){ return root(x) == root(y); }\n}\n\nfinal class UndoUnionFind {\n\tprivate\
+    \ final int[] par;\n\tprivate final Stack<Pair<Integer, Integer>> his;\n\tUndoUnionFind(final\
+    \ int n) {\n\t    par = new int[n];\n\t    Arrays.fill(par, -1);\n\t    his =\
+    \ new Stack<>();\n\t}\n\tfinal boolean unite(int x, int y) {\n\t\tx = root(x);\n\
+    \t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\t\this.add(Pair.of(y, par[y]));\n\
+    \t\tif(x == y) {\n\t\t\treturn false;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\t\
+    x ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y]\
+    \ = x;\n\t\treturn true;\n\t}\n\tfinal int root(final int i) {\n\t\tif(par[i]\
+    \ < 0) {\n\t\t\treturn i;\n\t\t}\n\t\treturn root(par[i]);\n\t}\n\tfinal int size(final\
+    \ int i){ return -par[root(i)]; }\n\tfinal void undo() {\n\t\tfinal Pair<Integer,\
+    \ Integer> pop1 = his.pop(), pop2 = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\
+    \t\tpar[pop2.first] = pop2.second;\n\t}\n\tfinal void snapshot() {\n\t\twhile(!his.empty())\
+    \ {\n\t\t\this.pop();\n\t\t}\n\t}\n\tfinal void rollback() {\n\t\twhile(!his.empty())\
+    \ {\n\t\t\tundo();\n\t\t}\n\t}\n}\n\nfinal class Edge {\n\tpublic int src;\n\t\
+    public int to;\n\tpublic long cost;\n\tEdge(final int to) {\n\t\tthis.to = to;\n\
+    \t}\n\tEdge(final int to, final long cost) {\n\t\tthis.to = to;\n\t\tthis.cost\
+    \ = cost;\n\t}\n\tEdge(final int src, final int to, final long cost) {\n\t\tthis.src\
+    \ = src;\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\t@Override\n\tpublic\
+    \ final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\
+    \t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\
+    \t\t}\n\t\tfinal Edge e = (Edge) o;\n\t\tif(src != e.src) {\n\t\t\treturn false;\n\
+    \t\t}\n\t\tif(to != e.to) {\n\t\t\treturn false;\n\t\t}\n\t\treturn cost == e.cost;\n\
+    \t}\n\t@Override\n\tpublic final int hashCode() {\n\t\tint result = 17;\n\t\t\
+    result = 31 * result + src;\n\t\tresult = 31 * result + to;\n\t\tresult = 31 *\
+    \ result + (int) (cost ^ (cost >>> 32)); // XOR for long values\n\t\treturn result;\n\
     \t}\n\t@Override\n\tpublic final String toString(){ return \"(\" + src + \", \"\
     \ + to + \", \" + cost + \")\"; }\n}\nclass Graph extends ArrayList<ArrayList<Edge>>\
     \ {\n\tprotected final boolean undirected;\n\tprotected final int n, indexed;\n\
@@ -1292,7 +1293,7 @@ data:
     \ num = buf[i];\n\t\tbuf[i] = buf[j];\n\t\tbuf[j] = num;\n\t}\n\tfinal void clear(){\
     \ head = tail = 0; }\n\tfinal long[] toArray(){ return Arrays.copyOf(buf, size());\
     \ }\n\t@Override\n\tpublic final String toString(){ return Arrays.toString(toArray());\
-    \ }\n}"
+    \ }\n}\n"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -1341,7 +1342,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2023-12-22 06:49:28+09:00'
+  timestamp: '2023-12-24 20:32:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
