@@ -687,41 +687,45 @@ data:
     \ n).forEach(i -> this.add(new ArrayList<>()));\n\t}\n\tfinal void addEdge(int\
     \ a, int b) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(b));\n\
     \t\tedge.add(new Edge(a, b, 0));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new\
-    \ Edge(a));\n\t\t\tedge.add(new Edge(b, a, 0));\n\t\t}\n\t}\n\tprotected final\
-    \ int[] allDist(final int v) {\n\t\tint[] d = new int[n];\n\t\tArrays.fill(d,\
-    \ -1);\n\t\tQueue<Integer> q = new ArrayDeque<>();\n\t\td[v] = 0;\n\t\tq.add(v);\n\
-    \t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\t\t\tfor(final var\
-    \ el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\t\tcontinue;\n\t\t\
-    \t\t}\n\t\t\t\td[el.to]=d[tmp]+1;\n\t\t\t\tq.add(el.to);\n\t\t\t}\n\t\t}\n\t\t\
-    return d;\n\t}\n\tprotected final int dist(final int u, final int v){ return allDist(u)[v];\
-    \ }\n\tprotected final ArrayList<Integer> topologicalSort() {\n\t\tint[] deg =\
-    \ new int[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final var ed: this.get(i))\
-    \ {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t}\n\t\t}\n\t\tfinal var sk = new Stack<Integer>();\n\
-    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(deg[i] == 0) {\n\t\t\t\tsk.add(i);\n\
-    \t\t\t}\n\t\t}\n\t\tfinal var ord = new ArrayList<Integer>();\n\t\twhile(!sk.isEmpty())\
-    \ {\n\t\t\tfinal var tmp = sk.pop();\n\t\t\tord.add(tmp);\n\t\t\tfor(final var\
-    \ ed: this.get(tmp)) {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ord.size() == size() ? ord : new ArrayList<>();\n\
-    \t}\n}\n\nfinal class MST {\n\tpublic final ArrayList<Edge> tree;\n\tpublic final\
-    \ long cost;\n\tMST(final ArrayList<Edge> tree, final long cost) {\n\t\tthis.tree\
-    \ = tree;\n\t\tthis.cost = cost;\n\t}\n}\nfinal class WeightedGraph extends Graph\
+    \ Edge(a));\n\t\t\tedge.add(new Edge(b, a, 0));\n\t\t}\n\t}\n\tvoid input(final\
+    \ int m) {\n\t\tfinal var sc = new MyScanner();\n\t\tIntStream.range(0, m).forEach(i\
+    \ -> addEdge(sc.ni(), sc.ni()));\n\t}\n\tprotected final int[] allDist(final int\
+    \ v) {\n\t\tint[] d = new int[n];\n\t\tArrays.fill(d, -1);\n\t\tQueue<Integer>\
+    \ q = new ArrayDeque<>();\n\t\td[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty())\
+    \ {\n\t\t\tfinal int tmp = q.poll();\n\t\t\tfor(final var el: this.get(tmp)) {\n\
+    \t\t\t\tif(d[el.to] != -1) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to]=d[tmp]+1;\n\
+    \t\t\t\tq.add(el.to);\n\t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\tprotected final int\
+    \ dist(final int u, final int v){ return allDist(u)[v]; }\n\tprotected final ArrayList<Integer>\
+    \ topologicalSort() {\n\t\tint[] deg = new int[n];\n\t\tfor(int i = 0; i < n;\
+    \ ++i) {\n\t\t\tfor(final var ed: this.get(i)) {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t\
+    }\n\t\t}\n\t\tfinal var sk = new Stack<Integer>();\n\t\tfor(int i = 0; i < n;\
+    \ ++i) {\n\t\t\tif(deg[i] == 0) {\n\t\t\t\tsk.add(i);\n\t\t\t}\n\t\t}\n\t\tfinal\
+    \ var ord = new ArrayList<Integer>();\n\t\twhile(!sk.isEmpty()) {\n\t\t\tfinal\
+    \ var tmp = sk.pop();\n\t\t\tord.add(tmp);\n\t\t\tfor(final var ed: this.get(tmp))\
+    \ {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\t\t\t\t}\n\t\t\
+    \t}\n\t\t}\n\t\treturn ord.size() == size() ? ord : new ArrayList<>();\n\t}\n\
+    }\n\nfinal class MST {\n\tpublic final ArrayList<Edge> tree;\n\tpublic final long\
+    \ cost;\n\tMST(final ArrayList<Edge> tree, final long cost) {\n\t\tthis.tree =\
+    \ tree;\n\t\tthis.cost = cost;\n\t}\n}\nfinal class WeightedGraph extends Graph\
     \ {\n\tWeightedGraph(final int n, final int indexed, final boolean undirected){\
     \ super(n, indexed, undirected); }\n\tfinal void addEdge(int a, int b, final long\
     \ cost) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(b,\
     \ cost));\n\t\tedge.add(new Edge(a, b, cost));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new\
     \ Edge(a, cost));\n\t\t\tedge.add(new Edge(b, a, cost));\n\t\t}\n\t}\n\tfinal\
-    \ long[] dijkstra(final int v) {\n\t\tlong[] cost = new long[n];\n\t\tArrays.fill(cost,\
-    \ Long.MAX_VALUE);\n\t\tQueue<NumPair> dj = new PriorityQueue<>();\n\t\tcost[v]\
-    \ = 0;\n\t\tdj.add(new NumPair(cost[v], v));\n\t\twhile(!dj.isEmpty()) {\n\t\t\
-    \tfinal var tmp = dj.poll();\n\t\t\tif(cost[tmp.second.intValue()] < tmp.first.longValue())\
-    \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final var el: this.get(tmp.second.intValue()))\
-    \ {\n\t\t\t\tif(cost[el.to] > tmp.first.longValue() + el.cost) {\n\t\t\t\t\tcost[el.to]\
-    \ = tmp.first.longValue() + el.cost;\n\t\t\t\t\tdj.add(new NumPair(cost[el.to],\
-    \ el.to));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[] bellmanFord(final\
+    \ void input(final int m) {\n\t\tfinal var sc = new MyScanner();\n\t\tIntStream.range(0,\
+    \ m).forEach(i -> addEdge(sc.ni(), sc.ni(), sc.ni()));\n\t}\n\tfinal long[] dijkstra(final\
     \ int v) {\n\t\tlong[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
-    \t\tcost[v] = 0;\n\t\tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final\
-    \ var e: edge) {\n\t\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\t\tcontinue;\n\
-    \t\t\t\t}\n\t\t\t\tif(cost[e.to] > cost[e.src] + e.cost) {\n\t\t\t\t\tcost[e.to]\
+    \t\tQueue<NumPair> dj = new PriorityQueue<>();\n\t\tcost[v] = 0;\n\t\tdj.add(new\
+    \ NumPair(cost[v], v));\n\t\twhile(!dj.isEmpty()) {\n\t\t\tfinal var tmp = dj.poll();\n\
+    \t\t\tif(cost[tmp.second.intValue()] < tmp.first.longValue()) {\n\t\t\t\tcontinue;\n\
+    \t\t\t}\n\t\t\tfor(final var el: this.get(tmp.second.intValue())) {\n\t\t\t\t\
+    if(cost[el.to] > tmp.first.longValue() + el.cost) {\n\t\t\t\t\tcost[el.to] = tmp.first.longValue()\
+    \ + el.cost;\n\t\t\t\t\tdj.add(new NumPair(cost[el.to], el.to));\n\t\t\t\t}\n\t\
+    \t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[] bellmanFord(final int v) {\n\
+    \t\tlong[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tcost[v]\
+    \ = 0;\n\t\tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final var e:\
+    \ edge) {\n\t\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\t\tcontinue;\n\t\
+    \t\t\t}\n\t\t\t\tif(cost[e.to] > cost[e.src] + e.cost) {\n\t\t\t\t\tcost[e.to]\
     \ = cost[e.src] + e.cost;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(final var e: edge)\
     \ {\n\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\
     \t\tif(cost[e.src] + e.cost < cost[e.to]) {\n\t\t\t\treturn null;\n\t\t\t}\n\t\
@@ -1342,7 +1346,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2023-12-24 20:52:08+09:00'
+  timestamp: '2023-12-24 20:52:49+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
