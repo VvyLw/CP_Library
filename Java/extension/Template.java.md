@@ -659,7 +659,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/all.java
-  timestamp: '2023-12-25 01:56:15+09:00'
+  timestamp: '2023-12-25 01:58:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java

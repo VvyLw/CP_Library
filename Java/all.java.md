@@ -632,52 +632,53 @@ data:
     \ = new int[n];\n\t\tArrays.fill(par, -1);\n\t}\n\tfinal int root(final int i){\
     \ return par[i] >= 0 ? par[i] = root(par[i]) : i; }\n\tfinal int size(final int\
     \ i){ return -par[root(i)]; }\n\tfinal boolean unite(int i, int j) {\n\t\ti =\
-    \ root(i);\n\t\tj = root(j);\n\t\tif(i == j) return false;\n\t\tif(i > j) {\n\t\
-    \t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\t\
-    par[j] = i;\n\t\treturn true;\n\t}\n\tfinal boolean same(final int i, final int\
-    \ j){ return root(i) == root(j); }\n\tfinal ArrayList<ArrayList<Integer>> groups()\
-    \ {\n\t\tfinal int n = par.length;\n\t\tArrayList<ArrayList<Integer>> res = new\
-    \ ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));\n\
-    \t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\
-    \t\treturn res;\n\t}\n\tfinal boolean isBipartite() {\n\t\tfinal int n = par.length\
-    \ / 2;\n\t\tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &=\
-    \ root(i) != root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n}\n\nfinal class WeightedUnionFind\
-    \ {\n\tprivate final int[] par;\n\tprivate final long[] weight;\n\tWeightedUnionFind(final\
-    \ int n) {\n\t\tpar = new int[n];\n\t\tweight = new long[n];\n\t\tArrays.fill(par,\
-    \ -1);\n\t}\n\tfinal int root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn\
-    \ i;\n\t\t}\n\t\tfinal int r = root(par[i]);\n\t\tweight[i] += weight[par[i]];\n\
-    \t\treturn par[i] = r;\n\t}\n\tfinal long get(final int i) {\n\t\troot(i);\n\t\
-    \treturn weight[i];\n\t}\n\tfinal long diff(final int x, final int y){ return\
-    \ get(y) - get(x); }\n\tfinal int unite(int x, int y, long w) {\n\t\tw += diff(y,\
-    \ x);\n\t\tx = root(x);\n\t\ty = root(y);\n\t\tif(x == y) {\n\t\t\treturn w ==\
-    \ 0 ? 0 : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\
-    \t\t\tx ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\
-    \tweight[y] = w;\n\t\treturn 1;\n\t}\n\tfinal boolean same(final int x, final\
-    \ int y){ return root(x) == root(y); }\n}\n\nfinal class UndoUnionFind {\n\tprivate\
-    \ final int[] par;\n\tprivate final Stack<Pair<Integer, Integer>> his;\n\tUndoUnionFind(final\
-    \ int n) {\n\t    par = new int[n];\n\t    Arrays.fill(par, -1);\n\t    his =\
-    \ new Stack<>();\n\t}\n\tfinal boolean unite(int x, int y) {\n\t\tx = root(x);\n\
-    \t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\t\this.add(Pair.of(y, par[y]));\n\
-    \t\tif(x == y) {\n\t\t\treturn false;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\t\
-    x ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y]\
-    \ = x;\n\t\treturn true;\n\t}\n\tfinal int root(final int i) {\n\t\tif(par[i]\
-    \ < 0) {\n\t\t\treturn i;\n\t\t}\n\t\treturn root(par[i]);\n\t}\n\tfinal int size(final\
-    \ int i){ return -par[root(i)]; }\n\tfinal void undo() {\n\t\tfinal Pair<Integer,\
-    \ Integer> pop1 = his.pop(), pop2 = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\
-    \t\tpar[pop2.first] = pop2.second;\n\t}\n\tfinal void snapshot() {\n\t\twhile(!his.empty())\
-    \ {\n\t\t\this.pop();\n\t\t}\n\t}\n\tfinal void rollback() {\n\t\twhile(!his.empty())\
-    \ {\n\t\t\tundo();\n\t\t}\n\t}\n}\n\nfinal class Edge {\n\tpublic int src;\n\t\
-    public int to;\n\tpublic long cost;\n\tEdge(final int to) {\n\t\tthis.to = to;\n\
-    \t}\n\tEdge(final int to, final long cost) {\n\t\tthis.to = to;\n\t\tthis.cost\
-    \ = cost;\n\t}\n\tEdge(final int src, final int to, final long cost) {\n\t\tthis.src\
-    \ = src;\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\t@Override\n\tpublic\
-    \ final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\
-    \t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\
-    \t\t}\n\t\tfinal Edge e = (Edge) o;\n\t\tif(src != e.src) {\n\t\t\treturn false;\n\
-    \t\t}\n\t\tif(to != e.to) {\n\t\t\treturn false;\n\t\t}\n\t\treturn cost == e.cost;\n\
-    \t}\n\t@Override\n\tpublic final int hashCode() {\n\t\tint result = 17;\n\t\t\
-    result = 31 * result + src;\n\t\tresult = 31 * result + to;\n\t\tresult = 31 *\
-    \ result + (int) (cost ^ (cost >>> 32)); // XOR for long values\n\t\treturn result;\n\
+    \ root(i);\n\t\tj = root(j);\n\t\tif(i == j) {\n\t\t\treturn false;\n\t\t}\n\t\
+    \tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i]\
+    \ += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\t}\n\tfinal boolean same(final\
+    \ int i, final int j){ return root(i) == root(j); }\n\tfinal ArrayList<ArrayList<Integer>>\
+    \ groups() {\n\t\tfinal int n = par.length;\n\t\tArrayList<ArrayList<Integer>>\
+    \ res = new ArrayList<>();\n\t\tIntStream.range(0, n).forEach(i -> res.add(new\
+    \ ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\
+    \t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n\tfinal boolean isBipartite()\
+    \ {\n\t\tfinal int n = par.length / 2;\n\t\tboolean ok = true;\n\t\tfor(int i\
+    \ = 0; i < n; ++i) {\n\t\t\tok &= root(i) != root(i + n);\n\t\t}\n\t\treturn ok;\n\
+    \t}\n}\n\nfinal class WeightedUnionFind {\n\tprivate final int[] par;\n\tprivate\
+    \ final long[] weight;\n\tWeightedUnionFind(final int n) {\n\t\tpar = new int[n];\n\
+    \t\tweight = new long[n];\n\t\tArrays.fill(par, -1);\n\t}\n\tfinal int root(final\
+    \ int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\t\tfinal int r = root(par[i]);\n\
+    \t\tweight[i] += weight[par[i]];\n\t\treturn par[i] = r;\n\t}\n\tfinal long get(final\
+    \ int i) {\n\t\troot(i);\n\t\treturn weight[i];\n\t}\n\tfinal long diff(final\
+    \ int x, final int y){ return get(y) - get(x); }\n\tfinal int unite(int x, int\
+    \ y, long w) {\n\t\tw += diff(y, x);\n\t\tx = root(x);\n\t\ty = root(y);\n\t\t\
+    if(x == y) {\n\t\t\treturn w == 0 ? 0 : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\
+    \t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x]\
+    \ += par[y];\n\t\tpar[y] = x;\n\t\tweight[y] = w;\n\t\treturn 1;\n\t}\n\tfinal\
+    \ boolean same(final int x, final int y){ return root(x) == root(y); }\n}\n\n\
+    final class UndoUnionFind {\n\tprivate final int[] par;\n\tprivate final Stack<Pair<Integer,\
+    \ Integer>> his;\n\tUndoUnionFind(final int n) {\n\t    par = new int[n];\n\t\
+    \    Arrays.fill(par, -1);\n\t    his = new Stack<>();\n\t}\n\tfinal boolean unite(int\
+    \ x, int y) {\n\t\tx = root(x);\n\t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\
+    \t\this.add(Pair.of(y, par[y]));\n\t\tif(x == y) {\n\t\t\treturn false;\n\t\t\
+    }\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t\
+    }\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\treturn true;\n\t}\n\tfinal int\
+    \ root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\t\treturn\
+    \ root(par[i]);\n\t}\n\tfinal int size(final int i){ return -par[root(i)]; }\n\
+    \tfinal void undo() {\n\t\tfinal Pair<Integer, Integer> pop1 = his.pop(), pop2\
+    \ = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\t\tpar[pop2.first] = pop2.second;\n\
+    \t}\n\tfinal void snapshot() {\n\t\twhile(!his.empty()) {\n\t\t\this.pop();\n\t\
+    \t}\n\t}\n\tfinal void rollback() {\n\t\twhile(!his.empty()) {\n\t\t\tundo();\n\
+    \t\t}\n\t}\n}\n\nfinal class Edge {\n\tpublic int src;\n\tpublic int to;\n\tpublic\
+    \ long cost;\n\tEdge(final int to) {\n\t\tthis.to = to;\n\t}\n\tEdge(final int\
+    \ to, final long cost) {\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\tEdge(final\
+    \ int src, final int to, final long cost) {\n\t\tthis.src = src;\n\t\tthis.to\
+    \ = to;\n\t\tthis.cost = cost;\n\t}\n\t@Override\n\tpublic final boolean equals(final\
+    \ Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null\
+    \ || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Edge\
+    \ e = (Edge) o;\n\t\tif(src != e.src) {\n\t\t\treturn false;\n\t\t}\n\t\tif(to\
+    \ != e.to) {\n\t\t\treturn false;\n\t\t}\n\t\treturn cost == e.cost;\n\t}\n\t\
+    @Override\n\tpublic final int hashCode() {\n\t\tint result = 17;\n\t\tresult =\
+    \ 31 * result + src;\n\t\tresult = 31 * result + to;\n\t\tresult = 31 * result\
+    \ + (int) (cost ^ (cost >>> 32)); // XOR for long values\n\t\treturn result;\n\
     \t}\n\t@Override\n\tpublic final String toString(){ return \"(\" + src + \", \"\
     \ + to + \", \" + cost + \")\"; }\n}\nclass Graph extends ArrayList<ArrayList<Edge>>\
     \ {\n\tprotected final boolean undirected;\n\tprotected final int n, indexed;\n\
@@ -1346,7 +1347,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2023-12-25 01:56:15+09:00'
+  timestamp: '2023-12-25 01:58:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
