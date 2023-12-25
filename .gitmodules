@@ -1,0 +1,3 @@
+[submodule "Rust"]
+	path = Rust
+	url = git@github.com:VvyLw/CP_Library-Rust.git
