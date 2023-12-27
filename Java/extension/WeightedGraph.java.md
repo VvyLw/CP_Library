@@ -157,22 +157,22 @@ data:
     \t\t\tthis.get(b).add(new Edge(a, cost));\n\t\t\tedge.add(new Edge(b, a, cost));\n\
     \t\t}\n\t}\n\tfinal void input(final int m){ IntStream.range(0, m).forEach(i ->\
     \ addEdge(VvyLw.sc.ni(), VvyLw.sc.ni(), VvyLw.sc.ni())); }\n\tfinal long[] dijkstra(final\
-    \ int v) {\n\t\tlong[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
-    \t\tQueue<NumPair> dj = new PriorityQueue<>();\n\t\tcost[v] = 0;\n\t\tdj.add(new\
+    \ int v) {\n\t\tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
+    \t\tfinal Queue<NumPair> dj = new PriorityQueue<>();\n\t\tcost[v] = 0;\n\t\tdj.add(new\
     \ NumPair(cost[v], v));\n\t\twhile(!dj.isEmpty()) {\n\t\t\tfinal var tmp = dj.poll();\n\
     \t\t\tif(cost[tmp.second.intValue()] < tmp.first.longValue()) {\n\t\t\t\tcontinue;\n\
     \t\t\t}\n\t\t\tfor(final var el: this.get(tmp.second.intValue())) {\n\t\t\t\t\
     if(cost[el.to] > tmp.first.longValue() + el.cost) {\n\t\t\t\t\tcost[el.to] = tmp.first.longValue()\
     \ + el.cost;\n\t\t\t\t\tdj.add(new NumPair(cost[el.to], el.to));\n\t\t\t\t}\n\t\
     \t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[] bellmanFord(final int v) {\n\
-    \t\tlong[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tcost[v]\
-    \ = 0;\n\t\tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final var e:\
-    \ edge) {\n\t\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\t\tcontinue;\n\t\
-    \t\t\t}\n\t\t\t\tcost[e.to] = Math.min(cost[e.to], cost[e.src] + e.cost);\n\t\t\
-    \t}\n\t\t}\n\t\tfor(final var e: edge) {\n\t\t\tif(cost[e.src] == Long.MAX_VALUE)\
+    \t\tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
+    \t\tcost[v] = 0;\n\t\tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final\
+    \ var e: edge) {\n\t\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\t\tcontinue;\n\
+    \t\t\t\t}\n\t\t\t\tcost[e.to] = Math.min(cost[e.to], cost[e.src] + e.cost);\n\t\
+    \t\t}\n\t\t}\n\t\tfor(final var e: edge) {\n\t\t\tif(cost[e.src] == Long.MAX_VALUE)\
     \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tif(cost[e.src] + e.cost < cost[e.to]) {\n\
     \t\t\t\treturn null;\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[][]\
-    \ warshallFloyd() {\n\t\tlong[][] cost = new long[n][n];\n\t\tIntStream.range(0,\
+    \ warshallFloyd() {\n\t\tfinal long[][] cost = new long[n][n];\n\t\tIntStream.range(0,\
     \ n).forEach(i -> Arrays.fill(cost[i], Long.MAX_VALUE));\n\t\tIntStream.range(0,\
     \ n).forEach(i -> cost[i][i] = 0);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final\
     \ var j: this.get(i)) {\n\t\t\t\tcost[i][j.to] = j.cost;\n\t\t\t}\n\t\t}\n\t\t\
@@ -187,8 +187,8 @@ data:
     \ MST(e, res);\n\t}\n\tfinal MST directed(final int v) {\n\t\t@SuppressWarnings(\"\
     unchecked\")\n\t\tfinal var ed = (ArrayList<Edge>) edge.clone();\n\t\tfor(int\
     \ i = 0; i < n; ++i) {\n\t\t\tif(i != v) {\n\t\t\t\ted.add(new Edge(i, v, 0));\n\
-    \t\t\t}\n\t\t}\n\t\tint x = 0;\n\t\tint[] par = new int[2 * n], vis = new int[2\
-    \ * n], link = new int[2 * n];\n\t\tArrays.fill(par, -1);\n\t\tArrays.fill(vis,\
+    \t\t\t}\n\t\t}\n\t\tint x = 0;\n\t\tfinal int[] par = new int[2 * n], vis = new\
+    \ int[2 * n], link = new int[2 * n];\n\t\tArrays.fill(par, -1);\n\t\tArrays.fill(vis,\
     \ -1);\n\t\tArrays.fill(link, -1);\n\t\tfinal var heap = new SkewHeap(true);\n\
     \t\tfinal var ins = new SkewHeap.Node[2 * n];\n\t\tArrays.fill(ins, null);\n\t\
     \tfor(int i = 0; i < ed.size(); i++) {\n\t\t\tfinal var e = ed.get(i);\n\t\t\t\
@@ -274,7 +274,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-27 13:59:23+09:00'
+  timestamp: '2023-12-27 14:04:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/WeightedGraph.java
