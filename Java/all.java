@@ -685,6 +685,15 @@ class Utility {
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
+	protected static final void swap(final boolean[] a, final boolean[] b) {
+		if(a.length != b.length) {
+			throw new AssertionError("a.length != b.length");
+		}
+		final int n = a.length;
+		final var c = a.clone();
+		System.arraycopy(b, 0, a, 0, n);
+		System.arraycopy(c, 0, b, 0, n);
+	}
 	protected static final void swap(final Object[] a, final Object[] b) {
 		if(a.length != b.length) {
 			throw new AssertionError("a.length != b.length");
@@ -1162,9 +1171,7 @@ final class UnionFind {
 	final boolean unite(int i, int j) {
 		i = root(i);
 		j = root(j);
-		if(i == j) {
-			return false;
-		}
+		if(i == j) return false;
 		if(i > j) {
 			i ^= j;
 			j ^= i;
@@ -1177,7 +1184,7 @@ final class UnionFind {
 	final boolean same(final int i, final int j){ return root(i) == root(j); }
 	final ArrayList<ArrayList<Integer>> groups() {
 		final int n = par.length;
-		ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+		ArrayList<ArrayList<Integer>> res = new ArrayList<>(n);
 		IntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));
 		IntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));
 		res.removeIf(ArrayList::isEmpty);
@@ -1349,10 +1356,7 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 			edge.add(new Edge(b, a, 0));
 		}
 	}
-	void input(final int m) {
-		final var sc = new MyScanner();
-		IntStream.range(0, m).forEach(i -> addEdge(sc.ni(), sc.ni()));
-	}
+	void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni())); }
 	protected final int[] allDist(final int v) {
 		int[] d = new int[n];
 		Arrays.fill(d, -1);
@@ -1419,10 +1423,7 @@ final class WeightedGraph extends Graph {
 			edge.add(new Edge(b, a, cost));
 		}
 	}
-	final void input(final int m) {
-		final var sc = new MyScanner();
-		IntStream.range(0, m).forEach(i -> addEdge(sc.ni(), sc.ni(), sc.ni()));
-	}
+	final void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni(), VvyLw.sc.ni())); }
 	final long[] dijkstra(final int v) {
 		long[] cost = new long[n];
 		Arrays.fill(cost, Long.MAX_VALUE);
