@@ -90,7 +90,7 @@ class Utility {
 	protected static final int max(final int... a){ return Arrays.stream(a).reduce(Integer.MIN_VALUE, (x, y) -> Math.max(x, y)); }
 	protected static final long max(final long... a){ return Arrays.stream(a).reduce(Long.MIN_VALUE, (x, y) -> Math.max(x, y)); }
 	protected static final ArrayList<Long> div(final long n) {
-		ArrayList<Long> d = new ArrayList<>();
+		final ArrayList<Long> d = new ArrayList<>();
 		for(long i = 1; i * i <= n; ++i) {
 			if(n % i == 0) {
 				d.add(i);
@@ -103,7 +103,7 @@ class Utility {
 		return d;
 	}
 	protected static final ArrayList<Pair<Long, Integer>> primeFactor(long n) {
-		ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();
+		final ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();
 		for(long i = 2; i * i <= n; ++i) {
 			if(n % i != 0) {
 				continue;
