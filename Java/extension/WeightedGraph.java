@@ -29,10 +29,7 @@ final class WeightedGraph extends Graph {
 			edge.add(new Edge(b, a, cost));
 		}
 	}
-	final void input(final int m) {
-		final var sc = new MyScanner();
-		IntStream.range(0, m).forEach(i -> addEdge(sc.ni(), sc.ni(), sc.ni()));
-	}
+	final void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni(), VvyLw.sc.ni())); }
 	final long[] dijkstra(final int v) {
 		long[] cost = new long[n];
 		Arrays.fill(cost, Long.MAX_VALUE);
