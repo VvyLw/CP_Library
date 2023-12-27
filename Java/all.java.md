@@ -197,12 +197,12 @@ data:
     \ }\n\tprotected static final int max(final int... a){ return Arrays.stream(a).reduce(Integer.MIN_VALUE,\
     \ (x, y) -> Math.max(x, y)); }\n\tprotected static final long max(final long...\
     \ a){ return Arrays.stream(a).reduce(Long.MIN_VALUE, (x, y) -> Math.max(x, y));\
-    \ }\n\tprotected static final ArrayList<Long> div(final long n) {\n\t\tArrayList<Long>\
+    \ }\n\tprotected static final ArrayList<Long> div(final long n) {\n\t\tfinal ArrayList<Long>\
     \ d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n %\
     \ i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n /\
     \ i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\t\treturn d;\n\t\
     }\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long n)\
-    \ {\n\t\tArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long\
+    \ {\n\t\tfinal ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long\
     \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t\
     }\n\t\t\tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /=\
     \ i;\n\t\t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\t\t\
@@ -1349,7 +1349,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2023-12-27 13:54:49+09:00'
+  timestamp: '2023-12-27 13:57:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
