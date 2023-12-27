@@ -1358,9 +1358,9 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 	}
 	void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni())); }
 	protected final int[] allDist(final int v) {
-		int[] d = new int[n];
+		final int[] d = new int[n];
 		Arrays.fill(d, -1);
-		Queue<Integer> q = new ArrayDeque<>();
+		final Queue<Integer> q = new ArrayDeque<>();
 		d[v] = 0;
 		q.add(v);
 		while(!q.isEmpty()) {
@@ -1369,7 +1369,7 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 				if(d[el.to] != -1) {
 					continue;
 				}
-				d[el.to]=d[tmp]+1;
+				d[el.to] = d[tmp] + 1;
 				q.add(el.to);
 			}
 		}
@@ -1377,7 +1377,7 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 	}
 	protected final int dist(final int u, final int v){ return allDist(u)[v]; }
 	protected final ArrayList<Integer> topologicalSort() {
-		int[] deg = new int[n];
+		final int[] deg = new int[n];
 		for(int i = 0; i < n; ++i) {
 			for(final var ed: this.get(i)) {
 				deg[ed.to]++;
@@ -1425,9 +1425,9 @@ final class WeightedGraph extends Graph {
 	}
 	final void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni(), VvyLw.sc.ni())); }
 	final long[] dijkstra(final int v) {
-		long[] cost = new long[n];
+		final long[] cost = new long[n];
 		Arrays.fill(cost, Long.MAX_VALUE);
-		Queue<NumPair> dj = new PriorityQueue<>();
+		final Queue<NumPair> dj = new PriorityQueue<>();
 		cost[v] = 0;
 		dj.add(new NumPair(cost[v], v));
 		while(!dj.isEmpty()) {
@@ -1445,7 +1445,7 @@ final class WeightedGraph extends Graph {
 		return cost;
 	}
 	final long[] bellmanFord(final int v) {
-		long[] cost = new long[n];
+		final long[] cost = new long[n];
 		Arrays.fill(cost, Long.MAX_VALUE);
 		cost[v] = 0;
 		for(int i = 0; i < edge.size() - 1; ++i) {
@@ -1469,7 +1469,7 @@ final class WeightedGraph extends Graph {
 		return cost;
 	}
 	final long[][] warshallFloyd() {
-		long[][] cost = new long[n][n];
+		final long[][] cost = new long[n][n];
 		IntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], VvyLw.linf));
 		IntStream.range(0, n).forEach(i -> cost[i][i] = 0);
 		for(int i = 0; i < n; ++i) {
@@ -1512,7 +1512,7 @@ final class WeightedGraph extends Graph {
 			}
 		}
 		int x = 0;
-		int[] par = new int[2 * n], vis = new int[2 * n], link = new int[2 * n];
+		final int[] par = new int[2 * n], vis = new int[2 * n], link = new int[2 * n];
 		Arrays.fill(par, -1);
 		Arrays.fill(vis, -1);
 		Arrays.fill(link, -1);
