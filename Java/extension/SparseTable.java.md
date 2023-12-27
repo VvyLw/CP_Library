@@ -221,7 +221,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2023-12-27 13:58:36+09:00'
+  timestamp: '2023-12-27 13:59:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/SparseTable.java
