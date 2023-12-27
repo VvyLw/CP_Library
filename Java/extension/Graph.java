@@ -74,9 +74,9 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 	}
 	void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni())); }
 	protected final int[] allDist(final int v) {
-		int[] d = new int[n];
+		final int[] d = new int[n];
 		Arrays.fill(d, -1);
-		Queue<Integer> q = new ArrayDeque<>();
+		final Queue<Integer> q = new ArrayDeque<>();
 		d[v] = 0;
 		q.add(v);
 		while(!q.isEmpty()) {
@@ -93,7 +93,7 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 	}
 	protected final int dist(final int u, final int v){ return allDist(u)[v]; }
 	protected final ArrayList<Integer> topologicalSort() {
-		int[] deg = new int[n];
+		final int[] deg = new int[n];
 		for(int i = 0; i < n; ++i) {
 			for(final var ed: this.get(i)) {
 				deg[ed.to]++;
