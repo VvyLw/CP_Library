@@ -163,24 +163,22 @@ data:
     \tprivate static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t@SuppressWarnings(\"\
     unused\")\n\tprivate static final int mod998 = 998244353;\n\t@SuppressWarnings(\"\
     unused\")\n\tprivate static final int mod107 = (int)1e9 + 7;\n\tstatic final void\
-    \ solve() {\n\t\tfinal String s = sc.ns(), t = sc.ns();\n\t\tassert s.length()\
-    \ == t.length();\n\t\tfor(int i = 0; i < s.length(); ++i) {\n\t\t\t\n\t\t}\n\t\
-    }\n}\nclass Utility {\n\tprotected static final String yes(final boolean ok){\
-    \ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean\
-    \ ok){ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
-    \ x * x; }\n\tprotected static final long mod(final long n, final long m){ return\
-    \ (n + m) % m; }\n\tprotected static final long ceil(final long a, final long\
-    \ b){ return (a - 1) / b + 1; }\n\tprotected static final double round(final double\
-    \ a, final long b, final int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn\
-    \ Math.rint((a * d) / b) / d;\n\t}\n\tprotected static final long pow(long a,\
-    \ int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\
-    \t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static final long pow(long a, long b, final long m) {\n\t\tlong\
-    \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
-    \t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb\
-    \ >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long lcm(final\
-    \ long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static final\
-    \ long lcm(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1,\
+    \ solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String yes(final\
+    \ boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String\
+    \ no(final boolean ok){ return yes(!ok); }\n\tprotected static final long sqr(final\
+    \ long x){ return x * x; }\n\tprotected static final long mod(final long n, final\
+    \ long m){ return (n + m) % m; }\n\tprotected static final long ceil(final long\
+    \ a, final long b){ return (a - 1) / b + 1; }\n\tprotected static final double\
+    \ round(final double a, final long b, final int c) {\n\t\tfinal long d = pow(10,\
+    \ c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\tprotected static final long\
+    \ pow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2\
+    \ == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\
+    \treturn res;\n\t}\n\tprotected static final long pow(long a, long b, final long\
+    \ m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\t\
+    res *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a,\
+    \ m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long\
+    \ lcm(final long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static\
+    \ final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1,\
     \ (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){\
     \ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static\
     \ final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a;\
@@ -662,7 +660,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/all.java
-  timestamp: '2024-01-01 07:53:04+09:00'
+  timestamp: '2024-01-01 07:53:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java
