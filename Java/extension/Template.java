@@ -43,11 +43,7 @@ final class VvyLw extends Utility {
 	@SuppressWarnings("unused")
 	private static final int mod107 = (int)1e9 + 7;
 	static final void solve() {
-		final String s = sc.ns(), t = sc.ns();
-		assert s.length() == t.length();
-		for(int i = 0; i < s.length(); ++i) {
-			
-		}
+		
 	}
 }
 class Utility {
