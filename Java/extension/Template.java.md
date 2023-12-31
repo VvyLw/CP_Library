@@ -155,33 +155,36 @@ data:
     \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.e.close();\n\t}\n}\n\n\
     final class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner();\n\
     \tstatic final MyPrinter o = new MyPrinter(System.out, false);\n\tstatic final\
-    \ MyPrinter e = new MyPrinter(System.err, true);\n\tstatic final boolean multi\
-    \ = false;\n\tstatic final int inf = 1 << 30;\n\tstatic final long linf = (1L\
-    \ << 61) - 1;\n\tstatic final double eps = 1e-18;\n\t@SuppressWarnings(\"unused\"\
-    )\n\tprivate static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\t@SuppressWarnings(\"\
-    unused\")\n\tprivate static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\
-    \t@SuppressWarnings(\"unused\")\n\tprivate static final int mod998 = 998244353;\n\
-    \t@SuppressWarnings(\"unused\")\n\tprivate static final int mod107 = (int)1e9\
-    \ + 7;\n\tstatic final void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected\
-    \ static final String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\
-    \tprotected static final String no(final boolean ok){ return yes(!ok); }\n\tprotected\
-    \ static final long sqr(final long x){ return x * x; }\n\tprotected static final\
-    \ long mod(final long n, final long m){ return (n + m) % m; }\n\tprotected static\
-    \ final long ceil(final long a, final long b){ return (a - 1) / b + 1; }\n\tprotected\
-    \ static final double round(final double a, final long b, final int c) {\n\t\t\
-    final long d = pow(10, c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\tprotected\
-    \ static final long pow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0)\
-    \ {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\t\
-    b >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long pow(long\
-    \ a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b\
-    \ % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\t\
-    a *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t\
-    protected static final long lcm(final long a, final long b){ return a * b / gcd(a,\
-    \ b); }\n\tprotected static final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i\
-    \ -> i).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final\
-    \ long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
-    \ static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a %\
-    \ b) : a; }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
+    \ MyPrinter e = new MyPrinter(System.err, true);\n\tstatic final Huitloxopetl\
+    \ why = new Huitloxopetl();\n\tstatic final boolean multi = false;\n\tstatic final\
+    \ int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\tstatic final\
+    \ double eps = 1e-18;\n\t@SuppressWarnings(\"unused\")\n\tprivate static final\
+    \ int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\t@SuppressWarnings(\"unused\")\n\
+    \tprivate static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t@SuppressWarnings(\"\
+    unused\")\n\tprivate static final int mod998 = 998244353;\n\t@SuppressWarnings(\"\
+    unused\")\n\tprivate static final int mod107 = (int)1e9 + 7;\n\tstatic final void\
+    \ solve() {\n\t\tfinal String s = sc.ns(), t = sc.ns();\n\t\tassert s.length()\
+    \ == t.length();\n\t\tfor(int i = 0; i < s.length(); ++i) {\n\t\t\t\n\t\t}\n\t\
+    }\n}\nclass Utility {\n\tprotected static final String yes(final boolean ok){\
+    \ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean\
+    \ ok){ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
+    \ x * x; }\n\tprotected static final long mod(final long n, final long m){ return\
+    \ (n + m) % m; }\n\tprotected static final long ceil(final long a, final long\
+    \ b){ return (a - 1) / b + 1; }\n\tprotected static final double round(final double\
+    \ a, final long b, final int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn\
+    \ Math.rint((a * d) / b) / d;\n\t}\n\tprotected static final long pow(long a,\
+    \ int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\
+    \t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\tprotected static final long pow(long a, long b, final long m) {\n\t\tlong\
+    \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
+    \t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb\
+    \ >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long lcm(final\
+    \ long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static final\
+    \ long lcm(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1,\
+    \ (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){\
+    \ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static\
+    \ final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a;\
+    \ }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
     \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
     \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
     \ final int min(final int... a){ return Arrays.stream(a).reduce(Integer.MAX_VALUE,\
@@ -415,29 +418,29 @@ data:
     \ ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\tprotected static final\
     \ void swap(final double[] a, final int i, final int j) {\n\t\tfinal var tmp =\
     \ a[i];\n\t\ta[i] = a[j];\n\t\ta[j] = tmp;\n\t}\n\tprotected static final void\
-    \ swap(final char[] a, final int i, final int j) {\n\t\tfinal var tmp = a[i];\n\
-    \t\ta[i] = a[j];\n\t\ta[j] = tmp;\n\t}\n\tprotected static final void swap(final\
-    \ Object[] a, final int i, final int j) {\n\t\tfinal var tmp = a[i];\n\t\ta[i]\
-    \ = a[j];\n\t\ta[j] = tmp;\n\t}\n\tprotected static final void swap(final int[]\
-    \ a, final int[] b) {\n\t\tif(a.length != b.length) {\n\t\t\tthrow new AssertionError(\"\
-    a.length != b.length\");\n\t\t}\n\t\tfinal int n = a.length;\n\t\tfinal var c\
-    \ = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
-    \ 0, b, 0, n);\n\t}\n\tprotected static final void swap(final long[] a, final\
-    \ long[] b) {\n\t\tif(a.length != b.length) {\n\t\t\tthrow new AssertionError(\"\
-    a.length != b.length\");\n\t\t}\n\t\tfinal int n = a.length;\n\t\tfinal var c\
-    \ = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
-    \ 0, b, 0, n);\n\t}\n\tprotected static final void swap(final double[] a, final\
-    \ double[] b) {\n\t\tif(a.length != b.length) {\n\t\t\tthrow new AssertionError(\"\
-    a.length != b.length\");\n\t\t}\n\t\tfinal int n = a.length;\n\t\tfinal var c\
-    \ = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
-    \ 0, b, 0, n);\n\t}\n\tprotected static final void swap(final char[] a, final\
-    \ char[] b) {\n\t\tif(a.length != b.length) {\n\t\t\tthrow new AssertionError(\"\
-    a.length != b.length\");\n\t\t}\n\t\tfinal int n = a.length;\n\t\tfinal var c\
-    \ = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
+    \ swap(final char[] a, final int i, final int j) {\n\t\ta[i] ^= a[j];\n\t\ta[j]\
+    \ ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\tprotected static final void swap(final boolean[]\
+    \ a, final int i, final int j) {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i]\
+    \ ^= a[j];\n\t}\n\tprotected static final void swap(final Object[] a, final int\
+    \ i, final int j) {\n\t\tfinal var tmp = a[i];\n\t\ta[i] = a[j];\n\t\ta[j] = tmp;\n\
+    \t}\n\tprotected static final void swap(final int[] a, final int[] b) {\n\t\t\
+    assert a.length == b.length;\n\t\tfinal int n = a.length;\n\t\tfinal var c = a.clone();\n\
+    \t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t\
+    }\n\tprotected static final void swap(final long[] a, final long[] b) {\n\t\t\
+    assert a.length == b.length;\n\t\tfinal int n = a.length;\n\t\tfinal var c = a.clone();\n\
+    \t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t\
+    }\n\tprotected static final void swap(final double[] a, final double[] b) {\n\t\
+    \tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\t\tfinal var c =\
+    \ a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c, 0,\
+    \ b, 0, n);\n\t}\n\tprotected static final void swap(final char[] a, final char[]\
+    \ b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\t\tfinal\
+    \ var c = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
+    \ 0, b, 0, n);\n\t}\n\tprotected static final void swap(final boolean[] a, final\
+    \ boolean[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\
+    \t\tfinal var c = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
     \ 0, b, 0, n);\n\t}\n\tprotected static final void swap(final Object[] a, final\
-    \ Object[] b) {\n\t\tif(a.length != b.length) {\n\t\t\tthrow new AssertionError(\"\
-    a.length != b.length\");\n\t\t}\n\t\tfinal int n = a.length;\n\t\tfinal var c\
-    \ = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
+    \ Object[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\
+    \t\tfinal var c = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
     \ 0, b, 0, n);\n\t}\n\tprotected static final <F, S> List<F> first(final List<Pair<F,\
     \ S>> p){ return p.stream().map(i -> i.first).collect(Collectors.toList()); }\n\
     \tprotected static final <F, S> List<S> second(final List<Pair<F, S>> p){ return\
@@ -659,7 +662,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/all.java
-  timestamp: '2023-12-27 14:07:40+09:00'
+  timestamp: '2024-01-01 07:53:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java
