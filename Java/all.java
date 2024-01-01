@@ -57,15 +57,15 @@ final class VvyLw extends Utility {
 	@SuppressWarnings("unused")
 	private static final int mod107 = (int)1e9 + 7;
 	static final void solve() {
-		final int n = sc.ni();
-		final var s = sc.ns().toCharArray();
-		final char c = sc.nc();
+		
 	}
 }
 class Utility {
 	protected static final String yes(final boolean ok){ return ok ? "Yes" : "No"; }
 	protected static final String no(final boolean ok){ return yes(!ok); }
 	protected static final long sqr(final long x){ return x * x; }
+	protected static final int mod(final int n, final int m){ return (n + m) % m; }
+	protected static final int mod(final long n, final int m){ return (int) (n + m) % m; }
 	protected static final long mod(final long n, final long m){ return (n + m) % m; }
 	protected static final long ceil(final long a, final long b){ return (a - 1) / b + 1; }
 	protected static final double round(final double a, final long b, final int c) {
