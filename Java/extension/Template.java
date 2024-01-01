@@ -21,14 +21,14 @@ final class Main {
 		VvyLw.o.flush();
 		VvyLw.sc.close();
 		VvyLw.o.close();
-		VvyLw.e.close();
+		VvyLw.dbg.close();
 	}
 }
 
 final class VvyLw extends Utility {
 	static final MyScanner sc = new MyScanner();
 	static final MyPrinter o = new MyPrinter(System.out, false);
-	static final MyPrinter e = new MyPrinter(System.err, true);
+	static final MyPrinter dbg = new MyPrinter(System.err, true);
 	static final Huitloxopetl why = new Huitloxopetl();
 	static final boolean multi = false;
 	static final int inf = 1 << 30;
