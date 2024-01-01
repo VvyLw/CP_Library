@@ -876,6 +876,7 @@ final class MyScanner {
 	final int ni(){ return sc.nextInt(); }
 	final long nl(){ return sc.nextLong(); }
 	final double nd(){ return sc.nextDouble(); }
+	final char nc(){ return ns().charAt(0); }
 	final String ns(){ return sc.next(); }
 	final BigInteger nb(){ return sc.nextBigInteger(); }
 	final int[] ni(final int n) {
