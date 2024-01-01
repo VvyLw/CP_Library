@@ -57,7 +57,9 @@ final class VvyLw extends Utility {
 	@SuppressWarnings("unused")
 	private static final int mod107 = (int)1e9 + 7;
 	static final void solve() {
-		
+		final int n = sc.ni();
+		final var s = sc.ns().toCharArray();
+		final char c = sc.nc();
 	}
 }
 class Utility {
@@ -894,6 +896,11 @@ final class MyScanner {
 		IntStream.range(0, n).forEach(i -> a[i] = nd());
 		return a;
 	}
+	final char[] nc(final int n) {
+		final char[] a = new char[n];
+		IntStream.range(0, n).forEach(i -> a[i] = nc());
+		return a;
+	}
 	final String[] ns(final int n) {
 		final String[] a = new String[n];
 		IntStream.range(0, n).forEach(i -> a[i] = ns());
@@ -917,6 +924,11 @@ final class MyScanner {
 	final double[][] nd(final int h, final int w) {
 		final double[][] a = new double[h][w];
 		IntStream.range(0, h).forEach(i -> a[i] = nd(w));
+		return a;
+	}
+	final char[][] nc(final int h, final int w) {
+		final char[][] a = new char[h][w];
+		IntStream.range(0, h).forEach(i -> a[i] = nc(w));
 		return a;
 	}
 	final String[][] ns(final int h, final int w) {
