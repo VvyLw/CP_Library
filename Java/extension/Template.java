@@ -862,6 +862,7 @@ final class MyScanner {
 	final int ni(){ return sc.nextInt(); }
 	final long nl(){ return sc.nextLong(); }
 	final double nd(){ return sc.nextDouble(); }
+	final char nc(){ return ns().charAt(0); }
 	final String ns(){ return sc.next(); }
 	final BigInteger nb(){ return sc.nextBigInteger(); }
 	final int[] ni(final int n) {
@@ -877,6 +878,11 @@ final class MyScanner {
 	final double[] nd(final int n) {
 		final double[] a = new double[n];
 		IntStream.range(0, n).forEach(i -> a[i] = nd());
+		return a;
+	}
+	final char[] nc(final int n) {
+		final char[] a = new char[n];
+		IntStream.range(0, n).forEach(i -> a[i] = nc());
 		return a;
 	}
 	final String[] ns(final int n) {
@@ -902,6 +908,11 @@ final class MyScanner {
 	final double[][] nd(final int h, final int w) {
 		final double[][] a = new double[h][w];
 		IntStream.range(0, h).forEach(i -> a[i] = nd(w));
+		return a;
+	}
+	final char[][] nc(final int h, final int w) {
+		final char[][] a = new char[h][w];
+		IntStream.range(0, h).forEach(i -> a[i] = nc(w));
 		return a;
 	}
 	final String[][] ns(final int h, final int w) {
