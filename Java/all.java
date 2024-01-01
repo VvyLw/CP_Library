@@ -35,14 +35,14 @@ final class Main {
 		VvyLw.o.flush();
 		VvyLw.sc.close();
 		VvyLw.o.close();
-		VvyLw.e.close();
+		VvyLw.dbg.close();
 	}
 }
 
 final class VvyLw extends Utility {
 	static final MyScanner sc = new MyScanner();
 	static final MyPrinter o = new MyPrinter(System.out, false);
-	static final MyPrinter e = new MyPrinter(System.err, true);
+	static final MyPrinter dbg = new MyPrinter(System.err, true);
 	static final Huitloxopetl why = new Huitloxopetl();
 	static final boolean multi = false;
 	static final int inf = 1 << 30;
@@ -640,9 +640,14 @@ class Utility {
 		a[j] = tmp;
 	}
 	protected static final void swap(final char[] a, final int i, final int j) {
-		final var tmp = a[i];
-		a[i] = a[j];
-		a[j] = tmp;
+		a[i] ^= a[j];
+		a[j] ^= a[i];
+		a[i] ^= a[j];
+	}
+	protected static final void swap(final boolean[] a, final int i, final int j) {
+		a[i] ^= a[j];
+		a[j] ^= a[i];
+		a[i] ^= a[j];
 	}
 	protected static final void swap(final Object[] a, final int i, final int j) {
 		final var tmp = a[i];
@@ -650,54 +655,42 @@ class Utility {
 		a[j] = tmp;
 	}
 	protected static final void swap(final int[] a, final int[] b) {
-		if(a.length != b.length) {
-			throw new AssertionError("a.length != b.length");
-		}
+		assert a.length == b.length;
 		final int n = a.length;
 		final var c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final long[] a, final long[] b) {
-		if(a.length != b.length) {
-			throw new AssertionError("a.length != b.length");
-		}
+		assert a.length == b.length;
 		final int n = a.length;
 		final var c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final double[] a, final double[] b) {
-		if(a.length != b.length) {
-			throw new AssertionError("a.length != b.length");
-		}
+		assert a.length == b.length;
 		final int n = a.length;
 		final var c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final char[] a, final char[] b) {
-		if(a.length != b.length) {
-			throw new AssertionError("a.length != b.length");
-		}
+		assert a.length == b.length;
 		final int n = a.length;
 		final var c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final boolean[] a, final boolean[] b) {
-		if(a.length != b.length) {
-			throw new AssertionError("a.length != b.length");
-		}
+		assert a.length == b.length;
 		final int n = a.length;
 		final var c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final Object[] a, final Object[] b) {
-		if(a.length != b.length) {
-			throw new AssertionError("a.length != b.length");
-		}
+		assert a.length == b.length;
 		final int n = a.length;
 		final var c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
