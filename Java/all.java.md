@@ -158,10 +158,10 @@ data:
     import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nfinal\
     \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
     \ VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
-    \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.e.close();\n\t}\n}\n\n\
+    \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}\n\n\
     final class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner();\n\
     \tstatic final MyPrinter o = new MyPrinter(System.out, false);\n\tstatic final\
-    \ MyPrinter e = new MyPrinter(System.err, true);\n\tstatic final Huitloxopetl\
+    \ MyPrinter dbg = new MyPrinter(System.err, true);\n\tstatic final Huitloxopetl\
     \ why = new Huitloxopetl();\n\tstatic final boolean multi = false;\n\tstatic final\
     \ int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\tstatic final\
     \ double eps = 1e-18;\n\t@SuppressWarnings(\"unused\")\n\tprivate static final\
@@ -422,33 +422,29 @@ data:
     \ ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\tprotected static final\
     \ void swap(final double[] a, final int i, final int j) {\n\t\tfinal var tmp =\
     \ a[i];\n\t\ta[i] = a[j];\n\t\ta[j] = tmp;\n\t}\n\tprotected static final void\
-    \ swap(final char[] a, final int i, final int j) {\n\t\tfinal var tmp = a[i];\n\
-    \t\ta[i] = a[j];\n\t\ta[j] = tmp;\n\t}\n\tprotected static final void swap(final\
-    \ Object[] a, final int i, final int j) {\n\t\tfinal var tmp = a[i];\n\t\ta[i]\
-    \ = a[j];\n\t\ta[j] = tmp;\n\t}\n\tprotected static final void swap(final int[]\
-    \ a, final int[] b) {\n\t\tif(a.length != b.length) {\n\t\t\tthrow new AssertionError(\"\
-    a.length != b.length\");\n\t\t}\n\t\tfinal int n = a.length;\n\t\tfinal var c\
-    \ = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
-    \ 0, b, 0, n);\n\t}\n\tprotected static final void swap(final long[] a, final\
-    \ long[] b) {\n\t\tif(a.length != b.length) {\n\t\t\tthrow new AssertionError(\"\
-    a.length != b.length\");\n\t\t}\n\t\tfinal int n = a.length;\n\t\tfinal var c\
-    \ = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
-    \ 0, b, 0, n);\n\t}\n\tprotected static final void swap(final double[] a, final\
-    \ double[] b) {\n\t\tif(a.length != b.length) {\n\t\t\tthrow new AssertionError(\"\
-    a.length != b.length\");\n\t\t}\n\t\tfinal int n = a.length;\n\t\tfinal var c\
-    \ = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
-    \ 0, b, 0, n);\n\t}\n\tprotected static final void swap(final char[] a, final\
-    \ char[] b) {\n\t\tif(a.length != b.length) {\n\t\t\tthrow new AssertionError(\"\
-    a.length != b.length\");\n\t\t}\n\t\tfinal int n = a.length;\n\t\tfinal var c\
-    \ = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
+    \ swap(final char[] a, final int i, final int j) {\n\t\ta[i] ^= a[j];\n\t\ta[j]\
+    \ ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\tprotected static final void swap(final boolean[]\
+    \ a, final int i, final int j) {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i]\
+    \ ^= a[j];\n\t}\n\tprotected static final void swap(final Object[] a, final int\
+    \ i, final int j) {\n\t\tfinal var tmp = a[i];\n\t\ta[i] = a[j];\n\t\ta[j] = tmp;\n\
+    \t}\n\tprotected static final void swap(final int[] a, final int[] b) {\n\t\t\
+    assert a.length == b.length;\n\t\tfinal int n = a.length;\n\t\tfinal var c = a.clone();\n\
+    \t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t\
+    }\n\tprotected static final void swap(final long[] a, final long[] b) {\n\t\t\
+    assert a.length == b.length;\n\t\tfinal int n = a.length;\n\t\tfinal var c = a.clone();\n\
+    \t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t\
+    }\n\tprotected static final void swap(final double[] a, final double[] b) {\n\t\
+    \tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\t\tfinal var c =\
+    \ a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c, 0,\
+    \ b, 0, n);\n\t}\n\tprotected static final void swap(final char[] a, final char[]\
+    \ b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\t\tfinal\
+    \ var c = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
     \ 0, b, 0, n);\n\t}\n\tprotected static final void swap(final boolean[] a, final\
-    \ boolean[] b) {\n\t\tif(a.length != b.length) {\n\t\t\tthrow new AssertionError(\"\
-    a.length != b.length\");\n\t\t}\n\t\tfinal int n = a.length;\n\t\tfinal var c\
-    \ = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
+    \ boolean[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\
+    \t\tfinal var c = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
     \ 0, b, 0, n);\n\t}\n\tprotected static final void swap(final Object[] a, final\
-    \ Object[] b) {\n\t\tif(a.length != b.length) {\n\t\t\tthrow new AssertionError(\"\
-    a.length != b.length\");\n\t\t}\n\t\tfinal int n = a.length;\n\t\tfinal var c\
-    \ = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
+    \ Object[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\
+    \t\tfinal var c = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
     \ 0, b, 0, n);\n\t}\n\tprotected static final <F, S> List<F> first(final List<Pair<F,\
     \ S>> p){ return p.stream().map(i -> i.first).collect(Collectors.toList()); }\n\
     \tprotected static final <F, S> List<S> second(final List<Pair<F, S>> p){ return\
@@ -1349,7 +1345,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2024-01-01 09:21:10+09:00'
+  timestamp: '2024-01-01 09:21:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java

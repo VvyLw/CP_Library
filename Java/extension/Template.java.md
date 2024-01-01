@@ -660,7 +660,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/all.java
-  timestamp: '2024-01-01 09:21:10+09:00'
+  timestamp: '2024-01-01 09:21:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java
