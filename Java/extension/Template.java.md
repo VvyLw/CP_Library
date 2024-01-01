@@ -152,10 +152,10 @@ data:
     import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nfinal\
     \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
     \ VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
-    \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.e.close();\n\t}\n}\n\n\
+    \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}\n\n\
     final class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner();\n\
     \tstatic final MyPrinter o = new MyPrinter(System.out, false);\n\tstatic final\
-    \ MyPrinter e = new MyPrinter(System.err, true);\n\tstatic final Huitloxopetl\
+    \ MyPrinter dbg = new MyPrinter(System.err, true);\n\tstatic final Huitloxopetl\
     \ why = new Huitloxopetl();\n\tstatic final boolean multi = false;\n\tstatic final\
     \ int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\tstatic final\
     \ double eps = 1e-18;\n\t@SuppressWarnings(\"unused\")\n\tprivate static final\
@@ -660,7 +660,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/all.java
-  timestamp: '2024-01-01 07:53:57+09:00'
+  timestamp: '2024-01-01 09:21:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java
