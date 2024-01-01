@@ -502,49 +502,54 @@ data:
     public E apply(final A a, final B b, final C c, final D d);\n\t}\n}\n\nfinal class\
     \ MyScanner {\n\tprivate final Scanner sc = new Scanner(System.in);\n\tfinal int\
     \ ni(){ return sc.nextInt(); }\n\tfinal long nl(){ return sc.nextLong(); }\n\t\
-    final double nd(){ return sc.nextDouble(); }\n\tfinal String ns(){ return sc.next();\
-    \ }\n\tfinal BigInteger nb(){ return sc.nextBigInteger(); }\n\tfinal int[] ni(final\
-    \ int n) {\n\t\tfinal int[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = ni());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\t\
-    final long[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\
-    \t\treturn a;\n\t}\n\tfinal double[] nd(final int n) {\n\t\tfinal double[] a =\
-    \ new double[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\treturn\
-    \ a;\n\t}\n\tfinal String[] ns(final int n) {\n\t\tfinal String[] a = new String[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal\
-    \ BigInteger[] nb(final int n) {\n\t\tfinal BigInteger[] a = new BigInteger[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal\
-    \ int[][] ni(final int h, final int w) {\n\t\tfinal int[][] a = new int[h][w];\n\
-    \t\tIntStream.range(0, h).forEach(i -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\t\
-    final long[][] nl(final int h, final int w) {\n\t\tfinal long[][] a = new long[h][w];\n\
-    \t\tIntStream.range(0, h).forEach(i -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\t\
-    final double[][] nd(final int h, final int w) {\n\t\tfinal double[][] a = new\
-    \ double[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] = nd(w));\n\t\treturn\
-    \ a;\n\t}\n\tfinal String[][] ns(final int h, final int w) {\n\t\tfinal String[][]\
-    \ a = new String[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] = ns(w));\n\
-    \t\treturn a;\n\t}\n\tfinal BigInteger[][] nb(final int h, final int w) {\n\t\t\
-    final BigInteger[][] a = new BigInteger[h][w];\n\t\tIntStream.range(0, h).forEach(i\
-    \ -> a[i] = nb(w));\n\t\treturn a;\n\t}\n\tfinal void close(){ sc.close(); }\n\
-    }\n\nfinal class MyPrinter extends PrintWriter {\n\tMyPrinter(final OutputStream\
-    \ os, final boolean flush){ super(os, flush); }\n\tfinal void out(){ println();\
-    \ }\n\tfinal void out(final Object head, final Object... tail) {\n\t\tprint(head);\n\
-    \t\tfor(final var el: tail) {\n\t\t\tprint(\" \" + el);\n\t\t}\n\t\tout();\n\t\
-    }\n\tfinal <F, S> void out(final Pair<F, S> arg){ println(arg.first + \" \" +\
-    \ arg.second); }\n\tfinal void out(final int[] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void\
-    \ out(final long[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i]\
-    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final double[]\
+    final double nd(){ return sc.nextDouble(); }\n\tfinal char nc(){ return ns().charAt(0);\
+    \ }\n\tfinal String ns(){ return sc.next(); }\n\tfinal BigInteger nb(){ return\
+    \ sc.nextBigInteger(); }\n\tfinal int[] ni(final int n) {\n\t\tfinal int[] a =\
+    \ new int[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ni());\n\t\treturn\
+    \ a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\tfinal long[] a = new long[n];\n\
+    \t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\treturn a;\n\t}\n\tfinal\
+    \ double[] nd(final int n) {\n\t\tfinal double[] a = new double[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal char[] nc(final int\
+    \ n) {\n\t\tfinal char[] a = new char[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal String[] ns(final int n) {\n\t\
+    \tfinal String[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i]\
+    \ = ns());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final int n) {\n\t\tfinal\
+    \ BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0, n).forEach(i ->\
+    \ a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final int h, final int\
+    \ w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final int h, final\
+    \ int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final int h, final\
+    \ int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
+    \ h).forEach(i -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\tfinal char[][] nc(final\
+    \ int h, final int w) {\n\t\tfinal char[][] a = new char[h][w];\n\t\tIntStream.range(0,\
+    \ h).forEach(i -> a[i] = nc(w));\n\t\treturn a;\n\t}\n\tfinal String[][] ns(final\
+    \ int h, final int w) {\n\t\tfinal String[][] a = new String[h][w];\n\t\tIntStream.range(0,\
+    \ h).forEach(i -> a[i] = ns(w));\n\t\treturn a;\n\t}\n\tfinal BigInteger[][] nb(final\
+    \ int h, final int w) {\n\t\tfinal BigInteger[][] a = new BigInteger[h][w];\n\t\
+    \tIntStream.range(0, h).forEach(i -> a[i] = nb(w));\n\t\treturn a;\n\t}\n\tfinal\
+    \ void close(){ sc.close(); }\n}\n\nfinal class MyPrinter extends PrintWriter\
+    \ {\n\tMyPrinter(final OutputStream os, final boolean flush){ super(os, flush);\
+    \ }\n\tfinal void out(){ println(); }\n\tfinal void out(final Object head, final\
+    \ Object... tail) {\n\t\tprint(head);\n\t\tfor(final var el: tail) {\n\t\t\tprint(\"\
+    \ \" + el);\n\t\t}\n\t\tout();\n\t}\n\tfinal <F, S> void out(final Pair<F, S>\
+    \ arg){ println(arg.first + \" \" + arg.second); }\n\tfinal void out(final int[]\
     \ args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 <\
-    \ args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final boolean[] args){\
-    \ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length\
-    \ ? \" \" : \"\\n\"))); }\n\tfinal void out(final char[] args){ IntStream.range(0,\
+    \ args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final long[] args){ IntStream.range(0,\
     \ args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\\
-    n\"))); }\n\tfinal void out(final Object[] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal <T>\
-    \ void out(final List<T> args){ IntStream.range(0, args.size()).forEach(i -> print(args.get(i)\
-    \ + (i + 1 < args.size() ? \" \" : \"\\n\"))); }\n\tfinal void outl(final Object\
-    \ head, final Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::println);\n\
-    \t}\n\tfinal void outl(final int[] args){ Arrays.stream(args).forEach(this::println);\
-    \ }\n\tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
+    n\"))); }\n\tfinal void out(final double[] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void\
+    \ out(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i]\
+    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final char[]\
+    \ args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 <\
+    \ args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final Object[] args){\
+    \ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length\
+    \ ? \" \" : \"\\n\"))); }\n\tfinal <T> void out(final List<T> args){ IntStream.range(0,\
+    \ args.size()).forEach(i -> print(args.get(i) + (i + 1 < args.size() ? \" \" :\
+    \ \"\\n\"))); }\n\tfinal void outl(final Object head, final Object... tail) {\n\
+    \t\tout(head);\n\t\tArrays.stream(tail).forEach(this::println);\n\t}\n\tfinal\
+    \ void outl(final int[] args){ Arrays.stream(args).forEach(this::println); }\n\
+    \tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final long[] args){ Arrays.stream(args).forEach(this::println);\
     \ }\n\tfinal void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final double[] args){ Arrays.stream(args).forEach(this::println);\
@@ -660,7 +665,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/all.java
-  timestamp: '2024-01-01 09:33:11+09:00'
+  timestamp: '2024-01-01 09:37:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java
