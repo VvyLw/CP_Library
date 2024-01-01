@@ -871,6 +871,21 @@ class Utility {
 	protected interface QuadFunction<A, B, C, D, E> {
 		public E apply(final A a, final B b, final C c, final D d);
 	}
+	protected interface RecursiveFunction<T, U> {
+		public U apply(final RecursiveFunction<T, U> rec, final T n);
+	}
+	protected interface RecursiveBiFunction<T, U, V> {
+		public V apply(final RecursiveBiFunction<T, U, V> rec, final T n, final U m);
+	}
+	protected interface RecursiveTriFunction<T, U, V, W> {
+		public W apply(final RecursiveTriFunction<T, U, V, W> rec, final T p, final U q, final V r);
+	}
+	protected interface RecursiveUnaryOperator<T> {
+		public T apply(final RecursiveUnaryOperator<T> rec, final T n);
+	}
+	protected interface RecursiveBinaryOperator<T> {
+		public T apply(final RecursiveBinaryOperator<T> rec, final T n);
+	}
 }
 
 final class MyScanner {
