@@ -169,11 +169,12 @@ data:
     \tprivate static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t@SuppressWarnings(\"\
     unused\")\n\tprivate static final int mod998 = 998244353;\n\t@SuppressWarnings(\"\
     unused\")\n\tprivate static final int mod107 = (int)1e9 + 7;\n\tstatic final void\
-    \ solve() {\n\t\tfinal int n = sc.ni();\n\t\tfinal var s = sc.ns().toCharArray();\n\
-    \t\tfinal char c = sc.nc();\n\t}\n}\nclass Utility {\n\tprotected static final\
-    \ String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static\
-    \ final String no(final boolean ok){ return yes(!ok); }\n\tprotected static final\
-    \ long sqr(final long x){ return x * x; }\n\tprotected static final long mod(final\
+    \ solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String yes(final\
+    \ boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String\
+    \ no(final boolean ok){ return yes(!ok); }\n\tprotected static final long sqr(final\
+    \ long x){ return x * x; }\n\tprotected static final int mod(final int n, final\
+    \ int m){ return (n + m) % m; }\n\tprotected static final int mod(final long n,\
+    \ final int m){ return (int) (n + m) % m; }\n\tprotected static final long mod(final\
     \ long n, final long m){ return (n + m) % m; }\n\tprotected static final long\
     \ ceil(final long a, final long b){ return (a - 1) / b + 1; }\n\tprotected static\
     \ final double round(final double a, final long b, final int c) {\n\t\tfinal long\
@@ -1351,7 +1352,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2024-01-01 11:04:48+09:00'
+  timestamp: '2024-01-01 11:06:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
