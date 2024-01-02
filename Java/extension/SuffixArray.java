@@ -13,7 +13,7 @@ final class SuffixArray extends ArrayList<Integer> {
 		this.vs = vs;
 		int[] newVS = new int[vs.length() + 1];
 		if(compress) {
-			final var xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());
+			final List<Integer> xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());
 			for(int i = 0; i < vs.length(); ++i) {
 				newVS[i] = Utility.lowerBound(xs, (int) vs.charAt(i)) + 1;
 			}
@@ -37,7 +37,7 @@ final class SuffixArray extends ArrayList<Integer> {
 		final Consumer<ArrayList<Integer>> inducedSort = (lms) -> {
 			final int upper = Arrays.stream(s).max().getAsInt();
 			int[] l = new int[upper + 2], r = new int[upper + 2];
-			for(final var v: s) {
+			for(final int v: s) {
 				++l[v + 1];
 				++r[v];
 			}
@@ -47,13 +47,13 @@ final class SuffixArray extends ArrayList<Integer> {
 			for(int i = lms.size(); --i >= 0;) {
 				ret[--r[s[lms.get(i)]]] = lms.get(i);
 			}
-			for(final var v: ret) {
+			for(final int v: ret) {
 				if(v >= 1 && isS[v - 1]) {
 					ret[l[s[v - 1]]++] = v - 1;
 				}
 			}
 			Arrays.fill(r, 0);
-			for(final var v: s) {
+			for(final int v: s) {
 				++r[v];
 			}
 			Arrays.parallelPrefix(r, (x, y) -> x + y);
@@ -138,7 +138,7 @@ final class SuffixArray extends ArrayList<Integer> {
 	final Pair<Integer, Integer> equalRange(final String t) {
 		final int low = lowerBound(t);
 		int ng = low - 1, ok = this.size();
-		var sb = new StringBuilder(t);
+		final StringBuilder sb = new StringBuilder(t);
 		sb.setCharAt(t.length() - 1, (char)(sb.charAt(sb.length() - 1) - 1));
 		final String u = sb.toString();
 		while(ok - ng > 1) {
@@ -184,7 +184,9 @@ final class SuffixArray extends ArrayList<Integer> {
 			for(int j = this.get(i); j < vs.length(); ++j) {
 				sb.append(" " + vs.charAt(j));
 			}
-			sb.append("\n");
+			if(i + 1 != this.size()) {
+				sb.append("\n");
+			}
 		}
 		return sb.toString();
 	}
