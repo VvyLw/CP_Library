@@ -906,18 +906,17 @@ data:
     \t\t\t\treturn p;\n\t\t\t\t}\n\t\t\t\tx = f.applyAsLong(x, st);\n\t\t\t\ty = f.applyAsLong(f.applyAsLong(y,\
     \ st), st);\n\t\t\t}\n\t\t}\n\t}\n\tfinal ArrayList<Long> primeFactor(final long\
     \ n) {\n\t\tif(n == 1) return new ArrayList<>();\n\t\tfinal long x = find(n);\n\
-    \t\tif(x == n) return new ArrayList<>(Arrays.asList(x));\n\t\tArrayList<Long>\
-    \ l = primeFactor(x);\n\t\tfinal ArrayList<Long> r = primeFactor(n / x);\n\t\t\
-    l.addAll(r);\n\t\tCollections.sort(l);\n\t\treturn l;\n\t}\n}\n// N > 1e18\nfinal\
-    \ class BigPrime {\n\tprotected final int bsf(final long x){ return Long.numberOfTrailingZeros(x);\
-    \ }\n\tprivate final BigInteger gcd(BigInteger a, BigInteger b) {\n\t\ta = a.abs();\n\
-    \t\tb = b.abs();\n\t\tif(a.equals(BigInteger.ZERO)) {\n\t\t\treturn b;\n\t\t}\n\
-    \t\tif(b.equals(BigInteger.ZERO)) {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int shift\
-    \ = bsf(a.or(b).longValue());\n\t\ta = a.shiftRight(bsf(a.longValue()));\n\t\t\
-    do {\n\t\t\tb = b.shiftRight(bsf(b.longValue()));\n\t\t\tif(a.compareTo(b) > 0)\
-    \ {\n\t\t\t\tfinal BigInteger tmp = b;\n\t\t\t\tb = a;\n\t\t\t\ta = tmp;\n\t\t\
-    \t}\n\t\t\tb = b.subtract(a);\n\t\t} while(b.compareTo(BigInteger.ZERO) > 0);\n\
-    \t\treturn a.shiftLeft(shift);\n\t}\n\tfinal boolean isPrime(final BigInteger\
+    \t\tif(x == n) return new ArrayList<>(Arrays.asList(x));\n\t\tfinal ArrayList<Long>\
+    \ l = primeFactor(x), r = primeFactor(n / x);\n\t\tl.addAll(r);\n\t\tCollections.sort(l);\n\
+    \t\treturn l;\n\t}\n}\n// N > 1e18\nfinal class BigPrime {\n\tprotected final\
+    \ int bsf(final long x){ return Long.numberOfTrailingZeros(x); }\n\tprivate final\
+    \ BigInteger gcd(BigInteger a, BigInteger b) {\n\t\ta = a.abs();\n\t\tb = b.abs();\n\
+    \t\tif(a.equals(BigInteger.ZERO)) {\n\t\t\treturn b;\n\t\t}\n\t\tif(b.equals(BigInteger.ZERO))\
+    \ {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int shift = bsf(a.or(b).longValue());\n\
+    \t\ta = a.shiftRight(bsf(a.longValue()));\n\t\tdo {\n\t\t\tb = b.shiftRight(bsf(b.longValue()));\n\
+    \t\t\tif(a.compareTo(b) > 0) {\n\t\t\t\tfinal BigInteger tmp = b;\n\t\t\t\tb =\
+    \ a;\n\t\t\t\ta = tmp;\n\t\t\t}\n\t\t\tb = b.subtract(a);\n\t\t} while(b.compareTo(BigInteger.ZERO)\
+    \ > 0);\n\t\treturn a.shiftLeft(shift);\n\t}\n\tfinal boolean isPrime(final BigInteger\
     \ n) {\n\t\tif(n.compareTo(BigInteger.ONE) <= 0) {\n\t\t\treturn false;\n\t\t\
     }\n\t\tif(n.equals(BigInteger.TWO)) {\n\t\t\treturn true;\n\t\t}\n\t\tif(n.and(BigInteger.ONE).equals(BigInteger.valueOf(0)))\
     \ {\n\t\t\treturn false;\n\t\t}\n\t\tBigInteger d = n.subtract(BigInteger.ONE);\n\
@@ -1101,35 +1100,35 @@ data:
     \ String toString() { \n\t\tStringBuilder sb = new StringBuilder();\n\t\tfor(int\
     \ i = 0; i < this.size(); ++i) {\n\t\t\tsb.append(i + \":[\" + this.get(i) + \"\
     ]\");\n\t\t\tfor(int j = this.get(i); j < vs.length(); ++j) {\n\t\t\t\tsb.append(\"\
-    \ \" + vs.charAt(j));\n\t\t\t}\n\t\t\tsb.append(\"\\n\");\n\t\t}\n\t\treturn sb.toString();\n\
-    \t}\n}\n\nfinal class DoubleEndedPriorityQueue<T extends Number> {\n\tprivate\
-    \ final ArrayList<T> d;\n\tDoubleEndedPriorityQueue(final ArrayList<T> d) {\n\t\
-    \tthis.d = d;\n\t\tmakeHeap();\n\t}\n\tprivate final void makeHeap() {\n\t\tfor(int\
-    \ i = d.size(); i-- > 0;) {\n\t\t\tif (i % 2 == 1 && d.get(i - 1).longValue()\
-    \ < d.get(i).longValue()) {\n\t\t\t\tCollections.swap(d, i - 1, i);\n\t\t\t}\n\
-    \t\t\tup(down(i), i);\n\t\t}\n\t}\n\tprivate final int down(int k) {\n\t\tfinal\
-    \ int n = d.size();\n\t\tif(k % 2 == 1) {\n\t\t\twhile(2 * k + 1 < n) {\n\t\t\t\
-    \tint c = 2 * k + 3;\n\t\t\t\tif(n <= c || d.get(c - 2).longValue() < d.get(c).longValue())\
-    \ {\n\t\t\t\t\t c -= 2;\n\t\t\t\t}\n\t\t\t\tif(c < n && d.get(c).longValue() <\
-    \ d.get(k).longValue()) {\n\t\t\t\t\tCollections.swap(d, k, c);\n\t\t\t\t\tk =\
-    \ c;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t} else\
-    \ {\n\t\t\twhile(2 * k + 2 < n) {\n\t\t\t\tint c = 2 * k + 4;\n\t\t\t\tif(n <=\
-    \ c || d.get(c).longValue() < d.get(c - 2).longValue()) {\n\t\t\t\t\tc -= 2;\n\
-    \t\t\t\t}\n\t\t\t\tif(c < n && d.get(k).longValue() < d.get(c).longValue()) {\n\
-    \t\t\t\t\tCollections.swap(d, k, c);\n\t\t\t\t\tk = c;\n\t\t\t\t}\n\t\t\t\telse\
-    \ {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn k;\n\t}\n\tprivate\
-    \ final int up(int k, final int root) {\n\t\tif((k | 1) < d.size() && d.get(k\
-    \ & ~1).longValue() < d.get(k | 1).longValue()) {\n\t\t\tCollections.swap(d, k\
-    \ & ~1, k | 1);\n\t\t\tk ^= 1;\n\t\t}\n\t\tint p;\n\t\twhile(root < k && d.get(p\
-    \ = parent(k)).longValue() < d.get(k).longValue()) {\n\t\t\tCollections.swap(d,\
-    \ p, k);\n\t\t\tk = p;\n\t\t}\n\t\twhile(root < k && d.get(k).longValue() < d.get(p\
-    \ = parent(k) | 1).longValue()) {\n\t\t\tCollections.swap(d, p, k);\n\t\t\tk =\
-    \ p;\n\t\t}\n\t\treturn k;\n\t}\n\tprivate final int parent(final int k){ return\
-    \ ((k >> 1) - 1) & ~1; }\n\tprivate final void popBack(final ArrayList<T> d){\
-    \ d.remove(d.size() - 1); } \n\tfinal void push(final T x) {\n\t\tfinal int k\
-    \ = d.size();\n\t\td.add(x);\n\t\tup(k, 1);\n\t}\n\tfinal T popMin() {\n\t\tfinal\
-    \ T res = getMin();\n\t\tif(d.size() < 3) {\n\t\t\tpopBack(d); \n\t\t} else {\n\
-    \t\t\tCollections.swap(d, 1, d.size() - 1);\n\t\t\tpopBack(d);\n\t\t\tup(down(1),\
+    \ \" + vs.charAt(j));\n\t\t\t}\n\t\t\tif(i + 1 != this.size()) {\n\t\t\t\tsb.append(\"\
+    \\n\");\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nfinal class DoubleEndedPriorityQueue<T\
+    \ extends Number> {\n\tprivate final ArrayList<T> d;\n\tDoubleEndedPriorityQueue(final\
+    \ ArrayList<T> d) {\n\t\tthis.d = d;\n\t\tmakeHeap();\n\t}\n\tprivate final void\
+    \ makeHeap() {\n\t\tfor(int i = d.size(); i-- > 0;) {\n\t\t\tif (i % 2 == 1 &&\
+    \ d.get(i - 1).longValue() < d.get(i).longValue()) {\n\t\t\t\tCollections.swap(d,\
+    \ i - 1, i);\n\t\t\t}\n\t\t\tup(down(i), i);\n\t\t}\n\t}\n\tprivate final int\
+    \ down(int k) {\n\t\tfinal int n = d.size();\n\t\tif(k % 2 == 1) {\n\t\t\twhile(2\
+    \ * k + 1 < n) {\n\t\t\t\tint c = 2 * k + 3;\n\t\t\t\tif(n <= c || d.get(c - 2).longValue()\
+    \ < d.get(c).longValue()) {\n\t\t\t\t\t c -= 2;\n\t\t\t\t}\n\t\t\t\tif(c < n &&\
+    \ d.get(c).longValue() < d.get(k).longValue()) {\n\t\t\t\t\tCollections.swap(d,\
+    \ k, c);\n\t\t\t\t\tk = c;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\
+    \t}\n\t\t\t}\n\t\t} else {\n\t\t\twhile(2 * k + 2 < n) {\n\t\t\t\tint c = 2 *\
+    \ k + 4;\n\t\t\t\tif(n <= c || d.get(c).longValue() < d.get(c - 2).longValue())\
+    \ {\n\t\t\t\t\tc -= 2;\n\t\t\t\t}\n\t\t\t\tif(c < n && d.get(k).longValue() <\
+    \ d.get(c).longValue()) {\n\t\t\t\t\tCollections.swap(d, k, c);\n\t\t\t\t\tk =\
+    \ c;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
+    \t\treturn k;\n\t}\n\tprivate final int up(int k, final int root) {\n\t\tif((k\
+    \ | 1) < d.size() && d.get(k & ~1).longValue() < d.get(k | 1).longValue()) {\n\
+    \t\t\tCollections.swap(d, k & ~1, k | 1);\n\t\t\tk ^= 1;\n\t\t}\n\t\tint p;\n\t\
+    \twhile(root < k && d.get(p = parent(k)).longValue() < d.get(k).longValue()) {\n\
+    \t\t\tCollections.swap(d, p, k);\n\t\t\tk = p;\n\t\t}\n\t\twhile(root < k && d.get(k).longValue()\
+    \ < d.get(p = parent(k) | 1).longValue()) {\n\t\t\tCollections.swap(d, p, k);\n\
+    \t\t\tk = p;\n\t\t}\n\t\treturn k;\n\t}\n\tprivate final int parent(final int\
+    \ k){ return ((k >> 1) - 1) & ~1; }\n\tprivate final void popBack(final ArrayList<T>\
+    \ d){ d.remove(d.size() - 1); } \n\tfinal void push(final T x) {\n\t\tfinal int\
+    \ k = d.size();\n\t\td.add(x);\n\t\tup(k, 1);\n\t}\n\tfinal T popMin() {\n\t\t\
+    final T res = getMin();\n\t\tif(d.size() < 3) {\n\t\t\tpopBack(d); \n\t\t} else\
+    \ {\n\t\t\tCollections.swap(d, 1, d.size() - 1);\n\t\t\tpopBack(d);\n\t\t\tup(down(1),\
     \ 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal T popMax() {\n\t\tfinal T res = getMax();\n\
     \t\tif(d.size() < 2) { \n\t\t\tpopBack(d);\n\t\t} else {\n\t\t\tCollections.swap(d,\
     \ 0, d.size() - 1);\n\t\t\tpopBack(d);\n\t\t\tup(down(0), 1);\n\t\t}\n\t\treturn\
@@ -1379,7 +1378,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2024-01-03 04:02:24+09:00'
+  timestamp: '2024-01-03 04:03:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
