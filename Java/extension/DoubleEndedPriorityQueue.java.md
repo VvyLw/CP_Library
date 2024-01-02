@@ -170,14 +170,14 @@ data:
     \ int k){ return ((k >> 1) - 1) & ~1; }\n\tprivate final void popBack(final ArrayList<T>\
     \ d){ d.remove(d.size() - 1); } \n\tfinal void push(final T x) {\n\t\tfinal int\
     \ k = d.size();\n\t\td.add(x);\n\t\tup(k, 1);\n\t}\n\tfinal T popMin() {\n\t\t\
-    final var res = getMin();\n\t\tif(d.size() < 3) {\n\t\t\tpopBack(d); \n\t\t} else\
+    final T res = getMin();\n\t\tif(d.size() < 3) {\n\t\t\tpopBack(d); \n\t\t} else\
     \ {\n\t\t\tCollections.swap(d, 1, d.size() - 1);\n\t\t\tpopBack(d);\n\t\t\tup(down(1),\
-    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal T popMax() {\n\t\tfinal var res =\
-    \ getMax();\n\t\tif(d.size() < 2) { \n\t\t\tpopBack(d);\n\t\t} else {\n\t\t\t\
-    Collections.swap(d, 0, d.size() - 1);\n\t\t\tpopBack(d);\n\t\t\tup(down(0), 1);\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tfinal T getMin(){ return d.size() < 2 ? d.get(0)\
-    \ : d.get(1); }\n\tfinal T getMax(){ return d.get(0); }\n\tfinal int size(){ return\
-    \ d.size(); }\n\tfinal boolean isEmpty(){ return d.isEmpty(); }\n}"
+    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal T popMax() {\n\t\tfinal T res = getMax();\n\
+    \t\tif(d.size() < 2) { \n\t\t\tpopBack(d);\n\t\t} else {\n\t\t\tCollections.swap(d,\
+    \ 0, d.size() - 1);\n\t\t\tpopBack(d);\n\t\t\tup(down(0), 1);\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\tfinal T getMin(){ return d.size() < 2 ? d.get(0) : d.get(1); }\n\
+    \tfinal T getMax(){ return d.get(0); }\n\tfinal int size(){ return d.size(); }\n\
+    \tfinal boolean isEmpty(){ return d.isEmpty(); }\n}\n"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -226,7 +226,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2024-01-03 03:57:59+09:00'
+  timestamp: '2024-01-03 03:59:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/DoubleEndedPriorityQueue.java
