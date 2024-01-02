@@ -81,11 +81,11 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		q.add(v);
 		while(!q.isEmpty()) {
 			final int tmp = q.poll();
-			for(final var el: this.get(tmp)) {
+			for(final Edge el: this.get(tmp)) {
 				if(d[el.to] != -1) {
 					continue;
 				}
-				d[el.to]=d[tmp]+1;
+				d[el.to] = d[tmp] + 1;
 				q.add(el.to);
 			}
 		}
@@ -95,21 +95,21 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 	protected final ArrayList<Integer> topologicalSort() {
 		final int[] deg = new int[n];
 		for(int i = 0; i < n; ++i) {
-			for(final var ed: this.get(i)) {
+			for(final Edge ed: this.get(i)) {
 				deg[ed.to]++;
 			}
 		}
-		final var sk = new Stack<Integer>();
+		final Stack<Integer> sk = new Stack<>();
 		for(int i = 0; i < n; ++i) {
 			if(deg[i] == 0) {
 				sk.add(i);
 			}
 		}
-		final var ord = new ArrayList<Integer>();
+		final ArrayList<Integer> ord = new ArrayList<>();
 		while(!sk.isEmpty()) {
-			final var tmp = sk.pop();
+			final int tmp = sk.pop();
 			ord.add(tmp);
-			for(final var ed: this.get(tmp)) {
+			for(final Edge ed: this.get(tmp)) {
 				if(--deg[ed.to] == 0) {
 					sk.add(ed.to);
 				}
