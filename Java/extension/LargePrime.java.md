@@ -173,20 +173,19 @@ data:
     \t\t\t\treturn p;\n\t\t\t\t}\n\t\t\t\tx = f.applyAsLong(x, st);\n\t\t\t\ty = f.applyAsLong(f.applyAsLong(y,\
     \ st), st);\n\t\t\t}\n\t\t}\n\t}\n\tfinal ArrayList<Long> primeFactor(final long\
     \ n) {\n\t\tif(n == 1) return new ArrayList<>();\n\t\tfinal long x = find(n);\n\
-    \t\tif(x == n) return new ArrayList<>(Arrays.asList(x));\n\t\tArrayList<Long>\
-    \ l = primeFactor(x);\n\t\tfinal ArrayList<Long> r = primeFactor(n / x);\n\t\t\
-    l.addAll(r);\n\t\tCollections.sort(l);\n\t\treturn l;\n\t}\n}\n// N > 1e18\nfinal\
-    \ class BigPrime {\n\tprotected final int bsf(final long x){ return Long.numberOfTrailingZeros(x);\
-    \ }\n\tprivate final BigInteger gcd(BigInteger a, BigInteger b) {\n\t\ta = a.abs();\n\
-    \t\tb = b.abs();\n\t\tif(a.equals(BigInteger.ZERO)) {\n\t\t\treturn b;\n\t\t}\n\
-    \t\tif(b.equals(BigInteger.ZERO)) {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int shift\
-    \ = bsf(a.or(b).longValue());\n\t\ta = a.shiftRight(bsf(a.longValue()));\n\t\t\
-    do {\n\t\t\tb = b.shiftRight(bsf(b.longValue()));\n\t\t\tif(a.compareTo(b) > 0)\
-    \ {\n\t\t\t\tfinal var tmp = b;\n\t\t\t\tb = a;\n\t\t\t\ta = tmp;\n\t\t\t}\n\t\
-    \t\tb = b.subtract(a);\n\t\t} while(b.compareTo(BigInteger.ZERO) > 0);\n\t\treturn\
-    \ a.shiftLeft(shift);\n\t}\n\tfinal boolean isPrime(final BigInteger n) {\n\t\t\
-    if(n.compareTo(BigInteger.ONE) <= 0) {\n\t\t\treturn false;\n\t\t}\n\t\tif(n.equals(BigInteger.TWO))\
-    \ {\n\t\t\treturn true;\n\t\t}\n\t\tif(n.and(BigInteger.ONE).equals(BigInteger.valueOf(0)))\
+    \t\tif(x == n) return new ArrayList<>(Arrays.asList(x));\n\t\tfinal ArrayList<Long>\
+    \ l = primeFactor(x), r = primeFactor(n / x);\n\t\tl.addAll(r);\n\t\tCollections.sort(l);\n\
+    \t\treturn l;\n\t}\n}\n// N > 1e18\nfinal class BigPrime {\n\tprotected final\
+    \ int bsf(final long x){ return Long.numberOfTrailingZeros(x); }\n\tprivate final\
+    \ BigInteger gcd(BigInteger a, BigInteger b) {\n\t\ta = a.abs();\n\t\tb = b.abs();\n\
+    \t\tif(a.equals(BigInteger.ZERO)) {\n\t\t\treturn b;\n\t\t}\n\t\tif(b.equals(BigInteger.ZERO))\
+    \ {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int shift = bsf(a.or(b).longValue());\n\
+    \t\ta = a.shiftRight(bsf(a.longValue()));\n\t\tdo {\n\t\t\tb = b.shiftRight(bsf(b.longValue()));\n\
+    \t\t\tif(a.compareTo(b) > 0) {\n\t\t\t\tfinal BigInteger tmp = b;\n\t\t\t\tb =\
+    \ a;\n\t\t\t\ta = tmp;\n\t\t\t}\n\t\t\tb = b.subtract(a);\n\t\t} while(b.compareTo(BigInteger.ZERO)\
+    \ > 0);\n\t\treturn a.shiftLeft(shift);\n\t}\n\tfinal boolean isPrime(final BigInteger\
+    \ n) {\n\t\tif(n.compareTo(BigInteger.ONE) <= 0) {\n\t\t\treturn false;\n\t\t\
+    }\n\t\tif(n.equals(BigInteger.TWO)) {\n\t\t\treturn true;\n\t\t}\n\t\tif(n.and(BigInteger.ONE).equals(BigInteger.valueOf(0)))\
     \ {\n\t\t\treturn false;\n\t\t}\n\t\tBigInteger d = n.subtract(BigInteger.ONE);\n\
     \t\twhile(d.and(BigInteger.ONE).equals(BigInteger.valueOf(0))) {\n\t\t\td = d.shiftRight(1);\n\
     \t\t}\n\t\tfinal long[] sample = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};\n\
@@ -209,9 +208,9 @@ data:
     \t\t}\n\t\t}\n\t}\n\tfinal ArrayList<BigInteger> primeFactor(final BigInteger\
     \ n) {\n\t\tif(n.equals(BigInteger.ONE)) {\n\t\t\treturn new ArrayList<>();\n\t\
     \t}\n\t\tfinal BigInteger x = find(n);\n\t\tif(x.equals(n)) {\n\t\t\treturn new\
-    \ ArrayList<>(Arrays.asList(x));\n\t\t}\n\t\tvar l = primeFactor(x);\n\t\tfinal\
-    \ var r = primeFactor(n.divide(x));\n\t\tl.addAll(r);\n\t\tCollections.sort(l);\n\
-    \t\treturn l;\n\t}\n}"
+    \ ArrayList<>(Arrays.asList(x));\n\t\t}\n\t\tfinal ArrayList<BigInteger> l = primeFactor(x),\
+    \ r = primeFactor(n.divide(x));\n\t\tl.addAll(r);\n\t\tCollections.sort(l);\n\t\
+    \treturn l;\n\t}\n}\n"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -260,7 +259,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2024-01-03 03:52:24+09:00'
+  timestamp: '2024-01-03 03:54:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/LargePrime.java
