@@ -26,7 +26,7 @@ final class Main {
 }
 
 final class VvyLw extends Utility {
-	static final MyScanner sc = new MyScanner();
+	static final MyScanner sc = new MyScanner(System.in);
 	static final MyPrinter o = new MyPrinter(System.out, false);
 	static final MyPrinter dbg = new MyPrinter(System.err, true);
 	static final Huitloxopetl why = new Huitloxopetl();
@@ -247,7 +247,7 @@ class Utility {
 		return null;
 	}
 	protected static final String nextPerm(final String s) {
-		final var a = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
+		final List<Character> a = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
 		for(int i = a.size(); --i > 0;) {
 			if(a.get(i - 1).compareTo(a.get(i)) < 0) {
 				final int j = find(a.get(i - 1), a, i, a.size() - 1);
@@ -292,7 +292,7 @@ class Utility {
 		return null;
 	}
 	protected static final String prevPerm(final String s) {
-		var a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
+		final List<Character> a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
 		for(int i = a.size(); --i > 0;) {
 			if(a.get(i - 1).compareTo(a.get(i)) > 0) {
 				final int j = findRev(a.get(i - 1), a, i, a.size() - 1);
@@ -509,7 +509,7 @@ class Utility {
 		return b;
 	}
 	protected static final int[] rotate(final int[] a, final int id) {
-		final var t = Arrays.stream(a).boxed().collect(Collectors.toList());
+		final List<Integer> t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
 		final int[] res = new int[a.length];
 		for(int i = 0; i < a.length; ++i) {
@@ -518,7 +518,7 @@ class Utility {
 		return res;
 	}
 	protected static final long[] rotate(final long[] a, final int id) {
-		final var t = Arrays.stream(a).boxed().collect(Collectors.toList());
+		final List<Long> t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
 		final long[] res = new long[a.length];
 		for(int i = 0; i < a.length; ++i) {
@@ -527,7 +527,7 @@ class Utility {
 		return res;
 	}
 	protected static final double[] rotate(final double[] a, final int id) {
-		final var t = Arrays.stream(a).boxed().collect(Collectors.toList());
+		final List<Double> t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
 		final double[] res = new double[a.length];
 		for(int i = 0; i < a.length; ++i) {
@@ -536,7 +536,7 @@ class Utility {
 		return res;
 	}
 	protected static final String rotate(final String s, final int id) {
-		final var t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
+		final List<Character> t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
 		Collections.rotate(t, id);
 		return t.stream().map(i -> i.toString()).collect(Collectors.joining());
 	}
@@ -623,7 +623,7 @@ class Utility {
 		a[i] ^= a[j];
 	}
 	protected static final void swap(final double[] a, final int i, final int j) {
-		final var tmp = a[i];
+		final double tmp = a[i];
 		a[i] = a[j];
 		a[j] = tmp;
 	}
@@ -638,49 +638,49 @@ class Utility {
 		a[i] ^= a[j];
 	}
 	protected static final void swap(final Object[] a, final int i, final int j) {
-		final var tmp = a[i];
+		final Object tmp = a[i];
 		a[i] = a[j];
 		a[j] = tmp;
 	}
 	protected static final void swap(final int[] a, final int[] b) {
 		assert a.length == b.length;
 		final int n = a.length;
-		final var c = a.clone();
+		final int[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final long[] a, final long[] b) {
 		assert a.length == b.length;
 		final int n = a.length;
-		final var c = a.clone();
+		final long[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final double[] a, final double[] b) {
 		assert a.length == b.length;
 		final int n = a.length;
-		final var c = a.clone();
+		final double[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final char[] a, final char[] b) {
 		assert a.length == b.length;
 		final int n = a.length;
-		final var c = a.clone();
+		final char[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final boolean[] a, final boolean[] b) {
 		assert a.length == b.length;
 		final int n = a.length;
-		final var c = a.clone();
+		final boolean[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final Object[] a, final Object[] b) {
 		assert a.length == b.length;
 		final int n = a.length;
-		final var c = a.clone();
+		final Object[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
@@ -726,7 +726,7 @@ class Utility {
 	}
 	protected static final int[] press(final int[] a) {
 		final int[] res = new int[a.length];
-		final var x = Arrays.stream(a).sorted().distinct().toArray();
+		final int[] x = Arrays.stream(a).sorted().distinct().toArray();
 		for(int i = 0; i < a.length; ++i) {
 			res[i] = lowerBound(x, a[i]);
 		}
@@ -734,7 +734,7 @@ class Utility {
 	}
 	protected static final int[] press(final long[] a) {
 		final int[] res = new int[a.length];
-		final var x = Arrays.stream(a).sorted().distinct().toArray();
+		final long[] x = Arrays.stream(a).sorted().distinct().toArray();
 		for(int i = 0; i < a.length; ++i) {
 			res[i] = lowerBound(x, a[i]);
 		}
@@ -769,7 +769,7 @@ class Utility {
 			for(int i = n; --i >= 0;) {
 				s[2 * i] = s_.charAt(i);
 			}
-			final var d = Collections.min(s_.chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
+			final char d = Collections.min(s_.chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
 			for(int i = 0; i < n - 1; ++i) {
 				s[2 * i + 1] = d;
 			}
@@ -799,7 +799,7 @@ class Utility {
 				}
 			}
 		} else {
-			for(var x: rad) {
+			for(int x: rad) {
 				x = 2 * x - 1;
 			}
 		}
@@ -844,8 +844,8 @@ class Utility {
 		if(b == 2) {
 			return pow(a, a, m);
 		}
-		final var phi = eulerPhi(m);
-		var tmp = tetration(a, b - 1, phi);
+		final long phi = eulerPhi(m);
+		long tmp = tetration(a, b - 1, phi);
 		if(tmp == 0) {
 			tmp += phi;
 		}
@@ -870,18 +870,61 @@ class Utility {
 		public T apply(final RecursiveUnaryOperator<T> rec, final T n);
 	}
 	protected interface RecursiveBinaryOperator<T> {
-		public T apply(final RecursiveBinaryOperator<T> rec, final T n);
+		public T apply(final RecursiveBinaryOperator<T> rec, final T a, final T b);
 	}
 }
 
 final class MyScanner {
-	private final Scanner sc = new Scanner(System.in);
-	final int ni(){ return sc.nextInt(); }
-	final long nl(){ return sc.nextLong(); }
-	final double nd(){ return sc.nextDouble(); }
-	final char nc(){ return ns().charAt(0); }
-	final String ns(){ return sc.next(); }
-	final BigInteger nb(){ return sc.nextBigInteger(); }
+	private final int sz = 1 << 17;
+	private int pos = 0, lim = 0;
+	private final char[] buf = new char[sz];
+	private final BufferedReader br;
+	MyScanner(final InputStream is){ br = new BufferedReader(new InputStreamReader(is), sz); }
+	private final boolean isPunct(final char c){ return !Utility.scope(33, c, 126); }
+	private final boolean isNum(final char c){ return Utility.scope('0', c, '9'); }
+	private final char read() {
+		if(pos == lim) {
+			do {
+				try {
+					lim = br.read(buf, pos = 0, sz);
+				} catch(IOException e) {
+					e.printStackTrace();
+					System.exit(1);
+				}
+			} while(lim == -1);
+		}
+		return buf[pos++];
+	}
+	final char nc() {
+		char c;
+		while(isPunct(c = read())){}
+		return c;
+	}
+	final int ni(){ return Math.toIntExact(nl()); }
+	final long nl() {
+		char c = nc();
+		final boolean neg = c == '-';
+		if(neg) {
+			c = read();
+		}
+		assert(isNum(c));
+		long res = c - '0';
+		while(isNum(c = read())) {
+			res = 10 * res + c - '0';
+		}
+		return neg ? -res : res;
+	}
+	final double nd(){ return Double.parseDouble(ns()); }
+	final String ns() {
+		final StringBuilder sb = new StringBuilder();
+		char c = nc();
+		while(!isPunct(c)) {
+			sb.append(c);
+			c = read();
+		}
+		return sb.toString();
+	}
+	final BigInteger nb(){ return new BigInteger(ns()); }
 	final int[] ni(final int n) {
 		final int[] a = new int[n];
 		IntStream.range(0, n).forEach(i -> a[i] = ni());
@@ -942,7 +985,22 @@ final class MyScanner {
 		IntStream.range(0, h).forEach(i -> a[i] = nb(w));
 		return a;
 	}
-	final void close(){ sc.close(); }
+	final String line() {
+		final StringBuilder sb = new StringBuilder();
+		char c;
+		while((c = read()) != '\n') {
+			sb.append(c);
+		}
+		return sb.toString();
+	}
+	final void close() {
+		try {
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+	}
 }
 
 final class MyPrinter extends PrintWriter {
