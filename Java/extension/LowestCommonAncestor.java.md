@@ -152,7 +152,7 @@ data:
     \ = new int[log][n];\n\t\tIntStream.range(0, log).forEach(i -> Arrays.fill(table[i],\
     \ -1));\n\t\tbuild();\n\t}\n\tprivate final void dfs(final int idx, final int\
     \ par, final int d) {\n\t\ttable[0][idx] = par;\n\t\tdep[idx] = d;\n\t\tfor(final\
-    \ var el: g.get(idx)) {\n\t\t\tif(el.to != par) {\n\t\t\t\tsum[el.to] = (int)\
+    \ Edge el: g.get(idx)) {\n\t\t\tif(el.to != par) {\n\t\t\t\tsum[el.to] = (int)\
     \ (sum[idx] + el.cost); \n\t\t\t\tdfs(el.to, idx, d + 1);\n\t\t\t}\n\t\t}\n\t\
     }\n\tprivate final void build() {\n\t\tdfs(0, -1, 0);\n\t\tfor(int k = 0; k <\
     \ log - 1; ++k) {\n\t\t\tfor(int i = 0; i < table[k].length; ++i) {\n\t\t\t\t\
@@ -166,7 +166,7 @@ data:
     \ k) {\n\t\tif(dep[u] < k) {\n\t\t\treturn -1;\n\t\t}\n\t\tfor(int i = log; --i\
     \ >= 0;) {\n\t\t\tif(((k >> i) % 2) == 1) {\n\t\t\t\tu = table[i][u];\n\t\t\t\
     }\n\t\t}\n\t\treturn u;\n\t}\n\tfinal int dist(final int u, final int v){ return\
-    \ sum[u] + sum[v] - 2 * sum[query(u, v)]; }\n}"
+    \ sum[u] + sum[v] - 2 * sum[query(u, v)]; }\n}\n"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -215,7 +215,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2024-01-03 03:51:40+09:00'
+  timestamp: '2024-01-03 03:52:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/LowestCommonAncestor.java
