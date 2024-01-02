@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.function.Function;
+import java.util.function.IntUnaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -37,11 +37,11 @@ final class WeightedGraph extends Graph {
 		cost[v] = 0;
 		dj.add(new NumPair(cost[v], v));
 		while(!dj.isEmpty()) {
-			final var tmp = dj.poll();
+			final NumPair tmp = dj.poll();
 			if(cost[tmp.second.intValue()] < tmp.first.longValue()) {
 				continue;
 			}
-			for(final var el: this.get(tmp.second.intValue())) {
+			for(final Edge el: this.get(tmp.second.intValue())) {
 				if(cost[el.to] > tmp.first.longValue() + el.cost) {
 					cost[el.to] = tmp.first.longValue() + el.cost;
 					dj.add(new NumPair(cost[el.to], el.to));
@@ -55,14 +55,16 @@ final class WeightedGraph extends Graph {
 		Arrays.fill(cost, Long.MAX_VALUE);
 		cost[v] = 0;
 		for(int i = 0; i < edge.size() - 1; ++i) {
-			for(final var e: edge) {
+			for(final Edge e: edge) {
 				if(cost[e.src] == Long.MAX_VALUE) {
 					continue;
 				}
-				cost[e.to] = Math.min(cost[e.to], cost[e.src] + e.cost);
+				if(cost[e.to] > cost[e.src] + e.cost) {
+					cost[e.to] = cost[e.src] + e.cost;
+				}
 			}
 		}
-		for(final var e: edge) {
+		for(final Edge e: edge) {
 			if(cost[e.src] == Long.MAX_VALUE) {
 				continue;
 			}
@@ -74,16 +76,19 @@ final class WeightedGraph extends Graph {
 	}
 	final long[][] warshallFloyd() {
 		final long[][] cost = new long[n][n];
-		IntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], Long.MAX_VALUE));
+		IntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], VvyLw.linf));
 		IntStream.range(0, n).forEach(i -> cost[i][i] = 0);
 		for(int i = 0; i < n; ++i) {
-			for(final var j: this.get(i)) {
+			for(final Edge j: this.get(i)) {
 				cost[i][j.to] = j.cost;
 			}
 		}
 		for(int k = 0; k < n; ++k) {
 			for(int i = 0; i < n; ++i) {
 				for(int j = 0; j < n; ++j) {
+					if(cost[i][k] == VvyLw.linf || cost[k][j] == VvyLw.linf) {
+						continue;
+					}
 					if(cost[i][j] > cost[i][k] + cost[k][j]) {
 						cost[i][j] = cost[i][k] + cost[k][j];
 					}
@@ -94,9 +99,9 @@ final class WeightedGraph extends Graph {
 	}
 	final MST kruskal() {
 		final UnionFind uf = new UnionFind(n);
-		final var e = new ArrayList<Edge>();
+		final ArrayList<Edge> e = new ArrayList<>();
 		long res = 0;
-		for(final var ed: edge.stream().sorted(Comparator.comparing(ed -> ed.cost)).collect(Collectors.toList())) {
+		for(final Edge ed: edge.stream().sorted(Comparator.comparing(ed -> ed.cost)).collect(Collectors.toList())) {
 			if(uf.unite(ed.src, ed.to)) {
 				e.add(ed);
 				res += ed.cost;
@@ -106,7 +111,7 @@ final class WeightedGraph extends Graph {
 	}
 	final MST directed(final int v) {
 		@SuppressWarnings("unchecked")
-		final var ed = (ArrayList<Edge>) edge.clone();
+		final ArrayList<Edge> ed = (ArrayList<Edge>) edge.clone();
 		for(int i = 0; i < n; ++i) {
 			if(i != v) {
 				ed.add(new Edge(i, v, 0));
@@ -117,21 +122,21 @@ final class WeightedGraph extends Graph {
 		Arrays.fill(par, -1);
 		Arrays.fill(vis, -1);
 		Arrays.fill(link, -1);
-		final var heap = new SkewHeap(true);
-		final var ins = new SkewHeap.Node[2 * n];
+		final SkewHeap heap = new SkewHeap(true);
+		final SkewHeap.Node[] ins = new SkewHeap.Node[2 * n];
 		Arrays.fill(ins, null);
 		for(int i = 0; i < ed.size(); i++) {
-			final var e = ed.get(i);
+			final Edge e = ed.get(i);
 			ins[e.to] = heap.push(ins[e.to], e.cost, i);
 		}
-		final var st = new ArrayList<Integer>();
-		final Function<Integer, Integer> go = z -> {
+		final ArrayList<Integer> st = new ArrayList<>();
+		final IntUnaryOperator go = z -> {
 			z = ed.get(ins[z].idx).src;
 			while(link[z] != -1) {
 				st.add(z);
 				z = link[z];
 			}
-			for(final var p: st) {
+			for(final int p: st) {
 				link[p] = z;
 			}
 			st.clear();
@@ -140,18 +145,18 @@ final class WeightedGraph extends Graph {
 		for(int i = n; ins[x] != null; ++i) {
 			while(vis[x] == -1) {
 				vis[x] = 0;
-				x = go.apply(x);
+				x = go.applyAsInt(x);
 			}
 			while(x != i) {
-				final var w = ins[x].key;
-				var z = heap.pop(ins[x]);
+				final long w = ins[x].key;
+				SkewHeap.Node z = heap.pop(ins[x]);
 				z = heap.add(z, -w);
 				ins[i] = heap.meld(ins[i], z);
 				par[x] = i;
 				link[x] = i;
-				x = go.apply(x);
+				x = go.applyAsInt(x);
 			}
-			while(ins[x] != null && go.apply(x) == x) {
+			while(ins[x] != null && go.applyAsInt(x) == x) {
 				ins[x] = heap.pop(ins[x]);
 			}
 		}
@@ -159,7 +164,7 @@ final class WeightedGraph extends Graph {
 			vis[i] = 1;
 		}
 		long cost = 0;
-		ArrayList<Edge> e = new ArrayList<>();
+		final ArrayList<Edge> e = new ArrayList<>();
 		for(int i = x; i >= 0; i--) {
 			if(vis[i] == 1) {
 				continue;
@@ -209,12 +214,12 @@ final class SkewHeap {
 			return x != null ? x : y;
 		}
 		if((x.key < y.key) ^ isMin) {
-			final var tmp = x;
+			final Node tmp = x;
 			x = y;
 			y = tmp;
 		}
 		x.r = meld(y, x.r);
-		final var tmp = x.l;
+		final Node tmp = x.l;
 		x.l = x.r;
 		x.r = tmp;
 		return x;
