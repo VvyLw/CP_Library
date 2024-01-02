@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.math.BigInteger;
@@ -10,10 +14,10 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.Scanner;
 import java.util.Stack;
 import java.util.TreeMap;
 import java.util.function.BiFunction;
@@ -21,8 +25,8 @@ import java.util.function.BiPredicate;
 import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.DoublePredicate;
-import java.util.function.Function;
 import java.util.function.IntPredicate;
+import java.util.function.IntUnaryOperator;
 import java.util.function.LongBinaryOperator;
 import java.util.function.LongPredicate;
 import java.util.function.Predicate;
@@ -40,7 +44,7 @@ final class Main {
 }
 
 final class VvyLw extends Utility {
-	static final MyScanner sc = new MyScanner();
+	static final MyScanner sc = new MyScanner(System.in);
 	static final MyPrinter o = new MyPrinter(System.out, false);
 	static final MyPrinter dbg = new MyPrinter(System.err, true);
 	static final Huitloxopetl why = new Huitloxopetl();
@@ -261,7 +265,7 @@ class Utility {
 		return null;
 	}
 	protected static final String nextPerm(final String s) {
-		final var a = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
+		final List<Character> a = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
 		for(int i = a.size(); --i > 0;) {
 			if(a.get(i - 1).compareTo(a.get(i)) < 0) {
 				final int j = find(a.get(i - 1), a, i, a.size() - 1);
@@ -306,7 +310,7 @@ class Utility {
 		return null;
 	}
 	protected static final String prevPerm(final String s) {
-		var a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
+		final List<Character> a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
 		for(int i = a.size(); --i > 0;) {
 			if(a.get(i - 1).compareTo(a.get(i)) > 0) {
 				final int j = findRev(a.get(i - 1), a, i, a.size() - 1);
@@ -523,7 +527,7 @@ class Utility {
 		return b;
 	}
 	protected static final int[] rotate(final int[] a, final int id) {
-		final var t = Arrays.stream(a).boxed().collect(Collectors.toList());
+		final List<Integer> t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
 		final int[] res = new int[a.length];
 		for(int i = 0; i < a.length; ++i) {
@@ -532,7 +536,7 @@ class Utility {
 		return res;
 	}
 	protected static final long[] rotate(final long[] a, final int id) {
-		final var t = Arrays.stream(a).boxed().collect(Collectors.toList());
+		final List<Long> t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
 		final long[] res = new long[a.length];
 		for(int i = 0; i < a.length; ++i) {
@@ -541,7 +545,7 @@ class Utility {
 		return res;
 	}
 	protected static final double[] rotate(final double[] a, final int id) {
-		final var t = Arrays.stream(a).boxed().collect(Collectors.toList());
+		final List<Double> t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
 		final double[] res = new double[a.length];
 		for(int i = 0; i < a.length; ++i) {
@@ -550,7 +554,7 @@ class Utility {
 		return res;
 	}
 	protected static final String rotate(final String s, final int id) {
-		final var t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
+		final List<Character> t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
 		Collections.rotate(t, id);
 		return t.stream().map(i -> i.toString()).collect(Collectors.joining());
 	}
@@ -637,7 +641,7 @@ class Utility {
 		a[i] ^= a[j];
 	}
 	protected static final void swap(final double[] a, final int i, final int j) {
-		final var tmp = a[i];
+		final double tmp = a[i];
 		a[i] = a[j];
 		a[j] = tmp;
 	}
@@ -652,49 +656,49 @@ class Utility {
 		a[i] ^= a[j];
 	}
 	protected static final void swap(final Object[] a, final int i, final int j) {
-		final var tmp = a[i];
+		final Object tmp = a[i];
 		a[i] = a[j];
 		a[j] = tmp;
 	}
 	protected static final void swap(final int[] a, final int[] b) {
 		assert a.length == b.length;
 		final int n = a.length;
-		final var c = a.clone();
+		final int[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final long[] a, final long[] b) {
 		assert a.length == b.length;
 		final int n = a.length;
-		final var c = a.clone();
+		final long[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final double[] a, final double[] b) {
 		assert a.length == b.length;
 		final int n = a.length;
-		final var c = a.clone();
+		final double[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final char[] a, final char[] b) {
 		assert a.length == b.length;
 		final int n = a.length;
-		final var c = a.clone();
+		final char[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final boolean[] a, final boolean[] b) {
 		assert a.length == b.length;
 		final int n = a.length;
-		final var c = a.clone();
+		final boolean[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final Object[] a, final Object[] b) {
 		assert a.length == b.length;
 		final int n = a.length;
-		final var c = a.clone();
+		final Object[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
@@ -740,7 +744,7 @@ class Utility {
 	}
 	protected static final int[] press(final int[] a) {
 		final int[] res = new int[a.length];
-		final var x = Arrays.stream(a).sorted().distinct().toArray();
+		final int[] x = Arrays.stream(a).sorted().distinct().toArray();
 		for(int i = 0; i < a.length; ++i) {
 			res[i] = lowerBound(x, a[i]);
 		}
@@ -748,7 +752,7 @@ class Utility {
 	}
 	protected static final int[] press(final long[] a) {
 		final int[] res = new int[a.length];
-		final var x = Arrays.stream(a).sorted().distinct().toArray();
+		final long[] x = Arrays.stream(a).sorted().distinct().toArray();
 		for(int i = 0; i < a.length; ++i) {
 			res[i] = lowerBound(x, a[i]);
 		}
@@ -783,7 +787,7 @@ class Utility {
 			for(int i = n; --i >= 0;) {
 				s[2 * i] = s_.charAt(i);
 			}
-			final var d = Collections.min(s_.chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
+			final char d = Collections.min(s_.chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
 			for(int i = 0; i < n - 1; ++i) {
 				s[2 * i + 1] = d;
 			}
@@ -813,7 +817,7 @@ class Utility {
 				}
 			}
 		} else {
-			for(var x: rad) {
+			for(int x: rad) {
 				x = 2 * x - 1;
 			}
 		}
@@ -858,8 +862,8 @@ class Utility {
 		if(b == 2) {
 			return pow(a, a, m);
 		}
-		final var phi = eulerPhi(m);
-		var tmp = tetration(a, b - 1, phi);
+		final long phi = eulerPhi(m);
+		long tmp = tetration(a, b - 1, phi);
 		if(tmp == 0) {
 			tmp += phi;
 		}
@@ -884,18 +888,61 @@ class Utility {
 		public T apply(final RecursiveUnaryOperator<T> rec, final T n);
 	}
 	protected interface RecursiveBinaryOperator<T> {
-		public T apply(final RecursiveBinaryOperator<T> rec, final T n);
+		public T apply(final RecursiveBinaryOperator<T> rec, final T a, final T b);
 	}
 }
 
 final class MyScanner {
-	private final Scanner sc = new Scanner(System.in);
-	final int ni(){ return sc.nextInt(); }
-	final long nl(){ return sc.nextLong(); }
-	final double nd(){ return sc.nextDouble(); }
-	final char nc(){ return ns().charAt(0); }
-	final String ns(){ return sc.next(); }
-	final BigInteger nb(){ return sc.nextBigInteger(); }
+	private final int sz = 1 << 17;
+	private int pos = 0, lim = 0;
+	private final char[] buf = new char[sz];
+	private final BufferedReader br;
+	MyScanner(final InputStream is){ br = new BufferedReader(new InputStreamReader(is), sz); }
+	private final boolean isPunct(final char c){ return !Utility.scope(33, c, 126); }
+	private final boolean isNum(final char c){ return Utility.scope('0', c, '9'); }
+	private final char read() {
+		if(pos == lim) {
+			do {
+				try {
+					lim = br.read(buf, pos = 0, sz);
+				} catch(IOException e) {
+					e.printStackTrace();
+					System.exit(1);
+				}
+			} while(lim == -1);
+		}
+		return buf[pos++];
+	}
+	final char nc() {
+		char c;
+		while(isPunct(c = read())){}
+		return c;
+	}
+	final int ni(){ return Math.toIntExact(nl()); }
+	final long nl() {
+		char c = nc();
+		final boolean neg = c == '-';
+		if(neg) {
+			c = read();
+		}
+		assert(isNum(c));
+		long res = c - '0';
+		while(isNum(c = read())) {
+			res = 10 * res + c - '0';
+		}
+		return neg ? -res : res;
+	}
+	final double nd(){ return Double.parseDouble(ns()); }
+	final String ns() {
+		final StringBuilder sb = new StringBuilder();
+		char c = nc();
+		while(!isPunct(c)) {
+			sb.append(c);
+			c = read();
+		}
+		return sb.toString();
+	}
+	final BigInteger nb(){ return new BigInteger(ns()); }
 	final int[] ni(final int n) {
 		final int[] a = new int[n];
 		IntStream.range(0, n).forEach(i -> a[i] = ni());
@@ -956,7 +1003,22 @@ final class MyScanner {
 		IntStream.range(0, h).forEach(i -> a[i] = nb(w));
 		return a;
 	}
-	final void close(){ sc.close(); }
+	final String line() {
+		final StringBuilder sb = new StringBuilder();
+		char c;
+		while((c = read()) != '\n') {
+			sb.append(c);
+		}
+		return sb.toString();
+	}
+	final void close() {
+		try {
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+	}
 }
 
 final class MyPrinter extends PrintWriter {
@@ -1152,12 +1214,12 @@ final class NumPair extends Pair<Number, Number> implements Comparable<NumPair> 
 
 final class Huitloxopetl {
 	final long invNum(final int[] a) {
-		final var b = Utility.sorted(a);
-		final var id = new int[a.length];
+		final int[] b = Utility.sorted(a);
+		final int[] id = new int[a.length];
 		for(int i = 0; i < a.length; ++i) {
 			id[b[i]] = i;
 		}
-		final var bit = new FenwickTree(a.length);
+		final FenwickTree bit = new FenwickTree(a.length);
 		long res = 0;
 		for(int i = 0; i < a.length; ++i) {
 			res += i - bit.sum(id[a[i]]);
@@ -1166,12 +1228,12 @@ final class Huitloxopetl {
 		return res;
 	}
 	final long invNum(final long[] a) {
-		final var b = Utility.sorted(a);
-		final var id = new HashMap<Long, Integer>();
+		final long[] b = Utility.sorted(a);
+		final Map<Long, Integer> id = new HashMap<>();
 		for(int i = 0; i < a.length; ++i) {
 			id.put(b[i], i);
 		}
-		final var bit = new FenwickTree(a.length);
+		final FenwickTree bit = new FenwickTree(a.length);
 		long res = 0;
 		for(int i = 0; i < a.length; ++i) {
 			res += i - bit.sum(id.get(a[i]));
@@ -1386,7 +1448,7 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		q.add(v);
 		while(!q.isEmpty()) {
 			final int tmp = q.poll();
-			for(final var el: this.get(tmp)) {
+			for(final Edge el: this.get(tmp)) {
 				if(d[el.to] != -1) {
 					continue;
 				}
@@ -1400,21 +1462,21 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 	protected final ArrayList<Integer> topologicalSort() {
 		final int[] deg = new int[n];
 		for(int i = 0; i < n; ++i) {
-			for(final var ed: this.get(i)) {
+			for(final Edge ed: this.get(i)) {
 				deg[ed.to]++;
 			}
 		}
-		final var sk = new Stack<Integer>();
+		final Stack<Integer> sk = new Stack<>();
 		for(int i = 0; i < n; ++i) {
 			if(deg[i] == 0) {
 				sk.add(i);
 			}
 		}
-		final var ord = new ArrayList<Integer>();
+		final ArrayList<Integer> ord = new ArrayList<>();
 		while(!sk.isEmpty()) {
-			final var tmp = sk.pop();
+			final int tmp = sk.pop();
 			ord.add(tmp);
-			for(final var ed: this.get(tmp)) {
+			for(final Edge ed: this.get(tmp)) {
 				if(--deg[ed.to] == 0) {
 					sk.add(ed.to);
 				}
@@ -1452,11 +1514,11 @@ final class WeightedGraph extends Graph {
 		cost[v] = 0;
 		dj.add(new NumPair(cost[v], v));
 		while(!dj.isEmpty()) {
-			final var tmp = dj.poll();
+			final NumPair tmp = dj.poll();
 			if(cost[tmp.second.intValue()] < tmp.first.longValue()) {
 				continue;
 			}
-			for(final var el: this.get(tmp.second.intValue())) {
+			for(final Edge el: this.get(tmp.second.intValue())) {
 				if(cost[el.to] > tmp.first.longValue() + el.cost) {
 					cost[el.to] = tmp.first.longValue() + el.cost;
 					dj.add(new NumPair(cost[el.to], el.to));
@@ -1470,7 +1532,7 @@ final class WeightedGraph extends Graph {
 		Arrays.fill(cost, Long.MAX_VALUE);
 		cost[v] = 0;
 		for(int i = 0; i < edge.size() - 1; ++i) {
-			for(final var e: edge) {
+			for(final Edge e: edge) {
 				if(cost[e.src] == Long.MAX_VALUE) {
 					continue;
 				}
@@ -1479,7 +1541,7 @@ final class WeightedGraph extends Graph {
 				}
 			}
 		}
-		for(final var e: edge) {
+		for(final Edge e: edge) {
 			if(cost[e.src] == Long.MAX_VALUE) {
 				continue;
 			}
@@ -1494,7 +1556,7 @@ final class WeightedGraph extends Graph {
 		IntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], VvyLw.linf));
 		IntStream.range(0, n).forEach(i -> cost[i][i] = 0);
 		for(int i = 0; i < n; ++i) {
-			for(final var j: this.get(i)) {
+			for(final Edge j: this.get(i)) {
 				cost[i][j.to] = j.cost;
 			}
 		}
@@ -1514,9 +1576,9 @@ final class WeightedGraph extends Graph {
 	}
 	final MST kruskal() {
 		final UnionFind uf = new UnionFind(n);
-		final var e = new ArrayList<Edge>();
+		final ArrayList<Edge> e = new ArrayList<>();
 		long res = 0;
-		for(final var ed: edge.stream().sorted(Comparator.comparing(ed -> ed.cost)).collect(Collectors.toList())) {
+		for(final Edge ed: edge.stream().sorted(Comparator.comparing(ed -> ed.cost)).collect(Collectors.toList())) {
 			if(uf.unite(ed.src, ed.to)) {
 				e.add(ed);
 				res += ed.cost;
@@ -1526,7 +1588,7 @@ final class WeightedGraph extends Graph {
 	}
 	final MST directed(final int v) {
 		@SuppressWarnings("unchecked")
-		final var ed = (ArrayList<Edge>) edge.clone();
+		final ArrayList<Edge> ed = (ArrayList<Edge>) edge.clone();
 		for(int i = 0; i < n; ++i) {
 			if(i != v) {
 				ed.add(new Edge(i, v, 0));
@@ -1537,21 +1599,21 @@ final class WeightedGraph extends Graph {
 		Arrays.fill(par, -1);
 		Arrays.fill(vis, -1);
 		Arrays.fill(link, -1);
-		final var heap = new SkewHeap(true);
-		final var ins = new SkewHeap.Node[2 * n];
+		final SkewHeap heap = new SkewHeap(true);
+		final SkewHeap.Node[] ins = new SkewHeap.Node[2 * n];
 		Arrays.fill(ins, null);
 		for(int i = 0; i < ed.size(); i++) {
-			final var e = ed.get(i);
+			final Edge e = ed.get(i);
 			ins[e.to] = heap.push(ins[e.to], e.cost, i);
 		}
-		final var st = new ArrayList<Integer>();
-		final Function<Integer, Integer> go = z -> {
+		final ArrayList<Integer> st = new ArrayList<>();
+		final IntUnaryOperator go = z -> {
 			z = ed.get(ins[z].idx).src;
 			while(link[z] != -1) {
 				st.add(z);
 				z = link[z];
 			}
-			for(final var p: st) {
+			for(final int p: st) {
 				link[p] = z;
 			}
 			st.clear();
@@ -1560,18 +1622,18 @@ final class WeightedGraph extends Graph {
 		for(int i = n; ins[x] != null; ++i) {
 			while(vis[x] == -1) {
 				vis[x] = 0;
-				x = go.apply(x);
+				x = go.applyAsInt(x);
 			}
 			while(x != i) {
-				final var w = ins[x].key;
-				var z = heap.pop(ins[x]);
+				final long w = ins[x].key;
+				SkewHeap.Node z = heap.pop(ins[x]);
 				z = heap.add(z, -w);
 				ins[i] = heap.meld(ins[i], z);
 				par[x] = i;
 				link[x] = i;
-				x = go.apply(x);
+				x = go.applyAsInt(x);
 			}
-			while(ins[x] != null && go.apply(x) == x) {
+			while(ins[x] != null && go.applyAsInt(x) == x) {
 				ins[x] = heap.pop(ins[x]);
 			}
 		}
@@ -1579,7 +1641,7 @@ final class WeightedGraph extends Graph {
 			vis[i] = 1;
 		}
 		long cost = 0;
-		ArrayList<Edge> e = new ArrayList<>();
+		final ArrayList<Edge> e = new ArrayList<>();
 		for(int i = x; i >= 0; i--) {
 			if(vis[i] == 1) {
 				continue;
@@ -1629,12 +1691,12 @@ final class SkewHeap {
 			return x != null ? x : y;
 		}
 		if((x.key < y.key) ^ isMin) {
-			final var tmp = x;
+			final Node tmp = x;
 			x = y;
 			y = tmp;
 		}
 		x.r = meld(y, x.r);
-		final var tmp = x.l;
+		final Node tmp = x.l;
 		x.l = x.r;
 		x.r = tmp;
 		return x;
@@ -1673,7 +1735,7 @@ final class LowestCommonAncestor<G extends Graph> {
 	private final void dfs(final int idx, final int par, final int d) {
 		table[0][idx] = par;
 		dep[idx] = d;
-		for(final var el: g.get(idx)) {
+		for(final Edge el: g.get(idx)) {
 			if(el.to != par) {
 				sum[el.to] = (int) (sum[idx] + el.cost); 
 				dfs(el.to, idx, d + 1);
@@ -1954,7 +2016,7 @@ final class BigPrime {
 		do {
 			b = b.shiftRight(bsf(b.longValue()));
 			if(a.compareTo(b) > 0) {
-				final var tmp = b;
+				final BigInteger tmp = b;
 				b = a;
 				a = tmp;
 			}
@@ -2026,8 +2088,7 @@ final class BigPrime {
 		if(x.equals(n)) {
 			return new ArrayList<>(Arrays.asList(x));
 		}
-		var l = primeFactor(x);
-		final var r = primeFactor(n.divide(x));
+		final ArrayList<BigInteger> l = primeFactor(x), r = primeFactor(n.divide(x));
 		l.addAll(r);
 		Collections.sort(l);
 		return l;
@@ -2337,7 +2398,7 @@ final class SuffixArray extends ArrayList<Integer> {
 		this.vs = vs;
 		int[] newVS = new int[vs.length() + 1];
 		if(compress) {
-			final var xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());
+			final List<Integer> xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());
 			for(int i = 0; i < vs.length(); ++i) {
 				newVS[i] = Utility.lowerBound(xs, (int) vs.charAt(i)) + 1;
 			}
@@ -2361,7 +2422,7 @@ final class SuffixArray extends ArrayList<Integer> {
 		final Consumer<ArrayList<Integer>> inducedSort = (lms) -> {
 			final int upper = Arrays.stream(s).max().getAsInt();
 			int[] l = new int[upper + 2], r = new int[upper + 2];
-			for(final var v: s) {
+			for(final int v: s) {
 				++l[v + 1];
 				++r[v];
 			}
@@ -2371,13 +2432,13 @@ final class SuffixArray extends ArrayList<Integer> {
 			for(int i = lms.size(); --i >= 0;) {
 				ret[--r[s[lms.get(i)]]] = lms.get(i);
 			}
-			for(final var v: ret) {
+			for(final int v: ret) {
 				if(v >= 1 && isS[v - 1]) {
 					ret[l[s[v - 1]]++] = v - 1;
 				}
 			}
 			Arrays.fill(r, 0);
-			for(final var v: s) {
+			for(final int v: s) {
 				++r[v];
 			}
 			Arrays.parallelPrefix(r, (x, y) -> x + y);
@@ -2462,7 +2523,7 @@ final class SuffixArray extends ArrayList<Integer> {
 	final Pair<Integer, Integer> equalRange(final String t) {
 		final int low = lowerBound(t);
 		int ng = low - 1, ok = this.size();
-		var sb = new StringBuilder(t);
+		final StringBuilder sb = new StringBuilder(t);
 		sb.setCharAt(t.length() - 1, (char)(sb.charAt(sb.length() - 1) - 1));
 		final String u = sb.toString();
 		while(ok - ng > 1) {
@@ -2585,7 +2646,7 @@ final class DoubleEndedPriorityQueue<T extends Number> {
 		up(k, 1);
 	}
 	final T popMin() {
-		final var res = getMin();
+		final T res = getMin();
 		if(d.size() < 3) {
 			popBack(d); 
 		} else {
@@ -2596,7 +2657,7 @@ final class DoubleEndedPriorityQueue<T extends Number> {
 		return res;
 	}
 	final T popMax() {
-		final var res = getMax();
+		final T res = getMax();
 		if(d.size() < 2) { 
 			popBack(d);
 		} else {
@@ -2678,7 +2739,7 @@ final class WaveletMatrixBeta {
 	final int rank(final long x, int r) {
 		int l = 0;
 		for(int level = log; --level >= 0;) {
-			final var p = succ(((x >> level) & 1) == 1, l, r, level);
+			final NumPair p = succ(((x >> level) & 1) == 1, l, r, level);
 			l = p.first.intValue();
 			r = p.second.intValue();
 		}
@@ -2696,7 +2757,7 @@ final class WaveletMatrixBeta {
 				ret |= 1 << level;
 				k -= cnt;
 			}
-			final var p = succ(f, l, r, level);
+			final NumPair p = succ(f, l, r, level);
 			l = p.first.intValue();
 			r = p.second.intValue();
 		}
@@ -2710,7 +2771,7 @@ final class WaveletMatrixBeta {
 			if(f) {
 				ret += matrix[level].rank(false, r) - matrix[level].rank(false, l);
 			}
-			final var p = succ(f, l, r, level); 
+			final NumPair p = succ(f, l, r, level); 
 			l = p.first.intValue();
 			r = p.second.intValue();
 		}
@@ -2738,7 +2799,7 @@ final class WaveletMatrix {
 	private final int get(final long x){ return Utility.lowerBound(ys, x); }
 	final long access(final int k){ return ys[(int) mat.access(k)]; }
 	final int rank(final long x, final int r) {
-		final var pos = get(x);
+		final int pos = get(x);
 		if(pos == ys.length || ys[pos] != x) {
 			return 0;
 		}
@@ -2749,11 +2810,11 @@ final class WaveletMatrix {
 	final int rangeFreq(final int l, final int r, final long upper){ return mat.rangeFreq(l, r, get(upper)); }
 	final int rangeFreq(final int l, final int r, final long lower, final long upper){ return mat.rangeFreq(l, r, get(lower), get(upper)); }
 	final long prev(final int l, final int r, final long upper) {
-		final var ret = mat.prev(l, r, get(upper));
+		final long ret = mat.prev(l, r, get(upper));
 		return ret == -1 ? -1 : ys[(int) ret];
 	}
 	final long next(final int l, final int r, final long lower) {
-		final var ret = mat.next(l, r, get(lower));
+		final long ret = mat.next(l, r, get(lower));
 		return ret == -1 ? -1 : ys[(int) ret];
 	}
 }
@@ -2780,7 +2841,7 @@ final class AVLTree<T extends Comparable<? super T>> {
 		return t;
 	}
 	private final Node<T> rotate(Node<T> t, final int b) {
-		var s = t.ch[1 - b];
+		Node<T> s = t.ch[1 - b];
 		t.ch[1 - b] = s.ch[b];
 		s.ch[b] = t;
 		t = update(t);
@@ -2868,7 +2929,7 @@ final class AVLTree<T extends Comparable<? super T>> {
 	final int size(){ return root.size; }
 	@Override
 	public final String toString() {
-		final var sb = new StringBuilder();
+		final StringBuilder sb = new StringBuilder();
 		sb.append(get(0));
 		for(int i = 0; ++i < root.size;) {
 			sb.append(" ");
