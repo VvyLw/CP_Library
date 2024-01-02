@@ -154,25 +154,25 @@ data:
     \ final Node<T> update(final Node<T> t) {\n\t\tt.dep = Math.max(depth(t.ch[0]),\
     \ depth(t.ch[1])) + 1;\n\t\tt.size = count(t.ch[0]) + count(t.ch[1]) + 1;\n\t\t\
     return t;\n\t}\n\tprivate final Node<T> rotate(Node<T> t, final int b) {\n\t\t\
-    var s = t.ch[1 - b];\n\t\tt.ch[1 - b] = s.ch[b];\n\t\ts.ch[b] = t;\n\t\tt = update(t);\n\
-    \t\ts = update(s);\n\t\treturn s;\n\t}\n\tprivate final Node<T> fetch(Node<T>\
-    \ t) {\n\t\tif(t == null) {\n\t\t\treturn t;\n\t\t}\n\t\tif(depth(t.ch[0]) - depth(t.ch[1])\
-    \ == 2) {\n\t\t\tif(depth(t.ch[0].ch[1]) > depth(t.ch[0].ch[0])) {\n\t\t\t\tt.ch[0]\
-    \ = rotate(t.ch[0], 0);\n\t\t\t}\n\t\t\tt = rotate(t, 1);\n\t\t}\n\t\telse if(depth(t.ch[0])\
-    \ - depth(t.ch[1]) == -2) {\n\t\t\tif (depth(t.ch[1].ch[0]) > depth(t.ch[1].ch[1]))\
-    \ {\n\t\t\t\tt.ch[1] = rotate(t.ch[1], 1);\n\t\t\t}\n\t\t\tt = rotate(t, 0);\n\
-    \t\t}\n\t\treturn t;\n\t}\n\tprivate final Node<T> insert(final Node<T> t, final\
-    \ int k, final T v) {\n\t\tif(t == null) {\n\t\t\treturn new Node<T>(v, null,\
-    \ null);\n\t\t}\n\t\tfinal int c = count(t.ch[0]), b = (k > c) ? 1 : 0;\n\t\t\
-    t.ch[b] = insert(t.ch[b], k - (b == 1 ? (c + 1) : 0), v);\n\t\tupdate(t);\n\t\t\
-    return fetch(t);\n\t}\n\tprivate final Node<T> erase(final Node<T> t) {\n\t\t\
-    if(t == null || t.ch[0] == null && t.ch[1] == null) {\n\t\t\treturn null;\n\t\t\
-    }\n\t\tif(t.ch[0] == null || t.ch[1] == null) {\n\t\t\treturn t.ch[t.ch[0] ==\
-    \ null ? 1 : 0];\n\t\t}\n\t\treturn fetch(update(new Node<T>(find(t.ch[1], 0).val,\
-    \ t.ch[0], erase(t.ch[1], 0))));\n\t}\n\tprivate final Node<T> erase(Node<T> t,\
-    \ final int k) {\n\t\tif(t == null) {\n\t\t\treturn null;\n\t\t}\n\t\tfinal int\
-    \ c = count(t.ch[0]);\n\t\tif(k < c) {\n\t\t\tt.ch[0] = erase(t.ch[0], k);\n\t\
-    \t\tt = update(t);\n\t\t}\n\t\telse if(k > c) {\n\t\t\tt.ch[1] = erase(t.ch[1],\
+    Node<T> s = t.ch[1 - b];\n\t\tt.ch[1 - b] = s.ch[b];\n\t\ts.ch[b] = t;\n\t\tt\
+    \ = update(t);\n\t\ts = update(s);\n\t\treturn s;\n\t}\n\tprivate final Node<T>\
+    \ fetch(Node<T> t) {\n\t\tif(t == null) {\n\t\t\treturn t;\n\t\t}\n\t\tif(depth(t.ch[0])\
+    \ - depth(t.ch[1]) == 2) {\n\t\t\tif(depth(t.ch[0].ch[1]) > depth(t.ch[0].ch[0]))\
+    \ {\n\t\t\t\tt.ch[0] = rotate(t.ch[0], 0);\n\t\t\t}\n\t\t\tt = rotate(t, 1);\n\
+    \t\t}\n\t\telse if(depth(t.ch[0]) - depth(t.ch[1]) == -2) {\n\t\t\tif (depth(t.ch[1].ch[0])\
+    \ > depth(t.ch[1].ch[1])) {\n\t\t\t\tt.ch[1] = rotate(t.ch[1], 1);\n\t\t\t}\n\t\
+    \t\tt = rotate(t, 0);\n\t\t}\n\t\treturn t;\n\t}\n\tprivate final Node<T> insert(final\
+    \ Node<T> t, final int k, final T v) {\n\t\tif(t == null) {\n\t\t\treturn new\
+    \ Node<T>(v, null, null);\n\t\t}\n\t\tfinal int c = count(t.ch[0]), b = (k > c)\
+    \ ? 1 : 0;\n\t\tt.ch[b] = insert(t.ch[b], k - (b == 1 ? (c + 1) : 0), v);\n\t\t\
+    update(t);\n\t\treturn fetch(t);\n\t}\n\tprivate final Node<T> erase(final Node<T>\
+    \ t) {\n\t\tif(t == null || t.ch[0] == null && t.ch[1] == null) {\n\t\t\treturn\
+    \ null;\n\t\t}\n\t\tif(t.ch[0] == null || t.ch[1] == null) {\n\t\t\treturn t.ch[t.ch[0]\
+    \ == null ? 1 : 0];\n\t\t}\n\t\treturn fetch(update(new Node<T>(find(t.ch[1],\
+    \ 0).val, t.ch[0], erase(t.ch[1], 0))));\n\t}\n\tprivate final Node<T> erase(Node<T>\
+    \ t, final int k) {\n\t\tif(t == null) {\n\t\t\treturn null;\n\t\t}\n\t\tfinal\
+    \ int c = count(t.ch[0]);\n\t\tif(k < c) {\n\t\t\tt.ch[0] = erase(t.ch[0], k);\n\
+    \t\t\tt = update(t);\n\t\t}\n\t\telse if(k > c) {\n\t\t\tt.ch[1] = erase(t.ch[1],\
     \ k - (c + 1));\n\t\t\tt = update(t);\n\t\t}\n\t\telse {\n\t\t\tt = erase(t);\n\
     \t\t}\n\t\treturn fetch(t);\n\t}\n\tprivate final Node<T> find(final Node<T> t,\
     \ final int k) {\n\t\tif(t == null) {\n\t\t\treturn t;\n\t\t}\n\t\tfinal int c\
@@ -185,10 +185,10 @@ data:
     \ cnt(root, val), val); }\n\tfinal void remove(final int k){ root = erase(root,\
     \ k); }\n\tfinal T get(final int k){ return find(root, k).val; }\n\tfinal int\
     \ count(final T val){ return cnt(root, val); }\n\tfinal int size(){ return root.size;\
-    \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal var sb = new StringBuilder();\n\
-    \t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < root.size;) {\n\t\t\tsb.append(\"\
-    \ \");\n\t\t\tsb.append(get(i));\n\t\t}\n\t\treturn \"[\" + sb.toString() + \"\
-    ]\";\n\t}\n}"
+    \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
+    \ sb = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i <\
+    \ root.size;) {\n\t\t\tsb.append(\" \");\n\t\t\tsb.append(get(i));\n\t\t}\n\t\t\
+    return \"[\" + sb.toString() + \"]\";\n\t}\n}\n"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -237,7 +237,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2024-01-03 04:00:35+09:00'
+  timestamp: '2024-01-03 04:02:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/AVLTree.java
