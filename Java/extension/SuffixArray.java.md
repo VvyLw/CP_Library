@@ -149,7 +149,7 @@ data:
     import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nfinal\
     \ class SuffixArray extends ArrayList<Integer> {\n\tprivate final String vs;\n\
     \tSuffixArray(final String vs, final boolean compress) {\n\t\tthis.vs = vs;\n\t\
-    \tint[] newVS = new int[vs.length() + 1];\n\t\tif(compress) {\n\t\t\tfinal var\
+    \tint[] newVS = new int[vs.length() + 1];\n\t\tif(compress) {\n\t\t\tfinal List<Integer>\
     \ xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());\n\t\
     \t\tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = Utility.lowerBound(xs,\
     \ (int) vs.charAt(i)) + 1;\n\t\t\t}\n\t\t} else {\n\t\t\tfinal int d = vs.chars().min().getAsInt();\n\
@@ -161,13 +161,13 @@ data:
     \t\tisS[i] = (s[i] > s[i + 1]) || (s[i] == s[i + 1] && isS[i + 1]);\n\t\t\tm +=\
     \ (isLMS[i + 1] = isS[i] && !isS[i + 1]) ? 1 : 0;\n\t\t}\n\t\tfinal Consumer<ArrayList<Integer>>\
     \ inducedSort = (lms) -> {\n\t\t\tfinal int upper = Arrays.stream(s).max().getAsInt();\n\
-    \t\t\tint[] l = new int[upper + 2], r = new int[upper + 2];\n\t\t\tfor(final var\
+    \t\t\tint[] l = new int[upper + 2], r = new int[upper + 2];\n\t\t\tfor(final int\
     \ v: s) {\n\t\t\t\t++l[v + 1];\n\t\t\t\t++r[v];\n\t\t\t}\n\t\t\tArrays.parallelPrefix(l,\
     \ (x, y) -> x + y);\n\t\t\tArrays.parallelPrefix(r, (x, y) -> x + y);\n\t\t\t\
     Arrays.fill(ret, -1);\n\t\t\tfor(int i = lms.size(); --i >= 0;) {\n\t\t\t\tret[--r[s[lms.get(i)]]]\
-    \ = lms.get(i);\n\t\t\t}\n\t\t\tfor(final var v: ret) {\n\t\t\t\tif(v >= 1 &&\
+    \ = lms.get(i);\n\t\t\t}\n\t\t\tfor(final int v: ret) {\n\t\t\t\tif(v >= 1 &&\
     \ isS[v - 1]) {\n\t\t\t\t\tret[l[s[v - 1]]++] = v - 1;\n\t\t\t\t}\n\t\t\t}\n\t\
-    \t\tArrays.fill(r, 0);\n\t\t\tfor(final var v: s) {\n\t\t\t\t++r[v];\n\t\t\t}\n\
+    \t\tArrays.fill(r, 0);\n\t\t\tfor(final int v: s) {\n\t\t\t\t++r[v];\n\t\t\t}\n\
     \t\t\tArrays.parallelPrefix(r, (x, y) -> x + y);\n\t\t\tfor(int k = ret.length\
     \ - 1, i = ret[k]; k >= 1; i = ret[--k]) {\n\t\t\t\tif(i >= 1 && !isS[i - 1])\
     \ {\n\t\t\t\t\tret[--r[s[i - 1]]] = i - 1;\n\t\t\t\t}\n\t\t\t}\n\t\t};\n\t\tfinal\
@@ -195,8 +195,8 @@ data:
     \ int mid = (ok + ng) / 2;\n\t\t\tif(ltSubstr(t, this.get(mid), 0)) {\n\t\t\t\t\
     ng = mid;\n\t\t\t} else {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\
     \t}\n\tfinal Pair<Integer, Integer> equalRange(final String t) {\n\t\tfinal int\
-    \ low = lowerBound(t);\n\t\tint ng = low - 1, ok = this.size();\n\t\tvar sb =\
-    \ new StringBuilder(t);\n\t\tsb.setCharAt(t.length() - 1, (char)(sb.charAt(sb.length()\
+    \ low = lowerBound(t);\n\t\tint ng = low - 1, ok = this.size();\n\t\tfinal StringBuilder\
+    \ sb = new StringBuilder(t);\n\t\tsb.setCharAt(t.length() - 1, (char)(sb.charAt(sb.length()\
     \ - 1) - 1));\n\t\tfinal String u = sb.toString();\n\t\twhile(ok - ng > 1) {\n\
     \t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(ltSubstr(u, this.get(mid), 0))\
     \ {\n\t\t\t\tng = mid;\n\t\t\t} else {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t}\n\t\t\
@@ -212,8 +212,8 @@ data:
     \ String toString() { \n\t\tStringBuilder sb = new StringBuilder();\n\t\tfor(int\
     \ i = 0; i < this.size(); ++i) {\n\t\t\tsb.append(i + \":[\" + this.get(i) + \"\
     ]\");\n\t\t\tfor(int j = this.get(i); j < vs.length(); ++j) {\n\t\t\t\tsb.append(\"\
-    \ \" + vs.charAt(j));\n\t\t\t}\n\t\t\tsb.append(\"\\n\");\n\t\t}\n\t\treturn sb.toString();\n\
-    \t}\n}"
+    \ \" + vs.charAt(j));\n\t\t\t}\n\t\t\tif(i + 1 != this.size()) {\n\t\t\t\tsb.append(\"\
+    \\n\");\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\t}\n}\n"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -262,7 +262,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2024-01-03 03:54:09+09:00'
+  timestamp: '2024-01-03 03:57:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/SuffixArray.java
