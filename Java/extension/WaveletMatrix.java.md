@@ -175,20 +175,20 @@ data:
     \tif(f) {\n\t\t\t\tret |= 1L << level;\n\t\t\t}\n\t\t\tk = matrix[level].rank(f,\
     \ k) + mid[level] * (f ? 1 : 0);\n\t\t}\t\n\t\treturn ret;\n\t}\n\tfinal int rank(final\
     \ long x, int r) {\n\t\tint l = 0;\n\t\tfor(int level = log; --level >= 0;) {\n\
-    \t\t\tfinal var p = succ(((x >> level) & 1) == 1, l, r, level);\n\t\t\tl = p.first.intValue();\n\
-    \t\t\tr = p.second.intValue();\n\t\t}\n\t\treturn r - l;\n\t}\n\tfinal long kthMin(int\
-    \ l, int r, int k) {\n\t\tif(!Utility.scope(0, k, r - l - 1)) {\n\t\t\tthrow new\
-    \ IndexOutOfBoundsException();\n\t\t}\n\t\tlong ret = 0;\n\t\tfor(int level =\
-    \ log; --level >= 0;) {\n\t\t\tfinal int cnt = matrix[level].rank(false, r) -\
-    \ matrix[level].rank(false, l);\n\t\t\tfinal boolean f = cnt <= k;\n\t\t\tif(f)\
-    \ {\n\t\t\t\tret |= 1 << level;\n\t\t\t\tk -= cnt;\n\t\t\t}\n\t\t\tfinal var p\
-    \ = succ(f, l, r, level);\n\t\t\tl = p.first.intValue();\n\t\t\tr = p.second.intValue();\n\
+    \t\t\tfinal NumPair p = succ(((x >> level) & 1) == 1, l, r, level);\n\t\t\tl =\
+    \ p.first.intValue();\n\t\t\tr = p.second.intValue();\n\t\t}\n\t\treturn r - l;\n\
+    \t}\n\tfinal long kthMin(int l, int r, int k) {\n\t\tif(!Utility.scope(0, k, r\
+    \ - l - 1)) {\n\t\t\tthrow new IndexOutOfBoundsException();\n\t\t}\n\t\tlong ret\
+    \ = 0;\n\t\tfor(int level = log; --level >= 0;) {\n\t\t\tfinal int cnt = matrix[level].rank(false,\
+    \ r) - matrix[level].rank(false, l);\n\t\t\tfinal boolean f = cnt <= k;\n\t\t\t\
+    if(f) {\n\t\t\t\tret |= 1 << level;\n\t\t\t\tk -= cnt;\n\t\t\t}\n\t\t\tfinal NumPair\
+    \ p = succ(f, l, r, level);\n\t\t\tl = p.first.intValue();\n\t\t\tr = p.second.intValue();\n\
     \t\t}\n\t\treturn ret;\n\t}\n\tfinal long kthMax(final int l, final int r, final\
     \ int k){ return kthMin(l, r, r - l - k - 1); }\n\tfinal int rangeFreq(int l,\
     \ int r, final long upper) {\n\t\tint ret = 0;\n\t\tfor(int level = log; --level\
     \ >= 0;) {\n\t\t\tfinal boolean f = ((upper >> level) & 1) == 1;\n\t\t\tif(f)\
     \ {\n\t\t\t\tret += matrix[level].rank(false, r) - matrix[level].rank(false, l);\n\
-    \t\t\t}\n\t\t\tfinal var p = succ(f, l, r, level); \n\t\t\tl = p.first.intValue();\n\
+    \t\t\t}\n\t\t\tfinal NumPair p = succ(f, l, r, level); \n\t\t\tl = p.first.intValue();\n\
     \t\t\tr = p.second.intValue();\n\t\t}\n\t\treturn ret;\n\t}\n\tfinal int rangeFreq(final\
     \ int l, final int r, final long lower, final long upper){ return rangeFreq(l,\
     \ r, upper) - rangeFreq(l, r, lower); }\n\tfinal long prev(final int l, final\
@@ -202,7 +202,7 @@ data:
     \ -> t[i] = get(arr[i]));\n\t\tmat = new WaveletMatrixBeta(t, log);\n\t}\n\tprivate\
     \ final int get(final long x){ return Utility.lowerBound(ys, x); }\n\tfinal long\
     \ access(final int k){ return ys[(int) mat.access(k)]; }\n\tfinal int rank(final\
-    \ long x, final int r) {\n\t\tfinal var pos = get(x);\n\t\tif(pos == ys.length\
+    \ long x, final int r) {\n\t\tfinal int pos = get(x);\n\t\tif(pos == ys.length\
     \ || ys[pos] != x) {\n\t\t\treturn 0;\n\t\t}\n\t\treturn mat.rank(pos, r);\n\t\
     }\n\tfinal long kthMin(final int l, final int r, final int k){ return ys[(int)\
     \ mat.kthMin(l, r, k)]; }\n\tfinal long kthMax(final int l, final int r, final\
@@ -210,10 +210,10 @@ data:
     \ int l, final int r, final long upper){ return mat.rangeFreq(l, r, get(upper));\
     \ }\n\tfinal int rangeFreq(final int l, final int r, final long lower, final long\
     \ upper){ return mat.rangeFreq(l, r, get(lower), get(upper)); }\n\tfinal long\
-    \ prev(final int l, final int r, final long upper) {\n\t\tfinal var ret = mat.prev(l,\
+    \ prev(final int l, final int r, final long upper) {\n\t\tfinal long ret = mat.prev(l,\
     \ r, get(upper));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n\tfinal long\
-    \ next(final int l, final int r, final long lower) {\n\t\tfinal var ret = mat.next(l,\
-    \ r, get(lower));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n}"
+    \ next(final int l, final int r, final long lower) {\n\t\tfinal long ret = mat.next(l,\
+    \ r, get(lower));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n}\n"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -262,7 +262,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2024-01-03 03:59:44+09:00'
+  timestamp: '2024-01-03 04:00:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/WaveletMatrix.java
