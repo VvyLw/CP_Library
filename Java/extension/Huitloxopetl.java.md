@@ -144,17 +144,17 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/extension/Huitloxopetl.java\n"
-  code: "import java.util.HashMap;\n\nfinal class Huitloxopetl {\n\tfinal long invNum(final\
-    \ int[] a) {\n\t\tfinal var b = Utility.sorted(a);\n\t\tfinal var id = new int[a.length];\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid[b[i]] = i;\n\t\t}\n\t\tfinal\
-    \ var bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0;\
-    \ i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id[a[i]]);\n\t\t\tbit.add(id[a[i]],\
-    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final long[] a) {\n\t\t\
-    final var b = Utility.sorted(a);\n\t\tfinal var id = new HashMap<Long, Integer>();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
-    \ var bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0;\
-    \ i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\tbit.add(id.get(a[i]),\
-    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n"
+  code: "import java.util.HashMap;\nimport java.util.Map;\n\nfinal class Huitloxopetl\
+    \ {\n\tfinal long invNum(final int[] a) {\n\t\tfinal int[] b = Utility.sorted(a);\n\
+    \t\tfinal int[] id = new int[a.length];\n\t\tfor(int i = 0; i < a.length; ++i)\
+    \ {\n\t\t\tid[b[i]] = i;\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\
+    \t\tlong res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id[a[i]]);\n\
+    \t\t\tbit.add(id[a[i]], 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final\
+    \ long[] a) {\n\t\tfinal long[] b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer>\
+    \ id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i],\
+    \ i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\t\tlong\
+    \ res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
+    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -203,7 +203,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2024-01-03 03:43:45+09:00'
+  timestamp: '2024-01-03 03:45:47+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Huitloxopetl.java
