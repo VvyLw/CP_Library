@@ -74,7 +74,7 @@ final class DoubleEndedPriorityQueue<T extends Number> {
 		up(k, 1);
 	}
 	final T popMin() {
-		final var res = getMin();
+		final T res = getMin();
 		if(d.size() < 3) {
 			popBack(d); 
 		} else {
@@ -85,7 +85,7 @@ final class DoubleEndedPriorityQueue<T extends Number> {
 		return res;
 	}
 	final T popMax() {
-		final var res = getMax();
+		final T res = getMax();
 		if(d.size() < 2) { 
 			popBack(d);
 		} else {
