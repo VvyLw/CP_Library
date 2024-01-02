@@ -1992,8 +1992,7 @@ final class LongPrime {
 		if(n == 1) return new ArrayList<>();
 		final long x = find(n);
 		if(x == n) return new ArrayList<>(Arrays.asList(x));
-		ArrayList<Long> l = primeFactor(x);
-		final ArrayList<Long> r = primeFactor(n / x);
+		final ArrayList<Long> l = primeFactor(x), r = primeFactor(n / x);
 		l.addAll(r);
 		Collections.sort(l);
 		return l;
@@ -2569,7 +2568,9 @@ final class SuffixArray extends ArrayList<Integer> {
 			for(int j = this.get(i); j < vs.length(); ++j) {
 				sb.append(" " + vs.charAt(j));
 			}
-			sb.append("\n");
+			if(i + 1 != this.size()) {
+				sb.append("\n");
+			}
 		}
 		return sb.toString();
 	}
