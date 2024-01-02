@@ -69,7 +69,7 @@ final class WaveletMatrixBeta {
 	final int rank(final long x, int r) {
 		int l = 0;
 		for(int level = log; --level >= 0;) {
-			final var p = succ(((x >> level) & 1) == 1, l, r, level);
+			final NumPair p = succ(((x >> level) & 1) == 1, l, r, level);
 			l = p.first.intValue();
 			r = p.second.intValue();
 		}
@@ -87,7 +87,7 @@ final class WaveletMatrixBeta {
 				ret |= 1 << level;
 				k -= cnt;
 			}
-			final var p = succ(f, l, r, level);
+			final NumPair p = succ(f, l, r, level);
 			l = p.first.intValue();
 			r = p.second.intValue();
 		}
@@ -101,7 +101,7 @@ final class WaveletMatrixBeta {
 			if(f) {
 				ret += matrix[level].rank(false, r) - matrix[level].rank(false, l);
 			}
-			final var p = succ(f, l, r, level); 
+			final NumPair p = succ(f, l, r, level); 
 			l = p.first.intValue();
 			r = p.second.intValue();
 		}
@@ -129,7 +129,7 @@ final class WaveletMatrix {
 	private final int get(final long x){ return Utility.lowerBound(ys, x); }
 	final long access(final int k){ return ys[(int) mat.access(k)]; }
 	final int rank(final long x, final int r) {
-		final var pos = get(x);
+		final int pos = get(x);
 		if(pos == ys.length || ys[pos] != x) {
 			return 0;
 		}
@@ -140,11 +140,11 @@ final class WaveletMatrix {
 	final int rangeFreq(final int l, final int r, final long upper){ return mat.rangeFreq(l, r, get(upper)); }
 	final int rangeFreq(final int l, final int r, final long lower, final long upper){ return mat.rangeFreq(l, r, get(lower), get(upper)); }
 	final long prev(final int l, final int r, final long upper) {
-		final var ret = mat.prev(l, r, get(upper));
+		final long ret = mat.prev(l, r, get(upper));
 		return ret == -1 ? -1 : ys[(int) ret];
 	}
 	final long next(final int l, final int r, final long lower) {
-		final var ret = mat.next(l, r, get(lower));
+		final long ret = mat.next(l, r, get(lower));
 		return ret == -1 ? -1 : ys[(int) ret];
 	}
 }
