@@ -20,7 +20,7 @@ final class AVLTree<T extends Comparable<? super T>> {
 		return t;
 	}
 	private final Node<T> rotate(Node<T> t, final int b) {
-		var s = t.ch[1 - b];
+		Node<T> s = t.ch[1 - b];
 		t.ch[1 - b] = s.ch[b];
 		s.ch[b] = t;
 		t = update(t);
@@ -108,7 +108,7 @@ final class AVLTree<T extends Comparable<? super T>> {
 	final int size(){ return root.size; }
 	@Override
 	public final String toString() {
-		final var sb = new StringBuilder();
+		final StringBuilder sb = new StringBuilder();
 		sb.append(get(0));
 		for(int i = 0; ++i < root.size;) {
 			sb.append(" ");
