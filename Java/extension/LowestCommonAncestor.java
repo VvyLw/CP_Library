@@ -21,7 +21,7 @@ final class LowestCommonAncestor<G extends Graph> {
 	private final void dfs(final int idx, final int par, final int d) {
 		table[0][idx] = par;
 		dep[idx] = d;
-		for(final var el: g.get(idx)) {
+		for(final Edge el: g.get(idx)) {
 			if(el.to != par) {
 				sum[el.to] = (int) (sum[idx] + el.cost); 
 				dfs(el.to, idx, d + 1);
