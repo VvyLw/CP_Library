@@ -1,13 +1,14 @@
 import java.util.HashMap;
+import java.util.Map;
 
 final class Huitloxopetl {
 	final long invNum(final int[] a) {
-		final var b = Utility.sorted(a);
-		final var id = new int[a.length];
+		final int[] b = Utility.sorted(a);
+		final int[] id = new int[a.length];
 		for(int i = 0; i < a.length; ++i) {
 			id[b[i]] = i;
 		}
-		final var bit = new FenwickTree(a.length);
+		final FenwickTree bit = new FenwickTree(a.length);
 		long res = 0;
 		for(int i = 0; i < a.length; ++i) {
 			res += i - bit.sum(id[a[i]]);
@@ -16,12 +17,12 @@ final class Huitloxopetl {
 		return res;
 	}
 	final long invNum(final long[] a) {
-		final var b = Utility.sorted(a);
-		final var id = new HashMap<Long, Integer>();
+		final long[] b = Utility.sorted(a);
+		final Map<Long, Integer> id = new HashMap<>();
 		for(int i = 0; i < a.length; ++i) {
 			id.put(b[i], i);
 		}
-		final var bit = new FenwickTree(a.length);
+		final FenwickTree bit = new FenwickTree(a.length);
 		long res = 0;
 		for(int i = 0; i < a.length; ++i) {
 			res += i - bit.sum(id.get(a[i]));
