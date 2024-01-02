@@ -172,18 +172,18 @@ data:
     \ }\n\tprotected final int[] allDist(final int v) {\n\t\tfinal int[] d = new int[n];\n\
     \t\tArrays.fill(d, -1);\n\t\tfinal Queue<Integer> q = new ArrayDeque<>();\n\t\t\
     d[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\
-    \t\t\tfor(final var el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\
-    \t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to]=d[tmp]+1;\n\t\t\t\tq.add(el.to);\n\t\
-    \t\t}\n\t\t}\n\t\treturn d;\n\t}\n\tprotected final int dist(final int u, final\
+    \t\t\tfor(final Edge el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\
+    \t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to] = d[tmp] + 1;\n\t\t\t\tq.add(el.to);\n\
+    \t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\tprotected final int dist(final int u, final\
     \ int v){ return allDist(u)[v]; }\n\tprotected final ArrayList<Integer> topologicalSort()\
     \ {\n\t\tfinal int[] deg = new int[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\
-    \tfor(final var ed: this.get(i)) {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t}\n\t\t}\n\t\t\
-    final var sk = new Stack<Integer>();\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\
-    if(deg[i] == 0) {\n\t\t\t\tsk.add(i);\n\t\t\t}\n\t\t}\n\t\tfinal var ord = new\
-    \ ArrayList<Integer>();\n\t\twhile(!sk.isEmpty()) {\n\t\t\tfinal var tmp = sk.pop();\n\
-    \t\t\tord.add(tmp);\n\t\t\tfor(final var ed: this.get(tmp)) {\n\t\t\t\tif(--deg[ed.to]\
-    \ == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ord.size()\
-    \ == size() ? ord : new ArrayList<>();\n\t}\n}\n"
+    \tfor(final Edge ed: this.get(i)) {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t}\n\t\t}\n\t\
+    \tfinal Stack<Integer> sk = new Stack<>();\n\t\tfor(int i = 0; i < n; ++i) {\n\
+    \t\t\tif(deg[i] == 0) {\n\t\t\t\tsk.add(i);\n\t\t\t}\n\t\t}\n\t\tfinal ArrayList<Integer>\
+    \ ord = new ArrayList<>();\n\t\twhile(!sk.isEmpty()) {\n\t\t\tfinal int tmp =\
+    \ sk.pop();\n\t\t\tord.add(tmp);\n\t\t\tfor(final Edge ed: this.get(tmp)) {\n\t\
+    \t\t\tif(--deg[ed.to] == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\t\t\t\t}\n\t\t\t}\n\t\
+    \t}\n\t\treturn ord.size() == size() ? ord : new ArrayList<>();\n\t}\n}\n"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -232,7 +232,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2024-01-03 03:45:47+09:00'
+  timestamp: '2024-01-03 03:48:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Graph.java
