@@ -92,8 +92,7 @@ final class LongPrime {
 		if(n == 1) return new ArrayList<>();
 		final long x = find(n);
 		if(x == n) return new ArrayList<>(Arrays.asList(x));
-		ArrayList<Long> l = primeFactor(x);
-		final ArrayList<Long> r = primeFactor(n / x);
+		final ArrayList<Long> l = primeFactor(x), r = primeFactor(n / x);
 		l.addAll(r);
 		Collections.sort(l);
 		return l;
@@ -116,7 +115,7 @@ final class BigPrime {
 		do {
 			b = b.shiftRight(bsf(b.longValue()));
 			if(a.compareTo(b) > 0) {
-				final var tmp = b;
+				final BigInteger tmp = b;
 				b = a;
 				a = tmp;
 			}
@@ -188,8 +187,7 @@ final class BigPrime {
 		if(x.equals(n)) {
 			return new ArrayList<>(Arrays.asList(x));
 		}
-		var l = primeFactor(x);
-		final var r = primeFactor(n.divide(x));
+		final ArrayList<BigInteger> l = primeFactor(x), r = primeFactor(n.divide(x));
 		l.addAll(r);
 		Collections.sort(l);
 		return l;
