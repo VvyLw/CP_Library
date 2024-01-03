@@ -875,34 +875,31 @@ class Utility {
 }
 
 final class MyScanner {
-	private final int sz = 1 << 17;
 	private int pos = 0, lim = 0;
-	private final char[] buf = new char[sz];
-	private final BufferedReader br;
-	MyScanner(final InputStream is){ br = new BufferedReader(new InputStreamReader(is), sz); }
-	private final boolean isPunct(final char c){ return !Utility.scope(33, c, 126); }
-	private final boolean isNum(final char c){ return Utility.scope('0', c, '9'); }
-	private final char read() {
-		if(pos == lim) {
-			do {
-				try {
-					lim = br.read(buf, pos = 0, sz);
-				} catch(IOException e) {
-					e.printStackTrace();
-					System.exit(1);
-				}
-			} while(lim == -1);
+	private final byte[] buf = new byte[1 << 17];
+	private final InputStream is;
+	MyScanner(final InputStream is){ this.is = is; }
+	private final boolean isPunct(final byte c){ return !Utility.scope(33, c, 126); }
+	private final boolean isNum(final byte c){ return Utility.scope('0', c, '9'); }
+	private final byte read() {
+		if(pos == lim && lim != -1) {
+			try {
+				lim = is.read(buf);
+			} catch(IOException e) {
+				e.printStackTrace();
+				System.exit(1);
+			}
 		}
 		return buf[pos++];
 	}
-	final char nc() {
-		char c;
-		while(isPunct(c = read())){}
-		return c;
+	private final byte next() {
+		byte bt;
+		while(isPunct(bt = read())){}
+		return bt;
 	}
 	final int ni(){ return Math.toIntExact(nl()); }
 	final long nl() {
-		char c = nc();
+		byte c = next();
 		final boolean neg = c == '-';
 		if(neg) {
 			c = read();
@@ -910,14 +907,16 @@ final class MyScanner {
 		assert(isNum(c));
 		long res = c - '0';
 		while(isNum(c = read())) {
-			res = 10 * res + c - '0';
+			res = Math.multiplyExact(res, 10);
+			res = Math.addExact(res, c - '0');
 		}
 		return neg ? -res : res;
-	}
+	}	
 	final double nd(){ return Double.parseDouble(ns()); }
+	final char nc(){ return (char) next(); }
 	final String ns() {
 		final StringBuilder sb = new StringBuilder();
-		char c = nc();
+		byte c = next();
 		while(!isPunct(c)) {
 			sb.append(c);
 			c = read();
@@ -987,15 +986,16 @@ final class MyScanner {
 	}
 	final String line() {
 		final StringBuilder sb = new StringBuilder();
-		char c;
-		while((c = read()) != '\n') {
+		byte c = next();
+		while(c != '\n') {
 			sb.append(c);
+			c = read();
 		}
 		return sb.toString();
 	}
 	final void close() {
 		try {
-			br.close();
+			is.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(1);
