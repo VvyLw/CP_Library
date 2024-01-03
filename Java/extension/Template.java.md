@@ -511,28 +511,28 @@ data:
     \ V r);\n\t}\n\tprotected interface RecursiveUnaryOperator<T> {\n\t\tpublic T\
     \ apply(final RecursiveUnaryOperator<T> rec, final T n);\n\t}\n\tprotected interface\
     \ RecursiveBinaryOperator<T> {\n\t\tpublic T apply(final RecursiveBinaryOperator<T>\
-    \ rec, final T a, final T b);\n\t}\n}\n\nfinal class MyScanner {\n\tprivate final\
-    \ int sz = 1 << 17;\n\tprivate int pos = 0, lim = 0;\n\tprivate final char[] buf\
-    \ = new char[sz];\n\tprivate final BufferedReader br;\n\tMyScanner(final InputStream\
-    \ is){ br = new BufferedReader(new InputStreamReader(is), sz); }\n\tprivate final\
-    \ boolean isPunct(final char c){ return !Utility.scope(33, c, 126); }\n\tprivate\
-    \ final boolean isNum(final char c){ return Utility.scope('0', c, '9'); }\n\t\
-    private final char read() {\n\t\tif(pos == lim) {\n\t\t\tdo {\n\t\t\t\ttry {\n\
-    \t\t\t\t\tlim = br.read(buf, pos = 0, sz);\n\t\t\t\t} catch(IOException e) {\n\
-    \t\t\t\t\te.printStackTrace();\n\t\t\t\t\tSystem.exit(1);\n\t\t\t\t}\n\t\t\t}\
-    \ while(lim == -1);\n\t\t}\n\t\treturn buf[pos++];\n\t}\n\tfinal char nc() {\n\
-    \t\tchar c;\n\t\twhile(isPunct(c = read())){}\n\t\treturn c;\n\t}\n\tfinal int\
-    \ ni(){ return Math.toIntExact(nl()); }\n\tfinal long nl() {\n\t\tchar c = nc();\n\
-    \t\tfinal boolean neg = c == '-';\n\t\tif(neg) {\n\t\t\tc = read();\n\t\t}\n\t\
-    \tassert(isNum(c));\n\t\tlong res = c - '0';\n\t\twhile(isNum(c = read())) {\n\
-    \t\t\tres = 10 * res + c - '0';\n\t\t}\n\t\treturn neg ? -res : res;\n\t}\n\t\
-    final double nd(){ return Double.parseDouble(ns()); }\n\tfinal String ns() {\n\
-    \t\tfinal StringBuilder sb = new StringBuilder();\n\t\tchar c = nc();\n\t\twhile(!isPunct(c))\
-    \ {\n\t\t\tsb.append(c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\
-    \t}\n\tfinal BigInteger nb(){ return new BigInteger(ns()); }\n\tfinal int[] ni(final\
-    \ int n) {\n\t\tfinal int[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = ni());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\t\
-    final long[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\
+    \ rec, final T a, final T b);\n\t}\n}\n\nfinal class MyScanner {\n\tprivate int\
+    \ pos = 0, lim = 0;\n\tprivate final byte[] buf = new byte[1 << 17];\n\tprivate\
+    \ final InputStream is;\n\tMyScanner(final InputStream is){ this.is = is; }\n\t\
+    private final boolean isPunct(final byte c){ return !Utility.scope(33, c, 126);\
+    \ }\n\tprivate final boolean isNum(final byte c){ return Utility.scope('0', c,\
+    \ '9'); }\n\tprivate final byte read() {\n\t\tif(pos == lim && lim != -1) {\n\t\
+    \t\ttry {\n\t\t\t\tlim = is.read(buf);\n\t\t\t} catch(IOException e) {\n\t\t\t\
+    \te.printStackTrace();\n\t\t\t\tSystem.exit(1);\n\t\t\t}\n\t\t}\n\t\treturn buf[pos++];\n\
+    \t}\n\tprivate final byte next() {\n\t\tbyte bt;\n\t\twhile(isPunct(bt = read())){}\n\
+    \t\treturn bt;\n\t}\n\tfinal int ni(){ return Math.toIntExact(nl()); }\n\tfinal\
+    \ long nl() {\n\t\tbyte c = next();\n\t\tfinal boolean neg = c == '-';\n\t\tif(neg)\
+    \ {\n\t\t\tc = read();\n\t\t}\n\t\tassert(isNum(c));\n\t\tlong res = c - '0';\n\
+    \t\twhile(isNum(c = read())) {\n\t\t\tres = Math.multiplyExact(res, 10);\n\t\t\
+    \tres = Math.addExact(res, c - '0');\n\t\t}\n\t\treturn neg ? -res : res;\n\t\
+    }\t\n\tfinal double nd(){ return Double.parseDouble(ns()); }\n\tfinal char nc(){\
+    \ return (char) next(); }\n\tfinal String ns() {\n\t\tfinal StringBuilder sb =\
+    \ new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c)) {\n\t\t\t\
+    sb.append(c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\t}\n\tfinal\
+    \ BigInteger nb(){ return new BigInteger(ns()); }\n\tfinal int[] ni(final int\
+    \ n) {\n\t\tfinal int[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i ->\
+    \ a[i] = ni());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\tfinal\
+    \ long[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\
     \t\treturn a;\n\t}\n\tfinal double[] nd(final int n) {\n\t\tfinal double[] a =\
     \ new double[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\treturn\
     \ a;\n\t}\n\tfinal char[] nc(final int n) {\n\t\tfinal char[] a = new char[n];\n\
@@ -553,31 +553,32 @@ data:
     \ h).forEach(i -> a[i] = ns(w));\n\t\treturn a;\n\t}\n\tfinal BigInteger[][] nb(final\
     \ int h, final int w) {\n\t\tfinal BigInteger[][] a = new BigInteger[h][w];\n\t\
     \tIntStream.range(0, h).forEach(i -> a[i] = nb(w));\n\t\treturn a;\n\t}\n\tfinal\
-    \ String line() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tchar\
-    \ c;\n\t\twhile((c = read()) != '\\n') {\n\t\t\tsb.append(c);\n\t\t}\n\t\treturn\
-    \ sb.toString();\n\t}\n\tfinal void close() {\n\t\ttry {\n\t\t\tbr.close();\n\t\
-    \t} catch (IOException e) {\n\t\t\te.printStackTrace();\n\t\t\tSystem.exit(1);\n\
-    \t\t}\n\t}\n}\n\nfinal class MyPrinter extends PrintWriter {\n\tMyPrinter(final\
-    \ OutputStream os, final boolean flush){ super(os, flush); }\n\tfinal void out(){\
-    \ println(); }\n\tfinal void out(final Object head, final Object... tail) {\n\t\
-    \tprint(head);\n\t\tfor(final var el: tail) {\n\t\t\tprint(\" \" + el);\n\t\t\
-    }\n\t\tout();\n\t}\n\tfinal <F, S> void out(final Pair<F, S> arg){ println(arg.first\
-    \ + \" \" + arg.second); }\n\tfinal void out(final int[] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\\
-    n\"))); }\n\tfinal void out(final long[] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void\
-    \ out(final double[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i]\
-    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final boolean[]\
+    \ String line() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tbyte\
+    \ c = next();\n\t\twhile(c != '\\n') {\n\t\t\tsb.append(c);\n\t\t\tc = read();\n\
+    \t\t}\n\t\treturn sb.toString();\n\t}\n\tfinal void close() {\n\t\ttry {\n\t\t\
+    \tis.close();\n\t\t} catch (IOException e) {\n\t\t\te.printStackTrace();\n\t\t\
+    \tSystem.exit(1);\n\t\t}\n\t}\n}\n\nfinal class MyPrinter extends PrintWriter\
+    \ {\n\tMyPrinter(final OutputStream os, final boolean flush){ super(os, flush);\
+    \ }\n\tfinal void out(){ println(); }\n\tfinal void out(final Object head, final\
+    \ Object... tail) {\n\t\tprint(head);\n\t\tfor(final var el: tail) {\n\t\t\tprint(\"\
+    \ \" + el);\n\t\t}\n\t\tout();\n\t}\n\tfinal <F, S> void out(final Pair<F, S>\
+    \ arg){ println(arg.first + \" \" + arg.second); }\n\tfinal void out(final int[]\
     \ args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 <\
-    \ args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final char[] args){ IntStream.range(0,\
+    \ args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final long[] args){ IntStream.range(0,\
     \ args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\\
-    n\"))); }\n\tfinal void out(final Object[] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal <T>\
-    \ void out(final List<T> args){ IntStream.range(0, args.size()).forEach(i -> print(args.get(i)\
-    \ + (i + 1 < args.size() ? \" \" : \"\\n\"))); }\n\tfinal void outl(final Object\
-    \ head, final Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::println);\n\
-    \t}\n\tfinal void outl(final int[] args){ Arrays.stream(args).forEach(this::println);\
-    \ }\n\tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
+    n\"))); }\n\tfinal void out(final double[] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void\
+    \ out(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i]\
+    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final char[]\
+    \ args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 <\
+    \ args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final Object[] args){\
+    \ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length\
+    \ ? \" \" : \"\\n\"))); }\n\tfinal <T> void out(final List<T> args){ IntStream.range(0,\
+    \ args.size()).forEach(i -> print(args.get(i) + (i + 1 < args.size() ? \" \" :\
+    \ \"\\n\"))); }\n\tfinal void outl(final Object head, final Object... tail) {\n\
+    \t\tout(head);\n\t\tArrays.stream(tail).forEach(this::println);\n\t}\n\tfinal\
+    \ void outl(final int[] args){ Arrays.stream(args).forEach(this::println); }\n\
+    \tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final long[] args){ Arrays.stream(args).forEach(this::println);\
     \ }\n\tfinal void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final double[] args){ Arrays.stream(args).forEach(this::println);\
@@ -693,7 +694,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/all.java
-  timestamp: '2024-01-03 04:03:40+09:00'
+  timestamp: '2024-01-03 13:03:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java
