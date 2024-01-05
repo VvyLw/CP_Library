@@ -1,5 +1,3 @@
-package extension;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -33,18 +31,18 @@ final class WeightedGraph extends Graph {
 	final long[] dijkstra(final int v) {
 		final long[] cost = new long[n];
 		Arrays.fill(cost, Long.MAX_VALUE);
-		final Queue<NumPair> dj = new PriorityQueue<>();
+		final Queue<IntPair> dj = new PriorityQueue<>();
 		cost[v] = 0;
-		dj.add(new NumPair(cost[v], v));
+		dj.add(new IntPair(cost[v], v));
 		while(!dj.isEmpty()) {
-			final NumPair tmp = dj.poll();
+			final IntPair tmp = dj.poll();
 			if(cost[tmp.second.intValue()] < tmp.first.longValue()) {
 				continue;
 			}
 			for(final Edge el: this.get(tmp.second.intValue())) {
 				if(cost[el.to] > tmp.first.longValue() + el.cost) {
 					cost[el.to] = tmp.first.longValue() + el.cost;
-					dj.add(new NumPair(cost[el.to], el.to));
+					dj.add(new IntPair(cost[el.to], el.to));
 				}
 			}
 		}

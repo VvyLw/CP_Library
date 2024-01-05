@@ -54,7 +54,7 @@ final class WaveletMatrixBeta {
 			}
 		}
 	}
-	private final NumPair succ(final boolean f, final int l, final int r, final int level){ return new NumPair(matrix[level].rank(f, l) + mid[level] * (f ? 1 : 0), matrix[level].rank(f, r) + mid[level] * (f ? 1 : 0)); }
+	private final IntPair succ(final boolean f, final int l, final int r, final int level){ return new IntPair(matrix[level].rank(f, l) + mid[level] * (f ? 1 : 0), matrix[level].rank(f, r) + mid[level] * (f ? 1 : 0)); }
 	final long access(int k) {
 		long ret = 0;
 		for(int level = log; --level >= 0;) {
@@ -69,7 +69,7 @@ final class WaveletMatrixBeta {
 	final int rank(final long x, int r) {
 		int l = 0;
 		for(int level = log; --level >= 0;) {
-			final NumPair p = succ(((x >> level) & 1) == 1, l, r, level);
+			final IntPair p = succ(((x >> level) & 1) == 1, l, r, level);
 			l = p.first.intValue();
 			r = p.second.intValue();
 		}
@@ -87,7 +87,7 @@ final class WaveletMatrixBeta {
 				ret |= 1 << level;
 				k -= cnt;
 			}
-			final NumPair p = succ(f, l, r, level);
+			final IntPair p = succ(f, l, r, level);
 			l = p.first.intValue();
 			r = p.second.intValue();
 		}
@@ -101,7 +101,7 @@ final class WaveletMatrixBeta {
 			if(f) {
 				ret += matrix[level].rank(false, r) - matrix[level].rank(false, l);
 			}
-			final NumPair p = succ(f, l, r, level); 
+			final IntPair p = succ(f, l, r, level); 
 			l = p.first.intValue();
 			r = p.second.intValue();
 		}
