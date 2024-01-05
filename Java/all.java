@@ -1,7 +1,6 @@
-import java.io.BufferedReader;
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.math.BigInteger;
@@ -892,35 +891,35 @@ class Utility {
 	}
 }
 
-final class MyScanner {
-	private final int sz = 1 << 17;
-	private int pos = 0, lim = 0;
-	private final char[] buf = new char[sz];
-	private final BufferedReader br;
-	MyScanner(final InputStream is){ br = new BufferedReader(new InputStreamReader(is), sz); }
-	private final boolean isPunct(final char c){ return !Utility.scope(33, c, 126); }
-	private final boolean isNum(final char c){ return Utility.scope('0', c, '9'); }
-	private final char read() {
-		if(pos == lim) {
-			do {
-				try {
-					lim = br.read(buf, pos = 0, sz);
-				} catch(IOException e) {
-					e.printStackTrace();
-					System.exit(1);
-				}
-			} while(lim == -1);
+final class MyScanner implements Closeable, AutoCloseable {
+	private int pos, lim;
+	private final byte[] buf;
+	private final InputStream is;
+	MyScanner(final InputStream is) {
+		this.is = is;
+		pos = lim = 0;
+		buf = new byte[1 << 24];
+	}
+	private final boolean isPunct(final byte bt){ return !Utility.scope(33, bt, 126); }
+	private final boolean isNum(final byte bt){ return Utility.scope('0', bt, '9'); }
+	private final byte read() {
+		if(pos == lim && lim != -1) {
+			try {
+				lim = is.read(buf);
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
 		}
 		return buf[pos++];
 	}
-	final char nc() {
-		char c;
-		while(isPunct(c = read())){}
-		return c;
+	private final byte next() {
+		byte bt;
+		while(isPunct(bt = read())){}
+		return bt;
 	}
 	final int ni(){ return Math.toIntExact(nl()); }
 	final long nl() {
-		char c = nc();
+		byte c = next();
 		final boolean neg = c == '-';
 		if(neg) {
 			c = read();
@@ -933,9 +932,10 @@ final class MyScanner {
 		return neg ? -res : res;
 	}
 	final double nd(){ return Double.parseDouble(ns()); }
+	final char nc(){ return (char) next(); }
 	final String ns() {
 		final StringBuilder sb = new StringBuilder();
-		char c = nc();
+		byte c = next();
 		while(!isPunct(c)) {
 			sb.append(c);
 			c = read();
@@ -1005,18 +1005,18 @@ final class MyScanner {
 	}
 	final String line() {
 		final StringBuilder sb = new StringBuilder();
-		char c;
+		byte c;
 		while((c = read()) != '\n') {
 			sb.append(c);
 		}
 		return sb.toString();
 	}
-	final void close() {
+	@Override
+	public final void close() {
 		try {
-			br.close();
+			is.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.exit(1);
 		}
 	}
 }
@@ -3071,106 +3071,4 @@ final class Deque<T> implements Iterable<T> {
 			rem++;
 		}
 	}
-}
-final class IntDeque {
-	private int n, head, tail;
-	private long[] buf;
-	IntDeque(){ this(1 << 17); }
-	IntDeque(final int n) {
-		this.n = n;
-		head = tail = 0;
-		buf = new long[n];
-	}
-	IntDeque(final int[] a) {
-		this(a.length);
-		Arrays.stream(a).forEach(i -> add(i));
-	}
-	IntDeque(final long[] a) {
-		this(a.length);
-		Arrays.stream(a).forEach(i -> add(i));
-	}
-	private final int next(final int index) {
-		final int next = index + 1;
-		return next == n ? 0 : next;
-	}
-	private final int prev(final int index) {
-		final int prev = index - 1;
-		return prev == -1 ? n - 1 : prev;
-	}
-	private final int index(final int i) {
-		final int size = size();
-		if(i >= size) {
-			throw new IndexOutOfBoundsException("Index "+ i +" out of bounds for length " + size);
-		}
-		final int id = head + i;
-		return n <= id ? id - n : id;
-	}
-	private final void extend() {
-		buf = Arrays.copyOf(buf, n << 1);
-		n = buf.length;
-	}
-	final boolean isEmpty(){ return size() == 0; }
-	final int size() {
-		final int size = tail - head;
-		return size < 0 ? size + n : size;
-	}
-	final void addFirst(final long x) {
-		head = prev(head);
-		if(head == tail) {
-			extend();
-		}
-		buf[head] = x;
-	}
-	final void addLast(final long x) {
-		if(next(tail) == head) {
-			extend();
-		}
-		buf[tail] = x;
-		tail = next(tail);
-	}
-	final void removeFirst() {
-		if(head == tail) {
-			throw new NoSuchElementException("Buffer is empty");
-		}
-		head = next(head);
-	}
-	final void removeLast() {
-		if(head == tail) {
-			throw new NoSuchElementException("Buffer is empty");
-		}
-		tail = prev(tail);
-	}
-	final long pollFirst() {
-		if(head == tail) {
-			throw new NoSuchElementException("Buffer is empty");
-		}
-		final long ans = buf[head];
-		head = next(head);
-		return ans;
-	}
-	final long pollLast() {
-		if(head == tail) {
-			throw new NoSuchElementException("Buffer is empty");
-		}
-		tail = prev(tail);
-		return buf[tail];
-	}
-	final long peekFirst(){ return get(0); }
-	final long peekLast(){ return get(n - 1); }
-	final long get(final int i){ return buf[index(i)]; }
-	final void set(final int i, final long x){ buf[index(i)] = x; }
-	final void add(final long x){ addLast(x); }
-	final long poll(){ return pollFirst(); }
-	final long peek(){ return peekFirst(); }
-	final void swap(final int a, final int b) {
-		final int i = index(a);
-		final int j = index(b);
-		final long num = buf[i];
-		buf[i] = buf[j];
-		buf[j] = num;
-	}
-	final void clear(){ head = tail = 0; }
-	final long[] toArray(){ return Arrays.copyOf(buf, size()); }
-	@Override
-	public final String toString(){ return Arrays.toString(toArray()); }
 }

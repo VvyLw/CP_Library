@@ -1,5 +1,8 @@
 package extension;
 
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.math.BigInteger;
@@ -8,7 +11,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 import java.util.function.DoublePredicate;
 import java.util.function.IntPredicate;
 import java.util.function.LongPredicate;
@@ -21,15 +23,14 @@ final class Main {
 		VvyLw.o.flush();
 		VvyLw.sc.close();
 		VvyLw.o.close();
-		VvyLw.dbg.close();
+		VvyLw.e.close();
 	}
 }
 
-final class VvyLw extends Utility {
+class VvyLw extends Utility {
 	static final MyScanner sc = new MyScanner(System.in);
 	static final MyPrinter o = new MyPrinter(System.out, false);
-	static final MyPrinter dbg = new MyPrinter(System.err, true);
-	static final Huitloxopetl why = new Huitloxopetl();
+	static final MyPrinter e = new MyPrinter(System.err, true);
 	static final boolean multi = false;
 	static final int inf = 1 << 30;
 	static final long linf = (1L << 61) - 1;
@@ -50,8 +51,6 @@ class Utility {
 	protected static final String yes(final boolean ok){ return ok ? "Yes" : "No"; }
 	protected static final String no(final boolean ok){ return yes(!ok); }
 	protected static final long sqr(final long x){ return x * x; }
-	protected static final int mod(final int n, final int m){ return (n + m) % m; }
-	protected static final int mod(final long n, final int m){ return (int) (n + m) % m; }
 	protected static final long mod(final long n, final long m){ return (n + m) % m; }
 	protected static final long ceil(final long a, final long b){ return (a - 1) / b + 1; }
 	protected static final double round(final double a, final long b, final int c) {
@@ -93,7 +92,7 @@ class Utility {
 	protected static final int max(final int... a){ return Arrays.stream(a).reduce(Integer.MIN_VALUE, (x, y) -> Math.max(x, y)); }
 	protected static final long max(final long... a){ return Arrays.stream(a).reduce(Long.MIN_VALUE, (x, y) -> Math.max(x, y)); }
 	protected static final ArrayList<Long> div(final long n) {
-		final ArrayList<Long> d = new ArrayList<>();
+		ArrayList<Long> d = new ArrayList<>();
 		for(long i = 1; i * i <= n; ++i) {
 			if(n % i == 0) {
 				d.add(i);
@@ -106,7 +105,7 @@ class Utility {
 		return d;
 	}
 	protected static final ArrayList<Pair<Long, Integer>> primeFactor(long n) {
-		final ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();
+		ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();
 		for(long i = 2; i * i <= n; ++i) {
 			if(n % i != 0) {
 				continue;
@@ -247,7 +246,7 @@ class Utility {
 		return null;
 	}
 	protected static final String nextPerm(final String s) {
-		final List<Character> a = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
+		final var a = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
 		for(int i = a.size(); --i > 0;) {
 			if(a.get(i - 1).compareTo(a.get(i)) < 0) {
 				final int j = find(a.get(i - 1), a, i, a.size() - 1);
@@ -292,7 +291,7 @@ class Utility {
 		return null;
 	}
 	protected static final String prevPerm(final String s) {
-		final List<Character> a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
+		var a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
 		for(int i = a.size(); --i > 0;) {
 			if(a.get(i - 1).compareTo(a.get(i)) > 0) {
 				final int j = findRev(a.get(i - 1), a, i, a.size() - 1);
@@ -509,7 +508,7 @@ class Utility {
 		return b;
 	}
 	protected static final int[] rotate(final int[] a, final int id) {
-		final List<Integer> t = Arrays.stream(a).boxed().collect(Collectors.toList());
+		final var t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
 		final int[] res = new int[a.length];
 		for(int i = 0; i < a.length; ++i) {
@@ -518,7 +517,7 @@ class Utility {
 		return res;
 	}
 	protected static final long[] rotate(final long[] a, final int id) {
-		final List<Long> t = Arrays.stream(a).boxed().collect(Collectors.toList());
+		final var t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
 		final long[] res = new long[a.length];
 		for(int i = 0; i < a.length; ++i) {
@@ -527,7 +526,7 @@ class Utility {
 		return res;
 	}
 	protected static final double[] rotate(final double[] a, final int id) {
-		final List<Double> t = Arrays.stream(a).boxed().collect(Collectors.toList());
+		final var t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
 		final double[] res = new double[a.length];
 		for(int i = 0; i < a.length; ++i) {
@@ -536,7 +535,7 @@ class Utility {
 		return res;
 	}
 	protected static final String rotate(final String s, final int id) {
-		final List<Character> t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
+		final var t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
 		Collections.rotate(t, id);
 		return t.stream().map(i -> i.toString()).collect(Collectors.joining());
 	}
@@ -623,64 +622,62 @@ class Utility {
 		a[i] ^= a[j];
 	}
 	protected static final void swap(final double[] a, final int i, final int j) {
-		final double tmp = a[i];
+		final var tmp = a[i];
 		a[i] = a[j];
 		a[j] = tmp;
 	}
 	protected static final void swap(final char[] a, final int i, final int j) {
-		a[i] ^= a[j];
-		a[j] ^= a[i];
-		a[i] ^= a[j];
-	}
-	protected static final void swap(final boolean[] a, final int i, final int j) {
-		a[i] ^= a[j];
-		a[j] ^= a[i];
-		a[i] ^= a[j];
+		final var tmp = a[i];
+		a[i] = a[j];
+		a[j] = tmp;
 	}
 	protected static final void swap(final Object[] a, final int i, final int j) {
-		final Object tmp = a[i];
+		final var tmp = a[i];
 		a[i] = a[j];
 		a[j] = tmp;
 	}
 	protected static final void swap(final int[] a, final int[] b) {
-		assert a.length == b.length;
+		if(a.length != b.length) {
+			throw new AssertionError("a.length != b.length");
+		}
 		final int n = a.length;
-		final int[] c = a.clone();
+		final var c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final long[] a, final long[] b) {
-		assert a.length == b.length;
+		if(a.length != b.length) {
+			throw new AssertionError("a.length != b.length");
+		}
 		final int n = a.length;
-		final long[] c = a.clone();
+		final var c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final double[] a, final double[] b) {
-		assert a.length == b.length;
+		if(a.length != b.length) {
+			throw new AssertionError("a.length != b.length");
+		}
 		final int n = a.length;
-		final double[] c = a.clone();
+		final var c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final char[] a, final char[] b) {
-		assert a.length == b.length;
+		if(a.length != b.length) {
+			throw new AssertionError("a.length != b.length");
+		}
 		final int n = a.length;
-		final char[] c = a.clone();
-		System.arraycopy(b, 0, a, 0, n);
-		System.arraycopy(c, 0, b, 0, n);
-	}
-	protected static final void swap(final boolean[] a, final boolean[] b) {
-		assert a.length == b.length;
-		final int n = a.length;
-		final boolean[] c = a.clone();
+		final var c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final Object[] a, final Object[] b) {
-		assert a.length == b.length;
+		if(a.length != b.length) {
+			throw new AssertionError("a.length != b.length");
+		}
 		final int n = a.length;
-		final Object[] c = a.clone();
+		final var c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
@@ -726,7 +723,7 @@ class Utility {
 	}
 	protected static final int[] press(final int[] a) {
 		final int[] res = new int[a.length];
-		final int[] x = Arrays.stream(a).sorted().distinct().toArray();
+		final var x = Arrays.stream(a).sorted().distinct().toArray();
 		for(int i = 0; i < a.length; ++i) {
 			res[i] = lowerBound(x, a[i]);
 		}
@@ -734,7 +731,7 @@ class Utility {
 	}
 	protected static final int[] press(final long[] a) {
 		final int[] res = new int[a.length];
-		final long[] x = Arrays.stream(a).sorted().distinct().toArray();
+		final var x = Arrays.stream(a).sorted().distinct().toArray();
 		for(int i = 0; i < a.length; ++i) {
 			res[i] = lowerBound(x, a[i]);
 		}
@@ -769,7 +766,7 @@ class Utility {
 			for(int i = n; --i >= 0;) {
 				s[2 * i] = s_.charAt(i);
 			}
-			final char d = Collections.min(s_.chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
+			final var d = Collections.min(s_.chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
 			for(int i = 0; i < n - 1; ++i) {
 				s[2 * i + 1] = d;
 			}
@@ -799,7 +796,7 @@ class Utility {
 				}
 			}
 		} else {
-			for(int x: rad) {
+			for(var x: rad) {
 				x = 2 * x - 1;
 			}
 		}
@@ -844,8 +841,8 @@ class Utility {
 		if(b == 2) {
 			return pow(a, a, m);
 		}
-		final long phi = eulerPhi(m);
-		long tmp = tetration(a, b - 1, phi);
+		final var phi = eulerPhi(m);
+		var tmp = tetration(a, b - 1, phi);
 		if(tmp == 0) {
 			tmp += phi;
 		}
@@ -857,37 +854,25 @@ class Utility {
 	protected interface QuadFunction<A, B, C, D, E> {
 		public E apply(final A a, final B b, final C c, final D d);
 	}
-	protected interface RecursiveFunction<T, U> {
-		public U apply(final RecursiveFunction<T, U> rec, final T n);
-	}
-	protected interface RecursiveBiFunction<T, U, V> {
-		public V apply(final RecursiveBiFunction<T, U, V> rec, final T n, final U m);
-	}
-	protected interface RecursiveTriFunction<T, U, V, W> {
-		public W apply(final RecursiveTriFunction<T, U, V, W> rec, final T p, final U q, final V r);
-	}
-	protected interface RecursiveUnaryOperator<T> {
-		public T apply(final RecursiveUnaryOperator<T> rec, final T n);
-	}
-	protected interface RecursiveBinaryOperator<T> {
-		public T apply(final RecursiveBinaryOperator<T> rec, final T a, final T b);
-	}
 }
 
-final class MyScanner {
-	private int pos = 0, lim = 0;
-	private final byte[] buf = new byte[1 << 17];
+final class MyScanner implements Closeable, AutoCloseable {
+	private int pos, lim;
+	private final byte[] buf;
 	private final InputStream is;
-	MyScanner(final InputStream is){ this.is = is; }
-	private final boolean isPunct(final byte c){ return !Utility.scope(33, c, 126); }
-	private final boolean isNum(final byte c){ return Utility.scope('0', c, '9'); }
+	MyScanner(final InputStream is) {
+		this.is = is;
+		pos = lim = 0;
+		buf = new byte[1 << 24];
+	}
+	private final boolean isPunct(final byte bt){ return !Utility.scope(33, bt, 126); }
+	private final boolean isNum(final byte bt){ return Utility.scope('0', bt, '9'); }
 	private final byte read() {
 		if(pos == lim && lim != -1) {
 			try {
 				lim = is.read(buf);
 			} catch(IOException e) {
 				e.printStackTrace();
-				System.exit(1);
 			}
 		}
 		return buf[pos++];
@@ -907,11 +892,10 @@ final class MyScanner {
 		assert(isNum(c));
 		long res = c - '0';
 		while(isNum(c = read())) {
-			res = Math.multiplyExact(res, 10);
-			res = Math.addExact(res, c - '0');
+			res = 10 * res + c - '0';
 		}
 		return neg ? -res : res;
-	}	
+	}
 	final double nd(){ return Double.parseDouble(ns()); }
 	final char nc(){ return (char) next(); }
 	final String ns() {
@@ -986,19 +970,18 @@ final class MyScanner {
 	}
 	final String line() {
 		final StringBuilder sb = new StringBuilder();
-		byte c = next();
-		while(c != '\n') {
+		byte c;
+		while((c = read()) != '\n') {
 			sb.append(c);
-			c = read();
 		}
 		return sb.toString();
 	}
-	final void close() {
+	@Override
+	public final void close() {
 		try {
 			is.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.exit(1);
 		}
 	}
 }
