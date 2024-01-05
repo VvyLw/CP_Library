@@ -61,6 +61,7 @@ final class VvyLw extends Utility {
 	@SuppressWarnings("unused")
 	private static final int mod107 = (int)1e9 + 7;
 	static final void solve() {
+		final int n = sc.ni();
 		
 	}
 }
@@ -1226,6 +1227,11 @@ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> imp
 }
 final class IntPair extends Pair<Long, Long> {
 	IntPair(final long first, final long second){ super(first, second); }
+	final IntPair add(final IntPair p){ return new IntPair(first + p.first, second + p.second); }
+	final IntPair sub(final IntPair p){ return new IntPair(first - p.first, second - p.second); }
+	final IntPair mul(final IntPair p){ return new IntPair(first * p.first, second * p.second); }
+	final IntPair div(final IntPair p){ return new IntPair(first / p.first, second / p.second); }
+	final IntPair mod(final IntPair p){ return new IntPair(first % p.first, second % p.second); }
 	final IntPair rotate(){ return new IntPair(-second, first); } 
 	final FloatPair rotate(final int ang) {
 		final double rad = Math.toRadians(Utility.mod(ang, 360));
@@ -1267,6 +1273,10 @@ final class IntPair extends Pair<Long, Long> {
 }
 final class FloatPair extends Pair<Double, Double> {
 	FloatPair(final double first, final double second){ super(first, second); }
+	final FloatPair add(final FloatPair p){ return new FloatPair(first + p.first, second + p.second); }
+	final FloatPair sub(final FloatPair p){ return new FloatPair(first - p.first, second - p.second); }
+	final FloatPair mul(final FloatPair p){ return new FloatPair(first * p.first, second * p.second); }
+	final FloatPair div(final FloatPair p){ return new FloatPair(first / p.first, second / p.second); }
 	final FloatPair rotate(){ return new FloatPair(-second, first); } 
 	final FloatPair rotate(final int ang) {
 		final double rad = Math.toRadians(Utility.mod(ang, 360));
