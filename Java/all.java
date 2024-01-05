@@ -61,7 +61,6 @@ final class VvyLw extends Utility {
 	@SuppressWarnings("unused")
 	private static final int mod107 = (int)1e9 + 7;
 	static final void solve() {
-		final int n = sc.ni();
 		
 	}
 }
