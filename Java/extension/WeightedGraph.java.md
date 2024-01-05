@@ -144,28 +144,28 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/extension/WeightedGraph.java\n"
-  code: "package extension;\n\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
-    import java.util.Comparator;\nimport java.util.PriorityQueue;\nimport java.util.Queue;\n\
-    import java.util.function.IntUnaryOperator;\nimport java.util.stream.Collectors;\n\
-    import java.util.stream.IntStream;\n\nfinal class MST {\n\tpublic final ArrayList<Edge>\
-    \ tree;\n\tpublic final long cost;\n\tMST(final ArrayList<Edge> tree, final long\
-    \ cost) {\n\t\tthis.tree = tree;\n\t\tthis.cost = cost;\n\t}\n}\nfinal class WeightedGraph\
-    \ extends Graph {\n\tWeightedGraph(final int n, final int indexed, final boolean\
-    \ undirected){ super(n, indexed, undirected); }\n\tfinal void addEdge(int a, int\
-    \ b, final long cost) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new\
-    \ Edge(b, cost));\n\t\tedge.add(new Edge(a, b, cost));\n\t\tif(undirected) {\n\
-    \t\t\tthis.get(b).add(new Edge(a, cost));\n\t\t\tedge.add(new Edge(b, a, cost));\n\
-    \t\t}\n\t}\n\tfinal void input(final int m){ IntStream.range(0, m).forEach(i ->\
-    \ addEdge(VvyLw.sc.ni(), VvyLw.sc.ni(), VvyLw.sc.ni())); }\n\tfinal long[] dijkstra(final\
-    \ int v) {\n\t\tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
-    \t\tfinal Queue<NumPair> dj = new PriorityQueue<>();\n\t\tcost[v] = 0;\n\t\tdj.add(new\
-    \ NumPair(cost[v], v));\n\t\twhile(!dj.isEmpty()) {\n\t\t\tfinal NumPair tmp =\
-    \ dj.poll();\n\t\t\tif(cost[tmp.second.intValue()] < tmp.first.longValue()) {\n\
-    \t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final Edge el: this.get(tmp.second.intValue()))\
-    \ {\n\t\t\t\tif(cost[el.to] > tmp.first.longValue() + el.cost) {\n\t\t\t\t\tcost[el.to]\
-    \ = tmp.first.longValue() + el.cost;\n\t\t\t\t\tdj.add(new NumPair(cost[el.to],\
-    \ el.to));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[] bellmanFord(final\
-    \ int v) {\n\t\tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
+  code: "import java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Comparator;\n\
+    import java.util.PriorityQueue;\nimport java.util.Queue;\nimport java.util.function.IntUnaryOperator;\n\
+    import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nfinal\
+    \ class MST {\n\tpublic final ArrayList<Edge> tree;\n\tpublic final long cost;\n\
+    \tMST(final ArrayList<Edge> tree, final long cost) {\n\t\tthis.tree = tree;\n\t\
+    \tthis.cost = cost;\n\t}\n}\nfinal class WeightedGraph extends Graph {\n\tWeightedGraph(final\
+    \ int n, final int indexed, final boolean undirected){ super(n, indexed, undirected);\
+    \ }\n\tfinal void addEdge(int a, int b, final long cost) {\n\t\ta -= indexed;\n\
+    \t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(b, cost));\n\t\tedge.add(new Edge(a,\
+    \ b, cost));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new Edge(a, cost));\n\
+    \t\t\tedge.add(new Edge(b, a, cost));\n\t\t}\n\t}\n\tfinal void input(final int\
+    \ m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni(),\
+    \ VvyLw.sc.ni())); }\n\tfinal long[] dijkstra(final int v) {\n\t\tfinal long[]\
+    \ cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tfinal Queue<IntPair>\
+    \ dj = new PriorityQueue<>();\n\t\tcost[v] = 0;\n\t\tdj.add(new IntPair(cost[v],\
+    \ v));\n\t\twhile(!dj.isEmpty()) {\n\t\t\tfinal IntPair tmp = dj.poll();\n\t\t\
+    \tif(cost[tmp.second.intValue()] < tmp.first.longValue()) {\n\t\t\t\tcontinue;\n\
+    \t\t\t}\n\t\t\tfor(final Edge el: this.get(tmp.second.intValue())) {\n\t\t\t\t\
+    if(cost[el.to] > tmp.first.longValue() + el.cost) {\n\t\t\t\t\tcost[el.to] = tmp.first.longValue()\
+    \ + el.cost;\n\t\t\t\t\tdj.add(new IntPair(cost[el.to], el.to));\n\t\t\t\t}\n\t\
+    \t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[] bellmanFord(final int v) {\n\
+    \t\tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
     \t\tcost[v] = 0;\n\t\tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final\
     \ Edge e: edge) {\n\t\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\t\tcontinue;\n\
     \t\t\t\t}\n\t\t\t\tif(cost[e.to] > cost[e.src] + e.cost) {\n\t\t\t\t\tcost[e.to]\
@@ -228,7 +228,7 @@ data:
     \ Node t) {\n\t\tif(t == null) {\n\t\t\tthrow new NullPointerException();\n\t\t\
     }\n\t\treturn meld(t.l, t.r);\n\t}\n\tfinal Node add(Node t, final long lazy)\
     \ {\n\t\tif(t != null) {\n\t\t\tt.lazy += lazy;\n\t\t\tpropagate(t);\n\t\t}\n\t\
-    \treturn t;\n\t}\n}\n"
+    \treturn t;\n\t}\n}"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -277,7 +277,7 @@ data:
   - Java/extension/Graph.java
   - Java/extension/Template.java
   - Java/all.java
-  timestamp: '2024-01-05 21:24:13+09:00'
+  timestamp: '2024-01-05 22:56:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/WeightedGraph.java
