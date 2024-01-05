@@ -337,18 +337,19 @@ data:
     return -1;\n\t}\n\tprotected static final boolean binarySearch(final int[] a,\
     \ final int x){ return Arrays.binarySearch(a, x) >= 0; }\n\tprotected static final\
     \ boolean binarySearch(final long[] a, final long x){ return Arrays.binarySearch(a,\
-    \ x) >= 0; }\n\tprotected static final boolean binarySearch(final Object[] a,\
-    \ final Object x){ return Arrays.binarySearch(a, x) >= 0; }\n\tprotected static\
-    \ final boolean binarySearch(final List<Object> a, final Object x){ return Collections.binarySearch(a,\
-    \ x, null) >= 0; }\n\tprotected static final int lowerBound(final int[] a, final\
-    \ int x){ return bins(a.length, -1, (IntPredicate) y -> a[y] >= x); }\n\tprotected\
-    \ static final int lowerBound(final long[] a, final long x){ return bins(a.length,\
-    \ -1, (IntPredicate) y -> a[y] >= x); }\n\tprotected static final <T extends Comparable<?\
-    \ super T>> int lowerBound(final T[] a, final T x){ return lowerBound(Arrays.asList(a),\
-    \ x); }\n\tprotected static final <T extends Comparable<? super T>> int lowerBound(final\
-    \ List<T> a, final T x){ return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q)\
-    \ >= 0 ? 1 : -1); }\n\tprotected static final int upperBound(final int[] a, final\
-    \ int x){ return bins(a.length, -1, (IntPredicate) y -> a[y] > x); }\n\tprotected\
+    \ x) >= 0; }\n\tprotected static final <T extends Comparable<? super T>> boolean\
+    \ binarySearch(final T[] a, final T x){ return Arrays.binarySearch(a, x) >= 0;\
+    \ }\n\tprotected static final <T extends Comparable<? super T>> boolean binarySearch(final\
+    \ List<T> a, final T x){ return Collections.binarySearch(a, x, null) >= 0; }\n\
+    \tprotected static final int lowerBound(final int[] a, final int x){ return bins(a.length,\
+    \ -1, (IntPredicate) y -> a[y] >= x); }\n\tprotected static final int lowerBound(final\
+    \ long[] a, final long x){ return bins(a.length, -1, (IntPredicate) y -> a[y]\
+    \ >= x); }\n\tprotected static final <T extends Comparable<? super T>> int lowerBound(final\
+    \ T[] a, final T x){ return lowerBound(Arrays.asList(a), x); }\n\tprotected static\
+    \ final <T extends Comparable<? super T>> int lowerBound(final List<T> a, final\
+    \ T x){ return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) >= 0 ?\
+    \ 1 : -1); }\n\tprotected static final int upperBound(final int[] a, final int\
+    \ x){ return bins(a.length, -1, (IntPredicate) y -> a[y] > x); }\n\tprotected\
     \ static final int upperBound(final long[] a, final long x){ return bins(a.length,\
     \ -1, (IntPredicate) y -> a[y] > x); }\n\tprotected static final <T extends Comparable<?\
     \ super T>> int upperBound(final T[] a, final T x){ return upperBound(Arrays.asList(a),\
@@ -1366,7 +1367,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2024-01-05 22:56:21+09:00'
+  timestamp: '2024-01-05 23:39:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
