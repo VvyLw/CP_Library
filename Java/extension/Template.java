@@ -12,7 +12,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Formatter;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.DoublePredicate;
 import java.util.function.IntPredicate;
 import java.util.function.LongPredicate;
@@ -29,10 +28,11 @@ final class Main {
 	}
 }
 
-class VvyLw extends Utility {
+final class VvyLw extends Utility {
 	static final MyScanner sc = new MyScanner(System.in);
 	static final MyPrinter o = new MyPrinter(System.out, false);
 	static final MyPrinter dbg = new MyPrinter(System.err, true);
+	static final Huitloxopetl why = new Huitloxopetl();
 	static final boolean multi = false;
 	static final int inf = 1 << 30;
 	static final long linf = (1L << 61) - 1;
@@ -53,6 +53,8 @@ class Utility {
 	protected static final String yes(final boolean ok){ return ok ? "Yes" : "No"; }
 	protected static final String no(final boolean ok){ return yes(!ok); }
 	protected static final long sqr(final long x){ return x * x; }
+	protected static final int mod(final int n, final int m){ return (n + m) % m; }
+	protected static final int mod(final long n, final int m){ return (int) (n + m) % m; }
 	protected static final long mod(final long n, final long m){ return (n + m) % m; }
 	protected static final long ceil(final long a, final long b){ return (a - 1) / b + 1; }
 	protected static final double round(final double a, final long b, final int c) {
@@ -94,7 +96,7 @@ class Utility {
 	protected static final int max(final int... a){ return Arrays.stream(a).reduce(Integer.MIN_VALUE, (x, y) -> Math.max(x, y)); }
 	protected static final long max(final long... a){ return Arrays.stream(a).reduce(Long.MIN_VALUE, (x, y) -> Math.max(x, y)); }
 	protected static final ArrayList<Long> div(final long n) {
-		ArrayList<Long> d = new ArrayList<>();
+		final ArrayList<Long> d = new ArrayList<>();
 		for(long i = 1; i * i <= n; ++i) {
 			if(n % i == 0) {
 				d.add(i);
@@ -107,7 +109,7 @@ class Utility {
 		return d;
 	}
 	protected static final ArrayList<Pair<Long, Integer>> primeFactor(long n) {
-		ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();
+		final ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();
 		for(long i = 2; i * i <= n; ++i) {
 			if(n % i != 0) {
 				continue;
@@ -248,7 +250,7 @@ class Utility {
 		return null;
 	}
 	protected static final String nextPerm(final String s) {
-		final var a = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
+		final List<Character> a = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
 		for(int i = a.size(); --i > 0;) {
 			if(a.get(i - 1).compareTo(a.get(i)) < 0) {
 				final int j = find(a.get(i - 1), a, i, a.size() - 1);
@@ -293,7 +295,7 @@ class Utility {
 		return null;
 	}
 	protected static final String prevPerm(final String s) {
-		var a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
+		final List<Character> a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
 		for(int i = a.size(); --i > 0;) {
 			if(a.get(i - 1).compareTo(a.get(i)) > 0) {
 				final int j = findRev(a.get(i - 1), a, i, a.size() - 1);
@@ -510,7 +512,7 @@ class Utility {
 		return b;
 	}
 	protected static final int[] rotate(final int[] a, final int id) {
-		final var t = Arrays.stream(a).boxed().collect(Collectors.toList());
+		final List<Integer> t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
 		final int[] res = new int[a.length];
 		for(int i = 0; i < a.length; ++i) {
@@ -519,7 +521,7 @@ class Utility {
 		return res;
 	}
 	protected static final long[] rotate(final long[] a, final int id) {
-		final var t = Arrays.stream(a).boxed().collect(Collectors.toList());
+		final List<Long> t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
 		final long[] res = new long[a.length];
 		for(int i = 0; i < a.length; ++i) {
@@ -528,7 +530,7 @@ class Utility {
 		return res;
 	}
 	protected static final double[] rotate(final double[] a, final int id) {
-		final var t = Arrays.stream(a).boxed().collect(Collectors.toList());
+		final List<Double> t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
 		final double[] res = new double[a.length];
 		for(int i = 0; i < a.length; ++i) {
@@ -537,7 +539,7 @@ class Utility {
 		return res;
 	}
 	protected static final String rotate(final String s, final int id) {
-		final var t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
+		final List<Character> t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
 		Collections.rotate(t, id);
 		return t.stream().map(i -> i.toString()).collect(Collectors.joining());
 	}
@@ -624,62 +626,64 @@ class Utility {
 		a[i] ^= a[j];
 	}
 	protected static final void swap(final double[] a, final int i, final int j) {
-		final var tmp = a[i];
+		final double tmp = a[i];
 		a[i] = a[j];
 		a[j] = tmp;
 	}
 	protected static final void swap(final char[] a, final int i, final int j) {
-		final var tmp = a[i];
-		a[i] = a[j];
-		a[j] = tmp;
+		a[i] ^= a[j];
+		a[j] ^= a[i];
+		a[i] ^= a[j];
+	}
+	protected static final void swap(final boolean[] a, final int i, final int j) {
+		a[i] ^= a[j];
+		a[j] ^= a[i];
+		a[i] ^= a[j];
 	}
 	protected static final void swap(final Object[] a, final int i, final int j) {
-		final var tmp = a[i];
+		final Object tmp = a[i];
 		a[i] = a[j];
 		a[j] = tmp;
 	}
 	protected static final void swap(final int[] a, final int[] b) {
-		if(a.length != b.length) {
-			throw new AssertionError("a.length != b.length");
-		}
+		assert a.length == b.length;
 		final int n = a.length;
-		final var c = a.clone();
+		final int[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final long[] a, final long[] b) {
-		if(a.length != b.length) {
-			throw new AssertionError("a.length != b.length");
-		}
+		assert a.length == b.length;
 		final int n = a.length;
-		final var c = a.clone();
+		final long[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final double[] a, final double[] b) {
-		if(a.length != b.length) {
-			throw new AssertionError("a.length != b.length");
-		}
+		assert a.length == b.length;
 		final int n = a.length;
-		final var c = a.clone();
+		final double[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final char[] a, final char[] b) {
-		if(a.length != b.length) {
-			throw new AssertionError("a.length != b.length");
-		}
+		assert a.length == b.length;
 		final int n = a.length;
-		final var c = a.clone();
+		final char[] c = a.clone();
+		System.arraycopy(b, 0, a, 0, n);
+		System.arraycopy(c, 0, b, 0, n);
+	}
+	protected static final void swap(final boolean[] a, final boolean[] b) {
+		assert a.length == b.length;
+		final int n = a.length;
+		final boolean[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	protected static final void swap(final Object[] a, final Object[] b) {
-		if(a.length != b.length) {
-			throw new AssertionError("a.length != b.length");
-		}
+		assert a.length == b.length;
 		final int n = a.length;
-		final var c = a.clone();
+		final Object[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
@@ -725,7 +729,7 @@ class Utility {
 	}
 	protected static final int[] press(final int[] a) {
 		final int[] res = new int[a.length];
-		final var x = Arrays.stream(a).sorted().distinct().toArray();
+		final int[] x = Arrays.stream(a).sorted().distinct().toArray();
 		for(int i = 0; i < a.length; ++i) {
 			res[i] = lowerBound(x, a[i]);
 		}
@@ -733,7 +737,7 @@ class Utility {
 	}
 	protected static final int[] press(final long[] a) {
 		final int[] res = new int[a.length];
-		final var x = Arrays.stream(a).sorted().distinct().toArray();
+		final long[] x = Arrays.stream(a).sorted().distinct().toArray();
 		for(int i = 0; i < a.length; ++i) {
 			res[i] = lowerBound(x, a[i]);
 		}
@@ -768,7 +772,7 @@ class Utility {
 			for(int i = n; --i >= 0;) {
 				s[2 * i] = s_.charAt(i);
 			}
-			final var d = Collections.min(s_.chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
+			final char d = Collections.min(s_.chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
 			for(int i = 0; i < n - 1; ++i) {
 				s[2 * i + 1] = d;
 			}
@@ -798,7 +802,7 @@ class Utility {
 				}
 			}
 		} else {
-			for(var x: rad) {
+			for(int x: rad) {
 				x = 2 * x - 1;
 			}
 		}
@@ -843,8 +847,8 @@ class Utility {
 		if(b == 2) {
 			return pow(a, a, m);
 		}
-		final var phi = eulerPhi(m);
-		var tmp = tetration(a, b - 1, phi);
+		final long phi = eulerPhi(m);
+		long tmp = tetration(a, b - 1, phi);
 		if(tmp == 0) {
 			tmp += phi;
 		}
@@ -856,6 +860,21 @@ class Utility {
 	protected interface QuadFunction<A, B, C, D, E> {
 		public E apply(final A a, final B b, final C c, final D d);
 	}
+	protected interface RecursiveFunction<T, U> {
+		public U apply(final RecursiveFunction<T, U> rec, final T n);
+	}
+	protected interface RecursiveBiFunction<T, U, V> {
+		public V apply(final RecursiveBiFunction<T, U, V> rec, final T n, final U m);
+	}
+	protected interface RecursiveTriFunction<T, U, V, W> {
+		public W apply(final RecursiveTriFunction<T, U, V, W> rec, final T p, final U q, final V r);
+	}
+	protected interface RecursiveUnaryOperator<T> {
+		public T apply(final RecursiveUnaryOperator<T> rec, final T n);
+	}
+	protected interface RecursiveBinaryOperator<T> {
+		public T apply(final RecursiveBinaryOperator<T> rec, final T a, final T b);
+	}
 }
 
 final class MyScanner implements Closeable, AutoCloseable {
@@ -865,7 +884,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 	MyScanner(final InputStream is) {
 		this.is = is;
 		pos = lim = 0;
-		buf = new byte[1 << 24];
+		buf = new byte[1 << 17];
 	}
 	private final boolean isPunct(final byte bt){ return !Utility.scope(33, bt, 126); }
 	private final boolean isNum(final byte bt){ return Utility.scope('0', bt, '9'); }
@@ -873,6 +892,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 		if(pos == lim && lim != -1) {
 			try {
 				lim = is.read(buf);
+				pos = 0;
 			} catch(IOException e) {
 				e.printStackTrace();
 			}
@@ -904,7 +924,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 		final StringBuilder sb = new StringBuilder();
 		byte c = next();
 		while(!isPunct(c)) {
-			sb.append(c);
+			sb.append((char) c);
 			c = read();
 		}
 		return sb.toString();
@@ -996,7 +1016,7 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	MyPrinter(final OutputStream os, final boolean autoFlush){
 		this.os = os;
 		this.autoFlush = autoFlush;
-		buf = new byte[1 << 24];
+		buf = new byte[1 << 17];
 		pos = 0;
 	}
 	private final void write(final byte bt) {
@@ -1017,16 +1037,15 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 				write((byte) c);
 			}
 		} else {
-			print(Objects.toString(arg));
+			print(String.valueOf(arg));
 		}
 	}
 	final void printf(final String fmt, final Object... args){ print(new Formatter().format(fmt, args)); }
-	private final void println(){ newLine(); }
 	private final void println(final Object arg) {
 		print(arg);
 		newLine();
 	}
-	final void out(){ println(); }
+	final void out(){ newLine(); }
 	final void out(final Object head, final Object... tail) {
 		print(head);
 		for(final var el: tail) {

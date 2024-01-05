@@ -16,7 +16,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
@@ -900,7 +899,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 	MyScanner(final InputStream is) {
 		this.is = is;
 		pos = lim = 0;
-		buf = new byte[1 << 24];
+		buf = new byte[1 << 17];
 	}
 	private final boolean isPunct(final byte bt){ return !Utility.scope(33, bt, 126); }
 	private final boolean isNum(final byte bt){ return Utility.scope('0', bt, '9'); }
@@ -908,6 +907,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 		if(pos == lim && lim != -1) {
 			try {
 				lim = is.read(buf);
+				pos = 0;
 			} catch(IOException e) {
 				e.printStackTrace();
 			}
@@ -939,7 +939,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 		final StringBuilder sb = new StringBuilder();
 		byte c = next();
 		while(!isPunct(c)) {
-			sb.append(c);
+			sb.append((char) c);
 			c = read();
 		}
 		return sb.toString();
@@ -1031,7 +1031,7 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	MyPrinter(final OutputStream os, final boolean autoFlush){
 		this.os = os;
 		this.autoFlush = autoFlush;
-		buf = new byte[1 << 24];
+		buf = new byte[1 << 17];
 		pos = 0;
 	}
 	private final void write(final byte bt) {
@@ -1052,16 +1052,15 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 				write((byte) c);
 			}
 		} else {
-			print(Objects.toString(arg));
+			print(String.valueOf(arg));
 		}
 	}
 	final void printf(final String fmt, final Object... args){ print(new Formatter().format(fmt, args)); }
-	private final void println(){ newLine(); }
 	private final void println(final Object arg) {
 		print(arg);
 		newLine();
 	}
-	final void out(){ println(); }
+	final void out(){ newLine(); }
 	final void out(final Object head, final Object... tail) {
 		print(head);
 		for(final var el: tail) {
