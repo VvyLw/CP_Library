@@ -156,107 +156,103 @@ data:
     \t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}\n\nfinal class VvyLw extends\
     \ Utility {\n\tstatic final MyScanner sc = new MyScanner(System.in);\n\tstatic\
     \ final MyPrinter o = new MyPrinter(System.out, false);\n\tstatic final MyPrinter\
-    \ dbg = new MyPrinter(System.err, true);\n\tstatic final Huitloxopetl why = new\
-    \ Huitloxopetl();\n\tstatic final boolean multi = false;\n\tstatic final int inf\
-    \ = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\tstatic final double\
-    \ eps = 1e-18;\n\t@SuppressWarnings(\"unused\")\n\tprivate static final int[]\
-    \ dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\t@SuppressWarnings(\"unused\")\n\tprivate\
-    \ static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t@SuppressWarnings(\"\
-    unused\")\n\tprivate static final int mod998 = 998244353;\n\t@SuppressWarnings(\"\
-    unused\")\n\tprivate static final int mod107 = (int)1e9 + 7;\n\tstatic final void\
-    \ solve() {\n\t\tfinal int n = sc.ni();\n\t\t@SuppressWarnings(\"unchecked\")\n\
-    \t\tfinal Pair<String, Integer>[] mt = new Pair[n];\n\t\tfor(int i = 0; i < n;\
-    \ ++i) {\n\t\t\tmt[i] = Pair.of(sc.ns(), sc.ni());\n\t\t}\n\t\t\n\t}\n}\nclass\
-    \ Utility {\n\tprotected static final String yes(final boolean ok){ return ok\
-    \ ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean ok){\
-    \ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
-    \ x * x; }\n\tprotected static final int mod(final int n, final int m){ return\
-    \ (n + m) % m; }\n\tprotected static final int mod(final long n, final int m){\
-    \ return (int) (n + m) % m; }\n\tprotected static final long mod(final long n,\
-    \ final long m){ return (n + m) % m; }\n\tprotected static final long ceil(final\
-    \ long a, final long b){ return (a - 1) / b + 1; }\n\tprotected static final double\
-    \ round(final double a, final long b, final int c) {\n\t\tfinal long d = pow(10,\
-    \ c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\tprotected static final long\
-    \ pow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2\
-    \ == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\
-    \treturn res;\n\t}\n\tprotected static final long pow(long a, long b, final long\
-    \ m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\t\
-    res *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a,\
-    \ m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long\
-    \ lcm(final long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static\
-    \ final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1,\
-    \ (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){\
-    \ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static\
-    \ final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a;\
-    \ }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
-    \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
-    \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
-    \ final int min(final int... a){ return Arrays.stream(a).reduce(Integer.MAX_VALUE,\
-    \ (x, y) -> Math.min(x, y)); }\n\tprotected static final long min(final long...\
-    \ a){ return Arrays.stream(a).reduce(Long.MAX_VALUE, (x, y) -> Math.min(x, y));\
-    \ }\n\tprotected static final int max(final int... a){ return Arrays.stream(a).reduce(Integer.MIN_VALUE,\
-    \ (x, y) -> Math.max(x, y)); }\n\tprotected static final long max(final long...\
-    \ a){ return Arrays.stream(a).reduce(Long.MIN_VALUE, (x, y) -> Math.max(x, y));\
-    \ }\n\tprotected static final ArrayList<Long> div(final long n) {\n\t\tfinal ArrayList<Long>\
-    \ d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n %\
-    \ i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n /\
-    \ i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\t\treturn d;\n\t\
-    }\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long n)\
-    \ {\n\t\tfinal ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long\
-    \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t\
-    }\n\t\t\tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /=\
-    \ i;\n\t\t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\t\t\
-    pf.add(Pair.of(n, 1));\n\t\t}\n\t\treturn pf;\n\t}\n\tprotected static final long\
-    \ eulerPhi(long n) {\n\t\tlong res = n;\n\t\tfor(long i = 2; i * i <= n; ++i)\
-    \ {\n\t\t\tif(n % i == 0) {\n\t\t\t\tres -= res / i;\n\t\t\t\twhile(n % i == 0)\
-    \ {\n\t\t\t\t\tn /= i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tif(n > 1) {\n\t\t\tres\
-    \ -= res / n;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long factor(int\
-    \ n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t}\n\t\t\
-    return res;\n\t}\n\tprotected static final long factor(int n, final long mod)\
-    \ {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t\tres %= mod;\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long perm(int n, final int\
-    \ r) {\n\t\tfinal int og = n;\n\t\tlong res = 1;\n\t\twhile(n > og - r) {\n\t\t\
-    \tres *= n--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long perm(int\
-    \ n, final int r, final long mod) {\n\t\tfinal int og = n;\n\t\tlong res = 1;\n\
-    \t\twhile(n > og - r) {\n\t\t\tres *= n--;\n\t\t\tres %= mod; \n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\tprotected static final long binom(int n, final int r) {\n\t\tif(r\
-    \ < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong res = 1;\n\t\tfor(int i =\
-    \ 1; i <= r; ++i) {\n\t\t\tres *= n--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static final long binom(int n, final int r, final long mod) {\n\
-    \t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong res = 1;\n\t\tfor(int\
-    \ i = 1; i <= r; ++i) {\n\t\t\tres *= n--;\n\t\t\tres %= mod;\n\t\t\tres /= i;\n\
-    \t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final boolean\
-    \ isInt(final double n){ long r = (long) Math.floor(n); return r == n; }\n\tprotected\
-    \ static final boolean isSqr(final long n){ return isInt(Math.sqrt(n)); }\n\t\
-    protected static final boolean isPrime(final long n) {\n\t\tif(n == 1) {\n\t\t\
-    \treturn false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i\
-    \ == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\tprotected\
-    \ static final boolean scope(final int l, final int x, final int r){ return l\
-    \ <= x && x <= r; }\n\tprotected static final boolean scope(final long l, final\
-    \ long x, final long r){ return l <= x && x <= r; }\n\tprotected static final\
-    \ boolean scope(final double l, final double x, final double r){ return l <= x\
-    \ && x <= r; }\n\tprotected static final int clamp(final int l, final int x, final\
-    \ int r){ return x < l ? l : x > r ? r : x; }\n\tprotected static final long clamp(final\
-    \ long l, final long x, final long r){ return x < l ? l : x > r ? r : x; }\n\t\
-    protected static final double clamp(final double l, final double x, final double\
-    \ r){ return x < l ? l : x > r ? r : x; }\n\tprotected static final int[] nextPerm(final\
-    \ int[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i])\
-    \ {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a,\
-    \ i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t\
-    }\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final long[] nextPerm(final\
-    \ long[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i])\
-    \ {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a,\
-    \ i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t\
-    }\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final double[] nextPerm(final\
-    \ double[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i])\
-    \ {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a,\
-    \ i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t\
-    }\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final String nextPerm(final\
-    \ String s) {\n\t\tfinal List<Character> a = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());\n\
-    \t\tfor(int i = a.size(); --i > 0;) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
-    \ < 0) {\n\t\t\t\tfinal int j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\
-    \tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\
-    \t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
+    \ dbg = new MyPrinter(System.err, true);\n\tstatic final boolean multi = false;\n\
+    \tstatic final int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\
+    \tstatic final double eps = 1e-18;\n\t@SuppressWarnings(\"unused\")\n\tprivate\
+    \ static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\t@SuppressWarnings(\"\
+    unused\")\n\tprivate static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\
+    \t@SuppressWarnings(\"unused\")\n\tprivate static final int mod998 = 998244353;\n\
+    \t@SuppressWarnings(\"unused\")\n\tprivate static final int mod107 = (int)1e9\
+    \ + 7;\n\tstatic final void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected\
+    \ static final String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\
+    \tprotected static final String no(final boolean ok){ return yes(!ok); }\n\tprotected\
+    \ static final long sqr(final long x){ return x * x; }\n\tprotected static final\
+    \ int mod(final int n, final int m){ return (n + m) % m; }\n\tprotected static\
+    \ final int mod(final long n, final int m){ return (int) (n + m) % m; }\n\tprotected\
+    \ static final long mod(final long n, final long m){ return (n + m) % m; }\n\t\
+    protected static final long ceil(final long a, final long b){ return (a - 1) /\
+    \ b + 1; }\n\tprotected static final double round(final double a, final long b,\
+    \ final int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn Math.rint((a * d)\
+    \ / b) / d;\n\t}\n\tprotected static final long pow(long a, int b) {\n\t\tlong\
+    \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
+    \t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ final long pow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b\
+    \ > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\
+    \t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\tprotected static final long lcm(final long a, final long b){ return\
+    \ a * b / gcd(a, b); }\n\tprotected static final long lcm(final int... a){ return\
+    \ Arrays.stream(a).mapToLong(i -> i).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
+    \ static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x,\
+    \ y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final long\
+    \ b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
+    \ int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\
+    \tprotected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0,\
+    \ (x, y) -> gcd(x, y)); }\n\tprotected static final int min(final int... a){ return\
+    \ Arrays.stream(a).reduce(Integer.MAX_VALUE, (x, y) -> Math.min(x, y)); }\n\t\
+    protected static final long min(final long... a){ return Arrays.stream(a).reduce(Long.MAX_VALUE,\
+    \ (x, y) -> Math.min(x, y)); }\n\tprotected static final int max(final int...\
+    \ a){ return Arrays.stream(a).reduce(Integer.MIN_VALUE, (x, y) -> Math.max(x,\
+    \ y)); }\n\tprotected static final long max(final long... a){ return Arrays.stream(a).reduce(Long.MIN_VALUE,\
+    \ (x, y) -> Math.max(x, y)); }\n\tprotected static final ArrayList<Long> div(final\
+    \ long n) {\n\t\tfinal ArrayList<Long> d = new ArrayList<>();\n\t\tfor(long i\
+    \ = 1; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\t\
+    if(i * i != n) {\n\t\t\t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\
+    \t\treturn d;\n\t}\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long\
+    \ n) {\n\t\tfinal ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\t\
+    for(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\
+    \t\t\t}\n\t\t\tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\
+    \tn /= i;\n\t\t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\
+    \t\tpf.add(Pair.of(n, 1));\n\t\t}\n\t\treturn pf;\n\t}\n\tprotected static final\
+    \ long eulerPhi(long n) {\n\t\tlong res = n;\n\t\tfor(long i = 2; i * i <= n;\
+    \ ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\tres -= res / i;\n\t\t\t\twhile(n % i\
+    \ == 0) {\n\t\t\t\t\tn /= i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tif(n > 1) {\n\t\t\
+    \tres -= res / n;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long\
+    \ factor(int n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\
+    \t}\n\t\treturn res;\n\t}\n\tprotected static final long factor(int n, final long\
+    \ mod) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t\tres\
+    \ %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long perm(int\
+    \ n, final int r) {\n\t\tfinal int og = n;\n\t\tlong res = 1;\n\t\twhile(n > og\
+    \ - r) {\n\t\t\tres *= n--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
+    \ long perm(int n, final int r, final long mod) {\n\t\tfinal int og = n;\n\t\t\
+    long res = 1;\n\t\twhile(n > og - r) {\n\t\t\tres *= n--;\n\t\t\tres %= mod; \n\
+    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long binom(int n, final\
+    \ int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong res = 1;\n\
+    \t\tfor(int i = 1; i <= r; ++i) {\n\t\t\tres *= n--;\n\t\t\tres /= i;\n\t\t}\n\
+    \t\treturn res;\n\t}\n\tprotected static final long binom(int n, final int r,\
+    \ final long mod) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong\
+    \ res = 1;\n\t\tfor(int i = 1; i <= r; ++i) {\n\t\t\tres *= n--;\n\t\t\tres %=\
+    \ mod;\n\t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
+    \ static final boolean isInt(final double n){ long r = (long) Math.floor(n); return\
+    \ r == n; }\n\tprotected static final boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
+    \ }\n\tprotected static final boolean isPrime(final long n) {\n\t\tif(n == 1)\
+    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\t\
+    if(n % i == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t\
+    }\n\tprotected static final boolean scope(final int l, final int x, final int\
+    \ r){ return l <= x && x <= r; }\n\tprotected static final boolean scope(final\
+    \ long l, final long x, final long r){ return l <= x && x <= r; }\n\tprotected\
+    \ static final boolean scope(final double l, final double x, final double r){\
+    \ return l <= x && x <= r; }\n\tprotected static final int clamp(final int l,\
+    \ final int x, final int r){ return x < l ? l : x > r ? r : x; }\n\tprotected\
+    \ static final long clamp(final long l, final long x, final long r){ return x\
+    \ < l ? l : x > r ? r : x; }\n\tprotected static final double clamp(final double\
+    \ l, final double x, final double r){ return x < l ? l : x > r ? r : x; }\n\t\
+    protected static final int[] nextPerm(final int[] a) {\n\t\tfor(int i = a.length;\
+    \ --i > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal int j = find(a[i - 1],\
+    \ a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\t\tArrays.sort(a, i,\
+    \ a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected\
+    \ static final long[] nextPerm(final long[] a) {\n\t\tfor(int i = a.length; --i\
+    \ > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal int j = find(a[i - 1], a,\
+    \ i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\
+    \t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final\
+    \ double[] nextPerm(final double[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\
+    \t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length\
+    \ - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\
+    \t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final\
+    \ String nextPerm(final String s) {\n\t\tfinal List<Character> a = s.chars().mapToObj(i\
+    \ -> (char) i).collect(Collectors.toList());\n\t\tfor(int i = a.size(); --i >\
+    \ 0;) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i)) < 0) {\n\t\t\t\tfinal int j\
+    \ = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\tCollections.swap(a, i - 1,\
+    \ j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
     \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final int[] prevPerm(final\
     \ int[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] > a[i])\
     \ {\n\t\t\t\tfinal int j = findRev(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a,\
@@ -632,11 +628,11 @@ data:
     try {\n\t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(IOException e) {\n\t\t\
     \te.printStackTrace();\n\t\t}\n\t}\n}\n\nclass Pair<F extends Comparable<? super\
     \ F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>> {\n\t\
-    public final F first;\n\tpublic final S second;\n\tPair(final F first, final S\
-    \ second) {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\t@Override\n\
-    \tpublic final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn\
-    \ true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn\
-    \ false;\n\t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first))\
+    public F first;\n\tpublic S second;\n\tPair(final F first, final S second) {\n\
+    \t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\t@Override\n\tpublic\
+    \ final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\
+    \t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\
+    \t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first))\
     \ {\n\t\t\treturn false;\n\t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t\
     @Override\n\tpublic final int hashCode(){ return 31 * first.hashCode() + second.hashCode();\
     \ }\n\t@Override\n\tpublic final String toString(){ return \"(\" + first + \"\
@@ -651,29 +647,29 @@ data:
     \t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn new\
     \ FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad)\
     \ + second * Math.cos(rad));\n\t}\n\tfinal long dot(final IntPair p){ return first\
-    \ * p.first + second + p.second; }\n\tfinal long cross(final IntPair p){ return\
+    \ * p.first + second * p.second; }\n\tfinal long cross(final IntPair p){ return\
     \ rotate().dot(p); }\n\tfinal long sqr(){ return dot(this); }\n\tfinal double\
     \ grad() { \n\t\ttry {\n\t\t\treturn 1.0 * second / first;\n\t\t} catch(ArithmeticException\
     \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn Double.NaN;\n\t}\n\tfinal\
     \ double abs(){ return Math.hypot(first, second); }\n\tfinal long lcm(){ return\
-    \ Utility.lcm(first.longValue(), second.longValue()); }\n\tfinal long gcd(){ return\
-    \ Utility.gcd(first.longValue(), second.longValue()); }\n\tfinal IntPair extgcd()\
-    \ {\n\t\tlong x = 1, y = 0, t1 = 0, t2 = 0, t3 = 1, a = first.longValue(), b =\
-    \ second.longValue();\n\t\twhile(b > 0) {\n\t\t\tt1 = a / b;\n\t\t\ta -= t1 *\
-    \ b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\t\tx -= t1 * t2;\n\t\t\t\
-    x ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^= t2;\n\t\t\ty -= t1 * t3;\n\t\t\ty ^= t3;\n\
-    \t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\t}\n\t\treturn new IntPair(x, y);\n\t}\n}\n\
-    final class FloatPair extends Pair<Double, Double> {\n\tFloatPair(final double\
-    \ first, final double second){ super(first, second); }\n\tfinal FloatPair rotate(){\
-    \ return new FloatPair(-second, first); } \n\tfinal FloatPair rotate(final int\
-    \ ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\t\
-    return new FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad)\
-    \ + second * Math.cos(rad));\n\t}\n\tfinal double dot(final FloatPair p){ return\
-    \ first * p.first + second + p.second; }\n\tfinal double cross(final FloatPair\
-    \ p){ return rotate().dot(p); }\n\tfinal double sqr(){ return dot(this); }\n\t\
-    final double grad() { \n\t\ttry {\n\t\t\treturn second / first;\n\t\t} catch(ArithmeticException\
-    \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn Double.NaN;\n\t}\n\tfinal\
-    \ double abs(){ return Math.hypot(first, second); }\n}"
+    \ Utility.lcm(first, second); }\n\tfinal long gcd(){ return Utility.gcd(first,\
+    \ second); }\n\tfinal IntPair extgcd() {\n\t\tlong x = 1, y = 0, t1 = 0, t2 =\
+    \ 0, t3 = 1, a = first, b = second;\n\t\twhile(b > 0) {\n\t\t\tt1 = a / b;\n\t\
+    \t\ta -= t1 * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\t\tx -= t1 *\
+    \ t2;\n\t\t\tx ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^= t2;\n\t\t\ty -= t1 * t3;\n\t\
+    \t\ty ^= t3;\n\t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\t}\n\t\treturn new IntPair(x,\
+    \ y);\n\t}\n}\nfinal class FloatPair extends Pair<Double, Double> {\n\tFloatPair(final\
+    \ double first, final double second){ super(first, second); }\n\tfinal FloatPair\
+    \ rotate(){ return new FloatPair(-second, first); } \n\tfinal FloatPair rotate(final\
+    \ int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\
+    \treturn new FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first *\
+    \ Math.sin(rad) + second * Math.cos(rad));\n\t}\n\tfinal double dot(final FloatPair\
+    \ p){ return first * p.first + second * p.second; }\n\tfinal double cross(final\
+    \ FloatPair p){ return rotate().dot(p); }\n\tfinal double sqr(){ return dot(this);\
+    \ }\n\tfinal double grad() { \n\t\ttry {\n\t\t\treturn second / first;\n\t\t}\
+    \ catch(ArithmeticException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn\
+    \ Double.NaN;\n\t}\n\tfinal double abs(){ return Math.hypot(first, second); }\n\
+    }"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -722,7 +718,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/all.java
-  timestamp: '2024-01-05 23:58:23+09:00'
+  timestamp: '2024-01-06 02:41:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java

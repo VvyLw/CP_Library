@@ -635,11 +635,11 @@ data:
     try {\n\t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(IOException e) {\n\t\t\
     \te.printStackTrace();\n\t\t}\n\t}\n}\n\nclass Pair<F extends Comparable<? super\
     \ F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>> {\n\t\
-    public final F first;\n\tpublic final S second;\n\tPair(final F first, final S\
-    \ second) {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\t@Override\n\
-    \tpublic final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn\
-    \ true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn\
-    \ false;\n\t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first))\
+    public F first;\n\tpublic S second;\n\tPair(final F first, final S second) {\n\
+    \t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\t@Override\n\tpublic\
+    \ final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\
+    \t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\
+    \t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first))\
     \ {\n\t\t\treturn false;\n\t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t\
     @Override\n\tpublic final int hashCode(){ return 31 * first.hashCode() + second.hashCode();\
     \ }\n\t@Override\n\tpublic final String toString(){ return \"(\" + first + \"\
@@ -654,53 +654,53 @@ data:
     \t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn new\
     \ FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad)\
     \ + second * Math.cos(rad));\n\t}\n\tfinal long dot(final IntPair p){ return first\
-    \ * p.first + second + p.second; }\n\tfinal long cross(final IntPair p){ return\
+    \ * p.first + second * p.second; }\n\tfinal long cross(final IntPair p){ return\
     \ rotate().dot(p); }\n\tfinal long sqr(){ return dot(this); }\n\tfinal double\
     \ grad() { \n\t\ttry {\n\t\t\treturn 1.0 * second / first;\n\t\t} catch(ArithmeticException\
     \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn Double.NaN;\n\t}\n\tfinal\
     \ double abs(){ return Math.hypot(first, second); }\n\tfinal long lcm(){ return\
-    \ Utility.lcm(first.longValue(), second.longValue()); }\n\tfinal long gcd(){ return\
-    \ Utility.gcd(first.longValue(), second.longValue()); }\n\tfinal IntPair extgcd()\
-    \ {\n\t\tlong x = 1, y = 0, t1 = 0, t2 = 0, t3 = 1, a = first.longValue(), b =\
-    \ second.longValue();\n\t\twhile(b > 0) {\n\t\t\tt1 = a / b;\n\t\t\ta -= t1 *\
-    \ b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\t\tx -= t1 * t2;\n\t\t\t\
-    x ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^= t2;\n\t\t\ty -= t1 * t3;\n\t\t\ty ^= t3;\n\
-    \t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\t}\n\t\treturn new IntPair(x, y);\n\t}\n}\n\
-    final class FloatPair extends Pair<Double, Double> {\n\tFloatPair(final double\
-    \ first, final double second){ super(first, second); }\n\tfinal FloatPair rotate(){\
-    \ return new FloatPair(-second, first); } \n\tfinal FloatPair rotate(final int\
-    \ ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\t\
-    return new FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad)\
-    \ + second * Math.cos(rad));\n\t}\n\tfinal double dot(final FloatPair p){ return\
-    \ first * p.first + second + p.second; }\n\tfinal double cross(final FloatPair\
-    \ p){ return rotate().dot(p); }\n\tfinal double sqr(){ return dot(this); }\n\t\
-    final double grad() { \n\t\ttry {\n\t\t\treturn second / first;\n\t\t} catch(ArithmeticException\
-    \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn Double.NaN;\n\t}\n\tfinal\
-    \ double abs(){ return Math.hypot(first, second); }\n}\n\nfinal class Huitloxopetl\
-    \ {\n\tfinal long invNum(final int[] a) {\n\t\tfinal int[] b = Utility.sorted(a);\n\
-    \t\tfinal int[] id = new int[a.length];\n\t\tfor(int i = 0; i < a.length; ++i)\
-    \ {\n\t\t\tid[b[i]] = i;\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\
-    \t\tlong res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id[a[i]]);\n\
-    \t\t\tbit.add(id[a[i]], 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final\
-    \ long[] a) {\n\t\tfinal long[] b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer>\
-    \ id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i],\
-    \ i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\t\tlong\
-    \ res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
-    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class\
-    \ UnionFind {\n\tprivate final int[] par;\n\tUnionFind(final int n) {\n\t\tpar\
-    \ = new int[n];\n\t\tArrays.fill(par, -1);\n\t}\n\tfinal int root(final int i){\
-    \ return par[i] >= 0 ? par[i] = root(par[i]) : i; }\n\tfinal int size(final int\
-    \ i){ return -par[root(i)]; }\n\tfinal boolean unite(int i, int j) {\n\t\ti =\
-    \ root(i);\n\t\tj = root(j);\n\t\tif(i == j) return false;\n\t\tif(i > j) {\n\t\
-    \t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\t\
-    par[j] = i;\n\t\treturn true;\n\t}\n\tfinal boolean same(final int i, final int\
-    \ j){ return root(i) == root(j); }\n\tfinal ArrayList<ArrayList<Integer>> groups()\
-    \ {\n\t\tfinal int n = par.length;\n\t\tArrayList<ArrayList<Integer>> res = new\
-    \ ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));\n\
-    \t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\
-    \t\treturn res;\n\t}\n\tfinal boolean isBipartite() {\n\t\tfinal int n = par.length\
-    \ / 2;\n\t\tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &=\
-    \ root(i) != root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n}\n\nfinal class WeightedUnionFind\
+    \ Utility.lcm(first, second); }\n\tfinal long gcd(){ return Utility.gcd(first,\
+    \ second); }\n\tfinal IntPair extgcd() {\n\t\tlong x = 1, y = 0, t1 = 0, t2 =\
+    \ 0, t3 = 1, a = first, b = second;\n\t\twhile(b > 0) {\n\t\t\tt1 = a / b;\n\t\
+    \t\ta -= t1 * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\t\tx -= t1 *\
+    \ t2;\n\t\t\tx ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^= t2;\n\t\t\ty -= t1 * t3;\n\t\
+    \t\ty ^= t3;\n\t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\t}\n\t\treturn new IntPair(x,\
+    \ y);\n\t}\n}\nfinal class FloatPair extends Pair<Double, Double> {\n\tFloatPair(final\
+    \ double first, final double second){ super(first, second); }\n\tfinal FloatPair\
+    \ rotate(){ return new FloatPair(-second, first); } \n\tfinal FloatPair rotate(final\
+    \ int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\
+    \treturn new FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first *\
+    \ Math.sin(rad) + second * Math.cos(rad));\n\t}\n\tfinal double dot(final FloatPair\
+    \ p){ return first * p.first + second * p.second; }\n\tfinal double cross(final\
+    \ FloatPair p){ return rotate().dot(p); }\n\tfinal double sqr(){ return dot(this);\
+    \ }\n\tfinal double grad() { \n\t\ttry {\n\t\t\treturn second / first;\n\t\t}\
+    \ catch(ArithmeticException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn\
+    \ Double.NaN;\n\t}\n\tfinal double abs(){ return Math.hypot(first, second); }\n\
+    }\n\nfinal class Huitloxopetl {\n\tfinal long invNum(final int[] a) {\n\t\tfinal\
+    \ int[] b = Utility.sorted(a);\n\t\tfinal int[] id = new int[a.length];\n\t\t\
+    for(int i = 0; i < a.length; ++i) {\n\t\t\tid[b[i]] = i;\n\t\t}\n\t\tfinal FenwickTree\
+    \ bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0; i <\
+    \ a.length; ++i) {\n\t\t\tres += i - bit.sum(id[a[i]]);\n\t\t\tbit.add(id[a[i]],\
+    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final long[] a) {\n\t\t\
+    final long[] b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer> id = new HashMap<>();\n\
+    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
+    \ FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int\
+    \ i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\t\
+    bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class UnionFind\
+    \ {\n\tprivate final int[] par;\n\tUnionFind(final int n) {\n\t\tpar = new int[n];\n\
+    \t\tArrays.fill(par, -1);\n\t}\n\tfinal int root(final int i){ return par[i] >=\
+    \ 0 ? par[i] = root(par[i]) : i; }\n\tfinal int size(final int i){ return -par[root(i)];\
+    \ }\n\tfinal boolean unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\
+    \t\tif(i == j) return false;\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\
+    \t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\
+    \t}\n\tfinal boolean same(final int i, final int j){ return root(i) == root(j);\
+    \ }\n\tfinal ArrayList<ArrayList<Integer>> groups() {\n\t\tfinal int n = par.length;\n\
+    \t\tArrayList<ArrayList<Integer>> res = new ArrayList<>(n);\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> res.add(new ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn\
+    \ res;\n\t}\n\tfinal boolean isBipartite() {\n\t\tfinal int n = par.length / 2;\n\
+    \t\tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &= root(i)\
+    \ != root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n}\n\nfinal class WeightedUnionFind\
     \ {\n\tprivate final int[] par;\n\tprivate final long[] weight;\n\tWeightedUnionFind(final\
     \ int n) {\n\t\tpar = new int[n];\n\t\tweight = new long[n];\n\t\tArrays.fill(par,\
     \ -1);\n\t}\n\tfinal int root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn\
@@ -1367,7 +1367,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2024-01-05 23:58:23+09:00'
+  timestamp: '2024-01-06 02:41:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
