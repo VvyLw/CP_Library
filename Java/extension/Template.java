@@ -1,16 +1,18 @@
 package extension;
 
 import java.io.Closeable;
+import java.io.Flushable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Formatter;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.DoublePredicate;
 import java.util.function.IntPredicate;
 import java.util.function.LongPredicate;
@@ -23,14 +25,14 @@ final class Main {
 		VvyLw.o.flush();
 		VvyLw.sc.close();
 		VvyLw.o.close();
-		VvyLw.e.close();
+		VvyLw.dbg.close();
 	}
 }
 
 class VvyLw extends Utility {
 	static final MyScanner sc = new MyScanner(System.in);
 	static final MyPrinter o = new MyPrinter(System.out, false);
-	static final MyPrinter e = new MyPrinter(System.err, true);
+	static final MyPrinter dbg = new MyPrinter(System.err, true);
 	static final boolean multi = false;
 	static final int inf = 1 << 30;
 	static final long linf = (1L << 61) - 1;
@@ -986,8 +988,44 @@ final class MyScanner implements Closeable, AutoCloseable {
 	}
 }
 
-final class MyPrinter extends PrintWriter {
-	MyPrinter(final OutputStream os, final boolean flush){ super(os, flush); }
+final class MyPrinter implements Closeable, Flushable, AutoCloseable {
+	private OutputStream os;
+	private final boolean autoFlush;
+	private final byte[] buf;
+	private int pos;
+	MyPrinter(final OutputStream os, final boolean autoFlush){
+		this.os = os;
+		this.autoFlush = autoFlush;
+		buf = new byte[1 << 24];
+		pos = 0;
+	}
+	private final void write(final byte bt) {
+		buf[pos++] = bt;
+		if(pos == buf.length) {
+			flush();
+		}
+	}
+	private final void newLine() {
+		write((byte) '\n');
+		if(autoFlush) {
+			flush();
+		}
+	}
+	final void print(final Object arg) {
+		if(arg instanceof String s) {
+			for(final char c: s.toCharArray()) {
+				write((byte) c);
+			}
+		} else {
+			print(Objects.toString(arg));
+		}
+	}
+	final void printf(final String fmt, final Object... args){ print(new Formatter().format(fmt, args)); }
+	private final void println(){ newLine(); }
+	private final void println(final Object arg) {
+		print(arg);
+		newLine();
+	}
 	final void out(){ println(); }
 	final void out(final Object head, final Object... tail) {
 		print(head);
@@ -1093,6 +1131,27 @@ final class MyPrinter extends PrintWriter {
 		outl(args);
 		flush();
 		System.exit(0);
+	}
+	@Override
+	public final void flush() {
+		try {
+			os.write(buf, 0, pos);
+			pos = 0;
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public final void close() {
+		if(os == null) {
+			return;
+		}
+		try {
+			os.close();
+			os = null;
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
 
