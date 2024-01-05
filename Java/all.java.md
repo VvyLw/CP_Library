@@ -594,13 +594,14 @@ data:
     \ ? \" \" : \"\\n\"))); }\n\tfinal void out(final char[] args){ IntStream.range(0,\
     \ args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\\
     n\"))); }\n\tfinal void out(final Object[] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal <T>\
-    \ void out(final List<T> args){ IntStream.range(0, args.size()).forEach(i -> print(args.get(i)\
-    \ + (i + 1 < args.size() ? \" \" : \"\\n\"))); }\n\tfinal void outl(final Object\
-    \ head, final Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::println);\n\
-    \t}\n\tfinal void outl(final int[] args){ Arrays.stream(args).forEach(this::println);\
-    \ }\n\tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> out(args[i])); }\n\tfinal void outl(final long[] args){ Arrays.stream(args).forEach(this::println);\
+    \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal <E>\
+    \ void out(final Collection<E> args) {\n\t\tint i = 0;\n\t\tfor(final var el:\
+    \ args) {\n\t\t\tprint(el + (++i == args.size() ? \"\\n\" : \" \"));\n\t\t}\n\t\
+    }\n\tfinal void outl(final Object head, final Object... tail) {\n\t\tout(head);\n\
+    \t\tArrays.stream(tail).forEach(this::println);\n\t}\n\tfinal void outl(final\
+    \ int[] args){ Arrays.stream(args).forEach(this::println); }\n\tfinal void outl(final\
+    \ int[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }\n\
+    \tfinal void outl(final long[] args){ Arrays.stream(args).forEach(this::println);\
     \ }\n\tfinal void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final double[] args){ Arrays.stream(args).forEach(this::println);\
     \ }\n\tfinal void outl(final double[][] args){ IntStream.range(0, args.length).forEach(i\
@@ -1378,7 +1379,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2024-01-06 03:00:36+09:00'
+  timestamp: '2024-01-06 04:30:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
