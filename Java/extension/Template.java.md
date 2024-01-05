@@ -642,10 +642,16 @@ data:
     \ }\n\t@Override\n\tpublic final int compareTo(final Pair<F, S> p) {\n\t\tif(first.compareTo(p.first)\
     \ == 0) {\n\t\t\treturn second.compareTo(p.second);\n\t\t}\n\t\treturn first.compareTo(p.first);\n\
     \t}\n}\nfinal class IntPair extends Pair<Long, Long> {\n\tIntPair(final long first,\
-    \ final long second){ super(first, second); }\n\tfinal IntPair rotate(){ return\
-    \ new IntPair(-second, first); } \n\tfinal FloatPair rotate(final int ang) {\n\
-    \t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn new\
-    \ FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad)\
+    \ final long second){ super(first, second); }\n\tfinal IntPair add(final IntPair\
+    \ p){ return new IntPair(first + p.first, second + p.second); }\n\tfinal IntPair\
+    \ sub(final IntPair p){ return new IntPair(first - p.first, second - p.second);\
+    \ }\n\tfinal IntPair mul(final IntPair p){ return new IntPair(first * p.first,\
+    \ second * p.second); }\n\tfinal IntPair div(final IntPair p){ return new IntPair(first\
+    \ / p.first, second / p.second); }\n\tfinal IntPair mod(final IntPair p){ return\
+    \ new IntPair(first % p.first, second % p.second); }\n\tfinal IntPair rotate(){\
+    \ return new IntPair(-second, first); } \n\tfinal FloatPair rotate(final int ang)\
+    \ {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn\
+    \ new FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad)\
     \ + second * Math.cos(rad));\n\t}\n\tfinal long dot(final IntPair p){ return first\
     \ * p.first + second * p.second; }\n\tfinal long cross(final IntPair p){ return\
     \ rotate().dot(p); }\n\tfinal long sqr(){ return dot(this); }\n\tfinal double\
@@ -660,16 +666,21 @@ data:
     \t\ty ^= t3;\n\t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\t}\n\t\treturn new IntPair(x,\
     \ y);\n\t}\n}\nfinal class FloatPair extends Pair<Double, Double> {\n\tFloatPair(final\
     \ double first, final double second){ super(first, second); }\n\tfinal FloatPair\
-    \ rotate(){ return new FloatPair(-second, first); } \n\tfinal FloatPair rotate(final\
-    \ int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\
-    \treturn new FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first *\
-    \ Math.sin(rad) + second * Math.cos(rad));\n\t}\n\tfinal double dot(final FloatPair\
-    \ p){ return first * p.first + second * p.second; }\n\tfinal double cross(final\
-    \ FloatPair p){ return rotate().dot(p); }\n\tfinal double sqr(){ return dot(this);\
-    \ }\n\tfinal double grad() { \n\t\ttry {\n\t\t\treturn second / first;\n\t\t}\
-    \ catch(ArithmeticException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn\
-    \ Double.NaN;\n\t}\n\tfinal double abs(){ return Math.hypot(first, second); }\n\
-    }"
+    \ add(final FloatPair p){ return new FloatPair(first + p.first, second + p.second);\
+    \ }\n\tfinal FloatPair sub(final FloatPair p){ return new FloatPair(first - p.first,\
+    \ second - p.second); }\n\tfinal FloatPair mul(final FloatPair p){ return new\
+    \ FloatPair(first * p.first, second * p.second); }\n\tfinal FloatPair div(final\
+    \ FloatPair p){ return new FloatPair(first / p.first, second / p.second); }\n\t\
+    final FloatPair rotate(){ return new FloatPair(-second, first); } \n\tfinal FloatPair\
+    \ rotate(final int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang,\
+    \ 360));\n\t\treturn new FloatPair(first * Math.cos(rad) - second * Math.sin(rad),\
+    \ first * Math.sin(rad) + second * Math.cos(rad));\n\t}\n\tfinal double dot(final\
+    \ FloatPair p){ return first * p.first + second * p.second; }\n\tfinal double\
+    \ cross(final FloatPair p){ return rotate().dot(p); }\n\tfinal double sqr(){ return\
+    \ dot(this); }\n\tfinal double grad() { \n\t\ttry {\n\t\t\treturn second / first;\n\
+    \t\t} catch(ArithmeticException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\t\
+    return Double.NaN;\n\t}\n\tfinal double abs(){ return Math.hypot(first, second);\
+    \ }\n}"
   dependsOn:
   - Java/extension/SparseTable.java
   - Java/extension/PrimeCounter.java
@@ -718,7 +729,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/all.java
-  timestamp: '2024-01-06 02:41:32+09:00'
+  timestamp: '2024-01-06 02:59:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/Template.java
