@@ -32,7 +32,6 @@ final class VvyLw extends Utility {
 	static final MyScanner sc = new MyScanner(System.in);
 	static final MyPrinter o = new MyPrinter(System.out, false);
 	static final MyPrinter dbg = new MyPrinter(System.err, true);
-	static final Huitloxopetl why = new Huitloxopetl();
 	static final boolean multi = false;
 	static final int inf = 1 << 30;
 	static final long linf = (1L << 61) - 1;
@@ -46,12 +45,6 @@ final class VvyLw extends Utility {
 	@SuppressWarnings("unused")
 	private static final int mod107 = (int)1e9 + 7;
 	static final void solve() {
-		final int n = sc.ni();
-		@SuppressWarnings("unchecked")
-		final Pair<String, Integer>[] mt = new Pair[n];
-		for(int i = 0; i < n; ++i) {
-			mt[i] = Pair.of(sc.ns(), sc.ni());
-		}
 		
 	}
 }
@@ -1181,8 +1174,8 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 }
 
 class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>> {
-	public final F first;
-	public final S second;
+	public F first;
+	public S second;
 	Pair(final F first, final S second) {
 		this.first = first;
 		this.second = second;
@@ -1222,7 +1215,7 @@ final class IntPair extends Pair<Long, Long> {
 		final double rad = Math.toRadians(Utility.mod(ang, 360));
 		return new FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));
 	}
-	final long dot(final IntPair p){ return first * p.first + second + p.second; }
+	final long dot(final IntPair p){ return first * p.first + second * p.second; }
 	final long cross(final IntPair p){ return rotate().dot(p); }
 	final long sqr(){ return dot(this); }
 	final double grad() { 
@@ -1234,10 +1227,10 @@ final class IntPair extends Pair<Long, Long> {
 		return Double.NaN;
 	}
 	final double abs(){ return Math.hypot(first, second); }
-	final long lcm(){ return Utility.lcm(first.longValue(), second.longValue()); }
-	final long gcd(){ return Utility.gcd(first.longValue(), second.longValue()); }
+	final long lcm(){ return Utility.lcm(first, second); }
+	final long gcd(){ return Utility.gcd(first, second); }
 	final IntPair extgcd() {
-		long x = 1, y = 0, t1 = 0, t2 = 0, t3 = 1, a = first.longValue(), b = second.longValue();
+		long x = 1, y = 0, t1 = 0, t2 = 0, t3 = 1, a = first, b = second;
 		while(b > 0) {
 			t1 = a / b;
 			a -= t1 * b;
@@ -1263,7 +1256,7 @@ final class FloatPair extends Pair<Double, Double> {
 		final double rad = Math.toRadians(Utility.mod(ang, 360));
 		return new FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));
 	}
-	final double dot(final FloatPair p){ return first * p.first + second + p.second; }
+	final double dot(final FloatPair p){ return first * p.first + second * p.second; }
 	final double cross(final FloatPair p){ return rotate().dot(p); }
 	final double sqr(){ return dot(this); }
 	final double grad() { 
