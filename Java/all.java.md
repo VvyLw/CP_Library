@@ -581,8 +581,8 @@ data:
     \ Formatter().format(fmt, args)); }\n\tprivate final void println(final Object\
     \ arg) {\n\t\tprint(arg);\n\t\tnewLine();\n\t}\n\tfinal void out(){ newLine();\
     \ }\n\tfinal void out(final Object head, final Object... tail) {\n\t\tprint(head);\n\
-    \t\tfor(final var el: tail) {\n\t\t\tprint(\" \" + el);\n\t\t}\n\t\tout();\n\t\
-    }\n\tfinal <F extends Comparable<? super F>, S extends Comparable<? super S>>\
+    \t\tfor(final var el: tail) {\n\t\t\tprint(\" \" + el);\n\t\t}\n\t\tnewLine();\n\
+    \t}\n\tfinal <F extends Comparable<? super F>, S extends Comparable<? super S>>\
     \ void out(final Pair<F, S> arg){ println(arg.first + \" \" + arg.second); }\n\
     \tfinal void out(final int[] args){ IntStream.range(0, args.length).forEach(i\
     \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void\
@@ -1367,7 +1367,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2024-01-05 23:39:03+09:00'
+  timestamp: '2024-01-05 23:58:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
