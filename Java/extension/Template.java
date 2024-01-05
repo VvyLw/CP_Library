@@ -1059,7 +1059,12 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	final void out(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
 	final void out(final char[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
 	final void out(final Object[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
-	final <T> void out(final List<T> args){ IntStream.range(0, args.size()).forEach(i -> print(args.get(i) + (i + 1 < args.size() ? " " : "\n"))); }
+	final <E> void out(final Collection<E> args) {
+		int i = 0;
+		for(final var el: args) {
+			print(el + (++i == args.size() ? "\n" : " "));
+		}
+	}
 	final void outl(final Object head, final Object... tail) {
 		out(head);
 		Arrays.stream(tail).forEach(this::println);
