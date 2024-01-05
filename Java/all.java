@@ -1066,7 +1066,7 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		for(final var el: tail) {
 			print(" " + el);
 		}
-		out();
+		newLine();
 	}
 	final <F extends Comparable<? super F>, S extends Comparable<? super S>> void out(final Pair<F, S> arg){ println(arg.first + " " + arg.second); }
 	final void out(final int[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
