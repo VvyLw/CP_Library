@@ -86,9 +86,6 @@ data:
       path: Java/extension/Huitloxopetl.java
       title: Java/extension/Huitloxopetl.java
     - icon: ':warning:'
-      path: Java/extension/IO.java
-      title: Java/extension/IO.java
-    - icon: ':warning:'
       path: Java/extension/LargePrime.java
       title: Java/extension/LargePrime.java
     - icon: ':warning:'

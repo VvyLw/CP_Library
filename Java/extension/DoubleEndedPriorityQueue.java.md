@@ -23,9 +23,6 @@ data:
     path: Java/extension/Huitloxopetl.java
     title: Java/extension/Huitloxopetl.java
   - icon: ':warning:'
-    path: Java/extension/IO.java
-    title: Java/extension/IO.java
-  - icon: ':warning:'
     path: Java/extension/LargePrime.java
     title: Java/extension/LargePrime.java
   - icon: ':warning:'
@@ -92,9 +89,6 @@ data:
   - icon: ':warning:'
     path: Java/extension/Huitloxopetl.java
     title: Java/extension/Huitloxopetl.java
-  - icon: ':warning:'
-    path: Java/extension/IO.java
-    title: Java/extension/IO.java
   - icon: ':warning:'
     path: Java/extension/LargePrime.java
     title: Java/extension/LargePrime.java
@@ -206,7 +200,6 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  - Java/extension/IO.java
   - Java/all.java
   isVerificationFile: false
   path: Java/extension/DoubleEndedPriorityQueue.java
@@ -232,9 +225,8 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  - Java/extension/IO.java
   - Java/all.java
-  timestamp: '2024-01-05 19:50:51+09:00'
+  timestamp: '2024-01-05 20:07:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/extension/DoubleEndedPriorityQueue.java

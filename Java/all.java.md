@@ -23,9 +23,6 @@ data:
     path: Java/extension/Huitloxopetl.java
     title: Java/extension/Huitloxopetl.java
   - icon: ':warning:'
-    path: Java/extension/IO.java
-    title: Java/extension/IO.java
-  - icon: ':warning:'
     path: Java/extension/LargePrime.java
     title: Java/extension/LargePrime.java
   - icon: ':warning:'
@@ -93,9 +90,6 @@ data:
     path: Java/extension/Huitloxopetl.java
     title: Java/extension/Huitloxopetl.java
   - icon: ':warning:'
-    path: Java/extension/IO.java
-    title: Java/extension/IO.java
-  - icon: ':warning:'
     path: Java/extension/LargePrime.java
     title: Java/extension/LargePrime.java
   - icon: ':warning:'
@@ -150,54 +144,55 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/all.java\n"
-  code: "import java.io.Closeable;\nimport java.io.IOException;\nimport java.io.InputStream;\n\
-    import java.io.OutputStream;\nimport java.io.PrintWriter;\nimport java.math.BigInteger;\n\
+  code: "import java.io.Closeable;\nimport java.io.Flushable;\nimport java.io.IOException;\n\
+    import java.io.InputStream;\nimport java.io.OutputStream;\nimport java.math.BigInteger;\n\
     import java.util.ArrayDeque;\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
     import java.util.Collection;\nimport java.util.Collections;\nimport java.util.Comparator;\n\
-    import java.util.HashMap;\nimport java.util.Iterator;\nimport java.util.List;\n\
-    import java.util.Map;\nimport java.util.NoSuchElementException;\nimport java.util.PriorityQueue;\n\
-    import java.util.Queue;\nimport java.util.Stack;\nimport java.util.TreeMap;\n\
-    import java.util.function.BiFunction;\nimport java.util.function.BiPredicate;\n\
-    import java.util.function.BinaryOperator;\nimport java.util.function.Consumer;\n\
-    import java.util.function.DoublePredicate;\nimport java.util.function.IntPredicate;\n\
-    import java.util.function.IntUnaryOperator;\nimport java.util.function.LongBinaryOperator;\n\
-    import java.util.function.LongPredicate;\nimport java.util.function.Predicate;\n\
-    import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nfinal\
-    \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
-    \ VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
-    \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}\n\n\
-    final class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner(System.in);\n\
-    \tstatic final MyPrinter o = new MyPrinter(System.out, false);\n\tstatic final\
-    \ MyPrinter dbg = new MyPrinter(System.err, true);\n\tstatic final Huitloxopetl\
-    \ why = new Huitloxopetl();\n\tstatic final boolean multi = false;\n\tstatic final\
-    \ int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\tstatic final\
-    \ double eps = 1e-18;\n\t@SuppressWarnings(\"unused\")\n\tprivate static final\
-    \ int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\t@SuppressWarnings(\"unused\")\n\
-    \tprivate static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t@SuppressWarnings(\"\
-    unused\")\n\tprivate static final int mod998 = 998244353;\n\t@SuppressWarnings(\"\
-    unused\")\n\tprivate static final int mod107 = (int)1e9 + 7;\n\tstatic final void\
-    \ solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String yes(final\
-    \ boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String\
-    \ no(final boolean ok){ return yes(!ok); }\n\tprotected static final long sqr(final\
-    \ long x){ return x * x; }\n\tprotected static final int mod(final int n, final\
-    \ int m){ return (n + m) % m; }\n\tprotected static final int mod(final long n,\
-    \ final int m){ return (int) (n + m) % m; }\n\tprotected static final long mod(final\
-    \ long n, final long m){ return (n + m) % m; }\n\tprotected static final long\
-    \ ceil(final long a, final long b){ return (a - 1) / b + 1; }\n\tprotected static\
-    \ final double round(final double a, final long b, final int c) {\n\t\tfinal long\
-    \ d = pow(10, c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\tprotected static\
-    \ final long pow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\
-    \tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long pow(long a, long b,\
-    \ final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1)\
-    \ {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\
-    \t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final long lcm(final long a, final long b){ return a * b / gcd(a, b); }\n\t\
-    protected static final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i\
-    \ -> i).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final\
-    \ long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
-    \ static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a %\
-    \ b) : a; }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
+    import java.util.Formatter;\nimport java.util.HashMap;\nimport java.util.Iterator;\n\
+    import java.util.List;\nimport java.util.Map;\nimport java.util.NoSuchElementException;\n\
+    import java.util.Objects;\nimport java.util.PriorityQueue;\nimport java.util.Queue;\n\
+    import java.util.Stack;\nimport java.util.TreeMap;\nimport java.util.function.BiFunction;\n\
+    import java.util.function.BiPredicate;\nimport java.util.function.BinaryOperator;\n\
+    import java.util.function.Consumer;\nimport java.util.function.DoublePredicate;\n\
+    import java.util.function.IntPredicate;\nimport java.util.function.IntUnaryOperator;\n\
+    import java.util.function.LongBinaryOperator;\nimport java.util.function.LongPredicate;\n\
+    import java.util.function.Predicate;\nimport java.util.stream.Collectors;\nimport\
+    \ java.util.stream.IntStream;\n\nfinal class Main {\n\tpublic static void main(final\
+    \ String[] args) {\n\t\tIntStream.range(0, VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i\
+    \ -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\
+    \t\tVvyLw.dbg.close();\n\t}\n}\n\nfinal class VvyLw extends Utility {\n\tstatic\
+    \ final MyScanner sc = new MyScanner(System.in);\n\tstatic final MyPrinter o =\
+    \ new MyPrinter(System.out, false);\n\tstatic final MyPrinter dbg = new MyPrinter(System.err,\
+    \ true);\n\tstatic final Huitloxopetl why = new Huitloxopetl();\n\tstatic final\
+    \ boolean multi = false;\n\tstatic final int inf = 1 << 30;\n\tstatic final long\
+    \ linf = (1L << 61) - 1;\n\tstatic final double eps = 1e-18;\n\t@SuppressWarnings(\"\
+    unused\")\n\tprivate static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\
+    \t@SuppressWarnings(\"unused\")\n\tprivate static final int[] dy = {0, 0, 0, -1,\
+    \ 1, -1, 1, -1, 1};\n\t@SuppressWarnings(\"unused\")\n\tprivate static final int\
+    \ mod998 = 998244353;\n\t@SuppressWarnings(\"unused\")\n\tprivate static final\
+    \ int mod107 = (int)1e9 + 7;\n\tstatic final void solve() {\n\t\t\n\t}\n}\nclass\
+    \ Utility {\n\tprotected static final String yes(final boolean ok){ return ok\
+    \ ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean ok){\
+    \ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
+    \ x * x; }\n\tprotected static final int mod(final int n, final int m){ return\
+    \ (n + m) % m; }\n\tprotected static final int mod(final long n, final int m){\
+    \ return (int) (n + m) % m; }\n\tprotected static final long mod(final long n,\
+    \ final long m){ return (n + m) % m; }\n\tprotected static final long ceil(final\
+    \ long a, final long b){ return (a - 1) / b + 1; }\n\tprotected static final double\
+    \ round(final double a, final long b, final int c) {\n\t\tfinal long d = pow(10,\
+    \ c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\tprotected static final long\
+    \ pow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2\
+    \ == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\
+    \treturn res;\n\t}\n\tprotected static final long pow(long a, long b, final long\
+    \ m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\t\
+    res *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a,\
+    \ m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long\
+    \ lcm(final long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static\
+    \ final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1,\
+    \ (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){\
+    \ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static\
+    \ final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a;\
+    \ }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
     \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
     \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
     \ final int min(final int... a){ return Arrays.stream(a).reduce(Integer.MAX_VALUE,\
@@ -570,27 +565,39 @@ data:
     \ c;\n\t\twhile((c = read()) != '\\n') {\n\t\t\tsb.append(c);\n\t\t}\n\t\treturn\
     \ sb.toString();\n\t}\n\t@Override\n\tpublic final void close() {\n\t\ttry {\n\
     \t\t\tis.close();\n\t\t} catch (IOException e) {\n\t\t\te.printStackTrace();\n\
-    \t\t}\n\t}\n}\n\nfinal class MyPrinter extends PrintWriter {\n\tMyPrinter(final\
-    \ OutputStream os, final boolean flush){ super(os, flush); }\n\tfinal void out(){\
-    \ println(); }\n\tfinal void out(final Object head, final Object... tail) {\n\t\
-    \tprint(head);\n\t\tfor(final var el: tail) {\n\t\t\tprint(\" \" + el);\n\t\t\
-    }\n\t\tout();\n\t}\n\tfinal <F, S> void out(final Pair<F, S> arg){ println(arg.first\
-    \ + \" \" + arg.second); }\n\tfinal void out(final int[] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\\
-    n\"))); }\n\tfinal void out(final long[] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void\
-    \ out(final double[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i]\
-    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final boolean[]\
+    \t\t}\n\t}\n}\n\nfinal class MyPrinter implements Closeable, Flushable, AutoCloseable\
+    \ {\n\tprivate OutputStream os;\n\tprivate final boolean autoFlush;\n\tprivate\
+    \ final byte[] buf;\n\tprivate int pos;\n\tMyPrinter(final OutputStream os, final\
+    \ boolean autoFlush){\n\t\tthis.os = os;\n\t\tthis.autoFlush = autoFlush;\n\t\t\
+    buf = new byte[1 << 24];\n\t\tpos = 0;\n\t}\n\tprivate final void write(final\
+    \ byte bt) {\n\t\tbuf[pos++] = bt;\n\t\tif(pos == buf.length) {\n\t\t\tflush();\n\
+    \t\t}\n\t}\n\tprivate final void newLine() {\n\t\twrite((byte) '\\n');\n\t\tif(autoFlush)\
+    \ {\n\t\t\tflush();\n\t\t}\n\t}\n\tfinal void print(final Object arg) {\n\t\t\
+    if(arg instanceof String s) {\n\t\t\tfor(final char c: s.toCharArray()) {\n\t\t\
+    \t\twrite((byte) c);\n\t\t\t}\n\t\t} else {\n\t\t\tprint(Objects.toString(arg));\n\
+    \t\t}\n\t}\n\tfinal void printf(final String fmt, final Object... args){ print(new\
+    \ Formatter().format(fmt, args)); }\n\tprivate final void println(){ newLine();\
+    \ }\n\tprivate final void println(final Object arg) {\n\t\tprint(arg);\n\t\tnewLine();\n\
+    \t}\n\tfinal void out(){ println(); }\n\tfinal void out(final Object head, final\
+    \ Object... tail) {\n\t\tprint(head);\n\t\tfor(final var el: tail) {\n\t\t\tprint(\"\
+    \ \" + el);\n\t\t}\n\t\tout();\n\t}\n\tfinal <F, S> void out(final Pair<F, S>\
+    \ arg){ println(arg.first + \" \" + arg.second); }\n\tfinal void out(final int[]\
     \ args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 <\
-    \ args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final char[] args){ IntStream.range(0,\
+    \ args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final long[] args){ IntStream.range(0,\
     \ args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\\
-    n\"))); }\n\tfinal void out(final Object[] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal <T>\
-    \ void out(final List<T> args){ IntStream.range(0, args.size()).forEach(i -> print(args.get(i)\
-    \ + (i + 1 < args.size() ? \" \" : \"\\n\"))); }\n\tfinal void outl(final Object\
-    \ head, final Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::println);\n\
-    \t}\n\tfinal void outl(final int[] args){ Arrays.stream(args).forEach(this::println);\
-    \ }\n\tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
+    n\"))); }\n\tfinal void out(final double[] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void\
+    \ out(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i]\
+    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final char[]\
+    \ args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 <\
+    \ args.length ? \" \" : \"\\n\"))); }\n\tfinal void out(final Object[] args){\
+    \ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length\
+    \ ? \" \" : \"\\n\"))); }\n\tfinal <T> void out(final List<T> args){ IntStream.range(0,\
+    \ args.size()).forEach(i -> print(args.get(i) + (i + 1 < args.size() ? \" \" :\
+    \ \"\\n\"))); }\n\tfinal void outl(final Object head, final Object... tail) {\n\
+    \t\tout(head);\n\t\tArrays.stream(tail).forEach(this::println);\n\t}\n\tfinal\
+    \ void outl(final int[] args){ Arrays.stream(args).forEach(this::println); }\n\
+    \tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final long[] args){ Arrays.stream(args).forEach(this::println);\
     \ }\n\tfinal void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final double[] args){ Arrays.stream(args).forEach(this::println);\
@@ -619,23 +626,27 @@ data:
     \tfinal void ende(final char[] args) {\n\t\toutl(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\
     \t}\n\tfinal void ende(final Object[] args) {\n\t\toutl(args);\n\t\tflush();\n\
     \t\tSystem.exit(0);\n\t}\n\tfinal <E> void ende(final Collection<E> args) {\n\t\
-    \toutl(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n}\n\nclass Pair<F, S> {\n\
-    \tprotected final F first;\n\tprotected final S second;\n\tPair(final F first,\
-    \ final S second) {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\
-    \t@Override\n\tpublic final boolean equals(final Object o) {\n\t\tif(this == o)\
-    \ {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass())\
-    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?, ?>) o;\n\t\t\
-    if(!first.equals(p.first)) {\n\t\t\treturn false;\n\t\t}\n\t\treturn second.equals(p.second);\n\
-    \t}\n\t@Override\n\tpublic final int hashCode(){ return 31 * first.hashCode()\
-    \ + second.hashCode(); }\n\t@Override\n\tpublic final String toString(){ return\
-    \ \"(\" + first + \", \" + second + \")\"; }\n\tpublic static final <F, S> Pair<F,\
-    \ S> of(final F a, final S b){ return new Pair<>(a, b); }\n\tfinal Pair<S, F>\
-    \ swap(){ return Pair.of(second, first); }\n}\nfinal class NumPair extends Pair<Number,\
-    \ Number> implements Comparable<NumPair>  {\n\tNumPair(final Number first, final\
-    \ Number second){ super(first, second); }\n\tfinal NumPair rotate(){ return new\
-    \ NumPair(-second.doubleValue(), first.doubleValue()); } \n\tfinal NumPair rotate(final\
-    \ int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\
-    \treturn new NumPair(first.doubleValue() * Math.cos(rad) - second.doubleValue()\
+    \toutl(args);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\t@Override\n\tpublic final\
+    \ void flush() {\n\t\ttry {\n\t\t\tos.write(buf, 0, pos);\n\t\t\tpos = 0;\n\t\t\
+    } catch(IOException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n\t@Override\n\
+    \tpublic final void close() {\n\t\tif(os == null) {\n\t\t\treturn;\n\t\t}\n\t\t\
+    try {\n\t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(IOException e) {\n\t\t\
+    \te.printStackTrace();\n\t\t}\n\t}\n}\n\nclass Pair<F, S> {\n\tprotected final\
+    \ F first;\n\tprotected final S second;\n\tPair(final F first, final S second)\
+    \ {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\t@Override\n\t\
+    public final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn\
+    \ true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn\
+    \ false;\n\t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first))\
+    \ {\n\t\t\treturn false;\n\t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t\
+    @Override\n\tpublic final int hashCode(){ return 31 * first.hashCode() + second.hashCode();\
+    \ }\n\t@Override\n\tpublic final String toString(){ return \"(\" + first + \"\
+    , \" + second + \")\"; }\n\tpublic static final <F, S> Pair<F, S> of(final F a,\
+    \ final S b){ return new Pair<>(a, b); }\n\tfinal Pair<S, F> swap(){ return Pair.of(second,\
+    \ first); }\n}\nfinal class NumPair extends Pair<Number, Number> implements Comparable<NumPair>\
+    \  {\n\tNumPair(final Number first, final Number second){ super(first, second);\
+    \ }\n\tfinal NumPair rotate(){ return new NumPair(-second.doubleValue(), first.doubleValue());\
+    \ } \n\tfinal NumPair rotate(final int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang,\
+    \ 360));\n\t\treturn new NumPair(first.doubleValue() * Math.cos(rad) - second.doubleValue()\
     \ * Math.sin(rad),\n\t\t\t\t\t\t\tfirst.doubleValue() * Math.sin(rad) + second.doubleValue()\
     \ * Math.cos(rad));\n\t}\n\tfinal long dot(final NumPair p){ return first.longValue()\
     \ * p.first.longValue() + second.longValue() + p.second.longValue(); }\n\tfinal\
@@ -1323,7 +1334,6 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  - Java/extension/IO.java
   isVerificationFile: false
   path: Java/all.java
   requiredBy:
@@ -1349,8 +1359,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  - Java/extension/IO.java
-  timestamp: '2024-01-05 19:50:51+09:00'
+  timestamp: '2024-01-05 20:07:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
