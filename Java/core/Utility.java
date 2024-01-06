@@ -598,7 +598,7 @@ public class Utility {
 		return -1;
 	}
 	/**
-	 * 配列aの中にxがあれば何番目にあるか
+	 * 配列sの中にcがあれば何番目にあるか
 	 * 存在しない場合, -1を返す
 	 * @param s
 	 * @param c
@@ -669,10 +669,10 @@ public class Utility {
 		return -1;
 	}
 	/**
-	 * 配列aの中にxがあれば後ろから何番目にあるか
+	 * 配列sの中にcがあれば後ろから何番目にあるか
 	 * 存在しない場合, -1を返す
-	 * @param a
-	 * @param x
+	 * @param s
+	 * @param c
 	 */
 	protected static final int findRev(final char[] s, final char c) {
 		for(int i = s.length; --i >= 0;) {
