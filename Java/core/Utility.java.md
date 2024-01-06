@@ -584,6 +584,12 @@ data:
     \ % m;\n\t\t}\n\t\tif(b == 2) {\n\t\t\treturn pow(a, a, m);\n\t\t}\n\t\tfinal\
     \ long phi = eulerPhi(m);\n\t\tlong tmp = tetration(a, b - 1, phi);\n\t\tif(tmp\
     \ == 0) {\n\t\t\ttmp += phi;\n\t\t}\n\t\treturn pow(a, tmp, m);\n\t}\n\tprotected\
+    \ static final long floorSum(final long n, final long m, long a, long b) {\n\t\
+    \tlong ans = 0;\n\t\tif(a >= m) {\n\t\t\tans += (n - 1) * n * (a / m) / 2;\n\t\
+    \t\ta %= m;\n\t\t}\n\t\tif(b >= m) {\n\t\t\tans += n * (b / m);\n\t\t\tb %= m;\n\
+    \t\t}\n\t\tfinal long ym = (a * n + b) / m, xm = (ym * m - b);\n\t\tif(ym == 0)\
+    \ {\n\t\t\treturn ans;\n\t\t}\n\t\tans += (n - (xm + a - 1) / a) * ym;\n\t\tans\
+    \ += floorSum(ym, a, m, (a - xm % a) % a);\n\t\treturn ans;\n\t}\n\tprotected\
     \ interface TriFunction<T, U, V, W> {\n\t\tpublic W apply(final T a, final U b,\
     \ final V c);\n\t}\n\tprotected interface QuadFunction<A, B, C, D, E> {\n\t\t\
     public E apply(final A a, final B b, final C c, final D d);\n\t}\n\tprotected\
@@ -595,7 +601,12 @@ data:
     \ V r);\n\t}\n\tprotected interface RecursiveUnaryOperator<T> {\n\t\tpublic T\
     \ apply(final RecursiveUnaryOperator<T> rec, final T n);\n\t}\n\tprotected interface\
     \ RecursiveBinaryOperator<T> {\n\t\tpublic T apply(final RecursiveBinaryOperator<T>\
-    \ rec, final T a, final T b);\n\t}\n}"
+    \ rec, final T a, final T b);\n\t}\n\tprotected interface RecursiveConsumer<T>\
+    \ {\n\t\tpublic void accept(final RecursiveConsumer<T> rec, final T x);\n\t}\n\
+    \tprotected interface RecursiveBiConsumer<T, U> {\n\t\tpublic void accept(final\
+    \ RecursiveBiConsumer<T, U> rec, final T x, final U y);\n\t}\n\tprotected interface\
+    \ RecursiveTriConsumer<T, U, V> {\n\t\tpublic void accept(final RecursiveTriConsumer<T,\
+    \ U, V> rec, final T x, final U y, final V z);\n\t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -676,7 +687,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 17:33:12+09:00'
+  timestamp: '2024-01-06 23:04:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/core/Utility.java
