@@ -270,35 +270,35 @@ data:
     \ * @param tail\n\t */\n\tfinal void out(final Object head, final Object... tail)\
     \ {\n\t\tprint(head);\n\t\tfor(final var el: tail) {\n\t\t\tprint(\" \" + el);\n\
     \t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t * {@link Pair}\u3092\u51FA\u529B\u3059\u308B\
-    <br>\n\t * \u30C7\u30D0\u30C3\u30B0\u6642\u306F{@link Pair#toString}\u3092\u63A8\
-    \u5968\n\t * @param <F> first\u306E\u578B\n\t * @param <S> second\u306E\u578B\n\
-    \t */\n\tfinal <F extends Comparable<? super F>, S extends Comparable<? super\
-    \ S>> void out(final Pair<F, S> arg){ println(arg.first + \" \" + arg.second);\
-    \ }\n\t/**\n\t * int\u578B\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\u3067\
-    \u51FA\u529B\u3059\u308B\n\t */\n\tfinal void out(final int[] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\\
-    n\"))); }\n\t/**\n\t * long\u578B\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\
-    \u3067\u51FA\u529B\u3059\u308B\n\t */\n\tfinal void out(final long[] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\\
-    n\"))); }\n\t/**\n\t * double\u578B\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\
-    \u3067\u51FA\u529B\u3059\u308B\n\t */\n\tfinal void out(final double[] args){\
-    \ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length\
-    \ ? \" \" : \"\\n\"))); }\n\t/**\n\t * boolean\u578B\u306E\u914D\u5217\u3092\u7A7A\
-    \u767D\u304A\u304D\u3067\u51FA\u529B\u3059\u308B\n\t */\n\tfinal void out(final\
-    \ boolean[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i]\
-    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\t/**\n\t * char\u578B\u306E\
-    \u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\u3067\u51FA\u529B\u3059\u308B\n\t */\n\
-    \tfinal void out(final char[] args){ IntStream.range(0, args.length).forEach(i\
+    \n\t * \u30C7\u30D0\u30C3\u30B0\u6642\u306F{@link Pair#toString}\u3092\u63A8\u5968\
+    \n\t * @param <F> first\u306E\u578B\n\t * @param <S> second\u306E\u578B\n\t */\n\
+    \tfinal <F extends Comparable<? super F>, S extends Comparable<? super S>> void\
+    \ out(final Pair<F, S> arg){ println(arg.first + \" \" + arg.second); }\n\t/**\n\
+    \t * int\u578B\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\u3067\u51FA\u529B\
+    \u3059\u308B\n\t */\n\tfinal void out(final int[] args){ IntStream.range(0, args.length).forEach(i\
     \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\t/**\n\t *\
-    \ {@link Object}\u30AF\u30E9\u30B9\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\
-    \u3067\u51FA\u529B\u3059\u308B\n\t */\n\tfinal void out(final Object[] args){\
-    \ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length\
-    \ ? \" \" : \"\\n\"))); }\n\t/**\n\t * {@link Collection}\u3092\u51FA\u529B\u3059\
-    \u308B\n\t */\n\tfinal <E> void out(final Collection<E> args) {\n\t\tint i = 0;\n\
-    \t\tfor(final var el: args) {\n\t\t\tprint(el + (++i == args.size() ? \"\\n\"\
-    \ : \" \"));\n\t\t}\n\t}\n\t/**\n\t * outl(a, b, c)\u3067, \"a\\nb\\nc\\n\"\u306E\
-    \u5F62\u5F0F\u3067\u51FA\u529B\u3055\u308C\u308B\n\t */\n\tfinal void outl(final\
-    \ Object head, final Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::println);\n\
+    \ long\u578B\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\u3067\u51FA\u529B\
+    \u3059\u308B\n\t */\n\tfinal void out(final long[] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\t/**\n\t *\
+    \ double\u578B\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\u3067\u51FA\u529B\
+    \u3059\u308B\n\t */\n\tfinal void out(final double[] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\\
+    n\"))); }\n\t/**\n\t * boolean\u578B\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\
+    \u304D\u3067\u51FA\u529B\u3059\u308B\n\t */\n\tfinal void out(final boolean[]\
+    \ args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 <\
+    \ args.length ? \" \" : \"\\n\"))); }\n\t/**\n\t * char\u578B\u306E\u914D\u5217\
+    \u3092\u7A7A\u767D\u304A\u304D\u3067\u51FA\u529B\u3059\u308B\n\t */\n\tfinal void\
+    \ out(final char[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i]\
+    \ + (i + 1 < args.length ? \" \" : \"\\n\"))); }\n\t/**\n\t * {@link Object}\u30AF\
+    \u30E9\u30B9\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\u3067\u51FA\u529B\
+    \u3059\u308B\n\t */\n\tfinal void out(final Object[] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? \" \" : \"\\\
+    n\"))); }\n\t/**\n\t * {@link Collection}\u3092\u51FA\u529B\u3059\u308B\n\t */\n\
+    \tfinal <E> void out(final Collection<E> args) {\n\t\tint i = 0;\n\t\tfor(final\
+    \ var el: args) {\n\t\t\tprint(el + (++i == args.size() ? \"\\n\" : \" \"));\n\
+    \t\t}\n\t}\n\t/**\n\t * outl(a, b, c)\u3067, \"a\\nb\\nc\\n\"\u306E\u5F62\u5F0F\
+    \u3067\u51FA\u529B\u3055\u308C\u308B\n\t */\n\tfinal void outl(final Object head,\
+    \ final Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::println);\n\
     \t}\n\t/**\n\t * {@link #out}\u306E\u6539\u884C\u304A\u304D\u51FA\u529B\u7248\n\
     \t */\n\tfinal void outl(final int[] args){ Arrays.stream(args).forEach(this::println);\
     \ }\n\t/**\n\t * {@link #out}\u3092args.length\u56DE\u547C\u3073\u51FA\u3059\n\
@@ -456,7 +456,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 05:31:30+09:00'
+  timestamp: '2024-01-07 05:37:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/core/MyPrinter.java

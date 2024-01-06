@@ -378,8 +378,8 @@ data:
     \ l\n\t * @param x\n\t * @param r\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
     >std::clamp</a>\n\t */\n\tprotected static final double clamp(final double l,\
     \ final double x, final double r){ return x < l ? l : x > r ? r : x; }\n\t/**\n\
-    \t * How to Use:<br>\n\t * do {<br>\n\t * <br>\n\t * } while((a = nextPerm(a))\
-    \ != null);<br>\n\t * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/next_permutation.html\"\
+    \t * How to Use:\n\t * do {\n\t * \n\t * } while((a = nextPerm(a)) != null);\n\
+    \t * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/next_permutation.html\"\
     >std::next_permutation</a>\n\t */\n\tprotected static final int[] nextPerm(final\
     \ int[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i])\
     \ {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a,\
@@ -401,32 +401,31 @@ data:
     \ < 0) {\n\t\t\t\tfinal int j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\
     \tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\
     \t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
-    \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\t/**\n\t * How to Use:<br>\n\t * do {<br>\n\
-    \t * <br>\n\t * } while((a = prevPerm(a)) != null);<br>\n\t * @param a\n\t * @see\
-    \ <a href=\"https://cpprefjp.github.io/reference/algorithm/prev_permutation.html\"\
-    >std::prev_permutation</a>\n\t */\n\tprotected static final int[] prevPerm(final\
-    \ int[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] > a[i])\
+    \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\t/**\n\t * How to Use:\n\t * do {\n\t\
+    \ * \n\t * } while((a = prevPerm(a)) != null);\n\t * @param a\n\t * @see <a href=\"\
+    https://cpprefjp.github.io/reference/algorithm/prev_permutation.html\">std::prev_permutation</a>\n\
+    \t */\n\tprotected static final int[] prevPerm(final int[] a) {\n\t\tfor(int i\
+    \ = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] > a[i]) {\n\t\t\t\tfinal int j =\
+    \ findRev(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\t\t\
+    Arrays.sort(a, i, a.length);\n\t\t\t\treturn reverse(a);\n\t\t\t}\n\t\t}\n\t\t\
+    return null;\n\t}\n\t/**\n\t * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/prev_permutation.html\"\
+    >std::prev_permutation</a>\n\t */\n\tprotected static final long[] prevPerm(final\
+    \ long[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] > a[i])\
     \ {\n\t\t\t\tfinal int j = findRev(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a,\
     \ i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn reverse(a);\n\
     \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\t/**\n\t * @param a\n\t * @see <a href=\"\
     https://cpprefjp.github.io/reference/algorithm/prev_permutation.html\">std::prev_permutation</a>\n\
-    \t */\n\tprotected static final long[] prevPerm(final long[] a) {\n\t\tfor(int\
+    \t */\n\tprotected static final double[] prevPerm(final double[] a) {\n\t\tfor(int\
     \ i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] > a[i]) {\n\t\t\t\tfinal int j\
     \ = findRev(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\t\
     \tArrays.sort(a, i, a.length);\n\t\t\t\treturn reverse(a);\n\t\t\t}\n\t\t}\n\t\
-    \treturn null;\n\t}\n\t/**\n\t * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/prev_permutation.html\"\
-    >std::prev_permutation</a>\n\t */\n\tprotected static final double[] prevPerm(final\
-    \ double[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] > a[i])\
-    \ {\n\t\t\t\tfinal int j = findRev(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a,\
-    \ i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn reverse(a);\n\
-    \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\t/**\n\t * @param s\n\t * @see <a href=\"\
-    https://cpprefjp.github.io/reference/algorithm/prev_permutation.html\">std::prev_permutation</a>\n\
-    \t */\n\tprotected static final String prevPerm(final String s) {\n\t\tfinal List<Character>\
-    \ a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());\n\t\tfor(int\
-    \ i = a.size(); --i > 0;) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i)) > 0) {\n\
-    \t\t\t\tfinal int j = findRev(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\tCollections.swap(a,\
-    \ i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()), Collections.reverseOrder());\n\
-    \t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
+    \treturn null;\n\t}\n\t/**\n\t * @param s\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/prev_permutation.html\"\
+    >std::prev_permutation</a>\n\t */\n\tprotected static final String prevPerm(final\
+    \ String s) {\n\t\tfinal List<Character> a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());\n\
+    \t\tfor(int i = a.size(); --i > 0;) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
+    \ > 0) {\n\t\t\t\tfinal int j = findRev(a.get(i - 1), a, i, a.size() - 1);\n\t\
+    \t\t\tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()),\
+    \ Collections.reverseOrder());\n\t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
     \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprivate static final int find(final int\
     \ dest, final int[] a, final int s, final int e) {\n\t\tif(s == e) {\n\t\t\treturn\
     \ s;\n\t\t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn a[m] <= dest ? find(dest,\
@@ -455,59 +454,59 @@ data:
     \ e) {\n\t\t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn\
     \ a.get(m).compareTo(dest) > 0 ? find(dest, a, s, m - 1) : find(dest, a, m, e);\n\
     \t}\n\t/**\n\t * \u914D\u5217a\u306E\u4E2D\u306Bx\u304C\u3042\u308C\u3070\u4F55\
-    \u756A\u76EE\u306B\u3042\u308B\u304B<br>\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\
+    \u756A\u76EE\u306B\u3042\u308B\u304B\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\
     \u5408, -1\u3092\u8FD4\u3059\n\t * @param a\n\t * @param x\n\t * @see <a href=\"\
     https://cpprefjp.github.io/reference/algorithm/find.html\">std::find</a>\n\t */\n\
     \tprotected static final int find(final int[] a, final int x) {\n\t\tfor(int i\
     \ = 0; i < a.length; ++i) {\n\t\t\tif(a[i] == x) {\n\t\t\t\treturn i;\n\t\t\t\
     }\n\t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t * \u914D\u5217a\u306E\u4E2D\u306Bx\u304C\
-    \u3042\u308C\u3070\u4F55\u756A\u76EE\u306B\u3042\u308B\u304B<br>\n\t * \u5B58\u5728\
+    \u3042\u308C\u3070\u4F55\u756A\u76EE\u306B\u3042\u308B\u304B\n\t * \u5B58\u5728\
     \u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\n\t * @param a\n\t * @param\
     \ x\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/find.html\"\
     >std::find</a>\n\t */\n\tprotected static final int find(final long[] a, final\
     \ long x) {\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tif(a[i] == x) {\n\t\
     \t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t * \u914D\u5217\
     a\u306E\u4E2D\u306Bx\u304C\u3042\u308C\u3070\u4F55\u756A\u76EE\u306B\u3042\u308B\
-    \u304B<br>\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\
-    \n\t * @param a\n\t * @param x\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/find.html\"\
+    \u304B\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\n\
+    \t * @param a\n\t * @param x\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/find.html\"\
     >std::find</a>\n\t */\n\tprotected static final int find(final double[] a, final\
     \ double x) {\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tif(a[i] == x) {\n\
     \t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t * \u914D\u5217\
     a\u306E\u4E2D\u306Bx\u304C\u3042\u308C\u3070\u4F55\u756A\u76EE\u306B\u3042\u308B\
-    \u304B<br>\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\
-    \n\t * @param s\n\t * @param c\n\t * @see <a href=\"https://cpprefjp.github.io/reference/string/basic_string/find.html\"\
+    \u304B\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\n\
+    \t * @param s\n\t * @param c\n\t * @see <a href=\"https://cpprefjp.github.io/reference/string/basic_string/find.html\"\
     >std::basic_string::find</a>\n\t */\n\tprotected static final int find(final char[]\
     \ s, final char c) {\n\t\tfor(int i = 0; i < s.length; ++i) {\n\t\t\tif(s[i] ==\
     \ c) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t * \u914D\
     \u5217a\u306E\u4E2D\u306Bx\u304C\u3042\u308C\u3070\u4F55\u756A\u76EE\u306B\u3042\
-    \u308B\u304B<br>\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\
-    \u3059\n\t * @param a\n\t * @param x\n\t */\n\tprotected static final int find(final\
+    \u308B\u304B\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\
+    \n\t * @param a\n\t * @param x\n\t */\n\tprotected static final int find(final\
     \ Object[] a, final Object x) {\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\
     \tif(a[i].equals(x)) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t\
     }\n\t/**\n\t * \u914D\u5217a\u306E\u4E2D\u306Bx\u304C\u3042\u308C\u3070\u5F8C\u308D\
-    \u304B\u3089\u4F55\u756A\u76EE\u306B\u3042\u308B\u304B<br>\n\t * \u5B58\u5728\u3057\
+    \u304B\u3089\u4F55\u756A\u76EE\u306B\u3042\u308B\u304B\n\t * \u5B58\u5728\u3057\
     \u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\n\t * @param a\n\t * @param x\n\
     \t */\n\tprotected static final int findRev(final int[] a, final int x) {\n\t\t\
     for(int i = a.length; --i >= 0;) {\n\t\t\tif(a[i] == x) {\n\t\t\t\treturn i;\n\
     \t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t * \u914D\u5217a\u306E\u4E2D\u306B\
     x\u304C\u3042\u308C\u3070\u5F8C\u308D\u304B\u3089\u4F55\u756A\u76EE\u306B\u3042\
-    \u308B\u304B<br>\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\
-    \u3059\n\t * @param a\n\t * @param x\n\t */\n\tprotected static final int findRev(final\
+    \u308B\u304B\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\
+    \n\t * @param a\n\t * @param x\n\t */\n\tprotected static final int findRev(final\
     \ long[] a, final long x) {\n\t\tfor(int i = a.length; --i >= 0;) {\n\t\t\tif(a[i]\
     \ == x) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t *\
     \ \u914D\u5217a\u306E\u4E2D\u306Bx\u304C\u3042\u308C\u3070\u5F8C\u308D\u304B\u3089\
-    \u4F55\u756A\u76EE\u306B\u3042\u308B\u304B<br>\n\t * \u5B58\u5728\u3057\u306A\u3044\
+    \u4F55\u756A\u76EE\u306B\u3042\u308B\u304B\n\t * \u5B58\u5728\u3057\u306A\u3044\
     \u5834\u5408, -1\u3092\u8FD4\u3059\n\t * @param a\n\t * @param x\n\t */\n\tprotected\
     \ static final int findRev(final double[] a, final double x) {\n\t\tfor(int i\
     \ = a.length; --i >= 0;) {\n\t\t\tif(a[i] == x) {\n\t\t\t\treturn i;\n\t\t\t}\n\
     \t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t * \u914D\u5217a\u306E\u4E2D\u306Bx\u304C\
     \u3042\u308C\u3070\u5F8C\u308D\u304B\u3089\u4F55\u756A\u76EE\u306B\u3042\u308B\
-    \u304B<br>\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\
-    \n\t * @param a\n\t * @param x\n\t */\n\tprotected static final int findRev(final\
+    \u304B\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\n\
+    \t * @param a\n\t * @param x\n\t */\n\tprotected static final int findRev(final\
     \ char[] s, final char c) {\n\t\tfor(int i = s.length; --i >= 0;) {\n\t\t\tif(s[i]\
     \ == c) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t *\
     \ \u914D\u5217a\u306E\u4E2D\u306Bx\u304C\u3042\u308C\u3070\u5F8C\u308D\u304B\u3089\
-    \u4F55\u756A\u76EE\u306B\u3042\u308B\u304B<br>\n\t * \u5B58\u5728\u3057\u306A\u3044\
+    \u4F55\u756A\u76EE\u306B\u3042\u308B\u304B\n\t * \u5B58\u5728\u3057\u306A\u3044\
     \u5834\u5408, -1\u3092\u8FD4\u3059\n\t * @param a\n\t * @param x\n\t */\n\tprotected\
     \ static final int findRev(final Object[] a, final Object x) {\n\t\tfor(int i\
     \ = a.length; --i >= 0;) {\n\t\t\tif(a[i].equals(x)) {\n\t\t\t\treturn i;\n\t\t\
@@ -954,7 +953,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 05:31:30+09:00'
+  timestamp: '2024-01-07 05:37:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/core/Utility.java

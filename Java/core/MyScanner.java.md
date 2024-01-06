@@ -254,77 +254,77 @@ data:
     \ {\n\t\t\ttry {\n\t\t\t\tlim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(IOException\
     \ e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t\treturn buf[pos++];\n\
     \t}\n\tprivate final byte next() {\n\t\tbyte bt;\n\t\twhile(isPunct(bt = read())){}\n\
-    \t\treturn bt;\n\t}\n\t/**\n\t * nextInt<br>\n\t * int\u578B\u3092\u5165\u529B\
-    \u3059\u308B\n\t */\n\tpublic final int ni(){ return Math.toIntExact(nl()); }\n\
-    \t/**\n\t * nextLong<br>\n\t * long\u578B\u3092\u5165\u529B\u3059\u308B\n\t */\n\
-    \tpublic final long nl() {\n\t\tbyte c = next();\n\t\tfinal boolean neg = c ==\
-    \ '-';\n\t\tif(neg) {\n\t\t\tc = read();\n\t\t}\n\t\tassert(isNum(c));\n\t\tlong\
-    \ res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\tres = 10 * res + c - '0';\n\
-    \t\t}\n\t\treturn neg ? -res : res;\n\t}\n\t/**\n\t * nextDouble<br>\n\t * double\u578B\
+    \t\treturn bt;\n\t}\n\t/**\n\t * nextInt\n\t * int\u578B\u3092\u5165\u529B\u3059\
+    \u308B\n\t */\n\tpublic final int ni(){ return Math.toIntExact(nl()); }\n\t/**\n\
+    \t * nextLong\n\t * long\u578B\u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic\
+    \ final long nl() {\n\t\tbyte c = next();\n\t\tfinal boolean neg = c == '-';\n\
+    \t\tif(neg) {\n\t\t\tc = read();\n\t\t}\n\t\tassert(isNum(c));\n\t\tlong res =\
+    \ c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\tres = 10 * res + c - '0';\n\t\
+    \t}\n\t\treturn neg ? -res : res;\n\t}\n\t/**\n\t * nextDouble\n\t * double\u578B\
     \u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic final double nd(){ return Double.parseDouble(ns());\
-    \ }\n\t/**\n\t * nextChar(Scanner\u306B\u306F\u306A\u3044)<br>\n\t * char\u578B\
-    \u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic final char nc(){ return (char)\
-    \ next(); }\n\t/**\n\t * nextString(Scanner\u3067\u4E91\u3046next)<br>\n\t * \u6587\
-    \u5B57\u5217\u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic final String ns()\
-    \ {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tbyte c = next();\n\
-    \t\twhile(!isPunct(c)) {\n\t\t\tsb.append((char) c);\n\t\t\tc = read();\n\t\t\
-    }\n\t\treturn sb.toString();\n\t}\n\t/**\n\t * nextBigInteger<br>\n\t * \u591A\
-    \u500D\u9577\u6574\u6570\u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic final\
-    \ BigInteger nb(){ return new BigInteger(ns()); }\n\t/**\n\t * \u5927\u304D\u3055\
-    n\u306Eint\u578B\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n \u914D\
-    \u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic final int[] ni(final int n) {\n\
-    \t\tfinal int[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] =\
-    \ ni());\n\t\treturn a;\n\t}\n\t/**\n\t * \u5927\u304D\u3055n\u306Elong\u578B\u914D\
-    \u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\u304D\
-    \u3055\n\t */\n\tpublic final long[] nl(final int n) {\n\t\tfinal long[] a = new\
-    \ long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\treturn a;\n\
-    \t}\n\t/**\n\t * \u5927\u304D\u3055n\u306Edouble\u578B\u914D\u5217\u3092\u5165\
-    \u529B\u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\n\t */\n\
-    \tpublic final double[] nd(final int n) {\n\t\tfinal double[] a = new double[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\t/**\n\
-    \t * [maybe_unused]\n\t * \u5927\u304D\u3055n\u306Echar\u578B\u914D\u5217\u3092\
-    \u5165\u529B\u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\n\
-    \t */\n\tpublic final char[] nc(final int n) {\n\t\tfinal char[] a = new char[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = nc());\n\t\treturn a;\n\t}\n\t/**\n\
-    \t * \u5927\u304D\u3055n\u306E\u6587\u5B57\u5217\u914D\u5217\u3092\u5165\u529B\
+    \ }\n\t/**\n\t * nextChar(Scanner\u306B\u306F\u306A\u3044)\n\t * char\u578B\u3092\
+    \u5165\u529B\u3059\u308B\n\t */\n\tpublic final char nc(){ return (char) next();\
+    \ }\n\t/**\n\t * nextString(Scanner\u3067\u4E91\u3046next)\n\t * \u6587\u5B57\u5217\
+    \u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic final String ns() {\n\t\tfinal\
+    \ StringBuilder sb = new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c))\
+    \ {\n\t\t\tsb.append((char) c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\
+    \t}\n\t/**\n\t * nextBigInteger\n\t * \u591A\u500D\u9577\u6574\u6570\u3092\u5165\
+    \u529B\u3059\u308B\n\t */\n\tpublic final BigInteger nb(){ return new BigInteger(ns());\
+    \ }\n\t/**\n\t * \u5927\u304D\u3055n\u306Eint\u578B\u914D\u5217\u3092\u5165\u529B\
     \u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic\
-    \ final String[] ns(final int n) {\n\t\tfinal String[] a = new String[n];\n\t\t\
-    IntStream.range(0, n).forEach(i -> a[i] = ns());\n\t\treturn a;\n\t}\n\t/**\n\t\
-    \ * [maybe_unused]\n\t * \u5927\u304D\u3055n\u306E\u591A\u500D\u9577\u6574\u6570\
+    \ final int[] ni(final int n) {\n\t\tfinal int[] a = new int[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = ni());\n\t\treturn a;\n\t}\n\t/**\n\t * \u5927\u304D\u3055\
+    n\u306Elong\u578B\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n \u914D\
+    \u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic final long[] nl(final int n) {\n\
+    \t\tfinal long[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i]\
+    \ = nl());\n\t\treturn a;\n\t}\n\t/**\n\t * \u5927\u304D\u3055n\u306Edouble\u578B\
     \u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\
-    \u304D\u3055\n\t */\n\tpublic final BigInteger[] nb(final int n) {\n\t\tfinal\
-    \ BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0, n).forEach(i ->\
-    \ a[i] = nb());\n\t\treturn a;\n\t}\n\t/**\n\t * h\xD7w\u306Eint\u578B\u306E\u4E8C\
+    \u304D\u3055\n\t */\n\tpublic final double[] nd(final int n) {\n\t\tfinal double[]\
+    \ a = new double[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\
+    \treturn a;\n\t}\n\t/**\n\t * [maybe_unused]\n\t * \u5927\u304D\u3055n\u306Echar\u578B\
+    \u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\
+    \u304D\u3055\n\t */\n\tpublic final char[] nc(final int n) {\n\t\tfinal char[]\
+    \ a = new char[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nc());\n\t\t\
+    return a;\n\t}\n\t/**\n\t * \u5927\u304D\u3055n\u306E\u6587\u5B57\u5217\u914D\u5217\
+    \u3092\u5165\u529B\u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\
+    \n\t */\n\tpublic final String[] ns(final int n) {\n\t\tfinal String[] a = new\
+    \ String[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ns());\n\t\treturn\
+    \ a;\n\t}\n\t/**\n\t * [maybe_unused]\n\t * \u5927\u304D\u3055n\u306E\u591A\u500D\
+    \u9577\u6574\u6570\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n \u914D\
+    \u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic final BigInteger[] nb(final int\
+    \ n) {\n\t\tfinal BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = nb());\n\t\treturn a;\n\t}\n\t/**\n\t * h\xD7w\u306E\
+    int\u578B\u306E\u4E8C\u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t\
+    \ * @param h\n\t * @param w\n\t */\n\tpublic final int[][] ni(final int h, final\
+    \ int w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\t/**\n\t * h\xD7w\u306Elong\u578B\u306E\
+    \u4E8C\u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t\
+    \ * @param w\n\t */\n\tpublic final long[][] nl(final int h, final int w) {\n\t\
+    \tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i]\
+    \ = nl(w));\n\t\treturn a;\n\t}\n\t/**\n\t * h\xD7w\u306Edouble\u578B\u306E\u4E8C\
     \u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t * @param\
-    \ w\n\t */\n\tpublic final int[][] ni(final int h, final int w) {\n\t\tfinal int[][]\
-    \ a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] = ni(w));\n\t\
-    \treturn a;\n\t}\n\t/**\n\t * h\xD7w\u306Elong\u578B\u306E\u4E8C\u6B21\u5143\u914D\
-    \u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t * @param w\n\t */\n\t\
-    public final long[][] nl(final int h, final int w) {\n\t\tfinal long[][] a = new\
-    \ long[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] = nl(w));\n\t\treturn\
-    \ a;\n\t}\n\t/**\n\t * h\xD7w\u306Edouble\u578B\u306E\u4E8C\u6B21\u5143\u914D\u5217\
+    \ w\n\t */\n\tpublic final double[][] nd(final int h, final int w) {\n\t\tfinal\
+    \ double[][] a = new double[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i]\
+    \ = nd(w));\n\t\treturn a;\n\t}\n\t/**\n\t * h\xD7w\u306Echar\u578B\u306E\u4E8C\
+    \u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t * @param\
+    \ w\n\t */\n\tpublic final char[][] nc(final int h, final int w) {\n\t\tfinal\
+    \ char[][] a = new char[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] =\
+    \ nc(w));\n\t\treturn a;\n\t}\n\t/**\n\t * [maybe_unused]\n\t * h\xD7w\u306E\u6587\
+    \u5B57\u5217\u306E\u4E8C\u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\
+    \n\t * @param h\n\t * @param w\n\t */\n\tpublic final String[][] ns(final int\
+    \ h, final int w) {\n\t\tfinal String[][] a = new String[h][w];\n\t\tIntStream.range(0,\
+    \ h).forEach(i -> a[i] = ns(w));\n\t\treturn a;\n\t}\n\t/**\n\t * [maybe_unused]\n\
+    \t * h\xD7w\u306E\u591A\u500D\u9577\u6574\u6570\u306E\u4E8C\u6B21\u5143\u914D\u5217\
     \u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t * @param w\n\t */\n\tpublic\
-    \ final double[][] nd(final int h, final int w) {\n\t\tfinal double[][] a = new\
-    \ double[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] = nd(w));\n\t\treturn\
-    \ a;\n\t}\n\t/**\n\t * h\xD7w\u306Echar\u578B\u306E\u4E8C\u6B21\u5143\u914D\u5217\
-    \u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t * @param w\n\t */\n\tpublic\
-    \ final char[][] nc(final int h, final int w) {\n\t\tfinal char[][] a = new char[h][w];\n\
-    \t\tIntStream.range(0, h).forEach(i -> a[i] = nc(w));\n\t\treturn a;\n\t}\n\t\
-    /**\n\t * [maybe_unused]\n\t * h\xD7w\u306E\u6587\u5B57\u5217\u306E\u4E8C\u6B21\
-    \u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t * @param w\n\
-    \t */\n\tpublic final String[][] ns(final int h, final int w) {\n\t\tfinal String[][]\
-    \ a = new String[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] = ns(w));\n\
-    \t\treturn a;\n\t}\n\t/**\n\t * [maybe_unused]\n\t * h\xD7w\u306E\u591A\u500D\u9577\
-    \u6574\u6570\u306E\u4E8C\u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\
-    \n\t * @param h\n\t * @param w\n\t */\n\tpublic final BigInteger[][] nb(final\
-    \ int h, final int w) {\n\t\tfinal BigInteger[][] a = new BigInteger[h][w];\n\t\
-    \tIntStream.range(0, h).forEach(i -> a[i] = nb(w));\n\t\treturn a;\n\t}\n\t/**\n\
-    \t * [maybe_unused]\n\t * \u4E00\u884C\u5168\u90E8\u3092\u5165\u529B\u3059\u308B\
-    \n\t */\n\tpublic final String line() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
-    \t\tbyte c;\n\t\twhile((c = read()) != '\\n') {\n\t\t\tsb.append(c);\n\t\t}\n\t\
-    \treturn sb.toString();\n\t}\n\t/**\n\t * InputStream\u3092\u9589\u3058\u308B\n\
-    \t */\n\t@Override\n\tpublic final void close() {\n\t\ttry {\n\t\t\tis.close();\n\
-    \t\t} catch (IOException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n}"
+    \ final BigInteger[][] nb(final int h, final int w) {\n\t\tfinal BigInteger[][]\
+    \ a = new BigInteger[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] = nb(w));\n\
+    \t\treturn a;\n\t}\n\t/**\n\t * [maybe_unused]\n\t * \u4E00\u884C\u5168\u90E8\u3092\
+    \u5165\u529B\u3059\u308B\n\t */\n\tpublic final String line() {\n\t\tfinal StringBuilder\
+    \ sb = new StringBuilder();\n\t\tbyte c;\n\t\twhile((c = read()) != '\\n') {\n\
+    \t\t\tsb.append(c);\n\t\t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t * InputStream\u3092\
+    \u9589\u3058\u308B\n\t */\n\t@Override\n\tpublic final void close() {\n\t\ttry\
+    \ {\n\t\t\tis.close();\n\t\t} catch (IOException e) {\n\t\t\te.printStackTrace();\n\
+    \t\t}\n\t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -405,7 +405,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 05:31:30+09:00'
+  timestamp: '2024-01-07 05:37:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/core/MyScanner.java
