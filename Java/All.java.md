@@ -742,19 +742,22 @@ data:
     \tpublic final void close() {\n\t\tif(os == null) {\n\t\t\treturn;\n\t\t}\n\t\t\
     try {\n\t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(IOException e) {\n\t\t\
     \te.printStackTrace();\n\t\t}\n\t}\n}\n\nclass Pair<F extends Comparable<? super\
-    \ F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>> {\n\t\
-    public F first;\n\tpublic S second;\n\tPair(final F first, final S second) {\n\
-    \t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\t@Override\n\tpublic\
-    \ final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\
-    \t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\
-    \t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first))\
-    \ {\n\t\t\treturn false;\n\t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t\
-    @Override\n\tpublic final int hashCode(){ return 31 * first.hashCode() + second.hashCode();\
-    \ }\n\t@Override\n\tpublic final String toString(){ return \"(\" + first + \"\
-    , \" + second + \")\"; }\n\tpublic static final <F extends Comparable<? super\
-    \ F>, S extends Comparable<? super S>> Pair<F, S> of(final F a, final S b){ return\
-    \ new Pair<>(a, b); }\n\tfinal Pair<S, F> swap(){ return Pair.of(second, first);\
-    \ }\n\t@Override\n\tpublic final int compareTo(final Pair<F, S> p) {\n\t\tif(first.compareTo(p.first)\
+    \ F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>>, Cloneable\
+    \ {\n\tpublic F first;\n\tpublic S second;\n\tPair(final F first, final S second)\
+    \ {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\tstatic final <F\
+    \ extends Comparable<? super F>, S extends Comparable<? super S>> Pair<F, S> of(final\
+    \ F a, final S b){ return new Pair<>(a, b); }\n\tfinal Pair<S, F> swap(){ return\
+    \ Pair.of(second, first); }\n\t@Override\n\tpublic final boolean equals(final\
+    \ Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null\
+    \ || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?,\
+    \ ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first)) {\n\t\t\treturn false;\n\
+    \t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t@Override\n\tpublic final int\
+    \ hashCode(){ return 31 * first.hashCode() + second.hashCode(); }\n\t@Override\n\
+    \tpublic final String toString(){ return \"(\" + first + \", \" + second + \"\
+    )\"; }\n\t@SuppressWarnings(\"unchecked\")\n\t@Override\n\tpublic final Pair<F,\
+    \ S> clone() {\n\t\ttry {\n\t\t\treturn (Pair<F, S>) super.clone();\n\t\t} catch(CloneNotSupportedException\
+    \ e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn null;\n\t}\n\t@Override\n\
+    \tpublic final int compareTo(final Pair<F, S> p) {\n\t\tif(first.compareTo(p.first)\
     \ == 0) {\n\t\t\treturn second.compareTo(p.second);\n\t\t}\n\t\treturn first.compareTo(p.first);\n\
     \t}\n}\nfinal class IntPair extends Pair<Long, Long> {\n\tIntPair(final long first,\
     \ final long second){ super(first, second); }\n\tfinal IntPair add(final IntPair\
@@ -1394,8 +1397,8 @@ data:
     \ root.size;) {\n\t\t\tsb.append(\" \");\n\t\t\tsb.append(get(i));\n\t\t}\n\t\t\
     return \"[\" + sb.toString() + \"]\";\n\t}\n}\n\nfinal class Deque<T> implements\
     \ Iterable<T> {\n\tprivate int n, head, tail;\n\tprivate Object[] buf;\n\tDeque(){\
-    \ this(1 << 17); }\n\tDeque(final int n) {\n\t\tthis.n = n;\n\t\thead = tail =\
-    \ 0;\n\t\tbuf = new Object[n];\n\t}\n\tDeque(final T[] a) {\n\t\tthis(a.length);\n\
+    \ this(1 << 17); }\n\tprivate Deque(final int n) {\n\t\tthis.n = n;\n\t\thead\
+    \ = tail = 0;\n\t\tbuf = new Object[n];\n\t}\n\tDeque(final T[] a) {\n\t\tthis(a.length);\n\
     \t\tArrays.stream(a).forEach(i -> add(i));\n\t}\n\tprivate final int next(final\
     \ int index) {\n\t\tfinal int next = index + 1;\n\t\treturn next == n ? 0 : next;\n\
     \t}\n\tprivate final int prev(final int index) {\n\t\tfinal int prev = index -\
@@ -1403,18 +1406,26 @@ data:
     \ int i) {\n\t\tfinal int size = size();\n\t\tif(i >= size) {\n\t\t\tthrow new\
     \ IndexOutOfBoundsException(\"Index \"+ i +\" out of bounds for length \" + size);\n\
     \t\t}\n\t\tfinal int id = head + i;\n\t\treturn n <= id ? id - n : id;\n\t}\n\t\
-    private final void extend() {\n\t\tbuf = Arrays.copyOf(buf, n << 1);\n\t\tn =\
-    \ buf.length;\n\t}\n\tfinal boolean isEmpty(){ return size() == 0; }\n\tfinal\
-    \ int size() {\n\t\tfinal int size = tail - head;\n\t\treturn size < 0 ? size\
-    \ + n : size;\n\t}\n\tfinal void addFirst(final T x) {\n\t\thead = prev(head);\n\
-    \t\tif(head == tail) {\n\t\t\textend();\n\t\t}\n\t\tbuf[head] = x;\n\t}\n\tfinal\
-    \ void addLast(final T x) {\n\t\tif(next(tail) == head) {\n\t\t\textend();\n\t\
-    \t}\n\t\tbuf[tail] = x;\n\t\ttail = next(tail);\n\t}\n\tfinal void removeFirst()\
+    private final void arraycopy(final int fromIndex, final T[] array, final int from,\
+    \ final int length) {\n\t\tif(fromIndex + length > size()) {\n\t\t\tthrow new\
+    \ IndexOutOfBoundsException(\"last source index \" + (fromIndex + length) + \"\
+    \ out of bounds for int[\" + size() + \"]\");\n\t\t}\n\t\tfinal int h = index(fromIndex);\n\
+    \t\tif(h + length < n) {\n\t\t\tSystem.arraycopy(buf, h, array, from, length);\n\
+    \t\t} else {\n\t\t\tfinal int back = n - h;\n\t\t\tSystem.arraycopy(buf, h, array,\
+    \ from, back);\n\t\t\tSystem.arraycopy(buf, 0, array, from + back, length - back);\n\
+    \t\t}\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tprivate final void extend()\
+    \ {\n\t\tfinal Object[] tmp = new Object[n << 1];\n\t\tarraycopy(0, (T[]) tmp,\
+    \ 0, size());\n\t\tbuf = tmp;\n\t\tn = buf.length;\n\t}\n\tfinal boolean isEmpty(){\
+    \ return size() == 0; }\n\tfinal int size() {\n\t\tfinal int size = tail - head;\n\
+    \t\treturn size < 0 ? size + n : size;\n\t}\n\tfinal void addFirst(final T x)\
+    \ {\n\t\tif(prev(head) == tail) {\n\t\t\textend();\n\t\t}\n\t\thead = prev(head);\n\
+    \t\tbuf[head] = x;\n\t}\n\tfinal void addLast(final T x) {\n\t\tif(next(tail)\
+    \ == head) {\n\t\t\textend();\n\t\t}\n\t\tbuf[tail] = x;\n\t\ttail = next(tail);\n\
+    \t}\n\tfinal void removeFirst() {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"\
+    Buffer is empty\");\n\t\t}\n\t\thead = next(head);\n\t}\n\tfinal void removeLast()\
     \ {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is\
-    \ empty\");\n\t\t}\n\t\thead = next(head);\n\t}\n\tfinal void removeLast() {\n\
-    \t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is empty\"\
-    );\n\t\t}\n\t\ttail = prev(tail);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\t\
-    final T pollFirst() {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"\
+    \ empty\");\n\t\t}\n\t\ttail = prev(tail);\n\t}\n\t@SuppressWarnings(\"unchecked\"\
+    )\n\tfinal T pollFirst() {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"\
     Buffer is empty\");\n\t\t}\n\t\tfinal T ans = (T) buf[head];\n\t\thead = next(head);\n\
     \t\treturn ans;\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T pollLast()\
     \ {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is\
@@ -1427,12 +1438,13 @@ data:
     )\n\tfinal void swap(final int a, final int b) {\n\t\tfinal int i = index(a);\n\
     \t\tfinal int j = index(b);\n\t\tfinal T num = (T) buf[i];\n\t\tbuf[i] = buf[j];\n\
     \t\tbuf[j] = num;\n\t}\n\tfinal void clear(){ head = tail = 0; }\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tfinal T[] toArray(){ return (T[]) Arrays.copyOf(buf, size());\
-    \ }\n\t@Override\n\tpublic final String toString(){ return Arrays.toString(toArray());\
-    \ }\n\t@Override\n\tpublic final Iterator<T> iterator(){ return new DequeIterator();\
-    \ }\n\tprivate class DequeIterator implements Iterator<T> {\n\t\tprivate int now\
-    \ = head;\n\t\tprivate int rem = size();\n\t\t@Override\n\t\tpublic boolean hasNext(){\
-    \ return rem > 0; }\n\t\t@Override\n\t\tpublic final T next() {\n\t\t\tif(!hasNext())\
+    unchecked\")\n\tfinal T[] toArray() {\n\t\tfinal Object[] array = new Object[size()];\n\
+    \t\tarraycopy(0, (T[]) array, 0, size());\n\t\treturn (T[]) array;\n\t}\n\t@Override\n\
+    \tpublic final String toString(){ return Arrays.toString(toArray()); }\n\t@Override\n\
+    \tpublic final Iterator<T> iterator(){ return new DequeIterator(); }\n\tprivate\
+    \ class DequeIterator implements Iterator<T> {\n\t\tprivate int now = head;\n\t\
+    \tprivate int rem = size();\n\t\t@Override\n\t\tpublic boolean hasNext(){ return\
+    \ rem > 0; }\n\t\t@Override\n\t\tpublic final T next() {\n\t\t\tif(!hasNext())\
     \ {\n\t\t\t\tthrow new NoSuchElementException();\n\t\t\t}\n\t\t\t@SuppressWarnings(\"\
     unchecked\")\n\t\t\tfinal T res = (T) buf[now];\n\t\t\tnow = (now + 1) % n;\n\t\
     \t\trem--;\n\t\t\treturn res;\n\t\t}\n\t\t@Override\n\t\tpublic final void remove()\
@@ -1519,7 +1531,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 23:04:35+09:00'
+  timestamp: '2024-01-07 01:03:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
