@@ -60,76 +60,132 @@ data:
   - name: Java
     pages:
     - icon: ':warning:'
-      path: Java/all.java
-      title: Java/all.java
-  - name: Java/extension
+      path: Java/All.java
+      title: Java/All.java
+  - name: Java/library/core
     pages:
     - icon: ':warning:'
-      path: Java/extension/AVLTree.java
-      title: Java/extension/AVLTree.java
+      path: Java/library/core/Main.java
+      title: Java/library/core/Main.java
     - icon: ':warning:'
-      path: Java/extension/Deque.java
-      title: Java/extension/Deque.java
+      path: Java/library/core/MyPrinter.java
+      title: Java/library/core/MyPrinter.java
     - icon: ':warning:'
-      path: Java/extension/DoubleEndedPriorityQueue.java
-      title: Java/extension/DoubleEndedPriorityQueue.java
+      path: Java/library/core/MyScanner.java
+      title: Java/library/core/MyScanner.java
     - icon: ':warning:'
-      path: Java/extension/EulerPhiTable.java
-      title: Java/extension/EulerPhiTable.java
+      path: Java/library/core/Utility.java
+      title: Java/library/core/Utility.java
     - icon: ':warning:'
-      path: Java/extension/FenwickTree.java
-      title: Java/extension/FenwickTree.java
+      path: Java/library/core/VvyLw.java
+      title: Java/library/core/VvyLw.java
+  - name: Java/library/graph
+    pages:
     - icon: ':warning:'
-      path: Java/extension/Graph.java
-      title: Java/extension/Graph.java
+      path: Java/library/graph/Edge.java
+      title: Java/library/graph/Edge.java
     - icon: ':warning:'
-      path: Java/extension/Huitloxopetl.java
-      title: Java/extension/Huitloxopetl.java
+      path: Java/library/graph/Graph.java
+      title: Java/library/graph/Graph.java
     - icon: ':warning:'
-      path: Java/extension/LargePrime.java
-      title: Java/extension/LargePrime.java
+      path: Java/library/graph/LowestCommonAncestor.java
+      title: Java/library/graph/LowestCommonAncestor.java
     - icon: ':warning:'
-      path: Java/extension/LowestCommonAncestor.java
-      title: Java/extension/LowestCommonAncestor.java
+      path: Java/library/graph/MST.java
+      title: Java/library/graph/MST.java
     - icon: ':warning:'
-      path: Java/extension/PrefixSum.java
-      title: Java/extension/PrefixSum.java
+      path: Java/library/graph/SkewHeap.java
+      title: Java/library/graph/SkewHeap.java
     - icon: ':warning:'
-      path: Java/extension/PrimeCounter.java
-      title: Java/extension/PrimeCounter.java
+      path: Java/library/graph/WeightedGraph.java
+      title: Java/library/graph/WeightedGraph.java
+  - name: Java/library/math
+    pages:
     - icon: ':warning:'
-      path: Java/extension/PrimeFactor.java
-      title: Java/extension/PrimeFactor.java
+      path: Java/library/math/BigPrime.java
+      title: Java/library/math/BigPrime.java
     - icon: ':warning:'
-      path: Java/extension/PrimeTable.java
-      title: Java/extension/PrimeTable.java
+      path: Java/library/math/EulerPhiTable.java
+      title: Java/library/math/EulerPhiTable.java
     - icon: ':warning:'
-      path: Java/extension/SegmentTree.java
-      title: Java/extension/SegmentTree.java
+      path: Java/library/math/LongPrime.java
+      title: Java/library/math/LongPrime.java
     - icon: ':warning:'
-      path: Java/extension/SparseTable.java
-      title: Java/extension/SparseTable.java
+      path: Java/library/math/PrimeCounter.java
+      title: Java/library/math/PrimeCounter.java
     - icon: ':warning:'
-      path: Java/extension/SuffixArray.java
-      title: Java/extension/SuffixArray.java
+      path: Java/library/math/PrimeFactor.java
+      title: Java/library/math/PrimeFactor.java
     - icon: ':warning:'
-      path: Java/extension/Template.java
-      title: Java/extension/Template.java
+      path: Java/library/math/PrimeTable.java
+      title: Java/library/math/PrimeTable.java
+  - name: Java/library/other
+    pages:
     - icon: ':warning:'
-      path: Java/extension/UndoUnionFind.java
-      title: Java/extension/UndoUnionFind.java
+      path: Java/library/other/Huitloxopetl.java
+      title: Java/library/other/Huitloxopetl.java
     - icon: ':warning:'
-      path: Java/extension/UnionFind.java
-      title: Java/extension/UnionFind.java
+      path: Java/library/other/InclusiveScan.java
+      title: Java/library/other/InclusiveScan.java
     - icon: ':warning:'
-      path: Java/extension/WaveletMatrix.java
-      title: Java/extension/WaveletMatrix.java
+      path: Java/library/other/PrefixSum.java
+      title: Java/library/other/PrefixSum.java
     - icon: ':warning:'
-      path: Java/extension/WeightedGraph.java
-      title: Java/extension/WeightedGraph.java
+      path: Java/library/other/SuffixArray.java
+      title: Java/library/other/SuffixArray.java
+  - name: Java/library/pair
+    pages:
     - icon: ':warning:'
-      path: Java/extension/WeightedUnionFind.java
-      title: Java/extension/WeightedUnionFind.java
+      path: Java/library/pair/FloatPair.java
+      title: Java/library/pair/FloatPair.java
+    - icon: ':warning:'
+      path: Java/library/pair/IntPair.java
+      title: Java/library/pair/IntPair.java
+    - icon: ':warning:'
+      path: Java/library/pair/Pair.java
+      title: Java/library/pair/Pair.java
+  - name: Java/library/structure
+    pages:
+    - icon: ':warning:'
+      path: Java/library/structure/AVLTree.java
+      title: Java/library/structure/AVLTree.java
+    - icon: ':warning:'
+      path: Java/library/structure/Deque.java
+      title: Java/library/structure/Deque.java
+    - icon: ':warning:'
+      path: Java/library/structure/DoubleEndedPriorityQueue.java
+      title: Java/library/structure/DoubleEndedPriorityQueue.java
+    - icon: ':warning:'
+      path: Java/library/structure/FenwickTree.java
+      title: Java/library/structure/FenwickTree.java
+    - icon: ':warning:'
+      path: Java/library/structure/SegmentTree.java
+      title: Java/library/structure/SegmentTree.java
+    - icon: ':warning:'
+      path: Java/library/structure/SparseTable.java
+      title: Java/library/structure/SparseTable.java
+  - name: Java/library/structure/waveletmatrix
+    pages:
+    - icon: ':warning:'
+      path: Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
+      title: Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
+    - icon: ':warning:'
+      path: Java/library/structure/waveletmatrix/WaveletMatrix.java
+      title: Java/library/structure/waveletmatrix/WaveletMatrix.java
+    - icon: ':warning:'
+      path: Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
+      title: Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
+  - name: Java/library/unionfind
+    pages:
+    - icon: ':warning:'
+      path: Java/library/unionfind/UndoUnionFind.java
+      title: Java/library/unionfind/UndoUnionFind.java
+    - icon: ':warning:'
+      path: Java/library/unionfind/UnionFind.java
+      title: Java/library/unionfind/UnionFind.java
+    - icon: ':warning:'
+      path: Java/library/unionfind/WeightedUnionFind.java
+      title: Java/library/unionfind/WeightedUnionFind.java
   verificationCategories:
   - name: test
     pages:
