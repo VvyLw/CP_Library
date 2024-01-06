@@ -43,42 +43,7 @@ final class VvyLw extends Utility {
 	@SuppressWarnings("unused")
 	private static final int mod107 = (int)1e9 + 7;
 	static final void solve() {
-		final int n = sc.ni();
-		final String[][] a = new String[n][n];
-		int u = 0, v = n - 1;
-		Pair<Integer, Integer> p = Pair.of(u + 1, u), q = Pair.of(u, v), r = Pair.of(v, v), s = Pair.of(v, u);
-		int x = 0, y = 0, z = 0, i = 1;
-		while(i < sqr(n)) {
-			a[x][y] = String.valueOf(i);
-			i++;
-			if(z == 0) {
-				y++;
-			} else if(z == 1) {
-				x++;
-			} else if(z == 2) {
-				y--;
-			} else {
-				x--;
-			}
-			final var tmp = Pair.of(x, y);
-			if(tmp.equals(q)) {
-				z = 1;
-			} else if(tmp.equals(r)) {
-				z = 2;
-			} else if(tmp.equals(s)) {
-				z = 3;
-			} else if(tmp.equals(p)) {
-				z = 0;
-				u++;
-				v--;
-				p = Pair.of(u + 1, u);
-				q = Pair.of(u, v);
-				r = Pair.of(v, v);
-				s = Pair.of(v, u);
-			}
-		}
-		a[x][y] = "T";
-		o.outl(a);
+		
 	}
 }
 class Utility {
@@ -530,34 +495,22 @@ class Utility {
 	protected static final int[] rotate(final int[] a, final int id) {
 		final List<Integer> t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
-		final int[] res = new int[a.length];
-		for(int i = 0; i < a.length; ++i) {
-			res[i] = t.get(i);
-		}
-		return res;
+		return t.stream().mapToInt(i -> i).toArray();
 	}
 	protected static final long[] rotate(final long[] a, final int id) {
 		final List<Long> t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
-		final long[] res = new long[a.length];
-		for(int i = 0; i < a.length; ++i) {
-			res[i] = t.get(i);
-		}
-		return res;
+		return t.stream().mapToLong(i -> i).toArray();
 	}
 	protected static final double[] rotate(final double[] a, final int id) {
 		final List<Double> t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
-		final double[] res = new double[a.length];
-		for(int i = 0; i < a.length; ++i) {
-			res[i] = t.get(i);
-		}
-		return res;
+		return t.stream().mapToDouble(i -> i).toArray();
 	}
 	protected static final String rotate(final String s, final int id) {
 		final List<Character> t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
 		Collections.rotate(t, id);
-		return t.stream().map(i -> i.toString()).collect(Collectors.joining());
+		return t.stream().map(String::valueOf).collect(Collectors.joining());
 	}
 	protected static final int[][] rotateR(final int[][] a) {
 		final int h = a.length, w = a[0].length;

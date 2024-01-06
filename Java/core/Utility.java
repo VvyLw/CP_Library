@@ -869,11 +869,7 @@ public class Utility {
 	public static final int[] rotate(final int[] a, final int id) {
 		final List<Integer> t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
-		final int[] res = new int[a.length];
-		for(int i = 0; i < a.length; ++i) {
-			res[i] = t.get(i);
-		}
-		return res;
+		return t.stream().mapToInt(i -> i).toArray();
 	}
 	/**
 	 * @param a
@@ -883,11 +879,7 @@ public class Utility {
 	public static final long[] rotate(final long[] a, final int id) {
 		final List<Long> t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
-		final long[] res = new long[a.length];
-		for(int i = 0; i < a.length; ++i) {
-			res[i] = t.get(i);
-		}
-		return res;
+		return t.stream().mapToLong(i -> i).toArray();
 	}
 	/**
 	 * @param a
@@ -897,11 +889,7 @@ public class Utility {
 	public static final double[] rotate(final double[] a, final int id) {
 		final List<Double> t = Arrays.stream(a).boxed().collect(Collectors.toList());
 		Collections.rotate(t, id);
-		final double[] res = new double[a.length];
-		for(int i = 0; i < a.length; ++i) {
-			res[i] = t.get(i);
-		}
-		return res;
+		return t.stream().mapToDouble(i -> i).toArray();
 	}
 	/**
 	 * @param s
@@ -911,7 +899,7 @@ public class Utility {
 	public static final String rotate(final String s, final int id) {
 		final List<Character> t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
 		Collections.rotate(t, id);
-		return t.stream().map(i -> i.toString()).collect(Collectors.joining());
+		return t.stream().map(String::valueOf).collect(Collectors.joining());
 	}
 	/**
 	 * @param a
