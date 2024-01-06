@@ -3,9 +3,9 @@ package library.structure;
 import java.util.ArrayList;
 import java.util.Collections;
 
-final class DoubleEndedPriorityQueue<T extends Number> {
+public final class DoubleEndedPriorityQueue<T extends Number> {
 	private final ArrayList<T> d;
-	DoubleEndedPriorityQueue(final ArrayList<T> d) {
+	public DoubleEndedPriorityQueue(final ArrayList<T> d) {
 		this.d = d;
 		makeHeap();
 	}
@@ -68,12 +68,12 @@ final class DoubleEndedPriorityQueue<T extends Number> {
 	}
 	private final int parent(final int k){ return ((k >> 1) - 1) & ~1; }
 	private final void popBack(final ArrayList<T> d){ d.remove(d.size() - 1); } 
-	final void push(final T x) {
+	public final void push(final T x) {
 		final int k = d.size();
 		d.add(x);
 		up(k, 1);
 	}
-	final T popMin() {
+	public final T popMin() {
 		final T res = getMin();
 		if(d.size() < 3) {
 			popBack(d); 
@@ -84,7 +84,7 @@ final class DoubleEndedPriorityQueue<T extends Number> {
 		}
 		return res;
 	}
-	final T popMax() {
+	public final T popMax() {
 		final T res = getMax();
 		if(d.size() < 2) { 
 			popBack(d);
@@ -95,8 +95,8 @@ final class DoubleEndedPriorityQueue<T extends Number> {
 		}
 		return res;
 	}
-	final T getMin(){ return d.size() < 2 ? d.get(0) : d.get(1); }
-	final T getMax(){ return d.get(0); }
-	final int size(){ return d.size(); }
-	final boolean isEmpty(){ return d.isEmpty(); }
+	public final T getMin(){ return d.size() < 2 ? d.get(0) : d.get(1); }
+	public final T getMax(){ return d.get(0); }
+	public final int size(){ return d.size(); }
+	public final boolean isEmpty(){ return d.isEmpty(); }
 }

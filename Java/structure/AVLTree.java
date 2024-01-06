@@ -1,6 +1,6 @@
 package library.structure;
 
-final class AVLTree<T extends Comparable<? super T>> {
+public final class AVLTree<T extends Comparable<? super T>> {
 	static final class Node<T extends Comparable<? super T>> {
 		T val;
 		@SuppressWarnings("unchecked")
@@ -102,12 +102,12 @@ final class AVLTree<T extends Comparable<? super T>> {
 		}
 		return cnt(t.ch[0], v);
 	}
-	AVLTree(){ root = null; }
-	final void add(final T val){ root = insert(root, cnt(root, val), val); }
-	final void remove(final int k){ root = erase(root, k); }
-	final T get(final int k){ return find(root, k).val; }
-	final int count(final T val){ return cnt(root, val); }
-	final int size(){ return root.size; }
+	public AVLTree(){ root = null; }
+	public final void add(final T val){ root = insert(root, cnt(root, val), val); }
+	public final void remove(final int k){ root = erase(root, k); }
+	public final T get(final int k){ return find(root, k).val; }
+	public final int count(final T val){ return cnt(root, val); }
+	public final int size(){ return root.size; }
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();

@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
 
-final class SegmentTree<T extends Number> {
+public final class SegmentTree<T extends Number> {
 	private int n = 1, rank = 0, fini;
 	private final BinaryOperator<T> op;
 	private final T e;
 	private final Object[] dat;
-	SegmentTree(final int fini, final BinaryOperator<T> op, final T e) {
+	public SegmentTree(final int fini, final BinaryOperator<T> op, final T e) {
 		this.fini = fini;
 		this.op = op;
 		this.e = e;
@@ -21,7 +21,7 @@ final class SegmentTree<T extends Number> {
 		Arrays.fill(dat, e);
 	}
 	@SuppressWarnings("unchecked")
-	final void update(int i, final T x) {
+	public final void update(int i, final T x) {
 		i += n;
 		dat[i] = x;
 		do {
@@ -30,7 +30,7 @@ final class SegmentTree<T extends Number> {
 		} while(i > 0);
 	}
 	@SuppressWarnings("unchecked")
-	final T query(int a, int b) {
+	public final T query(int a, int b) {
 		T l = e, r = e;
 		for(a += n, b += n; a < b; a >>= 1, b >>= 1) {
 			if(a % 2 == 1) {
@@ -43,7 +43,7 @@ final class SegmentTree<T extends Number> {
 		return op.apply(l, r);
 	}
 	@SuppressWarnings("unchecked")
-	final int findLeft(final int r, final Predicate<T> fn) {
+	public final int findLeft(final int r, final Predicate<T> fn) {
 		if(r == 0) {
 			return 0;
 		}
@@ -77,7 +77,7 @@ final class SegmentTree<T extends Number> {
 		return i - n;
 	}
 	@SuppressWarnings("unchecked")
-	final int findRight(final int l, final Predicate<T> fn) {
+	public final int findRight(final int l, final Predicate<T> fn) {
 		if(l == fini) {
 			return fini;
 		}

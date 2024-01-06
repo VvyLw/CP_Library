@@ -3,12 +3,12 @@ package library.graph;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-final class LowestCommonAncestor<G extends Graph> {
+public final class LowestCommonAncestor<G extends Graph> {
 	private final int log;
-	final int[] dep, sum;
+	private final int[] dep, sum;
 	private final G g;
-	final int[][] table;
-	LowestCommonAncestor(final G g) {
+	private final int[][] table;
+	public LowestCommonAncestor(final G g) {
 		this.g = g;
 		final int n = g.size();
 		dep = new int[n];
@@ -40,7 +40,7 @@ final class LowestCommonAncestor<G extends Graph> {
 			}
 		}
 	}
-	final int query(int u, int v) {
+	public final int query(int u, int v) {
 		if(dep[u] > dep[v]) {
 			u ^= v;
 			v ^= u;
@@ -58,7 +58,7 @@ final class LowestCommonAncestor<G extends Graph> {
 		}
 		return table[0][u];
 	}
-	final int climb(int u, final int k) {
+	public final int climb(int u, final int k) {
 		if(dep[u] < k) {
 			return -1;
 		}
@@ -69,5 +69,5 @@ final class LowestCommonAncestor<G extends Graph> {
 		}
 		return u;
 	}
-	final int dist(final int u, final int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }
+	public final int dist(final int u, final int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }
 }

@@ -1,5 +1,3 @@
-package library;
-
 import java.io.Closeable;
 import java.io.Flushable;
 import java.io.IOException;
@@ -1468,9 +1466,7 @@ final class Edge {
 	public int src;
 	public int to;
 	public long cost;
-	Edge(final int to) {
-		this.to = to;
-	}
+	Edge(final int to){ this.to = to; }
 	Edge(final int to, final long cost) {
 		this.to = to;
 		this.cost = cost;
@@ -1809,9 +1805,9 @@ final class SkewHeap {
 
 final class LowestCommonAncestor<G extends Graph> {
 	private final int log;
-	final int[] dep, sum;
+	private final int[] dep, sum;
 	private final G g;
-	final int[][] table;
+	private final int[][] table;
 	LowestCommonAncestor(final G g) {
 		this.g = g;
 		final int n = g.size();
@@ -2090,7 +2086,7 @@ final class LongPrime {
 }
 // N > 1e18
 final class BigPrime {
-	protected final int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
+	private final int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
 	private final BigInteger gcd(BigInteger a, BigInteger b) {
 		a = a.abs();
 		b = b.abs();

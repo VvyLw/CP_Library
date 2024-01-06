@@ -14,9 +14,9 @@ import library.other.SkewHeap;
 import library.structure.pair.IntPair;
 import library.structure.unionfind.UnionFind;
 
-final class WeightedGraph extends Graph {
-	WeightedGraph(final int n, final int indexed, final boolean undirected){ super(n, indexed, undirected); }
-	final void addEdge(int a, int b, final long cost) {
+public final class WeightedGraph extends Graph {
+	public WeightedGraph(final int n, final int indexed, final boolean undirected){ super(n, indexed, undirected); }
+	public final void addEdge(int a, int b, final long cost) {
 		a -= indexed;
 		b -= indexed;
 		this.get(a).add(new Edge(b, cost));
@@ -26,8 +26,8 @@ final class WeightedGraph extends Graph {
 			edge.add(new Edge(b, a, cost));
 		}
 	}
-	final void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni(), VvyLw.sc.ni())); }
-	final long[] dijkstra(final int v) {
+	public final void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni(), VvyLw.sc.ni())); }
+	public final long[] dijkstra(final int v) {
 		final long[] cost = new long[n];
 		Arrays.fill(cost, Long.MAX_VALUE);
 		final Queue<IntPair> dj = new PriorityQueue<>();
@@ -47,7 +47,7 @@ final class WeightedGraph extends Graph {
 		}
 		return cost;
 	}
-	final long[] bellmanFord(final int v) {
+	public final long[] bellmanFord(final int v) {
 		final long[] cost = new long[n];
 		Arrays.fill(cost, Long.MAX_VALUE);
 		cost[v] = 0;
@@ -71,7 +71,7 @@ final class WeightedGraph extends Graph {
 		}
 		return cost;
 	}
-	final long[][] warshallFloyd() {
+	public final long[][] warshallFloyd() {
 		final long[][] cost = new long[n][n];
 		IntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], VvyLw.linf));
 		IntStream.range(0, n).forEach(i -> cost[i][i] = 0);
@@ -94,7 +94,7 @@ final class WeightedGraph extends Graph {
 		}
 		return cost;
 	}
-	final MST kruskal() {
+	public final MST kruskal() {
 		final UnionFind uf = new UnionFind(n);
 		final ArrayList<Edge> e = new ArrayList<>();
 		long res = 0;
@@ -106,7 +106,7 @@ final class WeightedGraph extends Graph {
 		}
 		return new MST(e, res);
 	}
-	final MST directed(final int v) {
+	public final MST directed(final int v) {
 		@SuppressWarnings("unchecked")
 		final ArrayList<Edge> ed = (ArrayList<Edge>) edge.clone();
 		for(int i = 0; i < n; ++i) {

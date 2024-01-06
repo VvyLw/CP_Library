@@ -4,12 +4,12 @@ import java.util.Arrays;
 
 import library.core.Utility;
 
-final class PrefixSum extends InclusiveScan {
-	PrefixSum(final int[] a) {
+public final class PrefixSum extends InclusiveScan {
+	public PrefixSum(final int[] a) {
 		super(a, (x, y) -> x + y);
 		s = Utility.rotate(Arrays.copyOf(s, n + 1), 1);
 	}
-	PrefixSum(final long[] a) {
+	public PrefixSum(final long[] a) {
 		super(a, (x, y) -> x + y);
 		s = Utility.rotate(Arrays.copyOf(s, n + 1), 1);
 	}

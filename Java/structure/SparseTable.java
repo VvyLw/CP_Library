@@ -3,11 +3,11 @@ package library.structure;
 import java.util.function.LongBinaryOperator;
 import java.util.function.LongPredicate;
 
-final class SparseTable {
+public final class SparseTable {
 	private final long[][] st;
 	private final int[] lookup;
 	private final LongBinaryOperator op;
-	SparseTable(final int[] a, final LongBinaryOperator op) {
+	public SparseTable(final int[] a, final LongBinaryOperator op) {
 		this.op = op;
 		int b = 0;
 		while((1 << b) <= a.length) {
@@ -27,7 +27,7 @@ final class SparseTable {
 			lookup[i] = lookup[i >> 1] + 1;
 		}
 	}
-	SparseTable(final long[] a, final LongBinaryOperator op) {
+	public SparseTable(final long[] a, final LongBinaryOperator op) {
 		this.op = op;
 		int b = 0;
 		while((1 << b) <= a.length) {
@@ -47,11 +47,11 @@ final class SparseTable {
 			lookup[i] = lookup[i >> 1] + 1;
 		}
 	}
-	final long query(final int l, final int r) {
+	public final long query(final int l, final int r) {
 		final int b = lookup[r - l];
 		return op.applyAsLong(st[b][l], st[b][r - (1 << b)]);
 	}
-	final int minLeft(final int x, final LongPredicate fn) {
+	public final int minLeft(final int x, final LongPredicate fn) {
 		if(x == 0) {
 			return 0;
 		}
@@ -67,7 +67,7 @@ final class SparseTable {
 		}
 		return ok;
 	}
-	final int maxRight(final int x, final LongPredicate fn) {
+	public final int maxRight(final int x, final LongPredicate fn) {
 		if(x == lookup.length - 1) {
 			return lookup.length - 1;
 		}

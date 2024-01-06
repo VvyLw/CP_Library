@@ -2,10 +2,10 @@ package library.math;
 
 import library.core.Utility;
 
-final class EulerPhiTable {
+public final class EulerPhiTable {
 	private final int n;
 	private final int[] euler;
-	EulerPhiTable(final int n) {
+	public EulerPhiTable(final int n) {
 		this.n = n;
 		euler = Utility.iota(n + 1);
 		for(int i = 2; i <= n; ++i) {
@@ -16,8 +16,8 @@ final class EulerPhiTable {
 			}
 		}
 	}
-	final int[] get(){ return euler; }
-	final long[] acc() {
+	public final int[] get(){ return euler; }
+	public final long[] acc() {
 		long[] ret = new long[n + 1];
 		ret[1] = 2;
 		for(int i = 2; i <= n; ++i) {

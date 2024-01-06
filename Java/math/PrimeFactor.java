@@ -4,9 +4,9 @@ import java.util.TreeMap;
 
 import library.core.Utility;
 
-final class PrimeFactor {
+public final class PrimeFactor {
 	private final int[] spf;
-	PrimeFactor(final int n) {
+	public PrimeFactor(final int n) {
 		spf = Utility.iota(n + 1);
 		for(int i = 2; i * i <= n; ++i) {
 			if(spf[i] == i) {
@@ -18,7 +18,7 @@ final class PrimeFactor {
 			}
 		}
 	}
-	final TreeMap<Integer, Integer> get(int n) {
+	public final TreeMap<Integer, Integer> get(int n) {
 		final TreeMap<Integer, Integer> m = new TreeMap<>();
 		while(n != 1) {
 			m.merge(spf[n], 1, (a, b) -> (a + b));

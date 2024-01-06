@@ -11,9 +11,9 @@ import java.util.stream.IntStream;
 import library.core.Utility;
 import library.structure.pair.Pair;
 
-final class SuffixArray extends ArrayList<Integer> {
+public final class SuffixArray extends ArrayList<Integer> {
 	private final String vs;
-	SuffixArray(final String vs, final boolean compress) {
+	public SuffixArray(final String vs, final boolean compress) {
 		this.vs = vs;
 		int[] newVS = new int[vs.length() + 1];
 		if(compress) {
@@ -113,7 +113,7 @@ final class SuffixArray extends ArrayList<Integer> {
 		inducedSort.accept(newLMS);
 		return ret;
 	}
-	final boolean ltSubstr(final String t, int si, int ti) {
+	public final boolean ltSubstr(final String t, int si, int ti) {
 		final int sn = vs.length(), tn = t.length();
 		while(si < sn && ti < tn) {
 			if(vs.charAt(si) < t.charAt(ti)) {
@@ -127,7 +127,7 @@ final class SuffixArray extends ArrayList<Integer> {
 		}
 		return si >= sn && ti < tn;
 	}
-	final int lowerBound(final String t) {
+	public final int lowerBound(final String t) {
 		int ok = this.size(), ng = 0;
 		while(ok - ng > 1) {
 			final int mid = (ok + ng) / 2;
@@ -139,7 +139,7 @@ final class SuffixArray extends ArrayList<Integer> {
 		}
 		return ok;
 	}
-	final Pair<Integer, Integer> equalRange(final String t) {
+	public final Pair<Integer, Integer> equalRange(final String t) {
 		final int low = lowerBound(t);
 		int ng = low - 1, ok = this.size();
 		final StringBuilder sb = new StringBuilder(t);
@@ -157,7 +157,7 @@ final class SuffixArray extends ArrayList<Integer> {
 		this.add(end, this.get(end) - 1);
 		return Pair.of(low, ok);
 	}
-	final int[] lcpArray() {
+	public final int[] lcpArray() {
 		final int n = this.size() - 1;
 		int[] lcp = new int[n + 1], rank = new int[n + 1];
 		for(int i = 0; i <= n; ++i) {

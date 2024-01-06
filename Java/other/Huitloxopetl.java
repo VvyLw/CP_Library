@@ -6,8 +6,8 @@ import java.util.Map;
 import library.core.Utility;
 import library.structure.FenwickTree;
 
-final class Huitloxopetl {
-	final long invNum(final int[] a) {
+public final class Huitloxopetl {
+	public final long invNum(final int[] a) {
 		final int[] b = Utility.sorted(a);
 		final Map<Integer, Integer> id = new HashMap<>();
 		for(int i = 0; i < a.length; ++i) {
@@ -21,7 +21,7 @@ final class Huitloxopetl {
 		}
 		return res;
 	}
-	final long invNum(final long[] a) {
+	public final long invNum(final long[] a) {
 		final long[] b = Utility.sorted(a);
 		final Map<Long, Integer> id = new HashMap<>();
 		for(int i = 0; i < a.length; ++i) {

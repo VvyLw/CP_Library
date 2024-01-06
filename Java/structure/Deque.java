@@ -4,16 +4,16 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-final class Deque<T> implements Iterable<T> {
+public final class Deque<T> implements Iterable<T> {
 	private int n, head, tail;
 	private Object[] buf;
-	Deque(){ this(1 << 17); }
-	Deque(final int n) {
+	public Deque(){ this(1 << 17); }
+	public Deque(final int n) {
 		this.n = n;
 		head = tail = 0;
 		buf = new Object[n];
 	}
-	Deque(final T[] a) {
+	public Deque(final T[] a) {
 		this(a.length);
 		Arrays.stream(a).forEach(i -> add(i));
 	}
@@ -37,39 +37,39 @@ final class Deque<T> implements Iterable<T> {
 		buf = Arrays.copyOf(buf, n << 1);
 		n = buf.length;
 	}
-	final boolean isEmpty(){ return size() == 0; }
-	final int size() {
+	public final boolean isEmpty(){ return size() == 0; }
+	public final int size() {
 		final int size = tail - head;
 		return size < 0 ? size + n : size;
 	}
-	final void addFirst(final T x) {
+	public final void addFirst(final T x) {
 		head = prev(head);
 		if(head == tail) {
 			extend();
 		}
 		buf[head] = x;
 	}
-	final void addLast(final T x) {
+	public final void addLast(final T x) {
 		if(next(tail) == head) {
 			extend();
 		}
 		buf[tail] = x;
 		tail = next(tail);
 	}
-	final void removeFirst() {
+	public final void removeFirst() {
 		if(head == tail) {
 			throw new NoSuchElementException("Buffer is empty");
 		}
 		head = next(head);
 	}
-	final void removeLast() {
+	public final void removeLast() {
 		if(head == tail) {
 			throw new NoSuchElementException("Buffer is empty");
 		}
 		tail = prev(tail);
 	}
 	@SuppressWarnings("unchecked")
-	final T pollFirst() {
+	public final T pollFirst() {
 		if(head == tail) {
 			throw new NoSuchElementException("Buffer is empty");
 		}
@@ -78,32 +78,32 @@ final class Deque<T> implements Iterable<T> {
 		return ans;
 	}
 	@SuppressWarnings("unchecked")
-	final T pollLast() {
+	public final T pollLast() {
 		if(head == tail) {
 			throw new NoSuchElementException("Buffer is empty");
 		}
 		tail = prev(tail);
 		return (T) buf[tail];
 	}
-	final T peekFirst(){ return get(0); }
-	final T peekLast(){ return get(n - 1); }
+	public final T peekFirst(){ return get(0); }
+	public final T peekLast(){ return get(n - 1); }
 	@SuppressWarnings("unchecked")
-	final T get(final int i){ return (T) buf[index(i)]; }
-	final void set(final int i, final T x){ buf[index(i)] = x; }
-	final void add(final T x){ addLast(x); }
-	final T poll(){ return pollFirst(); }
-	final T peek(){ return peekFirst(); }
+	public final T get(final int i){ return (T) buf[index(i)]; }
+	public final void set(final int i, final T x){ buf[index(i)] = x; }
+	public final void add(final T x){ addLast(x); }
+	public final T poll(){ return pollFirst(); }
+	public final T peek(){ return peekFirst(); }
 	@SuppressWarnings("unchecked")
-	final void swap(final int a, final int b) {
+	public final void swap(final int a, final int b) {
 		final int i = index(a);
 		final int j = index(b);
 		final T num = (T) buf[i];
 		buf[i] = buf[j];
 		buf[j] = num;
 	}
-	final void clear(){ head = tail = 0; }
+	public final void clear(){ head = tail = 0; }
 	@SuppressWarnings("unchecked")
-	final T[] toArray(){ return (T[]) Arrays.copyOf(buf, size()); }
+	public final T[] toArray(){ return (T[]) Arrays.copyOf(buf, size()); }
 	@Override
 	public final String toString(){ return Arrays.toString(toArray()); }
 	@Override

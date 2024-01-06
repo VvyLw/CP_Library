@@ -7,8 +7,8 @@ import java.util.Collections;
 import java.util.function.BiFunction;
 
 //N > 1e18
-final class BigPrime {
-	protected final int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
+public final class BigPrime {
+	private final int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
 	private final BigInteger gcd(BigInteger a, BigInteger b) {
 		a = a.abs();
 		b = b.abs();
@@ -31,7 +31,7 @@ final class BigPrime {
 		} while(b.compareTo(BigInteger.ZERO) > 0);
 		return a.shiftLeft(shift);
 	}
-	final boolean isPrime(final BigInteger n) {
+	public final boolean isPrime(final BigInteger n) {
 		if(n.compareTo(BigInteger.ONE) <= 0) {
 			return false;
 		}
@@ -87,7 +87,7 @@ final class BigPrime {
 			}
 		}
 	}
-	final ArrayList<BigInteger> primeFactor(final BigInteger n) {
+	public final ArrayList<BigInteger> primeFactor(final BigInteger n) {
 		if(n.equals(BigInteger.ONE)) {
 			return new ArrayList<>();
 		}

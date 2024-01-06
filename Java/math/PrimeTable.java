@@ -3,11 +3,11 @@ package library.math;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-final class PrimeTable {
+public final class PrimeTable {
 	private final int size;
 	private final int[] p;
 	private final boolean[] sieve;
-	PrimeTable(final int n) {
+	public PrimeTable(final int n) {
 		sieve = new boolean[n + 1];
 		Arrays.fill(sieve, true);
 		sieve[0] = sieve[1] = false;
@@ -28,6 +28,6 @@ final class PrimeTable {
 			}
 		}
 	}
-	final boolean[] table(){ return sieve; }
-	final int[] get(){ return p; }
+	public final boolean[] table(){ return sieve; }
+	public final int[] get(){ return p; }
 }

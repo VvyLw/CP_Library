@@ -26,7 +26,7 @@ public class Pair<F extends Comparable<? super F>, S extends Comparable<? super 
 	@Override
 	public final String toString(){ return "(" + first + ", " + second + ")"; }
 	public static final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }
-	final Pair<S, F> swap(){ return Pair.of(second, first); }
+	public final Pair<S, F> swap(){ return Pair.of(second, first); }
 	@Override
 	public final int compareTo(final Pair<F, S> p) {
 		if(first.compareTo(p.first) == 0) {

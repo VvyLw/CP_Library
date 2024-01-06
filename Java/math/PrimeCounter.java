@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 import library.core.Utility;
 
-final class PrimeCounter {
+public final class PrimeCounter {
 	private final int sq;
 	private final boolean[] p;
 	private final int[] psum;
 	private final ArrayList<Integer> ps;
-	PrimeCounter(final long lim) {
+	public PrimeCounter(final long lim) {
 		sq = (int) kthRooti(lim, 2);
 		psum = new int[sq + 1];
 		p = new PrimeTable(sq).table();
@@ -62,7 +62,7 @@ final class PrimeCounter {
 		}
 		return phi(m, a - 1) - phi(m / ps.get((int) (a - 1)), a - 1);
 	}
-	final long pi(final long n) {
+	public final long pi(final long n) {
 		if(n <= sq) {
 			return psum[(int) n];
 		}

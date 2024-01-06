@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.function.LongBinaryOperator;
 
 //N <= 1e18;
-final class LongPrime {
+public final class LongPrime {
 	private final int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
 	private final long gcd(long a, long b) {
 		a = Math.abs(a);
@@ -31,7 +31,7 @@ final class LongPrime {
 		} while(b > 0);
 		return a << shift;
 	}
-	final boolean isPrime(final long n) {
+	public final boolean isPrime(final long n) {
 		if(n <= 1) {
 			return false;
 		}
@@ -62,7 +62,7 @@ final class LongPrime {
 		}
 		return true;
 	}
-	final private long find(final long n) {
+	private final long find(final long n) {
 		if(isPrime(n)) {
 			return n;
 		}
@@ -87,7 +87,7 @@ final class LongPrime {
 			}
 		}
 	}
-	final ArrayList<Long> primeFactor(final long n) {
+	public final ArrayList<Long> primeFactor(final long n) {
 		if(n == 1) return new ArrayList<>();
 		final long x = find(n);
 		if(x == n) return new ArrayList<>(Arrays.asList(x));
