@@ -259,28 +259,39 @@ data:
     unused\")\n\tprivate static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\
     \t@SuppressWarnings(\"unused\")\n\tprivate static final int mod998 = 998244353;\n\
     \t@SuppressWarnings(\"unused\")\n\tprivate static final int mod107 = (int)1e9\
-    \ + 7;\n\tstatic final void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected\
-    \ static final String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\
-    \tprotected static final String no(final boolean ok){ return yes(!ok); }\n\tprotected\
-    \ static final long sqr(final long x){ return x * x; }\n\tprotected static final\
-    \ int mod(final int n, final int m){ return (n + m) % m; }\n\tprotected static\
-    \ final int mod(final long n, final int m){ return (int) (n + m) % m; }\n\tprotected\
-    \ static final long mod(final long n, final long m){ return (n + m) % m; }\n\t\
-    protected static final long ceil(final long a, final long b){ return (a - 1) /\
-    \ b + 1; }\n\tprotected static final double round(final double a, final long b,\
-    \ final int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn Math.rint((a * d)\
-    \ / b) / d;\n\t}\n\tprotected static final long pow(long a, int b) {\n\t\tlong\
-    \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
-    \t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final long pow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b\
-    \ > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\
-    \t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\tprotected static final long lcm(final long a, final long b){ return\
-    \ a * b / gcd(a, b); }\n\tprotected static final long lcm(final int... a){ return\
-    \ Arrays.stream(a).mapToLong(i -> i).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
-    \ static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x,\
-    \ y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final long\
-    \ b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
+    \ + 7;\n\tstatic final void solve() {\n\t\tfinal int n = sc.ni();\n\t\tfinal String[][]\
+    \ a = new String[n][n];\n\t\tint u = 0, v = n - 1;\n\t\tPair<Integer, Integer>\
+    \ p = Pair.of(u + 1, u), q = Pair.of(u, v), r = Pair.of(v, v), s = Pair.of(v,\
+    \ u);\n\t\tint x = 0, y = 0, z = 0, i = 1;\n\t\twhile(i < sqr(n)) {\n\t\t\ta[x][y]\
+    \ = String.valueOf(i);\n\t\t\ti++;\n\t\t\tif(z == 0) {\n\t\t\t\ty++;\n\t\t\t}\
+    \ else if(z == 1) {\n\t\t\t\tx++;\n\t\t\t} else if(z == 2) {\n\t\t\t\ty--;\n\t\
+    \t\t} else {\n\t\t\t\tx--;\n\t\t\t}\n\t\t\tfinal var tmp = Pair.of(x, y);\n\t\t\
+    \tif(tmp.equals(q)) {\n\t\t\t\tz = 1;\n\t\t\t} else if(tmp.equals(r)) {\n\t\t\t\
+    \tz = 2;\n\t\t\t} else if(tmp.equals(s)) {\n\t\t\t\tz = 3;\n\t\t\t} else if(tmp.equals(p))\
+    \ {\n\t\t\t\tz = 0;\n\t\t\t\tu++;\n\t\t\t\tv--;\n\t\t\t\tp = Pair.of(u + 1, u);\n\
+    \t\t\t\tq = Pair.of(u, v);\n\t\t\t\tr = Pair.of(v, v);\n\t\t\t\ts = Pair.of(v,\
+    \ u);\n\t\t\t}\n\t\t}\n\t\ta[x][y] = \"T\";\n\t\to.outl(a);\n\t}\n}\nclass Utility\
+    \ {\n\tprotected static final String yes(final boolean ok){ return ok ? \"Yes\"\
+    \ : \"No\"; }\n\tprotected static final String no(final boolean ok){ return yes(!ok);\
+    \ }\n\tprotected static final long sqr(final long x){ return x * x; }\n\tprotected\
+    \ static final int mod(final int n, final int m){ return (n + m) % m; }\n\tprotected\
+    \ static final int mod(final long n, final int m){ return (int) (n + m) % m; }\n\
+    \tprotected static final long mod(final long n, final long m){ return (n + m)\
+    \ % m; }\n\tprotected static final long ceil(final long a, final long b){ return\
+    \ (a - 1) / b + 1; }\n\tprotected static final double round(final double a, final\
+    \ long b, final int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn Math.rint((a\
+    \ * d) / b) / d;\n\t}\n\tprotected static final long pow(long a, int b) {\n\t\t\
+    long res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
+    \t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
+    \ static final long pow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\
+    \twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res,\
+    \ m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\
+    \treturn res;\n\t}\n\tprotected static final long lcm(final long a, final long\
+    \ b){ return a * b / gcd(a, b); }\n\tprotected static final long lcm(final int...\
+    \ a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1, (x, y) -> lcm(x, y));\
+    \ }\n\tprotected static final long lcm(final long... a){ return Arrays.stream(a).reduce(1,\
+    \ (x, y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final\
+    \ long b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
     \ int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\
     \tprotected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0,\
     \ (x, y) -> gcd(x, y)); }\n\tprotected static final int min(final int... a){ return\
@@ -401,36 +412,31 @@ data:
     \ x) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\tprotected static\
     \ final int find(final double[] a, final double x) {\n\t\tfor(int i = 0; i < a.length;\
     \ ++i) {\n\t\t\tif(a[i] == x) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ -1;\n\t}\n\tprotected static final int find(final String s, final char c) {\n\
-    \t\tfor(int i = 0; i < s.length(); ++i) {\n\t\t\tif(s.charAt(i) == c) {\n\t\t\t\
-    \treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\tprotected static final int\
-    \ find(final char[] s, final char c) {\n\t\tfor(int i = 0; i < s.length; ++i)\
-    \ {\n\t\t\tif(s[i] == c) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\
-    \t}\n\tprotected static final int find(final Object[] a, final Object x) {\n\t\
-    \tfor(int i = 0; i < a.length; ++i) {\n\t\t\tif(a[i].equals(x)) {\n\t\t\t\treturn\
-    \ i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\tprotected static final int findRev(final\
-    \ int[] a, final int x) {\n\t\tfor(int i = a.length; --i >= 0;) {\n\t\t\tif(a[i]\
-    \ == x) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\tprotected\
-    \ static final int findRev(final long[] a, final long x) {\n\t\tfor(int i = a.length;\
+    \ -1;\n\t}\n\tprotected static final int find(final char[] s, final char c) {\n\
+    \t\tfor(int i = 0; i < s.length; ++i) {\n\t\t\tif(s[i] == c) {\n\t\t\t\treturn\
+    \ i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\tprotected static final int find(final\
+    \ Object[] a, final Object x) {\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\
+    \tif(a[i].equals(x)) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t\
+    }\n\tprotected static final int findRev(final int[] a, final int x) {\n\t\tfor(int\
+    \ i = a.length; --i >= 0;) {\n\t\t\tif(a[i] == x) {\n\t\t\t\treturn i;\n\t\t\t\
+    }\n\t\t}\n\t\treturn -1;\n\t}\n\tprotected static final int findRev(final long[]\
+    \ a, final long x) {\n\t\tfor(int i = a.length; --i >= 0;) {\n\t\t\tif(a[i] ==\
+    \ x) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\tprotected static\
+    \ final int findRev(final double[] a, final double x) {\n\t\tfor(int i = a.length;\
     \ --i >= 0;) {\n\t\t\tif(a[i] == x) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\t\
-    return -1;\n\t}\n\tprotected static final int findRev(final double[] a, final\
-    \ double x) {\n\t\tfor(int i = a.length; --i >= 0;) {\n\t\t\tif(a[i] == x) {\n\
-    \t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\tprotected static final\
-    \ int findRev(final String s, final char c) {\n\t\tfor(int i = s.length(); --i\
-    \ >= 0;) {\n\t\t\tif(s.charAt(i) == c) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\
-    \treturn -1;\n\t}\n\tprotected static final int findRev(final char[] s, final\
-    \ char c) {\n\t\tfor(int i = s.length; --i >= 0;) {\n\t\t\tif(s[i] == c) {\n\t\
-    \t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\tprotected static final\
-    \ int findRev(final Object[] a, final Object x) {\n\t\tfor(int i = a.length; --i\
-    \ >= 0;) {\n\t\t\tif(a[i].equals(x)) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\t\
-    return -1;\n\t}\n\tprotected static final boolean binarySearch(final int[] a,\
-    \ final int x){ return Arrays.binarySearch(a, x) >= 0; }\n\tprotected static final\
-    \ boolean binarySearch(final long[] a, final long x){ return Arrays.binarySearch(a,\
-    \ x) >= 0; }\n\tprotected static final <T extends Comparable<? super T>> boolean\
-    \ binarySearch(final T[] a, final T x){ return Arrays.binarySearch(a, x) >= 0;\
-    \ }\n\tprotected static final <T extends Comparable<? super T>> boolean binarySearch(final\
-    \ List<T> a, final T x){ return Collections.binarySearch(a, x, null) >= 0; }\n\
-    \tprotected static final int lowerBound(final int[] a, final int x){ return bins(a.length,\
+    return -1;\n\t}\n\tprotected static final int findRev(final char[] s, final char\
+    \ c) {\n\t\tfor(int i = s.length; --i >= 0;) {\n\t\t\tif(s[i] == c) {\n\t\t\t\t\
+    return i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\tprotected static final int findRev(final\
+    \ Object[] a, final Object x) {\n\t\tfor(int i = a.length; --i >= 0;) {\n\t\t\t\
+    if(a[i].equals(x)) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\
+    \tprotected static final boolean binarySearch(final int[] a, final int x){ return\
+    \ Arrays.binarySearch(a, x) >= 0; }\n\tprotected static final boolean binarySearch(final\
+    \ long[] a, final long x){ return Arrays.binarySearch(a, x) >= 0; }\n\tprotected\
+    \ static final <T extends Comparable<? super T>> boolean binarySearch(final T[]\
+    \ a, final T x){ return Arrays.binarySearch(a, x) >= 0; }\n\tprotected static\
+    \ final <T extends Comparable<? super T>> boolean binarySearch(final List<T> a,\
+    \ final T x){ return Collections.binarySearch(a, x, null) >= 0; }\n\tprotected\
+    \ static final int lowerBound(final int[] a, final int x){ return bins(a.length,\
     \ -1, (IntPredicate) y -> a[y] >= x); }\n\tprotected static final int lowerBound(final\
     \ long[] a, final long x){ return bins(a.length, -1, (IntPredicate) y -> a[y]\
     \ >= x); }\n\tprotected static final <T extends Comparable<? super T>> int lowerBound(final\
@@ -539,28 +545,28 @@ data:
     \ final void swap(final Object[] a, final Object[] b) {\n\t\tassert a.length ==\
     \ b.length;\n\t\tfinal int n = a.length;\n\t\tfinal Object[] c = a.clone();\n\t\
     \tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t}\n\
-    \tprotected static final <F extends Comparable<? super F>, S extends Comparable<?\
-    \ super S>> List<F> first(final List<Pair<F, S>> p){ return p.stream().map(i ->\
-    \ i.first).collect(Collectors.toList()); }\n\tprotected static final <F extends\
-    \ Comparable<? super F>, S extends Comparable<? super S>> List<S> second(final\
-    \ List<Pair<F, S>> p){ return p.stream().map(i -> i.second).collect(Collectors.toList());\
-    \ }\n\tprotected static final int[] iota(final int n){ return IntStream.range(0,\
-    \ n).toArray(); }\n\tprotected static final int[] iota(final int n, final int\
-    \ init){ return IntStream.range(0 + init, n + init).toArray(); }\n\tprotected\
-    \ static final int bins(int ok, int ng, final IntPredicate fn) {\n\t\twhile(Math.abs(ok\
-    \ - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\
-    \t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\
-    \treturn ok;\n\t}\n\tprotected static final long bins(long ok, long ng, final\
-    \ LongPredicate fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal long mid\
-    \ = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\
-    \telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected\
-    \ static final double bins(double ok, double ng, final DoublePredicate fn) {\n\
-    \t\twhile(Math.abs(ok - ng) > VvyLw.eps) {\n\t\t\tfinal double mid = (ok + ng)\
-    \ / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\
-    \t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final\
-    \ int[] press(final int[] a) {\n\t\tfinal int[] res = new int[a.length];\n\t\t\
-    final int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tfor(int i\
-    \ = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\t\t}\n\t\t\
+    \t@SuppressWarnings(\"unchecked\")\n\tprotected static final <F extends Comparable<?\
+    \ super F>, S extends Comparable<? super S>> F[] first(final Pair<F, S>[] p){\
+    \ return (F[]) Arrays.stream(p).map(i -> i.first).toArray(); }\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tprotected static final <F extends Comparable<? super F>, S extends\
+    \ Comparable<? super S>> S[] second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i\
+    \ -> i.second).toArray(); }\n\tprotected static final int[] iota(final int n){\
+    \ return IntStream.range(0, n).toArray(); }\n\tprotected static final int[] iota(final\
+    \ int n, final int init){ return IntStream.range(0 + init, n + init).toArray();\
+    \ }\n\tprotected static final int bins(int ok, int ng, final IntPredicate fn)\
+    \ {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\
+    \t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng\
+    \ = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final long bins(long\
+    \ ok, long ng, final LongPredicate fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\
+    \t\t\tfinal long mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok =\
+    \ mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\
+    \t}\n\tprotected static final double bins(double ok, double ng, final DoublePredicate\
+    \ fn) {\n\t\twhile(Math.abs(ok - ng) > VvyLw.eps) {\n\t\t\tfinal double mid =\
+    \ (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\t\
+    else {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static\
+    \ final int[] press(final int[] a) {\n\t\tfinal int[] res = new int[a.length];\n\
+    \t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tfor(int\
+    \ i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\t\t}\n\t\t\
     return res;\n\t}\n\tprotected static final int[] press(final long[] a) {\n\t\t\
     final int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
     \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
@@ -709,7 +715,9 @@ data:
     \ args.length).forEach(i -> out(args[i])); }\n\tfinal void outl(final boolean[][]\
     \ args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }\n\tfinal\
     \ void outl(final char[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i]));\
-    \ }\n\tfinal void outl(final Object[] args){ Arrays.stream(args).forEach(this::println);\
+    \ }\n\tfinal void outl(final char[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> out(args[i])); }\n\tfinal void outl(final Object[] args){ Arrays.stream(args).forEach(this::println);\
+    \ }\n\tfinal void outl(final Object[][] args){ Arrays.stream(args).forEach(this::out);\
     \ }\n\tfinal <E> void outl(final Collection<E> args){ args.stream().forEach(this::println);\
     \ }\n\tfinal void fin(final Object head, final Object... tail) {\n\t\tout(head,\
     \ tail);\n\t\tflush();\n\t\tSystem.exit(0);\n\t}\n\tfinal void fin(final int[]\
@@ -872,7 +880,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 01:38:06+09:00'
+  timestamp: '2024-01-07 05:30:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java

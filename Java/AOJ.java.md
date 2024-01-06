@@ -325,40 +325,45 @@ data:
     \ final void swap(final Object[] a, final Object[] b) {\n\t\tassert a.length ==\
     \ b.length;\n\t\tfinal int n = a.length;\n\t\tfinal Object[] c = a.clone();\n\t\
     \tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t}\n\
-    \tprotected static final <F extends Comparable<? super F>, S extends Comparable<?\
-    \ super S>> List<F> first(final List<Pair<F, S>> p){ return p.stream().map(i ->\
-    \ i.first).collect(Collectors.toList()); }\n\tprotected static final <F extends\
-    \ Comparable<? super F>, S extends Comparable<? super S>> List<S> second(final\
-    \ List<Pair<F, S>> p){ return p.stream().map(i -> i.second).collect(Collectors.toList());\
-    \ }\n\tprotected interface TriFunction<T, U, V, W> {\n\t\tpublic W apply(final\
-    \ T a, final U b, final V c);\n\t}\n\tprotected interface QuadFunction<A, B, C,\
-    \ D, E> {\n\t\tpublic E apply(final A a, final B b, final C c, final D d);\n\t\
-    }\n\tprotected interface RecursiveFunction<T, U> {\n\t\tpublic U apply(final RecursiveFunction<T,\
-    \ U> rec, final T n);\n\t}\n\tprotected interface RecursiveBiFunction<T, U, V>\
-    \ {\n\t\tpublic V apply(final RecursiveBiFunction<T, U, V> rec, final T n, final\
-    \ U m);\n\t}\n\tprotected interface RecursiveTriFunction<T, U, V, W> {\n\t\tpublic\
-    \ W apply(final RecursiveTriFunction<T, U, V, W> rec, final T p, final U q, final\
-    \ V r);\n\t}\n\tprotected interface RecursiveUnaryOperator<T> {\n\t\tpublic T\
-    \ apply(final RecursiveUnaryOperator<T> rec, final T n);\n\t}\n\tprotected interface\
-    \ RecursiveBinaryOperator<T> {\n\t\tpublic T apply(final RecursiveBinaryOperator<T>\
-    \ rec, final T a, final T b);\n\t}\n}\n\nfinal class MyScanner implements Closeable,\
-    \ AutoCloseable {\n\tprivate int pos, lim;\n\tprivate final byte[] buf;\n\tprivate\
-    \ final InputStream is;\n\tMyScanner(final InputStream is) {\n\t\tthis.is = is;\n\
-    \t\tpos = lim = 0;\n\t\tbuf = new byte[1 << 17];\n\t}\n\tprivate final boolean\
-    \ isPunct(final byte bt){ return !Utility.scope(33, bt, 126); }\n\tprivate final\
-    \ boolean isNum(final byte bt){ return Utility.scope('0', bt, '9'); }\n\tprivate\
-    \ final byte read() {\n\t\tif(pos == lim && lim != -1) {\n\t\t\ttry {\n\t\t\t\t\
-    lim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(IOException e) {\n\t\t\t\t\
-    e.printStackTrace();\n\t\t\t}\n\t\t}\n\t\treturn buf[pos++];\n\t}\n\tprivate final\
-    \ byte next() {\n\t\tbyte bt;\n\t\twhile(isPunct(bt = read())){}\n\t\treturn bt;\n\
-    \t}\n\tfinal int ni(){ return Math.toIntExact(nl()); }\n\tfinal long nl() {\n\t\
-    \tbyte c = next();\n\t\tfinal boolean neg = c == '-';\n\t\tif(neg) {\n\t\t\tc\
-    \ = read();\n\t\t}\n\t\tassert(isNum(c));\n\t\tlong res = c - '0';\n\t\twhile(isNum(c\
-    \ = read())) {\n\t\t\tres = 10 * res + c - '0';\n\t\t}\n\t\treturn neg ? -res\
-    \ : res;\n\t}\n\tfinal double nd(){ return Double.parseDouble(ns()); }\n\tfinal\
-    \ char nc(){ return (char) next(); }\n\tfinal String ns() {\n\t\tfinal StringBuilder\
-    \ sb = new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c)) {\n\t\
-    \t\tsb.append((char) c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\
+    \t@SuppressWarnings(\"unchecked\")\n\tprotected static final <F extends Comparable<?\
+    \ super F>, S extends Comparable<? super S>> F[] first(final Pair<F, S>[] p){\
+    \ return (F[]) Arrays.stream(p).map(i -> i.first).toArray(); }\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tprotected static final <F extends Comparable<? super F>, S extends\
+    \ Comparable<? super S>> S[] second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i\
+    \ -> i.second).toArray(); }\n\tprotected interface TriFunction<T, U, V, W> {\n\
+    \t\tpublic W apply(final T a, final U b, final V c);\n\t}\n\tprotected interface\
+    \ QuadFunction<A, B, C, D, E> {\n\t\tpublic E apply(final A a, final B b, final\
+    \ C c, final D d);\n\t}\n\tprotected interface RecursiveFunction<T, U> {\n\t\t\
+    public U apply(final RecursiveFunction<T, U> rec, final T n);\n\t}\n\tprotected\
+    \ interface RecursiveBiFunction<T, U, V> {\n\t\tpublic V apply(final RecursiveBiFunction<T,\
+    \ U, V> rec, final T n, final U m);\n\t}\n\tprotected interface RecursiveTriFunction<T,\
+    \ U, V, W> {\n\t\tpublic W apply(final RecursiveTriFunction<T, U, V, W> rec, final\
+    \ T p, final U q, final V r);\n\t}\n\tprotected interface RecursiveUnaryOperator<T>\
+    \ {\n\t\tpublic T apply(final RecursiveUnaryOperator<T> rec, final T n);\n\t}\n\
+    \tprotected interface RecursiveBinaryOperator<T> {\n\t\tpublic T apply(final RecursiveBinaryOperator<T>\
+    \ rec, final T a, final T b);\n\t}\n\tprotected interface RecursiveConsumer<T>\
+    \ {\n\t\tpublic void accept(final RecursiveConsumer<T> rec, final T x);\n\t}\n\
+    \tprotected interface RecursiveBiConsumer<T, U> {\n\t\tpublic void accept(final\
+    \ RecursiveBiConsumer<T, U> rec, final T x, final U y);\n\t}\n\tprotected interface\
+    \ RecursiveTriConsumer<T, U, V> {\n\t\tpublic void accept(final RecursiveTriConsumer<T,\
+    \ U, V> rec, final T x, final U y, final V z);\n\t}\n}\n\nfinal class MyScanner\
+    \ implements Closeable, AutoCloseable {\n\tprivate int pos, lim;\n\tprivate final\
+    \ byte[] buf;\n\tprivate final InputStream is;\n\tMyScanner(final InputStream\
+    \ is) {\n\t\tthis.is = is;\n\t\tpos = lim = 0;\n\t\tbuf = new byte[1 << 17];\n\
+    \t}\n\tprivate final boolean isPunct(final byte bt){ return !Utility.scope(33,\
+    \ bt, 126); }\n\tprivate final boolean isNum(final byte bt){ return Utility.scope('0',\
+    \ bt, '9'); }\n\tprivate final byte read() {\n\t\tif(pos == lim && lim != -1)\
+    \ {\n\t\t\ttry {\n\t\t\t\tlim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(IOException\
+    \ e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t\treturn buf[pos++];\n\
+    \t}\n\tprivate final byte next() {\n\t\tbyte bt;\n\t\twhile(isPunct(bt = read())){}\n\
+    \t\treturn bt;\n\t}\n\tfinal int ni(){ return Math.toIntExact(nl()); }\n\tfinal\
+    \ long nl() {\n\t\tbyte c = next();\n\t\tfinal boolean neg = c == '-';\n\t\tif(neg)\
+    \ {\n\t\t\tc = read();\n\t\t}\n\t\tassert(isNum(c));\n\t\tlong res = c - '0';\n\
+    \t\twhile(isNum(c = read())) {\n\t\t\tres = 10 * res + c - '0';\n\t\t}\n\t\treturn\
+    \ neg ? -res : res;\n\t}\n\tfinal double nd(){ return Double.parseDouble(ns());\
+    \ }\n\tfinal char nc(){ return (char) next(); }\n\tfinal String ns() {\n\t\tfinal\
+    \ StringBuilder sb = new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c))\
+    \ {\n\t\t\tsb.append((char) c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\
     \t}\n\tfinal BigInteger nb(){ return new BigInteger(ns()); }\n\tfinal int[] ni(final\
     \ int n) {\n\t\tfinal int[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i\
     \ -> a[i] = ni());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\t\
@@ -550,7 +555,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 01:38:06+09:00'
+  timestamp: '2024-01-07 05:30:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java
