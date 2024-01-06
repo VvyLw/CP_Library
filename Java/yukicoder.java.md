@@ -259,39 +259,28 @@ data:
     unused\")\n\tprivate static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\
     \t@SuppressWarnings(\"unused\")\n\tprivate static final int mod998 = 998244353;\n\
     \t@SuppressWarnings(\"unused\")\n\tprivate static final int mod107 = (int)1e9\
-    \ + 7;\n\tstatic final void solve() {\n\t\tfinal int n = sc.ni();\n\t\tfinal String[][]\
-    \ a = new String[n][n];\n\t\tint u = 0, v = n - 1;\n\t\tPair<Integer, Integer>\
-    \ p = Pair.of(u + 1, u), q = Pair.of(u, v), r = Pair.of(v, v), s = Pair.of(v,\
-    \ u);\n\t\tint x = 0, y = 0, z = 0, i = 1;\n\t\twhile(i < sqr(n)) {\n\t\t\ta[x][y]\
-    \ = String.valueOf(i);\n\t\t\ti++;\n\t\t\tif(z == 0) {\n\t\t\t\ty++;\n\t\t\t}\
-    \ else if(z == 1) {\n\t\t\t\tx++;\n\t\t\t} else if(z == 2) {\n\t\t\t\ty--;\n\t\
-    \t\t} else {\n\t\t\t\tx--;\n\t\t\t}\n\t\t\tfinal var tmp = Pair.of(x, y);\n\t\t\
-    \tif(tmp.equals(q)) {\n\t\t\t\tz = 1;\n\t\t\t} else if(tmp.equals(r)) {\n\t\t\t\
-    \tz = 2;\n\t\t\t} else if(tmp.equals(s)) {\n\t\t\t\tz = 3;\n\t\t\t} else if(tmp.equals(p))\
-    \ {\n\t\t\t\tz = 0;\n\t\t\t\tu++;\n\t\t\t\tv--;\n\t\t\t\tp = Pair.of(u + 1, u);\n\
-    \t\t\t\tq = Pair.of(u, v);\n\t\t\t\tr = Pair.of(v, v);\n\t\t\t\ts = Pair.of(v,\
-    \ u);\n\t\t\t}\n\t\t}\n\t\ta[x][y] = \"T\";\n\t\to.outl(a);\n\t}\n}\nclass Utility\
-    \ {\n\tprotected static final String yes(final boolean ok){ return ok ? \"Yes\"\
-    \ : \"No\"; }\n\tprotected static final String no(final boolean ok){ return yes(!ok);\
-    \ }\n\tprotected static final long sqr(final long x){ return x * x; }\n\tprotected\
-    \ static final int mod(final int n, final int m){ return (n + m) % m; }\n\tprotected\
-    \ static final int mod(final long n, final int m){ return (int) (n + m) % m; }\n\
-    \tprotected static final long mod(final long n, final long m){ return (n + m)\
-    \ % m; }\n\tprotected static final long ceil(final long a, final long b){ return\
-    \ (a - 1) / b + 1; }\n\tprotected static final double round(final double a, final\
-    \ long b, final int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn Math.rint((a\
-    \ * d) / b) / d;\n\t}\n\tprotected static final long pow(long a, int b) {\n\t\t\
-    long res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
-    \t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
-    \ static final long pow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\
-    \twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res,\
-    \ m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\
-    \treturn res;\n\t}\n\tprotected static final long lcm(final long a, final long\
-    \ b){ return a * b / gcd(a, b); }\n\tprotected static final long lcm(final int...\
-    \ a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1, (x, y) -> lcm(x, y));\
-    \ }\n\tprotected static final long lcm(final long... a){ return Arrays.stream(a).reduce(1,\
-    \ (x, y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final\
-    \ long b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
+    \ + 7;\n\tstatic final void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected\
+    \ static final String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\
+    \tprotected static final String no(final boolean ok){ return yes(!ok); }\n\tprotected\
+    \ static final long sqr(final long x){ return x * x; }\n\tprotected static final\
+    \ int mod(final int n, final int m){ return (n + m) % m; }\n\tprotected static\
+    \ final int mod(final long n, final int m){ return (int) (n + m) % m; }\n\tprotected\
+    \ static final long mod(final long n, final long m){ return (n + m) % m; }\n\t\
+    protected static final long ceil(final long a, final long b){ return (a - 1) /\
+    \ b + 1; }\n\tprotected static final double round(final double a, final long b,\
+    \ final int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn Math.rint((a * d)\
+    \ / b) / d;\n\t}\n\tprotected static final long pow(long a, int b) {\n\t\tlong\
+    \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
+    \t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ final long pow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b\
+    \ > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\
+    \t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\tprotected static final long lcm(final long a, final long b){ return\
+    \ a * b / gcd(a, b); }\n\tprotected static final long lcm(final int... a){ return\
+    \ Arrays.stream(a).mapToLong(i -> i).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
+    \ static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x,\
+    \ y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final long\
+    \ b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
     \ int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\
     \tprotected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0,\
     \ (x, y) -> gcd(x, y)); }\n\tprotected static final int min(final int... a){ return\
@@ -470,19 +459,16 @@ data:
     \t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n -\
     \ 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected static final int[] rotate(final\
     \ int[] a, final int id) {\n\t\tfinal List<Integer> t = Arrays.stream(a).boxed().collect(Collectors.toList());\n\
-    \t\tCollections.rotate(t, id);\n\t\tfinal int[] res = new int[a.length];\n\t\t\
-    for(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\tprotected static final long[] rotate(final long[] a, final int\
-    \ id) {\n\t\tfinal List<Long> t = Arrays.stream(a).boxed().collect(Collectors.toList());\n\
-    \t\tCollections.rotate(t, id);\n\t\tfinal long[] res = new long[a.length];\n\t\
-    \tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\tprotected static final double[] rotate(final double[] a, final\
-    \ int id) {\n\t\tfinal List<Double> t = Arrays.stream(a).boxed().collect(Collectors.toList());\n\
-    \t\tCollections.rotate(t, id);\n\t\tfinal double[] res = new double[a.length];\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\t\
-    return res;\n\t}\n\tprotected static final String rotate(final String s, final\
-    \ int id) {\n\t\tfinal List<Character> t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());\n\
-    \t\tCollections.rotate(t, id);\n\t\treturn t.stream().map(i -> i.toString()).collect(Collectors.joining());\n\
+    \t\tCollections.rotate(t, id);\n\t\treturn t.stream().mapToInt(i -> i).toArray();\n\
+    \t}\n\tprotected static final long[] rotate(final long[] a, final int id) {\n\t\
+    \tfinal List<Long> t = Arrays.stream(a).boxed().collect(Collectors.toList());\n\
+    \t\tCollections.rotate(t, id);\n\t\treturn t.stream().mapToLong(i -> i).toArray();\n\
+    \t}\n\tprotected static final double[] rotate(final double[] a, final int id)\
+    \ {\n\t\tfinal List<Double> t = Arrays.stream(a).boxed().collect(Collectors.toList());\n\
+    \t\tCollections.rotate(t, id);\n\t\treturn t.stream().mapToDouble(i -> i).toArray();\n\
+    \t}\n\tprotected static final String rotate(final String s, final int id) {\n\t\
+    \tfinal List<Character> t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());\n\
+    \t\tCollections.rotate(t, id);\n\t\treturn t.stream().map(String::valueOf).collect(Collectors.joining());\n\
     \t}\n\tprotected static final int[][] rotateR(final int[][] a) {\n\t\tfinal int\
     \ h = a.length, w = a[0].length;\n\t\tfinal int[][] b = new int[w][h];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> {\n\t\t\tArrays.setAll(b[i], j -> a[j][i]);\n\t\t});\n\t\tIntStream.range(0,\
@@ -880,7 +866,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 05:45:06+09:00'
+  timestamp: '2024-01-07 06:00:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java

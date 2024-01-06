@@ -611,22 +611,19 @@ data:
     \n\t * @param a\n\t * @param id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
     >std::rotate</a>\n\t */\n\tpublic static final int[] rotate(final int[] a, final\
     \ int id) {\n\t\tfinal List<Integer> t = Arrays.stream(a).boxed().collect(Collectors.toList());\n\
-    \t\tCollections.rotate(t, id);\n\t\tfinal int[] res = new int[a.length];\n\t\t\
-    for(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\t/**\n\t * @param a\n\t * @param id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
+    \t\tCollections.rotate(t, id);\n\t\treturn t.stream().mapToInt(i -> i).toArray();\n\
+    \t}\n\t/**\n\t * @param a\n\t * @param id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
     >std::rotate</a>\n\t */\n\tpublic static final long[] rotate(final long[] a, final\
     \ int id) {\n\t\tfinal List<Long> t = Arrays.stream(a).boxed().collect(Collectors.toList());\n\
-    \t\tCollections.rotate(t, id);\n\t\tfinal long[] res = new long[a.length];\n\t\
-    \tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\t/**\n\t * @param a\n\t * @param id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
+    \t\tCollections.rotate(t, id);\n\t\treturn t.stream().mapToLong(i -> i).toArray();\n\
+    \t}\n\t/**\n\t * @param a\n\t * @param id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
     >std::rotate</a>\n\t */\n\tpublic static final double[] rotate(final double[]\
     \ a, final int id) {\n\t\tfinal List<Double> t = Arrays.stream(a).boxed().collect(Collectors.toList());\n\
-    \t\tCollections.rotate(t, id);\n\t\tfinal double[] res = new double[a.length];\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = t.get(i);\n\t\t}\n\t\t\
-    return res;\n\t}\n\t/**\n\t * @param s\n\t * @param id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
+    \t\tCollections.rotate(t, id);\n\t\treturn t.stream().mapToDouble(i -> i).toArray();\n\
+    \t}\n\t/**\n\t * @param s\n\t * @param id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
     >std::rotate</a>\n\t */\n\tpublic static final String rotate(final String s, final\
     \ int id) {\n\t\tfinal List<Character> t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());\n\
-    \t\tCollections.rotate(t, id);\n\t\treturn t.stream().map(i -> i.toString()).collect(Collectors.joining());\n\
+    \t\tCollections.rotate(t, id);\n\t\treturn t.stream().map(String::valueOf).collect(Collectors.joining());\n\
     \t}\n\t/**\n\t * @param a\n\t * @return \u4E8C\u6B21\u5143\u914D\u5217\u3092\u53F3\
     \u56DE\u8EE2\u3055\u305B\u305F\u3082\u306E\n\t */\n\tprotected static final int[][]\
     \ rotateR(final int[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\t\
@@ -953,7 +950,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 05:45:06+09:00'
+  timestamp: '2024-01-07 06:00:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/core/Utility.java
