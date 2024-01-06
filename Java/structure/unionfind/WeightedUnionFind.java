@@ -1,4 +1,4 @@
-package library.unionfind;
+package library.structure.unionfind;
 
 import java.util.Arrays;
 

@@ -1,9 +1,9 @@
-package library.unionfind;
+package library.structure.unionfind;
 
 import java.util.Arrays;
 import java.util.Stack;
 
-import library.pair.Pair;
+import library.structure.pair.Pair;
 
 final class UndoUnionFind {
 	private final int[] par;

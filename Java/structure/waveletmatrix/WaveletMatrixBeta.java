@@ -1,7 +1,7 @@
 package library.structure.waveletmatrix;
 
 import library.core.Utility;
-import library.pair.IntPair;
+import library.structure.pair.IntPair;
 
 final class WaveletMatrixBeta {
 	private final int log;

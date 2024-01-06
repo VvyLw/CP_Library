@@ -1,4 +1,4 @@
-package library.pair;
+package library.structure.pair;
 
 import library.core.Utility;
 

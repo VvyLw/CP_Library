@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import library.core.Utility;
-import library.pair.Pair;
+import library.structure.pair.Pair;
 
 final class SuffixArray extends ArrayList<Integer> {
 	private final String vs;

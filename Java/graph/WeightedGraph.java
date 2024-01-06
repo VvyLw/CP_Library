@@ -11,8 +11,8 @@ import java.util.stream.IntStream;
 
 import library.core.VvyLw;
 import library.other.SkewHeap;
-import library.pair.IntPair;
-import library.unionfind.UnionFind;
+import library.structure.pair.IntPair;
+import library.structure.unionfind.UnionFind;
 
 final class WeightedGraph extends Graph {
 	WeightedGraph(final int n, final int indexed, final boolean undirected){ super(n, indexed, undirected); }

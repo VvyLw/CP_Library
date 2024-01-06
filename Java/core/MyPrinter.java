@@ -10,7 +10,7 @@ import java.util.Formatter;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import library.pair.Pair;
+import library.structure.pair.Pair;
 
 final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	private OutputStream os;

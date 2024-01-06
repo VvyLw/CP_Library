@@ -10,7 +10,7 @@ import java.util.function.LongPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import library.pair.Pair;
+import library.structure.pair.Pair;
 
 public class Utility {
 	protected static final String yes(final boolean ok){ return ok ? "Yes" : "No"; }

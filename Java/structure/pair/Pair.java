@@ -1,4 +1,4 @@
-package library.pair;
+package library.structure.pair;
 
 public class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>> {
 	public F first;
