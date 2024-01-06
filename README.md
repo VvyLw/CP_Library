@@ -8,8 +8,6 @@
 [![VvyLw](https://img.shields.io/endpoint?url=https%3A%2F%2Fatcoder-badges.now.sh%2Fapi%2Fcodeforces%2Fjson%2FVvyLw)](https://codeforces.com/profile/VvyLw)
 [![VvyLw](https://img.shields.io/badge/yukicoder-grey)](https://yukicoder.me/users/18182)
 
-
-Javaのライブラリはpackage extension;をコメントアウトするか、削除するかして使用してください。  
-その他バグ等あればIssueを投げるなりDMするなりお願いします。  
+バグ等あればIssueを投げるなりDMするなりお願いします。  
   
 [Luzhiled's Library](https://ei1333.github.io/library/)を基本的に参考にしています。
