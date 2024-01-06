@@ -227,26 +227,27 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/graph/SkewHeap.java\n"
-  code: "package library.graph;\n\nfinal class SkewHeap {\n\tstatic final class Node\
-    \ {\n\t\tlong key, lazy;\n\t\tNode l, r;\n\t\tfinal int idx;\n\t\tNode(final long\
-    \ key, final int idx) {\n\t\t\tthis.key = key;\n\t\t\tthis.idx = idx;\n\t\t\t\
-    lazy = 0;\n\t\t\tl = null;\n\t\t\tr = null;\n\t\t}\n\t}\n\tprivate final boolean\
-    \ isMin;\n\tSkewHeap(final boolean isMin){ this.isMin = isMin; }\n\tprivate final\
-    \ Node alloc(final long key, final int idx){ return new Node(key, idx); }\n\t\
-    private final Node propagate(final Node t) {\n\t\tif(t != null && t.lazy != 0)\
-    \ {\n\t\t\tif(t.l != null) {\n\t\t\t\tt.l.lazy += t.lazy;\n\t\t\t}\n\t\t\tif(t.r\
-    \ != null) {\n\t\t\t\tt.r.lazy += t.lazy;\n\t\t\t}\n\t\t\tt.key += t.lazy;\n\t\
-    \t\tt.lazy = 0;\n\t\t}\n\t\treturn t;\n\t}\n\tfinal Node meld(Node x, Node y)\
-    \ {\n\t\tpropagate(x);\n\t\tpropagate(y);\n\t\tif(x == null || y == null) {\n\t\
-    \t\treturn x != null ? x : y;\n\t\t}\n\t\tif((x.key < y.key) ^ isMin) {\n\t\t\t\
-    final Node tmp = x;\n\t\t\tx = y;\n\t\t\ty = tmp;\n\t\t}\n\t\tx.r = meld(y, x.r);\n\
-    \t\tfinal Node tmp = x.l;\n\t\tx.l = x.r;\n\t\tx.r = tmp;\n\t\treturn x;\n\t}\n\
-    \tfinal Node push(final Node t, final long key, int idx){ return meld(t, alloc(key,\
-    \ idx)); }\n\tfinal Node pop(final Node t) {\n\t\tif(t == null) {\n\t\t\tthrow\
-    \ new NullPointerException();\n\t\t}\n\t\treturn meld(t.l, t.r);\n\t}\n\tfinal\
-    \ Node add(Node t, final long lazy) {\n\t\tif(t != null) {\n\t\t\tt.lazy += lazy;\n\
-    \t\t\tpropagate(t);\n\t\t}\n\t\treturn t;\n\t}\n}"
+    RuntimeError: bundler is not specified: Java/library/other/SkewHeap.java\n"
+  code: "package library.other;\n\npublic final class SkewHeap {\n\tpublic static\
+    \ final class Node {\n\t\tpublic long key, lazy;\n\t\tNode l, r;\n\t\tpublic final\
+    \ int idx;\n\t\tNode(final long key, final int idx) {\n\t\t\tthis.key = key;\n\
+    \t\t\tthis.idx = idx;\n\t\t\tlazy = 0;\n\t\t\tl = null;\n\t\t\tr = null;\n\t\t\
+    }\n\t}\n\tprivate final boolean isMin;\n\tpublic SkewHeap(final boolean isMin){\
+    \ this.isMin = isMin; }\n\tprivate final Node alloc(final long key, final int\
+    \ idx){ return new Node(key, idx); }\n\tprivate final Node propagate(final Node\
+    \ t) {\n\t\tif(t != null && t.lazy != 0) {\n\t\t\tif(t.l != null) {\n\t\t\t\t\
+    t.l.lazy += t.lazy;\n\t\t\t}\n\t\t\tif(t.r != null) {\n\t\t\t\tt.r.lazy += t.lazy;\n\
+    \t\t\t}\n\t\t\tt.key += t.lazy;\n\t\t\tt.lazy = 0;\n\t\t}\n\t\treturn t;\n\t}\n\
+    \tpublic final Node meld(Node x, Node y) {\n\t\tpropagate(x);\n\t\tpropagate(y);\n\
+    \t\tif(x == null || y == null) {\n\t\t\treturn x != null ? x : y;\n\t\t}\n\t\t\
+    if((x.key < y.key) ^ isMin) {\n\t\t\tfinal Node tmp = x;\n\t\t\tx = y;\n\t\t\t\
+    y = tmp;\n\t\t}\n\t\tx.r = meld(y, x.r);\n\t\tfinal Node tmp = x.l;\n\t\tx.l =\
+    \ x.r;\n\t\tx.r = tmp;\n\t\treturn x;\n\t}\n\tpublic final Node push(final Node\
+    \ t, final long key, int idx){ return meld(t, alloc(key, idx)); }\n\tpublic final\
+    \ Node pop(final Node t) {\n\t\tif(t == null) {\n\t\t\tthrow new NullPointerException();\n\
+    \t\t}\n\t\treturn meld(t.l, t.r);\n\t}\n\tpublic final Node add(Node t, final\
+    \ long lazy) {\n\t\tif(t != null) {\n\t\t\tt.lazy += lazy;\n\t\t\tpropagate(t);\n\
+    \t\t}\n\t\treturn t;\n\t}\n}"
   dependsOn:
   - Java/All.java
   - Java/library/unionfind/UnionFind.java
@@ -285,7 +286,7 @@ data:
   - Java/library/pair/IntPair.java
   - Java/library/pair/FloatPair.java
   isVerificationFile: false
-  path: Java/library/graph/SkewHeap.java
+  path: Java/library/other/SkewHeap.java
   requiredBy:
   - Java/All.java
   - Java/library/unionfind/UnionFind.java
@@ -323,13 +324,13 @@ data:
   - Java/library/pair/Pair.java
   - Java/library/pair/IntPair.java
   - Java/library/pair/FloatPair.java
-  timestamp: '2024-01-06 16:40:31+09:00'
+  timestamp: '2024-01-06 16:44:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/graph/SkewHeap.java
+documentation_of: Java/library/other/SkewHeap.java
 layout: document
 redirect_from:
-- /library/Java/library/graph/SkewHeap.java
-- /library/Java/library/graph/SkewHeap.java.html
-title: Java/library/graph/SkewHeap.java
+- /library/Java/library/other/SkewHeap.java
+- /library/Java/library/other/SkewHeap.java.html
+title: Java/library/other/SkewHeap.java
 ---

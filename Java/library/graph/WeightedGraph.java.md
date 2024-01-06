@@ -32,9 +32,6 @@ data:
     path: Java/library/graph/MST.java
     title: Java/library/graph/MST.java
   - icon: ':warning:'
-    path: Java/library/graph/SkewHeap.java
-    title: Java/library/graph/SkewHeap.java
-  - icon: ':warning:'
     path: Java/library/math/BigPrime.java
     title: Java/library/math/BigPrime.java
   - icon: ':warning:'
@@ -61,6 +58,9 @@ data:
   - icon: ':warning:'
     path: Java/library/other/PrefixSum.java
     title: Java/library/other/PrefixSum.java
+  - icon: ':warning:'
+    path: Java/library/other/SkewHeap.java
+    title: Java/library/other/SkewHeap.java
   - icon: ':warning:'
     path: Java/library/other/SuffixArray.java
     title: Java/library/other/SuffixArray.java
@@ -141,9 +141,6 @@ data:
     path: Java/library/graph/MST.java
     title: Java/library/graph/MST.java
   - icon: ':warning:'
-    path: Java/library/graph/SkewHeap.java
-    title: Java/library/graph/SkewHeap.java
-  - icon: ':warning:'
     path: Java/library/math/BigPrime.java
     title: Java/library/math/BigPrime.java
   - icon: ':warning:'
@@ -170,6 +167,9 @@ data:
   - icon: ':warning:'
     path: Java/library/other/PrefixSum.java
     title: Java/library/other/PrefixSum.java
+  - icon: ':warning:'
+    path: Java/library/other/SkewHeap.java
+    title: Java/library/other/SkewHeap.java
   - icon: ':warning:'
     path: Java/library/other/SuffixArray.java
     title: Java/library/other/SuffixArray.java
@@ -231,17 +231,17 @@ data:
   code: "package library.graph;\n\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
     import java.util.Comparator;\nimport java.util.PriorityQueue;\nimport java.util.Queue;\n\
     import java.util.function.IntUnaryOperator;\nimport java.util.stream.Collectors;\n\
-    import java.util.stream.IntStream;\n\nimport library.core.VvyLw;\nimport library.pair.IntPair;\n\
-    import library.unionfind.UnionFind;\n\nfinal class WeightedGraph extends Graph\
-    \ {\n\tWeightedGraph(final int n, final int indexed, final boolean undirected){\
-    \ super(n, indexed, undirected); }\n\tfinal void addEdge(int a, int b, final long\
-    \ cost) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(b,\
-    \ cost));\n\t\tedge.add(new Edge(a, b, cost));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new\
-    \ Edge(a, cost));\n\t\t\tedge.add(new Edge(b, a, cost));\n\t\t}\n\t}\n\tfinal\
-    \ void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(),\
-    \ VvyLw.sc.ni(), VvyLw.sc.ni())); }\n\tfinal long[] dijkstra(final int v) {\n\t\
-    \tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\
-    \tfinal Queue<IntPair> dj = new PriorityQueue<>();\n\t\tcost[v] = 0;\n\t\tdj.add(new\
+    import java.util.stream.IntStream;\n\nimport library.core.VvyLw;\nimport library.other.SkewHeap;\n\
+    import library.pair.IntPair;\nimport library.unionfind.UnionFind;\n\nfinal class\
+    \ WeightedGraph extends Graph {\n\tWeightedGraph(final int n, final int indexed,\
+    \ final boolean undirected){ super(n, indexed, undirected); }\n\tfinal void addEdge(int\
+    \ a, int b, final long cost) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new\
+    \ Edge(b, cost));\n\t\tedge.add(new Edge(a, b, cost));\n\t\tif(undirected) {\n\
+    \t\t\tthis.get(b).add(new Edge(a, cost));\n\t\t\tedge.add(new Edge(b, a, cost));\n\
+    \t\t}\n\t}\n\tfinal void input(final int m){ IntStream.range(0, m).forEach(i ->\
+    \ addEdge(VvyLw.sc.ni(), VvyLw.sc.ni(), VvyLw.sc.ni())); }\n\tfinal long[] dijkstra(final\
+    \ int v) {\n\t\tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
+    \t\tfinal Queue<IntPair> dj = new PriorityQueue<>();\n\t\tcost[v] = 0;\n\t\tdj.add(new\
     \ IntPair(cost[v], v));\n\t\twhile(!dj.isEmpty()) {\n\t\t\tfinal IntPair tmp =\
     \ dj.poll();\n\t\t\tif(cost[tmp.second.intValue()] < tmp.first.longValue()) {\n\
     \t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final Edge el: this.get(tmp.second.intValue()))\
@@ -302,6 +302,7 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
+  - Java/library/other/SkewHeap.java
   - Java/library/math/PrimeCounter.java
   - Java/library/math/BigPrime.java
   - Java/library/math/PrimeFactor.java
@@ -326,7 +327,6 @@ data:
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
-  - Java/library/graph/SkewHeap.java
   - Java/library/pair/Pair.java
   - Java/library/pair/IntPair.java
   - Java/library/pair/FloatPair.java
@@ -341,6 +341,7 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
+  - Java/library/other/SkewHeap.java
   - Java/library/math/PrimeCounter.java
   - Java/library/math/BigPrime.java
   - Java/library/math/PrimeFactor.java
@@ -365,11 +366,10 @@ data:
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
-  - Java/library/graph/SkewHeap.java
   - Java/library/pair/Pair.java
   - Java/library/pair/IntPair.java
   - Java/library/pair/FloatPair.java
-  timestamp: '2024-01-06 16:40:31+09:00'
+  timestamp: '2024-01-06 16:44:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/WeightedGraph.java

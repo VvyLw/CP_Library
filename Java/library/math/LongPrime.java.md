@@ -32,9 +32,6 @@ data:
     path: Java/library/graph/MST.java
     title: Java/library/graph/MST.java
   - icon: ':warning:'
-    path: Java/library/graph/SkewHeap.java
-    title: Java/library/graph/SkewHeap.java
-  - icon: ':warning:'
     path: Java/library/graph/WeightedGraph.java
     title: Java/library/graph/WeightedGraph.java
   - icon: ':warning:'
@@ -61,6 +58,9 @@ data:
   - icon: ':warning:'
     path: Java/library/other/PrefixSum.java
     title: Java/library/other/PrefixSum.java
+  - icon: ':warning:'
+    path: Java/library/other/SkewHeap.java
+    title: Java/library/other/SkewHeap.java
   - icon: ':warning:'
     path: Java/library/other/SuffixArray.java
     title: Java/library/other/SuffixArray.java
@@ -141,9 +141,6 @@ data:
     path: Java/library/graph/MST.java
     title: Java/library/graph/MST.java
   - icon: ':warning:'
-    path: Java/library/graph/SkewHeap.java
-    title: Java/library/graph/SkewHeap.java
-  - icon: ':warning:'
     path: Java/library/graph/WeightedGraph.java
     title: Java/library/graph/WeightedGraph.java
   - icon: ':warning:'
@@ -170,6 +167,9 @@ data:
   - icon: ':warning:'
     path: Java/library/other/PrefixSum.java
     title: Java/library/other/PrefixSum.java
+  - icon: ':warning:'
+    path: Java/library/other/SkewHeap.java
+    title: Java/library/other/SkewHeap.java
   - icon: ':warning:'
     path: Java/library/other/SuffixArray.java
     title: Java/library/other/SuffixArray.java
@@ -268,6 +268,7 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
+  - Java/library/other/SkewHeap.java
   - Java/library/math/PrimeCounter.java
   - Java/library/math/BigPrime.java
   - Java/library/math/PrimeFactor.java
@@ -292,7 +293,6 @@ data:
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
-  - Java/library/graph/SkewHeap.java
   - Java/library/pair/Pair.java
   - Java/library/pair/IntPair.java
   - Java/library/pair/FloatPair.java
@@ -307,6 +307,7 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
+  - Java/library/other/SkewHeap.java
   - Java/library/math/PrimeCounter.java
   - Java/library/math/BigPrime.java
   - Java/library/math/PrimeFactor.java
@@ -331,11 +332,10 @@ data:
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
-  - Java/library/graph/SkewHeap.java
   - Java/library/pair/Pair.java
   - Java/library/pair/IntPair.java
   - Java/library/pair/FloatPair.java
-  timestamp: '2024-01-06 16:40:31+09:00'
+  timestamp: '2024-01-06 16:44:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/LongPrime.java

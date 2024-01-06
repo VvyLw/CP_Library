@@ -94,9 +94,6 @@ data:
       path: Java/library/graph/MST.java
       title: Java/library/graph/MST.java
     - icon: ':warning:'
-      path: Java/library/graph/SkewHeap.java
-      title: Java/library/graph/SkewHeap.java
-    - icon: ':warning:'
       path: Java/library/graph/WeightedGraph.java
       title: Java/library/graph/WeightedGraph.java
   - name: Java/library/math
@@ -130,6 +127,9 @@ data:
     - icon: ':warning:'
       path: Java/library/other/PrefixSum.java
       title: Java/library/other/PrefixSum.java
+    - icon: ':warning:'
+      path: Java/library/other/SkewHeap.java
+      title: Java/library/other/SkewHeap.java
     - icon: ':warning:'
       path: Java/library/other/SuffixArray.java
       title: Java/library/other/SuffixArray.java
