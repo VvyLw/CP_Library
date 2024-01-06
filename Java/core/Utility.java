@@ -942,7 +942,7 @@ public class Utility {
 	}
 	/**
 	 * @param s
-	 * @return 文字列配列をchar型二次元配列と見てを右回転させたもの
+	 * @return 文字列配列をchar型二次元配列と見て右回転させたもの
 	 */
 	protected static final String[] rotateR(final String[] s) {
 		final int h = s.length, w = s[0].length();
@@ -993,7 +993,7 @@ public class Utility {
 	}
 	/**
 	 * @param s
-	 * @return 文字列配列をchar型二次元配列と見てを左回転させたもの
+	 * @return 文字列配列をchar型二次元配列と見て左回転させたもの
 	 */
 	protected static final String[] rotateL(final String[] s) {
 		final int h = s.length, w = s[0].length();
