@@ -367,10 +367,10 @@ public class Utility {
 	 */
 	protected static final double clamp(final double l, final double x, final double r){ return x < l ? l : x > r ? r : x; }
 	/**
-	 * How to Use:<br>
-	 * do {<br>
-	 * <br>
-	 * } while((a = nextPerm(a)) != null);<br>
+	 * How to Use:
+	 * do {
+	 * 
+	 * } while((a = nextPerm(a)) != null);
 	 * @param a
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/next_permutation.html">std::next_permutation</a>
 	 */
@@ -432,10 +432,10 @@ public class Utility {
 		return null;
 	}
 	/**
-	 * How to Use:<br>
-	 * do {<br>
-	 * <br>
-	 * } while((a = prevPerm(a)) != null);<br>
+	 * How to Use:
+	 * do {
+	 * 
+	 * } while((a = prevPerm(a)) != null);
 	 * @param a
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/prev_permutation.html">std::prev_permutation</a>
 	 */
@@ -553,7 +553,7 @@ public class Utility {
 		return a.get(m).compareTo(dest) > 0 ? find(dest, a, s, m - 1) : find(dest, a, m, e);
 	}
 	/**
-	 * 配列aの中にxがあれば何番目にあるか<br>
+	 * 配列aの中にxがあれば何番目にあるか
 	 * 存在しない場合, -1を返す
 	 * @param a
 	 * @param x
@@ -568,7 +568,7 @@ public class Utility {
 		return -1;
 	}
 	/**
-	 * 配列aの中にxがあれば何番目にあるか<br>
+	 * 配列aの中にxがあれば何番目にあるか
 	 * 存在しない場合, -1を返す
 	 * @param a
 	 * @param x
@@ -583,7 +583,7 @@ public class Utility {
 		return -1;
 	}
 	/**
-	 * 配列aの中にxがあれば何番目にあるか<br>
+	 * 配列aの中にxがあれば何番目にあるか
 	 * 存在しない場合, -1を返す
 	 * @param a
 	 * @param x
@@ -598,7 +598,7 @@ public class Utility {
 		return -1;
 	}
 	/**
-	 * 配列aの中にxがあれば何番目にあるか<br>
+	 * 配列aの中にxがあれば何番目にあるか
 	 * 存在しない場合, -1を返す
 	 * @param s
 	 * @param c
@@ -613,7 +613,7 @@ public class Utility {
 		return -1;
 	}
 	/**
-	 * 配列aの中にxがあれば何番目にあるか<br>
+	 * 配列aの中にxがあれば何番目にあるか
 	 * 存在しない場合, -1を返す
 	 * @param a
 	 * @param x
@@ -627,7 +627,7 @@ public class Utility {
 		return -1;
 	}
 	/**
-	 * 配列aの中にxがあれば後ろから何番目にあるか<br>
+	 * 配列aの中にxがあれば後ろから何番目にあるか
 	 * 存在しない場合, -1を返す
 	 * @param a
 	 * @param x
@@ -641,7 +641,7 @@ public class Utility {
 		return -1;
 	}
 	/**
-	 * 配列aの中にxがあれば後ろから何番目にあるか<br>
+	 * 配列aの中にxがあれば後ろから何番目にあるか
 	 * 存在しない場合, -1を返す
 	 * @param a
 	 * @param x
@@ -655,7 +655,7 @@ public class Utility {
 		return -1;
 	}
 	/**
-	 * 配列aの中にxがあれば後ろから何番目にあるか<br>
+	 * 配列aの中にxがあれば後ろから何番目にあるか
 	 * 存在しない場合, -1を返す
 	 * @param a
 	 * @param x
@@ -669,7 +669,7 @@ public class Utility {
 		return -1;
 	}
 	/**
-	 * 配列aの中にxがあれば後ろから何番目にあるか<br>
+	 * 配列aの中にxがあれば後ろから何番目にあるか
 	 * 存在しない場合, -1を返す
 	 * @param a
 	 * @param x
@@ -683,7 +683,7 @@ public class Utility {
 		return -1;
 	}
 	/**
-	 * 配列aの中にxがあれば後ろから何番目にあるか<br>
+	 * 配列aの中にxがあれば後ろから何番目にあるか
 	 * 存在しない場合, -1を返す
 	 * @param a
 	 * @param x

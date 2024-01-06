@@ -42,12 +42,12 @@ public final class MyScanner implements Closeable, AutoCloseable {
 		return bt;
 	}
 	/**
-	 * nextInt<br>
+	 * nextInt
 	 * int型を入力する
 	 */
 	public final int ni(){ return Math.toIntExact(nl()); }
 	/**
-	 * nextLong<br>
+	 * nextLong
 	 * long型を入力する
 	 */
 	public final long nl() {
@@ -64,17 +64,17 @@ public final class MyScanner implements Closeable, AutoCloseable {
 		return neg ? -res : res;
 	}
 	/**
-	 * nextDouble<br>
+	 * nextDouble
 	 * double型を入力する
 	 */
 	public final double nd(){ return Double.parseDouble(ns()); }
 	/**
-	 * nextChar(Scannerにはない)<br>
+	 * nextChar(Scannerにはない)
 	 * char型を入力する
 	 */
 	public final char nc(){ return (char) next(); }
 	/**
-	 * nextString(Scannerで云うnext)<br>
+	 * nextString(Scannerで云うnext)
 	 * 文字列を入力する
 	 */
 	public final String ns() {
@@ -87,7 +87,7 @@ public final class MyScanner implements Closeable, AutoCloseable {
 		return sb.toString();
 	}
 	/**
-	 * nextBigInteger<br>
+	 * nextBigInteger
 	 * 多倍長整数を入力する
 	 */
 	public final BigInteger nb(){ return new BigInteger(ns()); }

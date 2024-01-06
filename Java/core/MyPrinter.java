@@ -81,7 +81,7 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		newLine();
 	}
 	/**
-	 * {@link Pair}を出力する<br>
+	 * {@link Pair}を出力する
 	 * デバッグ時は{@link Pair#toString}を推奨
 	 * @param <F> firstの型
 	 * @param <S> secondの型
