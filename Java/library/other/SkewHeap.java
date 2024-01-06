@@ -1,10 +1,10 @@
-package library.graph;
+package library.other;
 
-final class SkewHeap {
-	static final class Node {
-		long key, lazy;
+public final class SkewHeap {
+	public static final class Node {
+		public long key, lazy;
 		Node l, r;
-		final int idx;
+		public final int idx;
 		Node(final long key, final int idx) {
 			this.key = key;
 			this.idx = idx;
@@ -14,7 +14,7 @@ final class SkewHeap {
 		}
 	}
 	private final boolean isMin;
-	SkewHeap(final boolean isMin){ this.isMin = isMin; }
+	public SkewHeap(final boolean isMin){ this.isMin = isMin; }
 	private final Node alloc(final long key, final int idx){ return new Node(key, idx); }
 	private final Node propagate(final Node t) {
 		if(t != null && t.lazy != 0) {
@@ -29,7 +29,7 @@ final class SkewHeap {
 		}
 		return t;
 	}
-	final Node meld(Node x, Node y) {
+	public final Node meld(Node x, Node y) {
 		propagate(x);
 		propagate(y);
 		if(x == null || y == null) {
@@ -46,14 +46,14 @@ final class SkewHeap {
 		x.r = tmp;
 		return x;
 	}
-	final Node push(final Node t, final long key, int idx){ return meld(t, alloc(key, idx)); }
-	final Node pop(final Node t) {
+	public final Node push(final Node t, final long key, int idx){ return meld(t, alloc(key, idx)); }
+	public final Node pop(final Node t) {
 		if(t == null) {
 			throw new NullPointerException();
 		}
 		return meld(t.l, t.r);
 	}
-	final Node add(Node t, final long lazy) {
+	public final Node add(Node t, final long lazy) {
 		if(t != null) {
 			t.lazy += lazy;
 			propagate(t);
