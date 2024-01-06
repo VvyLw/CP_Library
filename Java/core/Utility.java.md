@@ -642,9 +642,9 @@ data:
     \ -> {\n\t\t\tArrays.setAll(b[i], j -> a[j][i]);\n\t\t});\n\t\tIntStream.range(0,\
     \ w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\t/**\n\t * @param\
     \ s\n\t * @return \u6587\u5B57\u5217\u914D\u5217\u3092char\u578B\u4E8C\u6B21\u5143\
-    \u914D\u5217\u3068\u898B\u3066\u3092\u53F3\u56DE\u8EE2\u3055\u305B\u305F\u3082\
-    \u306E\n\t */\n\tprotected static final String[] rotateR(final String[] s) {\n\
-    \t\tfinal int h = s.length, w = s[0].length();\n\t\tfinal char[][] t = new char[w][h];\n\
+    \u914D\u5217\u3068\u898B\u3066\u53F3\u56DE\u8EE2\u3055\u305B\u305F\u3082\u306E\
+    \n\t */\n\tprotected static final String[] rotateR(final String[] s) {\n\t\tfinal\
+    \ int h = s.length, w = s[0].length();\n\t\tfinal char[][] t = new char[w][h];\n\
     \t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j\
     \ -> t[j][i] = s[i].charAt(j));\n\t\t});\n\t\tIntStream.range(0, w).forEach(i\
     \ -> t[i] = new StringBuilder(new String(t[i])).reverse().toString().toCharArray());\n\
@@ -665,8 +665,8 @@ data:
     \ w = a[0].length;\n\t\tfinal double[][] b = new double[w][h];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> {\n\t\t\tArrays.setAll(b[i], j -> a[j][w - i - 1]);\n\t\t});\n\
     \t\treturn b;\n\t}\n\t/**\n\t * @param s\n\t * @return \u6587\u5B57\u5217\u914D\
-    \u5217\u3092char\u578B\u4E8C\u6B21\u5143\u914D\u5217\u3068\u898B\u3066\u3092\u5DE6\
-    \u56DE\u8EE2\u3055\u305B\u305F\u3082\u306E\n\t */\n\tprotected static final String[]\
+    \u5217\u3092char\u578B\u4E8C\u6B21\u5143\u914D\u5217\u3068\u898B\u3066\u5DE6\u56DE\
+    \u8EE2\u3055\u305B\u305F\u3082\u306E\n\t */\n\tprotected static final String[]\
     \ rotateL(final String[] s) {\n\t\tfinal int h = s.length, w = s[0].length();\n\
     \t\tfinal char[][] t = new char[w][h];\n\t\tIntStream.range(0, h).forEach(i ->\
     \ {\n\t\t\tIntStream.range(0, w).forEach(j -> t[w - j - 1][i] = s[i].charAt(j));\n\
@@ -950,7 +950,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 06:00:50+09:00'
+  timestamp: '2024-01-07 06:06:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/core/Utility.java
