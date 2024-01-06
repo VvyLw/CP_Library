@@ -1203,13 +1203,15 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	}
 }
 
-class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>> {
+class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>>, Cloneable {
 	public F first;
 	public S second;
 	Pair(final F first, final S second) {
 		this.first = first;
 		this.second = second;
 	}
+	static final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }
+	final Pair<S, F> swap(){ return Pair.of(second, first); }
 	@Override
 	public final boolean equals(final Object o) {
 		if(this == o) {
@@ -1228,8 +1230,16 @@ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> imp
 	public final int hashCode(){ return 31 * first.hashCode() + second.hashCode(); }
 	@Override
 	public final String toString(){ return "(" + first + ", " + second + ")"; }
-	public static final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }
-	final Pair<S, F> swap(){ return Pair.of(second, first); }
+	@SuppressWarnings("unchecked")
+	@Override
+	public final Pair<F, S> clone() {
+		try {
+			return (Pair<F, S>) super.clone();
+		} catch(CloneNotSupportedException e){
+			e.printStackTrace();
+		}
+		return null;
+	}
 	@Override
 	public final int compareTo(final Pair<F, S> p) {
 		if(first.compareTo(p.first) == 0) {

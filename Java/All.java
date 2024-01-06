@@ -1221,13 +1221,15 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	}
 }
 
-class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>> {
+class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>>, Cloneable {
 	public F first;
 	public S second;
 	Pair(final F first, final S second) {
 		this.first = first;
 		this.second = second;
 	}
+	static final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }
+	final Pair<S, F> swap(){ return Pair.of(second, first); }
 	@Override
 	public final boolean equals(final Object o) {
 		if(this == o) {
@@ -1246,8 +1248,16 @@ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> imp
 	public final int hashCode(){ return 31 * first.hashCode() + second.hashCode(); }
 	@Override
 	public final String toString(){ return "(" + first + ", " + second + ")"; }
-	public static final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }
-	final Pair<S, F> swap(){ return Pair.of(second, first); }
+	@SuppressWarnings("unchecked")
+	@Override
+	public final Pair<F, S> clone() {
+		try {
+			return (Pair<F, S>) super.clone();
+		} catch(CloneNotSupportedException e){
+			e.printStackTrace();
+		}
+		return null;
+	}
 	@Override
 	public final int compareTo(final Pair<F, S> p) {
 		if(first.compareTo(p.first) == 0) {
@@ -3057,7 +3067,7 @@ final class Deque<T> implements Iterable<T> {
 	private int n, head, tail;
 	private Object[] buf;
 	Deque(){ this(1 << 17); }
-	Deque(final int n) {
+	private Deque(final int n) {
 		this.n = n;
 		head = tail = 0;
 		buf = new Object[n];
@@ -3082,8 +3092,24 @@ final class Deque<T> implements Iterable<T> {
 		final int id = head + i;
 		return n <= id ? id - n : id;
 	}
+	private final void arraycopy(final int fromIndex, final T[] array, final int from, final int length) {
+		if(fromIndex + length > size()) {
+			throw new IndexOutOfBoundsException("last source index " + (fromIndex + length) + " out of bounds for int[" + size() + "]");
+		}
+		final int h = index(fromIndex);
+		if(h + length < n) {
+			System.arraycopy(buf, h, array, from, length);
+		} else {
+			final int back = n - h;
+			System.arraycopy(buf, h, array, from, back);
+			System.arraycopy(buf, 0, array, from + back, length - back);
+		}
+	}
+	@SuppressWarnings("unchecked")
 	private final void extend() {
-		buf = Arrays.copyOf(buf, n << 1);
+		final Object[] tmp = new Object[n << 1];
+		arraycopy(0, (T[]) tmp, 0, size());
+		buf = tmp;
 		n = buf.length;
 	}
 	final boolean isEmpty(){ return size() == 0; }
@@ -3092,10 +3118,10 @@ final class Deque<T> implements Iterable<T> {
 		return size < 0 ? size + n : size;
 	}
 	final void addFirst(final T x) {
-		head = prev(head);
-		if(head == tail) {
+		if(prev(head) == tail) {
 			extend();
 		}
+		head = prev(head);
 		buf[head] = x;
 	}
 	final void addLast(final T x) {
@@ -3152,7 +3178,11 @@ final class Deque<T> implements Iterable<T> {
 	}
 	final void clear(){ head = tail = 0; }
 	@SuppressWarnings("unchecked")
-	final T[] toArray(){ return (T[]) Arrays.copyOf(buf, size()); }
+	final T[] toArray() {
+		final Object[] array = new Object[size()];
+		arraycopy(0, (T[]) array, 0, size());
+		return (T[]) array;
+	}
 	@Override
 	public final String toString(){ return Arrays.toString(toArray()); }
 	@Override
