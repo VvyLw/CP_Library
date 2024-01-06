@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
+    path: Java/AOJ.java
+    title: Java/AOJ.java
+  - icon: ':warning:'
     path: Java/All.java
     title: Java/All.java
   - icon: ':warning:'
@@ -109,8 +112,14 @@ data:
   - icon: ':warning:'
     path: Java/structure/waveletmatrix/WaveletMatrixBeta.java
     title: Java/structure/waveletmatrix/WaveletMatrixBeta.java
+  - icon: ':warning:'
+    path: Java/yukicoder.java
+    title: Java/yukicoder.java
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: Java/AOJ.java
+    title: Java/AOJ.java
+  - icon: ':warning:'
     path: Java/All.java
     title: Java/All.java
   - icon: ':warning:'
@@ -218,6 +227,9 @@ data:
   - icon: ':warning:'
     path: Java/structure/waveletmatrix/WaveletMatrixBeta.java
     title: Java/structure/waveletmatrix/WaveletMatrixBeta.java
+  - icon: ':warning:'
+    path: Java/yukicoder.java
+    title: Java/yukicoder.java
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: java
@@ -324,7 +336,9 @@ data:
   - Java/structure/waveletmatrix/SuccientIndexableDictionary.java
   - Java/structure/waveletmatrix/WaveletMatrix.java
   - Java/structure/waveletmatrix/WaveletMatrixBeta.java
+  - Java/yukicoder.java
   - Java/All.java
+  - Java/AOJ.java
   - Java/core/MyPrinter.java
   - Java/core/Main.java
   - Java/core/VvyLw.java
@@ -363,7 +377,9 @@ data:
   - Java/structure/waveletmatrix/SuccientIndexableDictionary.java
   - Java/structure/waveletmatrix/WaveletMatrix.java
   - Java/structure/waveletmatrix/WaveletMatrixBeta.java
+  - Java/yukicoder.java
   - Java/All.java
+  - Java/AOJ.java
   - Java/core/MyPrinter.java
   - Java/core/Main.java
   - Java/core/VvyLw.java
@@ -374,7 +390,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:55:39+09:00'
+  timestamp: '2024-01-06 16:57:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/other/SuffixArray.java

@@ -60,8 +60,14 @@ data:
   - name: Java
     pages:
     - icon: ':warning:'
+      path: Java/AOJ.java
+      title: Java/AOJ.java
+    - icon: ':warning:'
       path: Java/All.java
       title: Java/All.java
+    - icon: ':warning:'
+      path: Java/yukicoder.java
+      title: Java/yukicoder.java
   - name: Java/core
     pages:
     - icon: ':warning:'
