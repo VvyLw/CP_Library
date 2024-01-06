@@ -2,222 +2,222 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: Java/library/core/Main.java
-    title: Java/library/core/Main.java
+    path: Java/core/Main.java
+    title: Java/core/Main.java
   - icon: ':warning:'
-    path: Java/library/core/MyPrinter.java
-    title: Java/library/core/MyPrinter.java
+    path: Java/core/MyPrinter.java
+    title: Java/core/MyPrinter.java
   - icon: ':warning:'
-    path: Java/library/core/MyScanner.java
-    title: Java/library/core/MyScanner.java
+    path: Java/core/MyScanner.java
+    title: Java/core/MyScanner.java
   - icon: ':warning:'
-    path: Java/library/core/Utility.java
-    title: Java/library/core/Utility.java
+    path: Java/core/Utility.java
+    title: Java/core/Utility.java
   - icon: ':warning:'
-    path: Java/library/core/VvyLw.java
-    title: Java/library/core/VvyLw.java
+    path: Java/core/VvyLw.java
+    title: Java/core/VvyLw.java
   - icon: ':warning:'
-    path: Java/library/graph/Edge.java
-    title: Java/library/graph/Edge.java
+    path: Java/graph/Edge.java
+    title: Java/graph/Edge.java
   - icon: ':warning:'
-    path: Java/library/graph/Graph.java
-    title: Java/library/graph/Graph.java
+    path: Java/graph/Graph.java
+    title: Java/graph/Graph.java
   - icon: ':warning:'
-    path: Java/library/graph/LowestCommonAncestor.java
-    title: Java/library/graph/LowestCommonAncestor.java
+    path: Java/graph/LowestCommonAncestor.java
+    title: Java/graph/LowestCommonAncestor.java
   - icon: ':warning:'
-    path: Java/library/graph/MST.java
-    title: Java/library/graph/MST.java
+    path: Java/graph/MST.java
+    title: Java/graph/MST.java
   - icon: ':warning:'
-    path: Java/library/graph/WeightedGraph.java
-    title: Java/library/graph/WeightedGraph.java
+    path: Java/graph/WeightedGraph.java
+    title: Java/graph/WeightedGraph.java
   - icon: ':warning:'
-    path: Java/library/math/BigPrime.java
-    title: Java/library/math/BigPrime.java
+    path: Java/math/BigPrime.java
+    title: Java/math/BigPrime.java
   - icon: ':warning:'
-    path: Java/library/math/EulerPhiTable.java
-    title: Java/library/math/EulerPhiTable.java
+    path: Java/math/EulerPhiTable.java
+    title: Java/math/EulerPhiTable.java
   - icon: ':warning:'
-    path: Java/library/math/LongPrime.java
-    title: Java/library/math/LongPrime.java
+    path: Java/math/LongPrime.java
+    title: Java/math/LongPrime.java
   - icon: ':warning:'
-    path: Java/library/math/PrimeCounter.java
-    title: Java/library/math/PrimeCounter.java
+    path: Java/math/PrimeCounter.java
+    title: Java/math/PrimeCounter.java
   - icon: ':warning:'
-    path: Java/library/math/PrimeFactor.java
-    title: Java/library/math/PrimeFactor.java
+    path: Java/math/PrimeFactor.java
+    title: Java/math/PrimeFactor.java
   - icon: ':warning:'
-    path: Java/library/math/PrimeTable.java
-    title: Java/library/math/PrimeTable.java
+    path: Java/math/PrimeTable.java
+    title: Java/math/PrimeTable.java
   - icon: ':warning:'
-    path: Java/library/other/Huitloxopetl.java
-    title: Java/library/other/Huitloxopetl.java
+    path: Java/other/Huitloxopetl.java
+    title: Java/other/Huitloxopetl.java
   - icon: ':warning:'
-    path: Java/library/other/InclusiveScan.java
-    title: Java/library/other/InclusiveScan.java
+    path: Java/other/InclusiveScan.java
+    title: Java/other/InclusiveScan.java
   - icon: ':warning:'
-    path: Java/library/other/PrefixSum.java
-    title: Java/library/other/PrefixSum.java
+    path: Java/other/PrefixSum.java
+    title: Java/other/PrefixSum.java
   - icon: ':warning:'
-    path: Java/library/other/SkewHeap.java
-    title: Java/library/other/SkewHeap.java
+    path: Java/other/SkewHeap.java
+    title: Java/other/SkewHeap.java
   - icon: ':warning:'
-    path: Java/library/other/SuffixArray.java
-    title: Java/library/other/SuffixArray.java
+    path: Java/other/SuffixArray.java
+    title: Java/other/SuffixArray.java
   - icon: ':warning:'
-    path: Java/library/pair/FloatPair.java
-    title: Java/library/pair/FloatPair.java
+    path: Java/structure/AVLTree.java
+    title: Java/structure/AVLTree.java
   - icon: ':warning:'
-    path: Java/library/pair/IntPair.java
-    title: Java/library/pair/IntPair.java
+    path: Java/structure/Deque.java
+    title: Java/structure/Deque.java
   - icon: ':warning:'
-    path: Java/library/pair/Pair.java
-    title: Java/library/pair/Pair.java
+    path: Java/structure/DoubleEndedPriorityQueue.java
+    title: Java/structure/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
-    path: Java/library/structure/AVLTree.java
-    title: Java/library/structure/AVLTree.java
+    path: Java/structure/FenwickTree.java
+    title: Java/structure/FenwickTree.java
   - icon: ':warning:'
-    path: Java/library/structure/Deque.java
-    title: Java/library/structure/Deque.java
+    path: Java/structure/SegmentTree.java
+    title: Java/structure/SegmentTree.java
   - icon: ':warning:'
-    path: Java/library/structure/DoubleEndedPriorityQueue.java
-    title: Java/library/structure/DoubleEndedPriorityQueue.java
+    path: Java/structure/SparseTable.java
+    title: Java/structure/SparseTable.java
   - icon: ':warning:'
-    path: Java/library/structure/FenwickTree.java
-    title: Java/library/structure/FenwickTree.java
+    path: Java/structure/pair/FloatPair.java
+    title: Java/structure/pair/FloatPair.java
   - icon: ':warning:'
-    path: Java/library/structure/SegmentTree.java
-    title: Java/library/structure/SegmentTree.java
+    path: Java/structure/pair/IntPair.java
+    title: Java/structure/pair/IntPair.java
   - icon: ':warning:'
-    path: Java/library/structure/SparseTable.java
-    title: Java/library/structure/SparseTable.java
+    path: Java/structure/pair/Pair.java
+    title: Java/structure/pair/Pair.java
   - icon: ':warning:'
-    path: Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
-    title: Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
+    path: Java/structure/unionfind/UndoUnionFind.java
+    title: Java/structure/unionfind/UndoUnionFind.java
   - icon: ':warning:'
-    path: Java/library/structure/waveletmatrix/WaveletMatrix.java
-    title: Java/library/structure/waveletmatrix/WaveletMatrix.java
+    path: Java/structure/unionfind/UnionFind.java
+    title: Java/structure/unionfind/UnionFind.java
   - icon: ':warning:'
-    path: Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-    title: Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
+    path: Java/structure/unionfind/WeightedUnionFind.java
+    title: Java/structure/unionfind/WeightedUnionFind.java
   - icon: ':warning:'
-    path: Java/library/unionfind/UndoUnionFind.java
-    title: Java/library/unionfind/UndoUnionFind.java
+    path: Java/structure/waveletmatrix/SuccientIndexableDictionary.java
+    title: Java/structure/waveletmatrix/SuccientIndexableDictionary.java
   - icon: ':warning:'
-    path: Java/library/unionfind/UnionFind.java
-    title: Java/library/unionfind/UnionFind.java
+    path: Java/structure/waveletmatrix/WaveletMatrix.java
+    title: Java/structure/waveletmatrix/WaveletMatrix.java
   - icon: ':warning:'
-    path: Java/library/unionfind/WeightedUnionFind.java
-    title: Java/library/unionfind/WeightedUnionFind.java
+    path: Java/structure/waveletmatrix/WaveletMatrixBeta.java
+    title: Java/structure/waveletmatrix/WaveletMatrixBeta.java
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: Java/library/core/Main.java
-    title: Java/library/core/Main.java
+    path: Java/core/Main.java
+    title: Java/core/Main.java
   - icon: ':warning:'
-    path: Java/library/core/MyPrinter.java
-    title: Java/library/core/MyPrinter.java
+    path: Java/core/MyPrinter.java
+    title: Java/core/MyPrinter.java
   - icon: ':warning:'
-    path: Java/library/core/MyScanner.java
-    title: Java/library/core/MyScanner.java
+    path: Java/core/MyScanner.java
+    title: Java/core/MyScanner.java
   - icon: ':warning:'
-    path: Java/library/core/Utility.java
-    title: Java/library/core/Utility.java
+    path: Java/core/Utility.java
+    title: Java/core/Utility.java
   - icon: ':warning:'
-    path: Java/library/core/VvyLw.java
-    title: Java/library/core/VvyLw.java
+    path: Java/core/VvyLw.java
+    title: Java/core/VvyLw.java
   - icon: ':warning:'
-    path: Java/library/graph/Edge.java
-    title: Java/library/graph/Edge.java
+    path: Java/graph/Edge.java
+    title: Java/graph/Edge.java
   - icon: ':warning:'
-    path: Java/library/graph/Graph.java
-    title: Java/library/graph/Graph.java
+    path: Java/graph/Graph.java
+    title: Java/graph/Graph.java
   - icon: ':warning:'
-    path: Java/library/graph/LowestCommonAncestor.java
-    title: Java/library/graph/LowestCommonAncestor.java
+    path: Java/graph/LowestCommonAncestor.java
+    title: Java/graph/LowestCommonAncestor.java
   - icon: ':warning:'
-    path: Java/library/graph/MST.java
-    title: Java/library/graph/MST.java
+    path: Java/graph/MST.java
+    title: Java/graph/MST.java
   - icon: ':warning:'
-    path: Java/library/graph/WeightedGraph.java
-    title: Java/library/graph/WeightedGraph.java
+    path: Java/graph/WeightedGraph.java
+    title: Java/graph/WeightedGraph.java
   - icon: ':warning:'
-    path: Java/library/math/BigPrime.java
-    title: Java/library/math/BigPrime.java
+    path: Java/math/BigPrime.java
+    title: Java/math/BigPrime.java
   - icon: ':warning:'
-    path: Java/library/math/EulerPhiTable.java
-    title: Java/library/math/EulerPhiTable.java
+    path: Java/math/EulerPhiTable.java
+    title: Java/math/EulerPhiTable.java
   - icon: ':warning:'
-    path: Java/library/math/LongPrime.java
-    title: Java/library/math/LongPrime.java
+    path: Java/math/LongPrime.java
+    title: Java/math/LongPrime.java
   - icon: ':warning:'
-    path: Java/library/math/PrimeCounter.java
-    title: Java/library/math/PrimeCounter.java
+    path: Java/math/PrimeCounter.java
+    title: Java/math/PrimeCounter.java
   - icon: ':warning:'
-    path: Java/library/math/PrimeFactor.java
-    title: Java/library/math/PrimeFactor.java
+    path: Java/math/PrimeFactor.java
+    title: Java/math/PrimeFactor.java
   - icon: ':warning:'
-    path: Java/library/math/PrimeTable.java
-    title: Java/library/math/PrimeTable.java
+    path: Java/math/PrimeTable.java
+    title: Java/math/PrimeTable.java
   - icon: ':warning:'
-    path: Java/library/other/Huitloxopetl.java
-    title: Java/library/other/Huitloxopetl.java
+    path: Java/other/Huitloxopetl.java
+    title: Java/other/Huitloxopetl.java
   - icon: ':warning:'
-    path: Java/library/other/InclusiveScan.java
-    title: Java/library/other/InclusiveScan.java
+    path: Java/other/InclusiveScan.java
+    title: Java/other/InclusiveScan.java
   - icon: ':warning:'
-    path: Java/library/other/PrefixSum.java
-    title: Java/library/other/PrefixSum.java
+    path: Java/other/PrefixSum.java
+    title: Java/other/PrefixSum.java
   - icon: ':warning:'
-    path: Java/library/other/SkewHeap.java
-    title: Java/library/other/SkewHeap.java
+    path: Java/other/SkewHeap.java
+    title: Java/other/SkewHeap.java
   - icon: ':warning:'
-    path: Java/library/other/SuffixArray.java
-    title: Java/library/other/SuffixArray.java
+    path: Java/other/SuffixArray.java
+    title: Java/other/SuffixArray.java
   - icon: ':warning:'
-    path: Java/library/pair/FloatPair.java
-    title: Java/library/pair/FloatPair.java
+    path: Java/structure/AVLTree.java
+    title: Java/structure/AVLTree.java
   - icon: ':warning:'
-    path: Java/library/pair/IntPair.java
-    title: Java/library/pair/IntPair.java
+    path: Java/structure/Deque.java
+    title: Java/structure/Deque.java
   - icon: ':warning:'
-    path: Java/library/pair/Pair.java
-    title: Java/library/pair/Pair.java
+    path: Java/structure/DoubleEndedPriorityQueue.java
+    title: Java/structure/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
-    path: Java/library/structure/AVLTree.java
-    title: Java/library/structure/AVLTree.java
+    path: Java/structure/FenwickTree.java
+    title: Java/structure/FenwickTree.java
   - icon: ':warning:'
-    path: Java/library/structure/Deque.java
-    title: Java/library/structure/Deque.java
+    path: Java/structure/SegmentTree.java
+    title: Java/structure/SegmentTree.java
   - icon: ':warning:'
-    path: Java/library/structure/DoubleEndedPriorityQueue.java
-    title: Java/library/structure/DoubleEndedPriorityQueue.java
+    path: Java/structure/SparseTable.java
+    title: Java/structure/SparseTable.java
   - icon: ':warning:'
-    path: Java/library/structure/FenwickTree.java
-    title: Java/library/structure/FenwickTree.java
+    path: Java/structure/pair/FloatPair.java
+    title: Java/structure/pair/FloatPair.java
   - icon: ':warning:'
-    path: Java/library/structure/SegmentTree.java
-    title: Java/library/structure/SegmentTree.java
+    path: Java/structure/pair/IntPair.java
+    title: Java/structure/pair/IntPair.java
   - icon: ':warning:'
-    path: Java/library/structure/SparseTable.java
-    title: Java/library/structure/SparseTable.java
+    path: Java/structure/pair/Pair.java
+    title: Java/structure/pair/Pair.java
   - icon: ':warning:'
-    path: Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
-    title: Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
+    path: Java/structure/unionfind/UndoUnionFind.java
+    title: Java/structure/unionfind/UndoUnionFind.java
   - icon: ':warning:'
-    path: Java/library/structure/waveletmatrix/WaveletMatrix.java
-    title: Java/library/structure/waveletmatrix/WaveletMatrix.java
+    path: Java/structure/unionfind/UnionFind.java
+    title: Java/structure/unionfind/UnionFind.java
   - icon: ':warning:'
-    path: Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-    title: Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
+    path: Java/structure/unionfind/WeightedUnionFind.java
+    title: Java/structure/unionfind/WeightedUnionFind.java
   - icon: ':warning:'
-    path: Java/library/unionfind/UndoUnionFind.java
-    title: Java/library/unionfind/UndoUnionFind.java
+    path: Java/structure/waveletmatrix/SuccientIndexableDictionary.java
+    title: Java/structure/waveletmatrix/SuccientIndexableDictionary.java
   - icon: ':warning:'
-    path: Java/library/unionfind/UnionFind.java
-    title: Java/library/unionfind/UnionFind.java
+    path: Java/structure/waveletmatrix/WaveletMatrix.java
+    title: Java/structure/waveletmatrix/WaveletMatrix.java
   - icon: ':warning:'
-    path: Java/library/unionfind/WeightedUnionFind.java
-    title: Java/library/unionfind/WeightedUnionFind.java
+    path: Java/structure/waveletmatrix/WaveletMatrixBeta.java
+    title: Java/structure/waveletmatrix/WaveletMatrixBeta.java
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: java
@@ -228,54 +228,55 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/All.java\n"
-  code: "import java.io.Closeable;\nimport java.io.Flushable;\nimport java.io.IOException;\n\
-    import java.io.InputStream;\nimport java.io.OutputStream;\nimport java.math.BigInteger;\n\
-    import java.util.ArrayDeque;\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
-    import java.util.Collection;\nimport java.util.Collections;\nimport java.util.Comparator;\n\
-    import java.util.Formatter;\nimport java.util.HashMap;\nimport java.util.Iterator;\n\
-    import java.util.List;\nimport java.util.Map;\nimport java.util.NoSuchElementException;\n\
-    import java.util.PriorityQueue;\nimport java.util.Queue;\nimport java.util.Stack;\n\
-    import java.util.TreeMap;\nimport java.util.function.BiFunction;\nimport java.util.function.BiPredicate;\n\
-    import java.util.function.BinaryOperator;\nimport java.util.function.Consumer;\n\
-    import java.util.function.DoublePredicate;\nimport java.util.function.IntPredicate;\n\
-    import java.util.function.IntUnaryOperator;\nimport java.util.function.LongBinaryOperator;\n\
-    import java.util.function.LongPredicate;\nimport java.util.function.Predicate;\n\
-    import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nfinal\
-    \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
-    \ VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
-    \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}\n\n\
-    final class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner(System.in);\n\
-    \tstatic final MyPrinter o = new MyPrinter(System.out, false);\n\tstatic final\
-    \ MyPrinter dbg = new MyPrinter(System.err, true);\n\tstatic final Huitloxopetl\
-    \ why = new Huitloxopetl();\n\tstatic final boolean multi = false;\n\tstatic final\
-    \ int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\tstatic final\
-    \ double eps = 1e-18;\n\t@SuppressWarnings(\"unused\")\n\tprivate static final\
-    \ int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\t@SuppressWarnings(\"unused\")\n\
-    \tprivate static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t@SuppressWarnings(\"\
-    unused\")\n\tprivate static final int mod998 = 998244353;\n\t@SuppressWarnings(\"\
-    unused\")\n\tprivate static final int mod107 = (int)1e9 + 7;\n\tstatic final void\
-    \ solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String yes(final\
-    \ boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String\
-    \ no(final boolean ok){ return yes(!ok); }\n\tprotected static final long sqr(final\
-    \ long x){ return x * x; }\n\tprotected static final int mod(final int n, final\
-    \ int m){ return (n + m) % m; }\n\tprotected static final int mod(final long n,\
-    \ final int m){ return (int) (n + m) % m; }\n\tprotected static final long mod(final\
-    \ long n, final long m){ return (n + m) % m; }\n\tprotected static final long\
-    \ ceil(final long a, final long b){ return (a - 1) / b + 1; }\n\tprotected static\
-    \ final double round(final double a, final long b, final int c) {\n\t\tfinal long\
-    \ d = pow(10, c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\tprotected static\
-    \ final long pow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\
-    \tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long pow(long a, long b,\
-    \ final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1)\
-    \ {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\
-    \t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final long lcm(final long a, final long b){ return a * b / gcd(a, b); }\n\t\
-    protected static final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i\
-    \ -> i).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final\
-    \ long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
-    \ static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a %\
-    \ b) : a; }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
+  code: "package library;\n\nimport java.io.Closeable;\nimport java.io.Flushable;\n\
+    import java.io.IOException;\nimport java.io.InputStream;\nimport java.io.OutputStream;\n\
+    import java.math.BigInteger;\nimport java.util.ArrayDeque;\nimport java.util.ArrayList;\n\
+    import java.util.Arrays;\nimport java.util.Collection;\nimport java.util.Collections;\n\
+    import java.util.Comparator;\nimport java.util.Formatter;\nimport java.util.HashMap;\n\
+    import java.util.Iterator;\nimport java.util.List;\nimport java.util.Map;\nimport\
+    \ java.util.NoSuchElementException;\nimport java.util.PriorityQueue;\nimport java.util.Queue;\n\
+    import java.util.Stack;\nimport java.util.TreeMap;\nimport java.util.function.BiFunction;\n\
+    import java.util.function.BiPredicate;\nimport java.util.function.BinaryOperator;\n\
+    import java.util.function.Consumer;\nimport java.util.function.DoublePredicate;\n\
+    import java.util.function.IntPredicate;\nimport java.util.function.IntUnaryOperator;\n\
+    import java.util.function.LongBinaryOperator;\nimport java.util.function.LongPredicate;\n\
+    import java.util.function.Predicate;\nimport java.util.stream.Collectors;\nimport\
+    \ java.util.stream.IntStream;\n\nfinal class Main {\n\tpublic static void main(final\
+    \ String[] args) {\n\t\tIntStream.range(0, VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i\
+    \ -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\
+    \t\tVvyLw.dbg.close();\n\t}\n}\n\nfinal class VvyLw extends Utility {\n\tstatic\
+    \ final MyScanner sc = new MyScanner(System.in);\n\tstatic final MyPrinter o =\
+    \ new MyPrinter(System.out, false);\n\tstatic final MyPrinter dbg = new MyPrinter(System.err,\
+    \ true);\n\tstatic final Huitloxopetl why = new Huitloxopetl();\n\tstatic final\
+    \ boolean multi = false;\n\tstatic final int inf = 1 << 30;\n\tstatic final long\
+    \ linf = (1L << 61) - 1;\n\tstatic final double eps = 1e-18;\n\t@SuppressWarnings(\"\
+    unused\")\n\tprivate static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\
+    \t@SuppressWarnings(\"unused\")\n\tprivate static final int[] dy = {0, 0, 0, -1,\
+    \ 1, -1, 1, -1, 1};\n\t@SuppressWarnings(\"unused\")\n\tprivate static final int\
+    \ mod998 = 998244353;\n\t@SuppressWarnings(\"unused\")\n\tprivate static final\
+    \ int mod107 = (int)1e9 + 7;\n\tstatic final void solve() {\n\t\t\n\t}\n}\nclass\
+    \ Utility {\n\tprotected static final String yes(final boolean ok){ return ok\
+    \ ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean ok){\
+    \ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
+    \ x * x; }\n\tprotected static final int mod(final int n, final int m){ return\
+    \ (n + m) % m; }\n\tprotected static final int mod(final long n, final int m){\
+    \ return (int) (n + m) % m; }\n\tprotected static final long mod(final long n,\
+    \ final long m){ return (n + m) % m; }\n\tprotected static final long ceil(final\
+    \ long a, final long b){ return (a - 1) / b + 1; }\n\tprotected static final double\
+    \ round(final double a, final long b, final int c) {\n\t\tfinal long d = pow(10,\
+    \ c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\tprotected static final long\
+    \ pow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2\
+    \ == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\
+    \treturn res;\n\t}\n\tprotected static final long pow(long a, long b, final long\
+    \ m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\t\
+    res *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a,\
+    \ m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long\
+    \ lcm(final long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static\
+    \ final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1,\
+    \ (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){\
+    \ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static\
+    \ final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a;\
+    \ }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
     \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
     \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
     \ final int min(final int... a){ return Arrays.stream(a).reduce(Integer.MAX_VALUE,\
@@ -1416,82 +1417,82 @@ data:
     }\n\t\t\tnow = (now - 1 + n) % n;\n\t\t\tbuf[now] = null;\n\t\t\thead = (head\
     \ + 1) % n;\n\t\t\trem++;\n\t\t}\n\t}\n}"
   dependsOn:
-  - Java/library/unionfind/UnionFind.java
-  - Java/library/unionfind/WeightedUnionFind.java
-  - Java/library/unionfind/UndoUnionFind.java
-  - Java/library/other/PrefixSum.java
-  - Java/library/other/InclusiveScan.java
-  - Java/library/other/Huitloxopetl.java
-  - Java/library/other/SuffixArray.java
-  - Java/library/other/SkewHeap.java
-  - Java/library/math/PrimeCounter.java
-  - Java/library/math/BigPrime.java
-  - Java/library/math/PrimeFactor.java
-  - Java/library/math/EulerPhiTable.java
-  - Java/library/math/PrimeTable.java
-  - Java/library/math/LongPrime.java
-  - Java/library/structure/SparseTable.java
-  - Java/library/structure/SegmentTree.java
-  - Java/library/structure/DoubleEndedPriorityQueue.java
-  - Java/library/structure/Deque.java
-  - Java/library/structure/FenwickTree.java
-  - Java/library/structure/AVLTree.java
-  - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
-  - Java/library/structure/waveletmatrix/WaveletMatrix.java
-  - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/core/MyPrinter.java
-  - Java/library/core/Main.java
-  - Java/library/core/VvyLw.java
-  - Java/library/core/MyScanner.java
-  - Java/library/core/Utility.java
-  - Java/library/graph/WeightedGraph.java
-  - Java/library/graph/Edge.java
-  - Java/library/graph/LowestCommonAncestor.java
-  - Java/library/graph/MST.java
-  - Java/library/graph/Graph.java
-  - Java/library/pair/Pair.java
-  - Java/library/pair/IntPair.java
-  - Java/library/pair/FloatPair.java
+  - Java/other/PrefixSum.java
+  - Java/other/InclusiveScan.java
+  - Java/other/Huitloxopetl.java
+  - Java/other/SuffixArray.java
+  - Java/other/SkewHeap.java
+  - Java/math/PrimeCounter.java
+  - Java/math/BigPrime.java
+  - Java/math/PrimeFactor.java
+  - Java/math/EulerPhiTable.java
+  - Java/math/PrimeTable.java
+  - Java/math/LongPrime.java
+  - Java/structure/unionfind/UnionFind.java
+  - Java/structure/unionfind/WeightedUnionFind.java
+  - Java/structure/unionfind/UndoUnionFind.java
+  - Java/structure/SparseTable.java
+  - Java/structure/SegmentTree.java
+  - Java/structure/DoubleEndedPriorityQueue.java
+  - Java/structure/Deque.java
+  - Java/structure/FenwickTree.java
+  - Java/structure/AVLTree.java
+  - Java/structure/pair/Pair.java
+  - Java/structure/pair/IntPair.java
+  - Java/structure/pair/FloatPair.java
+  - Java/structure/waveletmatrix/SuccientIndexableDictionary.java
+  - Java/structure/waveletmatrix/WaveletMatrix.java
+  - Java/structure/waveletmatrix/WaveletMatrixBeta.java
+  - Java/core/MyPrinter.java
+  - Java/core/Main.java
+  - Java/core/VvyLw.java
+  - Java/core/MyScanner.java
+  - Java/core/Utility.java
+  - Java/graph/WeightedGraph.java
+  - Java/graph/Edge.java
+  - Java/graph/LowestCommonAncestor.java
+  - Java/graph/MST.java
+  - Java/graph/Graph.java
   isVerificationFile: false
   path: Java/All.java
   requiredBy:
-  - Java/library/unionfind/UnionFind.java
-  - Java/library/unionfind/WeightedUnionFind.java
-  - Java/library/unionfind/UndoUnionFind.java
-  - Java/library/other/PrefixSum.java
-  - Java/library/other/InclusiveScan.java
-  - Java/library/other/Huitloxopetl.java
-  - Java/library/other/SuffixArray.java
-  - Java/library/other/SkewHeap.java
-  - Java/library/math/PrimeCounter.java
-  - Java/library/math/BigPrime.java
-  - Java/library/math/PrimeFactor.java
-  - Java/library/math/EulerPhiTable.java
-  - Java/library/math/PrimeTable.java
-  - Java/library/math/LongPrime.java
-  - Java/library/structure/SparseTable.java
-  - Java/library/structure/SegmentTree.java
-  - Java/library/structure/DoubleEndedPriorityQueue.java
-  - Java/library/structure/Deque.java
-  - Java/library/structure/FenwickTree.java
-  - Java/library/structure/AVLTree.java
-  - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
-  - Java/library/structure/waveletmatrix/WaveletMatrix.java
-  - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/core/MyPrinter.java
-  - Java/library/core/Main.java
-  - Java/library/core/VvyLw.java
-  - Java/library/core/MyScanner.java
-  - Java/library/core/Utility.java
-  - Java/library/graph/WeightedGraph.java
-  - Java/library/graph/Edge.java
-  - Java/library/graph/LowestCommonAncestor.java
-  - Java/library/graph/MST.java
-  - Java/library/graph/Graph.java
-  - Java/library/pair/Pair.java
-  - Java/library/pair/IntPair.java
-  - Java/library/pair/FloatPair.java
-  timestamp: '2024-01-06 16:44:48+09:00'
+  - Java/other/PrefixSum.java
+  - Java/other/InclusiveScan.java
+  - Java/other/Huitloxopetl.java
+  - Java/other/SuffixArray.java
+  - Java/other/SkewHeap.java
+  - Java/math/PrimeCounter.java
+  - Java/math/BigPrime.java
+  - Java/math/PrimeFactor.java
+  - Java/math/EulerPhiTable.java
+  - Java/math/PrimeTable.java
+  - Java/math/LongPrime.java
+  - Java/structure/unionfind/UnionFind.java
+  - Java/structure/unionfind/WeightedUnionFind.java
+  - Java/structure/unionfind/UndoUnionFind.java
+  - Java/structure/SparseTable.java
+  - Java/structure/SegmentTree.java
+  - Java/structure/DoubleEndedPriorityQueue.java
+  - Java/structure/Deque.java
+  - Java/structure/FenwickTree.java
+  - Java/structure/AVLTree.java
+  - Java/structure/pair/Pair.java
+  - Java/structure/pair/IntPair.java
+  - Java/structure/pair/FloatPair.java
+  - Java/structure/waveletmatrix/SuccientIndexableDictionary.java
+  - Java/structure/waveletmatrix/WaveletMatrix.java
+  - Java/structure/waveletmatrix/WaveletMatrixBeta.java
+  - Java/core/MyPrinter.java
+  - Java/core/Main.java
+  - Java/core/VvyLw.java
+  - Java/core/MyScanner.java
+  - Java/core/Utility.java
+  - Java/graph/WeightedGraph.java
+  - Java/graph/Edge.java
+  - Java/graph/LowestCommonAncestor.java
+  - Java/graph/MST.java
+  - Java/graph/Graph.java
+  timestamp: '2024-01-06 16:55:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
