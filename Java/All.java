@@ -869,6 +869,24 @@ class Utility {
 		}
 		return pow(a, tmp, m);
 	}
+	protected static final long floorSum(final long n, final long m, long a, long b) {
+		long ans = 0;
+		if(a >= m) {
+			ans += (n - 1) * n * (a / m) / 2;
+			a %= m;
+		}
+		if(b >= m) {
+			ans += n * (b / m);
+			b %= m;
+		}
+		final long ym = (a * n + b) / m, xm = (ym * m - b);
+		if(ym == 0) {
+			return ans;
+		}
+		ans += (n - (xm + a - 1) / a) * ym;
+		ans += floorSum(ym, a, m, (a - xm % a) % a);
+		return ans;
+	}
 	protected interface TriFunction<T, U, V, W> {
 		public W apply(final T a, final U b, final V c);
 	}
@@ -889,6 +907,15 @@ class Utility {
 	}
 	protected interface RecursiveBinaryOperator<T> {
 		public T apply(final RecursiveBinaryOperator<T> rec, final T a, final T b);
+	}
+	protected interface RecursiveConsumer<T> {
+		public void accept(final RecursiveConsumer<T> rec, final T x);
+	}
+	protected interface RecursiveBiConsumer<T, U> {
+		public void accept(final RecursiveBiConsumer<T, U> rec, final T x, final U y);
+	}
+	protected interface RecursiveTriConsumer<T, U, V> {
+		public void accept(final RecursiveTriConsumer<T, U, V> rec, final T x, final U y, final V z);
 	}
 }
 

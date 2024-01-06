@@ -12,7 +12,7 @@ import library.core.VvyLw;
 public class Graph extends ArrayList<ArrayList<Edge>> {
 	protected final boolean undirected;
 	protected final int n, indexed;
-	protected final ArrayList<Edge> edge;
+	public final ArrayList<Edge> edge;
 	public Graph(final int n, final int indexed, final boolean undirected) {
 		this.n = n;
 		this.indexed = indexed;
