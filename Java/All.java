@@ -3170,8 +3170,7 @@ final class Deque<T> implements Iterable<T> {
 	final T peek(){ return peekFirst(); }
 	@SuppressWarnings("unchecked")
 	final void swap(final int a, final int b) {
-		final int i = index(a);
-		final int j = index(b);
+		final int i = index(a), j = index(b);
 		final T num = (T) buf[i];
 		buf[i] = buf[j];
 		buf[j] = num;

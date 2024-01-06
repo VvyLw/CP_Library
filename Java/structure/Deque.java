@@ -4,16 +4,28 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * ランダムアクセスが可能なDeque
+ * viralさんに感謝
+ * @see <a href="https://github.com/viral8code/Primitive-Specialized-Library/blob/main/util/ArrayDeque/IntRingBuffer/IntRingBuffer.java">参考元</a>
+ * @param <T> クラスを乗せる
+ */
 public final class Deque<T> implements Iterable<T> {
 	private int n, head, tail;
 	private Object[] buf;
-	Deque(){ this(1 << 17); }
+	public Deque(){ this(1 << 17); }
 	private Deque(final int n) {
 		this.n = n;
 		head = tail = 0;
 		buf = new Object[n];
 	}
-	Deque(final T[] a) {
+	/**
+	 * コンストラクタにint[]を乗せたい場合, 参考までに以下のように書くことができる
+	 * <br>
+	 * new Deque<Integer>(Arrays.stream(a).boxed().toArray(Integer[]::new));
+	 * @param a クラスTの配列
+	 */
+	public Deque(final T[] a) {
 		this(a.length);
 		Arrays.stream(a).forEach(i -> add(i));
 	}
@@ -53,39 +65,64 @@ public final class Deque<T> implements Iterable<T> {
 		buf = tmp;
 		n = buf.length;
 	}
-	final boolean isEmpty(){ return size() == 0; }
-	final int size() {
+	/**
+	 * Dequeが空かどうか判定する
+	 * @return {@link Deque#size} == 0
+	 */
+	public final boolean isEmpty(){ return size() == 0; }
+	/**
+	 * @return Dequeの大きさ
+	 */
+	public final int size() {
 		final int size = tail - head;
 		return size < 0 ? size + n : size;
 	}
-	final void addFirst(final T x) {
+	/**
+	 * Dequeの先頭に要素を追加する
+	 * @param x
+	 */
+	public final void addFirst(final T x) {
 		if(prev(head) == tail) {
 			extend();
 		}
 		head = prev(head);
 		buf[head] = x;
 	}
-	final void addLast(final T x) {
+	/**
+	 * Dequeの末尾に要素を追加する
+	 * @param x
+	 */
+	public final void addLast(final T x) {
 		if(next(tail) == head) {
 			extend();
 		}
 		buf[tail] = x;
 		tail = next(tail);
 	}
-	final void removeFirst() {
+	/**
+	 * Dequeの先頭の要素を削除する
+	 */
+	public final void removeFirst() {
 		if(head == tail) {
 			throw new NoSuchElementException("Buffer is empty");
 		}
 		head = next(head);
 	}
-	final void removeLast() {
+	/**
+	 * Dequeの末尾の要素を削除する
+	 */
+	public final void removeLast() {
 		if(head == tail) {
 			throw new NoSuchElementException("Buffer is empty");
 		}
 		tail = prev(tail);
 	}
+	/**
+	 * Dequeの先頭の要素を削除する
+	 * @return Dequeの先頭にあった要素
+	 */
 	@SuppressWarnings("unchecked")
-	final T pollFirst() {
+	public final T pollFirst() {
 		if(head == tail) {
 			throw new NoSuchElementException("Buffer is empty");
 		}
@@ -93,41 +130,89 @@ public final class Deque<T> implements Iterable<T> {
 		head = next(head);
 		return ans;
 	}
+	/**
+	 * Dequeの末尾の要素を削除する
+	 * @return Dequeの末尾にあった要素
+	 */
 	@SuppressWarnings("unchecked")
-	final T pollLast() {
+	public final T pollLast() {
 		if(head == tail) {
 			throw new NoSuchElementException("Buffer is empty");
 		}
 		tail = prev(tail);
 		return (T) buf[tail];
 	}
-	final T peekFirst(){ return get(0); }
-	final T peekLast(){ return get(n - 1); }
+	/**
+	 * @return Dequeの先頭にある要素
+	 */
+	public final T peekFirst(){ return get(0); }
+	/**
+	 * @return Dequeの末尾にある要素
+	 */
+	public final T peekLast(){ return get(n - 1); }
+	/**
+	 * ランダムアクセス
+	 * @param i インデックス
+	 * @return Dequeのi番目に格納されている要素
+	 */
 	@SuppressWarnings("unchecked")
-	final T get(final int i){ return (T) buf[index(i)]; }
-	final void set(final int i, final T x){ buf[index(i)] = x; }
-	final void add(final T x){ addLast(x); }
-	final T poll(){ return pollFirst(); }
-	final T peek(){ return peekFirst(); }
+	public final T get(final int i){ return (T) buf[index(i)]; }
+	/**
+	 * i番目に要素を代入する
+	 * @param i インデックス
+	 * @param x 要素
+	 */
+	public final void set(final int i, final T x){ buf[index(i)] = x; }
+	/**
+	 * @see Deque#addLast
+	 */
+	public final void add(final T x){ addLast(x); }
+	/**
+	 * @see Deque#pollFirst
+	 */
+	public final T poll(){ return pollFirst(); }
+	/**
+	 * @see Deque#peekFirst
+	 */
+	public final T peek(){ return peekFirst(); }
+	/**
+	 * Dequeのa番目とb番目にある要素を入れ替える
+	 * @param a インデックス
+	 * @param b インデックス
+	 */
 	@SuppressWarnings("unchecked")
-	final void swap(final int a, final int b) {
-		final int i = index(a);
-		final int j = index(b);
+	public final void swap(final int a, final int b) {
+		final int i = index(a), j = index(b);
 		final T num = (T) buf[i];
 		buf[i] = buf[j];
 		buf[j] = num;
 	}
-	final void clear(){ head = tail = 0; }
+	/**
+	 * Dequeを空にする
+	 */
+	public final void clear(){ head = tail = 0; }
+	/**
+	 * @return 配列化したDeque
+	 */
 	@SuppressWarnings("unchecked")
 	final T[] toArray() {
 		final Object[] array = new Object[size()];
 		arraycopy(0, (T[]) array, 0, size());
 		return (T[]) array;
 	}
+	/**
+	 * 出力するために必要
+	 */
 	@Override
 	public final String toString(){ return Arrays.toString(toArray()); }
+	/**
+	 * イテレータ
+	 */
 	@Override
 	public final Iterator<T> iterator(){ return new DequeIterator(); }
+	/**
+	 * イテレータの中身
+	 */
 	private class DequeIterator implements Iterator<T> {
 		private int now = head;
 		private int rem = size();
