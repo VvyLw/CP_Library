@@ -43,7 +43,42 @@ final class VvyLw extends Utility {
 	@SuppressWarnings("unused")
 	private static final int mod107 = (int)1e9 + 7;
 	static final void solve() {
-		
+		final int n = sc.ni();
+		final String[][] a = new String[n][n];
+		int u = 0, v = n - 1;
+		Pair<Integer, Integer> p = Pair.of(u + 1, u), q = Pair.of(u, v), r = Pair.of(v, v), s = Pair.of(v, u);
+		int x = 0, y = 0, z = 0, i = 1;
+		while(i < sqr(n)) {
+			a[x][y] = String.valueOf(i);
+			i++;
+			if(z == 0) {
+				y++;
+			} else if(z == 1) {
+				x++;
+			} else if(z == 2) {
+				y--;
+			} else {
+				x--;
+			}
+			final var tmp = Pair.of(x, y);
+			if(tmp.equals(q)) {
+				z = 1;
+			} else if(tmp.equals(r)) {
+				z = 2;
+			} else if(tmp.equals(s)) {
+				z = 3;
+			} else if(tmp.equals(p)) {
+				z = 0;
+				u++;
+				v--;
+				p = Pair.of(u + 1, u);
+				q = Pair.of(u, v);
+				r = Pair.of(v, v);
+				s = Pair.of(v, u);
+			}
+		}
+		a[x][y] = "T";
+		o.outl(a);
 	}
 }
 class Utility {
@@ -383,14 +418,6 @@ class Utility {
 		}
 		return -1;
 	}
-	protected static final int find(final String s, final char c) {
-		for(int i = 0; i < s.length(); ++i) {
-			if(s.charAt(i) == c) {
-				return i;
-			}
-		}
-		return -1;
-	}
 	protected static final int find(final char[] s, final char c) {
 		for(int i = 0; i < s.length; ++i) {
 			if(s[i] == c) {
@@ -426,14 +453,6 @@ class Utility {
 	protected static final int findRev(final double[] a, final double x) {
 		for(int i = a.length; --i >= 0;) {
 			if(a[i] == x) {
-				return i;
-			}
-		}
-		return -1;
-	}
-	protected static final int findRev(final String s, final char c) {
-		for(int i = s.length(); --i >= 0;) {
-			if(s.charAt(i) == c) {
 				return i;
 			}
 		}
@@ -684,8 +703,10 @@ class Utility {
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
-	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> List<F> first(final List<Pair<F, S>> p){ return p.stream().map(i -> i.first).collect(Collectors.toList()); }
-	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> List<S> second(final List<Pair<F, S>> p){ return p.stream().map(i -> i.second).collect(Collectors.toList()); }
+	@SuppressWarnings("unchecked")
+	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> F[] first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i -> i.first).toArray(); }
+	@SuppressWarnings("unchecked")
+	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> S[] second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i -> i.second).toArray(); }
 	protected static final int[] iota(final int n){ return IntStream.range(0, n).toArray(); }
 	protected static final int[] iota(final int n, final int init){ return IntStream.range(0 + init, n + init).toArray(); }
 	protected static final int bins(int ok, int ng, final IntPredicate fn) {
@@ -1103,7 +1124,9 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	final void outl(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void outl(final boolean[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void outl(final char[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	final void outl(final char[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void outl(final Object[] args){ Arrays.stream(args).forEach(this::println); }
+	final void outl(final Object[][] args){ Arrays.stream(args).forEach(this::out); }
 	final <E> void outl(final Collection<E> args){ args.stream().forEach(this::println); }
 	final void fin(final Object head, final Object... tail) {
 		out(head, tail);

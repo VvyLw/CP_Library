@@ -166,8 +166,10 @@ class Utility {
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
-	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> List<F> first(final List<Pair<F, S>> p){ return p.stream().map(i -> i.first).collect(Collectors.toList()); }
-	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> List<S> second(final List<Pair<F, S>> p){ return p.stream().map(i -> i.second).collect(Collectors.toList()); }
+	@SuppressWarnings("unchecked")
+	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> F[] first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i -> i.first).toArray(); }
+	@SuppressWarnings("unchecked")
+	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> S[] second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i -> i.second).toArray(); }
 	protected interface TriFunction<T, U, V, W> {
 		public W apply(final T a, final U b, final V c);
 	}
@@ -188,6 +190,15 @@ class Utility {
 	}
 	protected interface RecursiveBinaryOperator<T> {
 		public T apply(final RecursiveBinaryOperator<T> rec, final T a, final T b);
+	}
+	protected interface RecursiveConsumer<T> {
+		public void accept(final RecursiveConsumer<T> rec, final T x);
+	}
+	protected interface RecursiveBiConsumer<T, U> {
+		public void accept(final RecursiveBiConsumer<T, U> rec, final T x, final U y);
+	}
+	protected interface RecursiveTriConsumer<T, U, V> {
+		public void accept(final RecursiveTriConsumer<T, U, V> rec, final T x, final U y, final V z);
 	}
 }
 
