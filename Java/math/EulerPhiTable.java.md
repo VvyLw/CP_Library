@@ -240,14 +240,15 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/math/EulerPhiTable.java\n"
-  code: "package library.math;\n\nimport library.core.Utility;\n\nfinal class EulerPhiTable\
-    \ {\n\tprivate final int n;\n\tprivate final int[] euler;\n\tEulerPhiTable(final\
-    \ int n) {\n\t\tthis.n = n;\n\t\teuler = Utility.iota(n + 1);\n\t\tfor(int i =\
-    \ 2; i <= n; ++i) {\n\t\t\tif(euler[i] == i) {\n\t\t\t\tfor(int j = i; j <= n;\
-    \ j += i) {\n\t\t\t\t\teuler[j] = euler[j] / i * (i - 1);\n\t\t\t\t}\n\t\t\t}\n\
-    \t\t}\n\t}\n\tfinal int[] get(){ return euler; }\n\tfinal long[] acc() {\n\t\t\
-    long[] ret = new long[n + 1];\n\t\tret[1] = 2;\n\t\tfor(int i = 2; i <= n; ++i)\
-    \ {\n\t\t\tret[i] = ret[i - 1] + euler[i];\n\t\t}\n\t\treturn ret;\n\t}\n}"
+  code: "package library.math;\n\nimport library.core.Utility;\n\npublic final class\
+    \ EulerPhiTable {\n\tprivate final int n;\n\tprivate final int[] euler;\n\tpublic\
+    \ EulerPhiTable(final int n) {\n\t\tthis.n = n;\n\t\teuler = Utility.iota(n +\
+    \ 1);\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(euler[i] == i) {\n\t\t\t\t\
+    for(int j = i; j <= n; j += i) {\n\t\t\t\t\teuler[j] = euler[j] / i * (i - 1);\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tpublic final int[] get(){ return euler; }\n\t\
+    public final long[] acc() {\n\t\tlong[] ret = new long[n + 1];\n\t\tret[1] = 2;\n\
+    \t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tret[i] = ret[i - 1] + euler[i];\n\t\t\
+    }\n\t\treturn ret;\n\t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -328,7 +329,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/math/EulerPhiTable.java

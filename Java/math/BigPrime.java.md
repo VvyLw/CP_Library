@@ -242,17 +242,17 @@ data:
     RuntimeError: bundler is not specified: Java/math/BigPrime.java\n"
   code: "package library.math;\n\nimport java.math.BigInteger;\nimport java.util.ArrayList;\n\
     import java.util.Arrays;\nimport java.util.Collections;\nimport java.util.function.BiFunction;\n\
-    \n//N > 1e18\nfinal class BigPrime {\n\tprotected final int bsf(final long x){\
-    \ return Long.numberOfTrailingZeros(x); }\n\tprivate final BigInteger gcd(BigInteger\
+    \n//N > 1e18\npublic final class BigPrime {\n\tprivate final int bsf(final long\
+    \ x){ return Long.numberOfTrailingZeros(x); }\n\tprivate final BigInteger gcd(BigInteger\
     \ a, BigInteger b) {\n\t\ta = a.abs();\n\t\tb = b.abs();\n\t\tif(a.equals(BigInteger.ZERO))\
     \ {\n\t\t\treturn b;\n\t\t}\n\t\tif(b.equals(BigInteger.ZERO)) {\n\t\t\treturn\
     \ a;\n\t\t}\n\t\tfinal int shift = bsf(a.or(b).longValue());\n\t\ta = a.shiftRight(bsf(a.longValue()));\n\
     \t\tdo {\n\t\t\tb = b.shiftRight(bsf(b.longValue()));\n\t\t\tif(a.compareTo(b)\
     \ > 0) {\n\t\t\t\tfinal BigInteger tmp = b;\n\t\t\t\tb = a;\n\t\t\t\ta = tmp;\n\
     \t\t\t}\n\t\t\tb = b.subtract(a);\n\t\t} while(b.compareTo(BigInteger.ZERO) >\
-    \ 0);\n\t\treturn a.shiftLeft(shift);\n\t}\n\tfinal boolean isPrime(final BigInteger\
-    \ n) {\n\t\tif(n.compareTo(BigInteger.ONE) <= 0) {\n\t\t\treturn false;\n\t\t\
-    }\n\t\tif(n.equals(BigInteger.TWO)) {\n\t\t\treturn true;\n\t\t}\n\t\tif(n.and(BigInteger.ONE).equals(BigInteger.valueOf(0)))\
+    \ 0);\n\t\treturn a.shiftLeft(shift);\n\t}\n\tpublic final boolean isPrime(final\
+    \ BigInteger n) {\n\t\tif(n.compareTo(BigInteger.ONE) <= 0) {\n\t\t\treturn false;\n\
+    \t\t}\n\t\tif(n.equals(BigInteger.TWO)) {\n\t\t\treturn true;\n\t\t}\n\t\tif(n.and(BigInteger.ONE).equals(BigInteger.valueOf(0)))\
     \ {\n\t\t\treturn false;\n\t\t}\n\t\tBigInteger d = n.subtract(BigInteger.ONE);\n\
     \t\twhile(d.and(BigInteger.ONE).equals(BigInteger.valueOf(0))) {\n\t\t\td = d.shiftRight(1);\n\
     \t\t}\n\t\tfinal long[] sample = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};\n\
@@ -272,7 +272,7 @@ data:
     \ n);\n\t\t\t\tif(p.equals(BigInteger.ZERO) || p.equals(n)) {\n\t\t\t\t\tbreak;\n\
     \t\t\t\t}\n\t\t\t\tif(!p.equals(BigInteger.ONE)) {\n\t\t\t\t\treturn p;\n\t\t\t\
     \t}\n\t\t\t\tx = f.apply(x, st);\n\t\t\t\ty = f.apply(f.apply(y, st), st);\n\t\
-    \t\t}\n\t\t}\n\t}\n\tfinal ArrayList<BigInteger> primeFactor(final BigInteger\
+    \t\t}\n\t\t}\n\t}\n\tpublic final ArrayList<BigInteger> primeFactor(final BigInteger\
     \ n) {\n\t\tif(n.equals(BigInteger.ONE)) {\n\t\t\treturn new ArrayList<>();\n\t\
     \t}\n\t\tfinal BigInteger x = find(n);\n\t\tif(x.equals(n)) {\n\t\t\treturn new\
     \ ArrayList<>(Arrays.asList(x));\n\t\t}\n\t\tfinal ArrayList<BigInteger> l = primeFactor(x),\
@@ -358,7 +358,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/math/BigPrime.java

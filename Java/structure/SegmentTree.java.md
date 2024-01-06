@@ -241,33 +241,34 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/structure/SegmentTree.java\n"
   code: "package library.structure;\n\nimport java.util.Arrays;\nimport java.util.function.BinaryOperator;\n\
-    import java.util.function.Predicate;\n\nfinal class SegmentTree<T extends Number>\
-    \ {\n\tprivate int n = 1, rank = 0, fini;\n\tprivate final BinaryOperator<T> op;\n\
-    \tprivate final T e;\n\tprivate final Object[] dat;\n\tSegmentTree(final int fini,\
-    \ final BinaryOperator<T> op, final T e) {\n\t\tthis.fini = fini;\n\t\tthis.op\
-    \ = op;\n\t\tthis.e = e;\n\t\twhile(this.fini > n) {\n\t\t\tn <<= 1;\n\t\t\trank++;\n\
-    \t\t}\n\t\tdat = new Object[2 * n];\n\t\tArrays.fill(dat, e);\n\t}\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tfinal void update(int i, final T x) {\n\t\ti += n;\n\t\tdat[i]\
-    \ = x;\n\t\tdo {\n\t\t\ti >>= 1;\n\t\t\tdat[i] = op.apply((T) dat[2 * i], (T)\
-    \ dat[2 * i + 1]);\n\t\t} while(i > 0);\n\t}\n\t@SuppressWarnings(\"unchecked\"\
-    )\n\tfinal T query(int a, int b) {\n\t\tT l = e, r = e;\n\t\tfor(a += n, b +=\
-    \ n; a < b; a >>= 1, b >>= 1) {\n\t\t\tif(a % 2 == 1) {\n\t\t\t\tl = op.apply(l,\
-    \ (T) dat[a++]);\n\t\t\t}\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tr = op.apply((T) dat[--b],\
-    \ r);\n\t\t\t}\n\t\t}\n\t\treturn op.apply(l, r);\n\t}\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tfinal int findLeft(final int r, final Predicate<T> fn) {\n\t\t\
-    if(r == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint h = 0, i = r + n;\n\t\tT val = e;\n\
-    \t\tfor(; h <= rank; h++) {\n\t\t\tif(i >> (h & 1) > 0) {\n\t\t\t\tfinal T val2\
-    \ = op.apply(val, (T) dat[i >> (h ^ 1)]);\n\t\t\t\tif(fn.test(val2)){\n\t\t\t\t\
-    \ti -= 1 << h;\n\t\t\t\t\tif(i == n) {\n\t\t\t\t\t\treturn 0;\n\t\t\t\t\t}\n\t\
-    \t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\
-    \t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\tfinal T val2 = op.apply(val, (T) dat[(i\
-    \ >> h) - 1]);\n\t\t\tif(fn.test(val2)){\n\t\t\t\ti -= 1 << h;\n\t\t\t\tif(i ==\
-    \ n) {\n\t\t\t\t\treturn 0;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t}\n\t\t}\n\t\
-    \treturn i - n;\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal int findRight(final\
-    \ int l, final Predicate<T> fn) {\n\t\tif(l == fini) {\n\t\t\treturn fini;\n\t\
-    \t}\n\t\tint h = 0, i = l + n;\n\t\tT val = e;\n\t\tfor(; h <= rank; h++) {\n\t\
-    \t\tif(i >> (h & 1) > 0){\n\t\t\t\tfinal T val2 = op.apply(val, (T) dat[i >> h]);\n\
-    \t\t\t\tif(fn.test(val2)){\n\t\t\t\t\ti += 1 << h;\n\t\t\t\t\tif(i == n * 2) {\n\
+    import java.util.function.Predicate;\n\npublic final class SegmentTree<T extends\
+    \ Number> {\n\tprivate int n = 1, rank = 0, fini;\n\tprivate final BinaryOperator<T>\
+    \ op;\n\tprivate final T e;\n\tprivate final Object[] dat;\n\tpublic SegmentTree(final\
+    \ int fini, final BinaryOperator<T> op, final T e) {\n\t\tthis.fini = fini;\n\t\
+    \tthis.op = op;\n\t\tthis.e = e;\n\t\twhile(this.fini > n) {\n\t\t\tn <<= 1;\n\
+    \t\t\trank++;\n\t\t}\n\t\tdat = new Object[2 * n];\n\t\tArrays.fill(dat, e);\n\
+    \t}\n\t@SuppressWarnings(\"unchecked\")\n\tpublic final void update(int i, final\
+    \ T x) {\n\t\ti += n;\n\t\tdat[i] = x;\n\t\tdo {\n\t\t\ti >>= 1;\n\t\t\tdat[i]\
+    \ = op.apply((T) dat[2 * i], (T) dat[2 * i + 1]);\n\t\t} while(i > 0);\n\t}\n\t\
+    @SuppressWarnings(\"unchecked\")\n\tpublic final T query(int a, int b) {\n\t\t\
+    T l = e, r = e;\n\t\tfor(a += n, b += n; a < b; a >>= 1, b >>= 1) {\n\t\t\tif(a\
+    \ % 2 == 1) {\n\t\t\t\tl = op.apply(l, (T) dat[a++]);\n\t\t\t}\n\t\t\tif(b % 2\
+    \ == 1) {\n\t\t\t\tr = op.apply((T) dat[--b], r);\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ op.apply(l, r);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tpublic final int\
+    \ findLeft(final int r, final Predicate<T> fn) {\n\t\tif(r == 0) {\n\t\t\treturn\
+    \ 0;\n\t\t}\n\t\tint h = 0, i = r + n;\n\t\tT val = e;\n\t\tfor(; h <= rank; h++)\
+    \ {\n\t\t\tif(i >> (h & 1) > 0) {\n\t\t\t\tfinal T val2 = op.apply(val, (T) dat[i\
+    \ >> (h ^ 1)]);\n\t\t\t\tif(fn.test(val2)){\n\t\t\t\t\ti -= 1 << h;\n\t\t\t\t\t\
+    if(i == n) {\n\t\t\t\t\t\treturn 0;\n\t\t\t\t\t}\n\t\t\t\t\tval = val2;\n\t\t\t\
+    \t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h--\
+    \ > 0;) {\n\t\t\tfinal T val2 = op.apply(val, (T) dat[(i >> h) - 1]);\n\t\t\t\
+    if(fn.test(val2)){\n\t\t\t\ti -= 1 << h;\n\t\t\t\tif(i == n) {\n\t\t\t\t\treturn\
+    \ 0;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t}\n\t\t}\n\t\treturn i - n;\n\t}\n\
+    \t@SuppressWarnings(\"unchecked\")\n\tpublic final int findRight(final int l,\
+    \ final Predicate<T> fn) {\n\t\tif(l == fini) {\n\t\t\treturn fini;\n\t\t}\n\t\
+    \tint h = 0, i = l + n;\n\t\tT val = e;\n\t\tfor(; h <= rank; h++) {\n\t\t\tif(i\
+    \ >> (h & 1) > 0){\n\t\t\t\tfinal T val2 = op.apply(val, (T) dat[i >> h]);\n\t\
+    \t\t\tif(fn.test(val2)){\n\t\t\t\t\ti += 1 << h;\n\t\t\t\t\tif(i == n * 2) {\n\
     \t\t\t\t\t\treturn fini;\n\t\t\t\t\t}\n\t\t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\
     \telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\
     \t\t\tfinal T val2 = op.apply(val, (T) dat[i>>h]);\n\t\t\tif(fn.test(val2)) {\n\
@@ -354,7 +355,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/SegmentTree.java

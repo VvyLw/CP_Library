@@ -240,7 +240,7 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/structure/AVLTree.java\n"
-  code: "package library.structure;\n\nfinal class AVLTree<T extends Comparable<?\
+  code: "package library.structure;\n\npublic final class AVLTree<T extends Comparable<?\
     \ super T>> {\n\tstatic final class Node<T extends Comparable<? super T>> {\n\t\
     \tT val;\n\t\t@SuppressWarnings(\"unchecked\")\n\t\tNode<T>[] ch = new Node[2];\n\
     \t\tint dep, size;\n\t\tNode(final T val, Node<T> l, Node<T> r) {\n\t\t\tthis.val\
@@ -277,15 +277,15 @@ data:
     private final int cnt(final Node<T> t, final T v) {\n\t\tif(t == null) {\n\t\t\
     \treturn 0;\n\t\t}\n\t\tif(t.val.compareTo(v) < 0) {\n\t\t\treturn count(t.ch[0])\
     \ + 1 + cnt(t.ch[1], v);\n\t\t}\n\t\tif(t.val.equals(v)) {\n\t\t\treturn count(t.ch[0]);\n\
-    \t\t}\n\t\treturn cnt(t.ch[0], v);\n\t}\n\tAVLTree(){ root = null; }\n\tfinal\
-    \ void add(final T val){ root = insert(root, cnt(root, val), val); }\n\tfinal\
-    \ void remove(final int k){ root = erase(root, k); }\n\tfinal T get(final int\
-    \ k){ return find(root, k).val; }\n\tfinal int count(final T val){ return cnt(root,\
-    \ val); }\n\tfinal int size(){ return root.size; }\n\t@Override\n\tpublic final\
-    \ String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\t\
-    sb.append(get(0));\n\t\tfor(int i = 0; ++i < root.size;) {\n\t\t\tsb.append(\"\
-    \ \");\n\t\t\tsb.append(get(i));\n\t\t}\n\t\treturn \"[\" + sb.toString() + \"\
-    ]\";\n\t}\n}"
+    \t\t}\n\t\treturn cnt(t.ch[0], v);\n\t}\n\tpublic AVLTree(){ root = null; }\n\t\
+    public final void add(final T val){ root = insert(root, cnt(root, val), val);\
+    \ }\n\tpublic final void remove(final int k){ root = erase(root, k); }\n\tpublic\
+    \ final T get(final int k){ return find(root, k).val; }\n\tpublic final int count(final\
+    \ T val){ return cnt(root, val); }\n\tpublic final int size(){ return root.size;\
+    \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
+    \ sb = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i <\
+    \ root.size;) {\n\t\t\tsb.append(\" \");\n\t\t\tsb.append(get(i));\n\t\t}\n\t\t\
+    return \"[\" + sb.toString() + \"]\";\n\t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -366,7 +366,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/AVLTree.java

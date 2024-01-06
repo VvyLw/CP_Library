@@ -242,21 +242,22 @@ data:
     RuntimeError: bundler is not specified: Java/structure/pair/FloatPair.java\n"
   code: "package library.structure.pair;\nimport library.core.Utility;\n\npublic final\
     \ class FloatPair extends Pair<Double, Double> {\n\tFloatPair(final double first,\
-    \ final double second){ super(first, second); }\n\tfinal FloatPair add(final FloatPair\
-    \ p){ return new FloatPair(first + p.first, second + p.second); }\n\tfinal FloatPair\
-    \ sub(final FloatPair p){ return new FloatPair(first - p.first, second - p.second);\
-    \ }\n\tfinal FloatPair mul(final FloatPair p){ return new FloatPair(first * p.first,\
-    \ second * p.second); }\n\tfinal FloatPair div(final FloatPair p){ return new\
-    \ FloatPair(first / p.first, second / p.second); }\n\tfinal FloatPair rotate(){\
-    \ return new FloatPair(-second, first); } \n\tfinal FloatPair rotate(final int\
-    \ ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\t\
-    return new FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad)\
-    \ + second * Math.cos(rad));\n\t}\n\tfinal double dot(final FloatPair p){ return\
-    \ first * p.first + second * p.second; }\n\tfinal double cross(final FloatPair\
-    \ p){ return rotate().dot(p); }\n\tfinal double sqr(){ return dot(this); }\n\t\
-    final double grad() { \n\t\ttry {\n\t\t\treturn second / first;\n\t\t} catch(ArithmeticException\
-    \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn Double.NaN;\n\t}\n\tfinal\
-    \ double abs(){ return Math.hypot(first, second); }\n}"
+    \ final double second){ super(first, second); }\n\tpublic final FloatPair add(final\
+    \ FloatPair p){ return new FloatPair(first + p.first, second + p.second); }\n\t\
+    public final FloatPair sub(final FloatPair p){ return new FloatPair(first - p.first,\
+    \ second - p.second); }\n\tpublic final FloatPair mul(final FloatPair p){ return\
+    \ new FloatPair(first * p.first, second * p.second); }\n\tpublic final FloatPair\
+    \ div(final FloatPair p){ return new FloatPair(first / p.first, second / p.second);\
+    \ }\n\tpublic final FloatPair rotate(){ return new FloatPair(-second, first);\
+    \ } \n\tpublic final FloatPair rotate(final int ang) {\n\t\tfinal double rad =\
+    \ Math.toRadians(Utility.mod(ang, 360));\n\t\treturn new FloatPair(first * Math.cos(rad)\
+    \ - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));\n\
+    \t}\n\tpublic final double dot(final FloatPair p){ return first * p.first + second\
+    \ * p.second; }\n\tpublic final double cross(final FloatPair p){ return rotate().dot(p);\
+    \ }\n\tpublic final double sqr(){ return dot(this); }\n\tpublic final double grad()\
+    \ { \n\t\ttry {\n\t\t\treturn second / first;\n\t\t} catch(ArithmeticException\
+    \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn Double.NaN;\n\t}\n\tpublic\
+    \ final double abs(){ return Math.hypot(first, second); }\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -337,7 +338,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/pair/FloatPair.java

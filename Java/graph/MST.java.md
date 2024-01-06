@@ -240,8 +240,8 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/graph/MST.java\n"
-  code: "package library.graph;\n\nimport java.util.ArrayList;\n\nfinal class MST\
-    \ {\n\tpublic final ArrayList<Edge> tree;\n\tpublic final long cost;\n\tMST(final\
+  code: "package library.graph;\n\nimport java.util.ArrayList;\n\npublic final class\
+    \ MST {\n\tpublic final ArrayList<Edge> tree;\n\tpublic final long cost;\n\tMST(final\
     \ ArrayList<Edge> tree, final long cost) {\n\t\tthis.tree = tree;\n\t\tthis.cost\
     \ = cost;\n\t}\n}"
   dependsOn:
@@ -324,7 +324,7 @@ data:
   - Java/graph/Edge.java
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/graph/MST.java

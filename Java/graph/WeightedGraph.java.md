@@ -245,58 +245,59 @@ data:
     import java.util.function.IntUnaryOperator;\nimport java.util.stream.Collectors;\n\
     import java.util.stream.IntStream;\n\nimport library.core.VvyLw;\nimport library.other.SkewHeap;\n\
     import library.structure.pair.IntPair;\nimport library.structure.unionfind.UnionFind;\n\
-    \nfinal class WeightedGraph extends Graph {\n\tWeightedGraph(final int n, final\
-    \ int indexed, final boolean undirected){ super(n, indexed, undirected); }\n\t\
-    final void addEdge(int a, int b, final long cost) {\n\t\ta -= indexed;\n\t\tb\
-    \ -= indexed;\n\t\tthis.get(a).add(new Edge(b, cost));\n\t\tedge.add(new Edge(a,\
+    \npublic final class WeightedGraph extends Graph {\n\tpublic WeightedGraph(final\
+    \ int n, final int indexed, final boolean undirected){ super(n, indexed, undirected);\
+    \ }\n\tpublic final void addEdge(int a, int b, final long cost) {\n\t\ta -= indexed;\n\
+    \t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(b, cost));\n\t\tedge.add(new Edge(a,\
     \ b, cost));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new Edge(a, cost));\n\
-    \t\t\tedge.add(new Edge(b, a, cost));\n\t\t}\n\t}\n\tfinal void input(final int\
-    \ m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni(),\
-    \ VvyLw.sc.ni())); }\n\tfinal long[] dijkstra(final int v) {\n\t\tfinal long[]\
-    \ cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tfinal Queue<IntPair>\
-    \ dj = new PriorityQueue<>();\n\t\tcost[v] = 0;\n\t\tdj.add(new IntPair(cost[v],\
-    \ v));\n\t\twhile(!dj.isEmpty()) {\n\t\t\tfinal IntPair tmp = dj.poll();\n\t\t\
-    \tif(cost[tmp.second.intValue()] < tmp.first.longValue()) {\n\t\t\t\tcontinue;\n\
-    \t\t\t}\n\t\t\tfor(final Edge el: this.get(tmp.second.intValue())) {\n\t\t\t\t\
-    if(cost[el.to] > tmp.first.longValue() + el.cost) {\n\t\t\t\t\tcost[el.to] = tmp.first.longValue()\
-    \ + el.cost;\n\t\t\t\t\tdj.add(new IntPair(cost[el.to], el.to));\n\t\t\t\t}\n\t\
-    \t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[] bellmanFord(final int v) {\n\
-    \t\tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
-    \t\tcost[v] = 0;\n\t\tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final\
-    \ Edge e: edge) {\n\t\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\t\tcontinue;\n\
-    \t\t\t\t}\n\t\t\t\tif(cost[e.to] > cost[e.src] + e.cost) {\n\t\t\t\t\tcost[e.to]\
-    \ = cost[e.src] + e.cost;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(final Edge e: edge)\
-    \ {\n\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\
-    \t\tif(cost[e.src] + e.cost < cost[e.to]) {\n\t\t\t\treturn null;\n\t\t\t}\n\t\
-    \t}\n\t\treturn cost;\n\t}\n\tfinal long[][] warshallFloyd() {\n\t\tfinal long[][]\
-    \ cost = new long[n][n];\n\t\tIntStream.range(0, n).forEach(i -> Arrays.fill(cost[i],\
-    \ VvyLw.linf));\n\t\tIntStream.range(0, n).forEach(i -> cost[i][i] = 0);\n\t\t\
-    for(int i = 0; i < n; ++i) {\n\t\t\tfor(final Edge j: this.get(i)) {\n\t\t\t\t\
-    cost[i][j.to] = j.cost;\n\t\t\t}\n\t\t}\n\t\tfor(int k = 0; k < n; ++k) {\n\t\t\
-    \tfor(int i = 0; i < n; ++i) {\n\t\t\t\tfor(int j = 0; j < n; ++j) {\n\t\t\t\t\
-    \tif(cost[i][k] == VvyLw.linf || cost[k][j] == VvyLw.linf) {\n\t\t\t\t\t\tcontinue;\n\
-    \t\t\t\t\t}\n\t\t\t\t\tif(cost[i][j] > cost[i][k] + cost[k][j]) {\n\t\t\t\t\t\t\
-    cost[i][j] = cost[i][k] + cost[k][j];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
-    \t\treturn cost;\n\t}\n\tfinal MST kruskal() {\n\t\tfinal UnionFind uf = new UnionFind(n);\n\
-    \t\tfinal ArrayList<Edge> e = new ArrayList<>();\n\t\tlong res = 0;\n\t\tfor(final\
-    \ Edge ed: edge.stream().sorted(Comparator.comparing(ed -> ed.cost)).collect(Collectors.toList()))\
-    \ {\n\t\t\tif(uf.unite(ed.src, ed.to)) {\n\t\t\t\te.add(ed);\n\t\t\t\tres += ed.cost;\n\
-    \t\t\t}\n\t\t}\n\t\treturn new MST(e, res);\n\t}\n\tfinal MST directed(final int\
-    \ v) {\n\t\t@SuppressWarnings(\"unchecked\")\n\t\tfinal ArrayList<Edge> ed = (ArrayList<Edge>)\
-    \ edge.clone();\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(i != v) {\n\t\t\t\t\
-    ed.add(new Edge(i, v, 0));\n\t\t\t}\n\t\t}\n\t\tint x = 0;\n\t\tfinal int[] par\
-    \ = new int[2 * n], vis = new int[2 * n], link = new int[2 * n];\n\t\tArrays.fill(par,\
-    \ -1);\n\t\tArrays.fill(vis, -1);\n\t\tArrays.fill(link, -1);\n\t\tfinal SkewHeap\
-    \ heap = new SkewHeap(true);\n\t\tfinal SkewHeap.Node[] ins = new SkewHeap.Node[2\
-    \ * n];\n\t\tArrays.fill(ins, null);\n\t\tfor(int i = 0; i < ed.size(); i++) {\n\
-    \t\t\tfinal Edge e = ed.get(i);\n\t\t\tins[e.to] = heap.push(ins[e.to], e.cost,\
-    \ i);\n\t\t}\n\t\tfinal ArrayList<Integer> st = new ArrayList<>();\n\t\tfinal\
-    \ IntUnaryOperator go = z -> {\n\t\t\tz = ed.get(ins[z].idx).src;\n\t\t\twhile(link[z]\
-    \ != -1) {\n\t\t\t\tst.add(z);\n\t\t\t\tz = link[z];\n\t\t\t}\n\t\t\tfor(final\
-    \ int p: st) {\n\t\t\t\tlink[p] = z;\n\t\t\t}\n\t\t\tst.clear();\n\t\t\treturn\
-    \ z;\n\t\t};\n\t\tfor(int i = n; ins[x] != null; ++i) {\n\t\t\twhile(vis[x] ==\
-    \ -1) {\n\t\t\t\tvis[x] = 0;\n\t\t\t\tx = go.applyAsInt(x);\n\t\t\t}\n\t\t\twhile(x\
-    \ != i) {\n\t\t\t\tfinal long w = ins[x].key;\n\t\t\t\tSkewHeap.Node z = heap.pop(ins[x]);\n\
+    \t\t\tedge.add(new Edge(b, a, cost));\n\t\t}\n\t}\n\tpublic final void input(final\
+    \ int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni(),\
+    \ VvyLw.sc.ni())); }\n\tpublic final long[] dijkstra(final int v) {\n\t\tfinal\
+    \ long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tfinal\
+    \ Queue<IntPair> dj = new PriorityQueue<>();\n\t\tcost[v] = 0;\n\t\tdj.add(new\
+    \ IntPair(cost[v], v));\n\t\twhile(!dj.isEmpty()) {\n\t\t\tfinal IntPair tmp =\
+    \ dj.poll();\n\t\t\tif(cost[tmp.second.intValue()] < tmp.first.longValue()) {\n\
+    \t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final Edge el: this.get(tmp.second.intValue()))\
+    \ {\n\t\t\t\tif(cost[el.to] > tmp.first.longValue() + el.cost) {\n\t\t\t\t\tcost[el.to]\
+    \ = tmp.first.longValue() + el.cost;\n\t\t\t\t\tdj.add(new IntPair(cost[el.to],\
+    \ el.to));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tpublic final long[]\
+    \ bellmanFord(final int v) {\n\t\tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost,\
+    \ Long.MAX_VALUE);\n\t\tcost[v] = 0;\n\t\tfor(int i = 0; i < edge.size() - 1;\
+    \ ++i) {\n\t\t\tfor(final Edge e: edge) {\n\t\t\t\tif(cost[e.src] == Long.MAX_VALUE)\
+    \ {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\tif(cost[e.to] > cost[e.src] + e.cost)\
+    \ {\n\t\t\t\t\tcost[e.to] = cost[e.src] + e.cost;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
+    \t\tfor(final Edge e: edge) {\n\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\
+    \t\tcontinue;\n\t\t\t}\n\t\t\tif(cost[e.src] + e.cost < cost[e.to]) {\n\t\t\t\t\
+    return null;\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tpublic final long[][] warshallFloyd()\
+    \ {\n\t\tfinal long[][] cost = new long[n][n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> Arrays.fill(cost[i], VvyLw.linf));\n\t\tIntStream.range(0, n).forEach(i ->\
+    \ cost[i][i] = 0);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final Edge j:\
+    \ this.get(i)) {\n\t\t\t\tcost[i][j.to] = j.cost;\n\t\t\t}\n\t\t}\n\t\tfor(int\
+    \ k = 0; k < n; ++k) {\n\t\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\tfor(int j\
+    \ = 0; j < n; ++j) {\n\t\t\t\t\tif(cost[i][k] == VvyLw.linf || cost[k][j] == VvyLw.linf)\
+    \ {\n\t\t\t\t\t\tcontinue;\n\t\t\t\t\t}\n\t\t\t\t\tif(cost[i][j] > cost[i][k]\
+    \ + cost[k][j]) {\n\t\t\t\t\t\tcost[i][j] = cost[i][k] + cost[k][j];\n\t\t\t\t\
+    \t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tpublic final MST kruskal()\
+    \ {\n\t\tfinal UnionFind uf = new UnionFind(n);\n\t\tfinal ArrayList<Edge> e =\
+    \ new ArrayList<>();\n\t\tlong res = 0;\n\t\tfor(final Edge ed: edge.stream().sorted(Comparator.comparing(ed\
+    \ -> ed.cost)).collect(Collectors.toList())) {\n\t\t\tif(uf.unite(ed.src, ed.to))\
+    \ {\n\t\t\t\te.add(ed);\n\t\t\t\tres += ed.cost;\n\t\t\t}\n\t\t}\n\t\treturn new\
+    \ MST(e, res);\n\t}\n\tpublic final MST directed(final int v) {\n\t\t@SuppressWarnings(\"\
+    unchecked\")\n\t\tfinal ArrayList<Edge> ed = (ArrayList<Edge>) edge.clone();\n\
+    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(i != v) {\n\t\t\t\ted.add(new Edge(i,\
+    \ v, 0));\n\t\t\t}\n\t\t}\n\t\tint x = 0;\n\t\tfinal int[] par = new int[2 * n],\
+    \ vis = new int[2 * n], link = new int[2 * n];\n\t\tArrays.fill(par, -1);\n\t\t\
+    Arrays.fill(vis, -1);\n\t\tArrays.fill(link, -1);\n\t\tfinal SkewHeap heap = new\
+    \ SkewHeap(true);\n\t\tfinal SkewHeap.Node[] ins = new SkewHeap.Node[2 * n];\n\
+    \t\tArrays.fill(ins, null);\n\t\tfor(int i = 0; i < ed.size(); i++) {\n\t\t\t\
+    final Edge e = ed.get(i);\n\t\t\tins[e.to] = heap.push(ins[e.to], e.cost, i);\n\
+    \t\t}\n\t\tfinal ArrayList<Integer> st = new ArrayList<>();\n\t\tfinal IntUnaryOperator\
+    \ go = z -> {\n\t\t\tz = ed.get(ins[z].idx).src;\n\t\t\twhile(link[z] != -1) {\n\
+    \t\t\t\tst.add(z);\n\t\t\t\tz = link[z];\n\t\t\t}\n\t\t\tfor(final int p: st)\
+    \ {\n\t\t\t\tlink[p] = z;\n\t\t\t}\n\t\t\tst.clear();\n\t\t\treturn z;\n\t\t};\n\
+    \t\tfor(int i = n; ins[x] != null; ++i) {\n\t\t\twhile(vis[x] == -1) {\n\t\t\t\
+    \tvis[x] = 0;\n\t\t\t\tx = go.applyAsInt(x);\n\t\t\t}\n\t\t\twhile(x != i) {\n\
+    \t\t\t\tfinal long w = ins[x].key;\n\t\t\t\tSkewHeap.Node z = heap.pop(ins[x]);\n\
     \t\t\t\tz = heap.add(z, -w);\n\t\t\t\tins[i] = heap.meld(ins[i], z);\n\t\t\t\t\
     par[x] = i;\n\t\t\t\tlink[x] = i;\n\t\t\t\tx = go.applyAsInt(x);\n\t\t\t}\n\t\t\
     \twhile(ins[x] != null && go.applyAsInt(x) == x) {\n\t\t\t\tins[x] = heap.pop(ins[x]);\n\
@@ -386,7 +387,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/graph/WeightedGraph.java

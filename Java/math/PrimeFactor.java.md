@@ -241,13 +241,14 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/math/PrimeFactor.java\n"
   code: "package library.math;\n\nimport java.util.TreeMap;\n\nimport library.core.Utility;\n\
-    \nfinal class PrimeFactor {\n\tprivate final int[] spf;\n\tPrimeFactor(final int\
-    \ n) {\n\t\tspf = Utility.iota(n + 1);\n\t\tfor(int i = 2; i * i <= n; ++i) {\n\
-    \t\t\tif(spf[i] == i) {\n\t\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\t\
-    \tif(spf[j] == j) {\n\t\t\t\t\t\tspf[j] = i;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\
-    \t\t}\n\t}\n\tfinal TreeMap<Integer, Integer> get(int n) {\n\t\tfinal TreeMap<Integer,\
-    \ Integer> m = new TreeMap<>();\n\t\twhile(n != 1) {\n\t\t\tm.merge(spf[n], 1,\
-    \ (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\t\t}\n\t\treturn m;\n\t}\n}\n"
+    \npublic final class PrimeFactor {\n\tprivate final int[] spf;\n\tpublic PrimeFactor(final\
+    \ int n) {\n\t\tspf = Utility.iota(n + 1);\n\t\tfor(int i = 2; i * i <= n; ++i)\
+    \ {\n\t\t\tif(spf[i] == i) {\n\t\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\
+    \t\t\t\tif(spf[j] == j) {\n\t\t\t\t\t\tspf[j] = i;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\
+    \t\t}\n\t\t}\n\t}\n\tpublic final TreeMap<Integer, Integer> get(int n) {\n\t\t\
+    final TreeMap<Integer, Integer> m = new TreeMap<>();\n\t\twhile(n != 1) {\n\t\t\
+    \tm.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\t\t}\n\t\treturn\
+    \ m;\n\t}\n}\n"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -328,7 +329,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/math/PrimeFactor.java

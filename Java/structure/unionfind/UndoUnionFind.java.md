@@ -241,19 +241,20 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/structure/unionfind/UndoUnionFind.java\n"
   code: "package library.structure.unionfind;\n\nimport java.util.Arrays;\nimport\
-    \ java.util.Stack;\n\nimport library.structure.pair.Pair;\n\nfinal class UndoUnionFind\
-    \ {\n\tprivate final int[] par;\n\tprivate final Stack<Pair<Integer, Integer>>\
-    \ his;\n\tUndoUnionFind(final int n) {\n\t    par = new int[n];\n\t    Arrays.fill(par,\
-    \ -1);\n\t    his = new Stack<>();\n\t}\n\tfinal boolean unite(int x, int y) {\n\
-    \t\tx = root(x);\n\t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\t\this.add(Pair.of(y,\
-    \ par[y]));\n\t\tif(x == y) {\n\t\t\treturn false;\n\t\t}\n\t\tif(par[x] > par[y])\
-    \ {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t}\n\t\tpar[x] += par[y];\n\
-    \t\tpar[y] = x;\n\t\treturn true;\n\t}\n\tfinal int root(final int i) {\n\t\t\
-    if(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\t\treturn root(par[i]);\n\t}\n\tfinal\
-    \ int size(final int i){ return -par[root(i)]; }\n\tfinal void undo() {\n\t\t\
-    final Pair<Integer, Integer> pop1 = his.pop(), pop2 = his.pop();\n\t\tpar[pop1.first]\
-    \ = pop1.second;\n\t\tpar[pop2.first] = pop2.second;\n\t}\n\tfinal void snapshot()\
-    \ {\n\t\twhile(!his.empty()) {\n\t\t\this.pop();\n\t\t}\n\t}\n\tfinal void rollback()\
+    \ java.util.Stack;\n\nimport library.structure.pair.Pair;\n\npublic final class\
+    \ UndoUnionFind {\n\tprivate final int[] par;\n\tprivate final Stack<Pair<Integer,\
+    \ Integer>> his;\n\tpublic UndoUnionFind(final int n) {\n\t    par = new int[n];\n\
+    \t    Arrays.fill(par, -1);\n\t    his = new Stack<>();\n\t}\n\tpublic final boolean\
+    \ unite(int x, int y) {\n\t\tx = root(x);\n\t\ty = root(y);\n\t\this.add(Pair.of(x,\
+    \ par[x]));\n\t\this.add(Pair.of(y, par[y]));\n\t\tif(x == y) {\n\t\t\treturn\
+    \ false;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\
+    \tx ^= y;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\treturn true;\n\t\
+    }\n\tpublic final int root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn\
+    \ i;\n\t\t}\n\t\treturn root(par[i]);\n\t}\n\tpublic final int size(final int\
+    \ i){ return -par[root(i)]; }\n\tpublic final void undo() {\n\t\tfinal Pair<Integer,\
+    \ Integer> pop1 = his.pop(), pop2 = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\
+    \t\tpar[pop2.first] = pop2.second;\n\t}\n\tpublic final void snapshot() {\n\t\t\
+    while(!his.empty()) {\n\t\t\this.pop();\n\t\t}\n\t}\n\tpublic final void rollback()\
     \ {\n\t\twhile(!his.empty()) {\n\t\t\tundo();\n\t\t}\n\t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
@@ -335,7 +336,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/unionfind/UndoUnionFind.java

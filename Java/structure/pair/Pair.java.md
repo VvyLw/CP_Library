@@ -252,10 +252,10 @@ data:
     \ }\n\t@Override\n\tpublic final String toString(){ return \"(\" + first + \"\
     , \" + second + \")\"; }\n\tpublic static final <F extends Comparable<? super\
     \ F>, S extends Comparable<? super S>> Pair<F, S> of(final F a, final S b){ return\
-    \ new Pair<>(a, b); }\n\tfinal Pair<S, F> swap(){ return Pair.of(second, first);\
-    \ }\n\t@Override\n\tpublic final int compareTo(final Pair<F, S> p) {\n\t\tif(first.compareTo(p.first)\
-    \ == 0) {\n\t\t\treturn second.compareTo(p.second);\n\t\t}\n\t\treturn first.compareTo(p.first);\n\
-    \t}\n}"
+    \ new Pair<>(a, b); }\n\tpublic final Pair<S, F> swap(){ return Pair.of(second,\
+    \ first); }\n\t@Override\n\tpublic final int compareTo(final Pair<F, S> p) {\n\
+    \t\tif(first.compareTo(p.first) == 0) {\n\t\t\treturn second.compareTo(p.second);\n\
+    \t\t}\n\t\treturn first.compareTo(p.first);\n\t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -336,7 +336,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/pair/Pair.java

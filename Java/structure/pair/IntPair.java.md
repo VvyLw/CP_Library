@@ -242,29 +242,29 @@ data:
     RuntimeError: bundler is not specified: Java/structure/pair/IntPair.java\n"
   code: "package library.structure.pair;\n\nimport library.core.Utility;\n\npublic\
     \ final class IntPair extends Pair<Long, Long> {\n\tpublic IntPair(final long\
-    \ first, final long second){ super(first, second); }\n\tfinal IntPair add(final\
-    \ IntPair p){ return new IntPair(first + p.first, second + p.second); }\n\tfinal\
-    \ IntPair sub(final IntPair p){ return new IntPair(first - p.first, second - p.second);\
-    \ }\n\tfinal IntPair mul(final IntPair p){ return new IntPair(first * p.first,\
-    \ second * p.second); }\n\tfinal IntPair div(final IntPair p){ return new IntPair(first\
-    \ / p.first, second / p.second); }\n\tfinal IntPair mod(final IntPair p){ return\
-    \ new IntPair(first % p.first, second % p.second); }\n\tfinal IntPair rotate(){\
-    \ return new IntPair(-second, first); } \n\tfinal FloatPair rotate(final int ang)\
-    \ {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn\
-    \ new FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad)\
-    \ + second * Math.cos(rad));\n\t}\n\tfinal long dot(final IntPair p){ return first\
-    \ * p.first + second * p.second; }\n\tfinal long cross(final IntPair p){ return\
-    \ rotate().dot(p); }\n\tfinal long sqr(){ return dot(this); }\n\tfinal double\
-    \ grad() { \n\t\ttry {\n\t\t\treturn 1.0 * second / first;\n\t\t} catch(ArithmeticException\
-    \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn Double.NaN;\n\t}\n\tfinal\
-    \ double abs(){ return Math.hypot(first, second); }\n\tfinal long lcm(){ return\
-    \ Utility.lcm(first, second); }\n\tfinal long gcd(){ return Utility.gcd(first,\
-    \ second); }\n\tfinal IntPair extgcd() {\n\t\tlong x = 1, y = 0, t1 = 0, t2 =\
-    \ 0, t3 = 1, a = first, b = second;\n\t\twhile(b > 0) {\n\t\t\tt1 = a / b;\n\t\
-    \t\ta -= t1 * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\t\tx -= t1 *\
-    \ t2;\n\t\t\tx ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^= t2;\n\t\t\ty -= t1 * t3;\n\t\
-    \t\ty ^= t3;\n\t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\t}\n\t\treturn new IntPair(x,\
-    \ y);\n\t}\n}"
+    \ first, final long second){ super(first, second); }\n\tpublic final IntPair add(final\
+    \ IntPair p){ return new IntPair(first + p.first, second + p.second); }\n\tpublic\
+    \ final IntPair sub(final IntPair p){ return new IntPair(first - p.first, second\
+    \ - p.second); }\n\tpublic final IntPair mul(final IntPair p){ return new IntPair(first\
+    \ * p.first, second * p.second); }\n\tpublic final IntPair div(final IntPair p){\
+    \ return new IntPair(first / p.first, second / p.second); }\n\tpublic final IntPair\
+    \ mod(final IntPair p){ return new IntPair(first % p.first, second % p.second);\
+    \ }\n\tpublic final IntPair rotate(){ return new IntPair(-second, first); } \n\
+    \tpublic final FloatPair rotate(final int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang,\
+    \ 360));\n\t\treturn new FloatPair(first * Math.cos(rad) - second * Math.sin(rad),\
+    \ first * Math.sin(rad) + second * Math.cos(rad));\n\t}\n\tpublic final long dot(final\
+    \ IntPair p){ return first * p.first + second * p.second; }\n\tpublic final long\
+    \ cross(final IntPair p){ return rotate().dot(p); }\n\tpublic final long sqr(){\
+    \ return dot(this); }\n\tpublic final double grad() { \n\t\ttry {\n\t\t\treturn\
+    \ 1.0 * second / first;\n\t\t} catch(ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
+    \t\t}\n\t\treturn Double.NaN;\n\t}\n\tpublic final double abs(){ return Math.hypot(first,\
+    \ second); }\n\tpublic final long lcm(){ return Utility.lcm(first, second); }\n\
+    \tpublic final long gcd(){ return Utility.gcd(first, second); }\n\tpublic final\
+    \ IntPair extgcd() {\n\t\tlong x = 1, y = 0, t1 = 0, t2 = 0, t3 = 1, a = first,\
+    \ b = second;\n\t\twhile(b > 0) {\n\t\t\tt1 = a / b;\n\t\t\ta -= t1 * b;\n\t\t\
+    \ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\t\tx -= t1 * t2;\n\t\t\tx ^= t2;\n\
+    \t\t\tt2 ^= x;\n\t\t\tx ^= t2;\n\t\t\ty -= t1 * t3;\n\t\t\ty ^= t3;\n\t\t\tt3\
+    \ ^= y;\n\t\t\ty ^= t3;\n\t\t}\n\t\treturn new IntPair(x, y);\n\t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -345,7 +345,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/pair/IntPair.java

@@ -241,12 +241,13 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/other/InclusiveScan.java\n"
   code: "package library.other;\n\nimport java.util.Arrays;\nimport java.util.function.LongBinaryOperator;\n\
-    \nclass InclusiveScan {\n\tprotected final int n;\n\tprotected long[] s;\n\tInclusiveScan(final\
-    \ int[] a, final LongBinaryOperator op) {\n\t\tn = a.length;\n\t\ts = Arrays.stream(a).mapToLong(i\
-    \ -> i).toArray();\n\t\tArrays.parallelPrefix(s, op);\n\t}\n\tInclusiveScan(final\
-    \ long[] a, final LongBinaryOperator op) {\n\t\tn = a.length;\n\t\ts = a.clone();\n\
-    \t\tArrays.parallelPrefix(s, op);\n\t}\n\tprotected long[] get(){ return s; }\n\
-    \tprotected long query(final int l, final int r){ return s[r] - s[l]; }\n}"
+    \npublic class InclusiveScan {\n\tprotected final int n;\n\tprotected long[] s;\n\
+    \tpublic InclusiveScan(final int[] a, final LongBinaryOperator op) {\n\t\tn =\
+    \ a.length;\n\t\ts = Arrays.stream(a).mapToLong(i -> i).toArray();\n\t\tArrays.parallelPrefix(s,\
+    \ op);\n\t}\n\tpublic InclusiveScan(final long[] a, final LongBinaryOperator op)\
+    \ {\n\t\tn = a.length;\n\t\ts = a.clone();\n\t\tArrays.parallelPrefix(s, op);\n\
+    \t}\n\tpublic long[] get(){ return s; }\n\tpublic long query(final int l, final\
+    \ int r){ return s[r] - s[l]; }\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/Huitloxopetl.java
@@ -327,7 +328,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/other/InclusiveScan.java

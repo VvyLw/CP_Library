@@ -241,10 +241,10 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/other/PrefixSum.java\n"
   code: "package library.other;\n\nimport java.util.Arrays;\n\nimport library.core.Utility;\n\
-    \nfinal class PrefixSum extends InclusiveScan {\n\tPrefixSum(final int[] a) {\n\
-    \t\tsuper(a, (x, y) -> x + y);\n\t\ts = Utility.rotate(Arrays.copyOf(s, n + 1),\
-    \ 1);\n\t}\n\tPrefixSum(final long[] a) {\n\t\tsuper(a, (x, y) -> x + y);\n\t\t\
-    s = Utility.rotate(Arrays.copyOf(s, n + 1), 1);\n\t}\n}"
+    \npublic final class PrefixSum extends InclusiveScan {\n\tpublic PrefixSum(final\
+    \ int[] a) {\n\t\tsuper(a, (x, y) -> x + y);\n\t\ts = Utility.rotate(Arrays.copyOf(s,\
+    \ n + 1), 1);\n\t}\n\tpublic PrefixSum(final long[] a) {\n\t\tsuper(a, (x, y)\
+    \ -> x + y);\n\t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), 1);\n\t}\n}"
   dependsOn:
   - Java/other/InclusiveScan.java
   - Java/other/Huitloxopetl.java
@@ -325,7 +325,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/other/PrefixSum.java

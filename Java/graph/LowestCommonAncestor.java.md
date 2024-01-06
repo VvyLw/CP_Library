@@ -241,28 +241,29 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/graph/LowestCommonAncestor.java\n"
   code: "package library.graph;\n\nimport java.util.Arrays;\nimport java.util.stream.IntStream;\n\
-    \nfinal class LowestCommonAncestor<G extends Graph> {\n\tprivate final int log;\n\
-    \tfinal int[] dep, sum;\n\tprivate final G g;\n\tfinal int[][] table;\n\tLowestCommonAncestor(final\
-    \ G g) {\n\t\tthis.g = g;\n\t\tfinal int n = g.size();\n\t\tdep = new int[n];\n\
-    \t\tsum = new int[n];\n\t\tlog = Integer.toBinaryString(n).length();\n\t\ttable\
-    \ = new int[log][n];\n\t\tIntStream.range(0, log).forEach(i -> Arrays.fill(table[i],\
-    \ -1));\n\t\tbuild();\n\t}\n\tprivate final void dfs(final int idx, final int\
-    \ par, final int d) {\n\t\ttable[0][idx] = par;\n\t\tdep[idx] = d;\n\t\tfor(final\
-    \ Edge el: g.get(idx)) {\n\t\t\tif(el.to != par) {\n\t\t\t\tsum[el.to] = (int)\
-    \ (sum[idx] + el.cost); \n\t\t\t\tdfs(el.to, idx, d + 1);\n\t\t\t}\n\t\t}\n\t\
-    }\n\tprivate final void build() {\n\t\tdfs(0, -1, 0);\n\t\tfor(int k = 0; k <\
-    \ log - 1; ++k) {\n\t\t\tfor(int i = 0; i < table[k].length; ++i) {\n\t\t\t\t\
-    if(table[k][i] == -1) {\n\t\t\t\t\ttable[k + 1][i] = -1;\n\t\t\t\t} else {\n\t\
-    \t\t\t\ttable[k + 1][i] = table[k][table[k][i]];\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\
-    }\n\tfinal int query(int u, int v) {\n\t\tif(dep[u] > dep[v]) {\n\t\t\tu ^= v;\n\
-    \t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\tv = climb(v, dep[v] - dep[u]);\n\t\t\
-    if(u == v) {\n\t\t\treturn u;\n\t\t}\n\t\tfor(int i = log; --i >= 0;) {\n\t\t\t\
-    if(table[i][u] != table[i][v]) {\n\t\t\t\tu = table[i][u];\n\t\t\t\tv = table[i][v];\n\
-    \t\t\t}\n\t\t}\n\t\treturn table[0][u];\n\t}\n\tfinal int climb(int u, final int\
-    \ k) {\n\t\tif(dep[u] < k) {\n\t\t\treturn -1;\n\t\t}\n\t\tfor(int i = log; --i\
-    \ >= 0;) {\n\t\t\tif(((k >> i) % 2) == 1) {\n\t\t\t\tu = table[i][u];\n\t\t\t\
-    }\n\t\t}\n\t\treturn u;\n\t}\n\tfinal int dist(final int u, final int v){ return\
-    \ sum[u] + sum[v] - 2 * sum[query(u, v)]; }\n}"
+    \npublic final class LowestCommonAncestor<G extends Graph> {\n\tprivate final\
+    \ int log;\n\tprivate final int[] dep, sum;\n\tprivate final G g;\n\tprivate final\
+    \ int[][] table;\n\tpublic LowestCommonAncestor(final G g) {\n\t\tthis.g = g;\n\
+    \t\tfinal int n = g.size();\n\t\tdep = new int[n];\n\t\tsum = new int[n];\n\t\t\
+    log = Integer.toBinaryString(n).length();\n\t\ttable = new int[log][n];\n\t\t\
+    IntStream.range(0, log).forEach(i -> Arrays.fill(table[i], -1));\n\t\tbuild();\n\
+    \t}\n\tprivate final void dfs(final int idx, final int par, final int d) {\n\t\
+    \ttable[0][idx] = par;\n\t\tdep[idx] = d;\n\t\tfor(final Edge el: g.get(idx))\
+    \ {\n\t\t\tif(el.to != par) {\n\t\t\t\tsum[el.to] = (int) (sum[idx] + el.cost);\
+    \ \n\t\t\t\tdfs(el.to, idx, d + 1);\n\t\t\t}\n\t\t}\n\t}\n\tprivate final void\
+    \ build() {\n\t\tdfs(0, -1, 0);\n\t\tfor(int k = 0; k < log - 1; ++k) {\n\t\t\t\
+    for(int i = 0; i < table[k].length; ++i) {\n\t\t\t\tif(table[k][i] == -1) {\n\t\
+    \t\t\t\ttable[k + 1][i] = -1;\n\t\t\t\t} else {\n\t\t\t\t\ttable[k + 1][i] = table[k][table[k][i]];\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tpublic final int query(int u, int v) {\n\t\t\
+    if(dep[u] > dep[v]) {\n\t\t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\t\
+    v = climb(v, dep[v] - dep[u]);\n\t\tif(u == v) {\n\t\t\treturn u;\n\t\t}\n\t\t\
+    for(int i = log; --i >= 0;) {\n\t\t\tif(table[i][u] != table[i][v]) {\n\t\t\t\t\
+    u = table[i][u];\n\t\t\t\tv = table[i][v];\n\t\t\t}\n\t\t}\n\t\treturn table[0][u];\n\
+    \t}\n\tpublic final int climb(int u, final int k) {\n\t\tif(dep[u] < k) {\n\t\t\
+    \treturn -1;\n\t\t}\n\t\tfor(int i = log; --i >= 0;) {\n\t\t\tif(((k >> i) % 2)\
+    \ == 1) {\n\t\t\t\tu = table[i][u];\n\t\t\t}\n\t\t}\n\t\treturn u;\n\t}\n\tpublic\
+    \ final int dist(final int u, final int v){ return sum[u] + sum[v] - 2 * sum[query(u,\
+    \ v)]; }\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -343,7 +344,7 @@ data:
   - Java/graph/Edge.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/graph/LowestCommonAncestor.java

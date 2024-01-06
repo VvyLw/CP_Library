@@ -240,19 +240,20 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/structure/unionfind/WeightedUnionFind.java\n"
-  code: "package library.structure.unionfind;\n\nimport java.util.Arrays;\n\nfinal\
-    \ class WeightedUnionFind {\n\tprivate final int[] par;\n\tprivate final long[]\
-    \ weight;\n\tWeightedUnionFind(final int n) {\n\t\tpar = new int[n];\n\t\tweight\
-    \ = new long[n];\n\t\tArrays.fill(par, -1);\n\t}\n\tfinal int root(final int i)\
-    \ {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\t\tfinal int r = root(par[i]);\n\
-    \t\tweight[i] += weight[par[i]];\n\t\treturn par[i] = r;\n\t}\n\tfinal long get(final\
-    \ int i) {\n\t\troot(i);\n\t\treturn weight[i];\n\t}\n\tfinal long diff(final\
-    \ int x, final int y){ return get(y) - get(x); }\n\tfinal int unite(int x, int\
-    \ y, long w) {\n\t\tw += diff(y, x);\n\t\tx = root(x);\n\t\ty = root(y);\n\t\t\
-    if(x == y) {\n\t\t\treturn w == 0 ? 0 : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\
-    \t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x]\
-    \ += par[y];\n\t\tpar[y] = x;\n\t\tweight[y] = w;\n\t\treturn 1;\n\t}\n\tfinal\
-    \ boolean same(final int x, final int y){ return root(x) == root(y); }\n}"
+  code: "package library.structure.unionfind;\n\nimport java.util.Arrays;\n\npublic\
+    \ final class WeightedUnionFind {\n\tprivate final int[] par;\n\tprivate final\
+    \ long[] weight;\n\tpublic WeightedUnionFind(final int n) {\n\t\tpar = new int[n];\n\
+    \t\tweight = new long[n];\n\t\tArrays.fill(par, -1);\n\t}\n\tpublic final int\
+    \ root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\t\tfinal\
+    \ int r = root(par[i]);\n\t\tweight[i] += weight[par[i]];\n\t\treturn par[i] =\
+    \ r;\n\t}\n\tpublic final long get(final int i) {\n\t\troot(i);\n\t\treturn weight[i];\n\
+    \t}\n\tpublic final long diff(final int x, final int y){ return get(y) - get(x);\
+    \ }\n\tpublic final int unite(int x, int y, long w) {\n\t\tw += diff(y, x);\n\t\
+    \tx = root(x);\n\t\ty = root(y);\n\t\tif(x == y) {\n\t\t\treturn w == 0 ? 0 :\
+    \ -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\t\
+    x ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\tweight[y]\
+    \ = w;\n\t\treturn 1;\n\t}\n\tpublic final boolean same(final int x, final int\
+    \ y){ return root(x) == root(y); }\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -333,7 +334,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/unionfind/WeightedUnionFind.java

@@ -242,32 +242,32 @@ data:
     RuntimeError: bundler is not specified: Java/graph/Graph.java\n"
   code: "package library.graph;\n\nimport java.util.ArrayDeque;\nimport java.util.ArrayList;\n\
     import java.util.Arrays;\nimport java.util.Queue;\nimport java.util.Stack;\nimport\
-    \ java.util.stream.IntStream;\n\nimport library.core.VvyLw;\n\nclass Graph extends\
-    \ ArrayList<ArrayList<Edge>> {\n\tprotected final boolean undirected;\n\tprotected\
-    \ final int n, indexed;\n\tprotected final ArrayList<Edge> edge;\n\tGraph(final\
-    \ int n, final int indexed, final boolean undirected) {\n\t\tthis.n = n;\n\t\t\
-    this.indexed = indexed;\n\t\tthis.undirected = undirected;\n\t\tedge = new ArrayList<>();\n\
-    \t\tIntStream.range(0, n).forEach(i -> this.add(new ArrayList<>()));\n\t}\n\t\
-    final void addEdge(int a, int b) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\t\
-    this.get(a).add(new Edge(b));\n\t\tedge.add(new Edge(a, b, 0));\n\t\tif(undirected)\
-    \ {\n\t\t\tthis.get(b).add(new Edge(a));\n\t\t\tedge.add(new Edge(b, a, 0));\n\
-    \t\t}\n\t}\n\tvoid input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(),\
-    \ VvyLw.sc.ni())); }\n\tprotected final int[] allDist(final int v) {\n\t\tfinal\
-    \ int[] d = new int[n];\n\t\tArrays.fill(d, -1);\n\t\tfinal Queue<Integer> q =\
-    \ new ArrayDeque<>();\n\t\td[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty()) {\n\
-    \t\t\tfinal int tmp = q.poll();\n\t\t\tfor(final Edge el: this.get(tmp)) {\n\t\
-    \t\t\tif(d[el.to] != -1) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to] =\
-    \ d[tmp] + 1;\n\t\t\t\tq.add(el.to);\n\t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\tprotected\
-    \ final int dist(final int u, final int v){ return allDist(u)[v]; }\n\tprotected\
-    \ final ArrayList<Integer> topologicalSort() {\n\t\tfinal int[] deg = new int[n];\n\
-    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final Edge ed: this.get(i)) {\n\t\t\
-    \t\tdeg[ed.to]++;\n\t\t\t}\n\t\t}\n\t\tfinal Stack<Integer> sk = new Stack<>();\n\
-    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(deg[i] == 0) {\n\t\t\t\tsk.add(i);\n\
-    \t\t\t}\n\t\t}\n\t\tfinal ArrayList<Integer> ord = new ArrayList<>();\n\t\twhile(!sk.isEmpty())\
-    \ {\n\t\t\tfinal int tmp = sk.pop();\n\t\t\tord.add(tmp);\n\t\t\tfor(final Edge\
-    \ ed: this.get(tmp)) {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ord.size() == size() ? ord : new ArrayList<>();\n\
-    \t}\n}"
+    \ java.util.stream.IntStream;\n\nimport library.core.VvyLw;\n\npublic class Graph\
+    \ extends ArrayList<ArrayList<Edge>> {\n\tprotected final boolean undirected;\n\
+    \tprotected final int n, indexed;\n\tprotected final ArrayList<Edge> edge;\n\t\
+    public Graph(final int n, final int indexed, final boolean undirected) {\n\t\t\
+    this.n = n;\n\t\tthis.indexed = indexed;\n\t\tthis.undirected = undirected;\n\t\
+    \tedge = new ArrayList<>();\n\t\tIntStream.range(0, n).forEach(i -> this.add(new\
+    \ ArrayList<>()));\n\t}\n\tpublic final void addEdge(int a, int b) {\n\t\ta -=\
+    \ indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(b));\n\t\tedge.add(new\
+    \ Edge(a, b, 0));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new Edge(a));\n\
+    \t\t\tedge.add(new Edge(b, a, 0));\n\t\t}\n\t}\n\tpublic void input(final int\
+    \ m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni()));\
+    \ }\n\tpublic final int[] allDist(final int v) {\n\t\tfinal int[] d = new int[n];\n\
+    \t\tArrays.fill(d, -1);\n\t\tfinal Queue<Integer> q = new ArrayDeque<>();\n\t\t\
+    d[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\
+    \t\t\tfor(final Edge el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\
+    \t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to] = d[tmp] + 1;\n\t\t\t\tq.add(el.to);\n\
+    \t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\tpublic final int dist(final int u, final\
+    \ int v){ return allDist(u)[v]; }\n\tpublic final ArrayList<Integer> topologicalSort()\
+    \ {\n\t\tfinal int[] deg = new int[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\
+    \tfor(final Edge ed: this.get(i)) {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t}\n\t\t}\n\t\
+    \tfinal Stack<Integer> sk = new Stack<>();\n\t\tfor(int i = 0; i < n; ++i) {\n\
+    \t\t\tif(deg[i] == 0) {\n\t\t\t\tsk.add(i);\n\t\t\t}\n\t\t}\n\t\tfinal ArrayList<Integer>\
+    \ ord = new ArrayList<>();\n\t\twhile(!sk.isEmpty()) {\n\t\t\tfinal int tmp =\
+    \ sk.pop();\n\t\t\tord.add(tmp);\n\t\t\tfor(final Edge ed: this.get(tmp)) {\n\t\
+    \t\t\tif(--deg[ed.to] == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\t\t\t\t}\n\t\t\t}\n\t\
+    \t}\n\t\treturn ord.size() == size() ? ord : new ArrayList<>();\n\t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -348,7 +348,7 @@ data:
   - Java/graph/Edge.java
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/graph/Graph.java

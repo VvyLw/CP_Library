@@ -241,16 +241,16 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/math/PrimeTable.java\n"
   code: "package library.math;\n\nimport java.util.Arrays;\nimport java.util.stream.IntStream;\n\
-    \nfinal class PrimeTable {\n\tprivate final int size;\n\tprivate final int[] p;\n\
-    \tprivate final boolean[] sieve;\n\tPrimeTable(final int n) {\n\t\tsieve = new\
-    \ boolean[n + 1];\n\t\tArrays.fill(sieve, true);\n\t\tsieve[0] = sieve[1] = false;\n\
-    \t\tfor(long i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[(int) i]) {\n\t\t\t\tcontinue;\n\
-    \t\t\t}\n\t\t\tfor(long j = i * i; j <= n; j += i) {\n\t\t\t\tsieve[(int) j] =\
-    \ false;\n\t\t\t}\n\t\t}\n\t\tsize = (int) IntStream.rangeClosed(0, n).filter(i\
-    \ -> sieve[i]).count();\n\t\tint j = 0;\n\t\tp = new int[size];\n\t\tfor(int i\
-    \ = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\t\t}\n\t\
-    \t}\n\t}\n\tfinal boolean[] table(){ return sieve; }\n\tfinal int[] get(){ return\
-    \ p; }\n}"
+    \npublic final class PrimeTable {\n\tprivate final int size;\n\tprivate final\
+    \ int[] p;\n\tprivate final boolean[] sieve;\n\tpublic PrimeTable(final int n)\
+    \ {\n\t\tsieve = new boolean[n + 1];\n\t\tArrays.fill(sieve, true);\n\t\tsieve[0]\
+    \ = sieve[1] = false;\n\t\tfor(long i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[(int)\
+    \ i]) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(long j = i * i; j <= n; j += i)\
+    \ {\n\t\t\t\tsieve[(int) j] = false;\n\t\t\t}\n\t\t}\n\t\tsize = (int) IntStream.rangeClosed(0,\
+    \ n).filter(i -> sieve[i]).count();\n\t\tint j = 0;\n\t\tp = new int[size];\n\t\
+    \tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\
+    \t\t}\n\t\t}\n\t}\n\tpublic final boolean[] table(){ return sieve; }\n\tpublic\
+    \ final int[] get(){ return p; }\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -331,7 +331,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/math/PrimeTable.java

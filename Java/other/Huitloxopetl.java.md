@@ -241,13 +241,13 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/other/Huitloxopetl.java\n"
   code: "package library.other;\n\nimport java.util.HashMap;\nimport java.util.Map;\n\
-    \nimport library.core.Utility;\nimport library.structure.FenwickTree;\n\nfinal\
-    \ class Huitloxopetl {\n\tfinal long invNum(final int[] a) {\n\t\tfinal int[]\
-    \ b = Utility.sorted(a);\n\t\tfinal Map<Integer, Integer> id = new HashMap<>();\n\
+    \nimport library.core.Utility;\nimport library.structure.FenwickTree;\n\npublic\
+    \ final class Huitloxopetl {\n\tpublic final long invNum(final int[] a) {\n\t\t\
+    final int[] b = Utility.sorted(a);\n\t\tfinal Map<Integer, Integer> id = new HashMap<>();\n\
     \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
     \ FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int\
     \ i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\t\
-    bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final\
+    bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\tpublic final long invNum(final\
     \ long[] a) {\n\t\tfinal long[] b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer>\
     \ id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i],\
     \ i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\t\tlong\
@@ -333,7 +333,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/other/Huitloxopetl.java

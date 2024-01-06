@@ -241,25 +241,27 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/structure/waveletmatrix/WaveletMatrix.java\n"
   code: "package library.structure.waveletmatrix;\n\nimport java.util.Arrays;\nimport\
-    \ java.util.stream.IntStream;\n\nimport library.core.Utility;\n\nfinal class WaveletMatrix\
-    \ {\n\tprivate final WaveletMatrixBeta mat;\n\tprivate final long[] ys;\n\tWaveletMatrix(final\
-    \ long[] arr, final int log) {\n\t\tys = Arrays.stream(arr).sorted().distinct().toArray();\n\
-    \t\tfinal long[] t = new long[arr.length];\n\t\tIntStream.range(0, arr.length).forEach(i\
-    \ -> t[i] = get(arr[i]));\n\t\tmat = new WaveletMatrixBeta(t, log);\n\t}\n\tprivate\
-    \ final int get(final long x){ return Utility.lowerBound(ys, x); }\n\tfinal long\
-    \ access(final int k){ return ys[(int) mat.access(k)]; }\n\tfinal int rank(final\
-    \ long x, final int r) {\n\t\tfinal int pos = get(x);\n\t\tif(pos == ys.length\
-    \ || ys[pos] != x) {\n\t\t\treturn 0;\n\t\t}\n\t\treturn mat.rank(pos, r);\n\t\
-    }\n\tfinal long kthMin(final int l, final int r, final int k){ return ys[(int)\
-    \ mat.kthMin(l, r, k)]; }\n\tfinal long kthMax(final int l, final int r, final\
-    \ int k){ return ys[(int) mat.kthMax(l, r, k)]; }\n\tfinal int rangeFreq(final\
+    \ java.util.stream.IntStream;\n\nimport library.core.Utility;\n\npublic final\
+    \ class WaveletMatrix {\n\tprivate final WaveletMatrixBeta mat;\n\tprivate final\
+    \ long[] ys;\n\tpublic WaveletMatrix(final long[] arr, final int log) {\n\t\t\
+    ys = Arrays.stream(arr).sorted().distinct().toArray();\n\t\tfinal long[] t = new\
+    \ long[arr.length];\n\t\tIntStream.range(0, arr.length).forEach(i -> t[i] = get(arr[i]));\n\
+    \t\tmat = new WaveletMatrixBeta(t, log);\n\t}\n\tprivate final int get(final long\
+    \ x){ return Utility.lowerBound(ys, x); }\n\tpublic final long access(final int\
+    \ k){ return ys[(int) mat.access(k)]; }\n\tpublic final int rank(final long x,\
+    \ final int r) {\n\t\tfinal int pos = get(x);\n\t\tif(pos == ys.length || ys[pos]\
+    \ != x) {\n\t\t\treturn 0;\n\t\t}\n\t\treturn mat.rank(pos, r);\n\t}\n\tpublic\
+    \ final long kthMin(final int l, final int r, final int k){ return ys[(int) mat.kthMin(l,\
+    \ r, k)]; }\n\tpublic final long kthMax(final int l, final int r, final int k){\
+    \ return ys[(int) mat.kthMax(l, r, k)]; }\n\tpublic final int rangeFreq(final\
     \ int l, final int r, final long upper){ return mat.rangeFreq(l, r, get(upper));\
-    \ }\n\tfinal int rangeFreq(final int l, final int r, final long lower, final long\
-    \ upper){ return mat.rangeFreq(l, r, get(lower), get(upper)); }\n\tfinal long\
-    \ prev(final int l, final int r, final long upper) {\n\t\tfinal long ret = mat.prev(l,\
-    \ r, get(upper));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n\tfinal long\
-    \ next(final int l, final int r, final long lower) {\n\t\tfinal long ret = mat.next(l,\
-    \ r, get(lower));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n}"
+    \ }\n\tpublic final int rangeFreq(final int l, final int r, final long lower,\
+    \ final long upper){ return mat.rangeFreq(l, r, get(lower), get(upper)); }\n\t\
+    public final long prev(final int l, final int r, final long upper) {\n\t\tfinal\
+    \ long ret = mat.prev(l, r, get(upper));\n\t\treturn ret == -1 ? -1 : ys[(int)\
+    \ ret];\n\t}\n\tpublic final long next(final int l, final int r, final long lower)\
+    \ {\n\t\tfinal long ret = mat.next(l, r, get(lower));\n\t\treturn ret == -1 ?\
+    \ -1 : ys[(int) ret];\n\t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -340,7 +342,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/waveletmatrix/WaveletMatrix.java

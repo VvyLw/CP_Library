@@ -240,55 +240,54 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/All.java\n"
-  code: "package library;\n\nimport java.io.Closeable;\nimport java.io.Flushable;\n\
-    import java.io.IOException;\nimport java.io.InputStream;\nimport java.io.OutputStream;\n\
-    import java.math.BigInteger;\nimport java.util.ArrayDeque;\nimport java.util.ArrayList;\n\
-    import java.util.Arrays;\nimport java.util.Collection;\nimport java.util.Collections;\n\
-    import java.util.Comparator;\nimport java.util.Formatter;\nimport java.util.HashMap;\n\
-    import java.util.Iterator;\nimport java.util.List;\nimport java.util.Map;\nimport\
-    \ java.util.NoSuchElementException;\nimport java.util.PriorityQueue;\nimport java.util.Queue;\n\
-    import java.util.Stack;\nimport java.util.TreeMap;\nimport java.util.function.BiFunction;\n\
-    import java.util.function.BiPredicate;\nimport java.util.function.BinaryOperator;\n\
-    import java.util.function.Consumer;\nimport java.util.function.DoublePredicate;\n\
-    import java.util.function.IntPredicate;\nimport java.util.function.IntUnaryOperator;\n\
-    import java.util.function.LongBinaryOperator;\nimport java.util.function.LongPredicate;\n\
-    import java.util.function.Predicate;\nimport java.util.stream.Collectors;\nimport\
-    \ java.util.stream.IntStream;\n\nfinal class Main {\n\tpublic static void main(final\
-    \ String[] args) {\n\t\tIntStream.range(0, VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i\
-    \ -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\
-    \t\tVvyLw.dbg.close();\n\t}\n}\n\nfinal class VvyLw extends Utility {\n\tstatic\
-    \ final MyScanner sc = new MyScanner(System.in);\n\tstatic final MyPrinter o =\
-    \ new MyPrinter(System.out, false);\n\tstatic final MyPrinter dbg = new MyPrinter(System.err,\
-    \ true);\n\tstatic final Huitloxopetl why = new Huitloxopetl();\n\tstatic final\
-    \ boolean multi = false;\n\tstatic final int inf = 1 << 30;\n\tstatic final long\
-    \ linf = (1L << 61) - 1;\n\tstatic final double eps = 1e-18;\n\t@SuppressWarnings(\"\
-    unused\")\n\tprivate static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\
-    \t@SuppressWarnings(\"unused\")\n\tprivate static final int[] dy = {0, 0, 0, -1,\
-    \ 1, -1, 1, -1, 1};\n\t@SuppressWarnings(\"unused\")\n\tprivate static final int\
-    \ mod998 = 998244353;\n\t@SuppressWarnings(\"unused\")\n\tprivate static final\
-    \ int mod107 = (int)1e9 + 7;\n\tstatic final void solve() {\n\t\t\n\t}\n}\nclass\
-    \ Utility {\n\tprotected static final String yes(final boolean ok){ return ok\
-    \ ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean ok){\
-    \ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
-    \ x * x; }\n\tprotected static final int mod(final int n, final int m){ return\
-    \ (n + m) % m; }\n\tprotected static final int mod(final long n, final int m){\
-    \ return (int) (n + m) % m; }\n\tprotected static final long mod(final long n,\
-    \ final long m){ return (n + m) % m; }\n\tprotected static final long ceil(final\
-    \ long a, final long b){ return (a - 1) / b + 1; }\n\tprotected static final double\
-    \ round(final double a, final long b, final int c) {\n\t\tfinal long d = pow(10,\
-    \ c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\tprotected static final long\
-    \ pow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2\
-    \ == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\
-    \treturn res;\n\t}\n\tprotected static final long pow(long a, long b, final long\
-    \ m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\t\
-    res *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a,\
-    \ m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long\
-    \ lcm(final long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static\
-    \ final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1,\
-    \ (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){\
-    \ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static\
-    \ final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a;\
-    \ }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
+  code: "import java.io.Closeable;\nimport java.io.Flushable;\nimport java.io.IOException;\n\
+    import java.io.InputStream;\nimport java.io.OutputStream;\nimport java.math.BigInteger;\n\
+    import java.util.ArrayDeque;\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
+    import java.util.Collection;\nimport java.util.Collections;\nimport java.util.Comparator;\n\
+    import java.util.Formatter;\nimport java.util.HashMap;\nimport java.util.Iterator;\n\
+    import java.util.List;\nimport java.util.Map;\nimport java.util.NoSuchElementException;\n\
+    import java.util.PriorityQueue;\nimport java.util.Queue;\nimport java.util.Stack;\n\
+    import java.util.TreeMap;\nimport java.util.function.BiFunction;\nimport java.util.function.BiPredicate;\n\
+    import java.util.function.BinaryOperator;\nimport java.util.function.Consumer;\n\
+    import java.util.function.DoublePredicate;\nimport java.util.function.IntPredicate;\n\
+    import java.util.function.IntUnaryOperator;\nimport java.util.function.LongBinaryOperator;\n\
+    import java.util.function.LongPredicate;\nimport java.util.function.Predicate;\n\
+    import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nfinal\
+    \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
+    \ VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
+    \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}\n\n\
+    final class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner(System.in);\n\
+    \tstatic final MyPrinter o = new MyPrinter(System.out, false);\n\tstatic final\
+    \ MyPrinter dbg = new MyPrinter(System.err, true);\n\tstatic final Huitloxopetl\
+    \ why = new Huitloxopetl();\n\tstatic final boolean multi = false;\n\tstatic final\
+    \ int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\tstatic final\
+    \ double eps = 1e-18;\n\t@SuppressWarnings(\"unused\")\n\tprivate static final\
+    \ int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\t@SuppressWarnings(\"unused\")\n\
+    \tprivate static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t@SuppressWarnings(\"\
+    unused\")\n\tprivate static final int mod998 = 998244353;\n\t@SuppressWarnings(\"\
+    unused\")\n\tprivate static final int mod107 = (int)1e9 + 7;\n\tstatic final void\
+    \ solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String yes(final\
+    \ boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String\
+    \ no(final boolean ok){ return yes(!ok); }\n\tprotected static final long sqr(final\
+    \ long x){ return x * x; }\n\tprotected static final int mod(final int n, final\
+    \ int m){ return (n + m) % m; }\n\tprotected static final int mod(final long n,\
+    \ final int m){ return (int) (n + m) % m; }\n\tprotected static final long mod(final\
+    \ long n, final long m){ return (n + m) % m; }\n\tprotected static final long\
+    \ ceil(final long a, final long b){ return (a - 1) / b + 1; }\n\tprotected static\
+    \ final double round(final double a, final long b, final int c) {\n\t\tfinal long\
+    \ d = pow(10, c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\tprotected static\
+    \ final long pow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\
+    \tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\
+    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long pow(long a, long b,\
+    \ final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1)\
+    \ {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\
+    \t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ final long lcm(final long a, final long b){ return a * b / gcd(a, b); }\n\t\
+    protected static final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i\
+    \ -> i).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final\
+    \ long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
+    \ static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a %\
+    \ b) : a; }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
     \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
     \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
     \ final int min(final int... a){ return Arrays.stream(a).reduce(Integer.MAX_VALUE,\
@@ -835,14 +834,14 @@ data:
     \t\tpar[pop2.first] = pop2.second;\n\t}\n\tfinal void snapshot() {\n\t\twhile(!his.empty())\
     \ {\n\t\t\this.pop();\n\t\t}\n\t}\n\tfinal void rollback() {\n\t\twhile(!his.empty())\
     \ {\n\t\t\tundo();\n\t\t}\n\t}\n}\n\nfinal class Edge {\n\tpublic int src;\n\t\
-    public int to;\n\tpublic long cost;\n\tEdge(final int to) {\n\t\tthis.to = to;\n\
-    \t}\n\tEdge(final int to, final long cost) {\n\t\tthis.to = to;\n\t\tthis.cost\
-    \ = cost;\n\t}\n\tEdge(final int src, final int to, final long cost) {\n\t\tthis.src\
-    \ = src;\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\t@Override\n\tpublic\
-    \ final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\
-    \t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\
-    \t\t}\n\t\tfinal Edge e = (Edge) o;\n\t\tif(src != e.src) {\n\t\t\treturn false;\n\
-    \t\t}\n\t\tif(to != e.to) {\n\t\t\treturn false;\n\t\t}\n\t\treturn cost == e.cost;\n\
+    public int to;\n\tpublic long cost;\n\tEdge(final int to){ this.to = to; }\n\t\
+    Edge(final int to, final long cost) {\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\
+    \t}\n\tEdge(final int src, final int to, final long cost) {\n\t\tthis.src = src;\n\
+    \t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\t@Override\n\tpublic final boolean\
+    \ equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\
+    \tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\
+    \tfinal Edge e = (Edge) o;\n\t\tif(src != e.src) {\n\t\t\treturn false;\n\t\t\
+    }\n\t\tif(to != e.to) {\n\t\t\treturn false;\n\t\t}\n\t\treturn cost == e.cost;\n\
     \t}\n\t@Override\n\tpublic final int hashCode() {\n\t\tint result = 17;\n\t\t\
     result = 31 * result + src;\n\t\tresult = 31 * result + to;\n\t\tresult = 31 *\
     \ result + (int) (cost ^ (cost >>> 32)); // XOR for long values\n\t\treturn result;\n\
@@ -954,86 +953,87 @@ data:
     }\n\t\treturn meld(t.l, t.r);\n\t}\n\tfinal Node add(Node t, final long lazy)\
     \ {\n\t\tif(t != null) {\n\t\t\tt.lazy += lazy;\n\t\t\tpropagate(t);\n\t\t}\n\t\
     \treturn t;\n\t}\n}\n\nfinal class LowestCommonAncestor<G extends Graph> {\n\t\
-    private final int log;\n\tfinal int[] dep, sum;\n\tprivate final G g;\n\tfinal\
-    \ int[][] table;\n\tLowestCommonAncestor(final G g) {\n\t\tthis.g = g;\n\t\tfinal\
-    \ int n = g.size();\n\t\tdep = new int[n];\n\t\tsum = new int[n];\n\t\tlog = Integer.toBinaryString(n).length();\n\
-    \t\ttable = new int[log][n];\n\t\tIntStream.range(0, log).forEach(i -> Arrays.fill(table[i],\
-    \ -1));\n\t\tbuild();\n\t}\n\tprivate final void dfs(final int idx, final int\
-    \ par, final int d) {\n\t\ttable[0][idx] = par;\n\t\tdep[idx] = d;\n\t\tfor(final\
-    \ Edge el: g.get(idx)) {\n\t\t\tif(el.to != par) {\n\t\t\t\tsum[el.to] = (int)\
-    \ (sum[idx] + el.cost); \n\t\t\t\tdfs(el.to, idx, d + 1);\n\t\t\t}\n\t\t}\n\t\
-    }\n\tprivate final void build() {\n\t\tdfs(0, -1, 0);\n\t\tfor(int k = 0; k <\
-    \ log - 1; ++k) {\n\t\t\tfor(int i = 0; i < table[k].length; ++i) {\n\t\t\t\t\
-    if(table[k][i] == -1) {\n\t\t\t\t\ttable[k + 1][i] = -1;\n\t\t\t\t} else {\n\t\
-    \t\t\t\ttable[k + 1][i] = table[k][table[k][i]];\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\
-    }\n\tfinal int query(int u, int v) {\n\t\tif(dep[u] > dep[v]) {\n\t\t\tu ^= v;\n\
-    \t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\tv = climb(v, dep[v] - dep[u]);\n\t\t\
-    if(u == v) {\n\t\t\treturn u;\n\t\t}\n\t\tfor(int i = log; --i >= 0;) {\n\t\t\t\
-    if(table[i][u] != table[i][v]) {\n\t\t\t\tu = table[i][u];\n\t\t\t\tv = table[i][v];\n\
-    \t\t\t}\n\t\t}\n\t\treturn table[0][u];\n\t}\n\tfinal int climb(int u, final int\
-    \ k) {\n\t\tif(dep[u] < k) {\n\t\t\treturn -1;\n\t\t}\n\t\tfor(int i = log; --i\
-    \ >= 0;) {\n\t\t\tif(((k >> i) % 2) == 1) {\n\t\t\t\tu = table[i][u];\n\t\t\t\
-    }\n\t\t}\n\t\treturn u;\n\t}\n\tfinal int dist(final int u, final int v){ return\
-    \ sum[u] + sum[v] - 2 * sum[query(u, v)]; }\n}\n\nfinal class PrimeTable {\n\t\
-    private final int size;\n\tprivate final int[] p;\n\tprivate final boolean[] sieve;\n\
-    \tPrimeTable(final int n) {\n\t\tsieve = new boolean[n + 1];\n\t\tArrays.fill(sieve,\
-    \ true);\n\t\tsieve[0] = sieve[1] = false;\n\t\tfor(long i = 2; i <= n; ++i) {\n\
-    \t\t\tif(!sieve[(int) i]) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(long j = i\
-    \ * i; j <= n; j += i) {\n\t\t\t\tsieve[(int) j] = false;\n\t\t\t}\n\t\t}\n\t\t\
-    size = (int) IntStream.rangeClosed(0, n).filter(i -> sieve[i]).count();\n\t\t\
-    int j = 0;\n\t\tp = new int[size];\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\t\
-    if(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\t\t}\n\t\t}\n\t}\n\tfinal boolean[] table(){\
-    \ return sieve; }\n\tfinal int[] get(){ return p; }\n}\n\nfinal class PrimeFactor\
-    \ {\n\tprivate final int[] spf;\n\tPrimeFactor(final int n) {\n\t\tspf = Utility.iota(n\
-    \ + 1);\n\t\tfor(int i = 2; i * i <= n; ++i) {\n\t\t\tif(spf[i] == i) {\n\t\t\t\
-    \tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\t\tif(spf[j] == j) {\n\t\t\t\t\t\
-    \tspf[j] = i;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal TreeMap<Integer,\
-    \ Integer> get(int n) {\n\t\tfinal TreeMap<Integer, Integer> m = new TreeMap<>();\n\
-    \t\twhile(n != 1) {\n\t\t\tm.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /=\
-    \ spf[n];\n\t\t}\n\t\treturn m;\n\t}\n}\n\nfinal class PrimeCounter {\n\tprivate\
-    \ final int sq;\n\tprivate final boolean[] p;\n\tprivate final int[] psum;\n\t\
-    private final ArrayList<Integer> ps;\n\tPrimeCounter(final long lim) {\n\t\tsq\
-    \ = (int) kthRooti(lim, 2);\n\t\tpsum = new int[sq + 1];\n\t\tp = new PrimeTable(sq).table();\n\
-    \t\tfor(int i = 1; i <= sq; ++i) {\n\t\t\tpsum[i] = psum[i - 1] + (p[i] ? 1 :\
-    \ 0);\n\t\t}\n\t\tps = new ArrayList<>();\n\t\tfor(int i = 1; i <= sq; ++i) {\n\
-    \t\t\tif(p[i]) {\n\t\t\t\tps.add(i);\n\t\t\t}\n\t\t}\n\t}\n\tprivate final long\
-    \ kthRooti(final long n, final int k){ return Utility.kthRoot(n, k); }\n\tprivate\
-    \ final long p2(final long x, final long y) {\n\t\tif(x < 4) {\n\t\t\treturn 0;\n\
-    \t\t}\n\t\tfinal long a = pi(y);\n\t\tfinal long b = pi(kthRooti(x, 2));\n\t\t\
-    if(a >= b) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong sum = (long) (a - 2) * (a + 1)\
-    \ / 2 - (b - 2) * (b + 1) / 2;\n\t\tfor(long i = a; i < b; ++i) {\n\t\t\tsum +=\
-    \ pi(x / ps.get((int) i));\n\t\t}\n\t\treturn sum;\n\t}\n\tprivate final long\
-    \ phi(final long m, final long a) {\n\t\tif(m < 1) {\n\t\t\treturn 0;\n\t\t}\n\
-    \t\tif(a > m) {\n\t\t\treturn 1;\n\t\t}\n\t\tif(a < 1) {\n\t\t\treturn m;\n\t\t\
-    }\n\t\tif(m <= (long) ps.get((int) (a - 1)) * ps.get((int) (a - 1))) {\n\t\t\t\
-    return pi(m) - a + 1;\n\t\t}\n\t\tif(m <= (long) ps.get((int) (a - 1)) * ps.get((int)\
-    \ (a - 1)) * ps.get((int) (a - 1)) && m <= sq) {\n\t\t\tfinal long sx = pi(kthRooti(m,\
-    \ 2));\n\t\t\tlong ans = pi(m) - (long) (sx + a - 2) * (sx - a + 1) / 2;\n\t\t\
-    \tfor(long i = a; i < sx; ++i) {\n\t\t\t\tans += pi(m / ps.get((int) i));\n\t\t\
-    \t}\n\t\t\treturn ans;\n\t\t}\n\t\treturn phi(m, a - 1) - phi(m / ps.get((int)\
-    \ (a - 1)), a - 1);\n\t}\n\tfinal long pi(final long n) {\n\t\tif(n <= sq) {\n\
-    \t\t\treturn psum[(int) n];\n\t\t}\n\t\tfinal long m = kthRooti(n, 3);\n\t\tfinal\
-    \ long a = pi(m);\n\t\treturn phi(n, a) + a - 1 - p2(n, m);\n\t}\n}\n\n// N <=\
-    \ 1e18;\nfinal class LongPrime {\n\tprivate final int bsf(final long x){ return\
-    \ Long.numberOfTrailingZeros(x); }\n\tprivate final long gcd(long a, long b) {\n\
-    \t\ta = Math.abs(a);\n\t\tb = Math.abs(b);\n\t\tif(a == 0) {\n\t\t\treturn b;\n\
-    \t\t}\n\t\tif(b == 0) {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int shift = bsf(a|b);\n\
-    \t\ta >>= bsf(a);\n\t\tdo {\n\t\t\tb >>= bsf(b);\n\t\t\tif(a > b) {\n\t\t\t\t\
-    a ^= b;\n\t\t\t\tb ^= a;\n\t\t\t\ta ^= b;\n\t\t\t}\n\t\t\tb -= a;\n\t\t} while(b\
-    \ > 0);\n\t\treturn a << shift;\n\t}\n\tfinal boolean isPrime(final long n) {\n\
-    \t\tif(n <= 1) {\n\t\t\treturn false;\n\t\t}\n\t\tif(n == 2) {\n\t\t\treturn true;\n\
-    \t\t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn false;\n\t\t}\n\t\tlong d = n - 1;\n\
-    \t\twhile(d % 2 == 0) {\n\t\t\td /= 2;\n\t\t}\n\t\tfinal long[] sample = {2, 3,\
-    \ 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};\n\t\tfor(final long a: sample) {\n\t\t\
-    \tif(n <= a) {\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\tlong t = d;\n\t\t\tBigInteger y\
-    \ = BigInteger.valueOf(a).modPow(BigInteger.valueOf(t), BigInteger.valueOf(n));\n\
-    \t\t\twhile(t != n - 1 && !y.equals(BigInteger.ONE) && !y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)))\
-    \ {\n\t\t\t\ty = y.multiply(y).mod(BigInteger.valueOf(n));\n\t\t\t\tt <<= 1;\n\
-    \t\t\t}\n\t\t\tif(!y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)) &&\
-    \ t % 2 == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\
-    \tfinal private long find(final long n) {\n\t\tif(isPrime(n)) {\n\t\t\treturn\
-    \ n;\n\t\t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn 2;\n\t\t}\n\t\tlong st = 0;\n\t\
-    \tfinal LongBinaryOperator f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue();\
+    private final int log;\n\tprivate final int[] dep, sum;\n\tprivate final G g;\n\
+    \tprivate final int[][] table;\n\tLowestCommonAncestor(final G g) {\n\t\tthis.g\
+    \ = g;\n\t\tfinal int n = g.size();\n\t\tdep = new int[n];\n\t\tsum = new int[n];\n\
+    \t\tlog = Integer.toBinaryString(n).length();\n\t\ttable = new int[log][n];\n\t\
+    \tIntStream.range(0, log).forEach(i -> Arrays.fill(table[i], -1));\n\t\tbuild();\n\
+    \t}\n\tprivate final void dfs(final int idx, final int par, final int d) {\n\t\
+    \ttable[0][idx] = par;\n\t\tdep[idx] = d;\n\t\tfor(final Edge el: g.get(idx))\
+    \ {\n\t\t\tif(el.to != par) {\n\t\t\t\tsum[el.to] = (int) (sum[idx] + el.cost);\
+    \ \n\t\t\t\tdfs(el.to, idx, d + 1);\n\t\t\t}\n\t\t}\n\t}\n\tprivate final void\
+    \ build() {\n\t\tdfs(0, -1, 0);\n\t\tfor(int k = 0; k < log - 1; ++k) {\n\t\t\t\
+    for(int i = 0; i < table[k].length; ++i) {\n\t\t\t\tif(table[k][i] == -1) {\n\t\
+    \t\t\t\ttable[k + 1][i] = -1;\n\t\t\t\t} else {\n\t\t\t\t\ttable[k + 1][i] = table[k][table[k][i]];\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal int query(int u, int v) {\n\t\tif(dep[u]\
+    \ > dep[v]) {\n\t\t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\tv = climb(v,\
+    \ dep[v] - dep[u]);\n\t\tif(u == v) {\n\t\t\treturn u;\n\t\t}\n\t\tfor(int i =\
+    \ log; --i >= 0;) {\n\t\t\tif(table[i][u] != table[i][v]) {\n\t\t\t\tu = table[i][u];\n\
+    \t\t\t\tv = table[i][v];\n\t\t\t}\n\t\t}\n\t\treturn table[0][u];\n\t}\n\tfinal\
+    \ int climb(int u, final int k) {\n\t\tif(dep[u] < k) {\n\t\t\treturn -1;\n\t\t\
+    }\n\t\tfor(int i = log; --i >= 0;) {\n\t\t\tif(((k >> i) % 2) == 1) {\n\t\t\t\t\
+    u = table[i][u];\n\t\t\t}\n\t\t}\n\t\treturn u;\n\t}\n\tfinal int dist(final int\
+    \ u, final int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }\n}\n\nfinal\
+    \ class PrimeTable {\n\tprivate final int size;\n\tprivate final int[] p;\n\t\
+    private final boolean[] sieve;\n\tPrimeTable(final int n) {\n\t\tsieve = new boolean[n\
+    \ + 1];\n\t\tArrays.fill(sieve, true);\n\t\tsieve[0] = sieve[1] = false;\n\t\t\
+    for(long i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[(int) i]) {\n\t\t\t\tcontinue;\n\
+    \t\t\t}\n\t\t\tfor(long j = i * i; j <= n; j += i) {\n\t\t\t\tsieve[(int) j] =\
+    \ false;\n\t\t\t}\n\t\t}\n\t\tsize = (int) IntStream.rangeClosed(0, n).filter(i\
+    \ -> sieve[i]).count();\n\t\tint j = 0;\n\t\tp = new int[size];\n\t\tfor(int i\
+    \ = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\t\t}\n\t\
+    \t}\n\t}\n\tfinal boolean[] table(){ return sieve; }\n\tfinal int[] get(){ return\
+    \ p; }\n}\n\nfinal class PrimeFactor {\n\tprivate final int[] spf;\n\tPrimeFactor(final\
+    \ int n) {\n\t\tspf = Utility.iota(n + 1);\n\t\tfor(int i = 2; i * i <= n; ++i)\
+    \ {\n\t\t\tif(spf[i] == i) {\n\t\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\
+    \t\t\t\tif(spf[j] == j) {\n\t\t\t\t\t\tspf[j] = i;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\
+    \t\t}\n\t\t}\n\t}\n\tfinal TreeMap<Integer, Integer> get(int n) {\n\t\tfinal TreeMap<Integer,\
+    \ Integer> m = new TreeMap<>();\n\t\twhile(n != 1) {\n\t\t\tm.merge(spf[n], 1,\
+    \ (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\t\t}\n\t\treturn m;\n\t}\n}\n\nfinal\
+    \ class PrimeCounter {\n\tprivate final int sq;\n\tprivate final boolean[] p;\n\
+    \tprivate final int[] psum;\n\tprivate final ArrayList<Integer> ps;\n\tPrimeCounter(final\
+    \ long lim) {\n\t\tsq = (int) kthRooti(lim, 2);\n\t\tpsum = new int[sq + 1];\n\
+    \t\tp = new PrimeTable(sq).table();\n\t\tfor(int i = 1; i <= sq; ++i) {\n\t\t\t\
+    psum[i] = psum[i - 1] + (p[i] ? 1 : 0);\n\t\t}\n\t\tps = new ArrayList<>();\n\t\
+    \tfor(int i = 1; i <= sq; ++i) {\n\t\t\tif(p[i]) {\n\t\t\t\tps.add(i);\n\t\t\t\
+    }\n\t\t}\n\t}\n\tprivate final long kthRooti(final long n, final int k){ return\
+    \ Utility.kthRoot(n, k); }\n\tprivate final long p2(final long x, final long y)\
+    \ {\n\t\tif(x < 4) {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal long a = pi(y);\n\t\t\
+    final long b = pi(kthRooti(x, 2));\n\t\tif(a >= b) {\n\t\t\treturn 0;\n\t\t}\n\
+    \t\tlong sum = (long) (a - 2) * (a + 1) / 2 - (b - 2) * (b + 1) / 2;\n\t\tfor(long\
+    \ i = a; i < b; ++i) {\n\t\t\tsum += pi(x / ps.get((int) i));\n\t\t}\n\t\treturn\
+    \ sum;\n\t}\n\tprivate final long phi(final long m, final long a) {\n\t\tif(m\
+    \ < 1) {\n\t\t\treturn 0;\n\t\t}\n\t\tif(a > m) {\n\t\t\treturn 1;\n\t\t}\n\t\t\
+    if(a < 1) {\n\t\t\treturn m;\n\t\t}\n\t\tif(m <= (long) ps.get((int) (a - 1))\
+    \ * ps.get((int) (a - 1))) {\n\t\t\treturn pi(m) - a + 1;\n\t\t}\n\t\tif(m <=\
+    \ (long) ps.get((int) (a - 1)) * ps.get((int) (a - 1)) * ps.get((int) (a - 1))\
+    \ && m <= sq) {\n\t\t\tfinal long sx = pi(kthRooti(m, 2));\n\t\t\tlong ans = pi(m)\
+    \ - (long) (sx + a - 2) * (sx - a + 1) / 2;\n\t\t\tfor(long i = a; i < sx; ++i)\
+    \ {\n\t\t\t\tans += pi(m / ps.get((int) i));\n\t\t\t}\n\t\t\treturn ans;\n\t\t\
+    }\n\t\treturn phi(m, a - 1) - phi(m / ps.get((int) (a - 1)), a - 1);\n\t}\n\t\
+    final long pi(final long n) {\n\t\tif(n <= sq) {\n\t\t\treturn psum[(int) n];\n\
+    \t\t}\n\t\tfinal long m = kthRooti(n, 3);\n\t\tfinal long a = pi(m);\n\t\treturn\
+    \ phi(n, a) + a - 1 - p2(n, m);\n\t}\n}\n\n// N <= 1e18;\nfinal class LongPrime\
+    \ {\n\tprivate final int bsf(final long x){ return Long.numberOfTrailingZeros(x);\
+    \ }\n\tprivate final long gcd(long a, long b) {\n\t\ta = Math.abs(a);\n\t\tb =\
+    \ Math.abs(b);\n\t\tif(a == 0) {\n\t\t\treturn b;\n\t\t}\n\t\tif(b == 0) {\n\t\
+    \t\treturn a;\n\t\t}\n\t\tfinal int shift = bsf(a|b);\n\t\ta >>= bsf(a);\n\t\t\
+    do {\n\t\t\tb >>= bsf(b);\n\t\t\tif(a > b) {\n\t\t\t\ta ^= b;\n\t\t\t\tb ^= a;\n\
+    \t\t\t\ta ^= b;\n\t\t\t}\n\t\t\tb -= a;\n\t\t} while(b > 0);\n\t\treturn a <<\
+    \ shift;\n\t}\n\tfinal boolean isPrime(final long n) {\n\t\tif(n <= 1) {\n\t\t\
+    \treturn false;\n\t\t}\n\t\tif(n == 2) {\n\t\t\treturn true;\n\t\t}\n\t\tif(n\
+    \ % 2 == 0) {\n\t\t\treturn false;\n\t\t}\n\t\tlong d = n - 1;\n\t\twhile(d %\
+    \ 2 == 0) {\n\t\t\td /= 2;\n\t\t}\n\t\tfinal long[] sample = {2, 3, 5, 7, 11,\
+    \ 13, 17, 19, 23, 29, 31, 37};\n\t\tfor(final long a: sample) {\n\t\t\tif(n <=\
+    \ a) {\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\tlong t = d;\n\t\t\tBigInteger y = BigInteger.valueOf(a).modPow(BigInteger.valueOf(t),\
+    \ BigInteger.valueOf(n));\n\t\t\twhile(t != n - 1 && !y.equals(BigInteger.ONE)\
+    \ && !y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE))) {\n\t\t\t\ty =\
+    \ y.multiply(y).mod(BigInteger.valueOf(n));\n\t\t\t\tt <<= 1;\n\t\t\t}\n\t\t\t\
+    if(!y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)) && t % 2 == 0) {\n\
+    \t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\tfinal private\
+    \ long find(final long n) {\n\t\tif(isPrime(n)) {\n\t\t\treturn n;\n\t\t}\n\t\t\
+    if(n % 2 == 0) {\n\t\t\treturn 2;\n\t\t}\n\t\tlong st = 0;\n\t\tfinal LongBinaryOperator\
+    \ f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue();\
     \ };\n\t\twhile(true) {\n\t\t\tst++;\n\t\t\tlong x = st, y = f.applyAsLong(x,\
     \ st);\n\t\t\twhile(true) {\n\t\t\t\tfinal long p = gcd(y - x + n, n);\n\t\t\t\
     \tif(p == 0 || p == n) {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\tif(p != 1) {\n\t\
@@ -1042,8 +1042,8 @@ data:
     \ n) {\n\t\tif(n == 1) return new ArrayList<>();\n\t\tfinal long x = find(n);\n\
     \t\tif(x == n) return new ArrayList<>(Arrays.asList(x));\n\t\tfinal ArrayList<Long>\
     \ l = primeFactor(x), r = primeFactor(n / x);\n\t\tl.addAll(r);\n\t\tCollections.sort(l);\n\
-    \t\treturn l;\n\t}\n}\n// N > 1e18\nfinal class BigPrime {\n\tprotected final\
-    \ int bsf(final long x){ return Long.numberOfTrailingZeros(x); }\n\tprivate final\
+    \t\treturn l;\n\t}\n}\n// N > 1e18\nfinal class BigPrime {\n\tprivate final int\
+    \ bsf(final long x){ return Long.numberOfTrailingZeros(x); }\n\tprivate final\
     \ BigInteger gcd(BigInteger a, BigInteger b) {\n\t\ta = a.abs();\n\t\tb = b.abs();\n\
     \t\tif(a.equals(BigInteger.ZERO)) {\n\t\t\treturn b;\n\t\t}\n\t\tif(b.equals(BigInteger.ZERO))\
     \ {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int shift = bsf(a.or(b).longValue());\n\
@@ -1508,7 +1508,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

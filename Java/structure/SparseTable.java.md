@@ -241,34 +241,34 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/structure/SparseTable.java\n"
   code: "package library.structure;\n\nimport java.util.function.LongBinaryOperator;\n\
-    import java.util.function.LongPredicate;\n\nfinal class SparseTable {\n\tprivate\
-    \ final long[][] st;\n\tprivate final int[] lookup;\n\tprivate final LongBinaryOperator\
-    \ op;\n\tSparseTable(final int[] a, final LongBinaryOperator op) {\n\t\tthis.op\
-    \ = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\
-    \t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\t\t\t\
-    st[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\tfor(int j = 0;\
-    \ j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i - 1][j],\
-    \ st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
+    import java.util.function.LongPredicate;\n\npublic final class SparseTable {\n\
+    \tprivate final long[][] st;\n\tprivate final int[] lookup;\n\tprivate final LongBinaryOperator\
+    \ op;\n\tpublic SparseTable(final int[] a, final LongBinaryOperator op) {\n\t\t\
+    this.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\
+    \t\t}\n\t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\
+    \t\t\tst[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\tfor(int\
+    \ j = 0; j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i\
+    \ - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
     \ + 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
-    \ >> 1] + 1;\n\t\t}\n\t}\n\tSparseTable(final long[] a, final LongBinaryOperator\
+    \ >> 1] + 1;\n\t\t}\n\t}\n\tpublic SparseTable(final long[] a, final LongBinaryOperator\
     \ op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\
     \t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length;\
     \ i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\
     \tfor(int j = 0; j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i\
     \ - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
     \ + 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
-    \ >> 1] + 1;\n\t\t}\n\t}\n\tfinal long query(final int l, final int r) {\n\t\t\
-    final int b = lookup[r - l];\n\t\treturn op.applyAsLong(st[b][l], st[b][r - (1\
-    \ << b)]);\n\t}\n\tfinal int minLeft(final int x, final LongPredicate fn) {\n\t\
-    \tif(x == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint ok = x, ng = -1;\n\t\twhile(Math.abs(ok\
-    \ - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(mid,\
-    \ x) - 1)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\
-    \t}\n\t\t}\n\t\treturn ok;\n\t}\n\tfinal int maxRight(final int x, final LongPredicate\
-    \ fn) {\n\t\tif(x == lookup.length - 1) {\n\t\t\treturn lookup.length - 1;\n\t\
-    \t}\n\t\tint ok = x, ng = lookup.length;\n\t\twhile(Math.abs(ok - ng) > 1) {\n\
-    \t\t\tint mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(x, mid))) {\n\t\t\t\tok\
-    \ = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ ok;\n\t}\n}"
+    \ >> 1] + 1;\n\t\t}\n\t}\n\tpublic final long query(final int l, final int r)\
+    \ {\n\t\tfinal int b = lookup[r - l];\n\t\treturn op.applyAsLong(st[b][l], st[b][r\
+    \ - (1 << b)]);\n\t}\n\tpublic final int minLeft(final int x, final LongPredicate\
+    \ fn) {\n\t\tif(x == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint ok = x, ng = -1;\n\t\
+    \twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\t\
+    if(fn.test(query(mid, x) - 1)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\
+    \t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tpublic final int maxRight(final\
+    \ int x, final LongPredicate fn) {\n\t\tif(x == lookup.length - 1) {\n\t\t\treturn\
+    \ lookup.length - 1;\n\t\t}\n\t\tint ok = x, ng = lookup.length;\n\t\twhile(Math.abs(ok\
+    \ - ng) > 1) {\n\t\t\tint mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(x, mid)))\
+    \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
+    }\n\t\treturn ok;\n\t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -349,7 +349,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/SparseTable.java

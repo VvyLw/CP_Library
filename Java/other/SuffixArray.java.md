@@ -243,11 +243,12 @@ data:
   code: "package library.other;\n\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
     import java.util.List;\nimport java.util.function.BiPredicate;\nimport java.util.function.Consumer;\n\
     import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nimport\
-    \ library.core.Utility;\nimport library.structure.pair.Pair;\n\nfinal class SuffixArray\
-    \ extends ArrayList<Integer> {\n\tprivate final String vs;\n\tSuffixArray(final\
-    \ String vs, final boolean compress) {\n\t\tthis.vs = vs;\n\t\tint[] newVS = new\
-    \ int[vs.length() + 1];\n\t\tif(compress) {\n\t\t\tfinal List<Integer> xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());\n\
-    \t\t\tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = Utility.lowerBound(xs,\
+    \ library.core.Utility;\nimport library.structure.pair.Pair;\n\npublic final class\
+    \ SuffixArray extends ArrayList<Integer> {\n\tprivate final String vs;\n\tpublic\
+    \ SuffixArray(final String vs, final boolean compress) {\n\t\tthis.vs = vs;\n\t\
+    \tint[] newVS = new int[vs.length() + 1];\n\t\tif(compress) {\n\t\t\tfinal List<Integer>\
+    \ xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());\n\t\
+    \t\tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = Utility.lowerBound(xs,\
     \ (int) vs.charAt(i)) + 1;\n\t\t\t}\n\t\t} else {\n\t\t\tfinal int d = vs.chars().min().getAsInt();\n\
     \t\t\tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = vs.charAt(i)\
     \ - d + 1;\n\t\t\t}\n\t\t}\n\t\tthis.addAll(Arrays.stream(SAIS(newVS)).boxed().collect(Collectors.toList()));\n\
@@ -282,34 +283,34 @@ data:
     \ = 0; i < m; ++i) {\n\t\t\t\tnewS[i] = ret[lms.get(i)];\n\t\t\t}\n\t\t\tfinal\
     \ var lmsSA = SAIS(newS);\n\t\t\tIntStream.range(0, m).forEach(i -> newLMS.set(i,\
     \ lms.get(lmsSA[i])));\n\t\t}\n\t\tinducedSort.accept(newLMS);\n\t\treturn ret;\n\
-    \t}\n\tfinal boolean ltSubstr(final String t, int si, int ti) {\n\t\tfinal int\
-    \ sn = vs.length(), tn = t.length();\n\t\twhile(si < sn && ti < tn) {\n\t\t\t\
-    if(vs.charAt(si) < t.charAt(ti)) {\n\t\t\t\treturn true;\n\t\t\t}\n\t\t\tif(vs.charAt(si)\
+    \t}\n\tpublic final boolean ltSubstr(final String t, int si, int ti) {\n\t\tfinal\
+    \ int sn = vs.length(), tn = t.length();\n\t\twhile(si < sn && ti < tn) {\n\t\t\
+    \tif(vs.charAt(si) < t.charAt(ti)) {\n\t\t\t\treturn true;\n\t\t\t}\n\t\t\tif(vs.charAt(si)\
     \ > t.charAt(ti)) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t\t++si;\n\t\t\t++ti;\n\
-    \t\t}\n\t\treturn si >= sn && ti < tn;\n\t}\n\tfinal int lowerBound(final String\
-    \ t) {\n\t\tint ok = this.size(), ng = 0;\n\t\twhile(ok - ng > 1) {\n\t\t\tfinal\
-    \ int mid = (ok + ng) / 2;\n\t\t\tif(ltSubstr(t, this.get(mid), 0)) {\n\t\t\t\t\
-    ng = mid;\n\t\t\t} else {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\
-    \t}\n\tfinal Pair<Integer, Integer> equalRange(final String t) {\n\t\tfinal int\
-    \ low = lowerBound(t);\n\t\tint ng = low - 1, ok = this.size();\n\t\tfinal StringBuilder\
-    \ sb = new StringBuilder(t);\n\t\tsb.setCharAt(t.length() - 1, (char)(sb.charAt(sb.length()\
-    \ - 1) - 1));\n\t\tfinal String u = sb.toString();\n\t\twhile(ok - ng > 1) {\n\
-    \t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(ltSubstr(u, this.get(mid), 0))\
-    \ {\n\t\t\t\tng = mid;\n\t\t\t} else {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t}\n\t\t\
-    final int end = this.size() - 1;\n\t\tthis.add(end, this.get(end) - 1);\n\t\t\
-    return Pair.of(low, ok);\n\t}\n\tfinal int[] lcpArray() {\n\t\tfinal int n = this.size()\
-    \ - 1;\n\t\tint[] lcp = new int[n + 1], rank = new int[n + 1];\n\t\tfor(int i\
-    \ = 0; i <= n; ++i) {\n\t\t\trank[this.get(i)] = i;\n\t\t}\n\t\tint h = 0;\n\t\
-    \tfor(int i = 0; i <= n; ++i) {\n\t\t\tif(rank[i] < n) {\n\t\t\t\tfinal int j\
-    \ = this.get(rank[i] + 1);\n\t\t\t\tfor(; j + h < n && i + h < n; ++h) {\n\t\t\
-    \t\t\tif(vs.charAt(j + h) != vs.charAt(i + h)) {\n\t\t\t\t\t\tbreak;\n\t\t\t\t\
-    \t}\n\t\t\t\t}\n\t\t\t\tlcp[rank[i] + 1] = h;\n\t\t\t\tif(h > 0) {\n\t\t\t\t\t\
-    h--;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn lcp;\n\t}\n\t@Override\n\tpublic final\
-    \ String toString() { \n\t\tStringBuilder sb = new StringBuilder();\n\t\tfor(int\
-    \ i = 0; i < this.size(); ++i) {\n\t\t\tsb.append(i + \":[\" + this.get(i) + \"\
-    ]\");\n\t\t\tfor(int j = this.get(i); j < vs.length(); ++j) {\n\t\t\t\tsb.append(\"\
-    \ \" + vs.charAt(j));\n\t\t\t}\n\t\t\tif(i + 1 != this.size()) {\n\t\t\t\tsb.append(\"\
-    \\n\");\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
+    \t\t}\n\t\treturn si >= sn && ti < tn;\n\t}\n\tpublic final int lowerBound(final\
+    \ String t) {\n\t\tint ok = this.size(), ng = 0;\n\t\twhile(ok - ng > 1) {\n\t\
+    \t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(ltSubstr(t, this.get(mid), 0)) {\n\
+    \t\t\t\tng = mid;\n\t\t\t} else {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ ok;\n\t}\n\tpublic final Pair<Integer, Integer> equalRange(final String t) {\n\
+    \t\tfinal int low = lowerBound(t);\n\t\tint ng = low - 1, ok = this.size();\n\t\
+    \tfinal StringBuilder sb = new StringBuilder(t);\n\t\tsb.setCharAt(t.length()\
+    \ - 1, (char)(sb.charAt(sb.length() - 1) - 1));\n\t\tfinal String u = sb.toString();\n\
+    \t\twhile(ok - ng > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(ltSubstr(u,\
+    \ this.get(mid), 0)) {\n\t\t\t\tng = mid;\n\t\t\t} else {\n\t\t\t\tok = mid;\n\
+    \t\t\t}\n\t\t}\n\t\tfinal int end = this.size() - 1;\n\t\tthis.add(end, this.get(end)\
+    \ - 1);\n\t\treturn Pair.of(low, ok);\n\t}\n\tpublic final int[] lcpArray() {\n\
+    \t\tfinal int n = this.size() - 1;\n\t\tint[] lcp = new int[n + 1], rank = new\
+    \ int[n + 1];\n\t\tfor(int i = 0; i <= n; ++i) {\n\t\t\trank[this.get(i)] = i;\n\
+    \t\t}\n\t\tint h = 0;\n\t\tfor(int i = 0; i <= n; ++i) {\n\t\t\tif(rank[i] < n)\
+    \ {\n\t\t\t\tfinal int j = this.get(rank[i] + 1);\n\t\t\t\tfor(; j + h < n &&\
+    \ i + h < n; ++h) {\n\t\t\t\t\tif(vs.charAt(j + h) != vs.charAt(i + h)) {\n\t\t\
+    \t\t\t\tbreak;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tlcp[rank[i] + 1] = h;\n\t\t\t\t\
+    if(h > 0) {\n\t\t\t\t\th--;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn lcp;\n\t}\n\
+    \t@Override\n\tpublic final String toString() { \n\t\tStringBuilder sb = new StringBuilder();\n\
+    \t\tfor(int i = 0; i < this.size(); ++i) {\n\t\t\tsb.append(i + \":[\" + this.get(i)\
+    \ + \"]\");\n\t\t\tfor(int j = this.get(i); j < vs.length(); ++j) {\n\t\t\t\t\
+    sb.append(\" \" + vs.charAt(j));\n\t\t\t}\n\t\t\tif(i + 1 != this.size()) {\n\t\
+    \t\t\tsb.append(\"\\n\");\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -390,7 +391,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-06 16:57:25+09:00'
+  timestamp: '2024-01-06 17:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/other/SuffixArray.java
