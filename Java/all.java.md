@@ -689,30 +689,30 @@ data:
     \t\t} catch(ArithmeticException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\t\
     return Double.NaN;\n\t}\n\tfinal double abs(){ return Math.hypot(first, second);\
     \ }\n}\n\nfinal class Huitloxopetl {\n\tfinal long invNum(final int[] a) {\n\t\
-    \tfinal int[] b = Utility.sorted(a);\n\t\tfinal int[] id = new int[a.length];\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid[b[i]] = i;\n\t\t}\n\t\tfinal\
-    \ FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int\
-    \ i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id[a[i]]);\n\t\t\tbit.add(id[a[i]],\
-    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final long[] a) {\n\t\t\
-    final long[] b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer> id = new HashMap<>();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
-    \ FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int\
-    \ i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\t\
-    bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class UnionFind\
-    \ {\n\tprivate final int[] par;\n\tUnionFind(final int n) {\n\t\tpar = new int[n];\n\
-    \t\tArrays.fill(par, -1);\n\t}\n\tfinal int root(final int i){ return par[i] >=\
-    \ 0 ? par[i] = root(par[i]) : i; }\n\tfinal int size(final int i){ return -par[root(i)];\
-    \ }\n\tfinal boolean unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\
-    \t\tif(i == j) return false;\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\
-    \t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\
-    \t}\n\tfinal boolean same(final int i, final int j){ return root(i) == root(j);\
-    \ }\n\tfinal ArrayList<ArrayList<Integer>> groups() {\n\t\tfinal int n = par.length;\n\
-    \t\tArrayList<ArrayList<Integer>> res = new ArrayList<>(n);\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> res.add(new ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn\
-    \ res;\n\t}\n\tfinal boolean isBipartite() {\n\t\tfinal int n = par.length / 2;\n\
-    \t\tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &= root(i)\
-    \ != root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n}\n\nfinal class WeightedUnionFind\
+    \tfinal int[] b = Utility.sorted(a);\n\t\tfinal Map<Integer, Integer> id = new\
+    \ HashMap<>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\
+    \t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res =\
+    \ 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
+    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final\
+    \ long[] a) {\n\t\tfinal long[] b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer>\
+    \ id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i],\
+    \ i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\t\tlong\
+    \ res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
+    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class\
+    \ UnionFind {\n\tprivate final int[] par;\n\tUnionFind(final int n) {\n\t\tpar\
+    \ = new int[n];\n\t\tArrays.fill(par, -1);\n\t}\n\tfinal int root(final int i){\
+    \ return par[i] >= 0 ? par[i] = root(par[i]) : i; }\n\tfinal int size(final int\
+    \ i){ return -par[root(i)]; }\n\tfinal boolean unite(int i, int j) {\n\t\ti =\
+    \ root(i);\n\t\tj = root(j);\n\t\tif(i == j) return false;\n\t\tif(i > j) {\n\t\
+    \t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\t\
+    par[j] = i;\n\t\treturn true;\n\t}\n\tfinal boolean same(final int i, final int\
+    \ j){ return root(i) == root(j); }\n\tfinal ArrayList<ArrayList<Integer>> groups()\
+    \ {\n\t\tfinal int n = par.length;\n\t\tArrayList<ArrayList<Integer>> res = new\
+    \ ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));\n\
+    \t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\
+    \t\treturn res;\n\t}\n\tfinal boolean isBipartite() {\n\t\tfinal int n = par.length\
+    \ / 2;\n\t\tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &=\
+    \ root(i) != root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n}\n\nfinal class WeightedUnionFind\
     \ {\n\tprivate final int[] par;\n\tprivate final long[] weight;\n\tWeightedUnionFind(final\
     \ int n) {\n\t\tpar = new int[n];\n\t\tweight = new long[n];\n\t\tArrays.fill(par,\
     \ -1);\n\t}\n\tfinal int root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn\
@@ -1379,7 +1379,7 @@ data:
   - Java/extension/AVLTree.java
   - Java/extension/Graph.java
   - Java/extension/Template.java
-  timestamp: '2024-01-06 04:30:19+09:00'
+  timestamp: '2024-01-06 15:24:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/all.java
