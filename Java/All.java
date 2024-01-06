@@ -61,42 +61,7 @@ final class VvyLw extends Utility {
 	@SuppressWarnings("unused")
 	private static final int mod107 = (int)1e9 + 7;
 	static final void solve() {
-		final int n = sc.ni();
-		final String[][] a = new String[n][n];
-		int u = 0, v = n - 1;
-		Pair<Integer, Integer> p = Pair.of(u + 1, u), q = Pair.of(u, v), r = Pair.of(v, v), s = Pair.of(v, u);
-		int x = 0, y = 0, z = 0, i = 1;
-		while(i < sqr(n)) {
-			a[x][y] = String.valueOf(i);
-			i++;
-			if(z == 0) {
-				y++;
-			} else if(z == 1) {
-				x++;
-			} else if(z == 2) {
-				y--;
-			} else {
-				x--;
-			}
-			final var tmp = Pair.of(x, y);
-			if(tmp.equals(q)) {
-				z = 1;
-			} else if(tmp.equals(r)) {
-				z = 2;
-			} else if(tmp.equals(s)) {
-				z = 3;
-			} else if(tmp.equals(p)) {
-				z = 0;
-				u++;
-				v--;
-				p = Pair.of(u + 1, u);
-				q = Pair.of(u, v);
-				r = Pair.of(v, v);
-				s = Pair.of(v, u);
-			}
-		}
-		a[x][y] = "T";
-		o.outl(a);
+		
 	}
 }
 class Utility {
