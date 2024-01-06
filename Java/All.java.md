@@ -1435,9 +1435,9 @@ data:
     \ buf[index(i)]; }\n\tfinal void set(final int i, final T x){ buf[index(i)] =\
     \ x; }\n\tfinal void add(final T x){ addLast(x); }\n\tfinal T poll(){ return pollFirst();\
     \ }\n\tfinal T peek(){ return peekFirst(); }\n\t@SuppressWarnings(\"unchecked\"\
-    )\n\tfinal void swap(final int a, final int b) {\n\t\tfinal int i = index(a);\n\
-    \t\tfinal int j = index(b);\n\t\tfinal T num = (T) buf[i];\n\t\tbuf[i] = buf[j];\n\
-    \t\tbuf[j] = num;\n\t}\n\tfinal void clear(){ head = tail = 0; }\n\t@SuppressWarnings(\"\
+    )\n\tfinal void swap(final int a, final int b) {\n\t\tfinal int i = index(a),\
+    \ j = index(b);\n\t\tfinal T num = (T) buf[i];\n\t\tbuf[i] = buf[j];\n\t\tbuf[j]\
+    \ = num;\n\t}\n\tfinal void clear(){ head = tail = 0; }\n\t@SuppressWarnings(\"\
     unchecked\")\n\tfinal T[] toArray() {\n\t\tfinal Object[] array = new Object[size()];\n\
     \t\tarraycopy(0, (T[]) array, 0, size());\n\t\treturn (T[]) array;\n\t}\n\t@Override\n\
     \tpublic final String toString(){ return Arrays.toString(toArray()); }\n\t@Override\n\
@@ -1531,7 +1531,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 01:03:59+09:00'
+  timestamp: '2024-01-07 01:38:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
