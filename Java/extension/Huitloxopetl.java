@@ -4,15 +4,15 @@ import java.util.Map;
 final class Huitloxopetl {
 	final long invNum(final int[] a) {
 		final int[] b = Utility.sorted(a);
-		final int[] id = new int[a.length];
+		final Map<Integer, Integer> id = new HashMap<>();
 		for(int i = 0; i < a.length; ++i) {
-			id[b[i]] = i;
+			id.put(b[i], i);
 		}
 		final FenwickTree bit = new FenwickTree(a.length);
 		long res = 0;
 		for(int i = 0; i < a.length; ++i) {
-			res += i - bit.sum(id[a[i]]);
-			bit.add(id[a[i]], 1);
+			res += i - bit.sum(id.get(a[i]));
+			bit.add(id.get(a[i]), 1);
 		}
 		return res;
 	}
