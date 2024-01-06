@@ -472,7 +472,7 @@ data:
     >std::find</a>\n\t */\n\tprotected static final int find(final double[] a, final\
     \ double x) {\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tif(a[i] == x) {\n\
     \t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t * \u914D\u5217\
-    a\u306E\u4E2D\u306Bx\u304C\u3042\u308C\u3070\u4F55\u756A\u76EE\u306B\u3042\u308B\
+    s\u306E\u4E2D\u306Bc\u304C\u3042\u308C\u3070\u4F55\u756A\u76EE\u306B\u3042\u308B\
     \u304B\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\n\
     \t * @param s\n\t * @param c\n\t * @see <a href=\"https://cpprefjp.github.io/reference/string/basic_string/find.html\"\
     >std::basic_string::find</a>\n\t */\n\tprotected static final int find(final char[]\
@@ -499,10 +499,10 @@ data:
     \u5834\u5408, -1\u3092\u8FD4\u3059\n\t * @param a\n\t * @param x\n\t */\n\tprotected\
     \ static final int findRev(final double[] a, final double x) {\n\t\tfor(int i\
     \ = a.length; --i >= 0;) {\n\t\t\tif(a[i] == x) {\n\t\t\t\treturn i;\n\t\t\t}\n\
-    \t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t * \u914D\u5217a\u306E\u4E2D\u306Bx\u304C\
+    \t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t * \u914D\u5217s\u306E\u4E2D\u306Bc\u304C\
     \u3042\u308C\u3070\u5F8C\u308D\u304B\u3089\u4F55\u756A\u76EE\u306B\u3042\u308B\
     \u304B\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\n\
-    \t * @param a\n\t * @param x\n\t */\n\tprotected static final int findRev(final\
+    \t * @param s\n\t * @param c\n\t */\n\tprotected static final int findRev(final\
     \ char[] s, final char c) {\n\t\tfor(int i = s.length; --i >= 0;) {\n\t\t\tif(s[i]\
     \ == c) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t *\
     \ \u914D\u5217a\u306E\u4E2D\u306Bx\u304C\u3042\u308C\u3070\u5F8C\u308D\u304B\u3089\
@@ -953,7 +953,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 05:37:54+09:00'
+  timestamp: '2024-01-07 05:45:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/core/Utility.java
