@@ -3,6 +3,9 @@ package library.structure.waveletmatrix;
 import library.core.Utility;
 import library.structure.pair.IntPair;
 
+/**
+ * @see WaveletMatrix
+ */
 final class WaveletMatrixBeta {
 	private final int log;
 	private final SuccinctIndexableDictionary[] matrix;

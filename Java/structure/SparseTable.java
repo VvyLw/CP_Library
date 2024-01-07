@@ -3,10 +3,17 @@ package library.structure;
 import java.util.function.LongBinaryOperator;
 import java.util.function.LongPredicate;
 
+/**
+ * SparseTable
+ */
 public final class SparseTable {
 	private final long[][] st;
 	private final int[] lookup;
 	private final LongBinaryOperator op;
+	/**
+	 * @param a 配列
+	 * @param op 二項演算
+	 */
 	public SparseTable(final int[] a, final LongBinaryOperator op) {
 		this.op = op;
 		int b = 0;
@@ -27,6 +34,10 @@ public final class SparseTable {
 			lookup[i] = lookup[i >> 1] + 1;
 		}
 	}
+	/**
+	 * @param a 配列
+	 * @param op 二項演算
+	 */
 	public SparseTable(final long[] a, final LongBinaryOperator op) {
 		this.op = op;
 		int b = 0;
@@ -47,10 +58,20 @@ public final class SparseTable {
 			lookup[i] = lookup[i >> 1] + 1;
 		}
 	}
+	/**
+	 * @param l
+	 * @param r
+	 * @return 半開区間[l, r)の演算結果
+	 */
 	public final long query(final int l, final int r) {
 		final int b = lookup[r - l];
 		return op.applyAsLong(st[b][l], st[b][r - (1 << b)]);
 	}
+	/**
+	 * 特定の条件を満たす最も左の位置を二分探索で探す
+	 * @param x
+	 * @param fn
+	 */
 	public final int minLeft(final int x, final LongPredicate fn) {
 		if(x == 0) {
 			return 0;
@@ -67,6 +88,11 @@ public final class SparseTable {
 		}
 		return ok;
 	}
+	/**
+	 * 特定の条件を満たす最も右の位置を二分探索で探す
+	 * @param x
+	 * @param fn
+	 */
 	public final int maxRight(final int x, final LongPredicate fn) {
 		if(x == lookup.length - 1) {
 			return lookup.length - 1;

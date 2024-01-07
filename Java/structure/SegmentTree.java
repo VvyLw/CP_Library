@@ -4,11 +4,22 @@ import java.util.Arrays;
 import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
 
+/**
+ * セグメント木
+ * @param <T>
+ * @see <a href="https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp">参考元</a>
+ */
 public final class SegmentTree<T extends Number> {
 	private int n = 1, rank = 0, fini;
 	private final BinaryOperator<T> op;
 	private final T e;
 	private final Object[] dat;
+	/**
+	 * コンストラクタ
+	 * @param fini サイズ
+	 * @param op 二項演算
+	 * @param e 単位元
+	 */
 	public SegmentTree(final int fini, final BinaryOperator<T> op, final T e) {
 		this.fini = fini;
 		this.op = op;
@@ -20,6 +31,11 @@ public final class SegmentTree<T extends Number> {
 		dat = new Object[2 * n];
 		Arrays.fill(dat, e);
 	}
+	/**
+	 * i番目の要素をxにする
+	 * @param i
+	 * @param x
+	 */
 	@SuppressWarnings("unchecked")
 	public final void update(int i, final T x) {
 		i += n;
@@ -29,6 +45,11 @@ public final class SegmentTree<T extends Number> {
 			dat[i] = op.apply((T) dat[2 * i], (T) dat[2 * i + 1]);
 		} while(i > 0);
 	}
+	/**
+	 * @param a
+	 * @param b
+	 * @return 半開区間[l, r)に対して二項演算した結果
+	 */
 	@SuppressWarnings("unchecked")
 	public final T query(int a, int b) {
 		T l = e, r = e;
@@ -42,6 +63,11 @@ public final class SegmentTree<T extends Number> {
 		}
 		return op.apply(l, r);
 	}
+	/**
+	 * 特定の条件を満たす最も左の位置を探す
+	 * @param r
+	 * @param fn
+	 */
 	@SuppressWarnings("unchecked")
 	public final int findLeft(final int r, final Predicate<T> fn) {
 		if(r == 0) {
@@ -76,6 +102,11 @@ public final class SegmentTree<T extends Number> {
 		}
 		return i - n;
 	}
+	/**
+	 * 特定の条件を満たす最も右の位置を探す
+	 * @param l
+	 * @param fn
+	 */
 	@SuppressWarnings("unchecked")
 	public final int findRight(final int l, final Predicate<T> fn) {
 		if(l == fini) {

@@ -3,8 +3,17 @@ package library.structure;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * DoubleEndedPriorityQueue
+ * 両端からアクセスできるHeapQueue
+ * @param <T>
+ */
 public final class DoubleEndedPriorityQueue<T extends Number> {
 	private final ArrayList<T> d;
+	/**
+	 * コンストラクタ
+	 * @param d
+	 */
 	public DoubleEndedPriorityQueue(final ArrayList<T> d) {
 		this.d = d;
 		makeHeap();
@@ -68,11 +77,19 @@ public final class DoubleEndedPriorityQueue<T extends Number> {
 	}
 	private final int parent(final int k){ return ((k >> 1) - 1) & ~1; }
 	private final void popBack(final ArrayList<T> d){ d.remove(d.size() - 1); } 
+	/**
+	 * 要素を追加する
+	 * @param x
+	 */
 	public final void push(final T x) {
 		final int k = d.size();
 		d.add(x);
 		up(k, 1);
 	}
+	/**
+	 * 最小値を削除する
+	 * @return 削除した最小値
+	 */
 	public final T popMin() {
 		final T res = getMin();
 		if(d.size() < 3) {
@@ -84,6 +101,10 @@ public final class DoubleEndedPriorityQueue<T extends Number> {
 		}
 		return res;
 	}
+	/**
+	 * 最大値を削除する
+	 * @return 削除した最大値
+	 */
 	public final T popMax() {
 		final T res = getMax();
 		if(d.size() < 2) { 
@@ -95,8 +116,20 @@ public final class DoubleEndedPriorityQueue<T extends Number> {
 		}
 		return res;
 	}
+	/**
+	 * @return 最小値
+	 */
 	public final T getMin(){ return d.size() < 2 ? d.get(0) : d.get(1); }
+	/**
+	 * @return 最大値
+	 */
 	public final T getMax(){ return d.get(0); }
+	/**
+	 * @return PriorityQueueのサイズ
+	 */
 	public final int size(){ return d.size(); }
+	/**
+	 * PriorityQueueが空かどうか判定する
+	 */
 	public final boolean isEmpty(){ return d.isEmpty(); }
 }

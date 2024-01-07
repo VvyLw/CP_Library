@@ -1,5 +1,9 @@
 package library.structure.waveletmatrix;
 
+/**
+ * 完備辞書
+ * @see <a href="https://ei1333.github.io/library/structure/wavelet/succinct-indexable-dictionary.hpp">参考元</a>
+ */
 final class SuccinctIndexableDictionary {
 	private final int blk;
 	private final int[] bit, sum;

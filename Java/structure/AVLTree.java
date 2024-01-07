@@ -1,5 +1,10 @@
 package library.structure;
 
+/**
+ * AVL木
+ * TreeSetだが、O(log n)で任意のインデックスの要素にアクセスできる
+ * @param <T>
+ */
 public final class AVLTree<T extends Comparable<? super T>> {
 	static final class Node<T extends Comparable<? super T>> {
 		T val;
@@ -102,11 +107,33 @@ public final class AVLTree<T extends Comparable<? super T>> {
 		}
 		return cnt(t.ch[0], v);
 	}
+	/**
+	 * コンストラクタ
+	 */
 	public AVLTree(){ root = null; }
+	/**
+	 * 要素を追加する
+	 * @param val
+	 */
 	public final void add(final T val){ root = insert(root, cnt(root, val), val); }
+	/**
+	 * k番目の要素を削除する
+	 * @param k
+	 */
 	public final void remove(final int k){ root = erase(root, k); }
+	/**
+	 * @param k
+	 * @return k番目の要素
+	 */
 	public final T get(final int k){ return find(root, k).val; }
+	/**
+	 * @param val
+	 * @return valの個数
+	 */
 	public final int count(final T val){ return cnt(root, val); }
+	/**
+	 * @return AVL木のサイズ
+	 */
 	public final int size(){ return root.size; }
 	@Override
 	public final String toString() {
