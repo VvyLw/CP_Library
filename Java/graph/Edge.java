@@ -1,5 +1,8 @@
 package library.graph;
 
+/**
+ * 辺を表すクラス
+ */
 final class Edge {
 	public int src;
 	public int to;
@@ -36,7 +39,7 @@ final class Edge {
 		int result = 17;
 		result = 31 * result + src;
 		result = 31 * result + to;
-		result = 31 * result + (int) (cost ^ (cost >>> 32)); // XOR for long values
+		result = 31 * result + (int) (cost ^ (cost >>> 32));
 		return result;
 	}
 	@Override

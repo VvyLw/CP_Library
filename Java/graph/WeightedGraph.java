@@ -14,8 +14,24 @@ import library.other.SkewHeap;
 import library.structure.pair.IntPair;
 import library.structure.unionfind.UnionFind;
 
+/**
+ * 重みつきグラフクラス
+ */
 public final class WeightedGraph extends Graph {
+	/**
+	 * コンストラクタ
+	 * グラフクラスから継承
+	 * @param n
+	 * @param indexed
+	 * @param undirected
+	 */
 	public WeightedGraph(final int n, final int indexed, final boolean undirected){ super(n, indexed, undirected); }
+	/**
+	 * 辺を追加する
+	 * @param a
+	 * @param b
+	 * @param cost
+	 */
 	public final void addEdge(int a, int b, final long cost) {
 		a -= indexed;
 		b -= indexed;
@@ -26,7 +42,17 @@ public final class WeightedGraph extends Graph {
 			edge.add(new Edge(b, a, cost));
 		}
 	}
+	/**
+	 * 辺をm個入力する
+	 * @param m
+	 */
+	@Override
 	public final void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni(), VvyLw.sc.ni())); }
+	/**
+	 * Dijkstra法
+	 * 負辺のないグラフで単一始点全点間最短路を求める
+	 * @param v
+	 */
 	public final long[] dijkstra(final int v) {
 		final long[] cost = new long[n];
 		Arrays.fill(cost, Long.MAX_VALUE);
@@ -47,6 +73,12 @@ public final class WeightedGraph extends Graph {
 		}
 		return cost;
 	}
+	/**
+	 * Bellman-Ford法
+	 * 負辺が存在していても単一始点全点間最短路を求められる
+	 * 負閉路も検出する
+	 * @param v
+	 */
 	public final long[] bellmanFord(final int v) {
 		final long[] cost = new long[n];
 		Arrays.fill(cost, Long.MAX_VALUE);
@@ -71,6 +103,10 @@ public final class WeightedGraph extends Graph {
 		}
 		return cost;
 	}
+	/**
+	 * Warshall-Floyd法
+	 * 全点対間最短路を求める
+	 */
 	public final long[][] warshallFloyd() {
 		final long[][] cost = new long[n][n];
 		IntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], VvyLw.linf));
@@ -94,6 +130,9 @@ public final class WeightedGraph extends Graph {
 		}
 		return cost;
 	}
+	/**
+	 * Kruskal法によって最小全域木を求める
+	 */
 	public final MST kruskal() {
 		final UnionFind uf = new UnionFind(n);
 		final ArrayList<Edge> e = new ArrayList<>();
@@ -106,6 +145,10 @@ public final class WeightedGraph extends Graph {
 		}
 		return new MST(e, res);
 	}
+	/**
+	 * 最小有向全域木を求める
+	 * @param v
+	 */
 	public final MST directed(final int v) {
 		@SuppressWarnings("unchecked")
 		final ArrayList<Edge> ed = (ArrayList<Edge>) edge.clone();

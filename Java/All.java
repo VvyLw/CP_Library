@@ -1511,7 +1511,7 @@ final class Edge {
 		int result = 17;
 		result = 31 * result + src;
 		result = 31 * result + to;
-		result = 31 * result + (int) (cost ^ (cost >>> 32)); // XOR for long values
+		result = 31 * result + (int) (cost ^ (cost >>> 32));
 		return result;
 	}
 	@Override
@@ -1526,7 +1526,7 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		this.indexed = indexed;
 		this.undirected = undirected;
 		edge = new ArrayList<>();
-		IntStream.range(0, n).forEach(i -> this.add(new ArrayList<>()));
+		IntStream.range(0, n).forEach(i -> add(new ArrayList<>()));
 	}
 	final void addEdge(int a, int b) {
 		a -= indexed;

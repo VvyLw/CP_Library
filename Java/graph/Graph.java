@@ -9,17 +9,33 @@ import java.util.stream.IntStream;
 
 import library.core.VvyLw;
 
+/**
+ * グラフクラス
+ */
 public class Graph extends ArrayList<ArrayList<Edge>> {
 	protected final boolean undirected;
 	protected final int n, indexed;
 	public final ArrayList<Edge> edge;
+	/**
+	 * コンストラクタ
+	 * @param n 頂点の個数
+	 * @param indexed ?-indexed
+	 * 0-indexedなら0, 1-indexedなら1
+	 * @param undirected 無向グラフかどうか
+	 * 無向グラフならtrue, 有向グラフならfalse
+	 */
 	public Graph(final int n, final int indexed, final boolean undirected) {
 		this.n = n;
 		this.indexed = indexed;
 		this.undirected = undirected;
 		edge = new ArrayList<>();
-		IntStream.range(0, n).forEach(i -> this.add(new ArrayList<>()));
+		IntStream.range(0, n).forEach(i -> add(new ArrayList<>()));
 	}
+	/**
+	 * 辺を追加する
+	 * @param a
+	 * @param b
+	 */
 	public final void addEdge(int a, int b) {
 		a -= indexed;
 		b -= indexed;
@@ -30,7 +46,15 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 			edge.add(new Edge(b, a, 0));
 		}
 	}
+	/**
+	 * 辺をm個入力する
+	 * @param m 辺の個数
+	 */
 	public void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni())); }
+	/**
+	 * BFSをして頂点vから各頂点に対する距離を求める
+	 * @param v
+	 */
 	public final int[] allDist(final int v) {
 		final int[] d = new int[n];
 		Arrays.fill(d, -1);
@@ -49,7 +73,15 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 		}
 		return d;
 	}
+	/**
+	 * @param u
+	 * @param v
+	 * @return 頂点uと頂点vとの距離
+	 */
 	public final int dist(final int u, final int v){ return allDist(u)[v]; }
+	/**
+	 * トポロジカルソート
+	 */
 	public final ArrayList<Integer> topologicalSort() {
 		final int[] deg = new int[n];
 		for(int i = 0; i < n; ++i) {

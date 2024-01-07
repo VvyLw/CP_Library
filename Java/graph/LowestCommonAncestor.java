@@ -3,11 +3,20 @@ package library.graph;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
+/**
+ * 最小共通祖先を求めるクラス
+ * [注意] verifyをしていない
+ * @param <G> Graph, あるいはWeightedGraphクラスを入れる
+ */
 public final class LowestCommonAncestor<G extends Graph> {
 	private final int log;
 	private final int[] dep, sum;
 	private final G g;
 	private final int[][] table;
+	/**
+	 * コンストラクタ
+	 * @param g グラフ
+	 */
 	public LowestCommonAncestor(final G g) {
 		this.g = g;
 		final int n = g.size();
@@ -40,6 +49,12 @@ public final class LowestCommonAncestor<G extends Graph> {
 			}
 		}
 	}
+	/**
+	 * 頂点uと頂点vとの最小共通祖先を求める
+	 * @param u
+	 * @param v
+	 * @return
+	 */
 	public final int query(int u, int v) {
 		if(dep[u] > dep[v]) {
 			u ^= v;
@@ -58,6 +73,11 @@ public final class LowestCommonAncestor<G extends Graph> {
 		}
 		return table[0][u];
 	}
+	/**
+	 * @param u
+	 * @param k
+	 * @return 頂点uからk個親に遡った頂点
+	 */
 	public final int climb(int u, final int k) {
 		if(dep[u] < k) {
 			return -1;
@@ -69,5 +89,10 @@ public final class LowestCommonAncestor<G extends Graph> {
 		}
 		return u;
 	}
+	/**
+	 * @param u
+	 * @param v
+	 * @return 頂点uと頂点vとのパスの辺の本数
+	 */
 	public final int dist(final int u, final int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }
 }
