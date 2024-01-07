@@ -241,21 +241,33 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/structure/unionfind/UndoUnionFind.java\n"
   code: "package library.structure.unionfind;\n\nimport java.util.Arrays;\nimport\
-    \ java.util.Stack;\n\nimport library.structure.pair.Pair;\n\npublic final class\
-    \ UndoUnionFind {\n\tprivate final int[] par;\n\tprivate final Stack<Pair<Integer,\
-    \ Integer>> his;\n\tpublic UndoUnionFind(final int n) {\n\t    par = new int[n];\n\
-    \t    Arrays.fill(par, -1);\n\t    his = new Stack<>();\n\t}\n\tpublic final boolean\
-    \ unite(int x, int y) {\n\t\tx = root(x);\n\t\ty = root(y);\n\t\this.add(Pair.of(x,\
-    \ par[x]));\n\t\this.add(Pair.of(y, par[y]));\n\t\tif(x == y) {\n\t\t\treturn\
-    \ false;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\
-    \tx ^= y;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\treturn true;\n\t\
-    }\n\tpublic final int root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn\
-    \ i;\n\t\t}\n\t\treturn root(par[i]);\n\t}\n\tpublic final int size(final int\
-    \ i){ return -par[root(i)]; }\n\tpublic final void undo() {\n\t\tfinal Pair<Integer,\
-    \ Integer> pop1 = his.pop(), pop2 = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\
-    \t\tpar[pop2.first] = pop2.second;\n\t}\n\tpublic final void snapshot() {\n\t\t\
-    while(!his.empty()) {\n\t\t\this.pop();\n\t\t}\n\t}\n\tpublic final void rollback()\
-    \ {\n\t\twhile(!his.empty()) {\n\t\t\tundo();\n\t\t}\n\t}\n}"
+    \ java.util.Stack;\n\nimport library.structure.pair.Pair;\n\n/**\n * Undo\u53EF\
+    \u80FD\u306AUnionFind\n * [\u6CE8\u610F] verify\u3057\u3066\u3044\u306A\u3044\n\
+    \ * @see <a href=\"https://ei1333.github.io/library/structure/union-find/union-find-undo.hpp\"\
+    >\u53C2\u8003\u5143</a>\n */\npublic final class UndoUnionFind {\n\tprivate final\
+    \ int[] par;\n\tprivate final Stack<Pair<Integer, Integer>> his;\n\t/**\n\t *\
+    \ \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param n \u30B5\u30A4\u30BA\
+    \n\t */\n\tpublic UndoUnionFind(final int n) {\n\t    par = new int[n];\n\t  \
+    \  Arrays.fill(par, -1);\n\t    his = new Stack<>();\n\t}\n\t/**\n\t * x\u3068\
+    y\u3092\u30DE\u30FC\u30B8\u3059\u308B\n\t * @param x\n\t * @param y\n\t * @return\
+    \ \u672A\u30DE\u30FC\u30B8\u3067true, \u30DE\u30FC\u30B8\u6E08\u3067false\n\t\
+    \ */\n\tpublic final boolean unite(int x, int y) {\n\t\tx = root(x);\n\t\ty =\
+    \ root(y);\n\t\this.add(Pair.of(x, par[x]));\n\t\this.add(Pair.of(y, par[y]));\n\
+    \t\tif(x == y) {\n\t\t\treturn false;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\t\
+    x ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y]\
+    \ = x;\n\t\treturn true;\n\t}\n\t/**\n\t * @param i\n\t * @return i\u306E\u6839\
+    \n\t */\n\tpublic final int root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\t\
+    return i;\n\t\t}\n\t\treturn root(par[i]);\n\t}\n\t/**\n\t * @param i\n\t * @return\
+    \ i\u3092\u542B\u3080\u9023\u7D50\u6210\u5206\u306E\u30B5\u30A4\u30BA\n\t */\n\
+    \tpublic final int size(final int i){ return -par[root(i)]; }\n\t/**\n\t * \u76F4\
+    \u524D\u306Eunite\u306E\u64CD\u4F5C\u3092\u53D6\u308A\u6D88\u3059\n\t */\n\tpublic\
+    \ final void undo() {\n\t\tfinal Pair<Integer, Integer> pop1 = his.pop(), pop2\
+    \ = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\t\tpar[pop2.first] = pop2.second;\n\
+    \t}\n\t/**\n\t * \u73FE\u5728\u306E\u306E\u72B6\u614B\u3092\u4FDD\u5B58\u3059\u308B\
+    \n\t */\n\tpublic final void snapshot() {\n\t\twhile(!his.empty()) {\n\t\t\this.pop();\n\
+    \t\t}\n\t}\n\t/**\n\t * UnionFind\u3092\u30ED\u30FC\u30EB\u30D0\u30C3\u30AF\u3059\
+    \u308B\n\t */\n\tpublic final void rollback() {\n\t\twhile(!his.empty()) {\n\t\
+    \t\tundo();\n\t\t}\n\t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -336,7 +348,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 06:06:37+09:00'
+  timestamp: '2024-01-07 19:45:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/unionfind/UndoUnionFind.java

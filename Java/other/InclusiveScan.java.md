@@ -241,13 +241,21 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/other/InclusiveScan.java\n"
   code: "package library.other;\n\nimport java.util.Arrays;\nimport java.util.function.LongBinaryOperator;\n\
-    \npublic class InclusiveScan {\n\tprotected final int n;\n\tprotected long[] s;\n\
-    \tpublic InclusiveScan(final int[] a, final LongBinaryOperator op) {\n\t\tn =\
-    \ a.length;\n\t\ts = Arrays.stream(a).mapToLong(i -> i).toArray();\n\t\tArrays.parallelPrefix(s,\
-    \ op);\n\t}\n\tpublic InclusiveScan(final long[] a, final LongBinaryOperator op)\
-    \ {\n\t\tn = a.length;\n\t\ts = a.clone();\n\t\tArrays.parallelPrefix(s, op);\n\
-    \t}\n\tpublic long[] get(){ return s; }\n\tpublic long query(final int l, final\
-    \ int r){ return s[r] - s[l]; }\n}"
+    \n/**\n * C++\u306Estd::inclusive_scan\u306B\u76F8\u5F53\u3059\u308B\u30AF\u30E9\
+    \u30B9\n */\npublic class InclusiveScan {\n\tprotected final int n;\n\tprotected\
+    \ long[] s;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param\
+    \ a\n\t * @param op \u4E8C\u9805\u6F14\u7B97\n\t */\n\tpublic InclusiveScan(final\
+    \ int[] a, final LongBinaryOperator op) {\n\t\tn = a.length;\n\t\ts = Arrays.stream(a).mapToLong(i\
+    \ -> i).toArray();\n\t\tArrays.parallelPrefix(s, op);\n\t}\n\t/**\n\t * \u30B3\
+    \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a\n\t * @param op \u4E8C\u9805\
+    \u6F14\u7B97\n\t */\n\tpublic InclusiveScan(final long[] a, final LongBinaryOperator\
+    \ op) {\n\t\tn = a.length;\n\t\ts = a.clone();\n\t\tArrays.parallelPrefix(s, op);\n\
+    \t}\n\t/**\n\t * @see <a href=\"https://cpprefjp.github.io/reference/numeric/inclusive_scan.html\"\
+    >std::inclusive_scan</a> \n\t */\n\tpublic long[] get(){ return s; }\n\t/**\n\t\
+    \ * \u4E3B\u306B\u7D2F\u7A4D\u548C\u306E\u5DEE\u3092\u6C42\u3081\u308B\u306E\u306B\
+    \u4F7F\u3046\n\t * @param l\n\t * @param r\n\t * @return \u534A\u958B\u533A\u9593\
+    [l, r)\u306B\u304A\u3051\u308Bs[l]\u3068s[r]\u3068\u306E\u5DEE\n\t * @see PrefixSum\n\
+    \t */\n\tpublic long query(final int l, final int r){ return s[r] - s[l]; }\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/Huitloxopetl.java
@@ -328,7 +336,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 06:06:37+09:00'
+  timestamp: '2024-01-07 19:45:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/other/InclusiveScan.java

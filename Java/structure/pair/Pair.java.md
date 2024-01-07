@@ -240,25 +240,32 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/structure/pair/Pair.java\n"
-  code: "package library.structure.pair;\n\npublic class Pair<F extends Comparable<?\
-    \ super F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>>,\
-    \ Cloneable {\n\tpublic F first;\n\tpublic S second;\n\tPair(final F first, final\
-    \ S second) {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\tpublic\
-    \ static final <F extends Comparable<? super F>, S extends Comparable<? super\
-    \ S>> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }\n\tpublic\
-    \ final Pair<S, F> swap(){ return Pair.of(second, first); }\n\t@Override\n\tpublic\
-    \ final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\
-    \t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\
-    \t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first))\
-    \ {\n\t\t\treturn false;\n\t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t\
-    @Override\n\tpublic final int hashCode(){ return 31 * first.hashCode() + second.hashCode();\
-    \ }\n\t@Override\n\tpublic final String toString(){ return \"(\" + first + \"\
-    , \" + second + \")\"; }\n\t@SuppressWarnings(\"unchecked\")\n\t@Override\n\t\
-    public final Pair<F, S> clone() {\n\t\ttry {\n\t\t\treturn (Pair<F, S>) super.clone();\n\
-    \t\t} catch(CloneNotSupportedException e){\n\t\t\te.printStackTrace();\n\t\t}\n\
-    \t\treturn null;\n\t}\n\t@Override\n\tpublic final int compareTo(final Pair<F,\
-    \ S> p) {\n\t\tif(first.compareTo(p.first) == 0) {\n\t\t\treturn second.compareTo(p.second);\n\
-    \t\t}\n\t\treturn first.compareTo(p.first);\n\t}\n}"
+  code: "package library.structure.pair;\n\n/**\n * C++\u306Estd::pair\u306B\u76F8\
+    \u5F53\u3059\u308B\u30AF\u30E9\u30B9\n * @param <F>\n * @param <S>\n */\npublic\
+    \ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>>\
+    \ implements Comparable<Pair<F, S>>, Cloneable {\n\tpublic F first;\n\tpublic\
+    \ S second;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param\
+    \ first\n\t * @param second\n\t */\n\tPair(final F first, final S second) {\n\t\
+    \tthis.first = first;\n\t\tthis.second = second;\n\t}\n\t/**\n\t * Pair\u3092\u5BA3\
+    \u8A00\u3059\u308B\u306E\u306B\u4F7F\u3046\n\t * new Pair\u3068\u540C\u7B49\n\t\
+    \ * @param <F>\n\t * @param <S>\n\t * @param a first\n\t * @param b second\n\t\
+    \ */\n\tpublic static final <F extends Comparable<? super F>, S extends Comparable<?\
+    \ super S>> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }\n\t\
+    /**\n\t * std::pair\u306B\u306F\u306A\u3044\n\t * @return first\u3068second\u3092\
+    \u5165\u308C\u66FF\u3048\u305FPair\n\t */\n\tpublic final Pair<S, F> swap(){ return\
+    \ Pair.of(second, first); }\n\t@Override\n\tpublic final boolean equals(final\
+    \ Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null\
+    \ || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?,\
+    \ ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first)) {\n\t\t\treturn false;\n\
+    \t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t@Override\n\tpublic final int\
+    \ hashCode(){ return 31 * first.hashCode() + second.hashCode(); }\n\t@Override\n\
+    \tpublic final String toString(){ return \"(\" + first + \", \" + second + \"\
+    )\"; }\n\t@SuppressWarnings(\"unchecked\")\n\t@Override\n\tpublic final Pair<F,\
+    \ S> clone() {\n\t\ttry {\n\t\t\treturn (Pair<F, S>) super.clone();\n\t\t} catch(CloneNotSupportedException\
+    \ e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn null;\n\t}\n\t@Override\n\
+    \tpublic final int compareTo(final Pair<F, S> p) {\n\t\tif(first.compareTo(p.first)\
+    \ == 0) {\n\t\t\treturn second.compareTo(p.second);\n\t\t}\n\t\treturn first.compareTo(p.first);\n\
+    \t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -339,7 +346,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 06:06:37+09:00'
+  timestamp: '2024-01-07 19:45:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/pair/Pair.java

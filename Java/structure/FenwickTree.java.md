@@ -240,24 +240,39 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/structure/FenwickTree.java\n"
-  code: "package library.structure;\n\npublic final class FenwickTree {\n\tprivate\
-    \ final int n;\n\tprivate final long[] data;\n\tpublic FenwickTree(final int n)\
-    \ {\n\t\tthis.n = n + 2;\n\t\tdata = new long[this.n + 1];\n\t}\n\tpublic final\
-    \ long sum(int k) {\n\t\tif(k < 0) return 0;\n\t\tlong ret = 0;\n\t\tfor(++k;\
+  code: "package library.structure;\n\n/**\n * FenwickTree(Binary Indexed Tree[BIT])\n\
+    \ * @see <a href=\"https://nyaannyaan.github.io/library/data-structure/binary-indexed-tree.hpp\"\
+    >\u53C2\u8003\u5143</a>\n */\npublic final class FenwickTree {\n\tprivate final\
+    \ int n;\n\tprivate final long[] data;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\
+    \u30AF\u30BF\n\t * @param n \u30B5\u30A4\u30BA\n\t */\n\tpublic FenwickTree(final\
+    \ int n) {\n\t\tthis.n = n + 2;\n\t\tdata = new long[this.n + 1];\n\t}\n\t/**\n\
+    \t * @param k\n\t * @return \u9589\u533A\u9593[0, k]\u306E\u548C\n\t */\n\tpublic\
+    \ final long sum(int k) {\n\t\tif(k < 0) return 0;\n\t\tlong ret = 0;\n\t\tfor(++k;\
     \ k > 0; k -= k & -k) {\n\t\t\tret += data[k];\n\t\t}\n\t\treturn ret;\n\t}\n\t\
-    public final long sum(final int l, final int r){ return sum(r) - sum(l - 1); }\n\
-    \tpublic final long get(final int k){ return sum(k) - sum(k - 1); }\n\tpublic\
-    \ final void add(int k, final long x) {\n\t\tfor(++k; k < n; k += k & -k) {\n\t\
-    \t\tdata[k] += x;\n\t\t}\n\t}\n\tpublic final void imos(final int l, final int\
-    \ r, long x) {\n\t\tadd(l, x);\n\t\tadd(r + 1, -x);\n\t}\n\tprivate final int\
-    \ lg(final int n){ return 63 - Integer.numberOfLeadingZeros(n); }\n\tpublic final\
-    \ int lowerBound(long w) {\n\t\tif(w <= 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint\
-    \ x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x + k <= n -\
-    \ 1 && data[x + k] < w) {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t\
-    }\n\t\t}\n\t\treturn x;\n\t}\n\tpublic final int upperBound(long w) {\n\t\tif(w\
-    \ < 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n);\
-    \ k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <= w) {\n\t\t\t\t\
-    w -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n}"
+    /**\n\t * @param l\n\t * @param r\n\t * @return \u9589\u533A\u9593[l, r]\u306E\
+    \u548C\n\t */\n\tpublic final long sum(final int l, final int r){ return sum(r)\
+    \ - sum(l - 1); }\n\t/**\n\t * @param k\n\t * @return k\u756A\u76EE\u306E\u8981\
+    \u7D20\n\t */\n\tpublic final long get(final int k){ return sum(k) - sum(k - 1);\
+    \ }\n\t/**\n\t * k\u756A\u76EE\u306B\u5024\u3092\u52A0\u7B97\n\t * @param k\n\t\
+    \ * @param x\n\t */\n\tpublic final void add(int k, final long x) {\n\t\tfor(++k;\
+    \ k < n; k += k & -k) {\n\t\t\tdata[k] += x;\n\t\t}\n\t}\n\t/**\n\t * \u9589\u533A\
+    \u9593[l, r]\u306B\u5024\u3092\u52A0\u7B97\u3059\u308B\n\t * @param l\n\t * @param\
+    \ r\n\t * @param x\n\t */\n\tpublic final void imos(final int l, final int r,\
+    \ long x) {\n\t\tadd(l, x);\n\t\tadd(r + 1, -x);\n\t}\n\tprivate final int lg(final\
+    \ int n){ return 63 - Integer.numberOfLeadingZeros(n); }\n\t/**\n\t * @implNote\
+    \ \u8981\u7D20\u306F\u5168\u3066\u975E\u8CA0\n\t * @param w\n\t * @return [0,\
+    \ k]\u306E\u533A\u9593\u548C\u304Cw\u4EE5\u4E0A\u3068\u306A\u308B\u3088\u3046\u306A\
+    \u6700\u5C0F\u306Ek\n\t */\n\tpublic final int lowerBound(long w) {\n\t\tif(w\
+    \ <= 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n);\
+    \ k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] < w) {\n\t\t\t\tw\
+    \ -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\t/**\n\
+    \t * @implNote \u8981\u7D20\u306F\u5168\u3066\u975E\u8CA0\n\t * @param w\n\t *\
+    \ @return [0, k]\u306E\u533A\u9593\u548C\u304Cw\u3088\u308A\u3082\u5927\u304D\u304F\
+    \u306A\u308B\u3088\u3046\u306A\u6700\u5C0F\u306Ek\n\t */\n\tpublic final int upperBound(long\
+    \ w) {\n\t\tif(w < 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k\
+    \ = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <= w)\
+    \ {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\
+    \t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -338,7 +353,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 06:06:37+09:00'
+  timestamp: '2024-01-07 19:45:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/FenwickTree.java

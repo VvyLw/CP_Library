@@ -240,8 +240,10 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/structure/waveletmatrix/SuccientIndexableDictionary.java\n"
-  code: "package library.structure.waveletmatrix;\n\nfinal class SuccinctIndexableDictionary\
-    \ {\n\tprivate final int blk;\n\tprivate final int[] bit, sum;\n\tSuccinctIndexableDictionary(final\
+  code: "package library.structure.waveletmatrix;\n\n/**\n * \u5B8C\u5099\u8F9E\u66F8\
+    \n * @see <a href=\"https://ei1333.github.io/library/structure/wavelet/succinct-indexable-dictionary.hpp\"\
+    >\u53C2\u8003\u5143</a>\n */\nfinal class SuccinctIndexableDictionary {\n\tprivate\
+    \ final int blk;\n\tprivate final int[] bit, sum;\n\tSuccinctIndexableDictionary(final\
     \ int len) {\n\t\tblk = (len + 31) >> 5;\n\t\tbit = new int[blk];\n\t\tsum = new\
     \ int[blk];\n\t}\n\tfinal void set(final int k){ bit[k >> 5] |= 1 << (k & 31);\
     \ }\n\tfinal void build() {\n\t\tsum[0] = 0;\n\t\tfor(int i = 0; ++i < blk;) {\n\
@@ -330,7 +332,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 06:06:37+09:00'
+  timestamp: '2024-01-07 19:45:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/waveletmatrix/SuccientIndexableDictionary.java

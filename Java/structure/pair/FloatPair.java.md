@@ -240,24 +240,40 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/structure/pair/FloatPair.java\n"
-  code: "package library.structure.pair;\nimport library.core.Utility;\n\npublic final\
-    \ class FloatPair extends Pair<Double, Double> {\n\tFloatPair(final double first,\
-    \ final double second){ super(first, second); }\n\tpublic final FloatPair add(final\
-    \ FloatPair p){ return new FloatPair(first + p.first, second + p.second); }\n\t\
-    public final FloatPair sub(final FloatPair p){ return new FloatPair(first - p.first,\
-    \ second - p.second); }\n\tpublic final FloatPair mul(final FloatPair p){ return\
-    \ new FloatPair(first * p.first, second * p.second); }\n\tpublic final FloatPair\
-    \ div(final FloatPair p){ return new FloatPair(first / p.first, second / p.second);\
-    \ }\n\tpublic final FloatPair rotate(){ return new FloatPair(-second, first);\
-    \ } \n\tpublic final FloatPair rotate(final int ang) {\n\t\tfinal double rad =\
-    \ Math.toRadians(Utility.mod(ang, 360));\n\t\treturn new FloatPair(first * Math.cos(rad)\
-    \ - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));\n\
-    \t}\n\tpublic final double dot(final FloatPair p){ return first * p.first + second\
-    \ * p.second; }\n\tpublic final double cross(final FloatPair p){ return rotate().dot(p);\
-    \ }\n\tpublic final double sqr(){ return dot(this); }\n\tpublic final double grad()\
-    \ { \n\t\ttry {\n\t\t\treturn second / first;\n\t\t} catch(ArithmeticException\
-    \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn Double.NaN;\n\t}\n\tpublic\
-    \ final double abs(){ return Math.hypot(first, second); }\n}"
+  code: "package library.structure.pair;\nimport library.core.Utility;\n\n/**\n *\
+    \ \u6D6E\u52D5\u5C0F\u6570\u7279\u5316\u306EPair\u30AF\u30E9\u30B9\n * \u30E1\u30BD\
+    \u30C3\u30C9\u306FIntPair\u306B\u3042\u308B\u3082\u306E\u306EFloatPair\u7248\n\
+    \ */\npublic final class FloatPair extends Pair<Double, Double> {\n\t/**\n\t *\
+    \ \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param first\n\t * @param second\n\
+    \t */\n\tFloatPair(final double first, final double second){ super(first, second);\
+    \ }\n\t/**\n\t * FloatPair\u540C\u58EB\u3092\u52A0\u7B97\u3059\u308B\n\t * @param\
+    \ p\n\t */\n\tpublic final FloatPair add(final FloatPair p){ return new FloatPair(first\
+    \ + p.first, second + p.second); }\n\t/**\n\t * FloatPair\u540C\u58EB\u3092\u6E1B\
+    \u7B97\u3059\u308B\n\t * @param p\n\t */\n\tpublic final FloatPair sub(final FloatPair\
+    \ p){ return new FloatPair(first - p.first, second - p.second); }\n\t/**\n\t *\
+    \ FloatPair\u540C\u58EB\u3092\u4E57\u7B97\u3059\u308B\n\t * @param p\n\t */\n\t\
+    public final FloatPair mul(final FloatPair p){ return new FloatPair(first * p.first,\
+    \ second * p.second); }\n\t/**\n\t * FloatPair\u540C\u58EB\u3092\u9664\u7B97\u3059\
+    \u308B\n\t * @param p\n\t */\n\tpublic final FloatPair div(final FloatPair p){\
+    \ return new FloatPair(first / p.first, second / p.second); }\n\t/**\n\t * FloatPair\u3092\
+    \u5EA7\u6A19\u3068\u898B\u306690\u5EA6\u56DE\u8EE2\u3055\u305B\u308B\n\t * rotate(90)\u3088\
+    \u308A\u7CBE\u78BA\n\t */\n\tpublic final FloatPair rotate(){ return new FloatPair(-second,\
+    \ first); }\n\t/**\n\t * FloatPair\u3092\u5EA7\u6A19\u3068\u898B\u3066ang\u5EA6\
+    \u56DE\u8EE2\u3055\u305B\u308B\n\t * @param ang\n\t */\n\tpublic final FloatPair\
+    \ rotate(final int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang,\
+    \ 360));\n\t\treturn new FloatPair(first * Math.cos(rad) - second * Math.sin(rad),\
+    \ first * Math.sin(rad) + second * Math.cos(rad));\n\t}\n\t/**\n\t * @param p\n\
+    \t * @return \u30C9\u30C3\u30C8\u7A4D\n\t */\n\tpublic final double dot(final\
+    \ FloatPair p){ return first * p.first + second * p.second; }\n\t/**\n\t * @param\
+    \ p\n\t * @return \u30AF\u30ED\u30B9\u7A4D\n\t */\n\tpublic final double cross(final\
+    \ FloatPair p){ return rotate().dot(p); }\n\t/**\n\t * @return FloatPair\u3092\
+    \u5EA7\u6A19\u3068\u898B\u3066\u8DDD\u96E2\n\t */\n\tpublic final double sqr(){\
+    \ return dot(this); }\n\t/**\n\t * @return FloatPair\u306E\u52FE\u914D\n\t */\n\
+    \tpublic final double grad() { \n\t\ttry {\n\t\t\treturn second / first;\n\t\t\
+    } catch(ArithmeticException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn\
+    \ Double.NaN;\n\t}\n\t/**\n\t * @return FloatPair\u306E\u30E6\u30FC\u30AF\u30EA\
+    \u30C3\u30C9\u30CE\u30EB\u30E0\n\t */\n\tpublic final double abs(){ return Math.hypot(first,\
+    \ second); }\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -338,7 +354,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 06:06:37+09:00'
+  timestamp: '2024-01-07 19:45:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/pair/FloatPair.java

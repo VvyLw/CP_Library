@@ -241,27 +241,49 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/structure/waveletmatrix/WaveletMatrix.java\n"
   code: "package library.structure.waveletmatrix;\n\nimport java.util.Arrays;\nimport\
-    \ java.util.stream.IntStream;\n\nimport library.core.Utility;\n\npublic final\
-    \ class WaveletMatrix {\n\tprivate final WaveletMatrixBeta mat;\n\tprivate final\
-    \ long[] ys;\n\tpublic WaveletMatrix(final long[] arr, final int log) {\n\t\t\
-    ys = Arrays.stream(arr).sorted().distinct().toArray();\n\t\tfinal long[] t = new\
-    \ long[arr.length];\n\t\tIntStream.range(0, arr.length).forEach(i -> t[i] = get(arr[i]));\n\
-    \t\tmat = new WaveletMatrixBeta(t, log);\n\t}\n\tprivate final int get(final long\
-    \ x){ return Utility.lowerBound(ys, x); }\n\tpublic final long access(final int\
-    \ k){ return ys[(int) mat.access(k)]; }\n\tpublic final int rank(final long x,\
+    \ java.util.stream.IntStream;\n\nimport library.core.Utility;\n\n/**\n * WaveletMatrix\n\
+    \ * @see <a href=\"https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\"\
+    >\u53C2\u8003\u5143</a>\n */\npublic final class WaveletMatrix {\n\tprivate final\
+    \ WaveletMatrixBeta mat;\n\tprivate final long[] ys;\n\t/**\n\t * \u30B3\u30F3\
+    \u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param arr \u914D\u5217\n\t * @param log\
+    \ \u57FA\u672C16\u3067\u826F\u3044\n\t */\n\tpublic WaveletMatrix(final long[]\
+    \ arr, final int log) {\n\t\tys = Arrays.stream(arr).sorted().distinct().toArray();\n\
+    \t\tfinal long[] t = new long[arr.length];\n\t\tIntStream.range(0, arr.length).forEach(i\
+    \ -> t[i] = get(arr[i]));\n\t\tmat = new WaveletMatrixBeta(t, log);\n\t}\n\tprivate\
+    \ final int get(final long x){ return Utility.lowerBound(ys, x); }\n\t/**\n\t\
+    \ * @param k\n\t * @return k\u756A\u76EE\u306E\u8981\u7D20\n\t */\n\tpublic final\
+    \ long access(final int k){ return ys[(int) mat.access(k)]; }\n\t/**\n\t * @param\
+    \ x\n\t * @param r\n\t * @return \u534A\u958B\u533A\u9593[0, r)\u306B\u542B\u307E\
+    \u308C\u308Bx\u306E\u500B\u6570\n\t */\n\tpublic final int rank(final long x,\
     \ final int r) {\n\t\tfinal int pos = get(x);\n\t\tif(pos == ys.length || ys[pos]\
-    \ != x) {\n\t\t\treturn 0;\n\t\t}\n\t\treturn mat.rank(pos, r);\n\t}\n\tpublic\
-    \ final long kthMin(final int l, final int r, final int k){ return ys[(int) mat.kthMin(l,\
-    \ r, k)]; }\n\tpublic final long kthMax(final int l, final int r, final int k){\
-    \ return ys[(int) mat.kthMax(l, r, k)]; }\n\tpublic final int rangeFreq(final\
+    \ != x) {\n\t\t\treturn 0;\n\t\t}\n\t\treturn mat.rank(pos, r);\n\t}\n\t/**\n\t\
+    \ * @param l\n\t * @param r\n\t * @param k\n\t * @return \u534A\u958B\u533A\u9593\
+    [l, r)\u306B\u542B\u307E\u308C\u308B\u8981\u7D20\u306E\u3046\u3061k\u756A\u76EE\
+    \u306B\u5C0F\u3055\u3044\u8981\u7D20\n\t */\n\tpublic final long kthMin(final\
+    \ int l, final int r, final int k){ return ys[(int) mat.kthMin(l, r, k)]; }\n\t\
+    /**\n\t * @param l\n\t * @param r\n\t * @param k\n\t * @return \u534A\u958B\u533A\
+    \u9593[l, r)\u306B\u542B\u307E\u308C\u308B\u8981\u7D20\u306E\u3046\u3061k\u756A\
+    \u76EE\u306B\u5927\u304D\u3044\u8981\u7D20\n\t */\n\tpublic final long kthMax(final\
+    \ int l, final int r, final int k){ return ys[(int) mat.kthMax(l, r, k)]; }\n\t\
+    /**\n\t * @param l\n\t * @param r\n\t * @param upper\n\t * @return \u534A\u958B\
+    \u533A\u9593[l, r)\u306B\u542B\u307E\u308C\u308B\u8981\u7D20\u306E\u3046\u3061\
+    [0, upper)\u3067\u3042\u308B\u8981\u7D20\u6570\n\t */\n\tpublic final int rangeFreq(final\
     \ int l, final int r, final long upper){ return mat.rangeFreq(l, r, get(upper));\
-    \ }\n\tpublic final int rangeFreq(final int l, final int r, final long lower,\
+    \ }\n\t/**\n\t * @param l\n\t * @param r\n\t * @param lower\n\t * @param upper\n\
+    \t * @return \u534A\u958B\u533A\u9593[l, r)\u306B\u542B\u307E\u308C\u308B\u8981\
+    \u7D20\u306E\u3046\u3061[lower, upper)\u3067\u3042\u308B\u8981\u7D20\u6570\n\t\
+    \ */\n\tpublic final int rangeFreq(final int l, final int r, final long lower,\
     \ final long upper){ return mat.rangeFreq(l, r, get(lower), get(upper)); }\n\t\
-    public final long prev(final int l, final int r, final long upper) {\n\t\tfinal\
-    \ long ret = mat.prev(l, r, get(upper));\n\t\treturn ret == -1 ? -1 : ys[(int)\
-    \ ret];\n\t}\n\tpublic final long next(final int l, final int r, final long lower)\
-    \ {\n\t\tfinal long ret = mat.next(l, r, get(lower));\n\t\treturn ret == -1 ?\
-    \ -1 : ys[(int) ret];\n\t}\n}"
+    /**\n\t * @param l\n\t * @param r\n\t * @param upper\n\t * @return \u534A\u958B\
+    \u533A\u9593[l, r)\u306B\u542B\u307E\u308C\u308B\u8981\u7D20\u306E\u3046\u3061\
+    upper\u306E\u6B21\u306B\u5C0F\u3055\u3044\u8981\u7D20\n\t */\n\tpublic final long\
+    \ prev(final int l, final int r, final long upper) {\n\t\tfinal long ret = mat.prev(l,\
+    \ r, get(upper));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n\t/**\n\t\
+    \ * @param l\n\t * @param r\n\t * @param lower\n\t * @return \u534A\u958B\u533A\
+    \u9593[l, r)\u306B\u542B\u307E\u308C\u308B\u8981\u7D20\u306E\u3046\u3061lower\u306E\
+    \u6B21\u306B\u5927\u304D\u3044\u8981\u7D20\n\t */\n\tpublic final long next(final\
+    \ int l, final int r, final long lower) {\n\t\tfinal long ret = mat.next(l, r,\
+    \ get(lower));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -342,7 +364,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 06:06:37+09:00'
+  timestamp: '2024-01-07 19:45:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/waveletmatrix/WaveletMatrix.java

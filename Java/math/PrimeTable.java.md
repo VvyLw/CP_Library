@@ -241,16 +241,23 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/math/PrimeTable.java\n"
   code: "package library.math;\n\nimport java.util.Arrays;\nimport java.util.stream.IntStream;\n\
-    \npublic final class PrimeTable {\n\tprivate final int size;\n\tprivate final\
-    \ int[] p;\n\tprivate final boolean[] sieve;\n\tpublic PrimeTable(final int n)\
-    \ {\n\t\tsieve = new boolean[n + 1];\n\t\tArrays.fill(sieve, true);\n\t\tsieve[0]\
-    \ = sieve[1] = false;\n\t\tfor(long i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[(int)\
+    \n/**\n * n\u4EE5\u4E0B\u306E\u6574\u6570\u306B\u3064\u3044\u3066\u7D20\u6570\u5224\
+    \u5B9A\u3092\u3059\u308B\u30C6\u30FC\u30D6\u30EB\u3092\u4F5C\u6210\u3059\u308B\
+    \u30AF\u30E9\u30B9\n * \u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9\n\
+    \ */\npublic final class PrimeTable {\n\tprivate final int size;\n\tprivate final\
+    \ int[] p;\n\tprivate final boolean[] sieve;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\n\t * @param n \u6574\u6570\n\t */\n\tpublic PrimeTable(final\
+    \ int n) {\n\t\tsieve = new boolean[n + 1];\n\t\tArrays.fill(sieve, true);\n\t\
+    \tsieve[0] = sieve[1] = false;\n\t\tfor(long i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[(int)\
     \ i]) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(long j = i * i; j <= n; j += i)\
     \ {\n\t\t\t\tsieve[(int) j] = false;\n\t\t\t}\n\t\t}\n\t\tsize = (int) IntStream.rangeClosed(0,\
     \ n).filter(i -> sieve[i]).count();\n\t\tint j = 0;\n\t\tp = new int[size];\n\t\
     \tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\
-    \t\t}\n\t\t}\n\t}\n\tpublic final boolean[] table(){ return sieve; }\n\tpublic\
-    \ final int[] get(){ return p; }\n}"
+    \t\t}\n\t\t}\n\t}\n\t/**\n\t * @return n\u4EE5\u4E0B\u306E\u7D20\u6570\u5224\u5B9A\
+    \u306E\u7D50\u679C\u3092\u30EA\u30B9\u30C8\u30A2\u30C3\u30D7\u3057\u305F\u914D\
+    \u5217\n\t */\n\tpublic final boolean[] table(){ return sieve; }\n\t/**\n\t *\
+    \ @return n\u4EE5\u4E0B\u306E\u7D20\u6570\u3092\u30EA\u30B9\u30C8\u30A2\u30C3\u30D7\
+    \u3057\u305F\u914D\u5217\n\t */\n\tpublic final int[] get(){ return p; }\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -331,7 +338,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 06:06:37+09:00'
+  timestamp: '2024-01-07 19:45:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/math/PrimeTable.java

@@ -240,20 +240,20 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/graph/Edge.java\n"
-  code: "package library.graph;\n\nfinal class Edge {\n\tpublic int src;\n\tpublic\
-    \ int to;\n\tpublic long cost;\n\tEdge(final int to){ this.to = to; }\n\tEdge(final\
-    \ int to, final long cost) {\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\t\
-    Edge(final int src, final int to, final long cost) {\n\t\tthis.src = src;\n\t\t\
-    this.to = to;\n\t\tthis.cost = cost;\n\t}\n\t@Override\n\tpublic final boolean\
-    \ equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\
-    \tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\
-    \tfinal Edge e = (Edge) o;\n\t\tif(src != e.src) {\n\t\t\treturn false;\n\t\t\
-    }\n\t\tif(to != e.to) {\n\t\t\treturn false;\n\t\t}\n\t\treturn cost == e.cost;\n\
-    \t}\n\t@Override\n\tpublic final int hashCode() {\n\t\tint result = 17;\n\t\t\
-    result = 31 * result + src;\n\t\tresult = 31 * result + to;\n\t\tresult = 31 *\
-    \ result + (int) (cost ^ (cost >>> 32)); // XOR for long values\n\t\treturn result;\n\
-    \t}\n\t@Override\n\tpublic final String toString(){ return \"(\" + src + \", \"\
-    \ + to + \", \" + cost + \")\"; }\n}\n"
+  code: "package library.graph;\n\n/**\n * \u8FBA\u3092\u8868\u3059\u30AF\u30E9\u30B9\
+    \n */\nfinal class Edge {\n\tpublic int src;\n\tpublic int to;\n\tpublic long\
+    \ cost;\n\tEdge(final int to){ this.to = to; }\n\tEdge(final int to, final long\
+    \ cost) {\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\tEdge(final int src,\
+    \ final int to, final long cost) {\n\t\tthis.src = src;\n\t\tthis.to = to;\n\t\
+    \tthis.cost = cost;\n\t}\n\t@Override\n\tpublic final boolean equals(final Object\
+    \ o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass()\
+    \ != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Edge e = (Edge) o;\n\
+    \t\tif(src != e.src) {\n\t\t\treturn false;\n\t\t}\n\t\tif(to != e.to) {\n\t\t\
+    \treturn false;\n\t\t}\n\t\treturn cost == e.cost;\n\t}\n\t@Override\n\tpublic\
+    \ final int hashCode() {\n\t\tint result = 17;\n\t\tresult = 31 * result + src;\n\
+    \t\tresult = 31 * result + to;\n\t\tresult = 31 * result + (int) (cost ^ (cost\
+    \ >>> 32));\n\t\treturn result;\n\t}\n\t@Override\n\tpublic final String toString(){\
+    \ return \"(\" + src + \", \" + to + \", \" + cost + \")\"; }\n}\n"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -334,7 +334,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 06:06:37+09:00'
+  timestamp: '2024-01-07 19:45:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/graph/Edge.java

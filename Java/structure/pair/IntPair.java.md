@@ -240,31 +240,51 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/structure/pair/IntPair.java\n"
-  code: "package library.structure.pair;\n\nimport library.core.Utility;\n\npublic\
-    \ final class IntPair extends Pair<Long, Long> {\n\tpublic IntPair(final long\
-    \ first, final long second){ super(first, second); }\n\tpublic final IntPair add(final\
-    \ IntPair p){ return new IntPair(first + p.first, second + p.second); }\n\tpublic\
-    \ final IntPair sub(final IntPair p){ return new IntPair(first - p.first, second\
-    \ - p.second); }\n\tpublic final IntPair mul(final IntPair p){ return new IntPair(first\
-    \ * p.first, second * p.second); }\n\tpublic final IntPair div(final IntPair p){\
-    \ return new IntPair(first / p.first, second / p.second); }\n\tpublic final IntPair\
-    \ mod(final IntPair p){ return new IntPair(first % p.first, second % p.second);\
-    \ }\n\tpublic final IntPair rotate(){ return new IntPair(-second, first); } \n\
-    \tpublic final FloatPair rotate(final int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang,\
-    \ 360));\n\t\treturn new FloatPair(first * Math.cos(rad) - second * Math.sin(rad),\
-    \ first * Math.sin(rad) + second * Math.cos(rad));\n\t}\n\tpublic final long dot(final\
-    \ IntPair p){ return first * p.first + second * p.second; }\n\tpublic final long\
-    \ cross(final IntPair p){ return rotate().dot(p); }\n\tpublic final long sqr(){\
-    \ return dot(this); }\n\tpublic final double grad() { \n\t\ttry {\n\t\t\treturn\
-    \ 1.0 * second / first;\n\t\t} catch(ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
-    \t\t}\n\t\treturn Double.NaN;\n\t}\n\tpublic final double abs(){ return Math.hypot(first,\
-    \ second); }\n\tpublic final long lcm(){ return Utility.lcm(first, second); }\n\
-    \tpublic final long gcd(){ return Utility.gcd(first, second); }\n\tpublic final\
-    \ IntPair extgcd() {\n\t\tlong x = 1, y = 0, t1 = 0, t2 = 0, t3 = 1, a = first,\
-    \ b = second;\n\t\twhile(b > 0) {\n\t\t\tt1 = a / b;\n\t\t\ta -= t1 * b;\n\t\t\
-    \ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\t\tx -= t1 * t2;\n\t\t\tx ^= t2;\n\
-    \t\t\tt2 ^= x;\n\t\t\tx ^= t2;\n\t\t\ty -= t1 * t3;\n\t\t\ty ^= t3;\n\t\t\tt3\
-    \ ^= y;\n\t\t\ty ^= t3;\n\t\t}\n\t\treturn new IntPair(x, y);\n\t}\n}"
+  code: "package library.structure.pair;\n\nimport library.core.Utility;\n\n/**\n\
+    \ * \u6574\u6570\u578B\u306EPair\u7279\u5316\u30AF\u30E9\u30B9\n * \u4FBF\u5229\
+    \u306A\u30E1\u30BD\u30C3\u30C9\u3082\u3042\u308B\n */\npublic final class IntPair\
+    \ extends Pair<Long, Long> {\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\
+    \u30BF\n\t * @param first\n\t * @param second\n\t */\n\tpublic IntPair(final long\
+    \ first, final long second){ super(first, second); }\n\t/**\n\t * Pair\u540C\u58EB\
+    \u3092\u52A0\u7B97\u3059\u308B\n\t * @param p\n\t */\n\tpublic final IntPair add(final\
+    \ IntPair p){ return new IntPair(first + p.first, second + p.second); }\n\t/**\n\
+    \t * Pair\u540C\u58EB\u3092\u6E1B\u7B97\u3059\u308B\n\t * @param p\n\t */\n\t\
+    public final IntPair sub(final IntPair p){ return new IntPair(first - p.first,\
+    \ second - p.second); }\n\t/**\n\t * Pair\u540C\u58EB\u3092\u4E57\u7B97\u3059\u308B\
+    \n\t * @param p\n\t */\n\tpublic final IntPair mul(final IntPair p){ return new\
+    \ IntPair(first * p.first, second * p.second); }\n\t/**\n\t * Pair\u540C\u58EB\
+    \u3092\u9664\u7B97\u3059\u308B\n\t * @param p\n\t */\n\tpublic final IntPair div(final\
+    \ IntPair p){ return new IntPair(first / p.first, second / p.second); }\n\t/**\n\
+    \t * [maybe_unused] Pair\u540C\u58EB\u306E\u5270\u4F59\u6F14\u7B97\n\t * @param\
+    \ p\n\t */\n\tpublic final IntPair mod(final IntPair p){ return new IntPair(first\
+    \ % p.first, second % p.second); }\n\t/**\n\t * IntPair\u3092\u5EA7\u6A19\u3068\
+    \u898B\u306690\u5EA6\u56DE\u8EE2\u3055\u305B\u308B\n\t * rotate(90)\u3088\u308A\
+    \u7CBE\u78BA\n\t */\n\tpublic final IntPair rotate(){ return new IntPair(-second,\
+    \ first); }\n\t/**\n\t * IntPair\u3092\u5EA7\u6A19\u3068\u898B\u3066ang\u5EA6\u56DE\
+    \u8EE2\u3055\u305B\u308B\n\t * @param ang\n\t */\n\tpublic final FloatPair rotate(final\
+    \ int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\
+    \treturn new FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first *\
+    \ Math.sin(rad) + second * Math.cos(rad));\n\t}\n\t/**\n\t * @param p\n\t * @return\
+    \ \u30C9\u30C3\u30C8\u7A4D\n\t */\n\tpublic final long dot(final IntPair p){ return\
+    \ first * p.first + second * p.second; }\n\t/**\n\t * @param p\n\t * @return \u30AF\
+    \u30ED\u30B9\u7A4D\n\t */\n\tpublic final long cross(final IntPair p){ return\
+    \ rotate().dot(p); }\n\t/**\n\t * @return IntPair\u3092\u5EA7\u6A19\u3068\u898B\
+    \u3066\u8DDD\u96E2\n\t */\n\tpublic final long sqr(){ return dot(this); }\n\t\
+    /**\n\t * @return IntPair\u306E\u52FE\u914D\n\t */\n\tpublic final double grad()\
+    \ { \n\t\ttry {\n\t\t\treturn 1.0 * second / first;\n\t\t} catch(ArithmeticException\
+    \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn Double.NaN;\n\t}\n\t/**\n\
+    \t * @return IntPair\u306E\u30E6\u30FC\u30AF\u30EA\u30C3\u30C9\u30CE\u30EB\u30E0\
+    \n\t */\n\tpublic final double abs(){ return Math.hypot(first, second); }\n\t\
+    /**\n\t * @return IntPair\u306E\u6700\u5C0F\u516C\u500D\u6570\n\t */\n\tpublic\
+    \ final long lcm(){ return Utility.lcm(first, second); }\n\t/**\n\t * @return\
+    \ IntPair\u306E\u6700\u5927\u516C\u7D04\u6570\n\t */\n\tpublic final long gcd(){\
+    \ return Utility.gcd(first, second); }\n\t/**\n\t * \u62E1\u5F35\u30E6\u30FC\u30AF\
+    \u30EA\u30C3\u30C9\u306E\u4E92\u9664\u6CD5\n\t */\n\tpublic final IntPair extgcd()\
+    \ {\n\t\tlong x = 1, y = 0, t1 = 0, t2 = 0, t3 = 1, a = first, b = second;\n\t\
+    \twhile(b > 0) {\n\t\t\tt1 = a / b;\n\t\t\ta -= t1 * b;\n\t\t\ta ^= b;\n\t\t\t\
+    b ^= a;\n\t\t\ta ^= b;\n\t\t\tx -= t1 * t2;\n\t\t\tx ^= t2;\n\t\t\tt2 ^= x;\n\t\
+    \t\tx ^= t2;\n\t\t\ty -= t1 * t3;\n\t\t\ty ^= t3;\n\t\t\tt3 ^= y;\n\t\t\ty ^=\
+    \ t3;\n\t\t}\n\t\treturn new IntPair(x, y);\n\t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -345,7 +365,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 06:06:37+09:00'
+  timestamp: '2024-01-07 19:45:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/pair/IntPair.java

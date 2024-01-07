@@ -240,15 +240,19 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/math/EulerPhiTable.java\n"
-  code: "package library.math;\n\nimport library.core.Utility;\n\npublic final class\
-    \ EulerPhiTable {\n\tprivate final int n;\n\tprivate final int[] euler;\n\tpublic\
-    \ EulerPhiTable(final int n) {\n\t\tthis.n = n;\n\t\teuler = Utility.iota(n +\
-    \ 1);\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(euler[i] == i) {\n\t\t\t\t\
-    for(int j = i; j <= n; j += i) {\n\t\t\t\t\teuler[j] = euler[j] / i * (i - 1);\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tpublic final int[] get(){ return euler; }\n\t\
-    public final long[] acc() {\n\t\tlong[] ret = new long[n + 1];\n\t\tret[1] = 2;\n\
-    \t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tret[i] = ret[i - 1] + euler[i];\n\t\t\
-    }\n\t\treturn ret;\n\t}\n}"
+  code: "package library.math;\n\nimport library.core.Utility;\n\n/**\n * 1\u304B\u3089\
+    n\u307E\u3067\u306E\u6574\u6570\u306E\u3046\u3061n\u3068\u4E92\u3044\u306B\u7D20\
+    \u306A\u3082\u306E\u306E\u500B\u6570\u3092\u6C42\u3081\u308B\u30C6\u30FC\u30D6\
+    \u30EB\u3092\u4F5C\u6210\u3059\u308B\u30AF\u30E9\u30B9\n */\npublic final class\
+    \ EulerPhiTable {\n\tprivate final int[] euler;\n\t/**\n\t * \u30B3\u30F3\u30B9\
+    \u30C8\u30E9\u30AF\u30BF\n\t * @param n \u6574\u6570\n\t */\n\tpublic EulerPhiTable(final\
+    \ int n) {\n\t\teuler = Utility.iota(n + 1);\n\t\tfor(int i = 2; i <= n; ++i)\
+    \ {\n\t\t\tif(euler[i] == i) {\n\t\t\t\tfor(int j = i; j <= n; j += i) {\n\t\t\
+    \t\t\teuler[j] = euler[j] / i * (i - 1);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\t/**\n\
+    \t * @return 1\u304B\u3089n\u307E\u3067\u306E\u6574\u6570\u306E\u3046\u3061n\u3068\
+    \u4E92\u3044\u306B\u7D20\u306A\u3082\u306E\u306E\u500B\u6570\u3092\u6C42\u3081\
+    \u308B\u30C6\u30FC\u30D6\u30EB\n\t */\n\tpublic final int[] get(){ return euler;\
+    \ }\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -329,7 +333,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 06:06:37+09:00'
+  timestamp: '2024-01-07 19:45:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/math/EulerPhiTable.java

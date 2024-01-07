@@ -852,24 +852,24 @@ data:
     }\n\t\tif(to != e.to) {\n\t\t\treturn false;\n\t\t}\n\t\treturn cost == e.cost;\n\
     \t}\n\t@Override\n\tpublic final int hashCode() {\n\t\tint result = 17;\n\t\t\
     result = 31 * result + src;\n\t\tresult = 31 * result + to;\n\t\tresult = 31 *\
-    \ result + (int) (cost ^ (cost >>> 32)); // XOR for long values\n\t\treturn result;\n\
-    \t}\n\t@Override\n\tpublic final String toString(){ return \"(\" + src + \", \"\
-    \ + to + \", \" + cost + \")\"; }\n}\nclass Graph extends ArrayList<ArrayList<Edge>>\
-    \ {\n\tprotected final boolean undirected;\n\tprotected final int n, indexed;\n\
-    \tprotected final ArrayList<Edge> edge;\n\tGraph(final int n, final int indexed,\
-    \ final boolean undirected) {\n\t\tthis.n = n;\n\t\tthis.indexed = indexed;\n\t\
-    \tthis.undirected = undirected;\n\t\tedge = new ArrayList<>();\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> this.add(new ArrayList<>()));\n\t}\n\tfinal void addEdge(int\
-    \ a, int b) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(b));\n\
-    \t\tedge.add(new Edge(a, b, 0));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new\
-    \ Edge(a));\n\t\t\tedge.add(new Edge(b, a, 0));\n\t\t}\n\t}\n\tvoid input(final\
-    \ int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni()));\
-    \ }\n\tprotected final int[] allDist(final int v) {\n\t\tfinal int[] d = new int[n];\n\
-    \t\tArrays.fill(d, -1);\n\t\tfinal Queue<Integer> q = new ArrayDeque<>();\n\t\t\
-    d[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\
-    \t\t\tfor(final Edge el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\
-    \t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to] = d[tmp] + 1;\n\t\t\t\tq.add(el.to);\n\
-    \t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\tprotected final int dist(final int u, final\
+    \ result + (int) (cost ^ (cost >>> 32));\n\t\treturn result;\n\t}\n\t@Override\n\
+    \tpublic final String toString(){ return \"(\" + src + \", \" + to + \", \" +\
+    \ cost + \")\"; }\n}\nclass Graph extends ArrayList<ArrayList<Edge>> {\n\tprotected\
+    \ final boolean undirected;\n\tprotected final int n, indexed;\n\tprotected final\
+    \ ArrayList<Edge> edge;\n\tGraph(final int n, final int indexed, final boolean\
+    \ undirected) {\n\t\tthis.n = n;\n\t\tthis.indexed = indexed;\n\t\tthis.undirected\
+    \ = undirected;\n\t\tedge = new ArrayList<>();\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> add(new ArrayList<>()));\n\t}\n\tfinal void addEdge(int a, int b) {\n\t\t\
+    a -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(b));\n\t\tedge.add(new\
+    \ Edge(a, b, 0));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new Edge(a));\n\
+    \t\t\tedge.add(new Edge(b, a, 0));\n\t\t}\n\t}\n\tvoid input(final int m){ IntStream.range(0,\
+    \ m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni())); }\n\tprotected final\
+    \ int[] allDist(final int v) {\n\t\tfinal int[] d = new int[n];\n\t\tArrays.fill(d,\
+    \ -1);\n\t\tfinal Queue<Integer> q = new ArrayDeque<>();\n\t\td[v] = 0;\n\t\t\
+    q.add(v);\n\t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\t\t\t\
+    for(final Edge el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\t\t\
+    continue;\n\t\t\t\t}\n\t\t\t\td[el.to] = d[tmp] + 1;\n\t\t\t\tq.add(el.to);\n\t\
+    \t\t}\n\t\t}\n\t\treturn d;\n\t}\n\tprotected final int dist(final int u, final\
     \ int v){ return allDist(u)[v]; }\n\tprotected final ArrayList<Integer> topologicalSort()\
     \ {\n\t\tfinal int[] deg = new int[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\
     \tfor(final Edge ed: this.get(i)) {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t}\n\t\t}\n\t\
@@ -1000,48 +1000,47 @@ data:
     \ (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\t\t}\n\t\treturn m;\n\t}\n}\n\nfinal\
     \ class PrimeCounter {\n\tprivate final int sq;\n\tprivate final boolean[] p;\n\
     \tprivate final int[] psum;\n\tprivate final ArrayList<Integer> ps;\n\tPrimeCounter(final\
-    \ long lim) {\n\t\tsq = (int) kthRooti(lim, 2);\n\t\tpsum = new int[sq + 1];\n\
-    \t\tp = new PrimeTable(sq).table();\n\t\tfor(int i = 1; i <= sq; ++i) {\n\t\t\t\
-    psum[i] = psum[i - 1] + (p[i] ? 1 : 0);\n\t\t}\n\t\tps = new ArrayList<>();\n\t\
-    \tfor(int i = 1; i <= sq; ++i) {\n\t\t\tif(p[i]) {\n\t\t\t\tps.add(i);\n\t\t\t\
-    }\n\t\t}\n\t}\n\tprivate final long kthRooti(final long n, final int k){ return\
-    \ Utility.kthRoot(n, k); }\n\tprivate final long p2(final long x, final long y)\
-    \ {\n\t\tif(x < 4) {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal long a = pi(y);\n\t\t\
-    final long b = pi(kthRooti(x, 2));\n\t\tif(a >= b) {\n\t\t\treturn 0;\n\t\t}\n\
-    \t\tlong sum = (long) (a - 2) * (a + 1) / 2 - (b - 2) * (b + 1) / 2;\n\t\tfor(long\
-    \ i = a; i < b; ++i) {\n\t\t\tsum += pi(x / ps.get((int) i));\n\t\t}\n\t\treturn\
-    \ sum;\n\t}\n\tprivate final long phi(final long m, final long a) {\n\t\tif(m\
-    \ < 1) {\n\t\t\treturn 0;\n\t\t}\n\t\tif(a > m) {\n\t\t\treturn 1;\n\t\t}\n\t\t\
-    if(a < 1) {\n\t\t\treturn m;\n\t\t}\n\t\tif(m <= (long) ps.get((int) (a - 1))\
-    \ * ps.get((int) (a - 1))) {\n\t\t\treturn pi(m) - a + 1;\n\t\t}\n\t\tif(m <=\
-    \ (long) ps.get((int) (a - 1)) * ps.get((int) (a - 1)) * ps.get((int) (a - 1))\
-    \ && m <= sq) {\n\t\t\tfinal long sx = pi(kthRooti(m, 2));\n\t\t\tlong ans = pi(m)\
-    \ - (long) (sx + a - 2) * (sx - a + 1) / 2;\n\t\t\tfor(long i = a; i < sx; ++i)\
-    \ {\n\t\t\t\tans += pi(m / ps.get((int) i));\n\t\t\t}\n\t\t\treturn ans;\n\t\t\
-    }\n\t\treturn phi(m, a - 1) - phi(m / ps.get((int) (a - 1)), a - 1);\n\t}\n\t\
-    final long pi(final long n) {\n\t\tif(n <= sq) {\n\t\t\treturn psum[(int) n];\n\
-    \t\t}\n\t\tfinal long m = kthRooti(n, 3);\n\t\tfinal long a = pi(m);\n\t\treturn\
-    \ phi(n, a) + a - 1 - p2(n, m);\n\t}\n}\n\n// N <= 1e18;\nfinal class LongPrime\
-    \ {\n\tprivate final int bsf(final long x){ return Long.numberOfTrailingZeros(x);\
-    \ }\n\tprivate final long gcd(long a, long b) {\n\t\ta = Math.abs(a);\n\t\tb =\
-    \ Math.abs(b);\n\t\tif(a == 0) {\n\t\t\treturn b;\n\t\t}\n\t\tif(b == 0) {\n\t\
-    \t\treturn a;\n\t\t}\n\t\tfinal int shift = bsf(a|b);\n\t\ta >>= bsf(a);\n\t\t\
-    do {\n\t\t\tb >>= bsf(b);\n\t\t\tif(a > b) {\n\t\t\t\ta ^= b;\n\t\t\t\tb ^= a;\n\
-    \t\t\t\ta ^= b;\n\t\t\t}\n\t\t\tb -= a;\n\t\t} while(b > 0);\n\t\treturn a <<\
-    \ shift;\n\t}\n\tfinal boolean isPrime(final long n) {\n\t\tif(n <= 1) {\n\t\t\
-    \treturn false;\n\t\t}\n\t\tif(n == 2) {\n\t\t\treturn true;\n\t\t}\n\t\tif(n\
-    \ % 2 == 0) {\n\t\t\treturn false;\n\t\t}\n\t\tlong d = n - 1;\n\t\twhile(d %\
-    \ 2 == 0) {\n\t\t\td /= 2;\n\t\t}\n\t\tfinal long[] sample = {2, 3, 5, 7, 11,\
-    \ 13, 17, 19, 23, 29, 31, 37};\n\t\tfor(final long a: sample) {\n\t\t\tif(n <=\
-    \ a) {\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\tlong t = d;\n\t\t\tBigInteger y = BigInteger.valueOf(a).modPow(BigInteger.valueOf(t),\
-    \ BigInteger.valueOf(n));\n\t\t\twhile(t != n - 1 && !y.equals(BigInteger.ONE)\
-    \ && !y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE))) {\n\t\t\t\ty =\
-    \ y.multiply(y).mod(BigInteger.valueOf(n));\n\t\t\t\tt <<= 1;\n\t\t\t}\n\t\t\t\
-    if(!y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)) && t % 2 == 0) {\n\
-    \t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\tfinal private\
-    \ long find(final long n) {\n\t\tif(isPrime(n)) {\n\t\t\treturn n;\n\t\t}\n\t\t\
-    if(n % 2 == 0) {\n\t\t\treturn 2;\n\t\t}\n\t\tlong st = 0;\n\t\tfinal LongBinaryOperator\
-    \ f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue();\
+    \ long n) {\n\t\tsq = (int) kthRooti(n, 2);\n\t\tpsum = new int[sq + 1];\n\t\t\
+    p = new PrimeTable(sq).table();\n\t\tfor(int i = 1; i <= sq; ++i) {\n\t\t\tpsum[i]\
+    \ = psum[i - 1] + (p[i] ? 1 : 0);\n\t\t}\n\t\tps = new ArrayList<>();\n\t\tfor(int\
+    \ i = 1; i <= sq; ++i) {\n\t\t\tif(p[i]) {\n\t\t\t\tps.add(i);\n\t\t\t}\n\t\t\
+    }\n\t}\n\tprivate final long kthRooti(final long n, final int k){ return Utility.kthRoot(n,\
+    \ k); }\n\tprivate final long p2(final long x, final long y) {\n\t\tif(x < 4)\
+    \ {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal long a = pi(y);\n\t\tfinal long b = pi(kthRooti(x,\
+    \ 2));\n\t\tif(a >= b) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong sum = (long) (a - 2)\
+    \ * (a + 1) / 2 - (b - 2) * (b + 1) / 2;\n\t\tfor(long i = a; i < b; ++i) {\n\t\
+    \t\tsum += pi(x / ps.get((int) i));\n\t\t}\n\t\treturn sum;\n\t}\n\tprivate final\
+    \ long phi(final long m, final long a) {\n\t\tif(m < 1) {\n\t\t\treturn 0;\n\t\
+    \t}\n\t\tif(a > m) {\n\t\t\treturn 1;\n\t\t}\n\t\tif(a < 1) {\n\t\t\treturn m;\n\
+    \t\t}\n\t\tif(m <= (long) ps.get((int) (a - 1)) * ps.get((int) (a - 1))) {\n\t\
+    \t\treturn pi(m) - a + 1;\n\t\t}\n\t\tif(m <= (long) ps.get((int) (a - 1)) * ps.get((int)\
+    \ (a - 1)) * ps.get((int) (a - 1)) && m <= sq) {\n\t\t\tfinal long sx = pi(kthRooti(m,\
+    \ 2));\n\t\t\tlong ans = pi(m) - (long) (sx + a - 2) * (sx - a + 1) / 2;\n\t\t\
+    \tfor(long i = a; i < sx; ++i) {\n\t\t\t\tans += pi(m / ps.get((int) i));\n\t\t\
+    \t}\n\t\t\treturn ans;\n\t\t}\n\t\treturn phi(m, a - 1) - phi(m / ps.get((int)\
+    \ (a - 1)), a - 1);\n\t}\n\tfinal long pi(final long n) {\n\t\tif(n <= sq) {\n\
+    \t\t\treturn psum[(int) n];\n\t\t}\n\t\tfinal long m = kthRooti(n, 3);\n\t\tfinal\
+    \ long a = pi(m);\n\t\treturn phi(n, a) + a - 1 - p2(n, m);\n\t}\n}\n\n// N <=\
+    \ 1e18;\nfinal class LongPrime {\n\tprivate final int bsf(final long x){ return\
+    \ Long.numberOfTrailingZeros(x); }\n\tprivate final long gcd(long a, long b) {\n\
+    \t\ta = Math.abs(a);\n\t\tb = Math.abs(b);\n\t\tif(a == 0) {\n\t\t\treturn b;\n\
+    \t\t}\n\t\tif(b == 0) {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int shift = bsf(a|b);\n\
+    \t\ta >>= bsf(a);\n\t\tdo {\n\t\t\tb >>= bsf(b);\n\t\t\tif(a > b) {\n\t\t\t\t\
+    a ^= b;\n\t\t\t\tb ^= a;\n\t\t\t\ta ^= b;\n\t\t\t}\n\t\t\tb -= a;\n\t\t} while(b\
+    \ > 0);\n\t\treturn a << shift;\n\t}\n\tfinal boolean isPrime(final long n) {\n\
+    \t\tif(n <= 1) {\n\t\t\treturn false;\n\t\t}\n\t\tif(n == 2) {\n\t\t\treturn true;\n\
+    \t\t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn false;\n\t\t}\n\t\tlong d = n - 1;\n\
+    \t\twhile(d % 2 == 0) {\n\t\t\td /= 2;\n\t\t}\n\t\tfinal long[] sample = {2, 3,\
+    \ 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};\n\t\tfor(final long a: sample) {\n\t\t\
+    \tif(n <= a) {\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\tlong t = d;\n\t\t\tBigInteger y\
+    \ = BigInteger.valueOf(a).modPow(BigInteger.valueOf(t), BigInteger.valueOf(n));\n\
+    \t\t\twhile(t != n - 1 && !y.equals(BigInteger.ONE) && !y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)))\
+    \ {\n\t\t\t\ty = y.multiply(y).mod(BigInteger.valueOf(n));\n\t\t\t\tt <<= 1;\n\
+    \t\t\t}\n\t\t\tif(!y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)) &&\
+    \ t % 2 == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\
+    \tfinal private long find(final long n) {\n\t\tif(isPrime(n)) {\n\t\t\treturn\
+    \ n;\n\t\t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn 2;\n\t\t}\n\t\tlong st = 0;\n\t\
+    \tfinal LongBinaryOperator f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue();\
     \ };\n\t\twhile(true) {\n\t\t\tst++;\n\t\t\tlong x = st, y = f.applyAsLong(x,\
     \ st);\n\t\t\twhile(true) {\n\t\t\t\tfinal long p = gcd(y - x + n, n);\n\t\t\t\
     \tif(p == 0 || p == n) {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\tif(p != 1) {\n\t\
@@ -1085,23 +1084,20 @@ data:
     \t}\n\t\tfinal BigInteger x = find(n);\n\t\tif(x.equals(n)) {\n\t\t\treturn new\
     \ ArrayList<>(Arrays.asList(x));\n\t\t}\n\t\tfinal ArrayList<BigInteger> l = primeFactor(x),\
     \ r = primeFactor(n.divide(x));\n\t\tl.addAll(r);\n\t\tCollections.sort(l);\n\t\
-    \treturn l;\n\t}\n}\n\nfinal class EulerPhiTable {\n\tprivate final int n;\n\t\
-    private final int[] euler;\n\tEulerPhiTable(final int n) {\n\t\tthis.n = n;\n\t\
-    \teuler = Utility.iota(n + 1);\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(euler[i]\
-    \ == i) {\n\t\t\t\tfor(int j = i; j <= n; j += i) {\n\t\t\t\t\teuler[j] = euler[j]\
-    \ / i * (i - 1);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal int[] get(){ return\
-    \ euler; }\n\tfinal long[] acc() {\n\t\tlong[] ret = new long[n + 1];\n\t\tret[1]\
-    \ = 2;\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tret[i] = ret[i - 1] + euler[i];\n\
-    \t\t}\n\t\treturn ret;\n\t}\n}\n\nclass InclusiveScan {\n\tprotected final int\
-    \ n;\n\tprotected long[] s;\n\tInclusiveScan(final int[] a, final LongBinaryOperator\
-    \ op) {\n\t\tn = a.length;\n\t\ts = Arrays.stream(a).mapToLong(i -> i).toArray();\n\
-    \t\tArrays.parallelPrefix(s, op);\n\t}\n\tInclusiveScan(final long[] a, final\
-    \ LongBinaryOperator op) {\n\t\tn = a.length;\n\t\ts = a.clone();\n\t\tArrays.parallelPrefix(s,\
-    \ op);\n\t}\n\tprotected long[] get(){ return s; }\n\tprotected long query(final\
-    \ int l, final int r){ return s[r] - s[l]; }\n}\nfinal class PrefixSum extends\
-    \ InclusiveScan {\n\tPrefixSum(final int[] a) {\n\t\tsuper(a, (x, y) -> x + y);\n\
-    \t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), 1);\n\t}\n\tPrefixSum(final long[]\
-    \ a) {\n\t\tsuper(a, (x, y) -> x + y);\n\t\ts = Utility.rotate(Arrays.copyOf(s,\
+    \treturn l;\n\t}\n}\n\nfinal class EulerPhiTable {\n\tprivate final int[] euler;\n\
+    \tEulerPhiTable(final int n) {\n\t\teuler = Utility.iota(n + 1);\n\t\tfor(int\
+    \ i = 2; i <= n; ++i) {\n\t\t\tif(euler[i] == i) {\n\t\t\t\tfor(int j = i; j <=\
+    \ n; j += i) {\n\t\t\t\t\teuler[j] = euler[j] / i * (i - 1);\n\t\t\t\t}\n\t\t\t\
+    }\n\t\t}\n\t}\n\tfinal int[] get(){ return euler; }\n}\n\nclass InclusiveScan\
+    \ {\n\tprotected final int n;\n\tprotected long[] s;\n\tInclusiveScan(final int[]\
+    \ a, final LongBinaryOperator op) {\n\t\tn = a.length;\n\t\ts = Arrays.stream(a).mapToLong(i\
+    \ -> i).toArray();\n\t\tArrays.parallelPrefix(s, op);\n\t}\n\tInclusiveScan(final\
+    \ long[] a, final LongBinaryOperator op) {\n\t\tn = a.length;\n\t\ts = a.clone();\n\
+    \t\tArrays.parallelPrefix(s, op);\n\t}\n\tprotected long[] get(){ return s; }\n\
+    \tprotected long query(final int l, final int r){ return s[r] - s[l]; }\n}\nfinal\
+    \ class PrefixSum extends InclusiveScan {\n\tPrefixSum(final int[] a) {\n\t\t\
+    super(a, (x, y) -> x + y);\n\t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), 1);\n\
+    \t}\n\tPrefixSum(final long[] a) {\n\t\tsuper(a, (x, y) -> x + y);\n\t\ts = Utility.rotate(Arrays.copyOf(s,\
     \ n + 1), 1);\n\t}\n}\n\nfinal class FenwickTree {\n\tprivate final int n;\n\t\
     private final long[] data;\n\tFenwickTree(final int n) {\n\t\tthis.n = n + 2;\n\
     \t\tdata = new long[this.n + 1];\n\t}\n\tfinal long sum(int k) {\n\t\tif(k < 0)\
@@ -1216,57 +1212,57 @@ data:
     \ = 0; i < m; ++i) {\n\t\t\t\tnewS[i] = ret[lms.get(i)];\n\t\t\t}\n\t\t\tfinal\
     \ var lmsSA = SAIS(newS);\n\t\t\tIntStream.range(0, m).forEach(i -> newLMS.set(i,\
     \ lms.get(lmsSA[i])));\n\t\t}\n\t\tinducedSort.accept(newLMS);\n\t\treturn ret;\n\
-    \t}\n\tfinal boolean ltSubstr(final String t, int si, int ti) {\n\t\tfinal int\
-    \ sn = vs.length(), tn = t.length();\n\t\twhile(si < sn && ti < tn) {\n\t\t\t\
-    if(vs.charAt(si) < t.charAt(ti)) {\n\t\t\t\treturn true;\n\t\t\t}\n\t\t\tif(vs.charAt(si)\
-    \ > t.charAt(ti)) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t\t++si;\n\t\t\t++ti;\n\
-    \t\t}\n\t\treturn si >= sn && ti < tn;\n\t}\n\tfinal int lowerBound(final String\
-    \ t) {\n\t\tint ok = this.size(), ng = 0;\n\t\twhile(ok - ng > 1) {\n\t\t\tfinal\
-    \ int mid = (ok + ng) / 2;\n\t\t\tif(ltSubstr(t, this.get(mid), 0)) {\n\t\t\t\t\
-    ng = mid;\n\t\t\t} else {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\
-    \t}\n\tfinal Pair<Integer, Integer> equalRange(final String t) {\n\t\tfinal int\
-    \ low = lowerBound(t);\n\t\tint ng = low - 1, ok = this.size();\n\t\tfinal StringBuilder\
-    \ sb = new StringBuilder(t);\n\t\tsb.setCharAt(t.length() - 1, (char)(sb.charAt(sb.length()\
-    \ - 1) - 1));\n\t\tfinal String u = sb.toString();\n\t\twhile(ok - ng > 1) {\n\
-    \t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(ltSubstr(u, this.get(mid), 0))\
-    \ {\n\t\t\t\tng = mid;\n\t\t\t} else {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t}\n\t\t\
-    final int end = this.size() - 1;\n\t\tthis.add(end, this.get(end) - 1);\n\t\t\
-    return Pair.of(low, ok);\n\t}\n\tfinal int[] lcpArray() {\n\t\tfinal int n = this.size()\
-    \ - 1;\n\t\tint[] lcp = new int[n + 1], rank = new int[n + 1];\n\t\tfor(int i\
-    \ = 0; i <= n; ++i) {\n\t\t\trank[this.get(i)] = i;\n\t\t}\n\t\tint h = 0;\n\t\
-    \tfor(int i = 0; i <= n; ++i) {\n\t\t\tif(rank[i] < n) {\n\t\t\t\tfinal int j\
-    \ = this.get(rank[i] + 1);\n\t\t\t\tfor(; j + h < n && i + h < n; ++h) {\n\t\t\
-    \t\t\tif(vs.charAt(j + h) != vs.charAt(i + h)) {\n\t\t\t\t\t\tbreak;\n\t\t\t\t\
-    \t}\n\t\t\t\t}\n\t\t\t\tlcp[rank[i] + 1] = h;\n\t\t\t\tif(h > 0) {\n\t\t\t\t\t\
-    h--;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn lcp;\n\t}\n\t@Override\n\tpublic final\
-    \ String toString() { \n\t\tStringBuilder sb = new StringBuilder();\n\t\tfor(int\
-    \ i = 0; i < this.size(); ++i) {\n\t\t\tsb.append(i + \":[\" + this.get(i) + \"\
-    ]\");\n\t\t\tfor(int j = this.get(i); j < vs.length(); ++j) {\n\t\t\t\tsb.append(\"\
-    \ \" + vs.charAt(j));\n\t\t\t}\n\t\t\tif(i + 1 != this.size()) {\n\t\t\t\tsb.append(\"\
-    \\n\");\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nfinal class DoubleEndedPriorityQueue<T\
-    \ extends Number> {\n\tprivate final ArrayList<T> d;\n\tDoubleEndedPriorityQueue(final\
-    \ ArrayList<T> d) {\n\t\tthis.d = d;\n\t\tmakeHeap();\n\t}\n\tprivate final void\
-    \ makeHeap() {\n\t\tfor(int i = d.size(); i-- > 0;) {\n\t\t\tif (i % 2 == 1 &&\
-    \ d.get(i - 1).longValue() < d.get(i).longValue()) {\n\t\t\t\tCollections.swap(d,\
-    \ i - 1, i);\n\t\t\t}\n\t\t\tup(down(i), i);\n\t\t}\n\t}\n\tprivate final int\
-    \ down(int k) {\n\t\tfinal int n = d.size();\n\t\tif(k % 2 == 1) {\n\t\t\twhile(2\
-    \ * k + 1 < n) {\n\t\t\t\tint c = 2 * k + 3;\n\t\t\t\tif(n <= c || d.get(c - 2).longValue()\
-    \ < d.get(c).longValue()) {\n\t\t\t\t\t c -= 2;\n\t\t\t\t}\n\t\t\t\tif(c < n &&\
-    \ d.get(c).longValue() < d.get(k).longValue()) {\n\t\t\t\t\tCollections.swap(d,\
+    \t}\n\tprivate final boolean ltSubstr(final String t, int si, int ti) {\n\t\t\
+    final int sn = vs.length(), tn = t.length();\n\t\twhile(si < sn && ti < tn) {\n\
+    \t\t\tif(vs.charAt(si) < t.charAt(ti)) {\n\t\t\t\treturn true;\n\t\t\t}\n\t\t\t\
+    if(vs.charAt(si) > t.charAt(ti)) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t\t++si;\n\
+    \t\t\t++ti;\n\t\t}\n\t\treturn si >= sn && ti < tn;\n\t}\n\tfinal int lowerBound(final\
+    \ String t) {\n\t\tint ok = this.size(), ng = 0;\n\t\twhile(ok - ng > 1) {\n\t\
+    \t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(ltSubstr(t, this.get(mid), 0)) {\n\
+    \t\t\t\tng = mid;\n\t\t\t} else {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ ok;\n\t}\n\tfinal Pair<Integer, Integer> equalRange(final String t) {\n\t\t\
+    final int low = lowerBound(t);\n\t\tint ng = low - 1, ok = this.size();\n\t\t\
+    final StringBuilder sb = new StringBuilder(t);\n\t\tsb.setCharAt(t.length() -\
+    \ 1, (char)(sb.charAt(sb.length() - 1) - 1));\n\t\tfinal String u = sb.toString();\n\
+    \t\twhile(ok - ng > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(ltSubstr(u,\
+    \ this.get(mid), 0)) {\n\t\t\t\tng = mid;\n\t\t\t} else {\n\t\t\t\tok = mid;\n\
+    \t\t\t}\n\t\t}\n\t\tfinal int end = this.size() - 1;\n\t\tthis.add(end, this.get(end)\
+    \ - 1);\n\t\treturn Pair.of(low, ok);\n\t}\n\tfinal int[] lcpArray() {\n\t\tfinal\
+    \ int n = this.size() - 1;\n\t\tint[] lcp = new int[n + 1], rank = new int[n +\
+    \ 1];\n\t\tfor(int i = 0; i <= n; ++i) {\n\t\t\trank[this.get(i)] = i;\n\t\t}\n\
+    \t\tint h = 0;\n\t\tfor(int i = 0; i <= n; ++i) {\n\t\t\tif(rank[i] < n) {\n\t\
+    \t\t\tfinal int j = this.get(rank[i] + 1);\n\t\t\t\tfor(; j + h < n && i + h <\
+    \ n; ++h) {\n\t\t\t\t\tif(vs.charAt(j + h) != vs.charAt(i + h)) {\n\t\t\t\t\t\t\
+    break;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tlcp[rank[i] + 1] = h;\n\t\t\t\tif(h >\
+    \ 0) {\n\t\t\t\t\th--;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn lcp;\n\t}\n\t@Override\n\
+    \tpublic final String toString() { \n\t\tStringBuilder sb = new StringBuilder();\n\
+    \t\tfor(int i = 0; i < this.size(); ++i) {\n\t\t\tsb.append(i + \":[\" + this.get(i)\
+    \ + \"]\");\n\t\t\tfor(int j = this.get(i); j < vs.length(); ++j) {\n\t\t\t\t\
+    sb.append(\" \" + vs.charAt(j));\n\t\t\t}\n\t\t\tif(i + 1 != this.size()) {\n\t\
+    \t\t\tsb.append(\"\\n\");\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\t}\n}\n\
+    \nfinal class DoubleEndedPriorityQueue<T extends Number> {\n\tprivate final ArrayList<T>\
+    \ d;\n\tDoubleEndedPriorityQueue(final ArrayList<T> d) {\n\t\tthis.d = d;\n\t\t\
+    makeHeap();\n\t}\n\tprivate final void makeHeap() {\n\t\tfor(int i = d.size();\
+    \ i-- > 0;) {\n\t\t\tif (i % 2 == 1 && d.get(i - 1).longValue() < d.get(i).longValue())\
+    \ {\n\t\t\t\tCollections.swap(d, i - 1, i);\n\t\t\t}\n\t\t\tup(down(i), i);\n\t\
+    \t}\n\t}\n\tprivate final int down(int k) {\n\t\tfinal int n = d.size();\n\t\t\
+    if(k % 2 == 1) {\n\t\t\twhile(2 * k + 1 < n) {\n\t\t\t\tint c = 2 * k + 3;\n\t\
+    \t\t\tif(n <= c || d.get(c - 2).longValue() < d.get(c).longValue()) {\n\t\t\t\t\
+    \t c -= 2;\n\t\t\t\t}\n\t\t\t\tif(c < n && d.get(c).longValue() < d.get(k).longValue())\
+    \ {\n\t\t\t\t\tCollections.swap(d, k, c);\n\t\t\t\t\tk = c;\n\t\t\t\t}\n\t\t\t\
+    \telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t} else {\n\t\t\twhile(2 *\
+    \ k + 2 < n) {\n\t\t\t\tint c = 2 * k + 4;\n\t\t\t\tif(n <= c || d.get(c).longValue()\
+    \ < d.get(c - 2).longValue()) {\n\t\t\t\t\tc -= 2;\n\t\t\t\t}\n\t\t\t\tif(c <\
+    \ n && d.get(k).longValue() < d.get(c).longValue()) {\n\t\t\t\t\tCollections.swap(d,\
     \ k, c);\n\t\t\t\t\tk = c;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\
-    \t}\n\t\t\t}\n\t\t} else {\n\t\t\twhile(2 * k + 2 < n) {\n\t\t\t\tint c = 2 *\
-    \ k + 4;\n\t\t\t\tif(n <= c || d.get(c).longValue() < d.get(c - 2).longValue())\
-    \ {\n\t\t\t\t\tc -= 2;\n\t\t\t\t}\n\t\t\t\tif(c < n && d.get(k).longValue() <\
-    \ d.get(c).longValue()) {\n\t\t\t\t\tCollections.swap(d, k, c);\n\t\t\t\t\tk =\
-    \ c;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
-    \t\treturn k;\n\t}\n\tprivate final int up(int k, final int root) {\n\t\tif((k\
-    \ | 1) < d.size() && d.get(k & ~1).longValue() < d.get(k | 1).longValue()) {\n\
-    \t\t\tCollections.swap(d, k & ~1, k | 1);\n\t\t\tk ^= 1;\n\t\t}\n\t\tint p;\n\t\
-    \twhile(root < k && d.get(p = parent(k)).longValue() < d.get(k).longValue()) {\n\
-    \t\t\tCollections.swap(d, p, k);\n\t\t\tk = p;\n\t\t}\n\t\twhile(root < k && d.get(k).longValue()\
-    \ < d.get(p = parent(k) | 1).longValue()) {\n\t\t\tCollections.swap(d, p, k);\n\
-    \t\t\tk = p;\n\t\t}\n\t\treturn k;\n\t}\n\tprivate final int parent(final int\
-    \ k){ return ((k >> 1) - 1) & ~1; }\n\tprivate final void popBack(final ArrayList<T>\
+    \t}\n\t\t\t}\n\t\t}\n\t\treturn k;\n\t}\n\tprivate final int up(int k, final int\
+    \ root) {\n\t\tif((k | 1) < d.size() && d.get(k & ~1).longValue() < d.get(k |\
+    \ 1).longValue()) {\n\t\t\tCollections.swap(d, k & ~1, k | 1);\n\t\t\tk ^= 1;\n\
+    \t\t}\n\t\tint p;\n\t\twhile(root < k && d.get(p = parent(k)).longValue() < d.get(k).longValue())\
+    \ {\n\t\t\tCollections.swap(d, p, k);\n\t\t\tk = p;\n\t\t}\n\t\twhile(root < k\
+    \ && d.get(k).longValue() < d.get(p = parent(k) | 1).longValue()) {\n\t\t\tCollections.swap(d,\
+    \ p, k);\n\t\t\tk = p;\n\t\t}\n\t\treturn k;\n\t}\n\tprivate final int parent(final\
+    \ int k){ return ((k >> 1) - 1) & ~1; }\n\tprivate final void popBack(final ArrayList<T>\
     \ d){ d.remove(d.size() - 1); } \n\tfinal void push(final T x) {\n\t\tfinal int\
     \ k = d.size();\n\t\td.add(x);\n\t\tup(k, 1);\n\t}\n\tfinal T popMin() {\n\t\t\
     final T res = getMin();\n\t\tif(d.size() < 3) {\n\t\t\tpopBack(d); \n\t\t} else\
@@ -1525,7 +1521,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 06:06:37+09:00'
+  timestamp: '2024-01-07 19:45:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
