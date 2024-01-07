@@ -148,6 +148,7 @@ public final class WeightedGraph extends Graph {
 	/**
 	 * 最小有向全域木を求める
 	 * @param v
+	 * @see <a href="https://ei1333.github.io/library/graph/mst/directed-mst.hpp">参考元</a>
 	 */
 	public final MST directed(final int v) {
 		@SuppressWarnings("unchecked")
