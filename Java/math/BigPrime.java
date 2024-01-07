@@ -6,7 +6,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.function.BiFunction;
 
-//N > 1e18
+/**
+ * 10^18より大きい整数に対して素数判定や素因数分解をできるクラス
+ */
 public final class BigPrime {
 	private final int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
 	private final BigInteger gcd(BigInteger a, BigInteger b) {
@@ -31,6 +33,10 @@ public final class BigPrime {
 		} while(b.compareTo(BigInteger.ZERO) > 0);
 		return a.shiftLeft(shift);
 	}
+	/**
+	 * Miller-Rabin法による素数判定
+	 * @param n
+	 */
 	public final boolean isPrime(final BigInteger n) {
 		if(n.compareTo(BigInteger.ONE) <= 0) {
 			return false;
@@ -87,6 +93,10 @@ public final class BigPrime {
 			}
 		}
 	}
+	/**
+	 * Pollard-Rho法による素因数分解
+	 * @param n
+	 */
 	public final ArrayList<BigInteger> primeFactor(final BigInteger n) {
 		if(n.equals(BigInteger.ONE)) {
 			return new ArrayList<>();

@@ -2,11 +2,16 @@ package library.math;
 
 import library.core.Utility;
 
+/**
+ * 1からnまでの整数のうちnと互いに素なものの個数を求めるテーブルを作成するクラス
+ */
 public final class EulerPhiTable {
-	private final int n;
 	private final int[] euler;
+	/**
+	 * コンストラクタ
+	 * @param n 整数
+	 */
 	public EulerPhiTable(final int n) {
-		this.n = n;
 		euler = Utility.iota(n + 1);
 		for(int i = 2; i <= n; ++i) {
 			if(euler[i] == i) {
@@ -16,13 +21,8 @@ public final class EulerPhiTable {
 			}
 		}
 	}
+	/**
+	 * @return 1からnまでの整数のうちnと互いに素なものの個数を求めるテーブル
+	 */
 	public final int[] get(){ return euler; }
-	public final long[] acc() {
-		long[] ret = new long[n + 1];
-		ret[1] = 2;
-		for(int i = 2; i <= n; ++i) {
-			ret[i] = ret[i - 1] + euler[i];
-		}
-		return ret;
-	}
 }

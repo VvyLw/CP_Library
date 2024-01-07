@@ -4,13 +4,21 @@ import java.util.ArrayList;
 
 import library.core.Utility;
 
+/**
+ * n以下の素数の個数を高速に求めるクラス
+ * @see <a href="https://ei1333.github.io/library/math/number-theory/prime-count.hpp">参考元</a>
+ */
 public final class PrimeCounter {
 	private final int sq;
 	private final boolean[] p;
 	private final int[] psum;
 	private final ArrayList<Integer> ps;
-	public PrimeCounter(final long lim) {
-		sq = (int) kthRooti(lim, 2);
+	/**
+	 * コンストラクタ
+	 * @param n 整数
+	 */
+	public PrimeCounter(final long n) {
+		sq = (int) kthRooti(n, 2);
 		psum = new int[sq + 1];
 		p = new PrimeTable(sq).table();
 		for(int i = 1; i <= sq; ++i) {
@@ -62,6 +70,10 @@ public final class PrimeCounter {
 		}
 		return phi(m, a - 1) - phi(m / ps.get((int) (a - 1)), a - 1);
 	}
+	/**
+	 * @param n
+	 * @return n以下の素数の個数
+	 */
 	public final long pi(final long n) {
 		if(n <= sq) {
 			return psum[(int) n];
