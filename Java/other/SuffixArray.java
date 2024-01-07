@@ -11,8 +11,17 @@ import java.util.stream.IntStream;
 import library.core.Utility;
 import library.structure.pair.Pair;
 
+/**
+ * 接尾辞配列
+ * @see <a href="https://ei1333.github.io/library/string/suffix-array.hpp">参考元</a>
+ */
 public final class SuffixArray extends ArrayList<Integer> {
 	private final String vs;
+	/**
+	 * コンストラクタ
+	 * @param vs
+	 * @param compress
+	 */
 	public SuffixArray(final String vs, final boolean compress) {
 		this.vs = vs;
 		int[] newVS = new int[vs.length() + 1];
@@ -113,7 +122,7 @@ public final class SuffixArray extends ArrayList<Integer> {
 		inducedSort.accept(newLMS);
 		return ret;
 	}
-	public final boolean ltSubstr(final String t, int si, int ti) {
+	private final boolean ltSubstr(final String t, int si, int ti) {
 		final int sn = vs.length(), tn = t.length();
 		while(si < sn && ti < tn) {
 			if(vs.charAt(si) < t.charAt(ti)) {
@@ -127,6 +136,10 @@ public final class SuffixArray extends ArrayList<Integer> {
 		}
 		return si >= sn && ti < tn;
 	}
+	/**
+	 * @param t
+	 * @return t <= s[i, N)となる最小のi
+	 */
 	public final int lowerBound(final String t) {
 		int ok = this.size(), ng = 0;
 		while(ok - ng > 1) {
@@ -139,6 +152,11 @@ public final class SuffixArray extends ArrayList<Integer> {
 		}
 		return ok;
 	}
+	/**
+	 * tが含まれる区間をSAから探す
+	 * @param t
+	 * @return SAの閉区間[l, r]
+	 */
 	public final Pair<Integer, Integer> equalRange(final String t) {
 		final int low = lowerBound(t);
 		int ng = low - 1, ok = this.size();
@@ -157,6 +175,9 @@ public final class SuffixArray extends ArrayList<Integer> {
 		this.add(end, this.get(end) - 1);
 		return Pair.of(low, ok);
 	}
+	/**
+	 * @return S[i,N)とS[j,N)との最長共通接頭辞
+	 */
 	public final int[] lcpArray() {
 		final int n = this.size() - 1;
 		int[] lcp = new int[n + 1], rank = new int[n + 1];

@@ -6,7 +6,14 @@ import java.util.Map;
 import library.core.Utility;
 import library.structure.FenwickTree;
 
+/**
+ * coreパッケージ以外を使うメソッドを置いてあるクラス
+ */
 public final class Huitloxopetl {
+	/**
+	 * @param a
+	 * @return 転倒数
+	 */
 	public final long invNum(final int[] a) {
 		final int[] b = Utility.sorted(a);
 		final Map<Integer, Integer> id = new HashMap<>();
@@ -21,6 +28,10 @@ public final class Huitloxopetl {
 		}
 		return res;
 	}
+	/**
+	 * @param a
+	 * @return 転倒数
+	 */
 	public final long invNum(final long[] a) {
 		final long[] b = Utility.sorted(a);
 		final Map<Long, Integer> id = new HashMap<>();

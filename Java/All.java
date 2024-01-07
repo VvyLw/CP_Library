@@ -1943,8 +1943,8 @@ final class PrimeCounter {
 	private final boolean[] p;
 	private final int[] psum;
 	private final ArrayList<Integer> ps;
-	PrimeCounter(final long lim) {
-		sq = (int) kthRooti(lim, 2);
+	PrimeCounter(final long n) {
+		sq = (int) kthRooti(n, 2);
 		psum = new int[sq + 1];
 		p = new PrimeTable(sq).table();
 		for(int i = 1; i <= sq; ++i) {
@@ -2194,10 +2194,8 @@ final class BigPrime {
 }
 
 final class EulerPhiTable {
-	private final int n;
 	private final int[] euler;
 	EulerPhiTable(final int n) {
-		this.n = n;
 		euler = Utility.iota(n + 1);
 		for(int i = 2; i <= n; ++i) {
 			if(euler[i] == i) {
@@ -2208,14 +2206,6 @@ final class EulerPhiTable {
 		}
 	}
 	final int[] get(){ return euler; }
-	final long[] acc() {
-		long[] ret = new long[n + 1];
-		ret[1] = 2;
-		for(int i = 2; i <= n; ++i) {
-			ret[i] = ret[i - 1] + euler[i];
-		}
-		return ret;
-	}
 }
 
 class InclusiveScan {
@@ -2592,7 +2582,7 @@ final class SuffixArray extends ArrayList<Integer> {
 		inducedSort.accept(newLMS);
 		return ret;
 	}
-	final boolean ltSubstr(final String t, int si, int ti) {
+	private final boolean ltSubstr(final String t, int si, int ti) {
 		final int sn = vs.length(), tn = t.length();
 		while(si < sn && ti < tn) {
 			if(vs.charAt(si) < t.charAt(ti)) {
