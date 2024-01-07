@@ -251,7 +251,7 @@ data:
     \ new Object[n];\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u306B\
     int[]\u3092\u4E57\u305B\u305F\u3044\u5834\u5408, \u53C2\u8003\u307E\u3067\u306B\
     \u4EE5\u4E0B\u306E\u3088\u3046\u306B\u66F8\u304F\u3053\u3068\u304C\u3067\u304D\
-    \u308B\n\t * <br>\n\t * new Deque<Integer>(Arrays.stream(a).boxed().toArray(Integer[]::new));\n\
+    \u308B\n\t * new Deque<Integer>(Arrays.stream(a).boxed().toArray(Integer[]::new));\n\
     \t * @param a \u30AF\u30E9\u30B9T\u306E\u914D\u5217\n\t */\n\tpublic Deque(final\
     \ T[] a) {\n\t\tthis(a.length);\n\t\tArrays.stream(a).forEach(i -> add(i));\n\t\
     }\n\tprivate final int next(final int index) {\n\t\tfinal int next = index + 1;\n\
@@ -414,7 +414,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-07 19:45:23+09:00'
+  timestamp: '2024-01-07 19:56:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/Deque.java
