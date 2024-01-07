@@ -21,7 +21,6 @@ public final class Deque<T> implements Iterable<T> {
 	}
 	/**
 	 * コンストラクタにint[]を乗せたい場合, 参考までに以下のように書くことができる
-	 * <br>
 	 * new Deque<Integer>(Arrays.stream(a).boxed().toArray(Integer[]::new));
 	 * @param a クラスTの配列
 	 */
