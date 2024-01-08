@@ -2,8 +2,6 @@ package library.structure;
 
 import java.util.stream.IntStream;
 
-import library.core.Utility;
-
 /**
  * 行列
  * @see <a href="https://ei1333.github.io/luzhiled/snippets/math/matrix.html">参考元</a>
@@ -138,38 +136,6 @@ public final class Matrix implements Cloneable {
 			k >>= 1;
 		}
 		return n;
-	}
-	/**
-	 * @return 行列式
-	 */
-	public final long det() {
-		assert(h == w);
-		final double[][] m = new double[h][w];
-		IntStream.range(0, h).forEach(i -> IntStream.range(0, w).forEach(j -> m[i][j] = mat[i][j]));
-		double res = 1;
-		for(int i = 0; i < h - 1; i++) {
-			for(int j = i + 1; j < h; j++) {
-				double pivot = m[i][i];
-				if(pivot == 0) {
-					for(int k = i + 1; k < h; k++) {
-						if(m[k][i] != 0) {
-							Utility.swap(m[i], m[k]);
-							res *= -1;
-							break;
-						}
-					}
-					pivot = m[i][i];
-				}
-				final double multiplier = mat[j][i] / pivot;
-				for(int k = i; k < w; k++) {
-					m[j][k] -= multiplier * m[i][k];
-				}
-			}
-		}
-		for(int i = 0; i < w; i++) {
-			res *= m[i][i];
-		}
-		return (long) res;
 	}
 	@Override
 	public final boolean equals(final Object o) {

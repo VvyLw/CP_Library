@@ -3300,12 +3300,32 @@ final class Matrix implements Cloneable {
 		}
 		return mt;
 	}
+	final Matrix add(final Matrix m, final long mod) {
+		assert(h == m.h && w == m.w);
+		final Matrix mt = new Matrix(h, w);
+		for(int i = 0; i < h; ++i) {
+			for(int j = 0; j < w; ++j) {
+				mt.set(i, j, (mat[i][j] + m.get(i, j)) % mod);
+			}
+		}
+		return mt;
+	}
 	final Matrix sub(final Matrix m) {
 		assert(h == m.h && w == m.w);
 		final Matrix mt = new Matrix(h, w);
 		for(int i = 0; i < h; ++i) {
 			for(int j = 0; j < w; ++j) {
 				mt.set(i, j, mat[i][j] - m.get(i, j));
+			}
+		}
+		return mt;
+	}
+	final Matrix sub(final Matrix m, final long mod) {
+		assert(h == m.h && w == m.w);
+		final Matrix mt = new Matrix(h, w);
+		for(int i = 0; i < h; ++i) {
+			for(int j = 0; j < w; ++j) {
+				mt.set(i, j, (mat[i][j] - m.get(i, j)) % mod);
 			}
 		}
 		return mt;
@@ -3317,6 +3337,18 @@ final class Matrix implements Cloneable {
 			for(int j = 0; j < m.w; ++j) {
 				for(int k = 0; k < w; ++k) {
 					mt.set(i, j, mt.get(i, j) + mat[i][k] * m.get(k, j));
+				}
+			}
+		}
+		return mt;
+	}
+	final Matrix mul(final Matrix m, final long mod) {
+		assert(w == m.h);
+		final Matrix mt = new Matrix(h, m.w);
+		for(int i = 0; i < h; ++i) {
+			for(int j = 0; j < m.w; ++j) {
+				for(int k = 0; k < w; ++k) {
+					mt.set(i, j, (mt.get(i, j) + mat[i][k] * m.get(k, j)) % mod);
 				}
 			}
 		}
@@ -3334,34 +3366,17 @@ final class Matrix implements Cloneable {
 		}
 		return n;
 	}
-	final long det() {
-		assert(h == w);
-		final double[][] m = new double[h][w];
-		IntStream.range(0, h).forEach(i -> IntStream.range(0, w).forEach(j -> m[i][j] = mat[i][j]));
-		double res = 1;
-		for(int i = 0; i < h - 1; i++) {
-			for(int j = i + 1; j < h; j++) {
-				double pivot = m[i][i];
-				if(pivot == 0) {
-					for(int k = i + 1; k < h; k++) {
-						if(m[k][i] != 0) {
-							Utility.swap(m[i], m[k]);
-							res *= -1;
-							break;
-						}
-					}
-					pivot = m[i][i];
-				}
-				final double multiplier = mat[j][i] / pivot;
-				for(int k = i; k < w; k++) {
-					m[j][k] -= multiplier * m[i][k];
-				}
+	final Matrix pow(long k, final long mod) {
+		Matrix n = clone();
+		Matrix m = Matrix.E(h);
+		while(k > 0) {
+			if(k % 2 == 1) {
+				m = m.mul(this, mod);
 			}
+			n = n.mul(n, mod);
+			k >>= 1;
 		}
-		for(int i = 0; i < w; i++) {
-			res *= m[i][i];
-		}
-		return (long) res;
+		return n;
 	}
 	@Override
 	public final boolean equals(final Object o) {
