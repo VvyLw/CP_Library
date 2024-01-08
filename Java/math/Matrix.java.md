@@ -245,9 +245,9 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/structure/Matrix.java\n"
-  code: "package library.structure;\n\nimport java.util.stream.IntStream;\n\n/**\n\
-    \ * \u884C\u5217\n * @see <a href=\"https://ei1333.github.io/luzhiled/snippets/math/matrix.html\"\
+    RuntimeError: bundler is not specified: Java/math/Matrix.java\n"
+  code: "package library.math;\n\nimport java.util.stream.IntStream;\n\nimport library.core.Utility;\n\
+    \n/**\n * \u884C\u5217\n * @see <a href=\"https://ei1333.github.io/luzhiled/snippets/math/matrix.html\"\
     >\u53C2\u8003\u5143</a>\n */\npublic final class Matrix implements Cloneable {\n\
     \tprivate final int h, w;\n\tprivate final long[][] mat;\n\t/**\n\t * \u30B3\u30F3\
     \u30B9\u30C8\u30E9\u30AF\u30BF(\u6B63\u65B9\u884C\u5217)\n\t * @param n\n\t */\n\
@@ -281,8 +281,8 @@ data:
     \ * \u4EFB\u610Fmod\u52A0\u7B97\n\t * @param m\n\t * @param mod\n\t */\n\tpublic\
     \ final Matrix add(final Matrix m, final long mod) {\n\t\tassert(h == m.h && w\
     \ == m.w);\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i < h;\
-    \ ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, (mat[i][j]\
-    \ + m.get(i, j)) % mod);\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t * \u6E1B\
+    \ ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, Utility.mod(mat[i][j]\
+    \ + m.get(i, j), mod));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t * \u6E1B\
     \u7B97\n\t * @param m\n\t */\n\tpublic final Matrix sub(final Matrix m) {\n\t\t\
     assert(h == m.h && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int\
     \ i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i,\
@@ -290,8 +290,8 @@ data:
     \ * \u4EFB\u610Fmod\u6E1B\u7B97\n\t * @param m\n\t * @param mod\n\t */\n\tpublic\
     \ final Matrix sub(final Matrix m, final long mod) {\n\t\tassert(h == m.h && w\
     \ == m.w);\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i < h;\
-    \ ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, (mat[i][j]\
-    \ - m.get(i, j)) % mod);\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t * \u4E57\
+    \ ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, Utility.mod(mat[i][j]\
+    \ - m.get(i, j), mod));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t * \u4E57\
     \u7B97\n\t * @param m\n\t */\n\tpublic final Matrix mul(final Matrix m) {\n\t\t\
     assert(w == m.h);\n\t\tfinal Matrix mt = new Matrix(h, m.w);\n\t\tfor(int i =\
     \ 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < m.w; ++j) {\n\t\t\t\tfor(int k =\
@@ -301,25 +301,25 @@ data:
     \ mul(final Matrix m, final long mod) {\n\t\tassert(w == m.h);\n\t\tfinal Matrix\
     \ mt = new Matrix(h, m.w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j\
     \ = 0; j < m.w; ++j) {\n\t\t\t\tfor(int k = 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i,\
-    \ j, (mt.get(i, j) + mat[i][k] * m.get(k, j)) % mod);\n\t\t\t\t}\n\t\t\t}\n\t\t\
-    }\n\t\treturn mt;\n\t}\n\t/**\n\t * \u51AA\u7B97\n\t * @param k\n\t */\n\tpublic\
-    \ final Matrix pow(long k) {\n\t\tMatrix n = clone();\n\t\tMatrix m = Matrix.E(h);\n\
-    \t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(this);\n\t\t\t}\n\
-    \t\t\tn = n.mul(n);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn n;\n\t}\n\t/**\n\t * \u4EFB\
-    \u610Fmod\u51AA\u7B97\n\t * @param m\n\t * @param mod\n\t */\n\tpublic final Matrix\
-    \ pow(long k, final long mod) {\n\t\tMatrix n = clone();\n\t\tMatrix m = Matrix.E(h);\n\
-    \t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(this, mod);\n\t\t\
-    \t}\n\t\t\tn = n.mul(n, mod);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn n;\n\t}\n\t@Override\n\
-    \tpublic final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn\
-    \ true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn\
-    \ false;\n\t\t}\n\t\tfinal Matrix m = (Matrix) o;\n\t\tif(h != m.h || w != m.w)\
-    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int\
-    \ j = 0; j < w; ++j) {\n\t\t\t\tif(mat[i][j] != m.get(i, j)) {\n\t\t\t\t\treturn\
-    \ false;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\t@Override\n\tpublic\
-    \ final Matrix clone() {\n\t\ttry {\n\t\t\treturn (Matrix) super.clone();\n\t\t\
-    } catch(CloneNotSupportedException e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\t\
-    return null;\n\t}\n\t@Override\n\tpublic final String toString() {\n\t\tfinal\
-    \ StringBuilder sb = new StringBuilder();\n\t\tfinal int interval = String.valueOf(IntStream.range(0,\
+    \ j, Utility.mod(mt.get(i, j) + mat[i][k] * m.get(k, j), mod));\n\t\t\t\t}\n\t\
+    \t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t * \u51AA\u7B97\n\t * @param k\n\t\
+    \ */\n\tpublic final Matrix pow(long k) {\n\t\tMatrix n = clone();\n\t\tMatrix\
+    \ m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(this);\n\
+    \t\t\t}\n\t\t\tn = n.mul(n);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn n;\n\t}\n\t/**\n\
+    \t * \u4EFB\u610Fmod\u51AA\u7B97\n\t * @param m\n\t * @param mod\n\t */\n\tpublic\
+    \ final Matrix pow(long k, final long mod) {\n\t\tMatrix n = clone();\n\t\tMatrix\
+    \ m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(this,\
+    \ mod);\n\t\t\t}\n\t\t\tn = n.mul(n, mod);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn\
+    \ n;\n\t}\n\t@Override\n\tpublic final boolean equals(final Object o) {\n\t\t\
+    if(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() !=\
+    \ o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Matrix m = (Matrix) o;\n\
+    \t\tif(h != m.h || w != m.w) {\n\t\t\treturn false;\n\t\t}\n\t\tfor(int i = 0;\
+    \ i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tif(mat[i][j] != m.get(i,\
+    \ j)) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn true;\n\
+    \t}\n\t@Override\n\tpublic final Matrix clone() {\n\t\ttry {\n\t\t\treturn (Matrix)\
+    \ super.clone();\n\t\t} catch(CloneNotSupportedException e){\n\t\t\te.printStackTrace();\n\
+    \t\t}\n\t\treturn null;\n\t}\n\t@Override\n\tpublic final String toString() {\n\
+    \t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfinal int interval = String.valueOf(IntStream.range(0,\
     \ h).mapToLong(i -> IntStream.range(0, w).mapToLong(j -> mat[i][j]).max().getAsLong()).max().getAsLong()).length()\
     \ + 1;\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tsb.append(\"[\");\n\t\t\tfor(int\
     \ j = 0; j < w; ++j) {\n\t\t\t\tsb.append(String.format(\"%\" + interval + \"\
@@ -367,7 +367,7 @@ data:
   - Java/graph/MST.java
   - Java/graph/Graph.java
   isVerificationFile: false
-  path: Java/structure/Matrix.java
+  path: Java/math/Matrix.java
   requiredBy:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -408,13 +408,13 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-08 22:37:59+09:00'
+  timestamp: '2024-01-08 22:45:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/structure/Matrix.java
+documentation_of: Java/math/Matrix.java
 layout: document
 redirect_from:
-- /library/Java/structure/Matrix.java
-- /library/Java/structure/Matrix.java.html
-title: Java/structure/Matrix.java
+- /library/Java/math/Matrix.java
+- /library/Java/math/Matrix.java.html
+title: Java/math/Matrix.java
 ---

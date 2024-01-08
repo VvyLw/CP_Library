@@ -114,6 +114,9 @@ data:
       path: Java/math/LongPrime.java
       title: Java/math/LongPrime.java
     - icon: ':warning:'
+      path: Java/math/Matrix.java
+      title: Java/math/Matrix.java
+    - icon: ':warning:'
       path: Java/math/PrimeCounter.java
       title: Java/math/PrimeCounter.java
     - icon: ':warning:'
@@ -153,9 +156,6 @@ data:
     - icon: ':warning:'
       path: Java/structure/FenwickTree.java
       title: Java/structure/FenwickTree.java
-    - icon: ':warning:'
-      path: Java/structure/Matrix.java
-      title: Java/structure/Matrix.java
     - icon: ':warning:'
       path: Java/structure/SegmentTree.java
       title: Java/structure/SegmentTree.java

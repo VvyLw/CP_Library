@@ -44,6 +44,9 @@ data:
     path: Java/math/LongPrime.java
     title: Java/math/LongPrime.java
   - icon: ':warning:'
+    path: Java/math/Matrix.java
+    title: Java/math/Matrix.java
+  - icon: ':warning:'
     path: Java/math/PrimeCounter.java
     title: Java/math/PrimeCounter.java
   - icon: ':warning:'
@@ -79,9 +82,6 @@ data:
   - icon: ':warning:'
     path: Java/structure/FenwickTree.java
     title: Java/structure/FenwickTree.java
-  - icon: ':warning:'
-    path: Java/structure/Matrix.java
-    title: Java/structure/Matrix.java
   - icon: ':warning:'
     path: Java/structure/SegmentTree.java
     title: Java/structure/SegmentTree.java
@@ -162,6 +162,9 @@ data:
     path: Java/math/LongPrime.java
     title: Java/math/LongPrime.java
   - icon: ':warning:'
+    path: Java/math/Matrix.java
+    title: Java/math/Matrix.java
+  - icon: ':warning:'
     path: Java/math/PrimeCounter.java
     title: Java/math/PrimeCounter.java
   - icon: ':warning:'
@@ -197,9 +200,6 @@ data:
   - icon: ':warning:'
     path: Java/structure/FenwickTree.java
     title: Java/structure/FenwickTree.java
-  - icon: ':warning:'
-    path: Java/structure/Matrix.java
-    title: Java/structure/Matrix.java
   - icon: ':warning:'
     path: Java/structure/SegmentTree.java
     title: Java/structure/SegmentTree.java
@@ -298,6 +298,7 @@ data:
   - Java/math/EulerPhiTable.java
   - Java/math/PrimeTable.java
   - Java/math/LongPrime.java
+  - Java/math/Matrix.java
   - Java/structure/unionfind/UnionFind.java
   - Java/structure/unionfind/WeightedUnionFind.java
   - Java/structure/unionfind/UndoUnionFind.java
@@ -305,7 +306,6 @@ data:
   - Java/structure/SegmentTree.java
   - Java/structure/DoubleEndedPriorityQueue.java
   - Java/structure/Deque.java
-  - Java/structure/Matrix.java
   - Java/structure/FenwickTree.java
   - Java/structure/AVLTree.java
   - Java/structure/pair/Pair.java
@@ -340,6 +340,7 @@ data:
   - Java/math/EulerPhiTable.java
   - Java/math/PrimeTable.java
   - Java/math/LongPrime.java
+  - Java/math/Matrix.java
   - Java/structure/unionfind/UnionFind.java
   - Java/structure/unionfind/WeightedUnionFind.java
   - Java/structure/unionfind/UndoUnionFind.java
@@ -347,7 +348,6 @@ data:
   - Java/structure/SegmentTree.java
   - Java/structure/DoubleEndedPriorityQueue.java
   - Java/structure/Deque.java
-  - Java/structure/Matrix.java
   - Java/structure/FenwickTree.java
   - Java/structure/AVLTree.java
   - Java/structure/pair/Pair.java
@@ -368,7 +368,7 @@ data:
   - Java/graph/Edge.java
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
-  timestamp: '2024-01-08 22:37:59+09:00'
+  timestamp: '2024-01-08 22:45:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/graph/Graph.java

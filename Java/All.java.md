@@ -44,6 +44,9 @@ data:
     path: Java/math/LongPrime.java
     title: Java/math/LongPrime.java
   - icon: ':warning:'
+    path: Java/math/Matrix.java
+    title: Java/math/Matrix.java
+  - icon: ':warning:'
     path: Java/math/PrimeCounter.java
     title: Java/math/PrimeCounter.java
   - icon: ':warning:'
@@ -79,9 +82,6 @@ data:
   - icon: ':warning:'
     path: Java/structure/FenwickTree.java
     title: Java/structure/FenwickTree.java
-  - icon: ':warning:'
-    path: Java/structure/Matrix.java
-    title: Java/structure/Matrix.java
   - icon: ':warning:'
     path: Java/structure/SegmentTree.java
     title: Java/structure/SegmentTree.java
@@ -162,6 +162,9 @@ data:
     path: Java/math/LongPrime.java
     title: Java/math/LongPrime.java
   - icon: ':warning:'
+    path: Java/math/Matrix.java
+    title: Java/math/Matrix.java
+  - icon: ':warning:'
     path: Java/math/PrimeCounter.java
     title: Java/math/PrimeCounter.java
   - icon: ':warning:'
@@ -197,9 +200,6 @@ data:
   - icon: ':warning:'
     path: Java/structure/FenwickTree.java
     title: Java/structure/FenwickTree.java
-  - icon: ':warning:'
-    path: Java/structure/Matrix.java
-    title: Java/structure/Matrix.java
   - icon: ':warning:'
     path: Java/structure/SegmentTree.java
     title: Java/structure/SegmentTree.java
@@ -1474,41 +1474,41 @@ data:
     \t\t\tmt.set(i, j, mat[i][j] + m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\
     \t}\n\tfinal Matrix add(final Matrix m, final long mod) {\n\t\tassert(h == m.h\
     \ && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i\
-    \ < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, (mat[i][j]\
-    \ + m.get(i, j)) % mod);\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix\
-    \ sub(final Matrix m) {\n\t\tassert(h == m.h && w == m.w);\n\t\tfinal Matrix mt\
-    \ = new Matrix(h, w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0;\
-    \ j < w; ++j) {\n\t\t\t\tmt.set(i, j, mat[i][j] - m.get(i, j));\n\t\t\t}\n\t\t\
-    }\n\t\treturn mt;\n\t}\n\tfinal Matrix sub(final Matrix m, final long mod) {\n\
-    \t\tassert(h == m.h && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\
-    \tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i,\
-    \ j, (mat[i][j] - m.get(i, j)) % mod);\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t\
-    final Matrix mul(final Matrix m) {\n\t\tassert(w == m.h);\n\t\tfinal Matrix mt\
-    \ = new Matrix(h, m.w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0;\
-    \ j < m.w; ++j) {\n\t\t\t\tfor(int k = 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i, j,\
-    \ mt.get(i, j) + mat[i][k] * m.get(k, j));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ mt;\n\t}\n\tfinal Matrix mul(final Matrix m, final long mod) {\n\t\tassert(w\
-    \ == m.h);\n\t\tfinal Matrix mt = new Matrix(h, m.w);\n\t\tfor(int i = 0; i <\
-    \ h; ++i) {\n\t\t\tfor(int j = 0; j < m.w; ++j) {\n\t\t\t\tfor(int k = 0; k <\
-    \ w; ++k) {\n\t\t\t\t\tmt.set(i, j, (mt.get(i, j) + mat[i][k] * m.get(k, j)) %\
-    \ mod);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix pow(long\
-    \ k) {\n\t\tMatrix n = clone();\n\t\tMatrix m = Matrix.E(h);\n\t\twhile(k > 0)\
-    \ {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(this);\n\t\t\t}\n\t\t\tn = n.mul(n);\n\
-    \t\t\tk >>= 1;\n\t\t}\n\t\treturn n;\n\t}\n\tfinal Matrix pow(long k, final long\
-    \ mod) {\n\t\tMatrix n = clone();\n\t\tMatrix m = Matrix.E(h);\n\t\twhile(k >\
-    \ 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(this, mod);\n\t\t\t}\n\t\t\t\
-    n = n.mul(n, mod);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn n;\n\t}\n\t@Override\n\t\
-    public final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn\
-    \ true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn\
-    \ false;\n\t\t}\n\t\tfinal Matrix m = (Matrix) o;\n\t\tif(h != m.h || w != m.w)\
-    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int\
-    \ j = 0; j < w; ++j) {\n\t\t\t\tif(mat[i][j] != m.get(i, j)) {\n\t\t\t\t\treturn\
-    \ false;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\t@Override\n\tpublic\
-    \ final Matrix clone() {\n\t\ttry {\n\t\t\treturn (Matrix) super.clone();\n\t\t\
-    } catch(CloneNotSupportedException e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\t\
-    return null;\n\t}\n\t@Override\n\tpublic final String toString() {\n\t\tfinal\
-    \ StringBuilder sb = new StringBuilder();\n\t\tfinal int interval = String.valueOf(IntStream.range(0,\
-    \ h).mapToLong(i -> IntStream.range(0, w).mapToLong(j -> mat[i][j]).max().getAsLong()).max().getAsLong()).length()\
+    \ < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, Utility.mod(mat[i][j]\
+    \ + m.get(i, j), mod));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix sub(final\
+    \ Matrix m) {\n\t\tassert(h == m.h && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h,\
+    \ w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\
+    \t\t\tmt.set(i, j, mat[i][j] - m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\
+    \t}\n\tfinal Matrix sub(final Matrix m, final long mod) {\n\t\tassert(h == m.h\
+    \ && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i\
+    \ < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, Utility.mod(mat[i][j]\
+    \ - m.get(i, j), mod));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix mul(final\
+    \ Matrix m) {\n\t\tassert(w == m.h);\n\t\tfinal Matrix mt = new Matrix(h, m.w);\n\
+    \t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < m.w; ++j) {\n\t\t\t\
+    \tfor(int k = 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i, j, mt.get(i, j) + mat[i][k]\
+    \ * m.get(k, j));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix\
+    \ mul(final Matrix m, final long mod) {\n\t\tassert(w == m.h);\n\t\tfinal Matrix\
+    \ mt = new Matrix(h, m.w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j\
+    \ = 0; j < m.w; ++j) {\n\t\t\t\tfor(int k = 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i,\
+    \ j, Utility.mod(mt.get(i, j) + mat[i][k] * m.get(k, j), mod));\n\t\t\t\t}\n\t\
+    \t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix pow(long k) {\n\t\tMatrix n\
+    \ = clone();\n\t\tMatrix m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k % 2\
+    \ == 1) {\n\t\t\t\tm = m.mul(this);\n\t\t\t}\n\t\t\tn = n.mul(n);\n\t\t\tk >>=\
+    \ 1;\n\t\t}\n\t\treturn n;\n\t}\n\tfinal Matrix pow(long k, final long mod) {\n\
+    \t\tMatrix n = clone();\n\t\tMatrix m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\
+    \tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(this, mod);\n\t\t\t}\n\t\t\tn = n.mul(n,\
+    \ mod);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn n;\n\t}\n\t@Override\n\tpublic final\
+    \ boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\
+    \t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\
+    \t}\n\t\tfinal Matrix m = (Matrix) o;\n\t\tif(h != m.h || w != m.w) {\n\t\t\t\
+    return false;\n\t\t}\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j\
+    \ < w; ++j) {\n\t\t\t\tif(mat[i][j] != m.get(i, j)) {\n\t\t\t\t\treturn false;\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\t@Override\n\tpublic final\
+    \ Matrix clone() {\n\t\ttry {\n\t\t\treturn (Matrix) super.clone();\n\t\t} catch(CloneNotSupportedException\
+    \ e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn null;\n\t}\n\t@Override\n\
+    \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
+    \t\tfinal int interval = String.valueOf(IntStream.range(0, h).mapToLong(i -> IntStream.range(0,\
+    \ w).mapToLong(j -> mat[i][j]).max().getAsLong()).max().getAsLong()).length()\
     \ + 1;\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tsb.append(\"[\");\n\t\t\tfor(int\
     \ j = 0; j < w; ++j) {\n\t\t\t\tsb.append(String.format(\"%\" + interval + \"\
     d\", mat[i][j]));\n\t\t\t\tif(j + 1 == w) {\n\t\t\t\t\tsb.append(\"]\");\n\t\t\
@@ -1526,6 +1526,7 @@ data:
   - Java/math/EulerPhiTable.java
   - Java/math/PrimeTable.java
   - Java/math/LongPrime.java
+  - Java/math/Matrix.java
   - Java/structure/unionfind/UnionFind.java
   - Java/structure/unionfind/WeightedUnionFind.java
   - Java/structure/unionfind/UndoUnionFind.java
@@ -1533,7 +1534,6 @@ data:
   - Java/structure/SegmentTree.java
   - Java/structure/DoubleEndedPriorityQueue.java
   - Java/structure/Deque.java
-  - Java/structure/Matrix.java
   - Java/structure/FenwickTree.java
   - Java/structure/AVLTree.java
   - Java/structure/pair/Pair.java
@@ -1568,6 +1568,7 @@ data:
   - Java/math/EulerPhiTable.java
   - Java/math/PrimeTable.java
   - Java/math/LongPrime.java
+  - Java/math/Matrix.java
   - Java/structure/unionfind/UnionFind.java
   - Java/structure/unionfind/WeightedUnionFind.java
   - Java/structure/unionfind/UndoUnionFind.java
@@ -1575,7 +1576,6 @@ data:
   - Java/structure/SegmentTree.java
   - Java/structure/DoubleEndedPriorityQueue.java
   - Java/structure/Deque.java
-  - Java/structure/Matrix.java
   - Java/structure/FenwickTree.java
   - Java/structure/AVLTree.java
   - Java/structure/pair/Pair.java
@@ -1596,7 +1596,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-08 22:37:59+09:00'
+  timestamp: '2024-01-08 22:45:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
