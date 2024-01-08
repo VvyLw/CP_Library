@@ -3,16 +3,16 @@ package library.graph;
 /**
  * 辺を表すクラス
  */
-final class Edge {
+public final class Edge {
 	public int src;
 	public int to;
 	public long cost;
-	Edge(final int to){ this.to = to; }
-	Edge(final int to, final long cost) {
+	public Edge(final int to){ this.to = to; }
+	public Edge(final int to, final long cost) {
 		this.to = to;
 		this.cost = cost;
 	}
-	Edge(final int src, final int to, final long cost) {
+	public Edge(final int src, final int to, final long cost) {
 		this.src = src;
 		this.to = to;
 		this.cost = cost;
