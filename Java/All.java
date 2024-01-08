@@ -3262,3 +3262,153 @@ final class Deque<T> implements Iterable<T> {
 		}
 	}
 }
+
+final class Matrix implements Cloneable {
+	private final int h, w;
+	private final long[][] mat;
+	Matrix(final int n){ this(n, n); }
+	Matrix(final int h, final int w) {
+		this.h = h;
+		this.w = w;
+		mat = new long[h][w];
+	}
+	Matrix(final int[][] m) {
+		this(m.length, m[0].length);
+		IntStream.range(0, h).forEach(i -> IntStream.range(0, w).forEach(j -> mat[i][j] = m[i][j]));
+	}
+	Matrix(final long[][] m) {
+		this(m.length, m[0].length);
+		IntStream.range(0, h).forEach(i -> IntStream.range(0, w).forEach(j -> mat[i][j] = m[i][j]));
+	}
+	static final Matrix E(final int n) {
+		final Matrix m = new Matrix(n);
+		IntStream.range(0, n).forEach(i -> m.set(i, i, 1));
+		return m;
+	}
+	final long[] getH(final int i){ return mat[i]; }
+	final long[] getW(final int i){ return IntStream.range(0, h).mapToLong(j -> mat[j][i]).toArray(); }
+	final long[][] get(){ return mat; }
+	final long get(final int i, final int j){ return mat[i][j]; }
+	final void set(final int i, final int j, final long x){ mat[i][j] = x; }
+	final Matrix add(final Matrix m) {
+		assert(h == m.h && w == m.w);
+		final Matrix mt = new Matrix(h, w);
+		for(int i = 0; i < h; ++i) {
+			for(int j = 0; j < w; ++j) {
+				mt.set(i, j, mat[i][j] + m.get(i, j));
+			}
+		}
+		return mt;
+	}
+	final Matrix sub(final Matrix m) {
+		assert(h == m.h && w == m.w);
+		final Matrix mt = new Matrix(h, w);
+		for(int i = 0; i < h; ++i) {
+			for(int j = 0; j < w; ++j) {
+				mt.set(i, j, mat[i][j] - m.get(i, j));
+			}
+		}
+		return mt;
+	}
+	final Matrix mul(final Matrix m) {
+		assert(w == m.h);
+		final Matrix mt = new Matrix(h, m.w);
+		for(int i = 0; i < h; ++i) {
+			for(int j = 0; j < m.w; ++j) {
+				for(int k = 0; k < w; ++k) {
+					mt.set(i, j, mt.get(i, j) + mat[i][k] * m.get(k, j));
+				}
+			}
+		}
+		return mt;
+	}
+	final Matrix pow(long k) {
+		Matrix n = clone();
+		Matrix m = Matrix.E(h);
+		while(k > 0) {
+			if(k % 2 == 1) {
+				m = m.mul(this);
+			}
+			n = n.mul(n);
+			k >>= 1;
+		}
+		return n;
+	}
+	final long det() {
+		assert(h == w);
+		final double[][] m = new double[h][w];
+		IntStream.range(0, h).forEach(i -> IntStream.range(0, w).forEach(j -> m[i][j] = mat[i][j]));
+		double res = 1;
+		for(int i = 0; i < h - 1; i++) {
+			for(int j = i + 1; j < h; j++) {
+				double pivot = m[i][i];
+				if(pivot == 0) {
+					for(int k = i + 1; k < h; k++) {
+						if(m[k][i] != 0) {
+							Utility.swap(m[i], m[k]);
+							res *= -1;
+							break;
+						}
+					}
+					pivot = m[i][i];
+				}
+				final double multiplier = mat[j][i] / pivot;
+				for(int k = i; k < w; k++) {
+					m[j][k] -= multiplier * m[i][k];
+				}
+			}
+		}
+		for(int i = 0; i < w; i++) {
+			res *= m[i][i];
+		}
+		return (long) res;
+	}
+	@Override
+	public final boolean equals(final Object o) {
+		if(this == o) {
+			return true;
+		}
+		if(o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		final Matrix m = (Matrix) o;
+		if(h != m.h || w != m.w) {
+			return false;
+		}
+		for(int i = 0; i < h; ++i) {
+			for(int j = 0; j < w; ++j) {
+				if(mat[i][j] != m.get(i, j)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	@Override
+	public final Matrix clone() {
+		try {
+			return (Matrix) super.clone();
+		} catch(CloneNotSupportedException e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	@Override
+	public final String toString() {
+		final StringBuilder sb = new StringBuilder();
+		final int interval = String.valueOf(IntStream.range(0, h).mapToLong(i -> IntStream.range(0, w).mapToLong(j -> mat[i][j]).max().getAsLong()).max().getAsLong()).length() + 1;
+		for(int i = 0; i < h; ++i) {
+			sb.append("[");
+			for(int j = 0; j < w; ++j) {
+				sb.append(String.format("%" + interval + "d", mat[i][j]));
+				if(j + 1 == w) {
+					sb.append("]");
+				}
+			}
+			if(i + 1 != h) {
+				sb.append("\n");
+			}
+		}
+		return sb.toString();
+	}
+}
