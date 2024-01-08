@@ -3305,7 +3305,7 @@ final class Matrix implements Cloneable {
 		final Matrix mt = new Matrix(h, w);
 		for(int i = 0; i < h; ++i) {
 			for(int j = 0; j < w; ++j) {
-				mt.set(i, j, (mat[i][j] + m.get(i, j)) % mod);
+				mt.set(i, j, Utility.mod(mat[i][j] + m.get(i, j), mod));
 			}
 		}
 		return mt;
@@ -3325,7 +3325,7 @@ final class Matrix implements Cloneable {
 		final Matrix mt = new Matrix(h, w);
 		for(int i = 0; i < h; ++i) {
 			for(int j = 0; j < w; ++j) {
-				mt.set(i, j, (mat[i][j] - m.get(i, j)) % mod);
+				mt.set(i, j, Utility.mod(mat[i][j] - m.get(i, j), mod));
 			}
 		}
 		return mt;
@@ -3348,7 +3348,7 @@ final class Matrix implements Cloneable {
 		for(int i = 0; i < h; ++i) {
 			for(int j = 0; j < m.w; ++j) {
 				for(int k = 0; k < w; ++k) {
-					mt.set(i, j, (mt.get(i, j) + mat[i][k] * m.get(k, j)) % mod);
+					mt.set(i, j, Utility.mod(mt.get(i, j) + mat[i][k] * m.get(k, j), mod));
 				}
 			}
 		}
