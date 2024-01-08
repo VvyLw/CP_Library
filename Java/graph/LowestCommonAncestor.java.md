@@ -80,6 +80,9 @@ data:
     path: Java/structure/FenwickTree.java
     title: Java/structure/FenwickTree.java
   - icon: ':warning:'
+    path: Java/structure/Matrix.java
+    title: Java/structure/Matrix.java
+  - icon: ':warning:'
     path: Java/structure/SegmentTree.java
     title: Java/structure/SegmentTree.java
   - icon: ':warning:'
@@ -195,6 +198,9 @@ data:
     path: Java/structure/FenwickTree.java
     title: Java/structure/FenwickTree.java
   - icon: ':warning:'
+    path: Java/structure/Matrix.java
+    title: Java/structure/Matrix.java
+  - icon: ':warning:'
     path: Java/structure/SegmentTree.java
     title: Java/structure/SegmentTree.java
   - icon: ':warning:'
@@ -293,6 +299,7 @@ data:
   - Java/structure/SegmentTree.java
   - Java/structure/DoubleEndedPriorityQueue.java
   - Java/structure/Deque.java
+  - Java/structure/Matrix.java
   - Java/structure/FenwickTree.java
   - Java/structure/AVLTree.java
   - Java/structure/pair/Pair.java
@@ -334,6 +341,7 @@ data:
   - Java/structure/SegmentTree.java
   - Java/structure/DoubleEndedPriorityQueue.java
   - Java/structure/Deque.java
+  - Java/structure/Matrix.java
   - Java/structure/FenwickTree.java
   - Java/structure/AVLTree.java
   - Java/structure/pair/Pair.java
@@ -354,7 +362,7 @@ data:
   - Java/graph/Edge.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-08 18:15:11+09:00'
+  timestamp: '2024-01-08 22:04:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/graph/LowestCommonAncestor.java

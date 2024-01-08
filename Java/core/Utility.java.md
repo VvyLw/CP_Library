@@ -80,6 +80,9 @@ data:
     path: Java/structure/FenwickTree.java
     title: Java/structure/FenwickTree.java
   - icon: ':warning:'
+    path: Java/structure/Matrix.java
+    title: Java/structure/Matrix.java
+  - icon: ':warning:'
     path: Java/structure/SegmentTree.java
     title: Java/structure/SegmentTree.java
   - icon: ':warning:'
@@ -194,6 +197,9 @@ data:
   - icon: ':warning:'
     path: Java/structure/FenwickTree.java
     title: Java/structure/FenwickTree.java
+  - icon: ':warning:'
+    path: Java/structure/Matrix.java
+    title: Java/structure/Matrix.java
   - icon: ':warning:'
     path: Java/structure/SegmentTree.java
     title: Java/structure/SegmentTree.java
@@ -674,62 +680,62 @@ data:
     \ String.valueOf(t[i]));\n\t\treturn res;\n\t}\n\t/**\n\t * \u914D\u5217\u306E\
     i\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\u308C\u66FF\u3048\u308B\n\t * @param\
     \ a\n\t * @param i\n\t * @param j\n\t * @see <a href=\"https://cpprefjp.github.io/reference/utility/swap.html\"\
-    >std::swap</a>\n\t */\n\tprotected static final void swap(final int[] a, final\
+    >std::swap</a>\n\t */\n\tpublic static final void swap(final int[] a, final int\
+    \ i, final int j) {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\
+    \t}\n\t/**\n\t * \u914D\u5217\u306Ei\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\
+    \u308C\u66FF\u3048\u308B\n\t * @param a\n\t * @param i\n\t * @param j\n\t * @see\
+    \ <a href=\"https://cpprefjp.github.io/reference/utility/swap.html\">std::swap</a>\n\
+    \t */\n\tpublic static final void swap(final long[] a, final int i, final int\
+    \ j) {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\t/**\n\t\
+    \ * \u914D\u5217\u306Ei\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\u308C\u66FF\
+    \u3048\u308B\n\t * @param a\n\t * @param i\n\t * @param j\n\t * @see <a href=\"\
+    https://cpprefjp.github.io/reference/utility/swap.html\">std::swap</a>\n\t */\n\
+    \tpublic static final void swap(final double[] a, final int i, final int j) {\n\
+    \t\tfinal double tmp = a[i];\n\t\ta[i] = a[j];\n\t\ta[j] = tmp;\n\t}\n\t/**\n\t\
+    \ * \u914D\u5217\u306Ei\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\u308C\u66FF\
+    \u3048\u308B\n\t * @param a\n\t * @param i\n\t * @param j\n\t * @see <a href=\"\
+    https://cpprefjp.github.io/reference/utility/swap.html\">std::swap</a>\n\t */\n\
+    \tpublic static final void swap(final char[] a, final int i, final int j) {\n\t\
+    \ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\t/**\n\t * \u914D\
+    \u5217\u306Ei\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\u308C\u66FF\u3048\u308B\
+    \n\t * @param a\n\t * @param i\n\t * @param j\n\t * @see <a href=\"https://cpprefjp.github.io/reference/utility/swap.html\"\
+    >std::swap</a>\n\t */\n\tpublic static final void swap(final boolean[] a, final\
     \ int i, final int j) {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\
     \t}\n\t/**\n\t * \u914D\u5217\u306Ei\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\
     \u308C\u66FF\u3048\u308B\n\t * @param a\n\t * @param i\n\t * @param j\n\t * @see\
     \ <a href=\"https://cpprefjp.github.io/reference/utility/swap.html\">std::swap</a>\n\
-    \t */\n\tprotected static final void swap(final long[] a, final int i, final int\
-    \ j) {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\t/**\n\t\
-    \ * \u914D\u5217\u306Ei\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\u308C\u66FF\
-    \u3048\u308B\n\t * @param a\n\t * @param i\n\t * @param j\n\t * @see <a href=\"\
-    https://cpprefjp.github.io/reference/utility/swap.html\">std::swap</a>\n\t */\n\
-    \tprotected static final void swap(final double[] a, final int i, final int j)\
-    \ {\n\t\tfinal double tmp = a[i];\n\t\ta[i] = a[j];\n\t\ta[j] = tmp;\n\t}\n\t\
-    /**\n\t * \u914D\u5217\u306Ei\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\u308C\
-    \u66FF\u3048\u308B\n\t * @param a\n\t * @param i\n\t * @param j\n\t * @see <a\
-    \ href=\"https://cpprefjp.github.io/reference/utility/swap.html\">std::swap</a>\n\
-    \t */\n\tprotected static final void swap(final char[] a, final int i, final int\
-    \ j) {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\t/**\n\t\
-    \ * \u914D\u5217\u306Ei\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\u308C\u66FF\
-    \u3048\u308B\n\t * @param a\n\t * @param i\n\t * @param j\n\t * @see <a href=\"\
-    https://cpprefjp.github.io/reference/utility/swap.html\">std::swap</a>\n\t */\n\
-    \tprotected static final void swap(final boolean[] a, final int i, final int j)\
-    \ {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\t/**\n\t *\
-    \ \u914D\u5217\u306Ei\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\u308C\u66FF\u3048\
-    \u308B\n\t * @param a\n\t * @param i\n\t * @param j\n\t * @see <a href=\"https://cpprefjp.github.io/reference/utility/swap.html\"\
-    >std::swap</a>\n\t */\n\tprotected static final void swap(final Object[] a, final\
-    \ int i, final int j) {\n\t\tfinal Object tmp = a[i];\n\t\ta[i] = a[j];\n\t\t\
-    a[j] = tmp;\n\t}\n\t/**\n\t * \u4E8C\u3064\u306E\u914D\u5217\u3092\u5165\u308C\
-    \u66FF\u3048\u308B\n\t * @param a\n\t * @param b\n\t * @see <a href=\"https://cpprefjp.github.io/reference/vector/vector/swap.html\"\
-    >std::vector::swap</a>\n\t */\n\tprotected static final void swap(final int[]\
-    \ a, final int[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\
+    \t */\n\tpublic static final void swap(final Object[] a, final int i, final int\
+    \ j) {\n\t\tfinal Object tmp = a[i];\n\t\ta[i] = a[j];\n\t\ta[j] = tmp;\n\t}\n\
+    \t/**\n\t * \u4E8C\u3064\u306E\u914D\u5217\u3092\u5165\u308C\u66FF\u3048\u308B\
+    \n\t * @param a\n\t * @param b\n\t * @see <a href=\"https://cpprefjp.github.io/reference/vector/vector/swap.html\"\
+    >std::vector::swap</a>\n\t */\n\tpublic static final void swap(final int[] a,\
+    \ final int[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\
     \t\tfinal int[] c = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
     \ 0, b, 0, n);\n\t}\n\t/**\n\t * \u4E8C\u3064\u306E\u914D\u5217\u3092\u5165\u308C\
     \u66FF\u3048\u308B\n\t * @param a\n\t * @param b\n\t * @see <a href=\"https://cpprefjp.github.io/reference/vector/vector/swap.html\"\
-    >std::vector::swap</a>\n\t */\n\tprotected static final void swap(final long[]\
-    \ a, final long[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\
+    >std::vector::swap</a>\n\t */\n\tpublic static final void swap(final long[] a,\
+    \ final long[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\
     \t\tfinal long[] c = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
     \ 0, b, 0, n);\n\t}\n\t/**\n\t * \u4E8C\u3064\u306E\u914D\u5217\u3092\u5165\u308C\
     \u66FF\u3048\u308B\n\t * @param a\n\t * @param b\n\t * @see <a href=\"https://cpprefjp.github.io/reference/vector/vector/swap.html\"\
-    >std::vector::swap</a>\n\t */\n\tprotected static final void swap(final double[]\
+    >std::vector::swap</a>\n\t */\n\tpublic static final void swap(final double[]\
     \ a, final double[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n =\
     \ a.length;\n\t\tfinal double[] c = a.clone();\n\t\tSystem.arraycopy(b, 0, a,\
     \ 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t}\n\t/**\n\t * \u4E8C\u3064\u306E\
     \u914D\u5217\u3092\u5165\u308C\u66FF\u3048\u308B\n\t * @param a\n\t * @param b\n\
     \t * @see <a href=\"https://cpprefjp.github.io/reference/vector/vector/swap.html\"\
-    >std::vector::swap</a>\n\t */\n\tprotected static final void swap(final char[]\
-    \ a, final char[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\
+    >std::vector::swap</a>\n\t */\n\tpublic static final void swap(final char[] a,\
+    \ final char[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\
     \t\tfinal char[] c = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
     \ 0, b, 0, n);\n\t}\n\t/**\n\t * \u4E8C\u3064\u306E\u914D\u5217\u3092\u5165\u308C\
     \u66FF\u3048\u308B\n\t * @param a\n\t * @param b\n\t * @see <a href=\"https://cpprefjp.github.io/reference/vector/vector/swap.html\"\
-    >std::vector::swap</a>\n\t */\n\tprotected static final void swap(final boolean[]\
+    >std::vector::swap</a>\n\t */\n\tpublic static final void swap(final boolean[]\
     \ a, final boolean[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n =\
     \ a.length;\n\t\tfinal boolean[] c = a.clone();\n\t\tSystem.arraycopy(b, 0, a,\
     \ 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t}\n\t/**\n\t * \u4E8C\u3064\u306E\
     \u914D\u5217\u3092\u5165\u308C\u66FF\u3048\u308B\n\t * @param a\n\t * @param b\n\
     \t * @see <a href=\"https://cpprefjp.github.io/reference/vector/vector/swap.html\"\
-    >std::vector::swap</a>\n\t */\n\tprotected static final void swap(final Object[]\
+    >std::vector::swap</a>\n\t */\n\tpublic static final void swap(final Object[]\
     \ a, final Object[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n =\
     \ a.length;\n\t\tfinal Object[] c = a.clone();\n\t\tSystem.arraycopy(b, 0, a,\
     \ 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t}\n\t/**\n\t * @param <F>\n\t\
@@ -889,6 +895,7 @@ data:
   - Java/structure/SegmentTree.java
   - Java/structure/DoubleEndedPriorityQueue.java
   - Java/structure/Deque.java
+  - Java/structure/Matrix.java
   - Java/structure/FenwickTree.java
   - Java/structure/AVLTree.java
   - Java/structure/pair/Pair.java
@@ -930,6 +937,7 @@ data:
   - Java/structure/SegmentTree.java
   - Java/structure/DoubleEndedPriorityQueue.java
   - Java/structure/Deque.java
+  - Java/structure/Matrix.java
   - Java/structure/FenwickTree.java
   - Java/structure/AVLTree.java
   - Java/structure/pair/Pair.java
@@ -950,7 +958,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-08 18:15:11+09:00'
+  timestamp: '2024-01-08 22:04:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/core/Utility.java

@@ -83,9 +83,6 @@ data:
     path: Java/structure/FenwickTree.java
     title: Java/structure/FenwickTree.java
   - icon: ':warning:'
-    path: Java/structure/Matrix.java
-    title: Java/structure/Matrix.java
-  - icon: ':warning:'
     path: Java/structure/SegmentTree.java
     title: Java/structure/SegmentTree.java
   - icon: ':warning:'
@@ -97,6 +94,9 @@ data:
   - icon: ':warning:'
     path: Java/structure/pair/IntPair.java
     title: Java/structure/pair/IntPair.java
+  - icon: ':warning:'
+    path: Java/structure/pair/Pair.java
+    title: Java/structure/pair/Pair.java
   - icon: ':warning:'
     path: Java/structure/unionfind/UndoUnionFind.java
     title: Java/structure/unionfind/UndoUnionFind.java
@@ -201,9 +201,6 @@ data:
     path: Java/structure/FenwickTree.java
     title: Java/structure/FenwickTree.java
   - icon: ':warning:'
-    path: Java/structure/Matrix.java
-    title: Java/structure/Matrix.java
-  - icon: ':warning:'
     path: Java/structure/SegmentTree.java
     title: Java/structure/SegmentTree.java
   - icon: ':warning:'
@@ -215,6 +212,9 @@ data:
   - icon: ':warning:'
     path: Java/structure/pair/IntPair.java
     title: Java/structure/pair/IntPair.java
+  - icon: ':warning:'
+    path: Java/structure/pair/Pair.java
+    title: Java/structure/pair/Pair.java
   - icon: ':warning:'
     path: Java/structure/unionfind/UndoUnionFind.java
     title: Java/structure/unionfind/UndoUnionFind.java
@@ -245,33 +245,79 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/structure/pair/Pair.java\n"
-  code: "package library.structure.pair;\n\n/**\n * C++\u306Estd::pair\u306B\u76F8\
-    \u5F53\u3059\u308B\u30AF\u30E9\u30B9\n * @param <F>\n * @param <S>\n */\npublic\
-    \ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>>\
-    \ implements Comparable<Pair<F, S>>, Cloneable {\n\tpublic F first;\n\tpublic\
-    \ S second;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param\
-    \ first\n\t * @param second\n\t */\n\tPair(final F first, final S second) {\n\t\
-    \tthis.first = first;\n\t\tthis.second = second;\n\t}\n\t/**\n\t * Pair\u3092\u5BA3\
-    \u8A00\u3059\u308B\u306E\u306B\u4F7F\u3046\n\t * new Pair\u3068\u540C\u7B49\n\t\
-    \ * @param <F>\n\t * @param <S>\n\t * @param a first\n\t * @param b second\n\t\
-    \ */\n\tpublic static final <F extends Comparable<? super F>, S extends Comparable<?\
-    \ super S>> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }\n\t\
-    /**\n\t * std::pair\u306B\u306F\u306A\u3044\n\t * @return first\u3068second\u3092\
-    \u5165\u308C\u66FF\u3048\u305FPair\n\t */\n\tpublic final Pair<S, F> swap(){ return\
-    \ Pair.of(second, first); }\n\t@Override\n\tpublic final boolean equals(final\
-    \ Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null\
-    \ || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?,\
-    \ ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first)) {\n\t\t\treturn false;\n\
-    \t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t@Override\n\tpublic final int\
-    \ hashCode(){ return 31 * first.hashCode() + second.hashCode(); }\n\t@Override\n\
-    \tpublic final String toString(){ return \"(\" + first + \", \" + second + \"\
-    )\"; }\n\t@SuppressWarnings(\"unchecked\")\n\t@Override\n\tpublic final Pair<F,\
-    \ S> clone() {\n\t\ttry {\n\t\t\treturn (Pair<F, S>) super.clone();\n\t\t} catch(CloneNotSupportedException\
-    \ e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn null;\n\t}\n\t@Override\n\
-    \tpublic final int compareTo(final Pair<F, S> p) {\n\t\tif(first.compareTo(p.first)\
-    \ == 0) {\n\t\t\treturn second.compareTo(p.second);\n\t\t}\n\t\treturn first.compareTo(p.first);\n\
-    \t}\n}"
+    RuntimeError: bundler is not specified: Java/structure/Matrix.java\n"
+  code: "package library.structure;\n\nimport java.util.stream.IntStream;\n\nimport\
+    \ library.core.Utility;\n\n/**\n * \u884C\u5217\n * @see <a href=\"https://ei1333.github.io/luzhiled/snippets/math/matrix.html\"\
+    >\u53C2\u8003\u5143</a>\n */\npublic final class Matrix implements Cloneable {\n\
+    \tprivate final int h, w;\n\tprivate final long[][] mat;\n\t/**\n\t * \u30B3\u30F3\
+    \u30B9\u30C8\u30E9\u30AF\u30BF(\u6B63\u65B9\u884C\u5217)\n\t * @param n\n\t */\n\
+    \tpublic Matrix(final int n){ this(n, n); }\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF(H\xD7W\u884C\u5217)\n\t * @param h\n\t * @param w\n\t */\n\t\
+    public Matrix(final int h, final int w) {\n\t\tthis.h = h;\n\t\tthis.w = w;\n\t\
+    \tmat = new long[h][w];\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\
+    \u30BF\n\t * @param m\n\t */\n\tpublic Matrix(final int[][] m) {\n\t\tthis(m.length,\
+    \ m[0].length);\n\t\tIntStream.range(0, h).forEach(i -> IntStream.range(0, w).forEach(j\
+    \ -> mat[i][j] = m[i][j]));\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\
+    \u30BF\n\t * @param m\n\t */\n\tpublic Matrix(final long[][] m) {\n\t\tthis(m.length,\
+    \ m[0].length);\n\t\tIntStream.range(0, h).forEach(i -> IntStream.range(0, w).forEach(j\
+    \ -> mat[i][j] = m[i][j]));\n\t}\n\t/**\n\t * \u5358\u4F4D\u884C\u5217\n\t * @param\
+    \ n\n\t * @return\n\t */\n\tpublic static final Matrix E(final int n) {\n\t\t\
+    final Matrix m = new Matrix(n);\n\t\tIntStream.range(0, n).forEach(i -> m.set(i,\
+    \ i, 1));\n\t\treturn m;\n\t}\n\t/**\n\t * @param i\n\t * @return i\u884C\u76EE\
+    \u306E\u8981\u7D20\u5168\u3066\n\t */\n\tpublic final long[] getH(final int i){\
+    \ return mat[i]; }\n\t/**\n\t * @param i\n\t * @return i\u5217\u76EE\u306E\u8981\
+    \u7D20\u5168\u3066\n\t */\n\tpublic final long[] getW(final int i){ return IntStream.range(0,\
+    \ h).mapToLong(j -> mat[j][i]).toArray(); }\n\t/**\n\t * @return \u884C\u5217\n\
+    \t */\n\tpublic final long[][] get(){ return mat; }\n\t/**\n\t * @param i\n\t\
+    \ * @param j\n\t * @return \u884C\u5217\u306Ei\u884Cj\u5217\u76EE\u306E\u8981\u7D20\
+    \n\t */\n\tpublic final long get(final int i, final int j){ return mat[i][j];\
+    \ }\n\t/**\n\t * i\u884Cj\u5217\u76EE\u306B\u8981\u7D20\u3092\u8A2D\u5B9A\u3059\
+    \u308B\n\t * @param i\n\t * @param j\n\t * @param x\n\t */\n\tpublic final void\
+    \ set(final int i, final int j, final long x){ mat[i][j] = x; }\n\t/**\n\t * \u52A0\
+    \u7B97\n\t * @param m\n\t */\n\tpublic final Matrix add(final Matrix m) {\n\t\t\
+    assert(h == m.h && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int\
+    \ i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i,\
+    \ j, mat[i][j] + m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t\
+    \ * \u6E1B\u7B97\n\t * @param m\n\t */\n\tpublic final Matrix sub(final Matrix\
+    \ m) {\n\t\tassert(h == m.h && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h,\
+    \ w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\
+    \t\t\tmt.set(i, j, mat[i][j] - m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\
+    \t}\n\t/**\n\t * \u4E57\u7B97\n\t * @param m\n\t */\n\tpublic final Matrix mul(final\
+    \ Matrix m) {\n\t\tassert(w == m.h);\n\t\tfinal Matrix mt = new Matrix(h, m.w);\n\
+    \t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < m.w; ++j) {\n\t\t\t\
+    \tfor(int k = 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i, j, mt.get(i, j) + mat[i][k]\
+    \ * m.get(k, j));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t *\
+    \ \u51AA\u7B97\n\t * @param k\n\t */\n\tpublic final Matrix pow(long k) {\n\t\t\
+    Matrix n = clone();\n\t\tMatrix m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k\
+    \ % 2 == 1) {\n\t\t\t\tm = m.mul(this);\n\t\t\t}\n\t\t\tn = n.mul(n);\n\t\t\t\
+    k >>= 1;\n\t\t}\n\t\treturn n;\n\t}\n\t/**\n\t * @return \u884C\u5217\u5F0F\n\t\
+    \ */\n\tpublic final long det() {\n\t\tassert(h == w);\n\t\tfinal double[][] m\
+    \ = new double[h][w];\n\t\tIntStream.range(0, h).forEach(i -> IntStream.range(0,\
+    \ w).forEach(j -> m[i][j] = mat[i][j]));\n\t\tdouble res = 1;\n\t\tfor(int i =\
+    \ 0; i < h - 1; i++) {\n\t\t\tfor(int j = i + 1; j < h; j++) {\n\t\t\t\tdouble\
+    \ pivot = m[i][i];\n\t\t\t\tif(pivot == 0) {\n\t\t\t\t\tfor(int k = i + 1; k <\
+    \ h; k++) {\n\t\t\t\t\t\tif(m[k][i] != 0) {\n\t\t\t\t\t\t\tUtility.swap(m[i],\
+    \ m[k]);\n\t\t\t\t\t\t\tres *= -1;\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t}\n\t\t\t\
+    \t\t}\n\t\t\t\t\tpivot = m[i][i];\n\t\t\t\t}\n\t\t\t\tfinal double multiplier\
+    \ = mat[j][i] / pivot;\n\t\t\t\tfor(int k = i; k < w; k++) {\n\t\t\t\t\tm[j][k]\
+    \ -= multiplier * m[i][k];\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(int i = 0; i <\
+    \ w; i++) {\n\t\t\tres *= m[i][i];\n\t\t}\n\t\treturn (long) res;\n\t}\n\t@Override\n\
+    \tpublic final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn\
+    \ true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn\
+    \ false;\n\t\t}\n\t\tfinal Matrix m = (Matrix) o;\n\t\tif(h != m.h || w != m.w)\
+    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int\
+    \ j = 0; j < w; ++j) {\n\t\t\t\tif(mat[i][j] != m.get(i, j)) {\n\t\t\t\t\treturn\
+    \ false;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\t@Override\n\tpublic\
+    \ final Matrix clone() {\n\t\ttry {\n\t\t\treturn (Matrix) super.clone();\n\t\t\
+    } catch(CloneNotSupportedException e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\t\
+    return null;\n\t}\n\t@Override\n\tpublic final String toString() {\n\t\tfinal\
+    \ StringBuilder sb = new StringBuilder();\n\t\tfinal int interval = String.valueOf(IntStream.range(0,\
+    \ h).mapToLong(i -> IntStream.range(0, w).mapToLong(j -> mat[i][j]).max().getAsLong()).max().getAsLong()).length()\
+    \ + 1;\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tsb.append(\"[\");\n\t\t\tfor(int\
+    \ j = 0; j < w; ++j) {\n\t\t\t\tsb.append(String.format(\"%\" + interval + \"\
+    d\", mat[i][j]));\n\t\t\t\tif(j + 1 == w) {\n\t\t\t\t\tsb.append(\"]\");\n\t\t\
+    \t\t}\n\t\t\t}\n\t\t\tif(i + 1 != h) {\n\t\t\t\tsb.append(\"\\n\");\n\t\t\t}\n\
+    \t\t}\n\t\treturn sb.toString();\n\t}\n}\n"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -291,9 +337,9 @@ data:
   - Java/structure/SegmentTree.java
   - Java/structure/DoubleEndedPriorityQueue.java
   - Java/structure/Deque.java
-  - Java/structure/Matrix.java
   - Java/structure/FenwickTree.java
   - Java/structure/AVLTree.java
+  - Java/structure/pair/Pair.java
   - Java/structure/pair/IntPair.java
   - Java/structure/pair/FloatPair.java
   - Java/structure/waveletmatrix/SuccientIndexableDictionary.java
@@ -313,7 +359,7 @@ data:
   - Java/graph/MST.java
   - Java/graph/Graph.java
   isVerificationFile: false
-  path: Java/structure/pair/Pair.java
+  path: Java/structure/Matrix.java
   requiredBy:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -333,9 +379,9 @@ data:
   - Java/structure/SegmentTree.java
   - Java/structure/DoubleEndedPriorityQueue.java
   - Java/structure/Deque.java
-  - Java/structure/Matrix.java
   - Java/structure/FenwickTree.java
   - Java/structure/AVLTree.java
+  - Java/structure/pair/Pair.java
   - Java/structure/pair/IntPair.java
   - Java/structure/pair/FloatPair.java
   - Java/structure/waveletmatrix/SuccientIndexableDictionary.java
@@ -357,10 +403,10 @@ data:
   timestamp: '2024-01-08 22:04:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/structure/pair/Pair.java
+documentation_of: Java/structure/Matrix.java
 layout: document
 redirect_from:
-- /library/Java/structure/pair/Pair.java
-- /library/Java/structure/pair/Pair.java.html
-title: Java/structure/pair/Pair.java
+- /library/Java/structure/Matrix.java
+- /library/Java/structure/Matrix.java.html
+title: Java/structure/Matrix.java
 ---

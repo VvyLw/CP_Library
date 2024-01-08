@@ -80,6 +80,9 @@ data:
     path: Java/structure/FenwickTree.java
     title: Java/structure/FenwickTree.java
   - icon: ':warning:'
+    path: Java/structure/Matrix.java
+    title: Java/structure/Matrix.java
+  - icon: ':warning:'
     path: Java/structure/SegmentTree.java
     title: Java/structure/SegmentTree.java
   - icon: ':warning:'
@@ -194,6 +197,9 @@ data:
   - icon: ':warning:'
     path: Java/structure/FenwickTree.java
     title: Java/structure/FenwickTree.java
+  - icon: ':warning:'
+    path: Java/structure/Matrix.java
+    title: Java/structure/Matrix.java
   - icon: ':warning:'
     path: Java/structure/SegmentTree.java
     title: Java/structure/SegmentTree.java
@@ -1449,7 +1455,60 @@ data:
     \t\trem--;\n\t\t\treturn res;\n\t\t}\n\t\t@Override\n\t\tpublic final void remove()\
     \ {\n\t\t\tif(isEmpty()) {\n\t\t\t\tthrow new IllegalStateException();\n\t\t\t\
     }\n\t\t\tnow = (now - 1 + n) % n;\n\t\t\tbuf[now] = null;\n\t\t\thead = (head\
-    \ + 1) % n;\n\t\t\trem++;\n\t\t}\n\t}\n}"
+    \ + 1) % n;\n\t\t\trem++;\n\t\t}\n\t}\n}\n\nfinal class Matrix implements Cloneable\
+    \ {\n\tprivate final int h, w;\n\tprivate final long[][] mat;\n\tMatrix(final\
+    \ int n){ this(n, n); }\n\tMatrix(final int h, final int w) {\n\t\tthis.h = h;\n\
+    \t\tthis.w = w;\n\t\tmat = new long[h][w];\n\t}\n\tMatrix(final int[][] m) {\n\
+    \t\tthis(m.length, m[0].length);\n\t\tIntStream.range(0, h).forEach(i -> IntStream.range(0,\
+    \ w).forEach(j -> mat[i][j] = m[i][j]));\n\t}\n\tMatrix(final long[][] m) {\n\t\
+    \tthis(m.length, m[0].length);\n\t\tIntStream.range(0, h).forEach(i -> IntStream.range(0,\
+    \ w).forEach(j -> mat[i][j] = m[i][j]));\n\t}\n\tstatic final Matrix E(final int\
+    \ n) {\n\t\tfinal Matrix m = new Matrix(n);\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> m.set(i, i, 1));\n\t\treturn m;\n\t}\n\tfinal long[] getH(final int i){ return\
+    \ mat[i]; }\n\tfinal long[] getW(final int i){ return IntStream.range(0, h).mapToLong(j\
+    \ -> mat[j][i]).toArray(); }\n\tfinal long[][] get(){ return mat; }\n\tfinal long\
+    \ get(final int i, final int j){ return mat[i][j]; }\n\tfinal void set(final int\
+    \ i, final int j, final long x){ mat[i][j] = x; }\n\tfinal Matrix add(final Matrix\
+    \ m) {\n\t\tassert(h == m.h && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h,\
+    \ w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\
+    \t\t\tmt.set(i, j, mat[i][j] + m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\
+    \t}\n\tfinal Matrix sub(final Matrix m) {\n\t\tassert(h == m.h && w == m.w);\n\
+    \t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\
+    \tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, mat[i][j] - m.get(i, j));\n\
+    \t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix mul(final Matrix m) {\n\t\t\
+    assert(w == m.h);\n\t\tfinal Matrix mt = new Matrix(h, m.w);\n\t\tfor(int i =\
+    \ 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < m.w; ++j) {\n\t\t\t\tfor(int k =\
+    \ 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i, j, mt.get(i, j) + mat[i][k] * m.get(k,\
+    \ j));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix pow(long\
+    \ k) {\n\t\tMatrix n = clone();\n\t\tMatrix m = Matrix.E(h);\n\t\twhile(k > 0)\
+    \ {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(this);\n\t\t\t}\n\t\t\tn = n.mul(n);\n\
+    \t\t\tk >>= 1;\n\t\t}\n\t\treturn n;\n\t}\n\tfinal long det() {\n\t\tassert(h\
+    \ == w);\n\t\tfinal double[][] m = new double[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> IntStream.range(0, w).forEach(j -> m[i][j] = mat[i][j]));\n\t\tdouble res\
+    \ = 1;\n\t\tfor(int i = 0; i < h - 1; i++) {\n\t\t\tfor(int j = i + 1; j < h;\
+    \ j++) {\n\t\t\t\tdouble pivot = m[i][i];\n\t\t\t\tif(pivot == 0) {\n\t\t\t\t\t\
+    for(int k = i + 1; k < h; k++) {\n\t\t\t\t\t\tif(m[k][i] != 0) {\n\t\t\t\t\t\t\
+    \tUtility.swap(m[i], m[k]);\n\t\t\t\t\t\t\tres *= -1;\n\t\t\t\t\t\t\tbreak;\n\t\
+    \t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tpivot = m[i][i];\n\t\t\t\t}\n\t\t\t\tfinal\
+    \ double multiplier = mat[j][i] / pivot;\n\t\t\t\tfor(int k = i; k < w; k++) {\n\
+    \t\t\t\t\tm[j][k] -= multiplier * m[i][k];\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(int\
+    \ i = 0; i < w; i++) {\n\t\t\tres *= m[i][i];\n\t\t}\n\t\treturn (long) res;\n\
+    \t}\n\t@Override\n\tpublic final boolean equals(final Object o) {\n\t\tif(this\
+    \ == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass())\
+    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Matrix m = (Matrix) o;\n\t\tif(h !=\
+    \ m.h || w != m.w) {\n\t\t\treturn false;\n\t\t}\n\t\tfor(int i = 0; i < h; ++i)\
+    \ {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tif(mat[i][j] != m.get(i, j))\
+    \ {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t\
+    }\n\t@Override\n\tpublic final Matrix clone() {\n\t\ttry {\n\t\t\treturn (Matrix)\
+    \ super.clone();\n\t\t} catch(CloneNotSupportedException e){\n\t\t\te.printStackTrace();\n\
+    \t\t}\n\t\treturn null;\n\t}\n\t@Override\n\tpublic final String toString() {\n\
+    \t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfinal int interval = String.valueOf(IntStream.range(0,\
+    \ h).mapToLong(i -> IntStream.range(0, w).mapToLong(j -> mat[i][j]).max().getAsLong()).max().getAsLong()).length()\
+    \ + 1;\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tsb.append(\"[\");\n\t\t\tfor(int\
+    \ j = 0; j < w; ++j) {\n\t\t\t\tsb.append(String.format(\"%\" + interval + \"\
+    d\", mat[i][j]));\n\t\t\t\tif(j + 1 == w) {\n\t\t\t\t\tsb.append(\"]\");\n\t\t\
+    \t\t}\n\t\t\t}\n\t\t\tif(i + 1 != h) {\n\t\t\t\tsb.append(\"\\n\");\n\t\t\t}\n\
+    \t\t}\n\t\treturn sb.toString();\n\t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -1469,6 +1528,7 @@ data:
   - Java/structure/SegmentTree.java
   - Java/structure/DoubleEndedPriorityQueue.java
   - Java/structure/Deque.java
+  - Java/structure/Matrix.java
   - Java/structure/FenwickTree.java
   - Java/structure/AVLTree.java
   - Java/structure/pair/Pair.java
@@ -1510,6 +1570,7 @@ data:
   - Java/structure/SegmentTree.java
   - Java/structure/DoubleEndedPriorityQueue.java
   - Java/structure/Deque.java
+  - Java/structure/Matrix.java
   - Java/structure/FenwickTree.java
   - Java/structure/AVLTree.java
   - Java/structure/pair/Pair.java
@@ -1530,7 +1591,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-08 18:15:11+09:00'
+  timestamp: '2024-01-08 22:04:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

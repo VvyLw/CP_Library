@@ -154,6 +154,9 @@ data:
       path: Java/structure/FenwickTree.java
       title: Java/structure/FenwickTree.java
     - icon: ':warning:'
+      path: Java/structure/Matrix.java
+      title: Java/structure/Matrix.java
+    - icon: ':warning:'
       path: Java/structure/SegmentTree.java
       title: Java/structure/SegmentTree.java
     - icon: ':warning:'
