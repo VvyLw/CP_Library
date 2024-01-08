@@ -8,7 +8,6 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Formatter;
-import java.util.List;
 import java.util.stream.IntStream;
 
 import library.structure.pair.Pair;
@@ -45,6 +44,11 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 			flush();
 		}
 	}
+	/**
+	 * {@link PrintWriter#print}と使い方は同じ
+	 * @param arg
+	 * @see PrintWriter#print
+	 */
 	final void print(final Object arg) {
 		if(arg instanceof String s) {
 			for(final char c: s.toCharArray()) {
@@ -55,10 +59,17 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 	}
 	/**
-	 * PrintWriterのprintfと使い方は同じ
+	 * {@link PrintWriter#printf}と使い方は同じ
+	 * @param fmt
+	 * @param args
 	 * @see PrintWriter#printf
 	 */
-	final void printf(final String fmt, final Object... args){ print(new Formatter().format(fmt, args)); }
+	final void printf(final String fmt, final Object... args) {
+		print(new Formatter().format(fmt, args));
+		if(autoFlush) {
+			flush();
+		}
+	}
 	private final void println(final Object arg) {
 		print(arg);
 		newLine();
@@ -89,39 +100,88 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	final <F extends Comparable<? super F>, S extends Comparable<? super S>> void out(final Pair<F, S> arg){ println(arg.first + " " + arg.second); }
 	/**
 	 * int型の配列を空白おきで出力する
+	 * @param args
 	 */
-	final void out(final int[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
+	final void out(final int[] args) {
+		print(args[0]);
+		for(int i = 0; ++i < args.length;) {
+			print(" " + args[i]);
+		}
+		newLine();
+	}
 	/**
 	 * long型の配列を空白おきで出力する
+	 * @param args
 	 */
-	final void out(final long[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
+	final void out(final long[] args) {
+		print(args[0]);
+		for(int i = 0; ++i < args.length;) {
+			print(" " + args[i]);
+		}
+		newLine();
+	}
 	/**
 	 * double型の配列を空白おきで出力する
+	 * @param args
 	 */
-	final void out(final double[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
+	final void out(final double[] args) {
+		print(args[0]);
+		for(int i = 0; ++i < args.length;) {
+			print(" " + args[i]);
+		}
+		newLine();
+	}
 	/**
 	 * boolean型の配列を空白おきで出力する
+	 * @param args
 	 */
-	final void out(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
+	final void out(final boolean[] args) {
+		print(args[0]);
+		for(int i = 0; ++i < args.length;) {
+			print(" " + args[i]);
+		}
+		newLine();
+	}
 	/**
 	 * char型の配列を空白おきで出力する
+	 * @param args
 	 */
-	final void out(final char[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
+	final void out(final char[] args) {
+		print(args[0]);
+		for(int i = 0; ++i < args.length;) {
+			print(" " + args[i]);
+		}
+		newLine();
+	}
 	/**
 	 * {@link Object}クラスの配列を空白おきで出力する
+	 * @param args
 	 */
-	final void out(final Object[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
+	final void out(final Object[] args) {
+		print(args[0]);
+		for(int i = 0; ++i < args.length;) {
+			print(" " + args[i]);
+		}
+		newLine();
+	}
 	/**
 	 * {@link Collection}を出力する
+	 * @param args
 	 */
 	final <E> void out(final Collection<E> args) {
 		int i = 0;
 		for(final var el: args) {
-			print(el + (++i == args.size() ? "\n" : " "));
+			print(el);
+			if(++i != args.size()) {
+				print(" ");
+			}
 		}
+		newLine();
 	}
 	/**
 	 * outl(a, b, c)で, "a\nb\nc\n"の形式で出力される
+	 * @param head
+	 * @param tail
 	 */
 	final void outl(final Object head, final Object... tail) {
 		out(head);
@@ -129,189 +189,261 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	}
 	/**
 	 * {@link #out}の改行おき出力版
+	 * @param args
 	 */
 	final void outl(final int[] args){ Arrays.stream(args).forEach(this::println); }
 	/**
 	 * {@link #out}をargs.length回呼び出す
+	 * @param args
 	 */
 	final void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	/**
 	 * {@link #out}の改行おき出力版
+	 * @param args
 	 */
 	final void outl(final long[] args){ Arrays.stream(args).forEach(this::println); }
 	/**
 	 * {@link #out}をargs.length回呼び出す
+	 * @param args
 	 */
 	final void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	/**
 	 * {@link #out}の改行おき出力版
+	 * @param args
 	 */
 	final void outl(final double[] args){ Arrays.stream(args).forEach(this::println); }
 	/**
 	 * {@link #out}をargs.length回呼び出す
+	 * @param args
 	 */
 	final void outl(final double[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	/**
 	 * {@link #out}の改行おき出力版
+	 * @param args
 	 */
 	final void outl(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	/**
 	 * {@link #out}をargs.length回呼び出す
+	 * @param args
 	 */
 	final void outl(final boolean[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	/**
 	 * {@link #out}の改行おき出力版
+	 * @param args
 	 */
 	final void outl(final char[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	/**
 	 * {@link #out}をargs.length回呼び出す
+	 * @param args
 	 */
 	final void outl(final char[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	/**
 	 * {@link #out}の改行おき出力版
+	 * @param args
 	 */
 	final void outl(final Object[] args){ Arrays.stream(args).forEach(this::println); }
 	/**
 	 * {@link #out}をargs.length回呼び出す
+	 * @param args
 	 */
 	final void outl(final Object[][] args){ Arrays.stream(args).forEach(this::out); }
 	/**
 	 * {@link #out}の改行おき出力版
+	 * @param args
 	 */
 	final <E> void outl(final Collection<E> args){ args.stream().forEach(this::println); }
 	/**
 	 * この出力を最後に処理を終了する
+	 * @param head
+	 * @param tail
 	 * @see #out
 	 */
 	final void fin(final Object head, final Object... tail) {
 		out(head, tail);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	/**
 	 * この出力を最後に処理を終了する
+	 * @param args
 	 * @see #out
 	 */
 	final void fin(final int[] args) {
 		out(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	/**
 	 * この出力を最後に処理を終了する
+	 * @param args
 	 * @see #out
 	 */
 	final void fin(final long[] args) {
 		out(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	/**
 	 * この出力を最後に処理を終了する
+	 * @param args
 	 * @see #out
 	 */
 	final void fin(final double[] args) {
 		out(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	/**
 	 * この出力を最後に処理を終了する
+	 * @param args
 	 * @see #out
 	 */
 	final void fin(final boolean[] args) {
 		out(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	/**
 	 * この出力を最後に処理を終了する
+	 * @param args
 	 * @see #out
 	 */
 	final void fin(final char[] args) {
 		out(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	/**
 	 * この出力を最後に処理を終了する
+	 * @param args
 	 * @see #out
 	 */
 	final void fin(final Object[] args) {
 		out(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	/**
 	 * この出力を最後に処理を終了する
+	 * @param args
 	 * @see #out
 	 */
-	final <T> void fin(final List<T> args) {
+	final <E> void fin(final Collection<E> args) {
 		out(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	/**
 	 * この出力を最後に処理を終了する
+	 * @param head
+	 * @param tail
+	 * @see #outl
+	 */
+	final void ende(final Object head, final Object... tail ) {
+		outl(head, tail);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	/**
+	 * この出力を最後に処理を終了する
+	 * @param args
 	 * @see #outl
 	 */
 	final void ende(final int[] args) {
 		outl(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	/**
 	 * この出力を最後に処理を終了する
+	 * @param args
 	 * @see #outl
 	 */
 	final void ende(final long[] args) {
 		outl(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	/**
 	 * この出力を最後に処理を終了する
+	 * @param args
 	 * @see #outl
 	 */
 	final void ende(final double[] args) {
 		outl(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	/**
 	 * この出力を最後に処理を終了する
+	 * @param args
 	 * @see #outl
 	 */
 	final void ende(final boolean[] args) {
 		outl(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	/**
 	 * この出力を最後に処理を終了する
+	 * @param args
 	 * @see #outl
 	 */
 	final void ende(final char[] args) {
 		outl(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	/**
 	 * この出力を最後に処理を終了する
+	 * @param args
 	 * @see #outl
 	 */
 	final void ende(final Object[] args) {
 		outl(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	/**
 	 * この出力を最後に処理を終了する
+	 * @param args
 	 * @see #outl
 	 */
 	final <E> void ende(final Collection<E> args) {
 		outl(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	/**

@@ -7,7 +7,6 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Formatter;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -357,8 +356,7 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 	}
 	final void print(final Object arg) {
-		if(arg instanceof String) {
-			final String s = (String) arg;
+		if(arg instanceof String s) {
 			for(final char c: s.toCharArray()) {
 				write((byte) c);
 			}
@@ -366,7 +364,12 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 			print(String.valueOf(arg));
 		}
 	}
-	final void printf(final String fmt, final Object... args){ print(new Formatter().format(fmt, args)); }
+	final void printf(final String fmt, final Object... args) {
+		print(new Formatter().format(fmt, args));
+		if(autoFlush) {
+			flush();
+		}
+	}
 	private final void println(final Object arg) {
 		print(arg);
 		newLine();
@@ -380,17 +383,57 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		newLine();
 	}
 	final <F extends Comparable<? super F>, S extends Comparable<? super S>> void out(final Pair<F, S> arg){ println(arg.first + " " + arg.second); }
-	final void out(final int[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
-	final void out(final long[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
-	final void out(final double[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
-	final void out(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
-	final void out(final char[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
-	final void out(final Object[] args){ IntStream.range(0, args.length).forEach(i -> print(args[i] + (i + 1 < args.length ? " " : "\n"))); }
+	final void out(final int[] args) {
+		print(args[0]);
+		for(int i = 0; ++i < args.length;) {
+			print(" " + args[i]);
+		}
+		newLine();
+	}
+	final void out(final long[] args) {
+		print(args[0]);
+		for(int i = 0; ++i < args.length;) {
+			print(" " + args[i]);
+		}
+		newLine();
+	}
+	final void out(final double[] args) {
+		print(args[0]);
+		for(int i = 0; ++i < args.length;) {
+			print(" " + args[i]);
+		}
+		newLine();
+	}
+	final void out(final boolean[] args) {
+		print(args[0]);
+		for(int i = 0; ++i < args.length;) {
+			print(" " + args[i]);
+		}
+		newLine();
+	}
+	final void out(final char[] args) {
+		print(args[0]);
+		for(int i = 0; ++i < args.length;) {
+			print(" " + args[i]);
+		}
+		newLine();
+	}
+	final void out(final Object[] args) {
+		print(args[0]);
+		for(int i = 0; ++i < args.length;) {
+			print(" " + args[i]);
+		}
+		newLine();
+	}
 	final <E> void out(final Collection<E> args) {
 		int i = 0;
 		for(final var el: args) {
-			print(el + (++i == args.size() ? "\n" : " "));
+			print(el);
+			if(++i != args.size()) {
+				print(" ");
+			}
 		}
+		newLine();
 	}
 	final void outl(final Object head, final Object... tail) {
 		out(head);
@@ -405,81 +448,120 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	final void outl(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void outl(final boolean[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void outl(final char[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	final void outl(final char[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void outl(final Object[] args){ Arrays.stream(args).forEach(this::println); }
+	final void outl(final Object[][] args){ Arrays.stream(args).forEach(this::out); }
 	final <E> void outl(final Collection<E> args){ args.stream().forEach(this::println); }
 	final void fin(final Object head, final Object... tail) {
 		out(head, tail);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	final void fin(final int[] args) {
 		out(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	final void fin(final long[] args) {
 		out(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	final void fin(final double[] args) {
 		out(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	final void fin(final boolean[] args) {
 		out(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	final void fin(final char[] args) {
 		out(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	final void fin(final Object[] args) {
 		out(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
-	final <T> void fin(final List<T> args) {
+	final <E> void fin(final Collection<E> args) {
 		out(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	final void ende(final Object head, final Object... tail ) {
+		outl(head, tail);
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	final void ende(final int[] args) {
 		outl(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	final void ende(final long[] args) {
 		outl(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	final void ende(final double[] args) {
 		outl(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	final void ende(final boolean[] args) {
 		outl(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	final void ende(final char[] args) {
 		outl(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	final void ende(final Object[] args) {
 		outl(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	final <E> void ende(final Collection<E> args) {
 		outl(args);
-		flush();
+		if(!autoFlush) {
+			flush();
+		}
 		System.exit(0);
 	}
 	@Override
