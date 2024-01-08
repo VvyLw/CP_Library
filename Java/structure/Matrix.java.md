@@ -278,30 +278,49 @@ data:
     assert(h == m.h && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int\
     \ i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i,\
     \ j, mat[i][j] + m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t\
-    \ * \u6E1B\u7B97\n\t * @param m\n\t */\n\tpublic final Matrix sub(final Matrix\
-    \ m) {\n\t\tassert(h == m.h && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h,\
-    \ w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\
-    \t\t\tmt.set(i, j, mat[i][j] - m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\
-    \t}\n\t/**\n\t * \u4E57\u7B97\n\t * @param m\n\t */\n\tpublic final Matrix mul(final\
-    \ Matrix m) {\n\t\tassert(w == m.h);\n\t\tfinal Matrix mt = new Matrix(h, m.w);\n\
-    \t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < m.w; ++j) {\n\t\t\t\
-    \tfor(int k = 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i, j, mt.get(i, j) + mat[i][k]\
-    \ * m.get(k, j));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t *\
-    \ \u51AA\u7B97\n\t * @param k\n\t */\n\tpublic final Matrix pow(long k) {\n\t\t\
-    Matrix n = clone();\n\t\tMatrix m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k\
-    \ % 2 == 1) {\n\t\t\t\tm = m.mul(this);\n\t\t\t}\n\t\t\tn = n.mul(n);\n\t\t\t\
-    k >>= 1;\n\t\t}\n\t\treturn n;\n\t}\n\t@Override\n\tpublic final boolean equals(final\
-    \ Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null\
-    \ || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Matrix\
-    \ m = (Matrix) o;\n\t\tif(h != m.h || w != m.w) {\n\t\t\treturn false;\n\t\t}\n\
-    \t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\t\
-    if(mat[i][j] != m.get(i, j)) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\t\
-    \t}\n\t\treturn true;\n\t}\n\t@Override\n\tpublic final Matrix clone() {\n\t\t\
-    try {\n\t\t\treturn (Matrix) super.clone();\n\t\t} catch(CloneNotSupportedException\
-    \ e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn null;\n\t}\n\t@Override\n\
-    \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
-    \t\tfinal int interval = String.valueOf(IntStream.range(0, h).mapToLong(i -> IntStream.range(0,\
-    \ w).mapToLong(j -> mat[i][j]).max().getAsLong()).max().getAsLong()).length()\
+    \ * \u4EFB\u610Fmod\u52A0\u7B97\n\t * @param m\n\t * @param mod\n\t */\n\tpublic\
+    \ final Matrix add(final Matrix m, final long mod) {\n\t\tassert(h == m.h && w\
+    \ == m.w);\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i < h;\
+    \ ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, (mat[i][j]\
+    \ + m.get(i, j)) % mod);\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t * \u6E1B\
+    \u7B97\n\t * @param m\n\t */\n\tpublic final Matrix sub(final Matrix m) {\n\t\t\
+    assert(h == m.h && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int\
+    \ i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i,\
+    \ j, mat[i][j] - m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t\
+    \ * \u4EFB\u610Fmod\u6E1B\u7B97\n\t * @param m\n\t * @param mod\n\t */\n\tpublic\
+    \ final Matrix sub(final Matrix m, final long mod) {\n\t\tassert(h == m.h && w\
+    \ == m.w);\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i < h;\
+    \ ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, (mat[i][j]\
+    \ - m.get(i, j)) % mod);\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t * \u4E57\
+    \u7B97\n\t * @param m\n\t */\n\tpublic final Matrix mul(final Matrix m) {\n\t\t\
+    assert(w == m.h);\n\t\tfinal Matrix mt = new Matrix(h, m.w);\n\t\tfor(int i =\
+    \ 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < m.w; ++j) {\n\t\t\t\tfor(int k =\
+    \ 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i, j, mt.get(i, j) + mat[i][k] * m.get(k,\
+    \ j));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t * \u4EFB\u610F\
+    mod\u4E57\u7B97\n\t * @param m\n\t * @param mod\n\t */\n\tpublic final Matrix\
+    \ mul(final Matrix m, final long mod) {\n\t\tassert(w == m.h);\n\t\tfinal Matrix\
+    \ mt = new Matrix(h, m.w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j\
+    \ = 0; j < m.w; ++j) {\n\t\t\t\tfor(int k = 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i,\
+    \ j, (mt.get(i, j) + mat[i][k] * m.get(k, j)) % mod);\n\t\t\t\t}\n\t\t\t}\n\t\t\
+    }\n\t\treturn mt;\n\t}\n\t/**\n\t * \u51AA\u7B97\n\t * @param k\n\t */\n\tpublic\
+    \ final Matrix pow(long k) {\n\t\tMatrix n = clone();\n\t\tMatrix m = Matrix.E(h);\n\
+    \t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(this);\n\t\t\t}\n\
+    \t\t\tn = n.mul(n);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn n;\n\t}\n\t/**\n\t * \u4EFB\
+    \u610Fmod\u51AA\u7B97\n\t * @param m\n\t * @param mod\n\t */\n\tpublic final Matrix\
+    \ pow(long k, final long mod) {\n\t\tMatrix n = clone();\n\t\tMatrix m = Matrix.E(h);\n\
+    \t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(this, mod);\n\t\t\
+    \t}\n\t\t\tn = n.mul(n, mod);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn n;\n\t}\n\t@Override\n\
+    \tpublic final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn\
+    \ true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn\
+    \ false;\n\t\t}\n\t\tfinal Matrix m = (Matrix) o;\n\t\tif(h != m.h || w != m.w)\
+    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int\
+    \ j = 0; j < w; ++j) {\n\t\t\t\tif(mat[i][j] != m.get(i, j)) {\n\t\t\t\t\treturn\
+    \ false;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\t@Override\n\tpublic\
+    \ final Matrix clone() {\n\t\ttry {\n\t\t\treturn (Matrix) super.clone();\n\t\t\
+    } catch(CloneNotSupportedException e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\t\
+    return null;\n\t}\n\t@Override\n\tpublic final String toString() {\n\t\tfinal\
+    \ StringBuilder sb = new StringBuilder();\n\t\tfinal int interval = String.valueOf(IntStream.range(0,\
+    \ h).mapToLong(i -> IntStream.range(0, w).mapToLong(j -> mat[i][j]).max().getAsLong()).max().getAsLong()).length()\
     \ + 1;\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tsb.append(\"[\");\n\t\t\tfor(int\
     \ j = 0; j < w; ++j) {\n\t\t\t\tsb.append(String.format(\"%\" + interval + \"\
     d\", mat[i][j]));\n\t\t\t\tif(j + 1 == w) {\n\t\t\t\t\tsb.append(\"]\");\n\t\t\
@@ -389,7 +408,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-08 22:32:08+09:00'
+  timestamp: '2024-01-08 22:37:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/Matrix.java
