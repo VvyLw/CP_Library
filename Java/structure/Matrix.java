@@ -92,6 +92,21 @@ public final class Matrix implements Cloneable {
 		return mt;
 	}
 	/**
+	 * 任意mod加算
+	 * @param m
+	 * @param mod
+	 */
+	public final Matrix add(final Matrix m, final long mod) {
+		assert(h == m.h && w == m.w);
+		final Matrix mt = new Matrix(h, w);
+		for(int i = 0; i < h; ++i) {
+			for(int j = 0; j < w; ++j) {
+				mt.set(i, j, (mat[i][j] + m.get(i, j)) % mod);
+			}
+		}
+		return mt;
+	}
+	/**
 	 * 減算
 	 * @param m
 	 */
@@ -101,6 +116,21 @@ public final class Matrix implements Cloneable {
 		for(int i = 0; i < h; ++i) {
 			for(int j = 0; j < w; ++j) {
 				mt.set(i, j, mat[i][j] - m.get(i, j));
+			}
+		}
+		return mt;
+	}
+	/**
+	 * 任意mod減算
+	 * @param m
+	 * @param mod
+	 */
+	public final Matrix sub(final Matrix m, final long mod) {
+		assert(h == m.h && w == m.w);
+		final Matrix mt = new Matrix(h, w);
+		for(int i = 0; i < h; ++i) {
+			for(int j = 0; j < w; ++j) {
+				mt.set(i, j, (mat[i][j] - m.get(i, j)) % mod);
 			}
 		}
 		return mt;
@@ -122,6 +152,23 @@ public final class Matrix implements Cloneable {
 		return mt;
 	}
 	/**
+	 * 任意mod乗算
+	 * @param m
+	 * @param mod
+	 */
+	public final Matrix mul(final Matrix m, final long mod) {
+		assert(w == m.h);
+		final Matrix mt = new Matrix(h, m.w);
+		for(int i = 0; i < h; ++i) {
+			for(int j = 0; j < m.w; ++j) {
+				for(int k = 0; k < w; ++k) {
+					mt.set(i, j, (mt.get(i, j) + mat[i][k] * m.get(k, j)) % mod);
+				}
+			}
+		}
+		return mt;
+	}
+	/**
 	 * 冪算
 	 * @param k
 	 */
@@ -133,6 +180,23 @@ public final class Matrix implements Cloneable {
 				m = m.mul(this);
 			}
 			n = n.mul(n);
+			k >>= 1;
+		}
+		return n;
+	}
+	/**
+	 * 任意mod冪算
+	 * @param m
+	 * @param mod
+	 */
+	public final Matrix pow(long k, final long mod) {
+		Matrix n = clone();
+		Matrix m = Matrix.E(h);
+		while(k > 0) {
+			if(k % 2 == 1) {
+				m = m.mul(this, mod);
+			}
+			n = n.mul(n, mod);
 			k >>= 1;
 		}
 		return n;
