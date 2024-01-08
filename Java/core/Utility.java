@@ -1012,7 +1012,7 @@ public class Utility {
 	 * @param j
 	 * @see <a href="https://cpprefjp.github.io/reference/utility/swap.html">std::swap</a>
 	 */
-	protected static final void swap(final int[] a, final int i, final int j) {
+	public static final void swap(final int[] a, final int i, final int j) {
 		a[i] ^= a[j];
 		a[j] ^= a[i];
 		a[i] ^= a[j];
@@ -1024,7 +1024,7 @@ public class Utility {
 	 * @param j
 	 * @see <a href="https://cpprefjp.github.io/reference/utility/swap.html">std::swap</a>
 	 */
-	protected static final void swap(final long[] a, final int i, final int j) {
+	public static final void swap(final long[] a, final int i, final int j) {
 		a[i] ^= a[j];
 		a[j] ^= a[i];
 		a[i] ^= a[j];
@@ -1036,7 +1036,7 @@ public class Utility {
 	 * @param j
 	 * @see <a href="https://cpprefjp.github.io/reference/utility/swap.html">std::swap</a>
 	 */
-	protected static final void swap(final double[] a, final int i, final int j) {
+	public static final void swap(final double[] a, final int i, final int j) {
 		final double tmp = a[i];
 		a[i] = a[j];
 		a[j] = tmp;
@@ -1048,7 +1048,7 @@ public class Utility {
 	 * @param j
 	 * @see <a href="https://cpprefjp.github.io/reference/utility/swap.html">std::swap</a>
 	 */
-	protected static final void swap(final char[] a, final int i, final int j) {
+	public static final void swap(final char[] a, final int i, final int j) {
 		a[i] ^= a[j];
 		a[j] ^= a[i];
 		a[i] ^= a[j];
@@ -1060,7 +1060,7 @@ public class Utility {
 	 * @param j
 	 * @see <a href="https://cpprefjp.github.io/reference/utility/swap.html">std::swap</a>
 	 */
-	protected static final void swap(final boolean[] a, final int i, final int j) {
+	public static final void swap(final boolean[] a, final int i, final int j) {
 		a[i] ^= a[j];
 		a[j] ^= a[i];
 		a[i] ^= a[j];
@@ -1072,7 +1072,7 @@ public class Utility {
 	 * @param j
 	 * @see <a href="https://cpprefjp.github.io/reference/utility/swap.html">std::swap</a>
 	 */
-	protected static final void swap(final Object[] a, final int i, final int j) {
+	public static final void swap(final Object[] a, final int i, final int j) {
 		final Object tmp = a[i];
 		a[i] = a[j];
 		a[j] = tmp;
@@ -1083,7 +1083,7 @@ public class Utility {
 	 * @param b
 	 * @see <a href="https://cpprefjp.github.io/reference/vector/vector/swap.html">std::vector::swap</a>
 	 */
-	protected static final void swap(final int[] a, final int[] b) {
+	public static final void swap(final int[] a, final int[] b) {
 		assert a.length == b.length;
 		final int n = a.length;
 		final int[] c = a.clone();
@@ -1096,7 +1096,7 @@ public class Utility {
 	 * @param b
 	 * @see <a href="https://cpprefjp.github.io/reference/vector/vector/swap.html">std::vector::swap</a>
 	 */
-	protected static final void swap(final long[] a, final long[] b) {
+	public static final void swap(final long[] a, final long[] b) {
 		assert a.length == b.length;
 		final int n = a.length;
 		final long[] c = a.clone();
@@ -1109,7 +1109,7 @@ public class Utility {
 	 * @param b
 	 * @see <a href="https://cpprefjp.github.io/reference/vector/vector/swap.html">std::vector::swap</a>
 	 */
-	protected static final void swap(final double[] a, final double[] b) {
+	public static final void swap(final double[] a, final double[] b) {
 		assert a.length == b.length;
 		final int n = a.length;
 		final double[] c = a.clone();
@@ -1122,7 +1122,7 @@ public class Utility {
 	 * @param b
 	 * @see <a href="https://cpprefjp.github.io/reference/vector/vector/swap.html">std::vector::swap</a>
 	 */
-	protected static final void swap(final char[] a, final char[] b) {
+	public static final void swap(final char[] a, final char[] b) {
 		assert a.length == b.length;
 		final int n = a.length;
 		final char[] c = a.clone();
@@ -1135,7 +1135,7 @@ public class Utility {
 	 * @param b
 	 * @see <a href="https://cpprefjp.github.io/reference/vector/vector/swap.html">std::vector::swap</a>
 	 */
-	protected static final void swap(final boolean[] a, final boolean[] b) {
+	public static final void swap(final boolean[] a, final boolean[] b) {
 		assert a.length == b.length;
 		final int n = a.length;
 		final boolean[] c = a.clone();
@@ -1148,7 +1148,7 @@ public class Utility {
 	 * @param b
 	 * @see <a href="https://cpprefjp.github.io/reference/vector/vector/swap.html">std::vector::swap</a>
 	 */
-	protected static final void swap(final Object[] a, final Object[] b) {
+	public static final void swap(final Object[] a, final Object[] b) {
 		assert a.length == b.length;
 		final int n = a.length;
 		final Object[] c = a.clone();
