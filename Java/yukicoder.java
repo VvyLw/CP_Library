@@ -16,8 +16,6 @@ import java.util.function.LongPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import library.other.Huitloxopetl;
-
 final class Main {
 	public static void main(final String[] args) {
 		IntStream.range(0, VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());
@@ -32,7 +30,6 @@ final class VvyLw extends Utility {
 	static final MyScanner sc = new MyScanner(System.in);
 	static final MyPrinter o = new MyPrinter(System.out, false);
 	static final MyPrinter dbg = new MyPrinter(System.err, true);
-	static final Huitloxopetl why = new Huitloxopetl();
 	static final boolean multi = false;
 	static final int inf = 1 << 30;
 	static final long linf = (1L << 61) - 1;
@@ -53,9 +50,10 @@ class Utility {
 	protected static final String yes(final boolean ok){ return ok ? "Yes" : "No"; }
 	protected static final String no(final boolean ok){ return yes(!ok); }
 	protected static final long sqr(final long x){ return x * x; }
-	protected static final int mod(final int n, final int m){ return (n + m) % m; }
-	protected static final int mod(final long n, final int m){ return (int) (n + m) % m; }
-	protected static final long mod(final long n, final long m){ return (n + m) % m; }
+	protected static final long mod(long n, final long m) {
+		n %= m;
+		return n < 0 ? n + m : n;
+	}
 	protected static final long ceil(final long a, final long b){ return (a - 1) / b + 1; }
 	protected static final double round(final double a, final long b, final int c) {
 		final long d = pow(10, c);
