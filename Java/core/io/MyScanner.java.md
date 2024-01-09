@@ -11,14 +11,14 @@ data:
     path: Java/core/Main.java
     title: Java/core/Main.java
   - icon: ':warning:'
-    path: Java/core/MyPrinter.java
-    title: Java/core/MyPrinter.java
-  - icon: ':warning:'
     path: Java/core/Utility.java
     title: Java/core/Utility.java
   - icon: ':warning:'
     path: Java/core/VvyLw.java
     title: Java/core/VvyLw.java
+  - icon: ':warning:'
+    path: Java/core/io/MyPrinter.java
+    title: Java/core/io/MyPrinter.java
   - icon: ':warning:'
     path: Java/graph/Edge.java
     title: Java/graph/Edge.java
@@ -129,14 +129,14 @@ data:
     path: Java/core/Main.java
     title: Java/core/Main.java
   - icon: ':warning:'
-    path: Java/core/MyPrinter.java
-    title: Java/core/MyPrinter.java
-  - icon: ':warning:'
     path: Java/core/Utility.java
     title: Java/core/Utility.java
   - icon: ':warning:'
     path: Java/core/VvyLw.java
     title: Java/core/VvyLw.java
+  - icon: ':warning:'
+    path: Java/core/io/MyPrinter.java
+    title: Java/core/io/MyPrinter.java
   - icon: ':warning:'
     path: Java/graph/Edge.java
     title: Java/graph/Edge.java
@@ -245,35 +245,36 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/core/MyScanner.java\n"
-  code: "package library.core;\n\nimport java.io.Closeable;\nimport java.io.IOException;\n\
+    RuntimeError: bundler is not specified: Java/core/io/MyScanner.java\n"
+  code: "package library.core.io;\n\nimport java.io.Closeable;\nimport java.io.IOException;\n\
     import java.io.InputStream;\nimport java.math.BigInteger;\nimport java.util.stream.IntStream;\n\
-    \n/**\n * \u5165\u529B\u30AF\u30E9\u30B9\n * Scanner\u3088\u308A\u901F\u3044\n\
-    \ */\npublic final class MyScanner implements Closeable, AutoCloseable {\n\tprivate\
-    \ int pos, lim;\n\tprivate final byte[] buf;\n\tprivate final InputStream is;\n\
-    \t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param is \u6A19\u6E96\
-    \u5165\u529B(System.in)\u3092\u5165\u308C\u308B\n\t */\n\tMyScanner(final InputStream\
-    \ is) {\n\t\tthis.is = is;\n\t\tpos = lim = 0;\n\t\tbuf = new byte[1 << 17];\n\
-    \t}\n\tprivate final boolean isPunct(final byte bt){ return !Utility.scope(33,\
-    \ bt, 126); }\n\tprivate final boolean isNum(final byte bt){ return Utility.scope('0',\
-    \ bt, '9'); }\n\tprivate final byte read() {\n\t\tif(pos == lim && lim != -1)\
-    \ {\n\t\t\ttry {\n\t\t\t\tlim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(IOException\
-    \ e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t\treturn buf[pos++];\n\
-    \t}\n\tprivate final byte next() {\n\t\tbyte bt;\n\t\twhile(isPunct(bt = read())){}\n\
-    \t\treturn bt;\n\t}\n\t/**\n\t * nextInt\n\t * int\u578B\u3092\u5165\u529B\u3059\
-    \u308B\n\t */\n\tpublic final int ni(){ return Math.toIntExact(nl()); }\n\t/**\n\
-    \t * nextLong\n\t * long\u578B\u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic\
-    \ final long nl() {\n\t\tbyte c = next();\n\t\tfinal boolean neg = c == '-';\n\
-    \t\tif(neg) {\n\t\t\tc = read();\n\t\t}\n\t\tassert(isNum(c));\n\t\tlong res =\
-    \ c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\tres = 10 * res + c - '0';\n\t\
-    \t}\n\t\treturn neg ? -res : res;\n\t}\n\t/**\n\t * nextDouble\n\t * double\u578B\
-    \u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic final double nd(){ return Double.parseDouble(ns());\
-    \ }\n\t/**\n\t * nextChar(Scanner\u306B\u306F\u306A\u3044)\n\t * char\u578B\u3092\
-    \u5165\u529B\u3059\u308B\n\t */\n\tpublic final char nc(){ return (char) next();\
-    \ }\n\t/**\n\t * nextString(Scanner\u3067\u4E91\u3046next)\n\t * \u6587\u5B57\u5217\
-    \u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic final String ns() {\n\t\tfinal\
-    \ StringBuilder sb = new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c))\
-    \ {\n\t\t\tsb.append((char) c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\
+    \nimport library.core.Utility;\n\n/**\n * \u5165\u529B\u30AF\u30E9\u30B9\n * Scanner\u3088\
+    \u308A\u901F\u3044\n */\npublic final class MyScanner implements Closeable, AutoCloseable\
+    \ {\n\tprivate int pos, lim;\n\tprivate final byte[] buf;\n\tprivate final InputStream\
+    \ is;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param is\
+    \ \u6A19\u6E96\u5165\u529B(System.in)\u3092\u5165\u308C\u308B\n\t */\n\tpublic\
+    \ MyScanner(final InputStream is) {\n\t\tthis.is = is;\n\t\tpos = lim = 0;\n\t\
+    \tbuf = new byte[1 << 17];\n\t}\n\tprivate final boolean isPunct(final byte bt){\
+    \ return !Utility.scope(33, bt, 126); }\n\tprivate final boolean isNum(final byte\
+    \ bt){ return Utility.scope('0', bt, '9'); }\n\tprivate final byte read() {\n\t\
+    \tif(pos == lim && lim != -1) {\n\t\t\ttry {\n\t\t\t\tlim = is.read(buf);\n\t\t\
+    \t\tpos = 0;\n\t\t\t} catch(IOException e) {\n\t\t\t\te.printStackTrace();\n\t\
+    \t\t}\n\t\t}\n\t\treturn buf[pos++];\n\t}\n\tprivate final byte next() {\n\t\t\
+    byte bt;\n\t\twhile(isPunct(bt = read())){}\n\t\treturn bt;\n\t}\n\t/**\n\t *\
+    \ nextInt\n\t * int\u578B\u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic final\
+    \ int ni(){ return Math.toIntExact(nl()); }\n\t/**\n\t * nextLong\n\t * long\u578B\
+    \u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic final long nl() {\n\t\tbyte c\
+    \ = next();\n\t\tfinal boolean neg = c == '-';\n\t\tif(neg) {\n\t\t\tc = read();\n\
+    \t\t}\n\t\tassert(isNum(c));\n\t\tlong res = c - '0';\n\t\twhile(isNum(c = read()))\
+    \ {\n\t\t\tres = 10 * res + c - '0';\n\t\t}\n\t\treturn neg ? -res : res;\n\t\
+    }\n\t/**\n\t * nextDouble\n\t * double\u578B\u3092\u5165\u529B\u3059\u308B\n\t\
+    \ */\n\tpublic final double nd(){ return Double.parseDouble(ns()); }\n\t/**\n\t\
+    \ * nextChar(Scanner\u306B\u306F\u306A\u3044)\n\t * char\u578B\u3092\u5165\u529B\
+    \u3059\u308B\n\t */\n\tpublic final char nc(){ return (char) next(); }\n\t/**\n\
+    \t * nextString(Scanner\u3067\u4E91\u3046next)\n\t * \u6587\u5B57\u5217\u3092\u5165\
+    \u529B\u3059\u308B\n\t */\n\tpublic final String ns() {\n\t\tfinal StringBuilder\
+    \ sb = new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c)) {\n\t\
+    \t\tsb.append((char) c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\
     \t}\n\t/**\n\t * nextBigInteger\n\t * \u591A\u500D\u9577\u6574\u6570\u3092\u5165\
     \u529B\u3059\u308B\n\t */\n\tpublic final BigInteger nb(){ return new BigInteger(ns());\
     \ }\n\t/**\n\t * \u5927\u304D\u3055n\u306Eint\u578B\u914D\u5217\u3092\u5165\u529B\
@@ -362,7 +363,7 @@ data:
   - Java/yukicoder.java
   - Java/All.java
   - Java/AOJ.java
-  - Java/core/MyPrinter.java
+  - Java/core/io/MyPrinter.java
   - Java/core/Main.java
   - Java/core/VvyLw.java
   - Java/core/Utility.java
@@ -372,7 +373,7 @@ data:
   - Java/graph/MST.java
   - Java/graph/Graph.java
   isVerificationFile: false
-  path: Java/core/MyScanner.java
+  path: Java/core/io/MyScanner.java
   requiredBy:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -404,7 +405,7 @@ data:
   - Java/yukicoder.java
   - Java/All.java
   - Java/AOJ.java
-  - Java/core/MyPrinter.java
+  - Java/core/io/MyPrinter.java
   - Java/core/Main.java
   - Java/core/VvyLw.java
   - Java/core/Utility.java
@@ -413,13 +414,13 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-09 11:38:04+09:00'
+  timestamp: '2024-01-09 13:12:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/core/MyScanner.java
+documentation_of: Java/core/io/MyScanner.java
 layout: document
 redirect_from:
-- /library/Java/core/MyScanner.java
-- /library/Java/core/MyScanner.java.html
-title: Java/core/MyScanner.java
+- /library/Java/core/io/MyScanner.java
+- /library/Java/core/io/MyScanner.java.html
+title: Java/core/io/MyScanner.java
 ---

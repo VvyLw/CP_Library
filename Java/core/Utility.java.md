@@ -11,14 +11,14 @@ data:
     path: Java/core/Main.java
     title: Java/core/Main.java
   - icon: ':warning:'
-    path: Java/core/MyPrinter.java
-    title: Java/core/MyPrinter.java
-  - icon: ':warning:'
-    path: Java/core/MyScanner.java
-    title: Java/core/MyScanner.java
-  - icon: ':warning:'
     path: Java/core/VvyLw.java
     title: Java/core/VvyLw.java
+  - icon: ':warning:'
+    path: Java/core/io/MyPrinter.java
+    title: Java/core/io/MyPrinter.java
+  - icon: ':warning:'
+    path: Java/core/io/MyScanner.java
+    title: Java/core/io/MyScanner.java
   - icon: ':warning:'
     path: Java/graph/Edge.java
     title: Java/graph/Edge.java
@@ -129,14 +129,14 @@ data:
     path: Java/core/Main.java
     title: Java/core/Main.java
   - icon: ':warning:'
-    path: Java/core/MyPrinter.java
-    title: Java/core/MyPrinter.java
-  - icon: ':warning:'
-    path: Java/core/MyScanner.java
-    title: Java/core/MyScanner.java
-  - icon: ':warning:'
     path: Java/core/VvyLw.java
     title: Java/core/VvyLw.java
+  - icon: ':warning:'
+    path: Java/core/io/MyPrinter.java
+    title: Java/core/io/MyPrinter.java
+  - icon: ':warning:'
+    path: Java/core/io/MyScanner.java
+    title: Java/core/io/MyScanner.java
   - icon: ':warning:'
     path: Java/graph/Edge.java
     title: Java/graph/Edge.java
@@ -901,10 +901,10 @@ data:
   - Java/yukicoder.java
   - Java/All.java
   - Java/AOJ.java
-  - Java/core/MyPrinter.java
+  - Java/core/io/MyPrinter.java
+  - Java/core/io/MyScanner.java
   - Java/core/Main.java
   - Java/core/VvyLw.java
-  - Java/core/MyScanner.java
   - Java/graph/WeightedGraph.java
   - Java/graph/Edge.java
   - Java/graph/LowestCommonAncestor.java
@@ -943,16 +943,16 @@ data:
   - Java/yukicoder.java
   - Java/All.java
   - Java/AOJ.java
-  - Java/core/MyPrinter.java
+  - Java/core/io/MyPrinter.java
+  - Java/core/io/MyScanner.java
   - Java/core/Main.java
   - Java/core/VvyLw.java
-  - Java/core/MyScanner.java
   - Java/graph/WeightedGraph.java
   - Java/graph/Edge.java
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-09 11:38:04+09:00'
+  timestamp: '2024-01-09 13:12:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/core/Utility.java

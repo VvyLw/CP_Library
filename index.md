@@ -74,17 +74,19 @@ data:
       path: Java/core/Main.java
       title: Java/core/Main.java
     - icon: ':warning:'
-      path: Java/core/MyPrinter.java
-      title: Java/core/MyPrinter.java
-    - icon: ':warning:'
-      path: Java/core/MyScanner.java
-      title: Java/core/MyScanner.java
-    - icon: ':warning:'
       path: Java/core/Utility.java
       title: Java/core/Utility.java
     - icon: ':warning:'
       path: Java/core/VvyLw.java
       title: Java/core/VvyLw.java
+  - name: Java/core/io
+    pages:
+    - icon: ':warning:'
+      path: Java/core/io/MyPrinter.java
+      title: Java/core/io/MyPrinter.java
+    - icon: ':warning:'
+      path: Java/core/io/MyScanner.java
+      title: Java/core/io/MyScanner.java
   - name: Java/graph
     pages:
     - icon: ':warning:'
