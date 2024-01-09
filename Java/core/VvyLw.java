@@ -1,5 +1,8 @@
 package library.core;
 
+import library.core.io.MyPrinter;
+import library.core.io.MyScanner;
+
 /**
  * ここではUtilityクラスのメソッドをクラス宣言なしで使える
  */

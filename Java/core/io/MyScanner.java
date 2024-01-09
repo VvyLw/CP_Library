@@ -1,10 +1,12 @@
-package library.core;
+package library.core.io;
 
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
 import java.util.stream.IntStream;
+
+import library.core.Utility;
 
 /**
  * 入力クラス
@@ -18,7 +20,7 @@ public final class MyScanner implements Closeable, AutoCloseable {
 	 * コンストラクタ
 	 * @param is 標準入力(System.in)を入れる
 	 */
-	MyScanner(final InputStream is) {
+	public MyScanner(final InputStream is) {
 		this.is = is;
 		pos = lim = 0;
 		buf = new byte[1 << 17];
