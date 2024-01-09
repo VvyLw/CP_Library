@@ -266,24 +266,22 @@ data:
     \ static final String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\
     \tprotected static final String no(final boolean ok){ return yes(!ok); }\n\tprotected\
     \ static final long sqr(final long x){ return x * x; }\n\tprotected static final\
-    \ int mod(final int n, final int m){ return (n + m) % m; }\n\tprotected static\
-    \ final int mod(final long n, final int m){ return (int) (n + m) % m; }\n\tprotected\
-    \ static final long mod(final long n, final long m){ return (n + m) % m; }\n\t\
-    protected static final long ceil(final long a, final long b){ return (a - 1) /\
-    \ b + 1; }\n\tprotected static final double round(final double a, final long b,\
-    \ final int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn Math.rint((a * d)\
-    \ / b) / d;\n\t}\n\tprotected static final long pow(long a, int b) {\n\t\tlong\
-    \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
-    \t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final long pow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b\
-    \ > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\
-    \t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\tprotected static final long lcm(final long a, final long b){ return\
-    \ a * b / gcd(a, b); }\n\tprotected static final long lcm(final int... a){ return\
-    \ Arrays.stream(a).mapToLong(i -> i).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
-    \ static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x,\
-    \ y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final long\
-    \ b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
+    \ long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\
+    \t}\n\tprotected static final long ceil(final long a, final long b){ return (a\
+    \ - 1) / b + 1; }\n\tprotected static final double round(final double a, final\
+    \ long b, final int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn Math.rint((a\
+    \ * d) / b) / d;\n\t}\n\tprotected static final long pow(long a, int b) {\n\t\t\
+    long res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
+    \t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
+    \ static final long pow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\
+    \twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res,\
+    \ m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\
+    \treturn res;\n\t}\n\tprotected static final long lcm(final long a, final long\
+    \ b){ return a * b / gcd(a, b); }\n\tprotected static final long lcm(final int...\
+    \ a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1, (x, y) -> lcm(x, y));\
+    \ }\n\tprotected static final long lcm(final long... a){ return Arrays.stream(a).reduce(1,\
+    \ (x, y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final\
+    \ long b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
     \ int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\
     \tprotected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0,\
     \ (x, y) -> gcd(x, y)); }\n\tprotected static final int min(final int... a){ return\
@@ -491,7 +489,7 @@ data:
     \ S> of(final F a, final S b){ return new Pair<>(a, b); }\n\tfinal Pair<S, F>\
     \ swap(){ return Pair.of(second, first); }\n\t@Override\n\tpublic final int compareTo(final\
     \ Pair<F, S> p) {\n\t\tif(first.compareTo(p.first) == 0) {\n\t\t\treturn second.compareTo(p.second);\n\
-    \t\t}\n\t\treturn first.compareTo(p.first);\n\t}\n}"
+    \t\t}\n\t\treturn first.compareTo(p.first);\n\t}\n}\n"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -574,7 +572,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-09 11:36:00+09:00'
+  timestamp: '2024-01-09 11:37:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java
