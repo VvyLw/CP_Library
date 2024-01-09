@@ -35,19 +35,10 @@ public class Utility {
 	 * @param n int
 	 * @param m int
 	 */
-	public static final int mod(final int n, final int m){ return (n + m) % m; }
-	/**
-	 * nが負の時でも正の剰余を求める
-	 * @param n long
-	 * @param m int
-	 */
-	public static final int mod(final long n, final int m){ return (int) (n + m) % m; }
-	/**
-	 * nが負の時でも正の剰余を求める
-	 * @param n long
-	 * @param m long
-	 */
-	public static final long mod(final long n, final long m){ return (n + m) % m; }
+	public static final long mod(long n, final long m) {
+		n %= m;
+		return n < 0 ? n + m : n;
+	}
 	/**
 	 * a / bの商を小数点以下切り上げで求める
 	 * @param a
