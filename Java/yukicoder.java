@@ -16,7 +16,7 @@ import java.util.function.LongPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-final class Main {
+class Main {
 	public static void main(final String[] args) {
 		IntStream.range(0, VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());
 		VvyLw.o.flush();
