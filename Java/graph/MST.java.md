@@ -333,7 +333,7 @@ data:
   - Java/graph/Edge.java
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-09 13:12:50+09:00'
+  timestamp: '2024-01-10 04:16:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/graph/MST.java

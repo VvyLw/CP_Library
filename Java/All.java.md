@@ -1491,18 +1491,18 @@ data:
     \ j, Utility.mod(mt.get(i, j) + mat[i][k] * m.get(k, j), mod));\n\t\t\t\t}\n\t\
     \t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix pow(long k) {\n\t\tMatrix n\
     \ = clone();\n\t\tMatrix m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k % 2\
-    \ == 1) {\n\t\t\t\tm = m.mul(this);\n\t\t\t}\n\t\t\tn = n.mul(n);\n\t\t\tk >>=\
-    \ 1;\n\t\t}\n\t\treturn n;\n\t}\n\tfinal Matrix pow(long k, final long mod) {\n\
-    \t\tMatrix n = clone();\n\t\tMatrix m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\
-    \tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(this, mod);\n\t\t\t}\n\t\t\tn = n.mul(n,\
-    \ mod);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn n;\n\t}\n\t@Override\n\tpublic final\
-    \ boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\
-    \t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\
-    \t}\n\t\tfinal Matrix m = (Matrix) o;\n\t\tif(h != m.h || w != m.w) {\n\t\t\t\
-    return false;\n\t\t}\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j\
-    \ < w; ++j) {\n\t\t\t\tif(mat[i][j] != m.get(i, j)) {\n\t\t\t\t\treturn false;\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\t@Override\n\tpublic final\
-    \ Matrix clone() {\n\t\ttry {\n\t\t\treturn (Matrix) super.clone();\n\t\t} catch(CloneNotSupportedException\
+    \ == 1) {\n\t\t\t\tm = m.mul(n);\n\t\t\t}\n\t\t\tn = n.mul(n);\n\t\t\tk >>= 1;\n\
+    \t\t}\n\t\treturn m;\n\t}\n\tfinal Matrix pow(long k, final long mod) {\n\t\t\
+    Matrix n = clone();\n\t\tMatrix m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k\
+    \ % 2 == 1) {\n\t\t\t\tm = m.mul(n, mod);\n\t\t\t}\n\t\t\tn = n.mul(n, mod);\n\
+    \t\t\tk >>= 1;\n\t\t}\n\t\treturn m;\n\t}\n\t@Override\n\tpublic final boolean\
+    \ equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\
+    \tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\
+    \tfinal Matrix m = (Matrix) o;\n\t\tif(h != m.h || w != m.w) {\n\t\t\treturn false;\n\
+    \t\t}\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\
+    \t\t\tif(mat[i][j] != m.get(i, j)) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\
+    \t}\n\t\t}\n\t\treturn true;\n\t}\n\t@Override\n\tpublic final Matrix clone()\
+    \ {\n\t\ttry {\n\t\t\treturn (Matrix) super.clone();\n\t\t} catch(CloneNotSupportedException\
     \ e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn null;\n\t}\n\t@Override\n\
     \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
     \t\tfinal int interval = String.valueOf(IntStream.range(0, h).mapToLong(i -> IntStream.range(0,\
@@ -1594,7 +1594,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-09 13:12:50+09:00'
+  timestamp: '2024-01-10 04:16:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
