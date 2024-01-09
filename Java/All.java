@@ -3360,24 +3360,24 @@ final class Matrix implements Cloneable {
 		Matrix m = Matrix.E(h);
 		while(k > 0) {
 			if(k % 2 == 1) {
-				m = m.mul(this);
+				m = m.mul(n);
 			}
 			n = n.mul(n);
 			k >>= 1;
 		}
-		return n;
+		return m;
 	}
 	final Matrix pow(long k, final long mod) {
 		Matrix n = clone();
 		Matrix m = Matrix.E(h);
 		while(k > 0) {
 			if(k % 2 == 1) {
-				m = m.mul(this, mod);
+				m = m.mul(n, mod);
 			}
 			n = n.mul(n, mod);
 			k >>= 1;
 		}
-		return n;
+		return m;
 	}
 	@Override
 	public final boolean equals(final Object o) {
