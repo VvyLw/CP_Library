@@ -372,7 +372,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-09 11:37:11+09:00'
+  timestamp: '2024-01-09 11:38:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/waveletmatrix/WaveletMatrixBeta.java
