@@ -11,7 +11,7 @@ public final class FloatPair extends Pair<Double, Double> {
 	 * @param first
 	 * @param second
 	 */
-	FloatPair(final double first, final double second){ super(first, second); }
+	public FloatPair(final double first, final double second){ super(first, second); }
 	/**
 	 * FloatPair同士を加算する
 	 * @param p
