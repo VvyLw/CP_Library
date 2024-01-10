@@ -1143,69 +1143,72 @@ data:
     \t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\tfinal int upperBound(long w) {\n\t\tif(w\
     \ < 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n);\
     \ k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <= w) {\n\t\t\t\t\
-    w -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n}\n\n\
-    final class SegmentTree<T extends Number> {\n\tprivate int n = 1, rank = 0, fini;\n\
-    \tprivate final BinaryOperator<T> op;\n\tprivate final T e;\n\tprivate final Object[]\
-    \ dat;\n\tSegmentTree(final int fini, final BinaryOperator<T> op, final T e) {\n\
-    \t\tthis.fini = fini;\n\t\tthis.op = op;\n\t\tthis.e = e;\n\t\twhile(this.fini\
-    \ > n) {\n\t\t\tn <<= 1;\n\t\t\trank++;\n\t\t}\n\t\tdat = new Object[2 * n];\n\
-    \t\tArrays.fill(dat, e);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal void\
-    \ update(int i, final T x) {\n\t\ti += n;\n\t\tdat[i] = x;\n\t\tdo {\n\t\t\ti\
-    \ >>= 1;\n\t\t\tdat[i] = op.apply((T) dat[2 * i], (T) dat[2 * i + 1]);\n\t\t}\
-    \ while(i > 0);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T query(int\
-    \ a, int b) {\n\t\tT l = e, r = e;\n\t\tfor(a += n, b += n; a < b; a >>= 1, b\
-    \ >>= 1) {\n\t\t\tif(a % 2 == 1) {\n\t\t\t\tl = op.apply(l, (T) dat[a++]);\n\t\
-    \t\t}\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tr = op.apply((T) dat[--b], r);\n\t\t\t\
-    }\n\t\t}\n\t\treturn op.apply(l, r);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\
-    \tfinal int findLeft(final int r, final Predicate<T> fn) {\n\t\tif(r == 0) {\n\
-    \t\t\treturn 0;\n\t\t}\n\t\tint h = 0, i = r + n;\n\t\tT val = e;\n\t\tfor(; h\
-    \ <= rank; h++) {\n\t\t\tif(i >> (h & 1) > 0) {\n\t\t\t\tfinal T val2 = op.apply(val,\
-    \ (T) dat[i >> (h ^ 1)]);\n\t\t\t\tif(fn.test(val2)){\n\t\t\t\t\ti -= 1 << h;\n\
-    \t\t\t\t\tif(i == n) {\n\t\t\t\t\t\treturn 0;\n\t\t\t\t\t}\n\t\t\t\t\tval = val2;\n\
-    \t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(;\
-    \ h-- > 0;) {\n\t\t\tfinal T val2 = op.apply(val, (T) dat[(i >> h) - 1]);\n\t\t\
-    \tif(fn.test(val2)){\n\t\t\t\ti -= 1 << h;\n\t\t\t\tif(i == n) {\n\t\t\t\t\treturn\
-    \ 0;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t}\n\t\t}\n\t\treturn i - n;\n\t}\n\
-    \t@SuppressWarnings(\"unchecked\")\n\tfinal int findRight(final int l, final Predicate<T>\
-    \ fn) {\n\t\tif(l == fini) {\n\t\t\treturn fini;\n\t\t}\n\t\tint h = 0, i = l\
-    \ + n;\n\t\tT val = e;\n\t\tfor(; h <= rank; h++) {\n\t\t\tif(i >> (h & 1) > 0){\n\
-    \t\t\t\tfinal T val2 = op.apply(val, (T) dat[i >> h]);\n\t\t\t\tif(fn.test(val2)){\n\
-    \t\t\t\t\ti += 1 << h;\n\t\t\t\t\tif(i == n * 2) {\n\t\t\t\t\t\treturn fini;\n\
-    \t\t\t\t\t}\n\t\t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\tfinal T val2 = op.apply(val,\
-    \ (T) dat[i>>h]);\n\t\t\tif(fn.test(val2)) {\n\t\t\t\ti += 1 << h;\n\t\t\t\tif(i\
-    \ == n * 2) {\n\t\t\t\t\treturn fini;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t\
-    }\n\t\t}\n\t\treturn Math.min(i - n, fini);\n\t}\n}\n\nfinal class SparseTable\
-    \ {\n\tprivate final long[][] st;\n\tprivate final int[] lookup;\n\tprivate final\
-    \ LongBinaryOperator op;\n\tSparseTable(final int[] a, final LongBinaryOperator\
-    \ op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\
-    \t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length;\
-    \ i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\
-    \tfor(int j = 0; j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i\
-    \ - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
-    \ + 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
-    \ >> 1] + 1;\n\t\t}\n\t}\n\tSparseTable(final long[] a, final LongBinaryOperator\
-    \ op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\
-    \t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length;\
-    \ i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\
-    \tfor(int j = 0; j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i\
-    \ - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
-    \ + 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
-    \ >> 1] + 1;\n\t\t}\n\t}\n\tfinal long query(final int l, final int r) {\n\t\t\
-    final int b = lookup[r - l];\n\t\treturn op.applyAsLong(st[b][l], st[b][r - (1\
-    \ << b)]);\n\t}\n\tfinal int minLeft(final int x, final LongPredicate fn) {\n\t\
-    \tif(x == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint ok = x, ng = -1;\n\t\twhile(Math.abs(ok\
-    \ - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(mid,\
-    \ x) - 1)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\
-    \t}\n\t\t}\n\t\treturn ok;\n\t}\n\tfinal int maxRight(final int x, final LongPredicate\
-    \ fn) {\n\t\tif(x == lookup.length - 1) {\n\t\t\treturn lookup.length - 1;\n\t\
-    \t}\n\t\tint ok = x, ng = lookup.length;\n\t\twhile(Math.abs(ok - ng) > 1) {\n\
-    \t\t\tint mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(x, mid))) {\n\t\t\t\tok\
-    \ = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ ok;\n\t}\n}\n\nfinal class SuffixArray extends ArrayList<Integer> {\n\tprivate\
-    \ final String vs;\n\tSuffixArray(final String vs, final boolean compress) {\n\
-    \t\tthis.vs = vs;\n\t\tint[] newVS = new int[vs.length() + 1];\n\t\tif(compress)\
-    \ {\n\t\t\tfinal List<Integer> xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());\n\
+    w -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\t@Override\n\
+    \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
+    \t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\" \"\
+    \ + get(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nfinal class SegmentTree<T\
+    \ extends Number> {\n\tprivate int n = 1, rank = 0, fini;\n\tprivate final BinaryOperator<T>\
+    \ op;\n\tprivate final T e;\n\tprivate final Object[] dat;\n\tSegmentTree(final\
+    \ int fini, final BinaryOperator<T> op, final T e) {\n\t\tthis.fini = fini;\n\t\
+    \tthis.op = op;\n\t\tthis.e = e;\n\t\twhile(this.fini > n) {\n\t\t\tn <<= 1;\n\
+    \t\t\trank++;\n\t\t}\n\t\tdat = new Object[2 * n];\n\t\tArrays.fill(dat, e);\n\
+    \t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal void update(int i, final T x)\
+    \ {\n\t\ti += n;\n\t\tdat[i] = x;\n\t\tdo {\n\t\t\ti >>= 1;\n\t\t\tdat[i] = op.apply((T)\
+    \ dat[2 * i], (T) dat[2 * i + 1]);\n\t\t} while(i > 0);\n\t}\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tfinal T query(int a, int b) {\n\t\tT l = e, r = e;\n\t\tfor(a\
+    \ += n, b += n; a < b; a >>= 1, b >>= 1) {\n\t\t\tif(a % 2 == 1) {\n\t\t\t\tl\
+    \ = op.apply(l, (T) dat[a++]);\n\t\t\t}\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tr = op.apply((T)\
+    \ dat[--b], r);\n\t\t\t}\n\t\t}\n\t\treturn op.apply(l, r);\n\t}\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tfinal int findLeft(final int r, final Predicate<T> fn) {\n\t\t\
+    if(r == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint h = 0, i = r + n;\n\t\tT val = e;\n\
+    \t\tfor(; h <= rank; h++) {\n\t\t\tif(i >> (h & 1) > 0) {\n\t\t\t\tfinal T val2\
+    \ = op.apply(val, (T) dat[i >> (h ^ 1)]);\n\t\t\t\tif(fn.test(val2)){\n\t\t\t\t\
+    \ti -= 1 << h;\n\t\t\t\t\tif(i == n) {\n\t\t\t\t\t\treturn 0;\n\t\t\t\t\t}\n\t\
+    \t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\
+    \t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\tfinal T val2 = op.apply(val, (T) dat[(i\
+    \ >> h) - 1]);\n\t\t\tif(fn.test(val2)){\n\t\t\t\ti -= 1 << h;\n\t\t\t\tif(i ==\
+    \ n) {\n\t\t\t\t\treturn 0;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t}\n\t\t}\n\t\
+    \treturn i - n;\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal int findRight(final\
+    \ int l, final Predicate<T> fn) {\n\t\tif(l == fini) {\n\t\t\treturn fini;\n\t\
+    \t}\n\t\tint h = 0, i = l + n;\n\t\tT val = e;\n\t\tfor(; h <= rank; h++) {\n\t\
+    \t\tif(i >> (h & 1) > 0){\n\t\t\t\tfinal T val2 = op.apply(val, (T) dat[i >> h]);\n\
+    \t\t\t\tif(fn.test(val2)){\n\t\t\t\t\ti += 1 << h;\n\t\t\t\t\tif(i == n * 2) {\n\
+    \t\t\t\t\t\treturn fini;\n\t\t\t\t\t}\n\t\t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\
+    \telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\
+    \t\t\tfinal T val2 = op.apply(val, (T) dat[i>>h]);\n\t\t\tif(fn.test(val2)) {\n\
+    \t\t\t\ti += 1 << h;\n\t\t\t\tif(i == n * 2) {\n\t\t\t\t\treturn fini;\n\t\t\t\
+    \t}\n\t\t\t\tval = val2;\n\t\t\t}\n\t\t}\n\t\treturn Math.min(i - n, fini);\n\t\
+    }\n}\n\nfinal class SparseTable {\n\tprivate final long[][] st;\n\tprivate final\
+    \ int[] lookup;\n\tprivate final LongBinaryOperator op;\n\tSparseTable(final int[]\
+    \ a, final LongBinaryOperator op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1\
+    \ << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 << b];\n\t\t\
+    for(int i = 0; i < a.length; i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\t\tfor(int\
+    \ i = 1; i < b; i++) {\n\t\t\tfor(int j = 0; j + (1 << i) <= (1 << b); j++) {\n\
+    \t\t\t\tst[i][j] = op.applyAsLong(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\
+    \t\t\t}\n\t\t}\n\t\tlookup = new int[a.length + 1];\n\t\tfor(int i = 2; i < lookup.length;\
+    \ i++) {\n\t\t\tlookup[i] = lookup[i >> 1] + 1;\n\t\t}\n\t}\n\tSparseTable(final\
+    \ long[] a, final LongBinaryOperator op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\
+    \t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 <<\
+    \ b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\
+    \t\tfor(int i = 1; i < b; i++) {\n\t\t\tfor(int j = 0; j + (1 << i) <= (1 << b);\
+    \ j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i - 1][j], st[i - 1][j + (1 <<\
+    \ (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length + 1];\n\t\tfor(int\
+    \ i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i >> 1] + 1;\n\t\t\
+    }\n\t}\n\tfinal long query(final int l, final int r) {\n\t\tfinal int b = lookup[r\
+    \ - l];\n\t\treturn op.applyAsLong(st[b][l], st[b][r - (1 << b)]);\n\t}\n\tfinal\
+    \ int minLeft(final int x, final LongPredicate fn) {\n\t\tif(x == 0) {\n\t\t\t\
+    return 0;\n\t\t}\n\t\tint ok = x, ng = -1;\n\t\twhile(Math.abs(ok - ng) > 1) {\n\
+    \t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(mid, x) - 1)) {\n\
+    \t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\
+    \treturn ok;\n\t}\n\tfinal int maxRight(final int x, final LongPredicate fn) {\n\
+    \t\tif(x == lookup.length - 1) {\n\t\t\treturn lookup.length - 1;\n\t\t}\n\t\t\
+    int ok = x, ng = lookup.length;\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tint\
+    \ mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(x, mid))) {\n\t\t\t\tok = mid;\n\
+    \t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\
+    }\n\nfinal class SuffixArray extends ArrayList<Integer> {\n\tprivate final String\
+    \ vs;\n\tSuffixArray(final String vs, final boolean compress) {\n\t\tthis.vs =\
+    \ vs;\n\t\tint[] newVS = new int[vs.length() + 1];\n\t\tif(compress) {\n\t\t\t\
+    final List<Integer> xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());\n\
     \t\t\tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = Utility.lowerBound(xs,\
     \ (int) vs.charAt(i)) + 1;\n\t\t\t}\n\t\t} else {\n\t\t\tfinal int d = vs.chars().min().getAsInt();\n\
     \t\t\tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = vs.charAt(i)\
@@ -1610,7 +1613,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-10 16:18:32+09:00'
+  timestamp: '2024-01-11 03:14:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
