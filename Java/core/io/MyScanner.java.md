@@ -248,33 +248,34 @@ data:
     RuntimeError: bundler is not specified: Java/core/io/MyScanner.java\n"
   code: "package library.core.io;\n\nimport java.io.Closeable;\nimport java.io.IOException;\n\
     import java.io.InputStream;\nimport java.math.BigInteger;\nimport java.util.stream.IntStream;\n\
-    \nimport library.core.Utility;\n\n/**\n * \u5165\u529B\u30AF\u30E9\u30B9\n * Scanner\u3088\
-    \u308A\u901F\u3044\n */\npublic final class MyScanner implements Closeable, AutoCloseable\
-    \ {\n\tprivate int pos, lim;\n\tprivate final byte[] buf;\n\tprivate final InputStream\
-    \ is;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param is\
-    \ \u6A19\u6E96\u5165\u529B(System.in)\u3092\u5165\u308C\u308B\n\t */\n\tpublic\
-    \ MyScanner(final InputStream is) {\n\t\tthis.is = is;\n\t\tpos = lim = 0;\n\t\
-    \tbuf = new byte[1 << 17];\n\t}\n\tprivate final boolean isPunct(final byte bt){\
-    \ return !Utility.scope(33, bt, 126); }\n\tprivate final boolean isNum(final byte\
-    \ bt){ return Utility.scope('0', bt, '9'); }\n\tprivate final byte read() {\n\t\
-    \tif(pos == lim && lim != -1) {\n\t\t\ttry {\n\t\t\t\tlim = is.read(buf);\n\t\t\
-    \t\tpos = 0;\n\t\t\t} catch(IOException e) {\n\t\t\t\te.printStackTrace();\n\t\
-    \t\t}\n\t\t}\n\t\treturn buf[pos++];\n\t}\n\tprivate final byte next() {\n\t\t\
-    byte bt;\n\t\twhile(isPunct(bt = read())){}\n\t\treturn bt;\n\t}\n\t/**\n\t *\
-    \ nextInt\n\t * int\u578B\u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic final\
-    \ int ni(){ return Math.toIntExact(nl()); }\n\t/**\n\t * nextLong\n\t * long\u578B\
-    \u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic final long nl() {\n\t\tbyte c\
-    \ = next();\n\t\tfinal boolean neg = c == '-';\n\t\tif(neg) {\n\t\t\tc = read();\n\
-    \t\t}\n\t\tassert(isNum(c));\n\t\tlong res = c - '0';\n\t\twhile(isNum(c = read()))\
-    \ {\n\t\t\tres = 10 * res + c - '0';\n\t\t}\n\t\treturn neg ? -res : res;\n\t\
-    }\n\t/**\n\t * nextDouble\n\t * double\u578B\u3092\u5165\u529B\u3059\u308B\n\t\
-    \ */\n\tpublic final double nd(){ return Double.parseDouble(ns()); }\n\t/**\n\t\
-    \ * nextChar(Scanner\u306B\u306F\u306A\u3044)\n\t * char\u578B\u3092\u5165\u529B\
-    \u3059\u308B\n\t */\n\tpublic final char nc(){ return (char) next(); }\n\t/**\n\
-    \t * nextString(Scanner\u3067\u4E91\u3046next)\n\t * \u6587\u5B57\u5217\u3092\u5165\
-    \u529B\u3059\u308B\n\t */\n\tpublic final String ns() {\n\t\tfinal StringBuilder\
-    \ sb = new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c)) {\n\t\
-    \t\tsb.append((char) c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\
+    \nimport library.core.Utility;\nimport library.structure.pair.FloatPair;\nimport\
+    \ library.structure.pair.IntPair;\n\n/**\n * \u5165\u529B\u30AF\u30E9\u30B9\n\
+    \ * Scanner\u3088\u308A\u901F\u3044\n */\npublic final class MyScanner implements\
+    \ Closeable, AutoCloseable {\n\tprivate int pos, lim;\n\tprivate final byte[]\
+    \ buf;\n\tprivate final InputStream is;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\
+    \u30AF\u30BF\n\t * @param is \u6A19\u6E96\u5165\u529B(System.in)\u3092\u5165\u308C\
+    \u308B\n\t */\n\tpublic MyScanner(final InputStream is) {\n\t\tthis.is = is;\n\
+    \t\tpos = lim = 0;\n\t\tbuf = new byte[1 << 17];\n\t}\n\tprivate final boolean\
+    \ isPunct(final byte bt){ return !Utility.scope(33, bt, 126); }\n\tprivate final\
+    \ boolean isNum(final byte bt){ return Utility.scope('0', bt, '9'); }\n\tprivate\
+    \ final byte read() {\n\t\tif(pos == lim && lim != -1) {\n\t\t\ttry {\n\t\t\t\t\
+    lim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(IOException e) {\n\t\t\t\t\
+    e.printStackTrace();\n\t\t\t}\n\t\t}\n\t\treturn buf[pos++];\n\t}\n\tprivate final\
+    \ byte next() {\n\t\tbyte bt;\n\t\twhile(isPunct(bt = read())){}\n\t\treturn bt;\n\
+    \t}\n\t/**\n\t * nextInt\n\t * int\u578B\u3092\u5165\u529B\u3059\u308B\n\t */\n\
+    \tpublic final int ni(){ return Math.toIntExact(nl()); }\n\t/**\n\t * nextLong\n\
+    \t * long\u578B\u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic final long nl()\
+    \ {\n\t\tbyte c = next();\n\t\tfinal boolean neg = c == '-';\n\t\tif(neg) {\n\t\
+    \t\tc = read();\n\t\t}\n\t\tassert(isNum(c));\n\t\tlong res = c - '0';\n\t\twhile(isNum(c\
+    \ = read())) {\n\t\t\tres = 10 * res + c - '0';\n\t\t}\n\t\treturn neg ? -res\
+    \ : res;\n\t}\n\t/**\n\t * nextDouble\n\t * double\u578B\u3092\u5165\u529B\u3059\
+    \u308B\n\t */\n\tpublic final double nd(){ return Double.parseDouble(ns()); }\n\
+    \t/**\n\t * nextChar(Scanner\u306B\u306F\u306A\u3044)\n\t * char\u578B\u3092\u5165\
+    \u529B\u3059\u308B\n\t */\n\tpublic final char nc(){ return (char) next(); }\n\
+    \t/**\n\t * nextString(Scanner\u3067\u4E91\u3046next)\n\t * \u6587\u5B57\u5217\
+    \u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic final String ns() {\n\t\tfinal\
+    \ StringBuilder sb = new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c))\
+    \ {\n\t\t\tsb.append((char) c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\
     \t}\n\t/**\n\t * nextBigInteger\n\t * \u591A\u500D\u9577\u6574\u6570\u3092\u5165\
     \u529B\u3059\u308B\n\t */\n\tpublic final BigInteger nb(){ return new BigInteger(ns());\
     \ }\n\t/**\n\t * \u5927\u304D\u3055n\u306Eint\u578B\u914D\u5217\u3092\u5165\u529B\
@@ -328,10 +329,20 @@ data:
     \t\treturn a;\n\t}\n\t/**\n\t * [maybe_unused]\n\t * \u4E00\u884C\u5168\u90E8\u3092\
     \u5165\u529B\u3059\u308B\n\t */\n\tpublic final String line() {\n\t\tfinal StringBuilder\
     \ sb = new StringBuilder();\n\t\tbyte c;\n\t\twhile((c = read()) != '\\n') {\n\
-    \t\t\tsb.append(c);\n\t\t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t * InputStream\u3092\
-    \u9589\u3058\u308B\n\t */\n\t@Override\n\tpublic final void close() {\n\t\ttry\
-    \ {\n\t\t\tis.close();\n\t\t} catch (IOException e) {\n\t\t\te.printStackTrace();\n\
-    \t\t}\n\t}\n}"
+    \t\t\tsb.append(c);\n\t\t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t * IntPair\u578B\
+    \u3092\u5165\u529B\u3059\u308B\n\t * @see IntPair\n\t */\n\tpublic final IntPair\
+    \ pi(){ return new IntPair(nl(), nl()); }\n\t/**\n\t * IntPair\u578B\u306E\u914D\
+    \u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n\n\t * @see IntPair\n\t */\n\
+    \tpublic final IntPair[] pi(final int n) {\n\t\tfinal IntPair[] p = new IntPair[n];\n\
+    \t\tIntStream.range(0, n).forEach(i -> p[i] = pi());\n\t\treturn p;\n\t}\n\t/**\n\
+    \t * FloatPair\u578B\u3092\u5165\u529B\u3059\u308B\n\t * @see FloatPair\n\t */\n\
+    \tpublic final FloatPair pf(){ return new FloatPair(nd(), nd()); }\n\t/**\n\t\
+    \ * FloatPair\u578B\u306E\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param\
+    \ n\n\t * @see FloatPair\n\t */\n\tpublic final FloatPair[] pf(final int n) {\n\
+    \t\tfinal FloatPair[] p = new FloatPair[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> p[i] = pf());\n\t\treturn p;\n\t}\n\t/**\n\t * InputStream\u3092\u9589\u3058\
+    \u308B\n\t */\n\t@Override\n\tpublic final void close() {\n\t\ttry {\n\t\t\tis.close();\n\
+    \t\t} catch (IOException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -414,7 +425,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-10 04:19:36+09:00'
+  timestamp: '2024-01-10 14:57:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/core/io/MyScanner.java

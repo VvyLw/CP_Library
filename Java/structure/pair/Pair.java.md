@@ -258,7 +258,7 @@ data:
     \ */\n\tpublic static final <F extends Comparable<? super F>, S extends Comparable<?\
     \ super S>> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }\n\t\
     /**\n\t * std::pair\u306B\u306F\u306A\u3044\n\t * @return first\u3068second\u3092\
-    \u5165\u308C\u66FF\u3048\u305FPair\n\t */\n\tpublic final Pair<S, F> swap(){ return\
+    \u5165\u308C\u66FF\u3048\u305FPair\n\t */\n\tpublic Pair<S, F> swap(){ return\
     \ Pair.of(second, first); }\n\t@Override\n\tpublic final boolean equals(final\
     \ Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null\
     \ || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?,\
@@ -354,7 +354,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-10 04:19:36+09:00'
+  timestamp: '2024-01-10 14:57:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/pair/Pair.java

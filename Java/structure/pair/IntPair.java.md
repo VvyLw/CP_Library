@@ -251,21 +251,23 @@ data:
     \u306A\u30E1\u30BD\u30C3\u30C9\u3082\u3042\u308B\n */\npublic final class IntPair\
     \ extends Pair<Long, Long> {\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\
     \u30BF\n\t * @param first\n\t * @param second\n\t */\n\tpublic IntPair(final long\
-    \ first, final long second){ super(first, second); }\n\t/**\n\t * Pair\u540C\u58EB\
-    \u3092\u52A0\u7B97\u3059\u308B\n\t * @param p\n\t */\n\tpublic final IntPair add(final\
-    \ IntPair p){ return new IntPair(first + p.first, second + p.second); }\n\t/**\n\
-    \t * Pair\u540C\u58EB\u3092\u6E1B\u7B97\u3059\u308B\n\t * @param p\n\t */\n\t\
-    public final IntPair sub(final IntPair p){ return new IntPair(first - p.first,\
-    \ second - p.second); }\n\t/**\n\t * Pair\u540C\u58EB\u3092\u4E57\u7B97\u3059\u308B\
-    \n\t * @param p\n\t */\n\tpublic final IntPair mul(final IntPair p){ return new\
-    \ IntPair(first * p.first, second * p.second); }\n\t/**\n\t * Pair\u540C\u58EB\
-    \u3092\u9664\u7B97\u3059\u308B\n\t * @param p\n\t */\n\tpublic final IntPair div(final\
-    \ IntPair p){ return new IntPair(first / p.first, second / p.second); }\n\t/**\n\
-    \t * [maybe_unused] Pair\u540C\u58EB\u306E\u5270\u4F59\u6F14\u7B97\n\t * @param\
-    \ p\n\t */\n\tpublic final IntPair mod(final IntPair p){ return new IntPair(first\
-    \ % p.first, second % p.second); }\n\t/**\n\t * IntPair\u3092\u5EA7\u6A19\u3068\
-    \u898B\u306690\u5EA6\u56DE\u8EE2\u3055\u305B\u308B\n\t * rotate(90)\u3088\u308A\
-    \u7CBE\u78BA\n\t */\n\tpublic final IntPair rotate(){ return new IntPair(-second,\
+    \ first, final long second){ super(first, second); }\n\t/**\n\t * @return first\u3068\
+    second\u3092\u5165\u308C\u66FF\u3048\u305FIntPair\n\t */\n\t@Override\n\tpublic\
+    \ final IntPair swap(){ return new IntPair(second, first); }\n\t/**\n\t * Pair\u540C\
+    \u58EB\u3092\u52A0\u7B97\u3059\u308B\n\t * @param p\n\t */\n\tpublic final IntPair\
+    \ add(final IntPair p){ return new IntPair(first + p.first, second + p.second);\
+    \ }\n\t/**\n\t * Pair\u540C\u58EB\u3092\u6E1B\u7B97\u3059\u308B\n\t * @param p\n\
+    \t */\n\tpublic final IntPair sub(final IntPair p){ return new IntPair(first -\
+    \ p.first, second - p.second); }\n\t/**\n\t * Pair\u540C\u58EB\u3092\u4E57\u7B97\
+    \u3059\u308B\n\t * @param p\n\t */\n\tpublic final IntPair mul(final IntPair p){\
+    \ return new IntPair(first * p.first, second * p.second); }\n\t/**\n\t * Pair\u540C\
+    \u58EB\u3092\u9664\u7B97\u3059\u308B\n\t * @param p\n\t */\n\tpublic final IntPair\
+    \ div(final IntPair p){ return new IntPair(first / p.first, second / p.second);\
+    \ }\n\t/**\n\t * [maybe_unused] Pair\u540C\u58EB\u306E\u5270\u4F59\u6F14\u7B97\
+    \n\t * @param p\n\t */\n\tpublic final IntPair mod(final IntPair p){ return new\
+    \ IntPair(first % p.first, second % p.second); }\n\t/**\n\t * IntPair\u3092\u5EA7\
+    \u6A19\u3068\u898B\u306690\u5EA6\u56DE\u8EE2\u3055\u305B\u308B\n\t * rotate(90)\u3088\
+    \u308A\u7CBE\u78BA\n\t */\n\tpublic final IntPair rotate(){ return new IntPair(-second,\
     \ first); }\n\t/**\n\t * IntPair\u3092\u5EA7\u6A19\u3068\u898B\u3066ang\u5EA6\u56DE\
     \u8EE2\u3055\u305B\u308B\n\t * @param ang\n\t */\n\tpublic final FloatPair rotate(final\
     \ int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\
@@ -373,7 +375,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-10 04:19:36+09:00'
+  timestamp: '2024-01-10 14:57:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/structure/pair/IntPair.java
