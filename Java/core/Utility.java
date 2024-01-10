@@ -1158,7 +1158,7 @@ public class Utility {
 	 * @param p
 	 * @return Pair配列の各Pairに対して{@link Pair#swap}をした配列
 	 */
-	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<S, F>[] swap(final Pair<F, S>[] p) {
+	public static final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<S, F>[] swap(final Pair<F, S>[] p) {
 		@SuppressWarnings("unchecked")
 		final Pair<S, F>[] q = new Pair[p.length];
 		IntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());
@@ -1168,7 +1168,7 @@ public class Utility {
 	 * @param p
 	 * @return IntPair配列の各IntPairに対して{@link IntPair#swap}をした配列
 	 */
-	public final IntPair[] swap(final IntPair[] p) {
+	public static final IntPair[] swap(final IntPair[] p) {
 		final IntPair[] q = new IntPair[p.length];
 		IntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());
 		return q;
@@ -1177,7 +1177,7 @@ public class Utility {
 	 * @param p
 	 * @return FloatPair配列の各FloatPairに対して{@link FloatPair#swap}をした配列
 	 */
-	public final FloatPair[] swap(final FloatPair[] p) {
+	public static final FloatPair[] swap(final FloatPair[] p) {
 		final FloatPair[] q = new FloatPair[p.length];
 		IntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());
 		return q;
