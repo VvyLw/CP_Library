@@ -246,11 +246,11 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/AOJ.java\n"
-  code: "import java.io.Closeable;\nimport java.io.Flushable;\nimport java.io.IOException;\n\
-    import java.io.InputStream;\nimport java.io.OutputStream;\nimport java.math.BigInteger;\n\
-    import java.util.Arrays;\nimport java.util.Collection;\nimport java.util.Formatter;\n\
-    import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nfinal\
-    \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
+  code: "package AOJ;\n\nimport java.io.Closeable;\nimport java.io.Flushable;\nimport\
+    \ java.io.IOException;\nimport java.io.InputStream;\nimport java.io.OutputStream;\n\
+    import java.math.BigInteger;\nimport java.util.Arrays;\nimport java.util.Collection;\n\
+    import java.util.Formatter;\nimport java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\
+    \nfinal class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
     \ VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
     \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}\n\n\
     final class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner(System.in);\n\
@@ -329,12 +329,12 @@ data:
     \ final void swap(final Object[] a, final Object[] b) {\n\t\tassert a.length ==\
     \ b.length;\n\t\tfinal int n = a.length;\n\t\tfinal Object[] c = a.clone();\n\t\
     \tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t}\n\
-    \tprotected final <F extends Comparable<? super F>, S extends Comparable<? super\
-    \ S>> Pair<S, F>[] swap(final Pair<F, S>[] p) {\n\t\t@SuppressWarnings(\"unchecked\"\
-    )\n\t\tfinal Pair<S, F>[] q = new Pair[p.length];\n\t\tIntStream.range(0, p.length).forEach(i\
-    \ -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\t@SuppressWarnings(\"unchecked\"\
-    )\n\tprotected static final <F extends Comparable<? super F>, S extends Comparable<?\
-    \ super S>> F[] first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i\
+    \tprotected static final <F extends Comparable<? super F>, S extends Comparable<?\
+    \ super S>> Pair<S, F>[] swap(final Pair<F, S>[] p) {\n\t\t@SuppressWarnings(\"\
+    unchecked\")\n\t\tfinal Pair<S, F>[] q = new Pair[p.length];\n\t\tIntStream.range(0,\
+    \ p.length).forEach(i -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tprotected static final <F extends Comparable<? super F>, S extends\
+    \ Comparable<? super S>> F[] first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i\
     \ -> i.first).toArray(); }\n\t@SuppressWarnings(\"unchecked\")\n\tprotected static\
     \ final <F extends Comparable<? super F>, S extends Comparable<? super S>> S[]\
     \ second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i -> i.second).toArray();\
@@ -576,7 +576,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-10 15:41:00+09:00'
+  timestamp: '2024-01-10 16:18:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java
