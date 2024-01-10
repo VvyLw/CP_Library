@@ -174,17 +174,17 @@ public final class Matrix implements Cloneable {
 	 * 冪算
 	 * @param k
 	 */
-	public final Matrix pow(long k) {
+	public final Matrix pow(int k) {
 		Matrix n = clone();
 		Matrix m = Matrix.E(h);
 		while(k > 0) {
 			if(k % 2 == 1) {
-				m = m.mul(n);
+				m = m.mul(this);
 			}
 			n = n.mul(n);
 			k >>= 1;
 		}
-		return m;
+		return n;
 	}
 	/**
 	 * 任意mod冪算
@@ -196,12 +196,12 @@ public final class Matrix implements Cloneable {
 		Matrix m = Matrix.E(h);
 		while(k > 0) {
 			if(k % 2 == 1) {
-				m = m.mul(n, mod);
+				m = m.mul(this, mod);
 			}
 			n = n.mul(n, mod);
-			k >>= 1;
+			k >>= 1L;
 		}
-		return m;
+		return n;
 	}
 	@Override
 	public final boolean equals(final Object o) {

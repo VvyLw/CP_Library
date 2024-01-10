@@ -166,6 +166,12 @@ class Utility {
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
 	}
+	protected final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<S, F>[] swap(final Pair<F, S>[] p) {
+		@SuppressWarnings("unchecked")
+		final Pair<S, F>[] q = new Pair[p.length];
+		IntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());
+		return q;
+	}
 	@SuppressWarnings("unchecked")
 	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> F[] first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i -> i.first).toArray(); }
 	@SuppressWarnings("unchecked")

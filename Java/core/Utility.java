@@ -10,8 +10,14 @@ import java.util.function.LongPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import library.structure.pair.FloatPair;
+import library.structure.pair.IntPair;
 import library.structure.pair.Pair;
 
+/**
+ * 便利なメソッド集
+ * Pairクラス以外の外部クラス不使用
+ */
 public class Utility {
 	/**
 	 * 古のYESNOパターンやyesnoパターンの時は{@link String#toUpperCase}や{@link String#toLowerCase}を使うと良い
@@ -1145,6 +1151,36 @@ public class Utility {
 		final Object[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
+	}
+	/**
+	 * @param <F>
+	 * @param <S>
+	 * @param p
+	 * @return Pair配列の各Pairに対して{@link Pair#swap}をした配列
+	 */
+	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<S, F>[] swap(final Pair<F, S>[] p) {
+		@SuppressWarnings("unchecked")
+		final Pair<S, F>[] q = new Pair[p.length];
+		IntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());
+		return q;
+	}
+	/**
+	 * @param p
+	 * @return IntPair配列の各IntPairに対して{@link IntPair#swap}をした配列
+	 */
+	public final IntPair[] swap(final IntPair[] p) {
+		final IntPair[] q = new IntPair[p.length];
+		IntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());
+		return q;
+	}
+	/**
+	 * @param p
+	 * @return FloatPair配列の各FloatPairに対して{@link FloatPair#swap}をした配列
+	 */
+	public final FloatPair[] swap(final FloatPair[] p) {
+		final FloatPair[] q = new FloatPair[p.length];
+		IntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());
+		return q;
 	}
 	/**
 	 * @param <F>

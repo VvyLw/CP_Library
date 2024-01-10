@@ -16,9 +16,7 @@ import java.util.function.LongPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import library.other.Huitloxopetl;
-
-final class Main {
+class Main {
 	public static void main(final String[] args) {
 		IntStream.range(0, VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());
 		VvyLw.o.flush();
@@ -32,7 +30,6 @@ final class VvyLw extends Utility {
 	static final MyScanner sc = new MyScanner(System.in);
 	static final MyPrinter o = new MyPrinter(System.out, false);
 	static final MyPrinter dbg = new MyPrinter(System.err, true);
-	static final Huitloxopetl why = new Huitloxopetl();
 	static final boolean multi = false;
 	static final int inf = 1 << 30;
 	static final long linf = (1L << 61) - 1;
@@ -659,6 +656,22 @@ class Utility {
 		final Object[] c = a.clone();
 		System.arraycopy(b, 0, a, 0, n);
 		System.arraycopy(c, 0, b, 0, n);
+	}
+	protected final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<S, F>[] swap(final Pair<F, S>[] p) {
+		@SuppressWarnings("unchecked")
+		final Pair<S, F>[] q = new Pair[p.length];
+		IntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());
+		return q;
+	}
+	protected final IntPair[] swap(final IntPair[] p) {
+		final IntPair[] q = new IntPair[p.length];
+		IntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());
+		return q;
+	}
+	protected final FloatPair[] swap(final FloatPair[] p) {
+		final FloatPair[] q = new FloatPair[p.length];
+		IntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());
+		return q;
 	}
 	@SuppressWarnings("unchecked")
 	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> F[] first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i -> i.first).toArray(); }
