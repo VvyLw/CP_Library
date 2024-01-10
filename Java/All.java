@@ -2403,6 +2403,15 @@ final class FenwickTree {
 		}
 		return x;
 	}
+	@Override
+	public final String toString() {
+		final StringBuilder sb = new StringBuilder();
+		sb.append(get(0));
+		for(int i = 0; ++i < n;) {
+			sb.append(" " + get(i));
+		}
+		return sb.toString();
+	}
 }
 
 final class SegmentTree<T extends Number> {
