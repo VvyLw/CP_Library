@@ -329,22 +329,26 @@ data:
     \ final void swap(final Object[] a, final Object[] b) {\n\t\tassert a.length ==\
     \ b.length;\n\t\tfinal int n = a.length;\n\t\tfinal Object[] c = a.clone();\n\t\
     \tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t}\n\
-    \t@SuppressWarnings(\"unchecked\")\n\tprotected static final <F extends Comparable<?\
-    \ super F>, S extends Comparable<? super S>> F[] first(final Pair<F, S>[] p){\
-    \ return (F[]) Arrays.stream(p).map(i -> i.first).toArray(); }\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tprotected static final <F extends Comparable<? super F>, S extends\
-    \ Comparable<? super S>> S[] second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i\
-    \ -> i.second).toArray(); }\n\tprotected interface TriFunction<T, U, V, W> {\n\
-    \t\tpublic W apply(final T a, final U b, final V c);\n\t}\n\tprotected interface\
-    \ QuadFunction<A, B, C, D, E> {\n\t\tpublic E apply(final A a, final B b, final\
-    \ C c, final D d);\n\t}\n\tprotected interface RecursiveFunction<T, U> {\n\t\t\
-    public U apply(final RecursiveFunction<T, U> rec, final T n);\n\t}\n\tprotected\
-    \ interface RecursiveBiFunction<T, U, V> {\n\t\tpublic V apply(final RecursiveBiFunction<T,\
-    \ U, V> rec, final T n, final U m);\n\t}\n\tprotected interface RecursiveTriFunction<T,\
-    \ U, V, W> {\n\t\tpublic W apply(final RecursiveTriFunction<T, U, V, W> rec, final\
-    \ T p, final U q, final V r);\n\t}\n\tprotected interface RecursiveUnaryOperator<T>\
-    \ {\n\t\tpublic T apply(final RecursiveUnaryOperator<T> rec, final T n);\n\t}\n\
-    \tprotected interface RecursiveBinaryOperator<T> {\n\t\tpublic T apply(final RecursiveBinaryOperator<T>\
+    \tprotected final <F extends Comparable<? super F>, S extends Comparable<? super\
+    \ S>> Pair<S, F>[] swap(final Pair<F, S>[] p) {\n\t\t@SuppressWarnings(\"unchecked\"\
+    )\n\t\tfinal Pair<S, F>[] q = new Pair[p.length];\n\t\tIntStream.range(0, p.length).forEach(i\
+    \ -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\t@SuppressWarnings(\"unchecked\"\
+    )\n\tprotected static final <F extends Comparable<? super F>, S extends Comparable<?\
+    \ super S>> F[] first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i\
+    \ -> i.first).toArray(); }\n\t@SuppressWarnings(\"unchecked\")\n\tprotected static\
+    \ final <F extends Comparable<? super F>, S extends Comparable<? super S>> S[]\
+    \ second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i -> i.second).toArray();\
+    \ }\n\tprotected interface TriFunction<T, U, V, W> {\n\t\tpublic W apply(final\
+    \ T a, final U b, final V c);\n\t}\n\tprotected interface QuadFunction<A, B, C,\
+    \ D, E> {\n\t\tpublic E apply(final A a, final B b, final C c, final D d);\n\t\
+    }\n\tprotected interface RecursiveFunction<T, U> {\n\t\tpublic U apply(final RecursiveFunction<T,\
+    \ U> rec, final T n);\n\t}\n\tprotected interface RecursiveBiFunction<T, U, V>\
+    \ {\n\t\tpublic V apply(final RecursiveBiFunction<T, U, V> rec, final T n, final\
+    \ U m);\n\t}\n\tprotected interface RecursiveTriFunction<T, U, V, W> {\n\t\tpublic\
+    \ W apply(final RecursiveTriFunction<T, U, V, W> rec, final T p, final U q, final\
+    \ V r);\n\t}\n\tprotected interface RecursiveUnaryOperator<T> {\n\t\tpublic T\
+    \ apply(final RecursiveUnaryOperator<T> rec, final T n);\n\t}\n\tprotected interface\
+    \ RecursiveBinaryOperator<T> {\n\t\tpublic T apply(final RecursiveBinaryOperator<T>\
     \ rec, final T a, final T b);\n\t}\n\tprotected interface RecursiveConsumer<T>\
     \ {\n\t\tpublic void accept(final RecursiveConsumer<T> rec, final T x);\n\t}\n\
     \tprotected interface RecursiveBiConsumer<T, U> {\n\t\tpublic void accept(final\
@@ -572,7 +576,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-10 14:57:37+09:00'
+  timestamp: '2024-01-10 15:41:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java

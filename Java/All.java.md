@@ -542,30 +542,38 @@ data:
     \ final void swap(final Object[] a, final Object[] b) {\n\t\tassert a.length ==\
     \ b.length;\n\t\tfinal int n = a.length;\n\t\tfinal Object[] c = a.clone();\n\t\
     \tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t}\n\
-    \t@SuppressWarnings(\"unchecked\")\n\tprotected static final <F extends Comparable<?\
-    \ super F>, S extends Comparable<? super S>> F[] first(final Pair<F, S>[] p){\
-    \ return (F[]) Arrays.stream(p).map(i -> i.first).toArray(); }\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tprotected static final <F extends Comparable<? super F>, S extends\
-    \ Comparable<? super S>> S[] second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i\
-    \ -> i.second).toArray(); }\n\tprotected static final int[] iota(final int n){\
-    \ return IntStream.range(0, n).toArray(); }\n\tprotected static final int[] iota(final\
-    \ int n, final int init){ return IntStream.range(0 + init, n + init).toArray();\
-    \ }\n\tprotected static final int bins(int ok, int ng, final IntPredicate fn)\
-    \ {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\
-    \t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng\
-    \ = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final long bins(long\
-    \ ok, long ng, final LongPredicate fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\
-    \t\t\tfinal long mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok =\
-    \ mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\
-    \t}\n\tprotected static final double bins(double ok, double ng, final DoublePredicate\
-    \ fn) {\n\t\twhile(Math.abs(ok - ng) > VvyLw.eps) {\n\t\t\tfinal double mid =\
-    \ (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\t\
-    else {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static\
-    \ final int[] press(final int[] a) {\n\t\tfinal int[] res = new int[a.length];\n\
-    \t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tfor(int\
-    \ i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\t\t}\n\t\t\
-    return res;\n\t}\n\tprotected static final int[] press(final long[] a) {\n\t\t\
-    final int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
+    \tprotected final <F extends Comparable<? super F>, S extends Comparable<? super\
+    \ S>> Pair<S, F>[] swap(final Pair<F, S>[] p) {\n\t\t@SuppressWarnings(\"unchecked\"\
+    )\n\t\tfinal Pair<S, F>[] q = new Pair[p.length];\n\t\tIntStream.range(0, p.length).forEach(i\
+    \ -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\tprotected final IntPair[] swap(final\
+    \ IntPair[] p) {\n\t\tfinal IntPair[] q = new IntPair[p.length];\n\t\tIntStream.range(0,\
+    \ p.length).forEach(i -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\tprotected\
+    \ final FloatPair[] swap(final FloatPair[] p) {\n\t\tfinal FloatPair[] q = new\
+    \ FloatPair[p.length];\n\t\tIntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());\n\
+    \t\treturn q;\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tprotected static final\
+    \ <F extends Comparable<? super F>, S extends Comparable<? super S>> F[] first(final\
+    \ Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i -> i.first).toArray();\
+    \ }\n\t@SuppressWarnings(\"unchecked\")\n\tprotected static final <F extends Comparable<?\
+    \ super F>, S extends Comparable<? super S>> S[] second(final Pair<F, S>[] p){\
+    \ return (S[]) Arrays.stream(p).map(i -> i.second).toArray(); }\n\tprotected static\
+    \ final int[] iota(final int n){ return IntStream.range(0, n).toArray(); }\n\t\
+    protected static final int[] iota(final int n, final int init){ return IntStream.range(0\
+    \ + init, n + init).toArray(); }\n\tprotected static final int bins(int ok, int\
+    \ ng, final IntPredicate fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal\
+    \ int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t\
+    }\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected\
+    \ static final long bins(long ok, long ng, final LongPredicate fn) {\n\t\twhile(Math.abs(ok\
+    \ - ng) > 1) {\n\t\t\tfinal long mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid))\
+    \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
+    }\n\t\treturn ok;\n\t}\n\tprotected static final double bins(double ok, double\
+    \ ng, final DoublePredicate fn) {\n\t\twhile(Math.abs(ok - ng) > VvyLw.eps) {\n\
+    \t\t\tfinal double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok\
+    \ = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ ok;\n\t}\n\tprotected static final int[] press(final int[] a) {\n\t\tfinal int[]\
+    \ res = new int[a.length];\n\t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
+    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
+    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final int[] press(final long[]\
+    \ a) {\n\t\tfinal int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
     \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
     \t\t}\n\t\treturn res;\n\t}\n\tprotected static final int[] zAlgorithm(final String\
     \ s) {\n\t\tfinal int n = s.length();\n\t\tint j = 0;\n\t\tfinal int[] pre = new\
@@ -813,39 +821,30 @@ data:
     try {\n\t\t\treturn second / first;\n\t\t} catch(ArithmeticException e) {\n\t\t\
     \te.printStackTrace();\n\t\t}\n\t\treturn Double.NaN;\n\t}\n\tfinal double abs(){\
     \ return Math.hypot(first, second); }\n}\n\nfinal class Huitloxopetl {\n\tfinal\
-    \ <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<S, F>[]\
-    \ swap(final Pair<F, S>[] p) {\n\t\t@SuppressWarnings(\"unchecked\")\n\t\tfinal\
-    \ Pair<S, F>[] q = new Pair[p.length];\n\t\tIntStream.range(0, p.length).forEach(i\
-    \ -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\tfinal IntPair[] swap(final IntPair[]\
-    \ p) {\n\t\tfinal IntPair[] q = new IntPair[p.length];\n\t\tIntStream.range(0,\
-    \ p.length).forEach(i -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\tfinal FloatPair[]\
-    \ swap(final FloatPair[] p) {\n\t\tfinal FloatPair[] q = new FloatPair[p.length];\n\
-    \t\tIntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());\n\t\treturn\
-    \ q;\n\t}\n\tfinal long invNum(final int[] a) {\n\t\tfinal int[] b = Utility.sorted(a);\n\
-    \t\tfinal Map<Integer, Integer> id = new HashMap<>();\n\t\tfor(int i = 0; i <\
-    \ a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal FenwickTree bit =\
-    \ new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0; i < a.length;\
-    \ ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\tbit.add(id.get(a[i]),\
-    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final long[] a) {\n\t\t\
-    final long[] b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer> id = new HashMap<>();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
-    \ FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int\
-    \ i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\t\
-    bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class UnionFind\
-    \ {\n\tprivate final int[] par;\n\tUnionFind(final int n) {\n\t\tpar = new int[n];\n\
-    \t\tArrays.fill(par, -1);\n\t}\n\tfinal int root(final int i){ return par[i] >=\
-    \ 0 ? par[i] = root(par[i]) : i; }\n\tfinal int size(final int i){ return -par[root(i)];\
-    \ }\n\tfinal boolean unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\
-    \t\tif(i == j) return false;\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\
-    \t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\
-    \t}\n\tfinal boolean same(final int i, final int j){ return root(i) == root(j);\
-    \ }\n\tfinal ArrayList<ArrayList<Integer>> groups() {\n\t\tfinal int n = par.length;\n\
-    \t\tArrayList<ArrayList<Integer>> res = new ArrayList<>(n);\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> res.add(new ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn\
-    \ res;\n\t}\n\tfinal boolean isBipartite() {\n\t\tfinal int n = par.length / 2;\n\
-    \t\tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &= root(i)\
-    \ != root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n}\n\nfinal class WeightedUnionFind\
+    \ long invNum(final int[] a) {\n\t\tfinal int[] b = Utility.sorted(a);\n\t\tfinal\
+    \ Map<Integer, Integer> id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length;\
+    \ ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\
+    \t\tlong res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
+    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final\
+    \ long[] a) {\n\t\tfinal long[] b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer>\
+    \ id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i],\
+    \ i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\t\tlong\
+    \ res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
+    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class\
+    \ UnionFind {\n\tprivate final int[] par;\n\tUnionFind(final int n) {\n\t\tpar\
+    \ = new int[n];\n\t\tArrays.fill(par, -1);\n\t}\n\tfinal int root(final int i){\
+    \ return par[i] >= 0 ? par[i] = root(par[i]) : i; }\n\tfinal int size(final int\
+    \ i){ return -par[root(i)]; }\n\tfinal boolean unite(int i, int j) {\n\t\ti =\
+    \ root(i);\n\t\tj = root(j);\n\t\tif(i == j) return false;\n\t\tif(i > j) {\n\t\
+    \t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\t\
+    par[j] = i;\n\t\treturn true;\n\t}\n\tfinal boolean same(final int i, final int\
+    \ j){ return root(i) == root(j); }\n\tfinal ArrayList<ArrayList<Integer>> groups()\
+    \ {\n\t\tfinal int n = par.length;\n\t\tArrayList<ArrayList<Integer>> res = new\
+    \ ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));\n\
+    \t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\
+    \t\treturn res;\n\t}\n\tfinal boolean isBipartite() {\n\t\tfinal int n = par.length\
+    \ / 2;\n\t\tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &=\
+    \ root(i) != root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n}\n\nfinal class WeightedUnionFind\
     \ {\n\tprivate final int[] par;\n\tprivate final long[] weight;\n\tWeightedUnionFind(final\
     \ int n) {\n\t\tpar = new int[n];\n\t\tweight = new long[n];\n\t\tArrays.fill(par,\
     \ -1);\n\t}\n\tfinal int root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn\
@@ -1505,13 +1504,13 @@ data:
     \ mt = new Matrix(h, m.w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j\
     \ = 0; j < m.w; ++j) {\n\t\t\t\tfor(int k = 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i,\
     \ j, Utility.mod(mt.get(i, j) + mat[i][k] * m.get(k, j), mod));\n\t\t\t\t}\n\t\
-    \t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix pow(long k) {\n\t\tMatrix n\
-    \ = clone();\n\t\tMatrix m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k % 2\
-    \ == 1) {\n\t\t\t\tm = m.mul(n);\n\t\t\t}\n\t\t\tn = n.mul(n);\n\t\t\tk >>= 1;\n\
-    \t\t}\n\t\treturn m;\n\t}\n\tfinal Matrix pow(long k, final long mod) {\n\t\t\
-    Matrix n = clone();\n\t\tMatrix m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k\
-    \ % 2 == 1) {\n\t\t\t\tm = m.mul(n, mod);\n\t\t\t}\n\t\t\tn = n.mul(n, mod);\n\
-    \t\t\tk >>= 1;\n\t\t}\n\t\treturn m;\n\t}\n\t@Override\n\tpublic final boolean\
+    \t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix pow(int k) {\n\t\tMatrix n =\
+    \ clone();\n\t\tMatrix m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 ==\
+    \ 1) {\n\t\t\t\tm = m.mul(n);\n\t\t\t}\n\t\t\tn = n.mul(n);\n\t\t\tk >>= 1;\n\t\
+    \t}\n\t\treturn m;\n\t}\n\tfinal Matrix pow(long k, final long mod) {\n\t\tMatrix\
+    \ n = clone();\n\t\tMatrix m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k %\
+    \ 2 == 1) {\n\t\t\t\tm = m.mul(n, mod);\n\t\t\t}\n\t\t\tn = n.mul(n, mod);\n\t\
+    \t\tk >>= 1L;\n\t\t}\n\t\treturn m;\n\t}\n\t@Override\n\tpublic final boolean\
     \ equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\
     \tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\
     \tfinal Matrix m = (Matrix) o;\n\t\tif(h != m.h || w != m.w) {\n\t\t\treturn false;\n\
@@ -1610,7 +1609,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-10 14:57:37+09:00'
+  timestamp: '2024-01-10 15:41:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

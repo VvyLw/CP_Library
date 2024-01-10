@@ -250,7 +250,10 @@ data:
     import java.util.Collections;\nimport java.util.List;\nimport java.util.function.DoublePredicate;\n\
     import java.util.function.IntPredicate;\nimport java.util.function.LongPredicate;\n\
     import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nimport\
-    \ library.structure.pair.Pair;\n\npublic class Utility {\n\t/**\n\t * \u53E4\u306E\
+    \ library.structure.pair.FloatPair;\nimport library.structure.pair.IntPair;\n\
+    import library.structure.pair.Pair;\n\n/**\n * \u4FBF\u5229\u306A\u30E1\u30BD\u30C3\
+    \u30C9\u96C6\n * Pair\u30AF\u30E9\u30B9\u4EE5\u5916\u306E\u5916\u90E8\u30AF\u30E9\
+    \u30B9\u4E0D\u4F7F\u7528\n */\npublic class Utility {\n\t/**\n\t * \u53E4\u306E\
     YESNO\u30D1\u30BF\u30FC\u30F3\u3084yesno\u30D1\u30BF\u30FC\u30F3\u306E\u6642\u306F\
     {@link String#toUpperCase}\u3084{@link String#toLowerCase}\u3092\u4F7F\u3046\u3068\
     \u826F\u3044\n\t * @param ok boolean\n\t * @return ok\u304Ctrue\u306A\u3089\"\
@@ -733,21 +736,35 @@ data:
     \ a, final Object[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n =\
     \ a.length;\n\t\tfinal Object[] c = a.clone();\n\t\tSystem.arraycopy(b, 0, a,\
     \ 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t}\n\t/**\n\t * @param <F>\n\t\
-    \ * @param <S>\n\t * @param p\n\t * @return Pair\u30AF\u30E9\u30B9\u306E\u914D\
-    \u5217\u306B\u5BFE\u3057\u3066first\u306E\u307F\u306E\u8981\u7D20\u3092\u53D6\u308A\
-    \u51FA\u3057\u305F\u914D\u5217\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\t\
-    protected static final <F extends Comparable<? super F>, S extends Comparable<?\
-    \ super S>> F[] first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i\
-    \ -> i.first).toArray(); }\n\t/**\n\t * @param <F>\n\t * @param <S>\n\t * @param\
-    \ p\n\t * @return Pair\u30AF\u30E9\u30B9\u306E\u914D\u5217\u306B\u5BFE\u3057\u3066\
-    second\u306E\u307F\u306E\u8981\u7D20\u3092\u53D6\u308A\u51FA\u3057\u305F\u914D\
-    \u5217\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tprotected static final <F\
-    \ extends Comparable<? super F>, S extends Comparable<? super S>> S[] second(final\
-    \ Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i -> i.second).toArray();\
-    \ }\n\t/**\n\t * C++\u306Estd::iota\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\
-    \u30C9\n\t * @param n\n\t * @return [0, 1, 2, ..., n - 1]\n\t * @see <a href=\"\
-    https://cpprefjp.github.io/reference/numeric/iota.html\">std::iota</a>\n\t * @see\
-    \ <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L449\"\
+    \ * @param <S>\n\t * @param p\n\t * @return Pair\u914D\u5217\u306E\u5404Pair\u306B\
+    \u5BFE\u3057\u3066{@link Pair#swap}\u3092\u3057\u305F\u914D\u5217\n\t */\n\tpublic\
+    \ final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<S,\
+    \ F>[] swap(final Pair<F, S>[] p) {\n\t\t@SuppressWarnings(\"unchecked\")\n\t\t\
+    final Pair<S, F>[] q = new Pair[p.length];\n\t\tIntStream.range(0, p.length).forEach(i\
+    \ -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\t/**\n\t * @param p\n\t * @return\
+    \ IntPair\u914D\u5217\u306E\u5404IntPair\u306B\u5BFE\u3057\u3066{@link IntPair#swap}\u3092\
+    \u3057\u305F\u914D\u5217\n\t */\n\tpublic final IntPair[] swap(final IntPair[]\
+    \ p) {\n\t\tfinal IntPair[] q = new IntPair[p.length];\n\t\tIntStream.range(0,\
+    \ p.length).forEach(i -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\t/**\n\t *\
+    \ @param p\n\t * @return FloatPair\u914D\u5217\u306E\u5404FloatPair\u306B\u5BFE\
+    \u3057\u3066{@link FloatPair#swap}\u3092\u3057\u305F\u914D\u5217\n\t */\n\tpublic\
+    \ final FloatPair[] swap(final FloatPair[] p) {\n\t\tfinal FloatPair[] q = new\
+    \ FloatPair[p.length];\n\t\tIntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());\n\
+    \t\treturn q;\n\t}\n\t/**\n\t * @param <F>\n\t * @param <S>\n\t * @param p\n\t\
+    \ * @return Pair\u30AF\u30E9\u30B9\u306E\u914D\u5217\u306B\u5BFE\u3057\u3066first\u306E\
+    \u307F\u306E\u8981\u7D20\u3092\u53D6\u308A\u51FA\u3057\u305F\u914D\u5217\n\t */\n\
+    \t@SuppressWarnings(\"unchecked\")\n\tprotected static final <F extends Comparable<?\
+    \ super F>, S extends Comparable<? super S>> F[] first(final Pair<F, S>[] p){\
+    \ return (F[]) Arrays.stream(p).map(i -> i.first).toArray(); }\n\t/**\n\t * @param\
+    \ <F>\n\t * @param <S>\n\t * @param p\n\t * @return Pair\u30AF\u30E9\u30B9\u306E\
+    \u914D\u5217\u306B\u5BFE\u3057\u3066second\u306E\u307F\u306E\u8981\u7D20\u3092\
+    \u53D6\u308A\u51FA\u3057\u305F\u914D\u5217\n\t */\n\t@SuppressWarnings(\"unchecked\"\
+    )\n\tprotected static final <F extends Comparable<? super F>, S extends Comparable<?\
+    \ super S>> S[] second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i\
+    \ -> i.second).toArray(); }\n\t/**\n\t * C++\u306Estd::iota\u306B\u76F8\u5F53\u3059\
+    \u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param n\n\t * @return [0, 1, 2, ..., n -\
+    \ 1]\n\t * @see <a href=\"https://cpprefjp.github.io/reference/numeric/iota.html\"\
+    >std::iota</a>\n\t * @see <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L449\"\
     >Lady_sANDy::iot</a>\n\t */\n\tpublic static final int[] iota(final int n){ return\
     \ IntStream.range(0, n).toArray(); }\n\t/**\n\t * @param n\n\t * @param init\n\
     \t * @return [init, init + 1, init + 2, ..., init + n - 1]\n\t * @see <a href=\"\
@@ -952,7 +969,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-10 14:57:37+09:00'
+  timestamp: '2024-01-10 15:41:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/core/Utility.java

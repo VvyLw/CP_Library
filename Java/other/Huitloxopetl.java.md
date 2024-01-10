@@ -247,34 +247,18 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/other/Huitloxopetl.java\n"
   code: "package library.other;\n\nimport java.util.HashMap;\nimport java.util.Map;\n\
-    import java.util.stream.IntStream;\n\nimport library.core.Utility;\nimport library.structure.FenwickTree;\n\
-    import library.structure.pair.FloatPair;\nimport library.structure.pair.IntPair;\n\
-    import library.structure.pair.Pair;\n\n/**\n * core\u30D1\u30C3\u30B1\u30FC\u30B8\
-    \u4EE5\u5916\u3092\u4F7F\u3046\u30E1\u30BD\u30C3\u30C9\u3092\u7F6E\u3044\u3066\
-    \u3042\u308B\u30AF\u30E9\u30B9\n */\npublic final class Huitloxopetl {\n\t/**\n\
-    \t * @param <F>\n\t * @param <S>\n\t * @param p\n\t * @return Pair\u914D\u5217\
-    \u306E\u5404Pair\u306B\u5BFE\u3057\u3066{@link Pair#swap}\u3092\u3057\u305F\u914D\
-    \u5217\n\t */\n\tpublic final <F extends Comparable<? super F>, S extends Comparable<?\
-    \ super S>> Pair<S, F>[] swap(final Pair<F, S>[] p) {\n\t\t@SuppressWarnings(\"\
-    unchecked\")\n\t\tfinal Pair<S, F>[] q = new Pair[p.length];\n\t\tIntStream.range(0,\
-    \ p.length).forEach(i -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\t/**\n\t *\
-    \ @param p\n\t * @return IntPair\u914D\u5217\u306E\u5404IntPair\u306B\u5BFE\u3057\
-    \u3066{@link IntPair#swap}\u3092\u3057\u305F\u914D\u5217\n\t */\n\tpublic final\
-    \ IntPair[] swap(final IntPair[] p) {\n\t\tfinal IntPair[] q = new IntPair[p.length];\n\
-    \t\tIntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());\n\t\treturn\
-    \ q;\n\t}\n\t/**\n\t * @param p\n\t * @return FloatPair\u914D\u5217\u306E\u5404\
-    FloatPair\u306B\u5BFE\u3057\u3066{@link FloatPair#swap}\u3092\u3057\u305F\u914D\
-    \u5217\n\t */\n\tpublic final FloatPair[] swap(final FloatPair[] p) {\n\t\tfinal\
-    \ FloatPair[] q = new FloatPair[p.length];\n\t\tIntStream.range(0, p.length).forEach(i\
-    \ -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\t/**\n\t * @param a\n\t * @return\
-    \ \u8EE2\u5012\u6570\n\t */\n\tpublic final long invNum(final int[] a) {\n\t\t\
-    final int[] b = Utility.sorted(a);\n\t\tfinal Map<Integer, Integer> id = new HashMap<>();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
-    \ FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int\
-    \ i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\t\
-    bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\
-    \t * @return \u8EE2\u5012\u6570\n\t */\n\tpublic final long invNum(final long[]\
-    \ a) {\n\t\tfinal long[] b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer>\
+    \nimport library.core.Utility;\nimport library.structure.FenwickTree;\n\n/**\n\
+    \ * core\u30D1\u30C3\u30B1\u30FC\u30B8\u4EE5\u5916\u306E\u5916\u90E8\u30AF\u30E9\
+    \u30B9(Pair\u3092\u9664\u304F\u3092\u4F7F\u3046\u30E1\u30BD\u30C3\u30C9\u304C\u7F6E\
+    \u3044\u3066\u3042\u308B\n */\npublic final class Huitloxopetl {\n\t/**\n\t *\
+    \ @param a\n\t * @return \u8EE2\u5012\u6570\n\t */\n\tpublic final long invNum(final\
+    \ int[] a) {\n\t\tfinal int[] b = Utility.sorted(a);\n\t\tfinal Map<Integer, Integer>\
+    \ id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i],\
+    \ i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\t\tlong\
+    \ res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
+    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param\
+    \ a\n\t * @return \u8EE2\u5012\u6570\n\t */\n\tpublic final long invNum(final\
+    \ long[] a) {\n\t\tfinal long[] b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer>\
     \ id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i],\
     \ i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\t\tlong\
     \ res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
@@ -361,7 +345,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-10 14:57:37+09:00'
+  timestamp: '2024-01-10 15:41:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/other/Huitloxopetl.java

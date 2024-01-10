@@ -303,14 +303,14 @@ data:
     \ = 0; j < m.w; ++j) {\n\t\t\t\tfor(int k = 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i,\
     \ j, Utility.mod(mt.get(i, j) + mat[i][k] * m.get(k, j), mod));\n\t\t\t\t}\n\t\
     \t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t * \u51AA\u7B97\n\t * @param k\n\t\
-    \ */\n\tpublic final Matrix pow(long k) {\n\t\tMatrix n = clone();\n\t\tMatrix\
-    \ m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(n);\n\
-    \t\t\t}\n\t\t\tn = n.mul(n);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn m;\n\t}\n\t/**\n\
+    \ */\n\tpublic final Matrix pow(int k) {\n\t\tMatrix n = clone();\n\t\tMatrix\
+    \ m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(this);\n\
+    \t\t\t}\n\t\t\tn = n.mul(n);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn n;\n\t}\n\t/**\n\
     \t * \u4EFB\u610Fmod\u51AA\u7B97\n\t * @param m\n\t * @param mod\n\t */\n\tpublic\
     \ final Matrix pow(long k, final long mod) {\n\t\tMatrix n = clone();\n\t\tMatrix\
-    \ m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(n,\
-    \ mod);\n\t\t\t}\n\t\t\tn = n.mul(n, mod);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn\
-    \ m;\n\t}\n\t@Override\n\tpublic final boolean equals(final Object o) {\n\t\t\
+    \ m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(this,\
+    \ mod);\n\t\t\t}\n\t\t\tn = n.mul(n, mod);\n\t\t\tk >>= 1L;\n\t\t}\n\t\treturn\
+    \ n;\n\t}\n\t@Override\n\tpublic final boolean equals(final Object o) {\n\t\t\
     if(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() !=\
     \ o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Matrix m = (Matrix) o;\n\
     \t\tif(h != m.h || w != m.w) {\n\t\t\treturn false;\n\t\t}\n\t\tfor(int i = 0;\
@@ -408,7 +408,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-10 14:57:37+09:00'
+  timestamp: '2024-01-10 15:41:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/math/Matrix.java
