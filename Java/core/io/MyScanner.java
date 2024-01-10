@@ -7,6 +7,8 @@ import java.math.BigInteger;
 import java.util.stream.IntStream;
 
 import library.core.Utility;
+import library.structure.pair.FloatPair;
+import library.structure.pair.IntPair;
 
 /**
  * 入力クラス
@@ -222,6 +224,36 @@ public final class MyScanner implements Closeable, AutoCloseable {
 			sb.append(c);
 		}
 		return sb.toString();
+	}
+	/**
+	 * IntPair型を入力する
+	 * @see IntPair
+	 */
+	public final IntPair pi(){ return new IntPair(nl(), nl()); }
+	/**
+	 * IntPair型の配列を入力する
+	 * @param n
+	 * @see IntPair
+	 */
+	public final IntPair[] pi(final int n) {
+		final IntPair[] p = new IntPair[n];
+		IntStream.range(0, n).forEach(i -> p[i] = pi());
+		return p;
+	}
+	/**
+	 * FloatPair型を入力する
+	 * @see FloatPair
+	 */
+	public final FloatPair pf(){ return new FloatPair(nd(), nd()); }
+	/**
+	 * FloatPair型の配列を入力する
+	 * @param n
+	 * @see FloatPair
+	 */
+	public final FloatPair[] pf(final int n) {
+		final FloatPair[] p = new FloatPair[n];
+		IntStream.range(0, n).forEach(i -> p[i] = pf());
+		return p;
 	}
 	/**
 	 * InputStreamを閉じる

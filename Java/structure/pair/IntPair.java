@@ -14,6 +14,11 @@ public final class IntPair extends Pair<Long, Long> {
 	 */
 	public IntPair(final long first, final long second){ super(first, second); }
 	/**
+	 * @return firstとsecondを入れ替えたIntPair
+	 */
+	@Override
+	public final IntPair swap(){ return new IntPair(second, first); }
+	/**
 	 * Pair同士を加算する
 	 * @param p
 	 */

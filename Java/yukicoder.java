@@ -16,7 +16,9 @@ import java.util.function.LongPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-class Main {
+import library.other.Huitloxopetl;
+
+final class Main {
 	public static void main(final String[] args) {
 		IntStream.range(0, VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());
 		VvyLw.o.flush();
@@ -30,6 +32,7 @@ final class VvyLw extends Utility {
 	static final MyScanner sc = new MyScanner(System.in);
 	static final MyPrinter o = new MyPrinter(System.out, false);
 	static final MyPrinter dbg = new MyPrinter(System.err, true);
+	static final Huitloxopetl why = new Huitloxopetl();
 	static final boolean multi = false;
 	static final int inf = 1 << 30;
 	static final long linf = (1L << 61) - 1;
@@ -997,6 +1000,18 @@ final class MyScanner implements Closeable, AutoCloseable {
 		}
 		return sb.toString();
 	}
+	final IntPair pi(){ return new IntPair(nl(), nl()); }
+	final IntPair[] pi(final int n) {
+		final IntPair[] p = new IntPair[n];
+		IntStream.range(0, n).forEach(i -> p[i] = pi());
+		return p;
+	}
+	final FloatPair pf(){ return new FloatPair(nd(), nd()); }
+	final FloatPair[] pf(final int n) {
+		final FloatPair[] p = new FloatPair[n];
+		IntStream.range(0, n).forEach(i -> p[i] = pf());
+		return p;
+	}
 	@Override
 	public final void close() {
 		try {
@@ -1270,7 +1285,7 @@ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> imp
 		this.second = second;
 	}
 	static final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }
-	final Pair<S, F> swap(){ return Pair.of(second, first); }
+	Pair<S, F> swap(){ return Pair.of(second, first); }
 	@Override
 	public final boolean equals(final Object o) {
 		if(this == o) {
@@ -1309,6 +1324,8 @@ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> imp
 }
 final class IntPair extends Pair<Long, Long> {
 	IntPair(final long first, final long second){ super(first, second); }
+	@Override
+	final IntPair swap(){ return new IntPair(second, first); }
 	final IntPair add(final IntPair p){ return new IntPair(first + p.first, second + p.second); }
 	final IntPair sub(final IntPair p){ return new IntPair(first - p.first, second - p.second); }
 	final IntPair mul(final IntPair p){ return new IntPair(first * p.first, second * p.second); }
@@ -1355,6 +1372,8 @@ final class IntPair extends Pair<Long, Long> {
 }
 final class FloatPair extends Pair<Double, Double> {
 	FloatPair(final double first, final double second){ super(first, second); }
+	@Override
+	final FloatPair swap(){ return new FloatPair(second, first); }
 	final FloatPair add(final FloatPair p){ return new FloatPair(first + p.first, second + p.second); }
 	final FloatPair sub(final FloatPair p){ return new FloatPair(first - p.first, second - p.second); }
 	final FloatPair mul(final FloatPair p){ return new FloatPair(first * p.first, second * p.second); }

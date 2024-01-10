@@ -13,6 +13,11 @@ public final class FloatPair extends Pair<Double, Double> {
 	 */
 	public FloatPair(final double first, final double second){ super(first, second); }
 	/**
+	 * @return firstとsecondを入れ替えたFloatPair
+	 */
+	@Override
+	public final FloatPair swap(){ return new FloatPair(second, first); }
+	/**
 	 * FloatPair同士を加算する
 	 * @param p
 	 */

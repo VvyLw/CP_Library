@@ -30,7 +30,7 @@ public class Pair<F extends Comparable<? super F>, S extends Comparable<? super 
 	 * std::pairにはない
 	 * @return firstとsecondを入れ替えたPair
 	 */
-	public final Pair<S, F> swap(){ return Pair.of(second, first); }
+	public Pair<S, F> swap(){ return Pair.of(second, first); }
 	@Override
 	public final boolean equals(final Object o) {
 		if(this == o) {
