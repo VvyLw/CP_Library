@@ -756,11 +756,27 @@ data:
     \u305F\u914D\u5217\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tprotected static\
     \ final <F extends Comparable<? super F>, S extends Comparable<? super S>> F[]\
     \ first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i -> i.first).toArray();\
-    \ }\n\t/**\n\t * @param <F>\n\t * @param <S>\n\t * @param p\n\t * @return Pair\u30AF\
-    \u30E9\u30B9\u306E\u914D\u5217\u306B\u5BFE\u3057\u3066second\u306E\u307F\u306E\
-    \u8981\u7D20\u3092\u53D6\u308A\u51FA\u3057\u305F\u914D\u5217\n\t */\n\t@SuppressWarnings(\"\
+    \ }\n\t/**\n\t * @param p\n\t * @return IntPair\u30AF\u30E9\u30B9\u306E\u914D\u5217\
+    \u306B\u5BFE\u3057\u3066first\u306E\u307F\u306E\u8981\u7D20\u3092\u53D6\u308A\u51FA\
+    \u3057\u305F\u914D\u5217\n\t */\n\tprotected static final long[] first(final IntPair[]\
+    \ p){ return Arrays.stream(p).mapToLong(i -> i.first).toArray(); }\n\t/**\n\t\
+    \ * @param p\n\t * @return FloatPair\u30AF\u30E9\u30B9\u306E\u914D\u5217\u306B\
+    \u5BFE\u3057\u3066first\u306E\u307F\u306E\u8981\u7D20\u3092\u53D6\u308A\u51FA\u3057\
+    \u305F\u914D\u5217\n\t */\n\tprotected static final double[] first(final FloatPair[]\
+    \ p){ return Arrays.stream(p).mapToDouble(i -> i.first).toArray(); }\n\t/**\n\t\
+    \ * @param <F>\n\t * @param <S>\n\t * @param p\n\t * @return Pair\u30AF\u30E9\u30B9\
+    \u306E\u914D\u5217\u306B\u5BFE\u3057\u3066second\u306E\u307F\u306E\u8981\u7D20\
+    \u3092\u53D6\u308A\u51FA\u3057\u305F\u914D\u5217\n\t */\n\t@SuppressWarnings(\"\
     unchecked\")\n\tprotected static final <F extends Comparable<? super F>, S extends\
     \ Comparable<? super S>> S[] second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i\
+    \ -> i.second).toArray(); }\n\t/**\n\t * @param p\n\t * @return IntPair\u30AF\u30E9\
+    \u30B9\u306E\u914D\u5217\u306B\u5BFE\u3057\u3066second\u306E\u307F\u306E\u8981\
+    \u7D20\u3092\u53D6\u308A\u51FA\u3057\u305F\u914D\u5217\n\t */\n\tprotected static\
+    \ final long[] second(final IntPair[] p){ return Arrays.stream(p).mapToLong(i\
+    \ -> i.second).toArray(); }\n\t/**\n\t * @param p\n\t * @return FloatPair\u30AF\
+    \u30E9\u30B9\u306E\u914D\u5217\u306B\u5BFE\u3057\u3066second\u306E\u307F\u306E\
+    \u8981\u7D20\u3092\u53D6\u308A\u51FA\u3057\u305F\u914D\u5217\n\t */\n\tprotected\
+    \ static final double[] second(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i\
     \ -> i.second).toArray(); }\n\t/**\n\t * C++\u306Estd::iota\u306B\u76F8\u5F53\u3059\
     \u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param n\n\t * @return [0, 1, 2, ..., n -\
     \ 1]\n\t * @see <a href=\"https://cpprefjp.github.io/reference/numeric/iota.html\"\
@@ -969,7 +985,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-11 03:14:16+09:00'
+  timestamp: '2024-01-11 19:07:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/core/Utility.java

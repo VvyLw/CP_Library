@@ -546,28 +546,33 @@ data:
     \ p.length).forEach(i -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\t@SuppressWarnings(\"\
     unchecked\")\n\tprotected static final <F extends Comparable<? super F>, S extends\
     \ Comparable<? super S>> F[] first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i\
+    \ -> i.first).toArray(); }\n\tprotected static final long[] first(final IntPair[]\
+    \ p){ return Arrays.stream(p).mapToLong(i -> i.first).toArray(); }\n\tprotected\
+    \ static final double[] first(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i\
     \ -> i.first).toArray(); }\n\t@SuppressWarnings(\"unchecked\")\n\tprotected static\
     \ final <F extends Comparable<? super F>, S extends Comparable<? super S>> S[]\
     \ second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i -> i.second).toArray();\
-    \ }\n\tprotected static final int[] iota(final int n){ return IntStream.range(0,\
-    \ n).toArray(); }\n\tprotected static final int[] iota(final int n, final int\
-    \ init){ return IntStream.range(0 + init, n + init).toArray(); }\n\tprotected\
-    \ static final int bins(int ok, int ng, final IntPredicate fn) {\n\t\twhile(Math.abs(ok\
-    \ - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\
-    \t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\
-    \treturn ok;\n\t}\n\tprotected static final long bins(long ok, long ng, final\
-    \ LongPredicate fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal long mid\
-    \ = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\
-    \telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected\
-    \ static final double bins(double ok, double ng, final DoublePredicate fn) {\n\
-    \t\twhile(Math.abs(ok - ng) > VvyLw.eps) {\n\t\t\tfinal double mid = (ok + ng)\
+    \ }\n\tprotected static final long[] second(final IntPair[] p){ return Arrays.stream(p).mapToLong(i\
+    \ -> i.second).toArray(); }\n\tprotected static final double[] second(final FloatPair[]\
+    \ p){ return Arrays.stream(p).mapToDouble(i -> i.second).toArray(); }\n\tprotected\
+    \ static final int[] iota(final int n){ return IntStream.range(0, n).toArray();\
+    \ }\n\tprotected static final int[] iota(final int n, final int init){ return\
+    \ IntStream.range(0 + init, n + init).toArray(); }\n\tprotected static final int\
+    \ bins(int ok, int ng, final IntPredicate fn) {\n\t\twhile(Math.abs(ok - ng) >\
+    \ 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\
+    \tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ ok;\n\t}\n\tprotected static final long bins(long ok, long ng, final LongPredicate\
+    \ fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal long mid = (ok + ng)\
     \ / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\
     \t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final\
-    \ int[] press(final int[] a) {\n\t\tfinal int[] res = new int[a.length];\n\t\t\
-    final int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tfor(int i\
-    \ = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\t\t}\n\t\t\
-    return res;\n\t}\n\tprotected static final int[] press(final long[] a) {\n\t\t\
-    final int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
+    \ double bins(double ok, double ng, final DoublePredicate fn) {\n\t\twhile(Math.abs(ok\
+    \ - ng) > VvyLw.eps) {\n\t\t\tfinal double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid))\
+    \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
+    }\n\t\treturn ok;\n\t}\n\tprotected static final int[] press(final int[] a) {\n\
+    \t\tfinal int[] res = new int[a.length];\n\t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
+    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
+    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final int[] press(final long[]\
+    \ a) {\n\t\tfinal int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
     \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
     \t\t}\n\t\treturn res;\n\t}\n\tprotected static final int[] zAlgorithm(final String\
     \ s) {\n\t\tfinal int n = s.length();\n\t\tint j = 0;\n\t\tfinal int[] pre = new\
@@ -897,7 +902,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-11 03:14:16+09:00'
+  timestamp: '2024-01-11 19:07:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java
