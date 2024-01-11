@@ -693,8 +693,12 @@ class Utility {
 	}
 	@SuppressWarnings("unchecked")
 	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> F[] first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i -> i.first).toArray(); }
+	protected static final long[] first(final IntPair[] p){ return Arrays.stream(p).mapToLong(i -> i.first).toArray(); }
+	protected static final double[] first(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i -> i.first).toArray(); }
 	@SuppressWarnings("unchecked")
 	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> S[] second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i -> i.second).toArray(); }
+	protected static final long[] second(final IntPair[] p){ return Arrays.stream(p).mapToLong(i -> i.second).toArray(); }
+	protected static final double[] second(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i -> i.second).toArray(); }
 	protected static final int[] iota(final int n){ return IntStream.range(0, n).toArray(); }
 	protected static final int[] iota(final int n, final int init){ return IntStream.range(0 + init, n + init).toArray(); }
 	protected static final int bins(int ok, int ng, final IntPredicate fn) {

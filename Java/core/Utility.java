@@ -1191,6 +1191,16 @@ public class Utility {
 	@SuppressWarnings("unchecked")
 	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> F[] first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i -> i.first).toArray(); }
 	/**
+	 * @param p
+	 * @return IntPairクラスの配列に対してfirstのみの要素を取り出した配列
+	 */
+	protected static final long[] first(final IntPair[] p){ return Arrays.stream(p).mapToLong(i -> i.first).toArray(); }
+	/**
+	 * @param p
+	 * @return FloatPairクラスの配列に対してfirstのみの要素を取り出した配列
+	 */
+	protected static final double[] first(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i -> i.first).toArray(); }
+	/**
 	 * @param <F>
 	 * @param <S>
 	 * @param p
@@ -1198,6 +1208,16 @@ public class Utility {
 	 */
 	@SuppressWarnings("unchecked")
 	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> S[] second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i -> i.second).toArray(); }
+	/**
+	 * @param p
+	 * @return IntPairクラスの配列に対してsecondのみの要素を取り出した配列
+	 */
+	protected static final long[] second(final IntPair[] p){ return Arrays.stream(p).mapToLong(i -> i.second).toArray(); }
+	/**
+	 * @param p
+	 * @return FloatPairクラスの配列に対してsecondのみの要素を取り出した配列
+	 */
+	protected static final double[] second(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i -> i.second).toArray(); }
 	/**
 	 * C++のstd::iotaに相当するメソッド
 	 * @param n
