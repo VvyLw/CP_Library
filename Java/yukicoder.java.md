@@ -260,12 +260,10 @@ data:
     \ new MyPrinter(System.out, false);\n\tstatic final MyPrinter dbg = new MyPrinter(System.err,\
     \ true);\n\tstatic final boolean multi = false;\n\tstatic final int inf = 1 <<\
     \ 30;\n\tstatic final long linf = (1L << 61) - 1;\n\tstatic final double eps =\
-    \ 1e-18;\n\t@SuppressWarnings(\"unused\")\n\tprivate static final int[] dx = {0,\
-    \ -1, 1, 0, 0, -1, -1, 1, 1};\n\t@SuppressWarnings(\"unused\")\n\tprivate static\
-    \ final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t@SuppressWarnings(\"unused\"\
-    )\n\tprivate static final int mod998 = 998244353;\n\t@SuppressWarnings(\"unused\"\
-    )\n\tprivate static final int mod107 = (int)1e9 + 7;\n\tstatic final void solve()\
-    \ {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String yes(final\
+    \ 1e-18;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic\
+    \ final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final int mod998\
+    \ = 998244353;\n\tstatic final int mod107 = (int)1e9 + 7;\n\tstatic final void\
+    \ solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String yes(final\
     \ boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String\
     \ no(final boolean ok){ return yes(!ok); }\n\tprotected static final long sqr(final\
     \ long x){ return x * x; }\n\tprotected static final long mod(long n, final long\
@@ -911,7 +909,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-11 22:37:32+09:00'
+  timestamp: '2024-01-11 22:54:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java

@@ -267,36 +267,35 @@ data:
     \ MyPrinter dbg = new MyPrinter(System.err, true);\n\tstatic final Huitloxopetl\
     \ why = new Huitloxopetl();\n\tstatic final boolean multi = false;\n\tstatic final\
     \ int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\tstatic final\
-    \ double eps = 1e-18;\n\t@SuppressWarnings(\"unused\")\n\tprivate static final\
-    \ int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\t@SuppressWarnings(\"unused\")\n\
-    \tprivate static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t@SuppressWarnings(\"\
-    unused\")\n\tprivate static final int mod998 = 998244353;\n\t@SuppressWarnings(\"\
-    unused\")\n\tprivate static final int mod107 = (int)1e9 + 7;\n\tstatic final void\
-    \ solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String yes(final\
-    \ boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String\
-    \ no(final boolean ok){ return yes(!ok); }\n\tprotected static final long sqr(final\
-    \ long x){ return x * x; }\n\tprotected static final long mod(long n, final long\
-    \ m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\tprotected static final\
-    \ long ceil(final long a, final long b){ return (a - 1) / b + 1; }\n\tprotected\
-    \ static final double round(final double a, final long b, final int c) {\n\t\t\
-    final long d = pow(10, c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\tprotected\
-    \ static final long pow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0)\
-    \ {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\t\
-    b >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long pow(long\
-    \ a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b\
-    \ % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\t\
-    a *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t\
-    protected static final long lcm(final long a, final long b){ return a * b / gcd(a,\
-    \ b); }\n\tprotected static final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i\
-    \ -> i).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final\
-    \ long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
-    \ static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a %\
-    \ b) : a; }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
-    \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
-    \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
-    \ final int min(final int... a){ return Arrays.stream(a).min().getAsInt(); }\n\
-    \tprotected static final long min(final long... a){ return Arrays.stream(a).min().getAsLong();\
-    \ }\n\tprotected static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
+    \ double eps = 1e-18;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\
+    \tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final int\
+    \ mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9 + 7;\n\tstatic final\
+    \ void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String\
+    \ yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final\
+    \ String no(final boolean ok){ return yes(!ok); }\n\tprotected static final long\
+    \ sqr(final long x){ return x * x; }\n\tprotected static final long mod(long n,\
+    \ final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\tprotected\
+    \ static final long ceil(final long a, final long b){ return (a - 1) / b + 1;\
+    \ }\n\tprotected static final double round(final double a, final long b, final\
+    \ int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn Math.rint((a * d) / b)\
+    \ / d;\n\t}\n\tprotected static final long pow(long a, int b) {\n\t\tlong res\
+    \ = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\
+    }\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ final long pow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b\
+    \ > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\
+    \t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\tprotected static final long lcm(final long a, final long b){ return\
+    \ a * b / gcd(a, b); }\n\tprotected static final long lcm(final int... a){ return\
+    \ Arrays.stream(a).mapToLong(i -> i).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
+    \ static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x,\
+    \ y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final long\
+    \ b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
+    \ int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\
+    \tprotected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0,\
+    \ (x, y) -> gcd(x, y)); }\n\tprotected static final int min(final int... a){ return\
+    \ Arrays.stream(a).min().getAsInt(); }\n\tprotected static final long min(final\
+    \ long... a){ return Arrays.stream(a).min().getAsLong(); }\n\tprotected static\
+    \ final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
     \ }\n\tprotected static final int max(final int... a){ return Arrays.stream(a).max().getAsInt();\
     \ }\n\tprotected static final long max(final long... a){ return Arrays.stream(a).max().getAsLong();\
     \ }\n\tprotected static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble();\
@@ -1627,7 +1626,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-11 22:37:32+09:00'
+  timestamp: '2024-01-11 22:54:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
