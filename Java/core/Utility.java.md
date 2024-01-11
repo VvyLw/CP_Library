@@ -302,77 +302,101 @@ data:
     \n\t * @return a\u306E\u6700\u5927\u516C\u7D04\u6570\n\t */\n\tpublic static final\
     \ long gcd(final long... a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x,\
     \ y)); }\n\t/**\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    int\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tpublic\
-    \ static final int min(final int... a){ return Arrays.stream(a).reduce(Integer.MAX_VALUE,\
-    \ (x, y) -> Math.min(x, y)); }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB\
-    \ \u3042\u308B\u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\
-    \u5024\n\t */\n\tpublic static final long min(final long... a){ return Arrays.stream(a).reduce(Long.MAX_VALUE,\
-    \ (x, y) -> Math.min(x, y)); }\n\t/**\n\t * @param a int\u578B\u30BF\u30D7\u30EB\
-    \ \u3042\u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\
-    \u5024\n\t */\n\tpublic static final int max(final int... a){ return Arrays.stream(a).reduce(Integer.MIN_VALUE,\
-    \ (x, y) -> Math.max(x, y)); }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB\
-    \ \u3042\u308B\u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\
-    \u5024\n\t */\n\tpublic static final long max(final long... a){ return Arrays.stream(a).reduce(Long.MIN_VALUE,\
-    \ (x, y) -> Math.max(x, y)); }\n\t/**\n\t * n\u306E\u7D04\u6570\u3092\u5217\u6319\
-    \n\t * @param n \u6574\u6570\n\t */\n\tprotected static final ArrayList<Long>\
-    \ div(final long n) {\n\t\tfinal ArrayList<Long> d = new ArrayList<>();\n\t\t\
-    for(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\
-    \t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
-    \t\tCollections.sort(d);\n\t\treturn d;\n\t}\n\t/**\n\t * n\u3092\u7D20\u56E0\u6570\
-    \u5206\u89E3\n\t * e.g.) primeFactor(24) = [(2, 3), (3, 1)]\n\t * @param n \u6574\
-    \u6570\n\t */\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long\
-    \ n) {\n\t\tfinal ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\t\
-    for(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\
-    \t\t\t}\n\t\t\tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\
-    \tn /= i;\n\t\t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\
-    \t\tpf.add(Pair.of(n, 1));\n\t\t}\n\t\treturn pf;\n\t}\n\t/**\n\t * @param n \u6574\
-    \u6570\n\t * @return 1\u304B\u3089n\u307E\u3067\u306E\u6574\u6570\u306E\u3046\u3061\
-    n\u3068\u4E92\u3044\u306B\u7D20\u306A\u3082\u306E\u306E\u500B\u6570\n\t */\n\t\
-    protected static final long eulerPhi(long n) {\n\t\tlong res = n;\n\t\tfor(long\
-    \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\tres -= res / i;\n\
-    \t\t\t\twhile(n % i == 0) {\n\t\t\t\t\tn /= i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\t\
-    if(n > 1) {\n\t\t\tres -= res / n;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param\
-    \ n \u6574\u6570\n\t * @return n\u306E\u968E\u4E57\n\t */\n\tprotected static\
-    \ final long factor(int n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres\
-    \ *= n--;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param n\n\t * @param mod\n\
-    \t * @return n\u306E\u968E\u4E57\u306Emod\u3092\u6CD5\u3068\u3059\u308B\u5270\u4F59\
-    \n\t */\n\tprotected static final long factor(int n, final long mod) {\n\t\tlong\
-    \ res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t\tres %= mod;\n\t\t}\n\t\
-    \treturn res;\n\t}\n\t/**\n\t * @param n\n\t * @param r\n\t * @return \u9806\u5217\
-    (nPr)\n\t */\n\tprotected static final long perm(int n, final int r) {\n\t\tfinal\
-    \ int og = n;\n\t\tlong res = 1;\n\t\twhile(n > og - r) {\n\t\t\tres *= n--;\n\
-    \t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param n\n\t * @param r\n\t * @param\
-    \ mod\n\t * @return \u9806\u5217\u306Emod\u3092\u6CD5\u3068\u3059\u308B\u5270\u4F59\
-    \n\t */\n\tprotected static final long perm(int n, final int r, final long mod)\
-    \ {\n\t\tfinal int og = n;\n\t\tlong res = 1;\n\t\twhile(n > og - r) {\n\t\t\t\
-    res *= n--;\n\t\t\tres %= mod; \n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param\
-    \ n\n\t * @param r\n\t * @return \u4E8C\u9805\u4FC2\u6570(nCr)\n\t */\n\tprotected\
-    \ static final long binom(int n, final int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\
-    \treturn 0;\n\t\t}\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= r; ++i) {\n\t\t\
-    \tres *= n--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param\
-    \ n\n\t * @param r\n\t * @param mod\n\t * @return \u4E8C\u9805\u4FC2\u6570\u306E\
-    mod\u3092\u6CD5\u3068\u3059\u308B\u5270\u4F59\n\t */\n\tprotected static final\
-    \ long binom(int n, final int r, final long mod) {\n\t\tif(r < 0 || n < r) {\n\
-    \t\t\treturn 0;\n\t\t}\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= r; ++i) {\n\
-    \t\t\tres *= n--;\n\t\t\tres %= mod;\n\t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t\
-    }\n\t\treturn res;\n\t}\n\t/**\n\t * n\u304C\u6574\u6570\u304B\u3069\u3046\u304B\
-    \u5224\u5B9A\n\t * @param n\n\t */\n\tprotected static final boolean isInt(final\
-    \ double n){ long r = (long) Math.floor(n); return r == n; }\n\t/**\n\t * n\u304C\
-    \u5E73\u65B9\u6570\u304B\u3069\u3046\u304B\u5224\u5B9A\n\t * @param n\n\t */\n\
-    \tprotected static final boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
-    \ }\n\t/**\n\t * n\u304C\u7D20\u6570\u304B\u3069\u3046\u304B\u5224\u5B9A\n\t *\
-    \ @param n\n\t */\n\tprotected static final boolean isPrime(final long n) {\n\t\
-    \tif(n == 1) {\n\t\t\treturn false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i)\
-    \ {\n\t\t\tif(n % i == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ true;\n\t}\n\t/**\n\t * @param l\n\t * @param x\n\t * @param r\n\t * @return\
-    \ l <= x <= r\n\t */\n\tpublic static final boolean scope(final int l, final int\
-    \ x, final int r){ return l <= x && x <= r; }\n\t/**\n\t * @param l\n\t * @param\
-    \ x\n\t * @param r\n\t * @return l <= x <= r\n\t */\n\tpublic static final boolean\
-    \ scope(final long l, final long x, final long r){ return l <= x && x <= r; }\n\
-    \t/**\n\t * @param l\n\t * @param x\n\t * @param r\n\t * @return l <= x <= r\n\
-    \t */\n\tpublic static final boolean scope(final double l, final double x, final\
-    \ double r){ return l <= x && x <= r; }\n\t/**\n\t * @param l\n\t * @param x\n\
-    \t * @param r\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
+    int\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tprotected\
+    \ static final int min(final int... a){ return Arrays.stream(a).min().getAsInt();\
+    \ }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
+    long\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tprotected\
+    \ static final long min(final long... a){ return Arrays.stream(a).min().getAsLong();\
+    \ }\n\t/**\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
+    double\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tprotected\
+    \ static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
+    \ }\n\t/**\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
+    int\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\n\t */\n\tprotected\
+    \ static final int max(final int... a){ return Arrays.stream(a).max().getAsInt();\
+    \ }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
+    long\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\n\t */\n\tprotected\
+    \ static final long max(final long... a){ return Arrays.stream(a).max().getAsLong();\
+    \ }\n\t/**\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
+    double\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\n\t */\n\tprotected\
+    \ static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble();\
+    \ }\n\t/**\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
+    int\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\tprotected static\
+    \ final long sum(final int... a){ return Arrays.stream(a).mapToLong(i -> i).sum();\
+    \ }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
+    long\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\tprotected static\
+    \ final long sum(final long... a){ return Arrays.stream(a).sum(); }\n\t/**\n\t\
+    \ * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fdouble\u578B\
+    \u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\tprotected static final\
+    \ double sum(final double... a){ return Arrays.stream(a).sum(); }\n\t/**\n\t *\
+    \ @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\
+    \u5217\n\t * @return a\u306E\u7DCF\u4E57\n\t */\n\tprotected static final long\
+    \ prod(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1, (x,\
+    \ y) -> x * y); }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\
+    \u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u4E57\n\t */\n\t\
+    protected static final long prod(final long... a){ return Arrays.stream(a).reduce(1,\
+    \ (x, y) -> x * y); }\n\t/**\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\
+    \u308B\u3044\u306Fdouble\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u4E57\n\
+    \t */\n\tprotected static final double prod(final double... a){ return Arrays.stream(a).reduce(1,\
+    \ (x, y) -> x * y); }\n\t/**\n\t * n\u306E\u7D04\u6570\u3092\u5217\u6319\n\t *\
+    \ @param n \u6574\u6570\n\t */\n\tprotected static final ArrayList<Long> div(final\
+    \ long n) {\n\t\tfinal ArrayList<Long> d = new ArrayList<>();\n\t\tfor(long i\
+    \ = 1; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\t\
+    if(i * i != n) {\n\t\t\t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\
+    \t\treturn d;\n\t}\n\t/**\n\t * n\u3092\u7D20\u56E0\u6570\u5206\u89E3\n\t * e.g.)\
+    \ primeFactor(24) = [(2, 3), (3, 1)]\n\t * @param n \u6574\u6570\n\t */\n\tprotected\
+    \ static final ArrayList<Pair<Long, Integer>> primeFactor(long n) {\n\t\tfinal\
+    \ ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long i = 2;\
+    \ i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\
+    \tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /= i;\n\t\
+    \t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\t\tpf.add(Pair.of(n,\
+    \ 1));\n\t\t}\n\t\treturn pf;\n\t}\n\t/**\n\t * @param n \u6574\u6570\n\t * @return\
+    \ 1\u304B\u3089n\u307E\u3067\u306E\u6574\u6570\u306E\u3046\u3061n\u3068\u4E92\u3044\
+    \u306B\u7D20\u306A\u3082\u306E\u306E\u500B\u6570\n\t */\n\tprotected static final\
+    \ long eulerPhi(long n) {\n\t\tlong res = n;\n\t\tfor(long i = 2; i * i <= n;\
+    \ ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\tres -= res / i;\n\t\t\t\twhile(n % i\
+    \ == 0) {\n\t\t\t\t\tn /= i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tif(n > 1) {\n\t\t\
+    \tres -= res / n;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param n \u6574\u6570\
+    \n\t * @return n\u306E\u968E\u4E57\n\t */\n\tprotected static final long factor(int\
+    \ n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t}\n\t\t\
+    return res;\n\t}\n\t/**\n\t * @param n\n\t * @param mod\n\t * @return n\u306E\u968E\
+    \u4E57\u306Emod\u3092\u6CD5\u3068\u3059\u308B\u5270\u4F59\n\t */\n\tprotected\
+    \ static final long factor(int n, final long mod) {\n\t\tlong res = 1;\n\t\twhile(n\
+    \ > 0) {\n\t\t\tres *= n--;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\t\
+    /**\n\t * @param n\n\t * @param r\n\t * @return \u9806\u5217(nPr)\n\t */\n\tprotected\
+    \ static final long perm(int n, final int r) {\n\t\tfinal int og = n;\n\t\tlong\
+    \ res = 1;\n\t\twhile(n > og - r) {\n\t\t\tres *= n--;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\t/**\n\t * @param n\n\t * @param r\n\t * @param mod\n\t * @return \u9806\
+    \u5217\u306Emod\u3092\u6CD5\u3068\u3059\u308B\u5270\u4F59\n\t */\n\tprotected\
+    \ static final long perm(int n, final int r, final long mod) {\n\t\tfinal int\
+    \ og = n;\n\t\tlong res = 1;\n\t\twhile(n > og - r) {\n\t\t\tres *= n--;\n\t\t\
+    \tres %= mod; \n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param n\n\t * @param\
+    \ r\n\t * @return \u4E8C\u9805\u4FC2\u6570(nCr)\n\t */\n\tprotected static final\
+    \ long binom(int n, final int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\
+    \t\t}\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= r; ++i) {\n\t\t\tres *= n--;\n\
+    \t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param n\n\t * @param\
+    \ r\n\t * @param mod\n\t * @return \u4E8C\u9805\u4FC2\u6570\u306Emod\u3092\u6CD5\
+    \u3068\u3059\u308B\u5270\u4F59\n\t */\n\tprotected static final long binom(int\
+    \ n, final int r, final long mod) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\
+    \t\t}\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= r; ++i) {\n\t\t\tres *= n--;\n\
+    \t\t\tres %= mod;\n\t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\t/**\n\t * n\u304C\u6574\u6570\u304B\u3069\u3046\u304B\u5224\u5B9A\n\t *\
+    \ @param n\n\t */\n\tprotected static final boolean isInt(final double n){ long\
+    \ r = (long) Math.floor(n); return r == n; }\n\t/**\n\t * n\u304C\u5E73\u65B9\u6570\
+    \u304B\u3069\u3046\u304B\u5224\u5B9A\n\t * @param n\n\t */\n\tprotected static\
+    \ final boolean isSqr(final long n){ return isInt(Math.sqrt(n)); }\n\t/**\n\t\
+    \ * n\u304C\u7D20\u6570\u304B\u3069\u3046\u304B\u5224\u5B9A\n\t * @param n\n\t\
+    \ */\n\tprotected static final boolean isPrime(final long n) {\n\t\tif(n == 1)\
+    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\t\
+    if(n % i == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t\
+    }\n\t/**\n\t * @param l\n\t * @param x\n\t * @param r\n\t * @return l <= x <=\
+    \ r\n\t */\n\tpublic static final boolean scope(final int l, final int x, final\
+    \ int r){ return l <= x && x <= r; }\n\t/**\n\t * @param l\n\t * @param x\n\t\
+    \ * @param r\n\t * @return l <= x <= r\n\t */\n\tpublic static final boolean scope(final\
+    \ long l, final long x, final long r){ return l <= x && x <= r; }\n\t/**\n\t *\
+    \ @param l\n\t * @param x\n\t * @param r\n\t * @return l <= x <= r\n\t */\n\t\
+    public static final boolean scope(final double l, final double x, final double\
+    \ r){ return l <= x && x <= r; }\n\t/**\n\t * @param l\n\t * @param x\n\t * @param\
+    \ r\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
     >std::clamp</a>\n\t */\n\tprotected static final int clamp(final int l, final\
     \ int x, final int r){ return x < l ? l : x > r ? r : x; }\n\t/**\n\t * @param\
     \ l\n\t * @param x\n\t * @param r\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
@@ -985,7 +1009,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-11 19:07:55+09:00'
+  timestamp: '2024-01-11 21:05:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/core/Utility.java
