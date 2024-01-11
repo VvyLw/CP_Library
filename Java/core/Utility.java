@@ -841,6 +841,12 @@ public class Utility {
 	 */
 	public static final double[] sorted(final double[] a){ return Arrays.stream(a).sorted().toArray(); }
 	/**
+	 * @param <T> Comparableなクラス
+	 * @param a
+	 * @return 昇順にソートした総称型配列
+	 */
+	public static final <T extends Comparable<? super T>> T[] sorted(final T[] a){ return Arrays.stream(a).sorted().toArray(n -> Arrays.copyOf(a, n)); }
+	/**
 	 * @param s
 	 * @return 逆順に並び替えた文字列
 	 */

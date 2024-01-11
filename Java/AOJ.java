@@ -1,5 +1,3 @@
-package AOJ;
-
 import java.io.Closeable;
 import java.io.Flushable;
 import java.io.IOException;
@@ -96,6 +94,7 @@ class Utility {
 	protected static final int[] sorted(final int[] a){ return Arrays.stream(a).sorted().toArray(); }
 	protected static final long[] sorted(final long[] a){ return Arrays.stream(a).sorted().toArray(); }
 	protected static final double[] sorted(final double[] a){ return Arrays.stream(a).sorted().toArray(); }
+	protected static final <T extends Comparable<? super T>> T[] sorted(final T[] a){ return Arrays.stream(a).sorted().toArray(n -> Arrays.copyOf(a, n)); }
 	protected static final void swap(final int[] a, final int i, final int j) {
 		a[i] ^= a[j];
 		a[j] ^= a[i];

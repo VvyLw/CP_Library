@@ -482,6 +482,7 @@ class Utility {
 	protected static final int[] sorted(final int[] a){ return Arrays.stream(a).sorted().toArray(); }
 	protected static final long[] sorted(final long[] a){ return Arrays.stream(a).sorted().toArray(); }
 	protected static final double[] sorted(final double[] a){ return Arrays.stream(a).sorted().toArray(); }
+	protected static final <T extends Comparable<? super T>> T[] sorted(final T[] a){ return Arrays.stream(a).sorted().toArray(n -> Arrays.copyOf(a, n)); }
 	protected static final String reverse(final String s){ return new StringBuilder(s).reverse().toString(); }
 	protected static final int[] reverse(final int[] a) {
 		final int n = a.length;
