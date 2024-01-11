@@ -134,22 +134,62 @@ public class Utility {
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの最小値
 	 */
-	public static final int min(final int... a){ return Arrays.stream(a).reduce(Integer.MAX_VALUE, (x, y) -> Math.min(x, y)); }
+	protected static final int min(final int... a){ return Arrays.stream(a).min().getAsInt(); }
 	/**
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの最小値
 	 */
-	public static final long min(final long... a){ return Arrays.stream(a).reduce(Long.MAX_VALUE, (x, y) -> Math.min(x, y)); }
+	protected static final long min(final long... a){ return Arrays.stream(a).min().getAsLong(); }
+	/**
+	 * @param a double型タプル あるいはdouble型配列
+	 * @return aの最小値
+	 */
+	protected static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble(); }
 	/**
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの最大値
 	 */
-	public static final int max(final int... a){ return Arrays.stream(a).reduce(Integer.MIN_VALUE, (x, y) -> Math.max(x, y)); }
+	protected static final int max(final int... a){ return Arrays.stream(a).max().getAsInt(); }
 	/**
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの最大値
 	 */
-	public static final long max(final long... a){ return Arrays.stream(a).reduce(Long.MIN_VALUE, (x, y) -> Math.max(x, y)); }
+	protected static final long max(final long... a){ return Arrays.stream(a).max().getAsLong(); }
+	/**
+	 * @param a double型タプル あるいはdouble型配列
+	 * @return aの最大値
+	 */
+	protected static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble(); }
+	/**
+	 * @param a int型タプル あるいはint型配列
+	 * @return aの総和
+	 */
+	protected static final long sum(final int... a){ return Arrays.stream(a).mapToLong(i -> i).sum(); }
+	/**
+	 * @param a long型タプル あるいはlong型配列
+	 * @return aの総和
+	 */
+	protected static final long sum(final long... a){ return Arrays.stream(a).sum(); }
+	/**
+	 * @param a double型タプル あるいはdouble型配列
+	 * @return aの総和
+	 */
+	protected static final double sum(final double... a){ return Arrays.stream(a).sum(); }
+	/**
+	 * @param a int型タプル あるいはint型配列
+	 * @return aの総乗
+	 */
+	protected static final long prod(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1, (x, y) -> x * y); }
+	/**
+	 * @param a long型タプル あるいはlong型配列
+	 * @return aの総乗
+	 */
+	protected static final long prod(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y); }
+	/**
+	 * @param a double型タプル あるいはdouble型配列
+	 * @return aの総乗
+	 */
+	protected static final double prod(final double... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y); }
 	/**
 	 * nの約数を列挙
 	 * @param n 整数
