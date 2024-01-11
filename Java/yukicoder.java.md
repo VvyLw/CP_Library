@@ -455,6 +455,8 @@ data:
     \ }\n\tprotected static final int[] sorted(final int[] a){ return Arrays.stream(a).sorted().toArray();\
     \ }\n\tprotected static final long[] sorted(final long[] a){ return Arrays.stream(a).sorted().toArray();\
     \ }\n\tprotected static final double[] sorted(final double[] a){ return Arrays.stream(a).sorted().toArray();\
+    \ }\n\tprotected static final <T extends Comparable<? super T>> T[] sorted(final\
+    \ T[] a){ return Arrays.stream(a).sorted().toArray(n -> Arrays.copyOf(a, n));\
     \ }\n\tprotected static final String reverse(final String s){ return new StringBuilder(s).reverse().toString();\
     \ }\n\tprotected static final int[] reverse(final int[] a) {\n\t\tfinal int n\
     \ = a.length;\n\t\tfinal int[] b = new int[n];\n\t\tfor(int i = 0; i <= n / 2;\
@@ -909,7 +911,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-11 21:05:14+09:00'
+  timestamp: '2024-01-11 22:37:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java

@@ -246,11 +246,11 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/AOJ.java\n"
-  code: "package AOJ;\n\nimport java.io.Closeable;\nimport java.io.Flushable;\nimport\
-    \ java.io.IOException;\nimport java.io.InputStream;\nimport java.io.OutputStream;\n\
-    import java.math.BigInteger;\nimport java.util.Arrays;\nimport java.util.Collection;\n\
-    import java.util.Formatter;\nimport java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\
-    \nfinal class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
+  code: "import java.io.Closeable;\nimport java.io.Flushable;\nimport java.io.IOException;\n\
+    import java.io.InputStream;\nimport java.io.OutputStream;\nimport java.math.BigInteger;\n\
+    import java.util.Arrays;\nimport java.util.Collection;\nimport java.util.Formatter;\n\
+    import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nfinal\
+    \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
     \ VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
     \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}\n\n\
     final class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner(System.in);\n\
@@ -299,6 +299,8 @@ data:
     \ }\n\tprotected static final int[] sorted(final int[] a){ return Arrays.stream(a).sorted().toArray();\
     \ }\n\tprotected static final long[] sorted(final long[] a){ return Arrays.stream(a).sorted().toArray();\
     \ }\n\tprotected static final double[] sorted(final double[] a){ return Arrays.stream(a).sorted().toArray();\
+    \ }\n\tprotected static final <T extends Comparable<? super T>> T[] sorted(final\
+    \ T[] a){ return Arrays.stream(a).sorted().toArray(n -> Arrays.copyOf(a, n));\
     \ }\n\tprotected static final void swap(final int[] a, final int i, final int\
     \ j) {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\tprotected\
     \ static final void swap(final long[] a, final int i, final int j) {\n\t\ta[i]\
@@ -576,7 +578,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-11 21:05:14+09:00'
+  timestamp: '2024-01-11 22:37:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java

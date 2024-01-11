@@ -613,29 +613,34 @@ data:
     \ }\n\t/**\n\t * @param a\n\t * @return \u6607\u9806\u306B\u30BD\u30FC\u30C8\u3057\
     \u305Fdouble\u578B\u914D\u5217\n\t */\n\tpublic static final double[] sorted(final\
     \ double[] a){ return Arrays.stream(a).sorted().toArray(); }\n\t/**\n\t * @param\
-    \ s\n\t * @return \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305F\u6587\u5B57\
-    \u5217\n\t */\n\tprotected static final String reverse(final String s){ return\
-    \ new StringBuilder(s).reverse().toString(); }\n\t/**\n\t * @param a\n\t * @return\
-    \ \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305Fint\u578B\u914D\u5217\n\t */\n\
-    \tprotected static final int[] reverse(final int[] a) {\n\t\tfinal int n = a.length;\n\
-    \t\tfinal int[] b = new int[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\t\
-    b[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\t\
-    /**\n\t * @param a\n\t * @return \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305F\
-    long\u578B\u914D\u5217\n\t */\n\tprotected static final long[] reverse(final long[]\
-    \ a) {\n\t\tfinal int n = a.length;\n\t\tfinal long[] b = new long[n];\n\t\tfor(int\
-    \ i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] =\
-    \ a[i];\n\t\t}\n\t\treturn b;\n\t}\n\t/**\n\t * @param a\n\t * @return \u9006\u9806\
-    \u306B\u4E26\u3073\u66FF\u3048\u305Fdouble\u578B\u914D\u5217\n\t */\n\tprotected\
-    \ static final double[] reverse(final double[] a) {\n\t\tfinal int n = a.length;\n\
-    \t\tfinal double[] b = new double[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\
-    \t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\
-    \t}\n\t/**\n\t * @param a\n\t * @return \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\
-    \u305FObject\u30AF\u30E9\u30B9\u306E\u914D\u5217\n\t */\n\tprotected static final\
-    \ Object[] reverse(final Object[] a) {\n\t\tfinal int n = a.length;\n\t\tfinal\
-    \ Object[] b = new Object[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i]\
-    \ = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\t/**\n\
-    \t * C++\u306Estd::rotate\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\
-    \n\t * @param a\n\t * @param id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
+    \ <T> Comparable\u306A\u30AF\u30E9\u30B9\n\t * @param a\n\t * @return \u6607\u9806\
+    \u306B\u30BD\u30FC\u30C8\u3057\u305F\u7DCF\u79F0\u578B\u914D\u5217\n\t */\n\t\
+    public static final <T extends Comparable<? super T>> T[] sorted(final T[] a){\
+    \ return Arrays.stream(a).sorted().toArray(n -> Arrays.copyOf(a, n)); }\n\t/**\n\
+    \t * @param s\n\t * @return \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305F\u6587\
+    \u5B57\u5217\n\t */\n\tprotected static final String reverse(final String s){\
+    \ return new StringBuilder(s).reverse().toString(); }\n\t/**\n\t * @param a\n\t\
+    \ * @return \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305Fint\u578B\u914D\u5217\
+    \n\t */\n\tprotected static final int[] reverse(final int[] a) {\n\t\tfinal int\
+    \ n = a.length;\n\t\tfinal int[] b = new int[n];\n\t\tfor(int i = 0; i <= n /\
+    \ 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\
+    \treturn b;\n\t}\n\t/**\n\t * @param a\n\t * @return \u9006\u9806\u306B\u4E26\u3073\
+    \u66FF\u3048\u305Flong\u578B\u914D\u5217\n\t */\n\tprotected static final long[]\
+    \ reverse(final long[] a) {\n\t\tfinal int n = a.length;\n\t\tfinal long[] b =\
+    \ new long[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 -\
+    \ i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\t/**\n\t * @param\
+    \ a\n\t * @return \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305Fdouble\u578B\
+    \u914D\u5217\n\t */\n\tprotected static final double[] reverse(final double[]\
+    \ a) {\n\t\tfinal int n = a.length;\n\t\tfinal double[] b = new double[n];\n\t\
+    \tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1\
+    \ - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\t/**\n\t * @param a\n\t * @return\
+    \ \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305FObject\u30AF\u30E9\u30B9\u306E\
+    \u914D\u5217\n\t */\n\tprotected static final Object[] reverse(final Object[]\
+    \ a) {\n\t\tfinal int n = a.length;\n\t\tfinal Object[] b = new Object[n];\n\t\
+    \tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1\
+    \ - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\t/**\n\t * C++\u306Estd::rotate\u306B\
+    \u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t * @param id\n\
+    \t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
     >std::rotate</a>\n\t */\n\tpublic static final int[] rotate(final int[] a, final\
     \ int id) {\n\t\tfinal List<Integer> t = Arrays.stream(a).boxed().collect(Collectors.toList());\n\
     \t\tCollections.rotate(t, id);\n\t\treturn t.stream().mapToInt(i -> i).toArray();\n\
@@ -1009,7 +1014,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-11 21:05:14+09:00'
+  timestamp: '2024-01-11 22:37:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/core/Utility.java
