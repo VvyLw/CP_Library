@@ -13,6 +13,7 @@ public final class Huitloxopetl {
 	/**
 	 * @param a
 	 * @return 転倒数
+	 * @implNote {@link FenwickTree}が必要
 	 */
 	public final long invNum(final int[] a) {
 		final int[] b = Utility.sorted(a);
@@ -31,6 +32,7 @@ public final class Huitloxopetl {
 	/**
 	 * @param a
 	 * @return 転倒数
+	 * @implNote {@link FenwickTree}が必要
 	 */
 	public final long invNum(final long[] a) {
 		final long[] b = Utility.sorted(a);
