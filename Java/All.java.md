@@ -260,42 +260,41 @@ data:
     import java.util.function.LongPredicate;\nimport java.util.function.Predicate;\n\
     import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nfinal\
     \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
-    \ VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
+    \ VvyLw.MULTI ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
     \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}\n\n\
     final class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner(System.in);\n\
     \tstatic final MyPrinter o = new MyPrinter(System.out, false);\n\tstatic final\
     \ MyPrinter dbg = new MyPrinter(System.err, true);\n\tstatic final Huitloxopetl\
-    \ why = new Huitloxopetl();\n\tstatic final boolean multi = false;\n\tstatic final\
-    \ int inf = 1 << 30;\n\tstatic final long linf = (1L << 61) - 1;\n\tstatic final\
-    \ double eps = 1e-18;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\
-    \tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final int\
-    \ mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9 + 7;\n\tstatic final\
-    \ void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String\
-    \ yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final\
-    \ String no(final boolean ok){ return yes(!ok); }\n\tprotected static final long\
-    \ sqr(final long x){ return x * x; }\n\tprotected static final long mod(long n,\
-    \ final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\tprotected\
-    \ static final long ceil(final long a, final long b){ return (a - 1) / b + 1;\
-    \ }\n\tprotected static final double round(final double a, final long b, final\
-    \ int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn Math.rint((a * d) / b)\
-    \ / d;\n\t}\n\tprotected static final long pow(long a, int b) {\n\t\tlong res\
-    \ = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\
-    }\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final long pow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b\
-    \ > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\
-    \t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\tprotected static final long lcm(final long a, final long b){ return\
-    \ a * b / gcd(a, b); }\n\tprotected static final long lcm(final int... a){ return\
-    \ Arrays.stream(a).mapToLong(i -> i).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
-    \ static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x,\
-    \ y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final long\
-    \ b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
-    \ int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\
-    \tprotected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0,\
-    \ (x, y) -> gcd(x, y)); }\n\tprotected static final int min(final int... a){ return\
-    \ Arrays.stream(a).min().getAsInt(); }\n\tprotected static final long min(final\
-    \ long... a){ return Arrays.stream(a).min().getAsLong(); }\n\tprotected static\
-    \ final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
+    \ why = new Huitloxopetl();\n\tstatic final boolean MULTI = false;\n\tstatic final\
+    \ int INF = 1 << 30;\n\tstatic final long LINF = (1L << 61) - 1;\n\tstatic final\
+    \ double EPS = 1e-18;\n\tstatic final int MOD = 998244353;\n\tstatic final int\
+    \ M0D = (int)1e9 + 7;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\
+    \tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final void\
+    \ solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String yes(final\
+    \ boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String\
+    \ no(final boolean ok){ return yes(!ok); }\n\tprotected static final long sqr(final\
+    \ long x){ return x * x; }\n\tprotected static final long mod(long n, final long\
+    \ m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\tprotected static final\
+    \ long ceil(final long a, final long b){ return (a - 1) / b + 1; }\n\tprotected\
+    \ static final double round(final double a, final long b, final int c) {\n\t\t\
+    final long d = pow(10, c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\tprotected\
+    \ static final long pow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0)\
+    \ {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\t\
+    b >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long pow(long\
+    \ a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b\
+    \ % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\t\
+    a *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t\
+    protected static final long lcm(final long a, final long b){ return a * b / gcd(a,\
+    \ b); }\n\tprotected static final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i\
+    \ -> i).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final\
+    \ long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
+    \ static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a %\
+    \ b) : a; }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
+    \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
+    \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
+    \ final int min(final int... a){ return Arrays.stream(a).min().getAsInt(); }\n\
+    \tprotected static final long min(final long... a){ return Arrays.stream(a).min().getAsLong();\
+    \ }\n\tprotected static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
     \ }\n\tprotected static final int max(final int... a){ return Arrays.stream(a).max().getAsInt();\
     \ }\n\tprotected static final long max(final long... a){ return Arrays.stream(a).max().getAsLong();\
     \ }\n\tprotected static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble();\
@@ -581,7 +580,7 @@ data:
     \ / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\
     \t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final\
     \ double bins(double ok, double ng, final DoublePredicate fn) {\n\t\twhile(Math.abs(ok\
-    \ - ng) > VvyLw.eps) {\n\t\t\tfinal double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid))\
+    \ - ng) > VvyLw.EPS) {\n\t\t\tfinal double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid))\
     \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
     }\n\t\treturn ok;\n\t}\n\tprotected static final int[] press(final int[] a) {\n\
     \t\tfinal int[] res = new int[a.length];\n\t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
@@ -948,11 +947,11 @@ data:
     \t\tif(cost[e.src] + e.cost < cost[e.to]) {\n\t\t\t\treturn null;\n\t\t\t}\n\t\
     \t}\n\t\treturn cost;\n\t}\n\tfinal long[][] warshallFloyd() {\n\t\tfinal long[][]\
     \ cost = new long[n][n];\n\t\tIntStream.range(0, n).forEach(i -> Arrays.fill(cost[i],\
-    \ VvyLw.linf));\n\t\tIntStream.range(0, n).forEach(i -> cost[i][i] = 0);\n\t\t\
+    \ VvyLw.LINF));\n\t\tIntStream.range(0, n).forEach(i -> cost[i][i] = 0);\n\t\t\
     for(int i = 0; i < n; ++i) {\n\t\t\tfor(final Edge j: this.get(i)) {\n\t\t\t\t\
     cost[i][j.to] = j.cost;\n\t\t\t}\n\t\t}\n\t\tfor(int k = 0; k < n; ++k) {\n\t\t\
     \tfor(int i = 0; i < n; ++i) {\n\t\t\t\tfor(int j = 0; j < n; ++j) {\n\t\t\t\t\
-    \tif(cost[i][k] == VvyLw.linf || cost[k][j] == VvyLw.linf) {\n\t\t\t\t\t\tcontinue;\n\
+    \tif(cost[i][k] == VvyLw.LINF || cost[k][j] == VvyLw.LINF) {\n\t\t\t\t\t\tcontinue;\n\
     \t\t\t\t\t}\n\t\t\t\t\tif(cost[i][j] > cost[i][k] + cost[k][j]) {\n\t\t\t\t\t\t\
     cost[i][j] = cost[i][k] + cost[k][j];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
     \t\treturn cost;\n\t}\n\tfinal MST kruskal() {\n\t\tfinal UnionFind uf = new UnionFind(n);\n\
@@ -1626,7 +1625,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-11 22:54:31+09:00'
+  timestamp: '2024-01-12 20:33:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

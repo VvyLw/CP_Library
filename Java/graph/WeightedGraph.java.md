@@ -289,11 +289,11 @@ data:
     \t}\n\t/**\n\t * Warshall-Floyd\u6CD5\n\t * \u5168\u70B9\u5BFE\u9593\u6700\u77ED\
     \u8DEF\u3092\u6C42\u3081\u308B\n\t */\n\tpublic final long[][] warshallFloyd()\
     \ {\n\t\tfinal long[][] cost = new long[n][n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> Arrays.fill(cost[i], VvyLw.linf));\n\t\tIntStream.range(0, n).forEach(i ->\
+    \ -> Arrays.fill(cost[i], VvyLw.LINF));\n\t\tIntStream.range(0, n).forEach(i ->\
     \ cost[i][i] = 0);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final Edge j:\
     \ this.get(i)) {\n\t\t\t\tcost[i][j.to] = j.cost;\n\t\t\t}\n\t\t}\n\t\tfor(int\
     \ k = 0; k < n; ++k) {\n\t\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\tfor(int j\
-    \ = 0; j < n; ++j) {\n\t\t\t\t\tif(cost[i][k] == VvyLw.linf || cost[k][j] == VvyLw.linf)\
+    \ = 0; j < n; ++j) {\n\t\t\t\t\tif(cost[i][k] == VvyLw.LINF || cost[k][j] == VvyLw.LINF)\
     \ {\n\t\t\t\t\t\tcontinue;\n\t\t\t\t\t}\n\t\t\t\t\tif(cost[i][j] > cost[i][k]\
     \ + cost[k][j]) {\n\t\t\t\t\t\tcost[i][j] = cost[i][k] + cost[k][j];\n\t\t\t\t\
     \t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\t/**\n\t * Kruskal\u6CD5\
@@ -412,7 +412,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-11 22:54:31+09:00'
+  timestamp: '2024-01-12 20:33:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/graph/WeightedGraph.java

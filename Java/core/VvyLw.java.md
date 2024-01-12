@@ -256,15 +256,15 @@ data:
     \t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t */\n\tstatic final MyPrinter dbg = new\
     \ MyPrinter(System.err, true);\n\t/**\n\t * \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\
     \u30B1\u30FC\u30B9\u306E\u554F\u984C\u306E\u6642\u306Ffalse\u3092true\u306B\u5909\
-    \u3048\u308B\n\t */\n\tstatic final boolean multi = false;\n\tstatic final double\
-    \ eps = 1e-18;\n\tpublic static final int inf = 1 << 30;\n\tpublic static final\
-    \ long linf = (1L << 61) - 1;\n\t/**\n\t * \u30B0\u30EA\u30C3\u30C9\u64CD\u4F5C\
-    \u306E\u6642\u306B\u4FBF\u5229\n\t */\n\tstatic final int[] dx = {0, -1, 1, 0,\
-    \ 0, -1, -1, 1, 1};\n\t/**\n\t * \u30B0\u30EA\u30C3\u30C9\u64CD\u4F5C\u306E\u6642\
-    \u306B\u4FBF\u5229\n\t */\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1,\
-    \ 1};\n\tstatic final int mod998 = 998244353;\n\tstatic final int mod107 = (int)1e9\
-    \ + 7;\n\t/**\n\t * \u3053\u3053\u306B\u30B3\u30FC\u30C9\u3092\u66F8\u304D\u8FBC\
-    \u3080\n\t */\n\tstatic final void solve() {\n\t\t\n\t}\n}"
+    \u3048\u308B\n\t */\n\tstatic final boolean MULTI = false;\n\tstatic final double\
+    \ EPS = 1e-18;\n\tpublic static final int INF = 1 << 30;\n\tpublic static final\
+    \ long LINF = (1L << 61) - 1;\n\tstatic final int MOD = 998244353;\n\tstatic final\
+    \ int M0D = (int)1e9 + 7;\n\t/**\n\t * \u30B0\u30EA\u30C3\u30C9\u64CD\u4F5C\u306E\
+    \u6642\u306B\u4FBF\u5229\n\t */\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1,\
+    \ -1, 1, 1};\n\t/**\n\t * \u30B0\u30EA\u30C3\u30C9\u64CD\u4F5C\u306E\u6642\u306B\
+    \u4FBF\u5229\n\t */\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\
+    \t/**\n\t * \u3053\u3053\u306B\u30B3\u30FC\u30C9\u3092\u66F8\u304D\u8FBC\u3080\
+    \n\t */\n\tstatic final void solve() {\n\t\t\n\t}\n}"
   dependsOn:
   - Java/other/PrefixSum.java
   - Java/other/InclusiveScan.java
@@ -347,7 +347,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-11 22:54:31+09:00'
+  timestamp: '2024-01-12 20:33:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/core/VvyLw.java

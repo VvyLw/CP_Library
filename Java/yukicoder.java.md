@@ -253,21 +253,21 @@ data:
     import java.util.function.DoublePredicate;\nimport java.util.function.IntPredicate;\n\
     import java.util.function.LongPredicate;\nimport java.util.stream.Collectors;\n\
     import java.util.stream.IntStream;\n\nclass Main {\n\tpublic static void main(final\
-    \ String[] args) {\n\t\tIntStream.range(0, VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i\
+    \ String[] args) {\n\t\tIntStream.range(0, VvyLw.MULTI ? VvyLw.sc.ni() : 1).forEach(i\
     \ -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\
     \t\tVvyLw.dbg.close();\n\t}\n}\n\nfinal class VvyLw extends Utility {\n\tstatic\
     \ final MyScanner sc = new MyScanner(System.in);\n\tstatic final MyPrinter o =\
     \ new MyPrinter(System.out, false);\n\tstatic final MyPrinter dbg = new MyPrinter(System.err,\
-    \ true);\n\tstatic final boolean multi = false;\n\tstatic final int inf = 1 <<\
-    \ 30;\n\tstatic final long linf = (1L << 61) - 1;\n\tstatic final double eps =\
-    \ 1e-18;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic\
-    \ final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final int mod998\
-    \ = 998244353;\n\tstatic final int mod107 = (int)1e9 + 7;\n\tstatic final void\
-    \ solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String yes(final\
-    \ boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String\
-    \ no(final boolean ok){ return yes(!ok); }\n\tprotected static final long sqr(final\
-    \ long x){ return x * x; }\n\tprotected static final long mod(long n, final long\
-    \ m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\tprotected static final\
+    \ true);\n\tstatic final boolean MULTI = false;\n\tstatic final int INF = 1 <<\
+    \ 30;\n\tstatic final long LINF = (1L << 61) - 1;\n\tstatic final double EPS =\
+    \ 1e-18;\n\tstatic final int MOD = 998244353;\n\tstatic final int M0D = (int)1e9\
+    \ + 7;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final\
+    \ int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final void solve() {\n\t\
+    \t\n\t}\n}\nclass Utility {\n\tprotected static final String yes(final boolean\
+    \ ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final\
+    \ boolean ok){ return yes(!ok); }\n\tprotected static final long sqr(final long\
+    \ x){ return x * x; }\n\tprotected static final long mod(long n, final long m)\
+    \ {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\tprotected static final\
     \ long ceil(final long a, final long b){ return (a - 1) / b + 1; }\n\tprotected\
     \ static final double round(final double a, final long b, final int c) {\n\t\t\
     final long d = pow(10, c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\tprotected\
@@ -573,7 +573,7 @@ data:
     \ / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\
     \t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final\
     \ double bins(double ok, double ng, final DoublePredicate fn) {\n\t\twhile(Math.abs(ok\
-    \ - ng) > VvyLw.eps) {\n\t\t\tfinal double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid))\
+    \ - ng) > VvyLw.EPS) {\n\t\t\tfinal double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid))\
     \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
     }\n\t\treturn ok;\n\t}\n\tprotected static final int[] press(final int[] a) {\n\
     \t\tfinal int[] res = new int[a.length];\n\t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
@@ -909,7 +909,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-11 22:54:31+09:00'
+  timestamp: '2024-01-12 20:33:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java

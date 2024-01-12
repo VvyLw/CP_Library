@@ -832,7 +832,7 @@ data:
     \ * \u3081\u3050\u308B\u5F0F\u4E8C\u5206\u63A2\u7D22\n\t * @param ok\n\t * @param\
     \ ng\n\t * @param fn\n\t * @see <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L696\"\
     >Heileden::bins</a>\n\t */\n\tprotected static final double bins(double ok, double\
-    \ ng, final DoublePredicate fn) {\n\t\twhile(Math.abs(ok - ng) > VvyLw.eps) {\n\
+    \ ng, final DoublePredicate fn) {\n\t\twhile(Math.abs(ok - ng) > VvyLw.EPS) {\n\
     \t\t\tfinal double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok\
     \ = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
     \ ok;\n\t}\n\t/**\n\t * \u5EA7\u6A19\u5727\u7E2E\n\t * @param a\n\t */\n\tprotected\
@@ -1014,7 +1014,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-11 22:54:31+09:00'
+  timestamp: '2024-01-12 20:33:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/core/Utility.java

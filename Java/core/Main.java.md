@@ -249,7 +249,7 @@ data:
   code: "package library.core;\n\nimport java.util.stream.IntStream;\n\n/**\n *  Main\u30AF\
     \u30E9\u30B9\u3002\n *  \u3053\u3053\u306B\u5909\u66F4\u306F\u52A0\u3048\u306A\
     \u3044\u3002\n *  @author VvyLw\n */\nfinal class Main {\n\tpublic static void\
-    \ main(final String[] args) {\n\t\tIntStream.range(0, VvyLw.multi ? VvyLw.sc.ni()\
+    \ main(final String[] args) {\n\t\tIntStream.range(0, VvyLw.MULTI ? VvyLw.sc.ni()\
     \ : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\t\tVvyLw.sc.close();\n\
     \t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}"
   dependsOn:
@@ -334,7 +334,7 @@ data:
   - Java/graph/LowestCommonAncestor.java
   - Java/graph/MST.java
   - Java/graph/Graph.java
-  timestamp: '2024-01-11 22:54:31+09:00'
+  timestamp: '2024-01-12 20:33:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/core/Main.java
