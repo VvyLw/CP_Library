@@ -109,7 +109,7 @@ public final class WeightedGraph extends Graph {
 	 */
 	public final long[][] warshallFloyd() {
 		final long[][] cost = new long[n][n];
-		IntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], VvyLw.linf));
+		IntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], VvyLw.LINF));
 		IntStream.range(0, n).forEach(i -> cost[i][i] = 0);
 		for(int i = 0; i < n; ++i) {
 			for(final Edge j: this.get(i)) {
@@ -119,7 +119,7 @@ public final class WeightedGraph extends Graph {
 		for(int k = 0; k < n; ++k) {
 			for(int i = 0; i < n; ++i) {
 				for(int j = 0; j < n; ++j) {
-					if(cost[i][k] == VvyLw.linf || cost[k][j] == VvyLw.linf) {
+					if(cost[i][k] == VvyLw.LINF || cost[k][j] == VvyLw.LINF) {
 						continue;
 					}
 					if(cost[i][j] > cost[i][k] + cost[k][j]) {

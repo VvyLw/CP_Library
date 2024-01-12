@@ -19,10 +19,12 @@ public final class VvyLw extends Utility {
 	/**
 	 * マルチテストケースの問題の時はfalseをtrueに変える
 	 */
-	static final boolean multi = false;
-	static final double eps = 1e-18;
-	public static final int inf = 1 << 30;
-	public static final long linf = (1L << 61) - 1;
+	static final boolean MULTI = false;
+	static final double EPS = 1e-18;
+	public static final int INF = 1 << 30;
+	public static final long LINF = (1L << 61) - 1;
+	static final int MOD = 998244353;
+	static final int M0D = (int)1e9 + 7;
 	/**
 	 * グリッド操作の時に便利
 	 */
@@ -31,8 +33,6 @@ public final class VvyLw extends Utility {
 	 * グリッド操作の時に便利
 	 */
 	static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};
-	static final int mod998 = 998244353;
-	static final int mod107 = (int)1e9 + 7;
 	/**
 	 * ここにコードを書き込む
 	 */

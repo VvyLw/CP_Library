@@ -18,7 +18,7 @@ import java.util.stream.IntStream;
 
 class Main {
 	public static void main(final String[] args) {
-		IntStream.range(0, VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());
+		IntStream.range(0, VvyLw.MULTI ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());
 		VvyLw.o.flush();
 		VvyLw.sc.close();
 		VvyLw.o.close();
@@ -30,14 +30,14 @@ final class VvyLw extends Utility {
 	static final MyScanner sc = new MyScanner(System.in);
 	static final MyPrinter o = new MyPrinter(System.out, false);
 	static final MyPrinter dbg = new MyPrinter(System.err, true);
-	static final boolean multi = false;
-	static final int inf = 1 << 30;
-	static final long linf = (1L << 61) - 1;
-	static final double eps = 1e-18;
+	static final boolean MULTI = false;
+	static final int INF = 1 << 30;
+	static final long LINF = (1L << 61) - 1;
+	static final double EPS = 1e-18;
+	static final int MOD = 998244353;
+	static final int M0D = (int)1e9 + 7;
 	static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};
 	static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};
-	static final int mod998 = 998244353;
-	static final int mod107 = (int)1e9 + 7;
 	static final void solve() {
 		
 	}
@@ -713,7 +713,7 @@ class Utility {
 		return ok;
 	}
 	protected static final double bins(double ok, double ng, final DoublePredicate fn) {
-		while(Math.abs(ok - ng) > VvyLw.eps) {
+		while(Math.abs(ok - ng) > VvyLw.EPS) {
 			final double mid = (ok + ng) / 2;
 			if(fn.test(mid)) {
 				ok = mid;

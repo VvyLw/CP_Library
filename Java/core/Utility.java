@@ -1326,7 +1326,7 @@ public class Utility {
 	 * @see <a href="https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L696">Heileden::bins</a>
 	 */
 	protected static final double bins(double ok, double ng, final DoublePredicate fn) {
-		while(Math.abs(ok - ng) > VvyLw.eps) {
+		while(Math.abs(ok - ng) > VvyLw.EPS) {
 			final double mid = (ok + ng) / 2;
 			if(fn.test(mid)) {
 				ok = mid;

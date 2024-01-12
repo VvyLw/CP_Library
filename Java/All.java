@@ -35,7 +35,7 @@ import java.util.stream.IntStream;
 
 final class Main {
 	public static void main(final String[] args) {
-		IntStream.range(0, VvyLw.multi ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());
+		IntStream.range(0, VvyLw.MULTI ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());
 		VvyLw.o.flush();
 		VvyLw.sc.close();
 		VvyLw.o.close();
@@ -48,14 +48,14 @@ final class VvyLw extends Utility {
 	static final MyPrinter o = new MyPrinter(System.out, false);
 	static final MyPrinter dbg = new MyPrinter(System.err, true);
 	static final Huitloxopetl why = new Huitloxopetl();
-	static final boolean multi = false;
-	static final int inf = 1 << 30;
-	static final long linf = (1L << 61) - 1;
-	static final double eps = 1e-18;
+	static final boolean MULTI = false;
+	static final int INF = 1 << 30;
+	static final long LINF = (1L << 61) - 1;
+	static final double EPS = 1e-18;
+	static final int MOD = 998244353;
+	static final int M0D = (int)1e9 + 7;
 	static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};
 	static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};
-	static final int mod998 = 998244353;
-	static final int mod107 = (int)1e9 + 7;
 	static final void solve() {
 		
 	}
@@ -731,7 +731,7 @@ class Utility {
 		return ok;
 	}
 	protected static final double bins(double ok, double ng, final DoublePredicate fn) {
-		while(Math.abs(ok - ng) > VvyLw.eps) {
+		while(Math.abs(ok - ng) > VvyLw.EPS) {
 			final double mid = (ok + ng) / 2;
 			if(fn.test(mid)) {
 				ok = mid;
@@ -1776,7 +1776,7 @@ final class WeightedGraph extends Graph {
 	}
 	final long[][] warshallFloyd() {
 		final long[][] cost = new long[n][n];
-		IntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], VvyLw.linf));
+		IntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], VvyLw.LINF));
 		IntStream.range(0, n).forEach(i -> cost[i][i] = 0);
 		for(int i = 0; i < n; ++i) {
 			for(final Edge j: this.get(i)) {
@@ -1786,7 +1786,7 @@ final class WeightedGraph extends Graph {
 		for(int k = 0; k < n; ++k) {
 			for(int i = 0; i < n; ++i) {
 				for(int j = 0; j < n; ++j) {
-					if(cost[i][k] == VvyLw.linf || cost[k][j] == VvyLw.linf) {
+					if(cost[i][k] == VvyLw.LINF || cost[k][j] == VvyLw.LINF) {
 						continue;
 					}
 					if(cost[i][j] > cost[i][k] + cost[k][j]) {
