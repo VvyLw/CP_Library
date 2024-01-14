@@ -472,8 +472,8 @@ data:
     \  sqrp(i,2,n) if(n%i==0) return 0;\r\n  return 1;\r\n}\r\ninline bool is_int(const\
     \ ld n){ ll r=std::floor(n); return r==n; }\r\ninline bool is_sqr(const ll n){\
     \ return is_int(std::sqrt(n)); }\r\n} // Heileden\n#line 2 \"C++/UnionFind.hpp\"\
-    \n\r\n// inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)\r\
-    \n#line 7 \"C++/UnionFind.hpp\"\nstruct UnionFind {\r\nprivate:\r\n    std::vector<int>\
+    \n\r\n// inspired by maspy( https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\
+    \ )\r\n#line 7 \"C++/UnionFind.hpp\"\nstruct UnionFind {\r\nprivate:\r\n    std::vector<int>\
     \ par;\r\npublic:\r\n    UnionFind(const int n): par(n, -1){}\r\n    int operator[](int\
     \ i) {\r\n        while(par[i] >= 0) {\r\n            const int p = par[par[i]];\r\
     \n            if(p < 0) return par[i];\r\n            i = par[i] = p;\r\n    \
@@ -518,7 +518,7 @@ data:
   isVerificationFile: true
   path: test/uf.test.cpp
   requiredBy: []
-  timestamp: '2023-12-17 09:23:30+09:00'
+  timestamp: '2024-01-14 17:01:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/uf.test.cpp

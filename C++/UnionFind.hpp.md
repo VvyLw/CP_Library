@@ -23,10 +23,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
-    - https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)
-  bundledCode: "#line 2 \"C++/UnionFind.hpp\"\n\r\n// inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)\r\
-    \n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\nstruct UnionFind\
-    \ {\r\nprivate:\r\n    std::vector<int> par;\r\npublic:\r\n    UnionFind(const\
+    - https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp
+  bundledCode: "#line 2 \"C++/UnionFind.hpp\"\n\r\n// inspired by maspy( https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\
+    \ )\r\n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\nstruct\
+    \ UnionFind {\r\nprivate:\r\n    std::vector<int> par;\r\npublic:\r\n    UnionFind(const\
     \ int n): par(n, -1){}\r\n    int operator[](int i) {\r\n        while(par[i]\
     \ >= 0) {\r\n            const int p = par[par[i]];\r\n            if(p < 0) return\
     \ par[i];\r\n            i = par[i] = p;\r\n        }\r\n        return i;\r\n\
@@ -48,9 +48,9 @@ data:
     \ / 2;\r\n        bool ok = true;\r\n        for(int i = 0; i < n; ++i) {\r\n\
     \            ok &= (*this)[i] != (*this)[i + n];\r\n        }\r\n        return\
     \ ok;\r\n    }\r\n};\n"
-  code: "#pragma once\r\n\r\n// inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)\r\
-    \n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\nstruct UnionFind\
-    \ {\r\nprivate:\r\n    std::vector<int> par;\r\npublic:\r\n    UnionFind(const\
+  code: "#pragma once\r\n\r\n// inspired by maspy( https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\
+    \ )\r\n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\nstruct\
+    \ UnionFind {\r\nprivate:\r\n    std::vector<int> par;\r\npublic:\r\n    UnionFind(const\
     \ int n): par(n, -1){}\r\n    int operator[](int i) {\r\n        while(par[i]\
     \ >= 0) {\r\n            const int p = par[par[i]];\r\n            if(p < 0) return\
     \ par[i];\r\n            i = par[i] = p;\r\n        }\r\n        return i;\r\n\
@@ -77,7 +77,7 @@ data:
   path: C++/UnionFind.hpp
   requiredBy:
   - C++/MST.hpp
-  timestamp: '2023-12-12 02:56:10+09:00'
+  timestamp: '2024-01-14 17:01:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manhattan.test.cpp
