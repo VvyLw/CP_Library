@@ -1,6 +1,6 @@
 #pragma once
 
-// inspired by maspy(https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp)
+// inspired by maspy( https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp )
 #include <cassert>
 #include <vector>
 #include <algorithm>
