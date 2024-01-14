@@ -257,11 +257,11 @@ data:
     \ &s, const int id, const std::string &t){ s.insert(id,t); return s.size(); }\r\
     \ninline std::string toupper(std::string s){ each(c,s) c=std::toupper(c); return\
     \ s; }\r\ninline std::string tolower(std::string s){ each(c,s) c=std::tolower(c);\
-    \ return s; }\r\ninline vi ten_to_adic(ll n, const short base) {\r\n  vi res;\r\
-    \n  while(n) {\r\n    res.emplace_back(n%base);\r\n    n/=base;\r\n  }\r\n  return\
-    \ res;\r\n}\r\ninline ll adic_to_ten(const vi &v, const short base) {\r\n  ll\
-    \ res=0;\r\n  each(el,v) {\r\n    res+=Pow<ll>(base,eid(el,v))*el;\r\n  }\r\n\
-    \  return res;\r\n}\r\ninline std::string to_hex(const ll x) {\r\n  std::stringstream\
+    \ return s; }\r\ninline vi ten_to_adic(ll n, const short base) {\r\n  if(n==0)\
+    \ {\r\n    return {0};\r\n  }\r\n  vi res;\r\n  while(n) {\r\n    res.emplace_back(n%base);\r\
+    \n    n/=base;\r\n  }\r\n  return res;\r\n}\r\ninline ll adic_to_ten(const vi\
+    \ &v, const short base) {\r\n  ll res=0;\r\n  each(el,v) {\r\n    res+=Pow<ll>(base,eid(el,v))*el;\r\
+    \n  }\r\n  return res;\r\n}\r\ninline std::string to_hex(const ll x) {\r\n  std::stringstream\
     \ ss;\r\n  ss << std::hex << x;\r\n  std::string s = ss.str();\r\n  //s=toupper(s);\r\
     \n  return s;\r\n}\r\ninline std::string to_oct(const ll x) {\r\n  std::stringstream\
     \ s;\r\n  s << std::oct <<x;\r\n  return s.str();\r\n}\r\ninline std::string to_bin(const\
@@ -528,7 +528,7 @@ data:
   isVerificationFile: true
   path: test/segtree.test.cpp
   requiredBy: []
-  timestamp: '2023-12-17 09:23:30+09:00'
+  timestamp: '2024-01-14 23:10:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segtree.test.cpp
