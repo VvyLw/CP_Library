@@ -13,6 +13,9 @@ data:
       path: C++/MST.hpp
       title: C++/MST.hpp
     - icon: ':warning:'
+      path: C++/Matrix.hpp
+      title: C++/Matrix.hpp
+    - icon: ':warning:'
       path: C++/Modint.hpp
       title: C++/Modint.hpp
     - icon: ':heavy_check_mark:'
