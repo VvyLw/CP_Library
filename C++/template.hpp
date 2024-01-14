@@ -327,6 +327,9 @@ inline ll strins(std::string &s, const int id, const std::string &t){ s.insert(i
 inline std::string toupper(std::string s){ each(c,s) c=std::toupper(c); return s; }
 inline std::string tolower(std::string s){ each(c,s) c=std::tolower(c); return s; }
 inline vi ten_to_adic(ll n, const short base) {
+  if(n==0) {
+    return {0};
+  }
   vi res;
   while(n) {
     res.emplace_back(n%base);
