@@ -1479,7 +1479,9 @@ final class UnionFind {
 	final boolean unite(int i, int j) {
 		i = root(i);
 		j = root(j);
-		if(i == j) return false;
+		if(i == j) {
+			return false;
+		}
 		if(i > j) {
 			i ^= j;
 			j ^= i;
