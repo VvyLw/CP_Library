@@ -1,4 +1,4 @@
-package library.structure;
+package library.structure.deque;
 
 import java.util.Arrays;
 import java.util.Iterator;
