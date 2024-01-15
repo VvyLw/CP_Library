@@ -352,7 +352,7 @@ data:
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
-  timestamp: '2024-01-15 22:27:37+09:00'
+  timestamp: '2024-01-15 23:23:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/InclusiveScan.java
