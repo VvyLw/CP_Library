@@ -74,9 +74,6 @@ data:
     path: Java/library/structure/AVLTree.java
     title: Java/library/structure/AVLTree.java
   - icon: ':warning:'
-    path: Java/library/structure/Deque.java
-    title: Java/library/structure/Deque.java
-  - icon: ':warning:'
     path: Java/library/structure/DoubleEndedPriorityQueue.java
     title: Java/library/structure/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
@@ -88,6 +85,12 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/SparseTable.java
     title: Java/library/structure/SparseTable.java
+  - icon: ':warning:'
+    path: Java/library/structure/deque/Deque.java
+    title: Java/library/structure/deque/Deque.java
+  - icon: ':warning:'
+    path: Java/library/structure/deque/IntDeque.java
+    title: Java/library/structure/deque/IntDeque.java
   - icon: ':warning:'
     path: Java/library/structure/pair/FloatPair.java
     title: Java/library/structure/pair/FloatPair.java
@@ -192,9 +195,6 @@ data:
     path: Java/library/structure/AVLTree.java
     title: Java/library/structure/AVLTree.java
   - icon: ':warning:'
-    path: Java/library/structure/Deque.java
-    title: Java/library/structure/Deque.java
-  - icon: ':warning:'
     path: Java/library/structure/DoubleEndedPriorityQueue.java
     title: Java/library/structure/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
@@ -206,6 +206,12 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/SparseTable.java
     title: Java/library/structure/SparseTable.java
+  - icon: ':warning:'
+    path: Java/library/structure/deque/Deque.java
+    title: Java/library/structure/deque/Deque.java
+  - icon: ':warning:'
+    path: Java/library/structure/deque/IntDeque.java
+    title: Java/library/structure/deque/IntDeque.java
   - icon: ':warning:'
     path: Java/library/structure/pair/FloatPair.java
     title: Java/library/structure/pair/FloatPair.java
@@ -1484,28 +1490,72 @@ data:
     \t\trem--;\n\t\t\treturn res;\n\t\t}\n\t\t@Override\n\t\tpublic final void remove()\
     \ {\n\t\t\tif(isEmpty()) {\n\t\t\t\tthrow new IllegalStateException();\n\t\t\t\
     }\n\t\t\tnow = (now - 1 + n) % n;\n\t\t\tbuf[now] = null;\n\t\t\thead = (head\
-    \ + 1) % n;\n\t\t\trem++;\n\t\t}\n\t}\n}\n\nfinal class Matrix implements Cloneable\
-    \ {\n\tprivate final int h, w;\n\tprivate final long[][] mat;\n\tMatrix(final\
-    \ int n){ this(n, n); }\n\tMatrix(final int h, final int w) {\n\t\tthis.h = h;\n\
-    \t\tthis.w = w;\n\t\tmat = new long[h][w];\n\t}\n\tMatrix(final int[][] m) {\n\
-    \t\tthis(m.length, m[0].length);\n\t\tIntStream.range(0, h).forEach(i -> IntStream.range(0,\
-    \ w).forEach(j -> mat[i][j] = m[i][j]));\n\t}\n\tMatrix(final long[][] m) {\n\t\
-    \tthis(m.length, m[0].length);\n\t\tIntStream.range(0, h).forEach(i -> IntStream.range(0,\
-    \ w).forEach(j -> mat[i][j] = m[i][j]));\n\t}\n\tstatic final Matrix E(final int\
-    \ n) {\n\t\tfinal Matrix m = new Matrix(n);\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> m.set(i, i, 1));\n\t\treturn m;\n\t}\n\tfinal long[] getH(final int i){ return\
-    \ mat[i]; }\n\tfinal long[] getW(final int i){ return IntStream.range(0, h).mapToLong(j\
-    \ -> mat[j][i]).toArray(); }\n\tfinal long[][] get(){ return mat; }\n\tfinal long\
-    \ get(final int i, final int j){ return mat[i][j]; }\n\tfinal void set(final int\
-    \ i, final int j, final long x){ mat[i][j] = x; }\n\tfinal Matrix add(final Matrix\
-    \ m) {\n\t\tassert(h == m.h && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h,\
-    \ w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\
-    \t\t\tmt.set(i, j, mat[i][j] + m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\
-    \t}\n\tfinal Matrix add(final Matrix m, final long mod) {\n\t\tassert(h == m.h\
+    \ + 1) % n;\n\t\t\trem++;\n\t\t}\n\t}\n}\nfinal class IntDeque {\n\tprivate int\
+    \ n, head, tail;\n\tprivate long[] buf;\n\tIntDeque(){ this(1 << 17); }\n\tprivate\
+    \ IntDeque(final int n) {\n\t\tthis.n = n;\n\t\thead = tail = 0;\n\t\tbuf = new\
+    \ long[n];\n\t}\n\tIntDeque(final int[] a) {\n\t\tthis(a.length);\n\t\tArrays.stream(a).forEach(i\
+    \ -> add(i));\n\t}\n\tIntDeque(final long[] a) {\n\t\tthis(a.length);\n\t\tArrays.stream(a).forEach(i\
+    \ -> add(i));\n\t}\n\tprivate final int next(final int index) {\n\t\tfinal int\
+    \ next = index + 1;\n\t\treturn next == n ? 0 : next;\n\t}\n\tprivate final int\
+    \ prev(final int index) {\n\t\tfinal int prev = index - 1;\n\t\treturn prev ==\
+    \ -1 ? n - 1 : prev;\n\t}\n\tprivate final int index(final int i) {\n\t\tfinal\
+    \ int size = size();\n\t\tif(i >= size) {\n\t\t\tthrow new IndexOutOfBoundsException(\"\
+    Index \"+ i +\" out of bounds for length \" + size);\n\t\t}\n\t\tfinal int id\
+    \ = head + i;\n\t\treturn n <= id ? id - n : id;\n\t}\n\tprivate final void arraycopy(final\
+    \ int fromIndex, final long[] array, final int from, final int length) {\n\t\t\
+    if(fromIndex + length > size()) {\n\t\t\tthrow new IndexOutOfBoundsException(\"\
+    last source index \" + (fromIndex + length) + \" out of bounds for int[\" + size()\
+    \ + \"]\");\n\t\t}\n\t\tfinal int h = index(fromIndex);\n\t\tif(h + length < n)\
+    \ {\n\t\t\tSystem.arraycopy(buf, h, array, from, length);\n\t\t} else {\n\t\t\t\
+    final int back = n - h;\n\t\t\tSystem.arraycopy(buf, h, array, from, back);\n\t\
+    \t\tSystem.arraycopy(buf, 0, array, from + back, length - back);\n\t\t}\n\t}\n\
+    \tprivate final void extend() {\n\t\tfinal long[] tmp = new long[n << 1];\n\t\t\
+    arraycopy(0, tmp, 0, size());\n\t\tbuf = tmp;\n\t\tn = buf.length;\n\t}\n\tfinal\
+    \ boolean isEmpty(){ return size() == 0; }\n\tfinal int size() {\n\t\tfinal int\
+    \ size = tail - head;\n\t\treturn size < 0 ? size + n : size;\n\t}\n\tfinal void\
+    \ addFirst(final long x) {\n\t\thead = prev(head);\n\t\tif(head == tail) {\n\t\
+    \t\textend();\n\t\t}\n\t\tbuf[head] = x;\n\t}\n\tfinal void addLast(final long\
+    \ x) {\n\t\tif(next(tail) == head) {\n\t\t\textend();\n\t\t}\n\t\tbuf[tail] =\
+    \ x;\n\t\ttail = next(tail);\n\t}\n\tfinal void removeFirst() {\n\t\tif(head ==\
+    \ tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is empty\");\n\t\t\
+    }\n\t\thead = next(head);\n\t}\n\tfinal void removeLast() {\n\t\tif(head == tail)\
+    \ {\n\t\t\tthrow new NoSuchElementException(\"Buffer is empty\");\n\t\t}\n\t\t\
+    tail = prev(tail);\n\t}\n\tfinal long pollFirst() {\n\t\tif(head == tail) {\n\t\
+    \t\tthrow new NoSuchElementException(\"Buffer is empty\");\n\t\t}\n\t\tfinal long\
+    \ ans = buf[head];\n\t\thead = next(head);\n\t\treturn ans;\n\t}\n\tfinal long\
+    \ pollLast() {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"\
+    Buffer is empty\");\n\t\t}\n\t\ttail = prev(tail);\n\t\treturn buf[tail];\n\t\
+    }\n\tfinal long peekFirst(){ return get(0); }\n\tfinal long peekLast(){ return\
+    \ get(n - 1); }\n\tfinal long get(final int i){ return buf[index(i)]; }\n\tfinal\
+    \ void set(final int i, final long x){ buf[index(i)] = x; }\n\tfinal void add(final\
+    \ long x){ addLast(x); }\n\tfinal long poll(){ return pollFirst(); }\n\tfinal\
+    \ long peek(){ return peekFirst(); }\n\tfinal void swap(final int a, final int\
+    \ b) {\n\t\tfinal int i = index(a);\n\t\tfinal int j = index(b);\n\t\tfinal long\
+    \ num = buf[i];\n\t\tbuf[i] = buf[j];\n\t\tbuf[j] = num;\n\t}\n\tfinal void clear(){\
+    \ head = tail = 0; }\n\tfinal long[] toArray(){ return Arrays.copyOf(buf, size());\
+    \ }\n\t@Override\n\tpublic final String toString(){ return Arrays.toString(toArray());\
+    \ }\n}\n\nfinal class Matrix implements Cloneable {\n\tprivate final int h, w;\n\
+    \tprivate final long[][] mat;\n\tMatrix(final int n){ this(n, n); }\n\tMatrix(final\
+    \ int h, final int w) {\n\t\tthis.h = h;\n\t\tthis.w = w;\n\t\tmat = new long[h][w];\n\
+    \t}\n\tMatrix(final int[][] m) {\n\t\tthis(m.length, m[0].length);\n\t\tIntStream.range(0,\
+    \ h).forEach(i -> IntStream.range(0, w).forEach(j -> mat[i][j] = m[i][j]));\n\t\
+    }\n\tMatrix(final long[][] m) {\n\t\tthis(m.length, m[0].length);\n\t\tIntStream.range(0,\
+    \ h).forEach(i -> IntStream.range(0, w).forEach(j -> mat[i][j] = m[i][j]));\n\t\
+    }\n\tstatic final Matrix E(final int n) {\n\t\tfinal Matrix m = new Matrix(n);\n\
+    \t\tIntStream.range(0, n).forEach(i -> m.set(i, i, 1));\n\t\treturn m;\n\t}\n\t\
+    final long[] getH(final int i){ return mat[i]; }\n\tfinal long[] getW(final int\
+    \ i){ return IntStream.range(0, h).mapToLong(j -> mat[j][i]).toArray(); }\n\t\
+    final long[][] get(){ return mat; }\n\tfinal long get(final int i, final int j){\
+    \ return mat[i][j]; }\n\tfinal void set(final int i, final int j, final long x){\
+    \ mat[i][j] = x; }\n\tfinal Matrix add(final Matrix m) {\n\t\tassert(h == m.h\
     \ && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i\
-    \ < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, Utility.mod(mat[i][j]\
-    \ + m.get(i, j), mod));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix sub(final\
-    \ Matrix m) {\n\t\tassert(h == m.h && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h,\
+    \ < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, mat[i][j]\
+    \ + m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix add(final\
+    \ Matrix m, final long mod) {\n\t\tassert(h == m.h && w == m.w);\n\t\tfinal Matrix\
+    \ mt = new Matrix(h, w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j =\
+    \ 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, Utility.mod(mat[i][j] + m.get(i, j),\
+    \ mod));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix sub(final Matrix\
+    \ m) {\n\t\tassert(h == m.h && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h,\
     \ w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\
     \t\t\tmt.set(i, j, mat[i][j] - m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\
     \t}\n\tfinal Matrix sub(final Matrix m, final long mod) {\n\t\tassert(h == m.h\
@@ -1564,7 +1614,8 @@ data:
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
-  - Java/library/structure/Deque.java
+  - Java/library/structure/deque/Deque.java
+  - Java/library/structure/deque/IntDeque.java
   - Java/library/structure/FenwickTree.java
   - Java/library/structure/AVLTree.java
   - Java/library/structure/pair/Pair.java
@@ -1606,7 +1657,8 @@ data:
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
-  - Java/library/structure/Deque.java
+  - Java/library/structure/deque/Deque.java
+  - Java/library/structure/deque/IntDeque.java
   - Java/library/structure/FenwickTree.java
   - Java/library/structure/AVLTree.java
   - Java/library/structure/pair/Pair.java
@@ -1625,7 +1677,7 @@ data:
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
-  timestamp: '2024-01-15 13:11:14+09:00'
+  timestamp: '2024-01-15 13:22:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

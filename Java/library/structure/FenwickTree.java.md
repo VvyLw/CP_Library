@@ -77,9 +77,6 @@ data:
     path: Java/library/structure/AVLTree.java
     title: Java/library/structure/AVLTree.java
   - icon: ':warning:'
-    path: Java/library/structure/Deque.java
-    title: Java/library/structure/Deque.java
-  - icon: ':warning:'
     path: Java/library/structure/DoubleEndedPriorityQueue.java
     title: Java/library/structure/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
@@ -88,6 +85,12 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/SparseTable.java
     title: Java/library/structure/SparseTable.java
+  - icon: ':warning:'
+    path: Java/library/structure/deque/Deque.java
+    title: Java/library/structure/deque/Deque.java
+  - icon: ':warning:'
+    path: Java/library/structure/deque/IntDeque.java
+    title: Java/library/structure/deque/IntDeque.java
   - icon: ':warning:'
     path: Java/library/structure/pair/FloatPair.java
     title: Java/library/structure/pair/FloatPair.java
@@ -195,9 +198,6 @@ data:
     path: Java/library/structure/AVLTree.java
     title: Java/library/structure/AVLTree.java
   - icon: ':warning:'
-    path: Java/library/structure/Deque.java
-    title: Java/library/structure/Deque.java
-  - icon: ':warning:'
     path: Java/library/structure/DoubleEndedPriorityQueue.java
     title: Java/library/structure/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
@@ -206,6 +206,12 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/SparseTable.java
     title: Java/library/structure/SparseTable.java
+  - icon: ':warning:'
+    path: Java/library/structure/deque/Deque.java
+    title: Java/library/structure/deque/Deque.java
+  - icon: ':warning:'
+    path: Java/library/structure/deque/IntDeque.java
+    title: Java/library/structure/deque/IntDeque.java
   - icon: ':warning:'
     path: Java/library/structure/pair/FloatPair.java
     title: Java/library/structure/pair/FloatPair.java
@@ -304,7 +310,8 @@ data:
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
-  - Java/library/structure/Deque.java
+  - Java/library/structure/deque/Deque.java
+  - Java/library/structure/deque/IntDeque.java
   - Java/library/structure/AVLTree.java
   - Java/library/structure/pair/Pair.java
   - Java/library/structure/pair/IntPair.java
@@ -346,7 +353,8 @@ data:
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
-  - Java/library/structure/Deque.java
+  - Java/library/structure/deque/Deque.java
+  - Java/library/structure/deque/IntDeque.java
   - Java/library/structure/AVLTree.java
   - Java/library/structure/pair/Pair.java
   - Java/library/structure/pair/IntPair.java
@@ -364,7 +372,7 @@ data:
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
-  timestamp: '2024-01-15 13:11:14+09:00'
+  timestamp: '2024-01-15 13:22:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/FenwickTree.java

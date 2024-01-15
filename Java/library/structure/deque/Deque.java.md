@@ -89,6 +89,9 @@ data:
     path: Java/library/structure/SparseTable.java
     title: Java/library/structure/SparseTable.java
   - icon: ':warning:'
+    path: Java/library/structure/deque/IntDeque.java
+    title: Java/library/structure/deque/IntDeque.java
+  - icon: ':warning:'
     path: Java/library/structure/pair/FloatPair.java
     title: Java/library/structure/pair/FloatPair.java
   - icon: ':warning:'
@@ -207,6 +210,9 @@ data:
     path: Java/library/structure/SparseTable.java
     title: Java/library/structure/SparseTable.java
   - icon: ':warning:'
+    path: Java/library/structure/deque/IntDeque.java
+    title: Java/library/structure/deque/IntDeque.java
+  - icon: ':warning:'
     path: Java/library/structure/pair/FloatPair.java
     title: Java/library/structure/pair/FloatPair.java
   - icon: ':warning:'
@@ -245,8 +251,8 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/structure/Deque.java\n"
-  code: "package library.structure;\n\nimport java.util.Arrays;\nimport java.util.Iterator;\n\
+    RuntimeError: bundler is not specified: Java/library/structure/deque/Deque.java\n"
+  code: "package library.structure.deque;\n\nimport java.util.Arrays;\nimport java.util.Iterator;\n\
     import java.util.NoSuchElementException;\n\n/**\n * \u30E9\u30F3\u30C0\u30E0\u30A2\
     \u30AF\u30BB\u30B9\u304C\u53EF\u80FD\u306ADeque\n * viral\u3055\u3093\u306B\u611F\
     \u8B1D\n * @see <a href=\"https://github.com/viral8code/Primitive-Specialized-Library/blob/main/util/ArrayDeque/IntRingBuffer/IntRingBuffer.java\"\
@@ -362,6 +368,7 @@ data:
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
+  - Java/library/structure/deque/IntDeque.java
   - Java/library/structure/FenwickTree.java
   - Java/library/structure/AVLTree.java
   - Java/library/structure/pair/Pair.java
@@ -381,7 +388,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   isVerificationFile: false
-  path: Java/library/structure/Deque.java
+  path: Java/library/structure/deque/Deque.java
   requiredBy:
   - Java/yukicoder.java
   - Java/All.java
@@ -404,6 +411,7 @@ data:
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
+  - Java/library/structure/deque/IntDeque.java
   - Java/library/structure/FenwickTree.java
   - Java/library/structure/AVLTree.java
   - Java/library/structure/pair/Pair.java
@@ -422,13 +430,13 @@ data:
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
-  timestamp: '2024-01-15 13:11:14+09:00'
+  timestamp: '2024-01-15 13:22:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/structure/Deque.java
+documentation_of: Java/library/structure/deque/Deque.java
 layout: document
 redirect_from:
-- /library/Java/library/structure/Deque.java
-- /library/Java/library/structure/Deque.java.html
-title: Java/library/structure/Deque.java
+- /library/Java/library/structure/deque/Deque.java
+- /library/Java/library/structure/deque/Deque.java.html
+title: Java/library/structure/deque/Deque.java
 ---

@@ -153,9 +153,6 @@ data:
       path: Java/library/structure/AVLTree.java
       title: Java/library/structure/AVLTree.java
     - icon: ':warning:'
-      path: Java/library/structure/Deque.java
-      title: Java/library/structure/Deque.java
-    - icon: ':warning:'
       path: Java/library/structure/DoubleEndedPriorityQueue.java
       title: Java/library/structure/DoubleEndedPriorityQueue.java
     - icon: ':warning:'
@@ -167,6 +164,14 @@ data:
     - icon: ':warning:'
       path: Java/library/structure/SparseTable.java
       title: Java/library/structure/SparseTable.java
+  - name: Java/library/structure/deque
+    pages:
+    - icon: ':warning:'
+      path: Java/library/structure/deque/Deque.java
+      title: Java/library/structure/deque/Deque.java
+    - icon: ':warning:'
+      path: Java/library/structure/deque/IntDeque.java
+      title: Java/library/structure/deque/IntDeque.java
   - name: Java/library/structure/pair
     pages:
     - icon: ':warning:'
