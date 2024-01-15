@@ -319,23 +319,23 @@ data:
     \ (T) buf[index(i)]; }\n\t/**\n\t * i\u756A\u76EE\u306B\u8981\u7D20\u3092\u4EE3\
     \u5165\u3059\u308B\n\t * @param i \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n\t * @param\
     \ x \u8981\u7D20\n\t */\n\tpublic final void set(final int i, final T x){ buf[index(i)]\
-    \ = x; }\n\t/**\n\t * @see Deque#addLast\n\t */\n\tpublic final void add(final\
-    \ T x){ addLast(x); }\n\t/**\n\t * @see Deque#pollFirst\n\t */\n\tpublic final\
-    \ T poll(){ return pollFirst(); }\n\t/**\n\t * @see Deque#peekFirst\n\t */\n\t\
-    public final T peek(){ return peekFirst(); }\n\t/**\n\t * Deque\u306Ea\u756A\u76EE\
-    \u3068b\u756A\u76EE\u306B\u3042\u308B\u8981\u7D20\u3092\u5165\u308C\u66FF\u3048\
-    \u308B\n\t * @param a \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n\t * @param b \u30A4\
-    \u30F3\u30C7\u30C3\u30AF\u30B9\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\t\
-    public final void swap(final int a, final int b) {\n\t\tfinal int i = index(a),\
-    \ j = index(b);\n\t\tfinal T num = (T) buf[i];\n\t\tbuf[i] = buf[j];\n\t\tbuf[j]\
-    \ = num;\n\t}\n\t/**\n\t * Deque\u3092\u7A7A\u306B\u3059\u308B\n\t */\n\tpublic\
-    \ final void clear(){ head = tail = 0; }\n\t/**\n\t * @return \u914D\u5217\u5316\
-    \u3057\u305FDeque\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T[] toArray()\
-    \ {\n\t\tfinal Object[] array = new Object[size()];\n\t\tarraycopy(0, (T[]) array,\
-    \ 0, size());\n\t\treturn (T[]) array;\n\t}\n\t/**\n\t * \u51FA\u529B\u3059\u308B\
-    \u305F\u3081\u306B\u5FC5\u8981\n\t */\n\t@Override\n\tpublic final String toString(){\
-    \ return Arrays.toString(toArray()); }\n\t/**\n\t * \u30A4\u30C6\u30EC\u30FC\u30BF\
-    \n\t */\n\t@Override\n\tpublic final Iterator<T> iterator(){ return new DequeIterator();\
+    \ = x; }\n\t/**\n\t * @see #addLast\n\t */\n\tpublic final void add(final T x){\
+    \ addLast(x); }\n\t/**\n\t * @see #pollFirst\n\t */\n\tpublic final T poll(){\
+    \ return pollFirst(); }\n\t/**\n\t * @see #peekFirst\n\t */\n\tpublic final T\
+    \ peek(){ return peekFirst(); }\n\t/**\n\t * Deque\u306Ea\u756A\u76EE\u3068b\u756A\
+    \u76EE\u306B\u3042\u308B\u8981\u7D20\u3092\u5165\u308C\u66FF\u3048\u308B\n\t *\
+    \ @param a \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n\t * @param b \u30A4\u30F3\u30C7\
+    \u30C3\u30AF\u30B9\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic final\
+    \ void swap(final int a, final int b) {\n\t\tfinal int i = index(a), j = index(b);\n\
+    \t\tfinal T num = (T) buf[i];\n\t\tbuf[i] = buf[j];\n\t\tbuf[j] = num;\n\t}\n\t\
+    /**\n\t * Deque\u3092\u7A7A\u306B\u3059\u308B\n\t */\n\tpublic final void clear(){\
+    \ head = tail = 0; }\n\t/**\n\t * @return \u914D\u5217\u5316\u3057\u305FDeque\n\
+    \t */\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T[] toArray() {\n\t\tfinal\
+    \ Object[] array = new Object[size()];\n\t\tarraycopy(0, (T[]) array, 0, size());\n\
+    \t\treturn (T[]) array;\n\t}\n\t/**\n\t * \u51FA\u529B\u3059\u308B\u305F\u3081\
+    \u306B\u5FC5\u8981\n\t */\n\t@Override\n\tpublic final String toString(){ return\
+    \ Arrays.toString(toArray()); }\n\t/**\n\t * \u30A4\u30C6\u30EC\u30FC\u30BF\n\t\
+    \ */\n\t@Override\n\tpublic final Iterator<T> iterator(){ return new DequeIterator();\
     \ }\n\t/**\n\t * \u30A4\u30C6\u30EC\u30FC\u30BF\u306E\u4E2D\u8EAB\n\t */\n\tprivate\
     \ class DequeIterator implements Iterator<T> {\n\t\tprivate int now = head;\n\t\
     \tprivate int rem = size();\n\t\t@Override\n\t\tpublic boolean hasNext(){ return\
@@ -430,7 +430,7 @@ data:
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
-  timestamp: '2024-01-15 13:22:42+09:00'
+  timestamp: '2024-01-15 22:27:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/deque/Deque.java

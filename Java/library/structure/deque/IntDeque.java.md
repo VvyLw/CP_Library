@@ -253,52 +253,79 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/structure/deque/IntDeque.java\n"
   code: "package library.structure.deque;\n\nimport java.util.Arrays;\nimport java.util.NoSuchElementException;\n\
-    \npublic final class IntDeque {\n\tprivate int n, head, tail;\n\tprivate long[]\
-    \ buf;\n\tpublic IntDeque(){ this(1 << 17); }\n\tprivate IntDeque(final int n)\
-    \ {\n\t\tthis.n = n;\n\t\thead = tail = 0;\n\t\tbuf = new long[n];\n\t}\n\tpublic\
-    \ IntDeque(final int[] a) {\n\t\tthis(a.length);\n\t\tArrays.stream(a).forEach(i\
-    \ -> add(i));\n\t}\n\tpublic IntDeque(final long[] a) {\n\t\tthis(a.length);\n\
-    \t\tArrays.stream(a).forEach(i -> add(i));\n\t}\n\tprivate final int next(final\
-    \ int index) {\n\t\tfinal int next = index + 1;\n\t\treturn next == n ? 0 : next;\n\
-    \t}\n\tprivate final int prev(final int index) {\n\t\tfinal int prev = index -\
-    \ 1;\n\t\treturn prev == -1 ? n - 1 : prev;\n\t}\n\tprivate final int index(final\
-    \ int i) {\n\t\tfinal int size = size();\n\t\tif(i >= size) {\n\t\t\tthrow new\
-    \ IndexOutOfBoundsException(\"Index \"+ i +\" out of bounds for length \" + size);\n\
-    \t\t}\n\t\tfinal int id = head + i;\n\t\treturn n <= id ? id - n : id;\n\t}\n\t\
-    private final void arraycopy(final int fromIndex, final long[] array, final int\
-    \ from, final int length) {\n\t\tif(fromIndex + length > size()) {\n\t\t\tthrow\
-    \ new IndexOutOfBoundsException(\"last source index \" + (fromIndex + length)\
-    \ + \" out of bounds for int[\" + size() + \"]\");\n\t\t}\n\t\tfinal int h = index(fromIndex);\n\
-    \t\tif(h + length < n) {\n\t\t\tSystem.arraycopy(buf, h, array, from, length);\n\
-    \t\t} else {\n\t\t\tfinal int back = n - h;\n\t\t\tSystem.arraycopy(buf, h, array,\
-    \ from, back);\n\t\t\tSystem.arraycopy(buf, 0, array, from + back, length - back);\n\
-    \t\t}\n\t}\n\tprivate final void extend() {\n\t\tfinal long[] tmp = new long[n\
-    \ << 1];\n\t\tarraycopy(0, tmp, 0, size());\n\t\tbuf = tmp;\n\t\tn = buf.length;\n\
-    \t}\n\tpublic final boolean isEmpty(){ return size() == 0; }\n\tpublic final int\
-    \ size() {\n\t\tfinal int size = tail - head;\n\t\treturn size < 0 ? size + n\
-    \ : size;\n\t}\n\tpublic final void addFirst(final long x) {\n\t\thead = prev(head);\n\
-    \t\tif(head == tail) {\n\t\t\textend();\n\t\t}\n\t\tbuf[head] = x;\n\t}\n\tpublic\
-    \ final void addLast(final long x) {\n\t\tif(next(tail) == head) {\n\t\t\textend();\n\
-    \t\t}\n\t\tbuf[tail] = x;\n\t\ttail = next(tail);\n\t}\n\tpublic final void removeFirst()\
+    \n/**\n * \u6574\u6570\u7279\u5316\u306EDeque\n * Iterator\u306F\u306A\u3044\n\
+    \ * @see Deque\n */\npublic final class IntDeque {\n\tprivate int n, head, tail;\n\
+    \tprivate long[] buf;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\
+    \t */\n\tpublic IntDeque(){ this(1 << 17); }\n\tprivate IntDeque(final int n)\
+    \ {\n\t\tthis.n = n;\n\t\thead = tail = 0;\n\t\tbuf = new long[n];\n\t}\n\t/**\n\
+    \t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a int\u578B\u306E\
+    \u914D\u5217\n\t */\n\tpublic IntDeque(final int[] a) {\n\t\tthis(a.length);\n\
+    \t\tArrays.stream(a).forEach(i -> add(i));\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\
+    \u30C8\u30E9\u30AF\u30BF\n\t * @param a long\u578B\u306E\u914D\u5217\n\t */\n\t\
+    public IntDeque(final long[] a) {\n\t\tthis(a.length);\n\t\tArrays.stream(a).forEach(i\
+    \ -> add(i));\n\t}\n\tprivate final int next(final int index) {\n\t\tfinal int\
+    \ next = index + 1;\n\t\treturn next == n ? 0 : next;\n\t}\n\tprivate final int\
+    \ prev(final int index) {\n\t\tfinal int prev = index - 1;\n\t\treturn prev ==\
+    \ -1 ? n - 1 : prev;\n\t}\n\tprivate final int index(final int i) {\n\t\tfinal\
+    \ int size = size();\n\t\tif(i >= size) {\n\t\t\tthrow new IndexOutOfBoundsException(\"\
+    Index \"+ i +\" out of bounds for length \" + size);\n\t\t}\n\t\tfinal int id\
+    \ = head + i;\n\t\treturn n <= id ? id - n : id;\n\t}\n\tprivate final void arraycopy(final\
+    \ int fromIndex, final long[] array, final int from, final int length) {\n\t\t\
+    if(fromIndex + length > size()) {\n\t\t\tthrow new IndexOutOfBoundsException(\"\
+    last source index \" + (fromIndex + length) + \" out of bounds for int[\" + size()\
+    \ + \"]\");\n\t\t}\n\t\tfinal int h = index(fromIndex);\n\t\tif(h + length < n)\
+    \ {\n\t\t\tSystem.arraycopy(buf, h, array, from, length);\n\t\t} else {\n\t\t\t\
+    final int back = n - h;\n\t\t\tSystem.arraycopy(buf, h, array, from, back);\n\t\
+    \t\tSystem.arraycopy(buf, 0, array, from + back, length - back);\n\t\t}\n\t}\n\
+    \tprivate final void extend() {\n\t\tfinal long[] tmp = new long[n << 1];\n\t\t\
+    arraycopy(0, tmp, 0, size());\n\t\tbuf = tmp;\n\t\tn = buf.length;\n\t}\n\t/**\n\
+    \t * @return Deque\u304C\u7A7A\u304B\u3069\u3046\u304B\n\t */\n\tpublic final\
+    \ boolean isEmpty(){ return size() == 0; }\n\t/**\n\t * @return Deque\u306E\u30B5\
+    \u30A4\u30BA\n\t */\n\tpublic final int size() {\n\t\tfinal int size = tail -\
+    \ head;\n\t\treturn size < 0 ? size + n : size;\n\t}\n\t/**\n\t * Deque\u306E\u5148\
+    \u982D\u306B\u8981\u7D20\u3092\u8FFD\u52A0\n\t * @param x\n\t */\n\tpublic final\
+    \ void addFirst(final long x) {\n\t\thead = prev(head);\n\t\tif(head == tail)\
+    \ {\n\t\t\textend();\n\t\t}\n\t\tbuf[head] = x;\n\t}\n\t/**\n\t * Deque\u306E\u672B\
+    \u5C3E\u306B\u8981\u7D20\u3092\u8FFD\u52A0\n\t * @param x\n\t */\n\tpublic final\
+    \ void addLast(final long x) {\n\t\tif(next(tail) == head) {\n\t\t\textend();\n\
+    \t\t}\n\t\tbuf[tail] = x;\n\t\ttail = next(tail);\n\t}\n\t/**\n\t * Deque\u306E\
+    \u5148\u982D\u306E\u8981\u7D20\u3092\u524A\u9664\n\t */\n\tpublic final void removeFirst()\
     \ {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is\
-    \ empty\");\n\t\t}\n\t\thead = next(head);\n\t}\n\tpublic final void removeLast()\
+    \ empty\");\n\t\t}\n\t\thead = next(head);\n\t}\n\t/**\n\t * Deque\u306E\u672B\
+    \u5C3E\u306E\u8981\u7D20\u3092\u524A\u9664\n\t */\n\tpublic final void removeLast()\
     \ {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is\
-    \ empty\");\n\t\t}\n\t\ttail = prev(tail);\n\t}\n\tpublic final long pollFirst()\
+    \ empty\");\n\t\t}\n\t\ttail = prev(tail);\n\t}\n\t/**\n\t * Deque\u306E\u5148\
+    \u982D\u306E\u8981\u7D20\u3092\u524A\u9664\n\t * @return \u524A\u9664\u3057\u305F\
+    \u8981\u7D20\n\t */\n\tpublic final long pollFirst() {\n\t\tif(head == tail) {\n\
+    \t\t\tthrow new NoSuchElementException(\"Buffer is empty\");\n\t\t}\n\t\tfinal\
+    \ long ans = buf[head];\n\t\thead = next(head);\n\t\treturn ans;\n\t}\n\t/**\n\
+    \t * Deque\u306E\u672B\u5C3E\u306E\u8981\u7D20\u3092\u524A\u9664\n\t * @return\
+    \ \u524A\u9664\u3057\u305F\u8981\u7D20\n\t */\n\tpublic final long pollLast()\
     \ {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is\
-    \ empty\");\n\t\t}\n\t\tfinal long ans = buf[head];\n\t\thead = next(head);\n\t\
-    \treturn ans;\n\t}\n\tpublic final long pollLast() {\n\t\tif(head == tail) {\n\
-    \t\t\tthrow new NoSuchElementException(\"Buffer is empty\");\n\t\t}\n\t\ttail\
-    \ = prev(tail);\n\t\treturn buf[tail];\n\t}\n\tpublic final long peekFirst(){\
-    \ return get(0); }\n\tpublic final long peekLast(){ return get(n - 1); }\n\tpublic\
-    \ final long get(final int i){ return buf[index(i)]; }\n\tpublic final void set(final\
-    \ int i, final long x){ buf[index(i)] = x; }\n\tpublic final void add(final long\
-    \ x){ addLast(x); }\n\tpublic final long poll(){ return pollFirst(); }\n\tpublic\
-    \ final long peek(){ return peekFirst(); }\n\tpublic final void swap(final int\
-    \ a, final int b) {\n\t\tfinal int i = index(a);\n\t\tfinal int j = index(b);\n\
+    \ empty\");\n\t\t}\n\t\ttail = prev(tail);\n\t\treturn buf[tail];\n\t}\n\t/**\n\
+    \t * @return Deque\u306E\u5148\u982D\u306E\u8981\u7D20\n\t */\n\tpublic final\
+    \ long peekFirst(){ return get(0); }\n\t/**\n\t * @return Deque\u306E\u672B\u5C3E\
+    \u306E\u8981\u7D20\n\t */\n\tpublic final long peekLast(){ return get(n - 1);\
+    \ }\n\t/**\n\t * \u30E9\u30F3\u30C0\u30E0\u30A2\u30AF\u30BB\u30B9\n\t * @param\
+    \ i \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n\t * @return Deque\u306Ei\u756A\u76EE\
+    \u306B\u683C\u7D0D\u3055\u308C\u3066\u3044\u308B\u8981\u7D20\n\t */\n\tpublic\
+    \ final long get(final int i){ return buf[index(i)]; }\n\t/**\n\t * i\u756A\u76EE\
+    \u306B\u8981\u7D20\u3092\u4EE3\u5165\u3059\u308B\n\t * @param i \u30A4\u30F3\u30C7\
+    \u30C3\u30AF\u30B9\n\t * @param x \u8981\u7D20\n\t */\n\tpublic final void set(final\
+    \ int i, final long x){ buf[index(i)] = x; }\n\t/**\n\t * @see #addLast\n\t */\n\
+    \tpublic final void add(final long x){ addLast(x); }\n\t/**\n\t * @see #pollFirst\n\
+    \t */\n\tpublic final long poll(){ return pollFirst(); }\n\t/**\n\t * @see #peekFirst\n\
+    \t */\n\tpublic final long peek(){ return peekFirst(); }\n\t/**\n\t * Deque\u306E\
+    a\u756A\u76EE\u3068b\u756A\u76EE\u306B\u3042\u308B\u8981\u7D20\u3092\u5165\u308C\
+    \u66FF\u3048\u308B\n\t * @param a \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n\t * @param\
+    \ b \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n\t */\n\tpublic final void swap(final\
+    \ int a, final int b) {\n\t\tfinal int i = index(a);\n\t\tfinal int j = index(b);\n\
     \t\tfinal long num = buf[i];\n\t\tbuf[i] = buf[j];\n\t\tbuf[j] = num;\n\t}\n\t\
-    public final void clear(){ head = tail = 0; }\n\tpublic final long[] toArray(){\
-    \ return Arrays.copyOf(buf, size()); }\n\t@Override\n\tpublic final String toString(){\
-    \ return Arrays.toString(toArray()); }\n}"
+    /**\n\t * Deque\u3092\u7A7A\u306B\u3059\u308B\n\t */\n\tpublic final void clear(){\
+    \ head = tail = 0; }\n\t/**\n\t * @return \u914D\u5217\u5316\u3057\u305FDeque\n\
+    \t */\n\tpublic final long[] toArray(){ return Arrays.copyOf(buf, size()); }\n\
+    \t@Override\n\tpublic final String toString(){ return Arrays.toString(toArray());\
+    \ }\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/All.java
@@ -383,7 +410,7 @@ data:
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
-  timestamp: '2024-01-15 13:22:42+09:00'
+  timestamp: '2024-01-15 22:27:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/deque/IntDeque.java
