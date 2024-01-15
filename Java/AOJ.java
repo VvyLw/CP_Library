@@ -173,36 +173,37 @@ class Utility {
 	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> F[] first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i -> i.first).toArray(); }
 	@SuppressWarnings("unchecked")
 	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> S[] second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i -> i.second).toArray(); }
-	protected interface TriFunction<T, U, V, W> {
-		public W apply(final T a, final U b, final V c);
-	}
-	protected interface QuadFunction<A, B, C, D, E> {
-		public E apply(final A a, final B b, final C c, final D d);
-	}
-	protected interface RecursiveFunction<T, U> {
-		public U apply(final RecursiveFunction<T, U> rec, final T n);
-	}
-	protected interface RecursiveBiFunction<T, U, V> {
-		public V apply(final RecursiveBiFunction<T, U, V> rec, final T n, final U m);
-	}
-	protected interface RecursiveTriFunction<T, U, V, W> {
-		public W apply(final RecursiveTriFunction<T, U, V, W> rec, final T p, final U q, final V r);
-	}
-	protected interface RecursiveUnaryOperator<T> {
-		public T apply(final RecursiveUnaryOperator<T> rec, final T n);
-	}
-	protected interface RecursiveBinaryOperator<T> {
-		public T apply(final RecursiveBinaryOperator<T> rec, final T a, final T b);
-	}
-	protected interface RecursiveConsumer<T> {
-		public void accept(final RecursiveConsumer<T> rec, final T x);
-	}
-	protected interface RecursiveBiConsumer<T, U> {
-		public void accept(final RecursiveBiConsumer<T, U> rec, final T x, final U y);
-	}
-	protected interface RecursiveTriConsumer<T, U, V> {
-		public void accept(final RecursiveTriConsumer<T, U, V> rec, final T x, final U y, final V z);
-	}
+}
+
+interface TriFunction<T, U, V, W> {
+	public W apply(final T a, final U b, final V c);
+}
+interface QuadFunction<A, B, C, D, E> {
+	public E apply(final A a, final B b, final C c, final D d);
+}
+interface RecursiveFunction<T, U> {
+	public U apply(final RecursiveFunction<T, U> rec, final T n);
+}
+interface RecursiveBiFunction<T, U, V> {
+	public V apply(final RecursiveBiFunction<T, U, V> rec, final T n, final U m);
+}
+interface RecursiveTriFunction<T, U, V, W> {
+	public W apply(final RecursiveTriFunction<T, U, V, W> rec, final T p, final U q, final V r);
+}
+interface RecursiveUnaryOperator<T> {
+	public T apply(final RecursiveUnaryOperator<T> rec, final T n);
+}
+interface RecursiveBinaryOperator<T> {
+	public T apply(final RecursiveBinaryOperator<T> rec, final T a, final T b);
+}
+interface RecursiveConsumer<T> {
+	public void accept(final RecursiveConsumer<T> rec, final T x);
+}
+interface RecursiveBiConsumer<T, U> {
+	public void accept(final RecursiveBiConsumer<T, U> rec, final T x, final U y);
+}
+interface RecursiveTriConsumer<T, U, V> {
+	public void accept(final RecursiveTriConsumer<T, U, V> rec, final T x, final U y, final V z);
 }
 
 final class MyScanner implements Closeable, AutoCloseable {
