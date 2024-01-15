@@ -6,12 +6,18 @@ template <class T> struct FenwickTree {
 private:
     int N;
     std::vector<T> data;
-public:
-    FenwickTree(){}
-    FenwickTree(int size){ init(size); }
-    void init(int size) {
+    void init(const size_t size) {
         N = size + 2;
         data.assign(N + 1, {});
+    }
+public:
+    FenwickTree(){}
+    FenwickTree(size_t size){ init(size); }
+    FenwickTree(const std::vector<T> &a) {
+        init(a.size());
+        for(size_t i = 0; i < a.size(); ++i) {
+            add(i, a[i]);
+        }
     }
     // get sum of [0,k]
     T sum(int k) const {

@@ -1,5 +1,7 @@
 package library.structure;
 
+import java.util.stream.IntStream;
+
 /**
  * FenwickTree(Binary Indexed Tree[BIT])
  * @see <a href="https://nyaannyaan.github.io/library/data-structure/binary-indexed-tree.hpp">参考元</a>
@@ -14,6 +16,22 @@ public final class FenwickTree {
 	public FenwickTree(final int n) {
 		this.n = n + 2;
 		data = new long[this.n + 1];
+	}
+	/**
+	 * コンストラクタ
+	 * @param a int型の配列
+	 */
+	public FenwickTree(final int[] a) {
+		this(a.length);
+		IntStream.range(0, n).forEach(i -> add(i, a[i]));
+	}
+	/**
+	 * コンストラクタ
+	 * @param a long型の配列
+	 */
+	public FenwickTree(final long[] a) {
+		this(a.length);
+		IntStream.range(0, n).forEach(i -> add(i, a[i]));
 	}
 	/**
 	 * @param k

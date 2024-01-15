@@ -2368,6 +2368,14 @@ final class FenwickTree {
 		this.n = n + 2;
 		data = new long[this.n + 1];
 	}
+	FenwickTree(final int[] a) {
+		this(a.length);
+		IntStream.range(0, n).forEach(i -> add(i, a[i]));
+	}
+	FenwickTree(final long[] a) {
+		this(a.length);
+		IntStream.range(0, n).forEach(i -> add(i, a[i]));
+	}
 	final long sum(int k) {
 		if(k < 0) return 0;
 		long ret = 0;

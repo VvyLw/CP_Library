@@ -22,11 +22,8 @@ int main() {
 
 void VvyLw::solve() {
 	INT(n,q);
-	FenwickTree<ll> bit(n);
-	rep(n) {
-		INT(a);
-		bit.add(i,a);
-	}
+	VEC(ll,a,n);
+	FenwickTree bit(a);
 	while(q--) {
 		INT(t,p,q);
 		if(t) out(bit.sum(p,--q));
