@@ -82,6 +82,38 @@ data:
     - icon: ':warning:'
       path: Java/library/core/VvyLw.java
       title: Java/library/core/VvyLw.java
+  - name: Java/library/core/interfaces
+    pages:
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/QuadFunction.java
+      title: Java/library/core/interfaces/QuadFunction.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveBiConsumer.java
+      title: Java/library/core/interfaces/RecursiveBiConsumer.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveBiFunction.java
+      title: Java/library/core/interfaces/RecursiveBiFunction.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveBinaryOperator.java
+      title: Java/library/core/interfaces/RecursiveBinaryOperator.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveConsumer.java
+      title: Java/library/core/interfaces/RecursiveConsumer.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveFunction.java
+      title: Java/library/core/interfaces/RecursiveFunction.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveTriConsumer.java
+      title: Java/library/core/interfaces/RecursiveTriConsumer.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveTriFunction.java
+      title: Java/library/core/interfaces/RecursiveTriFunction.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveUnaryOperator.java
+      title: Java/library/core/interfaces/RecursiveUnaryOperator.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/TriFunction.java
+      title: Java/library/core/interfaces/TriFunction.java
   - name: Java/library/core/io
     pages:
     - icon: ':warning:'

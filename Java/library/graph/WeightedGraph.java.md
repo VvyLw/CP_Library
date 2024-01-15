@@ -17,6 +17,36 @@ data:
     path: Java/library/core/VvyLw.java
     title: Java/library/core/VvyLw.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/QuadFunction.java
+    title: Java/library/core/interfaces/QuadFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveBiConsumer.java
+    title: Java/library/core/interfaces/RecursiveBiConsumer.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveBiFunction.java
+    title: Java/library/core/interfaces/RecursiveBiFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveBinaryOperator.java
+    title: Java/library/core/interfaces/RecursiveBinaryOperator.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveConsumer.java
+    title: Java/library/core/interfaces/RecursiveConsumer.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveFunction.java
+    title: Java/library/core/interfaces/RecursiveFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveTriConsumer.java
+    title: Java/library/core/interfaces/RecursiveTriConsumer.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveTriFunction.java
+    title: Java/library/core/interfaces/RecursiveTriFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveUnaryOperator.java
+    title: Java/library/core/interfaces/RecursiveUnaryOperator.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/TriFunction.java
+    title: Java/library/core/interfaces/TriFunction.java
+  - icon: ':warning:'
     path: Java/library/core/io/MyPrinter.java
     title: Java/library/core/io/MyPrinter.java
   - icon: ':warning:'
@@ -137,6 +167,36 @@ data:
   - icon: ':warning:'
     path: Java/library/core/VvyLw.java
     title: Java/library/core/VvyLw.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/QuadFunction.java
+    title: Java/library/core/interfaces/QuadFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveBiConsumer.java
+    title: Java/library/core/interfaces/RecursiveBiConsumer.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveBiFunction.java
+    title: Java/library/core/interfaces/RecursiveBiFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveBinaryOperator.java
+    title: Java/library/core/interfaces/RecursiveBinaryOperator.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveConsumer.java
+    title: Java/library/core/interfaces/RecursiveConsumer.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveFunction.java
+    title: Java/library/core/interfaces/RecursiveFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveTriConsumer.java
+    title: Java/library/core/interfaces/RecursiveTriConsumer.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveTriFunction.java
+    title: Java/library/core/interfaces/RecursiveTriFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveUnaryOperator.java
+    title: Java/library/core/interfaces/RecursiveUnaryOperator.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/TriFunction.java
+    title: Java/library/core/interfaces/TriFunction.java
   - icon: ':warning:'
     path: Java/library/core/io/MyPrinter.java
     title: Java/library/core/io/MyPrinter.java
@@ -373,6 +433,16 @@ data:
   - Java/library/core/Main.java
   - Java/library/core/VvyLw.java
   - Java/library/core/Utility.java
+  - Java/library/core/interfaces/RecursiveBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveTriFunction.java
+  - Java/library/core/interfaces/RecursiveBiFunction.java
+  - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/TriFunction.java
+  - Java/library/core/interfaces/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/RecursiveUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveConsumer.java
+  - Java/library/core/interfaces/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/RecursiveFunction.java
   - Java/library/graph/Edge.java
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/MST.java
@@ -416,11 +486,21 @@ data:
   - Java/library/core/Main.java
   - Java/library/core/VvyLw.java
   - Java/library/core/Utility.java
+  - Java/library/core/interfaces/RecursiveBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveTriFunction.java
+  - Java/library/core/interfaces/RecursiveBiFunction.java
+  - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/TriFunction.java
+  - Java/library/core/interfaces/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/RecursiveUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveConsumer.java
+  - Java/library/core/interfaces/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/RecursiveFunction.java
   - Java/library/graph/Edge.java
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
-  timestamp: '2024-01-15 23:23:39+09:00'
+  timestamp: '2024-01-16 00:07:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/WeightedGraph.java

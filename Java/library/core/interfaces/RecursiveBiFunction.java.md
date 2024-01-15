@@ -23,9 +23,6 @@ data:
     path: Java/library/core/interfaces/RecursiveBiConsumer.java
     title: Java/library/core/interfaces/RecursiveBiConsumer.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveBiFunction.java
-    title: Java/library/core/interfaces/RecursiveBiFunction.java
-  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveBinaryOperator.java
     title: Java/library/core/interfaces/RecursiveBinaryOperator.java
   - icon: ':warning:'
@@ -61,6 +58,9 @@ data:
   - icon: ':warning:'
     path: Java/library/graph/LowestCommonAncestor.java
     title: Java/library/graph/LowestCommonAncestor.java
+  - icon: ':warning:'
+    path: Java/library/graph/MST.java
+    title: Java/library/graph/MST.java
   - icon: ':warning:'
     path: Java/library/graph/WeightedGraph.java
     title: Java/library/graph/WeightedGraph.java
@@ -174,9 +174,6 @@ data:
     path: Java/library/core/interfaces/RecursiveBiConsumer.java
     title: Java/library/core/interfaces/RecursiveBiConsumer.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveBiFunction.java
-    title: Java/library/core/interfaces/RecursiveBiFunction.java
-  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveBinaryOperator.java
     title: Java/library/core/interfaces/RecursiveBinaryOperator.java
   - icon: ':warning:'
@@ -212,6 +209,9 @@ data:
   - icon: ':warning:'
     path: Java/library/graph/LowestCommonAncestor.java
     title: Java/library/graph/LowestCommonAncestor.java
+  - icon: ':warning:'
+    path: Java/library/graph/MST.java
+    title: Java/library/graph/MST.java
   - icon: ':warning:'
     path: Java/library/graph/WeightedGraph.java
     title: Java/library/graph/WeightedGraph.java
@@ -311,12 +311,12 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/graph/MST.java\n"
-  code: "package library.graph;\n\nimport java.util.ArrayList;\n\n/**\n * \u6700\u5C0F\
-    \u5168\u57DF\u6728\u30AF\u30E9\u30B9\n */\npublic final class MST {\n\tpublic\
-    \ final ArrayList<Edge> tree;\n\tpublic final long cost;\n\tMST(final ArrayList<Edge>\
-    \ tree, final long cost) {\n\t\tthis.tree = tree;\n\t\tthis.cost = cost;\n\t}\n\
-    }"
+    RuntimeError: bundler is not specified: Java/library/core/interfaces/RecursiveBiFunction.java\n"
+  code: "package library.core.interfaces;\n\n/**\n * \u518D\u5E30\u30E9\u30E0\u30C0\
+    \u5F0F\u304C\u66F8\u3051\u308BFunction\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\
+    \u30B9\n * @param <T>\n * @param <U>\n * @param <V>\n */\npublic interface RecursiveBiFunction<T,\
+    \ U, V> {\n\tpublic V apply(final RecursiveBiFunction<T, U, V> rec, final T n,\
+    \ final U m);\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/All.java
@@ -356,7 +356,6 @@ data:
   - Java/library/core/Utility.java
   - Java/library/core/interfaces/RecursiveBinaryOperator.java
   - Java/library/core/interfaces/RecursiveTriFunction.java
-  - Java/library/core/interfaces/RecursiveBiFunction.java
   - Java/library/core/interfaces/QuadFunction.java
   - Java/library/core/interfaces/TriFunction.java
   - Java/library/core/interfaces/RecursiveTriConsumer.java
@@ -367,9 +366,10 @@ data:
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/Edge.java
   - Java/library/graph/LowestCommonAncestor.java
+  - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   isVerificationFile: false
-  path: Java/library/graph/MST.java
+  path: Java/library/core/interfaces/RecursiveBiFunction.java
   requiredBy:
   - Java/yukicoder.java
   - Java/All.java
@@ -409,7 +409,6 @@ data:
   - Java/library/core/Utility.java
   - Java/library/core/interfaces/RecursiveBinaryOperator.java
   - Java/library/core/interfaces/RecursiveTriFunction.java
-  - Java/library/core/interfaces/RecursiveBiFunction.java
   - Java/library/core/interfaces/QuadFunction.java
   - Java/library/core/interfaces/TriFunction.java
   - Java/library/core/interfaces/RecursiveTriConsumer.java
@@ -420,14 +419,15 @@ data:
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/Edge.java
   - Java/library/graph/LowestCommonAncestor.java
+  - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   timestamp: '2024-01-16 00:07:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/graph/MST.java
+documentation_of: Java/library/core/interfaces/RecursiveBiFunction.java
 layout: document
 redirect_from:
-- /library/Java/library/graph/MST.java
-- /library/Java/library/graph/MST.java.html
-title: Java/library/graph/MST.java
+- /library/Java/library/core/interfaces/RecursiveBiFunction.java
+- /library/Java/library/core/interfaces/RecursiveBiFunction.java.html
+title: Java/library/core/interfaces/RecursiveBiFunction.java
 ---

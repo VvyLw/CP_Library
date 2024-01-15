@@ -14,6 +14,36 @@ data:
     path: Java/library/core/VvyLw.java
     title: Java/library/core/VvyLw.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/QuadFunction.java
+    title: Java/library/core/interfaces/QuadFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveBiConsumer.java
+    title: Java/library/core/interfaces/RecursiveBiConsumer.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveBiFunction.java
+    title: Java/library/core/interfaces/RecursiveBiFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveBinaryOperator.java
+    title: Java/library/core/interfaces/RecursiveBinaryOperator.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveConsumer.java
+    title: Java/library/core/interfaces/RecursiveConsumer.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveFunction.java
+    title: Java/library/core/interfaces/RecursiveFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveTriConsumer.java
+    title: Java/library/core/interfaces/RecursiveTriConsumer.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveTriFunction.java
+    title: Java/library/core/interfaces/RecursiveTriFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveUnaryOperator.java
+    title: Java/library/core/interfaces/RecursiveUnaryOperator.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/TriFunction.java
+    title: Java/library/core/interfaces/TriFunction.java
+  - icon: ':warning:'
     path: Java/library/core/io/MyPrinter.java
     title: Java/library/core/io/MyPrinter.java
   - icon: ':warning:'
@@ -134,6 +164,36 @@ data:
   - icon: ':warning:'
     path: Java/library/core/VvyLw.java
     title: Java/library/core/VvyLw.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/QuadFunction.java
+    title: Java/library/core/interfaces/QuadFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveBiConsumer.java
+    title: Java/library/core/interfaces/RecursiveBiConsumer.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveBiFunction.java
+    title: Java/library/core/interfaces/RecursiveBiFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveBinaryOperator.java
+    title: Java/library/core/interfaces/RecursiveBinaryOperator.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveConsumer.java
+    title: Java/library/core/interfaces/RecursiveConsumer.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveFunction.java
+    title: Java/library/core/interfaces/RecursiveFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveTriConsumer.java
+    title: Java/library/core/interfaces/RecursiveTriConsumer.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveTriFunction.java
+    title: Java/library/core/interfaces/RecursiveTriFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveUnaryOperator.java
+    title: Java/library/core/interfaces/RecursiveUnaryOperator.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/TriFunction.java
+    title: Java/library/core/interfaces/TriFunction.java
   - icon: ':warning:'
     path: Java/library/core/io/MyPrinter.java
     title: Java/library/core/io/MyPrinter.java
@@ -898,46 +958,7 @@ data:
     \ {\n\t\t\tans += n * (b / m);\n\t\t\tb %= m;\n\t\t}\n\t\tfinal long ym = (a *\
     \ n + b) / m, xm = (ym * m - b);\n\t\tif(ym == 0) {\n\t\t\treturn ans;\n\t\t}\n\
     \t\tans += (n - (xm + a - 1) / a) * ym;\n\t\tans += floorSum(ym, a, m, (a - xm\
-    \ % a) % a);\n\t\treturn ans;\n\t}\n\t/**\n\t * \u5F15\u6570\u3092\u4E09\u3064\
-    \u6301\u3066\u308BFunction\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\n\t\
-    \ * @param <T>\n\t * @param <U>\n\t * @param <V>\n\t * @param <W>\n\t */\n\tprotected\
-    \ interface TriFunction<T, U, V, W> {\n\t\tpublic W apply(final T a, final U b,\
-    \ final V c);\n\t}\n\t/**\n\t * \u5F15\u6570\u3092\u56DB\u3064\u6301\u3066\u308B\
-    Function\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\n\t * @param <A>\n\t\
-    \ * @param <B>\n\t * @param <C>\n\t * @param <D>\n\t * @param <E>\n\t */\n\tprotected\
-    \ interface QuadFunction<A, B, C, D, E> {\n\t\tpublic E apply(final A a, final\
-    \ B b, final C c, final D d);\n\t}\n\t/**\n\t * \u518D\u5E30\u30E9\u30E0\u30C0\
-    \u5F0F\u304C\u66F8\u3051\u308BFunction\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\
-    \u30B9\n\t * @param <T>\n\t * @param <U>\n\t */\n\tprotected interface RecursiveFunction<T,\
-    \ U> {\n\t\tpublic U apply(final RecursiveFunction<T, U> rec, final T n);\n\t\
-    }\n\t/**\n\t * \u518D\u5E30\u30E9\u30E0\u30C0\u5F0F\u304C\u66F8\u3051\u308BFunction\u30A4\
-    \u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\n\t * @param <T>\n\t * @param <U>\n\
-    \t * @param <V>\n\t */\n\tprotected interface RecursiveBiFunction<T, U, V> {\n\
-    \t\tpublic V apply(final RecursiveBiFunction<T, U, V> rec, final T n, final U\
-    \ m);\n\t}\n\t/**\n\t * \u518D\u5E30\u30E9\u30E0\u30C0\u5F0F\u304C\u66F8\u3051\
-    \u308BFunction\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\n\t * @param <T>\n\
-    \t * @param <U>\n\t * @param <V>\n\t * @param <W>\n\t */\n\tprotected interface\
-    \ RecursiveTriFunction<T, U, V, W> {\n\t\tpublic W apply(final RecursiveTriFunction<T,\
-    \ U, V, W> rec, final T p, final U q, final V r);\n\t}\n\t/**\n\t * \u518D\u5E30\
-    \u30E9\u30E0\u30C0\u5F0F\u304C\u66F8\u3051\u308BUnaryOperator\u30A4\u30F3\u30BF\
-    \u30FC\u30D5\u30A7\u30FC\u30B9\n\t * @param <T>\n\t */\n\tprotected interface\
-    \ RecursiveUnaryOperator<T> {\n\t\tpublic T apply(final RecursiveUnaryOperator<T>\
-    \ rec, final T n);\n\t}\n\t/**\n\t * \u518D\u5E30\u30E9\u30E0\u30C0\u5F0F\u304C\
-    \u66F8\u3051\u308BBinaryOperator\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\
-    \n\t * @param <T>\n\t */\n\tprotected interface RecursiveBinaryOperator<T> {\n\
-    \t\tpublic T apply(final RecursiveBinaryOperator<T> rec, final T a, final T b);\n\
-    \t}\n\t/**\n\t * \u518D\u5E30\u30E9\u30E0\u30C0\u5F0F\u304C\u66F8\u3051\u308B\
-    Consumer\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\n\t * @param <T>\n\t\
-    \ */\n\tprotected interface RecursiveConsumer<T> {\n\t\tpublic void accept(final\
-    \ RecursiveConsumer<T> rec, final T x);\n\t}\n\t/**\n\t * \u518D\u5E30\u30E9\u30E0\
-    \u30C0\u5F0F\u304C\u66F8\u3051\u308BConsumer\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\
-    \u30FC\u30B9\n\t * @param <T>\n\t * @param <U>\n\t */\n\tprotected interface RecursiveBiConsumer<T,\
-    \ U> {\n\t\tpublic void accept(final RecursiveBiConsumer<T, U> rec, final T x,\
-    \ final U y);\n\t}\n\t/**\n\t * \u518D\u5E30\u30E9\u30E0\u30C0\u5F0F\u304C\u66F8\
-    \u3051\u308BConsumer\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\n\t * @param\
-    \ <T>\n\t * @param <U>\n\t * @param <V>\n\t */\n\tprotected interface RecursiveTriConsumer<T,\
-    \ U, V> {\n\t\tpublic void accept(final RecursiveTriConsumer<T, U, V> rec, final\
-    \ T x, final U y, final V z);\n\t}\n}\n"
+    \ % a) % a);\n\t\treturn ans;\n\t}\n}\n"
   dependsOn:
   - Java/yukicoder.java
   - Java/All.java
@@ -974,6 +995,16 @@ data:
   - Java/library/core/io/MyScanner.java
   - Java/library/core/Main.java
   - Java/library/core/VvyLw.java
+  - Java/library/core/interfaces/RecursiveBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveTriFunction.java
+  - Java/library/core/interfaces/RecursiveBiFunction.java
+  - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/TriFunction.java
+  - Java/library/core/interfaces/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/RecursiveUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveConsumer.java
+  - Java/library/core/interfaces/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/RecursiveFunction.java
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/Edge.java
   - Java/library/graph/LowestCommonAncestor.java
@@ -1017,12 +1048,22 @@ data:
   - Java/library/core/io/MyScanner.java
   - Java/library/core/Main.java
   - Java/library/core/VvyLw.java
+  - Java/library/core/interfaces/RecursiveBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveTriFunction.java
+  - Java/library/core/interfaces/RecursiveBiFunction.java
+  - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/TriFunction.java
+  - Java/library/core/interfaces/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/RecursiveUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveConsumer.java
+  - Java/library/core/interfaces/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/RecursiveFunction.java
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/Edge.java
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
-  timestamp: '2024-01-15 23:23:39+09:00'
+  timestamp: '2024-01-16 00:07:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java
