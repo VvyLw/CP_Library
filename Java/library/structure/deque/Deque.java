@@ -163,15 +163,15 @@ public final class Deque<T> implements Iterable<T> {
 	 */
 	public final void set(final int i, final T x){ buf[index(i)] = x; }
 	/**
-	 * @see Deque#addLast
+	 * @see #addLast
 	 */
 	public final void add(final T x){ addLast(x); }
 	/**
-	 * @see Deque#pollFirst
+	 * @see #pollFirst
 	 */
 	public final T poll(){ return pollFirst(); }
 	/**
-	 * @see Deque#peekFirst
+	 * @see #peekFirst
 	 */
 	public final T peek(){ return peekFirst(); }
 	/**

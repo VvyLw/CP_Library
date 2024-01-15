@@ -3,19 +3,35 @@ package library.structure.deque;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
+/**
+ * 整数特化のDeque
+ * Iteratorはない
+ * @see Deque
+ */
 public final class IntDeque {
 	private int n, head, tail;
 	private long[] buf;
+	/**
+	 * コンストラクタ
+	 */
 	public IntDeque(){ this(1 << 17); }
 	private IntDeque(final int n) {
 		this.n = n;
 		head = tail = 0;
 		buf = new long[n];
 	}
+	/**
+	 * コンストラクタ
+	 * @param a int型の配列
+	 */
 	public IntDeque(final int[] a) {
 		this(a.length);
 		Arrays.stream(a).forEach(i -> add(i));
 	}
+	/**
+	 * コンストラクタ
+	 * @param a long型の配列
+	 */
 	public IntDeque(final long[] a) {
 		this(a.length);
 		Arrays.stream(a).forEach(i -> add(i));
@@ -55,11 +71,21 @@ public final class IntDeque {
 		buf = tmp;
 		n = buf.length;
 	}
+	/**
+	 * @return Dequeが空かどうか
+	 */
 	public final boolean isEmpty(){ return size() == 0; }
+	/**
+	 * @return Dequeのサイズ
+	 */
 	public final int size() {
 		final int size = tail - head;
 		return size < 0 ? size + n : size;
 	}
+	/**
+	 * Dequeの先頭に要素を追加
+	 * @param x
+	 */
 	public final void addFirst(final long x) {
 		head = prev(head);
 		if(head == tail) {
@@ -67,6 +93,10 @@ public final class IntDeque {
 		}
 		buf[head] = x;
 	}
+	/**
+	 * Dequeの末尾に要素を追加
+	 * @param x
+	 */
 	public final void addLast(final long x) {
 		if(next(tail) == head) {
 			extend();
@@ -74,18 +104,28 @@ public final class IntDeque {
 		buf[tail] = x;
 		tail = next(tail);
 	}
+	/**
+	 * Dequeの先頭の要素を削除
+	 */
 	public final void removeFirst() {
 		if(head == tail) {
 			throw new NoSuchElementException("Buffer is empty");
 		}
 		head = next(head);
 	}
+	/**
+	 * Dequeの末尾の要素を削除
+	 */
 	public final void removeLast() {
 		if(head == tail) {
 			throw new NoSuchElementException("Buffer is empty");
 		}
 		tail = prev(tail);
 	}
+	/**
+	 * Dequeの先頭の要素を削除
+	 * @return 削除した要素
+	 */
 	public final long pollFirst() {
 		if(head == tail) {
 			throw new NoSuchElementException("Buffer is empty");
@@ -94,6 +134,10 @@ public final class IntDeque {
 		head = next(head);
 		return ans;
 	}
+	/**
+	 * Dequeの末尾の要素を削除
+	 * @return 削除した要素
+	 */
 	public final long pollLast() {
 		if(head == tail) {
 			throw new NoSuchElementException("Buffer is empty");
@@ -101,13 +145,43 @@ public final class IntDeque {
 		tail = prev(tail);
 		return buf[tail];
 	}
+	/**
+	 * @return Dequeの先頭の要素
+	 */
 	public final long peekFirst(){ return get(0); }
+	/**
+	 * @return Dequeの末尾の要素
+	 */
 	public final long peekLast(){ return get(n - 1); }
+	/**
+	 * ランダムアクセス
+	 * @param i インデックス
+	 * @return Dequeのi番目に格納されている要素
+	 */
 	public final long get(final int i){ return buf[index(i)]; }
+	/**
+	 * i番目に要素を代入する
+	 * @param i インデックス
+	 * @param x 要素
+	 */
 	public final void set(final int i, final long x){ buf[index(i)] = x; }
+	/**
+	 * @see #addLast
+	 */
 	public final void add(final long x){ addLast(x); }
+	/**
+	 * @see #pollFirst
+	 */
 	public final long poll(){ return pollFirst(); }
+	/**
+	 * @see #peekFirst
+	 */
 	public final long peek(){ return peekFirst(); }
+	/**
+	 * Dequeのa番目とb番目にある要素を入れ替える
+	 * @param a インデックス
+	 * @param b インデックス
+	 */
 	public final void swap(final int a, final int b) {
 		final int i = index(a);
 		final int j = index(b);
@@ -115,7 +189,13 @@ public final class IntDeque {
 		buf[i] = buf[j];
 		buf[j] = num;
 	}
+	/**
+	 * Dequeを空にする
+	 */
 	public final void clear(){ head = tail = 0; }
+	/**
+	 * @return 配列化したDeque
+	 */
 	public final long[] toArray(){ return Arrays.copyOf(buf, size()); }
 	@Override
 	public final String toString(){ return Arrays.toString(toArray()); }
