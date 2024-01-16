@@ -103,9 +103,11 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	 * @param args
 	 */
 	public final void out(final int[] args) {
-		print(args[0]);
-		for(int i = 0; ++i < args.length;) {
-			print(" " + args[i]);
+		if(args.length > 0) {
+			print(args[0]);
+			for(int i = 0; ++i < args.length;) {
+				print(" " + args[i]);
+			}
 		}
 		newLine();
 	}
@@ -114,9 +116,11 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	 * @param args
 	 */
 	public final void out(final long[] args) {
-		print(args[0]);
-		for(int i = 0; ++i < args.length;) {
-			print(" " + args[i]);
+		if(args.length > 0) {
+			print(args[0]);
+			for(int i = 0; ++i < args.length;) {
+				print(" " + args[i]);
+			}
 		}
 		newLine();
 	}
@@ -125,9 +129,11 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	 * @param args
 	 */
 	public final void out(final double[] args) {
-		print(args[0]);
-		for(int i = 0; ++i < args.length;) {
-			print(" " + args[i]);
+		if(args.length > 0) {
+			print(args[0]);
+			for(int i = 0; ++i < args.length;) {
+				print(" " + args[i]);
+			}
 		}
 		newLine();
 	}
@@ -136,9 +142,11 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	 * @param args
 	 */
 	public final void out(final boolean[] args) {
-		print(args[0]);
-		for(int i = 0; ++i < args.length;) {
-			print(" " + args[i]);
+		if(args.length > 0) {
+			print(args[0]);
+			for(int i = 0; ++i < args.length;) {
+				print(" " + args[i]);
+			}
 		}
 		newLine();
 	}
@@ -147,9 +155,11 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	 * @param args
 	 */
 	public final void out(final char[] args) {
-		print(args[0]);
-		for(int i = 0; ++i < args.length;) {
-			print(" " + args[i]);
+		if(args.length > 0) {
+			print(args[0]);
+			for(int i = 0; ++i < args.length;) {
+				print(" " + args[i]);
+			}
 		}
 		newLine();
 	}
@@ -158,9 +168,11 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	 * @param args
 	 */
 	public final void out(final Object[] args) {
-		print(args[0]);
-		for(int i = 0; ++i < args.length;) {
-			print(" " + args[i]);
+		if(args.length > 0) {
+			print(args[0]);
+			for(int i = 0; ++i < args.length;) {
+				print(" " + args[i]);
+			}
 		}
 		newLine();
 	}

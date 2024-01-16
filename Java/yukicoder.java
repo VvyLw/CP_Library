@@ -30,7 +30,7 @@ final class VvyLw extends Utility {
 	static final MyScanner sc = new MyScanner(System.in);
 	static final MyPrinter o = new MyPrinter(System.out, false);
 	static final MyPrinter dbg = new MyPrinter(System.err, true);
-	static final boolean MULTI = false;
+	static final boolean MULTI = true;
 	static final int INF = 1 << 30;
 	static final long LINF = (1L << 61) - 1;
 	static final double EPS = 1e-18;
@@ -1097,44 +1097,56 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	}
 	final <F extends Comparable<? super F>, S extends Comparable<? super S>> void out(final Pair<F, S> arg){ println(arg.first + " " + arg.second); }
 	final void out(final int[] args) {
-		print(args[0]);
-		for(int i = 0; ++i < args.length;) {
-			print(" " + args[i]);
+		if(args.length > 0) {
+			print(args[0]);
+			for(int i = 0; ++i < args.length;) {
+				print(" " + args[i]);
+			}
 		}
 		newLine();
 	}
 	final void out(final long[] args) {
-		print(args[0]);
-		for(int i = 0; ++i < args.length;) {
-			print(" " + args[i]);
+		if(args.length > 0) {
+			print(args[0]);
+			for(int i = 0; ++i < args.length;) {
+				print(" " + args[i]);
+			}
 		}
 		newLine();
 	}
 	final void out(final double[] args) {
-		print(args[0]);
-		for(int i = 0; ++i < args.length;) {
-			print(" " + args[i]);
+		if(args.length > 0) {
+			print(args[0]);
+			for(int i = 0; ++i < args.length;) {
+				print(" " + args[i]);
+			}
 		}
 		newLine();
 	}
 	final void out(final boolean[] args) {
-		print(args[0]);
-		for(int i = 0; ++i < args.length;) {
-			print(" " + args[i]);
+		if(args.length > 0) {
+			print(args[0]);
+			for(int i = 0; ++i < args.length;) {
+				print(" " + args[i]);
+			}
 		}
 		newLine();
 	}
 	final void out(final char[] args) {
-		print(args[0]);
-		for(int i = 0; ++i < args.length;) {
-			print(" " + args[i]);
+		if(args.length > 0) {
+			print(args[0]);
+			for(int i = 0; ++i < args.length;) {
+				print(" " + args[i]);
+			}
 		}
 		newLine();
 	}
 	final void out(final Object[] args) {
-		print(args[0]);
-		for(int i = 0; ++i < args.length;) {
-			print(" " + args[i]);
+		if(args.length > 0) {
+			print(args[0]);
+			for(int i = 0; ++i < args.length;) {
+				print(" " + args[i]);
+			}
 		}
 		newLine();
 	}
