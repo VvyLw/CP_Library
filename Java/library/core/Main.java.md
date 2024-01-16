@@ -8,6 +8,9 @@ data:
     path: Java/All.java
     title: Java/All.java
   - icon: ':warning:'
+    path: Java/CodeForces.java
+    title: Java/CodeForces.java
+  - icon: ':warning:'
     path: Java/library/core/Utility.java
     title: Java/library/core/Utility.java
   - icon: ':warning:'
@@ -158,6 +161,9 @@ data:
   - icon: ':warning:'
     path: Java/All.java
     title: Java/All.java
+  - icon: ':warning:'
+    path: Java/CodeForces.java
+    title: Java/CodeForces.java
   - icon: ':warning:'
     path: Java/library/core/Utility.java
     title: Java/library/core/Utility.java
@@ -369,6 +375,7 @@ data:
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
+  - Java/CodeForces.java
   isVerificationFile: false
   path: Java/library/core/Main.java
   requiredBy:
@@ -422,7 +429,8 @@ data:
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
-  timestamp: '2024-01-16 00:07:45+09:00'
+  - Java/CodeForces.java
+  timestamp: '2024-01-16 13:36:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Main.java
