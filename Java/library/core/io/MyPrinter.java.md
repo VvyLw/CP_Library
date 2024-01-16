@@ -357,27 +357,30 @@ data:
     \ S>> void out(final Pair<F, S> arg){ println(arg.first + \" \" + arg.second);\
     \ }\n\t/**\n\t * int\u578B\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\u3067\
     \u51FA\u529B\u3059\u308B\n\t * @param args\n\t */\n\tpublic final void out(final\
-    \ int[] args) {\n\t\tprint(args[0]);\n\t\tfor(int i = 0; ++i < args.length;) {\n\
-    \t\t\tprint(\" \" + args[i]);\n\t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t * long\u578B\
-    \u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\u3067\u51FA\u529B\u3059\u308B\
-    \n\t * @param args\n\t */\n\tpublic final void out(final long[] args) {\n\t\t\
-    print(args[0]);\n\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\tprint(\" \" +\
-    \ args[i]);\n\t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t * double\u578B\u306E\u914D\u5217\
-    \u3092\u7A7A\u767D\u304A\u304D\u3067\u51FA\u529B\u3059\u308B\n\t * @param args\n\
-    \t */\n\tpublic final void out(final double[] args) {\n\t\tprint(args[0]);\n\t\
-    \tfor(int i = 0; ++i < args.length;) {\n\t\t\tprint(\" \" + args[i]);\n\t\t}\n\
-    \t\tnewLine();\n\t}\n\t/**\n\t * boolean\u578B\u306E\u914D\u5217\u3092\u7A7A\u767D\
+    \ int[] args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int\
+    \ i = 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t\
+    }\n\t\tnewLine();\n\t}\n\t/**\n\t * long\u578B\u306E\u914D\u5217\u3092\u7A7A\u767D\
     \u304A\u304D\u3067\u51FA\u529B\u3059\u308B\n\t * @param args\n\t */\n\tpublic\
-    \ final void out(final boolean[] args) {\n\t\tprint(args[0]);\n\t\tfor(int i =\
-    \ 0; ++i < args.length;) {\n\t\t\tprint(\" \" + args[i]);\n\t\t}\n\t\tnewLine();\n\
-    \t}\n\t/**\n\t * char\u578B\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\u3067\
-    \u51FA\u529B\u3059\u308B\n\t * @param args\n\t */\n\tpublic final void out(final\
-    \ char[] args) {\n\t\tprint(args[0]);\n\t\tfor(int i = 0; ++i < args.length;)\
-    \ {\n\t\t\tprint(\" \" + args[i]);\n\t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t * {@link\
-    \ Object}\u30AF\u30E9\u30B9\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\u3067\
-    \u51FA\u529B\u3059\u308B\n\t * @param args\n\t */\n\tpublic final void out(final\
-    \ Object[] args) {\n\t\tprint(args[0]);\n\t\tfor(int i = 0; ++i < args.length;)\
-    \ {\n\t\t\tprint(\" \" + args[i]);\n\t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t * {@link\
+    \ final void out(final long[] args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\
+    \t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\
+    \t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t * double\u578B\u306E\u914D\u5217\u3092\
+    \u7A7A\u767D\u304A\u304D\u3067\u51FA\u529B\u3059\u308B\n\t * @param args\n\t */\n\
+    \tpublic final void out(final double[] args) {\n\t\tif(args.length > 0) {\n\t\t\
+    \tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\tprint(\"\
+    \ \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t * boolean\u578B\
+    \u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\u3067\u51FA\u529B\u3059\u308B\
+    \n\t * @param args\n\t */\n\tpublic final void out(final boolean[] args) {\n\t\
+    \tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;)\
+    \ {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\t\
+    /**\n\t * char\u578B\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\u3067\u51FA\
+    \u529B\u3059\u308B\n\t * @param args\n\t */\n\tpublic final void out(final char[]\
+    \ args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i =\
+    \ 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\
+    \tnewLine();\n\t}\n\t/**\n\t * {@link Object}\u30AF\u30E9\u30B9\u306E\u914D\u5217\
+    \u3092\u7A7A\u767D\u304A\u304D\u3067\u51FA\u529B\u3059\u308B\n\t * @param args\n\
+    \t */\n\tpublic final void out(final Object[] args) {\n\t\tif(args.length > 0)\
+    \ {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\
+    \tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t * {@link\
     \ Collection}\u3092\u51FA\u529B\u3059\u308B\n\t * @param args\n\t */\n\tpublic\
     \ final <E> void out(final Collection<E> args) {\n\t\tint i = 0;\n\t\tfor(final\
     \ var el: args) {\n\t\t\tprint(el);\n\t\t\tif(++i != args.size()) {\n\t\t\t\t\
@@ -587,7 +590,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   - Java/CodeForces.java
-  timestamp: '2024-01-16 13:36:19+09:00'
+  timestamp: '2024-01-16 22:54:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyPrinter.java

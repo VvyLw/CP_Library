@@ -429,7 +429,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   - Java/CodeForces.java
-  timestamp: '2024-01-16 13:36:19+09:00'
+  timestamp: '2024-01-16 22:54:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/interfaces/RecursiveBinaryOperator.java

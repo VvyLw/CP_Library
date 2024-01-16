@@ -784,19 +784,22 @@ data:
     \t\tfor(final var el: tail) {\n\t\t\tprint(\" \" + el);\n\t\t}\n\t\tnewLine();\n\
     \t}\n\tfinal <F extends Comparable<? super F>, S extends Comparable<? super S>>\
     \ void out(final Pair<F, S> arg){ println(arg.first + \" \" + arg.second); }\n\
-    \tfinal void out(final int[] args) {\n\t\tprint(args[0]);\n\t\tfor(int i = 0;\
-    \ ++i < args.length;) {\n\t\t\tprint(\" \" + args[i]);\n\t\t}\n\t\tnewLine();\n\
-    \t}\n\tfinal void out(final long[] args) {\n\t\tprint(args[0]);\n\t\tfor(int i\
-    \ = 0; ++i < args.length;) {\n\t\t\tprint(\" \" + args[i]);\n\t\t}\n\t\tnewLine();\n\
-    \t}\n\tfinal void out(final double[] args) {\n\t\tprint(args[0]);\n\t\tfor(int\
-    \ i = 0; ++i < args.length;) {\n\t\t\tprint(\" \" + args[i]);\n\t\t}\n\t\tnewLine();\n\
-    \t}\n\tfinal void out(final boolean[] args) {\n\t\tprint(args[0]);\n\t\tfor(int\
-    \ i = 0; ++i < args.length;) {\n\t\t\tprint(\" \" + args[i]);\n\t\t}\n\t\tnewLine();\n\
-    \t}\n\tfinal void out(final char[] args) {\n\t\tprint(args[0]);\n\t\tfor(int i\
-    \ = 0; ++i < args.length;) {\n\t\t\tprint(\" \" + args[i]);\n\t\t}\n\t\tnewLine();\n\
-    \t}\n\tfinal void out(final Object[] args) {\n\t\tprint(args[0]);\n\t\tfor(int\
-    \ i = 0; ++i < args.length;) {\n\t\t\tprint(\" \" + args[i]);\n\t\t}\n\t\tnewLine();\n\
-    \t}\n\tfinal <E> void out(final Collection<E> args) {\n\t\tint i = 0;\n\t\tfor(final\
+    \tfinal void out(final int[] args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\
+    \t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\
+    \t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final long[] args) {\n\t\t\
+    if(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;)\
+    \ {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\t\
+    final void out(final double[] args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\
+    \t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\
+    \t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final boolean[] args) {\n\t\
+    \tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;)\
+    \ {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\t\
+    final void out(final char[] args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\
+    \t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\
+    \t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final Object[] args) {\n\t\
+    \tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;)\
+    \ {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\t\
+    final <E> void out(final Collection<E> args) {\n\t\tint i = 0;\n\t\tfor(final\
     \ var el: args) {\n\t\t\tprint(el);\n\t\t\tif(++i != args.size()) {\n\t\t\t\t\
     print(\" \");\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void outl(final Object\
     \ head, final Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::println);\n\
@@ -1766,7 +1769,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   - Java/CodeForces.java
-  timestamp: '2024-01-16 13:36:19+09:00'
+  timestamp: '2024-01-16 22:54:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
