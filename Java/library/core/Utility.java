@@ -3,7 +3,9 @@ package library.core;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.DoublePredicate;
 import java.util.function.IntPredicate;
 import java.util.function.LongPredicate;
@@ -1336,6 +1338,28 @@ public class Utility {
 			}
 		}
 		return ok;
+	}
+	/**
+	 * 配列内の数値を個数を数え上げる
+	 * @param a
+	 */
+	protected static final int[] count(final int[] a) {
+		final int[] res = new int[max(a) + 1];
+		for(final int i: a) {
+			res[i]++;
+		}
+		return res;
+	}
+	/**
+	 * 配列内の数値を個数を数え上げる
+	 * @param a
+	 */
+	protected static final Map<Long, Integer> count(final long[] a) {
+		final Map<Long, Integer> res = new HashMap<>();
+		for(final long i: a) {
+			res.merge(i, 1, (x, y) -> x + y);
+		}
+		return res;
 	}
 	/**
 	 * 座標圧縮

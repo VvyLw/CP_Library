@@ -742,6 +742,20 @@ class Utility {
 		}
 		return ok;
 	}
+	protected static final int[] count(final int[] a) {
+		final int[] res = new int[max(a) + 1];
+		for(final int i: a) {
+			res[i]++;
+		}
+		return res;
+	}
+	protected static final Map<Long, Integer> count(final long[] a) {
+		final Map<Long, Integer> res = new HashMap<>();
+		for(final long i: a) {
+			res.merge(i, 1, (x, y) -> x + y);
+		}
+		return res;
+	}
 	protected static final int[] press(final int[] a) {
 		final int[] res = new int[a.length];
 		final int[] x = Arrays.stream(a).sorted().distinct().toArray();
