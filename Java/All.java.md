@@ -654,8 +654,13 @@ data:
     \ double bins(double ok, double ng, final DoublePredicate fn) {\n\t\twhile(Math.abs(ok\
     \ - ng) > VvyLw.EPS) {\n\t\t\tfinal double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid))\
     \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
-    }\n\t\treturn ok;\n\t}\n\tprotected static final int[] press(final int[] a) {\n\
-    \t\tfinal int[] res = new int[a.length];\n\t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
+    }\n\t\treturn ok;\n\t}\n\tprotected static final int[] count(final int[] a) {\n\
+    \t\tfinal int[] res = new int[max(a) + 1];\n\t\tfor(final int i: a) {\n\t\t\t\
+    res[i]++;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final Map<Long, Integer>\
+    \ count(final long[] a) {\n\t\tfinal Map<Long, Integer> res = new HashMap<>();\n\
+    \t\tfor(final long i: a) {\n\t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\
+    \treturn res;\n\t}\n\tprotected static final int[] press(final int[] a) {\n\t\t\
+    final int[] res = new int[a.length];\n\t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
     \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
     \t\t}\n\t\treturn res;\n\t}\n\tprotected static final int[] press(final long[]\
     \ a) {\n\t\tfinal int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
@@ -1769,7 +1774,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   - Java/CodeForces.java
-  timestamp: '2024-01-20 01:56:53+09:00'
+  timestamp: '2024-01-20 07:47:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
