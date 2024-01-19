@@ -330,7 +330,7 @@ data:
     \t\tVvyLw.dbg.close();\n\t}\n}\n\nfinal class VvyLw extends Utility {\n\tstatic\
     \ final MyScanner sc = new MyScanner(System.in);\n\tstatic final MyPrinter o =\
     \ new MyPrinter(System.out, false);\n\tstatic final MyPrinter dbg = new MyPrinter(System.err,\
-    \ true);\n\tstatic final boolean MULTI = true;\n\tstatic final int INF = 1 <<\
+    \ true);\n\tstatic final boolean MULTI = false;\n\tstatic final int INF = 1 <<\
     \ 30;\n\tstatic final long LINF = (1L << 61) - 1;\n\tstatic final double EPS =\
     \ 1e-18;\n\tstatic final int MOD = 998244353;\n\tstatic final int M0D = (int)1e9\
     \ + 7;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final\
@@ -1006,7 +1006,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   - Java/CodeForces.java
-  timestamp: '2024-01-16 22:54:09+09:00'
+  timestamp: '2024-01-20 01:56:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java
