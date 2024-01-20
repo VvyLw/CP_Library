@@ -24,7 +24,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"C++/graph.hpp\"\n\r\n#include <iostream>\r\n#include <vector>\r\
-    \n#include <queue>\r\n#include <stack>\r\n#include <limits>\r\n#if !TEMPLATE\r\
+    \n#include <queue>\r\n#include <stack>\r\n#include <limits>\r\n#ifndef TEMPLATE\r\
     \ntemplate <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return\
     \ 1; } return 0; }\r\n#endif\r\n#line 2 \"C++/edge.hpp\"\n\nstruct edge {\n  \
     \  int src, to;\n    long long cost;\n    edge(){}\n    edge(const int to_): to(to_){}\n\
@@ -98,7 +98,7 @@ data:
     \n                }\r\n            }\r\n        }\r\n\t\treturn cst;\r\n\t}\r\n\
     };\r\ntypedef std::vector<edge> ve;\r\ntypedef std::vector<ve> we;\n"
   code: "#pragma once\r\n\r\n#include <iostream>\r\n#include <vector>\r\n#include\
-    \ <queue>\r\n#include <stack>\r\n#include <limits>\r\n#if !TEMPLATE\r\ntemplate\
+    \ <queue>\r\n#include <stack>\r\n#include <limits>\r\n#ifndef TEMPLATE\r\ntemplate\
     \ <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return\
     \ 0; }\r\n#endif\r\n#include \"C++/edge.hpp\"\r\ntemplate <bool undirected = true>\
     \ struct graph: public std::vector<std::vector<edge>> {\r\n    const int indexed;\r\
@@ -173,7 +173,7 @@ data:
   isVerificationFile: false
   path: C++/graph.hpp
   requiredBy: []
-  timestamp: '2023-12-18 23:04:58+09:00'
+  timestamp: '2024-01-20 23:48:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/bermanford.test.cpp

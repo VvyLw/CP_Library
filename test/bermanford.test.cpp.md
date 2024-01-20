@@ -19,8 +19,8 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B
   bundledCode: "#line 1 \"test/bermanford.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B\"\
     \n#line 2 \"C++/graph.hpp\"\n\r\n#include <iostream>\r\n#include <vector>\r\n\
-    #include <queue>\r\n#include <stack>\r\n#include <limits>\r\n#if !TEMPLATE\r\n\
-    template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return\
+    #include <queue>\r\n#include <stack>\r\n#include <limits>\r\n#ifndef TEMPLATE\r\
+    \ntemplate <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return\
     \ 1; } return 0; }\r\n#endif\r\n#line 2 \"C++/edge.hpp\"\n\nstruct edge {\n  \
     \  int src, to;\n    long long cost;\n    edge(){}\n    edge(const int to_): to(to_){}\n\
     \    edge(const int to_, const long long cost_): to(to_), cost(cost_){}\n    edge(const\
@@ -113,7 +113,7 @@ data:
   isVerificationFile: true
   path: test/bermanford.test.cpp
   requiredBy: []
-  timestamp: '2023-12-18 23:04:58+09:00'
+  timestamp: '2024-01-20 23:48:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/bermanford.test.cpp

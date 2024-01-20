@@ -48,8 +48,8 @@ data:
     \  }\r\n        return table[0][u];\r\n    }\r\n    int dist(const int u, const\
     \ int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }\r\n};\n#line 2 \"C++/graph.hpp\"\
     \n\r\n#include <iostream>\r\n#line 5 \"C++/graph.hpp\"\n#include <queue>\r\n#include\
-    \ <stack>\r\n#include <limits>\r\n#if !TEMPLATE\r\ntemplate <class T, class U>\
-    \ bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }\r\n#endif\r\
+    \ <stack>\r\n#include <limits>\r\n#ifndef TEMPLATE\r\ntemplate <class T, class\
+    \ U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }\r\n#endif\r\
     \n#line 2 \"C++/edge.hpp\"\n\nstruct edge {\n    int src, to;\n    long long cost;\n\
     \    edge(){}\n    edge(const int to_): to(to_){}\n    edge(const int to_, const\
     \ long long cost_): to(to_), cost(cost_){}\n    edge(const int src_, const int\
@@ -141,7 +141,7 @@ data:
   isVerificationFile: true
   path: test/lca.test.cpp
   requiredBy: []
-  timestamp: '2023-12-18 23:04:58+09:00'
+  timestamp: '2024-01-20 23:48:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lca.test.cpp
