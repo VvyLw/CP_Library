@@ -690,23 +690,38 @@ data:
     \u306B\u30BD\u30FC\u30C8\u3057\u305F\u7DCF\u79F0\u578B\u914D\u5217\n\t */\n\t\
     public static final <T extends Comparable<? super T>> T[] sorted(final T[] a){\
     \ return Arrays.stream(a).sorted().toArray(n -> Arrays.copyOf(a, n)); }\n\t/**\n\
-    \t * @param s\n\t * @return \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305F\u6587\
-    \u5B57\u5217\n\t */\n\tprotected static final String reverse(final String s){\
-    \ return new StringBuilder(s).reverse().toString(); }\n\t/**\n\t * @param a\n\t\
-    \ * @return \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305Fint\u578B\u914D\u5217\
-    \n\t */\n\tprotected static final int[] reverse(final int[] a) {\n\t\tfinal int\
-    \ n = a.length;\n\t\tfinal int[] b = new int[n];\n\t\tfor(int i = 0; i <= n /\
-    \ 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\
-    \treturn b;\n\t}\n\t/**\n\t * @param a\n\t * @return \u9006\u9806\u306B\u4E26\u3073\
-    \u66FF\u3048\u305Flong\u578B\u914D\u5217\n\t */\n\tprotected static final long[]\
-    \ reverse(final long[] a) {\n\t\tfinal int n = a.length;\n\t\tfinal long[] b =\
-    \ new long[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 -\
-    \ i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\t/**\n\t * @param\
-    \ a\n\t * @return \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305Fdouble\u578B\
-    \u914D\u5217\n\t */\n\tprotected static final double[] reverse(final double[]\
-    \ a) {\n\t\tfinal int n = a.length;\n\t\tfinal double[] b = new double[n];\n\t\
+    \t * @param s\n\t * @return \u6587\u5B57\u5217\u304C\u30BD\u30FC\u30C8\u3055\u308C\
+    \u3066\u3044\u308B\u304B\u3069\u3046\u304B\n\t */\n\tprotected static final boolean\
+    \ isSorted(final String s){ return s.equals(sorted(s)); }\n\t/**\n\t * @param\
+    \ a\n\t * @return \u914D\u5217\u304C\u30BD\u30FC\u30C8\u3055\u308C\u3066\u3044\
+    \u308B\u304B\u3069\u3046\u304B\n\t */\n\tprotected static final boolean isSorted(final\
+    \ int[] a){ return Arrays.equals(a, sorted(a)); }\n\t/**\n\t * @param a\n\t *\
+    \ @return \u914D\u5217\u304C\u30BD\u30FC\u30C8\u3055\u308C\u3066\u3044\u308B\u304B\
+    \u3069\u3046\u304B\n\t */\n\tprotected static final boolean isSorted(final long[]\
+    \ a){ return Arrays.equals(a, sorted(a)); }\n\t/**\n\t * @param a\n\t * @return\
+    \ \u914D\u5217\u304C\u30BD\u30FC\u30C8\u3055\u308C\u3066\u3044\u308B\u304B\u3069\
+    \u3046\u304B\n\t */\n\tprotected static final boolean isSorted(final double[]\
+    \ a){ return Arrays.equals(a, sorted(a)); }\n\t/**\n\t * @param <T> {@link Comparable}\u306A\
+    \u30AF\u30E9\u30B9\n\t * @param a\n\t * @return \u914D\u5217\u304C\u30BD\u30FC\
+    \u30C8\u3055\u308C\u3066\u3044\u308B\u304B\u3069\u3046\u304B\n\t */\n\tprotected\
+    \ static final <T extends Comparable<? super T>> boolean isSorted(final T[] a){\
+    \ return Arrays.equals(a, sorted(a)); }\n\t/**\n\t * @param s\n\t * @return \u9006\
+    \u9806\u306B\u4E26\u3073\u66FF\u3048\u305F\u6587\u5B57\u5217\n\t */\n\tprotected\
+    \ static final String reverse(final String s){ return new StringBuilder(s).reverse().toString();\
+    \ }\n\t/**\n\t * @param a\n\t * @return \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\
+    \u305Fint\u578B\u914D\u5217\n\t */\n\tprotected static final int[] reverse(final\
+    \ int[] a) {\n\t\tfinal int n = a.length;\n\t\tfinal int[] b = new int[n];\n\t\
     \tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1\
     \ - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\t/**\n\t * @param a\n\t * @return\
+    \ \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305Flong\u578B\u914D\u5217\n\t */\n\
+    \tprotected static final long[] reverse(final long[] a) {\n\t\tfinal int n = a.length;\n\
+    \t\tfinal long[] b = new long[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\
+    \tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\
+    \t/**\n\t * @param a\n\t * @return \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305F\
+    double\u578B\u914D\u5217\n\t */\n\tprotected static final double[] reverse(final\
+    \ double[] a) {\n\t\tfinal int n = a.length;\n\t\tfinal double[] b = new double[n];\n\
+    \t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n -\
+    \ 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\t/**\n\t * @param a\n\t * @return\
     \ \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305FObject\u30AF\u30E9\u30B9\u306E\
     \u914D\u5217\n\t */\n\tprotected static final Object[] reverse(final Object[]\
     \ a) {\n\t\tfinal int n = a.length;\n\t\tfinal Object[] b = new Object[n];\n\t\
@@ -924,7 +939,19 @@ data:
     \ a\n\t */\n\tprotected static final int[] press(final long[] a) {\n\t\tfinal\
     \ int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
     \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
-    \t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param s\n\t * @see <a href=\"https://ei1333.github.io/library/string/z-algorithm.hpp\"\
+    \t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param s\n\t * @return \u30E9\u30F3\u30EC\
+    \u30F3\u30B0\u30B9\u5727\u7E2E\n\t */\n\tprotected static final String rle(final\
+    \ String s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder sb = new\
+    \ StringBuilder();\n\t\tfor(int l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\t\t\t\
+    for(; r < n && s.charAt(l) == s.charAt(r); ++r){}\n\t\t\tsb.append(s.charAt(l));\n\
+    \t\t\tsb.append(r - l);\n\t\t\tl = r;\n\t\t}\n\t\treturn sb.toString();\n\t}\n\
+    \t/**\n\t * @param s\n\t * @return \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\
+    \u3057\u305F\u3082\u306E\u3092\u623B\u3059\n\t */\n\tprotected static final String\
+    \ rleRev(final String s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder\
+    \ sb = new StringBuilder();\n\t\tfor(int l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\
+    \t\t\tfor(; r < n && scope('0', s.charAt(r), '9'); ++r){}\n\t\t\tsb.append(String.valueOf(s.charAt(l)).repeat(Integer.parseInt(s.substring(l\
+    \ + 1, r))));\n\t\t\tl = r;\n\t\t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t\
+    \ * @param s\n\t * @see <a href=\"https://ei1333.github.io/library/string/z-algorithm.hpp\"\
     >Z-Algorithm</a>\n\t */\n\tprotected static final int[] zAlgorithm(final String\
     \ s) {\n\t\tfinal int n = s.length();\n\t\tint j = 0;\n\t\tfinal int[] pre = new\
     \ int[n];\n\t\tfor(int i = 0; ++i < n;) {\n\t\t\tif(i + pre[i - j] < j + pre[j])\
@@ -1080,7 +1107,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   - Java/CodeForces.java
-  timestamp: '2024-01-20 07:47:05+09:00'
+  timestamp: '2024-01-20 23:59:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java
