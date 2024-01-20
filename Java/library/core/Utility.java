@@ -850,6 +850,32 @@ public class Utility {
 	public static final <T extends Comparable<? super T>> T[] sorted(final T[] a){ return Arrays.stream(a).sorted().toArray(n -> Arrays.copyOf(a, n)); }
 	/**
 	 * @param s
+	 * @return 文字列がソートされているかどうか
+	 */
+	protected static final boolean isSorted(final String s){ return s.equals(sorted(s)); }
+	/**
+	 * @param a
+	 * @return 配列がソートされているかどうか
+	 */
+	protected static final boolean isSorted(final int[] a){ return Arrays.equals(a, sorted(a)); }
+	/**
+	 * @param a
+	 * @return 配列がソートされているかどうか
+	 */
+	protected static final boolean isSorted(final long[] a){ return Arrays.equals(a, sorted(a)); }
+	/**
+	 * @param a
+	 * @return 配列がソートされているかどうか
+	 */
+	protected static final boolean isSorted(final double[] a){ return Arrays.equals(a, sorted(a)); }
+	/**
+	 * @param <T> {@link Comparable}なクラス
+	 * @param a
+	 * @return 配列がソートされているかどうか
+	 */
+	protected static final <T extends Comparable<? super T>> boolean isSorted(final T[] a){ return Arrays.equals(a, sorted(a)); }
+	/**
+	 * @param s
 	 * @return 逆順に並び替えた文字列
 	 */
 	protected static final String reverse(final String s){ return new StringBuilder(s).reverse().toString(); }
@@ -1384,6 +1410,37 @@ public class Utility {
 			res[i] = lowerBound(x, a[i]);
 		}
 		return res;
+	}
+	/**
+	 * @param s
+	 * @return ランレングス圧縮
+	 */
+	protected static final String rle(final String s) {
+		final int n = s.length();
+		final StringBuilder sb = new StringBuilder();
+		for(int l = 0; l < n;) {
+			int r = l + 1;
+			for(; r < n && s.charAt(l) == s.charAt(r); ++r){}
+			sb.append(s.charAt(l));
+			sb.append(r - l);
+			l = r;
+		}
+		return sb.toString();
+	}
+	/**
+	 * @param s
+	 * @return ランレングス圧縮したものを戻す
+	 */
+	protected static final String rleRev(final String s) {
+		final int n = s.length();
+		final StringBuilder sb = new StringBuilder();
+		for(int l = 0; l < n;) {
+			int r = l + 1;
+			for(; r < n && scope('0', s.charAt(r), '9'); ++r){}
+			sb.append(String.valueOf(s.charAt(l)).repeat(Integer.parseInt(s.substring(l + 1, r))));
+			l = r;
+		}
+		return sb.toString();
 	}
 	/**
 	 * @param s

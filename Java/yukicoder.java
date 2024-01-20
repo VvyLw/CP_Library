@@ -463,6 +463,11 @@ class Utility {
 	protected static final long[] sorted(final long[] a){ return Arrays.stream(a).sorted().toArray(); }
 	protected static final double[] sorted(final double[] a){ return Arrays.stream(a).sorted().toArray(); }
 	protected static final <T extends Comparable<? super T>> T[] sorted(final T[] a){ return Arrays.stream(a).sorted().toArray(n -> Arrays.copyOf(a, n)); }
+	protected static final boolean isSorted(final String s){ return s.equals(sorted(s)); }
+	protected static final boolean isSorted(final int[] a){ return Arrays.equals(a, sorted(a)); }
+	protected static final boolean isSorted(final long[] a){ return Arrays.equals(a, sorted(a)); }
+	protected static final boolean isSorted(final double[] a){ return Arrays.equals(a, sorted(a)); }
+	protected static final <T extends Comparable<? super T>> boolean isSorted(final T[] a){ return Arrays.equals(a, sorted(a)); }
 	protected static final String reverse(final String s){ return new StringBuilder(s).reverse().toString(); }
 	protected static final int[] reverse(final int[] a) {
 		final int n = a.length;
@@ -755,6 +760,29 @@ class Utility {
 			res[i] = lowerBound(x, a[i]);
 		}
 		return res;
+	}
+	protected static final String rle(final String s) {
+		final int n = s.length();
+		final StringBuilder sb = new StringBuilder();
+		for(int l = 0; l < n;) {
+			int r = l + 1;
+			for(; r < n && s.charAt(l) == s.charAt(r); ++r){}
+			sb.append(s.charAt(l));
+			sb.append(r - l);
+			l = r;
+		}
+		return sb.toString();
+	}
+	protected static final String rleRev(final String s) {
+		final int n = s.length();
+		final StringBuilder sb = new StringBuilder();
+		for(int l = 0; l < n;) {
+			int r = l + 1;
+			for(; r < n && scope('0', s.charAt(r), '9'); ++r){}
+			sb.append(String.valueOf(s.charAt(l)).repeat(Integer.parseInt(s.substring(l + 1, r))));
+			l = r;
+		}
+		return sb.toString();
 	}
 	protected static final int[] zAlgorithm(final String s) {
 		final int n = s.length();
