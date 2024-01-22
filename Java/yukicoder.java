@@ -201,7 +201,7 @@ class Utility {
 		}
 		return res;
 	}
-	protected static final boolean isInt(final double n){ long r = (long) Math.floor(n); return r == n; }
+	protected static final boolean isInt(final double n){ return n == (long) Math.floor(n); }
 	protected static final boolean isSqr(final long n){ return isInt(Math.sqrt(n)); }
 	protected static final boolean isPrime(final long n) {
 		if(n == 1) {

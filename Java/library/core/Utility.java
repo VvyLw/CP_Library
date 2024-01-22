@@ -342,7 +342,7 @@ public class Utility {
 	 * nが整数かどうか判定
 	 * @param n
 	 */
-	protected static final boolean isInt(final double n){ long r = (long) Math.floor(n); return r == n; }
+	protected static final boolean isInt(final double n){ return n == (long) Math.floor(n); }
 	/**
 	 * nが平方数かどうか判定
 	 * @param n
