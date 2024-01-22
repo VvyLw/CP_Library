@@ -400,8 +400,8 @@ data:
     \ final long mod) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong\
     \ res = 1;\n\t\tfor(int i = 1; i <= r; ++i) {\n\t\t\tres *= n--;\n\t\t\tres %=\
     \ mod;\n\t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
-    \ static final boolean isInt(final double n){ long r = (long) Math.floor(n); return\
-    \ r == n; }\n\tprotected static final boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
+    \ static final boolean isInt(final double n){ return n == (long) Math.floor(n);\
+    \ }\n\tprotected static final boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
     \ }\n\tprotected static final boolean isPrime(final long n) {\n\t\tif(n == 1)\
     \ {\n\t\t\treturn false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\t\
     if(n % i == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t\
@@ -1027,7 +1027,7 @@ data:
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
-  timestamp: '2024-01-20 23:59:17+09:00'
+  timestamp: '2024-01-22 09:12:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java

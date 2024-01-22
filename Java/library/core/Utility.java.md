@@ -453,23 +453,23 @@ data:
     \t\t}\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= r; ++i) {\n\t\t\tres *= n--;\n\
     \t\t\tres %= mod;\n\t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\
     \t}\n\t/**\n\t * n\u304C\u6574\u6570\u304B\u3069\u3046\u304B\u5224\u5B9A\n\t *\
-    \ @param n\n\t */\n\tprotected static final boolean isInt(final double n){ long\
-    \ r = (long) Math.floor(n); return r == n; }\n\t/**\n\t * n\u304C\u5E73\u65B9\u6570\
-    \u304B\u3069\u3046\u304B\u5224\u5B9A\n\t * @param n\n\t */\n\tprotected static\
-    \ final boolean isSqr(final long n){ return isInt(Math.sqrt(n)); }\n\t/**\n\t\
-    \ * n\u304C\u7D20\u6570\u304B\u3069\u3046\u304B\u5224\u5B9A\n\t * @param n\n\t\
-    \ */\n\tprotected static final boolean isPrime(final long n) {\n\t\tif(n == 1)\
-    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\t\
-    if(n % i == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t\
-    }\n\t/**\n\t * @param l\n\t * @param x\n\t * @param r\n\t * @return l <= x <=\
-    \ r\n\t */\n\tpublic static final boolean scope(final int l, final int x, final\
-    \ int r){ return l <= x && x <= r; }\n\t/**\n\t * @param l\n\t * @param x\n\t\
-    \ * @param r\n\t * @return l <= x <= r\n\t */\n\tpublic static final boolean scope(final\
-    \ long l, final long x, final long r){ return l <= x && x <= r; }\n\t/**\n\t *\
+    \ @param n\n\t */\n\tprotected static final boolean isInt(final double n){ return\
+    \ n == (long) Math.floor(n); }\n\t/**\n\t * n\u304C\u5E73\u65B9\u6570\u304B\u3069\
+    \u3046\u304B\u5224\u5B9A\n\t * @param n\n\t */\n\tprotected static final boolean\
+    \ isSqr(final long n){ return isInt(Math.sqrt(n)); }\n\t/**\n\t * n\u304C\u7D20\
+    \u6570\u304B\u3069\u3046\u304B\u5224\u5B9A\n\t * @param n\n\t */\n\tprotected\
+    \ static final boolean isPrime(final long n) {\n\t\tif(n == 1) {\n\t\t\treturn\
+    \ false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0)\
+    \ {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\t/**\n\t *\
     \ @param l\n\t * @param x\n\t * @param r\n\t * @return l <= x <= r\n\t */\n\t\
-    public static final boolean scope(final double l, final double x, final double\
-    \ r){ return l <= x && x <= r; }\n\t/**\n\t * @param l\n\t * @param x\n\t * @param\
-    \ r\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
+    public static final boolean scope(final int l, final int x, final int r){ return\
+    \ l <= x && x <= r; }\n\t/**\n\t * @param l\n\t * @param x\n\t * @param r\n\t\
+    \ * @return l <= x <= r\n\t */\n\tpublic static final boolean scope(final long\
+    \ l, final long x, final long r){ return l <= x && x <= r; }\n\t/**\n\t * @param\
+    \ l\n\t * @param x\n\t * @param r\n\t * @return l <= x <= r\n\t */\n\tpublic static\
+    \ final boolean scope(final double l, final double x, final double r){ return\
+    \ l <= x && x <= r; }\n\t/**\n\t * @param l\n\t * @param x\n\t * @param r\n\t\
+    \ * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
     >std::clamp</a>\n\t */\n\tprotected static final int clamp(final int l, final\
     \ int x, final int r){ return x < l ? l : x > r ? r : x; }\n\t/**\n\t * @param\
     \ l\n\t * @param x\n\t * @param r\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
@@ -1107,7 +1107,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   - Java/CodeForces.java
-  timestamp: '2024-01-20 23:59:17+09:00'
+  timestamp: '2024-01-22 09:12:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java
