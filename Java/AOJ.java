@@ -361,7 +361,8 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 	}
 	final void print(final Object arg) {
-		if(arg instanceof String s) {
+		if(arg instanceof String) {
+			final String s = (String) arg;
 			for(final char c: s.toCharArray()) {
 				write((byte) c);
 			}
