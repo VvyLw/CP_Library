@@ -478,22 +478,22 @@ data:
     \ byte bt) {\n\t\tbuf[pos++] = bt;\n\t\tif(pos == buf.length) {\n\t\t\tflush();\n\
     \t\t}\n\t}\n\tprivate final void newLine() {\n\t\twrite((byte) '\\n');\n\t\tif(autoFlush)\
     \ {\n\t\t\tflush();\n\t\t}\n\t}\n\tfinal void print(final Object arg) {\n\t\t\
-    if(arg instanceof String s) {\n\t\t\tfor(final char c: s.toCharArray()) {\n\t\t\
-    \t\twrite((byte) c);\n\t\t\t}\n\t\t} else {\n\t\t\tprint(String.valueOf(arg));\n\
-    \t\t}\n\t}\n\tfinal void printf(final String fmt, final Object... args) {\n\t\t\
-    print(new Formatter().format(fmt, args));\n\t\tif(autoFlush) {\n\t\t\tflush();\n\
-    \t\t}\n\t}\n\tprivate final void println(final Object arg) {\n\t\tprint(arg);\n\
-    \t\tnewLine();\n\t}\n\tfinal void out(){ newLine(); }\n\tfinal void out(final\
-    \ Object head, final Object... tail) {\n\t\tprint(head);\n\t\tfor(final var el:\
-    \ tail) {\n\t\t\tprint(\" \" + el);\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal <F extends\
-    \ Comparable<? super F>, S extends Comparable<? super S>> void out(final Pair<F,\
-    \ S> arg){ println(arg.first + \" \" + arg.second); }\n\tfinal void out(final\
-    \ int[] args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int\
-    \ i = 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t\
-    }\n\t\tnewLine();\n\t}\n\tfinal void out(final long[] args) {\n\t\tif(args.length\
-    \ > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\
-    \t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void\
-    \ out(final double[] args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\
+    if(arg instanceof String) {\n\t\t\tfinal String s = (String) arg;\n\t\t\tfor(final\
+    \ char c: s.toCharArray()) {\n\t\t\t\twrite((byte) c);\n\t\t\t}\n\t\t} else {\n\
+    \t\t\tprint(String.valueOf(arg));\n\t\t}\n\t}\n\tfinal void printf(final String\
+    \ fmt, final Object... args) {\n\t\tprint(new Formatter().format(fmt, args));\n\
+    \t\tif(autoFlush) {\n\t\t\tflush();\n\t\t}\n\t}\n\tprivate final void println(final\
+    \ Object arg) {\n\t\tprint(arg);\n\t\tnewLine();\n\t}\n\tfinal void out(){ newLine();\
+    \ }\n\tfinal void out(final Object head, final Object... tail) {\n\t\tprint(head);\n\
+    \t\tfor(final var el: tail) {\n\t\t\tprint(\" \" + el);\n\t\t}\n\t\tnewLine();\n\
+    \t}\n\tfinal <F extends Comparable<? super F>, S extends Comparable<? super S>>\
+    \ void out(final Pair<F, S> arg){ println(arg.first + \" \" + arg.second); }\n\
+    \tfinal void out(final int[] args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\
+    \t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\
+    \t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final long[] args) {\n\t\t\
+    if(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;)\
+    \ {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\t\
+    final void out(final double[] args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\
     \t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\
     \t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final boolean[] args) {\n\t\
     \tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;)\
@@ -566,7 +566,7 @@ data:
     \ S> of(final F a, final S b){ return new Pair<>(a, b); }\n\tfinal Pair<S, F>\
     \ swap(){ return Pair.of(second, first); }\n\t@Override\n\tpublic final int compareTo(final\
     \ Pair<F, S> p) {\n\t\tif(first.compareTo(p.first) == 0) {\n\t\t\treturn second.compareTo(p.second);\n\
-    \t\t}\n\t\treturn first.compareTo(p.first);\n\t}\n}\n"
+    \t\t}\n\t\treturn first.compareTo(p.first);\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/All.java
@@ -673,7 +673,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   - Java/CodeForces.java
-  timestamp: '2024-01-22 09:12:01+09:00'
+  timestamp: '2024-01-23 21:47:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java
