@@ -231,7 +231,7 @@ public final class Matrix implements Cloneable {
 		} catch(CloneNotSupportedException e){
 			e.printStackTrace();
 		}
-		return null;
+		throw new InternalError();
 	}
 	@Override
 	public final String toString() {
