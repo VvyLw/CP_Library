@@ -318,8 +318,8 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/math/Matrix.java\n"
-  code: "package library.math;\n\nimport java.util.stream.IntStream;\n\nimport library.core.Utility;\n\
-    \n/**\n * \u884C\u5217\n * @see <a href=\"https://ei1333.github.io/luzhiled/snippets/math/matrix.html\"\
+  code: "package library.math;\n\nimport java.util.Arrays;\nimport java.util.stream.IntStream;\n\
+    \nimport library.core.Utility;\n\n/**\n * \u884C\u5217\n * @see <a href=\"https://ei1333.github.io/luzhiled/snippets/math/matrix.html\"\
     >\u53C2\u8003\u5143</a>\n */\npublic final class Matrix implements Cloneable {\n\
     \tprivate final int h, w;\n\tprivate final long[][] mat;\n\t/**\n\t * \u30B3\u30F3\
     \u30B9\u30C8\u30E9\u30AF\u30BF(\u6B63\u65B9\u884C\u5217)\n\t * @param n\n\t */\n\
@@ -388,17 +388,17 @@ data:
     \t\tif(h != m.h || w != m.w) {\n\t\t\treturn false;\n\t\t}\n\t\tfor(int i = 0;\
     \ i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tif(mat[i][j] != m.get(i,\
     \ j)) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn true;\n\
-    \t}\n\t@Override\n\tpublic final Matrix clone() {\n\t\ttry {\n\t\t\treturn (Matrix)\
-    \ super.clone();\n\t\t} catch(CloneNotSupportedException e){\n\t\t\te.printStackTrace();\n\
-    \t\t}\n\t\tthrow new InternalError();\n\t}\n\t@Override\n\tpublic final String\
-    \ toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfinal int\
-    \ interval = String.valueOf(IntStream.range(0, h).mapToLong(i -> IntStream.range(0,\
-    \ w).mapToLong(j -> mat[i][j]).max().getAsLong()).max().getAsLong()).length()\
-    \ + 1;\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tsb.append(\"[\");\n\t\t\tfor(int\
-    \ j = 0; j < w; ++j) {\n\t\t\t\tsb.append(String.format(\"%\" + interval + \"\
-    d\", mat[i][j]));\n\t\t\t\tif(j + 1 == w) {\n\t\t\t\t\tsb.append(\"]\");\n\t\t\
-    \t\t}\n\t\t\t}\n\t\t\tif(i + 1 != h) {\n\t\t\t\tsb.append(\"\\n\");\n\t\t\t}\n\
-    \t\t}\n\t\treturn sb.toString();\n\t}\n}\n"
+    \t}\n\t@Override\n\tpublic final Matrix clone() {\n\t\tfinal Matrix m = new Matrix(h,\
+    \ w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tm.mat[i] = Arrays.copyOf(mat[i],\
+    \ w);\n\t\t}\n\t\treturn m;\n\t}\n\t@Override\n\tpublic final String toString()\
+    \ {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfinal int interval\
+    \ = String.valueOf(IntStream.range(0, h).mapToLong(i -> IntStream.range(0, w).mapToLong(j\
+    \ -> mat[i][j]).max().getAsLong()).max().getAsLong()).length() + 1;\n\t\tfor(int\
+    \ i = 0; i < h; ++i) {\n\t\t\tsb.append(\"[\");\n\t\t\tfor(int j = 0; j < w; ++j)\
+    \ {\n\t\t\t\tsb.append(String.format(\"%\" + interval + \"d\", mat[i][j]));\n\t\
+    \t\t\tif(j + 1 == w) {\n\t\t\t\t\tsb.append(\"]\");\n\t\t\t\t}\n\t\t\t}\n\t\t\t\
+    if(i + 1 != h) {\n\t\t\t\tsb.append(\"\\n\");\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\
+    \t}\n}\n"
   dependsOn:
   - Java/yukicoder.java
   - Java/All.java
@@ -505,7 +505,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   - Java/CodeForces.java
-  timestamp: '2024-01-24 17:07:28+09:00'
+  timestamp: '2024-01-24 17:24:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/Matrix.java

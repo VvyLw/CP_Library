@@ -1030,7 +1030,7 @@ data:
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
-  timestamp: '2024-01-24 17:07:28+09:00'
+  timestamp: '2024-01-24 17:24:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java
