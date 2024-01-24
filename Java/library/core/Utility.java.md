@@ -478,8 +478,12 @@ data:
     \ l\n\t * @param x\n\t * @param r\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
     >std::clamp</a>\n\t */\n\tprotected static final double clamp(final double l,\
     \ final double x, final double r){ return x < l ? l : x > r ? r : x; }\n\t/**\n\
-    \t * How to Use:\n\t * do {\n\t * \n\t * } while((a = nextPerm(a)) != null);\n\
-    \t * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/next_permutation.html\"\
+    \t * bit\u5168\u63A2\u7D22\u306A\u3069\u3067\u4F7F\u3046(i >> j\u304C\u5947\u6570\
+    \u304B\u3069\u3046\u304B)\n\t * @param i\n\t * @param j\n\t * @implNote i > j\n\
+    \t */\n\tprotected static final boolean isBit(final long i, final long j) {\n\t\
+    \tassert(i > j);\n\t\treturn (i >> j & 1) == 1;\n\t}\n\t/**\n\t * How to Use:\n\
+    \t * do {\n\t * \n\t * } while((a = nextPerm(a)) != null);\n\t * @param a\n\t\
+    \ * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/next_permutation.html\"\
     >std::next_permutation</a>\n\t */\n\tprotected static final int[] nextPerm(final\
     \ int[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i])\
     \ {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a,\
@@ -1000,7 +1004,7 @@ data:
     \ {\n\t\t\tans += n * (b / m);\n\t\t\tb %= m;\n\t\t}\n\t\tfinal long ym = (a *\
     \ n + b) / m, xm = (ym * m - b);\n\t\tif(ym == 0) {\n\t\t\treturn ans;\n\t\t}\n\
     \t\tans += (n - (xm + a - 1) / a) * ym;\n\t\tans += floorSum(ym, a, m, (a - xm\
-    \ % a) % a);\n\t\treturn ans;\n\t}\n}\n"
+    \ % a) % a);\n\t\treturn ans;\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/All.java
@@ -1107,7 +1111,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   - Java/CodeForces.java
-  timestamp: '2024-01-24 09:49:14+09:00'
+  timestamp: '2024-01-24 10:33:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java
