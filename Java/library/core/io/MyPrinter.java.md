@@ -425,65 +425,71 @@ data:
     \ Object head, final Object... tail) {\n\t\tout(head, tail);\n\t\tif(!autoFlush)\
     \ {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\
     \u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\
-    \n\t * @param args\n\t * @see #out\n\t */\n\tpublic final void fin(final int[]\
-    \ args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
-    \t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\
+    \n\t * @param <F> first\u306E\u578B\n\t * @param <S> second\u306E\u578B\n\t *\
+    \ @param arg\n\t * @see #out\n\t */\n\tpublic final <F extends Comparable<? super\
+    \ F>, S extends Comparable<? super S>> void fin(final Pair<F, S> arg) {\n\t\t\
+    out(arg);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t\
+    }\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\
     \u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see #out\n\t */\n\tpublic final\
-    \ void fin(final long[] args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\t\
+    \ void fin(final int[] args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\
+    \t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\
+    \u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param args\n\t *\
+    \ @see #out\n\t */\n\tpublic final void fin(final long[] args) {\n\t\tout(args);\n\
+    \t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\
+    \t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\
+    \u3059\u308B\n\t * @param args\n\t * @see #out\n\t */\n\tpublic final void fin(final\
+    \ double[] args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t\
+    }\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\
+    \u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see\
+    \ #out\n\t */\n\tpublic final void fin(final boolean[] args) {\n\t\tout(args);\n\
+    \t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\
+    \t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\
+    \u3059\u308B\n\t * @param args\n\t * @see #out\n\t */\n\tpublic final void fin(final\
+    \ char[] args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\
+    \t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\
+    \u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see\
+    \ #out\n\t */\n\tpublic final void fin(final Object[] args) {\n\t\tout(args);\n\
+    \t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\
+    \t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\
+    \u3059\u308B\n\t * @param args\n\t * @see #out\n\t */\n\tpublic final <E> void\
+    \ fin(final Collection<E> args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\t\
     flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\
     \u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param\
-    \ args\n\t * @see #out\n\t */\n\tpublic final void fin(final double[] args) {\n\
-    \t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
-    \t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\
-    \u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see #out\n\t */\n\tpublic final\
-    \ void fin(final boolean[] args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\
-    \tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\
-    \u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param\
-    \ args\n\t * @see #out\n\t */\n\tpublic final void fin(final char[] args) {\n\t\
-    \tout(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
-    \t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\
-    \u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see #out\n\t */\n\tpublic final\
-    \ void fin(final Object[] args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\t\
-    flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\
-    \u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param\
-    \ args\n\t * @see #out\n\t */\n\tpublic final <E> void fin(final Collection<E>\
-    \ args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
-    \t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\
-    \u7D42\u4E86\u3059\u308B\n\t * @param head\n\t * @param tail\n\t * @see #outl\n\
-    \t */\n\tpublic final void ende(final Object head, final Object... tail ) {\n\t\
-    \toutl(head, tail);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
-    \t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\
-    \u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see #outl\n\t */\n\tpublic final\
-    \ void ende(final int[] args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\t\
-    flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\
-    \u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param\
-    \ args\n\t * @see #outl\n\t */\n\tpublic final void ende(final long[] args) {\n\
-    \t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
-    \t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\
-    \u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see #outl\n\t */\n\tpublic final\
-    \ void ende(final double[] args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\
-    \tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\
-    \u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param\
-    \ args\n\t * @see #outl\n\t */\n\tpublic final void ende(final boolean[] args)\
-    \ {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
-    \t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\
-    \u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see #outl\n\t */\n\tpublic final\
-    \ void ende(final char[] args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\t\
-    flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\
-    \u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param\
-    \ args\n\t * @see #outl\n\t */\n\tpublic final void ende(final Object[] args)\
-    \ {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
-    \t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\
-    \u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see #outl\n\t */\n\tpublic final\
-    \ <E> void ende(final Collection<E> args) {\n\t\toutl(args);\n\t\tif(!autoFlush)\
-    \ {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u51FA\u529B\
-    \u3092flush\u3059\u308B\n\t * @see PrintWriter#flush\n\t */\n\t@Override\n\tpublic\
-    \ final void flush() {\n\t\ttry {\n\t\t\tos.write(buf, 0, pos);\n\t\t\tpos = 0;\n\
-    \t\t} catch(IOException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n\t/**\n\t\
-    \ * OutputStream\u3092\u9589\u3058\u308B\n\t * @see PrintWriter#close\n\t */\n\
-    \t@Override\n\tpublic final void close() {\n\t\tif(os == null) {\n\t\t\treturn;\n\
-    \t\t}\n\t\ttry {\n\t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(IOException\
-    \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n}"
+    \ head\n\t * @param tail\n\t * @see #outl\n\t */\n\tpublic final void ende(final\
+    \ Object head, final Object... tail ) {\n\t\toutl(head, tail);\n\t\tif(!autoFlush)\
+    \ {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\
+    \u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\
+    \n\t * @param args\n\t * @see #outl\n\t */\n\tpublic final void ende(final int[]\
+    \ args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\t\
+    System.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\
+    \u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see #outl\n\
+    \t */\n\tpublic final void ende(final long[] args) {\n\t\toutl(args);\n\t\tif(!autoFlush)\
+    \ {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\
+    \u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\
+    \n\t * @param args\n\t * @see #outl\n\t */\n\tpublic final void ende(final double[]\
+    \ args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\t\
+    System.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\
+    \u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see #outl\n\
+    \t */\n\tpublic final void ende(final boolean[] args) {\n\t\toutl(args);\n\t\t\
+    if(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t *\
+    \ \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\
+    \u3059\u308B\n\t * @param args\n\t * @see #outl\n\t */\n\tpublic final void ende(final\
+    \ char[] args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t\
+    }\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\
+    \u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see\
+    \ #outl\n\t */\n\tpublic final void ende(final Object[] args) {\n\t\toutl(args);\n\
+    \t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\
+    \t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\
+    \u3059\u308B\n\t * @param args\n\t * @see #outl\n\t */\n\tpublic final <E> void\
+    \ ende(final Collection<E> args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\
+    \tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u51FA\u529B\u3092flush\u3059\
+    \u308B\n\t * @see PrintWriter#flush\n\t */\n\t@Override\n\tpublic final void flush()\
+    \ {\n\t\ttry {\n\t\t\tos.write(buf, 0, pos);\n\t\t\tpos = 0;\n\t\t} catch(IOException\
+    \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n\t/**\n\t * OutputStream\u3092\
+    \u9589\u3058\u308B\n\t * @see PrintWriter#close\n\t */\n\t@Override\n\tpublic\
+    \ final void close() {\n\t\tif(os == null) {\n\t\t\treturn;\n\t\t}\n\t\ttry {\n\
+    \t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(IOException e) {\n\t\t\te.printStackTrace();\n\
+    \t\t}\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/All.java
@@ -590,7 +596,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   - Java/CodeForces.java
-  timestamp: '2024-01-23 21:47:01+09:00'
+  timestamp: '2024-01-24 09:49:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyPrinter.java
