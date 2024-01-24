@@ -46,8 +46,6 @@ public class Pair<F extends Comparable<? super F>, S extends Comparable<? super 
 		return second.equals(p.second);
 	}
 	@Override
-	public final int hashCode(){ return 31 * first.hashCode() + second.hashCode(); }
-	@Override
 	public final String toString(){ return "(" + first + ", " + second + ")"; }
 	@SuppressWarnings("unchecked")
 	@Override
@@ -57,7 +55,7 @@ public class Pair<F extends Comparable<? super F>, S extends Comparable<? super 
 		} catch(CloneNotSupportedException e){
 			e.printStackTrace();
 		}
-		return null;
+		throw new InternalError();
 	}
 	@Override
 	public final int compareTo(final Pair<F, S> p) {
