@@ -407,14 +407,10 @@ public class Utility {
 	protected static final double clamp(final double l, final double x, final double r){ return x < l ? l : x > r ? r : x; }
 	/**
 	 * bit全探索などで使う(i >> jが奇数かどうか)
-	 * @param i
-	 * @param j
-	 * @implNote i > j
+	 * @param i bit
+	 * @param j target
 	 */
-	protected static final boolean isBit(final long i, final long j) {
-		assert(i > j);
-		return (i >> j & 1) == 1;
-	}
+	protected static final boolean isBit(final long i, final long j){ return (i >> j & 1) == 1; }
 	/**
 	 * How to Use:
 	 * do {
