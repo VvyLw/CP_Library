@@ -82,7 +82,7 @@ class Utility {
 		return res;
 	}
 	protected static final long lcm(final long a, final long b){ return a * b / gcd(a, b); }
-	protected static final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1, (x, y) -> lcm(x, y)); }
+	protected static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }
 	protected static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }
 	protected static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }
 	protected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }
@@ -93,10 +93,10 @@ class Utility {
 	protected static final int max(final int... a){ return Arrays.stream(a).max().getAsInt(); }
 	protected static final long max(final long... a){ return Arrays.stream(a).max().getAsLong(); }
 	protected static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble(); }
-	protected static final long sum(final int... a){ return Arrays.stream(a).mapToLong(i -> i).sum(); }
+	protected static final long sum(final int... a){ return Arrays.stream(a).asLongStream().sum(); }
 	protected static final long sum(final long... a){ return Arrays.stream(a).sum(); }
 	protected static final double sum(final double... a){ return Arrays.stream(a).sum(); }
-	protected static final long prod(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1, (x, y) -> x * y); }
+	protected static final long prod(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> x * y); }
 	protected static final long prod(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y); }
 	protected static final double prod(final double... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y); }
 	protected static final ArrayList<Long> div(final long n) {

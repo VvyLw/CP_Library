@@ -108,7 +108,7 @@ public class Utility {
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの最小公倍数
 	 */
-	public static final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1, (x, y) -> lcm(x, y)); }
+	public static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }
 	/**
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの最小公倍数
@@ -166,7 +166,7 @@ public class Utility {
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの総和
 	 */
-	protected static final long sum(final int... a){ return Arrays.stream(a).mapToLong(i -> i).sum(); }
+	protected static final long sum(final int... a){ return Arrays.stream(a).asLongStream().sum(); }
 	/**
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの総和
@@ -181,7 +181,7 @@ public class Utility {
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの総乗
 	 */
-	protected static final long prod(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1, (x, y) -> x * y); }
+	protected static final long prod(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> x * y); }
 	/**
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの総乗

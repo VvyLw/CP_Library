@@ -16,7 +16,7 @@ public class InclusiveScan {
 	 */
 	public InclusiveScan(final int[] a, final LongBinaryOperator op) {
 		n = a.length;
-		s = Arrays.stream(a).mapToLong(i -> i).toArray();
+		s = Arrays.stream(a).asLongStream().toArray();
 		Arrays.parallelPrefix(s, op);
 	}
 	/**
