@@ -66,8 +66,8 @@ data:
   timestamp: '2023-12-11 21:48:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/s_rmq.test.cpp
   - test/stable.test.cpp
+  - test/s_rmq.test.cpp
 documentation_of: C++/SparseTable.hpp
 layout: document
 redirect_from:

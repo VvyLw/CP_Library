@@ -359,42 +359,41 @@ data:
     \ final long lcm(final long a, final long b){ return a * b / gcd(a, b); }\n\t\
     /**\n\t * e.g.) lcm(2, 3, 5) = 30\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\
     \u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u516C\
-    \u500D\u6570\n\t */\n\tpublic static final long lcm(final int... a){ return Arrays.stream(a).mapToLong(i\
-    \ -> i).reduce(1, (x, y) -> lcm(x, y)); }\n\t/**\n\t * @param a long\u578B\u30BF\
-    \u30D7\u30EB \u3042\u308B\u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\
-    \u6700\u5C0F\u516C\u500D\u6570\n\t */\n\tpublic static final long lcm(final long...\
-    \ a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\t/**\n\t * @param\
-    \ a\n\t * @param b\n\t * @return a\u3068b\u306E\u6700\u5927\u516C\u7D04\u6570\n\
-    \t */\n\tpublic static final long gcd(final long a, final long b){ return b >\
-    \ 0 ? gcd(b, a % b) : a; }\n\t/**\n\t * e.g.) gcd(12, 15, 24) = 3\n\t * @param\
-    \ a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\u5217\n\
-    \t * @return a\u306E\u6700\u5927\u516C\u7D04\u6570\n\t */\n\tpublic static final\
-    \ int gcd(final int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x,\
-    \ y)); }\n\t/**\n\t * e.g.) gcd(12, 15, 24) = 3\n\t * @param a long\u578B\u30BF\
-    \u30D7\u30EB \u3042\u308B\u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\
-    \u6700\u5927\u516C\u7D04\u6570\n\t */\n\tpublic static final long gcd(final long...\
-    \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\t/**\n\t * @param\
-    \ a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\u5217\n\
-    \t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tprotected static final int min(final\
-    \ int... a){ return Arrays.stream(a).min().getAsInt(); }\n\t/**\n\t * @param a\
-    \ long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Flong\u578B\u914D\u5217\n\
-    \t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tprotected static final long min(final\
-    \ long... a){ return Arrays.stream(a).min().getAsLong(); }\n\t/**\n\t * @param\
-    \ a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fdouble\u578B\u914D\u5217\
-    \n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tprotected static final double\
-    \ min(final double... a){ return Arrays.stream(a).min().getAsDouble(); }\n\t/**\n\
-    \t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\
-    \u5217\n\t * @return a\u306E\u6700\u5927\u5024\n\t */\n\tprotected static final\
-    \ int max(final int... a){ return Arrays.stream(a).max().getAsInt(); }\n\t/**\n\
-    \t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Flong\u578B\u914D\
-    \u5217\n\t * @return a\u306E\u6700\u5927\u5024\n\t */\n\tprotected static final\
-    \ long max(final long... a){ return Arrays.stream(a).max().getAsLong(); }\n\t\
-    /**\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fdouble\u578B\
-    \u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\n\t */\n\tprotected static\
-    \ final double max(final double... a){ return Arrays.stream(a).max().getAsDouble();\
+    \u500D\u6570\n\t */\n\tpublic static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1,\
+    \ (x, y) -> lcm(x, y)); }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\
+    \u308B\u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u516C\
+    \u500D\u6570\n\t */\n\tpublic static final long lcm(final long... a){ return Arrays.stream(a).reduce(1,\
+    \ (x, y) -> lcm(x, y)); }\n\t/**\n\t * @param a\n\t * @param b\n\t * @return a\u3068\
+    b\u306E\u6700\u5927\u516C\u7D04\u6570\n\t */\n\tpublic static final long gcd(final\
+    \ long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }\n\t/**\n\t * e.g.)\
+    \ gcd(12, 15, 24) = 3\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\
+    \u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u516C\u7D04\u6570\
+    \n\t */\n\tpublic static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
+    \ (x, y) -> (int) gcd(x, y)); }\n\t/**\n\t * e.g.) gcd(12, 15, 24) = 3\n\t * @param\
+    \ a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Flong\u578B\u914D\u5217\
+    \n\t * @return a\u306E\u6700\u5927\u516C\u7D04\u6570\n\t */\n\tpublic static final\
+    \ long gcd(final long... a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x,\
+    \ y)); }\n\t/**\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
+    int\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tprotected\
+    \ static final int min(final int... a){ return Arrays.stream(a).min().getAsInt();\
+    \ }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
+    long\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tprotected\
+    \ static final long min(final long... a){ return Arrays.stream(a).min().getAsLong();\
+    \ }\n\t/**\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
+    double\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tprotected\
+    \ static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
+    \ }\n\t/**\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
+    int\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\n\t */\n\tprotected\
+    \ static final int max(final int... a){ return Arrays.stream(a).max().getAsInt();\
+    \ }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
+    long\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\n\t */\n\tprotected\
+    \ static final long max(final long... a){ return Arrays.stream(a).max().getAsLong();\
+    \ }\n\t/**\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
+    double\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\n\t */\n\tprotected\
+    \ static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble();\
     \ }\n\t/**\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
     int\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\tprotected static\
-    \ final long sum(final int... a){ return Arrays.stream(a).mapToLong(i -> i).sum();\
+    \ final long sum(final int... a){ return Arrays.stream(a).asLongStream().sum();\
     \ }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
     long\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\tprotected static\
     \ final long sum(final long... a){ return Arrays.stream(a).sum(); }\n\t/**\n\t\
@@ -403,8 +402,8 @@ data:
     \ double sum(final double... a){ return Arrays.stream(a).sum(); }\n\t/**\n\t *\
     \ @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\
     \u5217\n\t * @return a\u306E\u7DCF\u4E57\n\t */\n\tprotected static final long\
-    \ prod(final int... a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1, (x,\
-    \ y) -> x * y); }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\
+    \ prod(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y)\
+    \ -> x * y); }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\
     \u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u4E57\n\t */\n\t\
     protected static final long prod(final long... a){ return Arrays.stream(a).reduce(1,\
     \ (x, y) -> x * y); }\n\t/**\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\
@@ -1005,112 +1004,112 @@ data:
     \t\tans += (n - (xm + a - 1) / a) * ym;\n\t\tans += floorSum(ym, a, m, (a - xm\
     \ % a) % a);\n\t\treturn ans;\n\t}\n}"
   dependsOn:
-  - Java/yukicoder.java
-  - Java/All.java
-  - Java/AOJ.java
+  - Java/CodeForces.java
+  - Java/library/other/SkewHeap.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/InclusiveScan.java
-  - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
-  - Java/library/other/SkewHeap.java
-  - Java/library/math/PrimeCounter.java
-  - Java/library/math/BigPrime.java
-  - Java/library/math/PrimeFactor.java
-  - Java/library/math/EulerPhiTable.java
-  - Java/library/math/PrimeTable.java
+  - Java/library/other/Huitloxopetl.java
   - Java/library/math/LongPrime.java
+  - Java/library/math/PrimeCounter.java
+  - Java/library/math/EulerPhiTable.java
+  - Java/library/math/BigPrime.java
   - Java/library/math/Matrix.java
-  - Java/library/structure/unionfind/UnionFind.java
-  - Java/library/structure/unionfind/WeightedUnionFind.java
-  - Java/library/structure/unionfind/UndoUnionFind.java
-  - Java/library/structure/SparseTable.java
-  - Java/library/structure/SegmentTree.java
+  - Java/library/math/PrimeFactor.java
+  - Java/library/math/PrimeTable.java
+  - Java/library/graph/Graph.java
+  - Java/library/graph/MST.java
+  - Java/library/graph/Edge.java
+  - Java/library/graph/WeightedGraph.java
+  - Java/library/graph/LowestCommonAncestor.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
-  - Java/library/structure/deque/Deque.java
-  - Java/library/structure/deque/IntDeque.java
+  - Java/library/structure/pair/FloatPair.java
+  - Java/library/structure/pair/IntPair.java
+  - Java/library/structure/pair/Pair.java
   - Java/library/structure/FenwickTree.java
   - Java/library/structure/AVLTree.java
-  - Java/library/structure/pair/Pair.java
-  - Java/library/structure/pair/IntPair.java
-  - Java/library/structure/pair/FloatPair.java
+  - Java/library/structure/SparseTable.java
+  - Java/library/structure/unionfind/UndoUnionFind.java
+  - Java/library/structure/unionfind/UnionFind.java
+  - Java/library/structure/unionfind/WeightedUnionFind.java
   - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/core/io/MyPrinter.java
-  - Java/library/core/io/MyScanner.java
+  - Java/library/structure/SegmentTree.java
+  - Java/library/structure/deque/Deque.java
+  - Java/library/structure/deque/IntDeque.java
   - Java/library/core/Main.java
-  - Java/library/core/VvyLw.java
+  - Java/library/core/interfaces/TriFunction.java
+  - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/RecursiveConsumer.java
+  - Java/library/core/interfaces/RecursiveUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/RecursiveBiFunction.java
+  - Java/library/core/interfaces/RecursiveFunction.java
   - Java/library/core/interfaces/RecursiveBinaryOperator.java
   - Java/library/core/interfaces/RecursiveTriFunction.java
-  - Java/library/core/interfaces/RecursiveBiFunction.java
-  - Java/library/core/interfaces/QuadFunction.java
-  - Java/library/core/interfaces/TriFunction.java
-  - Java/library/core/interfaces/RecursiveTriConsumer.java
-  - Java/library/core/interfaces/RecursiveUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveConsumer.java
-  - Java/library/core/interfaces/RecursiveBiConsumer.java
-  - Java/library/core/interfaces/RecursiveFunction.java
-  - Java/library/graph/WeightedGraph.java
-  - Java/library/graph/Edge.java
-  - Java/library/graph/LowestCommonAncestor.java
-  - Java/library/graph/MST.java
-  - Java/library/graph/Graph.java
-  - Java/CodeForces.java
+  - Java/library/core/io/MyPrinter.java
+  - Java/library/core/io/MyScanner.java
+  - Java/library/core/VvyLw.java
+  - Java/All.java
+  - Java/yukicoder.java
+  - Java/AOJ.java
   isVerificationFile: false
   path: Java/library/core/Utility.java
   requiredBy:
-  - Java/yukicoder.java
-  - Java/All.java
-  - Java/AOJ.java
+  - Java/CodeForces.java
+  - Java/library/other/SkewHeap.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/InclusiveScan.java
-  - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
-  - Java/library/other/SkewHeap.java
-  - Java/library/math/PrimeCounter.java
-  - Java/library/math/BigPrime.java
-  - Java/library/math/PrimeFactor.java
-  - Java/library/math/EulerPhiTable.java
-  - Java/library/math/PrimeTable.java
+  - Java/library/other/Huitloxopetl.java
   - Java/library/math/LongPrime.java
+  - Java/library/math/PrimeCounter.java
+  - Java/library/math/EulerPhiTable.java
+  - Java/library/math/BigPrime.java
   - Java/library/math/Matrix.java
-  - Java/library/structure/unionfind/UnionFind.java
-  - Java/library/structure/unionfind/WeightedUnionFind.java
-  - Java/library/structure/unionfind/UndoUnionFind.java
-  - Java/library/structure/SparseTable.java
-  - Java/library/structure/SegmentTree.java
+  - Java/library/math/PrimeFactor.java
+  - Java/library/math/PrimeTable.java
+  - Java/library/graph/Graph.java
+  - Java/library/graph/MST.java
+  - Java/library/graph/Edge.java
+  - Java/library/graph/WeightedGraph.java
+  - Java/library/graph/LowestCommonAncestor.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
-  - Java/library/structure/deque/Deque.java
-  - Java/library/structure/deque/IntDeque.java
+  - Java/library/structure/pair/FloatPair.java
+  - Java/library/structure/pair/IntPair.java
+  - Java/library/structure/pair/Pair.java
   - Java/library/structure/FenwickTree.java
   - Java/library/structure/AVLTree.java
-  - Java/library/structure/pair/Pair.java
-  - Java/library/structure/pair/IntPair.java
-  - Java/library/structure/pair/FloatPair.java
+  - Java/library/structure/SparseTable.java
+  - Java/library/structure/unionfind/UndoUnionFind.java
+  - Java/library/structure/unionfind/UnionFind.java
+  - Java/library/structure/unionfind/WeightedUnionFind.java
   - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/core/io/MyPrinter.java
-  - Java/library/core/io/MyScanner.java
+  - Java/library/structure/SegmentTree.java
+  - Java/library/structure/deque/Deque.java
+  - Java/library/structure/deque/IntDeque.java
   - Java/library/core/Main.java
-  - Java/library/core/VvyLw.java
+  - Java/library/core/interfaces/TriFunction.java
+  - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/RecursiveConsumer.java
+  - Java/library/core/interfaces/RecursiveUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/RecursiveBiFunction.java
+  - Java/library/core/interfaces/RecursiveFunction.java
   - Java/library/core/interfaces/RecursiveBinaryOperator.java
   - Java/library/core/interfaces/RecursiveTriFunction.java
-  - Java/library/core/interfaces/RecursiveBiFunction.java
-  - Java/library/core/interfaces/QuadFunction.java
-  - Java/library/core/interfaces/TriFunction.java
-  - Java/library/core/interfaces/RecursiveTriConsumer.java
-  - Java/library/core/interfaces/RecursiveUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveConsumer.java
-  - Java/library/core/interfaces/RecursiveBiConsumer.java
-  - Java/library/core/interfaces/RecursiveFunction.java
-  - Java/library/graph/WeightedGraph.java
-  - Java/library/graph/Edge.java
-  - Java/library/graph/LowestCommonAncestor.java
-  - Java/library/graph/MST.java
-  - Java/library/graph/Graph.java
-  - Java/CodeForces.java
-  timestamp: '2024-01-24 17:24:42+09:00'
+  - Java/library/core/io/MyPrinter.java
+  - Java/library/core/io/MyScanner.java
+  - Java/library/core/VvyLw.java
+  - Java/All.java
+  - Java/yukicoder.java
+  - Java/AOJ.java
+  timestamp: '2024-01-25 08:57:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

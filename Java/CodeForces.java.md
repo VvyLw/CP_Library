@@ -351,8 +351,8 @@ data:
     \ m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\
     \treturn res;\n\t}\n\tprotected static final long lcm(final long a, final long\
     \ b){ return a * b / gcd(a, b); }\n\tprotected static final long lcm(final int...\
-    \ a){ return Arrays.stream(a).mapToLong(i -> i).reduce(1, (x, y) -> lcm(x, y));\
-    \ }\n\tprotected static final long lcm(final long... a){ return Arrays.stream(a).reduce(1,\
+    \ a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }\n\
+    \tprotected static final long lcm(final long... a){ return Arrays.stream(a).reduce(1,\
     \ (x, y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final\
     \ long b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
     \ int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\
@@ -364,71 +364,70 @@ data:
     \ }\n\tprotected static final int max(final int... a){ return Arrays.stream(a).max().getAsInt();\
     \ }\n\tprotected static final long max(final long... a){ return Arrays.stream(a).max().getAsLong();\
     \ }\n\tprotected static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble();\
-    \ }\n\tprotected static final long sum(final int... a){ return Arrays.stream(a).mapToLong(i\
-    \ -> i).sum(); }\n\tprotected static final long sum(final long... a){ return Arrays.stream(a).sum();\
+    \ }\n\tprotected static final long sum(final int... a){ return Arrays.stream(a).asLongStream().sum();\
+    \ }\n\tprotected static final long sum(final long... a){ return Arrays.stream(a).sum();\
     \ }\n\tprotected static final double sum(final double... a){ return Arrays.stream(a).sum();\
-    \ }\n\tprotected static final long prod(final int... a){ return Arrays.stream(a).mapToLong(i\
-    \ -> i).reduce(1, (x, y) -> x * y); }\n\tprotected static final long prod(final\
-    \ long... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y); }\n\tprotected\
-    \ static final double prod(final double... a){ return Arrays.stream(a).reduce(1,\
-    \ (x, y) -> x * y); }\n\tprotected static final ArrayList<Long> div(final long\
-    \ n) {\n\t\tfinal ArrayList<Long> d = new ArrayList<>();\n\t\tfor(long i = 1;\
-    \ i * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i\
-    \ * i != n) {\n\t\t\t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\
-    \t\treturn d;\n\t}\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long\
-    \ n) {\n\t\tfinal ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\t\
-    for(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\
-    \t\t\t}\n\t\t\tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\
-    \tn /= i;\n\t\t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\
-    \t\tpf.add(Pair.of(n, 1));\n\t\t}\n\t\treturn pf;\n\t}\n\tprotected static final\
-    \ long eulerPhi(long n) {\n\t\tlong res = n;\n\t\tfor(long i = 2; i * i <= n;\
-    \ ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\tres -= res / i;\n\t\t\t\twhile(n % i\
-    \ == 0) {\n\t\t\t\t\tn /= i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tif(n > 1) {\n\t\t\
-    \tres -= res / n;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long\
-    \ factor(int n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\
-    \t}\n\t\treturn res;\n\t}\n\tprotected static final long factor(int n, final long\
-    \ mod) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t\tres\
-    \ %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long perm(int\
-    \ n, final int r) {\n\t\tfinal int og = n;\n\t\tlong res = 1;\n\t\twhile(n > og\
-    \ - r) {\n\t\t\tres *= n--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
-    \ long perm(int n, final int r, final long mod) {\n\t\tfinal int og = n;\n\t\t\
-    long res = 1;\n\t\twhile(n > og - r) {\n\t\t\tres *= n--;\n\t\t\tres %= mod; \n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long binom(int n, final\
-    \ int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong res = 1;\n\
-    \t\tfor(int i = 1; i <= r; ++i) {\n\t\t\tres *= n--;\n\t\t\tres /= i;\n\t\t}\n\
-    \t\treturn res;\n\t}\n\tprotected static final long binom(int n, final int r,\
-    \ final long mod) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong\
-    \ res = 1;\n\t\tfor(int i = 1; i <= r; ++i) {\n\t\t\tres *= n--;\n\t\t\tres %=\
-    \ mod;\n\t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
-    \ static final boolean isInt(final double n){ return n == (long) Math.floor(n);\
-    \ }\n\tprotected static final boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
-    \ }\n\tprotected static final boolean isPrime(final long n) {\n\t\tif(n == 1)\
-    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\t\
-    if(n % i == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t\
-    }\n\tprotected static final boolean scope(final int l, final int x, final int\
-    \ r){ return l <= x && x <= r; }\n\tprotected static final boolean scope(final\
-    \ long l, final long x, final long r){ return l <= x && x <= r; }\n\tprotected\
-    \ static final boolean scope(final double l, final double x, final double r){\
-    \ return l <= x && x <= r; }\n\tprotected static final int clamp(final int l,\
-    \ final int x, final int r){ return x < l ? l : x > r ? r : x; }\n\tprotected\
-    \ static final long clamp(final long l, final long x, final long r){ return x\
-    \ < l ? l : x > r ? r : x; }\n\tprotected static final double clamp(final double\
-    \ l, final double x, final double r){ return x < l ? l : x > r ? r : x; }\n\t\
-    protected static final boolean isBit(final long i, final long j){ return (i >>\
-    \ j & 1) == 1; }\n\tprotected static final int[] nextPerm(final int[] a) {\n\t\
-    \tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal\
-    \ int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\
-    \t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ null;\n\t}\n\tprotected static final long[] nextPerm(final long[] a) {\n\t\t\
-    for(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal\
-    \ int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\
-    \t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ null;\n\t}\n\tprotected static final double[] nextPerm(final double[] a) {\n\
-    \t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal\
-    \ int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\
-    \t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ null;\n\t}\n\tprotected static final String nextPerm(final String s) {\n\t\t\
-    final List<Character> a = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());\n\
+    \ }\n\tprotected static final long prod(final int... a){ return Arrays.stream(a).asLongStream().reduce(1,\
+    \ (x, y) -> x * y); }\n\tprotected static final long prod(final long... a){ return\
+    \ Arrays.stream(a).reduce(1, (x, y) -> x * y); }\n\tprotected static final double\
+    \ prod(final double... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y);\
+    \ }\n\tprotected static final ArrayList<Long> div(final long n) {\n\t\tfinal ArrayList<Long>\
+    \ d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n %\
+    \ i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n /\
+    \ i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\t\treturn d;\n\t\
+    }\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long n)\
+    \ {\n\t\tfinal ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\tfor(long\
+    \ i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t\
+    }\n\t\t\tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /=\
+    \ i;\n\t\t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\t\t\
+    pf.add(Pair.of(n, 1));\n\t\t}\n\t\treturn pf;\n\t}\n\tprotected static final long\
+    \ eulerPhi(long n) {\n\t\tlong res = n;\n\t\tfor(long i = 2; i * i <= n; ++i)\
+    \ {\n\t\t\tif(n % i == 0) {\n\t\t\t\tres -= res / i;\n\t\t\t\twhile(n % i == 0)\
+    \ {\n\t\t\t\t\tn /= i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tif(n > 1) {\n\t\t\tres\
+    \ -= res / n;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long factor(int\
+    \ n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t}\n\t\t\
+    return res;\n\t}\n\tprotected static final long factor(int n, final long mod)\
+    \ {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t\tres %= mod;\n\
+    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long perm(int n, final int\
+    \ r) {\n\t\tfinal int og = n;\n\t\tlong res = 1;\n\t\twhile(n > og - r) {\n\t\t\
+    \tres *= n--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long perm(int\
+    \ n, final int r, final long mod) {\n\t\tfinal int og = n;\n\t\tlong res = 1;\n\
+    \t\twhile(n > og - r) {\n\t\t\tres *= n--;\n\t\t\tres %= mod; \n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\tprotected static final long binom(int n, final int r) {\n\t\tif(r\
+    \ < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong res = 1;\n\t\tfor(int i =\
+    \ 1; i <= r; ++i) {\n\t\t\tres *= n--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\tprotected static final long binom(int n, final int r, final long mod) {\n\
+    \t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong res = 1;\n\t\tfor(int\
+    \ i = 1; i <= r; ++i) {\n\t\t\tres *= n--;\n\t\t\tres %= mod;\n\t\t\tres /= i;\n\
+    \t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final boolean\
+    \ isInt(final double n){ return n == (long) Math.floor(n); }\n\tprotected static\
+    \ final boolean isSqr(final long n){ return isInt(Math.sqrt(n)); }\n\tprotected\
+    \ static final boolean isPrime(final long n) {\n\t\tif(n == 1) {\n\t\t\treturn\
+    \ false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0)\
+    \ {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\tprotected\
+    \ static final boolean scope(final int l, final int x, final int r){ return l\
+    \ <= x && x <= r; }\n\tprotected static final boolean scope(final long l, final\
+    \ long x, final long r){ return l <= x && x <= r; }\n\tprotected static final\
+    \ boolean scope(final double l, final double x, final double r){ return l <= x\
+    \ && x <= r; }\n\tprotected static final int clamp(final int l, final int x, final\
+    \ int r){ return x < l ? l : x > r ? r : x; }\n\tprotected static final long clamp(final\
+    \ long l, final long x, final long r){ return x < l ? l : x > r ? r : x; }\n\t\
+    protected static final double clamp(final double l, final double x, final double\
+    \ r){ return x < l ? l : x > r ? r : x; }\n\tprotected static final boolean isBit(final\
+    \ long i, final long j){ return (i >> j & 1) == 1; }\n\tprotected static final\
+    \ int[] nextPerm(final int[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\
+    \tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length -\
+    \ 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\
+    \treturn a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final long[]\
+    \ nextPerm(final long[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i\
+    \ - 1] < a[i]) {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\
+    \t\t\tswap(a, i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn\
+    \ a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final double[]\
+    \ nextPerm(final double[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\t\
+    if(a[i - 1] < a[i]) {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\
+    \t\t\t\tswap(a, i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn\
+    \ a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final String nextPerm(final\
+    \ String s) {\n\t\tfinal List<Character> a = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());\n\
     \t\tfor(int i = a.size(); --i > 0;) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
     \ < 0) {\n\t\t\t\tfinal int j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\
     \tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\
@@ -925,112 +924,112 @@ data:
     \te.printStackTrace();\n\t\t}\n\t\treturn Double.NaN;\n\t}\n\tfinal double abs(){\
     \ return Math.hypot(first, second); }\n}"
   dependsOn:
-  - Java/yukicoder.java
-  - Java/All.java
-  - Java/AOJ.java
+  - Java/library/other/SkewHeap.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/InclusiveScan.java
-  - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
-  - Java/library/other/SkewHeap.java
-  - Java/library/math/PrimeCounter.java
-  - Java/library/math/BigPrime.java
-  - Java/library/math/PrimeFactor.java
-  - Java/library/math/EulerPhiTable.java
-  - Java/library/math/PrimeTable.java
+  - Java/library/other/Huitloxopetl.java
   - Java/library/math/LongPrime.java
+  - Java/library/math/PrimeCounter.java
+  - Java/library/math/EulerPhiTable.java
+  - Java/library/math/BigPrime.java
   - Java/library/math/Matrix.java
-  - Java/library/structure/unionfind/UnionFind.java
-  - Java/library/structure/unionfind/WeightedUnionFind.java
-  - Java/library/structure/unionfind/UndoUnionFind.java
-  - Java/library/structure/SparseTable.java
-  - Java/library/structure/SegmentTree.java
+  - Java/library/math/PrimeFactor.java
+  - Java/library/math/PrimeTable.java
+  - Java/library/graph/Graph.java
+  - Java/library/graph/MST.java
+  - Java/library/graph/Edge.java
+  - Java/library/graph/WeightedGraph.java
+  - Java/library/graph/LowestCommonAncestor.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
-  - Java/library/structure/deque/Deque.java
-  - Java/library/structure/deque/IntDeque.java
+  - Java/library/structure/pair/FloatPair.java
+  - Java/library/structure/pair/IntPair.java
+  - Java/library/structure/pair/Pair.java
   - Java/library/structure/FenwickTree.java
   - Java/library/structure/AVLTree.java
-  - Java/library/structure/pair/Pair.java
-  - Java/library/structure/pair/IntPair.java
-  - Java/library/structure/pair/FloatPair.java
+  - Java/library/structure/SparseTable.java
+  - Java/library/structure/unionfind/UndoUnionFind.java
+  - Java/library/structure/unionfind/UnionFind.java
+  - Java/library/structure/unionfind/WeightedUnionFind.java
   - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/core/io/MyPrinter.java
-  - Java/library/core/io/MyScanner.java
+  - Java/library/structure/SegmentTree.java
+  - Java/library/structure/deque/Deque.java
+  - Java/library/structure/deque/IntDeque.java
   - Java/library/core/Main.java
-  - Java/library/core/VvyLw.java
-  - Java/library/core/Utility.java
+  - Java/library/core/interfaces/TriFunction.java
+  - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/RecursiveConsumer.java
+  - Java/library/core/interfaces/RecursiveUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/RecursiveBiFunction.java
+  - Java/library/core/interfaces/RecursiveFunction.java
   - Java/library/core/interfaces/RecursiveBinaryOperator.java
   - Java/library/core/interfaces/RecursiveTriFunction.java
-  - Java/library/core/interfaces/RecursiveBiFunction.java
-  - Java/library/core/interfaces/QuadFunction.java
-  - Java/library/core/interfaces/TriFunction.java
-  - Java/library/core/interfaces/RecursiveTriConsumer.java
-  - Java/library/core/interfaces/RecursiveUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveConsumer.java
-  - Java/library/core/interfaces/RecursiveBiConsumer.java
-  - Java/library/core/interfaces/RecursiveFunction.java
-  - Java/library/graph/WeightedGraph.java
-  - Java/library/graph/Edge.java
-  - Java/library/graph/LowestCommonAncestor.java
-  - Java/library/graph/MST.java
-  - Java/library/graph/Graph.java
+  - Java/library/core/io/MyPrinter.java
+  - Java/library/core/io/MyScanner.java
+  - Java/library/core/Utility.java
+  - Java/library/core/VvyLw.java
+  - Java/All.java
+  - Java/yukicoder.java
+  - Java/AOJ.java
   isVerificationFile: false
   path: Java/CodeForces.java
   requiredBy:
-  - Java/yukicoder.java
-  - Java/All.java
-  - Java/AOJ.java
+  - Java/library/other/SkewHeap.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/InclusiveScan.java
-  - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
-  - Java/library/other/SkewHeap.java
-  - Java/library/math/PrimeCounter.java
-  - Java/library/math/BigPrime.java
-  - Java/library/math/PrimeFactor.java
-  - Java/library/math/EulerPhiTable.java
-  - Java/library/math/PrimeTable.java
+  - Java/library/other/Huitloxopetl.java
   - Java/library/math/LongPrime.java
+  - Java/library/math/PrimeCounter.java
+  - Java/library/math/EulerPhiTable.java
+  - Java/library/math/BigPrime.java
   - Java/library/math/Matrix.java
-  - Java/library/structure/unionfind/UnionFind.java
-  - Java/library/structure/unionfind/WeightedUnionFind.java
-  - Java/library/structure/unionfind/UndoUnionFind.java
-  - Java/library/structure/SparseTable.java
-  - Java/library/structure/SegmentTree.java
+  - Java/library/math/PrimeFactor.java
+  - Java/library/math/PrimeTable.java
+  - Java/library/graph/Graph.java
+  - Java/library/graph/MST.java
+  - Java/library/graph/Edge.java
+  - Java/library/graph/WeightedGraph.java
+  - Java/library/graph/LowestCommonAncestor.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
-  - Java/library/structure/deque/Deque.java
-  - Java/library/structure/deque/IntDeque.java
+  - Java/library/structure/pair/FloatPair.java
+  - Java/library/structure/pair/IntPair.java
+  - Java/library/structure/pair/Pair.java
   - Java/library/structure/FenwickTree.java
   - Java/library/structure/AVLTree.java
-  - Java/library/structure/pair/Pair.java
-  - Java/library/structure/pair/IntPair.java
-  - Java/library/structure/pair/FloatPair.java
+  - Java/library/structure/SparseTable.java
+  - Java/library/structure/unionfind/UndoUnionFind.java
+  - Java/library/structure/unionfind/UnionFind.java
+  - Java/library/structure/unionfind/WeightedUnionFind.java
   - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/core/io/MyPrinter.java
-  - Java/library/core/io/MyScanner.java
+  - Java/library/structure/SegmentTree.java
+  - Java/library/structure/deque/Deque.java
+  - Java/library/structure/deque/IntDeque.java
   - Java/library/core/Main.java
-  - Java/library/core/VvyLw.java
-  - Java/library/core/Utility.java
+  - Java/library/core/interfaces/TriFunction.java
+  - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/RecursiveConsumer.java
+  - Java/library/core/interfaces/RecursiveUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/RecursiveBiFunction.java
+  - Java/library/core/interfaces/RecursiveFunction.java
   - Java/library/core/interfaces/RecursiveBinaryOperator.java
   - Java/library/core/interfaces/RecursiveTriFunction.java
-  - Java/library/core/interfaces/RecursiveBiFunction.java
-  - Java/library/core/interfaces/QuadFunction.java
-  - Java/library/core/interfaces/TriFunction.java
-  - Java/library/core/interfaces/RecursiveTriConsumer.java
-  - Java/library/core/interfaces/RecursiveUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveConsumer.java
-  - Java/library/core/interfaces/RecursiveBiConsumer.java
-  - Java/library/core/interfaces/RecursiveFunction.java
-  - Java/library/graph/WeightedGraph.java
-  - Java/library/graph/Edge.java
-  - Java/library/graph/LowestCommonAncestor.java
-  - Java/library/graph/MST.java
-  - Java/library/graph/Graph.java
-  timestamp: '2024-01-24 17:24:42+09:00'
+  - Java/library/core/io/MyPrinter.java
+  - Java/library/core/io/MyScanner.java
+  - Java/library/core/Utility.java
+  - Java/library/core/VvyLw.java
+  - Java/All.java
+  - Java/yukicoder.java
+  - Java/AOJ.java
+  timestamp: '2024-01-25 08:57:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java

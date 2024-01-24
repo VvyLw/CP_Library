@@ -176,10 +176,10 @@ data:
   timestamp: '2024-01-20 23:48:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/bermanford.test.cpp
   - test/dag_check.test.cpp
-  - test/lca.test.cpp
   - test/warshallfloyd.test.cpp
+  - test/bermanford.test.cpp
+  - test/lca.test.cpp
 documentation_of: C++/graph.hpp
 layout: document
 redirect_from:
