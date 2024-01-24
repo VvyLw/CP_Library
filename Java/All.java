@@ -236,6 +236,10 @@ class Utility {
 	protected static final int clamp(final int l, final int x, final int r){ return x < l ? l : x > r ? r : x; }
 	protected static final long clamp(final long l, final long x, final long r){ return x < l ? l : x > r ? r : x; }
 	protected static final double clamp(final double l, final double x, final double r){ return x < l ? l : x > r ? r : x; }
+	protected static final boolean isBit(final long i, final long j) {
+		assert(i > j);
+		return (i >> j & 1) == 1;
+	}
 	protected static final int[] nextPerm(final int[] a) {
 		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] < a[i]) {
