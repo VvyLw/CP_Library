@@ -35,13 +35,5 @@ public final class Edge {
 		return cost == e.cost;
 	}
 	@Override
-	public final int hashCode() {
-		int result = 17;
-		result = 31 * result + src;
-		result = 31 * result + to;
-		result = 31 * result + (int) (cost ^ (cost >>> 32));
-		return result;
-	}
-	@Override
 	public final String toString(){ return "(" + src + ", " + to + ", " + cost + ")"; }
 }
