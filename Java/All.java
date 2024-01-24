@@ -3632,12 +3632,11 @@ final class Matrix implements Cloneable {
 	}
 	@Override
 	public final Matrix clone() {
-		try {
-			return (Matrix) super.clone();
-		} catch(CloneNotSupportedException e){
-			e.printStackTrace();
+		final Matrix m = new Matrix(h, w);
+		for(int i = 0; i < h; ++i) {
+			m.mat[i] = Arrays.copyOf(mat[i], w);
 		}
-		throw new InternalError();
+		return m;
 	}
 	@Override
 	public final String toString() {
