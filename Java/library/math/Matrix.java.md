@@ -390,9 +390,10 @@ data:
     \ j)) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn true;\n\
     \t}\n\t@Override\n\tpublic final Matrix clone() {\n\t\ttry {\n\t\t\treturn (Matrix)\
     \ super.clone();\n\t\t} catch(CloneNotSupportedException e){\n\t\t\te.printStackTrace();\n\
-    \t\t}\n\t\treturn null;\n\t}\n\t@Override\n\tpublic final String toString() {\n\
-    \t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfinal int interval = String.valueOf(IntStream.range(0,\
-    \ h).mapToLong(i -> IntStream.range(0, w).mapToLong(j -> mat[i][j]).max().getAsLong()).max().getAsLong()).length()\
+    \t\t}\n\t\tthrow new InternalError();\n\t}\n\t@Override\n\tpublic final String\
+    \ toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfinal int\
+    \ interval = String.valueOf(IntStream.range(0, h).mapToLong(i -> IntStream.range(0,\
+    \ w).mapToLong(j -> mat[i][j]).max().getAsLong()).max().getAsLong()).length()\
     \ + 1;\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tsb.append(\"[\");\n\t\t\tfor(int\
     \ j = 0; j < w; ++j) {\n\t\t\t\tsb.append(String.format(\"%\" + interval + \"\
     d\", mat[i][j]));\n\t\t\t\tif(j + 1 == w) {\n\t\t\t\t\tsb.append(\"]\");\n\t\t\
@@ -504,7 +505,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   - Java/CodeForces.java
-  timestamp: '2024-01-24 11:30:49+09:00'
+  timestamp: '2024-01-24 17:07:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/Matrix.java

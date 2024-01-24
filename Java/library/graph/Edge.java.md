@@ -328,11 +328,8 @@ data:
     \tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\
     \tfinal Edge e = (Edge) o;\n\t\tif(src != e.src) {\n\t\t\treturn false;\n\t\t\
     }\n\t\tif(to != e.to) {\n\t\t\treturn false;\n\t\t}\n\t\treturn cost == e.cost;\n\
-    \t}\n\t@Override\n\tpublic final int hashCode() {\n\t\tint result = 17;\n\t\t\
-    result = 31 * result + src;\n\t\tresult = 31 * result + to;\n\t\tresult = 31 *\
-    \ result + (int) (cost ^ (cost >>> 32));\n\t\treturn result;\n\t}\n\t@Override\n\
-    \tpublic final String toString(){ return \"(\" + src + \", \" + to + \", \" +\
-    \ cost + \")\"; }\n}\n"
+    \t}\n\t@Override\n\tpublic final String toString(){ return \"(\" + src + \", \"\
+    \ + to + \", \" + cost + \")\"; }\n}\n"
   dependsOn:
   - Java/yukicoder.java
   - Java/All.java
@@ -439,7 +436,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   - Java/CodeForces.java
-  timestamp: '2024-01-24 11:30:49+09:00'
+  timestamp: '2024-01-24 17:07:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/Edge.java

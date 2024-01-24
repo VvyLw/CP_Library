@@ -876,23 +876,22 @@ data:
     if(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() !=\
     \ o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?,\
     \ ?>) o;\n\t\tif(!first.equals(p.first)) {\n\t\t\treturn false;\n\t\t}\n\t\treturn\
-    \ second.equals(p.second);\n\t}\n\t@Override\n\tpublic final int hashCode(){ return\
-    \ 31 * first.hashCode() + second.hashCode(); }\n\t@Override\n\tpublic final String\
-    \ toString(){ return \"(\" + first + \", \" + second + \")\"; }\n\t@SuppressWarnings(\"\
-    unchecked\")\n\t@Override\n\tpublic final Pair<F, S> clone() {\n\t\ttry {\n\t\t\
-    \treturn (Pair<F, S>) super.clone();\n\t\t} catch(CloneNotSupportedException e){\n\
-    \t\t\te.printStackTrace();\n\t\t}\n\t\treturn null;\n\t}\n\t@Override\n\tpublic\
-    \ final int compareTo(final Pair<F, S> p) {\n\t\tif(first.compareTo(p.first) ==\
-    \ 0) {\n\t\t\treturn second.compareTo(p.second);\n\t\t}\n\t\treturn first.compareTo(p.first);\n\
-    \t}\n}\nfinal class IntPair extends Pair<Long, Long> {\n\tIntPair(final long first,\
-    \ final long second){ super(first, second); }\n\t@Override\n\tfinal IntPair swap(){\
-    \ return new IntPair(second, first); }\n\tfinal IntPair add(final IntPair p){\
-    \ return new IntPair(first + p.first, second + p.second); }\n\tfinal IntPair sub(final\
-    \ IntPair p){ return new IntPair(first - p.first, second - p.second); }\n\tfinal\
-    \ IntPair mul(final IntPair p){ return new IntPair(first * p.first, second * p.second);\
-    \ }\n\tfinal IntPair div(final IntPair p){ return new IntPair(first / p.first,\
-    \ second / p.second); }\n\tfinal IntPair mod(final IntPair p){ return new IntPair(first\
-    \ % p.first, second % p.second); }\n\tfinal IntPair rotate(){ return new IntPair(-second,\
+    \ second.equals(p.second);\n\t}\n\t@Override\n\tpublic final String toString(){\
+    \ return \"(\" + first + \", \" + second + \")\"; }\n\t@SuppressWarnings(\"unchecked\"\
+    )\n\t@Override\n\tpublic final Pair<F, S> clone() {\n\t\ttry {\n\t\t\treturn (Pair<F,\
+    \ S>) super.clone();\n\t\t} catch(CloneNotSupportedException e){\n\t\t\te.printStackTrace();\n\
+    \t\t}\n\t\tthrow new InternalError();\n\t}\n\t@Override\n\tpublic final int compareTo(final\
+    \ Pair<F, S> p) {\n\t\tif(first.compareTo(p.first) == 0) {\n\t\t\treturn second.compareTo(p.second);\n\
+    \t\t}\n\t\treturn first.compareTo(p.first);\n\t}\n}\nfinal class IntPair extends\
+    \ Pair<Long, Long> {\n\tIntPair(final long first, final long second){ super(first,\
+    \ second); }\n\t@Override\n\tfinal IntPair swap(){ return new IntPair(second,\
+    \ first); }\n\tfinal IntPair add(final IntPair p){ return new IntPair(first +\
+    \ p.first, second + p.second); }\n\tfinal IntPair sub(final IntPair p){ return\
+    \ new IntPair(first - p.first, second - p.second); }\n\tfinal IntPair mul(final\
+    \ IntPair p){ return new IntPair(first * p.first, second * p.second); }\n\tfinal\
+    \ IntPair div(final IntPair p){ return new IntPair(first / p.first, second / p.second);\
+    \ }\n\tfinal IntPair mod(final IntPair p){ return new IntPair(first % p.first,\
+    \ second % p.second); }\n\tfinal IntPair rotate(){ return new IntPair(-second,\
     \ first); } \n\tfinal FloatPair rotate(final int ang) {\n\t\tfinal double rad\
     \ = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn new FloatPair(first * Math.cos(rad)\
     \ - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));\n\
@@ -1031,7 +1030,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   - Java/CodeForces.java
-  timestamp: '2024-01-24 11:30:49+09:00'
+  timestamp: '2024-01-24 17:07:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java

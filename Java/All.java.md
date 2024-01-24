@@ -882,23 +882,22 @@ data:
     if(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() !=\
     \ o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?,\
     \ ?>) o;\n\t\tif(!first.equals(p.first)) {\n\t\t\treturn false;\n\t\t}\n\t\treturn\
-    \ second.equals(p.second);\n\t}\n\t@Override\n\tpublic final int hashCode(){ return\
-    \ 31 * first.hashCode() + second.hashCode(); }\n\t@Override\n\tpublic final String\
-    \ toString(){ return \"(\" + first + \", \" + second + \")\"; }\n\t@SuppressWarnings(\"\
-    unchecked\")\n\t@Override\n\tpublic final Pair<F, S> clone() {\n\t\ttry {\n\t\t\
-    \treturn (Pair<F, S>) super.clone();\n\t\t} catch(CloneNotSupportedException e){\n\
-    \t\t\te.printStackTrace();\n\t\t}\n\t\treturn null;\n\t}\n\t@Override\n\tpublic\
-    \ final int compareTo(final Pair<F, S> p) {\n\t\tif(first.compareTo(p.first) ==\
-    \ 0) {\n\t\t\treturn second.compareTo(p.second);\n\t\t}\n\t\treturn first.compareTo(p.first);\n\
-    \t}\n}\nfinal class IntPair extends Pair<Long, Long> {\n\tIntPair(final long first,\
-    \ final long second){ super(first, second); }\n\t@Override\n\tfinal IntPair swap(){\
-    \ return new IntPair(second, first); }\n\tfinal IntPair add(final IntPair p){\
-    \ return new IntPair(first + p.first, second + p.second); }\n\tfinal IntPair sub(final\
-    \ IntPair p){ return new IntPair(first - p.first, second - p.second); }\n\tfinal\
-    \ IntPair mul(final IntPair p){ return new IntPair(first * p.first, second * p.second);\
-    \ }\n\tfinal IntPair div(final IntPair p){ return new IntPair(first / p.first,\
-    \ second / p.second); }\n\tfinal IntPair mod(final IntPair p){ return new IntPair(first\
-    \ % p.first, second % p.second); }\n\tfinal IntPair rotate(){ return new IntPair(-second,\
+    \ second.equals(p.second);\n\t}\n\t@Override\n\tpublic final String toString(){\
+    \ return \"(\" + first + \", \" + second + \")\"; }\n\t@SuppressWarnings(\"unchecked\"\
+    )\n\t@Override\n\tpublic final Pair<F, S> clone() {\n\t\ttry {\n\t\t\treturn (Pair<F,\
+    \ S>) super.clone();\n\t\t} catch(CloneNotSupportedException e){\n\t\t\te.printStackTrace();\n\
+    \t\t}\n\t\tthrow new InternalError();\n\t}\n\t@Override\n\tpublic final int compareTo(final\
+    \ Pair<F, S> p) {\n\t\tif(first.compareTo(p.first) == 0) {\n\t\t\treturn second.compareTo(p.second);\n\
+    \t\t}\n\t\treturn first.compareTo(p.first);\n\t}\n}\nfinal class IntPair extends\
+    \ Pair<Long, Long> {\n\tIntPair(final long first, final long second){ super(first,\
+    \ second); }\n\t@Override\n\tfinal IntPair swap(){ return new IntPair(second,\
+    \ first); }\n\tfinal IntPair add(final IntPair p){ return new IntPair(first +\
+    \ p.first, second + p.second); }\n\tfinal IntPair sub(final IntPair p){ return\
+    \ new IntPair(first - p.first, second - p.second); }\n\tfinal IntPair mul(final\
+    \ IntPair p){ return new IntPair(first * p.first, second * p.second); }\n\tfinal\
+    \ IntPair div(final IntPair p){ return new IntPair(first / p.first, second / p.second);\
+    \ }\n\tfinal IntPair mod(final IntPair p){ return new IntPair(first % p.first,\
+    \ second % p.second); }\n\tfinal IntPair rotate(){ return new IntPair(-second,\
     \ first); } \n\tfinal FloatPair rotate(final int ang) {\n\t\tfinal double rad\
     \ = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn new FloatPair(first * Math.cos(rad)\
     \ - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));\n\
@@ -989,46 +988,43 @@ data:
     \ != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Edge e = (Edge) o;\n\
     \t\tif(src != e.src) {\n\t\t\treturn false;\n\t\t}\n\t\tif(to != e.to) {\n\t\t\
     \treturn false;\n\t\t}\n\t\treturn cost == e.cost;\n\t}\n\t@Override\n\tpublic\
-    \ final int hashCode() {\n\t\tint result = 17;\n\t\tresult = 31 * result + src;\n\
-    \t\tresult = 31 * result + to;\n\t\tresult = 31 * result + (int) (cost ^ (cost\
-    \ >>> 32));\n\t\treturn result;\n\t}\n\t@Override\n\tpublic final String toString(){\
-    \ return \"(\" + src + \", \" + to + \", \" + cost + \")\"; }\n}\nclass Graph\
-    \ extends ArrayList<ArrayList<Edge>> {\n\tprotected final boolean undirected;\n\
-    \tprotected final int n, indexed;\n\tprotected final ArrayList<Edge> edge;\n\t\
-    Graph(final int n, final int indexed, final boolean undirected) {\n\t\tthis.n\
-    \ = n;\n\t\tthis.indexed = indexed;\n\t\tthis.undirected = undirected;\n\t\tedge\
-    \ = new ArrayList<>();\n\t\tIntStream.range(0, n).forEach(i -> add(new ArrayList<>()));\n\
-    \t}\n\tfinal void addEdge(int a, int b) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\
-    \t\tthis.get(a).add(new Edge(b));\n\t\tedge.add(new Edge(a, b, 0));\n\t\tif(undirected)\
-    \ {\n\t\t\tthis.get(b).add(new Edge(a));\n\t\t\tedge.add(new Edge(b, a, 0));\n\
-    \t\t}\n\t}\n\tvoid input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(),\
-    \ VvyLw.sc.ni())); }\n\tprotected final int[] allDist(final int v) {\n\t\tfinal\
-    \ int[] d = new int[n];\n\t\tArrays.fill(d, -1);\n\t\tfinal Queue<Integer> q =\
-    \ new ArrayDeque<>();\n\t\td[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty()) {\n\
-    \t\t\tfinal int tmp = q.poll();\n\t\t\tfor(final Edge el: this.get(tmp)) {\n\t\
-    \t\t\tif(d[el.to] != -1) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to] =\
-    \ d[tmp] + 1;\n\t\t\t\tq.add(el.to);\n\t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\tprotected\
-    \ final int dist(final int u, final int v){ return allDist(u)[v]; }\n\tprotected\
-    \ final ArrayList<Integer> topologicalSort() {\n\t\tfinal int[] deg = new int[n];\n\
-    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final Edge ed: this.get(i)) {\n\t\t\
-    \t\tdeg[ed.to]++;\n\t\t\t}\n\t\t}\n\t\tfinal Stack<Integer> sk = new Stack<>();\n\
-    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(deg[i] == 0) {\n\t\t\t\tsk.add(i);\n\
-    \t\t\t}\n\t\t}\n\t\tfinal ArrayList<Integer> ord = new ArrayList<>();\n\t\twhile(!sk.isEmpty())\
-    \ {\n\t\t\tfinal int tmp = sk.pop();\n\t\t\tord.add(tmp);\n\t\t\tfor(final Edge\
-    \ ed: this.get(tmp)) {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ord.size() == size() ? ord : new ArrayList<>();\n\
-    \t}\n}\n\nfinal class MST {\n\tpublic final ArrayList<Edge> tree;\n\tpublic final\
-    \ long cost;\n\tMST(final ArrayList<Edge> tree, final long cost) {\n\t\tthis.tree\
-    \ = tree;\n\t\tthis.cost = cost;\n\t}\n}\nfinal class WeightedGraph extends Graph\
-    \ {\n\tWeightedGraph(final int n, final int indexed, final boolean undirected){\
-    \ super(n, indexed, undirected); }\n\tfinal void addEdge(int a, int b, final long\
-    \ cost) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(b,\
-    \ cost));\n\t\tedge.add(new Edge(a, b, cost));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new\
-    \ Edge(a, cost));\n\t\t\tedge.add(new Edge(b, a, cost));\n\t\t}\n\t}\n\tfinal\
-    \ void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(),\
-    \ VvyLw.sc.ni(), VvyLw.sc.ni())); }\n\tfinal long[] dijkstra(final int v) {\n\t\
-    \tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\
-    \tfinal Queue<IntPair> dj = new PriorityQueue<>();\n\t\tcost[v] = 0;\n\t\tdj.add(new\
+    \ final String toString(){ return \"(\" + src + \", \" + to + \", \" + cost +\
+    \ \")\"; }\n}\nclass Graph extends ArrayList<ArrayList<Edge>> {\n\tprotected final\
+    \ boolean undirected;\n\tprotected final int n, indexed;\n\tprotected final ArrayList<Edge>\
+    \ edge;\n\tGraph(final int n, final int indexed, final boolean undirected) {\n\
+    \t\tthis.n = n;\n\t\tthis.indexed = indexed;\n\t\tthis.undirected = undirected;\n\
+    \t\tedge = new ArrayList<>();\n\t\tIntStream.range(0, n).forEach(i -> add(new\
+    \ ArrayList<>()));\n\t}\n\tfinal void addEdge(int a, int b) {\n\t\ta -= indexed;\n\
+    \t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(b));\n\t\tedge.add(new Edge(a,\
+    \ b, 0));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new Edge(a));\n\t\t\tedge.add(new\
+    \ Edge(b, a, 0));\n\t\t}\n\t}\n\tvoid input(final int m){ IntStream.range(0, m).forEach(i\
+    \ -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni())); }\n\tprotected final int[] allDist(final\
+    \ int v) {\n\t\tfinal int[] d = new int[n];\n\t\tArrays.fill(d, -1);\n\t\tfinal\
+    \ Queue<Integer> q = new ArrayDeque<>();\n\t\td[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty())\
+    \ {\n\t\t\tfinal int tmp = q.poll();\n\t\t\tfor(final Edge el: this.get(tmp))\
+    \ {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to]\
+    \ = d[tmp] + 1;\n\t\t\t\tq.add(el.to);\n\t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\t\
+    protected final int dist(final int u, final int v){ return allDist(u)[v]; }\n\t\
+    protected final ArrayList<Integer> topologicalSort() {\n\t\tfinal int[] deg =\
+    \ new int[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final Edge ed: this.get(i))\
+    \ {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t}\n\t\t}\n\t\tfinal Stack<Integer> sk = new\
+    \ Stack<>();\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(deg[i] == 0) {\n\t\t\t\
+    \tsk.add(i);\n\t\t\t}\n\t\t}\n\t\tfinal ArrayList<Integer> ord = new ArrayList<>();\n\
+    \t\twhile(!sk.isEmpty()) {\n\t\t\tfinal int tmp = sk.pop();\n\t\t\tord.add(tmp);\n\
+    \t\t\tfor(final Edge ed: this.get(tmp)) {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\
+    \t\t\t\tsk.add(ed.to);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ord.size() == size()\
+    \ ? ord : new ArrayList<>();\n\t}\n}\n\nfinal class MST {\n\tpublic final ArrayList<Edge>\
+    \ tree;\n\tpublic final long cost;\n\tMST(final ArrayList<Edge> tree, final long\
+    \ cost) {\n\t\tthis.tree = tree;\n\t\tthis.cost = cost;\n\t}\n}\nfinal class WeightedGraph\
+    \ extends Graph {\n\tWeightedGraph(final int n, final int indexed, final boolean\
+    \ undirected){ super(n, indexed, undirected); }\n\tfinal void addEdge(int a, int\
+    \ b, final long cost) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new\
+    \ Edge(b, cost));\n\t\tedge.add(new Edge(a, b, cost));\n\t\tif(undirected) {\n\
+    \t\t\tthis.get(b).add(new Edge(a, cost));\n\t\t\tedge.add(new Edge(b, a, cost));\n\
+    \t\t}\n\t}\n\tfinal void input(final int m){ IntStream.range(0, m).forEach(i ->\
+    \ addEdge(VvyLw.sc.ni(), VvyLw.sc.ni(), VvyLw.sc.ni())); }\n\tfinal long[] dijkstra(final\
+    \ int v) {\n\t\tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
+    \t\tfinal Queue<IntPair> dj = new PriorityQueue<>();\n\t\tcost[v] = 0;\n\t\tdj.add(new\
     \ IntPair(cost[v], v));\n\t\twhile(!dj.isEmpty()) {\n\t\t\tfinal IntPair tmp =\
     \ dj.poll();\n\t\t\tif(cost[tmp.second.intValue()] < tmp.first.longValue()) {\n\
     \t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final Edge el: this.get(tmp.second.intValue()))\
@@ -1678,10 +1674,10 @@ data:
     \t\t\tif(mat[i][j] != m.get(i, j)) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\
     \t}\n\t\t}\n\t\treturn true;\n\t}\n\t@Override\n\tpublic final Matrix clone()\
     \ {\n\t\ttry {\n\t\t\treturn (Matrix) super.clone();\n\t\t} catch(CloneNotSupportedException\
-    \ e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn null;\n\t}\n\t@Override\n\
-    \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
-    \t\tfinal int interval = String.valueOf(IntStream.range(0, h).mapToLong(i -> IntStream.range(0,\
-    \ w).mapToLong(j -> mat[i][j]).max().getAsLong()).max().getAsLong()).length()\
+    \ e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow new InternalError();\n\t}\n\
+    \t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder sb =\
+    \ new StringBuilder();\n\t\tfinal int interval = String.valueOf(IntStream.range(0,\
+    \ h).mapToLong(i -> IntStream.range(0, w).mapToLong(j -> mat[i][j]).max().getAsLong()).max().getAsLong()).length()\
     \ + 1;\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tsb.append(\"[\");\n\t\t\tfor(int\
     \ j = 0; j < w; ++j) {\n\t\t\t\tsb.append(String.format(\"%\" + interval + \"\
     d\", mat[i][j]));\n\t\t\t\tif(j + 1 == w) {\n\t\t\t\t\tsb.append(\"]\");\n\t\t\
@@ -1793,7 +1789,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   - Java/CodeForces.java
-  timestamp: '2024-01-24 11:30:49+09:00'
+  timestamp: '2024-01-24 17:07:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
