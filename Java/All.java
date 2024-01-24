@@ -1244,6 +1244,13 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 		System.exit(0);
 	}
+	final <F extends Comparable<? super F>, S extends Comparable<? super S>> void fin(final Pair<F, S> arg) {
+		out(arg);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
 	final void fin(final int[] args) {
 		out(args);
 		if(!autoFlush) {

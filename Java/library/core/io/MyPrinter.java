@@ -279,6 +279,20 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	}
 	/**
 	 * この出力を最後に処理を終了する
+	 * @param <F> firstの型
+	 * @param <S> secondの型
+	 * @param arg
+	 * @see #out
+	 */
+	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> void fin(final Pair<F, S> arg) {
+		out(arg);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	/**
+	 * この出力を最後に処理を終了する
 	 * @param args
 	 * @see #out
 	 */
