@@ -1404,8 +1404,6 @@ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> imp
 		return second.equals(p.second);
 	}
 	@Override
-	public final int hashCode(){ return 31 * first.hashCode() + second.hashCode(); }
-	@Override
 	public final String toString(){ return "(" + first + ", " + second + ")"; }
 	@SuppressWarnings("unchecked")
 	@Override
@@ -1415,7 +1413,7 @@ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> imp
 		} catch(CloneNotSupportedException e){
 			e.printStackTrace();
 		}
-		return null;
+		throw new InternalError();
 	}
 	@Override
 	public final int compareTo(final Pair<F, S> p) {
@@ -1694,14 +1692,6 @@ final class Edge {
 			return false;
 		}
 		return cost == e.cost;
-	}
-	@Override
-	public final int hashCode() {
-		int result = 17;
-		result = 31 * result + src;
-		result = 31 * result + to;
-		result = 31 * result + (int) (cost ^ (cost >>> 32));
-		return result;
 	}
 	@Override
 	public final String toString(){ return "(" + src + ", " + to + ", " + cost + ")"; }
@@ -3647,7 +3637,7 @@ final class Matrix implements Cloneable {
 		} catch(CloneNotSupportedException e){
 			e.printStackTrace();
 		}
-		return null;
+		throw new InternalError();
 	}
 	@Override
 	public final String toString() {
