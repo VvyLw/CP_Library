@@ -409,8 +409,28 @@ data:
     \ (x, y) -> x * y); }\n\t/**\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\
     \u308B\u3044\u306Fdouble\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u4E57\n\
     \t */\n\tprotected static final double prod(final double... a){ return Arrays.stream(a).reduce(1,\
-    \ (x, y) -> x * y); }\n\t/**\n\t * n\u306E\u7D04\u6570\u3092\u5217\u6319\n\t *\
-    \ @param n \u6574\u6570\n\t */\n\tprotected static final ArrayList<Long> div(final\
+    \ (x, y) -> x * y); }\n\t/**\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\
+    \u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u5E73\u5747\u5024\
+    \n\t */\n\tprotected static final double ave(final int... a){ return Arrays.stream(a).average().getAsDouble();\
+    \ }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
+    long\u578B\u914D\u5217\n\t * @return a\u306E\u5E73\u5747\u5024\n\t */\n\tprotected\
+    \ static final double ave(final long... a){ return Arrays.stream(a).average().getAsDouble();\
+    \ }\n\t/**\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
+    double\u578B\u914D\u5217\n\t * @return a\u306E\u5E73\u5747\u5024\n\t */\n\tprotected\
+    \ static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble();\
+    \ }\n\t/**\n\t * @param a \u30BD\u30FC\u30C8\u6E08\u306Eint\u578B\u914D\u5217\n\
+    \t * @return \u4E2D\u592E\u5024\n\t */\n\tprotected static final double median(final\
+    \ int[] a) {\n\t\tassert(isSorted(a));\n\t\tfinal int m = a.length / 2;\n\t\t\
+    return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;\n\t}\n\t/**\n\t * @param\
+    \ a \u30BD\u30FC\u30C8\u6E08\u306Elong\u578B\u914D\u5217\n\t * @return \u4E2D\u592E\
+    \u5024\n\t */\n\tprotected static final double median(final long[] a) {\n\t\t\
+    assert(isSorted(a));\n\t\tfinal int m = a.length / 2;\n\t\treturn a.length % 2\
+    \ != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;\n\t}\n\t/**\n\t * @param a \u30BD\u30FC\
+    \u30C8\u6E08\u306Edouble\u578B\u914D\u5217\n\t * @return \u4E2D\u592E\u5024\n\t\
+    \ */\n\tprotected static final double median(final double[] a) {\n\t\tassert(isSorted(a));\n\
+    \t\tfinal int m = a.length / 2;\n\t\treturn a.length % 2 != 0 ? a[m] : (a[m -\
+    \ 1] + a[m]) / 2;\n\t}\n\t/**\n\t * n\u306E\u7D04\u6570\u3092\u5217\u6319\n\t\
+    \ * @param n \u6574\u6570\n\t */\n\tprotected static final ArrayList<Long> div(final\
     \ long n) {\n\t\tfinal ArrayList<Long> d = new ArrayList<>();\n\t\tfor(long i\
     \ = 1; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\t\
     if(i * i != n) {\n\t\t\t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\
@@ -1109,7 +1129,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   - Java/CodeForces.java
-  timestamp: '2024-01-25 10:40:59+09:00'
+  timestamp: '2024-01-25 10:59:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

@@ -368,6 +368,9 @@ data:
     \ (x, y) -> x * y); }\n\tprotected static final long prod(final long... a){ return\
     \ Arrays.stream(a).reduce(1, (x, y) -> x * y); }\n\tprotected static final double\
     \ prod(final double... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y);\
+    \ }\n\tprotected static final double ave(final int... a){ return Arrays.stream(a).average().getAsDouble();\
+    \ }\n\tprotected static final double ave(final long... a){ return Arrays.stream(a).average().getAsDouble();\
+    \ }\n\tprotected static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble();\
     \ }\n\tprotected static final boolean scope(final int l, final int x, final int\
     \ r){ return l <= x && x <= r; }\n\tprotected static final boolean scope(final\
     \ long l, final long x, final long r){ return l <= x && x <= r; }\n\tprotected\
@@ -685,7 +688,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
   - Java/CodeForces.java
-  timestamp: '2024-01-25 10:40:59+09:00'
+  timestamp: '2024-01-25 10:59:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java
