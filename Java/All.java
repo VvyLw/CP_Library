@@ -2072,12 +2072,12 @@ final class PrimeTable {
 		sieve = new boolean[n + 1];
 		Arrays.fill(sieve, true);
 		sieve[0] = sieve[1] = false;
-		for(long i = 2; i <= n; ++i) {
-			if(!sieve[(int) i]) {
+		for(int i = 2; i <= n; ++i) {
+			if(!sieve[i]) {
 				continue;
 			}
-			for(long j = i * i; j <= n; j += i) {
-				sieve[(int) j] = false;
+			for(int j = i * i; j <= n; j += i) {
+				sieve[j] = false;
 			}
 		}
 		size = (int) IntStream.rangeClosed(0, n).filter(i -> sieve[i]).count();
@@ -2098,11 +2098,12 @@ final class PrimeFactor {
 	PrimeFactor(final int n) {
 		spf = Utility.iota(n + 1);
 		for(int i = 2; i * i <= n; ++i) {
-			if(spf[i] == i) {
-				for(int j = i * i; j <= n; j += i) {
-					if(spf[j] == j) {
-						spf[j] = i;
-					}
+			if(spf[i] != i) {
+				continue;
+			}
+			for(int j = i * i; j <= n; j += i) {
+				if(spf[j] == j) {
+					spf[j] = i;
 				}
 			}
 		}
