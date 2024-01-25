@@ -91,6 +91,9 @@ class Utility {
 	protected static final long prod(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> x * y); }
 	protected static final long prod(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y); }
 	protected static final double prod(final double... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y); }
+	protected static final double ave(final int... a){ return Arrays.stream(a).average().getAsDouble(); }
+	protected static final double ave(final long... a){ return Arrays.stream(a).average().getAsDouble(); }
+	protected static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble(); }
 	protected static final boolean scope(final int l, final int x, final int r){ return l <= x && x <= r; }
 	protected static final boolean scope(final long l, final long x, final long r){ return l <= x && x <= r; }
 	protected static final boolean scope(final double l, final double x, final double r){ return l <= x && x <= r; }

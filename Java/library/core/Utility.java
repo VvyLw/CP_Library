@@ -193,6 +193,48 @@ public class Utility {
 	 */
 	protected static final double prod(final double... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y); }
 	/**
+	 * @param a int型タプル あるいはint型配列
+	 * @return aの平均値
+	 */
+	protected static final double ave(final int... a){ return Arrays.stream(a).average().getAsDouble(); }
+	/**
+	 * @param a long型タプル あるいはlong型配列
+	 * @return aの平均値
+	 */
+	protected static final double ave(final long... a){ return Arrays.stream(a).average().getAsDouble(); }
+	/**
+	 * @param a double型タプル あるいはdouble型配列
+	 * @return aの平均値
+	 */
+	protected static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble(); }
+	/**
+	 * @param a ソート済のint型配列
+	 * @return 中央値
+	 */
+	protected static final double median(final int[] a) {
+		assert(isSorted(a));
+		final int m = a.length / 2;
+		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;
+	}
+	/**
+	 * @param a ソート済のlong型配列
+	 * @return 中央値
+	 */
+	protected static final double median(final long[] a) {
+		assert(isSorted(a));
+		final int m = a.length / 2;
+		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;
+	}
+	/**
+	 * @param a ソート済のdouble型配列
+	 * @return 中央値
+	 */
+	protected static final double median(final double[] a) {
+		assert(isSorted(a));
+		final int m = a.length / 2;
+		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2;
+	}
+	/**
 	 * nの約数を列挙
 	 * @param n 整数
 	 */

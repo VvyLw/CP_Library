@@ -115,6 +115,24 @@ class Utility {
 	protected static final long prod(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> x * y); }
 	protected static final long prod(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y); }
 	protected static final double prod(final double... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y); }
+	protected static final double ave(final int... a){ return Arrays.stream(a).average().getAsDouble(); }
+	protected static final double ave(final long... a){ return Arrays.stream(a).average().getAsDouble(); }
+	protected static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble(); }
+	protected static final double median(final int[] a) {
+		assert(isSorted(a));
+		final int m = a.length / 2;
+		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;
+	}
+	protected static final double median(final long[] a) {
+		assert(isSorted(a));
+		final int m = a.length / 2;
+		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;
+	}
+	protected static final double median(final double[] a) {
+		assert(isSorted(a));
+		final int m = a.length / 2;
+		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2;
+	}
 	protected static final ArrayList<Long> div(final long n) {
 		final ArrayList<Long> d = new ArrayList<>();
 		for(long i = 1; i * i <= n; ++i) {
