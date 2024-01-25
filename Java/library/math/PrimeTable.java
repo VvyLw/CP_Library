@@ -19,12 +19,12 @@ public final class PrimeTable {
 		sieve = new boolean[n + 1];
 		Arrays.fill(sieve, true);
 		sieve[0] = sieve[1] = false;
-		for(long i = 2; i <= n; ++i) {
-			if(!sieve[(int) i]) {
+		for(int i = 2; i <= n; ++i) {
+			if(!sieve[i]) {
 				continue;
 			}
-			for(long j = i * i; j <= n; j += i) {
-				sieve[(int) j] = false;
+			for(int j = i * i; j <= n; j += i) {
+				sieve[j] = false;
 			}
 		}
 		size = (int) IntStream.rangeClosed(0, n).filter(i -> sieve[i]).count();
