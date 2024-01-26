@@ -79,7 +79,7 @@ public final class IntPair extends Pair<Long, Long> {
 		} catch(final ArithmeticException e) {
 			e.printStackTrace();
 		}
-		return Double.NaN;
+		throw new Error();
 	}
 	/**
 	 * @return IntPairのユークリッドノルム

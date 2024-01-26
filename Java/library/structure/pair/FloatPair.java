@@ -73,7 +73,7 @@ public final class FloatPair extends Pair<Double, Double> {
 		} catch(final ArithmeticException e) {
 			e.printStackTrace();
 		}
-		return Double.NaN;
+		throw new Error();
 	}
 	/**
 	 * @return FloatPairのユークリッドノルム

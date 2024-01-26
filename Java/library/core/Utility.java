@@ -350,13 +350,14 @@ public class Utility {
 	 * @param r
 	 * @return 二項係数(nCr)
 	 */
-	protected static final long binom(int n, final int r) {
+	protected static final long binom(final int n, final int r) {
 		if(r < 0 || n < r) {
 			return 0;
 		}
+		int tmp = n;
 		long res = 1;
-		for(int i = 1; i <= r; ++i) {
-			res *= n--;
+		for(int i = 1; i <= min(n - r, r); ++i) {
+			res *= tmp--;
 			res /= i;
 		}
 		return res;
@@ -367,13 +368,14 @@ public class Utility {
 	 * @param mod
 	 * @return 二項係数のmodを法とする剰余
 	 */
-	protected static final long binom(int n, final int r, final long mod) {
+	protected static final long binom(final int n, final int r, final long mod) {
 		if(r < 0 || n < r) {
 			return 0;
 		}
+		int tmp = n;
 		long res = 1;
-		for(int i = 1; i <= r; ++i) {
-			res *= n--;
+		for(int i = 1; i <= min(n - r, r); ++i) {
+			res *= tmp--;
 			res %= mod;
 			res /= i;
 			res %= mod;

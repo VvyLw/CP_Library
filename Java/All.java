@@ -211,24 +211,26 @@ class Utility {
 		}
 		return res;
 	}
-	protected static final long binom(int n, final int r) {
+	protected static final long binom(final int n, final int r) {
 		if(r < 0 || n < r) {
 			return 0;
 		}
+		int tmp = n;
 		long res = 1;
-		for(int i = 1; i <= r; ++i) {
-			res *= n--;
+		for(int i = 1; i <= min(n - r, r); ++i) {
+			res *= tmp--;
 			res /= i;
 		}
 		return res;
 	}
-	protected static final long binom(int n, final int r, final long mod) {
+	protected static final long binom(final int n, final int r, final long mod) {
 		if(r < 0 || n < r) {
 			return 0;
 		}
+		int tmp = n;
 		long res = 1;
-		for(int i = 1; i <= r; ++i) {
-			res *= n--;
+		for(int i = 1; i <= min(n - r, r); ++i) {
+			res *= tmp--;
 			res %= mod;
 			res /= i;
 			res %= mod;
@@ -1431,7 +1433,7 @@ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> imp
 		} catch(final CloneNotSupportedException e){
 			e.printStackTrace();
 		}
-		throw new InternalError();
+		throw new Error();
 	}
 	@Override
 	public final int compareTo(final Pair<F, S> p) {
@@ -1464,7 +1466,7 @@ final class IntPair extends Pair<Long, Long> {
 		} catch(final ArithmeticException e) {
 			e.printStackTrace();
 		}
-		return Double.NaN;
+		throw new Error();
 	}
 	final double abs(){ return Math.hypot(first, second); }
 	final long lcm(){ return Utility.lcm(first, second); }
@@ -1511,7 +1513,7 @@ final class FloatPair extends Pair<Double, Double> {
 		} catch(final ArithmeticException e) {
 			e.printStackTrace();
 		}
-		return Double.NaN;
+		throw new Error();
 	}
 	final double abs(){ return Math.hypot(first, second); }
 }

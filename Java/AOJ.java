@@ -656,7 +656,7 @@ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> imp
 		} catch(final CloneNotSupportedException e){
 			e.printStackTrace();
 		}
-		throw new InternalError();
+		throw new Error();
 	}
 	@Override
 	public final int compareTo(final Pair<F, S> p) {
