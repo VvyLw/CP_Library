@@ -351,7 +351,7 @@ data:
     \tpublic final double sqr(){ return dot(this); }\n\t/**\n\t * @return FloatPair\u306E\
     \u52FE\u914D\n\t */\n\tpublic final double grad() { \n\t\ttry {\n\t\t\treturn\
     \ second / first;\n\t\t} catch(final ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
-    \t\t}\n\t\treturn Double.NaN;\n\t}\n\t/**\n\t * @return FloatPair\u306E\u30E6\u30FC\
+    \t\t}\n\t\tthrow new Error();\n\t}\n\t/**\n\t * @return FloatPair\u306E\u30E6\u30FC\
     \u30AF\u30EA\u30C3\u30C9\u30CE\u30EB\u30E0\n\t */\n\tpublic final double abs(){\
     \ return Math.hypot(first, second); }\n}"
   dependsOn:
@@ -460,7 +460,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-26 16:19:31+09:00'
+  timestamp: '2024-01-27 05:20:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/pair/FloatPair.java

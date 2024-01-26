@@ -463,13 +463,14 @@ data:
     \ og = n;\n\t\tlong res = 1;\n\t\twhile(n > og - r) {\n\t\t\tres *= n--;\n\t\t\
     \tres %= mod; \n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param n\n\t * @param\
     \ r\n\t * @return \u4E8C\u9805\u4FC2\u6570(nCr)\n\t */\n\tprotected static final\
-    \ long binom(int n, final int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\
-    \t\t}\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= r; ++i) {\n\t\t\tres *= n--;\n\
-    \t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param n\n\t * @param\
-    \ r\n\t * @param mod\n\t * @return \u4E8C\u9805\u4FC2\u6570\u306Emod\u3092\u6CD5\
-    \u3068\u3059\u308B\u5270\u4F59\n\t */\n\tprotected static final long binom(int\
-    \ n, final int r, final long mod) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\
-    \t\t}\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= r; ++i) {\n\t\t\tres *= n--;\n\
+    \ long binom(final int n, final int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn\
+    \ 0;\n\t\t}\n\t\tint tmp = n;\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= min(n\
+    \ - r, r); ++i) {\n\t\t\tres *= tmp--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\t/**\n\t * @param n\n\t * @param r\n\t * @param mod\n\t * @return \u4E8C\
+    \u9805\u4FC2\u6570\u306Emod\u3092\u6CD5\u3068\u3059\u308B\u5270\u4F59\n\t */\n\
+    \tprotected static final long binom(final int n, final int r, final long mod)\
+    \ {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp = n;\n\t\t\
+    long res = 1;\n\t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\tres *= tmp--;\n\
     \t\t\tres %= mod;\n\t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\
     \t}\n\t/**\n\t * n\u304C\u6574\u6570\u304B\u3069\u3046\u304B\u5224\u5B9A\n\t *\
     \ @param n\n\t */\n\tprotected static final boolean isInt(final double n){ return\
@@ -1129,7 +1130,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-26 16:19:31+09:00'
+  timestamp: '2024-01-27 05:20:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

@@ -579,8 +579,8 @@ data:
     \ toString(){ return \"(\" + first + \", \" + second + \")\"; }\n\t@SuppressWarnings(\"\
     unchecked\")\n\t@Override\n\tpublic final Pair<F, S> clone() {\n\t\ttry {\n\t\t\
     \treturn (Pair<F, S>) super.clone();\n\t\t} catch(final CloneNotSupportedException\
-    \ e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow new InternalError();\n\t}\n\
-    \t@Override\n\tpublic final int compareTo(final Pair<F, S> p) {\n\t\tif(first.compareTo(p.first)\
+    \ e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow new Error();\n\t}\n\t@Override\n\
+    \tpublic final int compareTo(final Pair<F, S> p) {\n\t\tif(first.compareTo(p.first)\
     \ == 0) {\n\t\t\treturn second.compareTo(p.second);\n\t\t}\n\t\treturn first.compareTo(p.first);\n\
     \t}\n}"
   dependsOn:
@@ -689,7 +689,7 @@ data:
   - Java/library/core/VvyLw.java
   - Java/All.java
   - Java/yukicoder.java
-  timestamp: '2024-01-26 16:19:31+09:00'
+  timestamp: '2024-01-27 05:20:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java

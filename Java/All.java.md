@@ -409,15 +409,16 @@ data:
     \ - r) {\n\t\t\tres *= n--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
     \ long perm(int n, final int r, final long mod) {\n\t\tfinal int og = n;\n\t\t\
     long res = 1;\n\t\twhile(n > og - r) {\n\t\t\tres *= n--;\n\t\t\tres %= mod; \n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long binom(int n, final\
-    \ int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong res = 1;\n\
-    \t\tfor(int i = 1; i <= r; ++i) {\n\t\t\tres *= n--;\n\t\t\tres /= i;\n\t\t}\n\
-    \t\treturn res;\n\t}\n\tprotected static final long binom(int n, final int r,\
-    \ final long mod) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong\
-    \ res = 1;\n\t\tfor(int i = 1; i <= r; ++i) {\n\t\t\tres *= n--;\n\t\t\tres %=\
-    \ mod;\n\t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
-    \ static final boolean isInt(final double n){ return n == (long) Math.floor(n);\
-    \ }\n\tprotected static final boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
+    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long binom(final int n,\
+    \ final int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp\
+    \ = n;\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\
+    \tres *= tmp--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ final long binom(final int n, final int r, final long mod) {\n\t\tif(r < 0 ||\
+    \ n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp = n;\n\t\tlong res = 1;\n\t\t\
+    for(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\tres *= tmp--;\n\t\t\tres %= mod;\n\
+    \t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ final boolean isInt(final double n){ return n == (long) Math.floor(n); }\n\t\
+    protected static final boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
     \ }\n\tprotected static final boolean isPrime(final long n) {\n\t\tif(n == 1)\
     \ {\n\t\t\treturn false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\t\
     if(n % i == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t\
@@ -897,8 +898,8 @@ data:
     \ toString(){ return \"(\" + first + \", \" + second + \")\"; }\n\t@SuppressWarnings(\"\
     unchecked\")\n\t@Override\n\tpublic final Pair<F, S> clone() {\n\t\ttry {\n\t\t\
     \treturn (Pair<F, S>) super.clone();\n\t\t} catch(final CloneNotSupportedException\
-    \ e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow new InternalError();\n\t}\n\
-    \t@Override\n\tpublic final int compareTo(final Pair<F, S> p) {\n\t\tif(first.compareTo(p.first)\
+    \ e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow new Error();\n\t}\n\t@Override\n\
+    \tpublic final int compareTo(final Pair<F, S> p) {\n\t\tif(first.compareTo(p.first)\
     \ == 0) {\n\t\t\treturn second.compareTo(p.second);\n\t\t}\n\t\treturn first.compareTo(p.first);\n\
     \t}\n}\nfinal class IntPair extends Pair<Long, Long> {\n\tIntPair(final long first,\
     \ final long second){ super(first, second); }\n\t@Override\n\tfinal IntPair swap(){\
@@ -916,7 +917,7 @@ data:
     \ }\n\tfinal long cross(final IntPair p){ return rotate().dot(p); }\n\tfinal long\
     \ sqr(){ return dot(this); }\n\tfinal double grad() { \n\t\ttry {\n\t\t\treturn\
     \ 1.0 * second / first;\n\t\t} catch(final ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
-    \t\t}\n\t\treturn Double.NaN;\n\t}\n\tfinal double abs(){ return Math.hypot(first,\
+    \t\t}\n\t\tthrow new Error();\n\t}\n\tfinal double abs(){ return Math.hypot(first,\
     \ second); }\n\tfinal long lcm(){ return Utility.lcm(first, second); }\n\tfinal\
     \ long gcd(){ return Utility.gcd(first, second); }\n\tfinal IntPair extgcd() {\n\
     \t\tlong x = 1, y = 0, t1 = 0, t2 = 0, t3 = 1, a = first, b = second;\n\t\twhile(b\
@@ -939,7 +940,7 @@ data:
     \ p.second; }\n\tfinal double cross(final FloatPair p){ return rotate().dot(p);\
     \ }\n\tfinal double sqr(){ return dot(this); }\n\tfinal double grad() { \n\t\t\
     try {\n\t\t\treturn second / first;\n\t\t} catch(final ArithmeticException e)\
-    \ {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn Double.NaN;\n\t}\n\tfinal double\
+    \ {\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow new Error();\n\t}\n\tfinal double\
     \ abs(){ return Math.hypot(first, second); }\n}\n\nfinal class Huitloxopetl {\n\
     \tfinal long invNum(final int[] a) {\n\t\tfinal int[] b = Utility.sorted(a);\n\
     \t\tfinal Map<Integer, Integer> id = new HashMap<>();\n\t\tfor(int i = 0; i <\
@@ -1802,7 +1803,7 @@ data:
   - Java/library/core/VvyLw.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-26 16:19:31+09:00'
+  timestamp: '2024-01-27 05:20:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
