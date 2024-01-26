@@ -877,7 +877,7 @@ class Utility {
 			for(int j = 0; j < k; ++j) {
 				try {
 					mul = Math.multiplyExact(mul, x);
-				} catch(ArithmeticException e) {
+				} catch(final ArithmeticException e) {
 					return false;
 				}
 			}
@@ -981,7 +981,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 			try {
 				lim = is.read(buf);
 				pos = 0;
-			} catch(IOException e) {
+			} catch(final IOException e) {
 				e.printStackTrace();
 			}
 		}
@@ -1102,7 +1102,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 	public final void close() {
 		try {
 			is.close();
-		} catch (IOException e) {
+		} catch(final IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -1132,7 +1132,7 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 	}
 	final void print(final Object arg) {
-		if(arg instanceof String s) {
+		if(arg instanceof final String s) {
 			for(final char c: s.toCharArray()) {
 				write((byte) c);
 			}
@@ -1364,7 +1364,7 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		try {
 			os.write(buf, 0, pos);
 			pos = 0;
-		} catch(IOException e) {
+		} catch(final IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -1376,7 +1376,7 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		try {
 			os.close();
 			os = null;
-		} catch(IOException e) {
+		} catch(final IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -1412,7 +1412,7 @@ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> imp
 	public final Pair<F, S> clone() {
 		try {
 			return (Pair<F, S>) super.clone();
-		} catch(CloneNotSupportedException e){
+		} catch(final CloneNotSupportedException e){
 			e.printStackTrace();
 		}
 		throw new InternalError();
@@ -1445,7 +1445,7 @@ final class IntPair extends Pair<Long, Long> {
 	final double grad() { 
 		try {
 			return 1.0 * second / first;
-		} catch(ArithmeticException e) {
+		} catch(final ArithmeticException e) {
 			e.printStackTrace();
 		}
 		return Double.NaN;
@@ -1492,7 +1492,7 @@ final class FloatPair extends Pair<Double, Double> {
 	final double grad() { 
 		try {
 			return second / first;
-		} catch(ArithmeticException e) {
+		} catch(final ArithmeticException e) {
 			e.printStackTrace();
 		}
 		return Double.NaN;

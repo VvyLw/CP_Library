@@ -70,7 +70,7 @@ public final class FloatPair extends Pair<Double, Double> {
 	public final double grad() { 
 		try {
 			return second / first;
-		} catch(ArithmeticException e) {
+		} catch(final ArithmeticException e) {
 			e.printStackTrace();
 		}
 		return Double.NaN;

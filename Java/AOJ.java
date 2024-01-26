@@ -233,7 +233,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 			try {
 				lim = is.read(buf);
 				pos = 0;
-			} catch(IOException e) {
+			} catch(final IOException e) {
 				e.printStackTrace();
 			}
 		}
@@ -342,7 +342,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 	public final void close() {
 		try {
 			is.close();
-		} catch (IOException e) {
+		} catch(final IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -605,7 +605,7 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		try {
 			os.write(buf, 0, pos);
 			pos = 0;
-		} catch(IOException e) {
+		} catch(final IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -617,7 +617,7 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		try {
 			os.close();
 			os = null;
-		} catch(IOException e) {
+		} catch(final IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -653,7 +653,7 @@ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> imp
 	public final Pair<F, S> clone() {
 		try {
 			return (Pair<F, S>) super.clone();
-		} catch(CloneNotSupportedException e){
+		} catch(final CloneNotSupportedException e){
 			e.printStackTrace();
 		}
 		throw new InternalError();

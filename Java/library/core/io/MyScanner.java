@@ -34,7 +34,7 @@ public final class MyScanner implements Closeable, AutoCloseable {
 			try {
 				lim = is.read(buf);
 				pos = 0;
-			} catch(IOException e) {
+			} catch(final IOException e) {
 				e.printStackTrace();
 			}
 		}
@@ -262,7 +262,7 @@ public final class MyScanner implements Closeable, AutoCloseable {
 	public final void close() {
 		try {
 			is.close();
-		} catch (IOException e) {
+		} catch(final IOException e) {
 			e.printStackTrace();
 		}
 	}

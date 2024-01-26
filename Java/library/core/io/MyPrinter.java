@@ -50,7 +50,7 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	 * @see PrintWriter#print
 	 */
 	public final void print(final Object arg) {
-		if(arg instanceof String s) {
+		if(arg instanceof final String s) {
 			for(final char c: s.toCharArray()) {
 				write((byte) c);
 			}
@@ -481,7 +481,7 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		try {
 			os.write(buf, 0, pos);
 			pos = 0;
-		} catch(IOException e) {
+		} catch(final IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -497,7 +497,7 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		try {
 			os.close();
 			os = null;
-		} catch(IOException e) {
+		} catch(final IOException e) {
 			e.printStackTrace();
 		}
 	}

@@ -76,7 +76,7 @@ public final class IntPair extends Pair<Long, Long> {
 	public final double grad() { 
 		try {
 			return 1.0 * second / first;
-		} catch(ArithmeticException e) {
+		} catch(final ArithmeticException e) {
 			e.printStackTrace();
 		}
 		return Double.NaN;

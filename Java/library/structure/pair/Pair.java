@@ -52,7 +52,7 @@ public class Pair<F extends Comparable<? super F>, S extends Comparable<? super 
 	public final Pair<F, S> clone() {
 		try {
 			return (Pair<F, S>) super.clone();
-		} catch(CloneNotSupportedException e){
+		} catch(final CloneNotSupportedException e){
 			e.printStackTrace();
 		}
 		throw new InternalError();

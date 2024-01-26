@@ -893,7 +893,7 @@ class Utility {
 			for(int j = 0; j < k; ++j) {
 				try {
 					mul = Math.multiplyExact(mul, x);
-				} catch(ArithmeticException e) {
+				} catch(final ArithmeticException e) {
 					return false;
 				}
 			}
@@ -997,7 +997,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 			try {
 				lim = is.read(buf);
 				pos = 0;
-			} catch(IOException e) {
+			} catch(final IOException e) {
 				e.printStackTrace();
 			}
 		}
@@ -1118,7 +1118,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 	public final void close() {
 		try {
 			is.close();
-		} catch (IOException e) {
+		} catch(final IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -1148,7 +1148,7 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 	}
 	final void print(final Object arg) {
-		if(arg instanceof String s) {
+		if(arg instanceof final String s) {
 			for(final char c: s.toCharArray()) {
 				write((byte) c);
 			}
@@ -1380,7 +1380,7 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		try {
 			os.write(buf, 0, pos);
 			pos = 0;
-		} catch(IOException e) {
+		} catch(final IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -1392,7 +1392,7 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		try {
 			os.close();
 			os = null;
-		} catch(IOException e) {
+		} catch(final IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -1428,7 +1428,7 @@ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> imp
 	public final Pair<F, S> clone() {
 		try {
 			return (Pair<F, S>) super.clone();
-		} catch(CloneNotSupportedException e){
+		} catch(final CloneNotSupportedException e){
 			e.printStackTrace();
 		}
 		throw new InternalError();
@@ -1461,7 +1461,7 @@ final class IntPair extends Pair<Long, Long> {
 	final double grad() { 
 		try {
 			return 1.0 * second / first;
-		} catch(ArithmeticException e) {
+		} catch(final ArithmeticException e) {
 			e.printStackTrace();
 		}
 		return Double.NaN;
@@ -1508,7 +1508,7 @@ final class FloatPair extends Pair<Double, Double> {
 	final double grad() { 
 		try {
 			return second / first;
-		} catch(ArithmeticException e) {
+		} catch(final ArithmeticException e) {
 			e.printStackTrace();
 		}
 		return Double.NaN;
@@ -1573,7 +1573,7 @@ final class UnionFind {
 	final boolean same(final int i, final int j){ return root(i) == root(j); }
 	final ArrayList<ArrayList<Integer>> groups() {
 		final int n = par.length;
-		ArrayList<ArrayList<Integer>> res = new ArrayList<>(n);
+		final ArrayList<ArrayList<Integer>> res = new ArrayList<>(n);
 		IntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));
 		IntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));
 		res.removeIf(ArrayList::isEmpty);
@@ -1997,14 +1997,14 @@ final class SkewHeap {
 		x.r = tmp;
 		return x;
 	}
-	final Node push(final Node t, final long key, int idx){ return meld(t, alloc(key, idx)); }
+	final Node push(final Node t, final long key, final int idx){ return meld(t, alloc(key, idx)); }
 	final Node pop(final Node t) {
 		if(t == null) {
 			throw new NullPointerException();
 		}
 		return meld(t.l, t.r);
 	}
-	final Node add(Node t, final long lazy) {
+	final Node add(final Node t, final long lazy) {
 		if(t != null) {
 			t.lazy += lazy;
 			propagate(t);
@@ -2463,7 +2463,7 @@ final class FenwickTree {
 			data[k] += x;
 		}
 	}
-	final void imos(final int l, final int r, long x) {
+	final void imos(final int l, final int r, final long x) {
 		add(l, x);
 		add(r + 1, -x);
 	}
@@ -2506,7 +2506,8 @@ final class FenwickTree {
 }
 
 final class SegmentTree<T extends Number> {
-	private int n = 1, rank = 0, fini;
+	private int n = 1, rank = 0;
+	private final int fini;
 	private final BinaryOperator<T> op;
 	private final T e;
 	private final Object[] dat;
@@ -2683,7 +2684,7 @@ final class SparseTable {
 		}
 		int ok = x, ng = lookup.length;
 		while(Math.abs(ok - ng) > 1) {
-			int mid = (ok + ng) / 2;
+			final int mid = (ok + ng) / 2;
 			if(fn.test(query(x, mid))) {
 				ok = mid;
 			}
@@ -2699,7 +2700,7 @@ final class SuffixArray extends ArrayList<Integer> {
 	private final String vs;
 	SuffixArray(final String vs, final boolean compress) {
 		this.vs = vs;
-		int[] newVS = new int[vs.length() + 1];
+		final int[] newVS = new int[vs.length() + 1];
 		if(compress) {
 			final List<Integer> xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());
 			for(int i = 0; i < vs.length(); ++i) {
@@ -2724,7 +2725,7 @@ final class SuffixArray extends ArrayList<Integer> {
 		}
 		final Consumer<ArrayList<Integer>> inducedSort = (lms) -> {
 			final int upper = Arrays.stream(s).max().getAsInt();
-			int[] l = new int[upper + 2], r = new int[upper + 2];
+			final int[] l = new int[upper + 2], r = new int[upper + 2];
 			for(final int v: s) {
 				++l[v + 1];
 				++r[v];
@@ -2787,7 +2788,7 @@ final class SuffixArray extends ArrayList<Integer> {
 			ret[newLMS.get(i)] = rank;
 		}
 		if(rank + 1 < m) {
-			int[] newS = new int[m];
+			final int[] newS = new int[m];
 			for(int i = 0; i < m; ++i) {
 				newS[i] = ret[lms.get(i)];
 			}
@@ -2843,7 +2844,7 @@ final class SuffixArray extends ArrayList<Integer> {
 	}
 	final int[] lcpArray() {
 		final int n = this.size() - 1;
-		int[] lcp = new int[n + 1], rank = new int[n + 1];
+		final int[] lcp = new int[n + 1], rank = new int[n + 1];
 		for(int i = 0; i <= n; ++i) {
 			rank[this.get(i)] = i;
 		}
@@ -2866,7 +2867,7 @@ final class SuffixArray extends ArrayList<Integer> {
 	}
 	@Override
 	public final String toString() { 
-		StringBuilder sb = new StringBuilder();
+		final StringBuilder sb = new StringBuilder();
 		for(int i = 0; i < this.size(); ++i) {
 			sb.append(i + ":[" + this.get(i) + "]");
 			for(int j = this.get(i); j < vs.length(); ++j) {
@@ -3001,7 +3002,7 @@ final class WaveletMatrixBeta {
 	private final int log;
 	private final SuccinctIndexableDictionary[] matrix;
 	private final int[] mid;
-	WaveletMatrixBeta(long[] arr, final int log) {
+	WaveletMatrixBeta(final long[] arr, final int log) {
 		final int len = arr.length;
 		this.log = log;
 		matrix = new SuccinctIndexableDictionary[log];
@@ -3130,7 +3131,7 @@ final class AVLTree<T extends Comparable<? super T>> {
 		@SuppressWarnings("unchecked")
 		Node<T>[] ch = new Node[2];
 		int dep, size;
-		Node(final T val, Node<T> l, Node<T> r) {
+		Node(final T val, final Node<T> l, final Node<T> r) {
 			this.val = val;
 			dep = size = 1;
 			ch[0] = l;

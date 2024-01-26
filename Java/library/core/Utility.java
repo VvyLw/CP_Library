@@ -1578,7 +1578,7 @@ public class Utility {
 			for(int j = 0; j < k; ++j) {
 				try {
 					mul = Math.multiplyExact(mul, x);
-				} catch(ArithmeticException e) {
+				} catch(final ArithmeticException e) {
 					return false;
 				}
 			}
