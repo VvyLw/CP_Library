@@ -711,26 +711,26 @@ data:
     }\n\tprotected static final long kthRoot(final long n, final int k) {\n\t\tif(k\
     \ == 1) {\n\t\t\treturn n;\n\t\t}\n\t\tfinal LongPredicate chk = x -> {\n\t\t\t\
     long mul = 1;\n\t\t\tfor(int j = 0; j < k; ++j) {\n\t\t\t\ttry {\n\t\t\t\t\tmul\
-    \ = Math.multiplyExact(mul, x);\n\t\t\t\t} catch(ArithmeticException e) {\n\t\t\
-    \t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn mul <= n;\n\t\t};\n\t\t\
-    long ret = 0;\n\t\tfor(int i = 32; --i >= 0;) {\n\t\t\tif(chk.test(ret | (1L <<\
-    \ i))) {\n\t\t\t\tret |= 1L << i;\n\t\t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\tprotected\
-    \ static final long tetration(final long a, final long b, final long m) {\n\t\t\
-    if(m == 1) {\n\t\t\treturn 0;\n\t\t}\n\t\tif(a == 0) {\n\t\t\treturn (b & 1) ==\
-    \ 0 ? 1 : 0;\n\t\t}\n\t\tif(b == 0) {\n\t\t\treturn 1;\n\t\t}\n\t\tif(b == 1)\
-    \ {\n\t\t\treturn a % m;\n\t\t}\n\t\tif(b == 2) {\n\t\t\treturn pow(a, a, m);\n\
-    \t\t}\n\t\tfinal long phi = eulerPhi(m);\n\t\tlong tmp = tetration(a, b - 1, phi);\n\
-    \t\tif(tmp == 0) {\n\t\t\ttmp += phi;\n\t\t}\n\t\treturn pow(a, tmp, m);\n\t}\n\
-    \tprotected static final long floorSum(final long n, final long m, long a, long\
-    \ b) {\n\t\tlong ans = 0;\n\t\tif(a >= m) {\n\t\t\tans += (n - 1) * n * (a / m)\
-    \ / 2;\n\t\t\ta %= m;\n\t\t}\n\t\tif(b >= m) {\n\t\t\tans += n * (b / m);\n\t\t\
-    \tb %= m;\n\t\t}\n\t\tfinal long ym = (a * n + b) / m, xm = (ym * m - b);\n\t\t\
-    if(ym == 0) {\n\t\t\treturn ans;\n\t\t}\n\t\tans += (n - (xm + a - 1) / a) * ym;\n\
-    \t\tans += floorSum(ym, a, m, (a - xm % a) % a);\n\t\treturn ans;\n\t}\n}\n\n\
-    interface TriFunction<T, U, V, W> {\n\tpublic W apply(final T a, final U b, final\
-    \ V c);\n}\ninterface QuadFunction<A, B, C, D, E> {\n\tpublic E apply(final A\
-    \ a, final B b, final C c, final D d);\n}\ninterface RecursiveFunction<T, U> {\n\
-    \tpublic U apply(final RecursiveFunction<T, U> rec, final T n);\n}\ninterface\
+    \ = Math.multiplyExact(mul, x);\n\t\t\t\t} catch(final ArithmeticException e)\
+    \ {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn mul <= n;\n\t\t\
+    };\n\t\tlong ret = 0;\n\t\tfor(int i = 32; --i >= 0;) {\n\t\t\tif(chk.test(ret\
+    \ | (1L << i))) {\n\t\t\t\tret |= 1L << i;\n\t\t\t}\n\t\t}\n\t\treturn ret;\n\t\
+    }\n\tprotected static final long tetration(final long a, final long b, final long\
+    \ m) {\n\t\tif(m == 1) {\n\t\t\treturn 0;\n\t\t}\n\t\tif(a == 0) {\n\t\t\treturn\
+    \ (b & 1) == 0 ? 1 : 0;\n\t\t}\n\t\tif(b == 0) {\n\t\t\treturn 1;\n\t\t}\n\t\t\
+    if(b == 1) {\n\t\t\treturn a % m;\n\t\t}\n\t\tif(b == 2) {\n\t\t\treturn pow(a,\
+    \ a, m);\n\t\t}\n\t\tfinal long phi = eulerPhi(m);\n\t\tlong tmp = tetration(a,\
+    \ b - 1, phi);\n\t\tif(tmp == 0) {\n\t\t\ttmp += phi;\n\t\t}\n\t\treturn pow(a,\
+    \ tmp, m);\n\t}\n\tprotected static final long floorSum(final long n, final long\
+    \ m, long a, long b) {\n\t\tlong ans = 0;\n\t\tif(a >= m) {\n\t\t\tans += (n -\
+    \ 1) * n * (a / m) / 2;\n\t\t\ta %= m;\n\t\t}\n\t\tif(b >= m) {\n\t\t\tans +=\
+    \ n * (b / m);\n\t\t\tb %= m;\n\t\t}\n\t\tfinal long ym = (a * n + b) / m, xm\
+    \ = (ym * m - b);\n\t\tif(ym == 0) {\n\t\t\treturn ans;\n\t\t}\n\t\tans += (n\
+    \ - (xm + a - 1) / a) * ym;\n\t\tans += floorSum(ym, a, m, (a - xm % a) % a);\n\
+    \t\treturn ans;\n\t}\n}\n\ninterface TriFunction<T, U, V, W> {\n\tpublic W apply(final\
+    \ T a, final U b, final V c);\n}\ninterface QuadFunction<A, B, C, D, E> {\n\t\
+    public E apply(final A a, final B b, final C c, final D d);\n}\ninterface RecursiveFunction<T,\
+    \ U> {\n\tpublic U apply(final RecursiveFunction<T, U> rec, final T n);\n}\ninterface\
     \ RecursiveBiFunction<T, U, V> {\n\tpublic V apply(final RecursiveBiFunction<T,\
     \ U, V> rec, final T n, final U m);\n}\ninterface RecursiveTriFunction<T, U, V,\
     \ W> {\n\tpublic W apply(final RecursiveTriFunction<T, U, V, W> rec, final T p,\
@@ -748,12 +748,12 @@ data:
     \ isPunct(final byte bt){ return !Utility.scope(33, bt, 126); }\n\tprivate final\
     \ boolean isNum(final byte bt){ return Utility.scope('0', bt, '9'); }\n\tprivate\
     \ final byte read() {\n\t\tif(pos == lim && lim != -1) {\n\t\t\ttry {\n\t\t\t\t\
-    lim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(IOException e) {\n\t\t\t\t\
-    e.printStackTrace();\n\t\t\t}\n\t\t}\n\t\treturn buf[pos++];\n\t}\n\tprivate final\
-    \ byte next() {\n\t\tbyte bt;\n\t\twhile(isPunct(bt = read())){}\n\t\treturn bt;\n\
-    \t}\n\tfinal int ni(){ return Math.toIntExact(nl()); }\n\tfinal long nl() {\n\t\
-    \tbyte c = next();\n\t\tfinal boolean neg = c == '-';\n\t\tif(neg) {\n\t\t\tc\
-    \ = read();\n\t\t}\n\t\tassert(isNum(c));\n\t\tlong res = c - '0';\n\t\twhile(isNum(c\
+    lim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final IOException e) {\n\t\
+    \t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t\treturn buf[pos++];\n\t}\n\tprivate\
+    \ final byte next() {\n\t\tbyte bt;\n\t\twhile(isPunct(bt = read())){}\n\t\treturn\
+    \ bt;\n\t}\n\tfinal int ni(){ return Math.toIntExact(nl()); }\n\tfinal long nl()\
+    \ {\n\t\tbyte c = next();\n\t\tfinal boolean neg = c == '-';\n\t\tif(neg) {\n\t\
+    \t\tc = read();\n\t\t}\n\t\tassert(isNum(c));\n\t\tlong res = c - '0';\n\t\twhile(isNum(c\
     \ = read())) {\n\t\t\tres = 10 * res + c - '0';\n\t\t}\n\t\treturn neg ? -res\
     \ : res;\n\t}\n\tfinal double nd(){ return Double.parseDouble(ns()); }\n\tfinal\
     \ char nc(){ return (char) next(); }\n\tfinal String ns() {\n\t\tfinal StringBuilder\
@@ -791,8 +791,8 @@ data:
     \ FloatPair pf(){ return new FloatPair(nd(), nd()); }\n\tfinal FloatPair[] pf(final\
     \ int n) {\n\t\tfinal FloatPair[] p = new FloatPair[n];\n\t\tIntStream.range(0,\
     \ n).forEach(i -> p[i] = pf());\n\t\treturn p;\n\t}\n\t@Override\n\tpublic final\
-    \ void close() {\n\t\ttry {\n\t\t\tis.close();\n\t\t} catch (IOException e) {\n\
-    \t\t\te.printStackTrace();\n\t\t}\n\t}\n}\n\nfinal class MyPrinter implements\
+    \ void close() {\n\t\ttry {\n\t\t\tis.close();\n\t\t} catch(final IOException\
+    \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n}\n\nfinal class MyPrinter implements\
     \ Closeable, Flushable, AutoCloseable {\n\tprivate OutputStream os;\n\tprivate\
     \ final boolean autoFlush;\n\tprivate final byte[] buf;\n\tprivate int pos;\n\t\
     MyPrinter(final OutputStream os, final boolean autoFlush){\n\t\tthis.os = os;\n\
@@ -800,38 +800,39 @@ data:
     }\n\tprivate final void write(final byte bt) {\n\t\tbuf[pos++] = bt;\n\t\tif(pos\
     \ == buf.length) {\n\t\t\tflush();\n\t\t}\n\t}\n\tprivate final void newLine()\
     \ {\n\t\twrite((byte) '\\n');\n\t\tif(autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\
-    }\n\tfinal void print(final Object arg) {\n\t\tif(arg instanceof String s) {\n\
-    \t\t\tfor(final char c: s.toCharArray()) {\n\t\t\t\twrite((byte) c);\n\t\t\t}\n\
-    \t\t} else {\n\t\t\tprint(String.valueOf(arg));\n\t\t}\n\t}\n\tfinal void printf(final\
-    \ String fmt, final Object... args) {\n\t\tprint(new Formatter().format(fmt, args));\n\
-    \t\tif(autoFlush) {\n\t\t\tflush();\n\t\t}\n\t}\n\tprivate final void println(final\
-    \ Object arg) {\n\t\tprint(arg);\n\t\tnewLine();\n\t}\n\tfinal void out(){ newLine();\
-    \ }\n\tfinal void out(final Object head, final Object... tail) {\n\t\tprint(head);\n\
-    \t\tfor(final var el: tail) {\n\t\t\tprint(\" \" + el);\n\t\t}\n\t\tnewLine();\n\
-    \t}\n\tfinal <F extends Comparable<? super F>, S extends Comparable<? super S>>\
-    \ void out(final Pair<F, S> arg){ println(arg.first + \" \" + arg.second); }\n\
-    \tfinal void out(final int[] args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\
+    }\n\tfinal void print(final Object arg) {\n\t\tif(arg instanceof final String\
+    \ s) {\n\t\t\tfor(final char c: s.toCharArray()) {\n\t\t\t\twrite((byte) c);\n\
+    \t\t\t}\n\t\t} else {\n\t\t\tprint(String.valueOf(arg));\n\t\t}\n\t}\n\tfinal\
+    \ void printf(final String fmt, final Object... args) {\n\t\tprint(new Formatter().format(fmt,\
+    \ args));\n\t\tif(autoFlush) {\n\t\t\tflush();\n\t\t}\n\t}\n\tprivate final void\
+    \ println(final Object arg) {\n\t\tprint(arg);\n\t\tnewLine();\n\t}\n\tfinal void\
+    \ out(){ newLine(); }\n\tfinal void out(final Object head, final Object... tail)\
+    \ {\n\t\tprint(head);\n\t\tfor(final var el: tail) {\n\t\t\tprint(\" \" + el);\n\
+    \t\t}\n\t\tnewLine();\n\t}\n\tfinal <F extends Comparable<? super F>, S extends\
+    \ Comparable<? super S>> void out(final Pair<F, S> arg){ println(arg.first + \"\
+    \ \" + arg.second); }\n\tfinal void out(final int[] args) {\n\t\tif(args.length\
+    \ > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\
+    \t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void\
+    \ out(final long[] args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\
     \t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\
-    \t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final long[] args) {\n\t\t\
+    \t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final double[] args) {\n\t\
+    \tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;)\
+    \ {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\t\
+    final void out(final boolean[] args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\
+    \t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\
+    \t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final char[] args) {\n\t\t\
     if(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;)\
     \ {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\t\
-    final void out(final double[] args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\
+    final void out(final Object[] args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\
     \t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\
-    \t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final boolean[] args) {\n\t\
-    \tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;)\
-    \ {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\t\
-    final void out(final char[] args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\
-    \t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\
-    \t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final Object[] args) {\n\t\
-    \tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;)\
-    \ {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\t\
-    final <E> void out(final Collection<E> args) {\n\t\tint i = 0;\n\t\tfor(final\
-    \ var el: args) {\n\t\t\tprint(el);\n\t\t\tif(++i != args.size()) {\n\t\t\t\t\
-    print(\" \");\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void outl(final Object\
-    \ head, final Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::println);\n\
-    \t}\n\tfinal void outl(final int[] args){ Arrays.stream(args).forEach(this::println);\
-    \ }\n\tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> out(args[i])); }\n\tfinal void outl(final long[] args){ Arrays.stream(args).forEach(this::println);\
+    \t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal <E> void out(final Collection<E> args)\
+    \ {\n\t\tint i = 0;\n\t\tfor(final var el: args) {\n\t\t\tprint(el);\n\t\t\tif(++i\
+    \ != args.size()) {\n\t\t\t\tprint(\" \");\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t\
+    }\n\tfinal void outl(final Object head, final Object... tail) {\n\t\tout(head);\n\
+    \t\tArrays.stream(tail).forEach(this::println);\n\t}\n\tfinal void outl(final\
+    \ int[] args){ Arrays.stream(args).forEach(this::println); }\n\tfinal void outl(final\
+    \ int[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }\n\
+    \tfinal void outl(final long[] args){ Arrays.stream(args).forEach(this::println);\
     \ }\n\tfinal void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final double[] args){ Arrays.stream(args).forEach(this::println);\
     \ }\n\tfinal void outl(final double[][] args){ IntStream.range(0, args.length).forEach(i\
@@ -873,42 +874,42 @@ data:
     \ <E> void ende(final Collection<E> args) {\n\t\toutl(args);\n\t\tif(!autoFlush)\
     \ {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t@Override\n\tpublic final\
     \ void flush() {\n\t\ttry {\n\t\t\tos.write(buf, 0, pos);\n\t\t\tpos = 0;\n\t\t\
-    } catch(IOException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n\t@Override\n\
+    } catch(final IOException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n\t@Override\n\
     \tpublic final void close() {\n\t\tif(os == null) {\n\t\t\treturn;\n\t\t}\n\t\t\
-    try {\n\t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(IOException e) {\n\t\t\
-    \te.printStackTrace();\n\t\t}\n\t}\n}\n\nclass Pair<F extends Comparable<? super\
-    \ F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>>, Cloneable\
-    \ {\n\tpublic F first;\n\tpublic S second;\n\tPair(final F first, final S second)\
-    \ {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\tstatic final <F\
-    \ extends Comparable<? super F>, S extends Comparable<? super S>> Pair<F, S> of(final\
-    \ F a, final S b){ return new Pair<>(a, b); }\n\tPair<S, F> swap(){ return Pair.of(second,\
-    \ first); }\n\t@Override\n\tpublic final boolean equals(final Object o) {\n\t\t\
-    if(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() !=\
-    \ o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?,\
-    \ ?>) o;\n\t\tif(!first.equals(p.first)) {\n\t\t\treturn false;\n\t\t}\n\t\treturn\
-    \ second.equals(p.second);\n\t}\n\t@Override\n\tpublic final String toString(){\
-    \ return \"(\" + first + \", \" + second + \")\"; }\n\t@SuppressWarnings(\"unchecked\"\
-    )\n\t@Override\n\tpublic final Pair<F, S> clone() {\n\t\ttry {\n\t\t\treturn (Pair<F,\
-    \ S>) super.clone();\n\t\t} catch(CloneNotSupportedException e){\n\t\t\te.printStackTrace();\n\
-    \t\t}\n\t\tthrow new InternalError();\n\t}\n\t@Override\n\tpublic final int compareTo(final\
-    \ Pair<F, S> p) {\n\t\tif(first.compareTo(p.first) == 0) {\n\t\t\treturn second.compareTo(p.second);\n\
-    \t\t}\n\t\treturn first.compareTo(p.first);\n\t}\n}\nfinal class IntPair extends\
-    \ Pair<Long, Long> {\n\tIntPair(final long first, final long second){ super(first,\
-    \ second); }\n\t@Override\n\tfinal IntPair swap(){ return new IntPair(second,\
-    \ first); }\n\tfinal IntPair add(final IntPair p){ return new IntPair(first +\
-    \ p.first, second + p.second); }\n\tfinal IntPair sub(final IntPair p){ return\
-    \ new IntPair(first - p.first, second - p.second); }\n\tfinal IntPair mul(final\
-    \ IntPair p){ return new IntPair(first * p.first, second * p.second); }\n\tfinal\
-    \ IntPair div(final IntPair p){ return new IntPair(first / p.first, second / p.second);\
-    \ }\n\tfinal IntPair mod(final IntPair p){ return new IntPair(first % p.first,\
-    \ second % p.second); }\n\tfinal IntPair rotate(){ return new IntPair(-second,\
+    try {\n\t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(final IOException e) {\n\
+    \t\t\te.printStackTrace();\n\t\t}\n\t}\n}\n\nclass Pair<F extends Comparable<?\
+    \ super F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>>,\
+    \ Cloneable {\n\tpublic F first;\n\tpublic S second;\n\tPair(final F first, final\
+    \ S second) {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\tstatic\
+    \ final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<F,\
+    \ S> of(final F a, final S b){ return new Pair<>(a, b); }\n\tPair<S, F> swap(){\
+    \ return Pair.of(second, first); }\n\t@Override\n\tpublic final boolean equals(final\
+    \ Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null\
+    \ || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?,\
+    \ ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first)) {\n\t\t\treturn false;\n\
+    \t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t@Override\n\tpublic final String\
+    \ toString(){ return \"(\" + first + \", \" + second + \")\"; }\n\t@SuppressWarnings(\"\
+    unchecked\")\n\t@Override\n\tpublic final Pair<F, S> clone() {\n\t\ttry {\n\t\t\
+    \treturn (Pair<F, S>) super.clone();\n\t\t} catch(final CloneNotSupportedException\
+    \ e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow new InternalError();\n\t}\n\
+    \t@Override\n\tpublic final int compareTo(final Pair<F, S> p) {\n\t\tif(first.compareTo(p.first)\
+    \ == 0) {\n\t\t\treturn second.compareTo(p.second);\n\t\t}\n\t\treturn first.compareTo(p.first);\n\
+    \t}\n}\nfinal class IntPair extends Pair<Long, Long> {\n\tIntPair(final long first,\
+    \ final long second){ super(first, second); }\n\t@Override\n\tfinal IntPair swap(){\
+    \ return new IntPair(second, first); }\n\tfinal IntPair add(final IntPair p){\
+    \ return new IntPair(first + p.first, second + p.second); }\n\tfinal IntPair sub(final\
+    \ IntPair p){ return new IntPair(first - p.first, second - p.second); }\n\tfinal\
+    \ IntPair mul(final IntPair p){ return new IntPair(first * p.first, second * p.second);\
+    \ }\n\tfinal IntPair div(final IntPair p){ return new IntPair(first / p.first,\
+    \ second / p.second); }\n\tfinal IntPair mod(final IntPair p){ return new IntPair(first\
+    \ % p.first, second % p.second); }\n\tfinal IntPair rotate(){ return new IntPair(-second,\
     \ first); } \n\tfinal FloatPair rotate(final int ang) {\n\t\tfinal double rad\
     \ = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn new FloatPair(first * Math.cos(rad)\
     \ - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));\n\
     \t}\n\tfinal long dot(final IntPair p){ return first * p.first + second * p.second;\
     \ }\n\tfinal long cross(final IntPair p){ return rotate().dot(p); }\n\tfinal long\
     \ sqr(){ return dot(this); }\n\tfinal double grad() { \n\t\ttry {\n\t\t\treturn\
-    \ 1.0 * second / first;\n\t\t} catch(ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
+    \ 1.0 * second / first;\n\t\t} catch(final ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
     \t\t}\n\t\treturn Double.NaN;\n\t}\n\tfinal double abs(){ return Math.hypot(first,\
     \ second); }\n\tfinal long lcm(){ return Utility.lcm(first, second); }\n\tfinal\
     \ long gcd(){ return Utility.gcd(first, second); }\n\tfinal IntPair extgcd() {\n\
@@ -931,116 +932,116 @@ data:
     \t}\n\tfinal double dot(final FloatPair p){ return first * p.first + second *\
     \ p.second; }\n\tfinal double cross(final FloatPair p){ return rotate().dot(p);\
     \ }\n\tfinal double sqr(){ return dot(this); }\n\tfinal double grad() { \n\t\t\
-    try {\n\t\t\treturn second / first;\n\t\t} catch(ArithmeticException e) {\n\t\t\
-    \te.printStackTrace();\n\t\t}\n\t\treturn Double.NaN;\n\t}\n\tfinal double abs(){\
-    \ return Math.hypot(first, second); }\n}"
+    try {\n\t\t\treturn second / first;\n\t\t} catch(final ArithmeticException e)\
+    \ {\n\t\t\te.printStackTrace();\n\t\t}\n\t\treturn Double.NaN;\n\t}\n\tfinal double\
+    \ abs(){ return Math.hypot(first, second); }\n}"
   dependsOn:
-  - Java/yukicoder.java
-  - Java/All.java
-  - Java/AOJ.java
+  - Java/library/other/SkewHeap.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/InclusiveScan.java
-  - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
-  - Java/library/other/SkewHeap.java
-  - Java/library/math/PrimeCounter.java
-  - Java/library/math/BigPrime.java
-  - Java/library/math/PrimeFactor.java
-  - Java/library/math/EulerPhiTable.java
-  - Java/library/math/PrimeTable.java
+  - Java/library/other/Huitloxopetl.java
   - Java/library/math/LongPrime.java
+  - Java/library/math/PrimeCounter.java
+  - Java/library/math/EulerPhiTable.java
+  - Java/library/math/BigPrime.java
   - Java/library/math/Matrix.java
-  - Java/library/structure/unionfind/UnionFind.java
-  - Java/library/structure/unionfind/WeightedUnionFind.java
-  - Java/library/structure/unionfind/UndoUnionFind.java
-  - Java/library/structure/SparseTable.java
-  - Java/library/structure/SegmentTree.java
+  - Java/library/math/PrimeFactor.java
+  - Java/library/math/PrimeTable.java
+  - Java/library/graph/Graph.java
+  - Java/library/graph/MST.java
+  - Java/library/graph/Edge.java
+  - Java/library/graph/WeightedGraph.java
+  - Java/library/graph/LowestCommonAncestor.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
-  - Java/library/structure/deque/Deque.java
-  - Java/library/structure/deque/IntDeque.java
+  - Java/library/structure/pair/FloatPair.java
+  - Java/library/structure/pair/IntPair.java
+  - Java/library/structure/pair/Pair.java
   - Java/library/structure/FenwickTree.java
   - Java/library/structure/AVLTree.java
-  - Java/library/structure/pair/Pair.java
-  - Java/library/structure/pair/IntPair.java
-  - Java/library/structure/pair/FloatPair.java
+  - Java/library/structure/SparseTable.java
+  - Java/library/structure/unionfind/UndoUnionFind.java
+  - Java/library/structure/unionfind/UnionFind.java
+  - Java/library/structure/unionfind/WeightedUnionFind.java
   - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/core/io/MyPrinter.java
-  - Java/library/core/io/MyScanner.java
+  - Java/library/structure/SegmentTree.java
+  - Java/library/structure/deque/Deque.java
+  - Java/library/structure/deque/IntDeque.java
   - Java/library/core/Main.java
-  - Java/library/core/VvyLw.java
-  - Java/library/core/Utility.java
+  - Java/library/core/interfaces/TriFunction.java
+  - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/RecursiveConsumer.java
+  - Java/library/core/interfaces/RecursiveUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/RecursiveBiFunction.java
+  - Java/library/core/interfaces/RecursiveFunction.java
   - Java/library/core/interfaces/RecursiveBinaryOperator.java
   - Java/library/core/interfaces/RecursiveTriFunction.java
-  - Java/library/core/interfaces/RecursiveBiFunction.java
-  - Java/library/core/interfaces/QuadFunction.java
-  - Java/library/core/interfaces/TriFunction.java
-  - Java/library/core/interfaces/RecursiveTriConsumer.java
-  - Java/library/core/interfaces/RecursiveUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveConsumer.java
-  - Java/library/core/interfaces/RecursiveBiConsumer.java
-  - Java/library/core/interfaces/RecursiveFunction.java
-  - Java/library/graph/WeightedGraph.java
-  - Java/library/graph/Edge.java
-  - Java/library/graph/LowestCommonAncestor.java
-  - Java/library/graph/MST.java
-  - Java/library/graph/Graph.java
+  - Java/library/core/io/MyPrinter.java
+  - Java/library/core/io/MyScanner.java
+  - Java/library/core/Utility.java
+  - Java/library/core/VvyLw.java
+  - Java/All.java
+  - Java/yukicoder.java
+  - Java/AOJ.java
   isVerificationFile: false
   path: Java/CodeForces.java
   requiredBy:
-  - Java/yukicoder.java
-  - Java/All.java
-  - Java/AOJ.java
+  - Java/library/other/SkewHeap.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/InclusiveScan.java
-  - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
-  - Java/library/other/SkewHeap.java
-  - Java/library/math/PrimeCounter.java
-  - Java/library/math/BigPrime.java
-  - Java/library/math/PrimeFactor.java
-  - Java/library/math/EulerPhiTable.java
-  - Java/library/math/PrimeTable.java
+  - Java/library/other/Huitloxopetl.java
   - Java/library/math/LongPrime.java
+  - Java/library/math/PrimeCounter.java
+  - Java/library/math/EulerPhiTable.java
+  - Java/library/math/BigPrime.java
   - Java/library/math/Matrix.java
-  - Java/library/structure/unionfind/UnionFind.java
-  - Java/library/structure/unionfind/WeightedUnionFind.java
-  - Java/library/structure/unionfind/UndoUnionFind.java
-  - Java/library/structure/SparseTable.java
-  - Java/library/structure/SegmentTree.java
+  - Java/library/math/PrimeFactor.java
+  - Java/library/math/PrimeTable.java
+  - Java/library/graph/Graph.java
+  - Java/library/graph/MST.java
+  - Java/library/graph/Edge.java
+  - Java/library/graph/WeightedGraph.java
+  - Java/library/graph/LowestCommonAncestor.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
-  - Java/library/structure/deque/Deque.java
-  - Java/library/structure/deque/IntDeque.java
+  - Java/library/structure/pair/FloatPair.java
+  - Java/library/structure/pair/IntPair.java
+  - Java/library/structure/pair/Pair.java
   - Java/library/structure/FenwickTree.java
   - Java/library/structure/AVLTree.java
-  - Java/library/structure/pair/Pair.java
-  - Java/library/structure/pair/IntPair.java
-  - Java/library/structure/pair/FloatPair.java
+  - Java/library/structure/SparseTable.java
+  - Java/library/structure/unionfind/UndoUnionFind.java
+  - Java/library/structure/unionfind/UnionFind.java
+  - Java/library/structure/unionfind/WeightedUnionFind.java
   - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/core/io/MyPrinter.java
-  - Java/library/core/io/MyScanner.java
+  - Java/library/structure/SegmentTree.java
+  - Java/library/structure/deque/Deque.java
+  - Java/library/structure/deque/IntDeque.java
   - Java/library/core/Main.java
-  - Java/library/core/VvyLw.java
-  - Java/library/core/Utility.java
+  - Java/library/core/interfaces/TriFunction.java
+  - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/RecursiveConsumer.java
+  - Java/library/core/interfaces/RecursiveUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/RecursiveBiFunction.java
+  - Java/library/core/interfaces/RecursiveFunction.java
   - Java/library/core/interfaces/RecursiveBinaryOperator.java
   - Java/library/core/interfaces/RecursiveTriFunction.java
-  - Java/library/core/interfaces/RecursiveBiFunction.java
-  - Java/library/core/interfaces/QuadFunction.java
-  - Java/library/core/interfaces/TriFunction.java
-  - Java/library/core/interfaces/RecursiveTriConsumer.java
-  - Java/library/core/interfaces/RecursiveUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveConsumer.java
-  - Java/library/core/interfaces/RecursiveBiConsumer.java
-  - Java/library/core/interfaces/RecursiveFunction.java
-  - Java/library/graph/WeightedGraph.java
-  - Java/library/graph/Edge.java
-  - Java/library/graph/LowestCommonAncestor.java
-  - Java/library/graph/MST.java
-  - Java/library/graph/Graph.java
-  timestamp: '2024-01-25 10:59:28+09:00'
+  - Java/library/core/io/MyPrinter.java
+  - Java/library/core/io/MyScanner.java
+  - Java/library/core/Utility.java
+  - Java/library/core/VvyLw.java
+  - Java/All.java
+  - Java/yukicoder.java
+  - Java/AOJ.java
+  timestamp: '2024-01-26 16:19:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java

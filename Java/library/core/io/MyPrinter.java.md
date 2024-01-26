@@ -336,11 +336,11 @@ data:
     \t\t}\n\t}\n\tprivate final void newLine() {\n\t\twrite((byte) '\\n');\n\t\tif(autoFlush)\
     \ {\n\t\t\tflush();\n\t\t}\n\t}\n\t/**\n\t * {@link PrintWriter#print}\u3068\u4F7F\
     \u3044\u65B9\u306F\u540C\u3058\n\t * @param arg\n\t * @see PrintWriter#print\n\
-    \t */\n\tpublic final void print(final Object arg) {\n\t\tif(arg instanceof String\
-    \ s) {\n\t\t\tfor(final char c: s.toCharArray()) {\n\t\t\t\twrite((byte) c);\n\
-    \t\t\t}\n\t\t} else {\n\t\t\tprint(String.valueOf(arg));\n\t\t}\n\t}\n\t/**\n\t\
-    \ * {@link PrintWriter#printf}\u3068\u4F7F\u3044\u65B9\u306F\u540C\u3058\n\t *\
-    \ @param fmt\n\t * @param args\n\t * @see PrintWriter#printf\n\t */\n\tpublic\
+    \t */\n\tpublic final void print(final Object arg) {\n\t\tif(arg instanceof final\
+    \ String s) {\n\t\t\tfor(final char c: s.toCharArray()) {\n\t\t\t\twrite((byte)\
+    \ c);\n\t\t\t}\n\t\t} else {\n\t\t\tprint(String.valueOf(arg));\n\t\t}\n\t}\n\t\
+    /**\n\t * {@link PrintWriter#printf}\u3068\u4F7F\u3044\u65B9\u306F\u540C\u3058\
+    \n\t * @param fmt\n\t * @param args\n\t * @see PrintWriter#printf\n\t */\n\tpublic\
     \ final void printf(final String fmt, final Object... args) {\n\t\tprint(new Formatter().format(fmt,\
     \ args));\n\t\tif(autoFlush) {\n\t\t\tflush();\n\t\t}\n\t}\n\tprivate final void\
     \ println(final Object arg) {\n\t\tprint(arg);\n\t\tnewLine();\n\t}\n\t/**\n\t\
@@ -484,119 +484,119 @@ data:
     \ ende(final Collection<E> args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\
     \tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u51FA\u529B\u3092flush\u3059\
     \u308B\n\t * @see PrintWriter#flush\n\t */\n\t@Override\n\tpublic final void flush()\
-    \ {\n\t\ttry {\n\t\t\tos.write(buf, 0, pos);\n\t\t\tpos = 0;\n\t\t} catch(IOException\
-    \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n\t/**\n\t * OutputStream\u3092\
+    \ {\n\t\ttry {\n\t\t\tos.write(buf, 0, pos);\n\t\t\tpos = 0;\n\t\t} catch(final\
+    \ IOException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n\t/**\n\t * OutputStream\u3092\
     \u9589\u3058\u308B\n\t * @see PrintWriter#close\n\t */\n\t@Override\n\tpublic\
     \ final void close() {\n\t\tif(os == null) {\n\t\t\treturn;\n\t\t}\n\t\ttry {\n\
-    \t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(IOException e) {\n\t\t\te.printStackTrace();\n\
-    \t\t}\n\t}\n}"
+    \t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(final IOException e) {\n\t\t\t\
+    e.printStackTrace();\n\t\t}\n\t}\n}"
   dependsOn:
-  - Java/yukicoder.java
-  - Java/All.java
-  - Java/AOJ.java
+  - Java/CodeForces.java
+  - Java/library/other/SkewHeap.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/InclusiveScan.java
-  - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
-  - Java/library/other/SkewHeap.java
-  - Java/library/math/PrimeCounter.java
-  - Java/library/math/BigPrime.java
-  - Java/library/math/PrimeFactor.java
-  - Java/library/math/EulerPhiTable.java
-  - Java/library/math/PrimeTable.java
+  - Java/library/other/Huitloxopetl.java
   - Java/library/math/LongPrime.java
+  - Java/library/math/PrimeCounter.java
+  - Java/library/math/EulerPhiTable.java
+  - Java/library/math/BigPrime.java
   - Java/library/math/Matrix.java
-  - Java/library/structure/unionfind/UnionFind.java
-  - Java/library/structure/unionfind/WeightedUnionFind.java
-  - Java/library/structure/unionfind/UndoUnionFind.java
-  - Java/library/structure/SparseTable.java
-  - Java/library/structure/SegmentTree.java
+  - Java/library/math/PrimeFactor.java
+  - Java/library/math/PrimeTable.java
+  - Java/library/graph/Graph.java
+  - Java/library/graph/MST.java
+  - Java/library/graph/Edge.java
+  - Java/library/graph/WeightedGraph.java
+  - Java/library/graph/LowestCommonAncestor.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
-  - Java/library/structure/deque/Deque.java
-  - Java/library/structure/deque/IntDeque.java
+  - Java/library/structure/pair/FloatPair.java
+  - Java/library/structure/pair/IntPair.java
+  - Java/library/structure/pair/Pair.java
   - Java/library/structure/FenwickTree.java
   - Java/library/structure/AVLTree.java
-  - Java/library/structure/pair/Pair.java
-  - Java/library/structure/pair/IntPair.java
-  - Java/library/structure/pair/FloatPair.java
+  - Java/library/structure/SparseTable.java
+  - Java/library/structure/unionfind/UndoUnionFind.java
+  - Java/library/structure/unionfind/UnionFind.java
+  - Java/library/structure/unionfind/WeightedUnionFind.java
   - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/core/io/MyScanner.java
+  - Java/library/structure/SegmentTree.java
+  - Java/library/structure/deque/Deque.java
+  - Java/library/structure/deque/IntDeque.java
   - Java/library/core/Main.java
-  - Java/library/core/VvyLw.java
-  - Java/library/core/Utility.java
+  - Java/library/core/interfaces/TriFunction.java
+  - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/RecursiveConsumer.java
+  - Java/library/core/interfaces/RecursiveUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/RecursiveBiFunction.java
+  - Java/library/core/interfaces/RecursiveFunction.java
   - Java/library/core/interfaces/RecursiveBinaryOperator.java
   - Java/library/core/interfaces/RecursiveTriFunction.java
-  - Java/library/core/interfaces/RecursiveBiFunction.java
-  - Java/library/core/interfaces/QuadFunction.java
-  - Java/library/core/interfaces/TriFunction.java
-  - Java/library/core/interfaces/RecursiveTriConsumer.java
-  - Java/library/core/interfaces/RecursiveUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveConsumer.java
-  - Java/library/core/interfaces/RecursiveBiConsumer.java
-  - Java/library/core/interfaces/RecursiveFunction.java
-  - Java/library/graph/WeightedGraph.java
-  - Java/library/graph/Edge.java
-  - Java/library/graph/LowestCommonAncestor.java
-  - Java/library/graph/MST.java
-  - Java/library/graph/Graph.java
-  - Java/CodeForces.java
+  - Java/library/core/io/MyScanner.java
+  - Java/library/core/Utility.java
+  - Java/library/core/VvyLw.java
+  - Java/All.java
+  - Java/yukicoder.java
+  - Java/AOJ.java
   isVerificationFile: false
   path: Java/library/core/io/MyPrinter.java
   requiredBy:
-  - Java/yukicoder.java
-  - Java/All.java
-  - Java/AOJ.java
+  - Java/CodeForces.java
+  - Java/library/other/SkewHeap.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/InclusiveScan.java
-  - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
-  - Java/library/other/SkewHeap.java
-  - Java/library/math/PrimeCounter.java
-  - Java/library/math/BigPrime.java
-  - Java/library/math/PrimeFactor.java
-  - Java/library/math/EulerPhiTable.java
-  - Java/library/math/PrimeTable.java
+  - Java/library/other/Huitloxopetl.java
   - Java/library/math/LongPrime.java
+  - Java/library/math/PrimeCounter.java
+  - Java/library/math/EulerPhiTable.java
+  - Java/library/math/BigPrime.java
   - Java/library/math/Matrix.java
-  - Java/library/structure/unionfind/UnionFind.java
-  - Java/library/structure/unionfind/WeightedUnionFind.java
-  - Java/library/structure/unionfind/UndoUnionFind.java
-  - Java/library/structure/SparseTable.java
-  - Java/library/structure/SegmentTree.java
+  - Java/library/math/PrimeFactor.java
+  - Java/library/math/PrimeTable.java
+  - Java/library/graph/Graph.java
+  - Java/library/graph/MST.java
+  - Java/library/graph/Edge.java
+  - Java/library/graph/WeightedGraph.java
+  - Java/library/graph/LowestCommonAncestor.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
-  - Java/library/structure/deque/Deque.java
-  - Java/library/structure/deque/IntDeque.java
+  - Java/library/structure/pair/FloatPair.java
+  - Java/library/structure/pair/IntPair.java
+  - Java/library/structure/pair/Pair.java
   - Java/library/structure/FenwickTree.java
   - Java/library/structure/AVLTree.java
-  - Java/library/structure/pair/Pair.java
-  - Java/library/structure/pair/IntPair.java
-  - Java/library/structure/pair/FloatPair.java
+  - Java/library/structure/SparseTable.java
+  - Java/library/structure/unionfind/UndoUnionFind.java
+  - Java/library/structure/unionfind/UnionFind.java
+  - Java/library/structure/unionfind/WeightedUnionFind.java
   - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/core/io/MyScanner.java
+  - Java/library/structure/SegmentTree.java
+  - Java/library/structure/deque/Deque.java
+  - Java/library/structure/deque/IntDeque.java
   - Java/library/core/Main.java
-  - Java/library/core/VvyLw.java
-  - Java/library/core/Utility.java
+  - Java/library/core/interfaces/TriFunction.java
+  - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/RecursiveConsumer.java
+  - Java/library/core/interfaces/RecursiveUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/RecursiveBiFunction.java
+  - Java/library/core/interfaces/RecursiveFunction.java
   - Java/library/core/interfaces/RecursiveBinaryOperator.java
   - Java/library/core/interfaces/RecursiveTriFunction.java
-  - Java/library/core/interfaces/RecursiveBiFunction.java
-  - Java/library/core/interfaces/QuadFunction.java
-  - Java/library/core/interfaces/TriFunction.java
-  - Java/library/core/interfaces/RecursiveTriConsumer.java
-  - Java/library/core/interfaces/RecursiveUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveConsumer.java
-  - Java/library/core/interfaces/RecursiveBiConsumer.java
-  - Java/library/core/interfaces/RecursiveFunction.java
-  - Java/library/graph/WeightedGraph.java
-  - Java/library/graph/Edge.java
-  - Java/library/graph/LowestCommonAncestor.java
-  - Java/library/graph/MST.java
-  - Java/library/graph/Graph.java
-  - Java/CodeForces.java
-  timestamp: '2024-01-25 10:59:28+09:00'
+  - Java/library/core/io/MyScanner.java
+  - Java/library/core/Utility.java
+  - Java/library/core/VvyLw.java
+  - Java/All.java
+  - Java/yukicoder.java
+  - Java/AOJ.java
+  timestamp: '2024-01-26 16:19:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyPrinter.java

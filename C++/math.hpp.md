@@ -230,11 +230,11 @@ data:
   timestamp: '2023-12-16 20:41:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/phi.test.cpp
-  - test/tetration.test.cpp
-  - test/pcounter.test.cpp
-  - test/kthrooti.test.cpp
   - test/phi_table.test.cpp
+  - test/tetration.test.cpp
+  - test/phi.test.cpp
+  - test/kthrooti.test.cpp
+  - test/pcounter.test.cpp
 documentation_of: C++/math.hpp
 layout: document
 redirect_from:

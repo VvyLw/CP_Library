@@ -182,8 +182,8 @@ data:
   timestamp: '2024-01-14 17:01:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/manhattan.test.cpp
   - test/kruskal.test.cpp
+  - test/manhattan.test.cpp
   - test/directed.test.cpp
 documentation_of: C++/MST.hpp
 layout: document
