@@ -462,7 +462,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-27 05:20:01+09:00'
+  timestamp: '2024-01-28 08:49:49+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/SparseTable.java

@@ -331,7 +331,7 @@ data:
     \u3048\u308B\n\t */\n\tstatic final boolean MULTI = false;\n\tstatic final double\
     \ EPS = 1e-18;\n\tpublic static final int INF = 1 << 30;\n\tpublic static final\
     \ long LINF = (1L << 61) - 1;\n\tstatic final int MOD = 998244353;\n\tstatic final\
-    \ int M0D = (int)1e9 + 7;\n\t/**\n\t * \u30B0\u30EA\u30C3\u30C9\u64CD\u4F5C\u306E\
+    \ int M0D = (int) 1e9 + 7;\n\t/**\n\t * \u30B0\u30EA\u30C3\u30C9\u64CD\u4F5C\u306E\
     \u6642\u306B\u4FBF\u5229\n\t */\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1,\
     \ -1, 1, 1};\n\t/**\n\t * \u30B0\u30EA\u30C3\u30C9\u64CD\u4F5C\u306E\u6642\u306B\
     \u4FBF\u5229\n\t */\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\
@@ -443,7 +443,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-27 05:20:01+09:00'
+  timestamp: '2024-01-28 08:49:49+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/VvyLw.java

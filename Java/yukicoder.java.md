@@ -333,17 +333,17 @@ data:
     \ MyPrinter dbg = new MyPrinter(System.err, true);\n\tstatic final boolean MULTI\
     \ = false;\n\tstatic final int INF = 1 << 30;\n\tstatic final long LINF = (1L\
     \ << 61) - 1;\n\tstatic final double EPS = 1e-18;\n\tstatic final int MOD = 998244353;\n\
-    \tstatic final int M0D = (int)1e9 + 7;\n\tstatic final int[] dx = {0, -1, 1, 0,\
-    \ 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\
-    \tstatic final void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static\
-    \ final String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected\
-    \ static final String no(final boolean ok){ return yes(!ok); }\n\tprotected static\
-    \ final long sqr(final long x){ return x * x; }\n\tprotected static final long\
-    \ mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t\
-    }\n\tprotected static final long ceil(final long a, final long b){ return (a -\
-    \ 1) / b + 1; }\n\tprotected static final double round(final double a, final long\
-    \ b, final int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn Math.rint((a *\
-    \ d) / b) / d;\n\t}\n\tprotected static final long pow(long a, int b) {\n\t\t\
+    \tstatic final int M0D = (int) 1e9 + 7;\n\tstatic final int[] dx = {0, -1, 1,\
+    \ 0, 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1,\
+    \ 1};\n\tstatic final void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected\
+    \ static final String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\
+    \tprotected static final String no(final boolean ok){ return yes(!ok); }\n\tprotected\
+    \ static final long sqr(final long x){ return x * x; }\n\tprotected static final\
+    \ long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\
+    \t}\n\tprotected static final long ceil(final long a, final long b){ return (a\
+    \ - 1) / b + 1; }\n\tprotected static final double round(final double a, final\
+    \ long b, final int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn Math.rint((a\
+    \ * d) / b) / d;\n\t}\n\tprotected static final long pow(long a, int b) {\n\t\t\
     long res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
     \t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
     \ static final long pow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\
@@ -1042,7 +1042,7 @@ data:
   - Java/library/core/VvyLw.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-01-27 05:20:01+09:00'
+  timestamp: '2024-01-28 08:49:49+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java
