@@ -24,7 +24,7 @@ public final class VvyLw extends Utility {
 	public static final int INF = 1 << 30;
 	public static final long LINF = (1L << 61) - 1;
 	static final int MOD = 998244353;
-	static final int M0D = (int)1e9 + 7;
+	static final int M0D = (int) 1e9 + 7;
 	/**
 	 * グリッド操作の時に便利
 	 */
