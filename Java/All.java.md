@@ -402,24 +402,26 @@ data:
     \ ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\tres -= res / i;\n\t\t\t\twhile(n % i\
     \ == 0) {\n\t\t\t\t\tn /= i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tif(n > 1) {\n\t\t\
     \tres -= res / n;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long\
-    \ factor(int n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\
-    \t}\n\t\treturn res;\n\t}\n\tprotected static final long factor(int n, final long\
-    \ mod) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t\tres\
-    \ %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long perm(int\
-    \ n, final int r) {\n\t\tfinal int og = n;\n\t\tlong res = 1;\n\t\twhile(n > og\
-    \ - r) {\n\t\t\tres *= n--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
-    \ long perm(int n, final int r, final long mod) {\n\t\tfinal int og = n;\n\t\t\
-    long res = 1;\n\t\twhile(n > og - r) {\n\t\t\tres *= n--;\n\t\t\tres %= mod; \n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long binom(final int n,\
-    \ final int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp\
-    \ = n;\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\
-    \tres *= tmp--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final long binom(final int n, final int r, final long mod) {\n\t\tif(r < 0 ||\
-    \ n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp = n;\n\t\tlong res = 1;\n\t\t\
-    for(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\tres *= tmp--;\n\t\t\tres %= mod;\n\
-    \t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final boolean isInt(final double n){ return n == (long) Math.floor(n); }\n\t\
-    protected static final boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
+    \ sigma(final long n){ return n * (n + 1) / 2; }\n\tprotected static final long\
+    \ sigma(final long a, final long b){ return sigma(b) - sigma(a - 1); } \n\tprotected\
+    \ static final long factor(int n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\
+    \t\tres *= n--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long factor(int\
+    \ n, final long mod) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\
+    \t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long\
+    \ perm(int n, final int r) {\n\t\tfinal int og = n;\n\t\tlong res = 1;\n\t\twhile(n\
+    \ > og - r) {\n\t\t\tres *= n--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ final long perm(int n, final int r, final long mod) {\n\t\tfinal int og = n;\n\
+    \t\tlong res = 1;\n\t\twhile(n > og - r) {\n\t\t\tres *= n--;\n\t\t\tres %= mod;\
+    \ \n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long binom(final int\
+    \ n, final int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint\
+    \ tmp = n;\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\
+    \t\t\tres *= tmp--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
+    \ static final long binom(final int n, final int r, final long mod) {\n\t\tif(r\
+    \ < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp = n;\n\t\tlong res = 1;\n\
+    \t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\tres *= tmp--;\n\t\t\tres\
+    \ %= mod;\n\t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\t\
+    protected static final boolean isInt(final double n){ return n == (long) Math.floor(n);\
+    \ }\n\tprotected static final boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
     \ }\n\tprotected static final boolean isPrime(final long n) {\n\t\tif(n == 1)\
     \ {\n\t\t\treturn false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\t\
     if(n % i == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t\
@@ -1804,7 +1806,7 @@ data:
   - Java/library/core/VvyLw.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-28 08:49:49+09:00'
+  timestamp: '2024-01-29 07:09:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
