@@ -294,6 +294,17 @@ public class Utility {
 		return res;
 	}
 	/**
+	 * @param n
+	 * @return 1からnまでの総和
+	 */
+	protected static final long sigma(final long n){ return n * (n + 1) / 2; }
+	/**
+	 * @param a
+	 * @param b
+	 * @return aからbまでの総和
+	 */
+	protected static final long sigma(final long a, final long b){ return sigma(b) - sigma(a - 1); }
+	/**
 	 * @param n 整数
 	 * @return nの階乗
 	 */
