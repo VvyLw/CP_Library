@@ -318,18 +318,19 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/graph/Edge.java\n"
-  code: "package library.graph;\n\n/**\n * \u8FBA\u3092\u8868\u3059\u30AF\u30E9\u30B9\
-    \n */\npublic final class Edge {\n\tpublic int src;\n\tpublic int to;\n\tpublic\
-    \ long cost;\n\tpublic Edge(final int to){ this.to = to; }\n\tpublic Edge(final\
-    \ int to, final long cost) {\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\t\
-    public Edge(final int src, final int to, final long cost) {\n\t\tthis.src = src;\n\
-    \t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\t@Override\n\tpublic final boolean\
-    \ equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\
-    \tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\
-    \tfinal Edge e = (Edge) o;\n\t\tif(src != e.src) {\n\t\t\treturn false;\n\t\t\
-    }\n\t\tif(to != e.to) {\n\t\t\treturn false;\n\t\t}\n\t\treturn cost == e.cost;\n\
-    \t}\n\t@Override\n\tpublic final String toString(){ return \"(\" + src + \", \"\
-    \ + to + \", \" + cost + \")\"; }\n}\n"
+  code: "package library.graph;\n\nimport java.util.Objects;\n\n/**\n * \u8FBA\u3092\
+    \u8868\u3059\u30AF\u30E9\u30B9\n */\npublic final class Edge {\n\tpublic int src;\n\
+    \tpublic int to;\n\tpublic long cost;\n\tpublic Edge(final int to){ this.to =\
+    \ to; }\n\tpublic Edge(final int to, final long cost) {\n\t\tthis.to = to;\n\t\
+    \tthis.cost = cost;\n\t}\n\tpublic Edge(final int src, final int to, final long\
+    \ cost) {\n\t\tthis.src = src;\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\
+    \t@Override\n\tpublic final boolean equals(final Object o) {\n\t\tif(this == o)\
+    \ {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass())\
+    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Edge e = (Edge) o;\n\t\treturn src\
+    \ == e.src && to == e.to && cost == e.cost;\n\t}\n\t@Override\n\tpublic final\
+    \ int hashCode(){ return Objects.hash(src, to, cost); }\n\t@Override\n\tpublic\
+    \ final String toString(){ return \"(\" + src + \", \" + to + \", \" + cost +\
+    \ \")\"; }\n}"
   dependsOn:
   - Java/CodeForces.java
   - Java/library/other/SkewHeap.java
@@ -436,7 +437,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-30 05:37:48+09:00'
+  timestamp: '2024-01-30 06:45:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/Edge.java
