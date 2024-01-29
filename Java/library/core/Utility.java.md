@@ -339,10 +339,10 @@ data:
     \u6642\u3067\u3082\u6B63\u306E\u5270\u4F59\u3092\u6C42\u3081\u308B\n\t * @param\
     \ n int\n\t * @param m int\n\t */\n\tpublic static final long mod(long n, final\
     \ long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\t/**\n\t * a /\
-    \ b\u306E\u5546\u3092\u5C0F\u6570\u70B9\u4EE5\u4E0B\u5207\u308A\u4E0A\u3052\u3067\
-    \u6C42\u3081\u308B\n\t * @param a\n\t * @param b\n\t */\n\tprotected static final\
-    \ long ceil(final long a, final long b){ return (a - 1) / b + 1; }\n\t/**\n\t\
-    \ * a / b\u3092\u5C0F\u6570\u70B9c\u6841\u3067\u56DB\u6368\u4E94\u5165\u3057\u3066\
+    \ b\u3092\u5C0F\u6570\u70B9\u4EE5\u4E0B\u5207\u308A\u4E0A\u3052\u3067\u6C42\u3081\
+    \u308B\n\t * @param a\n\t * @param b\n\t */\n\tprotected static final long ceil(final\
+    \ long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\t/**\n\t * a\
+    \ / b\u3092\u5C0F\u6570\u70B9c\u6841\u3067\u56DB\u6368\u4E94\u5165\u3057\u3066\
     \u6C42\u3081\u308B\n\t * @param a\n\t * @param b\n\t * @param c\n\t */\n\tprotected\
     \ static final double round(final double a, final long b, final int c) {\n\t\t\
     final long d = pow(10, c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\t/**\n\
@@ -1135,7 +1135,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-30 04:54:25+09:00'
+  timestamp: '2024-01-30 05:37:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java
