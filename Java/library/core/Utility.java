@@ -238,7 +238,7 @@ public class Utility {
 	 * nの約数を列挙
 	 * @param n 整数
 	 */
-	protected static final ArrayList<Long> div(final long n) {
+	protected static final long[] div(final long n) {
 		final ArrayList<Long> d = new ArrayList<>();
 		for(long i = 1; i * i <= n; ++i) {
 			if(n % i == 0) {
@@ -248,16 +248,15 @@ public class Utility {
 				}
 			}
 		}
-		Collections.sort(d);
-		return d;
+		return d.stream().mapToLong(i -> i).sorted().toArray();
 	}
 	/**
 	 * nを素因数分解
 	 * e.g.) primeFactor(24) = [(2, 3), (3, 1)]
 	 * @param n 整数
 	 */
-	protected static final ArrayList<Pair<Long, Integer>> primeFactor(long n) {
-		final ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();
+	protected static final IntPair[] primeFactor(long n) {
+		final ArrayList<IntPair> pf = new ArrayList<>();
 		for(long i = 2; i * i <= n; ++i) {
 			if(n % i != 0) {
 				continue;
@@ -267,12 +266,12 @@ public class Utility {
 				cnt++;
 				n /= i;
 			}
-			pf.add(Pair.of(i, cnt));
+			pf.add(IntPair.of(i, cnt));
 		}
 		if(n != 1) {
-			pf.add(Pair.of(n, 1));
+			pf.add(IntPair.of(n, 1));
 		}
-		return pf;
+		return pf.toArray(IntPair[]::new);
 	}
 	/**
 	 * @param n 整数
