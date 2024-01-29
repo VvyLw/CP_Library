@@ -1116,11 +1116,13 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	private final boolean autoFlush;
 	private final byte[] buf;
 	private int pos;
+	private final boolean debug;
 	MyPrinter(final OutputStream os, final boolean autoFlush){
 		this.os = os;
 		this.autoFlush = autoFlush;
 		buf = new byte[1 << 17];
 		pos = 0;
+		debug = os == System.err;
 	}
 	private final void write(final byte bt) {
 		buf[pos++] = bt;
@@ -1149,10 +1151,6 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 			flush();
 		}
 	}
-	private final void println(final Object arg) {
-		print(arg);
-		newLine();
-	}
 	final void out(){ newLine(); }
 	final void out(final Object head, final Object... tail) {
 		print(head);
@@ -1161,9 +1159,18 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 		newLine();
 	}
-	final <F extends Comparable<? super F>, S extends Comparable<? super S>> void out(final Pair<F, S> arg){ println(arg.first + " " + arg.second); }
+	final <F extends Comparable<? super F>, S extends Comparable<? super S>> void out(final Pair<F, S> arg) {
+		if(debug) {
+			print(arg.toString());
+		} else {
+			print(arg.first + " " + arg.second);
+		}
+		newLine();
+	}
 	final void out(final int[] args) {
-		if(args.length > 0) {
+		if(debug) {
+			print(Arrays.toString(args));
+		} else if(args.length > 0) {
 			print(args[0]);
 			for(int i = 0; ++i < args.length;) {
 				print(" " + args[i]);
@@ -1172,7 +1179,9 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		newLine();
 	}
 	final void out(final long[] args) {
-		if(args.length > 0) {
+		if(debug) {
+			print(Arrays.toString(args));
+		} else if(args.length > 0) {
 			print(args[0]);
 			for(int i = 0; ++i < args.length;) {
 				print(" " + args[i]);
@@ -1181,7 +1190,9 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		newLine();
 	}
 	final void out(final double[] args) {
-		if(args.length > 0) {
+		if(debug) {
+			print(Arrays.toString(args));
+		} else if(args.length > 0) {
 			print(args[0]);
 			for(int i = 0; ++i < args.length;) {
 				print(" " + args[i]);
@@ -1190,7 +1201,9 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		newLine();
 	}
 	final void out(final boolean[] args) {
-		if(args.length > 0) {
+		if(debug) {
+			print(Arrays.toString(args));
+		} else if(args.length > 0) {
 			print(args[0]);
 			for(int i = 0; ++i < args.length;) {
 				print(" " + args[i]);
@@ -1199,7 +1212,9 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		newLine();
 	}
 	final void out(final char[] args) {
-		if(args.length > 0) {
+		if(debug) {
+			print(Arrays.toString(args));
+		} else if(args.length > 0) {
 			print(args[0]);
 			for(int i = 0; ++i < args.length;) {
 				print(" " + args[i]);
@@ -1208,7 +1223,9 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		newLine();
 	}
 	final void out(final Object[] args) {
-		if(args.length > 0) {
+		if(debug) {
+			print(Arrays.toString(args));
+		} else if(args.length > 0) {
 			print(args[0]);
 			for(int i = 0; ++i < args.length;) {
 				print(" " + args[i]);
@@ -1217,32 +1234,37 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		newLine();
 	}
 	final <E> void out(final Collection<E> args) {
-		int i = 0;
-		for(final var el: args) {
-			print(el);
-			if(++i != args.size()) {
-				print(" ");
+		if(debug) {
+			print(args.toString());
+		} else {
+			int i = 0;
+			for(final var el: args) {
+				print(el);
+				if(++i != args.size()) {
+					print(" ");
+				}
 			}
 		}
 		newLine();
 	}
 	final void outl(final Object head, final Object... tail) {
 		out(head);
-		Arrays.stream(tail).forEach(this::println);
+		Arrays.stream(tail).forEach(this::out);
 	}
-	final void outl(final int[] args){ Arrays.stream(args).forEach(this::println); }
+	final void outl(final int[] args){ Arrays.stream(args).forEach(this::out); }
 	final void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
-	final void outl(final long[] args){ Arrays.stream(args).forEach(this::println); }
+	final void outl(final long[] args){ Arrays.stream(args).forEach(this::out); }
 	final void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
-	final void outl(final double[] args){ Arrays.stream(args).forEach(this::println); }
+	final void outl(final double[] args){ Arrays.stream(args).forEach(this::out); }
 	final void outl(final double[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void outl(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void outl(final boolean[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void outl(final char[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void outl(final char[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
-	final void outl(final Object[] args){ Arrays.stream(args).forEach(this::println); }
+	final void outl(final Object[] args){ Arrays.stream(args).forEach(this::out); }
 	final void outl(final Object[][] args){ Arrays.stream(args).forEach(this::out); }
-	final <E> void outl(final Collection<E> args){ args.stream().forEach(this::println); }
+	final <F extends Comparable<? super F>, S extends Comparable<? super S>> void outl(final Pair<F, S>[] args){ Arrays.stream(args).forEach(this::out); }
+	final <E> void outl(final Collection<E> args){ args.stream().forEach(this::out); }
 	final void fin(final Object head, final Object... tail) {
 		out(head, tail);
 		if(!autoFlush) {
@@ -1320,7 +1342,21 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 		System.exit(0);
 	}
+	final void ende(final int[][] args) {
+		outl(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
 	final void ende(final long[] args) {
+		outl(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	final void ende(final long[][] args) {
 		outl(args);
 		if(!autoFlush) {
 			flush();
@@ -1334,7 +1370,21 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 		System.exit(0);
 	}
+	final void ende(final double[][] args) {
+		outl(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
 	final void ende(final boolean[] args) {
+		outl(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	final void ende(final boolean[][] args) {
 		outl(args);
 		if(!autoFlush) {
 			flush();
@@ -1348,7 +1398,28 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 		System.exit(0);
 	}
+	final void ende(final char[][] args) {
+		outl(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
 	final void ende(final Object[] args) {
+		outl(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	final void ende(final Object[][] args) {
+		outl(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	final <F extends Comparable<? super F>, S extends Comparable<? super S>> void ende(final Pair<F, S>[] args) {
 		outl(args);
 		if(!autoFlush) {
 			flush();
