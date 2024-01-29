@@ -11,7 +11,8 @@ public final class FloatPair extends Pair<Double, Double> {
 	 * @param first
 	 * @param second
 	 */
-	public FloatPair(final double first, final double second){ super(first, second); }
+	private FloatPair(final double first, final double second){ super(first, second); }
+	public static final FloatPair of(final double a, final double b){ return new FloatPair(a, b); }
 	/**
 	 * @return firstとsecondを入れ替えたFloatPair
 	 */
@@ -48,7 +49,7 @@ public final class FloatPair extends Pair<Double, Double> {
 	 */
 	public final FloatPair rotate(final int ang) {
 		final double rad = Math.toRadians(Utility.mod(ang, 360));
-		return new FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));
+		return FloatPair.of(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));
 	}
 	/**
 	 * @param p

@@ -12,7 +12,14 @@ public final class IntPair extends Pair<Long, Long> {
 	 * @param first
 	 * @param second
 	 */
-	public IntPair(final long first, final long second){ super(first, second); }
+	private IntPair(final long first, final long second){ super(first, second); }
+	/**
+	 * IntPairを宣言するのに使う
+	 * new IntPairと同等
+	 * @param a first
+	 * @param b second
+	 */
+	public static final IntPair of(final long a, final long b){ return new IntPair(a, b); }
 	/**
 	 * @return firstとsecondを入れ替えたIntPair
 	 */
@@ -54,7 +61,7 @@ public final class IntPair extends Pair<Long, Long> {
 	 */
 	public final FloatPair rotate(final int ang) {
 		final double rad = Math.toRadians(Utility.mod(ang, 360));
-		return new FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));
+		return FloatPair.of(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));
 	}
 	/**
 	 * @param p

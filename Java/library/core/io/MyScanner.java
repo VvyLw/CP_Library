@@ -229,7 +229,7 @@ public final class MyScanner implements Closeable, AutoCloseable {
 	 * IntPair型を入力する
 	 * @see IntPair
 	 */
-	public final IntPair pi(){ return new IntPair(nl(), nl()); }
+	public final IntPair pi(){ return IntPair.of(nl(), nl()); }
 	/**
 	 * IntPair型の配列を入力する
 	 * @param n
@@ -244,7 +244,7 @@ public final class MyScanner implements Closeable, AutoCloseable {
 	 * FloatPair型を入力する
 	 * @see FloatPair
 	 */
-	public final FloatPair pf(){ return new FloatPair(nd(), nd()); }
+	public final FloatPair pf(){ return FloatPair.of(nd(), nd()); }
 	/**
 	 * FloatPair型の配列を入力する
 	 * @param n

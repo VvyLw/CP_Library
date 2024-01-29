@@ -13,7 +13,7 @@ public class Pair<F extends Comparable<? super F>, S extends Comparable<? super 
 	 * @param first
 	 * @param second
 	 */
-	Pair(final F first, final S second) {
+	protected Pair(final F first, final S second) {
 		this.first = first;
 		this.second = second;
 	}
