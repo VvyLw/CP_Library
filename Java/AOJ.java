@@ -1,3 +1,5 @@
+package AOJ;
+
 import java.io.Closeable;
 import java.io.Flushable;
 import java.io.IOException;
@@ -626,7 +628,7 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>>, Cloneable {
 	public F first;
 	public S second;
-	Pair(final F first, final S second) {
+	private Pair(final F first, final S second) {
 		this.first = first;
 		this.second = second;
 	}

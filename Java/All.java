@@ -133,7 +133,7 @@ class Utility {
 		final int m = a.length / 2;
 		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2;
 	}
-	protected static final ArrayList<Long> div(final long n) {
+	protected static final long[] div(final long n) {
 		final ArrayList<Long> d = new ArrayList<>();
 		for(long i = 1; i * i <= n; ++i) {
 			if(n % i == 0) {
@@ -143,11 +143,10 @@ class Utility {
 				}
 			}
 		}
-		Collections.sort(d);
-		return d;
+		return d.stream().mapToLong(i -> i).sorted().toArray();
 	}
-	protected static final ArrayList<Pair<Long, Integer>> primeFactor(long n) {
-		final ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();
+	protected static final IntPair[] primeFactor(long n) {
+		final ArrayList<IntPair> pf = new ArrayList<>();
 		for(long i = 2; i * i <= n; ++i) {
 			if(n % i != 0) {
 				continue;
@@ -157,12 +156,12 @@ class Utility {
 				cnt++;
 				n /= i;
 			}
-			pf.add(Pair.of(i, cnt));
+			pf.add(IntPair.of(i, cnt));
 		}
 		if(n != 1) {
-			pf.add(Pair.of(n, 1));
+			pf.add(IntPair.of(n, 1));
 		}
-		return pf;
+		return pf.toArray(IntPair[]::new);
 	}
 	protected static final long eulerPhi(long n) {
 		long res = n;
@@ -1106,13 +1105,13 @@ final class MyScanner implements Closeable, AutoCloseable {
 		}
 		return sb.toString();
 	}
-	final IntPair pi(){ return new IntPair(nl(), nl()); }
+	final IntPair pi(){ return IntPair.of(nl(), nl()); }
 	final IntPair[] pi(final int n) {
 		final IntPair[] p = new IntPair[n];
 		IntStream.range(0, n).forEach(i -> p[i] = pi());
 		return p;
 	}
-	final FloatPair pf(){ return new FloatPair(nd(), nd()); }
+	final FloatPair pf(){ return FloatPair.of(nd(), nd()); }
 	final FloatPair[] pf(final int n) {
 		final FloatPair[] p = new FloatPair[n];
 		IntStream.range(0, n).forEach(i -> p[i] = pf());
@@ -1405,7 +1404,7 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>>, Cloneable {
 	public F first;
 	public S second;
-	Pair(final F first, final S second) {
+	protected Pair(final F first, final S second) {
 		this.first = first;
 		this.second = second;
 	}
@@ -1446,7 +1445,8 @@ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> imp
 	}
 }
 final class IntPair extends Pair<Long, Long> {
-	IntPair(final long first, final long second){ super(first, second); }
+	private IntPair(final long first, final long second){ super(first, second); }
+	static final IntPair of(final long a, final long b){ return new IntPair(a, b); }
 	@Override
 	final IntPair swap(){ return new IntPair(second, first); }
 	final IntPair add(final IntPair p){ return new IntPair(first + p.first, second + p.second); }
@@ -1457,7 +1457,7 @@ final class IntPair extends Pair<Long, Long> {
 	final IntPair rotate(){ return new IntPair(-second, first); } 
 	final FloatPair rotate(final int ang) {
 		final double rad = Math.toRadians(Utility.mod(ang, 360));
-		return new FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));
+		return FloatPair.of(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));
 	}
 	final long dot(final IntPair p){ return first * p.first + second * p.second; }
 	final long cross(final IntPair p){ return rotate().dot(p); }
@@ -1494,7 +1494,8 @@ final class IntPair extends Pair<Long, Long> {
 	}
 }
 final class FloatPair extends Pair<Double, Double> {
-	FloatPair(final double first, final double second){ super(first, second); }
+	private FloatPair(final double first, final double second){ super(first, second); }
+	static final FloatPair of(final double a, final double b){ return new FloatPair(a, b); }
 	@Override
 	final FloatPair swap(){ return new FloatPair(second, first); }
 	final FloatPair add(final FloatPair p){ return new FloatPair(first + p.first, second + p.second); }
@@ -1504,7 +1505,7 @@ final class FloatPair extends Pair<Double, Double> {
 	final FloatPair rotate(){ return new FloatPair(-second, first); } 
 	final FloatPair rotate(final int ang) {
 		final double rad = Math.toRadians(Utility.mod(ang, 360));
-		return new FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));
+		return FloatPair.of(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));
 	}
 	final double dot(final FloatPair p){ return first * p.first + second * p.second; }
 	final double cross(final FloatPair p){ return rotate().dot(p); }
@@ -1740,6 +1741,7 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		}
 	}
 	void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni())); }
+	protected final ArrayList<Edge> getEdge(){ return edge; }
 	protected final int[] allDist(final int v) {
 		final int[] d = new int[n];
 		Arrays.fill(d, -1);
@@ -1812,7 +1814,7 @@ final class WeightedGraph extends Graph {
 		Arrays.fill(cost, Long.MAX_VALUE);
 		final Queue<IntPair> dj = new PriorityQueue<>();
 		cost[v] = 0;
-		dj.add(new IntPair(cost[v], v));
+		dj.add(IntPair.of(cost[v], v));
 		while(!dj.isEmpty()) {
 			final IntPair tmp = dj.poll();
 			if(cost[tmp.second.intValue()] < tmp.first.longValue()) {
@@ -1821,7 +1823,7 @@ final class WeightedGraph extends Graph {
 			for(final Edge el: this.get(tmp.second.intValue())) {
 				if(cost[el.to] > tmp.first.longValue() + el.cost) {
 					cost[el.to] = tmp.first.longValue() + el.cost;
-					dj.add(new IntPair(cost[el.to], el.to));
+					dj.add(IntPair.of(cost[el.to], el.to));
 				}
 			}
 		}
@@ -3034,7 +3036,7 @@ final class WaveletMatrixBeta {
 			}
 		}
 	}
-	private final IntPair succ(final boolean f, final int l, final int r, final int level){ return new IntPair(matrix[level].rank(f, l) + mid[level] * (f ? 1 : 0), matrix[level].rank(f, r) + mid[level] * (f ? 1 : 0)); }
+	private final IntPair succ(final boolean f, final int l, final int r, final int level){ return IntPair.of(matrix[level].rank(f, l) + mid[level] * (f ? 1 : 0), matrix[level].rank(f, r) + mid[level] * (f ? 1 : 0)); }
 	final long access(int k) {
 		long ret = 0;
 		for(int level = log; --level >= 0;) {
@@ -3100,6 +3102,7 @@ final class WaveletMatrixBeta {
 final class WaveletMatrix {
 	private final WaveletMatrixBeta mat;
 	private final long[] ys;
+	WaveletMatrix(final long[] arr){ this(arr, 16); }
 	WaveletMatrix(final long[] arr, final int log) {
 		ys = Arrays.stream(arr).sorted().distinct().toArray();
 		final long[] t = new long[arr.length];

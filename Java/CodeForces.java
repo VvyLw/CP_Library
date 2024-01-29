@@ -117,7 +117,7 @@ class Utility {
 		final int m = a.length / 2;
 		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2;
 	}
-	protected static final ArrayList<Long> div(final long n) {
+	protected static final long[] div(final long n) {
 		final ArrayList<Long> d = new ArrayList<>();
 		for(long i = 1; i * i <= n; ++i) {
 			if(n % i == 0) {
@@ -127,11 +127,10 @@ class Utility {
 				}
 			}
 		}
-		Collections.sort(d);
-		return d;
+		return d.stream().mapToLong(i -> i).sorted().toArray();
 	}
-	protected static final ArrayList<Pair<Long, Integer>> primeFactor(long n) {
-		final ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();
+	protected static final IntPair[] primeFactor(long n) {
+		final ArrayList<IntPair> pf = new ArrayList<>();
 		for(long i = 2; i * i <= n; ++i) {
 			if(n % i != 0) {
 				continue;
@@ -141,12 +140,12 @@ class Utility {
 				cnt++;
 				n /= i;
 			}
-			pf.add(Pair.of(i, cnt));
+			pf.add(IntPair.of(i, cnt));
 		}
 		if(n != 1) {
-			pf.add(Pair.of(n, 1));
+			pf.add(IntPair.of(n, 1));
 		}
-		return pf;
+		return pf.toArray(IntPair[]::new);
 	}
 	protected static final long eulerPhi(long n) {
 		long res = n;
@@ -164,7 +163,7 @@ class Utility {
 		return res;
 	}
 	protected static final long sigma(final long n){ return n * (n + 1) / 2; }
-	protected static final long sigma(final long a, final long b){ return sigma(b) - sigma(a - 1); }
+	protected static final long sigma(final long a, final long b){ return sigma(b) - sigma(a - 1); } 
 	protected static final long factor(int n) {
 		long res = 1;
 		while(n > 0) {
@@ -1090,13 +1089,13 @@ final class MyScanner implements Closeable, AutoCloseable {
 		}
 		return sb.toString();
 	}
-	final IntPair pi(){ return new IntPair(nl(), nl()); }
+	final IntPair pi(){ return IntPair.of(nl(), nl()); }
 	final IntPair[] pi(final int n) {
 		final IntPair[] p = new IntPair[n];
 		IntStream.range(0, n).forEach(i -> p[i] = pi());
 		return p;
 	}
-	final FloatPair pf(){ return new FloatPair(nd(), nd()); }
+	final FloatPair pf(){ return FloatPair.of(nd(), nd()); }
 	final FloatPair[] pf(final int n) {
 		final FloatPair[] p = new FloatPair[n];
 		IntStream.range(0, n).forEach(i -> p[i] = pf());
@@ -1389,7 +1388,7 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>>, Cloneable {
 	public F first;
 	public S second;
-	Pair(final F first, final S second) {
+	protected Pair(final F first, final S second) {
 		this.first = first;
 		this.second = second;
 	}
@@ -1430,7 +1429,8 @@ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> imp
 	}
 }
 final class IntPair extends Pair<Long, Long> {
-	IntPair(final long first, final long second){ super(first, second); }
+	private IntPair(final long first, final long second){ super(first, second); }
+	static final IntPair of(final long a, final long b){ return new IntPair(a, b); }
 	@Override
 	final IntPair swap(){ return new IntPair(second, first); }
 	final IntPair add(final IntPair p){ return new IntPair(first + p.first, second + p.second); }
@@ -1441,7 +1441,7 @@ final class IntPair extends Pair<Long, Long> {
 	final IntPair rotate(){ return new IntPair(-second, first); } 
 	final FloatPair rotate(final int ang) {
 		final double rad = Math.toRadians(Utility.mod(ang, 360));
-		return new FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));
+		return FloatPair.of(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));
 	}
 	final long dot(final IntPair p){ return first * p.first + second * p.second; }
 	final long cross(final IntPair p){ return rotate().dot(p); }
@@ -1478,7 +1478,8 @@ final class IntPair extends Pair<Long, Long> {
 	}
 }
 final class FloatPair extends Pair<Double, Double> {
-	FloatPair(final double first, final double second){ super(first, second); }
+	private FloatPair(final double first, final double second){ super(first, second); }
+	static final FloatPair of(final double a, final double b){ return new FloatPair(a, b); }
 	@Override
 	final FloatPair swap(){ return new FloatPair(second, first); }
 	final FloatPair add(final FloatPair p){ return new FloatPair(first + p.first, second + p.second); }
@@ -1488,7 +1489,7 @@ final class FloatPair extends Pair<Double, Double> {
 	final FloatPair rotate(){ return new FloatPair(-second, first); } 
 	final FloatPair rotate(final int ang) {
 		final double rad = Math.toRadians(Utility.mod(ang, 360));
-		return new FloatPair(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));
+		return FloatPair.of(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));
 	}
 	final double dot(final FloatPair p){ return first * p.first + second * p.second; }
 	final double cross(final FloatPair p){ return rotate().dot(p); }
