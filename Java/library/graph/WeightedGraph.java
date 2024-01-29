@@ -58,7 +58,7 @@ public final class WeightedGraph extends Graph {
 		Arrays.fill(cost, Long.MAX_VALUE);
 		final Queue<IntPair> dj = new PriorityQueue<>();
 		cost[v] = 0;
-		dj.add(new IntPair(cost[v], v));
+		dj.add(IntPair.of(cost[v], v));
 		while(!dj.isEmpty()) {
 			final IntPair tmp = dj.poll();
 			if(cost[tmp.second.intValue()] < tmp.first.longValue()) {
@@ -67,7 +67,7 @@ public final class WeightedGraph extends Graph {
 			for(final Edge el: this.get(tmp.second.intValue())) {
 				if(cost[el.to] > tmp.first.longValue() + el.cost) {
 					cost[el.to] = tmp.first.longValue() + el.cost;
-					dj.add(new IntPair(cost[el.to], el.to));
+					dj.add(IntPair.of(cost[el.to], el.to));
 				}
 			}
 		}
