@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
@@ -45,8 +46,7 @@ final class Main {
 
 final class VvyLw extends Utility {
 	static final MyScanner sc = new MyScanner(System.in);
-	static final MyPrinter o = new MyPrinter(System.out, false);
-	static final MyPrinter dbg = new MyPrinter(System.err, true);
+	static final MyPrinter o = new MyPrinter(System.out, false), dbg = new MyPrinter(System.err, true);
 	static final Huitloxopetl why = new Huitloxopetl();
 	static final boolean MULTI = false;
 	static final int INF = 1 << 30;
@@ -1490,11 +1490,10 @@ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> imp
 			return false;
 		}
 		final Pair<?, ?> p = (Pair<?, ?>) o;
-		if(!first.equals(p.first)) {
-			return false;
-		}
-		return second.equals(p.second);
+		return first.equals(p.first) && second.equals(p.second);
 	}
+	@Override
+	public final int hashCode(){ return Objects.hash(first, second); }
 	@Override
 	public final String toString(){ return "(" + first + ", " + second + ")"; }
 	@SuppressWarnings("unchecked")
@@ -1779,14 +1778,10 @@ final class Edge {
 			return false;
 		}
 		final Edge e = (Edge) o;
-		if(src != e.src) {
-			return false;
-		}
-		if(to != e.to) {
-			return false;
-		}
-		return cost == e.cost;
+		return src == e.src && to == e.to && cost == e.cost;
 	}
+	@Override
+	public final int hashCode(){ return Objects.hash(src, to, cost); }
 	@Override
 	public final String toString(){ return "(" + src + ", " + to + ", " + cost + ")"; }
 }

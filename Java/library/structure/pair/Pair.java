@@ -1,5 +1,7 @@
 package library.structure.pair;
 
+import java.util.Objects;
+
 /**
  * C++のstd::pairに相当するクラス
  * @param <F>
@@ -40,11 +42,10 @@ public class Pair<F extends Comparable<? super F>, S extends Comparable<? super 
 			return false;
 		}
 		final Pair<?, ?> p = (Pair<?, ?>) o;
-		if(!first.equals(p.first)) {
-			return false;
-		}
-		return second.equals(p.second);
+		return first.equals(p.first) && second.equals(p.second);
 	}
+	@Override
+	public final int hashCode(){ return Objects.hash(first, second); }
 	@Override
 	public final String toString(){ return "(" + first + ", " + second + ")"; }
 	@SuppressWarnings("unchecked")

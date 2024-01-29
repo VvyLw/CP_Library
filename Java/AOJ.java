@@ -7,6 +7,7 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Formatter;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -712,11 +713,10 @@ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> imp
 			return false;
 		}
 		final Pair<?, ?> p = (Pair<?, ?>) o;
-		if(!first.equals(p.first)) {
-			return false;
-		}
-		return second.equals(p.second);
+		return first.equals(p.first) && second.equals(p.second);
 	}
+	@Override
+	public final int hashCode(){ return Objects.hash(first, second); }
 	@Override
 	public final String toString(){ return "(" + first + ", " + second + ")"; }
 	@SuppressWarnings("unchecked")
