@@ -1,5 +1,7 @@
 package library.graph;
 
+import java.util.Objects;
+
 /**
  * 辺を表すクラス
  */
@@ -26,14 +28,10 @@ public final class Edge {
 			return false;
 		}
 		final Edge e = (Edge) o;
-		if(src != e.src) {
-			return false;
-		}
-		if(to != e.to) {
-			return false;
-		}
-		return cost == e.cost;
+		return src == e.src && to == e.to && cost == e.cost;
 	}
+	@Override
+	public final int hashCode(){ return Objects.hash(src, to, cost); }
 	@Override
 	public final String toString(){ return "(" + src + ", " + to + ", " + cost + ")"; }
 }
