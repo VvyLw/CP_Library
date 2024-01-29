@@ -1373,9 +1373,10 @@ public class Utility {
 	 * @param ok
 	 * @param ng
 	 * @param fn
-	 * @see <a href="https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L696">Heileden::bins</a>
+	 * @see #lowerBound
+	 * @see #upperBound
 	 */
-	protected static final int bins(int ok, int ng, final IntPredicate fn) {
+	private static final int bins(int ok, int ng, final IntPredicate fn) {
 		while(Math.abs(ok - ng) > 1) {
 			final int mid = (ok + ng) / 2;
 			if(fn.test(mid)) {
