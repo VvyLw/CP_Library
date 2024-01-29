@@ -934,13 +934,12 @@ data:
     >Lady_sANDy::iot</a>\n\t */\n\tpublic static final int[] iota(final int n, final\
     \ int init){ return IntStream.range(0 + init, n + init).toArray(); }\n\t/**\n\t\
     \ * \u3081\u3050\u308B\u5F0F\u4E8C\u5206\u63A2\u7D22\n\t * @param ok\n\t * @param\
-    \ ng\n\t * @param fn\n\t * @see <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L696\"\
-    >Heileden::bins</a>\n\t */\n\tprotected static final int bins(int ok, int ng,\
-    \ final IntPredicate fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal int\
-    \ mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\
-    \t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\t/**\n\t\
-    \ * \u3081\u3050\u308B\u5F0F\u4E8C\u5206\u63A2\u7D22\n\t * @param ok\n\t * @param\
-    \ ng\n\t * @param fn\n\t * @see <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L696\"\
+    \ ng\n\t * @param fn\n\t * @see #lowerBound\n\t * @see #upperBound\n\t */\n\t\
+    private static final int bins(int ok, int ng, final IntPredicate fn) {\n\t\twhile(Math.abs(ok\
+    \ - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\
+    \t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\
+    \treturn ok;\n\t}\n\t/**\n\t * \u3081\u3050\u308B\u5F0F\u4E8C\u5206\u63A2\u7D22\
+    \n\t * @param ok\n\t * @param ng\n\t * @param fn\n\t * @see <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L696\"\
     >Heileden::bins</a>\n\t */\n\tprotected static final long bins(long ok, long ng,\
     \ final LongPredicate fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal long\
     \ mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\
@@ -1135,7 +1134,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-30 06:45:44+09:00'
+  timestamp: '2024-01-30 07:47:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

@@ -660,7 +660,7 @@ data:
     \ p){ return Arrays.stream(p).mapToDouble(i -> i.second).toArray(); }\n\tprotected\
     \ static final int[] iota(final int n){ return IntStream.range(0, n).toArray();\
     \ }\n\tprotected static final int[] iota(final int n, final int init){ return\
-    \ IntStream.range(0 + init, n + init).toArray(); }\n\tprotected static final int\
+    \ IntStream.range(0 + init, n + init).toArray(); }\n\tprivate static final int\
     \ bins(int ok, int ng, final IntPredicate fn) {\n\t\twhile(Math.abs(ok - ng) >\
     \ 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\
     \tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
@@ -1069,7 +1069,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-30 06:45:44+09:00'
+  timestamp: '2024-01-30 07:47:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java
