@@ -15,7 +15,7 @@ import library.core.VvyLw;
 public class Graph extends ArrayList<ArrayList<Edge>> {
 	protected final boolean undirected;
 	protected final int n, indexed;
-	public final ArrayList<Edge> edge;
+	protected final ArrayList<Edge> edge;
 	/**
 	 * コンストラクタ
 	 * @param n 頂点の個数
@@ -51,6 +51,10 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 	 * @param m 辺の個数
 	 */
 	public void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni())); }
+	/**
+	 * @return 辺のリスト
+	 */
+	public final ArrayList<Edge> getEdge(){ return edge; }
 	/**
 	 * BFSをして頂点vから各頂点に対する距離を求める
 	 * @param v
