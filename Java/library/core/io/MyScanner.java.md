@@ -403,13 +403,13 @@ data:
     \ sb = new StringBuilder();\n\t\tbyte c;\n\t\twhile((c = read()) != '\\n') {\n\
     \t\t\tsb.append(c);\n\t\t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t * IntPair\u578B\
     \u3092\u5165\u529B\u3059\u308B\n\t * @see IntPair\n\t */\n\tpublic final IntPair\
-    \ pi(){ return new IntPair(nl(), nl()); }\n\t/**\n\t * IntPair\u578B\u306E\u914D\
+    \ pi(){ return IntPair.of(nl(), nl()); }\n\t/**\n\t * IntPair\u578B\u306E\u914D\
     \u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n\n\t * @see IntPair\n\t */\n\
     \tpublic final IntPair[] pi(final int n) {\n\t\tfinal IntPair[] p = new IntPair[n];\n\
     \t\tIntStream.range(0, n).forEach(i -> p[i] = pi());\n\t\treturn p;\n\t}\n\t/**\n\
     \t * FloatPair\u578B\u3092\u5165\u529B\u3059\u308B\n\t * @see FloatPair\n\t */\n\
-    \tpublic final FloatPair pf(){ return new FloatPair(nd(), nd()); }\n\t/**\n\t\
-    \ * FloatPair\u578B\u306E\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param\
+    \tpublic final FloatPair pf(){ return FloatPair.of(nd(), nd()); }\n\t/**\n\t *\
+    \ FloatPair\u578B\u306E\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param\
     \ n\n\t * @see FloatPair\n\t */\n\tpublic final FloatPair[] pf(final int n) {\n\
     \t\tfinal FloatPair[] p = new FloatPair[n];\n\t\tIntStream.range(0, n).forEach(i\
     \ -> p[i] = pf());\n\t\treturn p;\n\t}\n\t/**\n\t * InputStream\u3092\u9589\u3058\
@@ -521,7 +521,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-29 07:09:31+09:00'
+  timestamp: '2024-01-30 02:46:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyScanner.java

@@ -323,11 +323,11 @@ data:
     \ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>>\
     \ implements Comparable<Pair<F, S>>, Cloneable {\n\tpublic F first;\n\tpublic\
     \ S second;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param\
-    \ first\n\t * @param second\n\t */\n\tPair(final F first, final S second) {\n\t\
-    \tthis.first = first;\n\t\tthis.second = second;\n\t}\n\t/**\n\t * Pair\u3092\u5BA3\
-    \u8A00\u3059\u308B\u306E\u306B\u4F7F\u3046\n\t * new Pair\u3068\u540C\u7B49\n\t\
-    \ * @param <F>\n\t * @param <S>\n\t * @param a first\n\t * @param b second\n\t\
-    \ */\n\tpublic static final <F extends Comparable<? super F>, S extends Comparable<?\
+    \ first\n\t * @param second\n\t */\n\tprotected Pair(final F first, final S second)\
+    \ {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\t/**\n\t * Pair\u3092\
+    \u5BA3\u8A00\u3059\u308B\u306E\u306B\u4F7F\u3046\n\t * new Pair\u3068\u540C\u7B49\
+    \n\t * @param <F>\n\t * @param <S>\n\t * @param a first\n\t * @param b second\n\
+    \t */\n\tpublic static final <F extends Comparable<? super F>, S extends Comparable<?\
     \ super S>> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }\n\t\
     /**\n\t * std::pair\u306B\u306F\u306A\u3044\n\t * @return first\u3068second\u3092\
     \u5165\u308C\u66FF\u3048\u305FPair\n\t */\n\tpublic Pair<S, F> swap(){ return\
@@ -449,7 +449,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-29 07:09:31+09:00'
+  timestamp: '2024-01-30 02:46:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/pair/Pair.java

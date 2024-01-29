@@ -321,12 +321,12 @@ data:
   code: "package library.structure.waveletmatrix;\n\nimport library.core.Utility;\n\
     import library.structure.pair.IntPair;\n\n/**\n * @see WaveletMatrix\n */\nfinal\
     \ class WaveletMatrixBeta {\n\tprivate final int log;\n\tprivate final SuccinctIndexableDictionary[]\
-    \ matrix;\n\tprivate final int[] mid;\n\tWaveletMatrixBeta(long[] arr, final int\
-    \ log) {\n\t\tfinal int len = arr.length;\n\t\tthis.log = log;\n\t\tmatrix = new\
-    \ SuccinctIndexableDictionary[log];\n\t\tmid = new int[log];\n\t\tfinal long[]\
-    \ l = new long[len], r = new long[len];\n\t\tfor(int level = log; --level >= 0;)\
-    \ {\n\t\t\tmatrix[level] = new SuccinctIndexableDictionary(len + 1);\n\t\t\tint\
-    \ left = 0, right = 0;\n\t\t\tfor(int i = 0; i < len; ++i) {\n\t\t\t\tif(((arr[i]\
+    \ matrix;\n\tprivate final int[] mid;\n\tWaveletMatrixBeta(final long[] arr, final\
+    \ int log) {\n\t\tfinal int len = arr.length;\n\t\tthis.log = log;\n\t\tmatrix\
+    \ = new SuccinctIndexableDictionary[log];\n\t\tmid = new int[log];\n\t\tfinal\
+    \ long[] l = new long[len], r = new long[len];\n\t\tfor(int level = log; --level\
+    \ >= 0;) {\n\t\t\tmatrix[level] = new SuccinctIndexableDictionary(len + 1);\n\t\
+    \t\tint left = 0, right = 0;\n\t\t\tfor(int i = 0; i < len; ++i) {\n\t\t\t\tif(((arr[i]\
     \ >> level) & 1) == 1) {\n\t\t\t\t\tmatrix[level].set(i);\n\t\t\t\t\tr[right++]\
     \ = arr[i];\n\t\t\t\t} else {\n\t\t\t\t\tl[left++] = arr[i];\n\t\t\t\t}\n\t\t\t\
     }\n\t\t\tmid[level] = left;\n\t\t\tmatrix[level].build();\n\t\t\tfinal long[]\
@@ -334,8 +334,8 @@ data:
     \ 0, arr, 0, len);\n\t\t\tSystem.arraycopy(tmp, 0, l, 0, len);\n\t\t\tfor(int\
     \ i = 0; i < right; ++i) {\n\t\t\t\tarr[left + i] = r[i];\n\t\t\t}\n\t\t}\n\t\
     }\n\tprivate final IntPair succ(final boolean f, final int l, final int r, final\
-    \ int level){ return new IntPair(matrix[level].rank(f, l) + mid[level] * (f ?\
-    \ 1 : 0), matrix[level].rank(f, r) + mid[level] * (f ? 1 : 0)); }\n\tfinal long\
+    \ int level){ return IntPair.of(matrix[level].rank(f, l) + mid[level] * (f ? 1\
+    \ : 0), matrix[level].rank(f, r) + mid[level] * (f ? 1 : 0)); }\n\tfinal long\
     \ access(int k) {\n\t\tlong ret = 0;\n\t\tfor(int level = log; --level >= 0;)\
     \ {\n\t\t\tfinal boolean f = matrix[level].get(k);\n\t\t\tif(f) {\n\t\t\t\tret\
     \ |= 1L << level;\n\t\t\t}\n\t\t\tk = matrix[level].rank(f, k) + mid[level] *\
@@ -468,7 +468,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-29 07:09:31+09:00'
+  timestamp: '2024-01-30 02:46:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/waveletmatrix/WaveletMatrixBeta.java

@@ -388,40 +388,40 @@ data:
     \ a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;\n\t}\n\tprotected static\
     \ final double median(final double[] a) {\n\t\tassert(isSorted(a));\n\t\tfinal\
     \ int m = a.length / 2;\n\t\treturn a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m])\
-    \ / 2;\n\t}\n\tprotected static final ArrayList<Long> div(final long n) {\n\t\t\
-    final ArrayList<Long> d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n;\
-    \ ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\
-    \t\t\t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\
-    \t\treturn d;\n\t}\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long\
-    \ n) {\n\t\tfinal ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\t\
-    for(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\
-    \t\t\t}\n\t\t\tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\
-    \tn /= i;\n\t\t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\
-    \t\tpf.add(Pair.of(n, 1));\n\t\t}\n\t\treturn pf;\n\t}\n\tprotected static final\
-    \ long eulerPhi(long n) {\n\t\tlong res = n;\n\t\tfor(long i = 2; i * i <= n;\
-    \ ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\tres -= res / i;\n\t\t\t\twhile(n % i\
-    \ == 0) {\n\t\t\t\t\tn /= i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tif(n > 1) {\n\t\t\
-    \tres -= res / n;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long\
-    \ sigma(final long n){ return n * (n + 1) / 2; }\n\tprotected static final long\
-    \ sigma(final long a, final long b){ return sigma(b) - sigma(a - 1); } \n\tprotected\
-    \ static final long factor(int n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\
-    \t\tres *= n--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long factor(int\
-    \ n, final long mod) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\
-    \t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long\
-    \ perm(int n, final int r) {\n\t\tfinal int og = n;\n\t\tlong res = 1;\n\t\twhile(n\
-    \ > og - r) {\n\t\t\tres *= n--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final long perm(int n, final int r, final long mod) {\n\t\tfinal int og = n;\n\
-    \t\tlong res = 1;\n\t\twhile(n > og - r) {\n\t\t\tres *= n--;\n\t\t\tres %= mod;\
-    \ \n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long binom(final int\
-    \ n, final int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint\
-    \ tmp = n;\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\
-    \t\t\tres *= tmp--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
-    \ static final long binom(final int n, final int r, final long mod) {\n\t\tif(r\
-    \ < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp = n;\n\t\tlong res = 1;\n\
-    \t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\tres *= tmp--;\n\t\t\tres\
-    \ %= mod;\n\t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\t\
-    protected static final boolean isInt(final double n){ return n == (long) Math.floor(n);\
-    \ }\n\tprotected static final boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
+    \ / 2;\n\t}\n\tprotected static final long[] div(final long n) {\n\t\tfinal ArrayList<Long>\
+    \ d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n %\
+    \ i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n /\
+    \ i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn d.stream().mapToLong(i -> i).sorted().toArray();\n\
+    \t}\n\tprotected static final IntPair[] primeFactor(long n) {\n\t\tfinal ArrayList<IntPair>\
+    \ pf = new ArrayList<>();\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n\
+    \ % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tint cnt = 0;\n\t\t\twhile(n %\
+    \ i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /= i;\n\t\t\t}\n\t\t\tpf.add(IntPair.of(i,\
+    \ cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\t\tpf.add(IntPair.of(n, 1));\n\t\t}\n\t\t\
+    return pf.toArray(IntPair[]::new);\n\t}\n\tprotected static final long eulerPhi(long\
+    \ n) {\n\t\tlong res = n;\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n\
+    \ % i == 0) {\n\t\t\t\tres -= res / i;\n\t\t\t\twhile(n % i == 0) {\n\t\t\t\t\t\
+    n /= i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tif(n > 1) {\n\t\t\tres -= res / n;\n\t\
+    \t}\n\t\treturn res;\n\t}\n\tprotected static final long sigma(final long n){\
+    \ return n * (n + 1) / 2; }\n\tprotected static final long sigma(final long a,\
+    \ final long b){ return sigma(b) - sigma(a - 1); } \n\tprotected static final\
+    \ long factor(int n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\
+    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long factor(int n, final\
+    \ long mod) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t\t\
+    res %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long perm(int\
+    \ n, final int r) {\n\t\tfinal int og = n;\n\t\tlong res = 1;\n\t\twhile(n > og\
+    \ - r) {\n\t\t\tres *= n--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
+    \ long perm(int n, final int r, final long mod) {\n\t\tfinal int og = n;\n\t\t\
+    long res = 1;\n\t\twhile(n > og - r) {\n\t\t\tres *= n--;\n\t\t\tres %= mod; \n\
+    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long binom(final int n,\
+    \ final int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp\
+    \ = n;\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\
+    \tres *= tmp--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ final long binom(final int n, final int r, final long mod) {\n\t\tif(r < 0 ||\
+    \ n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp = n;\n\t\tlong res = 1;\n\t\t\
+    for(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\tres *= tmp--;\n\t\t\tres %= mod;\n\
+    \t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ final boolean isInt(final double n){ return n == (long) Math.floor(n); }\n\t\
+    protected static final boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
     \ }\n\tprotected static final boolean isPrime(final long n) {\n\t\tif(n == 1)\
     \ {\n\t\t\treturn false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\t\
     if(n % i == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t\
@@ -795,10 +795,10 @@ data:
     \tIntStream.range(0, h).forEach(i -> a[i] = nb(w));\n\t\treturn a;\n\t}\n\tfinal\
     \ String line() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tbyte\
     \ c;\n\t\twhile((c = read()) != '\\n') {\n\t\t\tsb.append(c);\n\t\t}\n\t\treturn\
-    \ sb.toString();\n\t}\n\tfinal IntPair pi(){ return new IntPair(nl(), nl()); }\n\
+    \ sb.toString();\n\t}\n\tfinal IntPair pi(){ return IntPair.of(nl(), nl()); }\n\
     \tfinal IntPair[] pi(final int n) {\n\t\tfinal IntPair[] p = new IntPair[n];\n\
     \t\tIntStream.range(0, n).forEach(i -> p[i] = pi());\n\t\treturn p;\n\t}\n\tfinal\
-    \ FloatPair pf(){ return new FloatPair(nd(), nd()); }\n\tfinal FloatPair[] pf(final\
+    \ FloatPair pf(){ return FloatPair.of(nd(), nd()); }\n\tfinal FloatPair[] pf(final\
     \ int n) {\n\t\tfinal FloatPair[] p = new FloatPair[n];\n\t\tIntStream.range(0,\
     \ n).forEach(i -> p[i] = pf());\n\t\treturn p;\n\t}\n\t@Override\n\tpublic final\
     \ void close() {\n\t\ttry {\n\t\t\tis.close();\n\t\t} catch(final IOException\
@@ -889,32 +889,34 @@ data:
     try {\n\t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(final IOException e) {\n\
     \t\t\te.printStackTrace();\n\t\t}\n\t}\n}\n\nclass Pair<F extends Comparable<?\
     \ super F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>>,\
-    \ Cloneable {\n\tpublic F first;\n\tpublic S second;\n\tPair(final F first, final\
-    \ S second) {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\tstatic\
-    \ final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<F,\
-    \ S> of(final F a, final S b){ return new Pair<>(a, b); }\n\tPair<S, F> swap(){\
-    \ return Pair.of(second, first); }\n\t@Override\n\tpublic final boolean equals(final\
-    \ Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null\
-    \ || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?,\
-    \ ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first)) {\n\t\t\treturn false;\n\
-    \t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t@Override\n\tpublic final String\
-    \ toString(){ return \"(\" + first + \", \" + second + \")\"; }\n\t@SuppressWarnings(\"\
-    unchecked\")\n\t@Override\n\tpublic final Pair<F, S> clone() {\n\t\ttry {\n\t\t\
-    \treturn (Pair<F, S>) super.clone();\n\t\t} catch(final CloneNotSupportedException\
-    \ e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow new Error();\n\t}\n\t@Override\n\
-    \tpublic final int compareTo(final Pair<F, S> p) {\n\t\tif(first.compareTo(p.first)\
-    \ == 0) {\n\t\t\treturn second.compareTo(p.second);\n\t\t}\n\t\treturn first.compareTo(p.first);\n\
-    \t}\n}\nfinal class IntPair extends Pair<Long, Long> {\n\tIntPair(final long first,\
-    \ final long second){ super(first, second); }\n\t@Override\n\tfinal IntPair swap(){\
-    \ return new IntPair(second, first); }\n\tfinal IntPair add(final IntPair p){\
-    \ return new IntPair(first + p.first, second + p.second); }\n\tfinal IntPair sub(final\
+    \ Cloneable {\n\tpublic F first;\n\tpublic S second;\n\tprotected Pair(final F\
+    \ first, final S second) {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\
+    \t}\n\tstatic final <F extends Comparable<? super F>, S extends Comparable<? super\
+    \ S>> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }\n\tPair<S,\
+    \ F> swap(){ return Pair.of(second, first); }\n\t@Override\n\tpublic final boolean\
+    \ equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\
+    \tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\
+    \tfinal Pair<?, ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first)) {\n\t\t\
+    \treturn false;\n\t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t@Override\n\
+    \tpublic final String toString(){ return \"(\" + first + \", \" + second + \"\
+    )\"; }\n\t@SuppressWarnings(\"unchecked\")\n\t@Override\n\tpublic final Pair<F,\
+    \ S> clone() {\n\t\ttry {\n\t\t\treturn (Pair<F, S>) super.clone();\n\t\t} catch(final\
+    \ CloneNotSupportedException e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow\
+    \ new Error();\n\t}\n\t@Override\n\tpublic final int compareTo(final Pair<F, S>\
+    \ p) {\n\t\tif(first.compareTo(p.first) == 0) {\n\t\t\treturn second.compareTo(p.second);\n\
+    \t\t}\n\t\treturn first.compareTo(p.first);\n\t}\n}\nfinal class IntPair extends\
+    \ Pair<Long, Long> {\n\tprivate IntPair(final long first, final long second){\
+    \ super(first, second); }\n\tstatic final IntPair of(final long a, final long\
+    \ b){ return new IntPair(a, b); }\n\t@Override\n\tfinal IntPair swap(){ return\
+    \ new IntPair(second, first); }\n\tfinal IntPair add(final IntPair p){ return\
+    \ new IntPair(first + p.first, second + p.second); }\n\tfinal IntPair sub(final\
     \ IntPair p){ return new IntPair(first - p.first, second - p.second); }\n\tfinal\
     \ IntPair mul(final IntPair p){ return new IntPair(first * p.first, second * p.second);\
     \ }\n\tfinal IntPair div(final IntPair p){ return new IntPair(first / p.first,\
     \ second / p.second); }\n\tfinal IntPair mod(final IntPair p){ return new IntPair(first\
     \ % p.first, second % p.second); }\n\tfinal IntPair rotate(){ return new IntPair(-second,\
     \ first); } \n\tfinal FloatPair rotate(final int ang) {\n\t\tfinal double rad\
-    \ = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn new FloatPair(first * Math.cos(rad)\
+    \ = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn FloatPair.of(first * Math.cos(rad)\
     \ - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));\n\
     \t}\n\tfinal long dot(final IntPair p){ return first * p.first + second * p.second;\
     \ }\n\tfinal long cross(final IntPair p){ return rotate().dot(p); }\n\tfinal long\
@@ -928,8 +930,9 @@ data:
     \t\t\ta ^= b;\n\t\t\tx -= t1 * t2;\n\t\t\tx ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^=\
     \ t2;\n\t\t\ty -= t1 * t3;\n\t\t\ty ^= t3;\n\t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\
     \t}\n\t\treturn new IntPair(x, y);\n\t}\n}\nfinal class FloatPair extends Pair<Double,\
-    \ Double> {\n\tFloatPair(final double first, final double second){ super(first,\
-    \ second); }\n\t@Override\n\tfinal FloatPair swap(){ return new FloatPair(second,\
+    \ Double> {\n\tprivate FloatPair(final double first, final double second){ super(first,\
+    \ second); }\n\tstatic final FloatPair of(final double a, final double b){ return\
+    \ new FloatPair(a, b); }\n\t@Override\n\tfinal FloatPair swap(){ return new FloatPair(second,\
     \ first); }\n\tfinal FloatPair add(final FloatPair p){ return new FloatPair(first\
     \ + p.first, second + p.second); }\n\tfinal FloatPair sub(final FloatPair p){\
     \ return new FloatPair(first - p.first, second - p.second); }\n\tfinal FloatPair\
@@ -937,7 +940,7 @@ data:
     \ }\n\tfinal FloatPair div(final FloatPair p){ return new FloatPair(first / p.first,\
     \ second / p.second); }\n\tfinal FloatPair rotate(){ return new FloatPair(-second,\
     \ first); } \n\tfinal FloatPair rotate(final int ang) {\n\t\tfinal double rad\
-    \ = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn new FloatPair(first * Math.cos(rad)\
+    \ = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn FloatPair.of(first * Math.cos(rad)\
     \ - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));\n\
     \t}\n\tfinal double dot(final FloatPair p){ return first * p.first + second *\
     \ p.second; }\n\tfinal double cross(final FloatPair p){ return rotate().dot(p);\
@@ -1014,12 +1017,13 @@ data:
     \t\tedge.add(new Edge(a, b, 0));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new\
     \ Edge(a));\n\t\t\tedge.add(new Edge(b, a, 0));\n\t\t}\n\t}\n\tvoid input(final\
     \ int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni()));\
-    \ }\n\tprotected final int[] allDist(final int v) {\n\t\tfinal int[] d = new int[n];\n\
-    \t\tArrays.fill(d, -1);\n\t\tfinal Queue<Integer> q = new ArrayDeque<>();\n\t\t\
-    d[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\
-    \t\t\tfor(final Edge el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\
-    \t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to] = d[tmp] + 1;\n\t\t\t\tq.add(el.to);\n\
-    \t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\tprotected final int dist(final int u, final\
+    \ }\n\tprotected final ArrayList<Edge> getEdge(){ return edge; }\n\tprotected\
+    \ final int[] allDist(final int v) {\n\t\tfinal int[] d = new int[n];\n\t\tArrays.fill(d,\
+    \ -1);\n\t\tfinal Queue<Integer> q = new ArrayDeque<>();\n\t\td[v] = 0;\n\t\t\
+    q.add(v);\n\t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\t\t\t\
+    for(final Edge el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\t\t\
+    continue;\n\t\t\t\t}\n\t\t\t\td[el.to] = d[tmp] + 1;\n\t\t\t\tq.add(el.to);\n\t\
+    \t\t}\n\t\t}\n\t\treturn d;\n\t}\n\tprotected final int dist(final int u, final\
     \ int v){ return allDist(u)[v]; }\n\tprotected final ArrayList<Integer> topologicalSort()\
     \ {\n\t\tfinal int[] deg = new int[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\
     \tfor(final Edge ed: this.get(i)) {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t}\n\t\t}\n\t\
@@ -1040,12 +1044,12 @@ data:
     \ m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni(),\
     \ VvyLw.sc.ni())); }\n\tfinal long[] dijkstra(final int v) {\n\t\tfinal long[]\
     \ cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tfinal Queue<IntPair>\
-    \ dj = new PriorityQueue<>();\n\t\tcost[v] = 0;\n\t\tdj.add(new IntPair(cost[v],\
+    \ dj = new PriorityQueue<>();\n\t\tcost[v] = 0;\n\t\tdj.add(IntPair.of(cost[v],\
     \ v));\n\t\twhile(!dj.isEmpty()) {\n\t\t\tfinal IntPair tmp = dj.poll();\n\t\t\
     \tif(cost[tmp.second.intValue()] < tmp.first.longValue()) {\n\t\t\t\tcontinue;\n\
     \t\t\t}\n\t\t\tfor(final Edge el: this.get(tmp.second.intValue())) {\n\t\t\t\t\
     if(cost[el.to] > tmp.first.longValue() + el.cost) {\n\t\t\t\t\tcost[el.to] = tmp.first.longValue()\
-    \ + el.cost;\n\t\t\t\t\tdj.add(new IntPair(cost[el.to], el.to));\n\t\t\t\t}\n\t\
+    \ + el.cost;\n\t\t\t\t\tdj.add(IntPair.of(cost[el.to], el.to));\n\t\t\t\t}\n\t\
     \t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[] bellmanFord(final int v) {\n\
     \t\tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
     \t\tcost[v] = 0;\n\t\tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final\
@@ -1452,7 +1456,7 @@ data:
     \ len);\n\t\t\tSystem.arraycopy(l, 0, arr, 0, len);\n\t\t\tSystem.arraycopy(tmp,\
     \ 0, l, 0, len);\n\t\t\tfor(int i = 0; i < right; ++i) {\n\t\t\t\tarr[left + i]\
     \ = r[i];\n\t\t\t}\n\t\t}\n\t}\n\tprivate final IntPair succ(final boolean f,\
-    \ final int l, final int r, final int level){ return new IntPair(matrix[level].rank(f,\
+    \ final int l, final int r, final int level){ return IntPair.of(matrix[level].rank(f,\
     \ l) + mid[level] * (f ? 1 : 0), matrix[level].rank(f, r) + mid[level] * (f ?\
     \ 1 : 0)); }\n\tfinal long access(int k) {\n\t\tlong ret = 0;\n\t\tfor(int level\
     \ = log; --level >= 0;) {\n\t\t\tfinal boolean f = matrix[level].get(k);\n\t\t\
@@ -1481,98 +1485,99 @@ data:
     \ l, final int r, final long lower) {\n\t\tfinal int cnt = rangeFreq(l, r, lower);\n\
     \t\treturn cnt == r - l ? -1 : kthMin(l, r, cnt);\n\t}\n}\nfinal class WaveletMatrix\
     \ {\n\tprivate final WaveletMatrixBeta mat;\n\tprivate final long[] ys;\n\tWaveletMatrix(final\
-    \ long[] arr, final int log) {\n\t\tys = Arrays.stream(arr).sorted().distinct().toArray();\n\
-    \t\tfinal long[] t = new long[arr.length];\n\t\tIntStream.range(0, arr.length).forEach(i\
-    \ -> t[i] = get(arr[i]));\n\t\tmat = new WaveletMatrixBeta(t, log);\n\t}\n\tprivate\
-    \ final int get(final long x){ return Utility.lowerBound(ys, x); }\n\tfinal long\
-    \ access(final int k){ return ys[(int) mat.access(k)]; }\n\tfinal int rank(final\
-    \ long x, final int r) {\n\t\tfinal int pos = get(x);\n\t\tif(pos == ys.length\
-    \ || ys[pos] != x) {\n\t\t\treturn 0;\n\t\t}\n\t\treturn mat.rank(pos, r);\n\t\
-    }\n\tfinal long kthMin(final int l, final int r, final int k){ return ys[(int)\
-    \ mat.kthMin(l, r, k)]; }\n\tfinal long kthMax(final int l, final int r, final\
-    \ int k){ return ys[(int) mat.kthMax(l, r, k)]; }\n\tfinal int rangeFreq(final\
-    \ int l, final int r, final long upper){ return mat.rangeFreq(l, r, get(upper));\
-    \ }\n\tfinal int rangeFreq(final int l, final int r, final long lower, final long\
-    \ upper){ return mat.rangeFreq(l, r, get(lower), get(upper)); }\n\tfinal long\
-    \ prev(final int l, final int r, final long upper) {\n\t\tfinal long ret = mat.prev(l,\
-    \ r, get(upper));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n\tfinal long\
-    \ next(final int l, final int r, final long lower) {\n\t\tfinal long ret = mat.next(l,\
-    \ r, get(lower));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n}\n\nfinal\
-    \ class AVLTree<T extends Comparable<? super T>> {\n\tstatic final class Node<T\
-    \ extends Comparable<? super T>> {\n\t\tT val;\n\t\t@SuppressWarnings(\"unchecked\"\
-    )\n\t\tNode<T>[] ch = new Node[2];\n\t\tint dep, size;\n\t\tNode(final T val,\
-    \ final Node<T> l, final Node<T> r) {\n\t\t\tthis.val = val;\n\t\t\tdep = size\
-    \ = 1;\n\t\t\tch[0] = l;\n\t\t\tch[1] = r;\n\t\t}\n\t}\n\tprivate Node<T> root;\n\
-    \tprivate final int depth(final Node<T> t){ return t == null ? 0 : t.dep; }\n\t\
-    private final int count(final Node<T> t){ return t == null ? 0 : t.size; }\n\t\
-    private final Node<T> update(final Node<T> t) {\n\t\tt.dep = Math.max(depth(t.ch[0]),\
-    \ depth(t.ch[1])) + 1;\n\t\tt.size = count(t.ch[0]) + count(t.ch[1]) + 1;\n\t\t\
-    return t;\n\t}\n\tprivate final Node<T> rotate(Node<T> t, final int b) {\n\t\t\
-    Node<T> s = t.ch[1 - b];\n\t\tt.ch[1 - b] = s.ch[b];\n\t\ts.ch[b] = t;\n\t\tt\
-    \ = update(t);\n\t\ts = update(s);\n\t\treturn s;\n\t}\n\tprivate final Node<T>\
-    \ fetch(Node<T> t) {\n\t\tif(t == null) {\n\t\t\treturn t;\n\t\t}\n\t\tif(depth(t.ch[0])\
-    \ - depth(t.ch[1]) == 2) {\n\t\t\tif(depth(t.ch[0].ch[1]) > depth(t.ch[0].ch[0]))\
-    \ {\n\t\t\t\tt.ch[0] = rotate(t.ch[0], 0);\n\t\t\t}\n\t\t\tt = rotate(t, 1);\n\
-    \t\t}\n\t\telse if(depth(t.ch[0]) - depth(t.ch[1]) == -2) {\n\t\t\tif (depth(t.ch[1].ch[0])\
-    \ > depth(t.ch[1].ch[1])) {\n\t\t\t\tt.ch[1] = rotate(t.ch[1], 1);\n\t\t\t}\n\t\
-    \t\tt = rotate(t, 0);\n\t\t}\n\t\treturn t;\n\t}\n\tprivate final Node<T> insert(final\
-    \ Node<T> t, final int k, final T v) {\n\t\tif(t == null) {\n\t\t\treturn new\
-    \ Node<T>(v, null, null);\n\t\t}\n\t\tfinal int c = count(t.ch[0]), b = (k > c)\
-    \ ? 1 : 0;\n\t\tt.ch[b] = insert(t.ch[b], k - (b == 1 ? (c + 1) : 0), v);\n\t\t\
-    update(t);\n\t\treturn fetch(t);\n\t}\n\tprivate final Node<T> erase(final Node<T>\
-    \ t) {\n\t\tif(t == null || t.ch[0] == null && t.ch[1] == null) {\n\t\t\treturn\
-    \ null;\n\t\t}\n\t\tif(t.ch[0] == null || t.ch[1] == null) {\n\t\t\treturn t.ch[t.ch[0]\
-    \ == null ? 1 : 0];\n\t\t}\n\t\treturn fetch(update(new Node<T>(find(t.ch[1],\
-    \ 0).val, t.ch[0], erase(t.ch[1], 0))));\n\t}\n\tprivate final Node<T> erase(Node<T>\
-    \ t, final int k) {\n\t\tif(t == null) {\n\t\t\treturn null;\n\t\t}\n\t\tfinal\
-    \ int c = count(t.ch[0]);\n\t\tif(k < c) {\n\t\t\tt.ch[0] = erase(t.ch[0], k);\n\
-    \t\t\tt = update(t);\n\t\t}\n\t\telse if(k > c) {\n\t\t\tt.ch[1] = erase(t.ch[1],\
-    \ k - (c + 1));\n\t\t\tt = update(t);\n\t\t}\n\t\telse {\n\t\t\tt = erase(t);\n\
-    \t\t}\n\t\treturn fetch(t);\n\t}\n\tprivate final Node<T> find(final Node<T> t,\
-    \ final int k) {\n\t\tif(t == null) {\n\t\t\treturn t;\n\t\t}\n\t\tfinal int c\
-    \ = count(t.ch[0]);\n\t\treturn k < c ? find(t.ch[0], k) : k == c ? t : find(t.ch[1],\
-    \ k - (c + 1));\n\t}\n\tprivate final int cnt(final Node<T> t, final T v) {\n\t\
-    \tif(t == null) {\n\t\t\treturn 0;\n\t\t}\n\t\tif(t.val.compareTo(v) < 0) {\n\t\
-    \t\treturn count(t.ch[0]) + 1 + cnt(t.ch[1], v);\n\t\t}\n\t\tif(t.val.equals(v))\
-    \ {\n\t\t\treturn count(t.ch[0]);\n\t\t}\n\t\treturn cnt(t.ch[0], v);\n\t}\n\t\
-    AVLTree(){ root = null; }\n\tfinal void add(final T val){ root = insert(root,\
-    \ cnt(root, val), val); }\n\tfinal void remove(final int k){ root = erase(root,\
-    \ k); }\n\tfinal T get(final int k){ return find(root, k).val; }\n\tfinal int\
-    \ count(final T val){ return cnt(root, val); }\n\tfinal int size(){ return root.size;\
-    \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
-    \ sb = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i <\
-    \ root.size;) {\n\t\t\tsb.append(\" \");\n\t\t\tsb.append(get(i));\n\t\t}\n\t\t\
-    return \"[\" + sb.toString() + \"]\";\n\t}\n}\n\nfinal class Deque<T> implements\
-    \ Iterable<T> {\n\tprivate int n, head, tail;\n\tprivate Object[] buf;\n\tDeque(){\
-    \ this(1 << 17); }\n\tprivate Deque(final int n) {\n\t\tthis.n = n;\n\t\thead\
-    \ = tail = 0;\n\t\tbuf = new Object[n];\n\t}\n\tDeque(final T[] a) {\n\t\tthis(a.length);\n\
-    \t\tArrays.stream(a).forEach(i -> add(i));\n\t}\n\tprivate final int next(final\
-    \ int index) {\n\t\tfinal int next = index + 1;\n\t\treturn next == n ? 0 : next;\n\
-    \t}\n\tprivate final int prev(final int index) {\n\t\tfinal int prev = index -\
-    \ 1;\n\t\treturn prev == -1 ? n - 1 : prev;\n\t}\n\tprivate final int index(final\
-    \ int i) {\n\t\tfinal int size = size();\n\t\tif(i >= size) {\n\t\t\tthrow new\
-    \ IndexOutOfBoundsException(\"Index \"+ i +\" out of bounds for length \" + size);\n\
-    \t\t}\n\t\tfinal int id = head + i;\n\t\treturn n <= id ? id - n : id;\n\t}\n\t\
-    private final void arraycopy(final int fromIndex, final T[] array, final int from,\
-    \ final int length) {\n\t\tif(fromIndex + length > size()) {\n\t\t\tthrow new\
-    \ IndexOutOfBoundsException(\"last source index \" + (fromIndex + length) + \"\
-    \ out of bounds for int[\" + size() + \"]\");\n\t\t}\n\t\tfinal int h = index(fromIndex);\n\
-    \t\tif(h + length < n) {\n\t\t\tSystem.arraycopy(buf, h, array, from, length);\n\
-    \t\t} else {\n\t\t\tfinal int back = n - h;\n\t\t\tSystem.arraycopy(buf, h, array,\
-    \ from, back);\n\t\t\tSystem.arraycopy(buf, 0, array, from + back, length - back);\n\
-    \t\t}\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tprivate final void extend()\
-    \ {\n\t\tfinal Object[] tmp = new Object[n << 1];\n\t\tarraycopy(0, (T[]) tmp,\
-    \ 0, size());\n\t\tbuf = tmp;\n\t\tn = buf.length;\n\t}\n\tfinal boolean isEmpty(){\
-    \ return size() == 0; }\n\tfinal int size() {\n\t\tfinal int size = tail - head;\n\
-    \t\treturn size < 0 ? size + n : size;\n\t}\n\tfinal void addFirst(final T x)\
-    \ {\n\t\tif(prev(head) == tail) {\n\t\t\textend();\n\t\t}\n\t\thead = prev(head);\n\
-    \t\tbuf[head] = x;\n\t}\n\tfinal void addLast(final T x) {\n\t\tif(next(tail)\
-    \ == head) {\n\t\t\textend();\n\t\t}\n\t\tbuf[tail] = x;\n\t\ttail = next(tail);\n\
-    \t}\n\tfinal void removeFirst() {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"\
-    Buffer is empty\");\n\t\t}\n\t\thead = next(head);\n\t}\n\tfinal void removeLast()\
-    \ {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is\
-    \ empty\");\n\t\t}\n\t\ttail = prev(tail);\n\t}\n\t@SuppressWarnings(\"unchecked\"\
-    )\n\tfinal T pollFirst() {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"\
+    \ long[] arr){ this(arr, 16); }\n\tWaveletMatrix(final long[] arr, final int log)\
+    \ {\n\t\tys = Arrays.stream(arr).sorted().distinct().toArray();\n\t\tfinal long[]\
+    \ t = new long[arr.length];\n\t\tIntStream.range(0, arr.length).forEach(i -> t[i]\
+    \ = get(arr[i]));\n\t\tmat = new WaveletMatrixBeta(t, log);\n\t}\n\tprivate final\
+    \ int get(final long x){ return Utility.lowerBound(ys, x); }\n\tfinal long access(final\
+    \ int k){ return ys[(int) mat.access(k)]; }\n\tfinal int rank(final long x, final\
+    \ int r) {\n\t\tfinal int pos = get(x);\n\t\tif(pos == ys.length || ys[pos] !=\
+    \ x) {\n\t\t\treturn 0;\n\t\t}\n\t\treturn mat.rank(pos, r);\n\t}\n\tfinal long\
+    \ kthMin(final int l, final int r, final int k){ return ys[(int) mat.kthMin(l,\
+    \ r, k)]; }\n\tfinal long kthMax(final int l, final int r, final int k){ return\
+    \ ys[(int) mat.kthMax(l, r, k)]; }\n\tfinal int rangeFreq(final int l, final int\
+    \ r, final long upper){ return mat.rangeFreq(l, r, get(upper)); }\n\tfinal int\
+    \ rangeFreq(final int l, final int r, final long lower, final long upper){ return\
+    \ mat.rangeFreq(l, r, get(lower), get(upper)); }\n\tfinal long prev(final int\
+    \ l, final int r, final long upper) {\n\t\tfinal long ret = mat.prev(l, r, get(upper));\n\
+    \t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n\tfinal long next(final int l,\
+    \ final int r, final long lower) {\n\t\tfinal long ret = mat.next(l, r, get(lower));\n\
+    \t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n}\n\nfinal class AVLTree<T extends\
+    \ Comparable<? super T>> {\n\tstatic final class Node<T extends Comparable<? super\
+    \ T>> {\n\t\tT val;\n\t\t@SuppressWarnings(\"unchecked\")\n\t\tNode<T>[] ch =\
+    \ new Node[2];\n\t\tint dep, size;\n\t\tNode(final T val, final Node<T> l, final\
+    \ Node<T> r) {\n\t\t\tthis.val = val;\n\t\t\tdep = size = 1;\n\t\t\tch[0] = l;\n\
+    \t\t\tch[1] = r;\n\t\t}\n\t}\n\tprivate Node<T> root;\n\tprivate final int depth(final\
+    \ Node<T> t){ return t == null ? 0 : t.dep; }\n\tprivate final int count(final\
+    \ Node<T> t){ return t == null ? 0 : t.size; }\n\tprivate final Node<T> update(final\
+    \ Node<T> t) {\n\t\tt.dep = Math.max(depth(t.ch[0]), depth(t.ch[1])) + 1;\n\t\t\
+    t.size = count(t.ch[0]) + count(t.ch[1]) + 1;\n\t\treturn t;\n\t}\n\tprivate final\
+    \ Node<T> rotate(Node<T> t, final int b) {\n\t\tNode<T> s = t.ch[1 - b];\n\t\t\
+    t.ch[1 - b] = s.ch[b];\n\t\ts.ch[b] = t;\n\t\tt = update(t);\n\t\ts = update(s);\n\
+    \t\treturn s;\n\t}\n\tprivate final Node<T> fetch(Node<T> t) {\n\t\tif(t == null)\
+    \ {\n\t\t\treturn t;\n\t\t}\n\t\tif(depth(t.ch[0]) - depth(t.ch[1]) == 2) {\n\t\
+    \t\tif(depth(t.ch[0].ch[1]) > depth(t.ch[0].ch[0])) {\n\t\t\t\tt.ch[0] = rotate(t.ch[0],\
+    \ 0);\n\t\t\t}\n\t\t\tt = rotate(t, 1);\n\t\t}\n\t\telse if(depth(t.ch[0]) - depth(t.ch[1])\
+    \ == -2) {\n\t\t\tif (depth(t.ch[1].ch[0]) > depth(t.ch[1].ch[1])) {\n\t\t\t\t\
+    t.ch[1] = rotate(t.ch[1], 1);\n\t\t\t}\n\t\t\tt = rotate(t, 0);\n\t\t}\n\t\treturn\
+    \ t;\n\t}\n\tprivate final Node<T> insert(final Node<T> t, final int k, final\
+    \ T v) {\n\t\tif(t == null) {\n\t\t\treturn new Node<T>(v, null, null);\n\t\t\
+    }\n\t\tfinal int c = count(t.ch[0]), b = (k > c) ? 1 : 0;\n\t\tt.ch[b] = insert(t.ch[b],\
+    \ k - (b == 1 ? (c + 1) : 0), v);\n\t\tupdate(t);\n\t\treturn fetch(t);\n\t}\n\
+    \tprivate final Node<T> erase(final Node<T> t) {\n\t\tif(t == null || t.ch[0]\
+    \ == null && t.ch[1] == null) {\n\t\t\treturn null;\n\t\t}\n\t\tif(t.ch[0] ==\
+    \ null || t.ch[1] == null) {\n\t\t\treturn t.ch[t.ch[0] == null ? 1 : 0];\n\t\t\
+    }\n\t\treturn fetch(update(new Node<T>(find(t.ch[1], 0).val, t.ch[0], erase(t.ch[1],\
+    \ 0))));\n\t}\n\tprivate final Node<T> erase(Node<T> t, final int k) {\n\t\tif(t\
+    \ == null) {\n\t\t\treturn null;\n\t\t}\n\t\tfinal int c = count(t.ch[0]);\n\t\
+    \tif(k < c) {\n\t\t\tt.ch[0] = erase(t.ch[0], k);\n\t\t\tt = update(t);\n\t\t\
+    }\n\t\telse if(k > c) {\n\t\t\tt.ch[1] = erase(t.ch[1], k - (c + 1));\n\t\t\t\
+    t = update(t);\n\t\t}\n\t\telse {\n\t\t\tt = erase(t);\n\t\t}\n\t\treturn fetch(t);\n\
+    \t}\n\tprivate final Node<T> find(final Node<T> t, final int k) {\n\t\tif(t ==\
+    \ null) {\n\t\t\treturn t;\n\t\t}\n\t\tfinal int c = count(t.ch[0]);\n\t\treturn\
+    \ k < c ? find(t.ch[0], k) : k == c ? t : find(t.ch[1], k - (c + 1));\n\t}\n\t\
+    private final int cnt(final Node<T> t, final T v) {\n\t\tif(t == null) {\n\t\t\
+    \treturn 0;\n\t\t}\n\t\tif(t.val.compareTo(v) < 0) {\n\t\t\treturn count(t.ch[0])\
+    \ + 1 + cnt(t.ch[1], v);\n\t\t}\n\t\tif(t.val.equals(v)) {\n\t\t\treturn count(t.ch[0]);\n\
+    \t\t}\n\t\treturn cnt(t.ch[0], v);\n\t}\n\tAVLTree(){ root = null; }\n\tfinal\
+    \ void add(final T val){ root = insert(root, cnt(root, val), val); }\n\tfinal\
+    \ void remove(final int k){ root = erase(root, k); }\n\tfinal T get(final int\
+    \ k){ return find(root, k).val; }\n\tfinal int count(final T val){ return cnt(root,\
+    \ val); }\n\tfinal int size(){ return root.size; }\n\t@Override\n\tpublic final\
+    \ String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\t\
+    sb.append(get(0));\n\t\tfor(int i = 0; ++i < root.size;) {\n\t\t\tsb.append(\"\
+    \ \");\n\t\t\tsb.append(get(i));\n\t\t}\n\t\treturn \"[\" + sb.toString() + \"\
+    ]\";\n\t}\n}\n\nfinal class Deque<T> implements Iterable<T> {\n\tprivate int n,\
+    \ head, tail;\n\tprivate Object[] buf;\n\tDeque(){ this(1 << 17); }\n\tprivate\
+    \ Deque(final int n) {\n\t\tthis.n = n;\n\t\thead = tail = 0;\n\t\tbuf = new Object[n];\n\
+    \t}\n\tDeque(final T[] a) {\n\t\tthis(a.length);\n\t\tArrays.stream(a).forEach(i\
+    \ -> add(i));\n\t}\n\tprivate final int next(final int index) {\n\t\tfinal int\
+    \ next = index + 1;\n\t\treturn next == n ? 0 : next;\n\t}\n\tprivate final int\
+    \ prev(final int index) {\n\t\tfinal int prev = index - 1;\n\t\treturn prev ==\
+    \ -1 ? n - 1 : prev;\n\t}\n\tprivate final int index(final int i) {\n\t\tfinal\
+    \ int size = size();\n\t\tif(i >= size) {\n\t\t\tthrow new IndexOutOfBoundsException(\"\
+    Index \"+ i +\" out of bounds for length \" + size);\n\t\t}\n\t\tfinal int id\
+    \ = head + i;\n\t\treturn n <= id ? id - n : id;\n\t}\n\tprivate final void arraycopy(final\
+    \ int fromIndex, final T[] array, final int from, final int length) {\n\t\tif(fromIndex\
+    \ + length > size()) {\n\t\t\tthrow new IndexOutOfBoundsException(\"last source\
+    \ index \" + (fromIndex + length) + \" out of bounds for int[\" + size() + \"\
+    ]\");\n\t\t}\n\t\tfinal int h = index(fromIndex);\n\t\tif(h + length < n) {\n\t\
+    \t\tSystem.arraycopy(buf, h, array, from, length);\n\t\t} else {\n\t\t\tfinal\
+    \ int back = n - h;\n\t\t\tSystem.arraycopy(buf, h, array, from, back);\n\t\t\t\
+    System.arraycopy(buf, 0, array, from + back, length - back);\n\t\t}\n\t}\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tprivate final void extend() {\n\t\tfinal Object[] tmp = new Object[n\
+    \ << 1];\n\t\tarraycopy(0, (T[]) tmp, 0, size());\n\t\tbuf = tmp;\n\t\tn = buf.length;\n\
+    \t}\n\tfinal boolean isEmpty(){ return size() == 0; }\n\tfinal int size() {\n\t\
+    \tfinal int size = tail - head;\n\t\treturn size < 0 ? size + n : size;\n\t}\n\
+    \tfinal void addFirst(final T x) {\n\t\tif(prev(head) == tail) {\n\t\t\textend();\n\
+    \t\t}\n\t\thead = prev(head);\n\t\tbuf[head] = x;\n\t}\n\tfinal void addLast(final\
+    \ T x) {\n\t\tif(next(tail) == head) {\n\t\t\textend();\n\t\t}\n\t\tbuf[tail]\
+    \ = x;\n\t\ttail = next(tail);\n\t}\n\tfinal void removeFirst() {\n\t\tif(head\
+    \ == tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is empty\");\n\t\
+    \t}\n\t\thead = next(head);\n\t}\n\tfinal void removeLast() {\n\t\tif(head ==\
+    \ tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is empty\");\n\t\t\
+    }\n\t\ttail = prev(tail);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T\
+    \ pollFirst() {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"\
     Buffer is empty\");\n\t\t}\n\t\tfinal T ans = (T) buf[head];\n\t\thead = next(head);\n\
     \t\treturn ans;\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T pollLast()\
     \ {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is\
@@ -1806,7 +1811,7 @@ data:
   - Java/library/core/VvyLw.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-29 07:09:31+09:00'
+  timestamp: '2024-01-30 02:46:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

@@ -341,11 +341,11 @@ data:
     \u77ED\u8DEF\u3092\u6C42\u3081\u308B\n\t * @param v\n\t */\n\tpublic final long[]\
     \ dijkstra(final int v) {\n\t\tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost,\
     \ Long.MAX_VALUE);\n\t\tfinal Queue<IntPair> dj = new PriorityQueue<>();\n\t\t\
-    cost[v] = 0;\n\t\tdj.add(new IntPair(cost[v], v));\n\t\twhile(!dj.isEmpty()) {\n\
+    cost[v] = 0;\n\t\tdj.add(IntPair.of(cost[v], v));\n\t\twhile(!dj.isEmpty()) {\n\
     \t\t\tfinal IntPair tmp = dj.poll();\n\t\t\tif(cost[tmp.second.intValue()] < tmp.first.longValue())\
     \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final Edge el: this.get(tmp.second.intValue()))\
     \ {\n\t\t\t\tif(cost[el.to] > tmp.first.longValue() + el.cost) {\n\t\t\t\t\tcost[el.to]\
-    \ = tmp.first.longValue() + el.cost;\n\t\t\t\t\tdj.add(new IntPair(cost[el.to],\
+    \ = tmp.first.longValue() + el.cost;\n\t\t\t\t\tdj.add(IntPair.of(cost[el.to],\
     \ el.to));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\t/**\n\t * Bellman-Ford\u6CD5\
     \n\t * \u8CA0\u8FBA\u304C\u5B58\u5728\u3057\u3066\u3044\u3066\u3082\u5358\u4E00\
     \u59CB\u70B9\u5168\u70B9\u9593\u6700\u77ED\u8DEF\u3092\u6C42\u3081\u3089\u308C\
@@ -508,7 +508,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-29 07:09:31+09:00'
+  timestamp: '2024-01-30 02:46:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/WeightedGraph.java

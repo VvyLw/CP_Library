@@ -323,7 +323,7 @@ data:
     \ java.util.stream.IntStream;\n\nimport library.core.VvyLw;\n\n/**\n * \u30B0\u30E9\
     \u30D5\u30AF\u30E9\u30B9\n */\npublic class Graph extends ArrayList<ArrayList<Edge>>\
     \ {\n\tprotected final boolean undirected;\n\tprotected final int n, indexed;\n\
-    \tpublic final ArrayList<Edge> edge;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\
+    \tprotected final ArrayList<Edge> edge;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\
     \u30AF\u30BF\n\t * @param n \u9802\u70B9\u306E\u500B\u6570\n\t * @param indexed\
     \ ?-indexed\n\t * 0-indexed\u306A\u30890, 1-indexed\u306A\u30891\n\t * @param\
     \ undirected \u7121\u5411\u30B0\u30E9\u30D5\u304B\u3069\u3046\u304B\n\t * \u7121\
@@ -338,26 +338,28 @@ data:
     \ Edge(a));\n\t\t\tedge.add(new Edge(b, a, 0));\n\t\t}\n\t}\n\t/**\n\t * \u8FBA\
     \u3092m\u500B\u5165\u529B\u3059\u308B\n\t * @param m \u8FBA\u306E\u500B\u6570\n\
     \t */\n\tpublic void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(),\
-    \ VvyLw.sc.ni())); }\n\t/**\n\t * BFS\u3092\u3057\u3066\u9802\u70B9v\u304B\u3089\
-    \u5404\u9802\u70B9\u306B\u5BFE\u3059\u308B\u8DDD\u96E2\u3092\u6C42\u3081\u308B\
-    \n\t * @param v\n\t */\n\tpublic final int[] allDist(final int v) {\n\t\tfinal\
-    \ int[] d = new int[n];\n\t\tArrays.fill(d, -1);\n\t\tfinal Queue<Integer> q =\
-    \ new ArrayDeque<>();\n\t\td[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty()) {\n\
-    \t\t\tfinal int tmp = q.poll();\n\t\t\tfor(final Edge el: this.get(tmp)) {\n\t\
-    \t\t\tif(d[el.to] != -1) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to] =\
-    \ d[tmp] + 1;\n\t\t\t\tq.add(el.to);\n\t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\t/**\n\
-    \t * @param u\n\t * @param v\n\t * @return \u9802\u70B9u\u3068\u9802\u70B9v\u3068\
-    \u306E\u8DDD\u96E2\n\t */\n\tpublic final int dist(final int u, final int v){\
-    \ return allDist(u)[v]; }\n\t/**\n\t * \u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\
-    \u30FC\u30C8\n\t */\n\tpublic final ArrayList<Integer> topologicalSort() {\n\t\
-    \tfinal int[] deg = new int[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final\
-    \ Edge ed: this.get(i)) {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t}\n\t\t}\n\t\tfinal Stack<Integer>\
-    \ sk = new Stack<>();\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(deg[i] == 0)\
-    \ {\n\t\t\t\tsk.add(i);\n\t\t\t}\n\t\t}\n\t\tfinal ArrayList<Integer> ord = new\
-    \ ArrayList<>();\n\t\twhile(!sk.isEmpty()) {\n\t\t\tfinal int tmp = sk.pop();\n\
-    \t\t\tord.add(tmp);\n\t\t\tfor(final Edge ed: this.get(tmp)) {\n\t\t\t\tif(--deg[ed.to]\
-    \ == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ord.size()\
-    \ == size() ? ord : new ArrayList<>();\n\t}\n}"
+    \ VvyLw.sc.ni())); }\n\t/**\n\t * @return \u8FBA\u306E\u30EA\u30B9\u30C8\n\t */\n\
+    \tpublic final ArrayList<Edge> getEdge(){ return edge; }\n\t/**\n\t * BFS\u3092\
+    \u3057\u3066\u9802\u70B9v\u304B\u3089\u5404\u9802\u70B9\u306B\u5BFE\u3059\u308B\
+    \u8DDD\u96E2\u3092\u6C42\u3081\u308B\n\t * @param v\n\t */\n\tpublic final int[]\
+    \ allDist(final int v) {\n\t\tfinal int[] d = new int[n];\n\t\tArrays.fill(d,\
+    \ -1);\n\t\tfinal Queue<Integer> q = new ArrayDeque<>();\n\t\td[v] = 0;\n\t\t\
+    q.add(v);\n\t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\t\t\t\
+    for(final Edge el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\t\t\
+    continue;\n\t\t\t\t}\n\t\t\t\td[el.to] = d[tmp] + 1;\n\t\t\t\tq.add(el.to);\n\t\
+    \t\t}\n\t\t}\n\t\treturn d;\n\t}\n\t/**\n\t * @param u\n\t * @param v\n\t * @return\
+    \ \u9802\u70B9u\u3068\u9802\u70B9v\u3068\u306E\u8DDD\u96E2\n\t */\n\tpublic final\
+    \ int dist(final int u, final int v){ return allDist(u)[v]; }\n\t/**\n\t * \u30C8\
+    \u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\n\t */\n\tpublic final ArrayList<Integer>\
+    \ topologicalSort() {\n\t\tfinal int[] deg = new int[n];\n\t\tfor(int i = 0; i\
+    \ < n; ++i) {\n\t\t\tfor(final Edge ed: this.get(i)) {\n\t\t\t\tdeg[ed.to]++;\n\
+    \t\t\t}\n\t\t}\n\t\tfinal Stack<Integer> sk = new Stack<>();\n\t\tfor(int i =\
+    \ 0; i < n; ++i) {\n\t\t\tif(deg[i] == 0) {\n\t\t\t\tsk.add(i);\n\t\t\t}\n\t\t\
+    }\n\t\tfinal ArrayList<Integer> ord = new ArrayList<>();\n\t\twhile(!sk.isEmpty())\
+    \ {\n\t\t\tfinal int tmp = sk.pop();\n\t\t\tord.add(tmp);\n\t\t\tfor(final Edge\
+    \ ed: this.get(tmp)) {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ord.size() == size() ? ord : new ArrayList<>();\n\
+    \t}\n}"
   dependsOn:
   - Java/CodeForces.java
   - Java/library/other/SkewHeap.java
@@ -464,7 +466,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-29 07:09:31+09:00'
+  timestamp: '2024-01-30 02:46:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/Graph.java

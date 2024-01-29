@@ -318,11 +318,11 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/AOJ.java\n"
-  code: "import java.io.Closeable;\nimport java.io.Flushable;\nimport java.io.IOException;\n\
-    import java.io.InputStream;\nimport java.io.OutputStream;\nimport java.math.BigInteger;\n\
-    import java.util.Arrays;\nimport java.util.Collection;\nimport java.util.Formatter;\n\
-    import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nfinal\
-    \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
+  code: "package AOJ;\n\nimport java.io.Closeable;\nimport java.io.Flushable;\nimport\
+    \ java.io.IOException;\nimport java.io.InputStream;\nimport java.io.OutputStream;\n\
+    import java.math.BigInteger;\nimport java.util.Arrays;\nimport java.util.Collection;\n\
+    import java.util.Formatter;\nimport java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\
+    \nfinal class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
     \ VvyLw.MULTI ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
     \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}\n\n\
     final class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner(System.in);\n\
@@ -567,22 +567,22 @@ data:
     try {\n\t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(final IOException e) {\n\
     \t\t\te.printStackTrace();\n\t\t}\n\t}\n}\n\nclass Pair<F extends Comparable<?\
     \ super F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>>,\
-    \ Cloneable {\n\tpublic F first;\n\tpublic S second;\n\tPair(final F first, final\
-    \ S second) {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\tstatic\
-    \ final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<F,\
-    \ S> of(final F a, final S b){ return new Pair<>(a, b); }\n\tPair<S, F> swap(){\
-    \ return Pair.of(second, first); }\n\t@Override\n\tpublic final boolean equals(final\
-    \ Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null\
-    \ || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?,\
-    \ ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first)) {\n\t\t\treturn false;\n\
-    \t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t@Override\n\tpublic final String\
-    \ toString(){ return \"(\" + first + \", \" + second + \")\"; }\n\t@SuppressWarnings(\"\
-    unchecked\")\n\t@Override\n\tpublic final Pair<F, S> clone() {\n\t\ttry {\n\t\t\
-    \treturn (Pair<F, S>) super.clone();\n\t\t} catch(final CloneNotSupportedException\
-    \ e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow new Error();\n\t}\n\t@Override\n\
-    \tpublic final int compareTo(final Pair<F, S> p) {\n\t\tif(first.compareTo(p.first)\
-    \ == 0) {\n\t\t\treturn second.compareTo(p.second);\n\t\t}\n\t\treturn first.compareTo(p.first);\n\
-    \t}\n}"
+    \ Cloneable {\n\tpublic F first;\n\tpublic S second;\n\tprivate Pair(final F first,\
+    \ final S second) {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\
+    \tstatic final <F extends Comparable<? super F>, S extends Comparable<? super\
+    \ S>> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }\n\tPair<S,\
+    \ F> swap(){ return Pair.of(second, first); }\n\t@Override\n\tpublic final boolean\
+    \ equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\
+    \tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\
+    \tfinal Pair<?, ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first)) {\n\t\t\
+    \treturn false;\n\t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t@Override\n\
+    \tpublic final String toString(){ return \"(\" + first + \", \" + second + \"\
+    )\"; }\n\t@SuppressWarnings(\"unchecked\")\n\t@Override\n\tpublic final Pair<F,\
+    \ S> clone() {\n\t\ttry {\n\t\t\treturn (Pair<F, S>) super.clone();\n\t\t} catch(final\
+    \ CloneNotSupportedException e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow\
+    \ new Error();\n\t}\n\t@Override\n\tpublic final int compareTo(final Pair<F, S>\
+    \ p) {\n\t\tif(first.compareTo(p.first) == 0) {\n\t\t\treturn second.compareTo(p.second);\n\
+    \t\t}\n\t\treturn first.compareTo(p.first);\n\t}\n}"
   dependsOn:
   - Java/CodeForces.java
   - Java/library/other/SkewHeap.java
@@ -689,7 +689,7 @@ data:
   - Java/library/core/VvyLw.java
   - Java/All.java
   - Java/yukicoder.java
-  timestamp: '2024-01-29 07:09:31+09:00'
+  timestamp: '2024-01-30 02:46:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java

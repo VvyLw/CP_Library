@@ -381,40 +381,40 @@ data:
     \ a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;\n\t}\n\tprotected static\
     \ final double median(final double[] a) {\n\t\tassert(isSorted(a));\n\t\tfinal\
     \ int m = a.length / 2;\n\t\treturn a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m])\
-    \ / 2;\n\t}\n\tprotected static final ArrayList<Long> div(final long n) {\n\t\t\
-    final ArrayList<Long> d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n;\
-    \ ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\
-    \t\t\t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tCollections.sort(d);\n\
-    \t\treturn d;\n\t}\n\tprotected static final ArrayList<Pair<Long, Integer>> primeFactor(long\
-    \ n) {\n\t\tfinal ArrayList<Pair<Long, Integer>> pf = new ArrayList<>();\n\t\t\
-    for(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\
-    \t\t\t}\n\t\t\tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\
-    \tn /= i;\n\t\t\t}\n\t\t\tpf.add(Pair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\
-    \t\tpf.add(Pair.of(n, 1));\n\t\t}\n\t\treturn pf;\n\t}\n\tprotected static final\
-    \ long eulerPhi(long n) {\n\t\tlong res = n;\n\t\tfor(long i = 2; i * i <= n;\
-    \ ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\tres -= res / i;\n\t\t\t\twhile(n % i\
-    \ == 0) {\n\t\t\t\t\tn /= i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tif(n > 1) {\n\t\t\
-    \tres -= res / n;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long\
-    \ sigma(final long n){ return n * (n + 1) / 2; }\n\tprotected static final long\
-    \ sigma(final long a, final long b){ return sigma(b) - sigma(a - 1); }\n\tprotected\
-    \ static final long factor(int n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\
-    \t\tres *= n--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long factor(int\
-    \ n, final long mod) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\
-    \t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long\
-    \ perm(int n, final int r) {\n\t\tfinal int og = n;\n\t\tlong res = 1;\n\t\twhile(n\
-    \ > og - r) {\n\t\t\tres *= n--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final long perm(int n, final int r, final long mod) {\n\t\tfinal int og = n;\n\
-    \t\tlong res = 1;\n\t\twhile(n > og - r) {\n\t\t\tres *= n--;\n\t\t\tres %= mod;\
-    \ \n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long binom(final int\
-    \ n, final int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint\
-    \ tmp = n;\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\
-    \t\t\tres *= tmp--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
-    \ static final long binom(final int n, final int r, final long mod) {\n\t\tif(r\
-    \ < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp = n;\n\t\tlong res = 1;\n\
-    \t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\tres *= tmp--;\n\t\t\tres\
-    \ %= mod;\n\t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\t\
-    protected static final boolean isInt(final double n){ return n == (long) Math.floor(n);\
-    \ }\n\tprotected static final boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
+    \ / 2;\n\t}\n\tprotected static final long[] div(final long n) {\n\t\tfinal ArrayList<Long>\
+    \ d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n %\
+    \ i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n /\
+    \ i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn d.stream().mapToLong(i -> i).sorted().toArray();\n\
+    \t}\n\tprotected static final IntPair[] primeFactor(long n) {\n\t\tfinal ArrayList<IntPair>\
+    \ pf = new ArrayList<>();\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n\
+    \ % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tint cnt = 0;\n\t\t\twhile(n %\
+    \ i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /= i;\n\t\t\t}\n\t\t\tpf.add(IntPair.of(i,\
+    \ cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\t\tpf.add(IntPair.of(n, 1));\n\t\t}\n\t\t\
+    return pf.toArray(IntPair[]::new);\n\t}\n\tprotected static final long eulerPhi(long\
+    \ n) {\n\t\tlong res = n;\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n\
+    \ % i == 0) {\n\t\t\t\tres -= res / i;\n\t\t\t\twhile(n % i == 0) {\n\t\t\t\t\t\
+    n /= i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tif(n > 1) {\n\t\t\tres -= res / n;\n\t\
+    \t}\n\t\treturn res;\n\t}\n\tprotected static final long sigma(final long n){\
+    \ return n * (n + 1) / 2; }\n\tprotected static final long sigma(final long a,\
+    \ final long b){ return sigma(b) - sigma(a - 1); } \n\tprotected static final\
+    \ long factor(int n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\
+    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long factor(int n, final\
+    \ long mod) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t\t\
+    res %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long perm(int\
+    \ n, final int r) {\n\t\tfinal int og = n;\n\t\tlong res = 1;\n\t\twhile(n > og\
+    \ - r) {\n\t\t\tres *= n--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
+    \ long perm(int n, final int r, final long mod) {\n\t\tfinal int og = n;\n\t\t\
+    long res = 1;\n\t\twhile(n > og - r) {\n\t\t\tres *= n--;\n\t\t\tres %= mod; \n\
+    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long binom(final int n,\
+    \ final int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp\
+    \ = n;\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\
+    \tres *= tmp--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ final long binom(final int n, final int r, final long mod) {\n\t\tif(r < 0 ||\
+    \ n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp = n;\n\t\tlong res = 1;\n\t\t\
+    for(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\tres *= tmp--;\n\t\t\tres %= mod;\n\
+    \t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ final boolean isInt(final double n){ return n == (long) Math.floor(n); }\n\t\
+    protected static final boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
     \ }\n\tprotected static final boolean isPrime(final long n) {\n\t\tif(n == 1)\
     \ {\n\t\t\treturn false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\t\
     if(n % i == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t\
@@ -788,10 +788,10 @@ data:
     \tIntStream.range(0, h).forEach(i -> a[i] = nb(w));\n\t\treturn a;\n\t}\n\tfinal\
     \ String line() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tbyte\
     \ c;\n\t\twhile((c = read()) != '\\n') {\n\t\t\tsb.append(c);\n\t\t}\n\t\treturn\
-    \ sb.toString();\n\t}\n\tfinal IntPair pi(){ return new IntPair(nl(), nl()); }\n\
+    \ sb.toString();\n\t}\n\tfinal IntPair pi(){ return IntPair.of(nl(), nl()); }\n\
     \tfinal IntPair[] pi(final int n) {\n\t\tfinal IntPair[] p = new IntPair[n];\n\
     \t\tIntStream.range(0, n).forEach(i -> p[i] = pi());\n\t\treturn p;\n\t}\n\tfinal\
-    \ FloatPair pf(){ return new FloatPair(nd(), nd()); }\n\tfinal FloatPair[] pf(final\
+    \ FloatPair pf(){ return FloatPair.of(nd(), nd()); }\n\tfinal FloatPair[] pf(final\
     \ int n) {\n\t\tfinal FloatPair[] p = new FloatPair[n];\n\t\tIntStream.range(0,\
     \ n).forEach(i -> p[i] = pf());\n\t\treturn p;\n\t}\n\t@Override\n\tpublic final\
     \ void close() {\n\t\ttry {\n\t\t\tis.close();\n\t\t} catch(final IOException\
@@ -882,32 +882,34 @@ data:
     try {\n\t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(final IOException e) {\n\
     \t\t\te.printStackTrace();\n\t\t}\n\t}\n}\n\nclass Pair<F extends Comparable<?\
     \ super F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>>,\
-    \ Cloneable {\n\tpublic F first;\n\tpublic S second;\n\tPair(final F first, final\
-    \ S second) {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\tstatic\
-    \ final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<F,\
-    \ S> of(final F a, final S b){ return new Pair<>(a, b); }\n\tPair<S, F> swap(){\
-    \ return Pair.of(second, first); }\n\t@Override\n\tpublic final boolean equals(final\
-    \ Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null\
-    \ || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?,\
-    \ ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first)) {\n\t\t\treturn false;\n\
-    \t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t@Override\n\tpublic final String\
-    \ toString(){ return \"(\" + first + \", \" + second + \")\"; }\n\t@SuppressWarnings(\"\
-    unchecked\")\n\t@Override\n\tpublic final Pair<F, S> clone() {\n\t\ttry {\n\t\t\
-    \treturn (Pair<F, S>) super.clone();\n\t\t} catch(final CloneNotSupportedException\
-    \ e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow new Error();\n\t}\n\t@Override\n\
-    \tpublic final int compareTo(final Pair<F, S> p) {\n\t\tif(first.compareTo(p.first)\
-    \ == 0) {\n\t\t\treturn second.compareTo(p.second);\n\t\t}\n\t\treturn first.compareTo(p.first);\n\
-    \t}\n}\nfinal class IntPair extends Pair<Long, Long> {\n\tIntPair(final long first,\
-    \ final long second){ super(first, second); }\n\t@Override\n\tfinal IntPair swap(){\
-    \ return new IntPair(second, first); }\n\tfinal IntPair add(final IntPair p){\
-    \ return new IntPair(first + p.first, second + p.second); }\n\tfinal IntPair sub(final\
+    \ Cloneable {\n\tpublic F first;\n\tpublic S second;\n\tprotected Pair(final F\
+    \ first, final S second) {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\
+    \t}\n\tstatic final <F extends Comparable<? super F>, S extends Comparable<? super\
+    \ S>> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }\n\tPair<S,\
+    \ F> swap(){ return Pair.of(second, first); }\n\t@Override\n\tpublic final boolean\
+    \ equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\
+    \tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\
+    \tfinal Pair<?, ?> p = (Pair<?, ?>) o;\n\t\tif(!first.equals(p.first)) {\n\t\t\
+    \treturn false;\n\t\t}\n\t\treturn second.equals(p.second);\n\t}\n\t@Override\n\
+    \tpublic final String toString(){ return \"(\" + first + \", \" + second + \"\
+    )\"; }\n\t@SuppressWarnings(\"unchecked\")\n\t@Override\n\tpublic final Pair<F,\
+    \ S> clone() {\n\t\ttry {\n\t\t\treturn (Pair<F, S>) super.clone();\n\t\t} catch(final\
+    \ CloneNotSupportedException e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow\
+    \ new Error();\n\t}\n\t@Override\n\tpublic final int compareTo(final Pair<F, S>\
+    \ p) {\n\t\tif(first.compareTo(p.first) == 0) {\n\t\t\treturn second.compareTo(p.second);\n\
+    \t\t}\n\t\treturn first.compareTo(p.first);\n\t}\n}\nfinal class IntPair extends\
+    \ Pair<Long, Long> {\n\tprivate IntPair(final long first, final long second){\
+    \ super(first, second); }\n\tstatic final IntPair of(final long a, final long\
+    \ b){ return new IntPair(a, b); }\n\t@Override\n\tfinal IntPair swap(){ return\
+    \ new IntPair(second, first); }\n\tfinal IntPair add(final IntPair p){ return\
+    \ new IntPair(first + p.first, second + p.second); }\n\tfinal IntPair sub(final\
     \ IntPair p){ return new IntPair(first - p.first, second - p.second); }\n\tfinal\
     \ IntPair mul(final IntPair p){ return new IntPair(first * p.first, second * p.second);\
     \ }\n\tfinal IntPair div(final IntPair p){ return new IntPair(first / p.first,\
     \ second / p.second); }\n\tfinal IntPair mod(final IntPair p){ return new IntPair(first\
     \ % p.first, second % p.second); }\n\tfinal IntPair rotate(){ return new IntPair(-second,\
     \ first); } \n\tfinal FloatPair rotate(final int ang) {\n\t\tfinal double rad\
-    \ = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn new FloatPair(first * Math.cos(rad)\
+    \ = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn FloatPair.of(first * Math.cos(rad)\
     \ - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));\n\
     \t}\n\tfinal long dot(final IntPair p){ return first * p.first + second * p.second;\
     \ }\n\tfinal long cross(final IntPair p){ return rotate().dot(p); }\n\tfinal long\
@@ -921,8 +923,9 @@ data:
     \t\t\ta ^= b;\n\t\t\tx -= t1 * t2;\n\t\t\tx ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^=\
     \ t2;\n\t\t\ty -= t1 * t3;\n\t\t\ty ^= t3;\n\t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\
     \t}\n\t\treturn new IntPair(x, y);\n\t}\n}\nfinal class FloatPair extends Pair<Double,\
-    \ Double> {\n\tFloatPair(final double first, final double second){ super(first,\
-    \ second); }\n\t@Override\n\tfinal FloatPair swap(){ return new FloatPair(second,\
+    \ Double> {\n\tprivate FloatPair(final double first, final double second){ super(first,\
+    \ second); }\n\tstatic final FloatPair of(final double a, final double b){ return\
+    \ new FloatPair(a, b); }\n\t@Override\n\tfinal FloatPair swap(){ return new FloatPair(second,\
     \ first); }\n\tfinal FloatPair add(final FloatPair p){ return new FloatPair(first\
     \ + p.first, second + p.second); }\n\tfinal FloatPair sub(final FloatPair p){\
     \ return new FloatPair(first - p.first, second - p.second); }\n\tfinal FloatPair\
@@ -930,7 +933,7 @@ data:
     \ }\n\tfinal FloatPair div(final FloatPair p){ return new FloatPair(first / p.first,\
     \ second / p.second); }\n\tfinal FloatPair rotate(){ return new FloatPair(-second,\
     \ first); } \n\tfinal FloatPair rotate(final int ang) {\n\t\tfinal double rad\
-    \ = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn new FloatPair(first * Math.cos(rad)\
+    \ = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn FloatPair.of(first * Math.cos(rad)\
     \ - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));\n\
     \t}\n\tfinal double dot(final FloatPair p){ return first * p.first + second *\
     \ p.second; }\n\tfinal double cross(final FloatPair p){ return rotate().dot(p);\
@@ -1044,7 +1047,7 @@ data:
   - Java/library/core/VvyLw.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-01-29 07:09:31+09:00'
+  timestamp: '2024-01-30 02:46:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java
