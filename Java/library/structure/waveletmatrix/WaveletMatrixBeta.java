@@ -10,7 +10,7 @@ final class WaveletMatrixBeta {
 	private final int log;
 	private final SuccinctIndexableDictionary[] matrix;
 	private final int[] mid;
-	WaveletMatrixBeta(long[] arr, final int log) {
+	WaveletMatrixBeta(final long[] arr, final int log) {
 		final int len = arr.length;
 		this.log = log;
 		matrix = new SuccinctIndexableDictionary[log];
@@ -38,7 +38,7 @@ final class WaveletMatrixBeta {
 			}
 		}
 	}
-	private final IntPair succ(final boolean f, final int l, final int r, final int level){ return new IntPair(matrix[level].rank(f, l) + mid[level] * (f ? 1 : 0), matrix[level].rank(f, r) + mid[level] * (f ? 1 : 0)); }
+	private final IntPair succ(final boolean f, final int l, final int r, final int level){ return IntPair.of(matrix[level].rank(f, l) + mid[level] * (f ? 1 : 0), matrix[level].rank(f, r) + mid[level] * (f ? 1 : 0)); }
 	final long access(int k) {
 		long ret = 0;
 		for(int level = log; --level >= 0;) {
