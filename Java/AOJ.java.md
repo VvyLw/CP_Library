@@ -478,9 +478,9 @@ data:
     \ int h, final int w) {\n\t\tfinal BigInteger[][] a = new BigInteger[h][w];\n\t\
     \tIntStream.range(0, h).forEach(i -> a[i] = nb(w));\n\t\treturn a;\n\t}\n\tfinal\
     \ String line() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tbyte\
-    \ c;\n\t\twhile((c = read()) != '\\n') {\n\t\t\tsb.append(c);\n\t\t}\n\t\treturn\
-    \ sb.toString();\n\t}\n\t@Override\n\tpublic final void close() {\n\t\ttry {\n\
-    \t\t\tis.close();\n\t\t} catch(final IOException e) {\n\t\t\te.printStackTrace();\n\
+    \ c;\n\t\twhile((c = read()) != '\\n') {\n\t\t\tsb.append((char) c);\n\t\t}\n\t\
+    \treturn sb.toString();\n\t}\n\t@Override\n\tpublic final void close() {\n\t\t\
+    try {\n\t\t\tis.close();\n\t\t} catch(final IOException e) {\n\t\t\te.printStackTrace();\n\
     \t\t}\n\t}\n}\n\nfinal class MyPrinter implements Closeable, Flushable, AutoCloseable\
     \ {\n\tprivate OutputStream os;\n\tprivate final boolean autoFlush;\n\tprivate\
     \ final byte[] buf;\n\tprivate int pos;\n\tprivate final boolean debug;\n\tMyPrinter(final\
@@ -711,7 +711,7 @@ data:
   - Java/library/core/VvyLw.java
   - Java/All.java
   - Java/yukicoder.java
-  timestamp: '2024-01-30 07:47:53+09:00'
+  timestamp: '2024-01-30 07:53:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java

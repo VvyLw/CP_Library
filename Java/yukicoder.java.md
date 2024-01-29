@@ -788,9 +788,9 @@ data:
     \ int h, final int w) {\n\t\tfinal BigInteger[][] a = new BigInteger[h][w];\n\t\
     \tIntStream.range(0, h).forEach(i -> a[i] = nb(w));\n\t\treturn a;\n\t}\n\tfinal\
     \ String line() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tbyte\
-    \ c;\n\t\twhile((c = read()) != '\\n') {\n\t\t\tsb.append(c);\n\t\t}\n\t\treturn\
-    \ sb.toString();\n\t}\n\tfinal IntPair pi(){ return IntPair.of(nl(), nl()); }\n\
-    \tfinal IntPair[] pi(final int n) {\n\t\tfinal IntPair[] p = new IntPair[n];\n\
+    \ c;\n\t\twhile((c = read()) != '\\n') {\n\t\t\tsb.append((char) c);\n\t\t}\n\t\
+    \treturn sb.toString();\n\t}\n\tfinal IntPair pi(){ return IntPair.of(nl(), nl());\
+    \ }\n\tfinal IntPair[] pi(final int n) {\n\t\tfinal IntPair[] p = new IntPair[n];\n\
     \t\tIntStream.range(0, n).forEach(i -> p[i] = pi());\n\t\treturn p;\n\t}\n\tfinal\
     \ FloatPair pf(){ return FloatPair.of(nd(), nd()); }\n\tfinal FloatPair[] pf(final\
     \ int n) {\n\t\tfinal FloatPair[] p = new FloatPair[n];\n\t\tIntStream.range(0,\
@@ -1069,7 +1069,7 @@ data:
   - Java/library/core/VvyLw.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-01-30 07:47:53+09:00'
+  timestamp: '2024-01-30 07:53:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java

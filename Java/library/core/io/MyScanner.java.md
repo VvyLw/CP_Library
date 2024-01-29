@@ -401,20 +401,21 @@ data:
     \t\treturn a;\n\t}\n\t/**\n\t * [maybe_unused]\n\t * \u4E00\u884C\u5168\u90E8\u3092\
     \u5165\u529B\u3059\u308B\n\t */\n\tpublic final String line() {\n\t\tfinal StringBuilder\
     \ sb = new StringBuilder();\n\t\tbyte c;\n\t\twhile((c = read()) != '\\n') {\n\
-    \t\t\tsb.append(c);\n\t\t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t * IntPair\u578B\
-    \u3092\u5165\u529B\u3059\u308B\n\t * @see IntPair\n\t */\n\tpublic final IntPair\
-    \ pi(){ return IntPair.of(nl(), nl()); }\n\t/**\n\t * IntPair\u578B\u306E\u914D\
-    \u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n\n\t * @see IntPair\n\t */\n\
-    \tpublic final IntPair[] pi(final int n) {\n\t\tfinal IntPair[] p = new IntPair[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> p[i] = pi());\n\t\treturn p;\n\t}\n\t/**\n\
-    \t * FloatPair\u578B\u3092\u5165\u529B\u3059\u308B\n\t * @see FloatPair\n\t */\n\
-    \tpublic final FloatPair pf(){ return FloatPair.of(nd(), nd()); }\n\t/**\n\t *\
-    \ FloatPair\u578B\u306E\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param\
-    \ n\n\t * @see FloatPair\n\t */\n\tpublic final FloatPair[] pf(final int n) {\n\
-    \t\tfinal FloatPair[] p = new FloatPair[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> p[i] = pf());\n\t\treturn p;\n\t}\n\t/**\n\t * InputStream\u3092\u9589\u3058\
-    \u308B\n\t */\n\t@Override\n\tpublic final void close() {\n\t\ttry {\n\t\t\tis.close();\n\
-    \t\t} catch(final IOException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n}"
+    \t\t\tsb.append((char) c);\n\t\t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t *\
+    \ IntPair\u578B\u3092\u5165\u529B\u3059\u308B\n\t * @see IntPair\n\t */\n\tpublic\
+    \ final IntPair pi(){ return IntPair.of(nl(), nl()); }\n\t/**\n\t * IntPair\u578B\
+    \u306E\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n\n\t * @see IntPair\n\
+    \t */\n\tpublic final IntPair[] pi(final int n) {\n\t\tfinal IntPair[] p = new\
+    \ IntPair[n];\n\t\tIntStream.range(0, n).forEach(i -> p[i] = pi());\n\t\treturn\
+    \ p;\n\t}\n\t/**\n\t * FloatPair\u578B\u3092\u5165\u529B\u3059\u308B\n\t * @see\
+    \ FloatPair\n\t */\n\tpublic final FloatPair pf(){ return FloatPair.of(nd(), nd());\
+    \ }\n\t/**\n\t * FloatPair\u578B\u306E\u914D\u5217\u3092\u5165\u529B\u3059\u308B\
+    \n\t * @param n\n\t * @see FloatPair\n\t */\n\tpublic final FloatPair[] pf(final\
+    \ int n) {\n\t\tfinal FloatPair[] p = new FloatPair[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> p[i] = pf());\n\t\treturn p;\n\t}\n\t/**\n\t * InputStream\u3092\
+    \u9589\u3058\u308B\n\t */\n\t@Override\n\tpublic final void close() {\n\t\ttry\
+    \ {\n\t\t\tis.close();\n\t\t} catch(final IOException e) {\n\t\t\te.printStackTrace();\n\
+    \t\t}\n\t}\n}"
   dependsOn:
   - Java/CodeForces.java
   - Java/library/other/SkewHeap.java
@@ -521,7 +522,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-30 07:47:53+09:00'
+  timestamp: '2024-01-30 07:53:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyScanner.java
