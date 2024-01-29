@@ -52,7 +52,7 @@ class Utility {
 		n %= m;
 		return n < 0 ? n + m : n;
 	}
-	protected static final long ceil(final long a, final long b){ return (a - 1) / b + 1; }
+	protected static final long ceil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }
 	protected static final double round(final double a, final long b, final int c) {
 		final long d = pow(10, c);
 		return Math.rint((a * d) / b) / d;

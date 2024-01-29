@@ -48,11 +48,11 @@ public class Utility {
 		return n < 0 ? n + m : n;
 	}
 	/**
-	 * a / bの商を小数点以下切り上げで求める
+	 * a / bを小数点以下切り上げで求める
 	 * @param a
 	 * @param b
 	 */
-	protected static final long ceil(final long a, final long b){ return (a - 1) / b + 1; }
+	protected static final long ceil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }
 	/**
 	 * a / bを小数点c桁で四捨五入して求める
 	 * @param a

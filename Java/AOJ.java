@@ -44,7 +44,7 @@ class Utility {
 		n %= m;
 		return n < 0 ? n + m : n;
 	}
-	protected static final long ceil(final long a, final long b){ return (a - 1) / b + 1; }
+	protected static final long ceil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }
 	protected static final double round(final double a, final long b, final int c) {
 		final long d = pow(10, c);
 		return Math.rint((a * d) / b) / d;
@@ -374,7 +374,8 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 	}
 	final void print(final Object arg) {
-		if(arg instanceof final String s) {
+		if(arg instanceof String) {
+			final String s = (String) arg;
 			for(final char c: s.toCharArray()) {
 				write((byte) c);
 			}
