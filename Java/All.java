@@ -1101,7 +1101,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 		final StringBuilder sb = new StringBuilder();
 		byte c;
 		while((c = read()) != '\n') {
-			sb.append(c);
+			sb.append((char) c);
 		}
 		return sb.toString();
 	}
