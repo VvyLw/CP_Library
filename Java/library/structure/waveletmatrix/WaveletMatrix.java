@@ -14,6 +14,11 @@ public final class WaveletMatrix {
 	private final long[] ys;
 	/**
 	 * コンストラクタ
+	 * @param arr
+	 */
+	public WaveletMatrix(final long[] arr){ this(arr, 16); }
+	/**
+	 * コンストラクタ
 	 * @param arr 配列
 	 * @param log 基本16で良い
 	 */
