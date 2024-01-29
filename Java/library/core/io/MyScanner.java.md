@@ -521,7 +521,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-30 02:46:15+09:00'
+  timestamp: '2024-01-30 04:54:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyScanner.java
