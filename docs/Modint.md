@@ -1,1 +1,1 @@
-前半がModint<定数>, 後半が任意Modintです。
+前半がModint\<定数\>, 後半が任意Modintです。
