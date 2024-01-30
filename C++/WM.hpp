@@ -148,6 +148,6 @@ public:
 };
 /**
  * @brief Wavelet Matrix
- * @docs docs/WM.hpp
+ * @docs docs/WM.md
  * @see https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp
  */
