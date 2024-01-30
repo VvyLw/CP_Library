@@ -1,6 +1,5 @@
 #pragma once
 
-// inspired by ei1333( https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp )
 #include <cassert>
 #include <vector>
 #include <algorithm>
@@ -147,3 +146,8 @@ public:
         return ret == -1 ? (T)-1 : ys[ret];
     }
 };
+/**
+ * @brief Wavelet Matrix
+ * @docs docs/WM.hpp
+ * @see https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp
+ */

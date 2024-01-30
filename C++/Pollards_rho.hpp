@@ -77,3 +77,7 @@ std::vector<ll> rho(const ll n) {
     le.insert(le.end(), ri.begin(), ri.end());
     return le;
 }
+/**
+ * @brief Pollard's rho
+ * @docs docs/Pollards_rho.md
+ */

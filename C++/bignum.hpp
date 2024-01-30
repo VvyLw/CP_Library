@@ -1,6 +1,5 @@
 #pragma once
 
-// inspired by kenkoooo( https://kenkoooo.hatenablog.com/entry/2016/11/30/163533 )
 #include <iostream>
 typedef __int128_t i128;
 typedef __uint128_t u128;
@@ -34,3 +33,6 @@ inline i128 stoL(const std::string &s) {
     if(s.front() == '-') ret = -ret;
     return ret;
 }
+/**
+ * @see https://kenkoooo.hatenablog.com/entry/2016/11/30/163533
+ */

@@ -777,3 +777,7 @@ inline bool is_prime(const ul n) {
 inline bool is_int(const ld n){ ll r=std::floor(n); return r==n; }
 inline bool is_sqr(const ll n){ return is_int(std::sqrt(n)); }
 } // Heileden
+/**
+ * @brief テンプレート
+ * @docs docs/template.md
+ */

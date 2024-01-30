@@ -1,6 +1,5 @@
 #pragma once
 
-// inspired by Luzhiled( https://ei1333.github.io/luzhiled/snippets/structure/union-find.html )
 #include <vector>
 #include <stack>
 struct UFUndo {
@@ -48,3 +47,7 @@ public:
 		}
 	}
 };
+/**
+ * @brief Undo可能UnionFind
+ * @see https://ei1333.github.io/luzhiled/snippets/structure/union-find.html
+ */

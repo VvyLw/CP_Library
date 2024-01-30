@@ -170,3 +170,6 @@ public:
 };
 typedef std::vector<edge> ve;
 typedef std::vector<ve> we;
+/**
+ * @brief グラフライブラリ
+ */

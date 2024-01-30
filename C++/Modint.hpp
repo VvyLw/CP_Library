@@ -1,6 +1,5 @@
 #pragma once
 
-// inspired by tatyam( https://atcoder.jp/contests/arc151/submissions/35526971 )
 #include <iostream>
 #include <cassert>
 #include <vector>
@@ -152,3 +151,8 @@ using pa = std::pair<a_mint, a_mint>;
 #define MINT(...) mint __VA_ARGS__; in(__VA_ARGS__)
 #define AINT(...) a_mint __VA_ARGS__; in(__VA_ARGS__)
 #endif
+/**
+ * @brief Modint
+ * @docs docs/Modint.md
+ * @see https://atcoder.jp/contests/arc151/submissions/35526971
+ */

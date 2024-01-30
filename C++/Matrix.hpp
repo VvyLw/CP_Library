@@ -1,6 +1,5 @@
 #pragma once
 
-// inspired by Luzhiled( https://ei1333.github.io/luzhiled/snippets/math/matrix.html )
 #include <ostream>
 #include <cassert>
 #include <vector>
@@ -102,3 +101,7 @@ public:
         return os;
     }
 };
+/**
+ * @brief 行列ライブラリ
+ * @see https://ei1333.github.io/luzhiled/snippets/math/matrix.html
+ */

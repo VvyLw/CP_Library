@@ -1,6 +1,5 @@
 #pragma once
 
-// inspired by Luzhiled( https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html )
 #include <vector>
 #include <functional>
 template <class T> struct SparseTable {
@@ -50,3 +49,7 @@ public:
         return ok;
     }
 };
+/**
+ * @brief Sparse Table
+ * @see https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html
+ */

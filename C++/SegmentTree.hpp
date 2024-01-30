@@ -1,6 +1,5 @@
 #pragma once
 
-// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp )
 #include <vector>
 #include <functional>
 typedef long long ll;
@@ -83,3 +82,7 @@ public:
         return std::min(i-n,fine);
     }
 };
+/**
+ * @brief セグメント木
+ * @see https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp
+ */

@@ -1,6 +1,5 @@
 #pragma once
 
-// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/UnionFind.cpp )
 #include <vector>
 struct UFPotential {
 private:
@@ -38,3 +37,7 @@ public:
     }
     int operator[](const int i) noexcept { return root(i); }
 };
+/**
+ * @brief ポテンシャル付きUnionFind
+ * @see https://github.com/tatyam-prime/kyopro_library/blob/master/UnionFind.cpp
+ */

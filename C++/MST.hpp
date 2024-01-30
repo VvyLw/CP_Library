@@ -164,3 +164,6 @@ template <class T> inline std::vector<edge> manhattan(std::vector<T> x, std::vec
     }
     return res;
 }
+/**
+ * @brief 最小全域木
+ */

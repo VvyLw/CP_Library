@@ -92,7 +92,6 @@ std::vector<ll> zalg(const std::string &s) {
     return pre;
 }
 
-// inspired by ei1333( https://ei1333.github.io/library/string/suffix-array.hpp )
 struct SuffixArray : std::vector<int> {
 private:
     std::vector<int> sa_is(const std::vector<int> &s) const {
@@ -268,7 +267,6 @@ public:
 	}
 };
 
-// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/RollingHash.cpp )
 #ifndef TEMPLATE
 const ul LINF = (1LL << 61) - 1;
 #endif
@@ -316,3 +314,8 @@ public:
     }
 };
 using RH = RollingHash<LINF>;
+/**
+ * @brief 文字列ライブラリ
+ * @see https://ei1333.github.io/library/string/suffix-array.hpp
+ * @see https://github.com/tatyam-prime/kyopro_library/blob/master/RollingHash.cpp
+ */
