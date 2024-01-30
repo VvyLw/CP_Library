@@ -12,7 +12,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/MST.hpp
       title: "\u6700\u5C0F\u5168\u57DF\u6728"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/Matrix.hpp
       title: "\u884C\u5217\u30E9\u30A4\u30D6\u30E9\u30EA"
     - icon: ':warning:'
@@ -300,7 +300,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/manhattan.test.cpp
       title: test/manhattan.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/matrix.test.cpp
       title: test/matrix.test.cpp
     - icon: ':heavy_check_mark:'
