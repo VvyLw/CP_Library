@@ -22,6 +22,7 @@ jobs:
 
     - name: Run tests
       env:
+        YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GH_PAT: ${{ secrets.GH_PAT }}
       run: oj-verify all
