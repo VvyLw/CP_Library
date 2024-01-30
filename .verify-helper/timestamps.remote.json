@@ -18,6 +18,7 @@
 "test/m_add.test.cpp": "2024-01-30 14:40:09 +0900",
 "test/manacher.test.cpp": "2024-01-30 14:40:09 +0900",
 "test/manhattan.test.cpp": "2024-01-30 14:40:09 +0900",
+"test/matrix.test.cpp": "2024-01-30 15:48:07 +0900",
 "test/parsum.test.cpp": "2024-01-30 14:40:09 +0900",
 "test/pcounter.test.cpp": "2023-12-16 20:41:25 +0900",
 "test/pf.test.cpp": "2024-01-30 14:40:09 +0900",
