@@ -5,24 +5,21 @@ on: push
 jobs:
   verify:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.9"
-          architecture: "x64"
+    - name: Set up Python
+      uses: actions/setup-python@v4
 
-      - name: Install dependencies
-        run: pip3 install online-judge-verify-helper==5.6.0
+    - name: Install dependencies
+      run: pip3 install -U online-judge-verify-helper
 
-      - name: Run tests
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_PAT: ${{ secrets.GH_PAT }}
-          YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-        run: oj-verify all
+    - name: Run tests
+      env:
+        YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: oj-verify all
