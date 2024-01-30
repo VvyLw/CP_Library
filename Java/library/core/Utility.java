@@ -1369,6 +1369,62 @@ public class Utility {
 	 */
 	public static final int[] iota(final int n, final int init){ return IntStream.range(0 + init, n + init).toArray(); }
 	/**
+	 * @param a
+	 * @param b
+	 * @return 配列をmergeしたもの
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/merge.html">std::merge</a>
+	 * @implNote std::mergeと違ってa, bがsortされていなくても動く
+	 */
+	protected static final int[] merge(final int[] a, final int[] b) {
+		final int[] c = new int[a.length + b.length];
+		System.arraycopy(a, 0, c, 0, a.length);
+		System.arraycopy(b, 0, c, a.length, b.length);
+		Arrays.sort(c);
+		return c;
+	}
+	/**
+	 * @param a
+	 * @param b
+	 * @return 配列をmergeしたもの
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/merge.html">std::merge</a>
+	 * @implNote std::mergeと違ってa, bがsortされていなくても動く
+	 */
+	protected static final long[] merge(final long[] a, final long[] b) {
+		final long[] c = new long[a.length + b.length];
+		System.arraycopy(a, 0, c, 0, a.length);
+		System.arraycopy(b, 0, c, a.length, b.length);
+		Arrays.sort(c);
+		return c;
+	}
+	/**
+	 * @param a
+	 * @param b
+	 * @return 配列をmergeしたもの
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/merge.html">std::merge</a>
+	 * @implNote std::mergeと違ってa, bがsortされていなくても動く
+	 */
+	protected static final double[] merge(final double[] a, final double[] b) {
+		final double[] c = new double[a.length + b.length];
+		System.arraycopy(a, 0, c, 0, a.length);
+		System.arraycopy(b, 0, c, a.length, b.length);
+		Arrays.sort(c);
+		return c;
+	}
+	/**
+	 * @param a
+	 * @param b
+	 * @return 配列をmergeしたもの
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/merge.html">std::merge</a>
+	 * @implNote std::mergeと違ってa, bがsortされていなくても動く
+	 */
+	protected static final String[] merge(final String[] a, final String[] b) {
+		final String[] c = new String[a.length + b.length];
+		System.arraycopy(a, 0, c, 0, a.length);
+		System.arraycopy(b, 0, c, a.length, b.length);
+		Arrays.sort(c);
+		return c;
+	}
+	/**
 	 * めぐる式二分探索
 	 * @param ok
 	 * @param ng
