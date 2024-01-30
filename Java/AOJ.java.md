@@ -711,7 +711,7 @@ data:
   - Java/library/core/VvyLw.java
   - Java/All.java
   - Java/yukicoder.java
-  timestamp: '2024-01-30 07:53:39+09:00'
+  timestamp: '2024-01-30 09:37:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java

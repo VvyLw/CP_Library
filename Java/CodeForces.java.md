@@ -660,24 +660,38 @@ data:
     \ p){ return Arrays.stream(p).mapToDouble(i -> i.second).toArray(); }\n\tprotected\
     \ static final int[] iota(final int n){ return IntStream.range(0, n).toArray();\
     \ }\n\tprotected static final int[] iota(final int n, final int init){ return\
-    \ IntStream.range(0 + init, n + init).toArray(); }\n\tprivate static final int\
-    \ bins(int ok, int ng, final IntPredicate fn) {\n\t\twhile(Math.abs(ok - ng) >\
-    \ 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\
-    \tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ ok;\n\t}\n\tprotected static final long bins(long ok, long ng, final LongPredicate\
-    \ fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal long mid = (ok + ng)\
-    \ / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\
-    \t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final\
-    \ double bins(double ok, double ng, final DoublePredicate fn) {\n\t\twhile(Math.abs(ok\
-    \ - ng) > VvyLw.EPS) {\n\t\t\tfinal double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid))\
-    \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
-    }\n\t\treturn ok;\n\t}\n\tprotected static final int[] count(final int[] a) {\n\
-    \t\tfinal int[] res = new int[max(a) + 1];\n\t\tfor(final int i: a) {\n\t\t\t\
-    res[i]++;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final Map<Long, Integer>\
-    \ count(final long[] a) {\n\t\tfinal Map<Long, Integer> res = new HashMap<>();\n\
-    \t\tfor(final long i: a) {\n\t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\
-    \treturn res;\n\t}\n\tprotected static final int[] press(final int[] a) {\n\t\t\
-    final int[] res = new int[a.length];\n\t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
+    \ IntStream.range(0 + init, n + init).toArray(); }\n\tprotected static final int[]\
+    \ merge(final int[] a, final int[] b) {\n\t\tfinal int[] c = new int[a.length\
+    \ + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0, a.length);\n\t\tSystem.arraycopy(b,\
+    \ 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\t\treturn c;\n\t}\n\tprotected\
+    \ static final long[] merge(final long[] a, final long[] b) {\n\t\tfinal long[]\
+    \ c = new long[a.length + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0, a.length);\n\
+    \t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\t\t\
+    return c;\n\t}\n\tprotected static final double[] merge(final double[] a, final\
+    \ double[] b) {\n\t\tfinal double[] c = new double[a.length + b.length];\n\t\t\
+    System.arraycopy(a, 0, c, 0, a.length);\n\t\tSystem.arraycopy(b, 0, c, a.length,\
+    \ b.length);\n\t\tArrays.sort(c);\n\t\treturn c;\n\t}\n\tprotected static final\
+    \ String[] merge(final String[] a, final String[] b) {\n\t\tfinal String[] c =\
+    \ new String[a.length + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0, a.length);\n\
+    \t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\t\t\
+    return c;\n\t}\n\tprivate static final int bins(int ok, int ng, final IntPredicate\
+    \ fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) /\
+    \ 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\
+    \t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final long\
+    \ bins(long ok, long ng, final LongPredicate fn) {\n\t\twhile(Math.abs(ok - ng)\
+    \ > 1) {\n\t\t\tfinal long mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\
+    \t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\t\
+    return ok;\n\t}\n\tprotected static final double bins(double ok, double ng, final\
+    \ DoublePredicate fn) {\n\t\twhile(Math.abs(ok - ng) > VvyLw.EPS) {\n\t\t\tfinal\
+    \ double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\
+    \t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\t\
+    protected static final int[] count(final int[] a) {\n\t\tfinal int[] res = new\
+    \ int[max(a) + 1];\n\t\tfor(final int i: a) {\n\t\t\tres[i]++;\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\tprotected static final Map<Long, Integer> count(final long[] a)\
+    \ {\n\t\tfinal Map<Long, Integer> res = new HashMap<>();\n\t\tfor(final long i:\
+    \ a) {\n\t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\treturn res;\n\t}\n\
+    \tprotected static final int[] press(final int[] a) {\n\t\tfinal int[] res = new\
+    \ int[a.length];\n\t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
     \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
     \t\t}\n\t\treturn res;\n\t}\n\tprotected static final int[] press(final long[]\
     \ a) {\n\t\tfinal int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
@@ -1069,7 +1083,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-30 07:53:39+09:00'
+  timestamp: '2024-01-30 09:37:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java

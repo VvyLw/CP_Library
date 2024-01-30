@@ -933,13 +933,42 @@ data:
     \ <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L449\"\
     >Lady_sANDy::iot</a>\n\t */\n\tpublic static final int[] iota(final int n, final\
     \ int init){ return IntStream.range(0 + init, n + init).toArray(); }\n\t/**\n\t\
-    \ * \u3081\u3050\u308B\u5F0F\u4E8C\u5206\u63A2\u7D22\n\t * @param ok\n\t * @param\
-    \ ng\n\t * @param fn\n\t * @see #lowerBound\n\t * @see #upperBound\n\t */\n\t\
-    private static final int bins(int ok, int ng, final IntPredicate fn) {\n\t\twhile(Math.abs(ok\
-    \ - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\
-    \t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\
-    \treturn ok;\n\t}\n\t/**\n\t * \u3081\u3050\u308B\u5F0F\u4E8C\u5206\u63A2\u7D22\
-    \n\t * @param ok\n\t * @param ng\n\t * @param fn\n\t * @see <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L696\"\
+    \ * @param a\n\t * @param b\n\t * @return \u914D\u5217\u3092merge\u3057\u305F\u3082\
+    \u306E\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/merge.html\"\
+    >std::merge</a>\n\t * @implNote std::merge\u3068\u9055\u3063\u3066a, b\u304Csort\u3055\
+    \u308C\u3066\u3044\u306A\u304F\u3066\u3082\u52D5\u304F\n\t */\n\tprotected static\
+    \ final int[] merge(final int[] a, final int[] b) {\n\t\tfinal int[] c = new int[a.length\
+    \ + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0, a.length);\n\t\tSystem.arraycopy(b,\
+    \ 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\t\treturn c;\n\t}\n\t/**\n\
+    \t * @param a\n\t * @param b\n\t * @return \u914D\u5217\u3092merge\u3057\u305F\
+    \u3082\u306E\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/merge.html\"\
+    >std::merge</a>\n\t * @implNote std::merge\u3068\u9055\u3063\u3066a, b\u304Csort\u3055\
+    \u308C\u3066\u3044\u306A\u304F\u3066\u3082\u52D5\u304F\n\t */\n\tprotected static\
+    \ final long[] merge(final long[] a, final long[] b) {\n\t\tfinal long[] c = new\
+    \ long[a.length + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0, a.length);\n\t\t\
+    System.arraycopy(b, 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\t\treturn\
+    \ c;\n\t}\n\t/**\n\t * @param a\n\t * @param b\n\t * @return \u914D\u5217\u3092\
+    merge\u3057\u305F\u3082\u306E\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/merge.html\"\
+    >std::merge</a>\n\t * @implNote std::merge\u3068\u9055\u3063\u3066a, b\u304Csort\u3055\
+    \u308C\u3066\u3044\u306A\u304F\u3066\u3082\u52D5\u304F\n\t */\n\tprotected static\
+    \ final double[] merge(final double[] a, final double[] b) {\n\t\tfinal double[]\
+    \ c = new double[a.length + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0, a.length);\n\
+    \t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\t\t\
+    return c;\n\t}\n\t/**\n\t * @param a\n\t * @param b\n\t * @return \u914D\u5217\
+    \u3092merge\u3057\u305F\u3082\u306E\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/merge.html\"\
+    >std::merge</a>\n\t * @implNote std::merge\u3068\u9055\u3063\u3066a, b\u304Csort\u3055\
+    \u308C\u3066\u3044\u306A\u304F\u3066\u3082\u52D5\u304F\n\t */\n\tprotected static\
+    \ final String[] merge(final String[] a, final String[] b) {\n\t\tfinal String[]\
+    \ c = new String[a.length + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0, a.length);\n\
+    \t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\t\t\
+    return c;\n\t}\n\t/**\n\t * \u3081\u3050\u308B\u5F0F\u4E8C\u5206\u63A2\u7D22\n\
+    \t * @param ok\n\t * @param ng\n\t * @param fn\n\t * @see #lowerBound\n\t * @see\
+    \ #upperBound\n\t */\n\tprivate static final int bins(int ok, int ng, final IntPredicate\
+    \ fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) /\
+    \ 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\
+    \t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\t/**\n\t * \u3081\u3050\u308B\
+    \u5F0F\u4E8C\u5206\u63A2\u7D22\n\t * @param ok\n\t * @param ng\n\t * @param fn\n\
+    \t * @see <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L696\"\
     >Heileden::bins</a>\n\t */\n\tprotected static final long bins(long ok, long ng,\
     \ final LongPredicate fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal long\
     \ mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\
@@ -1134,7 +1163,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-30 07:53:39+09:00'
+  timestamp: '2024-01-30 09:37:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java
