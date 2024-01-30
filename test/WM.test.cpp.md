@@ -84,7 +84,7 @@ data:
     \ ret = mat.prev(l, r, get(upper));\n        return ret == -1 ? (T)-1 : ys[ret];\n\
     \    }\n    T next(const int l, const int r, const T lower) {\n        const auto\
     \ ret = mat.next(l, r, get(lower));\n        return ret == -1 ? (T)-1 : ys[ret];\n\
-    \    }\n};\n/**\n * @brief Wavelet Matrix\n * @docs docs/WM.hpp\n * @see https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n\
+    \    }\n};\n/**\n * @brief Wavelet Matrix\n * @docs docs/WM.md\n * @see https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n\
     \ */\n#line 4 \"test/WM.test.cpp\"\nint main() {\n    int n, q;\n    std::cin\
     \ >> n >> q;\n    std::vector<int> a(n);\n    for(auto &el: a) {\n        std::cin\
     \ >> el;\n    }\n    WaveletMatrix<int, 18> wm(a);\n    while(q--) {\n       \
@@ -101,7 +101,7 @@ data:
   isVerificationFile: true
   path: test/WM.test.cpp
   requiredBy: []
-  timestamp: '2024-01-30 14:40:09+09:00'
+  timestamp: '2024-01-30 15:02:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/WM.test.cpp

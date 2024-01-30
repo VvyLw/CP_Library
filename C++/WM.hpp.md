@@ -10,7 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/WM.hpp
+    _deprecated_at_docs: docs/WM.md
     document_title: Wavelet Matrix
     links:
     - https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp
@@ -83,7 +83,7 @@ data:
     \ ret = mat.prev(l, r, get(upper));\n        return ret == -1 ? (T)-1 : ys[ret];\n\
     \    }\n    T next(const int l, const int r, const T lower) {\n        const auto\
     \ ret = mat.next(l, r, get(lower));\n        return ret == -1 ? (T)-1 : ys[ret];\n\
-    \    }\n};\n/**\n * @brief Wavelet Matrix\n * @docs docs/WM.hpp\n * @see https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n\
+    \    }\n};\n/**\n * @brief Wavelet Matrix\n * @docs docs/WM.md\n * @see https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n\
     \ */\n"
   code: "#pragma once\n\n#include <cassert>\n#include <vector>\n#include <algorithm>\n\
     #include <tuple>\nstruct SIDict {\nprivate:\n    int blk;\n    std::vector<int>\
@@ -154,13 +154,13 @@ data:
     \ ret = mat.prev(l, r, get(upper));\n        return ret == -1 ? (T)-1 : ys[ret];\n\
     \    }\n    T next(const int l, const int r, const T lower) {\n        const auto\
     \ ret = mat.next(l, r, get(lower));\n        return ret == -1 ? (T)-1 : ys[ret];\n\
-    \    }\n};\n/**\n * @brief Wavelet Matrix\n * @docs docs/WM.hpp\n * @see https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n\
+    \    }\n};\n/**\n * @brief Wavelet Matrix\n * @docs docs/WM.md\n * @see https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n\
     \ */"
   dependsOn: []
   isVerificationFile: false
   path: C++/WM.hpp
   requiredBy: []
-  timestamp: '2024-01-30 14:40:09+09:00'
+  timestamp: '2024-01-30 15:02:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/WM.test.cpp
@@ -171,3 +171,4 @@ redirect_from:
 - /library/C++/WM.hpp.html
 title: Wavelet Matrix
 ---
+[mojaで作った問題](https://mojacoder.app/users/VvyLw/problems/range_k-th_largest_query)で答えが他の人と合わなかったので、もしかしたら間違っているかもしれません。
