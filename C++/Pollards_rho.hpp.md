@@ -10,6 +10,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/Pollards_rho.md
+    document_title: Pollard's rho
     links: []
   bundledCode: "#line 2 \"C++/Pollards_rho.hpp\"\n\r\n#include <vector>\r\n#include\
     \ <algorithm>\r\n#include <numeric>\r\n#include <functional>\r\ntypedef long long\
@@ -38,7 +40,8 @@ data:
     \n        }\r\n    }\r\n}\r\n\r\nstd::vector<ll> rho(const ll n) {\r\n    if(n\
     \ == 1) return {};\r\n    const ll x = find(n);\r\n    if(x == n) return {x};\r\
     \n    std::vector<ll> le = rho(x);\r\n    const std::vector<ll> ri = rho(n / x);\r\
-    \n    le.insert(le.end(), ri.begin(), ri.end());\r\n    return le;\r\n}\n"
+    \n    le.insert(le.end(), ri.begin(), ri.end());\r\n    return le;\r\n}\r\n/**\r\
+    \n * @brief Pollard's rho\r\n * @docs docs/Pollards_rho.md\r\n */\n"
   code: "#pragma once\r\n\r\n#include <vector>\r\n#include <algorithm>\r\n#include\
     \ <numeric>\r\n#include <functional>\r\ntypedef long long ll;\r\ntypedef unsigned\
     \ long long ul;\r\ntypedef __int128_t i128;\r\nll gcd(const ll _a, const ll _b)\
@@ -66,12 +69,13 @@ data:
     \n        }\r\n    }\r\n}\r\n\r\nstd::vector<ll> rho(const ll n) {\r\n    if(n\
     \ == 1) return {};\r\n    const ll x = find(n);\r\n    if(x == n) return {x};\r\
     \n    std::vector<ll> le = rho(x);\r\n    const std::vector<ll> ri = rho(n / x);\r\
-    \n    le.insert(le.end(), ri.begin(), ri.end());\r\n    return le;\r\n}"
+    \n    le.insert(le.end(), ri.begin(), ri.end());\r\n    return le;\r\n}\r\n/**\r\
+    \n * @brief Pollard's rho\r\n * @docs docs/Pollards_rho.md\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/Pollards_rho.hpp
   requiredBy: []
-  timestamp: '2023-11-29 20:57:49+09:00'
+  timestamp: '2024-01-30 14:40:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/pf.test.cpp
@@ -80,5 +84,7 @@ layout: document
 redirect_from:
 - /library/C++/Pollards_rho.hpp
 - /library/C++/Pollards_rho.hpp.html
-title: C++/Pollards_rho.hpp
+title: Pollard's rho
 ---
+たまにオーバーフローで死ぬ  
+後で修正予定

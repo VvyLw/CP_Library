@@ -4,10 +4,10 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: C++/MST.hpp
-    title: C++/MST.hpp
+    title: "\u6700\u5C0F\u5168\u57DF\u6728"
   - icon: ':heavy_check_mark:'
     path: C++/graph.hpp
-    title: C++/graph.hpp
+    title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/bermanford.test.cpp

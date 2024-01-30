@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: C++/SparseTable.hpp
-    title: C++/SparseTable.hpp
+    title: Sparse Table
   - icon: ':heavy_check_mark:'
     path: C++/template.hpp
-    title: C++/template.hpp
+    title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -471,10 +471,10 @@ data:
     \ res;\r\n}\r\ninline bool is_prime(const ul n) {\r\n  if(n==1) return 0;\r\n\
     \  sqrp(i,2,n) if(n%i==0) return 0;\r\n  return 1;\r\n}\r\ninline bool is_int(const\
     \ ld n){ ll r=std::floor(n); return r==n; }\r\ninline bool is_sqr(const ll n){\
-    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\n#line 2 \"C++/SparseTable.hpp\"\
-    \n\r\n// inspired by Luzhiled( https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html\
-    \ )\r\n#line 6 \"C++/SparseTable.hpp\"\ntemplate <class T> struct SparseTable\
-    \ {\r\nprivate:\r\n    using F = std::function<T(T,T)>;\r\n    std::vector<std::vector<T>>\
+    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\r\n/**\r\n * @brief \u30C6\u30F3\
+    \u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\n */\n#line 2 \"C++/SparseTable.hpp\"\
+    \n\r\n#line 5 \"C++/SparseTable.hpp\"\ntemplate <class T> struct SparseTable {\r\
+    \nprivate:\r\n    using F = std::function<T(T,T)>;\r\n    std::vector<std::vector<T>>\
     \ st;\r\n    std::vector<T> lookup;\r\n    F f;\r\npublic:\r\n    SparseTable(const\
     \ std::vector<T> &v, const F &f_) : f(f_) {\r\n        int b = 0;\r\n        while((1\
     \ << b) <= v.size()) ++b;\r\n        st.assign(b, std::vector<T>(1 << b));\r\n\
@@ -493,11 +493,12 @@ data:
     \ const Boolean &fn) {\r\n        if(x==lookup.size()-1) return lookup.size()-1;\r\
     \n        int ok=x, ng=lookup.size();\r\n        while(abs(ok-ng)>1) {\r\n   \
     \         int mid=(ok+ng)/2;\r\n            (fn(query(x,mid))?ok:ng)=mid;\r\n\
-    \        }\r\n        return ok;\r\n    }\r\n};\r\n#line 7 \"test/stable.test.cpp\"\
-    \nusing namespace std;\nusing namespace zia_qu;\nusing namespace Lady_sANDy;\n\
-    using namespace Heileden;\nint main() {\n\tVvyLw::wa_haya_exe();\n\tnow(start);\n\
-    \t/*INT(t); while(t--)//*/\n\tVvyLw::solve();\n\tnow(stop);\n\ttime(start, stop);\n\
-    }\n\n// --------------------------------------------------------------------------------------------------------------\n\
+    \        }\r\n        return ok;\r\n    }\r\n};\r\n/**\r\n * @brief Sparse Table\r\
+    \n * @see https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html\r\
+    \n */\n#line 7 \"test/stable.test.cpp\"\nusing namespace std;\nusing namespace\
+    \ zia_qu;\nusing namespace Lady_sANDy;\nusing namespace Heileden;\nint main()\
+    \ {\n\tVvyLw::wa_haya_exe();\n\tnow(start);\n\t/*INT(t); while(t--)//*/\n\tVvyLw::solve();\n\
+    \tnow(stop);\n\ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
     \n\nvoid VvyLw::solve() {\n\tINT(n,q);\n    VEC(int,a,n);\n    SparseTable<int>\
     \ st(a,[](int a, int b){ return min(a,b); });\n    while(q--) {\n        INT(l,r);\n\
     \        out(st.query(l,r));\n    }\n}\n"
@@ -517,7 +518,7 @@ data:
   isVerificationFile: true
   path: test/stable.test.cpp
   requiredBy: []
-  timestamp: '2024-01-14 23:10:10+09:00'
+  timestamp: '2024-01-30 14:40:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/stable.test.cpp

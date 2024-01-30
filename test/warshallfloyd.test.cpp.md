@@ -6,7 +6,7 @@ data:
     title: C++/edge.hpp
   - icon: ':heavy_check_mark:'
     path: C++/graph.hpp
-    title: C++/graph.hpp
+    title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -91,7 +91,8 @@ data:
     \ == lim || cst[k][j] == lim) {\r\n                        continue;\r\n     \
     \               }\r\n                    chmin(cst[i][j], cst[i][k] + cst[k][j]);\r\
     \n                }\r\n            }\r\n        }\r\n\t\treturn cst;\r\n\t}\r\n\
-    };\r\ntypedef std::vector<edge> ve;\r\ntypedef std::vector<ve> we;\n#line 3 \"\
+    };\r\ntypedef std::vector<edge> ve;\r\ntypedef std::vector<ve> we;\r\n/**\r\n\
+    \ * @brief \u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA\r\n */\n#line 3 \"\
     test/warshallfloyd.test.cpp\"\nconstexpr long long lim = (1LL << 61) - 1;\nint\
     \ main() {\n    int v, e;\n    std::cin >> v >> e;\n    w_graph<false> g(v, 0);\n\
     \    g.input(e);\n    const auto res = g.warshall_floyd();\n    for(int i = 0;\
@@ -117,7 +118,7 @@ data:
   isVerificationFile: true
   path: test/warshallfloyd.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 23:48:40+09:00'
+  timestamp: '2024-01-30 14:40:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/warshallfloyd.test.cpp

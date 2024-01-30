@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: C++/SegmentTree.hpp
-    title: C++/SegmentTree.hpp
+    title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':heavy_check_mark:'
     path: C++/template.hpp
-    title: C++/template.hpp
+    title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -471,9 +471,9 @@ data:
     \ res;\r\n}\r\ninline bool is_prime(const ul n) {\r\n  if(n==1) return 0;\r\n\
     \  sqrp(i,2,n) if(n%i==0) return 0;\r\n  return 1;\r\n}\r\ninline bool is_int(const\
     \ ld n){ ll r=std::floor(n); return r==n; }\r\ninline bool is_sqr(const ll n){\
-    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\n#line 2 \"C++/SegmentTree.hpp\"\
-    \n\r\n// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp\
-    \ )\r\n#line 6 \"C++/SegmentTree.hpp\"\ntypedef long long ll;\r\ntemplate <class\
+    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\r\n/**\r\n * @brief \u30C6\u30F3\
+    \u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\n */\n#line 2 \"C++/SegmentTree.hpp\"\
+    \n\r\n#line 5 \"C++/SegmentTree.hpp\"\ntypedef long long ll;\r\ntemplate <class\
     \ T> struct SegTree {\r\nprivate:\r\n    using F = std::function<T(T, T)>;\r\n\
     \    ll n, rank, fine;\r\n    const F f;\r\n    const T e;\r\n    std::vector<T>\
     \ dat;\r\npublic:\r\n    SegTree(const ll n_, const F f_, const T& e_): f(f_),\
@@ -503,8 +503,10 @@ data:
     \            T val2=f(val, dat[i>>h]);\r\n            if(fn(val2)){\r\n      \
     \          i+=1LL<<h;\r\n                if(i==n*2) return fine;\r\n         \
     \       val=val2;\r\n            }\r\n        }\r\n        return std::min(i-n,fine);\r\
-    \n    }\r\n};\r\n#line 7 \"test/segtree.test.cpp\"\nusing namespace zia_qu;\n\
-    using namespace Lady_sANDy;\nusing namespace Heileden;\n\nint main() {\n\tVvyLw::wa_haya_exe();\n\
+    \n    }\r\n};\r\n/**\r\n * @brief \u30BB\u30B0\u30E1\u30F3\u30C8\u6728\r\n * @see\
+    \ https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp\r\
+    \n */\n#line 7 \"test/segtree.test.cpp\"\nusing namespace zia_qu;\nusing namespace\
+    \ Lady_sANDy;\nusing namespace Heileden;\n\nint main() {\n\tVvyLw::wa_haya_exe();\n\
     \tnow(start);\n\t/*INT(t); while(t--)//*/\n\tVvyLw::solve();\n\tnow(stop);\n\t\
     time(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
     \n\nvoid VvyLw::solve() {\n\tINT(n,q);\n\tSegTree<ll> rsq(n,[](ll a, ll b){ return\
@@ -528,7 +530,7 @@ data:
   isVerificationFile: true
   path: test/segtree.test.cpp
   requiredBy: []
-  timestamp: '2024-01-14 23:10:10+09:00'
+  timestamp: '2024-01-30 14:40:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segtree.test.cpp

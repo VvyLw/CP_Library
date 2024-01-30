@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: C++/template.hpp
-    title: C++/template.hpp
+    title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -468,7 +468,8 @@ data:
     \ res;\r\n}\r\ninline bool is_prime(const ul n) {\r\n  if(n==1) return 0;\r\n\
     \  sqrp(i,2,n) if(n%i==0) return 0;\r\n  return 1;\r\n}\r\ninline bool is_int(const\
     \ ld n){ ll r=std::floor(n); return r==n; }\r\ninline bool is_sqr(const ll n){\
-    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\n#line 6 \"test/extgcd.test.cpp\"\
+    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\r\n/**\r\n * @brief \u30C6\u30F3\
+    \u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\n */\n#line 6 \"test/extgcd.test.cpp\"\
     \nusing namespace std;\nusing namespace zia_qu;\nusing namespace Lady_sANDy;\n\
     using namespace Heileden;\n\nint main() {\n    VvyLw::wa_haya_exe();\n    now(start);\n\
     \    int T=1;\n    //in(T);\n    while(T--) VvyLw::solve();\n    now(stop);\n\
@@ -487,7 +488,7 @@ data:
   isVerificationFile: true
   path: test/extgcd.test.cpp
   requiredBy: []
-  timestamp: '2024-01-14 23:10:10+09:00'
+  timestamp: '2024-01-30 14:40:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/extgcd.test.cpp

@@ -10,36 +10,37 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/WM.hpp
+    document_title: Wavelet Matrix
     links:
     - https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp
-  bundledCode: "#line 2 \"C++/WM.hpp\"\n\n// inspired by ei1333( https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\
-    \ )\n#include <cassert>\n#include <vector>\n#include <algorithm>\n#include <tuple>\n\
-    struct SIDict {\nprivate:\n    int blk;\n    std::vector<int> bit, sum;\npublic:\n\
-    \    SIDict(){}\n    SIDict(const int len): blk((len + 31) >> 5), bit(blk), sum(blk){}\n\
-    \    void set(const int k){ bit[k >> 5] |= 1 << (k & 31); }\n    void build()\
-    \ {\n\t\tsum[0] = 0;\n\t\tfor(int i = 0; ++i < blk;) {\n\t\t\tsum[i] = sum[i -\
-    \ 1] + __builtin_popcount(bit[i - 1]);\n\t\t}\n\t}\n    int rank(const int k)\
-    \ const { return (sum[k >> 5] + __builtin_popcount(bit[k >> 5] & ((1 << (k & 31))\
-    \ - 1))); }\n    int rank(const bool val, const int k) const { return val ? rank(k)\
-    \ : k - rank(k); }\n    bool operator[](const int k) noexcept { return (bit[k\
-    \ >> 5] >> (k & 31)) & 1; }\n};\n\ntemplate <class T, int log> struct WMBeta {\n\
-    private:\n    SIDict matrix[log];\n    int mid[log];\n    T access(int k) const\
-    \ {\n        T ret = 0;\n        for(int level = log; --level >= 0;) {\n     \
-    \       const bool f = matrix[level][k];\n            if(f) {\n              \
-    \  ret |= (T)1 << level;\n            }\n            k = matrix[level].rank(f,\
-    \ k) + mid[level] * f;\n        }\n        return ret;\n    }\n    std::pair<int,\
-    \ int> succ(const bool f, const int l, const int r, const int level) const { return\
-    \ {matrix[level].rank(f, l) + mid[level] * f, matrix[level].rank(f, r) + mid[level]\
-    \ * f}; }\npublic:\n    WMBeta(){}\n    WMBeta(std::vector<T> v) {\n        const\
-    \ int len = v.size();\n        std::vector<T> l(len), r(len);\n        for(int\
-    \ level = log; --level >= 0;) {\n            matrix[level] = SIDict(len + 1);\n\
-    \            int left = 0, right = 0;\n            for(int i = 0; i < len; ++i)\
-    \ {\n                if((v[i] >> level) & 1) {\n                    matrix[level].set(i);\n\
-    \                    r[right++] = v[i];\n                }\n                else\
-    \ {\n                    l[left++] = v[i];\n                }\n            }\n\
-    \            mid[level] = left;\n            matrix[level].build();\n        \
-    \    v.swap(l);\n            for(int i = 0; i < right; ++i) {\n              \
-    \  v[left + i] = r[i];\n            }\n        }\n    }\n    T operator[](const\
+  bundledCode: "#line 2 \"C++/WM.hpp\"\n\n#include <cassert>\n#include <vector>\n\
+    #include <algorithm>\n#include <tuple>\nstruct SIDict {\nprivate:\n    int blk;\n\
+    \    std::vector<int> bit, sum;\npublic:\n    SIDict(){}\n    SIDict(const int\
+    \ len): blk((len + 31) >> 5), bit(blk), sum(blk){}\n    void set(const int k){\
+    \ bit[k >> 5] |= 1 << (k & 31); }\n    void build() {\n\t\tsum[0] = 0;\n\t\tfor(int\
+    \ i = 0; ++i < blk;) {\n\t\t\tsum[i] = sum[i - 1] + __builtin_popcount(bit[i -\
+    \ 1]);\n\t\t}\n\t}\n    int rank(const int k) const { return (sum[k >> 5] + __builtin_popcount(bit[k\
+    \ >> 5] & ((1 << (k & 31)) - 1))); }\n    int rank(const bool val, const int k)\
+    \ const { return val ? rank(k) : k - rank(k); }\n    bool operator[](const int\
+    \ k) noexcept { return (bit[k >> 5] >> (k & 31)) & 1; }\n};\n\ntemplate <class\
+    \ T, int log> struct WMBeta {\nprivate:\n    SIDict matrix[log];\n    int mid[log];\n\
+    \    T access(int k) const {\n        T ret = 0;\n        for(int level = log;\
+    \ --level >= 0;) {\n            const bool f = matrix[level][k];\n           \
+    \ if(f) {\n                ret |= (T)1 << level;\n            }\n            k\
+    \ = matrix[level].rank(f, k) + mid[level] * f;\n        }\n        return ret;\n\
+    \    }\n    std::pair<int, int> succ(const bool f, const int l, const int r, const\
+    \ int level) const { return {matrix[level].rank(f, l) + mid[level] * f, matrix[level].rank(f,\
+    \ r) + mid[level] * f}; }\npublic:\n    WMBeta(){}\n    WMBeta(std::vector<T>\
+    \ v) {\n        const int len = v.size();\n        std::vector<T> l(len), r(len);\n\
+    \        for(int level = log; --level >= 0;) {\n            matrix[level] = SIDict(len\
+    \ + 1);\n            int left = 0, right = 0;\n            for(int i = 0; i <\
+    \ len; ++i) {\n                if((v[i] >> level) & 1) {\n                   \
+    \ matrix[level].set(i);\n                    r[right++] = v[i];\n            \
+    \    }\n                else {\n                    l[left++] = v[i];\n      \
+    \          }\n            }\n            mid[level] = left;\n            matrix[level].build();\n\
+    \            v.swap(l);\n            for(int i = 0; i < right; ++i) {\n      \
+    \          v[left + i] = r[i];\n            }\n        }\n    }\n    T operator[](const\
     \ int k) noexcept { return access(k); }\n    int rank(const T x, int r) const\
     \ {\n        int l = 0;\n        for(int level = log; --level >= 0;) {\n     \
     \       std::tie(l, r) = succ((x >> level) & 1, l, r, level);\n        }\n   \
@@ -82,35 +83,35 @@ data:
     \ ret = mat.prev(l, r, get(upper));\n        return ret == -1 ? (T)-1 : ys[ret];\n\
     \    }\n    T next(const int l, const int r, const T lower) {\n        const auto\
     \ ret = mat.next(l, r, get(lower));\n        return ret == -1 ? (T)-1 : ys[ret];\n\
-    \    }\n};\n"
-  code: "#pragma once\n\n// inspired by ei1333( https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\
-    \ )\n#include <cassert>\n#include <vector>\n#include <algorithm>\n#include <tuple>\n\
-    struct SIDict {\nprivate:\n    int blk;\n    std::vector<int> bit, sum;\npublic:\n\
-    \    SIDict(){}\n    SIDict(const int len): blk((len + 31) >> 5), bit(blk), sum(blk){}\n\
-    \    void set(const int k){ bit[k >> 5] |= 1 << (k & 31); }\n    void build()\
-    \ {\n\t\tsum[0] = 0;\n\t\tfor(int i = 0; ++i < blk;) {\n\t\t\tsum[i] = sum[i -\
-    \ 1] + __builtin_popcount(bit[i - 1]);\n\t\t}\n\t}\n    int rank(const int k)\
-    \ const { return (sum[k >> 5] + __builtin_popcount(bit[k >> 5] & ((1 << (k & 31))\
-    \ - 1))); }\n    int rank(const bool val, const int k) const { return val ? rank(k)\
-    \ : k - rank(k); }\n    bool operator[](const int k) noexcept { return (bit[k\
-    \ >> 5] >> (k & 31)) & 1; }\n};\n\ntemplate <class T, int log> struct WMBeta {\n\
-    private:\n    SIDict matrix[log];\n    int mid[log];\n    T access(int k) const\
-    \ {\n        T ret = 0;\n        for(int level = log; --level >= 0;) {\n     \
-    \       const bool f = matrix[level][k];\n            if(f) {\n              \
-    \  ret |= (T)1 << level;\n            }\n            k = matrix[level].rank(f,\
-    \ k) + mid[level] * f;\n        }\n        return ret;\n    }\n    std::pair<int,\
-    \ int> succ(const bool f, const int l, const int r, const int level) const { return\
-    \ {matrix[level].rank(f, l) + mid[level] * f, matrix[level].rank(f, r) + mid[level]\
-    \ * f}; }\npublic:\n    WMBeta(){}\n    WMBeta(std::vector<T> v) {\n        const\
-    \ int len = v.size();\n        std::vector<T> l(len), r(len);\n        for(int\
-    \ level = log; --level >= 0;) {\n            matrix[level] = SIDict(len + 1);\n\
-    \            int left = 0, right = 0;\n            for(int i = 0; i < len; ++i)\
-    \ {\n                if((v[i] >> level) & 1) {\n                    matrix[level].set(i);\n\
-    \                    r[right++] = v[i];\n                }\n                else\
-    \ {\n                    l[left++] = v[i];\n                }\n            }\n\
-    \            mid[level] = left;\n            matrix[level].build();\n        \
-    \    v.swap(l);\n            for(int i = 0; i < right; ++i) {\n              \
-    \  v[left + i] = r[i];\n            }\n        }\n    }\n    T operator[](const\
+    \    }\n};\n/**\n * @brief Wavelet Matrix\n * @docs docs/WM.hpp\n * @see https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n\
+    \ */\n"
+  code: "#pragma once\n\n#include <cassert>\n#include <vector>\n#include <algorithm>\n\
+    #include <tuple>\nstruct SIDict {\nprivate:\n    int blk;\n    std::vector<int>\
+    \ bit, sum;\npublic:\n    SIDict(){}\n    SIDict(const int len): blk((len + 31)\
+    \ >> 5), bit(blk), sum(blk){}\n    void set(const int k){ bit[k >> 5] |= 1 <<\
+    \ (k & 31); }\n    void build() {\n\t\tsum[0] = 0;\n\t\tfor(int i = 0; ++i < blk;)\
+    \ {\n\t\t\tsum[i] = sum[i - 1] + __builtin_popcount(bit[i - 1]);\n\t\t}\n\t}\n\
+    \    int rank(const int k) const { return (sum[k >> 5] + __builtin_popcount(bit[k\
+    \ >> 5] & ((1 << (k & 31)) - 1))); }\n    int rank(const bool val, const int k)\
+    \ const { return val ? rank(k) : k - rank(k); }\n    bool operator[](const int\
+    \ k) noexcept { return (bit[k >> 5] >> (k & 31)) & 1; }\n};\n\ntemplate <class\
+    \ T, int log> struct WMBeta {\nprivate:\n    SIDict matrix[log];\n    int mid[log];\n\
+    \    T access(int k) const {\n        T ret = 0;\n        for(int level = log;\
+    \ --level >= 0;) {\n            const bool f = matrix[level][k];\n           \
+    \ if(f) {\n                ret |= (T)1 << level;\n            }\n            k\
+    \ = matrix[level].rank(f, k) + mid[level] * f;\n        }\n        return ret;\n\
+    \    }\n    std::pair<int, int> succ(const bool f, const int l, const int r, const\
+    \ int level) const { return {matrix[level].rank(f, l) + mid[level] * f, matrix[level].rank(f,\
+    \ r) + mid[level] * f}; }\npublic:\n    WMBeta(){}\n    WMBeta(std::vector<T>\
+    \ v) {\n        const int len = v.size();\n        std::vector<T> l(len), r(len);\n\
+    \        for(int level = log; --level >= 0;) {\n            matrix[level] = SIDict(len\
+    \ + 1);\n            int left = 0, right = 0;\n            for(int i = 0; i <\
+    \ len; ++i) {\n                if((v[i] >> level) & 1) {\n                   \
+    \ matrix[level].set(i);\n                    r[right++] = v[i];\n            \
+    \    }\n                else {\n                    l[left++] = v[i];\n      \
+    \          }\n            }\n            mid[level] = left;\n            matrix[level].build();\n\
+    \            v.swap(l);\n            for(int i = 0; i < right; ++i) {\n      \
+    \          v[left + i] = r[i];\n            }\n        }\n    }\n    T operator[](const\
     \ int k) noexcept { return access(k); }\n    int rank(const T x, int r) const\
     \ {\n        int l = 0;\n        for(int level = log; --level >= 0;) {\n     \
     \       std::tie(l, r) = succ((x >> level) & 1, l, r, level);\n        }\n   \
@@ -153,12 +154,13 @@ data:
     \ ret = mat.prev(l, r, get(upper));\n        return ret == -1 ? (T)-1 : ys[ret];\n\
     \    }\n    T next(const int l, const int r, const T lower) {\n        const auto\
     \ ret = mat.next(l, r, get(lower));\n        return ret == -1 ? (T)-1 : ys[ret];\n\
-    \    }\n};"
+    \    }\n};\n/**\n * @brief Wavelet Matrix\n * @docs docs/WM.hpp\n * @see https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n\
+    \ */"
   dependsOn: []
   isVerificationFile: false
   path: C++/WM.hpp
   requiredBy: []
-  timestamp: '2023-12-11 21:48:09+09:00'
+  timestamp: '2024-01-30 14:40:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/WM.test.cpp
@@ -167,5 +169,5 @@ layout: document
 redirect_from:
 - /library/C++/WM.hpp
 - /library/C++/WM.hpp.html
-title: C++/WM.hpp
+title: Wavelet Matrix
 ---

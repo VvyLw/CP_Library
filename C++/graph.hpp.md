@@ -22,6 +22,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    document_title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
     links: []
   bundledCode: "#line 2 \"C++/graph.hpp\"\n\r\n#include <iostream>\r\n#include <vector>\r\
     \n#include <queue>\r\n#include <stack>\r\n#include <limits>\r\n#ifndef TEMPLATE\r\
@@ -96,7 +97,8 @@ data:
     \ == lim || cst[k][j] == lim) {\r\n                        continue;\r\n     \
     \               }\r\n                    chmin(cst[i][j], cst[i][k] + cst[k][j]);\r\
     \n                }\r\n            }\r\n        }\r\n\t\treturn cst;\r\n\t}\r\n\
-    };\r\ntypedef std::vector<edge> ve;\r\ntypedef std::vector<ve> we;\n"
+    };\r\ntypedef std::vector<edge> ve;\r\ntypedef std::vector<ve> we;\r\n/**\r\n\
+    \ * @brief \u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA\r\n */\n"
   code: "#pragma once\r\n\r\n#include <iostream>\r\n#include <vector>\r\n#include\
     \ <queue>\r\n#include <stack>\r\n#include <limits>\r\n#ifndef TEMPLATE\r\ntemplate\
     \ <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return\
@@ -167,13 +169,14 @@ data:
     \ == lim || cst[k][j] == lim) {\r\n                        continue;\r\n     \
     \               }\r\n                    chmin(cst[i][j], cst[i][k] + cst[k][j]);\r\
     \n                }\r\n            }\r\n        }\r\n\t\treturn cst;\r\n\t}\r\n\
-    };\r\ntypedef std::vector<edge> ve;\r\ntypedef std::vector<ve> we;"
+    };\r\ntypedef std::vector<edge> ve;\r\ntypedef std::vector<ve> we;\r\n/**\r\n\
+    \ * @brief \u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA\r\n */"
   dependsOn:
   - C++/edge.hpp
   isVerificationFile: false
   path: C++/graph.hpp
   requiredBy: []
-  timestamp: '2024-01-20 23:48:40+09:00'
+  timestamp: '2024-01-30 14:40:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/dag_check.test.cpp
@@ -185,5 +188,5 @@ layout: document
 redirect_from:
 - /library/C++/graph.hpp
 - /library/C++/graph.hpp.html
-title: C++/graph.hpp
+title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
 ---

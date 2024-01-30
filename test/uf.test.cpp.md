@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: C++/UnionFind.hpp
-    title: C++/UnionFind.hpp
+    title: UnionFind
   - icon: ':heavy_check_mark:'
     path: C++/template.hpp
-    title: C++/template.hpp
+    title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -471,9 +471,9 @@ data:
     \ res;\r\n}\r\ninline bool is_prime(const ul n) {\r\n  if(n==1) return 0;\r\n\
     \  sqrp(i,2,n) if(n%i==0) return 0;\r\n  return 1;\r\n}\r\ninline bool is_int(const\
     \ ld n){ ll r=std::floor(n); return r==n; }\r\ninline bool is_sqr(const ll n){\
-    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\n#line 2 \"C++/UnionFind.hpp\"\
-    \n\r\n// inspired by maspy( https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\
-    \ )\r\n#line 7 \"C++/UnionFind.hpp\"\nstruct UnionFind {\r\nprivate:\r\n    std::vector<int>\
+    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\r\n/**\r\n * @brief \u30C6\u30F3\
+    \u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\n */\n#line 2 \"C++/UnionFind.hpp\"\
+    \n\r\n#line 6 \"C++/UnionFind.hpp\"\nstruct UnionFind {\r\nprivate:\r\n    std::vector<int>\
     \ par;\r\npublic:\r\n    UnionFind(const int n): par(n, -1){}\r\n    int operator[](int\
     \ i) {\r\n        while(par[i] >= 0) {\r\n            const int p = par[par[i]];\r\
     \n            if(p < 0) return par[i];\r\n            i = par[i] = p;\r\n    \
@@ -495,8 +495,9 @@ data:
     \n    }\r\n#endif\r\n    bool is_bipartite() {\r\n        const int n = par.size()\
     \ / 2;\r\n        bool ok = true;\r\n        for(int i = 0; i < n; ++i) {\r\n\
     \            ok &= (*this)[i] != (*this)[i + n];\r\n        }\r\n        return\
-    \ ok;\r\n    }\r\n};\n#line 7 \"test/uf.test.cpp\"\nusing namespace zia_qu;\n\
-    using namespace Lady_sANDy;\nusing namespace Heileden;\nint main() {\n  \tVvyLw::wa_haya_exe();\n\
+    \ ok;\r\n    }\r\n};\r\n/**\r\n * @brief UnionFind\r\n * @see https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\r\
+    \n */\n#line 7 \"test/uf.test.cpp\"\nusing namespace zia_qu;\nusing namespace\
+    \ Lady_sANDy;\nusing namespace Heileden;\nint main() {\n  \tVvyLw::wa_haya_exe();\n\
     \  \tnow(start);\n  \t//INT(t); while(t--)\n  \tVvyLw::solve();\n  \tnow(stop);\n\
     \  \ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
     \nvoid VvyLw::solve() {\n    INT(n,q);\n    UnionFind uf(n);\n    while(q--) {\n\
@@ -518,7 +519,7 @@ data:
   isVerificationFile: true
   path: test/uf.test.cpp
   requiredBy: []
-  timestamp: '2024-01-14 23:10:10+09:00'
+  timestamp: '2024-01-30 14:40:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/uf.test.cpp

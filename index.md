@@ -5,61 +5,61 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: C++/FenwickTree.hpp
-      title: C++/FenwickTree.hpp
+      title: Binary Indexed Tree
     - icon: ':heavy_check_mark:'
       path: C++/LCA.hpp
-      title: C++/LCA.hpp
+      title: "\u6700\u5C0F\u5171\u901A\u7956\u5148"
     - icon: ':heavy_check_mark:'
       path: C++/MST.hpp
-      title: C++/MST.hpp
+      title: "\u6700\u5C0F\u5168\u57DF\u6728"
     - icon: ':warning:'
       path: C++/Matrix.hpp
-      title: C++/Matrix.hpp
+      title: "\u884C\u5217\u30E9\u30A4\u30D6\u30E9\u30EA"
     - icon: ':warning:'
       path: C++/Modint.hpp
-      title: C++/Modint.hpp
+      title: Modint
     - icon: ':heavy_check_mark:'
       path: C++/Pollards_rho.hpp
-      title: C++/Pollards_rho.hpp
+      title: Pollard's rho
     - icon: ':heavy_check_mark:'
       path: C++/SegmentTree.hpp
-      title: C++/SegmentTree.hpp
+      title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
     - icon: ':heavy_check_mark:'
       path: C++/SparseTable.hpp
-      title: C++/SparseTable.hpp
+      title: Sparse Table
     - icon: ':heavy_check_mark:'
       path: C++/Strings.hpp
-      title: C++/Strings.hpp
+      title: "\u6587\u5B57\u5217\u30E9\u30A4\u30D6\u30E9\u30EA"
     - icon: ':heavy_check_mark:'
       path: C++/UFPotential.hpp
-      title: C++/UFPotential.hpp
+      title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304DUnionFind"
     - icon: ':warning:'
       path: C++/UFUndo.hpp
-      title: C++/UFUndo.hpp
+      title: "Undo\u53EF\u80FDUnionFind"
     - icon: ':heavy_check_mark:'
       path: C++/UnionFind.hpp
-      title: C++/UnionFind.hpp
+      title: UnionFind
     - icon: ':heavy_check_mark:'
       path: C++/WM.hpp
-      title: C++/WM.hpp
+      title: Wavelet Matrix
     - icon: ':heavy_check_mark:'
       path: C++/bignum.hpp
       title: C++/bignum.hpp
     - icon: ':heavy_check_mark:'
       path: C++/depq.hpp
-      title: C++/depq.hpp
+      title: "\u4E21\u7AEF\u512A\u5148\u5EA6\u4ED8\u304D\u30AD\u30E5\u30FC"
     - icon: ':heavy_check_mark:'
       path: C++/edge.hpp
       title: C++/edge.hpp
     - icon: ':heavy_check_mark:'
       path: C++/graph.hpp
-      title: C++/graph.hpp
+      title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
     - icon: ':heavy_check_mark:'
       path: C++/math.hpp
       title: C++/math.hpp
     - icon: ':heavy_check_mark:'
       path: C++/template.hpp
-      title: C++/template.hpp
+      title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   - name: Java
     pages:
     - icon: ':warning:'

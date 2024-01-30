@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: C++/Pollards_rho.hpp
-    title: C++/Pollards_rho.hpp
+    title: Pollard's rho
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -43,8 +43,9 @@ data:
     \r\nstd::vector<ll> rho(const ll n) {\r\n    if(n == 1) return {};\r\n    const\
     \ ll x = find(n);\r\n    if(x == n) return {x};\r\n    std::vector<ll> le = rho(x);\r\
     \n    const std::vector<ll> ri = rho(n / x);\r\n    le.insert(le.end(), ri.begin(),\
-    \ ri.end());\r\n    return le;\r\n}\n#line 5 \"test/pf.test.cpp\"\nint main()\
-    \ {\n    std::cin.tie(nullptr) -> sync_with_stdio(false);\n    int q;\n    std::cin\
+    \ ri.end());\r\n    return le;\r\n}\r\n/**\r\n * @brief Pollard's rho\r\n * @docs\
+    \ docs/Pollards_rho.md\r\n */\n#line 5 \"test/pf.test.cpp\"\nint main() {\n  \
+    \  std::cin.tie(nullptr) -> sync_with_stdio(false);\n    int q;\n    std::cin\
     \ >> q;\n    std::map<ll, std::vector<ll>> m;\n    const auto solve = [&]{\n \
     \       ll n;\n        std::cin >> n;\n        if(m.find(n) == m.end()) {\n  \
     \          auto p = rho(n);\n            std::sort(p.begin(), p.end());\n    \
@@ -69,7 +70,7 @@ data:
   isVerificationFile: true
   path: test/pf.test.cpp
   requiredBy: []
-  timestamp: '2023-12-11 21:08:07+09:00'
+  timestamp: '2024-01-30 14:40:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/pf.test.cpp

@@ -3,13 +3,13 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: C++/LCA.hpp
-    title: C++/LCA.hpp
+    title: "\u6700\u5C0F\u5171\u901A\u7956\u5148"
   - icon: ':heavy_check_mark:'
     path: C++/edge.hpp
     title: C++/edge.hpp
   - icon: ':heavy_check_mark:'
     path: C++/graph.hpp
-    title: C++/graph.hpp
+    title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -21,46 +21,47 @@ data:
     links:
     - https://judge.yosupo.jp/problem/lca
   bundledCode: "#line 1 \"test/lca.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\
-    \n#line 2 \"C++/LCA.hpp\"\n\r\n// inspired by Luzhiled( https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html\
-    \ )\r\n#include <vector>\r\ntemplate <class G> struct LowestCommonAncestor {\r\
-    \nprivate:\r\n    const int LOG;\r\n    std::vector<int> dep, sum;\r\n    const\
-    \ G &g;\r\n    std::vector<std::vector<int>> table;\r\n    void dfs(const int\
-    \ idx, const int par, const int d) {\r\n        table[0][idx] = par;\r\n     \
-    \   dep[idx] = d;\r\n        for(const auto &el: g[idx]) {\r\n            if(el.to\
-    \ != par) {\r\n                sum[el.to] = sum[idx] + el.cost;\r\n          \
-    \      dfs(el.to, idx, d + 1);\r\n            }\r\n        }\r\n    }\r\n    void\
-    \ build() {\r\n        dfs(0, -1, 0);\r\n        for(int k = 0; k < LOG - 1; ++k)\
-    \ {\r\n            for(size_t i = 0; i < table[k].size(); ++i) {\r\n         \
-    \       if(table[k][i] == -1) {\r\n                    table[k + 1][i] = -1;\r\
-    \n                }\r\n                else {\r\n                    table[k +\
-    \ 1][i] = table[k][table[k][i]];\r\n                }\r\n            }\r\n   \
-    \     }\r\n    }\r\npublic:\r\n    LowestCommonAncestor(const G &g_) : g(g_),\
-    \ dep(g_.size()), sum(g_.size()), LOG(std::__lg(g_.size()) + 1) {\r\n        table.assign(LOG,\
-    \ std::vector<int>(g_.size(), -1));\r\n        build();\r\n    }\r\n    int climb(int\
-    \ u, const int k) {\r\n\t\tif(dep[u] < k) {\r\n\t\t\treturn -1;\r\n\t\t}\r\n\t\
-    \tfor(int i = LOG; --i >= 0;) {\r\n\t\t\tif((k >> i) & 1) {\r\n              \
-    \  u = table[i][u];\r\n            }\r\n\t\t}\r\n\t\treturn u;\r\n\t}\r\n    int\
-    \ query(int u, int v) {\r\n        if(dep[u] > dep[v]) {\r\n            std::swap(u,\
-    \ v);\r\n        }\r\n        v = climb(v, dep[v] - dep[u]);\r\n        if(u ==\
-    \ v) {\r\n            return u;\r\n        }\r\n        for(int i = LOG; --i >=\
-    \ 0;) {\r\n            if(table[i][u] != table[i][v]) {\r\n                u =\
-    \ table[i][u];\r\n                v = table[i][v];\r\n            }\r\n      \
-    \  }\r\n        return table[0][u];\r\n    }\r\n    int dist(const int u, const\
-    \ int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }\r\n};\n#line 2 \"C++/graph.hpp\"\
-    \n\r\n#include <iostream>\r\n#line 5 \"C++/graph.hpp\"\n#include <queue>\r\n#include\
-    \ <stack>\r\n#include <limits>\r\n#ifndef TEMPLATE\r\ntemplate <class T, class\
-    \ U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }\r\n#endif\r\
-    \n#line 2 \"C++/edge.hpp\"\n\nstruct edge {\n    int src, to;\n    long long cost;\n\
-    \    edge(){}\n    edge(const int to_): to(to_){}\n    edge(const int to_, const\
-    \ long long cost_): to(to_), cost(cost_){}\n    edge(const int src_, const int\
-    \ to_, const long long cost_): src(src_), to(to_), cost(cost_){}\n};\n#line 12\
-    \ \"C++/graph.hpp\"\ntemplate <bool undirected = true> struct graph: public std::vector<std::vector<edge>>\
-    \ {\r\n    const int indexed;\r\n    std::vector<edge> edges;\r\n    graph(const\
-    \ int n, const int indexed_ = 1): indexed(indexed_){ this -> resize(n); }\r\n\
-    \    void add(int a, int b) {\r\n        a -= indexed, b-= indexed;\r\n      \
-    \  (*this)[a].emplace_back(b);\r\n        edges.emplace_back(a, b, 0);\r\n   \
-    \     if(undirected) {\r\n            (*this)[b].emplace_back(a);\r\n        \
-    \    edges.emplace_back(b, a, 0);\r\n        }\r\n    }\r\n    void input(const\
+    \n#line 2 \"C++/LCA.hpp\"\n\r\n#include <vector>\r\ntemplate <class G> struct\
+    \ LowestCommonAncestor {\r\nprivate:\r\n    const int LOG;\r\n    std::vector<int>\
+    \ dep, sum;\r\n    const G &g;\r\n    std::vector<std::vector<int>> table;\r\n\
+    \    void dfs(const int idx, const int par, const int d) {\r\n        table[0][idx]\
+    \ = par;\r\n        dep[idx] = d;\r\n        for(const auto &el: g[idx]) {\r\n\
+    \            if(el.to != par) {\r\n                sum[el.to] = sum[idx] + el.cost;\r\
+    \n                dfs(el.to, idx, d + 1);\r\n            }\r\n        }\r\n  \
+    \  }\r\n    void build() {\r\n        dfs(0, -1, 0);\r\n        for(int k = 0;\
+    \ k < LOG - 1; ++k) {\r\n            for(size_t i = 0; i < table[k].size(); ++i)\
+    \ {\r\n                if(table[k][i] == -1) {\r\n                    table[k\
+    \ + 1][i] = -1;\r\n                }\r\n                else {\r\n           \
+    \         table[k + 1][i] = table[k][table[k][i]];\r\n                }\r\n  \
+    \          }\r\n        }\r\n    }\r\npublic:\r\n    LowestCommonAncestor(const\
+    \ G &g_) : g(g_), dep(g_.size()), sum(g_.size()), LOG(std::__lg(g_.size()) + 1)\
+    \ {\r\n        table.assign(LOG, std::vector<int>(g_.size(), -1));\r\n       \
+    \ build();\r\n    }\r\n    int climb(int u, const int k) {\r\n\t\tif(dep[u] <\
+    \ k) {\r\n\t\t\treturn -1;\r\n\t\t}\r\n\t\tfor(int i = LOG; --i >= 0;) {\r\n\t\
+    \t\tif((k >> i) & 1) {\r\n                u = table[i][u];\r\n            }\r\n\
+    \t\t}\r\n\t\treturn u;\r\n\t}\r\n    int query(int u, int v) {\r\n        if(dep[u]\
+    \ > dep[v]) {\r\n            std::swap(u, v);\r\n        }\r\n        v = climb(v,\
+    \ dep[v] - dep[u]);\r\n        if(u == v) {\r\n            return u;\r\n     \
+    \   }\r\n        for(int i = LOG; --i >= 0;) {\r\n            if(table[i][u] !=\
+    \ table[i][v]) {\r\n                u = table[i][u];\r\n                v = table[i][v];\r\
+    \n            }\r\n        }\r\n        return table[0][u];\r\n    }\r\n    int\
+    \ dist(const int u, const int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)];\
+    \ }\r\n};\r\n/**\r\n * @brief \u6700\u5C0F\u5171\u901A\u7956\u5148\r\n * @docs\
+    \ docs/LCA.md\r\n * @see https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html\r\
+    \n */\n#line 2 \"C++/graph.hpp\"\n\r\n#include <iostream>\r\n#line 5 \"C++/graph.hpp\"\
+    \n#include <queue>\r\n#include <stack>\r\n#include <limits>\r\n#ifndef TEMPLATE\r\
+    \ntemplate <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return\
+    \ 1; } return 0; }\r\n#endif\r\n#line 2 \"C++/edge.hpp\"\n\nstruct edge {\n  \
+    \  int src, to;\n    long long cost;\n    edge(){}\n    edge(const int to_): to(to_){}\n\
+    \    edge(const int to_, const long long cost_): to(to_), cost(cost_){}\n    edge(const\
+    \ int src_, const int to_, const long long cost_): src(src_), to(to_), cost(cost_){}\n\
+    };\n#line 12 \"C++/graph.hpp\"\ntemplate <bool undirected = true> struct graph:\
+    \ public std::vector<std::vector<edge>> {\r\n    const int indexed;\r\n    std::vector<edge>\
+    \ edges;\r\n    graph(const int n, const int indexed_ = 1): indexed(indexed_){\
+    \ this -> resize(n); }\r\n    void add(int a, int b) {\r\n        a -= indexed,\
+    \ b-= indexed;\r\n        (*this)[a].emplace_back(b);\r\n        edges.emplace_back(a,\
+    \ b, 0);\r\n        if(undirected) {\r\n            (*this)[b].emplace_back(a);\r\
+    \n            edges.emplace_back(b, a, 0);\r\n        }\r\n    }\r\n    void input(const\
     \ int m) {\r\n        for(int i = 0; i < m; ++i) {\r\n            int a, b;\r\n\
     \            std::cin >> a >> b;\r\n            add(a, b);\r\n        }\r\n  \
     \  }\r\n    std::vector<int> all_dist(const int v) {\r\n        std::vector<int>\
@@ -120,7 +121,8 @@ data:
     \ == lim || cst[k][j] == lim) {\r\n                        continue;\r\n     \
     \               }\r\n                    chmin(cst[i][j], cst[i][k] + cst[k][j]);\r\
     \n                }\r\n            }\r\n        }\r\n\t\treturn cst;\r\n\t}\r\n\
-    };\r\ntypedef std::vector<edge> ve;\r\ntypedef std::vector<ve> we;\n#line 4 \"\
+    };\r\ntypedef std::vector<edge> ve;\r\ntypedef std::vector<ve> we;\r\n/**\r\n\
+    \ * @brief \u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA\r\n */\n#line 4 \"\
     test/lca.test.cpp\"\nint main() {\n    std::cin.tie(nullptr) -> sync_with_stdio(false);\n\
     \    int n, q;\n    std::cin >> n >> q;\n    graph<false> g(n, 0);\n    for(int\
     \ i = 1; i < n; ++i) {\n        int p;\n        std::cin >> p;\n        g.add(p,\
@@ -141,7 +143,7 @@ data:
   isVerificationFile: true
   path: test/lca.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 23:48:40+09:00'
+  timestamp: '2024-01-30 14:40:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lca.test.cpp

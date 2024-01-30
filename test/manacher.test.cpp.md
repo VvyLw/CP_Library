@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: C++/Strings.hpp
-    title: C++/Strings.hpp
+    title: "\u6587\u5B57\u5217\u30E9\u30A4\u30D6\u30E9\u30EA"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -44,16 +44,15 @@ data:
     \ = pre[i - j];\n        else {\n            ll k = std::max(0LL, j + pre[j] -\
     \ i);\n            while(i + k < n && s[k] == s[i + k]) ++k;\n            pre[i]\
     \ = k;\n            j = i;\n        }\n    }\n    pre.front() = n;\n    return\
-    \ pre;\n}\n\n// inspired by ei1333( https://ei1333.github.io/library/string/suffix-array.hpp\
-    \ )\nstruct SuffixArray : std::vector<int> {\nprivate:\n    std::vector<int> sa_is(const\
-    \ std::vector<int> &s) const {\n    \tconst int n = s.size();\n    \tstd::vector<int>\
-    \ ret(n), is_s(n), is_lms(n);;\n    \tint m = 0;\n    \tfor(int i = n - 2; i >=\
-    \ 0; i--) {\n      \t\tis_s[i] = (s[i] > s[i + 1]) || (s[i] == s[i + 1] && is_s[i\
-    \ + 1]);\n      \t\tm += is_lms[i + 1] = is_s[i] && !is_s[i + 1];\n    \t}\n \
-    \   \tconst auto induced_sort = [&](const std::vector<int> &lms) -> void {\n \
-    \     \t\tconst int upper = *std::max_element(s.begin(), s.end());\n      \t\t\
-    std::vector<int> l(upper + 2), r(upper + 2);\n\t\t\tfor(const auto &v: s) {\n\t\
-    \t\t\t++l[v + 1];\n\t\t\t\t++r[v];\n\t\t\t}\n\t\t\tstd::partial_sum(l.begin(),\
+    \ pre;\n}\n\nstruct SuffixArray : std::vector<int> {\nprivate:\n    std::vector<int>\
+    \ sa_is(const std::vector<int> &s) const {\n    \tconst int n = s.size();\n  \
+    \  \tstd::vector<int> ret(n), is_s(n), is_lms(n);;\n    \tint m = 0;\n    \tfor(int\
+    \ i = n - 2; i >= 0; i--) {\n      \t\tis_s[i] = (s[i] > s[i + 1]) || (s[i] ==\
+    \ s[i + 1] && is_s[i + 1]);\n      \t\tm += is_lms[i + 1] = is_s[i] && !is_s[i\
+    \ + 1];\n    \t}\n    \tconst auto induced_sort = [&](const std::vector<int> &lms)\
+    \ -> void {\n      \t\tconst int upper = *std::max_element(s.begin(), s.end());\n\
+    \      \t\tstd::vector<int> l(upper + 2), r(upper + 2);\n\t\t\tfor(const auto\
+    \ &v: s) {\n\t\t\t\t++l[v + 1];\n\t\t\t\t++r[v];\n\t\t\t}\n\t\t\tstd::partial_sum(l.begin(),\
     \ l.end(), l.begin());\n\t\t\tstd::partial_sum(r.begin(), r.end(), r.begin());\n\
     \t\t\tret.assign(ret.size(), -1);\n\t\t\tfor(int i = std::ssize(lms); --i >= 0;)\
     \ {\n\t\t\t\tret[--r[s[lms[i]]]] = lms[i];\n\t\t\t}\n\t\t\tfor(const auto &v:\
@@ -105,9 +104,8 @@ data:
     \ < n) {\n\t\t\tconst int j = (*this)[rank[i] + 1];\n\t\t\tfor(; j + h < n &&\
     \ i + h < n; ++h) {\n\t\t\tif(vs[j + h] != vs[i + h]) {\n\t\t\t\tbreak;\n\t\t\t\
     }\n\t\t\t}\n\t\t\tlcp[rank[i] + 1] = h;\n\t\t\tif(h > 0) {\n\t\t\th--;\n\t\t\t\
-    }\n\t\t}\n\t\t}\n\t\treturn lcp;\n\t}\n};\n\n// inspired by tatyam( https://github.com/tatyam-prime/kyopro_library/blob/master/RollingHash.cpp\
-    \ )\n#ifndef TEMPLATE\nconst ul LINF = (1LL << 61) - 1;\n#endif\nconst ul base\
-    \ = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count()\
+    }\n\t\t}\n\t\t}\n\t\treturn lcp;\n\t}\n};\n\n#ifndef TEMPLATE\nconst ul LINF =\
+    \ (1LL << 61) - 1;\n#endif\nconst ul base = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count()\
     \ % LINF;\ntemplate <ul mod> struct RollingHash {\nprivate:\n    std::vector<ul>\
     \ hashed, power;\n    static constexpr ul mask(const ll a){ return (1ULL << a)\
     \ - 1; }\n    inline ul mul(const ul a, const ul b) const {\n        u128 ans\
@@ -126,10 +124,13 @@ data:
     \ high = std::min(r1 - l1, r2 - l2) + 1;\n        while(high - low > 1) {\n  \
     \          const ll mid = (low + high) / 2;\n            if(get(l1, l1 + mid)\
     \ == b.get(l2, l2 + mid)) low = mid;\n            else high = mid;\n        }\n\
-    \        return low;\n    }\n};\nusing RH = RollingHash<LINF>;\n#line 4 \"test/manacher.test.cpp\"\
-    \nint main() {\n    std::string s;\n    std::cin >> s;\n    const auto res = manacher(s);\n\
-    \    for(size_t i = 0; i < res.size(); ++i) {\n        std::cout << res[i] <<\
-    \ \" \\n\"[i + 1 == res.size()];\n    }\n}\n"
+    \        return low;\n    }\n};\nusing RH = RollingHash<LINF>;\n/**\n * @brief\
+    \ \u6587\u5B57\u5217\u30E9\u30A4\u30D6\u30E9\u30EA\n * @see https://ei1333.github.io/library/string/suffix-array.hpp\n\
+    \ * @see https://github.com/tatyam-prime/kyopro_library/blob/master/RollingHash.cpp\n\
+    \ */\n#line 4 \"test/manacher.test.cpp\"\nint main() {\n    std::string s;\n \
+    \   std::cin >> s;\n    const auto res = manacher(s);\n    for(size_t i = 0; i\
+    \ < res.size(); ++i) {\n        std::cout << res[i] << \" \\n\"[i + 1 == res.size()];\n\
+    \    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_palindromes\"\
     \n#include <iostream>\n#include \"C++/Strings.hpp\"\nint main() {\n    std::string\
     \ s;\n    std::cin >> s;\n    const auto res = manacher(s);\n    for(size_t i\
@@ -140,7 +141,7 @@ data:
   isVerificationFile: true
   path: test/manacher.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 23:48:40+09:00'
+  timestamp: '2024-01-30 14:40:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/manacher.test.cpp

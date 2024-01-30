@@ -43,6 +43,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/template.md
+    document_title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
     links:
     - https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3
   bundledCode: "#line 2 \"C++/template.hpp\"\n#ifndef TEMPLATE\r\n#define TEMPLATE\r\
@@ -496,7 +498,8 @@ data:
     \ res;\r\n}\r\ninline bool is_prime(const ul n) {\r\n  if(n==1) return 0;\r\n\
     \  sqrp(i,2,n) if(n%i==0) return 0;\r\n  return 1;\r\n}\r\ninline bool is_int(const\
     \ ld n){ ll r=std::floor(n); return r==n; }\r\ninline bool is_sqr(const ll n){\
-    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\n"
+    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\r\n/**\r\n * @brief \u30C6\u30F3\
+    \u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\n */\n"
   code: "#pragma once\r\n#ifndef TEMPLATE\r\n#define TEMPLATE\r\n#endif\r\n#pragma\
     \ GCC diagnostic ignored \"-Wunused-parameter\"\r\n#pragma GCC diagnostic ignored\
     \ \"-Wsign-compare\"\r\n#pragma GCC diagnostic ignored \"-Wdeprecated-copy\"\r\
@@ -948,12 +951,13 @@ data:
     \ res;\r\n}\r\ninline bool is_prime(const ul n) {\r\n  if(n==1) return 0;\r\n\
     \  sqrp(i,2,n) if(n%i==0) return 0;\r\n  return 1;\r\n}\r\ninline bool is_int(const\
     \ ld n){ ll r=std::floor(n); return r==n; }\r\ninline bool is_sqr(const ll n){\
-    \ return is_int(std::sqrt(n)); }\r\n} // Heileden"
+    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\r\n/**\r\n * @brief \u30C6\u30F3\
+    \u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/template.hpp
   requiredBy: []
-  timestamp: '2024-01-14 23:10:10+09:00'
+  timestamp: '2024-01-30 14:40:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/stable.test.cpp
@@ -973,5 +977,8 @@ layout: document
 redirect_from:
 - /library/C++/template.hpp
 - /library/C++/template.hpp.html
-title: C++/template.hpp
+title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
 ---
+## 最初に貼る
+詳しい話: (https://vvylw.hatenablog.com/entry/2023/11/09/165722)  
+後半はおいおい書きます。

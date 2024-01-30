@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: C++/FenwickTree.hpp
-    title: C++/FenwickTree.hpp
+    title: Binary Indexed Tree
   - icon: ':heavy_check_mark:'
     path: C++/template.hpp
-    title: C++/template.hpp
+    title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -471,12 +471,12 @@ data:
     \ res;\r\n}\r\ninline bool is_prime(const ul n) {\r\n  if(n==1) return 0;\r\n\
     \  sqrp(i,2,n) if(n%i==0) return 0;\r\n  return 1;\r\n}\r\ninline bool is_int(const\
     \ ld n){ ll r=std::floor(n); return r==n; }\r\ninline bool is_sqr(const ll n){\
-    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\n#line 2 \"C++/FenwickTree.hpp\"\
-    \n\r\n// inspired by Nyaan( https://github.com/NyaanNyaan/library/blob/master/data-structure/binary-indexed-tree.hpp\
-    \ )\r\n#line 5 \"C++/FenwickTree.hpp\"\ntemplate <class T> struct FenwickTree\
-    \ {\r\nprivate:\r\n    int N;\r\n    std::vector<T> data;\r\n    void init(const\
-    \ size_t size) {\r\n        N = size + 2;\r\n        data.assign(N + 1, {});\r\
-    \n    }\r\npublic:\r\n    FenwickTree(){}\r\n    FenwickTree(size_t size){ init(size);\
+    \ return is_int(std::sqrt(n)); }\r\n} // Heileden\r\n/**\r\n * @brief \u30C6\u30F3\
+    \u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\n */\n#line 2 \"C++/FenwickTree.hpp\"\
+    \n\r\n#line 4 \"C++/FenwickTree.hpp\"\ntemplate <class T> struct FenwickTree {\r\
+    \nprivate:\r\n    int N;\r\n    std::vector<T> data;\r\n    void init(const size_t\
+    \ size) {\r\n        N = size + 2;\r\n        data.assign(N + 1, {});\r\n    }\r\
+    \npublic:\r\n    FenwickTree(){}\r\n    FenwickTree(size_t size){ init(size);\
     \ }\r\n    FenwickTree(const std::vector<T> &a) {\r\n        init(a.size());\r\
     \n        for(size_t i = 0; i < a.size(); ++i) {\r\n            add(i, a[i]);\r\
     \n        }\r\n    }\r\n    // get sum of [0,k]\r\n    T sum(int k) const {\r\n\
@@ -497,17 +497,19 @@ data:
     \ = 1 << std::__lg(N); k; k >>= 1) {\r\n            if(x + k <= N - 1 && data[x\
     \ + k] <= w) {\r\n                w -= data[x + k];\r\n                x += k;\r\
     \n            }\r\n        }\r\n        return x;\r\n    }\r\n};\r\n\r\n#line\
-    \ 69 \"C++/FenwickTree.hpp\"\ntemplate <class T> inline long long inv_num(const\
+    \ 68 \"C++/FenwickTree.hpp\"\ntemplate <class T> inline long long inv_num(const\
     \ std::vector<T> &a) {\r\n    std::vector<std::pair<T, int>> p(a.size());\r\n\
     \    for(size_t i = 0; i < a.size(); ++i) {\r\n        p[i] = {a[i], i};\r\n \
     \   }\r\n    std::sort(p.begin(), p.end());\r\n    std::vector<int> id(a.size());\r\
     \n    for(int i = 0; i < a.size(); ++i) {\r\n        id[p[i].second] = i;\r\n\
     \    }\r\n    FenwickTree<T> bit(a.size());\r\n    long long res = 0;\r\n    for(size_t\
     \ i = 0; i < a.size(); ++i) {\r\n        res += i - bit.sum(id[i]);\r\n      \
-    \  bit.add(id[i], 1);\r\n    }\r\n    return res;\r\n}\n#line 7 \"test/parsum.test.cpp\"\
-    \nusing namespace zia_qu;\nusing namespace Lady_sANDy;\nusing namespace Heileden;\n\
-    int main() {\n  \tVvyLw::wa_haya_exe();\n  \tnow(start);\n  \t//INT(t); while(t--)\n\
-    \  \tVvyLw::solve();\n  \tnow(stop);\n  \ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
+    \  bit.add(id[i], 1);\r\n    }\r\n    return res;\r\n}\r\n/**\r\n * @brief Binary\
+    \ Indexed Tree\r\n * @see https://github.com/NyaanNyaan/library/blob/master/data-structure/binary-indexed-tree.hpp\r\
+    \n */\n#line 7 \"test/parsum.test.cpp\"\nusing namespace zia_qu;\nusing namespace\
+    \ Lady_sANDy;\nusing namespace Heileden;\nint main() {\n  \tVvyLw::wa_haya_exe();\n\
+    \  \tnow(start);\n  \t//INT(t); while(t--)\n  \tVvyLw::solve();\n  \tnow(stop);\n\
+    \  \ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
     \nvoid VvyLw::solve() {\n    INT(n,q);\n    FenwickTree<ll> bit(n);\n    rep(n)\
     \ {\n        INT(a);\n        bit.add(i,a);\n    }\n    while(q--) {\n       \
     \ INT(t,p,q);\n        if(t) out(bit.sum(p,q-1));\n        else bit.add(p,q);\n\
@@ -529,7 +531,7 @@ data:
   isVerificationFile: true
   path: test/parsum.test.cpp
   requiredBy: []
-  timestamp: '2024-01-15 23:23:39+09:00'
+  timestamp: '2024-01-30 14:40:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/parsum.test.cpp
