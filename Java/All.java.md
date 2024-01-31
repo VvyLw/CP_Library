@@ -571,16 +571,28 @@ data:
     \ int n = a.length;\n\t\tfinal Object[] b = new Object[n];\n\t\tfor(int i = 0;\
     \ i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\
     \t\t}\n\t\treturn b;\n\t}\n\tprotected static final int[] rotate(final int[] a,\
-    \ final int id) {\n\t\tfinal List<Integer> t = Arrays.stream(a).boxed().collect(Collectors.toList());\n\
-    \t\tCollections.rotate(t, id);\n\t\treturn t.stream().mapToInt(i -> i).toArray();\n\
-    \t}\n\tprotected static final long[] rotate(final long[] a, final int id) {\n\t\
-    \tfinal List<Long> t = Arrays.stream(a).boxed().collect(Collectors.toList());\n\
-    \t\tCollections.rotate(t, id);\n\t\treturn t.stream().mapToLong(i -> i).toArray();\n\
-    \t}\n\tprotected static final double[] rotate(final double[] a, final int id)\
-    \ {\n\t\tfinal List<Double> t = Arrays.stream(a).boxed().collect(Collectors.toList());\n\
-    \t\tCollections.rotate(t, id);\n\t\treturn t.stream().mapToDouble(i -> i).toArray();\n\
-    \t}\n\tprotected static final String rotate(final String s, final int id) {\n\t\
-    \tfinal List<Character> t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());\n\
+    \ final int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\tfinal\
+    \ int[] res = new int[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a,\
+    \ 0, res, n - k, k);\n\t\treturn res;\n\t}\n\tprotected static final long[] rotate(final\
+    \ long[] a, final int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\
+    \t\tfinal long[] res = new long[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\
+    \t\tSystem.arraycopy(a, 0, res, n - k, k);\n\t\treturn res;\n\t}\n\tprotected\
+    \ static final double[] rotate(final double[] a, final int id) {\n\t\tfinal int\
+    \ n = a.length, k = (int) mod(id, n);\n\t\tfinal double[] res = new double[n];\n\
+    \t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a, 0, res, n\
+    \ - k, k);\n\t\treturn res;\n\t}\n\tprotected static final char[] rotate(final\
+    \ char[] a, final int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\
+    \t\tfinal char[] res = new char[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\
+    \t\tSystem.arraycopy(a, 0, res, n - k, k);\n\t\treturn res;\n\t}\n\tprotected\
+    \ static final boolean[] rotate(final boolean[] a, final int id) {\n\t\tfinal\
+    \ int n = a.length, k = (int) mod(id, n);\n\t\tfinal boolean[] res = new boolean[n];\n\
+    \t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a, 0, res, n\
+    \ - k, k);\n\t\treturn res;\n\t}\n\tprotected static final Object[] rotate(final\
+    \ Object[] a, final int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\
+    \t\tfinal Object[] res = new Object[n];\n\t\tSystem.arraycopy(a, k, res, 0, n\
+    \ - k);\n\t\tSystem.arraycopy(a, 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t\
+    protected static final String rotate(final String s, final int id) {\n\t\tfinal\
+    \ List<Character> t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());\n\
     \t\tCollections.rotate(t, id);\n\t\treturn t.stream().map(String::valueOf).collect(Collectors.joining());\n\
     \t}\n\tprotected static final int[][] rotateR(final int[][] a) {\n\t\tfinal int\
     \ h = a.length, w = a[0].length;\n\t\tfinal int[][] b = new int[w][h];\n\t\tIntStream.range(0,\
@@ -1846,7 +1858,7 @@ data:
   - Java/library/core/VvyLw.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-01-30 09:37:53+09:00'
+  timestamp: '2024-01-31 18:23:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
