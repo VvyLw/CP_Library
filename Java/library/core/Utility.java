@@ -998,9 +998,11 @@ public class Utility {
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
 	 */
 	public static final int[] rotate(final int[] a, final int id) {
-		final List<Integer> t = Arrays.stream(a).boxed().collect(Collectors.toList());
-		Collections.rotate(t, id);
-		return t.stream().mapToInt(i -> i).toArray();
+		final int n = a.length, k = (int) mod(id, n);
+		final int[] res = new int[n];
+		System.arraycopy(a, k, res, 0, n - k);
+		System.arraycopy(a, 0, res, n - k, k);
+		return res;
 	}
 	/**
 	 * @param a
@@ -1008,9 +1010,11 @@ public class Utility {
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
 	 */
 	public static final long[] rotate(final long[] a, final int id) {
-		final List<Long> t = Arrays.stream(a).boxed().collect(Collectors.toList());
-		Collections.rotate(t, id);
-		return t.stream().mapToLong(i -> i).toArray();
+		final int n = a.length, k = (int) mod(id, n);
+		final long[] res = new long[n];
+		System.arraycopy(a, k, res, 0, n - k);
+		System.arraycopy(a, 0, res, n - k, k);
+		return res;
 	}
 	/**
 	 * @param a
@@ -1018,9 +1022,47 @@ public class Utility {
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
 	 */
 	public static final double[] rotate(final double[] a, final int id) {
-		final List<Double> t = Arrays.stream(a).boxed().collect(Collectors.toList());
-		Collections.rotate(t, id);
-		return t.stream().mapToDouble(i -> i).toArray();
+		final int n = a.length, k = (int) mod(id, n);
+		final double[] res = new double[n];
+		System.arraycopy(a, k, res, 0, n - k);
+		System.arraycopy(a, 0, res, n - k, k);
+		return res;
+	}
+	/**
+	 * @param a
+	 * @param id
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
+	 */
+	public static final char[] rotate(final char[] a, final int id) {
+		final int n = a.length, k = (int) mod(id, n);
+		final char[] res = new char[n];
+		System.arraycopy(a, k, res, 0, n - k);
+		System.arraycopy(a, 0, res, n - k, k);
+		return res;
+	}
+	/**
+	 * @param a
+	 * @param id
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
+	 */
+	public static final boolean[] rotate(final boolean[] a, final int id) {
+		final int n = a.length, k = (int) mod(id, n);
+		final boolean[] res = new boolean[n];
+		System.arraycopy(a, k, res, 0, n - k);
+		System.arraycopy(a, 0, res, n - k, k);
+		return res;
+	}
+	/**
+	 * @param a
+	 * @param id
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
+	 */
+	public static final Object[] rotate(final Object[] a, final int id) {
+		final int n = a.length, k = (int) mod(id, n);
+		final Object[] res = new Object[n];
+		System.arraycopy(a, k, res, 0, n - k);
+		System.arraycopy(a, 0, res, n - k, k);
+		return res;
 	}
 	/**
 	 * @param s
