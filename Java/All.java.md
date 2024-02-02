@@ -1295,8 +1295,8 @@ data:
     \ r = primeFactor(n.divide(x));\n\t\tl.addAll(r);\n\t\tCollections.sort(l);\n\t\
     \treturn l;\n\t}\n}\n\nfinal class ModPrime {\n\tprivate final int len, mod;\n\
     \tprivate final long[] f, rf;\n\tModPrime(final int mod, final int sz) {\n\t\t\
-    this.mod = mod;\n\t\tlen = Math.min(sz, mod);\n\t\tf = new long[len];\n\t\trf\
-    \ = new long[len];\n\t\tinit();\n\t}\n\tprivate final long inv(long x) {\n\t\t\
+    this.mod = mod;\n\t\tlen = Math.min(sz + 1, mod);\n\t\tf = new long[len];\n\t\t\
+    rf = new long[len];\n\t\tinit();\n\t}\n\tprivate final long inv(long x) {\n\t\t\
     long res = 1, k = mod - 2;\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\
     \tres = (res * x) % mod;\n\t\t\t}\n\t\t\tx = (x * x) % mod;\n\t\t\tk >>= 1;\n\t\
     \t}\n\t\treturn res;\n\t}\n\tprivate final void init() {\n\t\tf[0] = 1;\n\t\t\
@@ -1884,7 +1884,7 @@ data:
   - Java/library/math/EulerPhiTable.java
   - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
-  timestamp: '2024-02-02 21:32:30+09:00'
+  timestamp: '2024-02-03 07:32:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
