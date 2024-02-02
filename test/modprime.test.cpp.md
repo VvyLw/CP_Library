@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: C++/ModPrime.hpp
-    title: C++/ModPrime.hpp
+    title: ModPrime
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -29,7 +29,7 @@ data:
   isVerificationFile: true
   path: test/modprime.test.cpp
   requiredBy: []
-  timestamp: '2024-02-02 17:06:08+09:00'
+  timestamp: '2024-02-02 17:23:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/modprime.test.cpp

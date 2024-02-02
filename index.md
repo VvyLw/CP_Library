@@ -17,7 +17,7 @@ data:
       title: "\u884C\u5217\u30E9\u30A4\u30D6\u30E9\u30EA"
     - icon: ':heavy_check_mark:'
       path: C++/ModPrime.hpp
-      title: C++/ModPrime.hpp
+      title: ModPrime
     - icon: ':warning:'
       path: C++/Modint.hpp
       title: Modint

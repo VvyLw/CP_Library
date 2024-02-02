@@ -10,6 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    document_title: ModPrime
     links: []
   bundledCode: "#line 1 \"C++/ModPrime.hpp\"\n#include <iostream>\n#include <array>\n\
     #ifndef TEMPLATE\ntemplate <class T> inline T sqr(const T x){ return x * x; }\n\
@@ -28,7 +29,7 @@ data:
     \ {\n\t\tif (k < 0 || n < k) {\n\t\t\treturn 0;\n\t\t}\n\t\tconst int64_t a =\
     \ f[n], b = rf[n - k];\n\t\treturn Mod(a * b, mod);\n\t}\n\tint64_t H(const int\
     \ n, const int k) const {\n\t\tif (n == 0 && k == 0) {\n\t\t\treturn 1;\n\t\t\
-    }\n\t\treturn C(n + k - 1, k);\n\t}\n};\n"
+    }\n\t\treturn C(n + k - 1, k);\n\t}\n};\n/**\n * @brief ModPrime\n */\n"
   code: "#include <iostream>\n#include <array>\n#ifndef TEMPLATE\ntemplate <class\
     \ T> inline T sqr(const T x){ return x * x; }\ntemplate <class T> inline T Mod(T\
     \ x, const T m) {\n    x %= m;\n    return x < 0 ? x + m : x;\n}\n#else\nusing\
@@ -46,12 +47,12 @@ data:
     \t\t\treturn 0;\n\t\t}\n\t\tconst int64_t a = f[n], b = rf[n - k];\n\t\treturn\
     \ Mod(a * b, mod);\n\t}\n\tint64_t H(const int n, const int k) const {\n\t\tif\
     \ (n == 0 && k == 0) {\n\t\t\treturn 1;\n\t\t}\n\t\treturn C(n + k - 1, k);\n\t\
-    }\n};"
+    }\n};\n/**\n * @brief ModPrime\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/ModPrime.hpp
   requiredBy: []
-  timestamp: '2024-02-02 17:06:08+09:00'
+  timestamp: '2024-02-02 17:23:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modprime.test.cpp
@@ -60,5 +61,5 @@ layout: document
 redirect_from:
 - /library/C++/ModPrime.hpp
 - /library/C++/ModPrime.hpp.html
-title: C++/ModPrime.hpp
+title: ModPrime
 ---
