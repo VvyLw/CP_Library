@@ -1682,139 +1682,6 @@ final class Huitloxopetl {
 	}
 }
 
-final class UnionFind {
-	private final int[] par;
-	UnionFind(final int n) {
-		par = new int[n];
-		Arrays.fill(par, -1);
-	}
-	final int root(final int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i; }
-	final int size(final int i){ return -par[root(i)]; }
-	final boolean unite(int i, int j) {
-		i = root(i);
-		j = root(j);
-		if(i == j) {
-			return false;
-		}
-		if(i > j) {
-			i ^= j;
-			j ^= i;
-			i ^= j;
-		}
-		par[i] += par[j];
-		par[j] = i;
-		return true;
-	}
-	final boolean same(final int i, final int j){ return root(i) == root(j); }
-	final ArrayList<ArrayList<Integer>> groups() {
-		final int n = par.length;
-		final ArrayList<ArrayList<Integer>> res = new ArrayList<>(n);
-		IntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));
-		IntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));
-		res.removeIf(ArrayList::isEmpty);
-		return res;
-	}
-	final boolean isBipartite() {
-		final int n = par.length / 2;
-		boolean ok = true;
-		for(int i = 0; i < n; ++i) {
-			ok &= root(i) != root(i + n);
-		}
-		return ok;
-	}
-}
-
-final class WeightedUnionFind {
-	private final int[] par;
-	private final long[] weight;
-	WeightedUnionFind(final int n) {
-		par = new int[n];
-		weight = new long[n];
-		Arrays.fill(par, -1);
-	}
-	final int root(final int i) {
-		if(par[i] < 0) {
-			return i;
-		}
-		final int r = root(par[i]);
-		weight[i] += weight[par[i]];
-		return par[i] = r;
-	}
-	final long get(final int i) {
-		root(i);
-		return weight[i];
-	}
-	final long diff(final int x, final int y){ return get(y) - get(x); }
-	final int unite(int x, int y, long w) {
-		w += diff(y, x);
-		x = root(x);
-		y = root(y);
-		if(x == y) {
-			return w == 0 ? 0 : -1;
-		}
-		if(par[x] > par[y]) {
-			x ^= y;
-			y ^= x;
-			x ^= y;
-			w = -w;
-		}
-		par[x] += par[y];
-		par[y] = x;
-		weight[y] = w;
-		return 1;
-	}
-	final boolean same(final int x, final int y){ return root(x) == root(y); }
-}
-
-final class UndoUnionFind {
-	private final int[] par;
-	private final Stack<Pair<Integer, Integer>> his;
-	UndoUnionFind(final int n) {
-	    par = new int[n];
-	    Arrays.fill(par, -1);
-	    his = new Stack<>();
-	}
-	final boolean unite(int x, int y) {
-		x = root(x);
-		y = root(y);
-		his.add(Pair.of(x, par[x]));
-		his.add(Pair.of(y, par[y]));
-		if(x == y) {
-			return false;
-		}
-		if(par[x] > par[y]) {
-			x ^= y;
-			y ^= x;
-			x ^= y;
-		}
-		par[x] += par[y];
-		par[y] = x;
-		return true;
-	}
-	final int root(final int i) {
-		if(par[i] < 0) {
-			return i;
-		}
-		return root(par[i]);
-	}
-	final int size(final int i){ return -par[root(i)]; }
-	final void undo() {
-		final Pair<Integer, Integer> pop1 = his.pop(), pop2 = his.pop();
-		par[pop1.first] = pop1.second;
-		par[pop2.first] = pop2.second;
-	}
-	final void snapshot() {
-		while(!his.empty()) {
-			his.pop();
-		}
-	}
-	final void rollback() {
-		while(!his.empty()) {
-			undo();
-		}
-	}
-}
-
 final class Edge {
 	public int src;
 	public int to;
@@ -2214,6 +2081,139 @@ final class LowestCommonAncestor<G extends Graph> {
 	final int dist(final int u, final int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }
 }
 
+final class UnionFind {
+	private final int[] par;
+	UnionFind(final int n) {
+		par = new int[n];
+		Arrays.fill(par, -1);
+	}
+	final int root(final int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i; }
+	final int size(final int i){ return -par[root(i)]; }
+	final boolean unite(int i, int j) {
+		i = root(i);
+		j = root(j);
+		if(i == j) {
+			return false;
+		}
+		if(i > j) {
+			i ^= j;
+			j ^= i;
+			i ^= j;
+		}
+		par[i] += par[j];
+		par[j] = i;
+		return true;
+	}
+	final boolean same(final int i, final int j){ return root(i) == root(j); }
+	final ArrayList<ArrayList<Integer>> groups() {
+		final int n = par.length;
+		final ArrayList<ArrayList<Integer>> res = new ArrayList<>(n);
+		IntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));
+		IntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));
+		res.removeIf(ArrayList::isEmpty);
+		return res;
+	}
+	final boolean isBipartite() {
+		final int n = par.length / 2;
+		boolean ok = true;
+		for(int i = 0; i < n; ++i) {
+			ok &= root(i) != root(i + n);
+		}
+		return ok;
+	}
+}
+
+final class WeightedUnionFind {
+	private final int[] par;
+	private final long[] weight;
+	WeightedUnionFind(final int n) {
+		par = new int[n];
+		weight = new long[n];
+		Arrays.fill(par, -1);
+	}
+	final int root(final int i) {
+		if(par[i] < 0) {
+			return i;
+		}
+		final int r = root(par[i]);
+		weight[i] += weight[par[i]];
+		return par[i] = r;
+	}
+	final long get(final int i) {
+		root(i);
+		return weight[i];
+	}
+	final long diff(final int x, final int y){ return get(y) - get(x); }
+	final int unite(int x, int y, long w) {
+		w += diff(y, x);
+		x = root(x);
+		y = root(y);
+		if(x == y) {
+			return w == 0 ? 0 : -1;
+		}
+		if(par[x] > par[y]) {
+			x ^= y;
+			y ^= x;
+			x ^= y;
+			w = -w;
+		}
+		par[x] += par[y];
+		par[y] = x;
+		weight[y] = w;
+		return 1;
+	}
+	final boolean same(final int x, final int y){ return root(x) == root(y); }
+}
+
+final class UndoUnionFind {
+	private final int[] par;
+	private final Stack<Pair<Integer, Integer>> his;
+	UndoUnionFind(final int n) {
+	    par = new int[n];
+	    Arrays.fill(par, -1);
+	    his = new Stack<>();
+	}
+	final boolean unite(int x, int y) {
+		x = root(x);
+		y = root(y);
+		his.add(Pair.of(x, par[x]));
+		his.add(Pair.of(y, par[y]));
+		if(x == y) {
+			return false;
+		}
+		if(par[x] > par[y]) {
+			x ^= y;
+			y ^= x;
+			x ^= y;
+		}
+		par[x] += par[y];
+		par[y] = x;
+		return true;
+	}
+	final int root(final int i) {
+		if(par[i] < 0) {
+			return i;
+		}
+		return root(par[i]);
+	}
+	final int size(final int i){ return -par[root(i)]; }
+	final void undo() {
+		final Pair<Integer, Integer> pop1 = his.pop(), pop2 = his.pop();
+		par[pop1.first] = pop1.second;
+		par[pop2.first] = pop2.second;
+	}
+	final void snapshot() {
+		while(!his.empty()) {
+			his.pop();
+		}
+	}
+	final void rollback() {
+		while(!his.empty()) {
+			undo();
+		}
+	}
+}
+
 final class PrimeTable {
 	private final int size;
 	private final int[] p;
@@ -2523,6 +2523,60 @@ final class BigPrime {
 	}
 }
 
+final class ModPrime {
+	private final int len, mod;
+	private final long[] f, rf;
+	ModPrime(final int mod, final int sz) {
+		this.mod = mod;
+		len = Math.min(sz, mod);
+		f = new long[len];
+		rf = new long[len];
+		init();
+	}
+	private final long inv(long x) {
+		long res = 1, k = mod - 2;
+		while(k > 0) {
+			if(k % 2 == 1) {
+				res = (res * x) % mod;
+			}
+			x = (x * x) % mod;
+			k >>= 1;
+		}
+		return res;
+	}
+	private final void init() {
+		f[0] = 1;
+		for(int i = 0; ++i < len;) {
+			f[i] = (f[i - 1] * i) % mod;
+		}
+		rf[len - 1] = inv(f[len - 1]);
+		for(int i = len; --i > 0;) {
+			rf[i - 1] = (rf[i] * i) % mod;
+		}
+	}
+	final long C(final int n, final int k) {
+		if(k < 0 || n < k) {
+			return 0;
+		}
+		final long a = f[n], b = rf[n - k], c = rf[k], bc = (b * c) % mod;
+		return (a * bc) % mod;
+	}
+	final long P(final int n, final int k) {
+		if (k < 0 || n < k) {
+			return 0;
+		}
+		final long a = f[n], b = rf[n - k];
+		return (a * b) % mod;
+	}
+	final long H(final int n, final int k) {
+		if (n == 0 && k == 0) {
+			return 1;
+		}
+		return C(n + k - 1, k);
+	}
+	final long factor(final int n){ return f[n]; }
+}
+
 final class EulerPhiTable {
 	private final int[] euler;
 	EulerPhiTable(final int n) {
@@ -2536,6 +2590,170 @@ final class EulerPhiTable {
 		}
 	}
 	final int[] get(){ return euler; }
+}
+
+final class Matrix implements Cloneable {
+	private final int h, w;
+	private final long[][] mat;
+	Matrix(final int n){ this(n, n); }
+	Matrix(final int h, final int w) {
+		this.h = h;
+		this.w = w;
+		mat = new long[h][w];
+	}
+	Matrix(final int[][] m) {
+		this(m.length, m[0].length);
+		IntStream.range(0, h).forEach(i -> IntStream.range(0, w).forEach(j -> mat[i][j] = m[i][j]));
+	}
+	Matrix(final long[][] m) {
+		this(m.length, m[0].length);
+		IntStream.range(0, h).forEach(i -> IntStream.range(0, w).forEach(j -> mat[i][j] = m[i][j]));
+	}
+	static final Matrix E(final int n) {
+		final Matrix m = new Matrix(n);
+		IntStream.range(0, n).forEach(i -> m.set(i, i, 1));
+		return m;
+	}
+	final long[] getH(final int i){ return mat[i]; }
+	final long[] getW(final int i){ return IntStream.range(0, h).mapToLong(j -> mat[j][i]).toArray(); }
+	final long[][] get(){ return mat; }
+	final long get(final int i, final int j){ return mat[i][j]; }
+	final void set(final int i, final int j, final long x){ mat[i][j] = x; }
+	final Matrix add(final Matrix m) {
+		assert(h == m.h && w == m.w);
+		final Matrix mt = new Matrix(h, w);
+		for(int i = 0; i < h; ++i) {
+			for(int j = 0; j < w; ++j) {
+				mt.set(i, j, mat[i][j] + m.get(i, j));
+			}
+		}
+		return mt;
+	}
+	final Matrix add(final Matrix m, final long mod) {
+		assert(h == m.h && w == m.w);
+		final Matrix mt = new Matrix(h, w);
+		for(int i = 0; i < h; ++i) {
+			for(int j = 0; j < w; ++j) {
+				mt.set(i, j, Utility.mod(mat[i][j] + m.get(i, j), mod));
+			}
+		}
+		return mt;
+	}
+	final Matrix sub(final Matrix m) {
+		assert(h == m.h && w == m.w);
+		final Matrix mt = new Matrix(h, w);
+		for(int i = 0; i < h; ++i) {
+			for(int j = 0; j < w; ++j) {
+				mt.set(i, j, mat[i][j] - m.get(i, j));
+			}
+		}
+		return mt;
+	}
+	final Matrix sub(final Matrix m, final long mod) {
+		assert(h == m.h && w == m.w);
+		final Matrix mt = new Matrix(h, w);
+		for(int i = 0; i < h; ++i) {
+			for(int j = 0; j < w; ++j) {
+				mt.set(i, j, Utility.mod(mat[i][j] - m.get(i, j), mod));
+			}
+		}
+		return mt;
+	}
+	final Matrix mul(final Matrix m) {
+		assert(w == m.h);
+		final Matrix mt = new Matrix(h, m.w);
+		for(int i = 0; i < h; ++i) {
+			for(int j = 0; j < m.w; ++j) {
+				for(int k = 0; k < w; ++k) {
+					mt.set(i, j, mt.get(i, j) + mat[i][k] * m.get(k, j));
+				}
+			}
+		}
+		return mt;
+	}
+	final Matrix mul(final Matrix m, final long mod) {
+		assert(w == m.h);
+		final Matrix mt = new Matrix(h, m.w);
+		for(int i = 0; i < h; ++i) {
+			for(int j = 0; j < m.w; ++j) {
+				for(int k = 0; k < w; ++k) {
+					mt.set(i, j, Utility.mod(mt.get(i, j) + mat[i][k] * m.get(k, j), mod));
+				}
+			}
+		}
+		return mt;
+	}
+	final Matrix pow(int k) {
+		Matrix n = clone();
+		Matrix m = Matrix.E(h);
+		while(k > 0) {
+			if(k % 2 == 1) {
+				m = m.mul(n);
+			}
+			n = n.mul(n);
+			k >>= 1;
+		}
+		return m;
+	}
+	final Matrix pow(long k, final long mod) {
+		Matrix n = clone();
+		Matrix m = Matrix.E(h);
+		while(k > 0) {
+			if(k % 2 == 1) {
+				m = m.mul(n, mod);
+			}
+			n = n.mul(n, mod);
+			k >>= 1L;
+		}
+		return m;
+	}
+	@Override
+	public final boolean equals(final Object o) {
+		if(this == o) {
+			return true;
+		}
+		if(o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		final Matrix m = (Matrix) o;
+		if(h != m.h || w != m.w) {
+			return false;
+		}
+		for(int i = 0; i < h; ++i) {
+			for(int j = 0; j < w; ++j) {
+				if(mat[i][j] != m.get(i, j)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	@Override
+	public final Matrix clone() {
+		final Matrix m = new Matrix(h, w);
+		for(int i = 0; i < h; ++i) {
+			m.mat[i] = Arrays.copyOf(mat[i], w);
+		}
+		return m;
+	}
+	@Override
+	public final String toString() {
+		final StringBuilder sb = new StringBuilder();
+		final int interval = String.valueOf(IntStream.range(0, h).mapToLong(i -> IntStream.range(0, w).mapToLong(j -> mat[i][j]).max().getAsLong()).max().getAsLong()).length() + 1;
+		for(int i = 0; i < h; ++i) {
+			sb.append("[");
+			for(int j = 0; j < w; ++j) {
+				sb.append(String.format("%" + interval + "d", mat[i][j]));
+				if(j + 1 == w) {
+					sb.append("]");
+				}
+			}
+			if(i + 1 != h) {
+				sb.append("\n");
+			}
+		}
+		return sb.toString();
+	}
 }
 
 class InclusiveScan {
@@ -2562,269 +2780,6 @@ final class PrefixSum extends InclusiveScan {
 	PrefixSum(final long[] a) {
 		super(a, (x, y) -> x + y);
 		s = Utility.rotate(Arrays.copyOf(s, n + 1), 1);
-	}
-}
-
-final class FenwickTree {
-	private final int n;
-	private final long[] data;
-	FenwickTree(final int n) {
-		this.n = n + 2;
-		data = new long[this.n + 1];
-	}
-	FenwickTree(final int[] a) {
-		this(a.length);
-		IntStream.range(0, n).forEach(i -> add(i, a[i]));
-	}
-	FenwickTree(final long[] a) {
-		this(a.length);
-		IntStream.range(0, n).forEach(i -> add(i, a[i]));
-	}
-	final long sum(int k) {
-		if(k < 0) return 0;
-		long ret = 0;
-		for(++k; k > 0; k -= k & -k) {
-			ret += data[k];
-		}
-		return ret;
-	}
-	final long sum(final int l, final int r){ return sum(r) - sum(l - 1); }
-	final long get(final int k){ return sum(k) - sum(k - 1); }
-	final void add(int k, final long x) {
-		for(++k; k < n; k += k & -k) {
-			data[k] += x;
-		}
-	}
-	final void imos(final int l, final int r, final long x) {
-		add(l, x);
-		add(r + 1, -x);
-	}
-	private final int lg(final int n){ return 63 - Integer.numberOfLeadingZeros(n); }
-	final int lowerBound(long w) {
-		if(w <= 0) {
-			return 0;
-		}
-		int x = 0;
-		for(int k = 1 << lg(n); k > 0; k >>= 1) {
-			if(x + k <= n - 1 && data[x + k] < w) {
-				w -= data[x + k];
-				x += k;
-			}
-		}
-		return x;
-	}
-	final int upperBound(long w) {
-		if(w < 0) {
-			return 0;
-		}
-		int x = 0;
-		for(int k = 1 << lg(n); k > 0; k >>= 1) {
-			if(x + k <= n - 1 && data[x + k] <= w) {
-				w -= data[x + k];
-				x += k;
-			}
-		}
-		return x;
-	}
-	@Override
-	public final String toString() {
-		final StringBuilder sb = new StringBuilder();
-		sb.append(get(0));
-		for(int i = 0; ++i < n;) {
-			sb.append(" " + get(i));
-		}
-		return sb.toString();
-	}
-}
-
-final class SegmentTree<T extends Number> {
-	private int n = 1, rank = 0;
-	private final int fini;
-	private final BinaryOperator<T> op;
-	private final T e;
-	private final Object[] dat;
-	SegmentTree(final int fini, final BinaryOperator<T> op, final T e) {
-		this.fini = fini;
-		this.op = op;
-		this.e = e;
-		while(this.fini > n) {
-			n <<= 1;
-			rank++;
-		}
-		dat = new Object[2 * n];
-		Arrays.fill(dat, e);
-	}
-	@SuppressWarnings("unchecked")
-	final void update(int i, final T x) {
-		i += n;
-		dat[i] = x;
-		do {
-			i >>= 1;
-			dat[i] = op.apply((T) dat[2 * i], (T) dat[2 * i + 1]);
-		} while(i > 0);
-	}
-	@SuppressWarnings("unchecked")
-	final T query(int a, int b) {
-		T l = e, r = e;
-		for(a += n, b += n; a < b; a >>= 1, b >>= 1) {
-			if(a % 2 == 1) {
-				l = op.apply(l, (T) dat[a++]);
-			}
-			if(b % 2 == 1) {
-				r = op.apply((T) dat[--b], r);
-			}
-		}
-		return op.apply(l, r);
-	}
-	@SuppressWarnings("unchecked")
-	final int findLeft(final int r, final Predicate<T> fn) {
-		if(r == 0) {
-			return 0;
-		}
-		int h = 0, i = r + n;
-		T val = e;
-		for(; h <= rank; h++) {
-			if(i >> (h & 1) > 0) {
-				final T val2 = op.apply(val, (T) dat[i >> (h ^ 1)]);
-				if(fn.test(val2)){
-					i -= 1 << h;
-					if(i == n) {
-						return 0;
-					}
-					val = val2;
-				}
-				else {
-					break;
-				}
-			}
-		}
-		for(; h-- > 0;) {
-			final T val2 = op.apply(val, (T) dat[(i >> h) - 1]);
-			if(fn.test(val2)){
-				i -= 1 << h;
-				if(i == n) {
-					return 0;
-				}
-				val = val2;
-			}
-		}
-		return i - n;
-	}
-	@SuppressWarnings("unchecked")
-	final int findRight(final int l, final Predicate<T> fn) {
-		if(l == fini) {
-			return fini;
-		}
-		int h = 0, i = l + n;
-		T val = e;
-		for(; h <= rank; h++) {
-			if(i >> (h & 1) > 0){
-				final T val2 = op.apply(val, (T) dat[i >> h]);
-				if(fn.test(val2)){
-					i += 1 << h;
-					if(i == n * 2) {
-						return fini;
-					}
-					val = val2;
-				}
-				else {
-					break;
-				}
-			}
-		}
-		for(; h-- > 0;) {
-			final T val2 = op.apply(val, (T) dat[i>>h]);
-			if(fn.test(val2)) {
-				i += 1 << h;
-				if(i == n * 2) {
-					return fini;
-				}
-				val = val2;
-			}
-		}
-		return Math.min(i - n, fini);
-	}
-}
-
-final class SparseTable {
-	private final long[][] st;
-	private final int[] lookup;
-	private final LongBinaryOperator op;
-	SparseTable(final int[] a, final LongBinaryOperator op) {
-		this.op = op;
-		int b = 0;
-		while((1 << b) <= a.length) {
-			++b;
-		}
-		st = new long[b][1 << b];
-		for(int i = 0; i < a.length; i++) {
-			st[0][i] = a[i];
-		}
-		for(int i = 1; i < b; i++) {
-			for(int j = 0; j + (1 << i) <= (1 << b); j++) {
-				st[i][j] = op.applyAsLong(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);
-			}
-		}
-		lookup = new int[a.length + 1];
-		for(int i = 2; i < lookup.length; i++) {
-			lookup[i] = lookup[i >> 1] + 1;
-		}
-	}
-	SparseTable(final long[] a, final LongBinaryOperator op) {
-		this.op = op;
-		int b = 0;
-		while((1 << b) <= a.length) {
-			++b;
-		}
-		st = new long[b][1 << b];
-		for(int i = 0; i < a.length; i++) {
-			st[0][i] = a[i];
-		}
-		for(int i = 1; i < b; i++) {
-			for(int j = 0; j + (1 << i) <= (1 << b); j++) {
-				st[i][j] = op.applyAsLong(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);
-			}
-		}
-		lookup = new int[a.length + 1];
-		for(int i = 2; i < lookup.length; i++) {
-			lookup[i] = lookup[i >> 1] + 1;
-		}
-	}
-	final long query(final int l, final int r) {
-		final int b = lookup[r - l];
-		return op.applyAsLong(st[b][l], st[b][r - (1 << b)]);
-	}
-	final int minLeft(final int x, final LongPredicate fn) {
-		if(x == 0) {
-			return 0;
-		}
-		int ok = x, ng = -1;
-		while(Math.abs(ok - ng) > 1) {
-			final int mid = (ok + ng) / 2;
-			if(fn.test(query(mid, x) - 1)) {
-				ok = mid;
-			}
-			else {
-				ng = mid;
-			}
-		}
-		return ok;
-	}
-	final int maxRight(final int x, final LongPredicate fn) {
-		if(x == lookup.length - 1) {
-			return lookup.length - 1;
-		}
-		int ok = x, ng = lookup.length;
-		while(Math.abs(ok - ng) > 1) {
-			final int mid = (ok + ng) / 2;
-			if(fn.test(query(x, mid))) {
-				ok = mid;
-			}
-			else {
-				ng = mid;
-			}
-		}
-		return ok;
 	}
 }
 
@@ -3010,371 +2965,6 @@ final class SuffixArray extends ArrayList<Integer> {
 			}
 		}
 		return sb.toString();
-	}
-}
-
-final class DoubleEndedPriorityQueue<T extends Number> {
-	private final ArrayList<T> d;
-	DoubleEndedPriorityQueue(final ArrayList<T> d) {
-		this.d = d;
-		makeHeap();
-	}
-	private final void makeHeap() {
-		for(int i = d.size(); i-- > 0;) {
-			if (i % 2 == 1 && d.get(i - 1).longValue() < d.get(i).longValue()) {
-				Collections.swap(d, i - 1, i);
-			}
-			up(down(i), i);
-		}
-	}
-	private final int down(int k) {
-		final int n = d.size();
-		if(k % 2 == 1) {
-			while(2 * k + 1 < n) {
-				int c = 2 * k + 3;
-				if(n <= c || d.get(c - 2).longValue() < d.get(c).longValue()) {
-					 c -= 2;
-				}
-				if(c < n && d.get(c).longValue() < d.get(k).longValue()) {
-					Collections.swap(d, k, c);
-					k = c;
-				}
-				else {
-					break;
-				}
-			}
-		} else {
-			while(2 * k + 2 < n) {
-				int c = 2 * k + 4;
-				if(n <= c || d.get(c).longValue() < d.get(c - 2).longValue()) {
-					c -= 2;
-				}
-				if(c < n && d.get(k).longValue() < d.get(c).longValue()) {
-					Collections.swap(d, k, c);
-					k = c;
-				}
-				else {
-					break;
-				}
-			}
-		}
-		return k;
-	}
-	private final int up(int k, final int root) {
-		if((k | 1) < d.size() && d.get(k & ~1).longValue() < d.get(k | 1).longValue()) {
-			Collections.swap(d, k & ~1, k | 1);
-			k ^= 1;
-		}
-		int p;
-		while(root < k && d.get(p = parent(k)).longValue() < d.get(k).longValue()) {
-			Collections.swap(d, p, k);
-			k = p;
-		}
-		while(root < k && d.get(k).longValue() < d.get(p = parent(k) | 1).longValue()) {
-			Collections.swap(d, p, k);
-			k = p;
-		}
-		return k;
-	}
-	private final int parent(final int k){ return ((k >> 1) - 1) & ~1; }
-	private final void popBack(final ArrayList<T> d){ d.remove(d.size() - 1); } 
-	final void push(final T x) {
-		final int k = d.size();
-		d.add(x);
-		up(k, 1);
-	}
-	final T popMin() {
-		final T res = getMin();
-		if(d.size() < 3) {
-			popBack(d); 
-		} else {
-			Collections.swap(d, 1, d.size() - 1);
-			popBack(d);
-			up(down(1), 1);
-		}
-		return res;
-	}
-	final T popMax() {
-		final T res = getMax();
-		if(d.size() < 2) { 
-			popBack(d);
-		} else {
-			Collections.swap(d, 0, d.size() - 1);
-			popBack(d);
-			up(down(0), 1);
-		}
-		return res;
-	}
-	final T getMin(){ return d.size() < 2 ? d.get(0) : d.get(1); }
-	final T getMax(){ return d.get(0); }
-	final int size(){ return d.size(); }
-	final boolean isEmpty(){ return d.isEmpty(); }
-}
-
-final class SuccinctIndexableDictionary {
-	private final int blk;
-	private final int[] bit, sum;
-	SuccinctIndexableDictionary(final int len) {
-		blk = (len + 31) >> 5;
-		bit = new int[blk];
-		sum = new int[blk];
-	}
-	final void set(final int k){ bit[k >> 5] |= 1 << (k & 31); }
-	final void build() {
-		sum[0] = 0;
-		for(int i = 0; ++i < blk;) {
-			sum[i] = sum[i - 1] + Integer.bitCount(bit[i - 1]);
-		}
-	}
-	final boolean get(final int k){ return ((bit[k >> 5] >> (k & 31)) & 1) == 1; }
-	final int rank(final int k){ return (sum[k >> 5] + Integer.bitCount(bit[k >> 5] & ((1 << (k & 31)) - 1))); }
-	final int rank(final boolean val, final int k){ return val ? rank(k) : k - rank(k); }
-}
-final class WaveletMatrixBeta {
-	private final int log;
-	private final SuccinctIndexableDictionary[] matrix;
-	private final int[] mid;
-	WaveletMatrixBeta(final long[] arr, final int log) {
-		final int len = arr.length;
-		this.log = log;
-		matrix = new SuccinctIndexableDictionary[log];
-		mid = new int[log];
-		final long[] l = new long[len], r = new long[len];
-		for(int level = log; --level >= 0;) {
-			matrix[level] = new SuccinctIndexableDictionary(len + 1);
-			int left = 0, right = 0;
-			for(int i = 0; i < len; ++i) {
-				if(((arr[i] >> level) & 1) == 1) {
-					matrix[level].set(i);
-					r[right++] = arr[i];
-				} else {
-					l[left++] = arr[i];
-				}
-			}
-			mid[level] = left;
-			matrix[level].build();
-			final long[] tmp = new long[len];
-			System.arraycopy(arr, 0, tmp, 0, len);
-			System.arraycopy(l, 0, arr, 0, len);
-			System.arraycopy(tmp, 0, l, 0, len);
-			for(int i = 0; i < right; ++i) {
-				arr[left + i] = r[i];
-			}
-		}
-	}
-	private final IntPair succ(final boolean f, final int l, final int r, final int level){ return IntPair.of(matrix[level].rank(f, l) + mid[level] * (f ? 1 : 0), matrix[level].rank(f, r) + mid[level] * (f ? 1 : 0)); }
-	final long access(int k) {
-		long ret = 0;
-		for(int level = log; --level >= 0;) {
-			final boolean f = matrix[level].get(k);
-			if(f) {
-				ret |= 1L << level;
-			}
-			k = matrix[level].rank(f, k) + mid[level] * (f ? 1 : 0);
-		}	
-		return ret;
-	}
-	final int rank(final long x, int r) {
-		int l = 0;
-		for(int level = log; --level >= 0;) {
-			final IntPair p = succ(((x >> level) & 1) == 1, l, r, level);
-			l = p.first.intValue();
-			r = p.second.intValue();
-		}
-		return r - l;
-	}
-	final long kthMin(int l, int r, int k) {
-		if(!Utility.scope(0, k, r - l - 1)) {
-			throw new IndexOutOfBoundsException();
-		}
-		long ret = 0;
-		for(int level = log; --level >= 0;) {
-			final int cnt = matrix[level].rank(false, r) - matrix[level].rank(false, l);
-			final boolean f = cnt <= k;
-			if(f) {
-				ret |= 1 << level;
-				k -= cnt;
-			}
-			final IntPair p = succ(f, l, r, level);
-			l = p.first.intValue();
-			r = p.second.intValue();
-		}
-		return ret;
-	}
-	final long kthMax(final int l, final int r, final int k){ return kthMin(l, r, r - l - k - 1); }
-	final int rangeFreq(int l, int r, final long upper) {
-		int ret = 0;
-		for(int level = log; --level >= 0;) {
-			final boolean f = ((upper >> level) & 1) == 1;
-			if(f) {
-				ret += matrix[level].rank(false, r) - matrix[level].rank(false, l);
-			}
-			final IntPair p = succ(f, l, r, level); 
-			l = p.first.intValue();
-			r = p.second.intValue();
-		}
-		return ret;
-	}
-	final int rangeFreq(final int l, final int r, final long lower, final long upper){ return rangeFreq(l, r, upper) - rangeFreq(l, r, lower); }
-	final long prev(final int l, final int r, final long upper) {
-		final int cnt = rangeFreq(l, r, upper);
-		return cnt == 0 ? -1 : kthMin(l, r, cnt - 1);
-	}
-	final long next(final int l, final int r, final long lower) {
-		final int cnt = rangeFreq(l, r, lower);
-		return cnt == r - l ? -1 : kthMin(l, r, cnt);
-	}
-}
-final class WaveletMatrix {
-	private final WaveletMatrixBeta mat;
-	private final long[] ys;
-	WaveletMatrix(final long[] arr){ this(arr, 16); }
-	WaveletMatrix(final long[] arr, final int log) {
-		ys = Arrays.stream(arr).sorted().distinct().toArray();
-		final long[] t = new long[arr.length];
-		IntStream.range(0, arr.length).forEach(i -> t[i] = get(arr[i]));
-		mat = new WaveletMatrixBeta(t, log);
-	}
-	private final int get(final long x){ return Utility.lowerBound(ys, x); }
-	final long access(final int k){ return ys[(int) mat.access(k)]; }
-	final int rank(final long x, final int r) {
-		final int pos = get(x);
-		if(pos == ys.length || ys[pos] != x) {
-			return 0;
-		}
-		return mat.rank(pos, r);
-	}
-	final long kthMin(final int l, final int r, final int k){ return ys[(int) mat.kthMin(l, r, k)]; }
-	final long kthMax(final int l, final int r, final int k){ return ys[(int) mat.kthMax(l, r, k)]; }
-	final int rangeFreq(final int l, final int r, final long upper){ return mat.rangeFreq(l, r, get(upper)); }
-	final int rangeFreq(final int l, final int r, final long lower, final long upper){ return mat.rangeFreq(l, r, get(lower), get(upper)); }
-	final long prev(final int l, final int r, final long upper) {
-		final long ret = mat.prev(l, r, get(upper));
-		return ret == -1 ? -1 : ys[(int) ret];
-	}
-	final long next(final int l, final int r, final long lower) {
-		final long ret = mat.next(l, r, get(lower));
-		return ret == -1 ? -1 : ys[(int) ret];
-	}
-}
-
-final class AVLTree<T extends Comparable<? super T>> {
-	static final class Node<T extends Comparable<? super T>> {
-		T val;
-		@SuppressWarnings("unchecked")
-		Node<T>[] ch = new Node[2];
-		int dep, size;
-		Node(final T val, final Node<T> l, final Node<T> r) {
-			this.val = val;
-			dep = size = 1;
-			ch[0] = l;
-			ch[1] = r;
-		}
-	}
-	private Node<T> root;
-	private final int depth(final Node<T> t){ return t == null ? 0 : t.dep; }
-	private final int count(final Node<T> t){ return t == null ? 0 : t.size; }
-	private final Node<T> update(final Node<T> t) {
-		t.dep = Math.max(depth(t.ch[0]), depth(t.ch[1])) + 1;
-		t.size = count(t.ch[0]) + count(t.ch[1]) + 1;
-		return t;
-	}
-	private final Node<T> rotate(Node<T> t, final int b) {
-		Node<T> s = t.ch[1 - b];
-		t.ch[1 - b] = s.ch[b];
-		s.ch[b] = t;
-		t = update(t);
-		s = update(s);
-		return s;
-	}
-	private final Node<T> fetch(Node<T> t) {
-		if(t == null) {
-			return t;
-		}
-		if(depth(t.ch[0]) - depth(t.ch[1]) == 2) {
-			if(depth(t.ch[0].ch[1]) > depth(t.ch[0].ch[0])) {
-				t.ch[0] = rotate(t.ch[0], 0);
-			}
-			t = rotate(t, 1);
-		}
-		else if(depth(t.ch[0]) - depth(t.ch[1]) == -2) {
-			if (depth(t.ch[1].ch[0]) > depth(t.ch[1].ch[1])) {
-				t.ch[1] = rotate(t.ch[1], 1);
-			}
-			t = rotate(t, 0);
-		}
-		return t;
-	}
-	private final Node<T> insert(final Node<T> t, final int k, final T v) {
-		if(t == null) {
-			return new Node<T>(v, null, null);
-		}
-		final int c = count(t.ch[0]), b = (k > c) ? 1 : 0;
-		t.ch[b] = insert(t.ch[b], k - (b == 1 ? (c + 1) : 0), v);
-		update(t);
-		return fetch(t);
-	}
-	private final Node<T> erase(final Node<T> t) {
-		if(t == null || t.ch[0] == null && t.ch[1] == null) {
-			return null;
-		}
-		if(t.ch[0] == null || t.ch[1] == null) {
-			return t.ch[t.ch[0] == null ? 1 : 0];
-		}
-		return fetch(update(new Node<T>(find(t.ch[1], 0).val, t.ch[0], erase(t.ch[1], 0))));
-	}
-	private final Node<T> erase(Node<T> t, final int k) {
-		if(t == null) {
-			return null;
-		}
-		final int c = count(t.ch[0]);
-		if(k < c) {
-			t.ch[0] = erase(t.ch[0], k);
-			t = update(t);
-		}
-		else if(k > c) {
-			t.ch[1] = erase(t.ch[1], k - (c + 1));
-			t = update(t);
-		}
-		else {
-			t = erase(t);
-		}
-		return fetch(t);
-	}
-	private final Node<T> find(final Node<T> t, final int k) {
-		if(t == null) {
-			return t;
-		}
-		final int c = count(t.ch[0]);
-		return k < c ? find(t.ch[0], k) : k == c ? t : find(t.ch[1], k - (c + 1));
-	}
-	private final int cnt(final Node<T> t, final T v) {
-		if(t == null) {
-			return 0;
-		}
-		if(t.val.compareTo(v) < 0) {
-			return count(t.ch[0]) + 1 + cnt(t.ch[1], v);
-		}
-		if(t.val.equals(v)) {
-			return count(t.ch[0]);
-		}
-		return cnt(t.ch[0], v);
-	}
-	AVLTree(){ root = null; }
-	final void add(final T val){ root = insert(root, cnt(root, val), val); }
-	final void remove(final int k){ root = erase(root, k); }
-	final T get(final int k){ return find(root, k).val; }
-	final int count(final T val){ return cnt(root, val); }
-	final int size(){ return root.size; }
-	@Override
-	public final String toString() {
-		final StringBuilder sb = new StringBuilder();
-		sb.append(get(0));
-		for(int i = 0; ++i < root.size;) {
-			sb.append(" ");
-			sb.append(get(i));
-		}
-		return "[" + sb.toString() + "]";
 	}
 }
 
@@ -3647,220 +3237,630 @@ final class IntDeque {
 	public final String toString(){ return Arrays.toString(toArray()); }
 }
 
-final class Matrix implements Cloneable {
-	private final int h, w;
-	private final long[][] mat;
-	Matrix(final int n){ this(n, n); }
-	Matrix(final int h, final int w) {
-		this.h = h;
-		this.w = w;
-		mat = new long[h][w];
-	}
-	Matrix(final int[][] m) {
-		this(m.length, m[0].length);
-		IntStream.range(0, h).forEach(i -> IntStream.range(0, w).forEach(j -> mat[i][j] = m[i][j]));
-	}
-	Matrix(final long[][] m) {
-		this(m.length, m[0].length);
-		IntStream.range(0, h).forEach(i -> IntStream.range(0, w).forEach(j -> mat[i][j] = m[i][j]));
-	}
-	static final Matrix E(final int n) {
-		final Matrix m = new Matrix(n);
-		IntStream.range(0, n).forEach(i -> m.set(i, i, 1));
-		return m;
-	}
-	final long[] getH(final int i){ return mat[i]; }
-	final long[] getW(final int i){ return IntStream.range(0, h).mapToLong(j -> mat[j][i]).toArray(); }
-	final long[][] get(){ return mat; }
-	final long get(final int i, final int j){ return mat[i][j]; }
-	final void set(final int i, final int j, final long x){ mat[i][j] = x; }
-	final Matrix add(final Matrix m) {
-		assert(h == m.h && w == m.w);
-		final Matrix mt = new Matrix(h, w);
-		for(int i = 0; i < h; ++i) {
-			for(int j = 0; j < w; ++j) {
-				mt.set(i, j, mat[i][j] + m.get(i, j));
-			}
+final class AVLTree<T extends Comparable<? super T>> {
+	static final class Node<T extends Comparable<? super T>> {
+		T val;
+		@SuppressWarnings("unchecked")
+		Node<T>[] ch = new Node[2];
+		int dep, size;
+		Node(final T val, final Node<T> l, final Node<T> r) {
+			this.val = val;
+			dep = size = 1;
+			ch[0] = l;
+			ch[1] = r;
 		}
-		return mt;
 	}
-	final Matrix add(final Matrix m, final long mod) {
-		assert(h == m.h && w == m.w);
-		final Matrix mt = new Matrix(h, w);
-		for(int i = 0; i < h; ++i) {
-			for(int j = 0; j < w; ++j) {
-				mt.set(i, j, Utility.mod(mat[i][j] + m.get(i, j), mod));
-			}
+	private Node<T> root;
+	private final int depth(final Node<T> t){ return t == null ? 0 : t.dep; }
+	private final int count(final Node<T> t){ return t == null ? 0 : t.size; }
+	private final Node<T> update(final Node<T> t) {
+		t.dep = Math.max(depth(t.ch[0]), depth(t.ch[1])) + 1;
+		t.size = count(t.ch[0]) + count(t.ch[1]) + 1;
+		return t;
+	}
+	private final Node<T> rotate(Node<T> t, final int b) {
+		Node<T> s = t.ch[1 - b];
+		t.ch[1 - b] = s.ch[b];
+		s.ch[b] = t;
+		t = update(t);
+		s = update(s);
+		return s;
+	}
+	private final Node<T> fetch(Node<T> t) {
+		if(t == null) {
+			return t;
 		}
-		return mt;
-	}
-	final Matrix sub(final Matrix m) {
-		assert(h == m.h && w == m.w);
-		final Matrix mt = new Matrix(h, w);
-		for(int i = 0; i < h; ++i) {
-			for(int j = 0; j < w; ++j) {
-				mt.set(i, j, mat[i][j] - m.get(i, j));
+		if(depth(t.ch[0]) - depth(t.ch[1]) == 2) {
+			if(depth(t.ch[0].ch[1]) > depth(t.ch[0].ch[0])) {
+				t.ch[0] = rotate(t.ch[0], 0);
 			}
+			t = rotate(t, 1);
 		}
-		return mt;
-	}
-	final Matrix sub(final Matrix m, final long mod) {
-		assert(h == m.h && w == m.w);
-		final Matrix mt = new Matrix(h, w);
-		for(int i = 0; i < h; ++i) {
-			for(int j = 0; j < w; ++j) {
-				mt.set(i, j, Utility.mod(mat[i][j] - m.get(i, j), mod));
+		else if(depth(t.ch[0]) - depth(t.ch[1]) == -2) {
+			if (depth(t.ch[1].ch[0]) > depth(t.ch[1].ch[1])) {
+				t.ch[1] = rotate(t.ch[1], 1);
 			}
+			t = rotate(t, 0);
 		}
-		return mt;
+		return t;
 	}
-	final Matrix mul(final Matrix m) {
-		assert(w == m.h);
-		final Matrix mt = new Matrix(h, m.w);
-		for(int i = 0; i < h; ++i) {
-			for(int j = 0; j < m.w; ++j) {
-				for(int k = 0; k < w; ++k) {
-					mt.set(i, j, mt.get(i, j) + mat[i][k] * m.get(k, j));
-				}
-			}
+	private final Node<T> insert(final Node<T> t, final int k, final T v) {
+		if(t == null) {
+			return new Node<T>(v, null, null);
 		}
-		return mt;
+		final int c = count(t.ch[0]), b = (k > c) ? 1 : 0;
+		t.ch[b] = insert(t.ch[b], k - (b == 1 ? (c + 1) : 0), v);
+		update(t);
+		return fetch(t);
 	}
-	final Matrix mul(final Matrix m, final long mod) {
-		assert(w == m.h);
-		final Matrix mt = new Matrix(h, m.w);
-		for(int i = 0; i < h; ++i) {
-			for(int j = 0; j < m.w; ++j) {
-				for(int k = 0; k < w; ++k) {
-					mt.set(i, j, Utility.mod(mt.get(i, j) + mat[i][k] * m.get(k, j), mod));
-				}
-			}
+	private final Node<T> erase(final Node<T> t) {
+		if(t == null || t.ch[0] == null && t.ch[1] == null) {
+			return null;
 		}
-		return mt;
-	}
-	final Matrix pow(int k) {
-		Matrix n = clone();
-		Matrix m = Matrix.E(h);
-		while(k > 0) {
-			if(k % 2 == 1) {
-				m = m.mul(n);
-			}
-			n = n.mul(n);
-			k >>= 1;
+		if(t.ch[0] == null || t.ch[1] == null) {
+			return t.ch[t.ch[0] == null ? 1 : 0];
 		}
-		return m;
+		return fetch(update(new Node<T>(find(t.ch[1], 0).val, t.ch[0], erase(t.ch[1], 0))));
 	}
-	final Matrix pow(long k, final long mod) {
-		Matrix n = clone();
-		Matrix m = Matrix.E(h);
-		while(k > 0) {
-			if(k % 2 == 1) {
-				m = m.mul(n, mod);
-			}
-			n = n.mul(n, mod);
-			k >>= 1L;
+	private final Node<T> erase(Node<T> t, final int k) {
+		if(t == null) {
+			return null;
 		}
-		return m;
+		final int c = count(t.ch[0]);
+		if(k < c) {
+			t.ch[0] = erase(t.ch[0], k);
+			t = update(t);
+		}
+		else if(k > c) {
+			t.ch[1] = erase(t.ch[1], k - (c + 1));
+			t = update(t);
+		}
+		else {
+			t = erase(t);
+		}
+		return fetch(t);
 	}
+	private final Node<T> find(final Node<T> t, final int k) {
+		if(t == null) {
+			return t;
+		}
+		final int c = count(t.ch[0]);
+		return k < c ? find(t.ch[0], k) : k == c ? t : find(t.ch[1], k - (c + 1));
+	}
+	private final int cnt(final Node<T> t, final T v) {
+		if(t == null) {
+			return 0;
+		}
+		if(t.val.compareTo(v) < 0) {
+			return count(t.ch[0]) + 1 + cnt(t.ch[1], v);
+		}
+		if(t.val.equals(v)) {
+			return count(t.ch[0]);
+		}
+		return cnt(t.ch[0], v);
+	}
+	AVLTree(){ root = null; }
+	final void add(final T val){ root = insert(root, cnt(root, val), val); }
+	final void remove(final int k){ root = erase(root, k); }
+	final T get(final int k){ return find(root, k).val; }
+	final int count(final T val){ return cnt(root, val); }
+	final int size(){ return root.size; }
 	@Override
-	public final boolean equals(final Object o) {
-		if(this == o) {
-			return true;
+	public final String toString() {
+		final StringBuilder sb = new StringBuilder();
+		sb.append(get(0));
+		for(int i = 0; ++i < root.size;) {
+			sb.append(" ");
+			sb.append(get(i));
 		}
-		if(o == null || getClass() != o.getClass()) {
-			return false;
+		return "[" + sb.toString() + "]";
+	}
+}
+
+final class DoubleEndedPriorityQueue<T extends Number> {
+	private final ArrayList<T> d;
+	DoubleEndedPriorityQueue(final ArrayList<T> d) {
+		this.d = d;
+		makeHeap();
+	}
+	private final void makeHeap() {
+		for(int i = d.size(); i-- > 0;) {
+			if (i % 2 == 1 && d.get(i - 1).longValue() < d.get(i).longValue()) {
+				Collections.swap(d, i - 1, i);
+			}
+			up(down(i), i);
 		}
-		final Matrix m = (Matrix) o;
-		if(h != m.h || w != m.w) {
-			return false;
-		}
-		for(int i = 0; i < h; ++i) {
-			for(int j = 0; j < w; ++j) {
-				if(mat[i][j] != m.get(i, j)) {
-					return false;
+	}
+	private final int down(int k) {
+		final int n = d.size();
+		if(k % 2 == 1) {
+			while(2 * k + 1 < n) {
+				int c = 2 * k + 3;
+				if(n <= c || d.get(c - 2).longValue() < d.get(c).longValue()) {
+					 c -= 2;
+				}
+				if(c < n && d.get(c).longValue() < d.get(k).longValue()) {
+					Collections.swap(d, k, c);
+					k = c;
+				}
+				else {
+					break;
+				}
+			}
+		} else {
+			while(2 * k + 2 < n) {
+				int c = 2 * k + 4;
+				if(n <= c || d.get(c).longValue() < d.get(c - 2).longValue()) {
+					c -= 2;
+				}
+				if(c < n && d.get(k).longValue() < d.get(c).longValue()) {
+					Collections.swap(d, k, c);
+					k = c;
+				}
+				else {
+					break;
 				}
 			}
 		}
-		return true;
+		return k;
 	}
-	@Override
-	public final Matrix clone() {
-		final Matrix m = new Matrix(h, w);
-		for(int i = 0; i < h; ++i) {
-			m.mat[i] = Arrays.copyOf(mat[i], w);
+	private final int up(int k, final int root) {
+		if((k | 1) < d.size() && d.get(k & ~1).longValue() < d.get(k | 1).longValue()) {
+			Collections.swap(d, k & ~1, k | 1);
+			k ^= 1;
 		}
-		return m;
+		int p;
+		while(root < k && d.get(p = parent(k)).longValue() < d.get(k).longValue()) {
+			Collections.swap(d, p, k);
+			k = p;
+		}
+		while(root < k && d.get(k).longValue() < d.get(p = parent(k) | 1).longValue()) {
+			Collections.swap(d, p, k);
+			k = p;
+		}
+		return k;
+	}
+	private final int parent(final int k){ return ((k >> 1) - 1) & ~1; }
+	private final void popBack(final ArrayList<T> d){ d.remove(d.size() - 1); } 
+	final void push(final T x) {
+		final int k = d.size();
+		d.add(x);
+		up(k, 1);
+	}
+	final T popMin() {
+		final T res = getMin();
+		if(d.size() < 3) {
+			popBack(d); 
+		} else {
+			Collections.swap(d, 1, d.size() - 1);
+			popBack(d);
+			up(down(1), 1);
+		}
+		return res;
+	}
+	final T popMax() {
+		final T res = getMax();
+		if(d.size() < 2) { 
+			popBack(d);
+		} else {
+			Collections.swap(d, 0, d.size() - 1);
+			popBack(d);
+			up(down(0), 1);
+		}
+		return res;
+	}
+	final T getMin(){ return d.size() < 2 ? d.get(0) : d.get(1); }
+	final T getMax(){ return d.get(0); }
+	final int size(){ return d.size(); }
+	final boolean isEmpty(){ return d.isEmpty(); }
+}
+
+final class FenwickTree {
+	private final int n;
+	private final long[] data;
+	FenwickTree(final int n) {
+		this.n = n + 2;
+		data = new long[this.n + 1];
+	}
+	FenwickTree(final int[] a) {
+		this(a.length);
+		IntStream.range(0, n).forEach(i -> add(i, a[i]));
+	}
+	FenwickTree(final long[] a) {
+		this(a.length);
+		IntStream.range(0, n).forEach(i -> add(i, a[i]));
+	}
+	final long sum(int k) {
+		if(k < 0) return 0;
+		long ret = 0;
+		for(++k; k > 0; k -= k & -k) {
+			ret += data[k];
+		}
+		return ret;
+	}
+	final long sum(final int l, final int r){ return sum(r) - sum(l - 1); }
+	final long get(final int k){ return sum(k) - sum(k - 1); }
+	final void add(int k, final long x) {
+		for(++k; k < n; k += k & -k) {
+			data[k] += x;
+		}
+	}
+	final void imos(final int l, final int r, final long x) {
+		add(l, x);
+		add(r + 1, -x);
+	}
+	private final int lg(final int n){ return 63 - Integer.numberOfLeadingZeros(n); }
+	final int lowerBound(long w) {
+		if(w <= 0) {
+			return 0;
+		}
+		int x = 0;
+		for(int k = 1 << lg(n); k > 0; k >>= 1) {
+			if(x + k <= n - 1 && data[x + k] < w) {
+				w -= data[x + k];
+				x += k;
+			}
+		}
+		return x;
+	}
+	final int upperBound(long w) {
+		if(w < 0) {
+			return 0;
+		}
+		int x = 0;
+		for(int k = 1 << lg(n); k > 0; k >>= 1) {
+			if(x + k <= n - 1 && data[x + k] <= w) {
+				w -= data[x + k];
+				x += k;
+			}
+		}
+		return x;
 	}
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
-		final int interval = String.valueOf(IntStream.range(0, h).mapToLong(i -> IntStream.range(0, w).mapToLong(j -> mat[i][j]).max().getAsLong()).max().getAsLong()).length() + 1;
-		for(int i = 0; i < h; ++i) {
-			sb.append("[");
-			for(int j = 0; j < w; ++j) {
-				sb.append(String.format("%" + interval + "d", mat[i][j]));
-				if(j + 1 == w) {
-					sb.append("]");
-				}
-			}
-			if(i + 1 != h) {
-				sb.append("\n");
-			}
+		sb.append(get(0));
+		for(int i = 0; ++i < n;) {
+			sb.append(" " + get(i));
 		}
 		return sb.toString();
 	}
 }
 
-final class ModPrime {
-	private final int len, mod;
-	private final long[] f, rf;
-	ModPrime(final int mod, final int sz) {
-		this.mod = mod;
-		len = Math.min(sz, mod);
-		f = new long[len];
-		rf = new long[len];
-		init();
+final class SegmentTree<T extends Number> {
+	private int n = 1, rank = 0;
+	private final int fini;
+	private final BinaryOperator<T> op;
+	private final T e;
+	private final Object[] dat;
+	SegmentTree(final int fini, final BinaryOperator<T> op, final T e) {
+		this.fini = fini;
+		this.op = op;
+		this.e = e;
+		while(this.fini > n) {
+			n <<= 1;
+			rank++;
+		}
+		dat = new Object[2 * n];
+		Arrays.fill(dat, e);
 	}
-	private final long inv(long x) {
-		long res = 1, k = mod - 2;
-		while(k > 0) {
-			if(k % 2 == 1) {
-				res = (res * x) % mod;
+	@SuppressWarnings("unchecked")
+	final void update(int i, final T x) {
+		i += n;
+		dat[i] = x;
+		do {
+			i >>= 1;
+			dat[i] = op.apply((T) dat[2 * i], (T) dat[2 * i + 1]);
+		} while(i > 0);
+	}
+	@SuppressWarnings("unchecked")
+	final T query(int a, int b) {
+		T l = e, r = e;
+		for(a += n, b += n; a < b; a >>= 1, b >>= 1) {
+			if(a % 2 == 1) {
+				l = op.apply(l, (T) dat[a++]);
 			}
-			x = (x * x) % mod;
-			k >>= 1;
+			if(b % 2 == 1) {
+				r = op.apply((T) dat[--b], r);
+			}
 		}
-		return res;
+		return op.apply(l, r);
 	}
-	private final void init() {
-		f[0] = 1;
-		for(int i = 0; ++i < len;) {
-			f[i] = (f[i - 1] * i) % mod;
-		}
-		rf[len - 1] = inv(f[len - 1]);
-		for(int i = len; --i > 0;) {
-			rf[i - 1] = (rf[i] * i) % mod;
-		}
-	}
-	final long C(final int n, final int k) {
-		if(k < 0 || n < k) {
+	@SuppressWarnings("unchecked")
+	final int findLeft(final int r, final Predicate<T> fn) {
+		if(r == 0) {
 			return 0;
 		}
-		final long a = f[n], b = rf[n - k], c = rf[k], bc = (b * c) % mod;
-		return (a * bc) % mod;
+		int h = 0, i = r + n;
+		T val = e;
+		for(; h <= rank; h++) {
+			if(i >> (h & 1) > 0) {
+				final T val2 = op.apply(val, (T) dat[i >> (h ^ 1)]);
+				if(fn.test(val2)){
+					i -= 1 << h;
+					if(i == n) {
+						return 0;
+					}
+					val = val2;
+				}
+				else {
+					break;
+				}
+			}
+		}
+		for(; h-- > 0;) {
+			final T val2 = op.apply(val, (T) dat[(i >> h) - 1]);
+			if(fn.test(val2)){
+				i -= 1 << h;
+				if(i == n) {
+					return 0;
+				}
+				val = val2;
+			}
+		}
+		return i - n;
 	}
-	final long P(final int n, final int k) {
-		if (k < 0 || n < k) {
+	@SuppressWarnings("unchecked")
+	final int findRight(final int l, final Predicate<T> fn) {
+		if(l == fini) {
+			return fini;
+		}
+		int h = 0, i = l + n;
+		T val = e;
+		for(; h <= rank; h++) {
+			if(i >> (h & 1) > 0){
+				final T val2 = op.apply(val, (T) dat[i >> h]);
+				if(fn.test(val2)){
+					i += 1 << h;
+					if(i == n * 2) {
+						return fini;
+					}
+					val = val2;
+				}
+				else {
+					break;
+				}
+			}
+		}
+		for(; h-- > 0;) {
+			final T val2 = op.apply(val, (T) dat[i>>h]);
+			if(fn.test(val2)) {
+				i += 1 << h;
+				if(i == n * 2) {
+					return fini;
+				}
+				val = val2;
+			}
+		}
+		return Math.min(i - n, fini);
+	}
+}
+
+final class SparseTable {
+	private final long[][] st;
+	private final int[] lookup;
+	private final LongBinaryOperator op;
+	SparseTable(final int[] a, final LongBinaryOperator op) {
+		this.op = op;
+		int b = 0;
+		while((1 << b) <= a.length) {
+			++b;
+		}
+		st = new long[b][1 << b];
+		for(int i = 0; i < a.length; i++) {
+			st[0][i] = a[i];
+		}
+		for(int i = 1; i < b; i++) {
+			for(int j = 0; j + (1 << i) <= (1 << b); j++) {
+				st[i][j] = op.applyAsLong(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);
+			}
+		}
+		lookup = new int[a.length + 1];
+		for(int i = 2; i < lookup.length; i++) {
+			lookup[i] = lookup[i >> 1] + 1;
+		}
+	}
+	SparseTable(final long[] a, final LongBinaryOperator op) {
+		this.op = op;
+		int b = 0;
+		while((1 << b) <= a.length) {
+			++b;
+		}
+		st = new long[b][1 << b];
+		for(int i = 0; i < a.length; i++) {
+			st[0][i] = a[i];
+		}
+		for(int i = 1; i < b; i++) {
+			for(int j = 0; j + (1 << i) <= (1 << b); j++) {
+				st[i][j] = op.applyAsLong(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);
+			}
+		}
+		lookup = new int[a.length + 1];
+		for(int i = 2; i < lookup.length; i++) {
+			lookup[i] = lookup[i >> 1] + 1;
+		}
+	}
+	final long query(final int l, final int r) {
+		final int b = lookup[r - l];
+		return op.applyAsLong(st[b][l], st[b][r - (1 << b)]);
+	}
+	final int minLeft(final int x, final LongPredicate fn) {
+		if(x == 0) {
 			return 0;
 		}
-		final long a = f[n], b = rf[n - k];
-		return (a * b) % mod;
-	}
-	final long H(final int n, final int k) {
-		if (n == 0 && k == 0) {
-			return 1;
+		int ok = x, ng = -1;
+		while(Math.abs(ok - ng) > 1) {
+			final int mid = (ok + ng) / 2;
+			if(fn.test(query(mid, x) - 1)) {
+				ok = mid;
+			}
+			else {
+				ng = mid;
+			}
 		}
-		return C(n + k - 1, k);
+		return ok;
 	}
-	final long factor(final int n){ return f[n]; }
+	final int maxRight(final int x, final LongPredicate fn) {
+		if(x == lookup.length - 1) {
+			return lookup.length - 1;
+		}
+		int ok = x, ng = lookup.length;
+		while(Math.abs(ok - ng) > 1) {
+			final int mid = (ok + ng) / 2;
+			if(fn.test(query(x, mid))) {
+				ok = mid;
+			}
+			else {
+				ng = mid;
+			}
+		}
+		return ok;
+	}
+}
+
+final class SuccinctIndexableDictionary {
+	private final int blk;
+	private final int[] bit, sum;
+	SuccinctIndexableDictionary(final int len) {
+		blk = (len + 31) >> 5;
+		bit = new int[blk];
+		sum = new int[blk];
+	}
+	final void set(final int k){ bit[k >> 5] |= 1 << (k & 31); }
+	final void build() {
+		sum[0] = 0;
+		for(int i = 0; ++i < blk;) {
+			sum[i] = sum[i - 1] + Integer.bitCount(bit[i - 1]);
+		}
+	}
+	final boolean get(final int k){ return ((bit[k >> 5] >> (k & 31)) & 1) == 1; }
+	final int rank(final int k){ return (sum[k >> 5] + Integer.bitCount(bit[k >> 5] & ((1 << (k & 31)) - 1))); }
+	final int rank(final boolean val, final int k){ return val ? rank(k) : k - rank(k); }
+}
+final class WaveletMatrixBeta {
+	private final int log;
+	private final SuccinctIndexableDictionary[] matrix;
+	private final int[] mid;
+	WaveletMatrixBeta(final long[] arr, final int log) {
+		final int len = arr.length;
+		this.log = log;
+		matrix = new SuccinctIndexableDictionary[log];
+		mid = new int[log];
+		final long[] l = new long[len], r = new long[len];
+		for(int level = log; --level >= 0;) {
+			matrix[level] = new SuccinctIndexableDictionary(len + 1);
+			int left = 0, right = 0;
+			for(int i = 0; i < len; ++i) {
+				if(((arr[i] >> level) & 1) == 1) {
+					matrix[level].set(i);
+					r[right++] = arr[i];
+				} else {
+					l[left++] = arr[i];
+				}
+			}
+			mid[level] = left;
+			matrix[level].build();
+			final long[] tmp = new long[len];
+			System.arraycopy(arr, 0, tmp, 0, len);
+			System.arraycopy(l, 0, arr, 0, len);
+			System.arraycopy(tmp, 0, l, 0, len);
+			for(int i = 0; i < right; ++i) {
+				arr[left + i] = r[i];
+			}
+		}
+	}
+	private final IntPair succ(final boolean f, final int l, final int r, final int level){ return IntPair.of(matrix[level].rank(f, l) + mid[level] * (f ? 1 : 0), matrix[level].rank(f, r) + mid[level] * (f ? 1 : 0)); }
+	final long access(int k) {
+		long ret = 0;
+		for(int level = log; --level >= 0;) {
+			final boolean f = matrix[level].get(k);
+			if(f) {
+				ret |= 1L << level;
+			}
+			k = matrix[level].rank(f, k) + mid[level] * (f ? 1 : 0);
+		}	
+		return ret;
+	}
+	final int rank(final long x, int r) {
+		int l = 0;
+		for(int level = log; --level >= 0;) {
+			final IntPair p = succ(((x >> level) & 1) == 1, l, r, level);
+			l = p.first.intValue();
+			r = p.second.intValue();
+		}
+		return r - l;
+	}
+	final long kthMin(int l, int r, int k) {
+		if(!Utility.scope(0, k, r - l - 1)) {
+			throw new IndexOutOfBoundsException();
+		}
+		long ret = 0;
+		for(int level = log; --level >= 0;) {
+			final int cnt = matrix[level].rank(false, r) - matrix[level].rank(false, l);
+			final boolean f = cnt <= k;
+			if(f) {
+				ret |= 1 << level;
+				k -= cnt;
+			}
+			final IntPair p = succ(f, l, r, level);
+			l = p.first.intValue();
+			r = p.second.intValue();
+		}
+		return ret;
+	}
+	final long kthMax(final int l, final int r, final int k){ return kthMin(l, r, r - l - k - 1); }
+	final int rangeFreq(int l, int r, final long upper) {
+		int ret = 0;
+		for(int level = log; --level >= 0;) {
+			final boolean f = ((upper >> level) & 1) == 1;
+			if(f) {
+				ret += matrix[level].rank(false, r) - matrix[level].rank(false, l);
+			}
+			final IntPair p = succ(f, l, r, level); 
+			l = p.first.intValue();
+			r = p.second.intValue();
+		}
+		return ret;
+	}
+	final int rangeFreq(final int l, final int r, final long lower, final long upper){ return rangeFreq(l, r, upper) - rangeFreq(l, r, lower); }
+	final long prev(final int l, final int r, final long upper) {
+		final int cnt = rangeFreq(l, r, upper);
+		return cnt == 0 ? -1 : kthMin(l, r, cnt - 1);
+	}
+	final long next(final int l, final int r, final long lower) {
+		final int cnt = rangeFreq(l, r, lower);
+		return cnt == r - l ? -1 : kthMin(l, r, cnt);
+	}
+}
+final class WaveletMatrix {
+	private final WaveletMatrixBeta mat;
+	private final long[] ys;
+	WaveletMatrix(final long[] arr){ this(arr, 16); }
+	WaveletMatrix(final long[] arr, final int log) {
+		ys = Arrays.stream(arr).sorted().distinct().toArray();
+		final long[] t = new long[arr.length];
+		IntStream.range(0, arr.length).forEach(i -> t[i] = get(arr[i]));
+		mat = new WaveletMatrixBeta(t, log);
+	}
+	private final int get(final long x){ return Utility.lowerBound(ys, x); }
+	final long access(final int k){ return ys[(int) mat.access(k)]; }
+	final int rank(final long x, final int r) {
+		final int pos = get(x);
+		if(pos == ys.length || ys[pos] != x) {
+			return 0;
+		}
+		return mat.rank(pos, r);
+	}
+	final long kthMin(final int l, final int r, final int k){ return ys[(int) mat.kthMin(l, r, k)]; }
+	final long kthMax(final int l, final int r, final int k){ return ys[(int) mat.kthMax(l, r, k)]; }
+	final int rangeFreq(final int l, final int r, final long upper){ return mat.rangeFreq(l, r, get(upper)); }
+	final int rangeFreq(final int l, final int r, final long lower, final long upper){ return mat.rangeFreq(l, r, get(lower), get(upper)); }
+	final long prev(final int l, final int r, final long upper) {
+		final long ret = mat.prev(l, r, get(upper));
+		return ret == -1 ? -1 : ys[(int) ret];
+	}
+	final long next(final int l, final int r, final long lower) {
+		final long ret = mat.next(l, r, get(lower));
+		return ret == -1 ? -1 : ys[(int) ret];
+	}
 }
