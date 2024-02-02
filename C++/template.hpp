@@ -283,7 +283,10 @@ inline void yes(const bool ok=1){ out(ok?"yes":"no"); }
 inline void no(const bool ok=1){ yes(!ok); }
 template <class T> inline T sqr(const T x){ return x*x; }
 template <class T> inline T cub(const T x){ return x*x*x; }
-template <class T> inline T Mod(const T x, const T m){ return (x+m)%m; }
+template <class T> inline T Mod(T x, const T m) {
+  x %= m;
+  return x < 0 ? x + m : x;
+}
 template <class T> inline T Pow(T a, T b, const T mod=0) {
   T res=1;
   if(mod) {
