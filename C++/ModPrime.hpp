@@ -54,3 +54,6 @@ public:
 		return C(n + k - 1, k);
 	}
 };
+/**
+ * @brief ModPrime
+ */
