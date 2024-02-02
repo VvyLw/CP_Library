@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/modprime.test.cpp
     title: test/modprime.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/modprime2.test.cpp
+    title: test/modprime2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -60,6 +63,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modprime.test.cpp
+  - test/modprime2.test.cpp
 documentation_of: C++/ModPrime.hpp
 layout: document
 redirect_from:

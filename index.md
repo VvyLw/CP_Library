@@ -313,6 +313,9 @@ data:
       path: test/modprime.test.cpp
       title: test/modprime.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/modprime2.test.cpp
+      title: test/modprime2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/parsum.test.cpp
       title: test/parsum.test.cpp
     - icon: ':heavy_check_mark:'

@@ -793,14 +793,15 @@ data:
     lim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final IOException e) {\n\t\
     \t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t\treturn buf[pos++];\n\t}\n\tprivate\
     \ final byte next() {\n\t\tbyte bt;\n\t\twhile(isPunct(bt = read())){}\n\t\treturn\
-    \ bt;\n\t}\n\tfinal int ni(){ return Math.toIntExact(nl()); }\n\tfinal long nl()\
-    \ {\n\t\tbyte c = next();\n\t\tfinal boolean neg = c == '-';\n\t\tif(neg) {\n\t\
-    \t\tc = read();\n\t\t}\n\t\tassert(isNum(c));\n\t\tlong res = c - '0';\n\t\twhile(isNum(c\
-    \ = read())) {\n\t\t\tres = 10 * res + c - '0';\n\t\t}\n\t\treturn neg ? -res\
-    \ : res;\n\t}\n\tfinal double nd(){ return Double.parseDouble(ns()); }\n\tfinal\
-    \ char nc(){ return (char) next(); }\n\tfinal String ns() {\n\t\tfinal StringBuilder\
-    \ sb = new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c)) {\n\t\
-    \t\tsb.append((char) c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\
+    \ bt;\n\t}\n\tprivate final byte nextInt() {\n\t\tbyte bt;\n\t\twhile(!isNum(bt\
+    \ = read())){}\n\t\treturn bt;\n\t}\n\tfinal int ni(){ return Math.toIntExact(nl());\
+    \ }\n\tfinal long nl() {\n\t\tbyte c = nextInt();\n\t\tfinal boolean neg = c ==\
+    \ '-';\n\t\tif(neg) {\n\t\t\tc = read();\n\t\t}\n\t\tassert(isNum(c));\n\t\tlong\
+    \ res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\tres = 10 * res + c - '0';\n\
+    \t\t}\n\t\treturn neg ? -res : res;\n\t}\n\tfinal double nd(){ return Double.parseDouble(ns());\
+    \ }\n\tfinal char nc(){ return (char) next(); }\n\tfinal String ns() {\n\t\tfinal\
+    \ StringBuilder sb = new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c))\
+    \ {\n\t\t\tsb.append((char) c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\
     \t}\n\tfinal BigInteger nb(){ return new BigInteger(ns()); }\n\tfinal int[] ni(final\
     \ int n) {\n\t\tfinal int[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i\
     \ -> a[i] = ni());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\t\
@@ -1773,7 +1774,7 @@ data:
     \ k) {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal long a = f[n], b = rf[n - k];\n\t\t\
     return (a * b) % mod;\n\t}\n\tfinal long H(final int n, final int k) {\n\t\tif\
     \ (n == 0 && k == 0) {\n\t\t\treturn 1;\n\t\t}\n\t\treturn C(n + k - 1, k);\n\t\
-    }\n}"
+    }\n\tfinal long factor(final int n){ return f[n]; }\n}"
   dependsOn:
   - Java/CodeForces.java
   - Java/yukicoder.java
@@ -1882,7 +1883,7 @@ data:
   - Java/library/math/EulerPhiTable.java
   - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
-  timestamp: '2024-02-02 19:51:38+09:00'
+  timestamp: '2024-02-02 20:47:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
