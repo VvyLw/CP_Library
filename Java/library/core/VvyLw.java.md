@@ -328,21 +328,21 @@ data:
     \n/**\n * \u3053\u3053\u3067\u306FUtility\u30AF\u30E9\u30B9\u306E\u30E1\u30BD\u30C3\
     \u30C9\u3092\u30AF\u30E9\u30B9\u5BA3\u8A00\u306A\u3057\u3067\u4F7F\u3048\u308B\
     \n */\npublic final class VvyLw extends Utility {\n\tpublic static final MyScanner\
-    \ sc = new MyScanner(System.in);\n\t/**\n\t * \u30A4\u30F3\u30BF\u30E9\u30AF\u30C6\
-    \u30A3\u30D6\u554F\u984C\u306E\u6642\u306Ffalse\u3092true\u306B\u5909\u3048\u308B\
-    \n\t */\n\tstatic final MyPrinter o = new MyPrinter(System.out, false);\n\t/**\n\
-    \t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t */\n\tstatic final MyPrinter dbg = new\
-    \ MyPrinter(System.err, true);\n\t/**\n\t * \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\
-    \u30B1\u30FC\u30B9\u306E\u554F\u984C\u306E\u6642\u306Ffalse\u3092true\u306B\u5909\
-    \u3048\u308B\n\t */\n\tstatic final boolean MULTI = false;\n\tstatic final double\
-    \ EPS = 1e-18;\n\tpublic static final int INF = 1 << 30;\n\tpublic static final\
-    \ long LINF = (1L << 61) - 1;\n\tstatic final int MOD = 998244353;\n\tstatic final\
-    \ int M0D = (int) 1e9 + 7;\n\t/**\n\t * \u30B0\u30EA\u30C3\u30C9\u64CD\u4F5C\u306E\
-    \u6642\u306B\u4FBF\u5229\n\t */\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1,\
-    \ -1, 1, 1};\n\t/**\n\t * \u30B0\u30EA\u30C3\u30C9\u64CD\u4F5C\u306E\u6642\u306B\
-    \u4FBF\u5229\n\t */\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\
-    \t/**\n\t * \u3053\u3053\u306B\u30B3\u30FC\u30C9\u3092\u66F8\u304D\u8FBC\u3080\
-    \n\t */\n\tstatic final void solve() {\n\t\t\n\t}\n}"
+    \ sc = new MyScanner(System.in);\n\t/**\n\t * o: \u30A4\u30F3\u30BF\u30E9\u30AF\
+    \u30C6\u30A3\u30D6\u554F\u984C\u306E\u6642\u306Ffalse\u3092true\u306B\u5909\u3048\
+    \u308B\n\t * dbg: \u30C7\u30D0\u30C3\u30B0\u7528\n\t */\n\tstatic final MyPrinter\
+    \ o = new MyPrinter(System.out, false), dbg = new MyPrinter(System.err, true);\n\
+    \t/**\n\t * \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u306E\u554F\
+    \u984C\u306E\u6642\u306Ffalse\u3092true\u306B\u5909\u3048\u308B\n\t */\n\tstatic\
+    \ final boolean MULTI = false;\n\tstatic final double EPS = 1e-18;\n\tpublic static\
+    \ final int INF = 1 << 30;\n\tpublic static final long LINF = (1L << 61) - 1;\n\
+    \tstatic final int MOD = 998244353;\n\tstatic final int M0D = (int) 1e9 + 7;\n\
+    \t/**\n\t * \u30B0\u30EA\u30C3\u30C9\u64CD\u4F5C\u306E\u6642\u306B\u4FBF\u5229\
+    \n\t */\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\t/**\n\t\
+    \ * \u30B0\u30EA\u30C3\u30C9\u64CD\u4F5C\u306E\u6642\u306B\u4FBF\u5229\n\t */\n\
+    \tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t/**\n\t * \u3053\u3053\
+    \u306B\u30B3\u30FC\u30C9\u3092\u66F8\u304D\u8FBC\u3080\n\t */\n\tstatic final\
+    \ void solve() {\n\t\t\n\t}\n}"
   dependsOn:
   - Java/CodeForces.java
   - Java/yukicoder.java
@@ -451,7 +451,7 @@ data:
   - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
   - Java/All.java
-  timestamp: '2024-02-02 17:06:08+09:00'
+  timestamp: '2024-02-02 17:14:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/VvyLw.java
