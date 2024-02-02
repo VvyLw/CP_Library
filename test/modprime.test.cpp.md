@@ -15,21 +15,21 @@ data:
     links:
     - https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
   bundledCode: "#line 1 \"test/modprime.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
-    \n#include <iostream>\n#include <C++/ModPrime.hpp>\nint main() {\n    int t, m;\n\
-    \    std::cin >> t >> m;\n    ModPrime<(int) 1e7> mp(m);\n    while(t--) {\n \
-    \       int n, k;\n        std::cin >> n >> k;\n        std::cout << mp.C(n, k)\
-    \ << '\\n';\n    }\n}\n"
+    \n#include <iostream>\n#include <C++/ModPrime.hpp>\nint main() {\n    std::cin.tie(nullptr)\
+    \ -> sync_with_stdio(false);\n    int t, m;\n    std::cin >> t >> m;\n    ModPrime<(int)\
+    \ 1e7> mp(m);\n    while(t--) {\n        int n, k;\n        std::cin >> n >> k;\n\
+    \        std::cout << mp.C(n, k) << '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
-    \n#include <iostream>\n#include <C++/ModPrime.hpp>\nint main() {\n    int t, m;\n\
-    \    std::cin >> t >> m;\n    ModPrime<(int) 1e7> mp(m);\n    while(t--) {\n \
-    \       int n, k;\n        std::cin >> n >> k;\n        std::cout << mp.C(n, k)\
-    \ << '\\n';\n    }\n}"
+    \n#include <iostream>\n#include <C++/ModPrime.hpp>\nint main() {\n    std::cin.tie(nullptr)\
+    \ -> sync_with_stdio(false);\n    int t, m;\n    std::cin >> t >> m;\n    ModPrime<(int)\
+    \ 1e7> mp(m);\n    while(t--) {\n        int n, k;\n        std::cin >> n >> k;\n\
+    \        std::cout << mp.C(n, k) << '\\n';\n    }\n}"
   dependsOn:
   - C++/ModPrime.hpp
   isVerificationFile: true
   path: test/modprime.test.cpp
   requiredBy: []
-  timestamp: '2024-02-02 19:51:38+09:00'
+  timestamp: '2024-02-02 19:53:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/modprime.test.cpp
