@@ -2528,7 +2528,7 @@ final class ModPrime {
 	private final long[] f, rf;
 	ModPrime(final int mod, final int sz) {
 		this.mod = mod;
-		len = Math.min(sz, mod);
+		len = Math.min(sz + 1, mod);
 		f = new long[len];
 		rf = new long[len];
 		init();
