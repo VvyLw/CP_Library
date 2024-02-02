@@ -340,7 +340,7 @@ data:
     Yes\" : \"No\"; }\n\t/**\n\t * {@link #yes}\u306E\u9006\n\t * @param ok boolean\n\
     \t * @return ok\u304Ctrue\u306A\u3089\"No\" false\u306A\u3089\"Yes\"\n\t */\n\t\
     protected static final String no(final boolean ok){ return yes(!ok); }\n\t/**\n\
-    \t * @param x\n\t * @return x\u306E\u5E73\u65B9\u6570\n\t */\n\tpublic static\
+    \t * @param x\n\t * @return x\u306E\u5E73\u65B9\u6570\n\t */\n\tprotected static\
     \ final long sqr(final long x){ return x * x; }\n\t/**\n\t * n\u304C\u8CA0\u306E\
     \u6642\u3067\u3082\u6B63\u306E\u5270\u4F59\u3092\u6C42\u3081\u308B\n\t * @param\
     \ n int\n\t * @param m int\n\t */\n\tpublic static final long mod(long n, final\
@@ -1189,7 +1189,7 @@ data:
   - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
   - Java/All.java
-  timestamp: '2024-02-02 17:14:13+09:00'
+  timestamp: '2024-02-02 19:51:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

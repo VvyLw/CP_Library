@@ -324,23 +324,22 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/math/ModPrime.java\n"
-  code: "package library.math;\n\nimport library.core.Utility;\n\npublic final class\
-    \ ModPrime {\n\tprivate final int len;\n\tprivate final long mod;\n\tprivate final\
-    \ long[] f, rf;\n\tpublic ModPrime(final long mod, final int sz) {\n\t\tthis.mod\
-    \ = mod;\n\t\tlen = (int) Math.min(sz, mod);\n\t\tf = new long[len];\n\t\trf =\
-    \ new long[len];\n\t\tinit();\n\t}\n\tprivate final long inv(long x) {\n\t\tlong\
-    \ res = 1, k = mod - 2;\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\t\
-    res = Utility.mod(res * x, mod);\n\t\t\t}\n\t\t\tx = Utility.sqr(x) % mod;\n\t\
-    \t\tk >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprivate final void init() {\n\t\t\
-    f[0] = rf[0] = 1;\n\t\tfor(int i = 0; ++i < len;) {\n\t\t\tf[i] = Utility.mod(f[i\
-    \ - 1] * i, mod);\n\t\t\trf[i] = inv(f[i]);\n\t\t}\n\t}\n\tpublic final long C(final\
-    \ int n, final int k) {\n\t\tif(k < 0 || n < k) {\n\t\t\treturn 0;\n\t\t}\n\t\t\
-    final long a = f[n], b = rf[n - k], c = rf[k], bc = (b * c) % mod;\n\t\treturn\
-    \ Utility.mod(a * bc, mod);\n\t}\n\tpublic final long P(final int n, final int\
-    \ k) {\n\t\tif (k < 0 || n < k) {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal long a =\
-    \ f[n], b = rf[n - k];\n\t\treturn Utility.mod(a * b, mod);\n\t}\n\tpublic final\
-    \ long H(final int n, final int k) {\n\t\tif (n == 0 && k == 0) {\n\t\t\treturn\
-    \ 1;\n\t\t}\n\t\treturn C(n + k - 1, k);\n\t}\n}"
+  code: "package library.math;\n\npublic final class ModPrime {\n\tprivate final int\
+    \ len, mod;\n\tprivate final long[] f, rf;\n\tModPrime(final int mod, final int\
+    \ sz) {\n\t\tthis.mod = mod;\n\t\tlen = Math.min(sz, mod);\n\t\tf = new long[len];\n\
+    \t\trf = new long[len];\n\t\tinit();\n\t}\n\tprivate final long inv(long x) {\n\
+    \t\tlong res = 1, k = mod - 2;\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\
+    \t\t\tres = (res * x) % mod;\n\t\t\t}\n\t\t\tx = (x * x) % mod;\n\t\t\tk >>= 1;\n\
+    \t\t}\n\t\treturn res;\n\t}\n\tprivate final void init() {\n\t\tf[0] = 1;\n\t\t\
+    for(int i = 0; ++i < len;) {\n\t\t\tf[i] = (f[i - 1] * i) % mod;\n\t\t}\n\t\t\
+    rf[len - 1] = inv(f[len - 1]);\n\t\tfor(int i = len; --i > 0;) {\n\t\t\trf[i -\
+    \ 1] = (rf[i] * i) % mod;\n\t\t}\n\t}\n\tfinal long C(final int n, final int k)\
+    \ {\n\t\tif(k < 0 || n < k) {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal long a = f[n],\
+    \ b = rf[n - k], c = rf[k], bc = (b * c) % mod;\n\t\treturn (a * bc) % mod;\n\t\
+    }\n\tfinal long P(final int n, final int k) {\n\t\tif (k < 0 || n < k) {\n\t\t\
+    \treturn 0;\n\t\t}\n\t\tfinal long a = f[n], b = rf[n - k];\n\t\treturn (a * b)\
+    \ % mod;\n\t}\n\tfinal long H(final int n, final int k) {\n\t\tif (n == 0 && k\
+    \ == 0) {\n\t\t\treturn 1;\n\t\t}\n\t\treturn C(n + k - 1, k);\n\t}\n}"
   dependsOn:
   - Java/CodeForces.java
   - Java/yukicoder.java
@@ -449,7 +448,7 @@ data:
   - Java/library/math/EulerPhiTable.java
   - Java/library/math/PrimeTable.java
   - Java/All.java
-  timestamp: '2024-02-02 17:14:13+09:00'
+  timestamp: '2024-02-02 19:51:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/ModPrime.java
