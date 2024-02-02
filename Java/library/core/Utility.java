@@ -37,7 +37,7 @@ public class Utility {
 	 * @param x
 	 * @return xの平方数
 	 */
-	public static final long sqr(final long x){ return x * x; }
+	protected static final long sqr(final long x){ return x * x; }
 	/**
 	 * nが負の時でも正の剰余を求める
 	 * @param n int

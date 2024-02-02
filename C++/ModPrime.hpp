@@ -1,5 +1,6 @@
 #include <iostream>
 #include <array>
+#include <algorithm>
 #ifndef TEMPLATE
 template <class T> inline T sqr(const T x){ return x * x; }
 template <class T> inline T Mod(T x, const T m) {
@@ -13,6 +14,7 @@ template <int lim> struct ModPrime {
 private:
     const int64_t mod;
     std::array<int64_t, lim> f{}, rf{};
+	const int len = std::min(mod, (int64_t) lim);
     int64_t inv(int64_t x) {
         int64_t res = 1, k = mod - 2;
 		while(k) {
@@ -27,10 +29,12 @@ private:
 public:
     ModPrime(const int64_t mod_): mod(mod_) {
         f[0] = 1;
-		rf[0] = inv(f[0]);
-		for(int i = 0; ++i < lim;) {
+		for(int i = 0; ++i < len;) {
 			f[i] = Mod(f[i - 1] * i, mod);
-			rf[i] = inv(f[i]);
+		}
+		rf[len - 1] = inv(f[len - 1]);
+		for(int i = len; --i > 0;) {
+			rf[i - 1] = Mod(rf[i] * i, mod);
 		}
     }
     int64_t C(const int n, const int k) const {
