@@ -9,13 +9,10 @@ import library.core.io.MyScanner;
 public final class VvyLw extends Utility {
 	public static final MyScanner sc = new MyScanner(System.in);
 	/**
-	 * インタラクティブ問題の時はfalseをtrueに変える
+	 * o: インタラクティブ問題の時はfalseをtrueに変える
+	 * dbg: デバッグ用
 	 */
-	static final MyPrinter o = new MyPrinter(System.out, false);
-	/**
-	 * デバッグ用
-	 */
-	static final MyPrinter dbg = new MyPrinter(System.err, true);
+	static final MyPrinter o = new MyPrinter(System.out, false), dbg = new MyPrinter(System.err, true);
 	/**
 	 * マルチテストケースの問題の時はfalseをtrueに変える
 	 */

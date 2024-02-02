@@ -23,8 +23,7 @@ final class Main {
 
 final class VvyLw extends Utility {
 	static final MyScanner sc = new MyScanner(System.in);
-	static final MyPrinter o = new MyPrinter(System.out, false);
-	static final MyPrinter dbg = new MyPrinter(System.err, true);
+	static final MyPrinter o = new MyPrinter(System.out, false), dbg = new MyPrinter(System.err, true);
 	static final boolean MULTI = false;
 	static final int INF = 1 << 30;
 	static final long LINF = (1L << 61) - 1;
