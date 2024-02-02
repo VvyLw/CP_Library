@@ -93,9 +93,9 @@ data:
   timestamp: '2024-01-30 14:40:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/inv_num.test.cpp
   - test/ftree.test.cpp
   - test/parsum.test.cpp
-  - test/inv_num.test.cpp
 documentation_of: C++/FenwickTree.hpp
 layout: document
 redirect_from:

@@ -83,11 +83,11 @@ data:
     path: Java/library/math/Matrix.java
     title: Java/library/math/Matrix.java
   - icon: ':warning:'
-    path: Java/library/math/ModPrime.java
-    title: Java/library/math/ModPrime.java
-  - icon: ':warning:'
     path: Java/library/math/PrimeCounter.java
     title: Java/library/math/PrimeCounter.java
+  - icon: ':warning:'
+    path: Java/library/math/PrimeFactor.java
+    title: Java/library/math/PrimeFactor.java
   - icon: ':warning:'
     path: Java/library/math/PrimeTable.java
     title: Java/library/math/PrimeTable.java
@@ -240,11 +240,11 @@ data:
     path: Java/library/math/Matrix.java
     title: Java/library/math/Matrix.java
   - icon: ':warning:'
-    path: Java/library/math/ModPrime.java
-    title: Java/library/math/ModPrime.java
-  - icon: ':warning:'
     path: Java/library/math/PrimeCounter.java
     title: Java/library/math/PrimeCounter.java
+  - icon: ':warning:'
+    path: Java/library/math/PrimeFactor.java
+    title: Java/library/math/PrimeFactor.java
   - icon: ':warning:'
     path: Java/library/math/PrimeTable.java
     title: Java/library/math/PrimeTable.java
@@ -323,20 +323,24 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/math/PrimeFactor.java\n"
-  code: "package library.math;\n\nimport java.util.TreeMap;\n\nimport library.core.Utility;\n\
-    \n/**\n * n\u4EE5\u4E0B\u306E\u6574\u6570\u306B\u5BFE\u3057\u3066\u7D20\u56E0\u6570\
-    \u5206\u89E3\u53EF\u80FD\u306A\u30C6\u30FC\u30D6\u30EB\u3092\u4F5C\u6210\u3059\
-    \u308B\u30AF\u30E9\u30B9\n */\npublic final class PrimeFactor {\n\tprivate final\
-    \ int[] spf;\n\tpublic PrimeFactor(final int n) {\n\t\tspf = Utility.iota(n +\
-    \ 1);\n\t\tfor(int i = 2; i * i <= n; ++i) {\n\t\t\tif(spf[i] != i) {\n\t\t\t\t\
-    continue;\n\t\t\t}\n\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\tif(spf[j]\
-    \ == j) {\n\t\t\t\t\tspf[j] = i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\t/**\n\t *\
-    \ @param n \u6574\u6570\n\t * @return n\u3092\u7D20\u56E0\u6570\u5206\u89E3\u3059\
-    \u308B\n\t */\n\tpublic final TreeMap<Integer, Integer> get(int n) {\n\t\tfinal\
-    \ TreeMap<Integer, Integer> m = new TreeMap<>();\n\t\twhile(n != 1) {\n\t\t\t\
-    m.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\t\t}\n\t\treturn\
-    \ m;\n\t}\n}\n"
+    RuntimeError: bundler is not specified: Java/library/math/ModPrime.java\n"
+  code: "package library.math;\n\nimport library.core.Utility;\n\npublic final class\
+    \ ModPrime {\n\tprivate final int len;\n\tprivate final long mod;\n\tprivate final\
+    \ long[] f, rf;\n\tpublic ModPrime(final long mod, final int sz) {\n\t\tthis.mod\
+    \ = mod;\n\t\tlen = (int) Math.min(sz, mod);\n\t\tf = new long[len];\n\t\trf =\
+    \ new long[len];\n\t\tinit();\n\t}\n\tprivate final long inv(long x) {\n\t\tlong\
+    \ res = 1, k = mod - 2;\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\t\
+    res = Utility.mod(res * x, mod);\n\t\t\t}\n\t\t\tx = Utility.sqr(x) % mod;\n\t\
+    \t\tk >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprivate final void init() {\n\t\t\
+    f[0] = rf[0] = 1;\n\t\tfor(int i = 0; ++i < len;) {\n\t\t\tf[i] = Utility.mod(f[i\
+    \ - 1] * i, mod);\n\t\t\trf[i] = inv(f[i]);\n\t\t}\n\t}\n\tpublic final long C(final\
+    \ int n, final int k) {\n\t\tif(k < 0 || n < k) {\n\t\t\treturn 0;\n\t\t}\n\t\t\
+    final long a = f[n], b = rf[n - k], c = rf[k], bc = (b * c) % mod;\n\t\treturn\
+    \ Utility.mod(a * bc, mod);\n\t}\n\tpublic final long P(final int n, final int\
+    \ k) {\n\t\tif (k < 0 || n < k) {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal long a =\
+    \ f[n], b = rf[n - k];\n\t\treturn Utility.mod(a * b, mod);\n\t}\n\tpublic final\
+    \ long H(final int n, final int k) {\n\t\tif (n == 0 && k == 0) {\n\t\t\treturn\
+    \ 1;\n\t\t}\n\t\treturn C(n + k - 1, k);\n\t}\n}"
   dependsOn:
   - Java/CodeForces.java
   - Java/yukicoder.java
@@ -384,14 +388,14 @@ data:
   - Java/library/core/io/MyPrinter.java
   - Java/library/math/PrimeCounter.java
   - Java/library/math/LongPrime.java
+  - Java/library/math/PrimeFactor.java
   - Java/library/math/BigPrime.java
   - Java/library/math/Matrix.java
   - Java/library/math/EulerPhiTable.java
-  - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
   - Java/All.java
   isVerificationFile: false
-  path: Java/library/math/PrimeFactor.java
+  path: Java/library/math/ModPrime.java
   requiredBy:
   - Java/CodeForces.java
   - Java/yukicoder.java
@@ -439,19 +443,19 @@ data:
   - Java/library/core/io/MyPrinter.java
   - Java/library/math/PrimeCounter.java
   - Java/library/math/LongPrime.java
+  - Java/library/math/PrimeFactor.java
   - Java/library/math/BigPrime.java
   - Java/library/math/Matrix.java
   - Java/library/math/EulerPhiTable.java
-  - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
   - Java/All.java
   timestamp: '2024-02-02 17:06:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/math/PrimeFactor.java
+documentation_of: Java/library/math/ModPrime.java
 layout: document
 redirect_from:
-- /library/Java/library/math/PrimeFactor.java
-- /library/Java/library/math/PrimeFactor.java.html
-title: Java/library/math/PrimeFactor.java
+- /library/Java/library/math/ModPrime.java
+- /library/Java/library/math/ModPrime.java.html
+title: Java/library/math/ModPrime.java
 ---

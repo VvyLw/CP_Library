@@ -48,18 +48,18 @@ data:
   isVerificationFile: false
   path: C++/edge.hpp
   requiredBy:
-  - C++/MST.hpp
   - C++/graph.hpp
+  - C++/MST.hpp
   timestamp: '2023-12-12 00:31:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/kruskal.test.cpp
-  - test/dag_check.test.cpp
   - test/warshallfloyd.test.cpp
-  - test/manhattan.test.cpp
   - test/directed.test.cpp
-  - test/bermanford.test.cpp
   - test/lca.test.cpp
+  - test/dag_check.test.cpp
+  - test/manhattan.test.cpp
+  - test/bermanford.test.cpp
+  - test/kruskal.test.cpp
 documentation_of: C++/edge.hpp
 layout: document
 redirect_from:

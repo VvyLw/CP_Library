@@ -1,0 +1,64 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/modprime.test.cpp
+    title: test/modprime.test.cpp
+  _isVerificationFailed: false
+  _pathExtension: hpp
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"C++/ModPrime.hpp\"\n#include <iostream>\n#include <array>\n\
+    #ifndef TEMPLATE\ntemplate <class T> inline T sqr(const T x){ return x * x; }\n\
+    template <class T> inline T Mod(T x, const T m) {\n    x %= m;\n    return x <\
+    \ 0 ? x + m : x;\n}\n#else\nusing namespace zia_qu;\n#endif\ntemplate <int lim>\
+    \ struct ModPrime {\nprivate:\n    const int64_t mod;\n    std::array<int64_t,\
+    \ lim> f{}, rf{};\n    int64_t inv(int64_t x) {\n        int64_t res = 1, k =\
+    \ mod - 2;\n\t\twhile(k) {\n\t\t\tif(k & 1) {\n\t\t\t\tres = Mod(res * x, mod);\n\
+    \t\t\t}\n\t\t\tx = Mod(sqr(x), mod);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn res;\n\
+    \    }\npublic:\n    ModPrime(const int64_t mod_): mod(mod_) {\n        f[0] =\
+    \ 1;\n\t\trf[0] = inv(f[0]);\n\t\tfor(int i = 0; ++i < lim;) {\n\t\t\tf[i] = Mod(f[i\
+    \ - 1] * i, mod);\n\t\t\trf[i] = inv(f[i]);\n\t\t}\n    }\n    int64_t C(const\
+    \ int n, const int k) const {\n\t\tif(k < 0 || n < k) {\n\t\t\treturn 0;\n\t\t\
+    }\n\t\tconst int64_t a = f[n], b = rf[n - k], c = rf[k], bc = Mod(b * c, mod);\n\
+    \t\treturn Mod(a * bc, mod);\n\t}\n\tint64_t P(const int n, const int k) const\
+    \ {\n\t\tif (k < 0 || n < k) {\n\t\t\treturn 0;\n\t\t}\n\t\tconst int64_t a =\
+    \ f[n], b = rf[n - k];\n\t\treturn Mod(a * b, mod);\n\t}\n\tint64_t H(const int\
+    \ n, const int k) const {\n\t\tif (n == 0 && k == 0) {\n\t\t\treturn 1;\n\t\t\
+    }\n\t\treturn C(n + k - 1, k);\n\t}\n};\n"
+  code: "#include <iostream>\n#include <array>\n#ifndef TEMPLATE\ntemplate <class\
+    \ T> inline T sqr(const T x){ return x * x; }\ntemplate <class T> inline T Mod(T\
+    \ x, const T m) {\n    x %= m;\n    return x < 0 ? x + m : x;\n}\n#else\nusing\
+    \ namespace zia_qu;\n#endif\ntemplate <int lim> struct ModPrime {\nprivate:\n\
+    \    const int64_t mod;\n    std::array<int64_t, lim> f{}, rf{};\n    int64_t\
+    \ inv(int64_t x) {\n        int64_t res = 1, k = mod - 2;\n\t\twhile(k) {\n\t\t\
+    \tif(k & 1) {\n\t\t\t\tres = Mod(res * x, mod);\n\t\t\t}\n\t\t\tx = Mod(sqr(x),\
+    \ mod);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn res;\n    }\npublic:\n    ModPrime(const\
+    \ int64_t mod_): mod(mod_) {\n        f[0] = 1;\n\t\trf[0] = inv(f[0]);\n\t\t\
+    for(int i = 0; ++i < lim;) {\n\t\t\tf[i] = Mod(f[i - 1] * i, mod);\n\t\t\trf[i]\
+    \ = inv(f[i]);\n\t\t}\n    }\n    int64_t C(const int n, const int k) const {\n\
+    \t\tif(k < 0 || n < k) {\n\t\t\treturn 0;\n\t\t}\n\t\tconst int64_t a = f[n],\
+    \ b = rf[n - k], c = rf[k], bc = Mod(b * c, mod);\n\t\treturn Mod(a * bc, mod);\n\
+    \t}\n\tint64_t P(const int n, const int k) const {\n\t\tif (k < 0 || n < k) {\n\
+    \t\t\treturn 0;\n\t\t}\n\t\tconst int64_t a = f[n], b = rf[n - k];\n\t\treturn\
+    \ Mod(a * b, mod);\n\t}\n\tint64_t H(const int n, const int k) const {\n\t\tif\
+    \ (n == 0 && k == 0) {\n\t\t\treturn 1;\n\t\t}\n\t\treturn C(n + k - 1, k);\n\t\
+    }\n};"
+  dependsOn: []
+  isVerificationFile: false
+  path: C++/ModPrime.hpp
+  requiredBy: []
+  timestamp: '2024-02-02 17:06:08+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/modprime.test.cpp
+documentation_of: C++/ModPrime.hpp
+layout: document
+redirect_from:
+- /library/C++/ModPrime.hpp
+- /library/C++/ModPrime.hpp.html
+title: C++/ModPrime.hpp
+---

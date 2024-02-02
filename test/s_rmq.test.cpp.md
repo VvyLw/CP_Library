@@ -224,30 +224,30 @@ data:
     \ No(const bool ok=1){ Yes(!ok); }\r\ninline void yes(const bool ok=1){ out(ok?\"\
     yes\":\"no\"); }\r\ninline void no(const bool ok=1){ yes(!ok); }\r\ntemplate <class\
     \ T> inline T sqr(const T x){ return x*x; }\r\ntemplate <class T> inline T cub(const\
-    \ T x){ return x*x*x; }\r\ntemplate <class T> inline T Mod(const T x, const T\
-    \ m){ return (x+m)%m; }\r\ntemplate <class T> inline T Pow(T a, T b, const T mod=0)\
-    \ {\r\n  T res=1;\r\n  if(mod) {\r\n    res%=mod;\r\n    a%=mod;\r\n  }\r\n  while(b>0)\
-    \ {\r\n    if(b&1) res*=a;\r\n    if(mod) res%=mod;\r\n    a*=a;\r\n    if(mod)\
-    \ a%=mod;\r\n    b>>=1;\r\n  }\r\n  return res;\r\n}\r\ninline ll Ceil(const ld\
-    \ x, const ll m){ return std::ceil(x/m); }\r\ninline ld Round(const ld x, const\
-    \ ll m, const short fx=0){ if(!fx) return std::round(x/m); const ul y=Pow<ul>(10,fx);\
-    \ return std::round((x*y)/m)/y; }\r\ninline ld Log(const ll x, const ld base=2){\
-    \ return std::log2(x)/std::log2(base); }\r\ninline int bitdigit(const ll x){ return\
-    \ 64-__builtin_clzll(x); }\r\ninline int popcnt(const ll x){ return __builtin_popcountll(x);\
-    \ }\r\ninline int fione(const ll x){ return __builtin_ffsll(x); }\r\ninline int\
-    \ zrcnt(const ll x){ return __builtin_ctzll(x); }\r\ntemplate <class T=ll> inline\
-    \ bool scope(const T a, const T x, const T b){ return a <= x && x <= b; }\r\n\
-    inline bool isupper(const char c){ return std::isupper(c); }\r\ninline bool isupper(const\
-    \ std::string &s){ bool ok=1; each(el,s) ok&=isupper(el); return ok; }\r\ninline\
-    \ bool islower(const char c){ return std::islower(c); }\r\ninline bool islower(const\
-    \ std::string &s){ bool ok=1; each(el,s) ok&=islower(el); return ok; }\r\ninline\
-    \ bool isalpha(const char c){ return std::isalpha(c); }\r\ninline bool isalpha(const\
-    \ std::string &s){ bool ok=1; each(el,s) ok&=isalpha(el); return ok; }\r\ninline\
-    \ bool isdigit(const char c){ return std::isdigit(c); }\r\ninline bool isdigit(const\
-    \ std::string &s){ bool ok=1, neg=s.front()=='-'; each(el,s){ if(neg){ neg=0;\
-    \ continue; } ok&=isdigit(el); } return ok; }\r\ninline bool isalnum(const char\
-    \ c){ return std::isalnum(c); }\r\ninline bool isalnum(const std::string &s){\
-    \ bool ok=1; each(el,s) ok&=isalnum(el); return ok; }\r\ninline bool isspace(const\
+    \ T x){ return x*x*x; }\r\ntemplate <class T> inline T Mod(T x, const T m) {\r\
+    \n  x %= m;\r\n  return x < 0 ? x + m : x;\r\n}\r\ntemplate <class T> inline T\
+    \ Pow(T a, T b, const T mod=0) {\r\n  T res=1;\r\n  if(mod) {\r\n    res%=mod;\r\
+    \n    a%=mod;\r\n  }\r\n  while(b>0) {\r\n    if(b&1) res*=a;\r\n    if(mod) res%=mod;\r\
+    \n    a*=a;\r\n    if(mod) a%=mod;\r\n    b>>=1;\r\n  }\r\n  return res;\r\n}\r\
+    \ninline ll Ceil(const ld x, const ll m){ return std::ceil(x/m); }\r\ninline ld\
+    \ Round(const ld x, const ll m, const short fx=0){ if(!fx) return std::round(x/m);\
+    \ const ul y=Pow<ul>(10,fx); return std::round((x*y)/m)/y; }\r\ninline ld Log(const\
+    \ ll x, const ld base=2){ return std::log2(x)/std::log2(base); }\r\ninline int\
+    \ bitdigit(const ll x){ return 64-__builtin_clzll(x); }\r\ninline int popcnt(const\
+    \ ll x){ return __builtin_popcountll(x); }\r\ninline int fione(const ll x){ return\
+    \ __builtin_ffsll(x); }\r\ninline int zrcnt(const ll x){ return __builtin_ctzll(x);\
+    \ }\r\ntemplate <class T=ll> inline bool scope(const T a, const T x, const T b){\
+    \ return a <= x && x <= b; }\r\ninline bool isupper(const char c){ return std::isupper(c);\
+    \ }\r\ninline bool isupper(const std::string &s){ bool ok=1; each(el,s) ok&=isupper(el);\
+    \ return ok; }\r\ninline bool islower(const char c){ return std::islower(c); }\r\
+    \ninline bool islower(const std::string &s){ bool ok=1; each(el,s) ok&=islower(el);\
+    \ return ok; }\r\ninline bool isalpha(const char c){ return std::isalpha(c); }\r\
+    \ninline bool isalpha(const std::string &s){ bool ok=1; each(el,s) ok&=isalpha(el);\
+    \ return ok; }\r\ninline bool isdigit(const char c){ return std::isdigit(c); }\r\
+    \ninline bool isdigit(const std::string &s){ bool ok=1, neg=s.front()=='-'; each(el,s){\
+    \ if(neg){ neg=0; continue; } ok&=isdigit(el); } return ok; }\r\ninline bool isalnum(const\
+    \ char c){ return std::isalnum(c); }\r\ninline bool isalnum(const std::string\
+    \ &s){ bool ok=1; each(el,s) ok&=isalnum(el); return ok; }\r\ninline bool isspace(const\
     \ char c){ return std::isspace(c); }\r\ninline bool isspace(const std::string\
     \ &s){ bool ok=1; each(el,s) ok&=isspace(el); return ok; }\r\ninline bool ispunct(const\
     \ char c){ return std::ispunct(c); }\r\ninline bool ispunct(const std::string\
@@ -518,7 +518,7 @@ data:
   isVerificationFile: true
   path: test/s_rmq.test.cpp
   requiredBy: []
-  timestamp: '2024-01-30 14:40:09+09:00'
+  timestamp: '2024-02-02 17:06:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/s_rmq.test.cpp

@@ -15,6 +15,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/Matrix.hpp
       title: "\u884C\u5217\u30E9\u30A4\u30D6\u30E9\u30EA"
+    - icon: ':heavy_check_mark:'
+      path: C++/ModPrime.hpp
+      title: C++/ModPrime.hpp
     - icon: ':warning:'
       path: C++/Modint.hpp
       title: Modint
@@ -156,6 +159,9 @@ data:
     - icon: ':warning:'
       path: Java/library/math/Matrix.java
       title: Java/library/math/Matrix.java
+    - icon: ':warning:'
+      path: Java/library/math/ModPrime.java
+      title: Java/library/math/ModPrime.java
     - icon: ':warning:'
       path: Java/library/math/PrimeCounter.java
       title: Java/library/math/PrimeCounter.java
@@ -303,6 +309,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/matrix.test.cpp
       title: test/matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/modprime.test.cpp
+      title: test/modprime.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/parsum.test.cpp
       title: test/parsum.test.cpp
