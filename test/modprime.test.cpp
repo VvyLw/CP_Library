@@ -2,6 +2,7 @@
 #include <iostream>
 #include <C++/ModPrime.hpp>
 int main() {
+    std::cin.tie(nullptr) -> sync_with_stdio(false);
     int t, m;
     std::cin >> t >> m;
     ModPrime<(int) 1e7> mp(m);
