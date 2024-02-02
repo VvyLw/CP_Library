@@ -45,6 +45,11 @@ public final class MyScanner implements Closeable, AutoCloseable {
 		while(isPunct(bt = read())){}
 		return bt;
 	}
+	private final byte nextInt() {
+		byte bt;
+		while(!isNum(bt = read())){}
+		return bt;
+	}
 	/**
 	 * nextInt
 	 * int型を入力する
@@ -55,7 +60,7 @@ public final class MyScanner implements Closeable, AutoCloseable {
 	 * long型を入力する
 	 */
 	public final long nl() {
-		byte c = next();
+		byte c = nextInt();
 		final boolean neg = c == '-';
 		if(neg) {
 			c = read();

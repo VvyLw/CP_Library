@@ -1,8 +1,19 @@
 package library.math;
 
+/**
+ * 二項係数の演算を高速で行うクラス
+ * modは素数
+ * 前計算にO(len + log mod)かかる
+ * @see <a href="https://blog.hamayanhamayan.com/entry/2018/06/06/210256">参考元</a>
+ */
 public final class ModPrime {
 	private final int len, mod;
 	private final long[] f, rf;
+	/**
+	 * コンストラクタ
+	 * @param mod 素数
+	 * @param sz 取りうる値の最大値
+	 */
 	ModPrime(final int mod, final int sz) {
 		this.mod = mod;
 		len = Math.min(sz, mod);
@@ -31,6 +42,11 @@ public final class ModPrime {
 			rf[i - 1] = (rf[i] * i) % mod;
 		}
 	}
+	/**
+	 * @param n
+	 * @param k
+	 * @return 二項係数
+	 */
 	final long C(final int n, final int k) {
 		if(k < 0 || n < k) {
 			return 0;
@@ -38,6 +54,11 @@ public final class ModPrime {
 		final long a = f[n], b = rf[n - k], c = rf[k], bc = (b * c) % mod;
 		return (a * bc) % mod;
 	}
+	/**
+	 * @param n
+	 * @param k
+	 * @return 順列
+	 */
 	final long P(final int n, final int k) {
 		if (k < 0 || n < k) {
 			return 0;
@@ -45,10 +66,20 @@ public final class ModPrime {
 		final long a = f[n], b = rf[n - k];
 		return (a * b) % mod;
 	}
+	/**
+	 * @param n
+	 * @param k
+	 * @return 重複順列
+	 */
 	final long H(final int n, final int k) {
 		if (n == 0 && k == 0) {
 			return 1;
 		}
 		return C(n + k - 1, k);
 	}
+	/**
+	 * @param n
+	 * @return 階乗 mod P
+	 */
+	final long factor(final int n){ return f[n]; }
 }

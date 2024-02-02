@@ -1066,9 +1066,14 @@ final class MyScanner implements Closeable, AutoCloseable {
 		while(isPunct(bt = read())){}
 		return bt;
 	}
+	private final byte nextInt() {
+		byte bt;
+		while(!isNum(bt = read())){}
+		return bt;
+	}
 	final int ni(){ return Math.toIntExact(nl()); }
 	final long nl() {
-		byte c = next();
+		byte c = nextInt();
 		final boolean neg = c == '-';
 		if(neg) {
 			c = read();
@@ -3857,4 +3862,5 @@ final class ModPrime {
 		}
 		return C(n + k - 1, k);
 	}
+	final long factor(final int n){ return f[n]; }
 }
