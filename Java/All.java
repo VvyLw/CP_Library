@@ -119,17 +119,17 @@ class Utility {
 	protected static final double ave(final long... a){ return Arrays.stream(a).average().getAsDouble(); }
 	protected static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble(); }
 	protected static final double median(final int[] a) {
-		assert(isSorted(a));
+		assert isSorted(a);
 		final int m = a.length / 2;
 		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;
 	}
 	protected static final double median(final long[] a) {
-		assert(isSorted(a));
+		assert isSorted(a);
 		final int m = a.length / 2;
 		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;
 	}
 	protected static final double median(final double[] a) {
-		assert(isSorted(a));
+		assert isSorted(a);
 		final int m = a.length / 2;
 		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2;
 	}
@@ -180,14 +180,14 @@ class Utility {
 	}
 	protected static final long sigma(final long n){ return n * (n + 1) / 2; }
 	protected static final long sigma(final long a, final long b){ return sigma(b) - sigma(a - 1); } 
-	protected static final long factor(int n) {
+	protected static final long fact(int n) {
 		long res = 1;
 		while(n > 0) {
 			res *= n--;
 		}
 		return res;
 	}
-	protected static final long factor(int n, final long mod) {
+	protected static final long fact(int n, final long mod) {
 		long res = 1;
 		while(n > 0) {
 			res *= n--;
@@ -195,19 +195,19 @@ class Utility {
 		}
 		return res;
 	}
-	protected static final long perm(int n, final int r) {
-		final int og = n;
+	protected static final long perm(final int n, final int r) {
+		int m = n;
 		long res = 1;
-		while(n > og - r) {
-			res *= n--;
+		while(m > n - r) {
+			res *= m--;
 		}
 		return res;
 	}
-	protected static final long perm(int n, final int r, final long mod) {
-		final int og = n;
+	protected static final long perm(final int n, final int r, final long mod) {
+		int m = n;
 		long res = 1;
-		while(n > og - r) {
-			res *= n--;
+		while(m > n - r) {
+			res *= m--;
 			res %= mod; 
 		}
 		return res;
@@ -1092,7 +1092,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 		if(neg) {
 			c = read();
 		}
-		assert(isNum(c));
+		assert isNum(c);
 		long res = c - '0';
 		while(isNum(c = read())) {
 			res = 10 * res + c - '0';
@@ -2634,7 +2634,7 @@ final class Matrix implements Cloneable {
 	final long get(final int i, final int j){ return mat[i][j]; }
 	final void set(final int i, final int j, final long x){ mat[i][j] = x; }
 	final Matrix add(final Matrix m) {
-		assert(h == m.h && w == m.w);
+		assert h == m.h && w == m.w;
 		final Matrix mt = new Matrix(h, w);
 		for(int i = 0; i < h; ++i) {
 			for(int j = 0; j < w; ++j) {
@@ -2644,7 +2644,7 @@ final class Matrix implements Cloneable {
 		return mt;
 	}
 	final Matrix add(final Matrix m, final long mod) {
-		assert(h == m.h && w == m.w);
+		assert h == m.h && w == m.w;
 		final Matrix mt = new Matrix(h, w);
 		for(int i = 0; i < h; ++i) {
 			for(int j = 0; j < w; ++j) {
@@ -2654,7 +2654,7 @@ final class Matrix implements Cloneable {
 		return mt;
 	}
 	final Matrix sub(final Matrix m) {
-		assert(h == m.h && w == m.w);
+		assert h == m.h && w == m.w;
 		final Matrix mt = new Matrix(h, w);
 		for(int i = 0; i < h; ++i) {
 			for(int j = 0; j < w; ++j) {
@@ -2664,7 +2664,7 @@ final class Matrix implements Cloneable {
 		return mt;
 	}
 	final Matrix sub(final Matrix m, final long mod) {
-		assert(h == m.h && w == m.w);
+		assert h == m.h && w == m.w;
 		final Matrix mt = new Matrix(h, w);
 		for(int i = 0; i < h; ++i) {
 			for(int j = 0; j < w; ++j) {
@@ -2674,7 +2674,7 @@ final class Matrix implements Cloneable {
 		return mt;
 	}
 	final Matrix mul(final Matrix m) {
-		assert(w == m.h);
+		assert w == m.h;
 		final Matrix mt = new Matrix(h, m.w);
 		for(int i = 0; i < h; ++i) {
 			for(int j = 0; j < m.w; ++j) {
@@ -2686,7 +2686,7 @@ final class Matrix implements Cloneable {
 		return mt;
 	}
 	final Matrix mul(final Matrix m, final long mod) {
-		assert(w == m.h);
+		assert w == m.h;
 		final Matrix mt = new Matrix(h, m.w);
 		for(int i = 0; i < h; ++i) {
 			for(int j = 0; j < m.w; ++j) {

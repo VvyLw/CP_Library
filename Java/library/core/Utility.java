@@ -212,7 +212,7 @@ public class Utility {
 	 * @return 中央値
 	 */
 	protected static final double median(final int[] a) {
-		assert(isSorted(a));
+		assert isSorted(a);
 		final int m = a.length / 2;
 		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;
 	}
@@ -221,7 +221,7 @@ public class Utility {
 	 * @return 中央値
 	 */
 	protected static final double median(final long[] a) {
-		assert(isSorted(a));
+		assert isSorted(a);
 		final int m = a.length / 2;
 		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;
 	}
@@ -230,7 +230,7 @@ public class Utility {
 	 * @return 中央値
 	 */
 	protected static final double median(final double[] a) {
-		assert(isSorted(a));
+		assert isSorted(a);
 		final int m = a.length / 2;
 		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2;
 	}
@@ -307,7 +307,7 @@ public class Utility {
 	 * @param n 整数
 	 * @return nの階乗
 	 */
-	protected static final long factor(int n) {
+	protected static final long fact(int n) {
 		long res = 1;
 		while(n > 0) {
 			res *= n--;
@@ -319,7 +319,7 @@ public class Utility {
 	 * @param mod
 	 * @return nの階乗のmodを法とする剰余
 	 */
-	protected static final long factor(int n, final long mod) {
+	protected static final long fact(int n, final long mod) {
 		long res = 1;
 		while(n > 0) {
 			res *= n--;
@@ -332,11 +332,11 @@ public class Utility {
 	 * @param r
 	 * @return 順列(nPr)
 	 */
-	protected static final long perm(int n, final int r) {
-		final int og = n;
+	protected static final long perm(final int n, final int r) {
+		int m = n;
 		long res = 1;
-		while(n > og - r) {
-			res *= n--;
+		while(m > n - r) {
+			res *= m--;
 		}
 		return res;
 	}
@@ -346,11 +346,11 @@ public class Utility {
 	 * @param mod
 	 * @return 順列のmodを法とする剰余
 	 */
-	protected static final long perm(int n, final int r, final long mod) {
-		final int og = n;
+	protected static final long perm(final int n, final int r, final long mod) {
+		int m = n;
 		long res = 1;
-		while(n > og - r) {
-			res *= n--;
+		while(m > n - r) {
+			res *= m--;
 			res %= mod; 
 		}
 		return res;

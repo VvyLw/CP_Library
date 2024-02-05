@@ -164,14 +164,14 @@ class Utility {
 	}
 	protected static final long sigma(final long n){ return n * (n + 1) / 2; }
 	protected static final long sigma(final long a, final long b){ return sigma(b) - sigma(a - 1); } 
-	protected static final long factor(int n) {
+	protected static final long fact(int n) {
 		long res = 1;
 		while(n > 0) {
 			res *= n--;
 		}
 		return res;
 	}
-	protected static final long factor(int n, final long mod) {
+	protected static final long fact(int n, final long mod) {
 		long res = 1;
 		while(n > 0) {
 			res *= n--;
@@ -179,19 +179,19 @@ class Utility {
 		}
 		return res;
 	}
-	protected static final long perm(int n, final int r) {
-		final int og = n;
+	protected static final long perm(final int n, final int r) {
+		int m = n;
 		long res = 1;
-		while(n > og - r) {
-			res *= n--;
+		while(m > n - r) {
+			res *= m--;
 		}
 		return res;
 	}
-	protected static final long perm(int n, final int r, final long mod) {
-		final int og = n;
+	protected static final long perm(final int n, final int r, final long mod) {
+		int m = n;
 		long res = 1;
-		while(n > og - r) {
-			res *= n--;
+		while(m > n - r) {
+			res *= m--;
 			res %= mod; 
 		}
 		return res;

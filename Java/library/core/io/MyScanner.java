@@ -79,7 +79,7 @@ public final class MyScanner implements Closeable, AutoCloseable {
 		if(neg) {
 			c = read();
 		}
-		assert(isNum(c));
+		assert isNum(c);
 		long res = c - '0';
 		while(isNum(c = read())) {
 			res = 10 * res + c - '0';

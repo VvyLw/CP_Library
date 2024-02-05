@@ -85,7 +85,7 @@ public final class Matrix implements Cloneable {
 	 * @param m
 	 */
 	public final Matrix add(final Matrix m) {
-		assert(h == m.h && w == m.w);
+		assert h == m.h && w == m.w;
 		final Matrix mt = new Matrix(h, w);
 		for(int i = 0; i < h; ++i) {
 			for(int j = 0; j < w; ++j) {
@@ -100,7 +100,7 @@ public final class Matrix implements Cloneable {
 	 * @param mod
 	 */
 	public final Matrix add(final Matrix m, final long mod) {
-		assert(h == m.h && w == m.w);
+		assert h == m.h && w == m.w;
 		final Matrix mt = new Matrix(h, w);
 		for(int i = 0; i < h; ++i) {
 			for(int j = 0; j < w; ++j) {
@@ -114,7 +114,7 @@ public final class Matrix implements Cloneable {
 	 * @param m
 	 */
 	public final Matrix sub(final Matrix m) {
-		assert(h == m.h && w == m.w);
+		assert h == m.h && w == m.w;
 		final Matrix mt = new Matrix(h, w);
 		for(int i = 0; i < h; ++i) {
 			for(int j = 0; j < w; ++j) {
@@ -129,7 +129,7 @@ public final class Matrix implements Cloneable {
 	 * @param mod
 	 */
 	public final Matrix sub(final Matrix m, final long mod) {
-		assert(h == m.h && w == m.w);
+		assert h == m.h && w == m.w;
 		final Matrix mt = new Matrix(h, w);
 		for(int i = 0; i < h; ++i) {
 			for(int j = 0; j < w; ++j) {
@@ -143,7 +143,7 @@ public final class Matrix implements Cloneable {
 	 * @param m
 	 */
 	public final Matrix mul(final Matrix m) {
-		assert(w == m.h);
+		assert w == m.h;
 		final Matrix mt = new Matrix(h, m.w);
 		for(int i = 0; i < h; ++i) {
 			for(int j = 0; j < m.w; ++j) {
@@ -160,7 +160,7 @@ public final class Matrix implements Cloneable {
 	 * @param mod
 	 */
 	public final Matrix mul(final Matrix m, final long mod) {
-		assert(w == m.h);
+		assert w == m.h;
 		final Matrix mt = new Matrix(h, m.w);
 		for(int i = 0; i < h; ++i) {
 			for(int j = 0; j < m.w; ++j) {
