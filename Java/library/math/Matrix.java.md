@@ -353,48 +353,48 @@ data:
     \u308B\n\t * @param i\n\t * @param j\n\t * @param x\n\t */\n\tpublic final void\
     \ set(final int i, final int j, final long x){ mat[i][j] = x; }\n\t/**\n\t * \u52A0\
     \u7B97\n\t * @param m\n\t */\n\tpublic final Matrix add(final Matrix m) {\n\t\t\
-    assert(h == m.h && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int\
+    assert h == m.h && w == m.w;\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int\
     \ i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i,\
     \ j, mat[i][j] + m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t\
     \ * \u4EFB\u610Fmod\u52A0\u7B97\n\t * @param m\n\t * @param mod\n\t */\n\tpublic\
-    \ final Matrix add(final Matrix m, final long mod) {\n\t\tassert(h == m.h && w\
-    \ == m.w);\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i < h;\
+    \ final Matrix add(final Matrix m, final long mod) {\n\t\tassert h == m.h && w\
+    \ == m.w;\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i < h;\
     \ ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, Utility.mod(mat[i][j]\
     \ + m.get(i, j), mod));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t * \u6E1B\
     \u7B97\n\t * @param m\n\t */\n\tpublic final Matrix sub(final Matrix m) {\n\t\t\
-    assert(h == m.h && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int\
+    assert h == m.h && w == m.w;\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int\
     \ i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i,\
     \ j, mat[i][j] - m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t\
     \ * \u4EFB\u610Fmod\u6E1B\u7B97\n\t * @param m\n\t * @param mod\n\t */\n\tpublic\
-    \ final Matrix sub(final Matrix m, final long mod) {\n\t\tassert(h == m.h && w\
-    \ == m.w);\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i < h;\
+    \ final Matrix sub(final Matrix m, final long mod) {\n\t\tassert h == m.h && w\
+    \ == m.w;\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i < h;\
     \ ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, Utility.mod(mat[i][j]\
     \ - m.get(i, j), mod));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t * \u4E57\
     \u7B97\n\t * @param m\n\t */\n\tpublic final Matrix mul(final Matrix m) {\n\t\t\
-    assert(w == m.h);\n\t\tfinal Matrix mt = new Matrix(h, m.w);\n\t\tfor(int i =\
-    \ 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < m.w; ++j) {\n\t\t\t\tfor(int k =\
-    \ 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i, j, mt.get(i, j) + mat[i][k] * m.get(k,\
-    \ j));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t * \u4EFB\u610F\
-    mod\u4E57\u7B97\n\t * @param m\n\t * @param mod\n\t */\n\tpublic final Matrix\
-    \ mul(final Matrix m, final long mod) {\n\t\tassert(w == m.h);\n\t\tfinal Matrix\
-    \ mt = new Matrix(h, m.w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j\
-    \ = 0; j < m.w; ++j) {\n\t\t\t\tfor(int k = 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i,\
-    \ j, Utility.mod(mt.get(i, j) + mat[i][k] * m.get(k, j), mod));\n\t\t\t\t}\n\t\
-    \t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t * \u51AA\u7B97\n\t * @param k\n\t\
-    \ */\n\tpublic final Matrix pow(int k) {\n\t\tMatrix n = clone();\n\t\tMatrix\
-    \ m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(this);\n\
-    \t\t\t}\n\t\t\tn = n.mul(n);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn n;\n\t}\n\t/**\n\
-    \t * \u4EFB\u610Fmod\u51AA\u7B97\n\t * @param m\n\t * @param mod\n\t */\n\tpublic\
-    \ final Matrix pow(long k, final long mod) {\n\t\tMatrix n = clone();\n\t\tMatrix\
-    \ m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(this,\
-    \ mod);\n\t\t\t}\n\t\t\tn = n.mul(n, mod);\n\t\t\tk >>= 1L;\n\t\t}\n\t\treturn\
-    \ n;\n\t}\n\t@Override\n\tpublic final boolean equals(final Object o) {\n\t\t\
-    if(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() !=\
-    \ o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Matrix m = (Matrix) o;\n\
-    \t\tif(h != m.h || w != m.w) {\n\t\t\treturn false;\n\t\t}\n\t\tfor(int i = 0;\
-    \ i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tif(mat[i][j] != m.get(i,\
-    \ j)) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn true;\n\
-    \t}\n\t@Override\n\tpublic final Matrix clone() {\n\t\tfinal Matrix m = new Matrix(h,\
+    assert w == m.h;\n\t\tfinal Matrix mt = new Matrix(h, m.w);\n\t\tfor(int i = 0;\
+    \ i < h; ++i) {\n\t\t\tfor(int j = 0; j < m.w; ++j) {\n\t\t\t\tfor(int k = 0;\
+    \ k < w; ++k) {\n\t\t\t\t\tmt.set(i, j, mt.get(i, j) + mat[i][k] * m.get(k, j));\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t * \u4EFB\u610Fmod\u4E57\
+    \u7B97\n\t * @param m\n\t * @param mod\n\t */\n\tpublic final Matrix mul(final\
+    \ Matrix m, final long mod) {\n\t\tassert w == m.h;\n\t\tfinal Matrix mt = new\
+    \ Matrix(h, m.w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j <\
+    \ m.w; ++j) {\n\t\t\t\tfor(int k = 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i, j, Utility.mod(mt.get(i,\
+    \ j) + mat[i][k] * m.get(k, j), mod));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ mt;\n\t}\n\t/**\n\t * \u51AA\u7B97\n\t * @param k\n\t */\n\tpublic final Matrix\
+    \ pow(int k) {\n\t\tMatrix n = clone();\n\t\tMatrix m = Matrix.E(h);\n\t\twhile(k\
+    \ > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(this);\n\t\t\t}\n\t\t\tn =\
+    \ n.mul(n);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn n;\n\t}\n\t/**\n\t * \u4EFB\u610F\
+    mod\u51AA\u7B97\n\t * @param m\n\t * @param mod\n\t */\n\tpublic final Matrix\
+    \ pow(long k, final long mod) {\n\t\tMatrix n = clone();\n\t\tMatrix m = Matrix.E(h);\n\
+    \t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(this, mod);\n\t\t\
+    \t}\n\t\t\tn = n.mul(n, mod);\n\t\t\tk >>= 1L;\n\t\t}\n\t\treturn n;\n\t}\n\t\
+    @Override\n\tpublic final boolean equals(final Object o) {\n\t\tif(this == o)\
+    \ {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass())\
+    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Matrix m = (Matrix) o;\n\t\tif(h !=\
+    \ m.h || w != m.w) {\n\t\t\treturn false;\n\t\t}\n\t\tfor(int i = 0; i < h; ++i)\
+    \ {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tif(mat[i][j] != m.get(i, j))\
+    \ {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t\
+    }\n\t@Override\n\tpublic final Matrix clone() {\n\t\tfinal Matrix m = new Matrix(h,\
     \ w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tm.mat[i] = Arrays.copyOf(mat[i],\
     \ w);\n\t\t}\n\t\treturn m;\n\t}\n\t@Override\n\tpublic final String toString()\
     \ {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfinal int interval\
@@ -513,7 +513,7 @@ data:
   - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
   - Java/All.java
-  timestamp: '2024-02-05 15:24:18+09:00'
+  timestamp: '2024-02-05 20:04:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/Matrix.java

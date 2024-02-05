@@ -404,14 +404,14 @@ data:
     \t}\n\t\treturn res;\n\t}\n\tprotected static final long sigma(final long n){\
     \ return n * (n + 1) / 2; }\n\tprotected static final long sigma(final long a,\
     \ final long b){ return sigma(b) - sigma(a - 1); } \n\tprotected static final\
-    \ long factor(int n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long factor(int n, final\
-    \ long mod) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t\t\
-    res %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long perm(int\
-    \ n, final int r) {\n\t\tfinal int og = n;\n\t\tlong res = 1;\n\t\twhile(n > og\
-    \ - r) {\n\t\t\tres *= n--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
-    \ long perm(int n, final int r, final long mod) {\n\t\tfinal int og = n;\n\t\t\
-    long res = 1;\n\t\twhile(n > og - r) {\n\t\t\tres *= n--;\n\t\t\tres %= mod; \n\
+    \ long fact(int n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\
+    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long fact(int n, final long\
+    \ mod) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t\tres\
+    \ %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long perm(final\
+    \ int n, final int r) {\n\t\tint m = n;\n\t\tlong res = 1;\n\t\twhile(m > n -\
+    \ r) {\n\t\t\tres *= m--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
+    \ long perm(final int n, final int r, final long mod) {\n\t\tint m = n;\n\t\t\
+    long res = 1;\n\t\twhile(m > n - r) {\n\t\t\tres *= m--;\n\t\t\tres %= mod; \n\
     \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long binom(final int n,\
     \ final int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp\
     \ = n;\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\
@@ -1107,7 +1107,7 @@ data:
   - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
   - Java/All.java
-  timestamp: '2024-02-05 15:24:18+09:00'
+  timestamp: '2024-02-05 20:04:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java

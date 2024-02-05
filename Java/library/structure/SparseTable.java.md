@@ -470,7 +470,7 @@ data:
   - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
   - Java/All.java
-  timestamp: '2024-02-05 15:24:18+09:00'
+  timestamp: '2024-02-05 20:04:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/SparseTable.java

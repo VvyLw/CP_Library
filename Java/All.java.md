@@ -387,17 +387,17 @@ data:
     \ }\n\tprotected static final double ave(final int... a){ return Arrays.stream(a).average().getAsDouble();\
     \ }\n\tprotected static final double ave(final long... a){ return Arrays.stream(a).average().getAsDouble();\
     \ }\n\tprotected static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble();\
-    \ }\n\tprotected static final double median(final int[] a) {\n\t\tassert(isSorted(a));\n\
+    \ }\n\tprotected static final double median(final int[] a) {\n\t\tassert isSorted(a);\n\
     \t\tfinal int m = a.length / 2;\n\t\treturn a.length % 2 != 0 ? a[m] : (a[m -\
     \ 1] + a[m]) / 2.0;\n\t}\n\tprotected static final double median(final long[]\
-    \ a) {\n\t\tassert(isSorted(a));\n\t\tfinal int m = a.length / 2;\n\t\treturn\
-    \ a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;\n\t}\n\tprotected static\
-    \ final double median(final double[] a) {\n\t\tassert(isSorted(a));\n\t\tfinal\
-    \ int m = a.length / 2;\n\t\treturn a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m])\
-    \ / 2;\n\t}\n\tprotected static final long[] div(final long n) {\n\t\tfinal ArrayList<Long>\
-    \ d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n %\
-    \ i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n /\
-    \ i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn d.stream().mapToLong(i -> i).sorted().toArray();\n\
+    \ a) {\n\t\tassert isSorted(a);\n\t\tfinal int m = a.length / 2;\n\t\treturn a.length\
+    \ % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;\n\t}\n\tprotected static final double\
+    \ median(final double[] a) {\n\t\tassert isSorted(a);\n\t\tfinal int m = a.length\
+    \ / 2;\n\t\treturn a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2;\n\t}\n\t\
+    protected static final long[] div(final long n) {\n\t\tfinal ArrayList<Long> d\
+    \ = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n % i\
+    \ == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n / i);\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn d.stream().mapToLong(i -> i).sorted().toArray();\n\
     \t}\n\tprotected static final IntPair[] primeFactor(long n) {\n\t\tfinal ArrayList<IntPair>\
     \ pf = new ArrayList<>();\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n\
     \ % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tint cnt = 0;\n\t\t\twhile(n %\
@@ -410,14 +410,14 @@ data:
     \t}\n\t\treturn res;\n\t}\n\tprotected static final long sigma(final long n){\
     \ return n * (n + 1) / 2; }\n\tprotected static final long sigma(final long a,\
     \ final long b){ return sigma(b) - sigma(a - 1); } \n\tprotected static final\
-    \ long factor(int n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long factor(int n, final\
-    \ long mod) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t\t\
-    res %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long perm(int\
-    \ n, final int r) {\n\t\tfinal int og = n;\n\t\tlong res = 1;\n\t\twhile(n > og\
-    \ - r) {\n\t\t\tres *= n--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
-    \ long perm(int n, final int r, final long mod) {\n\t\tfinal int og = n;\n\t\t\
-    long res = 1;\n\t\twhile(n > og - r) {\n\t\t\tres *= n--;\n\t\t\tres %= mod; \n\
+    \ long fact(int n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\
+    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long fact(int n, final long\
+    \ mod) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t\tres\
+    \ %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long perm(final\
+    \ int n, final int r) {\n\t\tint m = n;\n\t\tlong res = 1;\n\t\twhile(m > n -\
+    \ r) {\n\t\t\tres *= m--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
+    \ long perm(final int n, final int r, final long mod) {\n\t\tint m = n;\n\t\t\
+    long res = 1;\n\t\twhile(m > n - r) {\n\t\t\tres *= m--;\n\t\t\tres %= mod; \n\
     \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long binom(final int n,\
     \ final int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp\
     \ = n;\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\
@@ -799,7 +799,7 @@ data:
     \ {\n\t\t\t\tread();\n\t\t\t\treturn bt;\n\t\t\t}\n\t\t}\n\t\twhile(!isNum(bt\
     \ = read())){}\n\t\treturn bt;\n\t}\n\tfinal int ni(){ return Math.toIntExact(nl());\
     \ }\n\tfinal long nl() {\n\t\tbyte c = nextInt();\n\t\tfinal boolean neg = c ==\
-    \ '-';\n\t\tif(neg) {\n\t\t\tc = read();\n\t\t}\n\t\tassert(isNum(c));\n\t\tlong\
+    \ '-';\n\t\tif(neg) {\n\t\t\tc = read();\n\t\t}\n\t\tassert isNum(c);\n\t\tlong\
     \ res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\tres = 10 * res + c - '0';\n\
     \t\t}\n\t\treturn neg ? -res : res;\n\t}\n\tfinal double nd(){ return Double.parseDouble(ns());\
     \ }\n\tfinal char nc(){ return (char) next(); }\n\tfinal String ns() {\n\t\tfinal\
@@ -1330,26 +1330,26 @@ data:
     \ i){ return IntStream.range(0, h).mapToLong(j -> mat[j][i]).toArray(); }\n\t\
     final long[][] get(){ return mat; }\n\tfinal long get(final int i, final int j){\
     \ return mat[i][j]; }\n\tfinal void set(final int i, final int j, final long x){\
-    \ mat[i][j] = x; }\n\tfinal Matrix add(final Matrix m) {\n\t\tassert(h == m.h\
-    \ && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i\
+    \ mat[i][j] = x; }\n\tfinal Matrix add(final Matrix m) {\n\t\tassert h == m.h\
+    \ && w == m.w;\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i\
     \ < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, mat[i][j]\
     \ + m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix add(final\
-    \ Matrix m, final long mod) {\n\t\tassert(h == m.h && w == m.w);\n\t\tfinal Matrix\
+    \ Matrix m, final long mod) {\n\t\tassert h == m.h && w == m.w;\n\t\tfinal Matrix\
     \ mt = new Matrix(h, w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j =\
     \ 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, Utility.mod(mat[i][j] + m.get(i, j),\
     \ mod));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix sub(final Matrix\
-    \ m) {\n\t\tassert(h == m.h && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h,\
+    \ m) {\n\t\tassert h == m.h && w == m.w;\n\t\tfinal Matrix mt = new Matrix(h,\
     \ w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\
     \t\t\tmt.set(i, j, mat[i][j] - m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\
-    \t}\n\tfinal Matrix sub(final Matrix m, final long mod) {\n\t\tassert(h == m.h\
-    \ && w == m.w);\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i\
+    \t}\n\tfinal Matrix sub(final Matrix m, final long mod) {\n\t\tassert h == m.h\
+    \ && w == m.w;\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i\
     \ < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, Utility.mod(mat[i][j]\
     \ - m.get(i, j), mod));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix mul(final\
-    \ Matrix m) {\n\t\tassert(w == m.h);\n\t\tfinal Matrix mt = new Matrix(h, m.w);\n\
+    \ Matrix m) {\n\t\tassert w == m.h;\n\t\tfinal Matrix mt = new Matrix(h, m.w);\n\
     \t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < m.w; ++j) {\n\t\t\t\
     \tfor(int k = 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i, j, mt.get(i, j) + mat[i][k]\
     \ * m.get(k, j));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix\
-    \ mul(final Matrix m, final long mod) {\n\t\tassert(w == m.h);\n\t\tfinal Matrix\
+    \ mul(final Matrix m, final long mod) {\n\t\tassert w == m.h;\n\t\tfinal Matrix\
     \ mt = new Matrix(h, m.w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j\
     \ = 0; j < m.w; ++j) {\n\t\t\t\tfor(int k = 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i,\
     \ j, Utility.mod(mt.get(i, j) + mat[i][k] * m.get(k, j), mod));\n\t\t\t\t}\n\t\
@@ -1887,7 +1887,7 @@ data:
   - Java/library/math/EulerPhiTable.java
   - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
-  timestamp: '2024-02-05 15:24:18+09:00'
+  timestamp: '2024-02-05 20:04:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

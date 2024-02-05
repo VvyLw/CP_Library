@@ -426,14 +426,14 @@ data:
     \ static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble();\
     \ }\n\t/**\n\t * @param a \u30BD\u30FC\u30C8\u6E08\u306Eint\u578B\u914D\u5217\n\
     \t * @return \u4E2D\u592E\u5024\n\t */\n\tprotected static final double median(final\
-    \ int[] a) {\n\t\tassert(isSorted(a));\n\t\tfinal int m = a.length / 2;\n\t\t\
-    return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;\n\t}\n\t/**\n\t * @param\
+    \ int[] a) {\n\t\tassert isSorted(a);\n\t\tfinal int m = a.length / 2;\n\t\treturn\
+    \ a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;\n\t}\n\t/**\n\t * @param\
     \ a \u30BD\u30FC\u30C8\u6E08\u306Elong\u578B\u914D\u5217\n\t * @return \u4E2D\u592E\
     \u5024\n\t */\n\tprotected static final double median(final long[] a) {\n\t\t\
-    assert(isSorted(a));\n\t\tfinal int m = a.length / 2;\n\t\treturn a.length % 2\
+    assert isSorted(a);\n\t\tfinal int m = a.length / 2;\n\t\treturn a.length % 2\
     \ != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;\n\t}\n\t/**\n\t * @param a \u30BD\u30FC\
     \u30C8\u6E08\u306Edouble\u578B\u914D\u5217\n\t * @return \u4E2D\u592E\u5024\n\t\
-    \ */\n\tprotected static final double median(final double[] a) {\n\t\tassert(isSorted(a));\n\
+    \ */\n\tprotected static final double median(final double[] a) {\n\t\tassert isSorted(a);\n\
     \t\tfinal int m = a.length / 2;\n\t\treturn a.length % 2 != 0 ? a[m] : (a[m -\
     \ 1] + a[m]) / 2;\n\t}\n\t/**\n\t * n\u306E\u7D04\u6570\u3092\u5217\u6319\n\t\
     \ * @param n \u6574\u6570\n\t */\n\tprotected static final long[] div(final long\
@@ -460,47 +460,46 @@ data:
     \u3067\u306E\u7DCF\u548C\n\t */\n\tprotected static final long sigma(final long\
     \ a, final long b){ return sigma(b) - sigma(a - 1); }\n\t/**\n\t * @param n \u6574\
     \u6570\n\t * @return n\u306E\u968E\u4E57\n\t */\n\tprotected static final long\
-    \ factor(int n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\
-    \t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param n\n\t * @param mod\n\t * @return\
-    \ n\u306E\u968E\u4E57\u306Emod\u3092\u6CD5\u3068\u3059\u308B\u5270\u4F59\n\t */\n\
-    \tprotected static final long factor(int n, final long mod) {\n\t\tlong res =\
-    \ 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\t/**\n\t * @param n\n\t * @param r\n\t * @return \u9806\u5217(nPr)\n\
-    \t */\n\tprotected static final long perm(int n, final int r) {\n\t\tfinal int\
-    \ og = n;\n\t\tlong res = 1;\n\t\twhile(n > og - r) {\n\t\t\tres *= n--;\n\t\t\
-    }\n\t\treturn res;\n\t}\n\t/**\n\t * @param n\n\t * @param r\n\t * @param mod\n\
-    \t * @return \u9806\u5217\u306Emod\u3092\u6CD5\u3068\u3059\u308B\u5270\u4F59\n\
-    \t */\n\tprotected static final long perm(int n, final int r, final long mod)\
-    \ {\n\t\tfinal int og = n;\n\t\tlong res = 1;\n\t\twhile(n > og - r) {\n\t\t\t\
-    res *= n--;\n\t\t\tres %= mod; \n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param\
-    \ n\n\t * @param r\n\t * @return \u4E8C\u9805\u4FC2\u6570(nCr)\n\t */\n\tprotected\
-    \ static final long binom(final int n, final int r) {\n\t\tif(r < 0 || n < r)\
-    \ {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp = n;\n\t\tlong res = 1;\n\t\tfor(int\
-    \ i = 1; i <= min(n - r, r); ++i) {\n\t\t\tres *= tmp--;\n\t\t\tres /= i;\n\t\t\
-    }\n\t\treturn res;\n\t}\n\t/**\n\t * @param n\n\t * @param r\n\t * @param mod\n\
-    \t * @return \u4E8C\u9805\u4FC2\u6570\u306Emod\u3092\u6CD5\u3068\u3059\u308B\u5270\
-    \u4F59\n\t */\n\tprotected static final long binom(final int n, final int r, final\
-    \ long mod) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp =\
-    \ n;\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\t\
-    res *= tmp--;\n\t\t\tres %= mod;\n\t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\
-    \treturn res;\n\t}\n\t/**\n\t * n\u304C\u6574\u6570\u304B\u3069\u3046\u304B\u5224\
-    \u5B9A\n\t * @param n\n\t */\n\tprotected static final boolean isInt(final double\
-    \ n){ return n == (long) Math.floor(n); }\n\t/**\n\t * n\u304C\u5E73\u65B9\u6570\
-    \u304B\u3069\u3046\u304B\u5224\u5B9A\n\t * @param n\n\t */\n\tprotected static\
-    \ final boolean isSqr(final long n){ return isInt(Math.sqrt(n)); }\n\t/**\n\t\
-    \ * n\u304C\u7D20\u6570\u304B\u3069\u3046\u304B\u5224\u5B9A\n\t * @param n\n\t\
-    \ */\n\tprotected static final boolean isPrime(final long n) {\n\t\tif(n == 1)\
-    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\t\
-    if(n % i == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t\
-    }\n\t/**\n\t * @param l\n\t * @param x\n\t * @param r\n\t * @return l <= x <=\
-    \ r\n\t */\n\tpublic static final boolean scope(final int l, final int x, final\
-    \ int r){ return l <= x && x <= r; }\n\t/**\n\t * @param l\n\t * @param x\n\t\
-    \ * @param r\n\t * @return l <= x <= r\n\t */\n\tpublic static final boolean scope(final\
-    \ long l, final long x, final long r){ return l <= x && x <= r; }\n\t/**\n\t *\
-    \ @param l\n\t * @param x\n\t * @param r\n\t * @return l <= x <= r\n\t */\n\t\
-    public static final boolean scope(final double l, final double x, final double\
+    \ fact(int n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t\
+    }\n\t\treturn res;\n\t}\n\t/**\n\t * @param n\n\t * @param mod\n\t * @return n\u306E\
+    \u968E\u4E57\u306Emod\u3092\u6CD5\u3068\u3059\u308B\u5270\u4F59\n\t */\n\tprotected\
+    \ static final long fact(int n, final long mod) {\n\t\tlong res = 1;\n\t\twhile(n\
+    \ > 0) {\n\t\t\tres *= n--;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\t\
+    /**\n\t * @param n\n\t * @param r\n\t * @return \u9806\u5217(nPr)\n\t */\n\tprotected\
+    \ static final long perm(final int n, final int r) {\n\t\tint m = n;\n\t\tlong\
+    \ res = 1;\n\t\twhile(m > n - r) {\n\t\t\tres *= m--;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\t/**\n\t * @param n\n\t * @param r\n\t * @param mod\n\t * @return \u9806\
+    \u5217\u306Emod\u3092\u6CD5\u3068\u3059\u308B\u5270\u4F59\n\t */\n\tprotected\
+    \ static final long perm(final int n, final int r, final long mod) {\n\t\tint\
+    \ m = n;\n\t\tlong res = 1;\n\t\twhile(m > n - r) {\n\t\t\tres *= m--;\n\t\t\t\
+    res %= mod; \n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param n\n\t * @param r\n\
+    \t * @return \u4E8C\u9805\u4FC2\u6570(nCr)\n\t */\n\tprotected static final long\
+    \ binom(final int n, final int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\
+    \t\t}\n\t\tint tmp = n;\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= min(n - r,\
+    \ r); ++i) {\n\t\t\tres *= tmp--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t\
+    }\n\t/**\n\t * @param n\n\t * @param r\n\t * @param mod\n\t * @return \u4E8C\u9805\
+    \u4FC2\u6570\u306Emod\u3092\u6CD5\u3068\u3059\u308B\u5270\u4F59\n\t */\n\tprotected\
+    \ static final long binom(final int n, final int r, final long mod) {\n\t\tif(r\
+    \ < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp = n;\n\t\tlong res = 1;\n\
+    \t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\tres *= tmp--;\n\t\t\tres\
+    \ %= mod;\n\t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\t\
+    /**\n\t * n\u304C\u6574\u6570\u304B\u3069\u3046\u304B\u5224\u5B9A\n\t * @param\
+    \ n\n\t */\n\tprotected static final boolean isInt(final double n){ return n ==\
+    \ (long) Math.floor(n); }\n\t/**\n\t * n\u304C\u5E73\u65B9\u6570\u304B\u3069\u3046\
+    \u304B\u5224\u5B9A\n\t * @param n\n\t */\n\tprotected static final boolean isSqr(final\
+    \ long n){ return isInt(Math.sqrt(n)); }\n\t/**\n\t * n\u304C\u7D20\u6570\u304B\
+    \u3069\u3046\u304B\u5224\u5B9A\n\t * @param n\n\t */\n\tprotected static final\
+    \ boolean isPrime(final long n) {\n\t\tif(n == 1) {\n\t\t\treturn false;\n\t\t\
+    }\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\treturn\
+    \ false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\t/**\n\t * @param l\n\t * @param\
+    \ x\n\t * @param r\n\t * @return l <= x <= r\n\t */\n\tpublic static final boolean\
+    \ scope(final int l, final int x, final int r){ return l <= x && x <= r; }\n\t\
+    /**\n\t * @param l\n\t * @param x\n\t * @param r\n\t * @return l <= x <= r\n\t\
+    \ */\n\tpublic static final boolean scope(final long l, final long x, final long\
     \ r){ return l <= x && x <= r; }\n\t/**\n\t * @param l\n\t * @param x\n\t * @param\
-    \ r\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
+    \ r\n\t * @return l <= x <= r\n\t */\n\tpublic static final boolean scope(final\
+    \ double l, final double x, final double r){ return l <= x && x <= r; }\n\t/**\n\
+    \t * @param l\n\t * @param x\n\t * @param r\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
     >std::clamp</a>\n\t */\n\tprotected static final int clamp(final int l, final\
     \ int x, final int r){ return x < l ? l : x > r ? r : x; }\n\t/**\n\t * @param\
     \ l\n\t * @param x\n\t * @param r\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
@@ -1189,7 +1188,7 @@ data:
   - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
   - Java/All.java
-  timestamp: '2024-02-05 15:24:18+09:00'
+  timestamp: '2024-02-05 20:04:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java
