@@ -1063,11 +1063,25 @@ final class MyScanner implements Closeable, AutoCloseable {
 	}
 	private final byte next() {
 		byte bt;
+		if(pos > 0) {
+			bt = buf[pos - 1];
+			if(!isPunct(bt)) {
+				read();
+				return bt;
+			}
+		}
 		while(isPunct(bt = read())){}
 		return bt;
 	}
 	private final byte nextInt() {
 		byte bt;
+		if(pos > 0) {
+			bt = buf[pos - 1];
+			if(isNum(bt)) {
+				read();
+				return bt;
+			}
+		}
 		while(!isNum(bt = read())){}
 		return bt;
 	}
