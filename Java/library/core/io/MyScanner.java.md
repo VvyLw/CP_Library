@@ -339,8 +339,11 @@ data:
     \ final byte read() {\n\t\tif(pos == lim && lim != -1) {\n\t\t\ttry {\n\t\t\t\t\
     lim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final IOException e) {\n\t\
     \t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t\treturn buf[pos++];\n\t}\n\tprivate\
-    \ final byte next() {\n\t\tbyte bt;\n\t\twhile(isPunct(bt = read())){}\n\t\treturn\
-    \ bt;\n\t}\n\tprivate final byte nextInt() {\n\t\tbyte bt;\n\t\twhile(!isNum(bt\
+    \ final byte next() {\n\t\tbyte bt;\n\t\tif(pos > 0) {\n\t\t\tbt = buf[pos - 1];\n\
+    \t\t\tif(!isPunct(bt)) {\n\t\t\t\tread();\n\t\t\t\treturn bt;\n\t\t\t}\n\t\t}\n\
+    \t\twhile(isPunct(bt = read())){}\n\t\treturn bt;\n\t}\n\tprivate final byte nextInt()\
+    \ {\n\t\tbyte bt;\n\t\tif(pos > 0) {\n\t\t\tbt = buf[pos - 1];\n\t\t\tif(isNum(bt))\
+    \ {\n\t\t\t\tread();\n\t\t\t\treturn bt;\n\t\t\t}\n\t\t}\n\t\twhile(!isNum(bt\
     \ = read())){}\n\t\treturn bt;\n\t}\n\t/**\n\t * nextInt\n\t * int\u578B\u3092\
     \u5165\u529B\u3059\u308B\n\t */\n\tpublic final int ni(){ return Math.toIntExact(nl());\
     \ }\n\t/**\n\t * nextLong\n\t * long\u578B\u3092\u5165\u529B\u3059\u308B\n\t */\n\
@@ -532,7 +535,7 @@ data:
   - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
   - Java/All.java
-  timestamp: '2024-02-03 07:32:53+09:00'
+  timestamp: '2024-02-05 15:24:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyScanner.java

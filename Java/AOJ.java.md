@@ -326,13 +326,15 @@ data:
     RuntimeError: bundler is not specified: Java/AOJ.java\n"
   code: "import java.io.Closeable;\nimport java.io.Flushable;\nimport java.io.IOException;\n\
     import java.io.InputStream;\nimport java.io.OutputStream;\nimport java.math.BigInteger;\n\
-    import java.util.Arrays;\nimport java.util.Collection;\nimport java.util.Formatter;\n\
-    import java.util.Objects;\nimport java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\
-    \nfinal class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
-    \ VvyLw.MULTI ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
-    \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}\n\n\
-    final class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner(System.in);\n\
-    \tstatic final MyPrinter o = new MyPrinter(System.out, false), dbg = new MyPrinter(System.err,\
+    import java.util.ArrayDeque;\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
+    import java.util.Collection;\nimport java.util.Formatter;\nimport java.util.Objects;\n\
+    import java.util.Queue;\nimport java.util.Stack;\nimport java.util.stream.Collectors;\n\
+    import java.util.stream.IntStream;\n\nfinal class Main {\n\tpublic static void\
+    \ main(final String[] args) {\n\t\tIntStream.range(0, VvyLw.MULTI ? VvyLw.sc.ni()\
+    \ : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\t\tVvyLw.sc.close();\n\
+    \t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}\n\nfinal class VvyLw extends\
+    \ Utility {\n\tstatic final MyScanner sc = new MyScanner(System.in);\n\tstatic\
+    \ final MyPrinter o = new MyPrinter(System.out, false), dbg = new MyPrinter(System.err,\
     \ true);\n\tstatic final boolean MULTI = false;\n\tstatic final int INF = 1 <<\
     \ 30;\n\tstatic final long LINF = (1L << 61) - 1;\n\tstatic final double EPS =\
     \ 1e-18;\n\tstatic final int MOD = 998244353;\n\tstatic final int M0D = (int)\
@@ -450,8 +452,11 @@ data:
     \ final byte read() {\n\t\tif(pos == lim && lim != -1) {\n\t\t\ttry {\n\t\t\t\t\
     lim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final IOException e) {\n\t\
     \t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t\treturn buf[pos++];\n\t}\n\tprivate\
-    \ final byte next() {\n\t\tbyte bt;\n\t\twhile(isPunct(bt = read())){}\n\t\treturn\
-    \ bt;\n\t}\n\tprivate final byte nextInt() {\n\t\tbyte bt;\n\t\twhile(!isNum(bt\
+    \ final byte next() {\n\t\tbyte bt;\n\t\tif(pos > 0) {\n\t\t\tbt = buf[pos - 1];\n\
+    \t\t\tif(!isPunct(bt)) {\n\t\t\t\tread();\n\t\t\t\treturn bt;\n\t\t\t}\n\t\t}\n\
+    \t\twhile(isPunct(bt = read())){}\n\t\treturn bt;\n\t}\n\tprivate final byte nextInt()\
+    \ {\n\t\tbyte bt;\n\t\tif(pos > 0) {\n\t\t\tbt = buf[pos - 1];\n\t\t\tif(isNum(bt))\
+    \ {\n\t\t\t\tread();\n\t\t\t\treturn bt;\n\t\t\t}\n\t\t}\n\t\twhile(!isNum(bt\
     \ = read())){}\n\t\treturn bt;\n\t}\n\tfinal int ni(){ return Math.toIntExact(nl());\
     \ }\n\tfinal long nl() {\n\t\tbyte c = nextInt();\n\t\tfinal boolean neg = c ==\
     \ '-';\n\t\tif(neg) {\n\t\t\tc = read();\n\t\t}\n\t\tassert(isNum(c));\n\t\tlong\
@@ -611,7 +616,56 @@ data:
     \t\t} catch(final CloneNotSupportedException e){\n\t\t\te.printStackTrace();\n\
     \t\t}\n\t\tthrow new Error();\n\t}\n\t@Override\n\tpublic final int compareTo(final\
     \ Pair<F, S> p) {\n\t\tif(first.compareTo(p.first) == 0) {\n\t\t\treturn second.compareTo(p.second);\n\
-    \t\t}\n\t\treturn first.compareTo(p.first);\n\t}\n}"
+    \t\t}\n\t\treturn first.compareTo(p.first);\n\t}\n}\n\n/**\n * \u8FBA\u3092\u8868\
+    \u3059\u30AF\u30E9\u30B9\n */\nfinal class Edge {\n\tpublic int src;\n\tpublic\
+    \ int to;\n\tpublic long cost;\n\tpublic Edge(final int to){ this.to = to; }\n\
+    \tpublic Edge(final int to, final long cost) {\n\t\tthis.to = to;\n\t\tthis.cost\
+    \ = cost;\n\t}\n\tpublic Edge(final int src, final int to, final long cost) {\n\
+    \t\tthis.src = src;\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\t@Override\n\
+    \tpublic final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn\
+    \ true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn\
+    \ false;\n\t\t}\n\t\tfinal Edge e = (Edge) o;\n\t\treturn src == e.src && to ==\
+    \ e.to && cost == e.cost;\n\t}\n\t@Override\n\tpublic final int hashCode(){ return\
+    \ Objects.hash(src, to, cost); }\n\t@Override\n\tpublic final String toString(){\
+    \ return \"(\" + src + \", \" + to + \", \" + cost + \")\"; }\n}\nclass Graph\
+    \ extends ArrayList<ArrayList<Edge>> {\n\tprotected final boolean undirected;\n\
+    \tprotected final int n, indexed;\n\tprotected final ArrayList<Edge> edge;\n\t\
+    /**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param n \u9802\u70B9\
+    \u306E\u500B\u6570\n\t * @param indexed ?-indexed\n\t * 0-indexed\u306A\u3089\
+    0, 1-indexed\u306A\u30891\n\t * @param undirected \u7121\u5411\u30B0\u30E9\u30D5\
+    \u304B\u3069\u3046\u304B\n\t * \u7121\u5411\u30B0\u30E9\u30D5\u306A\u3089true,\
+    \ \u6709\u5411\u30B0\u30E9\u30D5\u306A\u3089false\n\t */\n\tpublic Graph(final\
+    \ int n, final int indexed, final boolean undirected) {\n\t\tthis.n = n;\n\t\t\
+    this.indexed = indexed;\n\t\tthis.undirected = undirected;\n\t\tedge = new ArrayList<>();\n\
+    \t\tIntStream.range(0, n).forEach(i -> add(new ArrayList<>()));\n\t}\n\t/**\n\t\
+    \ * \u8FBA\u3092\u8FFD\u52A0\u3059\u308B\n\t * @param a\n\t * @param b\n\t */\n\
+    \tpublic final void addEdge(int a, int b) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\
+    \t\tthis.get(a).add(new Edge(b));\n\t\tedge.add(new Edge(a, b, 0));\n\t\tif(undirected)\
+    \ {\n\t\t\tthis.get(b).add(new Edge(a));\n\t\t\tedge.add(new Edge(b, a, 0));\n\
+    \t\t}\n\t}\n\t/**\n\t * \u8FBA\u3092m\u500B\u5165\u529B\u3059\u308B\n\t * @param\
+    \ m \u8FBA\u306E\u500B\u6570\n\t */\n\tpublic void input(final int m){ IntStream.range(0,\
+    \ m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni())); }\n\t/**\n\t * @return\
+    \ \u8FBA\u306E\u30EA\u30B9\u30C8\n\t */\n\tpublic final ArrayList<Edge> getEdge(){\
+    \ return edge; }\n\t/**\n\t * BFS\u3092\u3057\u3066\u9802\u70B9v\u304B\u3089\u5404\
+    \u9802\u70B9\u306B\u5BFE\u3059\u308B\u8DDD\u96E2\u3092\u6C42\u3081\u308B\n\t *\
+    \ @param v\n\t */\n\tpublic final int[] allDist(final int v) {\n\t\tfinal int[]\
+    \ d = new int[n];\n\t\tArrays.fill(d, -1);\n\t\tfinal Queue<Integer> q = new ArrayDeque<>();\n\
+    \t\td[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp =\
+    \ q.poll();\n\t\t\tfor(final Edge el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] !=\
+    \ -1) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to] = d[tmp] + 1;\n\t\t\t\
+    \tq.add(el.to);\n\t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\t/**\n\t * @param u\n\t\
+    \ * @param v\n\t * @return \u9802\u70B9u\u3068\u9802\u70B9v\u3068\u306E\u8DDD\u96E2\
+    \n\t */\n\tpublic final int dist(final int u, final int v){ return allDist(u)[v];\
+    \ }\n\t/**\n\t * \u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\n\t */\n\
+    \tpublic final ArrayList<Integer> topologicalSort() {\n\t\tfinal int[] deg = new\
+    \ int[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final Edge ed: this.get(i))\
+    \ {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t}\n\t\t}\n\t\tfinal Stack<Integer> sk = new\
+    \ Stack<>();\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(deg[i] == 0) {\n\t\t\t\
+    \tsk.add(i);\n\t\t\t}\n\t\t}\n\t\tfinal ArrayList<Integer> ord = new ArrayList<>();\n\
+    \t\twhile(!sk.isEmpty()) {\n\t\t\tfinal int tmp = sk.pop();\n\t\t\tord.add(tmp);\n\
+    \t\t\tfor(final Edge ed: this.get(tmp)) {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\
+    \t\t\t\tsk.add(ed.to);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ord.size() == size()\
+    \ ? ord : new ArrayList<>();\n\t}\n}"
   dependsOn:
   - Java/CodeForces.java
   - Java/yukicoder.java
@@ -720,7 +774,7 @@ data:
   - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
   - Java/All.java
-  timestamp: '2024-02-03 07:32:53+09:00'
+  timestamp: '2024-02-05 15:24:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java
