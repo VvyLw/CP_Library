@@ -1474,7 +1474,7 @@ public class Utility {
 	 * @see #lowerBound
 	 * @see #upperBound
 	 */
-	private static final int bins(int ok, int ng, final IntPredicate fn) {
+	protected static final int bins(int ok, int ng, final IntPredicate fn) {
 		while(Math.abs(ok - ng) > 1) {
 			final int mid = (ok + ng) / 2;
 			if(fn.test(mid)) {
