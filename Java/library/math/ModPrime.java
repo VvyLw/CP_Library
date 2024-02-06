@@ -81,5 +81,5 @@ public final class ModPrime {
 	 * @param n
 	 * @return 階乗 mod P
 	 */
-	final long factor(final int n){ return f[n]; }
+	final long fact(final int n){ return f[n]; }
 }

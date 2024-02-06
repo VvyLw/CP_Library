@@ -2588,7 +2588,7 @@ final class ModPrime {
 		}
 		return C(n + k - 1, k);
 	}
-	final long factor(final int n){ return f[n]; }
+	final long fact(final int n){ return f[n]; }
 }
 
 final class EulerPhiTable {
