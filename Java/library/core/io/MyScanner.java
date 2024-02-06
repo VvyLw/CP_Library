@@ -18,6 +18,7 @@ public final class MyScanner implements Closeable, AutoCloseable {
 	private int pos, lim;
 	private final byte[] buf;
 	private final InputStream is;
+	private boolean check;
 	/**
 	 * コンストラクタ
 	 * @param is 標準入力(System.in)を入れる
@@ -26,6 +27,7 @@ public final class MyScanner implements Closeable, AutoCloseable {
 		this.is = is;
 		pos = lim = 0;
 		buf = new byte[1 << 17];
+		check = false;
 	}
 	private final boolean isPunct(final byte bt){ return !Utility.scope(33, bt, 126); }
 	private final boolean isNum(final byte bt){ return Utility.scope('0', bt, '9'); }
@@ -42,10 +44,10 @@ public final class MyScanner implements Closeable, AutoCloseable {
 	}
 	private final byte next() {
 		byte bt;
-		if(pos > 0) {
+		if(check) {
+			check = false;
 			bt = buf[pos - 1];
 			if(!isPunct(bt)) {
-				read();
 				return bt;
 			}
 		}
@@ -54,13 +56,6 @@ public final class MyScanner implements Closeable, AutoCloseable {
 	}
 	private final byte nextInt() {
 		byte bt;
-		if(pos > 0) {
-			bt = buf[pos - 1];
-			if(isNum(bt)) {
-				read();
-				return bt;
-			}
-		}
 		while(!isNum(bt = read())){}
 		return bt;
 	}
@@ -84,6 +79,7 @@ public final class MyScanner implements Closeable, AutoCloseable {
 		while(isNum(c = read())) {
 			res = 10 * res + c - '0';
 		}
+		check = !isNum(c);
 		return neg ? -res : res;
 	}
 	/**
