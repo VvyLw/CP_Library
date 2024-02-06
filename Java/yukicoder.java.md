@@ -691,7 +691,7 @@ data:
     \ String[] merge(final String[] a, final String[] b) {\n\t\tfinal String[] c =\
     \ new String[a.length + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0, a.length);\n\
     \t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\t\t\
-    return c;\n\t}\n\tprivate static final int bins(int ok, int ng, final IntPredicate\
+    return c;\n\t}\n\tprotected static final int bins(int ok, int ng, final IntPredicate\
     \ fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) /\
     \ 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\
     \t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final long\
@@ -1132,7 +1132,7 @@ data:
   - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
   - Java/All.java
-  timestamp: '2024-02-06 20:45:17+09:00'
+  timestamp: '2024-02-07 00:09:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java

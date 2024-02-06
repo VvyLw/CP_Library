@@ -513,7 +513,7 @@ data:
   - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
   - Java/All.java
-  timestamp: '2024-02-06 20:45:17+09:00'
+  timestamp: '2024-02-07 00:09:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/Matrix.java
