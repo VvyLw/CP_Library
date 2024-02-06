@@ -231,9 +231,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/pcounter.test.cpp
-  - test/phi_table.test.cpp
   - test/phi.test.cpp
   - test/tetration.test.cpp
+  - test/phi_table.test.cpp
   - test/kthrooti.test.cpp
 documentation_of: C++/math.hpp
 layout: document
