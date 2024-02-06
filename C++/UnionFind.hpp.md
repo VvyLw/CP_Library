@@ -83,9 +83,9 @@ data:
   timestamp: '2024-01-30 14:40:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/directed.test.cpp
   - test/manhattan.test.cpp
   - test/uf.test.cpp
-  - test/directed.test.cpp
   - test/kruskal.test.cpp
 documentation_of: C++/UnionFind.hpp
 layout: document

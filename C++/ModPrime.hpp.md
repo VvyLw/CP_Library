@@ -61,8 +61,8 @@ data:
   timestamp: '2024-02-02 20:57:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/modprime2.test.cpp
   - test/modprime.test.cpp
+  - test/modprime2.test.cpp
 documentation_of: C++/ModPrime.hpp
 layout: document
 redirect_from:

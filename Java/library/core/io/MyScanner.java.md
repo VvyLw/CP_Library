@@ -330,49 +330,48 @@ data:
     \ library.structure.pair.IntPair;\n\n/**\n * \u5165\u529B\u30AF\u30E9\u30B9\n\
     \ * Scanner\u3088\u308A\u901F\u3044\n */\npublic final class MyScanner implements\
     \ Closeable, AutoCloseable {\n\tprivate int pos, lim;\n\tprivate final byte[]\
-    \ buf;\n\tprivate final InputStream is;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\
-    \u30AF\u30BF\n\t * @param is \u6A19\u6E96\u5165\u529B(System.in)\u3092\u5165\u308C\
-    \u308B\n\t */\n\tpublic MyScanner(final InputStream is) {\n\t\tthis.is = is;\n\
-    \t\tpos = lim = 0;\n\t\tbuf = new byte[1 << 17];\n\t}\n\tprivate final boolean\
-    \ isPunct(final byte bt){ return !Utility.scope(33, bt, 126); }\n\tprivate final\
-    \ boolean isNum(final byte bt){ return Utility.scope('0', bt, '9'); }\n\tprivate\
-    \ final byte read() {\n\t\tif(pos == lim && lim != -1) {\n\t\t\ttry {\n\t\t\t\t\
-    lim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final IOException e) {\n\t\
-    \t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t\treturn buf[pos++];\n\t}\n\tprivate\
-    \ final byte next() {\n\t\tbyte bt;\n\t\tif(pos > 0) {\n\t\t\tbt = buf[pos - 1];\n\
-    \t\t\tif(!isPunct(bt)) {\n\t\t\t\tread();\n\t\t\t\treturn bt;\n\t\t\t}\n\t\t}\n\
-    \t\twhile(isPunct(bt = read())){}\n\t\treturn bt;\n\t}\n\tprivate final byte nextInt()\
-    \ {\n\t\tbyte bt;\n\t\tif(pos > 0) {\n\t\t\tbt = buf[pos - 1];\n\t\t\tif(isNum(bt))\
-    \ {\n\t\t\t\tread();\n\t\t\t\treturn bt;\n\t\t\t}\n\t\t}\n\t\twhile(!isNum(bt\
-    \ = read())){}\n\t\treturn bt;\n\t}\n\t/**\n\t * nextInt\n\t * int\u578B\u3092\
-    \u5165\u529B\u3059\u308B\n\t */\n\tpublic final int ni(){ return Math.toIntExact(nl());\
-    \ }\n\t/**\n\t * nextLong\n\t * long\u578B\u3092\u5165\u529B\u3059\u308B\n\t */\n\
-    \tpublic final long nl() {\n\t\tbyte c = nextInt();\n\t\tfinal boolean neg = c\
-    \ == '-';\n\t\tif(neg) {\n\t\t\tc = read();\n\t\t}\n\t\tassert isNum(c);\n\t\t\
-    long res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\tres = 10 * res + c\
-    \ - '0';\n\t\t}\n\t\treturn neg ? -res : res;\n\t}\n\t/**\n\t * nextDouble\n\t\
-    \ * double\u578B\u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic final double nd(){\
-    \ return Double.parseDouble(ns()); }\n\t/**\n\t * nextChar(Scanner\u306B\u306F\
-    \u306A\u3044)\n\t * char\u578B\u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic\
-    \ final char nc(){ return (char) next(); }\n\t/**\n\t * nextString(Scanner\u3067\
-    \u4E91\u3046next)\n\t * \u6587\u5B57\u5217\u3092\u5165\u529B\u3059\u308B\n\t */\n\
-    \tpublic final String ns() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
-    \t\tbyte c = next();\n\t\twhile(!isPunct(c)) {\n\t\t\tsb.append((char) c);\n\t\
-    \t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t * nextBigInteger\n\
-    \t * \u591A\u500D\u9577\u6574\u6570\u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic\
-    \ final BigInteger nb(){ return new BigInteger(ns()); }\n\t/**\n\t * \u5927\u304D\
-    \u3055n\u306Eint\u578B\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param\
-    \ n \u914D\u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic final int[] ni(final\
-    \ int n) {\n\t\tfinal int[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = ni());\n\t\treturn a;\n\t}\n\t/**\n\t * \u5927\u304D\u3055n\u306E\
-    long\u578B\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n \u914D\u5217\
-    \u306E\u5927\u304D\u3055\n\t */\n\tpublic final long[] nl(final int n) {\n\t\t\
-    final long[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\
-    \t\treturn a;\n\t}\n\t/**\n\t * \u5927\u304D\u3055n\u306Edouble\u578B\u914D\u5217\
-    \u3092\u5165\u529B\u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\
-    \n\t */\n\tpublic final double[] nd(final int n) {\n\t\tfinal double[] a = new\
-    \ double[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\treturn\
-    \ a;\n\t}\n\t/**\n\t * [maybe_unused]\n\t * \u5927\u304D\u3055n\u306Echar\u578B\
+    \ buf;\n\tprivate final InputStream is;\n\tprivate boolean check;\n\t/**\n\t *\
+    \ \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param is \u6A19\u6E96\u5165\
+    \u529B(System.in)\u3092\u5165\u308C\u308B\n\t */\n\tpublic MyScanner(final InputStream\
+    \ is) {\n\t\tthis.is = is;\n\t\tpos = lim = 0;\n\t\tbuf = new byte[1 << 17];\n\
+    \t\tcheck = false;\n\t}\n\tprivate final boolean isPunct(final byte bt){ return\
+    \ !Utility.scope(33, bt, 126); }\n\tprivate final boolean isNum(final byte bt){\
+    \ return Utility.scope('0', bt, '9'); }\n\tprivate final byte read() {\n\t\tif(pos\
+    \ == lim && lim != -1) {\n\t\t\ttry {\n\t\t\t\tlim = is.read(buf);\n\t\t\t\tpos\
+    \ = 0;\n\t\t\t} catch(final IOException e) {\n\t\t\t\te.printStackTrace();\n\t\
+    \t\t}\n\t\t}\n\t\treturn buf[pos++];\n\t}\n\tprivate final byte next() {\n\t\t\
+    byte bt;\n\t\tif(check) {\n\t\t\tcheck = false;\n\t\t\tbt = buf[pos - 1];\n\t\t\
+    \tif(!isPunct(bt)) {\n\t\t\t\treturn bt;\n\t\t\t}\n\t\t}\n\t\twhile(isPunct(bt\
+    \ = read())){}\n\t\treturn bt;\n\t}\n\tprivate final byte nextInt() {\n\t\tbyte\
+    \ bt;\n\t\twhile(!isNum(bt = read())){}\n\t\treturn bt;\n\t}\n\t/**\n\t * nextInt\n\
+    \t * int\u578B\u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic final int ni(){\
+    \ return Math.toIntExact(nl()); }\n\t/**\n\t * nextLong\n\t * long\u578B\u3092\
+    \u5165\u529B\u3059\u308B\n\t */\n\tpublic final long nl() {\n\t\tbyte c = nextInt();\n\
+    \t\tfinal boolean neg = c == '-';\n\t\tif(neg) {\n\t\t\tc = read();\n\t\t}\n\t\
+    \tassert isNum(c);\n\t\tlong res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\
+    \t\tres = 10 * res + c - '0';\n\t\t}\n\t\tcheck = !isNum(c);\n\t\treturn neg ?\
+    \ -res : res;\n\t}\n\t/**\n\t * nextDouble\n\t * double\u578B\u3092\u5165\u529B\
+    \u3059\u308B\n\t */\n\tpublic final double nd(){ return Double.parseDouble(ns());\
+    \ }\n\t/**\n\t * nextChar(Scanner\u306B\u306F\u306A\u3044)\n\t * char\u578B\u3092\
+    \u5165\u529B\u3059\u308B\n\t */\n\tpublic final char nc(){ return (char) next();\
+    \ }\n\t/**\n\t * nextString(Scanner\u3067\u4E91\u3046next)\n\t * \u6587\u5B57\u5217\
+    \u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic final String ns() {\n\t\tfinal\
+    \ StringBuilder sb = new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c))\
+    \ {\n\t\t\tsb.append((char) c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\
+    \t}\n\t/**\n\t * nextBigInteger\n\t * \u591A\u500D\u9577\u6574\u6570\u3092\u5165\
+    \u529B\u3059\u308B\n\t */\n\tpublic final BigInteger nb(){ return new BigInteger(ns());\
+    \ }\n\t/**\n\t * \u5927\u304D\u3055n\u306Eint\u578B\u914D\u5217\u3092\u5165\u529B\
+    \u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic\
+    \ final int[] ni(final int n) {\n\t\tfinal int[] a = new int[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = ni());\n\t\treturn a;\n\t}\n\t/**\n\t * \u5927\u304D\u3055\
+    n\u306Elong\u578B\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n \u914D\
+    \u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic final long[] nl(final int n) {\n\
+    \t\tfinal long[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i]\
+    \ = nl());\n\t\treturn a;\n\t}\n\t/**\n\t * \u5927\u304D\u3055n\u306Edouble\u578B\
+    \u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\
+    \u304D\u3055\n\t */\n\tpublic final double[] nd(final int n) {\n\t\tfinal double[]\
+    \ a = new double[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\
+    \treturn a;\n\t}\n\t/**\n\t * [maybe_unused]\n\t * \u5927\u304D\u3055n\u306Echar\u578B\
     \u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\
     \u304D\u3055\n\t */\n\tpublic final char[] nc(final int n) {\n\t\tfinal char[]\
     \ a = new char[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nc());\n\t\t\
@@ -428,114 +427,114 @@ data:
     \ {\n\t\t\tis.close();\n\t\t} catch(final IOException e) {\n\t\t\te.printStackTrace();\n\
     \t\t}\n\t}\n}"
   dependsOn:
-  - Java/AOJ.java
-  - Java/yukicoder.java
   - Java/CodeForces.java
-  - Java/library/core/interfaces/RecursiveFunction.java
-  - Java/library/core/interfaces/RecursiveBiConsumer.java
-  - Java/library/core/interfaces/TriFunction.java
-  - Java/library/core/interfaces/RecursiveTriFunction.java
-  - Java/library/core/interfaces/RecursiveBiFunction.java
-  - Java/library/core/interfaces/RecursiveTriConsumer.java
-  - Java/library/core/interfaces/RecursiveBinaryOperator.java
-  - Java/library/core/interfaces/RecursiveConsumer.java
-  - Java/library/core/interfaces/QuadFunction.java
-  - Java/library/core/interfaces/RecursiveUnaryOperator.java
-  - Java/library/core/io/MyPrinter.java
-  - Java/library/core/VvyLw.java
-  - Java/library/core/Main.java
-  - Java/library/core/Utility.java
-  - Java/library/structure/pair/FloatPair.java
-  - Java/library/structure/pair/Pair.java
-  - Java/library/structure/pair/IntPair.java
-  - Java/library/structure/DoubleEndedPriorityQueue.java
-  - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/structure/waveletmatrix/WaveletMatrix.java
-  - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
-  - Java/library/structure/FenwickTree.java
-  - Java/library/structure/unionfind/WeightedUnionFind.java
-  - Java/library/structure/unionfind/UnionFind.java
-  - Java/library/structure/unionfind/UndoUnionFind.java
-  - Java/library/structure/AVLTree.java
-  - Java/library/structure/SegmentTree.java
-  - Java/library/structure/SparseTable.java
+  - Java/yukicoder.java
+  - Java/AOJ.java
   - Java/library/structure/deque/Deque.java
   - Java/library/structure/deque/IntDeque.java
-  - Java/library/math/PrimeTable.java
+  - Java/library/structure/pair/IntPair.java
+  - Java/library/structure/pair/FloatPair.java
+  - Java/library/structure/pair/Pair.java
+  - Java/library/structure/FenwickTree.java
+  - Java/library/structure/DoubleEndedPriorityQueue.java
+  - Java/library/structure/SegmentTree.java
+  - Java/library/structure/AVLTree.java
+  - Java/library/structure/SparseTable.java
+  - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
+  - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
+  - Java/library/structure/waveletmatrix/WaveletMatrix.java
+  - Java/library/structure/unionfind/UnionFind.java
+  - Java/library/structure/unionfind/WeightedUnionFind.java
+  - Java/library/structure/unionfind/UndoUnionFind.java
+  - Java/library/graph/Edge.java
+  - Java/library/graph/MST.java
+  - Java/library/graph/LowestCommonAncestor.java
+  - Java/library/graph/WeightedGraph.java
+  - Java/library/graph/Graph.java
+  - Java/library/other/SuffixArray.java
+  - Java/library/other/InclusiveScan.java
+  - Java/library/other/Huitloxopetl.java
+  - Java/library/other/SkewHeap.java
+  - Java/library/other/PrefixSum.java
+  - Java/library/core/interfaces/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/RecursiveBiFunction.java
+  - Java/library/core/interfaces/RecursiveBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveConsumer.java
+  - Java/library/core/interfaces/RecursiveTriFunction.java
+  - Java/library/core/interfaces/RecursiveUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveFunction.java
+  - Java/library/core/interfaces/TriFunction.java
+  - Java/library/core/Utility.java
+  - Java/library/core/Main.java
+  - Java/library/core/VvyLw.java
+  - Java/library/core/io/MyPrinter.java
+  - Java/library/math/PrimeCounter.java
+  - Java/library/math/LongPrime.java
   - Java/library/math/PrimeFactor.java
   - Java/library/math/BigPrime.java
-  - Java/library/math/ModPrime.java
-  - Java/library/math/EulerPhiTable.java
-  - Java/library/math/LongPrime.java
   - Java/library/math/Matrix.java
-  - Java/library/math/PrimeCounter.java
-  - Java/library/graph/Graph.java
-  - Java/library/graph/Edge.java
-  - Java/library/graph/WeightedGraph.java
-  - Java/library/graph/LowestCommonAncestor.java
-  - Java/library/graph/MST.java
-  - Java/library/other/SkewHeap.java
-  - Java/library/other/Huitloxopetl.java
-  - Java/library/other/InclusiveScan.java
-  - Java/library/other/SuffixArray.java
-  - Java/library/other/PrefixSum.java
+  - Java/library/math/EulerPhiTable.java
+  - Java/library/math/ModPrime.java
+  - Java/library/math/PrimeTable.java
   - Java/All.java
   isVerificationFile: false
   path: Java/library/core/io/MyScanner.java
   requiredBy:
-  - Java/AOJ.java
-  - Java/yukicoder.java
   - Java/CodeForces.java
-  - Java/library/core/interfaces/RecursiveFunction.java
-  - Java/library/core/interfaces/RecursiveBiConsumer.java
-  - Java/library/core/interfaces/TriFunction.java
-  - Java/library/core/interfaces/RecursiveTriFunction.java
-  - Java/library/core/interfaces/RecursiveBiFunction.java
-  - Java/library/core/interfaces/RecursiveTriConsumer.java
-  - Java/library/core/interfaces/RecursiveBinaryOperator.java
-  - Java/library/core/interfaces/RecursiveConsumer.java
-  - Java/library/core/interfaces/QuadFunction.java
-  - Java/library/core/interfaces/RecursiveUnaryOperator.java
-  - Java/library/core/io/MyPrinter.java
-  - Java/library/core/VvyLw.java
-  - Java/library/core/Main.java
-  - Java/library/core/Utility.java
-  - Java/library/structure/pair/FloatPair.java
-  - Java/library/structure/pair/Pair.java
-  - Java/library/structure/pair/IntPair.java
-  - Java/library/structure/DoubleEndedPriorityQueue.java
-  - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/structure/waveletmatrix/WaveletMatrix.java
-  - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
-  - Java/library/structure/FenwickTree.java
-  - Java/library/structure/unionfind/WeightedUnionFind.java
-  - Java/library/structure/unionfind/UnionFind.java
-  - Java/library/structure/unionfind/UndoUnionFind.java
-  - Java/library/structure/AVLTree.java
-  - Java/library/structure/SegmentTree.java
-  - Java/library/structure/SparseTable.java
+  - Java/yukicoder.java
+  - Java/AOJ.java
   - Java/library/structure/deque/Deque.java
   - Java/library/structure/deque/IntDeque.java
-  - Java/library/math/PrimeTable.java
+  - Java/library/structure/pair/IntPair.java
+  - Java/library/structure/pair/FloatPair.java
+  - Java/library/structure/pair/Pair.java
+  - Java/library/structure/FenwickTree.java
+  - Java/library/structure/DoubleEndedPriorityQueue.java
+  - Java/library/structure/SegmentTree.java
+  - Java/library/structure/AVLTree.java
+  - Java/library/structure/SparseTable.java
+  - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
+  - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
+  - Java/library/structure/waveletmatrix/WaveletMatrix.java
+  - Java/library/structure/unionfind/UnionFind.java
+  - Java/library/structure/unionfind/WeightedUnionFind.java
+  - Java/library/structure/unionfind/UndoUnionFind.java
+  - Java/library/graph/Edge.java
+  - Java/library/graph/MST.java
+  - Java/library/graph/LowestCommonAncestor.java
+  - Java/library/graph/WeightedGraph.java
+  - Java/library/graph/Graph.java
+  - Java/library/other/SuffixArray.java
+  - Java/library/other/InclusiveScan.java
+  - Java/library/other/Huitloxopetl.java
+  - Java/library/other/SkewHeap.java
+  - Java/library/other/PrefixSum.java
+  - Java/library/core/interfaces/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/RecursiveBiFunction.java
+  - Java/library/core/interfaces/RecursiveBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveConsumer.java
+  - Java/library/core/interfaces/RecursiveTriFunction.java
+  - Java/library/core/interfaces/RecursiveUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveFunction.java
+  - Java/library/core/interfaces/TriFunction.java
+  - Java/library/core/Utility.java
+  - Java/library/core/Main.java
+  - Java/library/core/VvyLw.java
+  - Java/library/core/io/MyPrinter.java
+  - Java/library/math/PrimeCounter.java
+  - Java/library/math/LongPrime.java
   - Java/library/math/PrimeFactor.java
   - Java/library/math/BigPrime.java
-  - Java/library/math/ModPrime.java
-  - Java/library/math/EulerPhiTable.java
-  - Java/library/math/LongPrime.java
   - Java/library/math/Matrix.java
-  - Java/library/math/PrimeCounter.java
-  - Java/library/graph/Graph.java
-  - Java/library/graph/Edge.java
-  - Java/library/graph/WeightedGraph.java
-  - Java/library/graph/LowestCommonAncestor.java
-  - Java/library/graph/MST.java
-  - Java/library/other/SkewHeap.java
-  - Java/library/other/Huitloxopetl.java
-  - Java/library/other/InclusiveScan.java
-  - Java/library/other/SuffixArray.java
-  - Java/library/other/PrefixSum.java
+  - Java/library/math/EulerPhiTable.java
+  - Java/library/math/ModPrime.java
+  - Java/library/math/PrimeTable.java
   - Java/All.java
-  timestamp: '2024-02-06 12:55:24+09:00'
+  timestamp: '2024-02-06 20:45:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyScanner.java
