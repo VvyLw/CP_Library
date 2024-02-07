@@ -3,7 +3,7 @@ pub struct Pair[T,U] {
 	first T
 	second U
 }
-fn (p Pair[T,U]) str() string { return '${p.first} ${p.second}' }
+fn (p Pair[T,U]) str() string { return '(${p.first}, ${p.second})' }
 pub fn mp[T,U](p T, q U) Pair[T,U] {
 	return Pair[T,U] {
 		first: p
