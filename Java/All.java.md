@@ -1460,32 +1460,28 @@ data:
     \ next = index + 1;\n\t\treturn next == n ? 0 : next;\n\t}\n\tprivate final int\
     \ prev(final int index) {\n\t\tfinal int prev = index - 1;\n\t\treturn prev ==\
     \ -1 ? n - 1 : prev;\n\t}\n\tprivate final int index(final int i) {\n\t\tfinal\
-    \ int size = size();\n\t\tif(i >= size) {\n\t\t\tthrow new IndexOutOfBoundsException(\"\
-    Index \"+ i +\" out of bounds for length \" + size);\n\t\t}\n\t\tfinal int id\
-    \ = head + i;\n\t\treturn n <= id ? id - n : id;\n\t}\n\tprivate final void arraycopy(final\
-    \ int fromIndex, final T[] array, final int from, final int length) {\n\t\tif(fromIndex\
-    \ + length > size()) {\n\t\t\tthrow new IndexOutOfBoundsException(\"last source\
-    \ index \" + (fromIndex + length) + \" out of bounds for int[\" + size() + \"\
-    ]\");\n\t\t}\n\t\tfinal int h = index(fromIndex);\n\t\tif(h + length < n) {\n\t\
-    \t\tSystem.arraycopy(buf, h, array, from, length);\n\t\t} else {\n\t\t\tfinal\
-    \ int back = n - h;\n\t\t\tSystem.arraycopy(buf, h, array, from, back);\n\t\t\t\
-    System.arraycopy(buf, 0, array, from + back, length - back);\n\t\t}\n\t}\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tprivate final void extend() {\n\t\tfinal Object[] tmp = new Object[n\
-    \ << 1];\n\t\tarraycopy(0, (T[]) tmp, 0, size());\n\t\tbuf = tmp;\n\t\tn = buf.length;\n\
-    \t}\n\tfinal boolean isEmpty(){ return size() == 0; }\n\tfinal int size() {\n\t\
-    \tfinal int size = tail - head;\n\t\treturn size < 0 ? size + n : size;\n\t}\n\
-    \tfinal void addFirst(final T x) {\n\t\tif(prev(head) == tail) {\n\t\t\textend();\n\
-    \t\t}\n\t\thead = prev(head);\n\t\tbuf[head] = x;\n\t}\n\tfinal void addLast(final\
-    \ T x) {\n\t\tif(next(tail) == head) {\n\t\t\textend();\n\t\t}\n\t\tbuf[tail]\
-    \ = x;\n\t\ttail = next(tail);\n\t}\n\tfinal void removeFirst() {\n\t\tif(head\
-    \ == tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is empty\");\n\t\
-    \t}\n\t\thead = next(head);\n\t}\n\tfinal void removeLast() {\n\t\tif(head ==\
-    \ tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is empty\");\n\t\t\
-    }\n\t\ttail = prev(tail);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T\
-    \ pollFirst() {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"\
-    Buffer is empty\");\n\t\t}\n\t\tfinal T ans = (T) buf[head];\n\t\thead = next(head);\n\
+    \ int size = size();\n\t\tassert i < size;\n\t\tfinal int id = head + i;\n\t\t\
+    return n <= id ? id - n : id;\n\t}\n\tprivate final void arraycopy(final int fromId,\
+    \ final T[] a, final int from, final int len) {\n\t\tassert fromId + len <= size();\n\
+    \t\tfinal int h = index(fromId);\n\t\tif(h + len < n) {\n\t\t\tSystem.arraycopy(buf,\
+    \ h, a, from, len);\n\t\t} else {\n\t\t\tfinal int back = n - h;\n\t\t\tSystem.arraycopy(buf,\
+    \ h, a, from, back);\n\t\t\tSystem.arraycopy(buf, 0, a, from + back, len - back);\n\
+    \t\t}\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tprivate final void extend()\
+    \ {\n\t\tfinal Object[] tmp = new Object[n << 1];\n\t\tarraycopy(0, (T[]) tmp,\
+    \ 0, size());\n\t\tbuf = tmp;\n\t\tn = buf.length;\n\t}\n\tfinal boolean isEmpty(){\
+    \ return size() == 0; }\n\tfinal int size() {\n\t\tfinal int size = tail - head;\n\
+    \t\treturn size < 0 ? size + n : size;\n\t}\n\tfinal void addFirst(final T x)\
+    \ {\n\t\tif(prev(head) == tail) {\n\t\t\textend();\n\t\t}\n\t\thead = prev(head);\n\
+    \t\tbuf[head] = x;\n\t}\n\tfinal void addLast(final T x) {\n\t\tif(next(tail)\
+    \ == head) {\n\t\t\textend();\n\t\t}\n\t\tbuf[tail] = x;\n\t\ttail = next(tail);\n\
+    \t}\n\tfinal void removeFirst() {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"\
+    Deque is empty\");\n\t\t}\n\t\thead = next(head);\n\t}\n\tfinal void removeLast()\
+    \ {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"Deque is\
+    \ empty\");\n\t\t}\n\t\ttail = prev(tail);\n\t}\n\t@SuppressWarnings(\"unchecked\"\
+    )\n\tfinal T pollFirst() {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"\
+    Deque is empty\");\n\t\t}\n\t\tfinal T ans = (T) buf[head];\n\t\thead = next(head);\n\
     \t\treturn ans;\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T pollLast()\
-    \ {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is\
+    \ {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"Deque is\
     \ empty\");\n\t\t}\n\t\ttail = prev(tail);\n\t\treturn (T) buf[tail];\n\t}\n\t\
     final T peekFirst(){ return get(0); }\n\tfinal T peekLast(){ return get(n - 1);\
     \ }\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T get(final int i){ return (T)\
@@ -1516,35 +1512,31 @@ data:
     \ next = index + 1;\n\t\treturn next == n ? 0 : next;\n\t}\n\tprivate final int\
     \ prev(final int index) {\n\t\tfinal int prev = index - 1;\n\t\treturn prev ==\
     \ -1 ? n - 1 : prev;\n\t}\n\tprivate final int index(final int i) {\n\t\tfinal\
-    \ int size = size();\n\t\tif(i >= size) {\n\t\t\tthrow new IndexOutOfBoundsException(\"\
-    Index \"+ i +\" out of bounds for length \" + size);\n\t\t}\n\t\tfinal int id\
-    \ = head + i;\n\t\treturn n <= id ? id - n : id;\n\t}\n\tprivate final void arraycopy(final\
-    \ int fromIndex, final long[] array, final int from, final int length) {\n\t\t\
-    if(fromIndex + length > size()) {\n\t\t\tthrow new IndexOutOfBoundsException(\"\
-    last source index \" + (fromIndex + length) + \" out of bounds for int[\" + size()\
-    \ + \"]\");\n\t\t}\n\t\tfinal int h = index(fromIndex);\n\t\tif(h + length < n)\
-    \ {\n\t\t\tSystem.arraycopy(buf, h, array, from, length);\n\t\t} else {\n\t\t\t\
-    final int back = n - h;\n\t\t\tSystem.arraycopy(buf, h, array, from, back);\n\t\
-    \t\tSystem.arraycopy(buf, 0, array, from + back, length - back);\n\t\t}\n\t}\n\
-    \tprivate final void extend() {\n\t\tfinal long[] tmp = new long[n << 1];\n\t\t\
-    arraycopy(0, tmp, 0, size());\n\t\tbuf = tmp;\n\t\tn = buf.length;\n\t}\n\tfinal\
-    \ boolean isEmpty(){ return size() == 0; }\n\tfinal int size() {\n\t\tfinal int\
-    \ size = tail - head;\n\t\treturn size < 0 ? size + n : size;\n\t}\n\tfinal void\
-    \ addFirst(final long x) {\n\t\thead = prev(head);\n\t\tif(head == tail) {\n\t\
-    \t\textend();\n\t\t}\n\t\tbuf[head] = x;\n\t}\n\tfinal void addLast(final long\
-    \ x) {\n\t\tif(next(tail) == head) {\n\t\t\textend();\n\t\t}\n\t\tbuf[tail] =\
-    \ x;\n\t\ttail = next(tail);\n\t}\n\tfinal void removeFirst() {\n\t\tif(head ==\
-    \ tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is empty\");\n\t\t\
+    \ int size = size();\n\t\tassert i < size;\n\t\tfinal int id = head + i;\n\t\t\
+    return n <= id ? id - n : id;\n\t}\n\tprivate final void arraycopy(final int fromId,\
+    \ final long[] a, final int from, final int len) {\n\t\tassert fromId + len <=\
+    \ size();\n\t\tfinal int h = index(fromId);\n\t\tif(h + len < n) {\n\t\t\tSystem.arraycopy(buf,\
+    \ h, a, from, len);\n\t\t} else {\n\t\t\tfinal int back = n - h;\n\t\t\tSystem.arraycopy(buf,\
+    \ h, a, from, back);\n\t\t\tSystem.arraycopy(buf, 0, a, from + back, len - back);\n\
+    \t\t}\n\t}\n\tprivate final void extend() {\n\t\tfinal long[] tmp = new long[n\
+    \ << 1];\n\t\tarraycopy(0, tmp, 0, size());\n\t\tbuf = tmp;\n\t\tn = buf.length;\n\
+    \t}\n\tfinal boolean isEmpty(){ return size() == 0; }\n\tfinal int size() {\n\t\
+    \tfinal int size = tail - head;\n\t\treturn size < 0 ? size + n : size;\n\t}\n\
+    \tfinal void addFirst(final long x) {\n\t\thead = prev(head);\n\t\tif(head ==\
+    \ tail) {\n\t\t\textend();\n\t\t}\n\t\tbuf[head] = x;\n\t}\n\tfinal void addLast(final\
+    \ long x) {\n\t\tif(next(tail) == head) {\n\t\t\textend();\n\t\t}\n\t\tbuf[tail]\
+    \ = x;\n\t\ttail = next(tail);\n\t}\n\tfinal void removeFirst() {\n\t\tif(head\
+    \ == tail) {\n\t\t\tthrow new NoSuchElementException(\"Deque is empty\");\n\t\t\
     }\n\t\thead = next(head);\n\t}\n\tfinal void removeLast() {\n\t\tif(head == tail)\
-    \ {\n\t\t\tthrow new NoSuchElementException(\"Buffer is empty\");\n\t\t}\n\t\t\
+    \ {\n\t\t\tthrow new NoSuchElementException(\"Deque is empty\");\n\t\t}\n\t\t\
     tail = prev(tail);\n\t}\n\tfinal long pollFirst() {\n\t\tif(head == tail) {\n\t\
-    \t\tthrow new NoSuchElementException(\"Buffer is empty\");\n\t\t}\n\t\tfinal long\
+    \t\tthrow new NoSuchElementException(\"Deque is empty\");\n\t\t}\n\t\tfinal long\
     \ ans = buf[head];\n\t\thead = next(head);\n\t\treturn ans;\n\t}\n\tfinal long\
     \ pollLast() {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"\
-    Buffer is empty\");\n\t\t}\n\t\ttail = prev(tail);\n\t\treturn buf[tail];\n\t\
-    }\n\tfinal long peekFirst(){ return get(0); }\n\tfinal long peekLast(){ return\
-    \ get(n - 1); }\n\tfinal long get(final int i){ return buf[index(i)]; }\n\tfinal\
-    \ void set(final int i, final long x){ buf[index(i)] = x; }\n\tfinal void add(final\
+    Deque is empty\");\n\t\t}\n\t\ttail = prev(tail);\n\t\treturn buf[tail];\n\t}\n\
+    \tfinal long peekFirst(){ return get(0); }\n\tfinal long peekLast(){ return get(n\
+    \ - 1); }\n\tfinal long get(final int i){ return buf[index(i)]; }\n\tfinal void\
+    \ set(final int i, final long x){ buf[index(i)] = x; }\n\tfinal void add(final\
     \ long x){ addLast(x); }\n\tfinal long poll(){ return pollFirst(); }\n\tfinal\
     \ long peek(){ return peekFirst(); }\n\tfinal void swap(final int a, final int\
     \ b) {\n\t\tfinal int i = index(a);\n\t\tfinal int j = index(b);\n\t\tfinal long\
@@ -1887,7 +1879,7 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
-  timestamp: '2024-02-07 00:09:42+09:00'
+  timestamp: '2024-02-07 18:50:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

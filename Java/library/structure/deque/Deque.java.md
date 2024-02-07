@@ -342,72 +342,68 @@ data:
     \t\treturn next == n ? 0 : next;\n\t}\n\tprivate final int prev(final int index)\
     \ {\n\t\tfinal int prev = index - 1;\n\t\treturn prev == -1 ? n - 1 : prev;\n\t\
     }\n\tprivate final int index(final int i) {\n\t\tfinal int size = size();\n\t\t\
-    if(i >= size) {\n\t\t\tthrow new IndexOutOfBoundsException(\"Index \"+ i +\" out\
-    \ of bounds for length \" + size);\n\t\t}\n\t\tfinal int id = head + i;\n\t\t\
-    return n <= id ? id - n : id;\n\t}\n\tprivate final void arraycopy(final int fromIndex,\
-    \ final T[] array, final int from, final int length) {\n\t\tif(fromIndex + length\
-    \ > size()) {\n\t\t\tthrow new IndexOutOfBoundsException(\"last source index \"\
-    \ + (fromIndex + length) + \" out of bounds for int[\" + size() + \"]\");\n\t\t\
-    }\n\t\tfinal int h = index(fromIndex);\n\t\tif(h + length < n) {\n\t\t\tSystem.arraycopy(buf,\
-    \ h, array, from, length);\n\t\t} else {\n\t\t\tfinal int back = n - h;\n\t\t\t\
-    System.arraycopy(buf, h, array, from, back);\n\t\t\tSystem.arraycopy(buf, 0, array,\
-    \ from + back, length - back);\n\t\t}\n\t}\n\t@SuppressWarnings(\"unchecked\"\
-    )\n\tprivate final void extend() {\n\t\tfinal Object[] tmp = new Object[n << 1];\n\
-    \t\tarraycopy(0, (T[]) tmp, 0, size());\n\t\tbuf = tmp;\n\t\tn = buf.length;\n\
-    \t}\n\t/**\n\t * Deque\u304C\u7A7A\u304B\u3069\u3046\u304B\u5224\u5B9A\u3059\u308B\
-    \n\t * @return {@link Deque#size} == 0\n\t */\n\tpublic final boolean isEmpty(){\
-    \ return size() == 0; }\n\t/**\n\t * @return Deque\u306E\u5927\u304D\u3055\n\t\
-    \ */\n\tpublic final int size() {\n\t\tfinal int size = tail - head;\n\t\treturn\
-    \ size < 0 ? size + n : size;\n\t}\n\t/**\n\t * Deque\u306E\u5148\u982D\u306B\u8981\
-    \u7D20\u3092\u8FFD\u52A0\u3059\u308B\n\t * @param x\n\t */\n\tpublic final void\
-    \ addFirst(final T x) {\n\t\tif(prev(head) == tail) {\n\t\t\textend();\n\t\t}\n\
-    \t\thead = prev(head);\n\t\tbuf[head] = x;\n\t}\n\t/**\n\t * Deque\u306E\u672B\
-    \u5C3E\u306B\u8981\u7D20\u3092\u8FFD\u52A0\u3059\u308B\n\t * @param x\n\t */\n\
-    \tpublic final void addLast(final T x) {\n\t\tif(next(tail) == head) {\n\t\t\t\
-    extend();\n\t\t}\n\t\tbuf[tail] = x;\n\t\ttail = next(tail);\n\t}\n\t/**\n\t *\
-    \ Deque\u306E\u5148\u982D\u306E\u8981\u7D20\u3092\u524A\u9664\u3059\u308B\n\t\
-    \ */\n\tpublic final void removeFirst() {\n\t\tif(head == tail) {\n\t\t\tthrow\
-    \ new NoSuchElementException(\"Buffer is empty\");\n\t\t}\n\t\thead = next(head);\n\
-    \t}\n\t/**\n\t * Deque\u306E\u672B\u5C3E\u306E\u8981\u7D20\u3092\u524A\u9664\u3059\
-    \u308B\n\t */\n\tpublic final void removeLast() {\n\t\tif(head == tail) {\n\t\t\
-    \tthrow new NoSuchElementException(\"Buffer is empty\");\n\t\t}\n\t\ttail = prev(tail);\n\
-    \t}\n\t/**\n\t * Deque\u306E\u5148\u982D\u306E\u8981\u7D20\u3092\u524A\u9664\u3059\
-    \u308B\n\t * @return Deque\u306E\u5148\u982D\u306B\u3042\u3063\u305F\u8981\u7D20\
-    \n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic final T pollFirst() {\n\t\
-    \tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is empty\"\
-    );\n\t\t}\n\t\tfinal T ans = (T) buf[head];\n\t\thead = next(head);\n\t\treturn\
-    \ ans;\n\t}\n\t/**\n\t * Deque\u306E\u672B\u5C3E\u306E\u8981\u7D20\u3092\u524A\
-    \u9664\u3059\u308B\n\t * @return Deque\u306E\u672B\u5C3E\u306B\u3042\u3063\u305F\
-    \u8981\u7D20\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic final T pollLast()\
-    \ {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"Buffer is\
-    \ empty\");\n\t\t}\n\t\ttail = prev(tail);\n\t\treturn (T) buf[tail];\n\t}\n\t\
-    /**\n\t * @return Deque\u306E\u5148\u982D\u306B\u3042\u308B\u8981\u7D20\n\t */\n\
-    \tpublic final T peekFirst(){ return get(0); }\n\t/**\n\t * @return Deque\u306E\
-    \u672B\u5C3E\u306B\u3042\u308B\u8981\u7D20\n\t */\n\tpublic final T peekLast(){\
-    \ return get(n - 1); }\n\t/**\n\t * \u30E9\u30F3\u30C0\u30E0\u30A2\u30AF\u30BB\
-    \u30B9\n\t * @param i \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n\t * @return Deque\u306E\
-    i\u756A\u76EE\u306B\u683C\u7D0D\u3055\u308C\u3066\u3044\u308B\u8981\u7D20\n\t\
-    \ */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic final T get(final int i){ return\
-    \ (T) buf[index(i)]; }\n\t/**\n\t * i\u756A\u76EE\u306B\u8981\u7D20\u3092\u4EE3\
-    \u5165\u3059\u308B\n\t * @param i \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n\t * @param\
-    \ x \u8981\u7D20\n\t */\n\tpublic final void set(final int i, final T x){ buf[index(i)]\
-    \ = x; }\n\t/**\n\t * @see #addLast\n\t */\n\tpublic final void add(final T x){\
-    \ addLast(x); }\n\t/**\n\t * @see #pollFirst\n\t */\n\tpublic final T poll(){\
-    \ return pollFirst(); }\n\t/**\n\t * @see #peekFirst\n\t */\n\tpublic final T\
-    \ peek(){ return peekFirst(); }\n\t/**\n\t * Deque\u306Ea\u756A\u76EE\u3068b\u756A\
-    \u76EE\u306B\u3042\u308B\u8981\u7D20\u3092\u5165\u308C\u66FF\u3048\u308B\n\t *\
-    \ @param a \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n\t * @param b \u30A4\u30F3\u30C7\
-    \u30C3\u30AF\u30B9\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic final\
-    \ void swap(final int a, final int b) {\n\t\tfinal int i = index(a), j = index(b);\n\
-    \t\tfinal T num = (T) buf[i];\n\t\tbuf[i] = buf[j];\n\t\tbuf[j] = num;\n\t}\n\t\
-    /**\n\t * Deque\u3092\u7A7A\u306B\u3059\u308B\n\t */\n\tpublic final void clear(){\
-    \ head = tail = 0; }\n\t/**\n\t * @return \u914D\u5217\u5316\u3057\u305FDeque\n\
-    \t */\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T[] toArray() {\n\t\tfinal\
-    \ Object[] array = new Object[size()];\n\t\tarraycopy(0, (T[]) array, 0, size());\n\
-    \t\treturn (T[]) array;\n\t}\n\t/**\n\t * \u51FA\u529B\u3059\u308B\u305F\u3081\
-    \u306B\u5FC5\u8981\n\t */\n\t@Override\n\tpublic final String toString(){ return\
-    \ Arrays.toString(toArray()); }\n\t/**\n\t * \u30A4\u30C6\u30EC\u30FC\u30BF\n\t\
-    \ */\n\t@Override\n\tpublic final Iterator<T> iterator(){ return new DequeIterator();\
+    assert i < size;\n\t\tfinal int id = head + i;\n\t\treturn n <= id ? id - n :\
+    \ id;\n\t}\n\tprivate final void arraycopy(final int fromId, final T[] a, final\
+    \ int from, final int len) {\n\t\tassert fromId + len <= size();\n\t\tfinal int\
+    \ h = index(fromId);\n\t\tif(h + len < n) {\n\t\t\tSystem.arraycopy(buf, h, a,\
+    \ from, len);\n\t\t} else {\n\t\t\tfinal int back = n - h;\n\t\t\tSystem.arraycopy(buf,\
+    \ h, a, from, back);\n\t\t\tSystem.arraycopy(buf, 0, a, from + back, len - back);\n\
+    \t\t}\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tprivate final void extend()\
+    \ {\n\t\tfinal Object[] tmp = new Object[n << 1];\n\t\tarraycopy(0, (T[]) tmp,\
+    \ 0, size());\n\t\tbuf = tmp;\n\t\tn = buf.length;\n\t}\n\t/**\n\t * Deque\u304C\
+    \u7A7A\u304B\u3069\u3046\u304B\u5224\u5B9A\u3059\u308B\n\t * @return {@link Deque#size}\
+    \ == 0\n\t */\n\tpublic final boolean isEmpty(){ return size() == 0; }\n\t/**\n\
+    \t * @return Deque\u306E\u5927\u304D\u3055\n\t */\n\tpublic final int size() {\n\
+    \t\tfinal int size = tail - head;\n\t\treturn size < 0 ? size + n : size;\n\t\
+    }\n\t/**\n\t * Deque\u306E\u5148\u982D\u306B\u8981\u7D20\u3092\u8FFD\u52A0\u3059\
+    \u308B\n\t * @param x\n\t */\n\tpublic final void addFirst(final T x) {\n\t\t\
+    if(prev(head) == tail) {\n\t\t\textend();\n\t\t}\n\t\thead = prev(head);\n\t\t\
+    buf[head] = x;\n\t}\n\t/**\n\t * Deque\u306E\u672B\u5C3E\u306B\u8981\u7D20\u3092\
+    \u8FFD\u52A0\u3059\u308B\n\t * @param x\n\t */\n\tpublic final void addLast(final\
+    \ T x) {\n\t\tif(next(tail) == head) {\n\t\t\textend();\n\t\t}\n\t\tbuf[tail]\
+    \ = x;\n\t\ttail = next(tail);\n\t}\n\t/**\n\t * Deque\u306E\u5148\u982D\u306E\
+    \u8981\u7D20\u3092\u524A\u9664\u3059\u308B\n\t */\n\tpublic final void removeFirst()\
+    \ {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"Deque is\
+    \ empty\");\n\t\t}\n\t\thead = next(head);\n\t}\n\t/**\n\t * Deque\u306E\u672B\
+    \u5C3E\u306E\u8981\u7D20\u3092\u524A\u9664\u3059\u308B\n\t */\n\tpublic final\
+    \ void removeLast() {\n\t\tif(head == tail) {\n\t\t\tthrow new NoSuchElementException(\"\
+    Deque is empty\");\n\t\t}\n\t\ttail = prev(tail);\n\t}\n\t/**\n\t * Deque\u306E\
+    \u5148\u982D\u306E\u8981\u7D20\u3092\u524A\u9664\u3059\u308B\n\t * @return Deque\u306E\
+    \u5148\u982D\u306B\u3042\u3063\u305F\u8981\u7D20\n\t */\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tpublic final T pollFirst() {\n\t\tif(head == tail) {\n\t\t\tthrow\
+    \ new NoSuchElementException(\"Deque is empty\");\n\t\t}\n\t\tfinal T ans = (T)\
+    \ buf[head];\n\t\thead = next(head);\n\t\treturn ans;\n\t}\n\t/**\n\t * Deque\u306E\
+    \u672B\u5C3E\u306E\u8981\u7D20\u3092\u524A\u9664\u3059\u308B\n\t * @return Deque\u306E\
+    \u672B\u5C3E\u306B\u3042\u3063\u305F\u8981\u7D20\n\t */\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tpublic final T pollLast() {\n\t\tif(head == tail) {\n\t\t\tthrow\
+    \ new NoSuchElementException(\"Deque is empty\");\n\t\t}\n\t\ttail = prev(tail);\n\
+    \t\treturn (T) buf[tail];\n\t}\n\t/**\n\t * @return Deque\u306E\u5148\u982D\u306B\
+    \u3042\u308B\u8981\u7D20\n\t */\n\tpublic final T peekFirst(){ return get(0);\
+    \ }\n\t/**\n\t * @return Deque\u306E\u672B\u5C3E\u306B\u3042\u308B\u8981\u7D20\
+    \n\t */\n\tpublic final T peekLast(){ return get(n - 1); }\n\t/**\n\t * \u30E9\
+    \u30F3\u30C0\u30E0\u30A2\u30AF\u30BB\u30B9\n\t * @param i \u30A4\u30F3\u30C7\u30C3\
+    \u30AF\u30B9\n\t * @return Deque\u306Ei\u756A\u76EE\u306B\u683C\u7D0D\u3055\u308C\
+    \u3066\u3044\u308B\u8981\u7D20\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\t\
+    public final T get(final int i){ return (T) buf[index(i)]; }\n\t/**\n\t * i\u756A\
+    \u76EE\u306B\u8981\u7D20\u3092\u4EE3\u5165\u3059\u308B\n\t * @param i \u30A4\u30F3\
+    \u30C7\u30C3\u30AF\u30B9\n\t * @param x \u8981\u7D20\n\t */\n\tpublic final void\
+    \ set(final int i, final T x){ buf[index(i)] = x; }\n\t/**\n\t * @see #addLast\n\
+    \t */\n\tpublic final void add(final T x){ addLast(x); }\n\t/**\n\t * @see #pollFirst\n\
+    \t */\n\tpublic final T poll(){ return pollFirst(); }\n\t/**\n\t * @see #peekFirst\n\
+    \t */\n\tpublic final T peek(){ return peekFirst(); }\n\t/**\n\t * Deque\u306E\
+    a\u756A\u76EE\u3068b\u756A\u76EE\u306B\u3042\u308B\u8981\u7D20\u3092\u5165\u308C\
+    \u66FF\u3048\u308B\n\t * @param a \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n\t * @param\
+    \ b \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n\t */\n\t@SuppressWarnings(\"unchecked\"\
+    )\n\tpublic final void swap(final int a, final int b) {\n\t\tfinal int i = index(a),\
+    \ j = index(b);\n\t\tfinal T num = (T) buf[i];\n\t\tbuf[i] = buf[j];\n\t\tbuf[j]\
+    \ = num;\n\t}\n\t/**\n\t * Deque\u3092\u7A7A\u306B\u3059\u308B\n\t */\n\tpublic\
+    \ final void clear(){ head = tail = 0; }\n\t/**\n\t * @return \u914D\u5217\u5316\
+    \u3057\u305FDeque\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T[] toArray()\
+    \ {\n\t\tfinal Object[] array = new Object[size()];\n\t\tarraycopy(0, (T[]) array,\
+    \ 0, size());\n\t\treturn (T[]) array;\n\t}\n\t/**\n\t * \u51FA\u529B\u3059\u308B\
+    \u305F\u3081\u306B\u5FC5\u8981\n\t */\n\t@Override\n\tpublic final String toString(){\
+    \ return Arrays.toString(toArray()); }\n\t/**\n\t * \u30A4\u30C6\u30EC\u30FC\u30BF\
+    \n\t */\n\t@Override\n\tpublic final Iterator<T> iterator(){ return new DequeIterator();\
     \ }\n\t/**\n\t * \u30A4\u30C6\u30EC\u30FC\u30BF\u306E\u4E2D\u8EAB\n\t */\n\tprivate\
     \ class DequeIterator implements Iterator<T> {\n\t\tprivate int now = head;\n\t\
     \tprivate int rem = size();\n\t\t@Override\n\t\tpublic boolean hasNext(){ return\
@@ -526,7 +522,7 @@ data:
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
   - Java/All.java
-  timestamp: '2024-02-07 00:09:42+09:00'
+  timestamp: '2024-02-07 18:50:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/deque/Deque.java
