@@ -992,35 +992,71 @@ class Utility {
 	}
 }
 
-interface TriFunction<T, U, V, W> {
-	public W apply(final T a, final U b, final V c);
+interface TriFunction<T, U, V, R> {
+	R apply(final T a, final U b, final V c);
 }
-interface QuadFunction<A, B, C, D, E> {
-	public E apply(final A a, final B b, final C c, final D d);
+interface QuadFunction<A, B, C, D, R> {
+	R apply(final A a, final B b, final C c, final D d);
 }
-interface RecursiveFunction<T, U> {
-	public U apply(final RecursiveFunction<T, U> rec, final T n);
+interface RecursiveFunction<T, R> {
+	R apply(final RecursiveFunction<T, R> rec, final T n);
 }
-interface RecursiveBiFunction<T, U, V> {
-	public V apply(final RecursiveBiFunction<T, U, V> rec, final T n, final U m);
+interface RecursiveBiFunction<T, U, R> {
+	R apply(final RecursiveBiFunction<T, U, R> rec, final T n, final U m);
 }
-interface RecursiveTriFunction<T, U, V, W> {
-	public W apply(final RecursiveTriFunction<T, U, V, W> rec, final T p, final U q, final V r);
+interface RecursiveTriFunction<T, U, V, R> {
+	R apply(final RecursiveTriFunction<T, U, V, R> rec, final T p, final U q, final V r);
 }
 interface RecursiveUnaryOperator<T> {
-	public T apply(final RecursiveUnaryOperator<T> rec, final T n);
+	T apply(final RecursiveUnaryOperator<T> rec, final T n);
 }
 interface RecursiveBinaryOperator<T> {
-	public T apply(final RecursiveBinaryOperator<T> rec, final T a, final T b);
+	T apply(final RecursiveBinaryOperator<T> rec, final T a, final T b);
 }
 interface RecursiveConsumer<T> {
-	public void accept(final RecursiveConsumer<T> rec, final T x);
+	void accept(final RecursiveConsumer<T> rec, final T x);
 }
 interface RecursiveBiConsumer<T, U> {
-	public void accept(final RecursiveBiConsumer<T, U> rec, final T x, final U y);
+	void accept(final RecursiveBiConsumer<T, U> rec, final T x, final U y);
 }
 interface RecursiveTriConsumer<T, U, V> {
-	public void accept(final RecursiveTriConsumer<T, U, V> rec, final T x, final U y, final V z);
+	void accept(final RecursiveTriConsumer<T, U, V> rec, final T x, final U y, final V z);
+}
+interface RecursiveIntFunction<R> {
+	R apply(final RecursiveIntFunction<R> rec, final int n);
+}
+interface RecursiveLongFunction<R> {
+	R apply(final RecursiveLongFunction<R> rec, final long n);
+}
+interface RecursiveDoubleFunction<R> {
+	R apply(final RecursiveDoubleFunction<R> rec, final double n);
+}
+interface RecursiveIntUnaryOperator {
+	int apply(final RecursiveIntUnaryOperator rec, final int n);
+}
+interface RecursiveLongUnaryOperator {
+	long apply(final RecursiveLongUnaryOperator rec, final long n);
+}
+interface RecursiveDoubleUnaryOperator {
+	double apply(final RecursiveDoubleUnaryOperator rec, final double n);
+}
+interface RecursiveIntBinaryOperator {
+	int apply(final RecursiveIntBinaryOperator rec, final int a, final int b);
+}
+interface RecursiveLongBinaryOperator {
+	long apply(final RecursiveLongBinaryOperator rec, final long a, final long b);
+}
+interface RecursiveDoubleBinaryOperator {
+	double apply(final RecursiveDoubleBinaryOperator rec, final double a, final double b);
+}
+interface RecursiveIntConsumer {
+	void accept(final RecursiveIntConsumer rec, final int n);
+}
+interface RecursiveLongConsumer {
+	void accept(final RecursiveLongConsumer rec, final long n);
+}
+interface RecursiveDoubleConsumer {
+	void accept(final RecursiveDoubleConsumer rec, final double n);
 }
 
 final class MyScanner implements Closeable, AutoCloseable {

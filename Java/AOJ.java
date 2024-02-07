@@ -4,14 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigInteger;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Formatter;
 import java.util.Objects;
-import java.util.Queue;
-import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -188,37 +184,6 @@ class Utility {
 	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> F[] first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i -> i.first).toArray(); }
 	@SuppressWarnings("unchecked")
 	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> S[] second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i -> i.second).toArray(); }
-}
-
-interface TriFunction<T, U, V, W> {
-	public W apply(final T a, final U b, final V c);
-}
-interface QuadFunction<A, B, C, D, E> {
-	public E apply(final A a, final B b, final C c, final D d);
-}
-interface RecursiveFunction<T, U> {
-	public U apply(final RecursiveFunction<T, U> rec, final T n);
-}
-interface RecursiveBiFunction<T, U, V> {
-	public V apply(final RecursiveBiFunction<T, U, V> rec, final T n, final U m);
-}
-interface RecursiveTriFunction<T, U, V, W> {
-	public W apply(final RecursiveTriFunction<T, U, V, W> rec, final T p, final U q, final V r);
-}
-interface RecursiveUnaryOperator<T> {
-	public T apply(final RecursiveUnaryOperator<T> rec, final T n);
-}
-interface RecursiveBinaryOperator<T> {
-	public T apply(final RecursiveBinaryOperator<T> rec, final T a, final T b);
-}
-interface RecursiveConsumer<T> {
-	public void accept(final RecursiveConsumer<T> rec, final T x);
-}
-interface RecursiveBiConsumer<T, U> {
-	public void accept(final RecursiveBiConsumer<T, U> rec, final T x, final U y);
-}
-interface RecursiveTriConsumer<T, U, V> {
-	public void accept(final RecursiveTriConsumer<T, U, V> rec, final T x, final U y, final V z);
 }
 
 final class MyScanner implements Closeable, AutoCloseable {
@@ -753,139 +718,5 @@ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> imp
 			return second.compareTo(p.second);
 		}
 		return first.compareTo(p.first);
-	}
-}
-
-/**
- * 辺を表すクラス
- */
-final class Edge {
-	public int src;
-	public int to;
-	public long cost;
-	public Edge(final int to){ this.to = to; }
-	public Edge(final int to, final long cost) {
-		this.to = to;
-		this.cost = cost;
-	}
-	public Edge(final int src, final int to, final long cost) {
-		this.src = src;
-		this.to = to;
-		this.cost = cost;
-	}
-	@Override
-	public final boolean equals(final Object o) {
-		if(this == o) {
-			return true;
-		}
-		if(o == null || getClass() != o.getClass()) {
-			return false;
-		}
-		final Edge e = (Edge) o;
-		return src == e.src && to == e.to && cost == e.cost;
-	}
-	@Override
-	public final int hashCode(){ return Objects.hash(src, to, cost); }
-	@Override
-	public final String toString(){ return "(" + src + ", " + to + ", " + cost + ")"; }
-}
-class Graph extends ArrayList<ArrayList<Edge>> {
-	protected final boolean undirected;
-	protected final int n, indexed;
-	protected final ArrayList<Edge> edge;
-	/**
-	 * コンストラクタ
-	 * @param n 頂点の個数
-	 * @param indexed ?-indexed
-	 * 0-indexedなら0, 1-indexedなら1
-	 * @param undirected 無向グラフかどうか
-	 * 無向グラフならtrue, 有向グラフならfalse
-	 */
-	public Graph(final int n, final int indexed, final boolean undirected) {
-		this.n = n;
-		this.indexed = indexed;
-		this.undirected = undirected;
-		edge = new ArrayList<>();
-		IntStream.range(0, n).forEach(i -> add(new ArrayList<>()));
-	}
-	/**
-	 * 辺を追加する
-	 * @param a
-	 * @param b
-	 */
-	public final void addEdge(int a, int b) {
-		a -= indexed;
-		b -= indexed;
-		this.get(a).add(new Edge(b));
-		edge.add(new Edge(a, b, 0));
-		if(undirected) {
-			this.get(b).add(new Edge(a));
-			edge.add(new Edge(b, a, 0));
-		}
-	}
-	/**
-	 * 辺をm個入力する
-	 * @param m 辺の個数
-	 */
-	public void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni())); }
-	/**
-	 * @return 辺のリスト
-	 */
-	public final ArrayList<Edge> getEdge(){ return edge; }
-	/**
-	 * BFSをして頂点vから各頂点に対する距離を求める
-	 * @param v
-	 */
-	public final int[] allDist(final int v) {
-		final int[] d = new int[n];
-		Arrays.fill(d, -1);
-		final Queue<Integer> q = new ArrayDeque<>();
-		d[v] = 0;
-		q.add(v);
-		while(!q.isEmpty()) {
-			final int tmp = q.poll();
-			for(final Edge el: this.get(tmp)) {
-				if(d[el.to] != -1) {
-					continue;
-				}
-				d[el.to] = d[tmp] + 1;
-				q.add(el.to);
-			}
-		}
-		return d;
-	}
-	/**
-	 * @param u
-	 * @param v
-	 * @return 頂点uと頂点vとの距離
-	 */
-	public final int dist(final int u, final int v){ return allDist(u)[v]; }
-	/**
-	 * トポロジカルソート
-	 */
-	public final ArrayList<Integer> topologicalSort() {
-		final int[] deg = new int[n];
-		for(int i = 0; i < n; ++i) {
-			for(final Edge ed: this.get(i)) {
-				deg[ed.to]++;
-			}
-		}
-		final Stack<Integer> sk = new Stack<>();
-		for(int i = 0; i < n; ++i) {
-			if(deg[i] == 0) {
-				sk.add(i);
-			}
-		}
-		final ArrayList<Integer> ord = new ArrayList<>();
-		while(!sk.isEmpty()) {
-			final int tmp = sk.pop();
-			ord.add(tmp);
-			for(final Edge ed: this.get(tmp)) {
-				if(--deg[ed.to] == 0) {
-					sk.add(ed.to);
-				}
-			}
-		}
-		return ord.size() == size() ? ord : new ArrayList<>();
 	}
 }

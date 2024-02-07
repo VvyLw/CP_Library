@@ -1,11 +1,14 @@
 package library.core.interfaces;
 
+import java.util.function.BiFunction;
+
 /**
- * 再帰ラムダ式が書けるFunctionインターフェース
+ * 再帰ラムダ式が書けるBiFunctionインターフェース
  * @param <T>
  * @param <U>
- * @param <V>
+ * @param <R>
+ * @see BiFunction
  */
-public interface RecursiveBiFunction<T, U, V> {
-	public V apply(final RecursiveBiFunction<T, U, V> rec, final T n, final U m);
+public interface RecursiveBiFunction<T, U, R> {
+	public R apply(final RecursiveBiFunction<T, U, R> rec, final T n, final U m);
 }
