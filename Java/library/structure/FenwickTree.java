@@ -76,7 +76,7 @@ public final class FenwickTree {
 		add(l, x);
 		add(r + 1, -x);
 	}
-	private final int lg(final int n){ return 63 - Integer.numberOfLeadingZeros(n); }
+	private final int lg(final int n){ return 31 - Integer.numberOfLeadingZeros(n); }
 	/**
 	 * @implNote 要素は全て非負
 	 * @param w
