@@ -34,22 +34,24 @@ data:
     \     x = (*this)[x], y = (*this)[y];\r\n        if(x == y) return false;\r\n\
     \        if(-par[x] < -par[y]) {\r\n            std::swap(x, y);\r\n        }\r\
     \n        par[x] += par[y], par[y] = x;\r\n        return true;\r\n    }\r\n \
-    \   int size(const int x) {\r\n        return -par[(*this)[x]];\r\n    }\r\n#if\
-    \ __cplusplus >= 202101L\r\n    std::vector<std::vector<int>> groups() {\r\n \
-    \       const int n = std::ssize(par);\r\n        std::vector<std::vector<int>>\
-    \ res(n);\r\n        for(int i = 0; i < n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\
-    \n        }\r\n        const auto it = std::ranges::remove_if(res, [&](const std::vector<int>\
+    \   int size(const int x) {\r\n        return -par[(*this)[x]];\r\n    }\r\n \
+    \   int size() const { return par.size(); }\r\n#if __cplusplus >= 202101L\r\n\
+    \    std::vector<std::vector<int>> groups() {\r\n        const int n = std::ssize(par);\r\
+    \n        std::vector<std::vector<int>> res(n);\r\n        for(int i = 0; i <\
+    \ n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\n        }\r\n \
+    \       const auto it = std::ranges::remove_if(res, [&](const std::vector<int>\
     \ &v){ return v.empty(); });\r\n        res.erase(it.begin(), it.end());\r\n \
     \       return res;\r\n    }\r\n#else\r\n    std::vector<std::vector<int>> groups()\
     \ {\r\n        const int n = par.size();\r\n        std::vector<std::vector<int>>\
     \ res(n);\r\n        for(int i = 0; i < n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\
     \n        }\r\n        res.erase(std::remove_if(res.begin(), res.end(), [&](const\
     \ std::vector<int> &v){ return v.empty(); }), res.end());\r\n        return res;\r\
-    \n    }\r\n#endif\r\n    bool is_bipartite() {\r\n        const int n = par.size()\
-    \ / 2;\r\n        bool ok = true;\r\n        for(int i = 0; i < n; ++i) {\r\n\
-    \            ok &= (*this)[i] != (*this)[i + n];\r\n        }\r\n        return\
-    \ ok;\r\n    }\r\n};\r\n/**\r\n * @brief UnionFind\r\n * @see https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\r\
-    \n */\n"
+    \n    }\r\n#endif\r\n};\r\n\r\ninline bool is_bipartite(UnionFind uf) {\r\n  \
+    \  assert(uf.size() % 2 == 0);\r\n    const int n = uf.size() / 2;\r\n    bool\
+    \ ok = true;\r\n    for(int i = 0; i < n; ++i) {\r\n        ok &= uf[i] != uf[i\
+    \ + n];\r\n    }\r\n    return ok;\r\n}\r\n/**\r\n * @brief UnionFind\r\n * @see\
+    \ https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\r\n\
+    \ */\n"
   code: "#pragma once\r\n\r\n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\
     \nstruct UnionFind {\r\nprivate:\r\n    std::vector<int> par;\r\npublic:\r\n \
     \   UnionFind(const int n): par(n, -1){}\r\n    int operator[](int i) {\r\n  \
@@ -59,10 +61,10 @@ data:
     \ (*this)[x], y = (*this)[y];\r\n        if(x == y) return false;\r\n        if(-par[x]\
     \ < -par[y]) {\r\n            std::swap(x, y);\r\n        }\r\n        par[x]\
     \ += par[y], par[y] = x;\r\n        return true;\r\n    }\r\n    int size(const\
-    \ int x) {\r\n        return -par[(*this)[x]];\r\n    }\r\n#if __cplusplus >=\
-    \ 202101L\r\n    std::vector<std::vector<int>> groups() {\r\n        const int\
-    \ n = std::ssize(par);\r\n        std::vector<std::vector<int>> res(n);\r\n  \
-    \      for(int i = 0; i < n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\
+    \ int x) {\r\n        return -par[(*this)[x]];\r\n    }\r\n    int size() const\
+    \ { return par.size(); }\r\n#if __cplusplus >= 202101L\r\n    std::vector<std::vector<int>>\
+    \ groups() {\r\n        const int n = std::ssize(par);\r\n        std::vector<std::vector<int>>\
+    \ res(n);\r\n        for(int i = 0; i < n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\
     \n        }\r\n        const auto it = std::ranges::remove_if(res, [&](const std::vector<int>\
     \ &v){ return v.empty(); });\r\n        res.erase(it.begin(), it.end());\r\n \
     \       return res;\r\n    }\r\n#else\r\n    std::vector<std::vector<int>> groups()\
@@ -70,17 +72,18 @@ data:
     \ res(n);\r\n        for(int i = 0; i < n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\
     \n        }\r\n        res.erase(std::remove_if(res.begin(), res.end(), [&](const\
     \ std::vector<int> &v){ return v.empty(); }), res.end());\r\n        return res;\r\
-    \n    }\r\n#endif\r\n    bool is_bipartite() {\r\n        const int n = par.size()\
-    \ / 2;\r\n        bool ok = true;\r\n        for(int i = 0; i < n; ++i) {\r\n\
-    \            ok &= (*this)[i] != (*this)[i + n];\r\n        }\r\n        return\
-    \ ok;\r\n    }\r\n};\r\n/**\r\n * @brief UnionFind\r\n * @see https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\r\
-    \n */"
+    \n    }\r\n#endif\r\n};\r\n\r\ninline bool is_bipartite(UnionFind uf) {\r\n  \
+    \  assert(uf.size() % 2 == 0);\r\n    const int n = uf.size() / 2;\r\n    bool\
+    \ ok = true;\r\n    for(int i = 0; i < n; ++i) {\r\n        ok &= uf[i] != uf[i\
+    \ + n];\r\n    }\r\n    return ok;\r\n}\r\n/**\r\n * @brief UnionFind\r\n * @see\
+    \ https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\r\n\
+    \ */"
   dependsOn: []
   isVerificationFile: false
   path: C++/UnionFind.hpp
   requiredBy:
   - C++/MST.hpp
-  timestamp: '2024-01-30 14:40:09+09:00'
+  timestamp: '2024-02-08 03:21:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manhattan.test.cpp

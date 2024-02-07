@@ -397,24 +397,29 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/other/Huitloxopetl.java\n"
   code: "package library.other;\n\nimport java.util.HashMap;\nimport java.util.Map;\n\
-    \nimport library.core.Utility;\nimport library.structure.FenwickTree;\n\n/**\n\
-    \ * core\u30D1\u30C3\u30B1\u30FC\u30B8\u4EE5\u5916\u306E\u5916\u90E8\u30AF\u30E9\
-    \u30B9(Pair\u3092\u9664\u304F\u3092\u4F7F\u3046\u30E1\u30BD\u30C3\u30C9\u304C\u7F6E\
-    \u3044\u3066\u3042\u308B\n */\npublic final class Huitloxopetl {\n\t/**\n\t *\
-    \ @param a\n\t * @return \u8EE2\u5012\u6570\n\t * @implNote {@link FenwickTree}\u304C\
-    \u5FC5\u8981\n\t */\n\tpublic final long invNum(final int[] a) {\n\t\tfinal int[]\
-    \ b = Utility.sorted(a);\n\t\tfinal Map<Integer, Integer> id = new HashMap<>();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
-    \ FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int\
-    \ i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\t\
-    bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\
-    \t * @return \u8EE2\u5012\u6570\n\t * @implNote {@link FenwickTree}\u304C\u5FC5\
-    \u8981\n\t */\n\tpublic final long invNum(final long[] a) {\n\t\tfinal long[]\
-    \ b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer> id = new HashMap<>();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
-    \ FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int\
-    \ i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\t\
-    bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n}"
+    \nimport library.core.Utility;\nimport library.structure.FenwickTree;\nimport\
+    \ library.structure.unionfind.UnionFind;\n\n/**\n * core\u30D1\u30C3\u30B1\u30FC\
+    \u30B8\u4EE5\u5916\u306E\u5916\u90E8\u30AF\u30E9\u30B9(Pair\u3092\u9664\u304F\u3092\
+    \u4F7F\u3046\u30E1\u30BD\u30C3\u30C9\u304C\u7F6E\u3044\u3066\u3042\u308B\n */\n\
+    public final class Huitloxopetl {\n\t/**\n\t * @param uf\n\t * @return \u4E8C\u5206\
+    \u30B0\u30E9\u30D5\u304B\u3069\u3046\u304B\n\t * @implNote {@link UnionFind}\u304C\
+    \u5FC5\u8981\n\t */\n\tpublic final boolean isBipartite(final UnionFind uf) {\n\
+    \t\tassert uf.size() % 2 == 0;\n\t\tfinal int n = uf.size() / 2;\n\t\tboolean\
+    \ ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &= uf.root(i) != uf.root(i\
+    \ + n);\n\t\t}\n\t\treturn ok;\n\t}\n\t/**\n\t * @param a\n\t * @return \u8EE2\
+    \u5012\u6570\n\t * @implNote {@link FenwickTree}\u304C\u5FC5\u8981\n\t */\n\t\
+    public final long invNum(final int[] a) {\n\t\tfinal int[] b = Utility.sorted(a);\n\
+    \t\tfinal Map<Integer, Integer> id = new HashMap<>();\n\t\tfor(int i = 0; i <\
+    \ a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal FenwickTree bit =\
+    \ new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0; i < a.length;\
+    \ ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\tbit.add(id.get(a[i]),\
+    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @return \u8EE2\u5012\
+    \u6570\n\t * @implNote {@link FenwickTree}\u304C\u5FC5\u8981\n\t */\n\tpublic\
+    \ final long invNum(final long[] a) {\n\t\tfinal long[] b = Utility.sorted(a);\n\
+    \t\tfinal Map<Long, Integer> id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length;\
+    \ ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\
+    \t\tlong res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
+    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n}"
   dependsOn:
   - Java/AOJ.java
   - Java/yukicoder.java
@@ -547,7 +552,7 @@ data:
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
   - Java/All.java
-  timestamp: '2024-02-08 00:48:20+09:00'
+  timestamp: '2024-02-08 03:21:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/Huitloxopetl.java

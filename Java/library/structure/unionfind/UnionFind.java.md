@@ -405,27 +405,24 @@ data:
     \ final int root(final int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i;\
     \ }\n\t/**\n\t * @param i\n\t * @return i\u3092\u542B\u3080\u9023\u7D50\u6210\u5206\
     \u306E\u30B5\u30A4\u30BA\n\t */\n\tpublic final int size(final int i){ return\
-    \ -par[root(i)]; }\n\t/**\n\t * i\u3068j\u3092\u30DE\u30FC\u30B8\u3059\u308B\n\
-    \t * @param i\n\t * @param j\n\t * @return \u672A\u30DE\u30FC\u30B8\u3067true,\
-    \ \u30DE\u30FC\u30B8\u6E08\u3067false\n\t */\n\tpublic final boolean unite(int\
-    \ i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) {\n\t\t\treturn\
-    \ false;\n\t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\
-    \t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\t}\n\t/**\n\t\
-    \ * i\u3068j\u304C\u540C\u3058\u9023\u7D50\u6210\u5206\u306B\u6240\u5C5E\u3057\
-    \u3066\u3044\u308B\u304B\u3069\u3046\u304B\u5224\u5B9A\u3059\u308B\n\t * @param\
-    \ i\n\t * @param j\n\t */\n\tpublic final boolean same(final int i, final int\
-    \ j){ return root(i) == root(j); }\n\t/**\n\t * \u30B0\u30E9\u30D5\u3092\u9023\
-    \u7D50\u6210\u5206\u306B\u5206\u3051\u3001\u305D\u306E\u60C5\u5831\u3092\u8FD4\
-    \u3059\n\t * @see <a href=\"https://atcoder.github.io/ac-library/production/document_ja/dsu.html\"\
+    \ -par[root(i)]; }\n\t/**\n\t * @return UnionFind\u306E\u30B5\u30A4\u30BA\n\t\
+    \ */\n\tpublic final int size(){ return par.length; }\n\t/**\n\t * i\u3068j\u3092\
+    \u30DE\u30FC\u30B8\u3059\u308B\n\t * @param i\n\t * @param j\n\t * @return \u672A\
+    \u30DE\u30FC\u30B8\u3067true, \u30DE\u30FC\u30B8\u6E08\u3067false\n\t */\n\tpublic\
+    \ final boolean unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\t\
+    if(i == j) {\n\t\t\treturn false;\n\t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\
+    \tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\t\
+    return true;\n\t}\n\t/**\n\t * i\u3068j\u304C\u540C\u3058\u9023\u7D50\u6210\u5206\
+    \u306B\u6240\u5C5E\u3057\u3066\u3044\u308B\u304B\u3069\u3046\u304B\u5224\u5B9A\
+    \u3059\u308B\n\t * @param i\n\t * @param j\n\t */\n\tpublic final boolean same(final\
+    \ int i, final int j){ return root(i) == root(j); }\n\t/**\n\t * \u30B0\u30E9\u30D5\
+    \u3092\u9023\u7D50\u6210\u5206\u306B\u5206\u3051\u3001\u305D\u306E\u60C5\u5831\
+    \u3092\u8FD4\u3059\n\t * @see <a href=\"https://atcoder.github.io/ac-library/production/document_ja/dsu.html\"\
     >atcoder::dsu::groups</a>\n\t */\n\tpublic final ArrayList<ArrayList<Integer>>\
     \ groups() {\n\t\tfinal int n = par.length;\n\t\tArrayList<ArrayList<Integer>>\
     \ res = new ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> res.add(new\
     \ ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\
-    \t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n\t/**\n\t * \u4E8C\
-    \u5206\u30B0\u30E9\u30D5\u304B\u3069\u3046\u304B\u5224\u5B9A\u3059\u308B\n\t */\n\
-    \tfinal boolean isBipartite() {\n\t\tassert(par.length % 2 == 0);\n\t\tfinal int\
-    \ n = par.length / 2;\n\t\tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i)\
-    \ {\n\t\t\tok &= root(i) != root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n}"
+    \t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n}"
   dependsOn:
   - Java/AOJ.java
   - Java/yukicoder.java
@@ -558,7 +555,7 @@ data:
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
   - Java/All.java
-  timestamp: '2024-02-08 00:48:20+09:00'
+  timestamp: '2024-02-08 03:21:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/unionfind/UnionFind.java
