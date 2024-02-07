@@ -50,15 +50,17 @@ public:
         return res;
     }
 #endif
-    bool is_bipartite() {
-        const int n = par.size() / 2;
-        bool ok = true;
-        for(int i = 0; i < n; ++i) {
-            ok &= (*this)[i] != (*this)[i + n];
-        }
-        return ok;
-    }
 };
+
+inline bool is_bipartite(const UnionFind uf) {
+    assert(uf.par.size() % 2 == 0);
+    const int n = uf.par.size() / 2;
+    bool ok = true;
+    for(int i = 0; i < n; ++i) {
+        ok &= uf[i] == uf[i + n];
+    }
+    return ok;
+}
 /**
  * @brief UnionFind
  * @see https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp
