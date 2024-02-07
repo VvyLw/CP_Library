@@ -1632,7 +1632,7 @@ data:
     \ sum(k) - sum(k - 1); }\n\tfinal void add(int k, final long x) {\n\t\tfor(++k;\
     \ k < n; k += k & -k) {\n\t\t\tdata[k] += x;\n\t\t}\n\t}\n\tfinal void imos(final\
     \ int l, final int r, final long x) {\n\t\tadd(l, x);\n\t\tadd(r + 1, -x);\n\t\
-    }\n\tprivate final int lg(final int n){ return 63 - Integer.numberOfLeadingZeros(n);\
+    }\n\tprivate final int lg(final int n){ return 31 - Integer.numberOfLeadingZeros(n);\
     \ }\n\tfinal int lowerBound(long w) {\n\t\tif(w <= 0) {\n\t\t\treturn 0;\n\t\t\
     }\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x +\
     \ k <= n - 1 && data[x + k] < w) {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\
@@ -1879,7 +1879,7 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
-  timestamp: '2024-02-07 18:50:23+09:00'
+  timestamp: '2024-02-07 22:19:49+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

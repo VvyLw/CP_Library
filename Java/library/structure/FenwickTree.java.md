@@ -348,7 +348,7 @@ data:
     \t\tdata[k] += x;\n\t\t}\n\t}\n\t/**\n\t * \u9589\u533A\u9593[l, r]\u306B\u5024\
     \u3092\u52A0\u7B97\u3059\u308B\n\t * @param l\n\t * @param r\n\t * @param x\n\t\
     \ */\n\tpublic final void imos(final int l, final int r, long x) {\n\t\tadd(l,\
-    \ x);\n\t\tadd(r + 1, -x);\n\t}\n\tprivate final int lg(final int n){ return 63\
+    \ x);\n\t\tadd(r + 1, -x);\n\t}\n\tprivate final int lg(final int n){ return 31\
     \ - Integer.numberOfLeadingZeros(n); }\n\t/**\n\t * @implNote \u8981\u7D20\u306F\
     \u5168\u3066\u975E\u8CA0\n\t * @param w\n\t * @return [0, k]\u306E\u533A\u9593\
     \u548C\u304Cw\u4EE5\u4E0A\u3068\u306A\u308B\u3088\u3046\u306A\u6700\u5C0F\u306E\
@@ -473,7 +473,7 @@ data:
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
   - Java/All.java
-  timestamp: '2024-02-07 18:50:23+09:00'
+  timestamp: '2024-02-07 22:19:49+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/FenwickTree.java

@@ -486,7 +486,7 @@ data:
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
   - Java/All.java
-  timestamp: '2024-02-07 18:50:23+09:00'
+  timestamp: '2024-02-07 22:19:49+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/AVLTree.java
