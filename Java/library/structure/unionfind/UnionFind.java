@@ -28,6 +28,10 @@ public final class UnionFind {
 	 */
 	public final int size(final int i){ return -par[root(i)]; }
 	/**
+	 * @return UnionFindのサイズ
+	 */
+	public final int size(){ return par.length; }
+	/**
 	 * iとjをマージする
 	 * @param i
 	 * @param j
@@ -65,17 +69,5 @@ public final class UnionFind {
 		IntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));
 		res.removeIf(ArrayList::isEmpty);
 		return res;
-	}
-	/**
-	 * 二分グラフかどうか判定する
-	 */
-	final boolean isBipartite() {
-		assert(par.length % 2 == 0);
-		final int n = par.length / 2;
-		boolean ok = true;
-		for(int i = 0; i < n; ++i) {
-			ok &= root(i) != root(i + n);
-		}
-		return ok;
 	}
 }

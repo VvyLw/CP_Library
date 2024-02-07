@@ -28,6 +28,7 @@ public:
     int size(const int x) {
         return -par[(*this)[x]];
     }
+    int size() const { return par.size(); }
 #if __cplusplus >= 202101L
     std::vector<std::vector<int>> groups() {
         const int n = std::ssize(par);
@@ -52,12 +53,12 @@ public:
 #endif
 };
 
-inline bool is_bipartite(const UnionFind uf) {
-    assert(uf.par.size() % 2 == 0);
-    const int n = uf.par.size() / 2;
+inline bool is_bipartite(UnionFind uf) {
+    assert(uf.size() % 2 == 0);
+    const int n = uf.size() / 2;
     bool ok = true;
     for(int i = 0; i < n; ++i) {
-        ok &= uf[i] == uf[i + n];
+        ok &= uf[i] != uf[i + n];
     }
     return ok;
 }

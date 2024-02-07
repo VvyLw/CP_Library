@@ -5,11 +5,26 @@ import java.util.Map;
 
 import library.core.Utility;
 import library.structure.FenwickTree;
+import library.structure.unionfind.UnionFind;
 
 /**
  * coreパッケージ以外の外部クラス(Pairを除くを使うメソッドが置いてある
  */
 public final class Huitloxopetl {
+	/**
+	 * @param uf
+	 * @return 二分グラフかどうか
+	 * @implNote {@link UnionFind}が必要
+	 */
+	public final boolean isBipartite(final UnionFind uf) {
+		assert uf.size() % 2 == 0;
+		final int n = uf.size() / 2;
+		boolean ok = true;
+		for(int i = 0; i < n; ++i) {
+			ok &= uf.root(i) != uf.root(i + n);
+		}
+		return ok;
+	}
 	/**
 	 * @param a
 	 * @return 転倒数
