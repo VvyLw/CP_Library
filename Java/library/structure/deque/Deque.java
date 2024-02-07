@@ -38,23 +38,19 @@ public final class Deque<T> implements Iterable<T> {
 	}
 	private final int index(final int i) {
 		final int size = size();
-		if(i >= size) {
-			throw new IndexOutOfBoundsException("Index "+ i +" out of bounds for length " + size);
-		}
+		assert i < size;
 		final int id = head + i;
 		return n <= id ? id - n : id;
 	}
-	private final void arraycopy(final int fromIndex, final T[] array, final int from, final int length) {
-		if(fromIndex + length > size()) {
-			throw new IndexOutOfBoundsException("last source index " + (fromIndex + length) + " out of bounds for int[" + size() + "]");
-		}
-		final int h = index(fromIndex);
-		if(h + length < n) {
-			System.arraycopy(buf, h, array, from, length);
+	private final void arraycopy(final int fromId, final T[] a, final int from, final int len) {
+		assert fromId + len <= size();
+		final int h = index(fromId);
+		if(h + len < n) {
+			System.arraycopy(buf, h, a, from, len);
 		} else {
 			final int back = n - h;
-			System.arraycopy(buf, h, array, from, back);
-			System.arraycopy(buf, 0, array, from + back, length - back);
+			System.arraycopy(buf, h, a, from, back);
+			System.arraycopy(buf, 0, a, from + back, len - back);
 		}
 	}
 	@SuppressWarnings("unchecked")
@@ -103,7 +99,7 @@ public final class Deque<T> implements Iterable<T> {
 	 */
 	public final void removeFirst() {
 		if(head == tail) {
-			throw new NoSuchElementException("Buffer is empty");
+			throw new NoSuchElementException("Deque is empty");
 		}
 		head = next(head);
 	}
@@ -112,7 +108,7 @@ public final class Deque<T> implements Iterable<T> {
 	 */
 	public final void removeLast() {
 		if(head == tail) {
-			throw new NoSuchElementException("Buffer is empty");
+			throw new NoSuchElementException("Deque is empty");
 		}
 		tail = prev(tail);
 	}
@@ -123,7 +119,7 @@ public final class Deque<T> implements Iterable<T> {
 	@SuppressWarnings("unchecked")
 	public final T pollFirst() {
 		if(head == tail) {
-			throw new NoSuchElementException("Buffer is empty");
+			throw new NoSuchElementException("Deque is empty");
 		}
 		final T ans = (T) buf[head];
 		head = next(head);
@@ -136,7 +132,7 @@ public final class Deque<T> implements Iterable<T> {
 	@SuppressWarnings("unchecked")
 	public final T pollLast() {
 		if(head == tail) {
-			throw new NoSuchElementException("Buffer is empty");
+			throw new NoSuchElementException("Deque is empty");
 		}
 		tail = prev(tail);
 		return (T) buf[tail];
