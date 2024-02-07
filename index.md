@@ -106,8 +106,44 @@ data:
       path: Java/library/core/interfaces/RecursiveConsumer.java
       title: Java/library/core/interfaces/RecursiveConsumer.java
     - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
+      title: Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveDoubleConsumer.java
+      title: Java/library/core/interfaces/RecursiveDoubleConsumer.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveDoubleFunction.java
+      title: Java/library/core/interfaces/RecursiveDoubleFunction.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
+      title: Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
+    - icon: ':warning:'
       path: Java/library/core/interfaces/RecursiveFunction.java
       title: Java/library/core/interfaces/RecursiveFunction.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveIntBinaryOperator.java
+      title: Java/library/core/interfaces/RecursiveIntBinaryOperator.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveIntConsumer.java
+      title: Java/library/core/interfaces/RecursiveIntConsumer.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveIntFunction.java
+      title: Java/library/core/interfaces/RecursiveIntFunction.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+      title: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
+      title: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveLongConsumer.java
+      title: Java/library/core/interfaces/RecursiveLongConsumer.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveLongFunction.java
+      title: Java/library/core/interfaces/RecursiveLongFunction.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveLongUnaryOperator.java
+      title: Java/library/core/interfaces/RecursiveLongUnaryOperator.java
     - icon: ':warning:'
       path: Java/library/core/interfaces/RecursiveTriConsumer.java
       title: Java/library/core/interfaces/RecursiveTriConsumer.java

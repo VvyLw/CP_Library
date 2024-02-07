@@ -35,9 +35,6 @@ data:
     path: Java/library/core/interfaces/RecursiveConsumer.java
     title: Java/library/core/interfaces/RecursiveConsumer.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
-    title: Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
-  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveDoubleConsumer.java
     title: Java/library/core/interfaces/RecursiveDoubleConsumer.java
   - icon: ':warning:'
@@ -100,6 +97,9 @@ data:
   - icon: ':warning:'
     path: Java/library/graph/LowestCommonAncestor.java
     title: Java/library/graph/LowestCommonAncestor.java
+  - icon: ':warning:'
+    path: Java/library/graph/MST.java
+    title: Java/library/graph/MST.java
   - icon: ':warning:'
     path: Java/library/graph/WeightedGraph.java
     title: Java/library/graph/WeightedGraph.java
@@ -228,9 +228,6 @@ data:
     path: Java/library/core/interfaces/RecursiveConsumer.java
     title: Java/library/core/interfaces/RecursiveConsumer.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
-    title: Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
-  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveDoubleConsumer.java
     title: Java/library/core/interfaces/RecursiveDoubleConsumer.java
   - icon: ':warning:'
@@ -293,6 +290,9 @@ data:
   - icon: ':warning:'
     path: Java/library/graph/LowestCommonAncestor.java
     title: Java/library/graph/LowestCommonAncestor.java
+  - icon: ':warning:'
+    path: Java/library/graph/MST.java
+    title: Java/library/graph/MST.java
   - icon: ':warning:'
     path: Java/library/graph/WeightedGraph.java
     title: Java/library/graph/WeightedGraph.java
@@ -395,12 +395,12 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/graph/MST.java\n"
-  code: "package library.graph;\n\nimport java.util.ArrayList;\n\n/**\n * \u6700\u5C0F\
-    \u5168\u57DF\u6728\u30AF\u30E9\u30B9\n */\npublic final class MST {\n\tpublic\
-    \ final ArrayList<Edge> tree;\n\tpublic final long cost;\n\tMST(final ArrayList<Edge>\
-    \ tree, final long cost) {\n\t\tthis.tree = tree;\n\t\tthis.cost = cost;\n\t}\n\
-    }"
+    RuntimeError: bundler is not specified: Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java\n"
+  code: "package library.core.interfaces;\n\nimport java.util.function.DoubleBinaryOperator;\n\
+    \n/**\n * \u518D\u5E30\u30E9\u30E0\u30C0\u304C\u66F8\u3051\u308BDoubleBinaryOperator\u30A4\
+    \u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\n * @see DoubleBinaryOperator\n */\n\
+    public interface RecursiveDoubleBinaryOperator {\n\tpublic double apply(final\
+    \ RecursiveDoubleBinaryOperator rec, final double a, final double b);\n}"
   dependsOn:
   - Java/AOJ.java
   - Java/yukicoder.java
@@ -412,7 +412,6 @@ data:
   - Java/library/core/interfaces/RecursiveDoubleConsumer.java
   - Java/library/core/interfaces/RecursiveIntUnaryOperator.java
   - Java/library/core/interfaces/RecursiveDoubleFunction.java
-  - Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
   - Java/library/core/interfaces/RecursiveBiConsumer.java
   - Java/library/core/interfaces/TriFunction.java
   - Java/library/core/interfaces/RecursiveTriFunction.java
@@ -460,6 +459,7 @@ data:
   - Java/library/graph/Edge.java
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/LowestCommonAncestor.java
+  - Java/library/graph/MST.java
   - Java/library/other/SkewHeap.java
   - Java/library/other/Huitloxopetl.java
   - Java/library/other/InclusiveScan.java
@@ -467,7 +467,7 @@ data:
   - Java/library/other/PrefixSum.java
   - Java/All.java
   isVerificationFile: false
-  path: Java/library/graph/MST.java
+  path: Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
   requiredBy:
   - Java/AOJ.java
   - Java/yukicoder.java
@@ -479,7 +479,6 @@ data:
   - Java/library/core/interfaces/RecursiveDoubleConsumer.java
   - Java/library/core/interfaces/RecursiveIntUnaryOperator.java
   - Java/library/core/interfaces/RecursiveDoubleFunction.java
-  - Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
   - Java/library/core/interfaces/RecursiveBiConsumer.java
   - Java/library/core/interfaces/TriFunction.java
   - Java/library/core/interfaces/RecursiveTriFunction.java
@@ -527,6 +526,7 @@ data:
   - Java/library/graph/Edge.java
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/LowestCommonAncestor.java
+  - Java/library/graph/MST.java
   - Java/library/other/SkewHeap.java
   - Java/library/other/Huitloxopetl.java
   - Java/library/other/InclusiveScan.java
@@ -536,10 +536,10 @@ data:
   timestamp: '2024-02-08 00:48:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/graph/MST.java
+documentation_of: Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
 layout: document
 redirect_from:
-- /library/Java/library/graph/MST.java
-- /library/Java/library/graph/MST.java.html
-title: Java/library/graph/MST.java
+- /library/Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
+- /library/Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java.html
+title: Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
 ---

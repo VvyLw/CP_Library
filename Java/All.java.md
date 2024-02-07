@@ -32,8 +32,44 @@ data:
     path: Java/library/core/interfaces/RecursiveConsumer.java
     title: Java/library/core/interfaces/RecursiveConsumer.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
+    title: Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveDoubleConsumer.java
+    title: Java/library/core/interfaces/RecursiveDoubleConsumer.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveDoubleFunction.java
+    title: Java/library/core/interfaces/RecursiveDoubleFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
+    title: Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveFunction.java
     title: Java/library/core/interfaces/RecursiveFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveIntBinaryOperator.java
+    title: Java/library/core/interfaces/RecursiveIntBinaryOperator.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveIntConsumer.java
+    title: Java/library/core/interfaces/RecursiveIntConsumer.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveIntFunction.java
+    title: Java/library/core/interfaces/RecursiveIntFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+    title: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
+    title: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveLongConsumer.java
+    title: Java/library/core/interfaces/RecursiveLongConsumer.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveLongFunction.java
+    title: Java/library/core/interfaces/RecursiveLongFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveLongUnaryOperator.java
+    title: Java/library/core/interfaces/RecursiveLongUnaryOperator.java
   - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveTriConsumer.java
     title: Java/library/core/interfaces/RecursiveTriConsumer.java
@@ -189,8 +225,44 @@ data:
     path: Java/library/core/interfaces/RecursiveConsumer.java
     title: Java/library/core/interfaces/RecursiveConsumer.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
+    title: Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveDoubleConsumer.java
+    title: Java/library/core/interfaces/RecursiveDoubleConsumer.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveDoubleFunction.java
+    title: Java/library/core/interfaces/RecursiveDoubleFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
+    title: Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveFunction.java
     title: Java/library/core/interfaces/RecursiveFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveIntBinaryOperator.java
+    title: Java/library/core/interfaces/RecursiveIntBinaryOperator.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveIntConsumer.java
+    title: Java/library/core/interfaces/RecursiveIntConsumer.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveIntFunction.java
+    title: Java/library/core/interfaces/RecursiveIntFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+    title: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
+    title: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveLongConsumer.java
+    title: Java/library/core/interfaces/RecursiveLongConsumer.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveLongFunction.java
+    title: Java/library/core/interfaces/RecursiveLongFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveLongUnaryOperator.java
+    title: Java/library/core/interfaces/RecursiveLongUnaryOperator.java
   - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveTriConsumer.java
     title: Java/library/core/interfaces/RecursiveTriConsumer.java
@@ -328,33 +400,37 @@ data:
     import java.io.InputStream;\nimport java.io.OutputStream;\nimport java.math.BigInteger;\n\
     import java.util.ArrayDeque;\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
     import java.util.Collection;\nimport java.util.Collections;\nimport java.util.Comparator;\n\
-    import java.util.Formatter;\nimport java.util.HashMap;\nimport java.util.Iterator;\n\
-    import java.util.List;\nimport java.util.Map;\nimport java.util.NoSuchElementException;\n\
-    import java.util.Objects;\nimport java.util.PriorityQueue;\nimport java.util.Queue;\n\
-    import java.util.Stack;\nimport java.util.TreeMap;\nimport java.util.function.BiFunction;\n\
-    import java.util.function.BiPredicate;\nimport java.util.function.BinaryOperator;\n\
-    import java.util.function.Consumer;\nimport java.util.function.DoublePredicate;\n\
-    import java.util.function.IntPredicate;\nimport java.util.function.IntUnaryOperator;\n\
-    import java.util.function.LongBinaryOperator;\nimport java.util.function.LongPredicate;\n\
-    import java.util.function.Predicate;\nimport java.util.stream.Collectors;\nimport\
-    \ java.util.stream.IntStream;\n\nfinal class Main {\n\tpublic static void main(final\
-    \ String[] args) {\n\t\tIntStream.range(0, VvyLw.MULTI ? VvyLw.sc.ni() : 1).forEach(i\
-    \ -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\
-    \t\tVvyLw.dbg.close();\n\t}\n}\n\nfinal class VvyLw extends Utility {\n\tstatic\
-    \ final MyScanner sc = new MyScanner(System.in);\n\tstatic final MyPrinter o =\
-    \ new MyPrinter(System.out, false), dbg = new MyPrinter(System.err, true);\n\t\
-    static final Huitloxopetl why = new Huitloxopetl();\n\tstatic final boolean MULTI\
-    \ = false;\n\tstatic final int INF = 1 << 30;\n\tstatic final long LINF = (1L\
-    \ << 61) - 1;\n\tstatic final double EPS = 1e-18;\n\tstatic final int MOD = 998244353;\n\
-    \tstatic final int M0D = (int) 1e9 + 7;\n\tstatic final int[] dx = {0, -1, 1,\
-    \ 0, 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1,\
-    \ 1};\n\tstatic final void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected\
-    \ static final String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\
-    \tprotected static final String no(final boolean ok){ return yes(!ok); }\n\tprotected\
-    \ static final long sqr(final long x){ return x * x; }\n\tprotected static final\
-    \ long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\
-    \t}\n\tprotected static final long ceil(final long a, final long b){ return a\
-    \ == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final double round(final double\
+    import java.util.Formatter;\nimport java.util.HashMap;\nimport java.util.HashSet;\n\
+    import java.util.Iterator;\nimport java.util.List;\nimport java.util.Map;\nimport\
+    \ java.util.NoSuchElementException;\nimport java.util.Objects;\nimport java.util.PriorityQueue;\n\
+    import java.util.Queue;\nimport java.util.Stack;\nimport java.util.TreeMap;\n\
+    import java.util.function.BiFunction;\nimport java.util.function.BiPredicate;\n\
+    import java.util.function.BinaryOperator;\nimport java.util.function.Consumer;\n\
+    import java.util.function.DoublePredicate;\nimport java.util.function.IntPredicate;\n\
+    import java.util.function.IntUnaryOperator;\nimport java.util.function.LongBinaryOperator;\n\
+    import java.util.function.LongPredicate;\nimport java.util.function.Predicate;\n\
+    import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nfinal\
+    \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
+    \ VvyLw.MULTI ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
+    \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}\n\n\
+    final class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner(System.in);\n\
+    \tstatic final MyPrinter o = new MyPrinter(System.out, false), dbg = new MyPrinter(System.err,\
+    \ true);\n\tstatic final Huitloxopetl why = new Huitloxopetl();\n\tstatic final\
+    \ boolean MULTI = false;\n\tstatic final int INF = 1 << 30;\n\tstatic final long\
+    \ LINF = (1L << 61) - 1;\n\tstatic final double EPS = 1e-18;\n\tstatic final int\
+    \ MOD = 998244353;\n\tstatic final int M0D = (int) 1e9 + 7;\n\tstatic final int[]\
+    \ dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1,\
+    \ 1, -1, 1, -1, 1};\n\tstatic final void solve() {\n\t\tfinal var a = sc.ni(9,\
+    \ 9);\n\t\tfinal BiPredicate<Integer, Integer> sq = (x, y) -> {\n\t\t\tfinal var\
+    \ s = new HashSet<Integer>();\n\t\t\tfor(int i = 0; i < 3; ++i) {\n\t\t\t\tfor(int\
+    \ j = 0; j < 3; ++j) {\n\t\t\t\t\ts.add(a[x + i][y + j]);\n\t\t\t\t}\n\t\t\t}\n\
+    \t\t\treturn s.size() == 9;\n\t\t};\n\t}\n}\nclass Utility {\n\tprotected static\
+    \ final String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected\
+    \ static final String no(final boolean ok){ return yes(!ok); }\n\tprotected static\
+    \ final long sqr(final long x){ return x * x; }\n\tprotected static final long\
+    \ mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t\
+    }\n\tprotected static final long ceil(final long a, final long b){ return a ==\
+    \ 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final double round(final double\
     \ a, final long b, final int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn\
     \ Math.rint((a * d) / b) / d;\n\t}\n\tprotected static final long pow(long a,\
     \ int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\
@@ -769,59 +845,74 @@ data:
     \ n * (b / m);\n\t\t\tb %= m;\n\t\t}\n\t\tfinal long ym = (a * n + b) / m, xm\
     \ = (ym * m - b);\n\t\tif(ym == 0) {\n\t\t\treturn ans;\n\t\t}\n\t\tans += (n\
     \ - (xm + a - 1) / a) * ym;\n\t\tans += floorSum(ym, a, m, (a - xm % a) % a);\n\
-    \t\treturn ans;\n\t}\n}\n\ninterface TriFunction<T, U, V, W> {\n\tpublic W apply(final\
-    \ T a, final U b, final V c);\n}\ninterface QuadFunction<A, B, C, D, E> {\n\t\
-    public E apply(final A a, final B b, final C c, final D d);\n}\ninterface RecursiveFunction<T,\
-    \ U> {\n\tpublic U apply(final RecursiveFunction<T, U> rec, final T n);\n}\ninterface\
-    \ RecursiveBiFunction<T, U, V> {\n\tpublic V apply(final RecursiveBiFunction<T,\
-    \ U, V> rec, final T n, final U m);\n}\ninterface RecursiveTriFunction<T, U, V,\
-    \ W> {\n\tpublic W apply(final RecursiveTriFunction<T, U, V, W> rec, final T p,\
-    \ final U q, final V r);\n}\ninterface RecursiveUnaryOperator<T> {\n\tpublic T\
-    \ apply(final RecursiveUnaryOperator<T> rec, final T n);\n}\ninterface RecursiveBinaryOperator<T>\
-    \ {\n\tpublic T apply(final RecursiveBinaryOperator<T> rec, final T a, final T\
-    \ b);\n}\ninterface RecursiveConsumer<T> {\n\tpublic void accept(final RecursiveConsumer<T>\
-    \ rec, final T x);\n}\ninterface RecursiveBiConsumer<T, U> {\n\tpublic void accept(final\
-    \ RecursiveBiConsumer<T, U> rec, final T x, final U y);\n}\ninterface RecursiveTriConsumer<T,\
-    \ U, V> {\n\tpublic void accept(final RecursiveTriConsumer<T, U, V> rec, final\
-    \ T x, final U y, final V z);\n}\n\nfinal class MyScanner implements Closeable,\
-    \ AutoCloseable {\n\tprivate int pos, lim;\n\tprivate final byte[] buf;\n\tprivate\
-    \ final InputStream is;\n\tprivate boolean check;\n\tMyScanner(final InputStream\
-    \ is) {\n\t\tthis.is = is;\n\t\tpos = lim = 0;\n\t\tbuf = new byte[1 << 17];\n\
-    \t\tcheck = false;\n\t}\n\tprivate final boolean isPunct(final byte bt){ return\
-    \ !Utility.scope(33, bt, 126); }\n\tprivate final boolean isNum(final byte bt){\
-    \ return Utility.scope('0', bt, '9'); }\n\tprivate final byte read() {\n\t\tif(pos\
-    \ == lim && lim != -1) {\n\t\t\ttry {\n\t\t\t\tlim = is.read(buf);\n\t\t\t\tpos\
-    \ = 0;\n\t\t\t} catch(final IOException e) {\n\t\t\t\te.printStackTrace();\n\t\
-    \t\t}\n\t\t}\n\t\treturn buf[pos++];\n\t}\n\tprivate final byte next() {\n\t\t\
-    byte bt;\n\t\tif(check) {\n\t\t\tcheck = false;\n\t\t\tbt = buf[pos - 1];\n\t\t\
-    \tif(!isPunct(bt)) {\n\t\t\t\treturn bt;\n\t\t\t}\n\t\t}\n\t\twhile(isPunct(bt\
-    \ = read())){}\n\t\treturn bt;\n\t}\n\tprivate final byte nextInt() {\n\t\tbyte\
-    \ bt;\n\t\twhile(!isNum(bt = read())){}\n\t\treturn bt;\n\t}\n\tfinal int ni(){\
-    \ return Math.toIntExact(nl()); }\n\tfinal long nl() {\n\t\tbyte c = nextInt();\n\
-    \t\tfinal boolean neg = c == '-';\n\t\tif(neg) {\n\t\t\tc = read();\n\t\t}\n\t\
-    \tassert isNum(c);\n\t\tlong res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\
-    \t\tres = 10 * res + c - '0';\n\t\t}\n\t\tcheck = !isNum(c);\n\t\treturn neg ?\
-    \ -res : res;\n\t}\n\tfinal double nd(){ return Double.parseDouble(ns()); }\n\t\
-    final char nc(){ return (char) next(); }\n\tfinal String ns() {\n\t\tfinal StringBuilder\
-    \ sb = new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c)) {\n\t\
-    \t\tsb.append((char) c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\
-    \t}\n\tfinal BigInteger nb(){ return new BigInteger(ns()); }\n\tfinal int[] ni(final\
-    \ int n) {\n\t\tfinal int[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = ni());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\t\
-    final long[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\
-    \t\treturn a;\n\t}\n\tfinal double[] nd(final int n) {\n\t\tfinal double[] a =\
-    \ new double[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\treturn\
-    \ a;\n\t}\n\tfinal char[] nc(final int n) {\n\t\tfinal char[] a = new char[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal\
-    \ String[] ns(final int n) {\n\t\tfinal String[] a = new String[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final\
-    \ int n) {\n\t\tfinal BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final\
-    \ int h, final int w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final\
-    \ int h, final int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final\
-    \ int h, final int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
+    \t\treturn ans;\n\t}\n}\n\ninterface TriFunction<T, U, V, R> {\n\tR apply(final\
+    \ T a, final U b, final V c);\n}\ninterface QuadFunction<A, B, C, D, R> {\n\t\
+    R apply(final A a, final B b, final C c, final D d);\n}\ninterface RecursiveFunction<T,\
+    \ R> {\n\tR apply(final RecursiveFunction<T, R> rec, final T n);\n}\ninterface\
+    \ RecursiveBiFunction<T, U, R> {\n\tR apply(final RecursiveBiFunction<T, U, R>\
+    \ rec, final T n, final U m);\n}\ninterface RecursiveTriFunction<T, U, V, R> {\n\
+    \tR apply(final RecursiveTriFunction<T, U, V, R> rec, final T p, final U q, final\
+    \ V r);\n}\ninterface RecursiveUnaryOperator<T> {\n\tT apply(final RecursiveUnaryOperator<T>\
+    \ rec, final T n);\n}\ninterface RecursiveBinaryOperator<T> {\n\tT apply(final\
+    \ RecursiveBinaryOperator<T> rec, final T a, final T b);\n}\ninterface RecursiveConsumer<T>\
+    \ {\n\tvoid accept(final RecursiveConsumer<T> rec, final T x);\n}\ninterface RecursiveBiConsumer<T,\
+    \ U> {\n\tvoid accept(final RecursiveBiConsumer<T, U> rec, final T x, final U\
+    \ y);\n}\ninterface RecursiveTriConsumer<T, U, V> {\n\tvoid accept(final RecursiveTriConsumer<T,\
+    \ U, V> rec, final T x, final U y, final V z);\n}\ninterface RecursiveIntFunction<R>\
+    \ {\n\tR apply(final RecursiveIntFunction<R> rec, final int n);\n}\ninterface\
+    \ RecursiveLongFunction<R> {\n\tR apply(final RecursiveLongFunction<R> rec, final\
+    \ long n);\n}\ninterface RecursiveDoubleFunction<R> {\n\tR apply(final RecursiveDoubleFunction<R>\
+    \ rec, final double n);\n}\ninterface RecursiveIntUnaryOperator {\n\tint apply(final\
+    \ RecursiveIntUnaryOperator rec, final int n);\n}\ninterface RecursiveLongUnaryOperator\
+    \ {\n\tlong apply(final RecursiveLongUnaryOperator rec, final long n);\n}\ninterface\
+    \ RecursiveDoubleUnaryOperator {\n\tdouble apply(final RecursiveDoubleUnaryOperator\
+    \ rec, final double n);\n}\ninterface RecursiveIntBinaryOperator {\n\tint apply(final\
+    \ RecursiveIntBinaryOperator rec, final int a, final int b);\n}\ninterface RecursiveLongBinaryOperator\
+    \ {\n\tlong apply(final RecursiveLongBinaryOperator rec, final long a, final long\
+    \ b);\n}\ninterface RecursiveDoubleBinaryOperator {\n\tdouble apply(final RecursiveDoubleBinaryOperator\
+    \ rec, final double a, final double b);\n}\ninterface RecursiveIntConsumer {\n\
+    \tvoid accept(final RecursiveIntConsumer rec, final int n);\n}\ninterface RecursiveLongConsumer\
+    \ {\n\tvoid accept(final RecursiveLongConsumer rec, final long n);\n}\ninterface\
+    \ RecursiveDoubleConsumer {\n\tvoid accept(final RecursiveDoubleConsumer rec,\
+    \ final double n);\n}\n\nfinal class MyScanner implements Closeable, AutoCloseable\
+    \ {\n\tprivate int pos, lim;\n\tprivate final byte[] buf;\n\tprivate final InputStream\
+    \ is;\n\tprivate boolean check;\n\tMyScanner(final InputStream is) {\n\t\tthis.is\
+    \ = is;\n\t\tpos = lim = 0;\n\t\tbuf = new byte[1 << 17];\n\t\tcheck = false;\n\
+    \t}\n\tprivate final boolean isPunct(final byte bt){ return !Utility.scope(33,\
+    \ bt, 126); }\n\tprivate final boolean isNum(final byte bt){ return Utility.scope('0',\
+    \ bt, '9'); }\n\tprivate final byte read() {\n\t\tif(pos == lim && lim != -1)\
+    \ {\n\t\t\ttry {\n\t\t\t\tlim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final\
+    \ IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t\treturn buf[pos++];\n\
+    \t}\n\tprivate final byte next() {\n\t\tbyte bt;\n\t\tif(check) {\n\t\t\tcheck\
+    \ = false;\n\t\t\tbt = buf[pos - 1];\n\t\t\tif(!isPunct(bt)) {\n\t\t\t\treturn\
+    \ bt;\n\t\t\t}\n\t\t}\n\t\twhile(isPunct(bt = read())){}\n\t\treturn bt;\n\t}\n\
+    \tprivate final byte nextInt() {\n\t\tbyte bt;\n\t\twhile(!isNum(bt = read())){}\n\
+    \t\treturn bt;\n\t}\n\tfinal int ni(){ return Math.toIntExact(nl()); }\n\tfinal\
+    \ long nl() {\n\t\tbyte c = nextInt();\n\t\tfinal boolean neg = c == '-';\n\t\t\
+    if(neg) {\n\t\t\tc = read();\n\t\t}\n\t\tassert isNum(c);\n\t\tlong res = c -\
+    \ '0';\n\t\twhile(isNum(c = read())) {\n\t\t\tres = 10 * res + c - '0';\n\t\t\
+    }\n\t\tcheck = !isNum(c);\n\t\treturn neg ? -res : res;\n\t}\n\tfinal double nd(){\
+    \ return Double.parseDouble(ns()); }\n\tfinal char nc(){ return (char) next();\
+    \ }\n\tfinal String ns() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
+    \t\tbyte c = next();\n\t\twhile(!isPunct(c)) {\n\t\t\tsb.append((char) c);\n\t\
+    \t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\t}\n\tfinal BigInteger nb(){\
+    \ return new BigInteger(ns()); }\n\tfinal int[] ni(final int n) {\n\t\tfinal int[]\
+    \ a = new int[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ni());\n\t\t\
+    return a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\tfinal long[] a = new long[n];\n\
+    \t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\treturn a;\n\t}\n\tfinal\
+    \ double[] nd(final int n) {\n\t\tfinal double[] a = new double[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal char[] nc(final int\
+    \ n) {\n\t\tfinal char[] a = new char[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal String[] ns(final int n) {\n\t\
+    \tfinal String[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i]\
+    \ = ns());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final int n) {\n\t\tfinal\
+    \ BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0, n).forEach(i ->\
+    \ a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final int h, final int\
+    \ w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final int h, final\
+    \ int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final int h, final\
+    \ int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\tfinal char[][] nc(final\
     \ int h, final int w) {\n\t\tfinal char[][] a = new char[h][w];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> a[i] = nc(w));\n\t\treturn a;\n\t}\n\tfinal String[][] ns(final\
@@ -1775,15 +1866,27 @@ data:
   - Java/AOJ.java
   - Java/yukicoder.java
   - Java/CodeForces.java
+  - Java/library/core/interfaces/RecursiveLongFunction.java
   - Java/library/core/interfaces/RecursiveFunction.java
+  - Java/library/core/interfaces/RecursiveIntFunction.java
+  - Java/library/core/interfaces/RecursiveIntBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveDoubleConsumer.java
+  - Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveDoubleFunction.java
+  - Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
   - Java/library/core/interfaces/RecursiveBiConsumer.java
   - Java/library/core/interfaces/TriFunction.java
   - Java/library/core/interfaces/RecursiveTriFunction.java
   - Java/library/core/interfaces/RecursiveBiFunction.java
   - Java/library/core/interfaces/RecursiveTriConsumer.java
   - Java/library/core/interfaces/RecursiveBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveIntConsumer.java
+  - Java/library/core/interfaces/RecursiveLongConsumer.java
+  - Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
   - Java/library/core/interfaces/RecursiveConsumer.java
   - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/RecursiveLongBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveLongUnaryOperator.java
   - Java/library/core/interfaces/RecursiveUnaryOperator.java
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
@@ -1830,15 +1933,27 @@ data:
   - Java/AOJ.java
   - Java/yukicoder.java
   - Java/CodeForces.java
+  - Java/library/core/interfaces/RecursiveLongFunction.java
   - Java/library/core/interfaces/RecursiveFunction.java
+  - Java/library/core/interfaces/RecursiveIntFunction.java
+  - Java/library/core/interfaces/RecursiveIntBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveDoubleConsumer.java
+  - Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveDoubleFunction.java
+  - Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
   - Java/library/core/interfaces/RecursiveBiConsumer.java
   - Java/library/core/interfaces/TriFunction.java
   - Java/library/core/interfaces/RecursiveTriFunction.java
   - Java/library/core/interfaces/RecursiveBiFunction.java
   - Java/library/core/interfaces/RecursiveTriConsumer.java
   - Java/library/core/interfaces/RecursiveBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveIntConsumer.java
+  - Java/library/core/interfaces/RecursiveLongConsumer.java
+  - Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
   - Java/library/core/interfaces/RecursiveConsumer.java
   - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/RecursiveLongBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveLongUnaryOperator.java
   - Java/library/core/interfaces/RecursiveUnaryOperator.java
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
@@ -1879,7 +1994,7 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
-  timestamp: '2024-02-07 22:19:49+09:00'
+  timestamp: '2024-02-08 00:48:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
