@@ -1,3 +1,13 @@
+import math { floor, sqrt }
+fn is_int(n f64) bool { return n==floor(n) }
+fn is_sqr(n i64) bool { return is_int(sqrt(n)) }
+fn is_prime(n i64) bool {
+	if n==1 { return false }
+	for i:=2; i*i<=n; i++ {
+		if n%i==0 { return false }
+	}
+	return true
+}
 fn div(n i64) []i64 {
 	mut res:=[]i64{}
 	for i:=1; i*i<=n; i++ {
@@ -8,13 +18,6 @@ fn div(n i64) []i64 {
 	}
 	res.sort()
 	return res
-}
-fn is_prime(n i64) bool {
-	if n==1 { return false }
-	for i:=2; i*i<=n; i++ {
-		if n%i==0 { return false }
-	}
-	return true
 }
 fn prmfct(n i64) map[i64]int {
 	mut res:=map[i64]int{}

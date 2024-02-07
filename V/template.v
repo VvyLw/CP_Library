@@ -1,5 +1,5 @@
 import os { input }
-import math as ma
+import math { min, max }
 import math.big
 import arrays as ar
 import regex as re
@@ -44,12 +44,12 @@ fn yes(ok bool) string { return yn(ok, "Yes", "No") }
 fn no(ok bool) string { return yes(!ok) }
 fn toc(n i64) string { return u8(n).ascii_str() }
 fn ord(s string) int { return s[0] }
-fn chmin[T, U](mut a T, b U) bool { jdg:=a>b a=ma.min(a,b) return jdg }
-fn chmax[T, U](mut a T, b U) bool { jdg:=a<b a=ma.max(a,b) return jdg }
-fn symin(a ...i64) i64 { mut res:=ma.maxof[i64]() for el in a { res=ma.min(res,el) } return res }
-fn symax(a ...i64) i64 { mut res:=ma.minof[i64]() for el in a { res=ma.max(res,el) } return res }
-fn sygcd(a []i64) i64 { mut g:=i64(0) for el in a { g=ma.gcd(g,el) } return g }
-fn sylcm(a []i64) i64 { mut l:=i64(1) for el in a { l=ma.lcm(l,el) } return l }
+fn chmin[T, U](mut a T, b U) bool { jdg:=a>b a=min(a,b) return jdg }
+fn chmax[T, U](mut a T, b U) bool { jdg:=a<b a=max(a,b) return jdg }
+fn symin(a ...i64) i64 { mut res:=max_i64 for el in a { res=min(res,el) } return res }
+fn symax(a ...i64) i64 { mut res:=min_i64 for el in a { res=max(res,el) } return res }
+fn sygcd(a []i64) i64 { mut g:=i64(0) for el in a { g=math.gcd(g,el) } return g }
+fn sylcm(a []i64) i64 { mut l:=i64(1) for el in a { l=math.lcm(l,el) } return l }
 fn mod(n i64, m int) i64 { k:=n%m return if k<0 { k+m } else { k } }
 fn large(n i64) big.Integer { return big.integer_from_i64(n) }
 fn stol(s string) !big.Integer { return big.integer_from_string(s)! }
@@ -78,8 +78,6 @@ fn scope(a i64, x i64, b i64) bool { return a<=x && x<=b }
 fn to_ten(s string, base int) !i64 { return s.parse_int(base,64)! }
 fn rgxmt(s string, pat string) !bool { r:=re.regex_opt(pat)! return r.matches_string(s) }
 fn rext(inf i64, sup i64) !i64 { return rand.i64_in_range(inf,sup)! }
-fn is_int(n f64) bool { return n==ma.floor(n) }
-fn is_sqr(n i64) bool { return is_int(ma.sqrt(n)) }
 
 pub fn main() {
 	mut tm:=time.StopWatch{}
