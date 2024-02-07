@@ -1,6 +1,6 @@
 import os { input }
 import datatypes { Queue }
-[params]
+@[params]
 struct G_Param {
 	idx int=1
 	dir bool=true

@@ -1,9 +1,9 @@
-struct Modint {
+pub struct Modint {
 	num i64
 	mod i64
 }
 fn (mint Modint) str() string { return '${mint.num}' }
-fn mint(num_ i64, m Mod) Modint {
+pub fn mint(num_ i64, m Mod) Modint {
 	return Modint{
 		mod: m.mod_
 		num: (num_+m.mod_)%m.mod_
@@ -64,7 +64,7 @@ fn (a Modint) inv() Modint {
 		mod: a.mod
 	}
 }
-fn (a Modint) pow(x_ u64) Modint {
+pub fn (a Modint) pow(x_ u64) Modint {
 	mut res:=Modint{num: 1, mod: a.mod}
 	mut base:=a
 	mut x:=x_
@@ -75,7 +75,7 @@ fn (a Modint) pow(x_ u64) Modint {
 	}
 	return res
 }
-[params]
+@[params]
 struct Mod {
 	mod_ i64=mod998
 }
