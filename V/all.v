@@ -50,7 +50,7 @@ fn symin(a ...i64) i64 { mut res:=max_i64 for el in a { res=min(res,el) } return
 fn symax(a ...i64) i64 { mut res:=min_i64 for el in a { res=max(res,el) } return res }
 fn sygcd(a []i64) i64 { mut g:=i64(0) for el in a { g=math.gcd(g,el) } return g }
 fn sylcm(a []i64) i64 { mut l:=i64(1) for el in a { l=math.lcm(l,el) } return l }
-fn mod(n i64, m int) i64 { k:=n%m return if k<0 { k+m } else { k } }
+fn mod(n i64, m i64) i64 { k:=n%m return if k<0 { k+m } else { k } }
 fn large(n i64) big.Integer { return big.integer_from_i64(n) }
 fn stol(s string) !big.Integer { return big.integer_from_string(s)! }
 fn iota(n int, dlt int) []int { return []int{len: n, init: index+dlt} }
