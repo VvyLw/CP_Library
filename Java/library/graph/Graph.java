@@ -109,6 +109,6 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 				}
 			}
 		}
-		return ord.size() == size() ? ord : new ArrayList<>();
+		return ord.size() == n ? ord : new ArrayList<>();
 	}
 }

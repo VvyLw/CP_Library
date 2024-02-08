@@ -1851,7 +1851,7 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 				}
 			}
 		}
-		return ord.size() == size() ? ord : new ArrayList<>();
+		return n == ord.size() ? ord : new ArrayList<>();
 	}
 }
 
