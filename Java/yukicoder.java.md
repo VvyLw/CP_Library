@@ -500,26 +500,21 @@ data:
     \ r){ return l <= x && x <= r; }\n\tprotected static final boolean scope(final\
     \ long l, final long x, final long r){ return l <= x && x <= r; }\n\tprotected\
     \ static final boolean scope(final double l, final double x, final double r){\
-    \ return l <= x && x <= r; }\n\tprotected static final int clamp(final int l,\
-    \ final int x, final int r){ return x < l ? l : x > r ? r : x; }\n\tprotected\
-    \ static final long clamp(final long l, final long x, final long r){ return x\
-    \ < l ? l : x > r ? r : x; }\n\tprotected static final double clamp(final double\
-    \ l, final double x, final double r){ return x < l ? l : x > r ? r : x; }\n\t\
-    protected static final boolean isBit(final long i, final long j){ return (i >>\
-    \ j & 1) == 1; }\n\tprotected static final int[] nextPerm(final int[] a) {\n\t\
-    \tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal\
-    \ int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\
-    \t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ null;\n\t}\n\tprotected static final long[] nextPerm(final long[] a) {\n\t\t\
-    for(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal\
-    \ int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\
-    \t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ null;\n\t}\n\tprotected static final double[] nextPerm(final double[] a) {\n\
-    \t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal\
-    \ int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\
-    \t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ null;\n\t}\n\tprotected static final String nextPerm(final String s) {\n\t\t\
-    final List<Character> a = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());\n\
+    \ return l <= x && x <= r; }\n\tprotected static final boolean isBit(final long\
+    \ i, final long j){ return (i >> j & 1) == 1; }\n\tprotected static final int[]\
+    \ nextPerm(final int[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i\
+    \ - 1] < a[i]) {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\
+    \t\t\tswap(a, i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn\
+    \ a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final long[] nextPerm(final\
+    \ long[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i])\
+    \ {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a,\
+    \ i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t\
+    }\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final double[] nextPerm(final\
+    \ double[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i])\
+    \ {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a,\
+    \ i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t\
+    }\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final String nextPerm(final\
+    \ String s) {\n\t\tfinal List<Character> a = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());\n\
     \t\tfor(int i = a.size(); --i > 0;) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
     \ < 0) {\n\t\t\t\tfinal int j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\
     \tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\
@@ -1248,7 +1243,7 @@ data:
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
   - Java/All.java
-  timestamp: '2024-02-08 11:51:15+09:00'
+  timestamp: '2024-02-08 12:06:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java

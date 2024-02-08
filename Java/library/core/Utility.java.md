@@ -572,19 +572,24 @@ data:
     \ r\n\t * @return l <= x <= r\n\t */\n\tpublic static final boolean scope(final\
     \ double l, final double x, final double r){ return l <= x && x <= r; }\n\t/**\n\
     \t * @param l\n\t * @param x\n\t * @param r\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
-    >std::clamp</a>\n\t */\n\tprotected static final int clamp(final int l, final\
-    \ int x, final int r){ return x < l ? l : x > r ? r : x; }\n\t/**\n\t * @param\
-    \ l\n\t * @param x\n\t * @param r\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
-    >std::clamp</a>\n\t */\n\tprotected static final long clamp(final long l, final\
-    \ long x, final long r){ return x < l ? l : x > r ? r : x; }\n\t/**\n\t * @param\
-    \ l\n\t * @param x\n\t * @param r\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
-    >std::clamp</a>\n\t */\n\tprotected static final double clamp(final double l,\
-    \ final double x, final double r){ return x < l ? l : x > r ? r : x; }\n\t/**\n\
-    \t * bit\u5168\u63A2\u7D22\u306A\u3069\u3067\u4F7F\u3046(i >> j\u304C\u5947\u6570\
-    \u304B\u3069\u3046\u304B)\n\t * @param i bit\n\t * @param j target\n\t */\n\t\
-    protected static final boolean isBit(final long i, final long j){ return (i >>\
-    \ j & 1) == 1; }\n\t/**\n\t * How to Use:\n\t * do {\n\t * \n\t * } while((a =\
-    \ nextPerm(a)) != null);\n\t * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/next_permutation.html\"\
+    >std::clamp</a>\n\t * @implNote AtCoder\u306EJava\u306E\u30A2\u30C3\u30D7\u30C7\
+    \u30FC\u30C8\u304C\u5165\u3063\u305F\u3089\u6D88\u3059\n\t */\n\tprotected static\
+    \ final int clamp(final int l, final int x, final int r){ return x < l ? l : x\
+    \ > r ? r : x; }\n\t/**\n\t * @param l\n\t * @param x\n\t * @param r\n\t * @see\
+    \ <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\">std::clamp</a>\n\
+    \t * @implNote AtCoder\u306EJava\u306E\u30A2\u30C3\u30D7\u30C7\u30FC\u30C8\u304C\
+    \u5165\u3063\u305F\u3089\u6D88\u3059\n\t */\n\tprotected static final long clamp(final\
+    \ long l, final long x, final long r){ return x < l ? l : x > r ? r : x; }\n\t\
+    /**\n\t * @param l\n\t * @param x\n\t * @param r\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
+    >std::clamp</a>\n\t * @implNote AtCoder\u306EJava\u306E\u30A2\u30C3\u30D7\u30C7\
+    \u30FC\u30C8\u304C\u5165\u3063\u305F\u3089\u6D88\u3059\n\t */\n\tprotected static\
+    \ final double clamp(final double l, final double x, final double r){ return x\
+    \ < l ? l : x > r ? r : x; }\n\t/**\n\t * bit\u5168\u63A2\u7D22\u306A\u3069\u3067\
+    \u4F7F\u3046(i >> j\u304C\u5947\u6570\u304B\u3069\u3046\u304B)\n\t * @param i\
+    \ bit\n\t * @param j target\n\t */\n\tprotected static final boolean isBit(final\
+    \ long i, final long j){ return (i >> j & 1) == 1; }\n\t/**\n\t * How to Use:\n\
+    \t * do {\n\t * \n\t * } while((a = nextPerm(a)) != null);\n\t * @param a\n\t\
+    \ * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/next_permutation.html\"\
     >std::next_permutation</a>\n\t */\n\tprotected static final int[] nextPerm(final\
     \ int[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i])\
     \ {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a,\
@@ -1284,7 +1289,7 @@ data:
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
   - Java/All.java
-  timestamp: '2024-02-08 11:51:15+09:00'
+  timestamp: '2024-02-08 12:06:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

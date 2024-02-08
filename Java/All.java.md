@@ -1996,7 +1996,7 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
-  timestamp: '2024-02-08 11:51:15+09:00'
+  timestamp: '2024-02-08 12:06:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
