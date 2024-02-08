@@ -12,7 +12,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Formatter;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -58,16 +57,7 @@ final class VvyLw extends Utility {
 	static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};
 	static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};
 	static final void solve() {
-		final var a = sc.ni(9, 9);
-		final BiPredicate<Integer, Integer> sq = (x, y) -> {
-			final var s = new HashSet<Integer>();
-			for(int i = 0; i < 3; ++i) {
-				for(int j = 0; j < 3; ++j) {
-					s.add(a[x + i][y + j]);
-				}
-			}
-			return s.size() == 9;
-		};
+		
 	}
 }
 class Utility {
@@ -1098,6 +1088,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 	}
 	private final boolean isPunct(final byte bt){ return !Utility.scope(33, bt, 126); }
 	private final boolean isNum(final byte bt){ return Utility.scope('0', bt, '9'); }
+	private final boolean isNeg(){ return pos >= 2 && buf[pos - 2] == '-'; }
 	private final byte read() {
 		if(pos == lim && lim != -1) {
 			try {
@@ -1129,10 +1120,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 	final int ni(){ return Math.toIntExact(nl()); }
 	final long nl() {
 		byte c = nextInt();
-		final boolean neg = c == '-';
-		if(neg) {
-			c = read();
-		}
+		final boolean neg = isNeg();
 		assert isNum(c);
 		long res = c - '0';
 		while(isNum(c = read())) {
@@ -1141,7 +1129,26 @@ final class MyScanner implements Closeable, AutoCloseable {
 		check = !isNum(c);
 		return neg ? -res : res;
 	}
-	final double nd(){ return Double.parseDouble(ns()); }
+	final double nd() {
+		byte c = nextInt();
+		final boolean neg = isNeg();
+		assert isNum(c);
+		double res = c - '0';
+		while(isNum(c = read())) {
+			res = 10 * res + c - '0';
+		}
+		if(c != '.') {
+			check = true;
+			return res;
+		}
+		int i;
+		for(i = 0; isNum(c = read()); ++i) {
+			res = res * 10 + c - '0';
+		}
+		res /= Math.pow(10, i);
+		check = true;
+		return neg ? -res : res;
+	}
 	final char nc(){ return (char) next(); }
 	final String ns() {
 		final StringBuilder sb = new StringBuilder();
@@ -1708,6 +1715,15 @@ final class FloatPair extends Pair<Double, Double> {
 }
 
 final class Huitloxopetl {
+	final boolean isBipartite(final UnionFind uf) {
+		assert uf.size() % 2 == 0;
+		final int n = uf.size() / 2;
+		boolean ok = true;
+		for(int i = 0; i < n; ++i) {
+			ok &= uf.root(i) != uf.root(i + n);
+		}
+		return ok;
+	}
 	final long invNum(final int[] a) {
 		final int[] b = Utility.sorted(a);
 		final Map<Integer, Integer> id = new HashMap<>();
@@ -2145,6 +2161,7 @@ final class UnionFind {
 	}
 	final int root(final int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i; }
 	final int size(final int i){ return -par[root(i)]; }
+	final int size(){ return par.length; }
 	final boolean unite(int i, int j) {
 		i = root(i);
 		j = root(j);
@@ -2168,14 +2185,6 @@ final class UnionFind {
 		IntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));
 		res.removeIf(ArrayList::isEmpty);
 		return res;
-	}
-	final boolean isBipartite() {
-		final int n = par.length / 2;
-		boolean ok = true;
-		for(int i = 0; i < n; ++i) {
-			ok &= root(i) != root(i + n);
-		}
-		return ok;
 	}
 }
 

@@ -1072,6 +1072,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 	}
 	private final boolean isPunct(final byte bt){ return !Utility.scope(33, bt, 126); }
 	private final boolean isNum(final byte bt){ return Utility.scope('0', bt, '9'); }
+	private final boolean isNeg(){ return pos >= 2 && buf[pos - 2] == '-'; }
 	private final byte read() {
 		if(pos == lim && lim != -1) {
 			try {
@@ -1103,10 +1104,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 	final int ni(){ return Math.toIntExact(nl()); }
 	final long nl() {
 		byte c = nextInt();
-		final boolean neg = c == '-';
-		if(neg) {
-			c = read();
-		}
+		final boolean neg = isNeg();
 		assert isNum(c);
 		long res = c - '0';
 		while(isNum(c = read())) {
@@ -1115,7 +1113,26 @@ final class MyScanner implements Closeable, AutoCloseable {
 		check = !isNum(c);
 		return neg ? -res : res;
 	}
-	final double nd(){ return Double.parseDouble(ns()); }
+	final double nd() {
+		byte c = nextInt();
+		final boolean neg = isNeg();
+		assert isNum(c);
+		double res = c - '0';
+		while(isNum(c = read())) {
+			res = 10 * res + c - '0';
+		}
+		if(c != '.') {
+			check = true;
+			return res;
+		}
+		int i;
+		for(i = 0; isNum(c = read()); ++i) {
+			res = res * 10 + c - '0';
+		}
+		res /= Math.pow(10, i);
+		check = true;
+		return neg ? -res : res;
+	}
 	final char nc(){ return (char) next(); }
 	final String ns() {
 		final StringBuilder sb = new StringBuilder();
