@@ -396,41 +396,41 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/All.java\n"
-  code: "import java.io.Closeable;\nimport java.io.Flushable;\nimport java.io.IOException;\n\
-    import java.io.InputStream;\nimport java.io.OutputStream;\nimport java.math.BigInteger;\n\
-    import java.util.ArrayDeque;\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
-    import java.util.Collection;\nimport java.util.Collections;\nimport java.util.Comparator;\n\
-    import java.util.Formatter;\nimport java.util.HashMap;\nimport java.util.Iterator;\n\
-    import java.util.List;\nimport java.util.Map;\nimport java.util.NoSuchElementException;\n\
-    import java.util.Objects;\nimport java.util.PriorityQueue;\nimport java.util.Queue;\n\
-    import java.util.Stack;\nimport java.util.TreeMap;\nimport java.util.function.BiFunction;\n\
-    import java.util.function.BiPredicate;\nimport java.util.function.BinaryOperator;\n\
-    import java.util.function.Consumer;\nimport java.util.function.DoublePredicate;\n\
-    import java.util.function.IntPredicate;\nimport java.util.function.IntUnaryOperator;\n\
-    import java.util.function.LongBinaryOperator;\nimport java.util.function.LongPredicate;\n\
-    import java.util.function.Predicate;\nimport java.util.stream.Collectors;\nimport\
-    \ java.util.stream.IntStream;\n\nfinal class Main {\n\tpublic static void main(final\
-    \ String[] args) {\n\t\tIntStream.range(0, VvyLw.MULTI ? VvyLw.sc.ni() : 1).forEach(i\
-    \ -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\
-    \t\tVvyLw.dbg.close();\n\t}\n}\n\nfinal class VvyLw extends Utility {\n\tstatic\
-    \ final MyScanner sc = new MyScanner(System.in);\n\tstatic final MyPrinter o =\
-    \ new MyPrinter(System.out, false), dbg = new MyPrinter(System.err, true);\n\t\
-    static final Huitloxopetl why = new Huitloxopetl();\n\tstatic final boolean MULTI\
-    \ = false;\n\tstatic final int INF = 1 << 30;\n\tstatic final long LINF = (1L\
-    \ << 61) - 1;\n\tstatic final double EPS = 1e-18;\n\tstatic final int MOD = 998244353;\n\
-    \tstatic final int M0D = (int) 1e9 + 7;\n\tstatic final int[] dx = {0, -1, 1,\
-    \ 0, 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1,\
-    \ 1};\n\tstatic final void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected\
-    \ static final String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\
-    \tprotected static final String no(final boolean ok){ return yes(!ok); }\n\tprotected\
-    \ static final long sqr(final long x){ return x * x; }\n\tprotected static final\
-    \ long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\
-    \t}\n\tprotected static final long ceil(final long a, final long b){ return a\
-    \ == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final double round(final double\
-    \ a, final long b, final int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn\
-    \ Math.rint((a * d) / b) / d;\n\t}\n\tprotected static final long pow(long a,\
-    \ int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\
-    \t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
+  code: "import static java.lang.Math.*;\n\nimport java.io.Closeable;\nimport java.io.Flushable;\n\
+    import java.io.IOException;\nimport java.io.InputStream;\nimport java.io.OutputStream;\n\
+    import java.math.BigInteger;\nimport java.util.ArrayDeque;\nimport java.util.ArrayList;\n\
+    import java.util.Arrays;\nimport java.util.Collection;\nimport java.util.Collections;\n\
+    import java.util.Comparator;\nimport java.util.Formatter;\nimport java.util.HashMap;\n\
+    import java.util.Iterator;\nimport java.util.List;\nimport java.util.Map;\nimport\
+    \ java.util.NoSuchElementException;\nimport java.util.Objects;\nimport java.util.PriorityQueue;\n\
+    import java.util.Queue;\nimport java.util.Stack;\nimport java.util.TreeMap;\n\
+    import java.util.function.BiFunction;\nimport java.util.function.BiPredicate;\n\
+    import java.util.function.BinaryOperator;\nimport java.util.function.Consumer;\n\
+    import java.util.function.DoublePredicate;\nimport java.util.function.IntPredicate;\n\
+    import java.util.function.IntUnaryOperator;\nimport java.util.function.LongBinaryOperator;\n\
+    import java.util.function.LongPredicate;\nimport java.util.function.Predicate;\n\
+    import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nfinal\
+    \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
+    \ VvyLw.MULTI ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
+    \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}\n\n\
+    final class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner(System.in);\n\
+    \tstatic final MyPrinter o = new MyPrinter(System.out, false), dbg = new MyPrinter(System.err,\
+    \ true);\n\tstatic final Huitloxopetl why = new Huitloxopetl();\n\tstatic final\
+    \ boolean MULTI = false;\n\tstatic final int INF = 1 << 30;\n\tstatic final long\
+    \ LINF = (1L << 61) - 1;\n\tstatic final double EPS = 1e-18;\n\tstatic final int\
+    \ MOD = 998244353;\n\tstatic final int M0D = (int) 1e9 + 7;\n\tstatic final int[]\
+    \ dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1,\
+    \ 1, -1, 1, -1, 1};\n\tstatic final void solve() {\n\t\t\n\t}\n}\nclass Utility\
+    \ {\n\tprotected static final String yes(final boolean ok){ return ok ? \"Yes\"\
+    \ : \"No\"; }\n\tprotected static final String no(final boolean ok){ return yes(!ok);\
+    \ }\n\tprotected static final long sqr(final long x){ return x * x; }\n\tprotected\
+    \ static final long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0\
+    \ ? n + m : n;\n\t}\n\tprotected static final long ceil(final long a, final long\
+    \ b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final double\
+    \ round(final double a, final long b, final int c) {\n\t\tfinal long d = pow(10,\
+    \ c);\n\t\treturn rint((a * d) / b) / d;\n\t}\n\tprotected static final long pow(long\
+    \ a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\
+    \t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
     \t}\n\tprotected static final long pow(long a, long b, final long m) {\n\t\tlong\
     \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
     \t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb\
@@ -498,35 +498,34 @@ data:
     \ n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp = n;\n\t\tlong res = 1;\n\t\t\
     for(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\tres *= tmp--;\n\t\t\tres %= mod;\n\
     \t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final boolean isInt(final double n){ return n == (long) Math.floor(n); }\n\t\
-    protected static final boolean isSqr(final long n){ return isInt(Math.sqrt(n));\
-    \ }\n\tprotected static final boolean isPrime(final long n) {\n\t\tif(n == 1)\
-    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\t\
-    if(n % i == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t\
-    }\n\tprotected static final boolean scope(final int l, final int x, final int\
-    \ r){ return l <= x && x <= r; }\n\tprotected static final boolean scope(final\
-    \ long l, final long x, final long r){ return l <= x && x <= r; }\n\tprotected\
-    \ static final boolean scope(final double l, final double x, final double r){\
-    \ return l <= x && x <= r; }\n\tprotected static final int clamp(final int l,\
-    \ final int x, final int r){ return x < l ? l : x > r ? r : x; }\n\tprotected\
-    \ static final long clamp(final long l, final long x, final long r){ return x\
-    \ < l ? l : x > r ? r : x; }\n\tprotected static final double clamp(final double\
-    \ l, final double x, final double r){ return x < l ? l : x > r ? r : x; }\n\t\
-    protected static final boolean isBit(final long i, final long j){ return (i >>\
-    \ j & 1) == 1; }\n\tprotected static final int[] nextPerm(final int[] a) {\n\t\
-    \tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal\
-    \ int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\
-    \t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ null;\n\t}\n\tprotected static final long[] nextPerm(final long[] a) {\n\t\t\
-    for(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal\
-    \ int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\
-    \t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ null;\n\t}\n\tprotected static final double[] nextPerm(final double[] a) {\n\
-    \t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal\
-    \ int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\
-    \t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ null;\n\t}\n\tprotected static final String nextPerm(final String s) {\n\t\t\
-    final List<Character> a = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());\n\
+    \ final boolean isInt(final double n){ return n == (long) floor(n); }\n\tprotected\
+    \ static final boolean isSqr(final long n){ return isInt(sqrt(n)); }\n\tprotected\
+    \ static final boolean isPrime(final long n) {\n\t\tif(n == 1) {\n\t\t\treturn\
+    \ false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0)\
+    \ {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\tprotected\
+    \ static final boolean scope(final int l, final int x, final int r){ return l\
+    \ <= x && x <= r; }\n\tprotected static final boolean scope(final long l, final\
+    \ long x, final long r){ return l <= x && x <= r; }\n\tprotected static final\
+    \ boolean scope(final double l, final double x, final double r){ return l <= x\
+    \ && x <= r; }\n\tprotected static final int clamp(final int l, final int x, final\
+    \ int r){ return x < l ? l : x > r ? r : x; }\n\tprotected static final long clamp(final\
+    \ long l, final long x, final long r){ return x < l ? l : x > r ? r : x; }\n\t\
+    protected static final double clamp(final double l, final double x, final double\
+    \ r){ return x < l ? l : x > r ? r : x; }\n\tprotected static final boolean isBit(final\
+    \ long i, final long j){ return (i >> j & 1) == 1; }\n\tprotected static final\
+    \ int[] nextPerm(final int[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\
+    \tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length -\
+    \ 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\
+    \treturn a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final long[]\
+    \ nextPerm(final long[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i\
+    \ - 1] < a[i]) {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\
+    \t\t\tswap(a, i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn\
+    \ a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final double[]\
+    \ nextPerm(final double[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\t\
+    if(a[i - 1] < a[i]) {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\
+    \t\t\t\tswap(a, i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn\
+    \ a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final String nextPerm(final\
+    \ String s) {\n\t\tfinal List<Character> a = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());\n\
     \t\tfor(int i = a.size(); --i > 0;) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
     \ < 0) {\n\t\t\t\tfinal int j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\
     \tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\
@@ -771,26 +770,26 @@ data:
     \ new String[a.length + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0, a.length);\n\
     \t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\t\t\
     return c;\n\t}\n\tprotected static final int bins(int ok, int ng, final IntPredicate\
-    \ fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) /\
-    \ 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\
-    \t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final long\
-    \ bins(long ok, long ng, final LongPredicate fn) {\n\t\twhile(Math.abs(ok - ng)\
-    \ > 1) {\n\t\t\tfinal long mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\
-    \t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\t\
-    return ok;\n\t}\n\tprotected static final double bins(double ok, double ng, final\
-    \ DoublePredicate fn) {\n\t\twhile(Math.abs(ok - ng) > VvyLw.EPS) {\n\t\t\tfinal\
-    \ double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\
-    \t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\t\
-    protected static final int[] count(final int[] a) {\n\t\tfinal int[] res = new\
-    \ int[max(a) + 1];\n\t\tfor(final int i: a) {\n\t\t\tres[i]++;\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\tprotected static final Map<Long, Integer> count(final long[] a)\
-    \ {\n\t\tfinal Map<Long, Integer> res = new HashMap<>();\n\t\tfor(final long i:\
-    \ a) {\n\t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\treturn res;\n\t}\n\
-    \tprotected static final int[] press(final int[] a) {\n\t\tfinal int[] res = new\
-    \ int[a.length];\n\t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final int[] press(final long[]\
-    \ a) {\n\t\tfinal int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
+    \ fn) {\n\t\twhile(abs(ok - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\
+    \t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng\
+    \ = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final long bins(long\
+    \ ok, long ng, final LongPredicate fn) {\n\t\twhile(abs(ok - ng) > 1) {\n\t\t\t\
+    final long mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\
+    \t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\
+    \tprotected static final double bins(double ok, double ng, final DoublePredicate\
+    \ fn) {\n\t\twhile(abs(ok - ng) > VvyLw.EPS) {\n\t\t\tfinal double mid = (ok +\
+    \ ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\
+    \t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final\
+    \ int[] count(final int[] a) {\n\t\tfinal int[] res = new int[max(a) + 1];\n\t\
+    \tfor(final int i: a) {\n\t\t\tres[i]++;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
+    \ static final Map<Long, Integer> count(final long[] a) {\n\t\tfinal Map<Long,\
+    \ Integer> res = new HashMap<>();\n\t\tfor(final long i: a) {\n\t\t\tres.merge(i,\
+    \ 1, (x, y) -> x + y);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
+    \ int[] press(final int[] a) {\n\t\tfinal int[] res = new int[a.length];\n\t\t\
+    final int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tfor(int i\
+    \ = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\t\t}\n\t\t\
+    return res;\n\t}\n\tprotected static final int[] press(final long[] a) {\n\t\t\
+    final int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
     \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
     \t\t}\n\t\treturn res;\n\t}\n\tprotected static final String rle(final String\
     \ s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
@@ -804,7 +803,7 @@ data:
     \ static final int[] zAlgorithm(final String s) {\n\t\tfinal int n = s.length();\n\
     \t\tint j = 0;\n\t\tfinal int[] pre = new int[n];\n\t\tfor(int i = 0; ++i < n;)\
     \ {\n\t\t\tif(i + pre[i - j] < j + pre[j]) {\n\t\t\t\tpre[i] = pre[i - j];\n\t\
-    \t\t}\n\t\t\telse {\n\t\t\t\tint k = Math.max(0, j + pre[j] - i);\n\t\t\t\twhile(i\
+    \t\t}\n\t\t\telse {\n\t\t\t\tint k = max(0, j + pre[j] - i);\n\t\t\t\twhile(i\
     \ + k < n && s.charAt(k) == s.charAt(i + k)) {\n\t\t\t\t\t++k;\n\t\t\t\t}\n\t\t\
     \t\tpre[i] = k;\n\t\t\t\tj = i;\n\t\t\t}\n\t\t}\n\t\tpre[0] = n;\n\t\treturn pre;\n\
     \t}\n\tprotected static final int[] manacher(final String s_, final boolean calcEven)\
@@ -825,47 +824,47 @@ data:
     }\n\tprotected static final long kthRoot(final long n, final int k) {\n\t\tif(k\
     \ == 1) {\n\t\t\treturn n;\n\t\t}\n\t\tfinal LongPredicate chk = x -> {\n\t\t\t\
     long mul = 1;\n\t\t\tfor(int j = 0; j < k; ++j) {\n\t\t\t\ttry {\n\t\t\t\t\tmul\
-    \ = Math.multiplyExact(mul, x);\n\t\t\t\t} catch(final ArithmeticException e)\
-    \ {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn mul <= n;\n\t\t\
-    };\n\t\tlong ret = 0;\n\t\tfor(int i = 32; --i >= 0;) {\n\t\t\tif(chk.test(ret\
-    \ | (1L << i))) {\n\t\t\t\tret |= 1L << i;\n\t\t\t}\n\t\t}\n\t\treturn ret;\n\t\
-    }\n\tprotected static final long tetration(final long a, final long b, final long\
-    \ m) {\n\t\tif(m == 1) {\n\t\t\treturn 0;\n\t\t}\n\t\tif(a == 0) {\n\t\t\treturn\
-    \ (b & 1) == 0 ? 1 : 0;\n\t\t}\n\t\tif(b == 0) {\n\t\t\treturn 1;\n\t\t}\n\t\t\
-    if(b == 1) {\n\t\t\treturn a % m;\n\t\t}\n\t\tif(b == 2) {\n\t\t\treturn pow(a,\
-    \ a, m);\n\t\t}\n\t\tfinal long phi = eulerPhi(m);\n\t\tlong tmp = tetration(a,\
-    \ b - 1, phi);\n\t\tif(tmp == 0) {\n\t\t\ttmp += phi;\n\t\t}\n\t\treturn pow(a,\
-    \ tmp, m);\n\t}\n\tprotected static final long floorSum(final long n, final long\
-    \ m, long a, long b) {\n\t\tlong ans = 0;\n\t\tif(a >= m) {\n\t\t\tans += (n -\
-    \ 1) * n * (a / m) / 2;\n\t\t\ta %= m;\n\t\t}\n\t\tif(b >= m) {\n\t\t\tans +=\
-    \ n * (b / m);\n\t\t\tb %= m;\n\t\t}\n\t\tfinal long ym = (a * n + b) / m, xm\
-    \ = (ym * m - b);\n\t\tif(ym == 0) {\n\t\t\treturn ans;\n\t\t}\n\t\tans += (n\
-    \ - (xm + a - 1) / a) * ym;\n\t\tans += floorSum(ym, a, m, (a - xm % a) % a);\n\
-    \t\treturn ans;\n\t}\n}\n\ninterface TriFunction<T, U, V, R> {\n\tR apply(final\
-    \ T a, final U b, final V c);\n}\ninterface QuadFunction<A, B, C, D, R> {\n\t\
-    R apply(final A a, final B b, final C c, final D d);\n}\ninterface RecursiveFunction<T,\
-    \ R> {\n\tR apply(final RecursiveFunction<T, R> rec, final T n);\n}\ninterface\
-    \ RecursiveBiFunction<T, U, R> {\n\tR apply(final RecursiveBiFunction<T, U, R>\
-    \ rec, final T n, final U m);\n}\ninterface RecursiveTriFunction<T, U, V, R> {\n\
-    \tR apply(final RecursiveTriFunction<T, U, V, R> rec, final T p, final U q, final\
-    \ V r);\n}\ninterface RecursiveUnaryOperator<T> {\n\tT apply(final RecursiveUnaryOperator<T>\
-    \ rec, final T n);\n}\ninterface RecursiveBinaryOperator<T> {\n\tT apply(final\
-    \ RecursiveBinaryOperator<T> rec, final T a, final T b);\n}\ninterface RecursiveConsumer<T>\
-    \ {\n\tvoid accept(final RecursiveConsumer<T> rec, final T x);\n}\ninterface RecursiveBiConsumer<T,\
-    \ U> {\n\tvoid accept(final RecursiveBiConsumer<T, U> rec, final T x, final U\
-    \ y);\n}\ninterface RecursiveTriConsumer<T, U, V> {\n\tvoid accept(final RecursiveTriConsumer<T,\
-    \ U, V> rec, final T x, final U y, final V z);\n}\ninterface RecursiveIntFunction<R>\
-    \ {\n\tR apply(final RecursiveIntFunction<R> rec, final int n);\n}\ninterface\
-    \ RecursiveLongFunction<R> {\n\tR apply(final RecursiveLongFunction<R> rec, final\
-    \ long n);\n}\ninterface RecursiveDoubleFunction<R> {\n\tR apply(final RecursiveDoubleFunction<R>\
-    \ rec, final double n);\n}\ninterface RecursiveIntUnaryOperator {\n\tint apply(final\
-    \ RecursiveIntUnaryOperator rec, final int n);\n}\ninterface RecursiveLongUnaryOperator\
-    \ {\n\tlong apply(final RecursiveLongUnaryOperator rec, final long n);\n}\ninterface\
-    \ RecursiveDoubleUnaryOperator {\n\tdouble apply(final RecursiveDoubleUnaryOperator\
-    \ rec, final double n);\n}\ninterface RecursiveIntBinaryOperator {\n\tint apply(final\
-    \ RecursiveIntBinaryOperator rec, final int a, final int b);\n}\ninterface RecursiveLongBinaryOperator\
-    \ {\n\tlong apply(final RecursiveLongBinaryOperator rec, final long a, final long\
-    \ b);\n}\ninterface RecursiveDoubleBinaryOperator {\n\tdouble apply(final RecursiveDoubleBinaryOperator\
+    \ = multiplyExact(mul, x);\n\t\t\t\t} catch(final ArithmeticException e) {\n\t\
+    \t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn mul <= n;\n\t\t};\n\t\t\
+    long ret = 0;\n\t\tfor(int i = 32; --i >= 0;) {\n\t\t\tif(chk.test(ret | (1L <<\
+    \ i))) {\n\t\t\t\tret |= 1L << i;\n\t\t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\tprotected\
+    \ static final long tetration(final long a, final long b, final long m) {\n\t\t\
+    if(m == 1) {\n\t\t\treturn 0;\n\t\t}\n\t\tif(a == 0) {\n\t\t\treturn (b & 1) ==\
+    \ 0 ? 1 : 0;\n\t\t}\n\t\tif(b == 0) {\n\t\t\treturn 1;\n\t\t}\n\t\tif(b == 1)\
+    \ {\n\t\t\treturn a % m;\n\t\t}\n\t\tif(b == 2) {\n\t\t\treturn pow(a, a, m);\n\
+    \t\t}\n\t\tfinal long phi = eulerPhi(m);\n\t\tlong tmp = tetration(a, b - 1, phi);\n\
+    \t\tif(tmp == 0) {\n\t\t\ttmp += phi;\n\t\t}\n\t\treturn pow(a, tmp, m);\n\t}\n\
+    \tprotected static final long floorSum(final long n, final long m, long a, long\
+    \ b) {\n\t\tlong ans = 0;\n\t\tif(a >= m) {\n\t\t\tans += (n - 1) * n * (a / m)\
+    \ / 2;\n\t\t\ta %= m;\n\t\t}\n\t\tif(b >= m) {\n\t\t\tans += n * (b / m);\n\t\t\
+    \tb %= m;\n\t\t}\n\t\tfinal long ym = (a * n + b) / m, xm = (ym * m - b);\n\t\t\
+    if(ym == 0) {\n\t\t\treturn ans;\n\t\t}\n\t\tans += (n - (xm + a - 1) / a) * ym;\n\
+    \t\tans += floorSum(ym, a, m, (a - xm % a) % a);\n\t\treturn ans;\n\t}\n}\n\n\
+    interface TriFunction<T, U, V, R> {\n\tR apply(final T a, final U b, final V c);\n\
+    }\ninterface QuadFunction<A, B, C, D, R> {\n\tR apply(final A a, final B b, final\
+    \ C c, final D d);\n}\ninterface RecursiveFunction<T, R> {\n\tR apply(final RecursiveFunction<T,\
+    \ R> rec, final T n);\n}\ninterface RecursiveBiFunction<T, U, R> {\n\tR apply(final\
+    \ RecursiveBiFunction<T, U, R> rec, final T n, final U m);\n}\ninterface RecursiveTriFunction<T,\
+    \ U, V, R> {\n\tR apply(final RecursiveTriFunction<T, U, V, R> rec, final T p,\
+    \ final U q, final V r);\n}\ninterface RecursiveUnaryOperator<T> {\n\tT apply(final\
+    \ RecursiveUnaryOperator<T> rec, final T n);\n}\ninterface RecursiveBinaryOperator<T>\
+    \ {\n\tT apply(final RecursiveBinaryOperator<T> rec, final T a, final T b);\n\
+    }\ninterface RecursiveConsumer<T> {\n\tvoid accept(final RecursiveConsumer<T>\
+    \ rec, final T x);\n}\ninterface RecursiveBiConsumer<T, U> {\n\tvoid accept(final\
+    \ RecursiveBiConsumer<T, U> rec, final T x, final U y);\n}\ninterface RecursiveTriConsumer<T,\
+    \ U, V> {\n\tvoid accept(final RecursiveTriConsumer<T, U, V> rec, final T x, final\
+    \ U y, final V z);\n}\ninterface RecursiveIntFunction<R> {\n\tR apply(final RecursiveIntFunction<R>\
+    \ rec, final int n);\n}\ninterface RecursiveLongFunction<R> {\n\tR apply(final\
+    \ RecursiveLongFunction<R> rec, final long n);\n}\ninterface RecursiveDoubleFunction<R>\
+    \ {\n\tR apply(final RecursiveDoubleFunction<R> rec, final double n);\n}\ninterface\
+    \ RecursiveIntUnaryOperator {\n\tint apply(final RecursiveIntUnaryOperator rec,\
+    \ final int n);\n}\ninterface RecursiveLongUnaryOperator {\n\tlong apply(final\
+    \ RecursiveLongUnaryOperator rec, final long n);\n}\ninterface RecursiveDoubleUnaryOperator\
+    \ {\n\tdouble apply(final RecursiveDoubleUnaryOperator rec, final double n);\n\
+    }\ninterface RecursiveIntBinaryOperator {\n\tint apply(final RecursiveIntBinaryOperator\
+    \ rec, final int a, final int b);\n}\ninterface RecursiveLongBinaryOperator {\n\
+    \tlong apply(final RecursiveLongBinaryOperator rec, final long a, final long b);\n\
+    }\ninterface RecursiveDoubleBinaryOperator {\n\tdouble apply(final RecursiveDoubleBinaryOperator\
     \ rec, final double a, final double b);\n}\ninterface RecursiveIntConsumer {\n\
     \tvoid accept(final RecursiveIntConsumer rec, final int n);\n}\ninterface RecursiveLongConsumer\
     \ {\n\tvoid accept(final RecursiveLongConsumer rec, final long n);\n}\ninterface\
@@ -884,15 +883,15 @@ data:
     \ = false;\n\t\t\tbt = buf[pos - 1];\n\t\t\tif(!isPunct(bt)) {\n\t\t\t\treturn\
     \ bt;\n\t\t\t}\n\t\t}\n\t\twhile(isPunct(bt = read())){}\n\t\treturn bt;\n\t}\n\
     \tprivate final byte nextInt() {\n\t\tbyte bt;\n\t\twhile(!isNum(bt = read())){}\n\
-    \t\treturn bt;\n\t}\n\tfinal int ni(){ return Math.toIntExact(nl()); }\n\tfinal\
-    \ long nl() {\n\t\tbyte c = nextInt();\n\t\tfinal boolean neg = isNeg();\n\t\t\
-    assert isNum(c);\n\t\tlong res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\
-    \tres = 10 * res + c - '0';\n\t\t}\n\t\tcheck = !isNum(c);\n\t\treturn neg ? -res\
+    \t\treturn bt;\n\t}\n\tfinal int ni(){ return toIntExact(nl()); }\n\tfinal long\
+    \ nl() {\n\t\tbyte c = nextInt();\n\t\tfinal boolean neg = isNeg();\n\t\tassert\
+    \ isNum(c);\n\t\tlong res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\tres\
+    \ = 10 * res + c - '0';\n\t\t}\n\t\tcheck = !isNum(c);\n\t\treturn neg ? -res\
     \ : res;\n\t}\n\tfinal double nd() {\n\t\tbyte c = nextInt();\n\t\tfinal boolean\
     \ neg = isNeg();\n\t\tassert isNum(c);\n\t\tdouble res = c - '0';\n\t\twhile(isNum(c\
     \ = read())) {\n\t\t\tres = 10 * res + c - '0';\n\t\t}\n\t\tif(c != '.') {\n\t\
     \t\tcheck = true;\n\t\t\treturn res;\n\t\t}\n\t\tint i;\n\t\tfor(i = 0; isNum(c\
-    \ = read()); ++i) {\n\t\t\tres = res * 10 + c - '0';\n\t\t}\n\t\tres /= Math.pow(10,\
+    \ = read()); ++i) {\n\t\t\tres = res * 10 + c - '0';\n\t\t}\n\t\tres /= pow(10,\
     \ i);\n\t\tcheck = true;\n\t\treturn neg ? -res : res;\n\t}\n\tfinal char nc(){\
     \ return (char) next(); }\n\tfinal String ns() {\n\t\tfinal StringBuilder sb =\
     \ new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c)) {\n\t\t\t\
@@ -1065,13 +1064,13 @@ data:
     \ second / p.second); }\n\tfinal IntPair mod(final IntPair p){ return new IntPair(first\
     \ % p.first, second % p.second); }\n\tfinal IntPair rotate(){ return new IntPair(-second,\
     \ first); } \n\tfinal FloatPair rotate(final int ang) {\n\t\tfinal double rad\
-    \ = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn FloatPair.of(first * Math.cos(rad)\
-    \ - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));\n\
-    \t}\n\tfinal long dot(final IntPair p){ return first * p.first + second * p.second;\
-    \ }\n\tfinal long cross(final IntPair p){ return rotate().dot(p); }\n\tfinal long\
-    \ sqr(){ return dot(this); }\n\tfinal double grad() { \n\t\ttry {\n\t\t\treturn\
-    \ 1.0 * second / first;\n\t\t} catch(final ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
-    \t\t}\n\t\tthrow new Error();\n\t}\n\tfinal double abs(){ return Math.hypot(first,\
+    \ = toRadians(Utility.mod(ang, 360));\n\t\treturn FloatPair.of(first * cos(rad)\
+    \ - second * sin(rad), first * sin(rad) + second * cos(rad));\n\t}\n\tfinal long\
+    \ dot(final IntPair p){ return first * p.first + second * p.second; }\n\tfinal\
+    \ long cross(final IntPair p){ return rotate().dot(p); }\n\tfinal long sqr(){\
+    \ return dot(this); }\n\tfinal double grad() { \n\t\ttry {\n\t\t\treturn 1.0 *\
+    \ second / first;\n\t\t} catch(final ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
+    \t\t}\n\t\tthrow new Error();\n\t}\n\tfinal double abs(){ return hypot(first,\
     \ second); }\n\tfinal long lcm(){ return Utility.lcm(first, second); }\n\tfinal\
     \ long gcd(){ return Utility.gcd(first, second); }\n\tfinal IntPair extgcd() {\n\
     \t\tlong x = 1, y = 0, t1 = 0, t2 = 0, t3 = 1, a = first, b = second;\n\t\twhile(b\
@@ -1089,34 +1088,33 @@ data:
     \ }\n\tfinal FloatPair div(final FloatPair p){ return new FloatPair(first / p.first,\
     \ second / p.second); }\n\tfinal FloatPair rotate(){ return new FloatPair(-second,\
     \ first); } \n\tfinal FloatPair rotate(final int ang) {\n\t\tfinal double rad\
-    \ = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn FloatPair.of(first * Math.cos(rad)\
-    \ - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));\n\
-    \t}\n\tfinal double dot(final FloatPair p){ return first * p.first + second *\
-    \ p.second; }\n\tfinal double cross(final FloatPair p){ return rotate().dot(p);\
-    \ }\n\tfinal double sqr(){ return dot(this); }\n\tfinal double grad() { \n\t\t\
-    try {\n\t\t\treturn second / first;\n\t\t} catch(final ArithmeticException e)\
-    \ {\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow new Error();\n\t}\n\tfinal double\
-    \ abs(){ return Math.hypot(first, second); }\n}\n\nfinal class Huitloxopetl {\n\
-    \tfinal boolean isBipartite(final UnionFind uf) {\n\t\tassert uf.size() % 2 ==\
-    \ 0;\n\t\tfinal int n = uf.size() / 2;\n\t\tboolean ok = true;\n\t\tfor(int i\
-    \ = 0; i < n; ++i) {\n\t\t\tok &= uf.root(i) != uf.root(i + n);\n\t\t}\n\t\treturn\
-    \ ok;\n\t}\n\tfinal long invNum(final int[] a) {\n\t\tfinal int[] b = Utility.sorted(a);\n\
-    \t\tfinal Map<Integer, Integer> id = new HashMap<>();\n\t\tfor(int i = 0; i <\
-    \ a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal FenwickTree bit =\
-    \ new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0; i < a.length;\
-    \ ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\tbit.add(id.get(a[i]),\
-    \ 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final long[] a) {\n\t\t\
-    final long[] b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer> id = new HashMap<>();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
-    \ FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int\
-    \ i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\t\
-    bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class Edge\
-    \ {\n\tpublic int src;\n\tpublic int to;\n\tpublic long cost;\n\tEdge(final int\
-    \ to){ this.to = to; }\n\tEdge(final int to, final long cost) {\n\t\tthis.to =\
-    \ to;\n\t\tthis.cost = cost;\n\t}\n\tEdge(final int src, final int to, final long\
-    \ cost) {\n\t\tthis.src = src;\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t}\n\
-    \t@Override\n\tpublic final boolean equals(final Object o) {\n\t\tif(this == o)\
-    \ {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass())\
+    \ = toRadians(Utility.mod(ang, 360));\n\t\treturn FloatPair.of(first * cos(rad)\
+    \ - second * sin(rad), first * sin(rad) + second * cos(rad));\n\t}\n\tfinal double\
+    \ dot(final FloatPair p){ return first * p.first + second * p.second; }\n\tfinal\
+    \ double cross(final FloatPair p){ return rotate().dot(p); }\n\tfinal double sqr(){\
+    \ return dot(this); }\n\tfinal double grad() { \n\t\ttry {\n\t\t\treturn second\
+    \ / first;\n\t\t} catch(final ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
+    \t\t}\n\t\tthrow new Error();\n\t}\n\tfinal double abs(){ return hypot(first,\
+    \ second); }\n}\n\nfinal class Huitloxopetl {\n\tfinal boolean isBipartite(final\
+    \ UnionFind uf) {\n\t\tassert uf.size() % 2 == 0;\n\t\tfinal int n = uf.size()\
+    \ / 2;\n\t\tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &=\
+    \ uf.root(i) != uf.root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n\tfinal long invNum(final\
+    \ int[] a) {\n\t\tfinal int[] b = Utility.sorted(a);\n\t\tfinal Map<Integer, Integer>\
+    \ id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i],\
+    \ i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\t\tlong\
+    \ res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
+    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final\
+    \ long[] a) {\n\t\tfinal long[] b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer>\
+    \ id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i],\
+    \ i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\t\tlong\
+    \ res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
+    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class\
+    \ Edge {\n\tpublic int src;\n\tpublic int to;\n\tpublic long cost;\n\tEdge(final\
+    \ int to){ this.to = to; }\n\tEdge(final int to, final long cost) {\n\t\tthis.to\
+    \ = to;\n\t\tthis.cost = cost;\n\t}\n\tEdge(final int src, final int to, final\
+    \ long cost) {\n\t\tthis.src = src;\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\
+    \t}\n\t@Override\n\tpublic final boolean equals(final Object o) {\n\t\tif(this\
+    \ == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass())\
     \ {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Edge e = (Edge) o;\n\t\treturn src\
     \ == e.src && to == e.to && cost == e.cost;\n\t}\n\t@Override\n\tpublic final\
     \ int hashCode(){ return Objects.hash(src, to, cost); }\n\t@Override\n\tpublic\
@@ -1328,10 +1326,10 @@ data:
     \ long a = pi(m);\n\t\treturn phi(n, a) + a - 1 - p2(n, m);\n\t}\n}\n\n// N <=\
     \ 1e18;\nfinal class LongPrime {\n\tprivate final int bsf(final long x){ return\
     \ Long.numberOfTrailingZeros(x); }\n\tprivate final long gcd(long a, long b) {\n\
-    \t\ta = Math.abs(a);\n\t\tb = Math.abs(b);\n\t\tif(a == 0) {\n\t\t\treturn b;\n\
-    \t\t}\n\t\tif(b == 0) {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int shift = bsf(a|b);\n\
-    \t\ta >>= bsf(a);\n\t\tdo {\n\t\t\tb >>= bsf(b);\n\t\t\tif(a > b) {\n\t\t\t\t\
-    a ^= b;\n\t\t\t\tb ^= a;\n\t\t\t\ta ^= b;\n\t\t\t}\n\t\t\tb -= a;\n\t\t} while(b\
+    \t\ta = abs(a);\n\t\tb = abs(b);\n\t\tif(a == 0) {\n\t\t\treturn b;\n\t\t}\n\t\
+    \tif(b == 0) {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int shift = bsf(a|b);\n\t\t\
+    a >>= bsf(a);\n\t\tdo {\n\t\t\tb >>= bsf(b);\n\t\t\tif(a > b) {\n\t\t\t\ta ^=\
+    \ b;\n\t\t\t\tb ^= a;\n\t\t\t\ta ^= b;\n\t\t\t}\n\t\t\tb -= a;\n\t\t} while(b\
     \ > 0);\n\t\treturn a << shift;\n\t}\n\tfinal boolean isPrime(final long n) {\n\
     \t\tif(n <= 1) {\n\t\t\treturn false;\n\t\t}\n\t\tif(n == 2) {\n\t\t\treturn true;\n\
     \t\t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn false;\n\t\t}\n\t\tlong d = n - 1;\n\
@@ -1391,18 +1389,18 @@ data:
     \ r = primeFactor(n.divide(x));\n\t\tl.addAll(r);\n\t\tCollections.sort(l);\n\t\
     \treturn l;\n\t}\n}\n\nfinal class ModPrime {\n\tprivate final int len, mod;\n\
     \tprivate final long[] f, rf;\n\tModPrime(final int mod, final int sz) {\n\t\t\
-    this.mod = mod;\n\t\tlen = Math.min(sz + 1, mod);\n\t\tf = new long[len];\n\t\t\
-    rf = new long[len];\n\t\tinit();\n\t}\n\tprivate final long inv(long x) {\n\t\t\
-    long res = 1, k = mod - 2;\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\
-    \tres = (res * x) % mod;\n\t\t\t}\n\t\t\tx = (x * x) % mod;\n\t\t\tk >>= 1;\n\t\
-    \t}\n\t\treturn res;\n\t}\n\tprivate final void init() {\n\t\tf[0] = 1;\n\t\t\
-    for(int i = 0; ++i < len;) {\n\t\t\tf[i] = (f[i - 1] * i) % mod;\n\t\t}\n\t\t\
-    rf[len - 1] = inv(f[len - 1]);\n\t\tfor(int i = len; --i > 0;) {\n\t\t\trf[i -\
-    \ 1] = (rf[i] * i) % mod;\n\t\t}\n\t}\n\tfinal long C(final int n, final int k)\
-    \ {\n\t\tif(k < 0 || n < k) {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal long a = f[n],\
-    \ b = rf[n - k], c = rf[k], bc = (b * c) % mod;\n\t\treturn (a * bc) % mod;\n\t\
-    }\n\tfinal long P(final int n, final int k) {\n\t\tif (k < 0 || n < k) {\n\t\t\
-    \treturn 0;\n\t\t}\n\t\tfinal long a = f[n], b = rf[n - k];\n\t\treturn (a * b)\
+    this.mod = mod;\n\t\tlen = min(sz + 1, mod);\n\t\tf = new long[len];\n\t\trf =\
+    \ new long[len];\n\t\tinit();\n\t}\n\tprivate final long inv(long x) {\n\t\tlong\
+    \ res = 1, k = mod - 2;\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\t\
+    res = (res * x) % mod;\n\t\t\t}\n\t\t\tx = (x * x) % mod;\n\t\t\tk >>= 1;\n\t\t\
+    }\n\t\treturn res;\n\t}\n\tprivate final void init() {\n\t\tf[0] = 1;\n\t\tfor(int\
+    \ i = 0; ++i < len;) {\n\t\t\tf[i] = (f[i - 1] * i) % mod;\n\t\t}\n\t\trf[len\
+    \ - 1] = inv(f[len - 1]);\n\t\tfor(int i = len; --i > 0;) {\n\t\t\trf[i - 1] =\
+    \ (rf[i] * i) % mod;\n\t\t}\n\t}\n\tfinal long C(final int n, final int k) {\n\
+    \t\tif(k < 0 || n < k) {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal long a = f[n], b =\
+    \ rf[n - k], c = rf[k], bc = (b * c) % mod;\n\t\treturn (a * bc) % mod;\n\t}\n\
+    \tfinal long P(final int n, final int k) {\n\t\tif (k < 0 || n < k) {\n\t\t\t\
+    return 0;\n\t\t}\n\t\tfinal long a = f[n], b = rf[n - k];\n\t\treturn (a * b)\
     \ % mod;\n\t}\n\tfinal long H(final int n, final int k) {\n\t\tif (n == 0 && k\
     \ == 0) {\n\t\t\treturn 1;\n\t\t}\n\t\treturn C(n + k - 1, k);\n\t}\n\tfinal long\
     \ fact(final int n){ return f[n]; }\n}\n\nfinal class EulerPhiTable {\n\tprivate\
@@ -1643,7 +1641,7 @@ data:
     \ = size = 1;\n\t\t\tch[0] = l;\n\t\t\tch[1] = r;\n\t\t}\n\t}\n\tprivate Node<T>\
     \ root;\n\tprivate final int depth(final Node<T> t){ return t == null ? 0 : t.dep;\
     \ }\n\tprivate final int count(final Node<T> t){ return t == null ? 0 : t.size;\
-    \ }\n\tprivate final Node<T> update(final Node<T> t) {\n\t\tt.dep = Math.max(depth(t.ch[0]),\
+    \ }\n\tprivate final Node<T> update(final Node<T> t) {\n\t\tt.dep = max(depth(t.ch[0]),\
     \ depth(t.ch[1])) + 1;\n\t\tt.size = count(t.ch[0]) + count(t.ch[1]) + 1;\n\t\t\
     return t;\n\t}\n\tprivate final Node<T> rotate(Node<T> t, final int b) {\n\t\t\
     Node<T> s = t.ch[1 - b];\n\t\tt.ch[1 - b] = s.ch[b];\n\t\ts.ch[b] = t;\n\t\tt\
@@ -1767,14 +1765,14 @@ data:
     \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\tfinal T val2 = op.apply(val,\
     \ (T) dat[i>>h]);\n\t\t\tif(fn.test(val2)) {\n\t\t\t\ti += 1 << h;\n\t\t\t\tif(i\
     \ == n * 2) {\n\t\t\t\t\treturn fini;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t\
-    }\n\t\t}\n\t\treturn Math.min(i - n, fini);\n\t}\n}\n\nfinal class SparseTable\
-    \ {\n\tprivate final long[][] st;\n\tprivate final int[] lookup;\n\tprivate final\
-    \ LongBinaryOperator op;\n\tSparseTable(final int[] a, final LongBinaryOperator\
-    \ op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\
-    \t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length;\
-    \ i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\
-    \tfor(int j = 0; j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i\
-    \ - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
+    }\n\t\t}\n\t\treturn min(i - n, fini);\n\t}\n}\n\nfinal class SparseTable {\n\t\
+    private final long[][] st;\n\tprivate final int[] lookup;\n\tprivate final LongBinaryOperator\
+    \ op;\n\tSparseTable(final int[] a, final LongBinaryOperator op) {\n\t\tthis.op\
+    \ = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\
+    \t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\t\t\t\
+    st[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\tfor(int j = 0;\
+    \ j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i - 1][j],\
+    \ st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
     \ + 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
     \ >> 1] + 1;\n\t\t}\n\t}\n\tSparseTable(final long[] a, final LongBinaryOperator\
     \ op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\
@@ -1786,29 +1784,29 @@ data:
     \ >> 1] + 1;\n\t\t}\n\t}\n\tfinal long query(final int l, final int r) {\n\t\t\
     final int b = lookup[r - l];\n\t\treturn op.applyAsLong(st[b][l], st[b][r - (1\
     \ << b)]);\n\t}\n\tfinal int minLeft(final int x, final LongPredicate fn) {\n\t\
-    \tif(x == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint ok = x, ng = -1;\n\t\twhile(Math.abs(ok\
+    \tif(x == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint ok = x, ng = -1;\n\t\twhile(abs(ok\
     \ - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(mid,\
     \ x) - 1)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\
     \t}\n\t\t}\n\t\treturn ok;\n\t}\n\tfinal int maxRight(final int x, final LongPredicate\
     \ fn) {\n\t\tif(x == lookup.length - 1) {\n\t\t\treturn lookup.length - 1;\n\t\
-    \t}\n\t\tint ok = x, ng = lookup.length;\n\t\twhile(Math.abs(ok - ng) > 1) {\n\
-    \t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(x, mid))) {\n\t\t\
-    \t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\t\
-    return ok;\n\t}\n}\n\nfinal class SuccinctIndexableDictionary {\n\tprivate final\
-    \ int blk;\n\tprivate final int[] bit, sum;\n\tSuccinctIndexableDictionary(final\
-    \ int len) {\n\t\tblk = (len + 31) >> 5;\n\t\tbit = new int[blk];\n\t\tsum = new\
-    \ int[blk];\n\t}\n\tfinal void set(final int k){ bit[k >> 5] |= 1 << (k & 31);\
-    \ }\n\tfinal void build() {\n\t\tsum[0] = 0;\n\t\tfor(int i = 0; ++i < blk;) {\n\
-    \t\t\tsum[i] = sum[i - 1] + Integer.bitCount(bit[i - 1]);\n\t\t}\n\t}\n\tfinal\
-    \ boolean get(final int k){ return ((bit[k >> 5] >> (k & 31)) & 1) == 1; }\n\t\
-    final int rank(final int k){ return (sum[k >> 5] + Integer.bitCount(bit[k >> 5]\
-    \ & ((1 << (k & 31)) - 1))); }\n\tfinal int rank(final boolean val, final int\
-    \ k){ return val ? rank(k) : k - rank(k); }\n}\nfinal class WaveletMatrixBeta\
-    \ {\n\tprivate final int log;\n\tprivate final SuccinctIndexableDictionary[] matrix;\n\
-    \tprivate final int[] mid;\n\tWaveletMatrixBeta(final long[] arr, final int log)\
-    \ {\n\t\tfinal int len = arr.length;\n\t\tthis.log = log;\n\t\tmatrix = new SuccinctIndexableDictionary[log];\n\
-    \t\tmid = new int[log];\n\t\tfinal long[] l = new long[len], r = new long[len];\n\
-    \t\tfor(int level = log; --level >= 0;) {\n\t\t\tmatrix[level] = new SuccinctIndexableDictionary(len\
+    \t}\n\t\tint ok = x, ng = lookup.length;\n\t\twhile(abs(ok - ng) > 1) {\n\t\t\t\
+    final int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(x, mid))) {\n\t\t\t\tok\
+    \ = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ ok;\n\t}\n}\n\nfinal class SuccinctIndexableDictionary {\n\tprivate final int\
+    \ blk;\n\tprivate final int[] bit, sum;\n\tSuccinctIndexableDictionary(final int\
+    \ len) {\n\t\tblk = (len + 31) >> 5;\n\t\tbit = new int[blk];\n\t\tsum = new int[blk];\n\
+    \t}\n\tfinal void set(final int k){ bit[k >> 5] |= 1 << (k & 31); }\n\tfinal void\
+    \ build() {\n\t\tsum[0] = 0;\n\t\tfor(int i = 0; ++i < blk;) {\n\t\t\tsum[i] =\
+    \ sum[i - 1] + Integer.bitCount(bit[i - 1]);\n\t\t}\n\t}\n\tfinal boolean get(final\
+    \ int k){ return ((bit[k >> 5] >> (k & 31)) & 1) == 1; }\n\tfinal int rank(final\
+    \ int k){ return (sum[k >> 5] + Integer.bitCount(bit[k >> 5] & ((1 << (k & 31))\
+    \ - 1))); }\n\tfinal int rank(final boolean val, final int k){ return val ? rank(k)\
+    \ : k - rank(k); }\n}\nfinal class WaveletMatrixBeta {\n\tprivate final int log;\n\
+    \tprivate final SuccinctIndexableDictionary[] matrix;\n\tprivate final int[] mid;\n\
+    \tWaveletMatrixBeta(final long[] arr, final int log) {\n\t\tfinal int len = arr.length;\n\
+    \t\tthis.log = log;\n\t\tmatrix = new SuccinctIndexableDictionary[log];\n\t\t\
+    mid = new int[log];\n\t\tfinal long[] l = new long[len], r = new long[len];\n\t\
+    \tfor(int level = log; --level >= 0;) {\n\t\t\tmatrix[level] = new SuccinctIndexableDictionary(len\
     \ + 1);\n\t\t\tint left = 0, right = 0;\n\t\t\tfor(int i = 0; i < len; ++i) {\n\
     \t\t\t\tif(((arr[i] >> level) & 1) == 1) {\n\t\t\t\t\tmatrix[level].set(i);\n\t\
     \t\t\t\tr[right++] = arr[i];\n\t\t\t\t} else {\n\t\t\t\t\tl[left++] = arr[i];\n\
@@ -1996,7 +1994,7 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
-  timestamp: '2024-02-08 12:06:19+09:00'
+  timestamp: '2024-02-08 14:08:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

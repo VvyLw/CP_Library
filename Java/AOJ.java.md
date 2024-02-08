@@ -396,15 +396,16 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/AOJ.java\n"
-  code: "import java.io.Closeable;\nimport java.io.Flushable;\nimport java.io.IOException;\n\
-    import java.io.InputStream;\nimport java.io.OutputStream;\nimport java.math.BigInteger;\n\
-    import java.util.Arrays;\nimport java.util.Collection;\nimport java.util.Formatter;\n\
-    import java.util.Objects;\nimport java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\
-    \nfinal class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
-    \ VvyLw.MULTI ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
-    \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}\n\n\
-    final class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner(System.in);\n\
-    \tstatic final MyPrinter o = new MyPrinter(System.out, false), dbg = new MyPrinter(System.err,\
+  code: "import static java.lang.Math.*;\n\nimport java.io.Closeable;\nimport java.io.Flushable;\n\
+    import java.io.IOException;\nimport java.io.InputStream;\nimport java.io.OutputStream;\n\
+    import java.math.BigInteger;\nimport java.util.Arrays;\nimport java.util.Collection;\n\
+    import java.util.Formatter;\nimport java.util.Objects;\nimport java.util.stream.Collectors;\n\
+    import java.util.stream.IntStream;\n\nfinal class Main {\n\tpublic static void\
+    \ main(final String[] args) {\n\t\tIntStream.range(0, VvyLw.MULTI ? VvyLw.sc.ni()\
+    \ : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\t\tVvyLw.sc.close();\n\
+    \t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}\n\nfinal class VvyLw extends\
+    \ Utility {\n\tstatic final MyScanner sc = new MyScanner(System.in);\n\tstatic\
+    \ final MyPrinter o = new MyPrinter(System.out, false), dbg = new MyPrinter(System.err,\
     \ true);\n\tstatic final boolean MULTI = false;\n\tstatic final int INF = 1 <<\
     \ 30;\n\tstatic final long LINF = (1L << 61) - 1;\n\tstatic final double EPS =\
     \ 1e-18;\n\tstatic final int MOD = 998244353;\n\tstatic final int M0D = (int)\
@@ -417,13 +418,13 @@ data:
     \ m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\tprotected static final\
     \ long ceil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1;\
     \ }\n\tprotected static final double round(final double a, final long b, final\
-    \ int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn Math.rint((a * d) / b)\
-    \ / d;\n\t}\n\tprotected static final long pow(long a, int b) {\n\t\tlong res\
-    \ = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\
-    }\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final long pow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b\
-    \ > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\
-    \t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
+    \ int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn rint((a * d) / b) / d;\n\
+    \t}\n\tprotected static final long pow(long a, int b) {\n\t\tlong res = 1;\n\t\
+    \twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta\
+    \ *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
+    \ long pow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0)\
+    \ {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\
+    \t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
     \ res;\n\t}\n\tprotected static final long lcm(final long a, final long b){ return\
     \ a * b / gcd(a, b); }\n\tprotected static final long lcm(final int... a){ return\
     \ Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
@@ -513,15 +514,15 @@ data:
     \ = false;\n\t\t\tbt = buf[pos - 1];\n\t\t\tif(!isPunct(bt)) {\n\t\t\t\treturn\
     \ bt;\n\t\t\t}\n\t\t}\n\t\twhile(isPunct(bt = read())){}\n\t\treturn bt;\n\t}\n\
     \tprivate final byte nextInt() {\n\t\tbyte bt;\n\t\twhile(!isNum(bt = read())){}\n\
-    \t\treturn bt;\n\t}\n\tfinal int ni(){ return Math.toIntExact(nl()); }\n\tfinal\
-    \ long nl() {\n\t\tbyte c = nextInt();\n\t\tfinal boolean neg = isNeg();\n\t\t\
-    assert isNum(c);\n\t\tlong res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\
-    \tres = 10 * res + c - '0';\n\t\t}\n\t\tcheck = !isNum(c);\n\t\treturn neg ? -res\
+    \t\treturn bt;\n\t}\n\tfinal int ni(){ return toIntExact(nl()); }\n\tfinal long\
+    \ nl() {\n\t\tbyte c = nextInt();\n\t\tfinal boolean neg = isNeg();\n\t\tassert\
+    \ isNum(c);\n\t\tlong res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\tres\
+    \ = 10 * res + c - '0';\n\t\t}\n\t\tcheck = !isNum(c);\n\t\treturn neg ? -res\
     \ : res;\n\t}\n\tfinal double nd() {\n\t\tbyte c = nextInt();\n\t\tfinal boolean\
     \ neg = isNeg();\n\t\tassert isNum(c);\n\t\tdouble res = c - '0';\n\t\twhile(isNum(c\
     \ = read())) {\n\t\t\tres = 10 * res + c - '0';\n\t\t}\n\t\tif(c != '.') {\n\t\
     \t\tcheck = true;\n\t\t\treturn res;\n\t\t}\n\t\tint i;\n\t\tfor(i = 0; isNum(c\
-    \ = read()); ++i) {\n\t\t\tres = res * 10 + c - '0';\n\t\t}\n\t\tres /= Math.pow(10,\
+    \ = read()); ++i) {\n\t\t\tres = res * 10 + c - '0';\n\t\t}\n\t\tres /= pow(10,\
     \ i);\n\t\tcheck = true;\n\t\treturn neg ? -res : res;\n\t}\n\tfinal char nc(){\
     \ return (char) next(); }\n\tfinal String ns() {\n\t\tfinal StringBuilder sb =\
     \ new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c)) {\n\t\t\t\
@@ -810,7 +811,7 @@ data:
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
   - Java/All.java
-  timestamp: '2024-02-08 12:06:19+09:00'
+  timestamp: '2024-02-08 14:08:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java
