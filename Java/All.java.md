@@ -400,37 +400,33 @@ data:
     import java.io.InputStream;\nimport java.io.OutputStream;\nimport java.math.BigInteger;\n\
     import java.util.ArrayDeque;\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
     import java.util.Collection;\nimport java.util.Collections;\nimport java.util.Comparator;\n\
-    import java.util.Formatter;\nimport java.util.HashMap;\nimport java.util.HashSet;\n\
-    import java.util.Iterator;\nimport java.util.List;\nimport java.util.Map;\nimport\
-    \ java.util.NoSuchElementException;\nimport java.util.Objects;\nimport java.util.PriorityQueue;\n\
-    import java.util.Queue;\nimport java.util.Stack;\nimport java.util.TreeMap;\n\
-    import java.util.function.BiFunction;\nimport java.util.function.BiPredicate;\n\
-    import java.util.function.BinaryOperator;\nimport java.util.function.Consumer;\n\
-    import java.util.function.DoublePredicate;\nimport java.util.function.IntPredicate;\n\
-    import java.util.function.IntUnaryOperator;\nimport java.util.function.LongBinaryOperator;\n\
-    import java.util.function.LongPredicate;\nimport java.util.function.Predicate;\n\
-    import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nfinal\
-    \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
-    \ VvyLw.MULTI ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
-    \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}\n\n\
-    final class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner(System.in);\n\
-    \tstatic final MyPrinter o = new MyPrinter(System.out, false), dbg = new MyPrinter(System.err,\
-    \ true);\n\tstatic final Huitloxopetl why = new Huitloxopetl();\n\tstatic final\
-    \ boolean MULTI = false;\n\tstatic final int INF = 1 << 30;\n\tstatic final long\
-    \ LINF = (1L << 61) - 1;\n\tstatic final double EPS = 1e-18;\n\tstatic final int\
-    \ MOD = 998244353;\n\tstatic final int M0D = (int) 1e9 + 7;\n\tstatic final int[]\
-    \ dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1,\
-    \ 1, -1, 1, -1, 1};\n\tstatic final void solve() {\n\t\tfinal var a = sc.ni(9,\
-    \ 9);\n\t\tfinal BiPredicate<Integer, Integer> sq = (x, y) -> {\n\t\t\tfinal var\
-    \ s = new HashSet<Integer>();\n\t\t\tfor(int i = 0; i < 3; ++i) {\n\t\t\t\tfor(int\
-    \ j = 0; j < 3; ++j) {\n\t\t\t\t\ts.add(a[x + i][y + j]);\n\t\t\t\t}\n\t\t\t}\n\
-    \t\t\treturn s.size() == 9;\n\t\t};\n\t}\n}\nclass Utility {\n\tprotected static\
-    \ final String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected\
-    \ static final String no(final boolean ok){ return yes(!ok); }\n\tprotected static\
-    \ final long sqr(final long x){ return x * x; }\n\tprotected static final long\
-    \ mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t\
-    }\n\tprotected static final long ceil(final long a, final long b){ return a ==\
-    \ 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final double round(final double\
+    import java.util.Formatter;\nimport java.util.HashMap;\nimport java.util.Iterator;\n\
+    import java.util.List;\nimport java.util.Map;\nimport java.util.NoSuchElementException;\n\
+    import java.util.Objects;\nimport java.util.PriorityQueue;\nimport java.util.Queue;\n\
+    import java.util.Stack;\nimport java.util.TreeMap;\nimport java.util.function.BiFunction;\n\
+    import java.util.function.BiPredicate;\nimport java.util.function.BinaryOperator;\n\
+    import java.util.function.Consumer;\nimport java.util.function.DoublePredicate;\n\
+    import java.util.function.IntPredicate;\nimport java.util.function.IntUnaryOperator;\n\
+    import java.util.function.LongBinaryOperator;\nimport java.util.function.LongPredicate;\n\
+    import java.util.function.Predicate;\nimport java.util.stream.Collectors;\nimport\
+    \ java.util.stream.IntStream;\n\nfinal class Main {\n\tpublic static void main(final\
+    \ String[] args) {\n\t\tIntStream.range(0, VvyLw.MULTI ? VvyLw.sc.ni() : 1).forEach(i\
+    \ -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\
+    \t\tVvyLw.dbg.close();\n\t}\n}\n\nfinal class VvyLw extends Utility {\n\tstatic\
+    \ final MyScanner sc = new MyScanner(System.in);\n\tstatic final MyPrinter o =\
+    \ new MyPrinter(System.out, false), dbg = new MyPrinter(System.err, true);\n\t\
+    static final Huitloxopetl why = new Huitloxopetl();\n\tstatic final boolean MULTI\
+    \ = false;\n\tstatic final int INF = 1 << 30;\n\tstatic final long LINF = (1L\
+    \ << 61) - 1;\n\tstatic final double EPS = 1e-18;\n\tstatic final int MOD = 998244353;\n\
+    \tstatic final int M0D = (int) 1e9 + 7;\n\tstatic final int[] dx = {0, -1, 1,\
+    \ 0, 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1,\
+    \ 1};\n\tstatic final void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected\
+    \ static final String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\
+    \tprotected static final String no(final boolean ok){ return yes(!ok); }\n\tprotected\
+    \ static final long sqr(final long x){ return x * x; }\n\tprotected static final\
+    \ long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\
+    \t}\n\tprotected static final long ceil(final long a, final long b){ return a\
+    \ == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final double round(final double\
     \ a, final long b, final int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn\
     \ Math.rint((a * d) / b) / d;\n\t}\n\tprotected static final long pow(long a,\
     \ int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\
@@ -880,39 +876,44 @@ data:
     \ = is;\n\t\tpos = lim = 0;\n\t\tbuf = new byte[1 << 17];\n\t\tcheck = false;\n\
     \t}\n\tprivate final boolean isPunct(final byte bt){ return !Utility.scope(33,\
     \ bt, 126); }\n\tprivate final boolean isNum(final byte bt){ return Utility.scope('0',\
-    \ bt, '9'); }\n\tprivate final byte read() {\n\t\tif(pos == lim && lim != -1)\
-    \ {\n\t\t\ttry {\n\t\t\t\tlim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final\
+    \ bt, '9'); }\n\tprivate final boolean isNeg(){ return pos >= 2 && buf[pos - 2]\
+    \ == '-'; }\n\tprivate final byte read() {\n\t\tif(pos == lim && lim != -1) {\n\
+    \t\t\ttry {\n\t\t\t\tlim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final\
     \ IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t\treturn buf[pos++];\n\
     \t}\n\tprivate final byte next() {\n\t\tbyte bt;\n\t\tif(check) {\n\t\t\tcheck\
     \ = false;\n\t\t\tbt = buf[pos - 1];\n\t\t\tif(!isPunct(bt)) {\n\t\t\t\treturn\
     \ bt;\n\t\t\t}\n\t\t}\n\t\twhile(isPunct(bt = read())){}\n\t\treturn bt;\n\t}\n\
     \tprivate final byte nextInt() {\n\t\tbyte bt;\n\t\twhile(!isNum(bt = read())){}\n\
     \t\treturn bt;\n\t}\n\tfinal int ni(){ return Math.toIntExact(nl()); }\n\tfinal\
-    \ long nl() {\n\t\tbyte c = nextInt();\n\t\tfinal boolean neg = c == '-';\n\t\t\
-    if(neg) {\n\t\t\tc = read();\n\t\t}\n\t\tassert isNum(c);\n\t\tlong res = c -\
-    \ '0';\n\t\twhile(isNum(c = read())) {\n\t\t\tres = 10 * res + c - '0';\n\t\t\
-    }\n\t\tcheck = !isNum(c);\n\t\treturn neg ? -res : res;\n\t}\n\tfinal double nd(){\
-    \ return Double.parseDouble(ns()); }\n\tfinal char nc(){ return (char) next();\
-    \ }\n\tfinal String ns() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
-    \t\tbyte c = next();\n\t\twhile(!isPunct(c)) {\n\t\t\tsb.append((char) c);\n\t\
-    \t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\t}\n\tfinal BigInteger nb(){\
-    \ return new BigInteger(ns()); }\n\tfinal int[] ni(final int n) {\n\t\tfinal int[]\
-    \ a = new int[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ni());\n\t\t\
-    return a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\tfinal long[] a = new long[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\treturn a;\n\t}\n\tfinal\
-    \ double[] nd(final int n) {\n\t\tfinal double[] a = new double[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal char[] nc(final int\
-    \ n) {\n\t\tfinal char[] a = new char[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal String[] ns(final int n) {\n\t\
-    \tfinal String[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i]\
-    \ = ns());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final int n) {\n\t\tfinal\
-    \ BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0, n).forEach(i ->\
-    \ a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final int h, final int\
-    \ w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i\
-    \ -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final int h, final\
-    \ int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0, h).forEach(i\
-    \ -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final int h, final\
-    \ int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
+    \ long nl() {\n\t\tbyte c = nextInt();\n\t\tfinal boolean neg = isNeg();\n\t\t\
+    assert isNum(c);\n\t\tlong res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\
+    \tres = 10 * res + c - '0';\n\t\t}\n\t\tcheck = !isNum(c);\n\t\treturn neg ? -res\
+    \ : res;\n\t}\n\tfinal double nd() {\n\t\tbyte c = nextInt();\n\t\tfinal boolean\
+    \ neg = isNeg();\n\t\tassert isNum(c);\n\t\tdouble res = c - '0';\n\t\twhile(isNum(c\
+    \ = read())) {\n\t\t\tres = 10 * res + c - '0';\n\t\t}\n\t\tif(c != '.') {\n\t\
+    \t\tcheck = true;\n\t\t\treturn res;\n\t\t}\n\t\tint i;\n\t\tfor(i = 0; isNum(c\
+    \ = read()); ++i) {\n\t\t\tres = res * 10 + c - '0';\n\t\t}\n\t\tres /= Math.pow(10,\
+    \ i);\n\t\tcheck = true;\n\t\treturn neg ? -res : res;\n\t}\n\tfinal char nc(){\
+    \ return (char) next(); }\n\tfinal String ns() {\n\t\tfinal StringBuilder sb =\
+    \ new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c)) {\n\t\t\t\
+    sb.append((char) c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\t\
+    }\n\tfinal BigInteger nb(){ return new BigInteger(ns()); }\n\tfinal int[] ni(final\
+    \ int n) {\n\t\tfinal int[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = ni());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\t\
+    final long[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\
+    \t\treturn a;\n\t}\n\tfinal double[] nd(final int n) {\n\t\tfinal double[] a =\
+    \ new double[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\treturn\
+    \ a;\n\t}\n\tfinal char[] nc(final int n) {\n\t\tfinal char[] a = new char[n];\n\
+    \t\tIntStream.range(0, n).forEach(i -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal\
+    \ String[] ns(final int n) {\n\t\tfinal String[] a = new String[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final\
+    \ int n) {\n\t\tfinal BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final\
+    \ int h, final int w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0,\
+    \ h).forEach(i -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final\
+    \ int h, final int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0,\
+    \ h).forEach(i -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final\
+    \ int h, final int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\tfinal char[][] nc(final\
     \ int h, final int w) {\n\t\tfinal char[][] a = new char[h][w];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> a[i] = nc(w));\n\t\treturn a;\n\t}\n\tfinal String[][] ns(final\
@@ -1096,7 +1097,10 @@ data:
     try {\n\t\t\treturn second / first;\n\t\t} catch(final ArithmeticException e)\
     \ {\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow new Error();\n\t}\n\tfinal double\
     \ abs(){ return Math.hypot(first, second); }\n}\n\nfinal class Huitloxopetl {\n\
-    \tfinal long invNum(final int[] a) {\n\t\tfinal int[] b = Utility.sorted(a);\n\
+    \tfinal boolean isBipartite(final UnionFind uf) {\n\t\tassert uf.size() % 2 ==\
+    \ 0;\n\t\tfinal int n = uf.size() / 2;\n\t\tboolean ok = true;\n\t\tfor(int i\
+    \ = 0; i < n; ++i) {\n\t\t\tok &= uf.root(i) != uf.root(i + n);\n\t\t}\n\t\treturn\
+    \ ok;\n\t}\n\tfinal long invNum(final int[] a) {\n\t\tfinal int[] b = Utility.sorted(a);\n\
     \t\tfinal Map<Integer, Integer> id = new HashMap<>();\n\t\tfor(int i = 0; i <\
     \ a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal FenwickTree bit =\
     \ new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int i = 0; i < a.length;\
@@ -1248,46 +1252,44 @@ data:
     \ class UnionFind {\n\tprivate final int[] par;\n\tUnionFind(final int n) {\n\t\
     \tpar = new int[n];\n\t\tArrays.fill(par, -1);\n\t}\n\tfinal int root(final int\
     \ i){ return par[i] >= 0 ? par[i] = root(par[i]) : i; }\n\tfinal int size(final\
-    \ int i){ return -par[root(i)]; }\n\tfinal boolean unite(int i, int j) {\n\t\t\
-    i = root(i);\n\t\tj = root(j);\n\t\tif(i == j) {\n\t\t\treturn false;\n\t\t}\n\
-    \t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i]\
-    \ += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\t}\n\tfinal boolean same(final\
-    \ int i, final int j){ return root(i) == root(j); }\n\tfinal ArrayList<ArrayList<Integer>>\
-    \ groups() {\n\t\tfinal int n = par.length;\n\t\tfinal ArrayList<ArrayList<Integer>>\
-    \ res = new ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> res.add(new\
-    \ ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\
-    \t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n\tfinal boolean isBipartite()\
-    \ {\n\t\tfinal int n = par.length / 2;\n\t\tboolean ok = true;\n\t\tfor(int i\
-    \ = 0; i < n; ++i) {\n\t\t\tok &= root(i) != root(i + n);\n\t\t}\n\t\treturn ok;\n\
-    \t}\n}\n\nfinal class WeightedUnionFind {\n\tprivate final int[] par;\n\tprivate\
-    \ final long[] weight;\n\tWeightedUnionFind(final int n) {\n\t\tpar = new int[n];\n\
-    \t\tweight = new long[n];\n\t\tArrays.fill(par, -1);\n\t}\n\tfinal int root(final\
-    \ int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\t\tfinal int r = root(par[i]);\n\
-    \t\tweight[i] += weight[par[i]];\n\t\treturn par[i] = r;\n\t}\n\tfinal long get(final\
-    \ int i) {\n\t\troot(i);\n\t\treturn weight[i];\n\t}\n\tfinal long diff(final\
-    \ int x, final int y){ return get(y) - get(x); }\n\tfinal int unite(int x, int\
-    \ y, long w) {\n\t\tw += diff(y, x);\n\t\tx = root(x);\n\t\ty = root(y);\n\t\t\
-    if(x == y) {\n\t\t\treturn w == 0 ? 0 : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\
-    \t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x]\
-    \ += par[y];\n\t\tpar[y] = x;\n\t\tweight[y] = w;\n\t\treturn 1;\n\t}\n\tfinal\
-    \ boolean same(final int x, final int y){ return root(x) == root(y); }\n}\n\n\
-    final class UndoUnionFind {\n\tprivate final int[] par;\n\tprivate final Stack<Pair<Integer,\
-    \ Integer>> his;\n\tUndoUnionFind(final int n) {\n\t    par = new int[n];\n\t\
-    \    Arrays.fill(par, -1);\n\t    his = new Stack<>();\n\t}\n\tfinal boolean unite(int\
-    \ x, int y) {\n\t\tx = root(x);\n\t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\
-    \t\this.add(Pair.of(y, par[y]));\n\t\tif(x == y) {\n\t\t\treturn false;\n\t\t\
-    }\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t\
-    }\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\treturn true;\n\t}\n\tfinal int\
-    \ root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\t\treturn\
-    \ root(par[i]);\n\t}\n\tfinal int size(final int i){ return -par[root(i)]; }\n\
-    \tfinal void undo() {\n\t\tfinal Pair<Integer, Integer> pop1 = his.pop(), pop2\
-    \ = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\t\tpar[pop2.first] = pop2.second;\n\
-    \t}\n\tfinal void snapshot() {\n\t\twhile(!his.empty()) {\n\t\t\this.pop();\n\t\
-    \t}\n\t}\n\tfinal void rollback() {\n\t\twhile(!his.empty()) {\n\t\t\tundo();\n\
-    \t\t}\n\t}\n}\n\nfinal class PrimeTable {\n\tprivate final int size;\n\tprivate\
-    \ final int[] p;\n\tprivate final boolean[] sieve;\n\tPrimeTable(final int n)\
-    \ {\n\t\tsieve = new boolean[n + 1];\n\t\tArrays.fill(sieve, true);\n\t\tsieve[0]\
-    \ = sieve[1] = false;\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[i])\
+    \ int i){ return -par[root(i)]; }\n\tfinal int size(){ return par.length; }\n\t\
+    final boolean unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\t\
+    if(i == j) {\n\t\t\treturn false;\n\t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\
+    \tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\t\
+    return true;\n\t}\n\tfinal boolean same(final int i, final int j){ return root(i)\
+    \ == root(j); }\n\tfinal ArrayList<ArrayList<Integer>> groups() {\n\t\tfinal int\
+    \ n = par.length;\n\t\tfinal ArrayList<ArrayList<Integer>> res = new ArrayList<>(n);\n\
+    \t\tIntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\
+    \t\treturn res;\n\t}\n}\n\nfinal class WeightedUnionFind {\n\tprivate final int[]\
+    \ par;\n\tprivate final long[] weight;\n\tWeightedUnionFind(final int n) {\n\t\
+    \tpar = new int[n];\n\t\tweight = new long[n];\n\t\tArrays.fill(par, -1);\n\t\
+    }\n\tfinal int root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t\
+    }\n\t\tfinal int r = root(par[i]);\n\t\tweight[i] += weight[par[i]];\n\t\treturn\
+    \ par[i] = r;\n\t}\n\tfinal long get(final int i) {\n\t\troot(i);\n\t\treturn\
+    \ weight[i];\n\t}\n\tfinal long diff(final int x, final int y){ return get(y)\
+    \ - get(x); }\n\tfinal int unite(int x, int y, long w) {\n\t\tw += diff(y, x);\n\
+    \t\tx = root(x);\n\t\ty = root(y);\n\t\tif(x == y) {\n\t\t\treturn w == 0 ? 0\
+    \ : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\t\
+    x ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\tweight[y]\
+    \ = w;\n\t\treturn 1;\n\t}\n\tfinal boolean same(final int x, final int y){ return\
+    \ root(x) == root(y); }\n}\n\nfinal class UndoUnionFind {\n\tprivate final int[]\
+    \ par;\n\tprivate final Stack<Pair<Integer, Integer>> his;\n\tUndoUnionFind(final\
+    \ int n) {\n\t    par = new int[n];\n\t    Arrays.fill(par, -1);\n\t    his =\
+    \ new Stack<>();\n\t}\n\tfinal boolean unite(int x, int y) {\n\t\tx = root(x);\n\
+    \t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\t\this.add(Pair.of(y, par[y]));\n\
+    \t\tif(x == y) {\n\t\t\treturn false;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\t\
+    x ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y]\
+    \ = x;\n\t\treturn true;\n\t}\n\tfinal int root(final int i) {\n\t\tif(par[i]\
+    \ < 0) {\n\t\t\treturn i;\n\t\t}\n\t\treturn root(par[i]);\n\t}\n\tfinal int size(final\
+    \ int i){ return -par[root(i)]; }\n\tfinal void undo() {\n\t\tfinal Pair<Integer,\
+    \ Integer> pop1 = his.pop(), pop2 = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\
+    \t\tpar[pop2.first] = pop2.second;\n\t}\n\tfinal void snapshot() {\n\t\twhile(!his.empty())\
+    \ {\n\t\t\this.pop();\n\t\t}\n\t}\n\tfinal void rollback() {\n\t\twhile(!his.empty())\
+    \ {\n\t\t\tundo();\n\t\t}\n\t}\n}\n\nfinal class PrimeTable {\n\tprivate final\
+    \ int size;\n\tprivate final int[] p;\n\tprivate final boolean[] sieve;\n\tPrimeTable(final\
+    \ int n) {\n\t\tsieve = new boolean[n + 1];\n\t\tArrays.fill(sieve, true);\n\t\
+    \tsieve[0] = sieve[1] = false;\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[i])\
     \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\
     \t\t\tsieve[j] = false;\n\t\t\t}\n\t\t}\n\t\tsize = (int) IntStream.rangeClosed(0,\
     \ n).filter(i -> sieve[i]).count();\n\t\tint j = 0;\n\t\tp = new int[size];\n\t\
@@ -1994,7 +1996,7 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
-  timestamp: '2024-02-08 03:21:21+09:00'
+  timestamp: '2024-02-08 11:51:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
