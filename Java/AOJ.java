@@ -1,3 +1,5 @@
+import static java.lang.Math.*;
+
 import java.io.Closeable;
 import java.io.Flushable;
 import java.io.IOException;
@@ -47,7 +49,7 @@ class Utility {
 	protected static final long ceil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }
 	protected static final double round(final double a, final long b, final int c) {
 		final long d = pow(10, c);
-		return Math.rint((a * d) / b) / d;
+		return rint((a * d) / b) / d;
 	}
 	protected static final long pow(long a, int b) {
 		long res = 1;
@@ -228,7 +230,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 		while(!isNum(bt = read())){}
 		return bt;
 	}
-	final int ni(){ return Math.toIntExact(nl()); }
+	final int ni(){ return toIntExact(nl()); }
 	final long nl() {
 		byte c = nextInt();
 		final boolean neg = isNeg();
@@ -256,7 +258,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 		for(i = 0; isNum(c = read()); ++i) {
 			res = res * 10 + c - '0';
 		}
-		res /= Math.pow(10, i);
+		res /= pow(10, i);
 		check = true;
 		return neg ? -res : res;
 	}

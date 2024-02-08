@@ -1,3 +1,5 @@
+import static java.lang.Math.*;
+
 import java.io.Closeable;
 import java.io.Flushable;
 import java.io.IOException;
@@ -55,7 +57,7 @@ class Utility {
 	protected static final long ceil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }
 	protected static final double round(final double a, final long b, final int c) {
 		final long d = pow(10, c);
-		return Math.rint((a * d) / b) / d;
+		return rint((a * d) / b) / d;
 	}
 	protected static final long pow(long a, int b) {
 		long res = 1;
@@ -222,8 +224,8 @@ class Utility {
 		}
 		return res;
 	}
-	protected static final boolean isInt(final double n){ return n == (long) Math.floor(n); }
-	protected static final boolean isSqr(final long n){ return isInt(Math.sqrt(n)); }
+	protected static final boolean isInt(final double n){ return n == (long) floor(n); }
+	protected static final boolean isSqr(final long n){ return isInt(sqrt(n)); }
 	protected static final boolean isPrime(final long n) {
 		if(n == 1) {
 			return false;
@@ -770,7 +772,7 @@ class Utility {
 		return c;
 	}
 	protected static final int bins(int ok, int ng, final IntPredicate fn) {
-		while(Math.abs(ok - ng) > 1) {
+		while(abs(ok - ng) > 1) {
 			final int mid = (ok + ng) / 2;
 			if(fn.test(mid)) {
 				ok = mid;
@@ -782,7 +784,7 @@ class Utility {
 		return ok;
 	}
 	protected static final long bins(long ok, long ng, final LongPredicate fn) {
-		while(Math.abs(ok - ng) > 1) {
+		while(abs(ok - ng) > 1) {
 			final long mid = (ok + ng) / 2;
 			if(fn.test(mid)) {
 				ok = mid;
@@ -794,7 +796,7 @@ class Utility {
 		return ok;
 	}
 	protected static final double bins(double ok, double ng, final DoublePredicate fn) {
-		while(Math.abs(ok - ng) > VvyLw.EPS) {
+		while(abs(ok - ng) > VvyLw.EPS) {
 			final double mid = (ok + ng) / 2;
 			if(fn.test(mid)) {
 				ok = mid;
@@ -867,7 +869,7 @@ class Utility {
 				pre[i] = pre[i - j];
 			}
 			else {
-				int k = Math.max(0, j + pre[j] - i);
+				int k = max(0, j + pre[j] - i);
 				while(i + k < n && s.charAt(k) == s.charAt(i + k)) {
 					++k;
 				}
@@ -931,7 +933,7 @@ class Utility {
 			long mul = 1;
 			for(int j = 0; j < k; ++j) {
 				try {
-					mul = Math.multiplyExact(mul, x);
+					mul = multiplyExact(mul, x);
 				} catch(final ArithmeticException e) {
 					return false;
 				}
@@ -1098,7 +1100,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 		while(!isNum(bt = read())){}
 		return bt;
 	}
-	final int ni(){ return Math.toIntExact(nl()); }
+	final int ni(){ return toIntExact(nl()); }
 	final long nl() {
 		byte c = nextInt();
 		final boolean neg = isNeg();
@@ -1126,7 +1128,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 		for(i = 0; isNum(c = read()); ++i) {
 			res = res * 10 + c - '0';
 		}
-		res /= Math.pow(10, i);
+		res /= pow(10, i);
 		check = true;
 		return neg ? -res : res;
 	}
@@ -1630,8 +1632,8 @@ final class IntPair extends Pair<Long, Long> {
 	final IntPair mod(final IntPair p){ return new IntPair(first % p.first, second % p.second); }
 	final IntPair rotate(){ return new IntPair(-second, first); } 
 	final FloatPair rotate(final int ang) {
-		final double rad = Math.toRadians(Utility.mod(ang, 360));
-		return FloatPair.of(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));
+		final double rad = toRadians(Utility.mod(ang, 360));
+		return FloatPair.of(first * cos(rad) - second * sin(rad), first * sin(rad) + second * cos(rad));
 	}
 	final long dot(final IntPair p){ return first * p.first + second * p.second; }
 	final long cross(final IntPair p){ return rotate().dot(p); }
@@ -1644,7 +1646,7 @@ final class IntPair extends Pair<Long, Long> {
 		}
 		throw new Error();
 	}
-	final double abs(){ return Math.hypot(first, second); }
+	final double abs(){ return hypot(first, second); }
 	final long lcm(){ return Utility.lcm(first, second); }
 	final long gcd(){ return Utility.gcd(first, second); }
 	final IntPair extgcd() {
@@ -1678,8 +1680,8 @@ final class FloatPair extends Pair<Double, Double> {
 	final FloatPair div(final FloatPair p){ return new FloatPair(first / p.first, second / p.second); }
 	final FloatPair rotate(){ return new FloatPair(-second, first); } 
 	final FloatPair rotate(final int ang) {
-		final double rad = Math.toRadians(Utility.mod(ang, 360));
-		return FloatPair.of(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));
+		final double rad = toRadians(Utility.mod(ang, 360));
+		return FloatPair.of(first * cos(rad) - second * sin(rad), first * sin(rad) + second * cos(rad));
 	}
 	final double dot(final FloatPair p){ return first * p.first + second * p.second; }
 	final double cross(final FloatPair p){ return rotate().dot(p); }
@@ -1692,7 +1694,7 @@ final class FloatPair extends Pair<Double, Double> {
 		}
 		throw new Error();
 	}
-	final double abs(){ return Math.hypot(first, second); }
+	final double abs(){ return hypot(first, second); }
 }
 
 /**
@@ -1711,7 +1713,7 @@ final class ModPrime {
 	 */
 	ModPrime(final int mod, final int sz) {
 		this.mod = mod;
-		len = Math.min(sz + 1, mod);
+		len = min(sz + 1, mod);
 		f = new long[len];
 		rf = new long[len];
 		init();
