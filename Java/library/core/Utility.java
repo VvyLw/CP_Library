@@ -443,6 +443,7 @@ public class Utility {
 	 * @param x
 	 * @param r
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/clamp.html">std::clamp</a>
+	 * @implNote AtCoderのJavaのアップデートが入ったら消す
 	 */
 	protected static final int clamp(final int l, final int x, final int r){ return x < l ? l : x > r ? r : x; }
 	/**
@@ -450,6 +451,7 @@ public class Utility {
 	 * @param x
 	 * @param r
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/clamp.html">std::clamp</a>
+	 * @implNote AtCoderのJavaのアップデートが入ったら消す
 	 */
 	protected static final long clamp(final long l, final long x, final long r){ return x < l ? l : x > r ? r : x; }
 	/**
@@ -457,6 +459,7 @@ public class Utility {
 	 * @param x
 	 * @param r
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/clamp.html">std::clamp</a>
+	 * @implNote AtCoderのJavaのアップデートが入ったら消す
 	 */
 	protected static final double clamp(final double l, final double x, final double r){ return x < l ? l : x > r ? r : x; }
 	/**
