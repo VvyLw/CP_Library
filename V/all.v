@@ -1,8 +1,8 @@
-import core
-import graph
-import structure
-import mathe
-import other
+// import core
+// import graph
+// import structure
+// import mathe
+// import other
 import time{StopWatch}
 
 fn solve()! {
