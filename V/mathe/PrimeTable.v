@@ -1,3 +1,5 @@
+module mathe
+
 pub struct SoE {
 mut:
 	siege []bool

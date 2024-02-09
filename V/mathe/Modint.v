@@ -1,3 +1,7 @@
+module mathe
+
+import core
+
 pub struct Modint {
 	num i64
 	mod i64
@@ -77,5 +81,5 @@ pub fn (a Modint) pow(x_ u64) Modint {
 }
 @[params]
 struct Mod {
-	mod_ i64=mod998
+	mod_ i64=core.mod998
 }

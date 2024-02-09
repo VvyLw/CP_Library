@@ -1,3 +1,5 @@
+module core
+
 pub fn next_permutation[T](mut a []T) bool {
 	for i:=a.len-1; i>0; i-- {
 		if a[i-1]<a[i] {

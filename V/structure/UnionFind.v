@@ -1,3 +1,5 @@
+module structure
+
 pub struct UnionFind {
 mut:
 	par []int

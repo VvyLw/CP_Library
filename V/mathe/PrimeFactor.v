@@ -1,3 +1,5 @@
+module mathe
+
 pub struct SPF {
 mut:
 	spf []int

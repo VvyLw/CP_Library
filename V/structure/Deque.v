@@ -1,3 +1,5 @@
+module structure
+
 pub struct Deque[T] {
 mut:
 	len int
