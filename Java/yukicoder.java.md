@@ -1084,32 +1084,7 @@ data:
     \ return dot(this); }\n\tfinal double grad() { \n\t\ttry {\n\t\t\treturn second\
     \ / first;\n\t\t} catch(final ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
     \t\t}\n\t\tthrow new Error();\n\t}\n\tfinal double abs(){ return hypot(first,\
-    \ second); }\n}\n\n/**\n * \u4E8C\u9805\u4FC2\u6570\u306E\u6F14\u7B97\u3092\u9AD8\
-    \u901F\u3067\u884C\u3046\u30AF\u30E9\u30B9\n * mod\u306F\u7D20\u6570\n * \u524D\
-    \u8A08\u7B97\u306BO(len + log mod)\u304B\u304B\u308B\n * @see <a href=\"https://blog.hamayanhamayan.com/entry/2018/06/06/210256\"\
-    >\u53C2\u8003\u5143</a>\n */\nfinal class ModPrime {\n\tprivate final int len,\
-    \ mod;\n\tprivate final long[] f, rf;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\
-    \u30AF\u30BF\n\t * @param mod \u7D20\u6570\n\t * @param sz \u53D6\u308A\u3046\u308B\
-    \u5024\u306E\u6700\u5927\u5024\n\t */\n\tModPrime(final int mod, final int sz)\
-    \ {\n\t\tthis.mod = mod;\n\t\tlen = min(sz + 1, mod);\n\t\tf = new long[len];\n\
-    \t\trf = new long[len];\n\t\tinit();\n\t}\n\tprivate final long inv(long x) {\n\
-    \t\tlong res = 1, k = mod - 2;\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\
-    \t\t\tres = (res * x) % mod;\n\t\t\t}\n\t\t\tx = (x * x) % mod;\n\t\t\tk >>= 1;\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprivate final void init() {\n\t\tf[0] = 1;\n\t\t\
-    for(int i = 0; ++i < len;) {\n\t\t\tf[i] = (f[i - 1] * i) % mod;\n\t\t}\n\t\t\
-    rf[len - 1] = inv(f[len - 1]);\n\t\tfor(int i = len; --i > 0;) {\n\t\t\trf[i -\
-    \ 1] = (rf[i] * i) % mod;\n\t\t}\n\t}\n\t/**\n\t * @param n\n\t * @param k\n\t\
-    \ * @return \u4E8C\u9805\u4FC2\u6570\n\t */\n\tfinal long C(final int n, final\
-    \ int k) {\n\t\tif(k < 0 || n < k) {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal long a\
-    \ = f[n], b = rf[n - k], c = rf[k], bc = (b * c) % mod;\n\t\treturn (a * bc) %\
-    \ mod;\n\t}\n\t/**\n\t * @param n\n\t * @param k\n\t * @return \u9806\u5217\n\t\
-    \ */\n\tfinal long P(final int n, final int k) {\n\t\tif (k < 0 || n < k) {\n\t\
-    \t\treturn 0;\n\t\t}\n\t\tfinal long a = f[n], b = rf[n - k];\n\t\treturn (a *\
-    \ b) % mod;\n\t}\n\t/**\n\t * @param n\n\t * @param k\n\t * @return \u91CD\u8907\
-    \u9806\u5217\n\t */\n\tfinal long H(final int n, final int k) {\n\t\tif (n ==\
-    \ 0 && k == 0) {\n\t\t\treturn 1;\n\t\t}\n\t\treturn C(n + k - 1, k);\n\t}\n\t\
-    /**\n\t * @param n\n\t * @return \u968E\u4E57 mod P\n\t */\n\tfinal long factor(final\
-    \ int n){ return f[n]; }\n}"
+    \ second); }\n}"
   dependsOn:
   - Java/AOJ.java
   - Java/CodeForces.java
@@ -1242,7 +1217,7 @@ data:
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
   - Java/All.java
-  timestamp: '2024-02-08 17:54:03+09:00'
+  timestamp: '2024-02-09 21:27:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java
