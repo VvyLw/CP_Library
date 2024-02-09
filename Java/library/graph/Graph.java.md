@@ -436,7 +436,7 @@ data:
     }\n\t\tfinal ArrayList<Integer> ord = new ArrayList<>();\n\t\twhile(!sk.isEmpty())\
     \ {\n\t\t\tfinal int tmp = sk.pop();\n\t\t\tord.add(tmp);\n\t\t\tfor(final Edge\
     \ ed: this.get(tmp)) {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ord.size() == size() ? ord : new ArrayList<>();\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ord.size() == n ? ord : new ArrayList<>();\n\
     \t}\n}"
   dependsOn:
   - Java/AOJ.java
@@ -570,7 +570,7 @@ data:
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
   - Java/All.java
-  timestamp: '2024-02-08 14:08:23+09:00'
+  timestamp: '2024-02-08 17:54:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/Graph.java

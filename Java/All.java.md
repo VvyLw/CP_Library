@@ -1143,7 +1143,7 @@ data:
     \tsk.add(i);\n\t\t\t}\n\t\t}\n\t\tfinal ArrayList<Integer> ord = new ArrayList<>();\n\
     \t\twhile(!sk.isEmpty()) {\n\t\t\tfinal int tmp = sk.pop();\n\t\t\tord.add(tmp);\n\
     \t\t\tfor(final Edge ed: this.get(tmp)) {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\
-    \t\t\t\tsk.add(ed.to);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ord.size() == size()\
+    \t\t\t\tsk.add(ed.to);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn n == ord.size()\
     \ ? ord : new ArrayList<>();\n\t}\n}\n\nfinal class MST {\n\tpublic final ArrayList<Edge>\
     \ tree;\n\tpublic final long cost;\n\tMST(final ArrayList<Edge> tree, final long\
     \ cost) {\n\t\tthis.tree = tree;\n\t\tthis.cost = cost;\n\t}\n}\nfinal class WeightedGraph\
@@ -1994,7 +1994,7 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
-  timestamp: '2024-02-08 14:08:23+09:00'
+  timestamp: '2024-02-08 17:54:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
