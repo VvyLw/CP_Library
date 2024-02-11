@@ -1553,7 +1553,7 @@ public class Utility {
 	 * 座標圧縮
 	 * @param a
 	 */
-	protected static final int[] press(final int[] a) {
+	protected static final int[] corPress(final int[] a) {
 		final int[] res = new int[a.length];
 		final int[] x = Arrays.stream(a).sorted().distinct().toArray();
 		for(int i = 0; i < a.length; ++i) {
@@ -1565,7 +1565,7 @@ public class Utility {
 	 * 座標圧縮
 	 * @param a
 	 */
-	protected static final int[] press(final long[] a) {
+	protected static final int[] corPress(final long[] a) {
 		final int[] res = new int[a.length];
 		final long[] x = Arrays.stream(a).sorted().distinct().toArray();
 		for(int i = 0; i < a.length; ++i) {
@@ -1577,7 +1577,7 @@ public class Utility {
 	 * @param s
 	 * @return ランレングス圧縮
 	 */
-	protected static final String rle(final String s) {
+	protected static final String runLenPress(final String s) {
 		final int n = s.length();
 		final StringBuilder sb = new StringBuilder();
 		for(int l = 0; l < n;) {
@@ -1593,7 +1593,7 @@ public class Utility {
 	 * @param s
 	 * @return ランレングス圧縮したものを戻す
 	 */
-	protected static final String rleRev(final String s) {
+	protected static final String runLenRev(final String s) {
 		final int n = s.length();
 		final StringBuilder sb = new StringBuilder();
 		for(int l = 0; l < n;) {
