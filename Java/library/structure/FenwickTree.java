@@ -116,9 +116,9 @@ public final class FenwickTree {
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
-		sb.append(get(0));
-		for(int i = 0; ++i < n;) {
-			sb.append(" " + get(i));
+		sb.append(sum(0));
+		for(int i = 0; ++i < n - 2;) {
+			sb.append(" " + sum(i));
 		}
 		return sb.toString();
 	}

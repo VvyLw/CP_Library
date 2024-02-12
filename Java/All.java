@@ -66,6 +66,10 @@ class Utility {
 	protected static final String yes(final boolean ok){ return ok ? "Yes" : "No"; }
 	protected static final String no(final boolean ok){ return yes(!ok); }
 	protected static final long sqr(final long x){ return x * x; }
+	protected static final int mod(long n, final int m) {
+		n %= m;
+		return (int) (n < 0 ? n + m : n);
+	}
 	protected static final long mod(long n, final long m) {
 		n %= m;
 		return n < 0 ? n + m : n;
@@ -3523,11 +3527,11 @@ final class FenwickTree {
 	}
 	FenwickTree(final int[] a) {
 		this(a.length);
-		IntStream.range(0, n).forEach(i -> add(i, a[i]));
+		IntStream.range(0, a.length).forEach(i -> add(i, a[i]));
 	}
 	FenwickTree(final long[] a) {
 		this(a.length);
-		IntStream.range(0, n).forEach(i -> add(i, a[i]));
+		IntStream.range(0, a.length).forEach(i -> add(i, a[i]));
 	}
 	final long sum(int k) {
 		if(k < 0) return 0;
@@ -3578,9 +3582,9 @@ final class FenwickTree {
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
-		sb.append(get(0));
-		for(int i = 0; ++i < n;) {
-			sb.append(" " + get(i));
+		sb.append(sum(0));
+		for(int i = 0; ++i < n - 2;) {
+			sb.append(" " + sum(i));
 		}
 		return sb.toString();
 	}
