@@ -9,7 +9,7 @@ import java.util.function.Predicate;
  * @param <T>
  * @see <a href="https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp">参考元</a>
  */
-public final class SegmentTree<T extends Number> {
+public final class SegmentTree<T> {
 	private int n = 1, rank = 0, fini;
 	private final BinaryOperator<T> op;
 	private final T e;

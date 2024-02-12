@@ -3586,7 +3586,7 @@ final class FenwickTree {
 	}
 }
 
-final class SegmentTree<T extends Number> {
+final class SegmentTree<T> {
 	private int n = 1, rank = 0;
 	private final int fini;
 	private final BinaryOperator<T> op;
