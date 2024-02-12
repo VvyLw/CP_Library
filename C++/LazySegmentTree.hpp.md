@@ -9,231 +9,236 @@ data:
   attributes:
     document_title: "\u9045\u5EF6\u30BB\u30B0\u6728"
     links:
-    - https://nyaannyaan.github.io/library/segment-tree/lazy-segment-tree-utility.hpp
+    - https://ei1333.github.io/library/structure/segment-tree/lazy-segment-tree.hpp
   bundledCode: "#line 2 \"C++/LazySegmentTree.hpp\"\n\n#include <ostream>\n#include\
     \ <cassert>\n#include <vector>\n#include <cmath>\n#include <functional>\ntemplate\
     \ <class T, class U> struct LazySegTree {\nprivate:\n    using F = std::function<T(T,\
     \ T)>;\n    using M = std::function<T(T, U)>;\n    using C = std::function<U(U,\
-    \ U)>;\n    int n, log, s;\n    std::vector<T> val;\n    std::vector<U> lazy;\n\
-    \    const F f;\n    const T e;\n    const M map;\n    const C comp;\n    const\
-    \ U id;\n    void push(const int i) {\n        if(lazy[i] != id) {\n         \
-    \   val[2 * i + 0] = map(val[2 * i + 0], lazy[i]);\n            val[2 * i + 1]\
-    \ = map(val[2 * i + 1], lazy[i]);\n            if(2 * i < n) {\n             \
-    \   compose(lazy[2 * i + 0], lazy[i]);\n                compose(lazy[2 * i + 1],\
-    \ lazy[i]);\n            }\n            lazy[i] = id;\n        }\n    }\n    inline\
-    \ void upd(const int i){ val[i] = f(val[2 * i + 0], val[2 * i + 1]); }\n    inline\
-    \ void apply(int i, const U& x) {\n        if(x != id) {\n            val[i] =\
-    \ map(val[i], x);\n            if(i < n) {\n                compose(lazy[i], x);\n\
-    \            }\n        }\n    }\n    inline void compose(U& a, const U& b){ a\
-    \ = a == id ? b : comp(a, b); }\npublic:\n    LazySegTree(const int s, const F\
-    \ &f, const M &map, const C &comp, const T e, const U id): s(s), f(f), map(map),\
-    \ comp(comp), e(e), id(id){}\n    LazySegTree(const std::vector<T> &v, const F\
-    \ &f, const M &map, const C &comp, const T e, const U id): s(v.size()), f(f),\
-    \ map(map), comp(comp), e(e), id(id){}\n    void init(const std::vector<T> &v)\
-    \ {\n        n = 1, log = 0;\n        while(n < s) {\n            n <<= 1;\n \
-    \           log++;\n        }\n        val.resize(2 * n, e);\n        lazy.resize(n,\
-    \ id);\n        for(int i = 0; i < s; ++i) {\n            val[i + n] = v[i];\n\
-    \        }\n        for(int i = n - 1; i--;) {\n            upd(i);\n        }\n\
-    \    }\n    void set(const int k, const U &x){ update(k, k + 1, x); }\n    void\
-    \ update(int l, int r, const U& x) {\n        if(l == r) {\n            return;\n\
-    \        }\n        l += n, r += n;\n        for(int i = log; i >= 1; i--) {\n\
-    \            if(((l >> i) << i) != l) {\n                push(l >> i);\n     \
-    \       }\n            if(((r >> i) << i) != r) {\n                push((r - 1)\
-    \ >> i);\n            }\n        }\n        for(int p = l, q = r; p < q; p >>=\
-    \ 1, q >>= 1) {\n            if(p & 1) {\n                apply(p++, x);\n   \
-    \         }\n            if(q & 1) {\n                apply(--q, x);\n       \
-    \     }\n        }\n        for(int i = 1; i <= log; ++i) {\n            if(((l\
-    \ >> i) << i) != l) {\n                upd(l >> i);\n            }\n         \
-    \   if(((r >> i) << i) != r) {\n                upd((r - 1) >> i);\n         \
-    \   }\n        }\n    }\n    T query(int l, int r) {\n        if(l == r) {\n \
-    \           return e;\n        }\n        l += n, r += n;\n        T L = e, R\
-    \ = e;\n        for(int i = log; i >= 1; i--) {\n            if(((l >> i) << i)\
-    \ != l) {\n                push(l >> i);\n            }\n            if(((r >>\
-    \ i) << i) != r) {\n                push((r - 1) >> i);\n            }\n     \
-    \   }\n        while(l < r) {\n            if(l & 1) {\n                L = f(L,\
-    \ val[l++]);\n            }\n            if(r & 1) {\n                R = f(val[--r],\
-    \ R);\n            }\n            l >>= 1;\n            r >>= 1;\n        }\n\
-    \        return f(L, R);\n    }\n    T const& operator[](const int k) const {\
-    \ return val[k + n]; }\n    T &operator[](int k) {\n        k += n;\n        for(int\
-    \ i = log; i >= 1; i--) {\n            if(((k >> i) << i) != k || (((k + 1) >>\
-    \ i) << i) != (k + 1)) {\n                push(k >> i);\n            }\n     \
-    \   }\n        return val[k];\n    }\n    inline int size() const { return s;\
-    \ }\n    template <class Boolean> int max_right(int l, const Boolean &fn) {\n\
-    \        assert(0 <= l && l <= s);\n        assert(fn(id));\n        if(l == n)\
-    \ {\n            return n;\n        }\n        l += n;\n        for(int i = log;\
-    \ i >= 1; i--) {\n            push(l >> i);\n        }\n        T sm = e;\n  \
-    \      do {\n            while(l & 1 == 0) {\n                l >>= 1;\n     \
-    \       }\n            if(!fn(f(sm, val[l]))) {\n                while(l < n)\
-    \ {\n                    push(l);\n                    l = (2 * l);\n        \
-    \            if(fn(f(sm, val[l]))) {\n                        sm = f(sm, val[l]);\n\
-    \                        l++;\n                    }\n                }\n    \
-    \            return l - n;\n            }\n            sm = f(sm, val[l]);\n \
-    \           l++;\n        } while((l & -l) != l);\n        return s;\n    }\n\
-    \    template <class Boolean> int min_left(int r, const Boolean &fn) {\n     \
-    \   assert(0 <= r && r <= s);\n        assert(fn(id));\n        if(r == 0) {\n\
-    \            return 0;\n        }\n        r += n;\n        for(int i = log; i\
-    \ >= 1; i--) {\n            push((r - 1) >> i);\n        }\n        T sm = e;\n\
-    \        do {\n            r--;\n            while(r > 1 && (r & 1)) {\n     \
-    \           r >>= 1;\n            }\n            if(!fn(f(val[r], sm))) {\n  \
-    \              while(r < n) {\n                    push(r);\n                \
-    \    r = 2 * r + 1;\n                    if(fn(f(val[r], sm))) {\n           \
-    \             sm = f(val[r], sm);\n                        r--;\n            \
-    \        }\n                }\n                return r + 1 - n;\n           \
-    \ }\n            sm = f(val[r], sm);\n        } while((r & -r) != r);\n      \
-    \  return 0;\n    }\n    void clear() {\n        for(auto& el: val) {\n      \
-    \      el = e;\n        }\n    }\n    friend std::ostream &operator<<(std::ostream\
-    \ &os, const LazySegTree &seg) {\n        os << seg[0];\n        for(int i = 0;\
-    \ ++i < seg.size();) {\n            os << ' ' << seg[i];\n        }\n        return\
-    \ os;\n    }\n};\n\ntemplate <class T> struct zwei {\n    T first, second;\n \
-    \   zwei(){}\n    zwei(const T &f, const T &s): first(f), second(s){}\n    operator\
-    \ T(){ return first; }\n    friend std::ostream &operator<<(std::ostream &os,\
-    \ const zwei &z) {\n        os << z.first;\n        return os;\n    }\n};\n\n\
-    template <class T> struct RAQRMX: LazySegTree<T, T> {    \n    RAQRMX(const std::vector<T>\
-    \ &v, const T &e): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a,\
-    \ b); }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){\
-    \ return a + b; }, e, 0){ LazySegTree<T, T>::init(v); }\n};\ntemplate <class T>\
-    \ struct RAQRMN: LazySegTree<T, T> {\n    RAQRMN(const std::vector<T> &v, const\
-    \ T &e): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b);\
-    \ }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return\
-    \ a + b; }, e, 0){ LazySegTree<T, T>::init(v); }\n};\ntemplate <class T> struct\
-    \ RAQRSM: LazySegTree<zwei<T>, T> {\n    RAQRSM(const std::vector<T> &v): LazySegTree<zwei<T>,\
-    \ T>(v.size(), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first *\
-    \ b.first, a.second * b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.first\
-    \ + a.second * b, a.second); }, [](const T a, const T b){ return a + b; }, zwei<T>(0,\
-    \ 0), 0) {\n        std::vector<zwei<T>> w(v.size());\n        for(size_t i =\
-    \ 0; i < v.size(); ++i) {\n            w[i] = zwei<T>(v[i], 1);\n        }\n \
-    \       LazySegTree<zwei<T>, T>::init(w);\n    }\n};\ntemplate <class T> struct\
-    \ RUQRMX: LazySegTree<T, T> {    \n    RUQRMX(const std::vector<T> &v, const T\
-    \ &eid): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a, b);\
-    \ }, [](const T, const T b){ return b; }, [](const T, const T b){ return b; },\
-    \ eid, eid){ LazySegTree<T, T>::init(v); }\n};\ntemplate <class T> struct RUQRMN:\
-    \ LazySegTree<T, T> {\n    RUQRMN(const std::vector<T> &v, const T &eid): LazySegTree<T,\
-    \ T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T, const\
-    \ T b){ return b; }, [](const T, const T b){ return b; }, eid, eid){ LazySegTree<T,\
-    \ T>::init(v); }\n};\ntemplate <class T> struct RUQRSM: LazySegTree<zwei<T>, T>\
-    \ {\n    RUQRSM(const std::vector<T> &v, const T &id): LazySegTree<zwei<T>, T>(v.size(),\
-    \ [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first * b.first, a.second\
-    \ * b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.first + a.second\
-    \ * b, a.second); }, [](const T a, const T b){ return a + b; }, zwei<T>(0, 0),\
-    \ id) {\n        std::vector<zwei<T>> w(v.size());\n        for(size_t i = 0;\
-    \ i < v.size(); ++i) {\n            w[i] = zwei<T>(v[i], 1);\n        }\n    \
-    \    LazySegTree<zwei<T>, T>::init(w);\n    }\n};\n\n/**\n * @brief \u9045\u5EF6\
-    \u30BB\u30B0\u6728\n * @see https://nyaannyaan.github.io/library/segment-tree/lazy-segment-tree-utility.hpp\n\
+    \ U)>;\n    int n, sz, h;\n    std::vector<T> data;\n    std::vector<U> lazy;\n\
+    \    const F f;\n    const M map;\n    const C comp;\n    const T e;\n    const\
+    \ U id;\n    inline void update(const int k) {\n        data[k] = f(data[2 * k\
+    \ + 0], data[2 * k + 1]);\n    }\n    inline void all_apply(const int k, const\
+    \ U &x) {\n        data[k] = map(data[k], x);\n        if(k < sz) {\n        \
+    \    lazy[k] = comp(lazy[k], x);\n        }\n    }\n    inline void propagate(const\
+    \ int k) {\n        if(lazy[k] != id) {\n            all_apply(2 * k + 0, lazy[k]);\n\
+    \            all_apply(2 * k + 1, lazy[k]);\n            lazy[k] = id;\n     \
+    \   }\n    }\npublic:\n    LazySegTree(const int n, const F &f, const M &map,\
+    \ const C &comp, const T &e, const U &id): n(n), f(f), map(map), comp(comp), e(e),\
+    \ id(id) {\n        sz = 1;\n        h = 0;\n        while(sz < n) {\n       \
+    \     sz <<= 1;\n            h++;\n        }\n        data.assign(2 * sz, e);\n\
+    \        lazy.assign(2 * sz, id);\n    }\n    LazySegTree(const std::vector<T>\
+    \ &v, const F &f, const M &map, const C &comp, const T &e, const U &id): LazySegTree(v.size(),\
+    \ f, map, comp, e, id){ build(v); }\n    void build(const std::vector<T> &v) {\n\
+    \        assert(n == (int) v.size());\n        for(int k = 0; k < n; ++k) {\n\
+    \            data[k + sz] = v[k];\n        }\n        for(int k = sz; --k > 0;)\
+    \ {\n            update(k);\n        }\n    }\n    void set(int k, const T &x)\
+    \ {\n        k += sz;\n        for(int i = h; i > 0; i--) {\n            propagate(k\
+    \ >> i);\n        }\n        data[k] = x;\n        for(int i = 0; ++i <= h;) {\n\
+    \            update(k >> i);\n        }\n    }\n    T &operator[](int k) {\n \
+    \       k += sz;\n        for(int i = h; i > 0; i--) {\n            propagate(k\
+    \ >> i);\n        }\n        return data[k];\n    }\n    T const& operator[](const\
+    \ int k) const { return data[k + sz]; }\n    T query(int l, int r) {\n       \
+    \ if(l >= r) {\n            return e;\n        }\n        l += sz;\n        r\
+    \ += sz;\n        for(int i = h; i > 0; i--) {\n            if(((l >> i) << i)\
+    \ != l) {\n                propagate(l >> i);\n            }\n            if(((r\
+    \ >> i) << i) != r) {\n                propagate((r - 1) >> i);\n            }\n\
+    \        }\n        T L = e, R = e;\n        for(; l < r; l >>= 1, r >>= 1) {\n\
+    \            if(l & 1) {\n                L = f(L, data[l++]);\n            }\n\
+    \            if(r & 1) {\n                R = f(data[--r], R);\n            }\n\
+    \        }\n        return f(L, R);\n    }\n    T all_query() const { return data[1];\
+    \ }\n    void apply(int k, const U &x) {\n        k += sz;\n        for(int i\
+    \ = h; i > 0; i--) {\n            propagate(k >> i);\n        }\n        data[k]\
+    \ = map(data[k], x);\n        for(int i = 0; ++i <= h;) {\n            update(k\
+    \ >> i);\n        }\n    }\n    void apply(int l, int r, const U &x) {\n     \
+    \   if(l >= r) {\n            return;\n        }\n        l += sz;\n        r\
+    \ += sz;\n        for(int i = h; i > 0; i--) {\n            if(((l >> i) << i)\
+    \ != l) {\n                propagate(l >> i);\n            }\n            if(((r\
+    \ >> i) << i) != r) {\n                propagate((r - 1) >> i);\n            }\n\
+    \        }\n        {\n            int l2 = l, r2 = r;\n            for(; l <\
+    \ r; l >>= 1, r >>= 1) {\n                if(l & 1) {\n                    all_apply(l++,\
+    \ x);\n                }\n                if(r & 1) {\n                    all_apply(--r,\
+    \ x);\n                }\n            }\n            l = l2, r = r2;\n       \
+    \ }\n        for(int i = 0; ++i <= h;) {\n            if(((l >> i) << i) != l)\
+    \ {\n                update(l >> i);\n            }\n            if(((r >> i)\
+    \ << i) != r) {\n                update((r - 1) >> i);\n            }\n      \
+    \  }\n    }\n    inline int size() const { return n; }\n    template <class Boolean>\
+    \ int find_first(int l, const Boolean &fn) {\n        if(l >= n) {\n         \
+    \   return n;\n        }\n        l += sz;\n        for(int i = h; i > 0; i--)\
+    \ {\n            propagate(l >> i);\n        }\n        T sum = e;\n        do\
+    \ {\n            while((l & 1) == 0) {\n                l >>= 1;\n           \
+    \ }\n            if(fn(f(sum, data[l]))) {\n                while(l < sz) {\n\
+    \                    propagate(l);\n                    l <<= 1;\n           \
+    \         const auto nxt = f(sum, data[l]);\n                    if(!fn(nxt))\
+    \ {\n                        sum = nxt;\n                        l++;\n      \
+    \              }\n                }\n                return l + 1 - sz;\n    \
+    \        }\n            sum = f(sum, data[l++]);\n        } while((l & -l) !=\
+    \ l);\n        return n;\n    }\n    template <class Boolean> int find_last(int\
+    \ r, const Boolean &fn) {\n        if(r <= 0) {\n            return -1;\n    \
+    \    }\n        r += sz;\n        for(int i = h; i > 0; i--) {\n            propagate((r\
+    \ - 1) >> i);\n        }\n        T sum = e;\n        do {\n            r--;\n\
+    \            while(r > 1 && r & 1) {\n                r >>= 1;\n            }\n\
+    \            if(fn(f(data[r], sum))) {\n                while(r < sz) {\n    \
+    \                propagate(r);\n                    r = (r << 1) + 1;\n      \
+    \              const auto nxt = f(data[r], sum);\n                    if(!fn(nxt))\
+    \ {\n                        sum = nxt;\n                        r--;\n      \
+    \              }\n                }\n                return r - sz;\n        \
+    \    }\n            sum = f(data[r], sum);\n        } while((r & -r) != r);\n\
+    \        return -1;\n    }\n    void clear(){ data.assign(n, e); }\n    friend\
+    \ std::ostream &operator<<(std::ostream &os, const LazySegTree &seg) {\n     \
+    \   os << seg[0];\n        for(int i = 0; ++i < seg.size();) {\n            os\
+    \ << ' ' << seg[i];\n        }\n        return os;\n    }\n};\n\ntemplate <class\
+    \ T> struct zwei {\n    T first, second;\n    zwei(){}\n    zwei(const T &f, const\
+    \ T &s): first(f), second(s){}\n    operator T(){ return first; }\n    friend\
+    \ std::ostream &operator<<(std::ostream &os, const zwei &z) {\n        os << z.first;\n\
+    \        return os;\n    }\n};\n\ntemplate <class T> struct RAQRMX: LazySegTree<T,\
+    \ T> {    \n    RAQRMX(const std::vector<T> &v, const T &e): LazySegTree<T, T>(v,\
+    \ [](const T a, const T b){ return std::max(a, b); }, [](const T a, const T b){\
+    \ return a + b; }, [](const T a, const T b){ return a + b; }, e, 0){ LazySegTree<T,\
+    \ T>::build(v); }\n};\ntemplate <class T> struct RAQRMN: LazySegTree<T, T> {\n\
+    \    RAQRMN(const std::vector<T> &v, const T &e): LazySegTree<T, T>(v, [](const\
+    \ T a, const T b){ return std::min(a, b); }, [](const T a, const T b){ return\
+    \ a + b; }, [](const T a, const T b){ return a + b; }, e, 0){ LazySegTree<T, T>::build(v);\
+    \ }\n};\ntemplate <class T> struct RAQRSM: LazySegTree<zwei<T>, T> {\n    RAQRSM(const\
+    \ std::vector<T> &v): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const\
+    \ zwei<T> b){ return zwei<T>(a.first * b.first, a.second * b.second); }, [](const\
+    \ zwei<T> a, const T b){ return zwei<T>(a.first + a.second * b, a.second); },\
+    \ [](const T a, const T b){ return a + b; }, zwei<T>(0, 0), 0) {\n        std::vector<zwei<T>>\
+    \ w(v.size());\n        for(size_t i = 0; i < v.size(); ++i) {\n            w[i]\
+    \ = zwei<T>(v[i], 1);\n        }\n        LazySegTree<zwei<T>, T>::build(w);\n\
+    \    }\n};\ntemplate <class T> struct RUQRMX: LazySegTree<T, T> {    \n    RUQRMX(const\
+    \ std::vector<T> &v, const T &eid): LazySegTree<T, T>(v, [](const T a, const T\
+    \ b){ return std::max(a, b); }, [](const T, const T b){ return b; }, [](const\
+    \ T, const T b){ return b; }, eid, eid){ LazySegTree<T, T>::build(v); }\n};\n\
+    template <class T> struct RUQRMN: LazySegTree<T, T> {\n    RUQRMN(const std::vector<T>\
+    \ &v, const T &eid): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a,\
+    \ b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b;\
+    \ }, eid, eid){ LazySegTree<T, T>::build(v); }\n};\ntemplate <class T> struct\
+    \ RUQRSM: LazySegTree<zwei<T>, T> {\n    RUQRSM(const std::vector<T> &v, const\
+    \ T &id): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const zwei<T>\
+    \ b){ return zwei<T>(a.first * b.first, a.second * b.second); }, [](const zwei<T>\
+    \ a, const T b){ return zwei<T>(a.first + a.second * b, a.second); }, [](const\
+    \ T a, const T b){ return a + b; }, zwei<T>(0, 0), id) {\n        std::vector<zwei<T>>\
+    \ w(v.size());\n        for(size_t i = 0; i < v.size(); ++i) {\n            w[i]\
+    \ = zwei<T>(v[i], 1);\n        }\n        LazySegTree<zwei<T>, T>::build(w);\n\
+    \    }\n};\n\n/**\n * @brief \u9045\u5EF6\u30BB\u30B0\u6728\n * @see https://ei1333.github.io/library/structure/segment-tree/lazy-segment-tree.hpp\n\
     \ */\n"
   code: "#pragma once\n\n#include <ostream>\n#include <cassert>\n#include <vector>\n\
     #include <cmath>\n#include <functional>\ntemplate <class T, class U> struct LazySegTree\
     \ {\nprivate:\n    using F = std::function<T(T, T)>;\n    using M = std::function<T(T,\
-    \ U)>;\n    using C = std::function<U(U, U)>;\n    int n, log, s;\n    std::vector<T>\
-    \ val;\n    std::vector<U> lazy;\n    const F f;\n    const T e;\n    const M\
-    \ map;\n    const C comp;\n    const U id;\n    void push(const int i) {\n   \
-    \     if(lazy[i] != id) {\n            val[2 * i + 0] = map(val[2 * i + 0], lazy[i]);\n\
-    \            val[2 * i + 1] = map(val[2 * i + 1], lazy[i]);\n            if(2\
-    \ * i < n) {\n                compose(lazy[2 * i + 0], lazy[i]);\n           \
-    \     compose(lazy[2 * i + 1], lazy[i]);\n            }\n            lazy[i] =\
-    \ id;\n        }\n    }\n    inline void upd(const int i){ val[i] = f(val[2 *\
-    \ i + 0], val[2 * i + 1]); }\n    inline void apply(int i, const U& x) {\n   \
-    \     if(x != id) {\n            val[i] = map(val[i], x);\n            if(i <\
-    \ n) {\n                compose(lazy[i], x);\n            }\n        }\n    }\n\
-    \    inline void compose(U& a, const U& b){ a = a == id ? b : comp(a, b); }\n\
-    public:\n    LazySegTree(const int s, const F &f, const M &map, const C &comp,\
-    \ const T e, const U id): s(s), f(f), map(map), comp(comp), e(e), id(id){}\n \
-    \   LazySegTree(const std::vector<T> &v, const F &f, const M &map, const C &comp,\
-    \ const T e, const U id): s(v.size()), f(f), map(map), comp(comp), e(e), id(id){}\n\
-    \    void init(const std::vector<T> &v) {\n        n = 1, log = 0;\n        while(n\
-    \ < s) {\n            n <<= 1;\n            log++;\n        }\n        val.resize(2\
-    \ * n, e);\n        lazy.resize(n, id);\n        for(int i = 0; i < s; ++i) {\n\
-    \            val[i + n] = v[i];\n        }\n        for(int i = n - 1; i--;) {\n\
-    \            upd(i);\n        }\n    }\n    void set(const int k, const U &x){\
-    \ update(k, k + 1, x); }\n    void update(int l, int r, const U& x) {\n      \
-    \  if(l == r) {\n            return;\n        }\n        l += n, r += n;\n   \
-    \     for(int i = log; i >= 1; i--) {\n            if(((l >> i) << i) != l) {\n\
-    \                push(l >> i);\n            }\n            if(((r >> i) << i)\
-    \ != r) {\n                push((r - 1) >> i);\n            }\n        }\n   \
-    \     for(int p = l, q = r; p < q; p >>= 1, q >>= 1) {\n            if(p & 1)\
-    \ {\n                apply(p++, x);\n            }\n            if(q & 1) {\n\
-    \                apply(--q, x);\n            }\n        }\n        for(int i =\
-    \ 1; i <= log; ++i) {\n            if(((l >> i) << i) != l) {\n              \
-    \  upd(l >> i);\n            }\n            if(((r >> i) << i) != r) {\n     \
-    \           upd((r - 1) >> i);\n            }\n        }\n    }\n    T query(int\
-    \ l, int r) {\n        if(l == r) {\n            return e;\n        }\n      \
-    \  l += n, r += n;\n        T L = e, R = e;\n        for(int i = log; i >= 1;\
-    \ i--) {\n            if(((l >> i) << i) != l) {\n                push(l >> i);\n\
-    \            }\n            if(((r >> i) << i) != r) {\n                push((r\
-    \ - 1) >> i);\n            }\n        }\n        while(l < r) {\n            if(l\
-    \ & 1) {\n                L = f(L, val[l++]);\n            }\n            if(r\
-    \ & 1) {\n                R = f(val[--r], R);\n            }\n            l >>=\
-    \ 1;\n            r >>= 1;\n        }\n        return f(L, R);\n    }\n    T const&\
-    \ operator[](const int k) const { return val[k + n]; }\n    T &operator[](int\
-    \ k) {\n        k += n;\n        for(int i = log; i >= 1; i--) {\n           \
-    \ if(((k >> i) << i) != k || (((k + 1) >> i) << i) != (k + 1)) {\n           \
-    \     push(k >> i);\n            }\n        }\n        return val[k];\n    }\n\
-    \    inline int size() const { return s; }\n    template <class Boolean> int max_right(int\
-    \ l, const Boolean &fn) {\n        assert(0 <= l && l <= s);\n        assert(fn(id));\n\
-    \        if(l == n) {\n            return n;\n        }\n        l += n;\n   \
-    \     for(int i = log; i >= 1; i--) {\n            push(l >> i);\n        }\n\
-    \        T sm = e;\n        do {\n            while(l & 1 == 0) {\n          \
-    \      l >>= 1;\n            }\n            if(!fn(f(sm, val[l]))) {\n       \
-    \         while(l < n) {\n                    push(l);\n                    l\
-    \ = (2 * l);\n                    if(fn(f(sm, val[l]))) {\n                  \
-    \      sm = f(sm, val[l]);\n                        l++;\n                   \
-    \ }\n                }\n                return l - n;\n            }\n       \
-    \     sm = f(sm, val[l]);\n            l++;\n        } while((l & -l) != l);\n\
-    \        return s;\n    }\n    template <class Boolean> int min_left(int r, const\
-    \ Boolean &fn) {\n        assert(0 <= r && r <= s);\n        assert(fn(id));\n\
-    \        if(r == 0) {\n            return 0;\n        }\n        r += n;\n   \
-    \     for(int i = log; i >= 1; i--) {\n            push((r - 1) >> i);\n     \
-    \   }\n        T sm = e;\n        do {\n            r--;\n            while(r\
-    \ > 1 && (r & 1)) {\n                r >>= 1;\n            }\n            if(!fn(f(val[r],\
-    \ sm))) {\n                while(r < n) {\n                    push(r);\n    \
-    \                r = 2 * r + 1;\n                    if(fn(f(val[r], sm))) {\n\
-    \                        sm = f(val[r], sm);\n                        r--;\n \
-    \                   }\n                }\n                return r + 1 - n;\n\
-    \            }\n            sm = f(val[r], sm);\n        } while((r & -r) != r);\n\
-    \        return 0;\n    }\n    void clear() {\n        for(auto& el: val) {\n\
-    \            el = e;\n        }\n    }\n    friend std::ostream &operator<<(std::ostream\
-    \ &os, const LazySegTree &seg) {\n        os << seg[0];\n        for(int i = 0;\
-    \ ++i < seg.size();) {\n            os << ' ' << seg[i];\n        }\n        return\
-    \ os;\n    }\n};\n\ntemplate <class T> struct zwei {\n    T first, second;\n \
-    \   zwei(){}\n    zwei(const T &f, const T &s): first(f), second(s){}\n    operator\
-    \ T(){ return first; }\n    friend std::ostream &operator<<(std::ostream &os,\
-    \ const zwei &z) {\n        os << z.first;\n        return os;\n    }\n};\n\n\
-    template <class T> struct RAQRMX: LazySegTree<T, T> {    \n    RAQRMX(const std::vector<T>\
-    \ &v, const T &e): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a,\
-    \ b); }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){\
-    \ return a + b; }, e, 0){ LazySegTree<T, T>::init(v); }\n};\ntemplate <class T>\
-    \ struct RAQRMN: LazySegTree<T, T> {\n    RAQRMN(const std::vector<T> &v, const\
-    \ T &e): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b);\
-    \ }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return\
-    \ a + b; }, e, 0){ LazySegTree<T, T>::init(v); }\n};\ntemplate <class T> struct\
-    \ RAQRSM: LazySegTree<zwei<T>, T> {\n    RAQRSM(const std::vector<T> &v): LazySegTree<zwei<T>,\
-    \ T>(v.size(), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first *\
-    \ b.first, a.second * b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.first\
-    \ + a.second * b, a.second); }, [](const T a, const T b){ return a + b; }, zwei<T>(0,\
-    \ 0), 0) {\n        std::vector<zwei<T>> w(v.size());\n        for(size_t i =\
-    \ 0; i < v.size(); ++i) {\n            w[i] = zwei<T>(v[i], 1);\n        }\n \
-    \       LazySegTree<zwei<T>, T>::init(w);\n    }\n};\ntemplate <class T> struct\
-    \ RUQRMX: LazySegTree<T, T> {    \n    RUQRMX(const std::vector<T> &v, const T\
-    \ &eid): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a, b);\
-    \ }, [](const T, const T b){ return b; }, [](const T, const T b){ return b; },\
-    \ eid, eid){ LazySegTree<T, T>::init(v); }\n};\ntemplate <class T> struct RUQRMN:\
-    \ LazySegTree<T, T> {\n    RUQRMN(const std::vector<T> &v, const T &eid): LazySegTree<T,\
-    \ T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T, const\
-    \ T b){ return b; }, [](const T, const T b){ return b; }, eid, eid){ LazySegTree<T,\
-    \ T>::init(v); }\n};\ntemplate <class T> struct RUQRSM: LazySegTree<zwei<T>, T>\
-    \ {\n    RUQRSM(const std::vector<T> &v, const T &id): LazySegTree<zwei<T>, T>(v.size(),\
-    \ [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first * b.first, a.second\
-    \ * b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.first + a.second\
-    \ * b, a.second); }, [](const T a, const T b){ return a + b; }, zwei<T>(0, 0),\
-    \ id) {\n        std::vector<zwei<T>> w(v.size());\n        for(size_t i = 0;\
-    \ i < v.size(); ++i) {\n            w[i] = zwei<T>(v[i], 1);\n        }\n    \
-    \    LazySegTree<zwei<T>, T>::init(w);\n    }\n};\n\n/**\n * @brief \u9045\u5EF6\
-    \u30BB\u30B0\u6728\n * @see https://nyaannyaan.github.io/library/segment-tree/lazy-segment-tree-utility.hpp\n\
+    \ U)>;\n    using C = std::function<U(U, U)>;\n    int n, sz, h;\n    std::vector<T>\
+    \ data;\n    std::vector<U> lazy;\n    const F f;\n    const M map;\n    const\
+    \ C comp;\n    const T e;\n    const U id;\n    inline void update(const int k)\
+    \ {\n        data[k] = f(data[2 * k + 0], data[2 * k + 1]);\n    }\n    inline\
+    \ void all_apply(const int k, const U &x) {\n        data[k] = map(data[k], x);\n\
+    \        if(k < sz) {\n            lazy[k] = comp(lazy[k], x);\n        }\n  \
+    \  }\n    inline void propagate(const int k) {\n        if(lazy[k] != id) {\n\
+    \            all_apply(2 * k + 0, lazy[k]);\n            all_apply(2 * k + 1,\
+    \ lazy[k]);\n            lazy[k] = id;\n        }\n    }\npublic:\n    LazySegTree(const\
+    \ int n, const F &f, const M &map, const C &comp, const T &e, const U &id): n(n),\
+    \ f(f), map(map), comp(comp), e(e), id(id) {\n        sz = 1;\n        h = 0;\n\
+    \        while(sz < n) {\n            sz <<= 1;\n            h++;\n        }\n\
+    \        data.assign(2 * sz, e);\n        lazy.assign(2 * sz, id);\n    }\n  \
+    \  LazySegTree(const std::vector<T> &v, const F &f, const M &map, const C &comp,\
+    \ const T &e, const U &id): LazySegTree(v.size(), f, map, comp, e, id){ build(v);\
+    \ }\n    void build(const std::vector<T> &v) {\n        assert(n == (int) v.size());\n\
+    \        for(int k = 0; k < n; ++k) {\n            data[k + sz] = v[k];\n    \
+    \    }\n        for(int k = sz; --k > 0;) {\n            update(k);\n        }\n\
+    \    }\n    void set(int k, const T &x) {\n        k += sz;\n        for(int i\
+    \ = h; i > 0; i--) {\n            propagate(k >> i);\n        }\n        data[k]\
+    \ = x;\n        for(int i = 0; ++i <= h;) {\n            update(k >> i);\n   \
+    \     }\n    }\n    T &operator[](int k) {\n        k += sz;\n        for(int\
+    \ i = h; i > 0; i--) {\n            propagate(k >> i);\n        }\n        return\
+    \ data[k];\n    }\n    T const& operator[](const int k) const { return data[k\
+    \ + sz]; }\n    T query(int l, int r) {\n        if(l >= r) {\n            return\
+    \ e;\n        }\n        l += sz;\n        r += sz;\n        for(int i = h; i\
+    \ > 0; i--) {\n            if(((l >> i) << i) != l) {\n                propagate(l\
+    \ >> i);\n            }\n            if(((r >> i) << i) != r) {\n            \
+    \    propagate((r - 1) >> i);\n            }\n        }\n        T L = e, R =\
+    \ e;\n        for(; l < r; l >>= 1, r >>= 1) {\n            if(l & 1) {\n    \
+    \            L = f(L, data[l++]);\n            }\n            if(r & 1) {\n  \
+    \              R = f(data[--r], R);\n            }\n        }\n        return\
+    \ f(L, R);\n    }\n    T all_query() const { return data[1]; }\n    void apply(int\
+    \ k, const U &x) {\n        k += sz;\n        for(int i = h; i > 0; i--) {\n \
+    \           propagate(k >> i);\n        }\n        data[k] = map(data[k], x);\n\
+    \        for(int i = 0; ++i <= h;) {\n            update(k >> i);\n        }\n\
+    \    }\n    void apply(int l, int r, const U &x) {\n        if(l >= r) {\n   \
+    \         return;\n        }\n        l += sz;\n        r += sz;\n        for(int\
+    \ i = h; i > 0; i--) {\n            if(((l >> i) << i) != l) {\n             \
+    \   propagate(l >> i);\n            }\n            if(((r >> i) << i) != r) {\n\
+    \                propagate((r - 1) >> i);\n            }\n        }\n        {\n\
+    \            int l2 = l, r2 = r;\n            for(; l < r; l >>= 1, r >>= 1) {\n\
+    \                if(l & 1) {\n                    all_apply(l++, x);\n       \
+    \         }\n                if(r & 1) {\n                    all_apply(--r, x);\n\
+    \                }\n            }\n            l = l2, r = r2;\n        }\n  \
+    \      for(int i = 0; ++i <= h;) {\n            if(((l >> i) << i) != l) {\n \
+    \               update(l >> i);\n            }\n            if(((r >> i) << i)\
+    \ != r) {\n                update((r - 1) >> i);\n            }\n        }\n \
+    \   }\n    inline int size() const { return n; }\n    template <class Boolean>\
+    \ int find_first(int l, const Boolean &fn) {\n        if(l >= n) {\n         \
+    \   return n;\n        }\n        l += sz;\n        for(int i = h; i > 0; i--)\
+    \ {\n            propagate(l >> i);\n        }\n        T sum = e;\n        do\
+    \ {\n            while((l & 1) == 0) {\n                l >>= 1;\n           \
+    \ }\n            if(fn(f(sum, data[l]))) {\n                while(l < sz) {\n\
+    \                    propagate(l);\n                    l <<= 1;\n           \
+    \         const auto nxt = f(sum, data[l]);\n                    if(!fn(nxt))\
+    \ {\n                        sum = nxt;\n                        l++;\n      \
+    \              }\n                }\n                return l + 1 - sz;\n    \
+    \        }\n            sum = f(sum, data[l++]);\n        } while((l & -l) !=\
+    \ l);\n        return n;\n    }\n    template <class Boolean> int find_last(int\
+    \ r, const Boolean &fn) {\n        if(r <= 0) {\n            return -1;\n    \
+    \    }\n        r += sz;\n        for(int i = h; i > 0; i--) {\n            propagate((r\
+    \ - 1) >> i);\n        }\n        T sum = e;\n        do {\n            r--;\n\
+    \            while(r > 1 && r & 1) {\n                r >>= 1;\n            }\n\
+    \            if(fn(f(data[r], sum))) {\n                while(r < sz) {\n    \
+    \                propagate(r);\n                    r = (r << 1) + 1;\n      \
+    \              const auto nxt = f(data[r], sum);\n                    if(!fn(nxt))\
+    \ {\n                        sum = nxt;\n                        r--;\n      \
+    \              }\n                }\n                return r - sz;\n        \
+    \    }\n            sum = f(data[r], sum);\n        } while((r & -r) != r);\n\
+    \        return -1;\n    }\n    void clear(){ data.assign(n, e); }\n    friend\
+    \ std::ostream &operator<<(std::ostream &os, const LazySegTree &seg) {\n     \
+    \   os << seg[0];\n        for(int i = 0; ++i < seg.size();) {\n            os\
+    \ << ' ' << seg[i];\n        }\n        return os;\n    }\n};\n\ntemplate <class\
+    \ T> struct zwei {\n    T first, second;\n    zwei(){}\n    zwei(const T &f, const\
+    \ T &s): first(f), second(s){}\n    operator T(){ return first; }\n    friend\
+    \ std::ostream &operator<<(std::ostream &os, const zwei &z) {\n        os << z.first;\n\
+    \        return os;\n    }\n};\n\ntemplate <class T> struct RAQRMX: LazySegTree<T,\
+    \ T> {    \n    RAQRMX(const std::vector<T> &v, const T &e): LazySegTree<T, T>(v,\
+    \ [](const T a, const T b){ return std::max(a, b); }, [](const T a, const T b){\
+    \ return a + b; }, [](const T a, const T b){ return a + b; }, e, 0){ LazySegTree<T,\
+    \ T>::build(v); }\n};\ntemplate <class T> struct RAQRMN: LazySegTree<T, T> {\n\
+    \    RAQRMN(const std::vector<T> &v, const T &e): LazySegTree<T, T>(v, [](const\
+    \ T a, const T b){ return std::min(a, b); }, [](const T a, const T b){ return\
+    \ a + b; }, [](const T a, const T b){ return a + b; }, e, 0){ LazySegTree<T, T>::build(v);\
+    \ }\n};\ntemplate <class T> struct RAQRSM: LazySegTree<zwei<T>, T> {\n    RAQRSM(const\
+    \ std::vector<T> &v): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const\
+    \ zwei<T> b){ return zwei<T>(a.first * b.first, a.second * b.second); }, [](const\
+    \ zwei<T> a, const T b){ return zwei<T>(a.first + a.second * b, a.second); },\
+    \ [](const T a, const T b){ return a + b; }, zwei<T>(0, 0), 0) {\n        std::vector<zwei<T>>\
+    \ w(v.size());\n        for(size_t i = 0; i < v.size(); ++i) {\n            w[i]\
+    \ = zwei<T>(v[i], 1);\n        }\n        LazySegTree<zwei<T>, T>::build(w);\n\
+    \    }\n};\ntemplate <class T> struct RUQRMX: LazySegTree<T, T> {    \n    RUQRMX(const\
+    \ std::vector<T> &v, const T &eid): LazySegTree<T, T>(v, [](const T a, const T\
+    \ b){ return std::max(a, b); }, [](const T, const T b){ return b; }, [](const\
+    \ T, const T b){ return b; }, eid, eid){ LazySegTree<T, T>::build(v); }\n};\n\
+    template <class T> struct RUQRMN: LazySegTree<T, T> {\n    RUQRMN(const std::vector<T>\
+    \ &v, const T &eid): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a,\
+    \ b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b;\
+    \ }, eid, eid){ LazySegTree<T, T>::build(v); }\n};\ntemplate <class T> struct\
+    \ RUQRSM: LazySegTree<zwei<T>, T> {\n    RUQRSM(const std::vector<T> &v, const\
+    \ T &id): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const zwei<T>\
+    \ b){ return zwei<T>(a.first * b.first, a.second * b.second); }, [](const zwei<T>\
+    \ a, const T b){ return zwei<T>(a.first + a.second * b, a.second); }, [](const\
+    \ T a, const T b){ return a + b; }, zwei<T>(0, 0), id) {\n        std::vector<zwei<T>>\
+    \ w(v.size());\n        for(size_t i = 0; i < v.size(); ++i) {\n            w[i]\
+    \ = zwei<T>(v[i], 1);\n        }\n        LazySegTree<zwei<T>, T>::build(w);\n\
+    \    }\n};\n\n/**\n * @brief \u9045\u5EF6\u30BB\u30B0\u6728\n * @see https://ei1333.github.io/library/structure/segment-tree/lazy-segment-tree.hpp\n\
     \ */"
   dependsOn: []
   isVerificationFile: false
   path: C++/LazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2024-02-12 13:50:18+09:00'
+  timestamp: '2024-02-13 00:32:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/LazySegmentTree.hpp
