@@ -435,8 +435,8 @@ data:
     \ k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <= w) {\n\t\t\t\t\
     w -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\t@Override\n\
     \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
-    \t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\" \"\
-    \ + get(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
+    \t\tsb.append(sum(0));\n\t\tfor(int i = 0; ++i < n - 2;) {\n\t\t\tsb.append(\"\
+    \ \" + sum(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
   dependsOn:
   - Java/AOJ.java
   - Java/yukicoder.java
@@ -569,7 +569,7 @@ data:
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
   - Java/All.java
-  timestamp: '2024-02-12 13:52:29+09:00'
+  timestamp: '2024-02-12 14:21:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/FenwickTree.java

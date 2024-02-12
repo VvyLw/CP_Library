@@ -424,28 +424,30 @@ data:
     \ {\n\tprotected static final String yes(final boolean ok){ return ok ? \"Yes\"\
     \ : \"No\"; }\n\tprotected static final String no(final boolean ok){ return yes(!ok);\
     \ }\n\tprotected static final long sqr(final long x){ return x * x; }\n\tprotected\
-    \ static final long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0\
-    \ ? n + m : n;\n\t}\n\tprotected static final long ceil(final long a, final long\
-    \ b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final double\
-    \ round(final double a, final long b, final int c) {\n\t\tfinal long d = pow(10,\
-    \ c);\n\t\treturn rint((a * d) / b) / d;\n\t}\n\tprotected static final long pow(long\
-    \ a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\
-    \t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static final long pow(long a, long b, final long m) {\n\t\tlong\
-    \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
-    \t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb\
-    \ >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long lcm(final\
-    \ long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static final\
-    \ long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x,\
-    \ y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){ return\
-    \ Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static final\
-    \ long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }\n\t\
-    protected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
-    \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
-    \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
-    \ final int min(final int... a){ return Arrays.stream(a).min().getAsInt(); }\n\
-    \tprotected static final long min(final long... a){ return Arrays.stream(a).min().getAsLong();\
-    \ }\n\tprotected static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
+    \ static final int mod(long n, final int m) {\n\t\tn %= m;\n\t\treturn (int) (n\
+    \ < 0 ? n + m : n);\n\t}\n\tprotected static final long mod(long n, final long\
+    \ m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\tprotected static final\
+    \ long ceil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1;\
+    \ }\n\tprotected static final double round(final double a, final long b, final\
+    \ int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn rint((a * d) / b) / d;\n\
+    \t}\n\tprotected static final long pow(long a, int b) {\n\t\tlong res = 1;\n\t\
+    \twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta\
+    \ *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
+    \ long pow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0)\
+    \ {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\
+    \t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\tprotected static final long lcm(final long a, final long b){ return\
+    \ a * b / gcd(a, b); }\n\tprotected static final long lcm(final int... a){ return\
+    \ Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
+    \ static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x,\
+    \ y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final long\
+    \ b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
+    \ int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\
+    \tprotected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0,\
+    \ (x, y) -> gcd(x, y)); }\n\tprotected static final int min(final int... a){ return\
+    \ Arrays.stream(a).min().getAsInt(); }\n\tprotected static final long min(final\
+    \ long... a){ return Arrays.stream(a).min().getAsLong(); }\n\tprotected static\
+    \ final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
     \ }\n\tprotected static final int max(final int... a){ return Arrays.stream(a).max().getAsInt();\
     \ }\n\tprotected static final long max(final long... a){ return Arrays.stream(a).max().getAsLong();\
     \ }\n\tprotected static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble();\
@@ -1715,16 +1717,16 @@ data:
     \tfinal boolean isEmpty(){ return d.isEmpty(); }\n}\n\nfinal class FenwickTree\
     \ {\n\tprivate final int n;\n\tprivate final long[] data;\n\tFenwickTree(final\
     \ int n) {\n\t\tthis.n = n + 2;\n\t\tdata = new long[this.n + 1];\n\t}\n\tFenwickTree(final\
-    \ int[] a) {\n\t\tthis(a.length);\n\t\tIntStream.range(0, n).forEach(i -> add(i,\
-    \ a[i]));\n\t}\n\tFenwickTree(final long[] a) {\n\t\tthis(a.length);\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> add(i, a[i]));\n\t}\n\tfinal long sum(int k) {\n\t\tif(k < 0)\
-    \ return 0;\n\t\tlong ret = 0;\n\t\tfor(++k; k > 0; k -= k & -k) {\n\t\t\tret\
-    \ += data[k];\n\t\t}\n\t\treturn ret;\n\t}\n\tfinal long sum(final int l, final\
-    \ int r){ return sum(r) - sum(l - 1); }\n\tfinal long get(final int k){ return\
-    \ sum(k) - sum(k - 1); }\n\tfinal void add(int k, final long x) {\n\t\tfor(++k;\
-    \ k < n; k += k & -k) {\n\t\t\tdata[k] += x;\n\t\t}\n\t}\n\tfinal void imos(final\
-    \ int l, final int r, final long x) {\n\t\tadd(l, x);\n\t\tadd(r + 1, -x);\n\t\
-    }\n\tprivate final int lg(final int n){ return 31 - Integer.numberOfLeadingZeros(n);\
+    \ int[] a) {\n\t\tthis(a.length);\n\t\tIntStream.range(0, a.length).forEach(i\
+    \ -> add(i, a[i]));\n\t}\n\tFenwickTree(final long[] a) {\n\t\tthis(a.length);\n\
+    \t\tIntStream.range(0, a.length).forEach(i -> add(i, a[i]));\n\t}\n\tfinal long\
+    \ sum(int k) {\n\t\tif(k < 0) return 0;\n\t\tlong ret = 0;\n\t\tfor(++k; k > 0;\
+    \ k -= k & -k) {\n\t\t\tret += data[k];\n\t\t}\n\t\treturn ret;\n\t}\n\tfinal\
+    \ long sum(final int l, final int r){ return sum(r) - sum(l - 1); }\n\tfinal long\
+    \ get(final int k){ return sum(k) - sum(k - 1); }\n\tfinal void add(int k, final\
+    \ long x) {\n\t\tfor(++k; k < n; k += k & -k) {\n\t\t\tdata[k] += x;\n\t\t}\n\t\
+    }\n\tfinal void imos(final int l, final int r, final long x) {\n\t\tadd(l, x);\n\
+    \t\tadd(r + 1, -x);\n\t}\n\tprivate final int lg(final int n){ return 31 - Integer.numberOfLeadingZeros(n);\
     \ }\n\tfinal int lowerBound(long w) {\n\t\tif(w <= 0) {\n\t\t\treturn 0;\n\t\t\
     }\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x +\
     \ k <= n - 1 && data[x + k] < w) {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\
@@ -1733,8 +1735,8 @@ data:
     \ k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <= w) {\n\t\t\t\t\
     w -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\t@Override\n\
     \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
-    \t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\" \"\
-    \ + get(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nfinal class SegmentTree<T>\
+    \t\tsb.append(sum(0));\n\t\tfor(int i = 0; ++i < n - 2;) {\n\t\t\tsb.append(\"\
+    \ \" + sum(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nfinal class SegmentTree<T>\
     \ {\n\tprivate int n = 1, rank = 0;\n\tprivate final int fini;\n\tprivate final\
     \ BinaryOperator<T> op;\n\tprivate final T e;\n\tprivate final Object[] dat;\n\
     \tSegmentTree(final int fini, final BinaryOperator<T> op, final T e) {\n\t\tthis.fini\
@@ -1995,7 +1997,7 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
-  timestamp: '2024-02-12 13:52:29+09:00'
+  timestamp: '2024-02-12 14:21:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
