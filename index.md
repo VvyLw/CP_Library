@@ -9,6 +9,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/LCA.hpp
       title: "\u6700\u5C0F\u5171\u901A\u7956\u5148"
+    - icon: ':warning:'
+      path: C++/LazySegmentTree.hpp
+      title: "\u9045\u5EF6\u30BB\u30B0\u6728"
     - icon: ':heavy_check_mark:'
       path: C++/MST.hpp
       title: "\u6700\u5C0F\u5168\u57DF\u6728"

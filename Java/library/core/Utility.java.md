@@ -1088,22 +1088,22 @@ data:
     \ count(final long[] a) {\n\t\tfinal Map<Long, Integer> res = new HashMap<>();\n\
     \t\tfor(final long i: a) {\n\t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\
     \treturn res;\n\t}\n\t/**\n\t * \u5EA7\u6A19\u5727\u7E2E\n\t * @param a\n\t */\n\
-    \tprotected static final int[] press(final int[] a) {\n\t\tfinal int[] res = new\
-    \ int[a.length];\n\t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
+    \tprotected static final int[] corPress(final int[] a) {\n\t\tfinal int[] res\
+    \ = new int[a.length];\n\t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
     \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
     \t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * \u5EA7\u6A19\u5727\u7E2E\n\t * @param\
-    \ a\n\t */\n\tprotected static final int[] press(final long[] a) {\n\t\tfinal\
+    \ a\n\t */\n\tprotected static final int[] corPress(final long[] a) {\n\t\tfinal\
     \ int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
     \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
     \t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param s\n\t * @return \u30E9\u30F3\u30EC\
-    \u30F3\u30B0\u30B9\u5727\u7E2E\n\t */\n\tprotected static final String rle(final\
+    \u30F3\u30B0\u30B9\u5727\u7E2E\n\t */\n\tprotected static final String runLenPress(final\
     \ String s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder sb = new\
     \ StringBuilder();\n\t\tfor(int l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\t\t\t\
     for(; r < n && s.charAt(l) == s.charAt(r); ++r){}\n\t\t\tsb.append(s.charAt(l));\n\
     \t\t\tsb.append(r - l);\n\t\t\tl = r;\n\t\t}\n\t\treturn sb.toString();\n\t}\n\
     \t/**\n\t * @param s\n\t * @return \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\
     \u3057\u305F\u3082\u306E\u3092\u623B\u3059\n\t */\n\tprotected static final String\
-    \ rleRev(final String s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder\
+    \ runLenRev(final String s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder\
     \ sb = new StringBuilder();\n\t\tfor(int l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\
     \t\t\tfor(; r < n && scope('0', s.charAt(r), '9'); ++r){}\n\t\t\tsb.append(String.valueOf(s.charAt(l)).repeat(Integer.parseInt(s.substring(l\
     \ + 1, r))));\n\t\t\tl = r;\n\t\t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t\
@@ -1289,7 +1289,7 @@ data:
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
   - Java/All.java
-  timestamp: '2024-02-09 21:27:41+09:00'
+  timestamp: '2024-02-11 13:15:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

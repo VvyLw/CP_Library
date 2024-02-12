@@ -785,20 +785,21 @@ data:
     \ static final Map<Long, Integer> count(final long[] a) {\n\t\tfinal Map<Long,\
     \ Integer> res = new HashMap<>();\n\t\tfor(final long i: a) {\n\t\t\tres.merge(i,\
     \ 1, (x, y) -> x + y);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
-    \ int[] press(final int[] a) {\n\t\tfinal int[] res = new int[a.length];\n\t\t\
-    final int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tfor(int i\
-    \ = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\t\t}\n\t\t\
-    return res;\n\t}\n\tprotected static final int[] press(final long[] a) {\n\t\t\
-    final int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
+    \ int[] corPress(final int[] a) {\n\t\tfinal int[] res = new int[a.length];\n\t\
+    \tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tfor(int\
+    \ i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\t\t}\n\t\t\
+    return res;\n\t}\n\tprotected static final int[] corPress(final long[] a) {\n\t\
+    \tfinal int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
     \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final String rle(final String\
-    \ s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
-    \t\tfor(int l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\t\t\tfor(; r < n && s.charAt(l)\
-    \ == s.charAt(r); ++r){}\n\t\t\tsb.append(s.charAt(l));\n\t\t\tsb.append(r - l);\n\
-    \t\t\tl = r;\n\t\t}\n\t\treturn sb.toString();\n\t}\n\tprotected static final\
-    \ String rleRev(final String s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder\
-    \ sb = new StringBuilder();\n\t\tfor(int l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\
-    \t\t\tfor(; r < n && scope('0', s.charAt(r), '9'); ++r){}\n\t\t\tsb.append(String.valueOf(s.charAt(l)).repeat(Integer.parseInt(s.substring(l\
+    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final String runLenPress(final\
+    \ String s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder sb = new\
+    \ StringBuilder();\n\t\tfor(int l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\t\t\t\
+    for(; r < n && s.charAt(l) == s.charAt(r); ++r){}\n\t\t\tsb.append(s.charAt(l));\n\
+    \t\t\tsb.append(r - l);\n\t\t\tl = r;\n\t\t}\n\t\treturn sb.toString();\n\t}\n\
+    \tprotected static final String runLenRev(final String s) {\n\t\tfinal int n =\
+    \ s.length();\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfor(int\
+    \ l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\t\t\tfor(; r < n && scope('0', s.charAt(r),\
+    \ '9'); ++r){}\n\t\t\tsb.append(String.valueOf(s.charAt(l)).repeat(Integer.parseInt(s.substring(l\
     \ + 1, r))));\n\t\t\tl = r;\n\t\t}\n\t\treturn sb.toString();\n\t}\n\tprotected\
     \ static final int[] zAlgorithm(final String s) {\n\t\tfinal int n = s.length();\n\
     \t\tint j = 0;\n\t\tfinal int[] pre = new int[n];\n\t\tfor(int i = 0; ++i < n;)\
@@ -1994,7 +1995,7 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
-  timestamp: '2024-02-09 21:27:41+09:00'
+  timestamp: '2024-02-11 13:15:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
