@@ -10,188 +10,201 @@ private:
     using F = std::function<T(T, T)>;
     using M = std::function<T(T, U)>;
     using C = std::function<U(U, U)>;
-    int n, log, s;
-    std::vector<T> val;
+    int n, sz, h;
+    std::vector<T> data;
     std::vector<U> lazy;
     const F f;
-    const T e;
     const M map;
     const C comp;
+    const T e;
     const U id;
-    void push(const int i) {
-        if(lazy[i] != id) {
-            val[2 * i + 0] = map(val[2 * i + 0], lazy[i]);
-            val[2 * i + 1] = map(val[2 * i + 1], lazy[i]);
-            if(2 * i < n) {
-                compose(lazy[2 * i + 0], lazy[i]);
-                compose(lazy[2 * i + 1], lazy[i]);
-            }
-            lazy[i] = id;
+    inline void update(const int k) {
+        data[k] = f(data[2 * k + 0], data[2 * k + 1]);
+    }
+    inline void all_apply(const int k, const U &x) {
+        data[k] = map(data[k], x);
+        if(k < sz) {
+            lazy[k] = comp(lazy[k], x);
         }
     }
-    inline void upd(const int i){ val[i] = f(val[2 * i + 0], val[2 * i + 1]); }
-    inline void apply(int i, const U& x) {
-        if(x != id) {
-            val[i] = map(val[i], x);
-            if(i < n) {
-                compose(lazy[i], x);
-            }
+    inline void propagate(const int k) {
+        if(lazy[k] != id) {
+            all_apply(2 * k + 0, lazy[k]);
+            all_apply(2 * k + 1, lazy[k]);
+            lazy[k] = id;
         }
     }
-    inline void compose(U& a, const U& b){ a = a == id ? b : comp(a, b); }
 public:
-    LazySegTree(const int s, const F &f, const M &map, const C &comp, const T e, const U id): s(s), f(f), map(map), comp(comp), e(e), id(id){}
-    LazySegTree(const std::vector<T> &v, const F &f, const M &map, const C &comp, const T e, const U id): s(v.size()), f(f), map(map), comp(comp), e(e), id(id){}
-    void init(const std::vector<T> &v) {
-        n = 1, log = 0;
-        while(n < s) {
-            n <<= 1;
-            log++;
+    LazySegTree(const int n, const F &f, const M &map, const C &comp, const T &e, const U &id): n(n), f(f), map(map), comp(comp), e(e), id(id) {
+        sz = 1;
+        h = 0;
+        while(sz < n) {
+            sz <<= 1;
+            h++;
         }
-        val.resize(2 * n, e);
-        lazy.resize(n, id);
-        for(int i = 0; i < s; ++i) {
-            val[i + n] = v[i];
+        data.assign(2 * sz, e);
+        lazy.assign(2 * sz, id);
+    }
+    LazySegTree(const std::vector<T> &v, const F &f, const M &map, const C &comp, const T &e, const U &id): LazySegTree(v.size(), f, map, comp, e, id){ build(v); }
+    void build(const std::vector<T> &v) {
+        assert(n == (int) v.size());
+        for(int k = 0; k < n; ++k) {
+            data[k + sz] = v[k];
         }
-        for(int i = n - 1; i--;) {
-            upd(i);
+        for(int k = sz; --k > 0;) {
+            update(k);
         }
     }
-    void set(const int k, const U &x){ update(k, k + 1, x); }
-    void update(int l, int r, const U& x) {
-        if(l == r) {
-            return;
+    void set(int k, const T &x) {
+        k += sz;
+        for(int i = h; i > 0; i--) {
+            propagate(k >> i);
         }
-        l += n, r += n;
-        for(int i = log; i >= 1; i--) {
-            if(((l >> i) << i) != l) {
-                push(l >> i);
-            }
-            if(((r >> i) << i) != r) {
-                push((r - 1) >> i);
-            }
-        }
-        for(int p = l, q = r; p < q; p >>= 1, q >>= 1) {
-            if(p & 1) {
-                apply(p++, x);
-            }
-            if(q & 1) {
-                apply(--q, x);
-            }
-        }
-        for(int i = 1; i <= log; ++i) {
-            if(((l >> i) << i) != l) {
-                upd(l >> i);
-            }
-            if(((r >> i) << i) != r) {
-                upd((r - 1) >> i);
-            }
+        data[k] = x;
+        for(int i = 0; ++i <= h;) {
+            update(k >> i);
         }
     }
+    T &operator[](int k) {
+        k += sz;
+        for(int i = h; i > 0; i--) {
+            propagate(k >> i);
+        }
+        return data[k];
+    }
+    T const& operator[](const int k) const { return data[k + sz]; }
     T query(int l, int r) {
-        if(l == r) {
+        if(l >= r) {
             return e;
         }
-        l += n, r += n;
-        T L = e, R = e;
-        for(int i = log; i >= 1; i--) {
+        l += sz;
+        r += sz;
+        for(int i = h; i > 0; i--) {
             if(((l >> i) << i) != l) {
-                push(l >> i);
+                propagate(l >> i);
             }
             if(((r >> i) << i) != r) {
-                push((r - 1) >> i);
+                propagate((r - 1) >> i);
             }
         }
-        while(l < r) {
+        T L = e, R = e;
+        for(; l < r; l >>= 1, r >>= 1) {
             if(l & 1) {
-                L = f(L, val[l++]);
+                L = f(L, data[l++]);
             }
             if(r & 1) {
-                R = f(val[--r], R);
+                R = f(data[--r], R);
             }
-            l >>= 1;
-            r >>= 1;
         }
         return f(L, R);
     }
-    T const& operator[](const int k) const { return val[k + n]; }
-    T &operator[](int k) {
-        k += n;
-        for(int i = log; i >= 1; i--) {
-            if(((k >> i) << i) != k || (((k + 1) >> i) << i) != (k + 1)) {
-                push(k >> i);
+    T all_query() const { return data[1]; }
+    void apply(int k, const U &x) {
+        k += sz;
+        for(int i = h; i > 0; i--) {
+            propagate(k >> i);
+        }
+        data[k] = map(data[k], x);
+        for(int i = 0; ++i <= h;) {
+            update(k >> i);
+        }
+    }
+    void apply(int l, int r, const U &x) {
+        if(l >= r) {
+            return;
+        }
+        l += sz;
+        r += sz;
+        for(int i = h; i > 0; i--) {
+            if(((l >> i) << i) != l) {
+                propagate(l >> i);
+            }
+            if(((r >> i) << i) != r) {
+                propagate((r - 1) >> i);
             }
         }
-        return val[k];
+        {
+            int l2 = l, r2 = r;
+            for(; l < r; l >>= 1, r >>= 1) {
+                if(l & 1) {
+                    all_apply(l++, x);
+                }
+                if(r & 1) {
+                    all_apply(--r, x);
+                }
+            }
+            l = l2, r = r2;
+        }
+        for(int i = 0; ++i <= h;) {
+            if(((l >> i) << i) != l) {
+                update(l >> i);
+            }
+            if(((r >> i) << i) != r) {
+                update((r - 1) >> i);
+            }
+        }
     }
-    inline int size() const { return s; }
-    template <class Boolean> int max_right(int l, const Boolean &fn) {
-        assert(0 <= l && l <= s);
-        assert(fn(id));
-        if(l == n) {
+    inline int size() const { return n; }
+    template <class Boolean> int find_first(int l, const Boolean &fn) {
+        if(l >= n) {
             return n;
         }
-        l += n;
-        for(int i = log; i >= 1; i--) {
-            push(l >> i);
+        l += sz;
+        for(int i = h; i > 0; i--) {
+            propagate(l >> i);
         }
-        T sm = e;
+        T sum = e;
         do {
-            while(l & 1 == 0) {
+            while((l & 1) == 0) {
                 l >>= 1;
             }
-            if(!fn(f(sm, val[l]))) {
-                while(l < n) {
-                    push(l);
-                    l = (2 * l);
-                    if(fn(f(sm, val[l]))) {
-                        sm = f(sm, val[l]);
+            if(fn(f(sum, data[l]))) {
+                while(l < sz) {
+                    propagate(l);
+                    l <<= 1;
+                    const auto nxt = f(sum, data[l]);
+                    if(!fn(nxt)) {
+                        sum = nxt;
                         l++;
                     }
                 }
-                return l - n;
+                return l + 1 - sz;
             }
-            sm = f(sm, val[l]);
-            l++;
+            sum = f(sum, data[l++]);
         } while((l & -l) != l);
-        return s;
+        return n;
     }
-    template <class Boolean> int min_left(int r, const Boolean &fn) {
-        assert(0 <= r && r <= s);
-        assert(fn(id));
-        if(r == 0) {
-            return 0;
+    template <class Boolean> int find_last(int r, const Boolean &fn) {
+        if(r <= 0) {
+            return -1;
         }
-        r += n;
-        for(int i = log; i >= 1; i--) {
-            push((r - 1) >> i);
+        r += sz;
+        for(int i = h; i > 0; i--) {
+            propagate((r - 1) >> i);
         }
-        T sm = e;
+        T sum = e;
         do {
             r--;
-            while(r > 1 && (r & 1)) {
+            while(r > 1 && r & 1) {
                 r >>= 1;
             }
-            if(!fn(f(val[r], sm))) {
-                while(r < n) {
-                    push(r);
-                    r = 2 * r + 1;
-                    if(fn(f(val[r], sm))) {
-                        sm = f(val[r], sm);
+            if(fn(f(data[r], sum))) {
+                while(r < sz) {
+                    propagate(r);
+                    r = (r << 1) + 1;
+                    const auto nxt = f(data[r], sum);
+                    if(!fn(nxt)) {
+                        sum = nxt;
                         r--;
                     }
                 }
-                return r + 1 - n;
+                return r - sz;
             }
-            sm = f(val[r], sm);
+            sum = f(data[r], sum);
         } while((r & -r) != r);
-        return 0;
+        return -1;
     }
-    void clear() {
-        for(auto& el: val) {
-            el = e;
-        }
-    }
+    void clear(){ data.assign(n, e); }
     friend std::ostream &operator<<(std::ostream &os, const LazySegTree &seg) {
         os << seg[0];
         for(int i = 0; ++i < seg.size();) {
@@ -213,10 +226,10 @@ template <class T> struct zwei {
 };
 
 template <class T> struct RAQRMX: LazySegTree<T, T> {    
-    RAQRMX(const std::vector<T> &v, const T &e): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a, b); }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return a + b; }, e, 0){ LazySegTree<T, T>::init(v); }
+    RAQRMX(const std::vector<T> &v, const T &e): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a, b); }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return a + b; }, e, 0){ LazySegTree<T, T>::build(v); }
 };
 template <class T> struct RAQRMN: LazySegTree<T, T> {
-    RAQRMN(const std::vector<T> &v, const T &e): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return a + b; }, e, 0){ LazySegTree<T, T>::init(v); }
+    RAQRMN(const std::vector<T> &v, const T &e): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return a + b; }, e, 0){ LazySegTree<T, T>::build(v); }
 };
 template <class T> struct RAQRSM: LazySegTree<zwei<T>, T> {
     RAQRSM(const std::vector<T> &v): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first * b.first, a.second * b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.first + a.second * b, a.second); }, [](const T a, const T b){ return a + b; }, zwei<T>(0, 0), 0) {
@@ -224,14 +237,14 @@ template <class T> struct RAQRSM: LazySegTree<zwei<T>, T> {
         for(size_t i = 0; i < v.size(); ++i) {
             w[i] = zwei<T>(v[i], 1);
         }
-        LazySegTree<zwei<T>, T>::init(w);
+        LazySegTree<zwei<T>, T>::build(w);
     }
 };
 template <class T> struct RUQRMX: LazySegTree<T, T> {    
-    RUQRMX(const std::vector<T> &v, const T &eid): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a, b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b; }, eid, eid){ LazySegTree<T, T>::init(v); }
+    RUQRMX(const std::vector<T> &v, const T &eid): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a, b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b; }, eid, eid){ LazySegTree<T, T>::build(v); }
 };
 template <class T> struct RUQRMN: LazySegTree<T, T> {
-    RUQRMN(const std::vector<T> &v, const T &eid): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b; }, eid, eid){ LazySegTree<T, T>::init(v); }
+    RUQRMN(const std::vector<T> &v, const T &eid): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b; }, eid, eid){ LazySegTree<T, T>::build(v); }
 };
 template <class T> struct RUQRSM: LazySegTree<zwei<T>, T> {
     RUQRSM(const std::vector<T> &v, const T &id): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first * b.first, a.second * b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.first + a.second * b, a.second); }, [](const T a, const T b){ return a + b; }, zwei<T>(0, 0), id) {
@@ -239,11 +252,11 @@ template <class T> struct RUQRSM: LazySegTree<zwei<T>, T> {
         for(size_t i = 0; i < v.size(); ++i) {
             w[i] = zwei<T>(v[i], 1);
         }
-        LazySegTree<zwei<T>, T>::init(w);
+        LazySegTree<zwei<T>, T>::build(w);
     }
 };
 
 /**
  * @brief 遅延セグ木
- * @see https://nyaannyaan.github.io/library/segment-tree/lazy-segment-tree-utility.hpp
+ * @see https://ei1333.github.io/library/structure/segment-tree/lazy-segment-tree.hpp
  */
