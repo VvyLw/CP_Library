@@ -40,8 +40,18 @@ public class Utility {
 	protected static final long sqr(final long x){ return x * x; }
 	/**
 	 * nが負の時でも正の剰余を求める
-	 * @param n int
-	 * @param m int
+	 * 法がintの時, intで返す
+	 * @param n
+	 * @param m
+	 */
+	protected static final int mod(long n, final int m) {
+		n %= m;
+		return (int) (n < 0 ? n + m : n);
+	}
+	/**
+	 * nが負の時でも正の剰余を求める
+	 * @param n
+	 * @param m
 	 */
 	public static final long mod(long n, final long m) {
 		n %= m;
