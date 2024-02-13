@@ -59,6 +59,9 @@ data:
     path: Java/library/core/interfaces/RecursiveIntFunction.java
     title: Java/library/core/interfaces/RecursiveIntFunction.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+    title: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
     title: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
   - icon: ':warning:'
@@ -181,9 +184,6 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUMN.java
     title: Java/library/structure/lazysegmenttree/RUMN.java
-  - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RUMX.java
-    title: Java/library/structure/lazysegmenttree/RUMX.java
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUSM.java
     title: Java/library/structure/lazysegmenttree/RUSM.java
@@ -276,6 +276,9 @@ data:
     path: Java/library/core/interfaces/RecursiveIntFunction.java
     title: Java/library/core/interfaces/RecursiveIntFunction.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+    title: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
     title: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
   - icon: ':warning:'
@@ -399,9 +402,6 @@ data:
     path: Java/library/structure/lazysegmenttree/RUMN.java
     title: Java/library/structure/lazysegmenttree/RUMN.java
   - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RUMX.java
-    title: Java/library/structure/lazysegmenttree/RUMX.java
-  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUSM.java
     title: Java/library/structure/lazysegmenttree/RUSM.java
   - icon: ':warning:'
@@ -443,12 +443,13 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/core/interfaces/RecursiveIntUnaryOperator.java\n"
-  code: "package library.core.interfaces;\n\nimport java.util.function.IntUnaryOperator;\n\
-    \n/**\n * \u518D\u5E30\u30E9\u30E0\u30C0\u304C\u66F8\u3051\u308BIntUnaryOperator\u30A4\
-    \u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\n * @see IntUnaryOperator\n */\npublic\
-    \ interface RecursiveIntUnaryOperator {\n\tpublic int apply(final RecursiveIntUnaryOperator\
-    \ rec, final int n);\n}"
+    RuntimeError: bundler is not specified: Java/library/structure/lazysegmenttree/RUMX.java\n"
+  code: "package library.structure.lazysegmenttree;\n\nimport static java.lang.Math.*;\n\
+    \n/**\n * Range Update Range Max\n * \u533A\u9593\u66F4\u65B0, \u533A\u9593\u6700\
+    \u5927\u5024\n */\npublic final class RUMX extends LazySegmentTree {\n\tpublic\
+    \ RUMX(final int[] a, final int eid){ super(a, (x, y) -> max(x, y), (x, y) ->\
+    \ y, (x, y) -> y, eid, eid); }\n\tpublic RUMX(final long[] a, final long eid){\
+    \ super(a, (x, y) -> max(x, y), (x, y) -> y, (x, y) -> y, eid, eid); }\n}"
   dependsOn:
   - Java/AOJ.java
   - Java/yukicoder.java
@@ -458,6 +459,7 @@ data:
   - Java/library/core/interfaces/RecursiveIntFunction.java
   - Java/library/core/interfaces/RecursiveIntBinaryOperator.java
   - Java/library/core/interfaces/RecursiveDoubleConsumer.java
+  - Java/library/core/interfaces/RecursiveIntUnaryOperator.java
   - Java/library/core/interfaces/RecursiveDoubleFunction.java
   - Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
   - Java/library/core/interfaces/RecursiveBiConsumer.java
@@ -480,7 +482,6 @@ data:
   - Java/library/core/Main.java
   - Java/library/core/Utility.java
   - Java/library/structure/lazysegmenttree/RUMN.java
-  - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RAMX.java
   - Java/library/structure/lazysegmenttree/RUSM.java
@@ -523,7 +524,7 @@ data:
   - Java/library/other/PrefixSum.java
   - Java/All.java
   isVerificationFile: false
-  path: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+  path: Java/library/structure/lazysegmenttree/RUMX.java
   requiredBy:
   - Java/AOJ.java
   - Java/yukicoder.java
@@ -533,6 +534,7 @@ data:
   - Java/library/core/interfaces/RecursiveIntFunction.java
   - Java/library/core/interfaces/RecursiveIntBinaryOperator.java
   - Java/library/core/interfaces/RecursiveDoubleConsumer.java
+  - Java/library/core/interfaces/RecursiveIntUnaryOperator.java
   - Java/library/core/interfaces/RecursiveDoubleFunction.java
   - Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
   - Java/library/core/interfaces/RecursiveBiConsumer.java
@@ -555,7 +557,6 @@ data:
   - Java/library/core/Main.java
   - Java/library/core/Utility.java
   - Java/library/structure/lazysegmenttree/RUMN.java
-  - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RAMX.java
   - Java/library/structure/lazysegmenttree/RUSM.java
@@ -600,10 +601,10 @@ data:
   timestamp: '2024-02-13 14:52:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+documentation_of: Java/library/structure/lazysegmenttree/RUMX.java
 layout: document
 redirect_from:
-- /library/Java/library/core/interfaces/RecursiveIntUnaryOperator.java
-- /library/Java/library/core/interfaces/RecursiveIntUnaryOperator.java.html
-title: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+- /library/Java/library/structure/lazysegmenttree/RUMX.java
+- /library/Java/library/structure/lazysegmenttree/RUMX.java.html
+title: Java/library/structure/lazysegmenttree/RUMX.java
 ---

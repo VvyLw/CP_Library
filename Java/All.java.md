@@ -164,6 +164,30 @@ data:
     path: Java/library/structure/deque/IntDeque.java
     title: Java/library/structure/deque/IntDeque.java
   - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
+    title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
+    title: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RAMN.java
+    title: Java/library/structure/lazysegmenttree/RAMN.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RAMX.java
+    title: Java/library/structure/lazysegmenttree/RAMX.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RASM.java
+    title: Java/library/structure/lazysegmenttree/RASM.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RUMN.java
+    title: Java/library/structure/lazysegmenttree/RUMN.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RUMX.java
+    title: Java/library/structure/lazysegmenttree/RUMX.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RUSM.java
+    title: Java/library/structure/lazysegmenttree/RUSM.java
+  - icon: ':warning:'
     path: Java/library/structure/pair/FloatPair.java
     title: Java/library/structure/pair/FloatPair.java
   - icon: ':warning:'
@@ -356,6 +380,30 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/deque/IntDeque.java
     title: Java/library/structure/deque/IntDeque.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
+    title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
+    title: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RAMN.java
+    title: Java/library/structure/lazysegmenttree/RAMN.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RAMX.java
+    title: Java/library/structure/lazysegmenttree/RAMX.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RASM.java
+    title: Java/library/structure/lazysegmenttree/RASM.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RUMN.java
+    title: Java/library/structure/lazysegmenttree/RUMN.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RUMX.java
+    title: Java/library/structure/lazysegmenttree/RUMX.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RUSM.java
+    title: Java/library/structure/lazysegmenttree/RUSM.java
   - icon: ':warning:'
     path: Java/library/structure/pair/FloatPair.java
     title: Java/library/structure/pair/FloatPair.java
@@ -1766,23 +1814,192 @@ data:
     \t\ti += 1 << h;\n\t\t\t\t\tif(i == n * 2) {\n\t\t\t\t\t\treturn fini;\n\t\t\t\
     \t\t}\n\t\t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\
     \t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\tfinal T val2 = op.apply(val,\
-    \ (T) dat[i>>h]);\n\t\t\tif(fn.test(val2)) {\n\t\t\t\ti += 1 << h;\n\t\t\t\tif(i\
-    \ == n * 2) {\n\t\t\t\t\treturn fini;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t\
-    }\n\t\t}\n\t\treturn min(i - n, fini);\n\t}\n}\n\nfinal class SparseTable {\n\t\
-    private final long[][] st;\n\tprivate final int[] lookup;\n\tprivate final LongBinaryOperator\
-    \ op;\n\tSparseTable(final int[] a, final LongBinaryOperator op) {\n\t\tthis.op\
+    \ (T) dat[i >> h]);\n\t\t\tif(fn.test(val2)) {\n\t\t\t\ti += 1 << h;\n\t\t\t\t\
+    if(i == n * 2) {\n\t\t\t\t\treturn fini;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\
+    \t}\n\t\t}\n\t\treturn min(i - n, fini);\n\t}\n}\n\nclass LazySegmentTree {\n\t\
+    private int n, sz, h;\n\tprivate final long[] data, lazy;\n\tprivate final LongBinaryOperator\
+    \ f, map, comp;\n\tprivate final long e, id;\n\tprivate final void update(final\
+    \ int k){ data[k] = f.applyAsLong(data[2 * k], data[2 * k + 1]); }\n\tprivate\
+    \ final void allApply(final int k, final long x) {\n\t\tdata[k] = map.applyAsLong(data[k],\
+    \ x);\n\t\tif(k < sz) {\n\t\t\tlazy[k] = comp.applyAsLong(lazy[k], x);\n\t\t}\n\
+    \t}\n\tprivate final void propagate(final int k) {\n\t\tif(lazy[k] != id) {\n\t\
+    \t\tallApply(2 * k, lazy[k]);\n\t\t\tallApply(2 * k + 1, lazy[k]);\n\t\t\tlazy[k]\
+    \ = id;\n\t\t}\n\t}\n\tLazySegmentTree(final int n, final LongBinaryOperator f,\
+    \ final LongBinaryOperator map, final LongBinaryOperator comp, final long e, final\
+    \ long id) {\n\t\tthis.n = n;\n\t\tthis.f = f;\n\t\tthis.map = map;\n\t\tthis.comp\
+    \ = comp;\n\t\tthis.e = e;\n\t\tthis.id = id;\n\t\tsz = 1;\n\t\th = 0;\n\t\twhile(sz\
+    \ < n) {\n\t\t\tsz <<= 1;\n\t\t\th++;\n\t\t}\n\t\tdata = new long[2 * sz];\n\t\
+    \tArrays.fill(data, e);\n\t\tlazy = new long[2 * sz];\n\t\tArrays.fill(lazy, id);\n\
+    \t}\n\tLazySegmentTree(final int[] a, final LongBinaryOperator f, final LongBinaryOperator\
+    \ map, final LongBinaryOperator comp, final long e, final long id) {\n\t\tthis(a.length,\
+    \ f, map, comp, e, id);\n\t\tbuild(a);\n\t}\n\tLazySegmentTree(final long[] a,\
+    \ final LongBinaryOperator f, final LongBinaryOperator map, final LongBinaryOperator\
+    \ comp, final long e, final long id) {\n\t\tthis(a.length, f, map, comp, e, id);\n\
+    \t\tbuild(a);\n\t}\n\tfinal void build(final int[] a) {\n\t\tassert n == a.length;\n\
+    \t\tfor(int k = 0; k < n; ++k) {\n\t\t\tdata[k + sz] = a[k];\n\t\t}\n\t\tfor(int\
+    \ k = sz; --k > 0;) {\n\t\t\tupdate(k);\n\t\t}\n\t}\n\tfinal void build(final\
+    \ long[] a) {\n\t\tassert n == a.length;\n\t\tfor(int k = 0; k < n; ++k) {\n\t\
+    \t\tdata[k + sz] = a[k];\n\t\t}\n\t\tfor(int k = sz; --k > 0;) {\n\t\t\tupdate(k);\n\
+    \t\t}\n\t}\n\tfinal void set(int k, final long x) {\n\t\tk += sz;\n\t\tfor(int\
+    \ i = h; i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\t\t}\n\t\tdata[k] = x;\n\t\t\
+    for(int i = 0; ++i <= h;) {\n\t\t\tupdate(k >> i);\n\t\t}\n\t}\n\tfinal long get(int\
+    \ k) {\n\t\tk += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\
+    \t\t}\n\t\treturn data[k];\n\t}\n\tfinal long query(int l, int r) {\n\t\tif(l\
+    \ >= r) {\n\t\t\treturn e;\n\t\t}\n\t\tl += sz;\n\t\tr += sz;\n\t\tfor(int i =\
+    \ h; i > 0; i--) {\n\t\t\tif(((l >> i) << i) != l) {\n\t\t\t\tpropagate(l >> i);\n\
+    \t\t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\t\t\tpropagate((r - 1) >> i);\n\t\
+    \t\t}\n\t\t}\n\t\tlong l2 = e, r2 = e;\n\t\tfor(; l < r; l >>= 1, r >>= 1) {\n\
+    \t\t\tif(l % 2 == 1) {\n\t\t\t\tl2 = f.applyAsLong(l2, data[l++]);\n\t\t\t}\n\t\
+    \t\tif(r % 2 == 1) {\n\t\t\t\tr2 = f.applyAsLong(data[--r], r2);\n\t\t\t}\n\t\t\
+    }\n\t\treturn f.applyAsLong(l2, r2);\n\t}\n\tfinal long all(){ return data[1];\
+    \ }\n\tfinal void apply(int k, final long x) {\n\t\tk += sz;\n\t\tfor(int i =\
+    \ h; i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\t\t}\n\t\tdata[k] = map.applyAsLong(data[k],\
+    \ x);\n\t\tfor(int i = 0; ++i <= h;) {\n\t\t\tupdate(k >> i);\n\t\t}\n\t}\n\t\
+    final void apply(int l, int r, final long x) {\n\t\tif(l >= r) {\n\t\t\treturn;\n\
+    \t\t}\n\t\tl += sz;\n\t\tr += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tif(((l\
+    \ >> i) << i) != l) {\n\t\t\t\tpropagate(l >> i);\n\t\t\t}\n\t\t\tif(((r >> i)\
+    \ << i) != r) {\n\t\t\t\tpropagate((r - 1) >> i);\n\t\t\t}\n\t\t}\n\t\tint l2\
+    \ = l, r2 = r;\n\t\tfor(; l < r; l >>= 1, r >>= 1) {\n\t\t\tif(l % 2 == 1) {\n\
+    \t\t\t\tallApply(l++, x);\n\t\t\t}\n\t\t\tif(r % 2 == 1) {\n\t\t\t\tallApply(--r,\
+    \ x);\n\t\t\t}\n\t\t}\n\t\tl = l2;\n\t\tr = r2;\n\t\tfor(int i = 0; ++i <= h;)\
+    \ {\n\t\t\tif(((l >> i) << i) != l) {\n\t\t\t\tupdate(l >> i);\n\t\t\t}\n\t\t\t\
+    if(((r >> i) << i) != r) {\n\t\t\t\tupdate((r - 1) >> i);\n\t\t\t}\n\t\t}\n\t\
+    }\n\tfinal int findFirst(int l, final LongPredicate fn) {\n\t\tif(l >= n) {\n\t\
+    \t\treturn n;\n\t\t}\n\t\tl += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(l\
+    \ >> i);\n\t\t}\n\t\tlong sum = e;\n\t\tdo {\n\t\t\twhile((l & 1) == 0) {\n\t\t\
+    \t\tl >>= 1;\n\t\t\t}\n\t\t\tif(fn.test(f.applyAsLong(sum, data[l]))) {\n\t\t\t\
+    \twhile(l < sz) {\n\t\t\t\t\tpropagate(l);\n\t\t\t\t\tl <<= 1;\n\t\t\t\t\tfinal\
+    \ long nxt = f.applyAsLong(sum, data[l]);\n\t\t\t\t\tif(!fn.test(nxt)) {\n\t\t\
+    \t\t\t\tsum = nxt;\n\t\t\t\t\t\tl++;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn l\
+    \ + 1 - sz;\n\t\t\t}\n\t\t\tsum = f.applyAsLong(sum, data[l++]);\n\t\t} while((l\
+    \ & -l) != l);\n\t\treturn n;\n\t}\n\tfinal int findLast(int r, final LongPredicate\
+    \ fn) {\n\t\tif(r <= 0) {\n\t\t\treturn -1;\n\t\t}\n\t\tr += sz;\n\t\tfor(int\
+    \ i = h; i > 0; i--) {\n\t\t\tpropagate((r - 1) >> i);\n\t\t}\n\t\tlong sum =\
+    \ e;\n\t\tdo {\n\t\t\tr--;\n\t\t\twhile(r > 1 && r % 2 == 1) {\n\t\t\t\tr >>=\
+    \ 1;\n\t\t\t}\n\t\t\tif(fn.test(f.applyAsLong(data[r], sum))) {\n\t\t\t\twhile(r\
+    \ < sz) {\n\t\t\t\t\tpropagate(r);\n\t\t\t\t\tr = (r << 1) + 1;\n\t\t\t\t\tfinal\
+    \ long nxt = f.applyAsLong(data[r], sum);\n\t\t\t\t\tif(!fn.test(nxt)) {\n\t\t\
+    \t\t\t\tsum = nxt;\n\t\t\t\t\t\tr--;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn r\
+    \ - sz;\n\t\t\t}\n\t\t\tsum = f.applyAsLong(data[r], sum);\n\t\t} while((r & -r)\
+    \ != r);\n\t\treturn -1;\n\t}\n\tfinal void clear(){ Arrays.fill(data, e); }\n\
+    \t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder sb =\
+    \ new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < n; ++i)\
+    \ {\n\t\t\tsb.append(' ');\n\t\t\tsb.append(get(i));\n\t\t}\n\t\treturn sb.toString();\n\
+    \t}\n}\nclass LazySegmentTreePair {\n\tprivate int n, sz, h;\n\tprivate final\
+    \ IntPair[] data;\n\tprivate final long[] lazy;\n\tprivate final BinaryOperator<IntPair>\
+    \ f;\n\tprivate final BiFunction<IntPair, Long, IntPair> map;\n\tprivate final\
+    \ LongBinaryOperator comp;\n\tprivate final IntPair e;\n\tprivate final long id;\n\
+    \tprivate final void update(final int k){ data[k] = f.apply(data[2 * k], data[2\
+    \ * k + 1]); }\n\tprivate final void allApply(final int k, final long x) {\n\t\
+    \tdata[k] = map.apply(data[k], x);\n\t\tif(k < sz) {\n\t\t\tlazy[k] = comp.applyAsLong(lazy[k],\
+    \ x);\n\t\t}\n\t}\n\tprivate final void propagate(final int k) {\n\t\tif(lazy[k]\
+    \ != id) {\n\t\t\tallApply(2 * k, lazy[k]);\n\t\t\tallApply(2 * k + 1, lazy[k]);\n\
+    \t\t\tlazy[k] = id;\n\t\t}\n\t}\n\tLazySegmentTreePair(final int n, final BinaryOperator<IntPair>\
+    \ f, final BiFunction<IntPair, Long, IntPair> map, final LongBinaryOperator comp,\
+    \ final IntPair e, final long id) {\n\t\tthis.n = n;\n\t\tthis.f = f;\n\t\tthis.map\
+    \ = map;\n\t\tthis.comp = comp;\n\t\tthis.e = e;\n\t\tthis.id = id;\n\t\tsz =\
+    \ 1;\n\t\th = 0;\n\t\twhile(sz < n) {\n\t\t\tsz <<= 1;\n\t\t\th++;\n\t\t}\n\t\t\
+    data = new IntPair[2 * sz];\n\t\tArrays.fill(data, e);\n\t\tlazy = new long[2\
+    \ * sz];\n\t\tArrays.fill(lazy, id);\n\t}\n\tLazySegmentTreePair(final IntPair[]\
+    \ a, final BinaryOperator<IntPair> f, final BiFunction<IntPair, Long, IntPair>\
+    \ map, final LongBinaryOperator comp, final IntPair e, final long id) {\n\t\t\
+    this(a.length, f, map, comp, e, id);\n\t\tbuild(a);\n\t}\n\tfinal void build(final\
+    \ IntPair[] a) {\n\t\tassert n == a.length;\n\t\tfor(int k = 0; k < n; ++k) {\n\
+    \t\t\tdata[k + sz] = a[k];\n\t\t}\n\t\tfor(int k = sz; --k > 0;) {\n\t\t\tupdate(k);\n\
+    \t\t}\n\t}\n\tfinal void set(int k, final IntPair x) {\n\t\tk += sz;\n\t\tfor(int\
+    \ i = h; i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\t\t}\n\t\tdata[k] = x;\n\t\t\
+    for(int i = 0; ++i <= h;) {\n\t\t\tupdate(k >> i);\n\t\t}\n\t}\n\tfinal long get(int\
+    \ k) {\n\t\tk += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\
+    \t\t}\n\t\treturn data[k].first.longValue();\n\t}\n\tfinal long query(int l, int\
+    \ r) {\n\t\tif(l >= r) {\n\t\t\treturn e.first.longValue();\n\t\t}\n\t\tl += sz;\n\
+    \t\tr += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tif(((l >> i) << i) != l)\
+    \ {\n\t\t\t\tpropagate(l >> i);\n\t\t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\
+    \t\t\tpropagate((r - 1) >> i);\n\t\t\t}\n\t\t}\n\t\tIntPair l2 = e, r2 = e;\n\t\
+    \tfor(; l < r; l >>= 1, r >>= 1) {\n\t\t\tif(l % 2 == 1) {\n\t\t\t\tl2 = f.apply(l2,\
+    \ data[l++]);\n\t\t\t}\n\t\t\tif(r % 2 == 1) {\n\t\t\t\tr2 = f.apply(data[--r],\
+    \ r2);\n\t\t\t}\n\t\t}\n\t\treturn f.apply(l2, r2).first.longValue();\n\t}\n\t\
+    final long all(){ return data[1].first.longValue(); }\n\tfinal void apply(int\
+    \ k, final long x) {\n\t\tk += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(k\
+    \ >> i);\n\t\t}\n\t\tdata[k] = map.apply(data[k], x);\n\t\tfor(int i = 0; ++i\
+    \ <= h;) {\n\t\t\tupdate(k >> i);\n\t\t}\n\t}\n\tfinal void apply(int l, int r,\
+    \ final long x) {\n\t\tif(l >= r) {\n\t\t\treturn;\n\t\t}\n\t\tl += sz;\n\t\t\
+    r += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tif(((l >> i) << i) != l) {\n\
+    \t\t\t\tpropagate(l >> i);\n\t\t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\t\t\t\
+    propagate((r - 1) >> i);\n\t\t\t}\n\t\t}\n\t\tint l2 = l, r2 = r;\n\t\tfor(; l\
+    \ < r; l >>= 1, r >>= 1) {\n\t\t\tif(l % 2 == 1) {\n\t\t\t\tallApply(l++, x);\n\
+    \t\t\t}\n\t\t\tif(r % 2 == 1) {\n\t\t\t\tallApply(--r, x);\n\t\t\t}\n\t\t}\n\t\
+    \tl = l2;\n\t\tr = r2;\n\t\tfor(int i = 0; ++i <= h;) {\n\t\t\tif(((l >> i) <<\
+    \ i) != l) {\n\t\t\t\tupdate(l >> i);\n\t\t\t}\n\t\t\tif(((r >> i) << i) != r)\
+    \ {\n\t\t\t\tupdate((r - 1) >> i);\n\t\t\t}\n\t\t}\n\t}\n\tfinal int findFirst(int\
+    \ l, final LongPredicate fn) {\n\t\tif(l >= n) {\n\t\t\treturn n;\n\t\t}\n\t\t\
+    l += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(l >> i);\n\t\t}\n\t\
+    \tIntPair sum = e;\n\t\tdo {\n\t\t\twhile((l & 1) == 0) {\n\t\t\t\tl >>= 1;\n\t\
+    \t\t}\n\t\t\tif(fn.test(f.apply(sum, data[l]).first.longValue())) {\n\t\t\t\t\
+    while(l < sz) {\n\t\t\t\t\tpropagate(l);\n\t\t\t\t\tl <<= 1;\n\t\t\t\t\tfinal\
+    \ IntPair nxt = f.apply(sum, data[l]);\n\t\t\t\t\tif(!fn.test(nxt.first.longValue()))\
+    \ {\n\t\t\t\t\t\tsum = nxt;\n\t\t\t\t\t\tl++;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t\
+    return l + 1 - sz;\n\t\t\t}\n\t\t\tsum = f.apply(sum, data[l++]);\n\t\t} while((l\
+    \ & -l) != l);\n\t\treturn n;\n\t}\n\tfinal int findLast(int r, final LongPredicate\
+    \ fn) {\n\t\tif(r <= 0) {\n\t\t\treturn -1;\n\t\t}\n\t\tr += sz;\n\t\tfor(int\
+    \ i = h; i > 0; i--) {\n\t\t\tpropagate((r - 1) >> i);\n\t\t}\n\t\tIntPair sum\
+    \ = e;\n\t\tdo {\n\t\t\tr--;\n\t\t\twhile(r > 1 && r % 2 == 1) {\n\t\t\t\tr >>=\
+    \ 1;\n\t\t\t}\n\t\t\tif(fn.test(f.apply(data[r], sum).first.longValue())) {\n\t\
+    \t\t\twhile(r < sz) {\n\t\t\t\t\tpropagate(r);\n\t\t\t\t\tr = (r << 1) + 1;\n\t\
+    \t\t\t\tfinal IntPair nxt = f.apply(data[r], sum);\n\t\t\t\t\tif(!fn.test(nxt.first.longValue()))\
+    \ {\n\t\t\t\t\t\tsum = nxt;\n\t\t\t\t\t\tr--;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t\
+    return r - sz;\n\t\t\t}\n\t\t\tsum = f.apply(data[r], sum);\n\t\t} while((r &\
+    \ -r) != r);\n\t\treturn -1;\n\t}\n\tfinal void clear(){ Arrays.fill(data, e);\
+    \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
+    \ sb = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i <\
+    \ n; ++i) {\n\t\t\tsb.append(' ');\n\t\t\tsb.append(get(i));\n\t\t}\n\t\treturn\
+    \ sb.toString();\n\t}\n}\nfinal class RAMX extends LazySegmentTree {\n\tRAMX(final\
+    \ int[] a, final int e){ super(a, (x, y) -> max(x, y), (x, y) -> x + y, (x, y)\
+    \ -> x + y, e, 0); }\n\tRAMX(final long[] a, final long e){ super(a, (x, y) ->\
+    \ max(x, y), (x, y) -> x + y, (x, y) -> x + y, e, 0); }\n}\nfinal class RAMN extends\
+    \ LazySegmentTree {\n\tRAMN(final int[] a, final int e){ super(a, (x, y) -> min(x,\
+    \ y), (x, y) -> x + y, (x, y) -> x + y, e, 0); }\n\tRAMN(final long[] a, final\
+    \ long e){ super(a, (x, y) -> min(x, y), (x, y) -> x + y, (x, y) -> x + y, e,\
+    \ 0); }\n}\nfinal class RASM extends LazySegmentTreePair {\n\tprivate final int\
+    \ n;\n\tprivate final IntPair[] b;\n\tRASM(final int[] a) {\n\t\tsuper(a.length,\
+    \ (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue()\
+    \ * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0, 0), 0);\n\t\tn =\
+    \ a.length;\n\t\tb = new IntPair[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\
+    b[i] = IntPair.of(a[i], 1);\n\t\t}\n\t\tbuild(b);\n\t}\n\tRASM(final long[] a)\
+    \ {\n\t\tsuper(a.length, (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.first.longValue()\
+    \ + x.second.longValue() * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0,\
+    \ 0), 0);\n\t\tn = a.length;\n\t\tb = new IntPair[n];\n\t\tfor(int i = 0; i <\
+    \ n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i], 1);\n\t\t}\n\t\tbuild(b);\n\t}\n}\n\
+    final class RUMX extends LazySegmentTree {\n\tRUMX(final int[] a, final int eid){\
+    \ super(a, (x, y) -> max(x, y), (x, y) -> y, (x, y) -> y, eid, eid); }\n\tRUMX(final\
+    \ long[] a, final long eid){ super(a, (x, y) -> max(x, y), (x, y) -> y, (x, y)\
+    \ -> y, eid, eid); }\n}\nfinal class RUMN extends LazySegmentTree {\n\tRUMN(final\
+    \ int[] a, final int eid){ super(a, (x, y) -> min(x, y), (x, y) -> y, (x, y) ->\
+    \ y, eid, eid); }\n\tRUMN(final long[] a, final long eid){ super(a, (x, y) ->\
+    \ min(x, y), (x, y) -> y, (x, y) -> y, eid, eid); }\n}\nfinal class RUSM extends\
+    \ LazySegmentTreePair {\n\tprivate final int n;\n\tprivate final IntPair[] b;\n\
+    \tRUSM(final int[] a, final int id) {\n\t\tsuper(a.length, (x, y) -> x.mul(y),\
+    \ (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue() * y, x.second.longValue()),\
+    \ (x, y) -> x + y, IntPair.of(0, 0), id);\n\t\tn = a.length;\n\t\tb = new IntPair[n];\n\
+    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i], 1);\n\t\t}\n\t\
+    \tbuild(b);\n\t}\n\tRUSM(final long[] a, final long id) {\n\t\tsuper(a.length,\
+    \ (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()),\
+    \ (x, y) -> x + y, IntPair.of(0, 0), id);\n\t\tn = a.length;\n\t\tb = new IntPair[n];\n\
+    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i], 1);\n\t\t}\n\t\
+    \tbuild(b);\n\t}\n}\n\nfinal class SparseTable {\n\tprivate final long[][] st;\n\
+    \tprivate final int[] lookup;\n\tprivate final LongBinaryOperator op;\n\tSparseTable(final\
+    \ int[] a, final LongBinaryOperator op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\
+    \t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 <<\
+    \ b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\
+    \t\tfor(int i = 1; i < b; i++) {\n\t\t\tfor(int j = 0; j + (1 << i) <= (1 << b);\
+    \ j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i - 1][j], st[i - 1][j + (1 <<\
+    \ (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length + 1];\n\t\tfor(int\
+    \ i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i >> 1] + 1;\n\t\t\
+    }\n\t}\n\tSparseTable(final long[] a, final LongBinaryOperator op) {\n\t\tthis.op\
     \ = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\
     \t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\t\t\t\
     st[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\tfor(int j = 0;\
     \ j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i - 1][j],\
     \ st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
-    \ + 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
-    \ >> 1] + 1;\n\t\t}\n\t}\n\tSparseTable(final long[] a, final LongBinaryOperator\
-    \ op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\
-    \t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length;\
-    \ i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\
-    \tfor(int j = 0; j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i\
-    \ - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
     \ + 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
     \ >> 1] + 1;\n\t\t}\n\t}\n\tfinal long query(final int l, final int r) {\n\t\t\
     final int b = lookup[r - l];\n\t\treturn op.applyAsLong(st[b][l], st[b][r - (1\
@@ -1866,138 +2083,154 @@ data:
     \ final int r, final long lower) {\n\t\tfinal long ret = mat.next(l, r, get(lower));\n\
     \t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n}"
   dependsOn:
+  - Java/AOJ.java
   - Java/yukicoder.java
-  - Java/library/graph/WeightedGraph.java
-  - Java/library/graph/MST.java
-  - Java/library/graph/LowestCommonAncestor.java
-  - Java/library/graph/Graph.java
-  - Java/library/graph/Edge.java
-  - Java/library/math/Matrix.java
-  - Java/library/math/PrimeFactor.java
-  - Java/library/math/BigPrime.java
-  - Java/library/math/EulerPhiTable.java
-  - Java/library/math/PrimeCounter.java
-  - Java/library/math/ModPrime.java
-  - Java/library/math/PrimeTable.java
-  - Java/library/math/LongPrime.java
+  - Java/CodeForces.java
+  - Java/library/core/interfaces/RecursiveLongFunction.java
+  - Java/library/core/interfaces/RecursiveFunction.java
+  - Java/library/core/interfaces/RecursiveIntFunction.java
+  - Java/library/core/interfaces/RecursiveIntBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveDoubleConsumer.java
+  - Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveDoubleFunction.java
+  - Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/TriFunction.java
+  - Java/library/core/interfaces/RecursiveTriFunction.java
+  - Java/library/core/interfaces/RecursiveBiFunction.java
+  - Java/library/core/interfaces/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/RecursiveBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveIntConsumer.java
+  - Java/library/core/interfaces/RecursiveLongConsumer.java
+  - Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveConsumer.java
+  - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/RecursiveLongBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveLongUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveUnaryOperator.java
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
-  - Java/library/core/interfaces/RecursiveLongConsumer.java
-  - Java/library/core/interfaces/RecursiveIntConsumer.java
-  - Java/library/core/interfaces/RecursiveConsumer.java
-  - Java/library/core/interfaces/RecursiveTriFunction.java
-  - Java/library/core/interfaces/RecursiveDoubleFunction.java
-  - Java/library/core/interfaces/RecursiveTriConsumer.java
-  - Java/library/core/interfaces/RecursiveLongFunction.java
-  - Java/library/core/interfaces/RecursiveIntUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveBinaryOperator.java
-  - Java/library/core/interfaces/RecursiveUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveLongUnaryOperator.java
-  - Java/library/core/interfaces/TriFunction.java
-  - Java/library/core/interfaces/RecursiveBiConsumer.java
-  - Java/library/core/interfaces/RecursiveFunction.java
-  - Java/library/core/interfaces/QuadFunction.java
-  - Java/library/core/interfaces/RecursiveDoubleConsumer.java
-  - Java/library/core/interfaces/RecursiveBiFunction.java
-  - Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
-  - Java/library/core/interfaces/RecursiveIntBinaryOperator.java
-  - Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveIntFunction.java
-  - Java/library/core/interfaces/RecursiveLongBinaryOperator.java
-  - Java/library/core/Utility.java
   - Java/library/core/VvyLw.java
   - Java/library/core/Main.java
-  - Java/library/other/Huitloxopetl.java
-  - Java/library/other/SuffixArray.java
-  - Java/library/other/InclusiveScan.java
-  - Java/library/other/PrefixSum.java
-  - Java/library/other/SkewHeap.java
-  - Java/library/structure/FenwickTree.java
-  - Java/library/structure/pair/IntPair.java
+  - Java/library/core/Utility.java
+  - Java/library/structure/lazysegmenttree/RUMN.java
+  - Java/library/structure/lazysegmenttree/RUMX.java
+  - Java/library/structure/lazysegmenttree/RASM.java
+  - Java/library/structure/lazysegmenttree/RAMX.java
+  - Java/library/structure/lazysegmenttree/RUSM.java
+  - Java/library/structure/lazysegmenttree/RAMN.java
+  - Java/library/structure/lazysegmenttree/LazySegmentTree.java
+  - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
-  - Java/library/structure/SparseTable.java
-  - Java/library/structure/SegmentTree.java
-  - Java/library/structure/unionfind/UndoUnionFind.java
+  - Java/library/structure/pair/IntPair.java
+  - Java/library/structure/DoubleEndedPriorityQueue.java
+  - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
+  - Java/library/structure/waveletmatrix/WaveletMatrix.java
+  - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
+  - Java/library/structure/FenwickTree.java
   - Java/library/structure/unionfind/WeightedUnionFind.java
   - Java/library/structure/unionfind/UnionFind.java
-  - Java/library/structure/DoubleEndedPriorityQueue.java
+  - Java/library/structure/unionfind/UndoUnionFind.java
   - Java/library/structure/AVLTree.java
+  - Java/library/structure/SegmentTree.java
+  - Java/library/structure/SparseTable.java
   - Java/library/structure/deque/Deque.java
   - Java/library/structure/deque/IntDeque.java
-  - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
-  - Java/library/structure/waveletmatrix/WaveletMatrix.java
-  - Java/CodeForces.java
-  - Java/AOJ.java
+  - Java/library/math/PrimeTable.java
+  - Java/library/math/PrimeFactor.java
+  - Java/library/math/BigPrime.java
+  - Java/library/math/ModPrime.java
+  - Java/library/math/EulerPhiTable.java
+  - Java/library/math/LongPrime.java
+  - Java/library/math/Matrix.java
+  - Java/library/math/PrimeCounter.java
+  - Java/library/graph/Graph.java
+  - Java/library/graph/Edge.java
+  - Java/library/graph/WeightedGraph.java
+  - Java/library/graph/LowestCommonAncestor.java
+  - Java/library/graph/MST.java
+  - Java/library/other/SkewHeap.java
+  - Java/library/other/Huitloxopetl.java
+  - Java/library/other/InclusiveScan.java
+  - Java/library/other/SuffixArray.java
+  - Java/library/other/PrefixSum.java
   isVerificationFile: false
   path: Java/All.java
   requiredBy:
+  - Java/AOJ.java
   - Java/yukicoder.java
-  - Java/library/graph/WeightedGraph.java
-  - Java/library/graph/MST.java
-  - Java/library/graph/LowestCommonAncestor.java
-  - Java/library/graph/Graph.java
-  - Java/library/graph/Edge.java
-  - Java/library/math/Matrix.java
-  - Java/library/math/PrimeFactor.java
-  - Java/library/math/BigPrime.java
-  - Java/library/math/EulerPhiTable.java
-  - Java/library/math/PrimeCounter.java
-  - Java/library/math/ModPrime.java
-  - Java/library/math/PrimeTable.java
-  - Java/library/math/LongPrime.java
+  - Java/CodeForces.java
+  - Java/library/core/interfaces/RecursiveLongFunction.java
+  - Java/library/core/interfaces/RecursiveFunction.java
+  - Java/library/core/interfaces/RecursiveIntFunction.java
+  - Java/library/core/interfaces/RecursiveIntBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveDoubleConsumer.java
+  - Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveDoubleFunction.java
+  - Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/TriFunction.java
+  - Java/library/core/interfaces/RecursiveTriFunction.java
+  - Java/library/core/interfaces/RecursiveBiFunction.java
+  - Java/library/core/interfaces/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/RecursiveBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveIntConsumer.java
+  - Java/library/core/interfaces/RecursiveLongConsumer.java
+  - Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveConsumer.java
+  - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/RecursiveLongBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveLongUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveUnaryOperator.java
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
-  - Java/library/core/interfaces/RecursiveLongConsumer.java
-  - Java/library/core/interfaces/RecursiveIntConsumer.java
-  - Java/library/core/interfaces/RecursiveConsumer.java
-  - Java/library/core/interfaces/RecursiveTriFunction.java
-  - Java/library/core/interfaces/RecursiveDoubleFunction.java
-  - Java/library/core/interfaces/RecursiveTriConsumer.java
-  - Java/library/core/interfaces/RecursiveLongFunction.java
-  - Java/library/core/interfaces/RecursiveIntUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveBinaryOperator.java
-  - Java/library/core/interfaces/RecursiveUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveLongUnaryOperator.java
-  - Java/library/core/interfaces/TriFunction.java
-  - Java/library/core/interfaces/RecursiveBiConsumer.java
-  - Java/library/core/interfaces/RecursiveFunction.java
-  - Java/library/core/interfaces/QuadFunction.java
-  - Java/library/core/interfaces/RecursiveDoubleConsumer.java
-  - Java/library/core/interfaces/RecursiveBiFunction.java
-  - Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
-  - Java/library/core/interfaces/RecursiveIntBinaryOperator.java
-  - Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveIntFunction.java
-  - Java/library/core/interfaces/RecursiveLongBinaryOperator.java
-  - Java/library/core/Utility.java
   - Java/library/core/VvyLw.java
   - Java/library/core/Main.java
-  - Java/library/other/Huitloxopetl.java
-  - Java/library/other/SuffixArray.java
-  - Java/library/other/InclusiveScan.java
-  - Java/library/other/PrefixSum.java
-  - Java/library/other/SkewHeap.java
-  - Java/library/structure/FenwickTree.java
-  - Java/library/structure/pair/IntPair.java
+  - Java/library/core/Utility.java
+  - Java/library/structure/lazysegmenttree/RUMN.java
+  - Java/library/structure/lazysegmenttree/RUMX.java
+  - Java/library/structure/lazysegmenttree/RASM.java
+  - Java/library/structure/lazysegmenttree/RAMX.java
+  - Java/library/structure/lazysegmenttree/RUSM.java
+  - Java/library/structure/lazysegmenttree/RAMN.java
+  - Java/library/structure/lazysegmenttree/LazySegmentTree.java
+  - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
-  - Java/library/structure/SparseTable.java
-  - Java/library/structure/SegmentTree.java
-  - Java/library/structure/unionfind/UndoUnionFind.java
+  - Java/library/structure/pair/IntPair.java
+  - Java/library/structure/DoubleEndedPriorityQueue.java
+  - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
+  - Java/library/structure/waveletmatrix/WaveletMatrix.java
+  - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
+  - Java/library/structure/FenwickTree.java
   - Java/library/structure/unionfind/WeightedUnionFind.java
   - Java/library/structure/unionfind/UnionFind.java
-  - Java/library/structure/DoubleEndedPriorityQueue.java
+  - Java/library/structure/unionfind/UndoUnionFind.java
   - Java/library/structure/AVLTree.java
+  - Java/library/structure/SegmentTree.java
+  - Java/library/structure/SparseTable.java
   - Java/library/structure/deque/Deque.java
   - Java/library/structure/deque/IntDeque.java
-  - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
-  - Java/library/structure/waveletmatrix/WaveletMatrix.java
-  - Java/CodeForces.java
-  - Java/AOJ.java
-  timestamp: '2024-02-12 14:21:00+09:00'
+  - Java/library/math/PrimeTable.java
+  - Java/library/math/PrimeFactor.java
+  - Java/library/math/BigPrime.java
+  - Java/library/math/ModPrime.java
+  - Java/library/math/EulerPhiTable.java
+  - Java/library/math/LongPrime.java
+  - Java/library/math/Matrix.java
+  - Java/library/math/PrimeCounter.java
+  - Java/library/graph/Graph.java
+  - Java/library/graph/Edge.java
+  - Java/library/graph/WeightedGraph.java
+  - Java/library/graph/LowestCommonAncestor.java
+  - Java/library/graph/MST.java
+  - Java/library/other/SkewHeap.java
+  - Java/library/other/Huitloxopetl.java
+  - Java/library/other/InclusiveScan.java
+  - Java/library/other/SuffixArray.java
+  - Java/library/other/PrefixSum.java
+  timestamp: '2024-02-13 14:52:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

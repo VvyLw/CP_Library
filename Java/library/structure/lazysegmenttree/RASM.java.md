@@ -59,6 +59,9 @@ data:
     path: Java/library/core/interfaces/RecursiveIntFunction.java
     title: Java/library/core/interfaces/RecursiveIntFunction.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+    title: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
     title: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
   - icon: ':warning:'
@@ -175,9 +178,6 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMX.java
     title: Java/library/structure/lazysegmenttree/RAMX.java
-  - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RASM.java
-    title: Java/library/structure/lazysegmenttree/RASM.java
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUMN.java
     title: Java/library/structure/lazysegmenttree/RUMN.java
@@ -276,6 +276,9 @@ data:
     path: Java/library/core/interfaces/RecursiveIntFunction.java
     title: Java/library/core/interfaces/RecursiveIntFunction.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+    title: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
     title: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
   - icon: ':warning:'
@@ -393,9 +396,6 @@ data:
     path: Java/library/structure/lazysegmenttree/RAMX.java
     title: Java/library/structure/lazysegmenttree/RAMX.java
   - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RASM.java
-    title: Java/library/structure/lazysegmenttree/RASM.java
-  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUMN.java
     title: Java/library/structure/lazysegmenttree/RUMN.java
   - icon: ':warning:'
@@ -443,12 +443,19 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/core/interfaces/RecursiveIntUnaryOperator.java\n"
-  code: "package library.core.interfaces;\n\nimport java.util.function.IntUnaryOperator;\n\
-    \n/**\n * \u518D\u5E30\u30E9\u30E0\u30C0\u304C\u66F8\u3051\u308BIntUnaryOperator\u30A4\
-    \u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\n * @see IntUnaryOperator\n */\npublic\
-    \ interface RecursiveIntUnaryOperator {\n\tpublic int apply(final RecursiveIntUnaryOperator\
-    \ rec, final int n);\n}"
+    RuntimeError: bundler is not specified: Java/library/structure/lazysegmenttree/RASM.java\n"
+  code: "package library.structure.lazysegmenttree;\n\nimport library.structure.pair.IntPair;\n\
+    \n/**\n * Range Add Range Sum\n * \u533A\u9593\u52A0\u7B97, \u533A\u9593\u548C\
+    \n */\npublic final class RASM extends LazySegmentTreePair {\n\tprivate final\
+    \ int n;\n\tprivate final IntPair[] b;\n\tRASM(final int[] a) {\n\t\tsuper(a.length,\
+    \ (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue()\
+    \ * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0, 0), 0);\n\t\tn =\
+    \ a.length;\n\t\tb = new IntPair[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\
+    b[i] = IntPair.of(a[i], 1);\n\t\t}\n\t\tbuild(b);\n\t}\n\tRASM(final long[] a)\
+    \ {\n\t\tsuper(a.length, (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.first.longValue()\
+    \ + x.second.longValue() * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0,\
+    \ 0), 0);\n\t\tn = a.length;\n\t\tb = new IntPair[n];\n\t\tfor(int i = 0; i <\
+    \ n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i], 1);\n\t\t}\n\t\tbuild(b);\n\t}\n}"
   dependsOn:
   - Java/AOJ.java
   - Java/yukicoder.java
@@ -458,6 +465,7 @@ data:
   - Java/library/core/interfaces/RecursiveIntFunction.java
   - Java/library/core/interfaces/RecursiveIntBinaryOperator.java
   - Java/library/core/interfaces/RecursiveDoubleConsumer.java
+  - Java/library/core/interfaces/RecursiveIntUnaryOperator.java
   - Java/library/core/interfaces/RecursiveDoubleFunction.java
   - Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
   - Java/library/core/interfaces/RecursiveBiConsumer.java
@@ -481,7 +489,6 @@ data:
   - Java/library/core/Utility.java
   - Java/library/structure/lazysegmenttree/RUMN.java
   - Java/library/structure/lazysegmenttree/RUMX.java
-  - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RAMX.java
   - Java/library/structure/lazysegmenttree/RUSM.java
   - Java/library/structure/lazysegmenttree/RAMN.java
@@ -523,7 +530,7 @@ data:
   - Java/library/other/PrefixSum.java
   - Java/All.java
   isVerificationFile: false
-  path: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+  path: Java/library/structure/lazysegmenttree/RASM.java
   requiredBy:
   - Java/AOJ.java
   - Java/yukicoder.java
@@ -533,6 +540,7 @@ data:
   - Java/library/core/interfaces/RecursiveIntFunction.java
   - Java/library/core/interfaces/RecursiveIntBinaryOperator.java
   - Java/library/core/interfaces/RecursiveDoubleConsumer.java
+  - Java/library/core/interfaces/RecursiveIntUnaryOperator.java
   - Java/library/core/interfaces/RecursiveDoubleFunction.java
   - Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
   - Java/library/core/interfaces/RecursiveBiConsumer.java
@@ -556,7 +564,6 @@ data:
   - Java/library/core/Utility.java
   - Java/library/structure/lazysegmenttree/RUMN.java
   - Java/library/structure/lazysegmenttree/RUMX.java
-  - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RAMX.java
   - Java/library/structure/lazysegmenttree/RUSM.java
   - Java/library/structure/lazysegmenttree/RAMN.java
@@ -600,10 +607,10 @@ data:
   timestamp: '2024-02-13 14:52:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+documentation_of: Java/library/structure/lazysegmenttree/RASM.java
 layout: document
 redirect_from:
-- /library/Java/library/core/interfaces/RecursiveIntUnaryOperator.java
-- /library/Java/library/core/interfaces/RecursiveIntUnaryOperator.java.html
-title: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+- /library/Java/library/structure/lazysegmenttree/RASM.java
+- /library/Java/library/structure/lazysegmenttree/RASM.java.html
+title: Java/library/structure/lazysegmenttree/RASM.java
 ---

@@ -87,9 +87,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manhattan.test.cpp
-  - test/kruskal.test.cpp
   - test/uf.test.cpp
   - test/directed.test.cpp
+  - test/kruskal.test.cpp
 documentation_of: C++/UnionFind.hpp
 layout: document
 redirect_from:

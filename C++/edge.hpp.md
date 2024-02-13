@@ -54,12 +54,12 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manhattan.test.cpp
-  - test/kruskal.test.cpp
+  - test/directed.test.cpp
   - test/dag_check.test.cpp
   - test/lca.test.cpp
-  - test/warshallfloyd.test.cpp
   - test/bermanford.test.cpp
-  - test/directed.test.cpp
+  - test/kruskal.test.cpp
+  - test/warshallfloyd.test.cpp
 documentation_of: C++/edge.hpp
 layout: document
 redirect_from:

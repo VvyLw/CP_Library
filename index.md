@@ -252,6 +252,32 @@ data:
     - icon: ':warning:'
       path: Java/library/structure/deque/IntDeque.java
       title: Java/library/structure/deque/IntDeque.java
+  - name: Java/library/structure/lazysegmenttree
+    pages:
+    - icon: ':warning:'
+      path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
+      title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
+    - icon: ':warning:'
+      path: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
+      title: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
+    - icon: ':warning:'
+      path: Java/library/structure/lazysegmenttree/RAMN.java
+      title: Java/library/structure/lazysegmenttree/RAMN.java
+    - icon: ':warning:'
+      path: Java/library/structure/lazysegmenttree/RAMX.java
+      title: Java/library/structure/lazysegmenttree/RAMX.java
+    - icon: ':warning:'
+      path: Java/library/structure/lazysegmenttree/RASM.java
+      title: Java/library/structure/lazysegmenttree/RASM.java
+    - icon: ':warning:'
+      path: Java/library/structure/lazysegmenttree/RUMN.java
+      title: Java/library/structure/lazysegmenttree/RUMN.java
+    - icon: ':warning:'
+      path: Java/library/structure/lazysegmenttree/RUMX.java
+      title: Java/library/structure/lazysegmenttree/RUMX.java
+    - icon: ':warning:'
+      path: Java/library/structure/lazysegmenttree/RUSM.java
+      title: Java/library/structure/lazysegmenttree/RUSM.java
   - name: Java/library/structure/pair
     pages:
     - icon: ':warning:'

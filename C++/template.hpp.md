@@ -962,16 +962,16 @@ data:
   verifiedWith:
   - test/sr_sum.test.cpp
   - test/m_add.test.cpp
-  - test/add.test.cpp
-  - test/parsum.test.cpp
-  - test/segtree.test.cpp
-  - test/stable.test.cpp
   - test/uf.test.cpp
   - test/extgcd.test.cpp
+  - test/parsum.test.cpp
+  - test/stable.test.cpp
   - test/add128.test.cpp
-  - test/ftree.test.cpp
   - test/s_rmq.test.cpp
+  - test/ftree.test.cpp
+  - test/add.test.cpp
   - test/aarray.test.cpp
+  - test/segtree.test.cpp
 documentation_of: C++/template.hpp
 layout: document
 redirect_from:
