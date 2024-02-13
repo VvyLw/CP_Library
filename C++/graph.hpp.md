@@ -181,8 +181,8 @@ data:
   verifiedWith:
   - test/dag_check.test.cpp
   - test/lca.test.cpp
-  - test/bermanford.test.cpp
   - test/warshallfloyd.test.cpp
+  - test/bermanford.test.cpp
 documentation_of: C++/graph.hpp
 layout: document
 redirect_from:

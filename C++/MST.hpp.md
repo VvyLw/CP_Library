@@ -188,8 +188,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manhattan.test.cpp
-  - test/directed.test.cpp
   - test/kruskal.test.cpp
+  - test/directed.test.cpp
 documentation_of: C++/MST.hpp
 layout: document
 redirect_from:
