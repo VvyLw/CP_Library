@@ -448,10 +448,10 @@ data:
     import java.util.function.BiFunction;\nimport java.util.function.BinaryOperator;\n\
     import java.util.function.LongBinaryOperator;\nimport java.util.function.LongPredicate;\n\
     \nimport library.structure.pair.IntPair;\n\n/**\n * \u9045\u5EF6\u30BB\u30B0\u6728\
-    \n * {@link RASM}, {@link RUSM}\u3092\u4F7F\u3046\u306E\u306B\u5FC5\u8981\n *\
-    \ @see LazySegmentTree\n */\npublic class LazySegmentTreePair {\n\tprivate int\
-    \ n, sz, h;\n\tprivate final IntPair[] data;\n\tprivate final long[] lazy;\n\t\
-    private final BinaryOperator<IntPair> f;\n\tprivate final BiFunction<IntPair,\
+    \n * RASM, RUSM\u3092\u4F7F\u3046\u306E\u306B\u5FC5\u8981\n * @see LazySegmentTree\n\
+    \ * @see RASM\n * @see RUSM\n */\npublic class LazySegmentTreePair {\n\tprivate\
+    \ int n, sz, h;\n\tprivate final IntPair[] data;\n\tprivate final long[] lazy;\n\
+    \tprivate final BinaryOperator<IntPair> f;\n\tprivate final BiFunction<IntPair,\
     \ Long, IntPair> map;\n\tprivate final LongBinaryOperator comp;\n\tprivate final\
     \ IntPair e;\n\tprivate final long id;\n\tprivate final void update(final int\
     \ k){ data[k] = f.apply(data[2 * k], data[2 * k + 1]); }\n\tprivate final void\
@@ -459,65 +459,85 @@ data:
     \t\tif(k < sz) {\n\t\t\tlazy[k] = comp.applyAsLong(lazy[k], x);\n\t\t}\n\t}\n\t\
     private final void propagate(final int k) {\n\t\tif(lazy[k] != id) {\n\t\t\tallApply(2\
     \ * k, lazy[k]);\n\t\t\tallApply(2 * k + 1, lazy[k]);\n\t\t\tlazy[k] = id;\n\t\
-    \t}\n\t}\n\tLazySegmentTreePair(final int n, final BinaryOperator<IntPair> f,\
-    \ final BiFunction<IntPair, Long, IntPair> map, final LongBinaryOperator comp,\
+    \t}\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param\
+    \ n\n\t * @param f\n\t * @param map\n\t * @param comp\n\t * @param e\n\t * @param\
+    \ id\n\t */\n\tpublic LazySegmentTreePair(final int n, final BinaryOperator<IntPair>\
+    \ f, final BiFunction<IntPair, Long, IntPair> map, final LongBinaryOperator comp,\
     \ final IntPair e, final long id) {\n\t\tthis.n = n;\n\t\tthis.f = f;\n\t\tthis.map\
     \ = map;\n\t\tthis.comp = comp;\n\t\tthis.e = e;\n\t\tthis.id = id;\n\t\tsz =\
     \ 1;\n\t\th = 0;\n\t\twhile(sz < n) {\n\t\t\tsz <<= 1;\n\t\t\th++;\n\t\t}\n\t\t\
     data = new IntPair[2 * sz];\n\t\tArrays.fill(data, e);\n\t\tlazy = new long[2\
-    \ * sz];\n\t\tArrays.fill(lazy, id);\n\t}\n\tLazySegmentTreePair(final IntPair[]\
-    \ a, final BinaryOperator<IntPair> f, final BiFunction<IntPair, Long, IntPair>\
-    \ map, final LongBinaryOperator comp, final IntPair e, final long id) {\n\t\t\
-    this(a.length, f, map, comp, e, id);\n\t\tbuild(a);\n\t}\n\tfinal void build(final\
-    \ IntPair[] a) {\n\t\tassert n == a.length;\n\t\tfor(int k = 0; k < n; ++k) {\n\
-    \t\t\tdata[k + sz] = a[k];\n\t\t}\n\t\tfor(int k = sz; --k > 0;) {\n\t\t\tupdate(k);\n\
-    \t\t}\n\t}\n\tfinal void set(int k, final IntPair x) {\n\t\tk += sz;\n\t\tfor(int\
-    \ i = h; i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\t\t}\n\t\tdata[k] = x;\n\t\t\
-    for(int i = 0; ++i <= h;) {\n\t\t\tupdate(k >> i);\n\t\t}\n\t}\n\tfinal long get(int\
-    \ k) {\n\t\tk += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\
-    \t\t}\n\t\treturn data[k].first.longValue();\n\t}\n\tfinal long query(int l, int\
-    \ r) {\n\t\tif(l >= r) {\n\t\t\treturn e.first.longValue();\n\t\t}\n\t\tl += sz;\n\
-    \t\tr += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tif(((l >> i) << i) != l)\
-    \ {\n\t\t\t\tpropagate(l >> i);\n\t\t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\
-    \t\t\tpropagate((r - 1) >> i);\n\t\t\t}\n\t\t}\n\t\tIntPair l2 = e, r2 = e;\n\t\
-    \tfor(; l < r; l >>= 1, r >>= 1) {\n\t\t\tif(l % 2 == 1) {\n\t\t\t\tl2 = f.apply(l2,\
-    \ data[l++]);\n\t\t\t}\n\t\t\tif(r % 2 == 1) {\n\t\t\t\tr2 = f.apply(data[--r],\
-    \ r2);\n\t\t\t}\n\t\t}\n\t\treturn f.apply(l2, r2).first.longValue();\n\t}\n\t\
-    final long all(){ return data[1].first.longValue(); }\n\tfinal void apply(int\
-    \ k, final long x) {\n\t\tk += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(k\
-    \ >> i);\n\t\t}\n\t\tdata[k] = map.apply(data[k], x);\n\t\tfor(int i = 0; ++i\
-    \ <= h;) {\n\t\t\tupdate(k >> i);\n\t\t}\n\t}\n\tfinal void apply(int l, int r,\
-    \ final long x) {\n\t\tif(l >= r) {\n\t\t\treturn;\n\t\t}\n\t\tl += sz;\n\t\t\
-    r += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tif(((l >> i) << i) != l) {\n\
-    \t\t\t\tpropagate(l >> i);\n\t\t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\t\t\t\
-    propagate((r - 1) >> i);\n\t\t\t}\n\t\t}\n\t\tint l2 = l, r2 = r;\n\t\tfor(; l\
-    \ < r; l >>= 1, r >>= 1) {\n\t\t\tif(l % 2 == 1) {\n\t\t\t\tallApply(l++, x);\n\
-    \t\t\t}\n\t\t\tif(r % 2 == 1) {\n\t\t\t\tallApply(--r, x);\n\t\t\t}\n\t\t}\n\t\
-    \tl = l2;\n\t\tr = r2;\n\t\tfor(int i = 0; ++i <= h;) {\n\t\t\tif(((l >> i) <<\
-    \ i) != l) {\n\t\t\t\tupdate(l >> i);\n\t\t\t}\n\t\t\tif(((r >> i) << i) != r)\
-    \ {\n\t\t\t\tupdate((r - 1) >> i);\n\t\t\t}\n\t\t}\n\t}\n\tfinal int findFirst(int\
-    \ l, final LongPredicate fn) {\n\t\tif(l >= n) {\n\t\t\treturn n;\n\t\t}\n\t\t\
-    l += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(l >> i);\n\t\t}\n\t\
-    \tIntPair sum = e;\n\t\tdo {\n\t\t\twhile((l & 1) == 0) {\n\t\t\t\tl >>= 1;\n\t\
-    \t\t}\n\t\t\tif(fn.test(f.apply(sum, data[l]).first.longValue())) {\n\t\t\t\t\
-    while(l < sz) {\n\t\t\t\t\tpropagate(l);\n\t\t\t\t\tl <<= 1;\n\t\t\t\t\tfinal\
-    \ IntPair nxt = f.apply(sum, data[l]);\n\t\t\t\t\tif(!fn.test(nxt.first.longValue()))\
+    \ * sz];\n\t\tArrays.fill(lazy, id);\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\n\t * @param a\n\t * @param f\n\t * @param map\n\t * @param\
+    \ comp\n\t * @param e\n\t * @param id\n\t */\n\tpublic LazySegmentTreePair(final\
+    \ IntPair[] a, final BinaryOperator<IntPair> f, final BiFunction<IntPair, Long,\
+    \ IntPair> map, final LongBinaryOperator comp, final IntPair e, final long id)\
+    \ {\n\t\tthis(a.length, f, map, comp, e, id);\n\t\tbuild(a);\n\t}\n\t/**\n\t *\
+    \ \u69CB\u7BC9\n\t * @param a\n\t */\n\tpublic final void build(final IntPair[]\
+    \ a) {\n\t\tassert n == a.length;\n\t\tfor(int k = 0; k < n; ++k) {\n\t\t\tdata[k\
+    \ + sz] = a[k];\n\t\t}\n\t\tfor(int k = sz; --k > 0;) {\n\t\t\tupdate(k);\n\t\t\
+    }\n\t}\n\t/**\n\t * k\u756A\u76EE\u306E\u8981\u7D20\u3092x\u306B\u66F4\u65B0\u3059\
+    \u308B\n\t * @param k\n\t * @param x\n\t */\n\tpublic final void set(int k, final\
+    \ IntPair x) {\n\t\tk += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(k\
+    \ >> i);\n\t\t}\n\t\tdata[k] = x;\n\t\tfor(int i = 0; ++i <= h;) {\n\t\t\tupdate(k\
+    \ >> i);\n\t\t}\n\t}\n\t/**\n\t * @param k\n\t * @return k\u756A\u76EE\u306E\u8981\
+    \u7D20\n\t */\n\tpublic final long get(int k) {\n\t\tk += sz;\n\t\tfor(int i =\
+    \ h; i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\t\t}\n\t\treturn data[k].first.longValue();\n\
+    \t}\n\t/**\n\t * @param l\n\t * @param r\n\t * @return \u534A\u958B\u533A\u9593\
+    [l, r)\u306B\u3064\u3044\u3066\u4E8C\u9805\u6F14\u7B97\u3057\u305F\u7D50\u679C\
+    \n\t */\n\tpublic final long query(int l, int r) {\n\t\tif(l >= r) {\n\t\t\treturn\
+    \ e.first.longValue();\n\t\t}\n\t\tl += sz;\n\t\tr += sz;\n\t\tfor(int i = h;\
+    \ i > 0; i--) {\n\t\t\tif(((l >> i) << i) != l) {\n\t\t\t\tpropagate(l >> i);\n\
+    \t\t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\t\t\tpropagate((r - 1) >> i);\n\t\
+    \t\t}\n\t\t}\n\t\tIntPair l2 = e, r2 = e;\n\t\tfor(; l < r; l >>= 1, r >>= 1)\
+    \ {\n\t\t\tif(l % 2 == 1) {\n\t\t\t\tl2 = f.apply(l2, data[l++]);\n\t\t\t}\n\t\
+    \t\tif(r % 2 == 1) {\n\t\t\t\tr2 = f.apply(data[--r], r2);\n\t\t\t}\n\t\t}\n\t\
+    \treturn f.apply(l2, r2).first.longValue();\n\t}\n\t/**\n\t * @return \u5168\u4F53\
+    \u3092\u4E8C\u9805\u6F14\u7B97\u3057\u305F\u7D50\u679C\n\t */\n\tpublic final\
+    \ long all(){ return data[1].first.longValue(); }\n\t/**\n\t * k\u756A\u76EE\u306E\
+    \u8981\u7D20\u306B\u4F5C\u7528\u7D20x\u3092\u9069\u7528\u3059\u308B\n\t * @param\
+    \ k\n\t * @param x\n\t */\n\tpublic final void apply(int k, final long x) {\n\t\
+    \tk += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\t\t}\n\
+    \t\tdata[k] = map.apply(data[k], x);\n\t\tfor(int i = 0; ++i <= h;) {\n\t\t\t\
+    update(k >> i);\n\t\t}\n\t}\n\t/**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306B\u3064\
+    \u3044\u3066\u4F5C\u7528\u7D20x\u3092\u9069\u7528\u3059\u308B\n\t * @param l\n\
+    \t * @param r\n\t * @param x\n\t */\n\tpublic final void apply(int l, int r, final\
+    \ long x) {\n\t\tif(l >= r) {\n\t\t\treturn;\n\t\t}\n\t\tl += sz;\n\t\tr += sz;\n\
+    \t\tfor(int i = h; i > 0; i--) {\n\t\t\tif(((l >> i) << i) != l) {\n\t\t\t\tpropagate(l\
+    \ >> i);\n\t\t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\t\t\tpropagate((r - 1)\
+    \ >> i);\n\t\t\t}\n\t\t}\n\t\tint l2 = l, r2 = r;\n\t\tfor(; l < r; l >>= 1, r\
+    \ >>= 1) {\n\t\t\tif(l % 2 == 1) {\n\t\t\t\tallApply(l++, x);\n\t\t\t}\n\t\t\t\
+    if(r % 2 == 1) {\n\t\t\t\tallApply(--r, x);\n\t\t\t}\n\t\t}\n\t\tl = l2;\n\t\t\
+    r = r2;\n\t\tfor(int i = 0; ++i <= h;) {\n\t\t\tif(((l >> i) << i) != l) {\n\t\
+    \t\t\tupdate(l >> i);\n\t\t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\t\t\tupdate((r\
+    \ - 1) >> i);\n\t\t\t}\n\t\t}\n\t}\n\t/**\n\t * @param l\n\t * @param fn\n\t *\
+    \ @return \u534A\u958B\u533A\u9593[l, x)\u304Cfn\u3092\u6E80\u305F\u3059\u6700\
+    \u521D\u306E\u8981\u7D20\u4F4D\u7F6Ex\n\t * if non-existence: n\n\t */\n\tpublic\
+    \ final int findFirst(int l, final LongPredicate fn) {\n\t\tif(l >= n) {\n\t\t\
+    \treturn n;\n\t\t}\n\t\tl += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(l\
+    \ >> i);\n\t\t}\n\t\tIntPair sum = e;\n\t\tdo {\n\t\t\twhile((l & 1) == 0) {\n\
+    \t\t\t\tl >>= 1;\n\t\t\t}\n\t\t\tif(fn.test(f.apply(sum, data[l]).first.longValue()))\
+    \ {\n\t\t\t\twhile(l < sz) {\n\t\t\t\t\tpropagate(l);\n\t\t\t\t\tl <<= 1;\n\t\t\
+    \t\t\tfinal IntPair nxt = f.apply(sum, data[l]);\n\t\t\t\t\tif(!fn.test(nxt.first.longValue()))\
     \ {\n\t\t\t\t\t\tsum = nxt;\n\t\t\t\t\t\tl++;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t\
     return l + 1 - sz;\n\t\t\t}\n\t\t\tsum = f.apply(sum, data[l++]);\n\t\t} while((l\
-    \ & -l) != l);\n\t\treturn n;\n\t}\n\tfinal int findLast(int r, final LongPredicate\
-    \ fn) {\n\t\tif(r <= 0) {\n\t\t\treturn -1;\n\t\t}\n\t\tr += sz;\n\t\tfor(int\
-    \ i = h; i > 0; i--) {\n\t\t\tpropagate((r - 1) >> i);\n\t\t}\n\t\tIntPair sum\
-    \ = e;\n\t\tdo {\n\t\t\tr--;\n\t\t\twhile(r > 1 && r % 2 == 1) {\n\t\t\t\tr >>=\
-    \ 1;\n\t\t\t}\n\t\t\tif(fn.test(f.apply(data[r], sum).first.longValue())) {\n\t\
-    \t\t\twhile(r < sz) {\n\t\t\t\t\tpropagate(r);\n\t\t\t\t\tr = (r << 1) + 1;\n\t\
-    \t\t\t\tfinal IntPair nxt = f.apply(data[r], sum);\n\t\t\t\t\tif(!fn.test(nxt.first.longValue()))\
-    \ {\n\t\t\t\t\t\tsum = nxt;\n\t\t\t\t\t\tr--;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t\
-    return r - sz;\n\t\t\t}\n\t\t\tsum = f.apply(data[r], sum);\n\t\t} while((r &\
-    \ -r) != r);\n\t\treturn -1;\n\t}\n\tfinal void clear(){ Arrays.fill(data, e);\
-    \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
-    \ sb = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i <\
-    \ n; ++i) {\n\t\t\tsb.append(' ');\n\t\t\tsb.append(get(i));\n\t\t}\n\t\treturn\
-    \ sb.toString();\n\t}\n}"
+    \ & -l) != l);\n\t\treturn n;\n\t}\n\t/**\n\t * @param r\n\t * @param fn\n\t *\
+    \ @return \u534A\u958B\u533A\u9593[x, r)\u304Cfn\u3092\u6E80\u305F\u3059\u6700\
+    \u5F8C\u306E\u8981\u7D20\u4F4D\u7F6Ex\n\t * if non-existence: \u22121\n\t */\n\
+    \tpublic final int findLast(int r, final LongPredicate fn) {\n\t\tif(r <= 0) {\n\
+    \t\t\treturn -1;\n\t\t}\n\t\tr += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\t\
+    propagate((r - 1) >> i);\n\t\t}\n\t\tIntPair sum = e;\n\t\tdo {\n\t\t\tr--;\n\t\
+    \t\twhile(r > 1 && r % 2 == 1) {\n\t\t\t\tr >>= 1;\n\t\t\t}\n\t\t\tif(fn.test(f.apply(data[r],\
+    \ sum).first.longValue())) {\n\t\t\t\twhile(r < sz) {\n\t\t\t\t\tpropagate(r);\n\
+    \t\t\t\t\tr = (r << 1) + 1;\n\t\t\t\t\tfinal IntPair nxt = f.apply(data[r], sum);\n\
+    \t\t\t\t\tif(!fn.test(nxt.first.longValue())) {\n\t\t\t\t\t\tsum = nxt;\n\t\t\t\
+    \t\t\tr--;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn r - sz;\n\t\t\t}\n\t\t\tsum\
+    \ = f.apply(data[r], sum);\n\t\t} while((r & -r) != r);\n\t\treturn -1;\n\t}\n\
+    \t/**\n\t * \u8981\u7D20\u3092\u30EA\u30BB\u30C3\u30C8\u3059\u308B\n\t */\n\t\
+    public final void clear(){ Arrays.fill(data, e); }\n\t@Override\n\tpublic final\
+    \ String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\t\
+    sb.append(get(0));\n\t\tfor(int i = 0; ++i < n; ++i) {\n\t\t\tsb.append(' ');\n\
+    \t\t\tsb.append(get(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
   dependsOn:
   - Java/AOJ.java
   - Java/yukicoder.java
@@ -666,7 +686,7 @@ data:
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
   - Java/All.java
-  timestamp: '2024-02-13 14:52:26+09:00'
+  timestamp: '2024-02-13 21:05:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java

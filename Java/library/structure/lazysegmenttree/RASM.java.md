@@ -447,12 +447,12 @@ data:
   code: "package library.structure.lazysegmenttree;\n\nimport library.structure.pair.IntPair;\n\
     \n/**\n * Range Add Range Sum\n * \u533A\u9593\u52A0\u7B97, \u533A\u9593\u548C\
     \n */\npublic final class RASM extends LazySegmentTreePair {\n\tprivate final\
-    \ int n;\n\tprivate final IntPair[] b;\n\tRASM(final int[] a) {\n\t\tsuper(a.length,\
+    \ int n;\n\tprivate final IntPair[] b;\n\tpublic RASM(final int[] a) {\n\t\tsuper(a.length,\
     \ (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue()\
     \ * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0, 0), 0);\n\t\tn =\
     \ a.length;\n\t\tb = new IntPair[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\
-    b[i] = IntPair.of(a[i], 1);\n\t\t}\n\t\tbuild(b);\n\t}\n\tRASM(final long[] a)\
-    \ {\n\t\tsuper(a.length, (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.first.longValue()\
+    b[i] = IntPair.of(a[i], 1);\n\t\t}\n\t\tbuild(b);\n\t}\n\tpublic RASM(final long[]\
+    \ a) {\n\t\tsuper(a.length, (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.first.longValue()\
     \ + x.second.longValue() * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0,\
     \ 0), 0);\n\t\tn = a.length;\n\t\tb = new IntPair[n];\n\t\tfor(int i = 0; i <\
     \ n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i], 1);\n\t\t}\n\t\tbuild(b);\n\t}\n}"
@@ -604,7 +604,7 @@ data:
   - Java/library/other/SuffixArray.java
   - Java/library/other/PrefixSum.java
   - Java/All.java
-  timestamp: '2024-02-13 14:52:26+09:00'
+  timestamp: '2024-02-13 21:05:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/lazysegmenttree/RASM.java
