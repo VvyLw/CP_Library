@@ -18,9 +18,7 @@ private:
     const C comp;
     const T e;
     const U id;
-    inline void update(const int k) {
-        data[k] = f(data[2 * k + 0], data[2 * k + 1]);
-    }
+    inline void update(const int k){ data[k] = f(data[2 * k], data[2 * k + 1]); }
     inline void all_apply(const int k, const U &x) {
         data[k] = map(data[k], x);
         if(k < sz) {
@@ -29,7 +27,7 @@ private:
     }
     inline void propagate(const int k) {
         if(lazy[k] != id) {
-            all_apply(2 * k + 0, lazy[k]);
+            all_apply(2 * k, lazy[k]);
             all_apply(2 * k + 1, lazy[k]);
             lazy[k] = id;
         }
@@ -98,7 +96,7 @@ public:
         }
         return f(L, R);
     }
-    T all_query() const { return data[1]; }
+    T all() const { return data[1]; }
     void apply(int k, const U &x) {
         k += sz;
         for(int i = h; i > 0; i--) {
@@ -123,18 +121,16 @@ public:
                 propagate((r - 1) >> i);
             }
         }
-        {
-            int l2 = l, r2 = r;
-            for(; l < r; l >>= 1, r >>= 1) {
-                if(l & 1) {
-                    all_apply(l++, x);
-                }
-                if(r & 1) {
-                    all_apply(--r, x);
-                }
+        int l2 = l, r2 = r;
+        for(; l < r; l >>= 1, r >>= 1) {
+            if(l & 1) {
+                all_apply(l++, x);
             }
-            l = l2, r = r2;
+            if(r & 1) {
+                all_apply(--r, x);
+            }
         }
+        l = l2, r = r2;
         for(int i = 0; ++i <= h;) {
             if(((l >> i) << i) != l) {
                 update(l >> i);
@@ -204,7 +200,11 @@ public:
         } while((r & -r) != r);
         return -1;
     }
-    void clear(){ data.assign(n, e); }
+    void clear() {
+        for(auto &el: data) {
+            el = e;
+        }
+    }
     friend std::ostream &operator<<(std::ostream &os, const LazySegTree &seg) {
         os << seg[0];
         for(int i = 0; ++i < seg.size();) {
@@ -225,14 +225,14 @@ template <class T> struct zwei {
     }
 };
 
-template <class T> struct RAQRMX: LazySegTree<T, T> {    
-    RAQRMX(const std::vector<T> &v, const T &e): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a, b); }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return a + b; }, e, 0){ LazySegTree<T, T>::build(v); }
+template <class T> struct RAMX: LazySegTree<T, T> {    
+    RAMX(const std::vector<T> &v, const T &e): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a, b); }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return a + b; }, e, 0){}
 };
-template <class T> struct RAQRMN: LazySegTree<T, T> {
-    RAQRMN(const std::vector<T> &v, const T &e): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return a + b; }, e, 0){ LazySegTree<T, T>::build(v); }
+template <class T> struct RAMN: LazySegTree<T, T> {
+    RAMN(const std::vector<T> &v, const T &e): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return a + b; }, e, 0){}
 };
-template <class T> struct RAQRSM: LazySegTree<zwei<T>, T> {
-    RAQRSM(const std::vector<T> &v): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first * b.first, a.second * b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.first + a.second * b, a.second); }, [](const T a, const T b){ return a + b; }, zwei<T>(0, 0), 0) {
+template <class T> struct RASM: LazySegTree<zwei<T>, T> {
+    RASM(const std::vector<T> &v): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first * b.first, a.second * b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.first + a.second * b, a.second); }, [](const T a, const T b){ return a + b; }, zwei<T>(0, 0), 0) {
         std::vector<zwei<T>> w(v.size());
         for(size_t i = 0; i < v.size(); ++i) {
             w[i] = zwei<T>(v[i], 1);
@@ -240,14 +240,14 @@ template <class T> struct RAQRSM: LazySegTree<zwei<T>, T> {
         LazySegTree<zwei<T>, T>::build(w);
     }
 };
-template <class T> struct RUQRMX: LazySegTree<T, T> {    
-    RUQRMX(const std::vector<T> &v, const T &eid): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a, b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b; }, eid, eid){ LazySegTree<T, T>::build(v); }
+template <class T> struct RUMX: LazySegTree<T, T> {    
+    RUMX(const std::vector<T> &v, const T &eid): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a, b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b; }, eid, eid){}
 };
-template <class T> struct RUQRMN: LazySegTree<T, T> {
-    RUQRMN(const std::vector<T> &v, const T &eid): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b; }, eid, eid){ LazySegTree<T, T>::build(v); }
+template <class T> struct RUMN: LazySegTree<T, T> {
+    RUMN(const std::vector<T> &v, const T &eid): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b; }, eid, eid){}
 };
-template <class T> struct RUQRSM: LazySegTree<zwei<T>, T> {
-    RUQRSM(const std::vector<T> &v, const T &id): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first * b.first, a.second * b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.first + a.second * b, a.second); }, [](const T a, const T b){ return a + b; }, zwei<T>(0, 0), id) {
+template <class T> struct RUSM: LazySegTree<zwei<T>, T> {
+    RUSM(const std::vector<T> &v, const T &id): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first * b.first, a.second * b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.first + a.second * b, a.second); }, [](const T a, const T b){ return a + b; }, zwei<T>(0, 0), id) {
         std::vector<zwei<T>> w(v.size());
         for(size_t i = 0; i < v.size(); ++i) {
             w[i] = zwei<T>(v[i], 1);
