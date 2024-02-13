@@ -10,8 +10,10 @@ import library.structure.pair.IntPair;
 
 /**
  * 遅延セグ木
- * {@link RASM}, {@link RUSM}を使うのに必要
+ * RASM, RUSMを使うのに必要
  * @see LazySegmentTree
+ * @see RASM
+ * @see RUSM
  */
 public class LazySegmentTreePair {
 	private int n, sz, h;
@@ -36,7 +38,16 @@ public class LazySegmentTreePair {
 			lazy[k] = id;
 		}
 	}
-	LazySegmentTreePair(final int n, final BinaryOperator<IntPair> f, final BiFunction<IntPair, Long, IntPair> map, final LongBinaryOperator comp, final IntPair e, final long id) {
+	/**
+	 * コンストラクタ
+	 * @param n
+	 * @param f
+	 * @param map
+	 * @param comp
+	 * @param e
+	 * @param id
+	 */
+	public LazySegmentTreePair(final int n, final BinaryOperator<IntPair> f, final BiFunction<IntPair, Long, IntPair> map, final LongBinaryOperator comp, final IntPair e, final long id) {
 		this.n = n;
 		this.f = f;
 		this.map = map;
@@ -54,11 +65,24 @@ public class LazySegmentTreePair {
 		lazy = new long[2 * sz];
 		Arrays.fill(lazy, id);
 	}
-	LazySegmentTreePair(final IntPair[] a, final BinaryOperator<IntPair> f, final BiFunction<IntPair, Long, IntPair> map, final LongBinaryOperator comp, final IntPair e, final long id) {
+	/**
+	 * コンストラクタ
+	 * @param a
+	 * @param f
+	 * @param map
+	 * @param comp
+	 * @param e
+	 * @param id
+	 */
+	public LazySegmentTreePair(final IntPair[] a, final BinaryOperator<IntPair> f, final BiFunction<IntPair, Long, IntPair> map, final LongBinaryOperator comp, final IntPair e, final long id) {
 		this(a.length, f, map, comp, e, id);
 		build(a);
 	}
-	final void build(final IntPair[] a) {
+	/**
+	 * 構築
+	 * @param a
+	 */
+	public final void build(final IntPair[] a) {
 		assert n == a.length;
 		for(int k = 0; k < n; ++k) {
 			data[k + sz] = a[k];
@@ -67,7 +91,12 @@ public class LazySegmentTreePair {
 			update(k);
 		}
 	}
-	final void set(int k, final IntPair x) {
+	/**
+	 * k番目の要素をxに更新する
+	 * @param k
+	 * @param x
+	 */
+	public final void set(int k, final IntPair x) {
 		k += sz;
 		for(int i = h; i > 0; i--) {
 			propagate(k >> i);
@@ -77,14 +106,23 @@ public class LazySegmentTreePair {
 			update(k >> i);
 		}
 	}
-	final long get(int k) {
+	/**
+	 * @param k
+	 * @return k番目の要素
+	 */
+	public final long get(int k) {
 		k += sz;
 		for(int i = h; i > 0; i--) {
 			propagate(k >> i);
 		}
 		return data[k].first.longValue();
 	}
-	final long query(int l, int r) {
+	/**
+	 * @param l
+	 * @param r
+	 * @return 半開区間[l, r)について二項演算した結果
+	 */
+	public final long query(int l, int r) {
 		if(l >= r) {
 			return e.first.longValue();
 		}
@@ -109,8 +147,16 @@ public class LazySegmentTreePair {
 		}
 		return f.apply(l2, r2).first.longValue();
 	}
-	final long all(){ return data[1].first.longValue(); }
-	final void apply(int k, final long x) {
+	/**
+	 * @return 全体を二項演算した結果
+	 */
+	public final long all(){ return data[1].first.longValue(); }
+	/**
+	 * k番目の要素に作用素xを適用する
+	 * @param k
+	 * @param x
+	 */
+	public final void apply(int k, final long x) {
 		k += sz;
 		for(int i = h; i > 0; i--) {
 			propagate(k >> i);
@@ -120,7 +166,13 @@ public class LazySegmentTreePair {
 			update(k >> i);
 		}
 	}
-	final void apply(int l, int r, final long x) {
+	/**
+	 * 半開区間[l, r)について作用素xを適用する
+	 * @param l
+	 * @param r
+	 * @param x
+	 */
+	public final void apply(int l, int r, final long x) {
 		if(l >= r) {
 			return;
 		}
@@ -154,7 +206,13 @@ public class LazySegmentTreePair {
 			}
 		}
 	}
-	final int findFirst(int l, final LongPredicate fn) {
+	/**
+	 * @param l
+	 * @param fn
+	 * @return 半開区間[l, x)がfnを満たす最初の要素位置x
+	 * if non-existence: n
+	 */
+	public final int findFirst(int l, final LongPredicate fn) {
 		if(l >= n) {
 			return n;
 		}
@@ -183,7 +241,13 @@ public class LazySegmentTreePair {
 		} while((l & -l) != l);
 		return n;
 	}
-	final int findLast(int r, final LongPredicate fn) {
+	/**
+	 * @param r
+	 * @param fn
+	 * @return 半開区間[x, r)がfnを満たす最後の要素位置x
+	 * if non-existence: −1
+	 */
+	public final int findLast(int r, final LongPredicate fn) {
 		if(r <= 0) {
 			return -1;
 		}
@@ -213,7 +277,10 @@ public class LazySegmentTreePair {
 		} while((r & -r) != r);
 		return -1;
 	}
-	final void clear(){ Arrays.fill(data, e); }
+	/**
+	 * 要素をリセットする
+	 */
+	public final void clear(){ Arrays.fill(data, e); }
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
