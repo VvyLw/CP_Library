@@ -10,9 +10,8 @@ import library.structure.pair.IntPair;
 
 /**
  * 遅延セグ木
- * RASM, RUSMを使うのに必要
+ * RUSMを使うのに必要
  * @see LazySegmentTree
- * @see RASM
  * @see RUSM
  */
 public class LazySegmentTreePair {

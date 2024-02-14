@@ -4133,47 +4133,25 @@ class LazySegmentTreePair {
 	}
 }
 final class RAMX extends LazySegmentTree {
-	RAMX(final int[] a, final int e){ super(a, (x, y) -> max(x, y), (x, y) -> x + y, (x, y) -> x + y, e, 0); }
+	RAMX(final int[] a, final long e){ super(a, (x, y) -> max(x, y), (x, y) -> x + y, (x, y) -> x + y, e, 0); }
 	RAMX(final long[] a, final long e){ super(a, (x, y) -> max(x, y), (x, y) -> x + y, (x, y) -> x + y, e, 0); }
 }
 final class RAMN extends LazySegmentTree {
-	RAMN(final int[] a, final int e){ super(a, (x, y) -> min(x, y), (x, y) -> x + y, (x, y) -> x + y, e, 0); }
+	RAMN(final int[] a, final long e){ super(a, (x, y) -> min(x, y), (x, y) -> x + y, (x, y) -> x + y, e, 0); }
 	RAMN(final long[] a, final long e){ super(a, (x, y) -> min(x, y), (x, y) -> x + y, (x, y) -> x + y, e, 0); }
 }
-final class RASM extends LazySegmentTreePair {
-	private final int n;
-	private final IntPair[] b;
-	RASM(final int[] a) {
-		super(a.length, (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue() * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0, 0), 0);
-		n = a.length;
-		b = new IntPair[n];
-		for(int i = 0; i < n; ++i) {
-			b[i] = IntPair.of(a[i], 1);
-		}
-		build(b);
-	}
-	RASM(final long[] a) {
-		super(a.length, (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue() * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0, 0), 0);
-		n = a.length;
-		b = new IntPair[n];
-		for(int i = 0; i < n; ++i) {
-			b[i] = IntPair.of(a[i], 1);
-		}
-		build(b);
-	}
-}
 final class RUMX extends LazySegmentTree {
-	RUMX(final int[] a, final int eid){ super(a, (x, y) -> max(x, y), (x, y) -> y, (x, y) -> y, eid, eid); }
+	RUMX(final int[] a, final long eid){ super(a, (x, y) -> max(x, y), (x, y) -> y, (x, y) -> y, eid, eid); }
 	RUMX(final long[] a, final long eid){ super(a, (x, y) -> max(x, y), (x, y) -> y, (x, y) -> y, eid, eid); }
 }
 final class RUMN extends LazySegmentTree {
-	RUMN(final int[] a, final int eid){ super(a, (x, y) -> min(x, y), (x, y) -> y, (x, y) -> y, eid, eid); }
+	RUMN(final int[] a, final long eid){ super(a, (x, y) -> min(x, y), (x, y) -> y, (x, y) -> y, eid, eid); }
 	RUMN(final long[] a, final long eid){ super(a, (x, y) -> min(x, y), (x, y) -> y, (x, y) -> y, eid, eid); }
 }
 final class RUSM extends LazySegmentTreePair {
 	private final int n;
 	private final IntPair[] b;
-	RUSM(final int[] a, final int id) {
+	RUSM(final int[] a, final long id) {
 		super(a.length, (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue() * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0, 0), id);
 		n = a.length;
 		b = new IntPair[n];
