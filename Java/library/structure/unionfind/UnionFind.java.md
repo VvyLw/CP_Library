@@ -179,9 +179,6 @@ data:
     path: Java/library/structure/lazysegmenttree/RAMX.java
     title: Java/library/structure/lazysegmenttree/RAMX.java
   - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RASM.java
-    title: Java/library/structure/lazysegmenttree/RASM.java
-  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUMN.java
     title: Java/library/structure/lazysegmenttree/RUMN.java
   - icon: ':warning:'
@@ -396,9 +393,6 @@ data:
     path: Java/library/structure/lazysegmenttree/RAMX.java
     title: Java/library/structure/lazysegmenttree/RAMX.java
   - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RASM.java
-    title: Java/library/structure/lazysegmenttree/RASM.java
-  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUMN.java
     title: Java/library/structure/lazysegmenttree/RUMN.java
   - icon: ':warning:'
@@ -527,7 +521,6 @@ data:
   - Java/library/structure/lazysegmenttree/RUSM.java
   - Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - Java/library/structure/lazysegmenttree/RUMN.java
-  - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
@@ -602,7 +595,6 @@ data:
   - Java/library/structure/lazysegmenttree/RUSM.java
   - Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - Java/library/structure/lazysegmenttree/RUMN.java
-  - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
