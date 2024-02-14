@@ -231,15 +231,6 @@ template <class T> struct RAMX: LazySegTree<T, T> {
 template <class T> struct RAMN: LazySegTree<T, T> {
     RAMN(const std::vector<T> &v, const T &e): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return a + b; }, e, 0){}
 };
-template <class T> struct RASM: LazySegTree<zwei<T>, T> {
-    RASM(const std::vector<T> &v): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first * b.first, a.second * b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.first + a.second * b, a.second); }, [](const T a, const T b){ return a + b; }, zwei<T>(0, 0), 0) {
-        std::vector<zwei<T>> w(v.size());
-        for(size_t i = 0; i < v.size(); ++i) {
-            w[i] = zwei<T>(v[i], 1);
-        }
-        LazySegTree<zwei<T>, T>::build(w);
-    }
-};
 template <class T> struct RUMX: LazySegTree<T, T> {    
     RUMX(const std::vector<T> &v, const T &eid): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a, b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b; }, eid, eid){}
 };
