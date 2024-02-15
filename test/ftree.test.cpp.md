@@ -486,7 +486,7 @@ data:
     \ sum(r) - sum(l - 1); }\r\n    // get value of k\r\n    inline T operator[](int\
     \ k) const { return sum(k) - sum(k - 1); }\r\n    // data[k] += x\r\n    void\
     \ add(int k, T x) {\r\n        for(++k; k < N; k += k & -k) data[k] += x;\r\n\
-    \    }\r\n    // range add x to [l,r]\r\n    void imos(int l, int r, T x) {\r\n\
+    \    }\r\n    // range add x to [l,r]\r\n    void add(int l, int r, T x) {\r\n\
     \        add(l, x);\r\n        add(r + 1, -x);\r\n    }\r\n    // minimize i s.t.\
     \ sum(i) >= w\r\n    int lower_bound(T w) {\r\n        if(w <= 0) return 0;\r\n\
     \        int x = 0;\r\n        for(int k = 1 << std::__lg(N); k; k >>= 1) {\r\n\
@@ -529,7 +529,7 @@ data:
   isVerificationFile: true
   path: test/ftree.test.cpp
   requiredBy: []
-  timestamp: '2024-02-02 17:06:08+09:00'
+  timestamp: '2024-02-15 21:15:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/ftree.test.cpp

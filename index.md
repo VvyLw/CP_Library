@@ -345,6 +345,9 @@ data:
       path: test/ftree.test.cpp
       title: test/ftree.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/fwtree2.test.cpp
+      title: test/fwtree2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/inv_num.test.cpp
       title: test/inv_num.test.cpp
     - icon: ':heavy_check_mark:'
@@ -356,6 +359,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/lazysegtree.test.cpp
       title: test/lazysegtree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/lazysegtree2.test.cpp
+      title: test/lazysegtree2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/lca.test.cpp
       title: test/lca.test.cpp

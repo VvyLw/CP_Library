@@ -11,10 +11,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_5_D
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_E
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_5_D
-  bundledCode: "#line 1 \"test/inv_num.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_5_D\"\
+    - https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_E
+  bundledCode: "#line 1 \"test/fwtree2.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_E\"\
     \n#include <iostream>\n#line 2 \"C++/FenwickTree.hpp\"\n\r\n#include <vector>\r\
     \ntemplate <class T> struct FenwickTree {\r\nprivate:\r\n    int N;\r\n    std::vector<T>\
     \ data;\r\n    void init(const size_t size) {\r\n        N = size + 2;\r\n   \
@@ -48,25 +48,33 @@ data:
     \n    for(size_t i = 0; i < a.size(); ++i) {\r\n        res += i - bit.sum(id[i]);\r\
     \n        bit.add(id[i], 1);\r\n    }\r\n    return res;\r\n}\r\n/**\r\n * @brief\
     \ Binary Indexed Tree\r\n * @see https://github.com/NyaanNyaan/library/blob/master/data-structure/binary-indexed-tree.hpp\r\
-    \n */\n#line 4 \"test/inv_num.test.cpp\"\nint main() {\n    int n;\n    std::cin\
-    \ >> n;\n    std::vector<int> a(n);\n    for(auto &el: a) {\n        std::cin\
-    \ >> el;\n    }\n    std::cout << inv_num(a) << '\\n';\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_5_D\"\n\
-    #include <iostream>\n#include \"C++/FenwickTree.hpp\"\nint main() {\n    int n;\n\
-    \    std::cin >> n;\n    std::vector<int> a(n);\n    for(auto &el: a) {\n    \
-    \    std::cin >> el;\n    }\n    std::cout << inv_num(a) << '\\n';\n}"
+    \n */\n#line 4 \"test/fwtree2.test.cpp\"\nint main() {\n    std::cin.tie(nullptr)\
+    \ -> sync_with_stdio(false);\n    int n, q;\n    std::cin >> n >> q;\n    FenwickTree<int64_t>\
+    \ bit(n);\n    while(q--) {\n        int h;\n        std::cin >> h;\n        if(h\
+    \ == 0) {\n            int s, t, x;\n            std::cin >> s >> t >> x;\n  \
+    \          bit.add(--s, --t, x);\n        } else {\n            int i;\n     \
+    \       std::cin >> i;\n            std::cout << bit.sum(--i) << '\\n';\n    \
+    \    }\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_E\"\n#include\
+    \ <iostream>\n#include \"C++/FenwickTree.hpp\"\nint main() {\n    std::cin.tie(nullptr)\
+    \ -> sync_with_stdio(false);\n    int n, q;\n    std::cin >> n >> q;\n    FenwickTree<int64_t>\
+    \ bit(n);\n    while(q--) {\n        int h;\n        std::cin >> h;\n        if(h\
+    \ == 0) {\n            int s, t, x;\n            std::cin >> s >> t >> x;\n  \
+    \          bit.add(--s, --t, x);\n        } else {\n            int i;\n     \
+    \       std::cin >> i;\n            std::cout << bit.sum(--i) << '\\n';\n    \
+    \    }\n    }\n}"
   dependsOn:
   - C++/FenwickTree.hpp
   isVerificationFile: true
-  path: test/inv_num.test.cpp
+  path: test/fwtree2.test.cpp
   requiredBy: []
   timestamp: '2024-02-15 21:15:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/inv_num.test.cpp
+documentation_of: test/fwtree2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/inv_num.test.cpp
-- /verify/test/inv_num.test.cpp.html
-title: test/inv_num.test.cpp
+- /verify/test/fwtree2.test.cpp
+- /verify/test/fwtree2.test.cpp.html
+title: test/fwtree2.test.cpp
 ---
