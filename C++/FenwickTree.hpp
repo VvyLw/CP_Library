@@ -34,7 +34,7 @@ public:
         for(++k; k < N; k += k & -k) data[k] += x;
     }
     // range add x to [l,r]
-    void imos(int l, int r, T x) {
+    void add(int l, int r, T x) {
         add(l, x);
         add(r + 1, -x);
     }
