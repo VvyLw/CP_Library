@@ -72,7 +72,7 @@ public final class FenwickTree {
 	 * @param r
 	 * @param x
 	 */
-	public final void imos(final int l, final int r, long x) {
+	public final void add(final int l, final int r, long x) {
 		add(l, x);
 		add(r + 1, -x);
 	}
