@@ -3,7 +3,6 @@
 #include <ostream>
 #include <cassert>
 #include <vector>
-#include <cmath>
 #include <functional>
 template <class T, class U> struct LazySegTree {
 private:
@@ -214,6 +213,10 @@ public:
     }
 };
 
+
+#include <cmath>
+#include <limits>
+
 template <class T> struct zwei {
     T first, second;
     zwei(){}
@@ -226,19 +229,19 @@ template <class T> struct zwei {
 };
 
 template <class T> struct RAMX: LazySegTree<T, T> {    
-    RAMX(const std::vector<T> &v, const T &e): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a, b); }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return a + b; }, e, 0){}
+    RAMX(const std::vector<T> &v): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a, b); }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return a + b; }, std::numeric_limits<T>::min(), 0){}
 };
 template <class T> struct RAMN: LazySegTree<T, T> {
-    RAMN(const std::vector<T> &v, const T &e): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return a + b; }, e, 0){}
+    RAMN(const std::vector<T> &v): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return a + b; }, std::numeric_limits<T>::max(), 0){}
 };
 template <class T> struct RUMX: LazySegTree<T, T> {    
-    RUMX(const std::vector<T> &v, const T &eid): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a, b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b; }, eid, eid){}
+    RUMX(const std::vector<T> &v, const T &eid): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a, b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b; }, std::numeric_limits<T>::min(), std::numeric_limits<T>::min()){}
 };
 template <class T> struct RUMN: LazySegTree<T, T> {
-    RUMN(const std::vector<T> &v, const T &eid): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b; }, eid, eid){}
+    RUMN(const std::vector<T> &v, const T &eid): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b; }, std::numeric_limits<T>::max(), std::numeric_limits<T>::max()){}
 };
 template <class T> struct RUSM: LazySegTree<zwei<T>, T> {
-    RUSM(const std::vector<T> &v, const T &id): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first * b.first, a.second * b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.second * b, a.second); }, [](const T a, const T b){ return a + b; }, zwei<T>(0, 0), id) {
+    RUSM(const std::vector<T> &v): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first * b.first, a.second * b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.second * b, a.second); }, [](const T a, const T b){ return b; }, zwei<T>(0, 0), std::numeric_limits<T>::min()) {
         std::vector<zwei<T>> w(v.size());
         for(size_t i = 0; i < v.size(); ++i) {
             w[i] = zwei<T>(v[i], 1);

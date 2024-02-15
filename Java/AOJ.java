@@ -104,88 +104,6 @@ class Utility {
 	protected static final long[] sorted(final long[] a){ return Arrays.stream(a).sorted().toArray(); }
 	protected static final double[] sorted(final double[] a){ return Arrays.stream(a).sorted().toArray(); }
 	protected static final <T extends Comparable<? super T>> T[] sorted(final T[] a){ return Arrays.stream(a).sorted().toArray(n -> Arrays.copyOf(a, n)); }
-	protected static final void swap(final int[] a, final int i, final int j) {
-		a[i] ^= a[j];
-		a[j] ^= a[i];
-		a[i] ^= a[j];
-	}
-	protected static final void swap(final long[] a, final int i, final int j) {
-		a[i] ^= a[j];
-		a[j] ^= a[i];
-		a[i] ^= a[j];
-	}
-	protected static final void swap(final double[] a, final int i, final int j) {
-		final double tmp = a[i];
-		a[i] = a[j];
-		a[j] = tmp;
-	}
-	protected static final void swap(final char[] a, final int i, final int j) {
-		a[i] ^= a[j];
-		a[j] ^= a[i];
-		a[i] ^= a[j];
-	}
-	protected static final void swap(final boolean[] a, final int i, final int j) {
-		a[i] ^= a[j];
-		a[j] ^= a[i];
-		a[i] ^= a[j];
-	}
-	protected static final void swap(final Object[] a, final int i, final int j) {
-		final Object tmp = a[i];
-		a[i] = a[j];
-		a[j] = tmp;
-	}
-	protected static final void swap(final int[] a, final int[] b) {
-		assert a.length == b.length;
-		final int n = a.length;
-		final int[] c = a.clone();
-		System.arraycopy(b, 0, a, 0, n);
-		System.arraycopy(c, 0, b, 0, n);
-	}
-	protected static final void swap(final long[] a, final long[] b) {
-		assert a.length == b.length;
-		final int n = a.length;
-		final long[] c = a.clone();
-		System.arraycopy(b, 0, a, 0, n);
-		System.arraycopy(c, 0, b, 0, n);
-	}
-	protected static final void swap(final double[] a, final double[] b) {
-		assert a.length == b.length;
-		final int n = a.length;
-		final double[] c = a.clone();
-		System.arraycopy(b, 0, a, 0, n);
-		System.arraycopy(c, 0, b, 0, n);
-	}
-	protected static final void swap(final char[] a, final char[] b) {
-		assert a.length == b.length;
-		final int n = a.length;
-		final char[] c = a.clone();
-		System.arraycopy(b, 0, a, 0, n);
-		System.arraycopy(c, 0, b, 0, n);
-	}
-	protected static final void swap(final boolean[] a, final boolean[] b) {
-		assert a.length == b.length;
-		final int n = a.length;
-		final boolean[] c = a.clone();
-		System.arraycopy(b, 0, a, 0, n);
-		System.arraycopy(c, 0, b, 0, n);
-	}
-	protected static final void swap(final Object[] a, final Object[] b) {
-		assert a.length == b.length;
-		final int n = a.length;
-		final Object[] c = a.clone();
-		System.arraycopy(b, 0, a, 0, n);
-		System.arraycopy(c, 0, b, 0, n);
-	}
-	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<S, F>[] swap(final Pair<F, S>[] p) {
-		@SuppressWarnings("unchecked")
-		final Pair<S, F>[] q = new Pair[p.length];
-		IntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());
-		return q;
-	}
-	@SuppressWarnings("unchecked")
-	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> F[] first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i -> i.first).toArray(); }
-	@SuppressWarnings("unchecked")
-	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> S[] second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i -> i.second).toArray(); }
 }
 
 final class MyScanner implements Closeable, AutoCloseable {
@@ -700,7 +618,7 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>>, Cloneable {
 	public F first;
 	public S second;
-	private Pair(final F first, final S second) {
+	protected Pair(final F first, final S second) {
 		this.first = first;
 		this.second = second;
 	}
