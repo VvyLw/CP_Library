@@ -13,6 +13,7 @@
 "test/inv_num.test.cpp": "2024-01-30 14:40:09 +0900",
 "test/kruskal.test.cpp": "2024-02-08 03:21:21 +0900",
 "test/kthrooti.test.cpp": "2023-12-16 20:41:25 +0900",
+"test/lazysegtree.test.cpp": "2024-02-15 20:33:30 +0900",
 "test/lca.test.cpp": "2024-01-30 14:40:09 +0900",
 "test/lcpa.test.cpp": "2024-01-30 14:40:09 +0900",
 "test/m_add.test.cpp": "2024-02-02 17:06:08 +0900",
