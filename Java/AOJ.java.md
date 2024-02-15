@@ -503,45 +503,6 @@ data:
     \ }\n\tprotected static final double[] sorted(final double[] a){ return Arrays.stream(a).sorted().toArray();\
     \ }\n\tprotected static final <T extends Comparable<? super T>> T[] sorted(final\
     \ T[] a){ return Arrays.stream(a).sorted().toArray(n -> Arrays.copyOf(a, n));\
-    \ }\n\tprotected static final void swap(final int[] a, final int i, final int\
-    \ j) {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\tprotected\
-    \ static final void swap(final long[] a, final int i, final int j) {\n\t\ta[i]\
-    \ ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\tprotected static final\
-    \ void swap(final double[] a, final int i, final int j) {\n\t\tfinal double tmp\
-    \ = a[i];\n\t\ta[i] = a[j];\n\t\ta[j] = tmp;\n\t}\n\tprotected static final void\
-    \ swap(final char[] a, final int i, final int j) {\n\t\ta[i] ^= a[j];\n\t\ta[j]\
-    \ ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\tprotected static final void swap(final boolean[]\
-    \ a, final int i, final int j) {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i]\
-    \ ^= a[j];\n\t}\n\tprotected static final void swap(final Object[] a, final int\
-    \ i, final int j) {\n\t\tfinal Object tmp = a[i];\n\t\ta[i] = a[j];\n\t\ta[j]\
-    \ = tmp;\n\t}\n\tprotected static final void swap(final int[] a, final int[] b)\
-    \ {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\t\tfinal\
-    \ int[] c = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
-    \ 0, b, 0, n);\n\t}\n\tprotected static final void swap(final long[] a, final\
-    \ long[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\
-    \t\tfinal long[] c = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
-    \ 0, b, 0, n);\n\t}\n\tprotected static final void swap(final double[] a, final\
-    \ double[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\
-    \t\tfinal double[] c = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\t\
-    System.arraycopy(c, 0, b, 0, n);\n\t}\n\tprotected static final void swap(final\
-    \ char[] a, final char[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int\
-    \ n = a.length;\n\t\tfinal char[] c = a.clone();\n\t\tSystem.arraycopy(b, 0, a,\
-    \ 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t}\n\tprotected static final\
-    \ void swap(final boolean[] a, final boolean[] b) {\n\t\tassert a.length == b.length;\n\
-    \t\tfinal int n = a.length;\n\t\tfinal boolean[] c = a.clone();\n\t\tSystem.arraycopy(b,\
-    \ 0, a, 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t}\n\tprotected static\
-    \ final void swap(final Object[] a, final Object[] b) {\n\t\tassert a.length ==\
-    \ b.length;\n\t\tfinal int n = a.length;\n\t\tfinal Object[] c = a.clone();\n\t\
-    \tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t}\n\
-    \tprotected static final <F extends Comparable<? super F>, S extends Comparable<?\
-    \ super S>> Pair<S, F>[] swap(final Pair<F, S>[] p) {\n\t\t@SuppressWarnings(\"\
-    unchecked\")\n\t\tfinal Pair<S, F>[] q = new Pair[p.length];\n\t\tIntStream.range(0,\
-    \ p.length).forEach(i -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tprotected static final <F extends Comparable<? super F>, S extends\
-    \ Comparable<? super S>> F[] first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i\
-    \ -> i.first).toArray(); }\n\t@SuppressWarnings(\"unchecked\")\n\tprotected static\
-    \ final <F extends Comparable<? super F>, S extends Comparable<? super S>> S[]\
-    \ second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i -> i.second).toArray();\
     \ }\n}\n\nfinal class MyScanner implements Closeable, AutoCloseable {\n\tprivate\
     \ int pos, lim;\n\tprivate final byte[] buf;\n\tprivate final InputStream is;\n\
     \tprivate boolean check;\n\tMyScanner(final InputStream is) {\n\t\tthis.is = is;\n\
@@ -705,7 +666,7 @@ data:
     \t\t\tos = null;\n\t\t} catch(final IOException e) {\n\t\t\te.printStackTrace();\n\
     \t\t}\n\t}\n}\n\nclass Pair<F extends Comparable<? super F>, S extends Comparable<?\
     \ super S>> implements Comparable<Pair<F, S>>, Cloneable {\n\tpublic F first;\n\
-    \tpublic S second;\n\tprivate Pair(final F first, final S second) {\n\t\tthis.first\
+    \tpublic S second;\n\tprotected Pair(final F first, final S second) {\n\t\tthis.first\
     \ = first;\n\t\tthis.second = second;\n\t}\n\tstatic final <F extends Comparable<?\
     \ super F>, S extends Comparable<? super S>> Pair<F, S> of(final F a, final S\
     \ b){ return new Pair<>(a, b); }\n\tPair<S, F> swap(){ return Pair.of(second,\
@@ -867,7 +828,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/All.java
-  timestamp: '2024-02-15 06:21:11+09:00'
+  timestamp: '2024-02-15 20:33:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java

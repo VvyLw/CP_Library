@@ -654,7 +654,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-15 06:21:11+09:00'
+  timestamp: '2024-02-15 20:33:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/deque/IntDeque.java

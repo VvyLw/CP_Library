@@ -441,16 +441,15 @@ data:
   code: "package library.structure.lazysegmenttree;\n\nimport library.structure.pair.IntPair;\n\
     \n/**\n * Range Update Range Sum\n * \u533A\u9593\u66F4\u65B0, \u533A\u9593\u548C\
     \n */\npublic final class RUSM extends LazySegmentTreePair {\n\tprivate final\
-    \ int n;\n\tprivate final IntPair[] b;\n\tpublic RUSM(final int[] a, final long\
-    \ id) {\n\t\tsuper(a.length, (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.first.longValue()\
-    \ + x.second.longValue() * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0,\
-    \ 0), id);\n\t\tn = a.length;\n\t\tb = new IntPair[n];\n\t\tfor(int i = 0; i <\
-    \ n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i], 1);\n\t\t}\n\t\tbuild(b);\n\t}\n\t\
-    public RUSM(final long[] a, final long id) {\n\t\tsuper(a.length, (x, y) -> x.mul(y),\
-    \ (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()), (x, y)\
-    \ -> x + y, IntPair.of(0, 0), id);\n\t\tn = a.length;\n\t\tb = new IntPair[n];\n\
-    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i], 1);\n\t\t}\n\t\
-    \tbuild(b);\n\t}\n}"
+    \ int n;\n\tprivate final IntPair[] b;\n\tpublic RUSM(final int[] a) {\n\t\tsuper(a.length,\
+    \ (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()),\
+    \ (x, y) -> y, IntPair.of(0, 0), Integer.MIN_VALUE);\n\t\tn = a.length;\n\t\t\
+    b = new IntPair[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i],\
+    \ 1);\n\t\t}\n\t\tbuild(b);\n\t}\n\tpublic RUSM(final long[] a) {\n\t\tsuper(a.length,\
+    \ (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()),\
+    \ (x, y) -> y, IntPair.of(0, 0), Long.MIN_VALUE);\n\t\tn = a.length;\n\t\tb =\
+    \ new IntPair[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i],\
+    \ 1);\n\t\t}\n\t\tbuild(b);\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -597,7 +596,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-15 06:21:11+09:00'
+  timestamp: '2024-02-15 20:33:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/lazysegmenttree/RUSM.java

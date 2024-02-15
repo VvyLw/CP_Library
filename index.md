@@ -9,7 +9,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/LCA.hpp
       title: "\u6700\u5C0F\u5171\u901A\u7956\u5148"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: C++/LazySegmentTree.hpp
       title: "\u9045\u5EF6\u30BB\u30B0\u6728"
     - icon: ':heavy_check_mark:'
@@ -353,6 +353,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/kthrooti.test.cpp
       title: test/kthrooti.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/lazysegtree.test.cpp
+      title: test/lazysegtree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/lca.test.cpp
       title: test/lca.test.cpp

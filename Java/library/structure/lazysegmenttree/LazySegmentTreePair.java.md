@@ -530,8 +530,8 @@ data:
     \t/**\n\t * \u8981\u7D20\u3092\u30EA\u30BB\u30C3\u30C8\u3059\u308B\n\t */\n\t\
     public final void clear(){ Arrays.fill(data, e); }\n\t@Override\n\tpublic final\
     \ String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\t\
-    sb.append(get(0));\n\t\tfor(int i = 0; ++i < n; ++i) {\n\t\t\tsb.append(' ');\n\
-    \t\t\tsb.append(get(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
+    sb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(' ');\n\t\t\
+    \tsb.append(get(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -678,7 +678,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-15 06:21:11+09:00'
+  timestamp: '2024-02-15 20:33:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
