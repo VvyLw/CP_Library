@@ -1877,8 +1877,8 @@ data:
     \ - sz;\n\t\t\t}\n\t\t\tsum = f.applyAsLong(data[r], sum);\n\t\t} while((r & -r)\
     \ != r);\n\t\treturn -1;\n\t}\n\tfinal void clear(){ Arrays.fill(data, e); }\n\
     \t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder sb =\
-    \ new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < n; ++i)\
-    \ {\n\t\t\tsb.append(' ');\n\t\t\tsb.append(get(i));\n\t\t}\n\t\treturn sb.toString();\n\
+    \ new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\
+    \t\t\tsb.append(' ');\n\t\t\tsb.append(get(i));\n\t\t}\n\t\treturn sb.toString();\n\
     \t}\n}\nclass LazySegmentTreePair {\n\tprivate int n, sz, h;\n\tprivate final\
     \ IntPair[] data;\n\tprivate final long[] lazy;\n\tprivate final BinaryOperator<IntPair>\
     \ f;\n\tprivate final BiFunction<IntPair, Long, IntPair> map;\n\tprivate final\
@@ -1945,38 +1945,38 @@ data:
     \ -r) != r);\n\t\treturn -1;\n\t}\n\tfinal void clear(){ Arrays.fill(data, e);\
     \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
     \ sb = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i <\
-    \ n; ++i) {\n\t\t\tsb.append(' ');\n\t\t\tsb.append(get(i));\n\t\t}\n\t\treturn\
-    \ sb.toString();\n\t}\n}\nfinal class RAMX extends LazySegmentTree {\n\tRAMX(final\
-    \ int[] a, final long e){ super(a, (x, y) -> max(x, y), (x, y) -> x + y, (x, y)\
-    \ -> x + y, e, 0); }\n\tRAMX(final long[] a, final long e){ super(a, (x, y) ->\
-    \ max(x, y), (x, y) -> x + y, (x, y) -> x + y, e, 0); }\n}\nfinal class RAMN extends\
-    \ LazySegmentTree {\n\tRAMN(final int[] a, final long e){ super(a, (x, y) -> min(x,\
-    \ y), (x, y) -> x + y, (x, y) -> x + y, e, 0); }\n\tRAMN(final long[] a, final\
-    \ long e){ super(a, (x, y) -> min(x, y), (x, y) -> x + y, (x, y) -> x + y, e,\
-    \ 0); }\n}\nfinal class RUMX extends LazySegmentTree {\n\tRUMX(final int[] a,\
-    \ final long eid){ super(a, (x, y) -> max(x, y), (x, y) -> y, (x, y) -> y, eid,\
-    \ eid); }\n\tRUMX(final long[] a, final long eid){ super(a, (x, y) -> max(x, y),\
-    \ (x, y) -> y, (x, y) -> y, eid, eid); }\n}\nfinal class RUMN extends LazySegmentTree\
-    \ {\n\tRUMN(final int[] a, final long eid){ super(a, (x, y) -> min(x, y), (x,\
-    \ y) -> y, (x, y) -> y, eid, eid); }\n\tRUMN(final long[] a, final long eid){\
-    \ super(a, (x, y) -> min(x, y), (x, y) -> y, (x, y) -> y, eid, eid); }\n}\nfinal\
-    \ class RUSM extends LazySegmentTreePair {\n\tprivate final int n;\n\tprivate\
-    \ final IntPair[] b;\n\tRUSM(final int[] a, final long id) {\n\t\tsuper(a.length,\
-    \ (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue()\
-    \ * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0, 0), id);\n\t\tn =\
-    \ a.length;\n\t\tb = new IntPair[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\
-    b[i] = IntPair.of(a[i], 1);\n\t\t}\n\t\tbuild(b);\n\t}\n\tRUSM(final long[] a,\
-    \ final long id) {\n\t\tsuper(a.length, (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.second.longValue()\
-    \ * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0, 0), id);\n\t\tn =\
-    \ a.length;\n\t\tb = new IntPair[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\
-    b[i] = IntPair.of(a[i], 1);\n\t\t}\n\t\tbuild(b);\n\t}\n}\n\nfinal class SparseTable\
-    \ {\n\tprivate final long[][] st;\n\tprivate final int[] lookup;\n\tprivate final\
-    \ LongBinaryOperator op;\n\tSparseTable(final int[] a, final LongBinaryOperator\
-    \ op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\
-    \t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length;\
-    \ i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\
-    \tfor(int j = 0; j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i\
-    \ - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
+    \ n;) {\n\t\t\tsb.append(' ');\n\t\t\tsb.append(get(i));\n\t\t}\n\t\treturn sb.toString();\n\
+    \t}\n}\nfinal class RAMX extends LazySegmentTree {\n\tRAMX(final int[] a){ super(a,\
+    \ (x, y) -> max(x, y), (x, y) -> x + y, (x, y) -> x + y, Integer.MIN_VALUE, 0);\
+    \ }\n\tRAMX(final long[] a){ super(a, (x, y) -> max(x, y), (x, y) -> x + y, (x,\
+    \ y) -> x + y, Long.MIN_VALUE, 0); }\n}\nfinal class RAMN extends LazySegmentTree\
+    \ {\n\tRAMN(final int[] a){ super(a, (x, y) -> min(x, y), (x, y) -> x + y, (x,\
+    \ y) -> x + y, Integer.MAX_VALUE, 0); }\n\tRAMN(final long[] a){ super(a, (x,\
+    \ y) -> min(x, y), (x, y) -> x + y, (x, y) -> x + y, Long.MAX_VALUE, 0); }\n}\n\
+    final class RUMX extends LazySegmentTree {\n\tRUMX(final int[] a){ super(a, (x,\
+    \ y) -> max(x, y), (x, y) -> y, (x, y) -> y, Integer.MIN_VALUE, Integer.MIN_VALUE);\
+    \ }\n\tRUMX(final long[] a){ super(a, (x, y) -> max(x, y), (x, y) -> y, (x, y)\
+    \ -> y, Long.MIN_VALUE, Long.MIN_VALUE); }\n}\nfinal class RUMN extends LazySegmentTree\
+    \ {\n\tRUMN(final int[] a){ super(a, (x, y) -> min(x, y), (x, y) -> y, (x, y)\
+    \ -> y, Integer.MAX_VALUE, Integer.MAX_VALUE); }\n\tRUMN(final long[] a){ super(a,\
+    \ (x, y) -> min(x, y), (x, y) -> y, (x, y) -> y, Long.MAX_VALUE, Long.MAX_VALUE);\
+    \ }\n}\nfinal class RUSM extends LazySegmentTreePair {\n\tprivate final int n;\n\
+    \tprivate final IntPair[] b;\n\tRUSM(final int[] a) {\n\t\tsuper(a.length, (x,\
+    \ y) -> x.mul(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()),\
+    \ (x, y) -> y, IntPair.of(0, 0), Integer.MIN_VALUE);\n\t\tn = a.length;\n\t\t\
+    b = new IntPair[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i],\
+    \ 1);\n\t\t}\n\t\tbuild(b);\n\t}\n\tRUSM(final long[] a) {\n\t\tsuper(a.length,\
+    \ (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()),\
+    \ (x, y) -> y, IntPair.of(0, 0), Long.MIN_VALUE);\n\t\tn = a.length;\n\t\tb =\
+    \ new IntPair[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i],\
+    \ 1);\n\t\t}\n\t\tbuild(b);\n\t}\n}\n\nfinal class SparseTable {\n\tprivate final\
+    \ long[][] st;\n\tprivate final int[] lookup;\n\tprivate final LongBinaryOperator\
+    \ op;\n\tSparseTable(final int[] a, final LongBinaryOperator op) {\n\t\tthis.op\
+    \ = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\
+    \t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\t\t\t\
+    st[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\tfor(int j = 0;\
+    \ j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i - 1][j],\
+    \ st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
     \ + 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
     \ >> 1] + 1;\n\t\t}\n\t}\n\tSparseTable(final long[] a, final LongBinaryOperator\
     \ op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\
@@ -2212,7 +2212,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-15 20:33:30+09:00'
+  timestamp: '2024-02-15 20:36:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
