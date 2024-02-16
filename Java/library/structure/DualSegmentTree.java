@@ -9,6 +9,7 @@ import java.util.function.BinaryOperator;
  * @see <a href="https://ei1333.github.io/library/structure/segment-tree/dual-segment-tree.hpp">参考元</a>
  */
 public final class DualSegmentTree<T> {
+	private final int n;
 	private int sz, h;
 	private final Object[] lazy;
 	private final T id;
@@ -33,6 +34,7 @@ public final class DualSegmentTree<T> {
 	 * @param id
 	 */
 	public DualSegmentTree(final int n, final BinaryOperator<T> ap, final T id) {
+		this.n = n;
 		this.ap = ap;
 		this.id = id;
 		sz = 1;
@@ -73,5 +75,14 @@ public final class DualSegmentTree<T> {
 	final T get(int k) {
 		thrust(k += sz);
 		return (T) lazy[k];
+	}
+	@Override
+	public final String toString() {
+		final StringBuilder sb = new StringBuilder();
+		sb.append(get(0));
+		for(int i = 0; ++i < n;) {
+			sb.append(" " + get(i));
+		}
+		return sb.toString();
 	}
 }
