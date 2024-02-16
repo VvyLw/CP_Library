@@ -173,9 +173,6 @@ data:
     path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
-    title: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
-  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMN.java
     title: Java/library/structure/lazysegmenttree/RAMN.java
   - icon: ':warning:'
@@ -202,6 +199,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/pair/Pair.java
     title: Java/library/structure/pair/Pair.java
+  - icon: ':warning:'
+    path: Java/library/structure/pair/Zwei.java
+    title: Java/library/structure/pair/Zwei.java
   - icon: ':warning:'
     path: Java/library/structure/unionfind/UndoUnionFind.java
     title: Java/library/structure/unionfind/UndoUnionFind.java
@@ -396,9 +396,6 @@ data:
     path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
-    title: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
-  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMN.java
     title: Java/library/structure/lazysegmenttree/RAMN.java
   - icon: ':warning:'
@@ -425,6 +422,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/pair/Pair.java
     title: Java/library/structure/pair/Pair.java
+  - icon: ':warning:'
+    path: Java/library/structure/pair/Zwei.java
+    title: Java/library/structure/pair/Zwei.java
   - icon: ':warning:'
     path: Java/library/structure/unionfind/UndoUnionFind.java
     title: Java/library/structure/unionfind/UndoUnionFind.java
@@ -459,26 +459,30 @@ data:
   code: "package library.structure;\n\nimport java.util.Arrays;\nimport java.util.function.BinaryOperator;\n\
     \n/**\n * \u53CC\u5BFE\u30BB\u30B0\u6728\n * @param <T>\n * @see <a href=\"https://ei1333.github.io/library/structure/segment-tree/dual-segment-tree.hpp\"\
     >\u53C2\u8003\u5143</a>\n */\npublic final class DualSegmentTree<T> {\n\tprivate\
-    \ int sz, h;\n\tprivate final Object[] lazy;\n\tprivate final T id;\n\tprivate\
-    \ final BinaryOperator<T> ap;\n\t@SuppressWarnings(\"unchecked\")\n\tprivate final\
-    \ void propagate(final int k) {\n\t\tif(lazy[k] != id) {\n\t\t\tlazy[2 * k] =\
-    \ ap.apply((T) lazy[2 * k], (T) lazy[k]);\n\t\t\tlazy[2 * k + 1] = ap.apply((T)\
-    \ lazy[2 * k + 1], (T) lazy[k]);\n\t\t\tlazy[k] = id;\n\t\t}\n\t}\n\tprivate final\
-    \ void thrust(final int k) {\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(k\
-    \ >> i);\n\t\t}\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\
-    \t * @param n \u30B5\u30A4\u30BA\n\t * @param ap\n\t * @param id\n\t */\n\tpublic\
-    \ DualSegmentTree(final int n, final BinaryOperator<T> ap, final T id) {\n\t\t\
-    this.ap = ap;\n\t\tthis.id = id;\n\t\tsz = 1;\n\t\th = 0;\n\t\twhile(sz < n) {\n\
-    \t\t\tsz <<= 1;\n\t\t\th++;\n\t\t}\n\t\tlazy = new Object[2 * sz];\n\t\tArrays.fill(lazy,\
-    \ id);\n\t}\n\t/**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306B\u4F5C\u7528\u7D20\
-    x\u3092\u9069\u7528\n\t * @param a\n\t * @param b\n\t * @param x\n\t */\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tfinal void apply(int a, int b, final T x) {\n\t\tthrust(a += sz);\n\
-    \t\tthrust(b += sz - 1);\n\t\tfor(int l = a, r = b + 1; l < r; l >>= 1, r >>=\
-    \ 1) {\n\t\t\tif(l % 2 == 1) {\n\t\t\t\tlazy[l] = ap.apply((T) lazy[l], x);\n\t\
-    \t\t\tl++;\n\t\t\t}\n\t\t\tif(r % 2 == 1) {\n\t\t\t\tr--;\n\t\t\t\tlazy[r] = ap.apply((T)\
-    \ lazy[r], x);\n\t\t\t}\n\t\t}\n\t}\n\t/**\n\t * @param k\n\t * @return k\u756A\
-    \u76EE\u306E\u8981\u7D20\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T\
-    \ get(int k) {\n\t\tthrust(k += sz);\n\t\treturn (T) lazy[k];\n\t}\n}"
+    \ final int n;\n\tprivate int sz, h;\n\tprivate final Object[] lazy;\n\tprivate\
+    \ final T id;\n\tprivate final BinaryOperator<T> ap;\n\t@SuppressWarnings(\"unchecked\"\
+    )\n\tprivate final void propagate(final int k) {\n\t\tif(lazy[k] != id) {\n\t\t\
+    \tlazy[2 * k] = ap.apply((T) lazy[2 * k], (T) lazy[k]);\n\t\t\tlazy[2 * k + 1]\
+    \ = ap.apply((T) lazy[2 * k + 1], (T) lazy[k]);\n\t\t\tlazy[k] = id;\n\t\t}\n\t\
+    }\n\tprivate final void thrust(final int k) {\n\t\tfor(int i = h; i > 0; i--)\
+    \ {\n\t\t\tpropagate(k >> i);\n\t\t}\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\n\t * @param n \u30B5\u30A4\u30BA\n\t * @param ap\n\t * @param\
+    \ id\n\t */\n\tpublic DualSegmentTree(final int n, final BinaryOperator<T> ap,\
+    \ final T id) {\n\t\tthis.n = n;\n\t\tthis.ap = ap;\n\t\tthis.id = id;\n\t\tsz\
+    \ = 1;\n\t\th = 0;\n\t\twhile(sz < n) {\n\t\t\tsz <<= 1;\n\t\t\th++;\n\t\t}\n\t\
+    \tlazy = new Object[2 * sz];\n\t\tArrays.fill(lazy, id);\n\t}\n\t/**\n\t * \u534A\
+    \u958B\u533A\u9593[l, r)\u306B\u4F5C\u7528\u7D20x\u3092\u9069\u7528\n\t * @param\
+    \ a\n\t * @param b\n\t * @param x\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\
+    \tfinal void apply(int a, int b, final T x) {\n\t\tthrust(a += sz);\n\t\tthrust(b\
+    \ += sz - 1);\n\t\tfor(int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {\n\t\t\t\
+    if(l % 2 == 1) {\n\t\t\t\tlazy[l] = ap.apply((T) lazy[l], x);\n\t\t\t\tl++;\n\t\
+    \t\t}\n\t\t\tif(r % 2 == 1) {\n\t\t\t\tr--;\n\t\t\t\tlazy[r] = ap.apply((T) lazy[r],\
+    \ x);\n\t\t\t}\n\t\t}\n\t}\n\t/**\n\t * @param k\n\t * @return k\u756A\u76EE\u306E\
+    \u8981\u7D20\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T get(int k)\
+    \ {\n\t\tthrust(k += sz);\n\t\treturn (T) lazy[k];\n\t}\n\t@Override\n\tpublic\
+    \ final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
+    \t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\" \"\
+    \ + get(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -529,6 +533,7 @@ data:
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
+  - Java/library/structure/pair/Zwei.java
   - Java/library/structure/lazysegmenttree/RAMN.java
   - Java/library/structure/lazysegmenttree/RAMX.java
   - Java/library/structure/lazysegmenttree/RUSM.java
@@ -536,7 +541,6 @@ data:
   - Java/library/structure/lazysegmenttree/RUMN.java
   - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
-  - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
   - Java/library/structure/unionfind/UndoUnionFind.java
@@ -606,6 +610,7 @@ data:
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
+  - Java/library/structure/pair/Zwei.java
   - Java/library/structure/lazysegmenttree/RAMN.java
   - Java/library/structure/lazysegmenttree/RAMX.java
   - Java/library/structure/lazysegmenttree/RUSM.java
@@ -613,7 +618,6 @@ data:
   - Java/library/structure/lazysegmenttree/RUMN.java
   - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
-  - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
   - Java/library/structure/unionfind/UndoUnionFind.java
@@ -631,7 +635,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-16 10:50:37+09:00'
+  timestamp: '2024-02-17 06:14:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/DualSegmentTree.java

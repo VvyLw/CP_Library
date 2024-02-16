@@ -173,9 +173,6 @@ data:
     path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
-    title: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
-  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMN.java
     title: Java/library/structure/lazysegmenttree/RAMN.java
   - icon: ':warning:'
@@ -202,6 +199,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/pair/Pair.java
     title: Java/library/structure/pair/Pair.java
+  - icon: ':warning:'
+    path: Java/library/structure/pair/Zwei.java
+    title: Java/library/structure/pair/Zwei.java
   - icon: ':warning:'
     path: Java/library/structure/unionfind/UndoUnionFind.java
     title: Java/library/structure/unionfind/UndoUnionFind.java
@@ -396,9 +396,6 @@ data:
     path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
-    title: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
-  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMN.java
     title: Java/library/structure/lazysegmenttree/RAMN.java
   - icon: ':warning:'
@@ -425,6 +422,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/pair/Pair.java
     title: Java/library/structure/pair/Pair.java
+  - icon: ':warning:'
+    path: Java/library/structure/pair/Zwei.java
+    title: Java/library/structure/pair/Zwei.java
   - icon: ':warning:'
     path: Java/library/structure/unionfind/UndoUnionFind.java
     title: Java/library/structure/unionfind/UndoUnionFind.java
@@ -721,6 +721,7 @@ data:
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
+  - Java/library/structure/pair/Zwei.java
   - Java/library/structure/lazysegmenttree/RAMN.java
   - Java/library/structure/lazysegmenttree/RAMX.java
   - Java/library/structure/lazysegmenttree/RUSM.java
@@ -728,7 +729,6 @@ data:
   - Java/library/structure/lazysegmenttree/RUMN.java
   - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
-  - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
   - Java/library/structure/unionfind/UndoUnionFind.java
@@ -798,6 +798,7 @@ data:
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
+  - Java/library/structure/pair/Zwei.java
   - Java/library/structure/lazysegmenttree/RAMN.java
   - Java/library/structure/lazysegmenttree/RAMX.java
   - Java/library/structure/lazysegmenttree/RUSM.java
@@ -805,7 +806,6 @@ data:
   - Java/library/structure/lazysegmenttree/RUMN.java
   - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
-  - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
   - Java/library/structure/unionfind/UndoUnionFind.java
@@ -822,7 +822,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/All.java
-  timestamp: '2024-02-16 10:50:37+09:00'
+  timestamp: '2024-02-17 06:14:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java

@@ -176,9 +176,6 @@ data:
     path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
-    title: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
-  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMX.java
     title: Java/library/structure/lazysegmenttree/RAMX.java
   - icon: ':warning:'
@@ -202,6 +199,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/pair/Pair.java
     title: Java/library/structure/pair/Pair.java
+  - icon: ':warning:'
+    path: Java/library/structure/pair/Zwei.java
+    title: Java/library/structure/pair/Zwei.java
   - icon: ':warning:'
     path: Java/library/structure/unionfind/UndoUnionFind.java
     title: Java/library/structure/unionfind/UndoUnionFind.java
@@ -399,9 +399,6 @@ data:
     path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
-    title: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
-  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMX.java
     title: Java/library/structure/lazysegmenttree/RAMX.java
   - icon: ':warning:'
@@ -425,6 +422,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/pair/Pair.java
     title: Java/library/structure/pair/Pair.java
+  - icon: ':warning:'
+    path: Java/library/structure/pair/Zwei.java
+    title: Java/library/structure/pair/Zwei.java
   - icon: ':warning:'
     path: Java/library/structure/unionfind/UndoUnionFind.java
     title: Java/library/structure/unionfind/UndoUnionFind.java
@@ -456,12 +456,14 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/structure/lazysegmenttree/RAMN.java\n"
-  code: "package library.structure.lazysegmenttree;\n\nimport static java.lang.Math.*;\n\
-    \n/**\n * Range Add Range Min\n * \u533A\u9593\u52A0\u7B97, \u533A\u9593\u6700\
-    \u5C0F\u5024\n */\npublic final class RAMN extends LazySegmentTree {\n\tpublic\
-    \ RAMN(final int[] a){ super(a, (x, y) -> min(x, y), (x, y) -> x + y, (x, y) ->\
-    \ x + y, Integer.MAX_VALUE, 0); }\n\tpublic RAMN(final long[] a){ super(a, (x,\
-    \ y) -> min(x, y), (x, y) -> x + y, (x, y) -> x + y, Long.MAX_VALUE, 0); }\n}"
+  code: "package library.structure.lazysegmenttree;\n\nimport java.util.Arrays;\n\n\
+    /**\n * Range Add Range Min\n * \u533A\u9593\u52A0\u7B97, \u533A\u9593\u6700\u5C0F\
+    \u5024\n */\npublic final class RAMN extends LazySegmentTree<Long, Long> {\n\t\
+    public RAMN(final int[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new),\
+    \ Long::min, Long::sum, Long::sum, Long.valueOf(Long.MAX_VALUE), Long.valueOf(0));\
+    \ }\n\tpublic RAMN(final long[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new),\
+    \ Long::min, Long::sum, Long::sum, Long.valueOf(Long.MAX_VALUE), Long.valueOf(0));\
+    \ }\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -513,13 +515,13 @@ data:
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
+  - Java/library/structure/pair/Zwei.java
   - Java/library/structure/lazysegmenttree/RAMX.java
   - Java/library/structure/lazysegmenttree/RUSM.java
   - Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - Java/library/structure/lazysegmenttree/RUMN.java
   - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
-  - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
   - Java/library/structure/unionfind/UndoUnionFind.java
@@ -590,13 +592,13 @@ data:
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
+  - Java/library/structure/pair/Zwei.java
   - Java/library/structure/lazysegmenttree/RAMX.java
   - Java/library/structure/lazysegmenttree/RUSM.java
   - Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - Java/library/structure/lazysegmenttree/RUMN.java
   - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
-  - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
   - Java/library/structure/unionfind/UndoUnionFind.java
@@ -614,7 +616,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-16 10:50:37+09:00'
+  timestamp: '2024-02-17 06:14:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/lazysegmenttree/RAMN.java

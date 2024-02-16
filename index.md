@@ -272,9 +272,6 @@ data:
       path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
       title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     - icon: ':warning:'
-      path: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
-      title: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
-    - icon: ':warning:'
       path: Java/library/structure/lazysegmenttree/RAMN.java
       title: Java/library/structure/lazysegmenttree/RAMN.java
     - icon: ':warning:'
@@ -303,6 +300,9 @@ data:
     - icon: ':warning:'
       path: Java/library/structure/pair/Pair.java
       title: Java/library/structure/pair/Pair.java
+    - icon: ':warning:'
+      path: Java/library/structure/pair/Zwei.java
+      title: Java/library/structure/pair/Zwei.java
   - name: Java/library/structure/unionfind
     pages:
     - icon: ':warning:'

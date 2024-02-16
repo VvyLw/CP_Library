@@ -173,9 +173,6 @@ data:
     path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
-    title: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
-  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMN.java
     title: Java/library/structure/lazysegmenttree/RAMN.java
   - icon: ':warning:'
@@ -202,6 +199,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/pair/Pair.java
     title: Java/library/structure/pair/Pair.java
+  - icon: ':warning:'
+    path: Java/library/structure/pair/Zwei.java
+    title: Java/library/structure/pair/Zwei.java
   - icon: ':warning:'
     path: Java/library/structure/unionfind/UndoUnionFind.java
     title: Java/library/structure/unionfind/UndoUnionFind.java
@@ -396,9 +396,6 @@ data:
     path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
-    title: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
-  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMN.java
     title: Java/library/structure/lazysegmenttree/RAMN.java
   - icon: ':warning:'
@@ -425,6 +422,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/pair/Pair.java
     title: Java/library/structure/pair/Pair.java
+  - icon: ':warning:'
+    path: Java/library/structure/pair/Zwei.java
+    title: Java/library/structure/pair/Zwei.java
   - icon: ':warning:'
     path: Java/library/structure/unionfind/UndoUnionFind.java
     title: Java/library/structure/unionfind/UndoUnionFind.java
@@ -457,8 +457,8 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/structure/SegmentTree.java\n"
   code: "package library.structure;\n\nimport java.util.Arrays;\nimport java.util.function.BinaryOperator;\n\
-    import java.util.function.Predicate;\n\n/**\n * \u30BB\u30B0\u30E1\u30F3\u30C8\
-    \u6728\n * @param <T>\n * @see <a href=\"https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp\"\
+    import java.util.function.Predicate;\nimport java.util.stream.IntStream;\n\n/**\n\
+    \ * \u30BB\u30B0\u30E1\u30F3\u30C8\u6728\n * @param <T>\n * @see <a href=\"https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp\"\
     >\u53C2\u8003\u5143</a>\n */\npublic final class SegmentTree<T> {\n\tprivate int\
     \ n = 1, rank = 0, fini;\n\tprivate final BinaryOperator<T> op;\n\tprivate final\
     \ T e;\n\tprivate final Object[] dat;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\
@@ -467,11 +467,17 @@ data:
     \ int fini, final BinaryOperator<T> op, final T e) {\n\t\tthis.fini = fini;\n\t\
     \tthis.op = op;\n\t\tthis.e = e;\n\t\twhile(this.fini > n) {\n\t\t\tn <<= 1;\n\
     \t\t\trank++;\n\t\t}\n\t\tdat = new Object[2 * n];\n\t\tArrays.fill(dat, e);\n\
-    \t}\n\t/**\n\t * i\u756A\u76EE\u306E\u8981\u7D20\u3092x\u306B\u3059\u308B\n\t\
-    \ * @param i\n\t * @param x\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic\
-    \ final void update(int i, final T x) {\n\t\ti += n;\n\t\tdat[i] = x;\n\t\tdo\
-    \ {\n\t\t\ti >>= 1;\n\t\t\tdat[i] = op.apply((T) dat[2 * i], (T) dat[2 * i + 1]);\n\
-    \t\t} while(i > 0);\n\t}\n\t/**\n\t * @param a\n\t * @param b\n\t * @return \u534A\
+    \t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a \u30DC\
+    \u30AF\u30B7\u30F3\u30B0\u3055\u308C\u305F\u914D\u5217\n\t * @param op\n\t * @param\
+    \ e\n\t */\n\tpublic SegmentTree(final T[] a, final BinaryOperator<T> op, final\
+    \ T e) {\n\t\tthis(a.length, op, e);\n\t\tIntStream.range(0, a.length).forEach(i\
+    \ -> update(i, a[i]));\n\t}\n\t/**\n\t * i\u756A\u76EE\u306E\u8981\u7D20\u3092\
+    x\u306B\u3059\u308B\n\t * @param i\n\t * @param x\n\t */\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tpublic final void update(int i, final T x) {\n\t\ti += n;\n\t\t\
+    dat[i] = x;\n\t\tdo {\n\t\t\ti >>= 1;\n\t\t\tdat[i] = op.apply((T) dat[2 * i],\
+    \ (T) dat[2 * i + 1]);\n\t\t} while(i > 0);\n\t}\n\t/**\n\t * @param i\n\t * @return\
+    \ i\u756A\u76EE\u306E\u8981\u7D20\n\t */\n\tpublic final T get(final int i){ return\
+    \ query(i, i + 1); }\n\t/**\n\t * @param a\n\t * @param b\n\t * @return \u534A\
     \u958B\u533A\u9593[l, r)\u306B\u5BFE\u3057\u3066\u4E8C\u9805\u6F14\u7B97\u3057\
     \u305F\u7D50\u679C\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic final\
     \ T query(int a, int b) {\n\t\tT l = e, r = e;\n\t\tfor(a += n, b += n; a < b;\
@@ -502,9 +508,9 @@ data:
     \t\t\t\ti += 1 << h;\n\t\t\t\tif(i == n * 2) {\n\t\t\t\t\treturn fini;\n\t\t\t\
     \t}\n\t\t\t\tval = val2;\n\t\t\t}\n\t\t}\n\t\treturn Math.min(i - n, fini);\n\t\
     }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder sb\
-    \ = new StringBuilder();\n\t\tsb.append(query(0, 1));\n\t\tfor(int i = 0; ++i\
-    \ < fini;) {\n\t\t\tsb.append(\" \" + query(i, i + 1));\n\t\t}\n\t\treturn sb.toString();\n\
-    \t}\n}"
+    \ = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < fini;)\
+    \ {\n\t\t\tsb.append(\" \" + get(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n\
+    }"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -556,6 +562,7 @@ data:
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
+  - Java/library/structure/pair/Zwei.java
   - Java/library/structure/lazysegmenttree/RAMN.java
   - Java/library/structure/lazysegmenttree/RAMX.java
   - Java/library/structure/lazysegmenttree/RUSM.java
@@ -563,7 +570,6 @@ data:
   - Java/library/structure/lazysegmenttree/RUMN.java
   - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
-  - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
   - Java/library/structure/unionfind/UndoUnionFind.java
   - Java/library/structure/unionfind/WeightedUnionFind.java
@@ -633,6 +639,7 @@ data:
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
+  - Java/library/structure/pair/Zwei.java
   - Java/library/structure/lazysegmenttree/RAMN.java
   - Java/library/structure/lazysegmenttree/RAMX.java
   - Java/library/structure/lazysegmenttree/RUSM.java
@@ -640,7 +647,6 @@ data:
   - Java/library/structure/lazysegmenttree/RUMN.java
   - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
-  - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
   - Java/library/structure/unionfind/UndoUnionFind.java
   - Java/library/structure/unionfind/WeightedUnionFind.java
@@ -657,7 +663,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-16 10:50:37+09:00'
+  timestamp: '2024-02-17 06:14:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/SegmentTree.java
