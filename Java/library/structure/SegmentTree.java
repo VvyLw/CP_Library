@@ -3,6 +3,7 @@ package library.structure;
 import java.util.Arrays;
 import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
+import java.util.stream.IntStream;
 
 /**
  * セグメント木
@@ -30,6 +31,16 @@ public final class SegmentTree<T> {
 		}
 		dat = new Object[2 * n];
 		Arrays.fill(dat, e);
+	}
+	/**
+	 * コンストラクタ
+	 * @param a ボクシングされた配列
+	 * @param op
+	 * @param e
+	 */
+	public SegmentTree(final T[] a, final BinaryOperator<T> op, final T e) {
+		this(a.length, op, e);
+		IntStream.range(0, a.length).forEach(i -> update(i, a[i]));
 	}
 	/**
 	 * i番目の要素をxにする
