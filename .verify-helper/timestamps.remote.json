@@ -8,6 +8,7 @@
 "test/dag_check.test.cpp": "2024-01-30 14:40:09 +0900",
 "test/depq.test.cpp": "2024-01-30 14:40:09 +0900",
 "test/directed.test.cpp": "2024-02-08 03:21:21 +0900",
+"test/dualsegtree.test.cpp": "2024-02-16 10:50:37 +0900",
 "test/extgcd.test.cpp": "2024-02-02 17:06:08 +0900",
 "test/ftree.test.cpp": "2024-02-16 09:59:43 +0900",
 "test/fwtree2.test.cpp": "2024-02-16 09:59:43 +0900",
