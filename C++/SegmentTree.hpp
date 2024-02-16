@@ -1,33 +1,34 @@
 #pragma once
 
+#pragma GCC diagnostic ignored "-Wreorder"
+
 #include <vector>
 #include <functional>
-typedef long long ll;
 template <class T> struct SegTree {
 private:
     using F = std::function<T(T, T)>;
-    ll n, rank, fine;
+    int n, rank, fine;
     const F f;
     const T e;
     std::vector<T> dat;
 public:
-    SegTree(const ll n_, const F f_, const T& e_): f(f_), e(e_), fine(n_) {
+    SegTree(const int n_, const F f_, const T& e_): f(f_), e(e_), fine(n_) {
         n=1,rank=0;
         while(fine>n) n<<=1LL,rank++;
         dat.assign(2*n,e_);
     }
-    T operator[](ll i) const { return dat[i+n]; }
-    void update(ll i, const T& x) {
+    T operator[](int i) const { return dat[i+n]; }
+    void update(int i, const T& x) {
         i+=n;
         dat[i]=x;
         while(i>>=1LL) dat[i]=f(dat[2*i],dat[2*i+1]);
     }
-    void add(ll i, const T& x) {
+    void add(int i, const T& x) {
         i+=n;
         dat[i]+=x;
         while(i>>=1LL) dat[i]=f(dat[2*i],dat[2*i+1]);
     }
-    T query(ll a, ll b) const {
+    T query(int a, int b) const {
         T l=e,r=e;
         for(a+=n, b+=n; a<b; a>>=1LL,b>>=1LL) {
             if(a&1) l=f(l,dat[a++]);
@@ -35,9 +36,9 @@ public:
         }
         return f(l,r);
     }
-    template <class Boolean=bool> inline int find_left(ll r, const Boolean &fn) {
+    template <class Boolean=bool> inline int find_left(int r, const Boolean &fn) {
         if(!r) return 0;
-        ll h=0,i=r+n;
+        int h=0,i=r+n;
         T val=e;
         for(; h <= rank; h++) if(i>>h&1){
             T val2=f(val,dat[i>>h^1]);
@@ -58,9 +59,9 @@ public:
         }
         return i-n;
     }
-    template <class Boolean=bool> inline int find_right(ll l, const Boolean &fn) {
+    template <class Boolean=bool> inline int find_right(int l, const Boolean &fn) {
         if(l==fine) return fine;
-        ll h=0,i=l+n;
+        int h=0,i=l+n;
         T val=e;
         for(; h<=rank; h++) if(i>>h&1){
             T val2=f(val,dat[i>>h]);
