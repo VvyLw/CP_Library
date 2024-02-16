@@ -14,7 +14,8 @@ import java.util.function.LongPredicate;
  * @see RUMX
  */
 public class LazySegmentTree {
-	private int n, sz, h;
+	private int sz, h;
+	private final int n;
 	private final long[] data, lazy;
 	private final LongBinaryOperator f, map, comp;
 	private final long e, id;
@@ -38,7 +39,7 @@ public class LazySegmentTree {
 	 * @param f 二項演算
 	 * @param map mapping
 	 * @param comp composition
-	 * @param e
+	 * @param e 単位元
 	 * @param id
 	 */
 	public LazySegmentTree(final int n, final LongBinaryOperator f, final LongBinaryOperator map, final LongBinaryOperator comp, final long e, final long id) {
@@ -305,9 +306,8 @@ public class LazySegmentTree {
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(get(0));
-		for(int i = 0; ++i < n; ++i) {
-			sb.append(' ');
-			sb.append(get(i));
+		for(int i = 0; ++i < n;) {
+			sb.append(" " + get(i));
 		}
 		return sb.toString();
 	}

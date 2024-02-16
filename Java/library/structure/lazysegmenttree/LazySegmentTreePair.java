@@ -10,12 +10,14 @@ import library.structure.pair.IntPair;
 
 /**
  * 遅延セグ木
- * RUSMを使うのに必要
+ * RASM, RUSMを使うのに必要
  * @see LazySegmentTree
+ * @see RASM
  * @see RUSM
  */
 public class LazySegmentTreePair {
-	private int n, sz, h;
+	private int sz, h;
+	private final int n;
 	private final IntPair[] data;
 	private final long[] lazy;
 	private final BinaryOperator<IntPair> f;
@@ -285,8 +287,7 @@ public class LazySegmentTreePair {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(get(0));
 		for(int i = 0; ++i < n;) {
-			sb.append(' ');
-			sb.append(get(i));
+			sb.append(" " + get(i));
 		}
 		return sb.toString();
 	}

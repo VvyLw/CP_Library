@@ -10,7 +10,7 @@ public final class RUSM extends LazySegmentTreePair {
 	private final int n;
 	private final IntPair[] b;
 	public RUSM(final int[] a) {
-		super(a.length, (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()), (x, y) -> y, IntPair.of(0, 0), Integer.MIN_VALUE);
+		super(a.length, (x, y) -> x.add(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()), (x, y) -> y, IntPair.of(0, 0), Integer.MIN_VALUE);
 		n = a.length;
 		b = new IntPair[n];
 		for(int i = 0; i < n; ++i) {
@@ -19,7 +19,7 @@ public final class RUSM extends LazySegmentTreePair {
 		build(b);
 	}
 	public RUSM(final long[] a) {
-		super(a.length, (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()), (x, y) -> y, IntPair.of(0, 0), Long.MIN_VALUE);
+		super(a.length, (x, y) -> x.add(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()), (x, y) -> y, IntPair.of(0, 0), Long.MIN_VALUE);
 		n = a.length;
 		b = new IntPair[n];
 		for(int i = 0; i < n; ++i) {
