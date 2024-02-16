@@ -1094,7 +1094,6 @@ final class MyScanner implements Closeable, AutoCloseable {
 	}
 	private final boolean isPunct(final byte bt){ return !Utility.scope(33, bt, 126); }
 	private final boolean isNum(final byte bt){ return Utility.scope('0', bt, '9'); }
-	private final boolean isNeg(){ return pos >= 2 && buf[pos - 2] == '-'; }
 	private final byte read() {
 		if(pos == lim && lim != -1) {
 			try {
@@ -1118,15 +1117,13 @@ final class MyScanner implements Closeable, AutoCloseable {
 		while(isPunct(bt = read())){}
 		return bt;
 	}
-	private final byte nextInt() {
-		byte bt;
-		while(!isNum(bt = read())){}
-		return bt;
-	}
 	final int ni(){ return toIntExact(nl()); }
 	final long nl() {
-		byte c = nextInt();
-		final boolean neg = isNeg();
+		byte c = next();
+		final boolean neg = c == '-';
+		if(neg) {
+			c = next();
+		}
 		assert isNum(c);
 		long res = c - '0';
 		while(isNum(c = read())) {
@@ -1136,8 +1133,11 @@ final class MyScanner implements Closeable, AutoCloseable {
 		return neg ? -res : res;
 	}
 	final double nd() {
-		byte c = nextInt();
-		final boolean neg = isNeg();
+		byte c = next();
+		final boolean neg = c == '-';
+		if(neg) {
+			c = next();
+		}
 		assert isNum(c);
 		double res = c - '0';
 		while(isNum(c = read())) {
@@ -4190,6 +4190,28 @@ final class RAMN extends LazySegmentTree {
 	RAMN(final int[] a){ super(a, (x, y) -> min(x, y), (x, y) -> x + y, (x, y) -> x + y, Integer.MAX_VALUE, 0); }
 	RAMN(final long[] a){ super(a, (x, y) -> min(x, y), (x, y) -> x + y, (x, y) -> x + y, Long.MAX_VALUE, 0); }
 }
+final class RASM extends LazySegmentTreePair {
+	private final int n;
+	private final IntPair[] b;
+	RASM(final int[] a) {
+		super(a.length, (x, y) -> x.add(y), (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue() * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0, 0), Integer.MIN_VALUE);
+		n = a.length;
+		b = new IntPair[n];
+		for(int i = 0; i < n; ++i) {
+			b[i] = IntPair.of(a[i], 1);
+		}
+		build(b);
+	}
+	RASM(final long[] a) {
+		super(a.length, (x, y) -> x.add(y), (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue() * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0, 0), Long.MIN_VALUE);
+		n = a.length;
+		b = new IntPair[n];
+		for(int i = 0; i < n; ++i) {
+			b[i] = IntPair.of(a[i], 1);
+		}
+		build(b);
+	}
+}
 final class RUMX extends LazySegmentTree {
 	RUMX(final int[] a){ super(a, (x, y) -> max(x, y), (x, y) -> y, (x, y) -> y, Integer.MIN_VALUE, Integer.MIN_VALUE); }
 	RUMX(final long[] a){ super(a, (x, y) -> max(x, y), (x, y) -> y, (x, y) -> y, Long.MIN_VALUE, Long.MIN_VALUE); }
@@ -4202,7 +4224,7 @@ final class RUSM extends LazySegmentTreePair {
 	private final int n;
 	private final IntPair[] b;
 	RUSM(final int[] a) {
-		super(a.length, (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()), (x, y) -> y, IntPair.of(0, 0), Integer.MIN_VALUE);
+		super(a.length, (x, y) -> x.add(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()), (x, y) -> y, IntPair.of(0, 0), Integer.MIN_VALUE);
 		n = a.length;
 		b = new IntPair[n];
 		for(int i = 0; i < n; ++i) {
@@ -4211,13 +4233,65 @@ final class RUSM extends LazySegmentTreePair {
 		build(b);
 	}
 	RUSM(final long[] a) {
-		super(a.length, (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()), (x, y) -> y, IntPair.of(0, 0), Long.MIN_VALUE);
+		super(a.length, (x, y) -> x.add(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()), (x, y) -> y, IntPair.of(0, 0), Long.MIN_VALUE);
 		n = a.length;
 		b = new IntPair[n];
 		for(int i = 0; i < n; ++i) {
 			b[i] = IntPair.of(a[i], 1);
 		}
 		build(b);
+	}
+}
+
+final class DualSegmentTree<T> {
+	private int sz, h;
+	private final Object[] lazy;
+	private final T id;
+	private final BinaryOperator<T> ap;
+	@SuppressWarnings("unchecked")
+	private final void propagate(final int k) {
+		if(lazy[k] != id) {
+			lazy[2 * k] = ap.apply((T) lazy[2 * k], (T) lazy[k]);
+			lazy[2 * k + 1] = ap.apply((T) lazy[2 * k + 1], (T) lazy[k]);
+			lazy[k] = id;
+		}
+	}
+	private final void thrust(final int k) {
+		for(int i = h; i > 0; i--) {
+			propagate(k >> i);
+		}
+	}
+	DualSegmentTree(final int n, final BinaryOperator<T> ap, final T id) {
+		this.ap = ap;
+		this.id = id;
+		sz = 1;
+		h = 0;
+		while(sz < n) {
+			sz <<= 1;
+			h++;
+		}
+		lazy = new Object[2 * sz];
+		Arrays.fill(lazy, id);
+	}
+	@SuppressWarnings("unchecked")
+	final void apply(int a, int b, final T x) {
+		thrust(a += sz);
+		thrust(b += sz - 1);
+		for(int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {
+			if(l % 2 == 1) {
+				lazy[l] = ap.apply((T) lazy[l], x);
+				l++;
+			}
+			if(r % 2 == 1) {
+				r--;
+				lazy[r] = ap.apply((T) lazy[r], x);
+			}
+		}
+	}
+	@SuppressWarnings("unchecked")
+	final T get(int k) {
+		thrust(k += sz);
+		return (T) lazy[k];
 	}
 }
 
