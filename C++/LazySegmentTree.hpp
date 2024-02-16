@@ -199,11 +199,7 @@ public:
         } while((r & -r) != r);
         return -1;
     }
-    void clear() {
-        for(auto &el: data) {
-            el = e;
-        }
-    }
+    void clear(){ std::fill(data.cbegin(), data.cend(), e); }
     friend std::ostream &operator<<(std::ostream &os, const LazySegTree &seg) {
         os << seg[0];
         for(int i = 0; ++i < seg.size();) {
@@ -234,6 +230,15 @@ template <class T> struct RAMX: LazySegTree<T, T> {
 template <class T> struct RAMN: LazySegTree<T, T> {
     RAMN(const std::vector<T> &v): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return a + b; }, std::numeric_limits<T>::max(), 0){}
 };
+template <class T> struct RASM: LazySegTree<zwei<T>, T> {
+    RASM(const std::vector<T> &v): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first + b.first, a.second + b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.first + a.second * b, a.second); }, [](const T a, const T b){ return a + b; }, zwei<T>(0, 0), 0) {
+        std::vector<zwei<T>> w(v.size());
+        for(size_t i = 0; i < v.size(); ++i) {
+            w[i] = zwei<T>(v[i], 1);
+        }
+        LazySegTree<zwei<T>, T>::build(w);
+    }
+};
 template <class T> struct RUMX: LazySegTree<T, T> {    
     RUMX(const std::vector<T> &v): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a, b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b; }, std::numeric_limits<T>::min(), std::numeric_limits<T>::min()){}
 };
@@ -241,7 +246,7 @@ template <class T> struct RUMN: LazySegTree<T, T> {
     RUMN(const std::vector<T> &v): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b; }, std::numeric_limits<T>::max(), std::numeric_limits<T>::max()){}
 };
 template <class T> struct RUSM: LazySegTree<zwei<T>, T> {
-    RUSM(const std::vector<T> &v): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first * b.first, a.second * b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.second * b, a.second); }, [](const T a, const T b){ return b; }, zwei<T>(0, 0), std::numeric_limits<T>::min()) {
+    RUSM(const std::vector<T> &v): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first + b.first, a.second + b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.second * b, a.second); }, [](const T a, const T b){ return b; }, zwei<T>(0, 0), std::numeric_limits<T>::min()) {
         std::vector<zwei<T>> w(v.size());
         for(size_t i = 0; i < v.size(); ++i) {
             w[i] = zwei<T>(v[i], 1);
