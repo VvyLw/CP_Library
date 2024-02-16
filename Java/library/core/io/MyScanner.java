@@ -1,5 +1,7 @@
 package library.core.io;
 
+import static java.lang.Math.*;
+
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,7 +33,6 @@ public final class MyScanner implements Closeable, AutoCloseable {
 	}
 	private final boolean isPunct(final byte bt){ return !Utility.scope(33, bt, 126); }
 	private final boolean isNum(final byte bt){ return Utility.scope('0', bt, '9'); }
-	private final boolean isNeg(){ return pos >= 2 && buf[pos - 2] == '-'; }
 	private final byte read() {
 		if(pos == lim && lim != -1) {
 			try {
@@ -55,23 +56,21 @@ public final class MyScanner implements Closeable, AutoCloseable {
 		while(isPunct(bt = read())){}
 		return bt;
 	}
-	private final byte nextInt() {
-		byte bt;
-		while(!isNum(bt = read())){}
-		return bt;
-	}
 	/**
 	 * nextInt
 	 * int型を入力する
 	 */
-	public final int ni(){ return Math.toIntExact(nl()); }
+	public final int ni(){ return toIntExact(nl()); }
 	/**
 	 * nextLong
 	 * long型を入力する
 	 */
 	public final long nl() {
-		byte c = nextInt();
-		final boolean neg = isNeg();
+		byte c = next();
+		final boolean neg = c == '-';
+		if(neg) {
+			c = next();
+		}
 		assert isNum(c);
 		long res = c - '0';
 		while(isNum(c = read())) {
@@ -85,8 +84,11 @@ public final class MyScanner implements Closeable, AutoCloseable {
 	 * double型を入力する
 	 */
 	public final double nd() {
-		byte c = nextInt();
-		final boolean neg = isNeg();
+		byte c = next();
+		final boolean neg = c == '-';
+		if(neg) {
+			c = next();
+		}
 		assert isNum(c);
 		double res = c - '0';
 		while(isNum(c = read())) {
@@ -100,7 +102,7 @@ public final class MyScanner implements Closeable, AutoCloseable {
 		for(i = 0; isNum(c = read()); ++i) {
 			res = res * 10 + c - '0';
 		}
-		res /= Math.pow(10, i);
+		res /= pow(10, i);
 		check = true;
 		return neg ? -res : res;
 	}
