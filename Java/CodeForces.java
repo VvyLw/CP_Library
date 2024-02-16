@@ -1071,7 +1071,6 @@ final class MyScanner implements Closeable, AutoCloseable {
 	}
 	private final boolean isPunct(final byte bt){ return !Utility.scope(33, bt, 126); }
 	private final boolean isNum(final byte bt){ return Utility.scope('0', bt, '9'); }
-	private final boolean isNeg(){ return pos >= 2 && buf[pos - 2] == '-'; }
 	private final byte read() {
 		if(pos == lim && lim != -1) {
 			try {
@@ -1095,15 +1094,13 @@ final class MyScanner implements Closeable, AutoCloseable {
 		while(isPunct(bt = read())){}
 		return bt;
 	}
-	private final byte nextInt() {
-		byte bt;
-		while(!isNum(bt = read())){}
-		return bt;
-	}
 	final int ni(){ return toIntExact(nl()); }
 	final long nl() {
-		byte c = nextInt();
-		final boolean neg = isNeg();
+		byte c = next();
+		final boolean neg = c == '-';
+		if(neg) {
+			c = next();
+		}
 		assert isNum(c);
 		long res = c - '0';
 		while(isNum(c = read())) {
@@ -1113,8 +1110,11 @@ final class MyScanner implements Closeable, AutoCloseable {
 		return neg ? -res : res;
 	}
 	final double nd() {
-		byte c = nextInt();
-		final boolean neg = isNeg();
+		byte c = next();
+		final boolean neg = c == '-';
+		if(neg) {
+			c = next();
+		}
 		assert isNum(c);
 		double res = c - '0';
 		while(isNum(c = read())) {

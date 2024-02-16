@@ -3548,7 +3548,7 @@ final class FenwickTree {
 			data[k] += x;
 		}
 	}
-	final void imos(final int l, final int r, final long x) {
+	final void add(final int l, final int r, final long x) {
 		add(l, x);
 		add(r + 1, -x);
 	}
@@ -3585,6 +3585,48 @@ final class FenwickTree {
 		sb.append(sum(0));
 		for(int i = 0; ++i < n - 2;) {
 			sb.append(" " + sum(i));
+		}
+		return sb.toString();
+	}
+}
+final class RangeBIT {
+	private final int n;
+	private final FenwickTree a, b;
+	RangeBIT(final int n) {
+		this.n = n;
+		a = new FenwickTree(n + 1);
+		b = new FenwickTree(n + 1);
+	}
+	RangeBIT(final int[] arr) {
+		this(arr.length);
+		for(int i = 0; i < arr.length; ++i) {
+			add(i, i, arr[i]);
+		}
+	}
+	RangeBIT(final long[] arr) {
+		this(arr.length);
+		for(int i = 0; i < arr.length; ++i) {
+			add(i, i, arr[i]);
+		}
+	}
+	final void add(final int l, final int r, final long x) {
+		a.add(l, x);
+		a.add(r, -x);
+		b.add(l, x * (1 - l));
+		b.add(r, x * (r - 1));
+	}
+	final long get(final int i){ return sum(i, i + 1); }
+	final long sum(int l, int r) {
+		l--;
+		r--;
+		return a.sum(r) * r + b.sum(r) - a.sum(l) * l - b.sum(l);
+	}
+	@Override
+	public final String toString() {
+		final StringBuilder sb = new StringBuilder();
+		sb.append(get(0));
+		for(int i = 0; ++i < n;) {
+			sb.append(" " + get(i));
 		}
 		return sb.toString();
 	}
@@ -3696,6 +3738,15 @@ final class SegmentTree<T> {
 			}
 		}
 		return min(i - n, fini);
+	}
+	@Override
+	public final String toString() {
+		final StringBuilder sb = new StringBuilder();
+		sb.append(query(0, 1));
+		for(int i = 0; ++i < fini;) {
+			sb.append(" " + query(i, i + 1));
+		}
+		return sb.toString();
 	}
 }
 
@@ -3914,8 +3965,7 @@ class LazySegmentTree {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(get(0));
 		for(int i = 0; ++i < n;) {
-			sb.append(' ');
-			sb.append(get(i));
+			sb.append(" " + get(i));
 		}
 		return sb.toString();
 	}

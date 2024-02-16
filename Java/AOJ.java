@@ -9,7 +9,6 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Formatter;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -119,7 +118,6 @@ final class MyScanner implements Closeable, AutoCloseable {
 	}
 	private final boolean isPunct(final byte bt){ return !Utility.scope(33, bt, 126); }
 	private final boolean isNum(final byte bt){ return Utility.scope('0', bt, '9'); }
-	private final boolean isNeg(){ return pos >= 2 && buf[pos - 2] == '-'; }
 	private final byte read() {
 		if(pos == lim && lim != -1) {
 			try {
@@ -143,15 +141,13 @@ final class MyScanner implements Closeable, AutoCloseable {
 		while(isPunct(bt = read())){}
 		return bt;
 	}
-	private final byte nextInt() {
-		byte bt;
-		while(!isNum(bt = read())){}
-		return bt;
-	}
 	final int ni(){ return toIntExact(nl()); }
 	final long nl() {
-		byte c = nextInt();
-		final boolean neg = isNeg();
+		byte c = next();
+		final boolean neg = c == '-';
+		if(neg) {
+			c = next();
+		}
 		assert isNum(c);
 		long res = c - '0';
 		while(isNum(c = read())) {
@@ -161,8 +157,11 @@ final class MyScanner implements Closeable, AutoCloseable {
 		return neg ? -res : res;
 	}
 	final double nd() {
-		byte c = nextInt();
-		final boolean neg = isNeg();
+		byte c = next();
+		final boolean neg = c == '-';
+		if(neg) {
+			c = next();
+		}
 		assert isNum(c);
 		double res = c - '0';
 		while(isNum(c = read())) {
@@ -318,14 +317,6 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 		newLine();
 	}
-	final <F extends Comparable<? super F>, S extends Comparable<? super S>> void out(final Pair<F, S> arg) {
-		if(debug) {
-			print(arg.toString());
-		} else {
-			print(arg.first + " " + arg.second);
-		}
-		newLine();
-	}
 	final void out(final int[] args) {
 		if(debug) {
 			print(Arrays.toString(args));
@@ -422,17 +413,9 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	final void outl(final char[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void outl(final Object[] args){ Arrays.stream(args).forEach(this::out); }
 	final void outl(final Object[][] args){ Arrays.stream(args).forEach(this::out); }
-	final <F extends Comparable<? super F>, S extends Comparable<? super S>> void outl(final Pair<F, S>[] args){ Arrays.stream(args).forEach(this::out); }
 	final <E> void outl(final Collection<E> args){ args.stream().forEach(this::out); }
 	final void fin(final Object head, final Object... tail) {
 		out(head, tail);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	final <F extends Comparable<? super F>, S extends Comparable<? super S>> void fin(final Pair<F, S> arg) {
-		out(arg);
 		if(!autoFlush) {
 			flush();
 		}
@@ -578,13 +561,6 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 		System.exit(0);
 	}
-	final <F extends Comparable<? super F>, S extends Comparable<? super S>> void ende(final Pair<F, S>[] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
 	final <E> void ende(final Collection<E> args) {
 		outl(args);
 		if(!autoFlush) {
@@ -612,48 +588,5 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		} catch(final IOException e) {
 			e.printStackTrace();
 		}
-	}
-}
-
-class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>>, Cloneable {
-	public F first;
-	public S second;
-	protected Pair(final F first, final S second) {
-		this.first = first;
-		this.second = second;
-	}
-	static final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }
-	Pair<S, F> swap(){ return Pair.of(second, first); }
-	@Override
-	public final boolean equals(final Object o) {
-		if(this == o) {
-			return true;
-		}
-		if(o == null || getClass() != o.getClass()) {
-			return false;
-		}
-		final Pair<?, ?> p = (Pair<?, ?>) o;
-		return first.equals(p.first) && second.equals(p.second);
-	}
-	@Override
-	public final int hashCode(){ return Objects.hash(first, second); }
-	@Override
-	public final String toString(){ return "(" + first + ", " + second + ")"; }
-	@SuppressWarnings("unchecked")
-	@Override
-	public final Pair<F, S> clone() {
-		try {
-			return (Pair<F, S>) super.clone();
-		} catch(final CloneNotSupportedException e){
-			e.printStackTrace();
-		}
-		throw new Error();
-	}
-	@Override
-	public final int compareTo(final Pair<F, S> p) {
-		if(first.compareTo(p.first) == 0) {
-			return second.compareTo(p.second);
-		}
-		return first.compareTo(p.first);
 	}
 }
