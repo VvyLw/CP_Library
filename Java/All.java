@@ -3649,6 +3649,10 @@ final class SegmentTree<T> {
 		dat = new Object[2 * n];
 		Arrays.fill(dat, e);
 	}
+	SegmentTree(final T[] a, final BinaryOperator<T> op, final T e) {
+		this(a.length, op, e);
+		IntStream.range(0, a.length).forEach(i -> update(i, a[i]));
+	}
 	@SuppressWarnings("unchecked")
 	final void update(int i, final T x) {
 		i += n;
@@ -3658,6 +3662,7 @@ final class SegmentTree<T> {
 			dat[i] = op.apply((T) dat[2 * i], (T) dat[2 * i + 1]);
 		} while(i > 0);
 	}
+	final T get(final int i){ return query(i, i + 1); }
 	@SuppressWarnings("unchecked")
 	final T query(int a, int b) {
 		T l = e, r = e;
@@ -3742,34 +3747,41 @@ final class SegmentTree<T> {
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
-		sb.append(query(0, 1));
+		sb.append(get(0));
 		for(int i = 0; ++i < fini;) {
-			sb.append(" " + query(i, i + 1));
+			sb.append(" " + get(i));
 		}
 		return sb.toString();
 	}
 }
 
-class LazySegmentTree {
-	private int n, sz, h;
-	private final long[] data, lazy;
-	private final LongBinaryOperator f, map, comp;
-	private final long e, id;
-	private final void update(final int k){ data[k] = f.applyAsLong(data[2 * k], data[2 * k + 1]); }
-	private final void allApply(final int k, final long x) {
-		data[k] = map.applyAsLong(data[k], x);
+class LazySegmentTree<T, U extends Comparable<? super U>> {
+	private final int n;
+	private int sz, h;
+	private final Object[] data, lazy;
+	private final BinaryOperator<T> f;
+	private final BiFunction<T, U, T> map;
+	private final BinaryOperator<U> comp;
+	private final T e;
+	private final U id;
+	@SuppressWarnings("unchecked")
+	private final void update(final int k){ data[k] = f.apply((T) data[2 * k], (T) data[2 * k + 1]); }
+	@SuppressWarnings("unchecked")
+	private final void allApply(final int k, final U x) {
+		data[k] = map.apply((T) data[k], x);
 		if(k < sz) {
-			lazy[k] = comp.applyAsLong(lazy[k], x);
+			lazy[k] = comp.apply((U) lazy[k], x);
 		}
 	}
+	@SuppressWarnings("unchecked")
 	private final void propagate(final int k) {
-		if(lazy[k] != id) {
-			allApply(2 * k, lazy[k]);
-			allApply(2 * k + 1, lazy[k]);
+		if(!lazy[k].equals(id)) {
+			allApply(2 * k, (U) lazy[k]);
+			allApply(2 * k + 1, (U) lazy[k]);
 			lazy[k] = id;
 		}
 	}
-	LazySegmentTree(final int n, final LongBinaryOperator f, final LongBinaryOperator map, final LongBinaryOperator comp, final long e, final long id) {
+	LazySegmentTree(final int n, final BinaryOperator<T> f, final BiFunction<T, U, T> map, final BinaryOperator<U> comp, final T e, final U id) {
 		this.n = n;
 		this.f = f;
 		this.map = map;
@@ -3782,20 +3794,16 @@ class LazySegmentTree {
 			sz <<= 1;
 			h++;
 		}
-		data = new long[2 * sz];
+		data = new Object[2 * sz];
 		Arrays.fill(data, e);
-		lazy = new long[2 * sz];
+		lazy = new Object[2 * sz];
 		Arrays.fill(lazy, id);
 	}
-	LazySegmentTree(final int[] a, final LongBinaryOperator f, final LongBinaryOperator map, final LongBinaryOperator comp, final long e, final long id) {
+	LazySegmentTree(final T[] a, final BinaryOperator<T> f, final BiFunction<T, U, T> map, final BinaryOperator<U> comp, final T e, final U id) {
 		this(a.length, f, map, comp, e, id);
 		build(a);
 	}
-	LazySegmentTree(final long[] a, final LongBinaryOperator f, final LongBinaryOperator map, final LongBinaryOperator comp, final long e, final long id) {
-		this(a.length, f, map, comp, e, id);
-		build(a);
-	}
-	final void build(final int[] a) {
+	final void build(final T[] a) {
 		assert n == a.length;
 		for(int k = 0; k < n; ++k) {
 			data[k + sz] = a[k];
@@ -3804,16 +3812,7 @@ class LazySegmentTree {
 			update(k);
 		}
 	}
-	final void build(final long[] a) {
-		assert n == a.length;
-		for(int k = 0; k < n; ++k) {
-			data[k + sz] = a[k];
-		}
-		for(int k = sz; --k > 0;) {
-			update(k);
-		}
-	}
-	final void set(int k, final long x) {
+	final void set(int k, final T x) {
 		k += sz;
 		for(int i = h; i > 0; i--) {
 			propagate(k >> i);
@@ -3823,14 +3822,16 @@ class LazySegmentTree {
 			update(k >> i);
 		}
 	}
-	final long get(int k) {
+	@SuppressWarnings("unchecked")
+	final T get(int k) {
 		k += sz;
 		for(int i = h; i > 0; i--) {
 			propagate(k >> i);
 		}
-		return data[k];
+		return (T) data[k];
 	}
-	final long query(int l, int r) {
+	@SuppressWarnings("unchecked")
+	final T query(int l, int r) {
 		if(l >= r) {
 			return e;
 		}
@@ -3844,29 +3845,31 @@ class LazySegmentTree {
 				propagate((r - 1) >> i);
 			}
 		}
-		long l2 = e, r2 = e;
+		T l2 = e, r2 = e;
 		for(; l < r; l >>= 1, r >>= 1) {
 			if(l % 2 == 1) {
-				l2 = f.applyAsLong(l2, data[l++]);
+				l2 = f.apply(l2, (T) data[l++]);
 			}
 			if(r % 2 == 1) {
-				r2 = f.applyAsLong(data[--r], r2);
+				r2 = f.apply((T) data[--r], r2);
 			}
 		}
-		return f.applyAsLong(l2, r2);
+		return f.apply(l2, r2);
 	}
-	final long all(){ return data[1]; }
-	final void apply(int k, final long x) {
+	@SuppressWarnings("unchecked")
+	final T all(){ return (T) data[1]; }
+	@SuppressWarnings("unchecked")
+	final void apply(int k, final U x) {
 		k += sz;
 		for(int i = h; i > 0; i--) {
 			propagate(k >> i);
 		}
-		data[k] = map.applyAsLong(data[k], x);
+		data[k] = map.apply((T) data[k], x);
 		for(int i = 0; ++i <= h;) {
 			update(k >> i);
 		}
 	}
-	final void apply(int l, int r, final long x) {
+	final void apply(int l, int r, final U x) {
 		if(l >= r) {
 			return;
 		}
@@ -3900,7 +3903,8 @@ class LazySegmentTree {
 			}
 		}
 	}
-	final int findFirst(int l, final LongPredicate fn) {
+	@SuppressWarnings("unchecked")
+	final int findFirst(int l, final Predicate<T> fn) {
 		if(l >= n) {
 			return n;
 		}
@@ -3908,16 +3912,16 @@ class LazySegmentTree {
 		for(int i = h; i > 0; i--) {
 			propagate(l >> i);
 		}
-		long sum = e;
+		T sum = e;
 		do {
 			while((l & 1) == 0) {
 				l >>= 1;
 			}
-			if(fn.test(f.applyAsLong(sum, data[l]))) {
+			if(fn.test(f.apply(sum, (T) data[l]))) {
 				while(l < sz) {
 					propagate(l);
 					l <<= 1;
-					final long nxt = f.applyAsLong(sum, data[l]);
+					final T nxt = f.apply(sum, (T) data[l]);
 					if(!fn.test(nxt)) {
 						sum = nxt;
 						l++;
@@ -3925,11 +3929,12 @@ class LazySegmentTree {
 				}
 				return l + 1 - sz;
 			}
-			sum = f.applyAsLong(sum, data[l++]);
+			sum = f.apply(sum, (T) data[l++]);
 		} while((l & -l) != l);
 		return n;
 	}
-	final int findLast(int r, final LongPredicate fn) {
+	@SuppressWarnings("unchecked")
+	final int findLast(int r, final Predicate<T> fn) {
 		if(r <= 0) {
 			return -1;
 		}
@@ -3937,17 +3942,17 @@ class LazySegmentTree {
 		for(int i = h; i > 0; i--) {
 			propagate((r - 1) >> i);
 		}
-		long sum = e;
+		T sum = e;
 		do {
 			r--;
 			while(r > 1 && r % 2 == 1) {
 				r >>= 1;
 			}
-			if(fn.test(f.applyAsLong(data[r], sum))) {
+			if(fn.test(f.apply((T) data[r], sum))) {
 				while(r < sz) {
 					propagate(r);
 					r = (r << 1) + 1;
-					final long nxt = f.applyAsLong(data[r], sum);
+					final T nxt = f.apply((T) data[r], sum);
 					if(!fn.test(nxt)) {
 						sum = nxt;
 						r--;
@@ -3955,7 +3960,7 @@ class LazySegmentTree {
 				}
 				return r - sz;
 			}
-			sum = f.applyAsLong(data[r], sum);
+			sum = f.apply((T) data[r], sum);
 		} while((r & -r) != r);
 		return -1;
 	}
@@ -3970,280 +3975,106 @@ class LazySegmentTree {
 		return sb.toString();
 	}
 }
-class LazySegmentTreePair {
-	private int n, sz, h;
-	private final IntPair[] data;
-	private final long[] lazy;
-	private final BinaryOperator<IntPair> f;
-	private final BiFunction<IntPair, Long, IntPair> map;
-	private final LongBinaryOperator comp;
-	private final IntPair e;
-	private final long id;
-	private final void update(final int k){ data[k] = f.apply(data[2 * k], data[2 * k + 1]); }
-	private final void allApply(final int k, final long x) {
-		data[k] = map.apply(data[k], x);
-		if(k < sz) {
-			lazy[k] = comp.applyAsLong(lazy[k], x);
-		}
+final class Zwei<T> implements Cloneable {
+	public T first, second;
+	private Zwei(final T first, final T second) {
+		this.first = first;
+		this.second = second;
 	}
-	private final void propagate(final int k) {
-		if(lazy[k] != id) {
-			allApply(2 * k, lazy[k]);
-			allApply(2 * k + 1, lazy[k]);
-			lazy[k] = id;
-		}
-	}
-	LazySegmentTreePair(final int n, final BinaryOperator<IntPair> f, final BiFunction<IntPair, Long, IntPair> map, final LongBinaryOperator comp, final IntPair e, final long id) {
-		this.n = n;
-		this.f = f;
-		this.map = map;
-		this.comp = comp;
-		this.e = e;
-		this.id = id;
-		sz = 1;
-		h = 0;
-		while(sz < n) {
-			sz <<= 1;
-			h++;
-		}
-		data = new IntPair[2 * sz];
-		Arrays.fill(data, e);
-		lazy = new long[2 * sz];
-		Arrays.fill(lazy, id);
-	}
-	LazySegmentTreePair(final IntPair[] a, final BinaryOperator<IntPair> f, final BiFunction<IntPair, Long, IntPair> map, final LongBinaryOperator comp, final IntPair e, final long id) {
-		this(a.length, f, map, comp, e, id);
-		build(a);
-	}
-	final void build(final IntPair[] a) {
-		assert n == a.length;
-		for(int k = 0; k < n; ++k) {
-			data[k + sz] = a[k];
-		}
-		for(int k = sz; --k > 0;) {
-			update(k);
-		}
-	}
-	final void set(int k, final IntPair x) {
-		k += sz;
-		for(int i = h; i > 0; i--) {
-			propagate(k >> i);
-		}
-		data[k] = x;
-		for(int i = 0; ++i <= h;) {
-			update(k >> i);
-		}
-	}
-	final long get(int k) {
-		k += sz;
-		for(int i = h; i > 0; i--) {
-			propagate(k >> i);
-		}
-		return data[k].first.longValue();
-	}
-	final long query(int l, int r) {
-		if(l >= r) {
-			return e.first.longValue();
-		}
-		l += sz;
-		r += sz;
-		for(int i = h; i > 0; i--) {
-			if(((l >> i) << i) != l) {
-				propagate(l >> i);
-			}
-			if(((r >> i) << i) != r) {
-				propagate((r - 1) >> i);
-			}
-		}
-		IntPair l2 = e, r2 = e;
-		for(; l < r; l >>= 1, r >>= 1) {
-			if(l % 2 == 1) {
-				l2 = f.apply(l2, data[l++]);
-			}
-			if(r % 2 == 1) {
-				r2 = f.apply(data[--r], r2);
-			}
-		}
-		return f.apply(l2, r2).first.longValue();
-	}
-	final long all(){ return data[1].first.longValue(); }
-	final void apply(int k, final long x) {
-		k += sz;
-		for(int i = h; i > 0; i--) {
-			propagate(k >> i);
-		}
-		data[k] = map.apply(data[k], x);
-		for(int i = 0; ++i <= h;) {
-			update(k >> i);
-		}
-	}
-	final void apply(int l, int r, final long x) {
-		if(l >= r) {
-			return;
-		}
-		l += sz;
-		r += sz;
-		for(int i = h; i > 0; i--) {
-			if(((l >> i) << i) != l) {
-				propagate(l >> i);
-			}
-			if(((r >> i) << i) != r) {
-				propagate((r - 1) >> i);
-			}
-		}
-		int l2 = l, r2 = r;
-		for(; l < r; l >>= 1, r >>= 1) {
-			if(l % 2 == 1) {
-				allApply(l++, x);
-			}
-			if(r % 2 == 1) {
-				allApply(--r, x);
-			}
-		}
-		l = l2;
-		r = r2;
-		for(int i = 0; ++i <= h;) {
-			if(((l >> i) << i) != l) {
-				update(l >> i);
-			}
-			if(((r >> i) << i) != r) {
-				update((r - 1) >> i);
-			}
-		}
-	}
-	final int findFirst(int l, final LongPredicate fn) {
-		if(l >= n) {
-			return n;
-		}
-		l += sz;
-		for(int i = h; i > 0; i--) {
-			propagate(l >> i);
-		}
-		IntPair sum = e;
-		do {
-			while((l & 1) == 0) {
-				l >>= 1;
-			}
-			if(fn.test(f.apply(sum, data[l]).first.longValue())) {
-				while(l < sz) {
-					propagate(l);
-					l <<= 1;
-					final IntPair nxt = f.apply(sum, data[l]);
-					if(!fn.test(nxt.first.longValue())) {
-						sum = nxt;
-						l++;
-					}
-				}
-				return l + 1 - sz;
-			}
-			sum = f.apply(sum, data[l++]);
-		} while((l & -l) != l);
-		return n;
-	}
-	final int findLast(int r, final LongPredicate fn) {
-		if(r <= 0) {
-			return -1;
-		}
-		r += sz;
-		for(int i = h; i > 0; i--) {
-			propagate((r - 1) >> i);
-		}
-		IntPair sum = e;
-		do {
-			r--;
-			while(r > 1 && r % 2 == 1) {
-				r >>= 1;
-			}
-			if(fn.test(f.apply(data[r], sum).first.longValue())) {
-				while(r < sz) {
-					propagate(r);
-					r = (r << 1) + 1;
-					final IntPair nxt = f.apply(data[r], sum);
-					if(!fn.test(nxt.first.longValue())) {
-						sum = nxt;
-						r--;
-					}
-				}
-				return r - sz;
-			}
-			sum = f.apply(data[r], sum);
-		} while((r & -r) != r);
-		return -1;
-	}
-	final void clear(){ Arrays.fill(data, e); }
+	static final <T> Zwei<T> of(final T f, final T s){ return new Zwei<>(f, s); }
 	@Override
-	public final String toString() {
-		final StringBuilder sb = new StringBuilder();
-		sb.append(get(0));
-		for(int i = 0; ++i < n;) {
-			sb.append(' ');
-			sb.append(get(i));
+	public final boolean equals(final Object o) {
+		if(this == o) {
+			return true;
 		}
-		return sb.toString();
+		if(o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		final Zwei<?> z = (Zwei<?>) o;
+		return first.equals(z.first) && second.equals(z.second);
+	}
+	@Override
+	public final int hashCode(){ return Objects.hash(first, second); }
+	@Override
+	public final String toString(){ return String.valueOf(first); }
+	@SuppressWarnings("unchecked")
+	@Override
+	public final Zwei<T> clone() {
+		try {
+			return (Zwei<T>) super.clone();
+		} catch(final CloneNotSupportedException e){
+			e.printStackTrace();
+		}
+		throw new Error();
 	}
 }
-final class RAMX extends LazySegmentTree {
-	RAMX(final int[] a){ super(a, (x, y) -> max(x, y), (x, y) -> x + y, (x, y) -> x + y, Integer.MIN_VALUE, 0); }
-	RAMX(final long[] a){ super(a, (x, y) -> max(x, y), (x, y) -> x + y, (x, y) -> x + y, Long.MIN_VALUE, 0); }
+final class RAMX extends LazySegmentTree<Long, Long> {
+	RAMX(final int[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new), Long::max, Long::sum, Long::sum, Long.valueOf(Long.MIN_VALUE), Long.valueOf(0)); }
+	RAMX(final long[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new), Long::max, Long::sum, Long::sum, Long.valueOf(Long.MIN_VALUE), Long.valueOf(0)); }
 }
-final class RAMN extends LazySegmentTree {
-	RAMN(final int[] a){ super(a, (x, y) -> min(x, y), (x, y) -> x + y, (x, y) -> x + y, Integer.MAX_VALUE, 0); }
-	RAMN(final long[] a){ super(a, (x, y) -> min(x, y), (x, y) -> x + y, (x, y) -> x + y, Long.MAX_VALUE, 0); }
+final class RAMN extends LazySegmentTree<Long, Long> {
+	RAMN(final int[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new), Long::min, Long::sum, Long::sum, Long.valueOf(Long.MAX_VALUE), Long.valueOf(0)); }
+	RAMN(final long[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new), Long::min, Long::sum, Long::sum, Long.valueOf(Long.MAX_VALUE), Long.valueOf(0)); }
 }
-final class RASM extends LazySegmentTreePair {
+final class RASM extends LazySegmentTree<Zwei<Long>, Long> {
 	private final int n;
-	private final IntPair[] b;
+	private final Zwei<Long>[] b;
+	@SuppressWarnings("unchecked")
 	RASM(final int[] a) {
-		super(a.length, (x, y) -> x.add(y), (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue() * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0, 0), Integer.MIN_VALUE);
+		super(a.length, (x, y) -> Zwei.of(x.first.longValue() + y.first.longValue(), x.second.longValue() + y.second.longValue()), (x, y) -> Zwei.of(x.first.longValue() + x.second.longValue() * y.longValue(), x.second.longValue()), Long::sum, Zwei.of(0L, 0L), Long.valueOf(Long.MIN_VALUE));
 		n = a.length;
-		b = new IntPair[n];
+		b = new Zwei[n];
 		for(int i = 0; i < n; ++i) {
-			b[i] = IntPair.of(a[i], 1);
+			b[i] = Zwei.of((long) a[i], 1L);
 		}
 		build(b);
 	}
+	@SuppressWarnings("unchecked")
 	RASM(final long[] a) {
-		super(a.length, (x, y) -> x.add(y), (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue() * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0, 0), Long.MIN_VALUE);
+		super(a.length, (x, y) -> Zwei.of(x.first.longValue() + y.first.longValue(), x.second.longValue() + y.second.longValue()), (x, y) -> Zwei.of(x.first.longValue() + x.second.longValue() * y.longValue(), x.second.longValue()), Long::sum, Zwei.of(0L, 0L), Long.valueOf(Long.MIN_VALUE));
 		n = a.length;
-		b = new IntPair[n];
+		b = new Zwei[n];
 		for(int i = 0; i < n; ++i) {
-			b[i] = IntPair.of(a[i], 1);
+			b[i] = Zwei.of(a[i], 1L);
 		}
 		build(b);
 	}
 }
-final class RUMX extends LazySegmentTree {
-	RUMX(final int[] a){ super(a, (x, y) -> max(x, y), (x, y) -> y, (x, y) -> y, Integer.MIN_VALUE, Integer.MIN_VALUE); }
-	RUMX(final long[] a){ super(a, (x, y) -> max(x, y), (x, y) -> y, (x, y) -> y, Long.MIN_VALUE, Long.MIN_VALUE); }
+final class RUMX extends LazySegmentTree<Long, Long> {
+	RUMX(final int[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new), Long::max, (x, y) -> y, (x, y) -> y, Long.valueOf(Long.MIN_VALUE), Long.valueOf(Long.MIN_VALUE)); }
+	RUMX(final long[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new), Long::max, (x, y) -> y, (x, y) -> y, Long.valueOf(Long.MIN_VALUE), Long.valueOf(Long.MIN_VALUE)); }
 }
-final class RUMN extends LazySegmentTree {
-	RUMN(final int[] a){ super(a, (x, y) -> min(x, y), (x, y) -> y, (x, y) -> y, Integer.MAX_VALUE, Integer.MAX_VALUE); }
-	RUMN(final long[] a){ super(a, (x, y) -> min(x, y), (x, y) -> y, (x, y) -> y, Long.MAX_VALUE, Long.MAX_VALUE); }
+final class RUMN extends LazySegmentTree<Long, Long> {
+	RUMN(final int[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new), Long::min, (x, y) -> y, (x, y) -> y, Long.valueOf(Long.MAX_VALUE), Long.valueOf(Long.MAX_VALUE)); }
+	RUMN(final long[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new), Long::min, (x, y) -> y, (x, y) -> y, Long.valueOf(Long.MAX_VALUE), Long.valueOf(Long.MAX_VALUE)); }
 }
-final class RUSM extends LazySegmentTreePair {
+final class RUSM extends LazySegmentTree<Zwei<Long>, Long> {
 	private final int n;
-	private final IntPair[] b;
+	private final Zwei<Long>[] b;
+	@SuppressWarnings("unchecked")
 	RUSM(final int[] a) {
-		super(a.length, (x, y) -> x.add(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()), (x, y) -> y, IntPair.of(0, 0), Integer.MIN_VALUE);
+		super(a.length, (x, y) -> Zwei.of(x.first.longValue() + y.first.longValue(), x.second.longValue() + y.second.longValue()), (x, y) -> Zwei.of(x.second.longValue() * y.longValue(), x.second.longValue()), (x, y) -> y, Zwei.of(0L, 0L), Long.valueOf(Long.MIN_VALUE));
 		n = a.length;
-		b = new IntPair[n];
+		b = new Zwei[n];
 		for(int i = 0; i < n; ++i) {
-			b[i] = IntPair.of(a[i], 1);
+			b[i] = Zwei.of((long) a[i], 1L);
 		}
 		build(b);
 	}
+	@SuppressWarnings("unchecked")
 	RUSM(final long[] a) {
-		super(a.length, (x, y) -> x.add(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()), (x, y) -> y, IntPair.of(0, 0), Long.MIN_VALUE);
+		super(a.length, (x, y) -> Zwei.of(x.first.longValue() + y.first.longValue(), x.second.longValue() + y.second.longValue()), (x, y) -> Zwei.of(x.second.longValue() * y.longValue(), x.second.longValue()), (x, y) -> y, Zwei.of(0L, 0L), Long.valueOf(Long.MIN_VALUE));
 		n = a.length;
-		b = new IntPair[n];
+		b = new Zwei[n];
 		for(int i = 0; i < n; ++i) {
-			b[i] = IntPair.of(a[i], 1);
+			b[i] = Zwei.of(a[i], 1L);
 		}
 		build(b);
 	}
 }
 
 final class DualSegmentTree<T> {
+	private final int n;
 	private int sz, h;
 	private final Object[] lazy;
 	private final T id;
@@ -4262,6 +4093,7 @@ final class DualSegmentTree<T> {
 		}
 	}
 	DualSegmentTree(final int n, final BinaryOperator<T> ap, final T id) {
+		this.n = n;
 		this.ap = ap;
 		this.id = id;
 		sz = 1;
@@ -4292,6 +4124,15 @@ final class DualSegmentTree<T> {
 	final T get(int k) {
 		thrust(k += sz);
 		return (T) lazy[k];
+	}
+	@Override
+	public final String toString() {
+		final StringBuilder sb = new StringBuilder();
+		sb.append(get(0));
+		for(int i = 0; ++i < n;) {
+			sb.append(" " + get(i));
+		}
+		return sb.toString();
 	}
 }
 
