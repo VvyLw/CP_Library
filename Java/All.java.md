@@ -1814,229 +1814,193 @@ data:
     \tSegmentTree(final int fini, final BinaryOperator<T> op, final T e) {\n\t\tthis.fini\
     \ = fini;\n\t\tthis.op = op;\n\t\tthis.e = e;\n\t\twhile(this.fini > n) {\n\t\t\
     \tn <<= 1;\n\t\t\trank++;\n\t\t}\n\t\tdat = new Object[2 * n];\n\t\tArrays.fill(dat,\
-    \ e);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal void update(int i, final\
-    \ T x) {\n\t\ti += n;\n\t\tdat[i] = x;\n\t\tdo {\n\t\t\ti >>= 1;\n\t\t\tdat[i]\
-    \ = op.apply((T) dat[2 * i], (T) dat[2 * i + 1]);\n\t\t} while(i > 0);\n\t}\n\t\
-    @SuppressWarnings(\"unchecked\")\n\tfinal T query(int a, int b) {\n\t\tT l = e,\
-    \ r = e;\n\t\tfor(a += n, b += n; a < b; a >>= 1, b >>= 1) {\n\t\t\tif(a % 2 ==\
-    \ 1) {\n\t\t\t\tl = op.apply(l, (T) dat[a++]);\n\t\t\t}\n\t\t\tif(b % 2 == 1)\
-    \ {\n\t\t\t\tr = op.apply((T) dat[--b], r);\n\t\t\t}\n\t\t}\n\t\treturn op.apply(l,\
-    \ r);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal int findLeft(final int\
-    \ r, final Predicate<T> fn) {\n\t\tif(r == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\t\
-    int h = 0, i = r + n;\n\t\tT val = e;\n\t\tfor(; h <= rank; h++) {\n\t\t\tif(i\
-    \ >> (h & 1) > 0) {\n\t\t\t\tfinal T val2 = op.apply(val, (T) dat[i >> (h ^ 1)]);\n\
-    \t\t\t\tif(fn.test(val2)){\n\t\t\t\t\ti -= 1 << h;\n\t\t\t\t\tif(i == n) {\n\t\
-    \t\t\t\t\treturn 0;\n\t\t\t\t\t}\n\t\t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\telse\
-    \ {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\t\
-    final T val2 = op.apply(val, (T) dat[(i >> h) - 1]);\n\t\t\tif(fn.test(val2)){\n\
-    \t\t\t\ti -= 1 << h;\n\t\t\t\tif(i == n) {\n\t\t\t\t\treturn 0;\n\t\t\t\t}\n\t\
-    \t\t\tval = val2;\n\t\t\t}\n\t\t}\n\t\treturn i - n;\n\t}\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tfinal int findRight(final int l, final Predicate<T> fn) {\n\t\t\
-    if(l == fini) {\n\t\t\treturn fini;\n\t\t}\n\t\tint h = 0, i = l + n;\n\t\tT val\
-    \ = e;\n\t\tfor(; h <= rank; h++) {\n\t\t\tif(i >> (h & 1) > 0){\n\t\t\t\tfinal\
-    \ T val2 = op.apply(val, (T) dat[i >> h]);\n\t\t\t\tif(fn.test(val2)){\n\t\t\t\
-    \t\ti += 1 << h;\n\t\t\t\t\tif(i == n * 2) {\n\t\t\t\t\t\treturn fini;\n\t\t\t\
-    \t\t}\n\t\t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\
-    \t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\tfinal T val2 = op.apply(val,\
-    \ (T) dat[i >> h]);\n\t\t\tif(fn.test(val2)) {\n\t\t\t\ti += 1 << h;\n\t\t\t\t\
-    if(i == n * 2) {\n\t\t\t\t\treturn fini;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\
-    \t}\n\t\t}\n\t\treturn min(i - n, fini);\n\t}\n\t@Override\n\tpublic final String\
-    \ toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tsb.append(query(0,\
-    \ 1));\n\t\tfor(int i = 0; ++i < fini;) {\n\t\t\tsb.append(\" \" + query(i, i\
-    \ + 1));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nclass LazySegmentTree {\n\
-    \tprivate int n, sz, h;\n\tprivate final long[] data, lazy;\n\tprivate final LongBinaryOperator\
-    \ f, map, comp;\n\tprivate final long e, id;\n\tprivate final void update(final\
-    \ int k){ data[k] = f.applyAsLong(data[2 * k], data[2 * k + 1]); }\n\tprivate\
-    \ final void allApply(final int k, final long x) {\n\t\tdata[k] = map.applyAsLong(data[k],\
-    \ x);\n\t\tif(k < sz) {\n\t\t\tlazy[k] = comp.applyAsLong(lazy[k], x);\n\t\t}\n\
-    \t}\n\tprivate final void propagate(final int k) {\n\t\tif(lazy[k] != id) {\n\t\
-    \t\tallApply(2 * k, lazy[k]);\n\t\t\tallApply(2 * k + 1, lazy[k]);\n\t\t\tlazy[k]\
-    \ = id;\n\t\t}\n\t}\n\tLazySegmentTree(final int n, final LongBinaryOperator f,\
-    \ final LongBinaryOperator map, final LongBinaryOperator comp, final long e, final\
-    \ long id) {\n\t\tthis.n = n;\n\t\tthis.f = f;\n\t\tthis.map = map;\n\t\tthis.comp\
-    \ = comp;\n\t\tthis.e = e;\n\t\tthis.id = id;\n\t\tsz = 1;\n\t\th = 0;\n\t\twhile(sz\
-    \ < n) {\n\t\t\tsz <<= 1;\n\t\t\th++;\n\t\t}\n\t\tdata = new long[2 * sz];\n\t\
-    \tArrays.fill(data, e);\n\t\tlazy = new long[2 * sz];\n\t\tArrays.fill(lazy, id);\n\
-    \t}\n\tLazySegmentTree(final int[] a, final LongBinaryOperator f, final LongBinaryOperator\
-    \ map, final LongBinaryOperator comp, final long e, final long id) {\n\t\tthis(a.length,\
-    \ f, map, comp, e, id);\n\t\tbuild(a);\n\t}\n\tLazySegmentTree(final long[] a,\
-    \ final LongBinaryOperator f, final LongBinaryOperator map, final LongBinaryOperator\
-    \ comp, final long e, final long id) {\n\t\tthis(a.length, f, map, comp, e, id);\n\
-    \t\tbuild(a);\n\t}\n\tfinal void build(final int[] a) {\n\t\tassert n == a.length;\n\
-    \t\tfor(int k = 0; k < n; ++k) {\n\t\t\tdata[k + sz] = a[k];\n\t\t}\n\t\tfor(int\
-    \ k = sz; --k > 0;) {\n\t\t\tupdate(k);\n\t\t}\n\t}\n\tfinal void build(final\
-    \ long[] a) {\n\t\tassert n == a.length;\n\t\tfor(int k = 0; k < n; ++k) {\n\t\
-    \t\tdata[k + sz] = a[k];\n\t\t}\n\t\tfor(int k = sz; --k > 0;) {\n\t\t\tupdate(k);\n\
-    \t\t}\n\t}\n\tfinal void set(int k, final long x) {\n\t\tk += sz;\n\t\tfor(int\
-    \ i = h; i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\t\t}\n\t\tdata[k] = x;\n\t\t\
-    for(int i = 0; ++i <= h;) {\n\t\t\tupdate(k >> i);\n\t\t}\n\t}\n\tfinal long get(int\
-    \ k) {\n\t\tk += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\
-    \t\t}\n\t\treturn data[k];\n\t}\n\tfinal long query(int l, int r) {\n\t\tif(l\
-    \ >= r) {\n\t\t\treturn e;\n\t\t}\n\t\tl += sz;\n\t\tr += sz;\n\t\tfor(int i =\
-    \ h; i > 0; i--) {\n\t\t\tif(((l >> i) << i) != l) {\n\t\t\t\tpropagate(l >> i);\n\
-    \t\t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\t\t\tpropagate((r - 1) >> i);\n\t\
-    \t\t}\n\t\t}\n\t\tlong l2 = e, r2 = e;\n\t\tfor(; l < r; l >>= 1, r >>= 1) {\n\
-    \t\t\tif(l % 2 == 1) {\n\t\t\t\tl2 = f.applyAsLong(l2, data[l++]);\n\t\t\t}\n\t\
-    \t\tif(r % 2 == 1) {\n\t\t\t\tr2 = f.applyAsLong(data[--r], r2);\n\t\t\t}\n\t\t\
-    }\n\t\treturn f.applyAsLong(l2, r2);\n\t}\n\tfinal long all(){ return data[1];\
-    \ }\n\tfinal void apply(int k, final long x) {\n\t\tk += sz;\n\t\tfor(int i =\
-    \ h; i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\t\t}\n\t\tdata[k] = map.applyAsLong(data[k],\
-    \ x);\n\t\tfor(int i = 0; ++i <= h;) {\n\t\t\tupdate(k >> i);\n\t\t}\n\t}\n\t\
-    final void apply(int l, int r, final long x) {\n\t\tif(l >= r) {\n\t\t\treturn;\n\
-    \t\t}\n\t\tl += sz;\n\t\tr += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tif(((l\
-    \ >> i) << i) != l) {\n\t\t\t\tpropagate(l >> i);\n\t\t\t}\n\t\t\tif(((r >> i)\
-    \ << i) != r) {\n\t\t\t\tpropagate((r - 1) >> i);\n\t\t\t}\n\t\t}\n\t\tint l2\
-    \ = l, r2 = r;\n\t\tfor(; l < r; l >>= 1, r >>= 1) {\n\t\t\tif(l % 2 == 1) {\n\
-    \t\t\t\tallApply(l++, x);\n\t\t\t}\n\t\t\tif(r % 2 == 1) {\n\t\t\t\tallApply(--r,\
-    \ x);\n\t\t\t}\n\t\t}\n\t\tl = l2;\n\t\tr = r2;\n\t\tfor(int i = 0; ++i <= h;)\
-    \ {\n\t\t\tif(((l >> i) << i) != l) {\n\t\t\t\tupdate(l >> i);\n\t\t\t}\n\t\t\t\
-    if(((r >> i) << i) != r) {\n\t\t\t\tupdate((r - 1) >> i);\n\t\t\t}\n\t\t}\n\t\
-    }\n\tfinal int findFirst(int l, final LongPredicate fn) {\n\t\tif(l >= n) {\n\t\
-    \t\treturn n;\n\t\t}\n\t\tl += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(l\
-    \ >> i);\n\t\t}\n\t\tlong sum = e;\n\t\tdo {\n\t\t\twhile((l & 1) == 0) {\n\t\t\
-    \t\tl >>= 1;\n\t\t\t}\n\t\t\tif(fn.test(f.applyAsLong(sum, data[l]))) {\n\t\t\t\
-    \twhile(l < sz) {\n\t\t\t\t\tpropagate(l);\n\t\t\t\t\tl <<= 1;\n\t\t\t\t\tfinal\
-    \ long nxt = f.applyAsLong(sum, data[l]);\n\t\t\t\t\tif(!fn.test(nxt)) {\n\t\t\
-    \t\t\t\tsum = nxt;\n\t\t\t\t\t\tl++;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn l\
-    \ + 1 - sz;\n\t\t\t}\n\t\t\tsum = f.applyAsLong(sum, data[l++]);\n\t\t} while((l\
-    \ & -l) != l);\n\t\treturn n;\n\t}\n\tfinal int findLast(int r, final LongPredicate\
-    \ fn) {\n\t\tif(r <= 0) {\n\t\t\treturn -1;\n\t\t}\n\t\tr += sz;\n\t\tfor(int\
-    \ i = h; i > 0; i--) {\n\t\t\tpropagate((r - 1) >> i);\n\t\t}\n\t\tlong sum =\
-    \ e;\n\t\tdo {\n\t\t\tr--;\n\t\t\twhile(r > 1 && r % 2 == 1) {\n\t\t\t\tr >>=\
-    \ 1;\n\t\t\t}\n\t\t\tif(fn.test(f.applyAsLong(data[r], sum))) {\n\t\t\t\twhile(r\
-    \ < sz) {\n\t\t\t\t\tpropagate(r);\n\t\t\t\t\tr = (r << 1) + 1;\n\t\t\t\t\tfinal\
-    \ long nxt = f.applyAsLong(data[r], sum);\n\t\t\t\t\tif(!fn.test(nxt)) {\n\t\t\
-    \t\t\t\tsum = nxt;\n\t\t\t\t\t\tr--;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn r\
-    \ - sz;\n\t\t\t}\n\t\t\tsum = f.applyAsLong(data[r], sum);\n\t\t} while((r & -r)\
-    \ != r);\n\t\treturn -1;\n\t}\n\tfinal void clear(){ Arrays.fill(data, e); }\n\
-    \t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder sb =\
-    \ new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\
-    \t\t\tsb.append(\" \" + get(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}\nclass\
-    \ LazySegmentTreePair {\n\tprivate int n, sz, h;\n\tprivate final IntPair[] data;\n\
-    \tprivate final long[] lazy;\n\tprivate final BinaryOperator<IntPair> f;\n\tprivate\
-    \ final BiFunction<IntPair, Long, IntPair> map;\n\tprivate final LongBinaryOperator\
-    \ comp;\n\tprivate final IntPair e;\n\tprivate final long id;\n\tprivate final\
-    \ void update(final int k){ data[k] = f.apply(data[2 * k], data[2 * k + 1]); }\n\
-    \tprivate final void allApply(final int k, final long x) {\n\t\tdata[k] = map.apply(data[k],\
-    \ x);\n\t\tif(k < sz) {\n\t\t\tlazy[k] = comp.applyAsLong(lazy[k], x);\n\t\t}\n\
-    \t}\n\tprivate final void propagate(final int k) {\n\t\tif(lazy[k] != id) {\n\t\
-    \t\tallApply(2 * k, lazy[k]);\n\t\t\tallApply(2 * k + 1, lazy[k]);\n\t\t\tlazy[k]\
-    \ = id;\n\t\t}\n\t}\n\tLazySegmentTreePair(final int n, final BinaryOperator<IntPair>\
-    \ f, final BiFunction<IntPair, Long, IntPair> map, final LongBinaryOperator comp,\
-    \ final IntPair e, final long id) {\n\t\tthis.n = n;\n\t\tthis.f = f;\n\t\tthis.map\
-    \ = map;\n\t\tthis.comp = comp;\n\t\tthis.e = e;\n\t\tthis.id = id;\n\t\tsz =\
-    \ 1;\n\t\th = 0;\n\t\twhile(sz < n) {\n\t\t\tsz <<= 1;\n\t\t\th++;\n\t\t}\n\t\t\
-    data = new IntPair[2 * sz];\n\t\tArrays.fill(data, e);\n\t\tlazy = new long[2\
-    \ * sz];\n\t\tArrays.fill(lazy, id);\n\t}\n\tLazySegmentTreePair(final IntPair[]\
-    \ a, final BinaryOperator<IntPair> f, final BiFunction<IntPair, Long, IntPair>\
-    \ map, final LongBinaryOperator comp, final IntPair e, final long id) {\n\t\t\
-    this(a.length, f, map, comp, e, id);\n\t\tbuild(a);\n\t}\n\tfinal void build(final\
-    \ IntPair[] a) {\n\t\tassert n == a.length;\n\t\tfor(int k = 0; k < n; ++k) {\n\
-    \t\t\tdata[k + sz] = a[k];\n\t\t}\n\t\tfor(int k = sz; --k > 0;) {\n\t\t\tupdate(k);\n\
-    \t\t}\n\t}\n\tfinal void set(int k, final IntPair x) {\n\t\tk += sz;\n\t\tfor(int\
-    \ i = h; i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\t\t}\n\t\tdata[k] = x;\n\t\t\
-    for(int i = 0; ++i <= h;) {\n\t\t\tupdate(k >> i);\n\t\t}\n\t}\n\tfinal long get(int\
-    \ k) {\n\t\tk += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\
-    \t\t}\n\t\treturn data[k].first.longValue();\n\t}\n\tfinal long query(int l, int\
-    \ r) {\n\t\tif(l >= r) {\n\t\t\treturn e.first.longValue();\n\t\t}\n\t\tl += sz;\n\
-    \t\tr += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tif(((l >> i) << i) != l)\
-    \ {\n\t\t\t\tpropagate(l >> i);\n\t\t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\
-    \t\t\tpropagate((r - 1) >> i);\n\t\t\t}\n\t\t}\n\t\tIntPair l2 = e, r2 = e;\n\t\
-    \tfor(; l < r; l >>= 1, r >>= 1) {\n\t\t\tif(l % 2 == 1) {\n\t\t\t\tl2 = f.apply(l2,\
-    \ data[l++]);\n\t\t\t}\n\t\t\tif(r % 2 == 1) {\n\t\t\t\tr2 = f.apply(data[--r],\
-    \ r2);\n\t\t\t}\n\t\t}\n\t\treturn f.apply(l2, r2).first.longValue();\n\t}\n\t\
-    final long all(){ return data[1].first.longValue(); }\n\tfinal void apply(int\
-    \ k, final long x) {\n\t\tk += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(k\
-    \ >> i);\n\t\t}\n\t\tdata[k] = map.apply(data[k], x);\n\t\tfor(int i = 0; ++i\
-    \ <= h;) {\n\t\t\tupdate(k >> i);\n\t\t}\n\t}\n\tfinal void apply(int l, int r,\
-    \ final long x) {\n\t\tif(l >= r) {\n\t\t\treturn;\n\t\t}\n\t\tl += sz;\n\t\t\
-    r += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tif(((l >> i) << i) != l) {\n\
-    \t\t\t\tpropagate(l >> i);\n\t\t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\t\t\t\
-    propagate((r - 1) >> i);\n\t\t\t}\n\t\t}\n\t\tint l2 = l, r2 = r;\n\t\tfor(; l\
-    \ < r; l >>= 1, r >>= 1) {\n\t\t\tif(l % 2 == 1) {\n\t\t\t\tallApply(l++, x);\n\
-    \t\t\t}\n\t\t\tif(r % 2 == 1) {\n\t\t\t\tallApply(--r, x);\n\t\t\t}\n\t\t}\n\t\
-    \tl = l2;\n\t\tr = r2;\n\t\tfor(int i = 0; ++i <= h;) {\n\t\t\tif(((l >> i) <<\
-    \ i) != l) {\n\t\t\t\tupdate(l >> i);\n\t\t\t}\n\t\t\tif(((r >> i) << i) != r)\
-    \ {\n\t\t\t\tupdate((r - 1) >> i);\n\t\t\t}\n\t\t}\n\t}\n\tfinal int findFirst(int\
-    \ l, final LongPredicate fn) {\n\t\tif(l >= n) {\n\t\t\treturn n;\n\t\t}\n\t\t\
-    l += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(l >> i);\n\t\t}\n\t\
-    \tIntPair sum = e;\n\t\tdo {\n\t\t\twhile((l & 1) == 0) {\n\t\t\t\tl >>= 1;\n\t\
-    \t\t}\n\t\t\tif(fn.test(f.apply(sum, data[l]).first.longValue())) {\n\t\t\t\t\
+    \ e);\n\t}\n\tSegmentTree(final T[] a, final BinaryOperator<T> op, final T e)\
+    \ {\n\t\tthis(a.length, op, e);\n\t\tIntStream.range(0, a.length).forEach(i ->\
+    \ update(i, a[i]));\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal void update(int\
+    \ i, final T x) {\n\t\ti += n;\n\t\tdat[i] = x;\n\t\tdo {\n\t\t\ti >>= 1;\n\t\t\
+    \tdat[i] = op.apply((T) dat[2 * i], (T) dat[2 * i + 1]);\n\t\t} while(i > 0);\n\
+    \t}\n\tfinal T get(final int i){ return query(i, i + 1); }\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tfinal T query(int a, int b) {\n\t\tT l = e, r = e;\n\t\tfor(a\
+    \ += n, b += n; a < b; a >>= 1, b >>= 1) {\n\t\t\tif(a % 2 == 1) {\n\t\t\t\tl\
+    \ = op.apply(l, (T) dat[a++]);\n\t\t\t}\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tr = op.apply((T)\
+    \ dat[--b], r);\n\t\t\t}\n\t\t}\n\t\treturn op.apply(l, r);\n\t}\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tfinal int findLeft(final int r, final Predicate<T> fn) {\n\t\t\
+    if(r == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint h = 0, i = r + n;\n\t\tT val = e;\n\
+    \t\tfor(; h <= rank; h++) {\n\t\t\tif(i >> (h & 1) > 0) {\n\t\t\t\tfinal T val2\
+    \ = op.apply(val, (T) dat[i >> (h ^ 1)]);\n\t\t\t\tif(fn.test(val2)){\n\t\t\t\t\
+    \ti -= 1 << h;\n\t\t\t\t\tif(i == n) {\n\t\t\t\t\t\treturn 0;\n\t\t\t\t\t}\n\t\
+    \t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\
+    \t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\tfinal T val2 = op.apply(val, (T) dat[(i\
+    \ >> h) - 1]);\n\t\t\tif(fn.test(val2)){\n\t\t\t\ti -= 1 << h;\n\t\t\t\tif(i ==\
+    \ n) {\n\t\t\t\t\treturn 0;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t}\n\t\t}\n\t\
+    \treturn i - n;\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal int findRight(final\
+    \ int l, final Predicate<T> fn) {\n\t\tif(l == fini) {\n\t\t\treturn fini;\n\t\
+    \t}\n\t\tint h = 0, i = l + n;\n\t\tT val = e;\n\t\tfor(; h <= rank; h++) {\n\t\
+    \t\tif(i >> (h & 1) > 0){\n\t\t\t\tfinal T val2 = op.apply(val, (T) dat[i >> h]);\n\
+    \t\t\t\tif(fn.test(val2)){\n\t\t\t\t\ti += 1 << h;\n\t\t\t\t\tif(i == n * 2) {\n\
+    \t\t\t\t\t\treturn fini;\n\t\t\t\t\t}\n\t\t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\
+    \telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\
+    \t\t\tfinal T val2 = op.apply(val, (T) dat[i >> h]);\n\t\t\tif(fn.test(val2))\
+    \ {\n\t\t\t\ti += 1 << h;\n\t\t\t\tif(i == n * 2) {\n\t\t\t\t\treturn fini;\n\t\
+    \t\t\t}\n\t\t\t\tval = val2;\n\t\t\t}\n\t\t}\n\t\treturn min(i - n, fini);\n\t\
+    }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder sb\
+    \ = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < fini;)\
+    \ {\n\t\t\tsb.append(\" \" + get(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n\
+    }\n\nclass LazySegmentTree<T, U extends Comparable<? super U>> {\n\tprivate final\
+    \ int n;\n\tprivate int sz, h;\n\tprivate final Object[] data, lazy;\n\tprivate\
+    \ final BinaryOperator<T> f;\n\tprivate final BiFunction<T, U, T> map;\n\tprivate\
+    \ final BinaryOperator<U> comp;\n\tprivate final T e;\n\tprivate final U id;\n\
+    \t@SuppressWarnings(\"unchecked\")\n\tprivate final void update(final int k){\
+    \ data[k] = f.apply((T) data[2 * k], (T) data[2 * k + 1]); }\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tprivate final void allApply(final int k, final U x) {\n\t\tdata[k]\
+    \ = map.apply((T) data[k], x);\n\t\tif(k < sz) {\n\t\t\tlazy[k] = comp.apply((U)\
+    \ lazy[k], x);\n\t\t}\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tprivate final\
+    \ void propagate(final int k) {\n\t\tif(!lazy[k].equals(id)) {\n\t\t\tallApply(2\
+    \ * k, (U) lazy[k]);\n\t\t\tallApply(2 * k + 1, (U) lazy[k]);\n\t\t\tlazy[k] =\
+    \ id;\n\t\t}\n\t}\n\tLazySegmentTree(final int n, final BinaryOperator<T> f, final\
+    \ BiFunction<T, U, T> map, final BinaryOperator<U> comp, final T e, final U id)\
+    \ {\n\t\tthis.n = n;\n\t\tthis.f = f;\n\t\tthis.map = map;\n\t\tthis.comp = comp;\n\
+    \t\tthis.e = e;\n\t\tthis.id = id;\n\t\tsz = 1;\n\t\th = 0;\n\t\twhile(sz < n)\
+    \ {\n\t\t\tsz <<= 1;\n\t\t\th++;\n\t\t}\n\t\tdata = new Object[2 * sz];\n\t\t\
+    Arrays.fill(data, e);\n\t\tlazy = new Object[2 * sz];\n\t\tArrays.fill(lazy, id);\n\
+    \t}\n\tLazySegmentTree(final T[] a, final BinaryOperator<T> f, final BiFunction<T,\
+    \ U, T> map, final BinaryOperator<U> comp, final T e, final U id) {\n\t\tthis(a.length,\
+    \ f, map, comp, e, id);\n\t\tbuild(a);\n\t}\n\tfinal void build(final T[] a) {\n\
+    \t\tassert n == a.length;\n\t\tfor(int k = 0; k < n; ++k) {\n\t\t\tdata[k + sz]\
+    \ = a[k];\n\t\t}\n\t\tfor(int k = sz; --k > 0;) {\n\t\t\tupdate(k);\n\t\t}\n\t\
+    }\n\tfinal void set(int k, final T x) {\n\t\tk += sz;\n\t\tfor(int i = h; i >\
+    \ 0; i--) {\n\t\t\tpropagate(k >> i);\n\t\t}\n\t\tdata[k] = x;\n\t\tfor(int i\
+    \ = 0; ++i <= h;) {\n\t\t\tupdate(k >> i);\n\t\t}\n\t}\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tfinal T get(int k) {\n\t\tk += sz;\n\t\tfor(int i = h; i > 0;\
+    \ i--) {\n\t\t\tpropagate(k >> i);\n\t\t}\n\t\treturn (T) data[k];\n\t}\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tfinal T query(int l, int r) {\n\t\tif(l >= r) {\n\t\t\treturn\
+    \ e;\n\t\t}\n\t\tl += sz;\n\t\tr += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\
+    \tif(((l >> i) << i) != l) {\n\t\t\t\tpropagate(l >> i);\n\t\t\t}\n\t\t\tif(((r\
+    \ >> i) << i) != r) {\n\t\t\t\tpropagate((r - 1) >> i);\n\t\t\t}\n\t\t}\n\t\t\
+    T l2 = e, r2 = e;\n\t\tfor(; l < r; l >>= 1, r >>= 1) {\n\t\t\tif(l % 2 == 1)\
+    \ {\n\t\t\t\tl2 = f.apply(l2, (T) data[l++]);\n\t\t\t}\n\t\t\tif(r % 2 == 1) {\n\
+    \t\t\t\tr2 = f.apply((T) data[--r], r2);\n\t\t\t}\n\t\t}\n\t\treturn f.apply(l2,\
+    \ r2);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T all(){ return (T) data[1];\
+    \ }\n\t@SuppressWarnings(\"unchecked\")\n\tfinal void apply(int k, final U x)\
+    \ {\n\t\tk += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\
+    \t\t}\n\t\tdata[k] = map.apply((T) data[k], x);\n\t\tfor(int i = 0; ++i <= h;)\
+    \ {\n\t\t\tupdate(k >> i);\n\t\t}\n\t}\n\tfinal void apply(int l, int r, final\
+    \ U x) {\n\t\tif(l >= r) {\n\t\t\treturn;\n\t\t}\n\t\tl += sz;\n\t\tr += sz;\n\
+    \t\tfor(int i = h; i > 0; i--) {\n\t\t\tif(((l >> i) << i) != l) {\n\t\t\t\tpropagate(l\
+    \ >> i);\n\t\t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\t\t\tpropagate((r - 1)\
+    \ >> i);\n\t\t\t}\n\t\t}\n\t\tint l2 = l, r2 = r;\n\t\tfor(; l < r; l >>= 1, r\
+    \ >>= 1) {\n\t\t\tif(l % 2 == 1) {\n\t\t\t\tallApply(l++, x);\n\t\t\t}\n\t\t\t\
+    if(r % 2 == 1) {\n\t\t\t\tallApply(--r, x);\n\t\t\t}\n\t\t}\n\t\tl = l2;\n\t\t\
+    r = r2;\n\t\tfor(int i = 0; ++i <= h;) {\n\t\t\tif(((l >> i) << i) != l) {\n\t\
+    \t\t\tupdate(l >> i);\n\t\t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\t\t\tupdate((r\
+    \ - 1) >> i);\n\t\t\t}\n\t\t}\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal\
+    \ int findFirst(int l, final Predicate<T> fn) {\n\t\tif(l >= n) {\n\t\t\treturn\
+    \ n;\n\t\t}\n\t\tl += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(l\
+    \ >> i);\n\t\t}\n\t\tT sum = e;\n\t\tdo {\n\t\t\twhile((l & 1) == 0) {\n\t\t\t\
+    \tl >>= 1;\n\t\t\t}\n\t\t\tif(fn.test(f.apply(sum, (T) data[l]))) {\n\t\t\t\t\
     while(l < sz) {\n\t\t\t\t\tpropagate(l);\n\t\t\t\t\tl <<= 1;\n\t\t\t\t\tfinal\
-    \ IntPair nxt = f.apply(sum, data[l]);\n\t\t\t\t\tif(!fn.test(nxt.first.longValue()))\
-    \ {\n\t\t\t\t\t\tsum = nxt;\n\t\t\t\t\t\tl++;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t\
-    return l + 1 - sz;\n\t\t\t}\n\t\t\tsum = f.apply(sum, data[l++]);\n\t\t} while((l\
-    \ & -l) != l);\n\t\treturn n;\n\t}\n\tfinal int findLast(int r, final LongPredicate\
-    \ fn) {\n\t\tif(r <= 0) {\n\t\t\treturn -1;\n\t\t}\n\t\tr += sz;\n\t\tfor(int\
-    \ i = h; i > 0; i--) {\n\t\t\tpropagate((r - 1) >> i);\n\t\t}\n\t\tIntPair sum\
-    \ = e;\n\t\tdo {\n\t\t\tr--;\n\t\t\twhile(r > 1 && r % 2 == 1) {\n\t\t\t\tr >>=\
-    \ 1;\n\t\t\t}\n\t\t\tif(fn.test(f.apply(data[r], sum).first.longValue())) {\n\t\
-    \t\t\twhile(r < sz) {\n\t\t\t\t\tpropagate(r);\n\t\t\t\t\tr = (r << 1) + 1;\n\t\
-    \t\t\t\tfinal IntPair nxt = f.apply(data[r], sum);\n\t\t\t\t\tif(!fn.test(nxt.first.longValue()))\
+    \ T nxt = f.apply(sum, (T) data[l]);\n\t\t\t\t\tif(!fn.test(nxt)) {\n\t\t\t\t\t\
+    \tsum = nxt;\n\t\t\t\t\t\tl++;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn l + 1 -\
+    \ sz;\n\t\t\t}\n\t\t\tsum = f.apply(sum, (T) data[l++]);\n\t\t} while((l & -l)\
+    \ != l);\n\t\treturn n;\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal int\
+    \ findLast(int r, final Predicate<T> fn) {\n\t\tif(r <= 0) {\n\t\t\treturn -1;\n\
+    \t\t}\n\t\tr += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate((r - 1)\
+    \ >> i);\n\t\t}\n\t\tT sum = e;\n\t\tdo {\n\t\t\tr--;\n\t\t\twhile(r > 1 && r\
+    \ % 2 == 1) {\n\t\t\t\tr >>= 1;\n\t\t\t}\n\t\t\tif(fn.test(f.apply((T) data[r],\
+    \ sum))) {\n\t\t\t\twhile(r < sz) {\n\t\t\t\t\tpropagate(r);\n\t\t\t\t\tr = (r\
+    \ << 1) + 1;\n\t\t\t\t\tfinal T nxt = f.apply((T) data[r], sum);\n\t\t\t\t\tif(!fn.test(nxt))\
     \ {\n\t\t\t\t\t\tsum = nxt;\n\t\t\t\t\t\tr--;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t\
-    return r - sz;\n\t\t\t}\n\t\t\tsum = f.apply(data[r], sum);\n\t\t} while((r &\
-    \ -r) != r);\n\t\treturn -1;\n\t}\n\tfinal void clear(){ Arrays.fill(data, e);\
+    return r - sz;\n\t\t\t}\n\t\t\tsum = f.apply((T) data[r], sum);\n\t\t} while((r\
+    \ & -r) != r);\n\t\treturn -1;\n\t}\n\tfinal void clear(){ Arrays.fill(data, e);\
     \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
     \ sb = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i <\
-    \ n;) {\n\t\t\tsb.append(' ');\n\t\t\tsb.append(get(i));\n\t\t}\n\t\treturn sb.toString();\n\
-    \t}\n}\nfinal class RAMX extends LazySegmentTree {\n\tRAMX(final int[] a){ super(a,\
-    \ (x, y) -> max(x, y), (x, y) -> x + y, (x, y) -> x + y, Integer.MIN_VALUE, 0);\
-    \ }\n\tRAMX(final long[] a){ super(a, (x, y) -> max(x, y), (x, y) -> x + y, (x,\
-    \ y) -> x + y, Long.MIN_VALUE, 0); }\n}\nfinal class RAMN extends LazySegmentTree\
-    \ {\n\tRAMN(final int[] a){ super(a, (x, y) -> min(x, y), (x, y) -> x + y, (x,\
-    \ y) -> x + y, Integer.MAX_VALUE, 0); }\n\tRAMN(final long[] a){ super(a, (x,\
-    \ y) -> min(x, y), (x, y) -> x + y, (x, y) -> x + y, Long.MAX_VALUE, 0); }\n}\n\
-    final class RASM extends LazySegmentTreePair {\n\tprivate final int n;\n\tprivate\
-    \ final IntPair[] b;\n\tRASM(final int[] a) {\n\t\tsuper(a.length, (x, y) -> x.add(y),\
-    \ (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue() * y, x.second.longValue()),\
-    \ (x, y) -> x + y, IntPair.of(0, 0), Integer.MIN_VALUE);\n\t\tn = a.length;\n\t\
-    \tb = new IntPair[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i],\
-    \ 1);\n\t\t}\n\t\tbuild(b);\n\t}\n\tRASM(final long[] a) {\n\t\tsuper(a.length,\
-    \ (x, y) -> x.add(y), (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue()\
-    \ * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0, 0), Long.MIN_VALUE);\n\
-    \t\tn = a.length;\n\t\tb = new IntPair[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\
-    \t\t\tb[i] = IntPair.of(a[i], 1);\n\t\t}\n\t\tbuild(b);\n\t}\n}\nfinal class RUMX\
-    \ extends LazySegmentTree {\n\tRUMX(final int[] a){ super(a, (x, y) -> max(x,\
-    \ y), (x, y) -> y, (x, y) -> y, Integer.MIN_VALUE, Integer.MIN_VALUE); }\n\tRUMX(final\
-    \ long[] a){ super(a, (x, y) -> max(x, y), (x, y) -> y, (x, y) -> y, Long.MIN_VALUE,\
-    \ Long.MIN_VALUE); }\n}\nfinal class RUMN extends LazySegmentTree {\n\tRUMN(final\
-    \ int[] a){ super(a, (x, y) -> min(x, y), (x, y) -> y, (x, y) -> y, Integer.MAX_VALUE,\
-    \ Integer.MAX_VALUE); }\n\tRUMN(final long[] a){ super(a, (x, y) -> min(x, y),\
-    \ (x, y) -> y, (x, y) -> y, Long.MAX_VALUE, Long.MAX_VALUE); }\n}\nfinal class\
-    \ RUSM extends LazySegmentTreePair {\n\tprivate final int n;\n\tprivate final\
-    \ IntPair[] b;\n\tRUSM(final int[] a) {\n\t\tsuper(a.length, (x, y) -> x.add(y),\
-    \ (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()), (x, y)\
-    \ -> y, IntPair.of(0, 0), Integer.MIN_VALUE);\n\t\tn = a.length;\n\t\tb = new\
-    \ IntPair[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i],\
-    \ 1);\n\t\t}\n\t\tbuild(b);\n\t}\n\tRUSM(final long[] a) {\n\t\tsuper(a.length,\
-    \ (x, y) -> x.add(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()),\
-    \ (x, y) -> y, IntPair.of(0, 0), Long.MIN_VALUE);\n\t\tn = a.length;\n\t\tb =\
-    \ new IntPair[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i],\
-    \ 1);\n\t\t}\n\t\tbuild(b);\n\t}\n}\n\nfinal class DualSegmentTree<T> {\n\tprivate\
-    \ int sz, h;\n\tprivate final Object[] lazy;\n\tprivate final T id;\n\tprivate\
-    \ final BinaryOperator<T> ap;\n\t@SuppressWarnings(\"unchecked\")\n\tprivate final\
-    \ void propagate(final int k) {\n\t\tif(lazy[k] != id) {\n\t\t\tlazy[2 * k] =\
-    \ ap.apply((T) lazy[2 * k], (T) lazy[k]);\n\t\t\tlazy[2 * k + 1] = ap.apply((T)\
-    \ lazy[2 * k + 1], (T) lazy[k]);\n\t\t\tlazy[k] = id;\n\t\t}\n\t}\n\tprivate final\
-    \ void thrust(final int k) {\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(k\
-    \ >> i);\n\t\t}\n\t}\n\tDualSegmentTree(final int n, final BinaryOperator<T> ap,\
-    \ final T id) {\n\t\tthis.ap = ap;\n\t\tthis.id = id;\n\t\tsz = 1;\n\t\th = 0;\n\
-    \t\twhile(sz < n) {\n\t\t\tsz <<= 1;\n\t\t\th++;\n\t\t}\n\t\tlazy = new Object[2\
-    \ * sz];\n\t\tArrays.fill(lazy, id);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\
-    \tfinal void apply(int a, int b, final T x) {\n\t\tthrust(a += sz);\n\t\tthrust(b\
-    \ += sz - 1);\n\t\tfor(int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {\n\t\t\t\
-    if(l % 2 == 1) {\n\t\t\t\tlazy[l] = ap.apply((T) lazy[l], x);\n\t\t\t\tl++;\n\t\
-    \t\t}\n\t\t\tif(r % 2 == 1) {\n\t\t\t\tr--;\n\t\t\t\tlazy[r] = ap.apply((T) lazy[r],\
-    \ x);\n\t\t\t}\n\t\t}\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T get(int\
-    \ k) {\n\t\tthrust(k += sz);\n\t\treturn (T) lazy[k];\n\t}\n}\n\nfinal class SparseTable\
-    \ {\n\tprivate final long[][] st;\n\tprivate final int[] lookup;\n\tprivate final\
-    \ LongBinaryOperator op;\n\tSparseTable(final int[] a, final LongBinaryOperator\
-    \ op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\
-    \t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length;\
-    \ i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\
-    \tfor(int j = 0; j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i\
-    \ - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
-    \ + 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
+    \ n;) {\n\t\t\tsb.append(\" \" + get(i));\n\t\t}\n\t\treturn sb.toString();\n\t\
+    }\n}\nfinal class Zwei<T> implements Cloneable {\n\tpublic T first, second;\n\t\
+    private Zwei(final T first, final T second) {\n\t\tthis.first = first;\n\t\tthis.second\
+    \ = second;\n\t}\n\tstatic final <T> Zwei<T> of(final T f, final T s){ return\
+    \ new Zwei<>(f, s); }\n\t@Override\n\tpublic final boolean equals(final Object\
+    \ o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass()\
+    \ != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Zwei<?> z = (Zwei<?>)\
+    \ o;\n\t\treturn first.equals(z.first) && second.equals(z.second);\n\t}\n\t@Override\n\
+    \tpublic final int hashCode(){ return Objects.hash(first, second); }\n\t@Override\n\
+    \tpublic final String toString(){ return String.valueOf(first); }\n\t@SuppressWarnings(\"\
+    unchecked\")\n\t@Override\n\tpublic final Zwei<T> clone() {\n\t\ttry {\n\t\t\t\
+    return (Zwei<T>) super.clone();\n\t\t} catch(final CloneNotSupportedException\
+    \ e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow new Error();\n\t}\n}\nfinal\
+    \ class RAMX extends LazySegmentTree<Long, Long> {\n\tRAMX(final int[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new),\
+    \ Long::max, Long::sum, Long::sum, Long.valueOf(Long.MIN_VALUE), Long.valueOf(0));\
+    \ }\n\tRAMX(final long[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new),\
+    \ Long::max, Long::sum, Long::sum, Long.valueOf(Long.MIN_VALUE), Long.valueOf(0));\
+    \ }\n}\nfinal class RAMN extends LazySegmentTree<Long, Long> {\n\tRAMN(final int[]\
+    \ a){ super(Arrays.stream(a).boxed().toArray(Long[]::new), Long::min, Long::sum,\
+    \ Long::sum, Long.valueOf(Long.MAX_VALUE), Long.valueOf(0)); }\n\tRAMN(final long[]\
+    \ a){ super(Arrays.stream(a).boxed().toArray(Long[]::new), Long::min, Long::sum,\
+    \ Long::sum, Long.valueOf(Long.MAX_VALUE), Long.valueOf(0)); }\n}\nfinal class\
+    \ RASM extends LazySegmentTree<Zwei<Long>, Long> {\n\tprivate final int n;\n\t\
+    private final Zwei<Long>[] b;\n\t@SuppressWarnings(\"unchecked\")\n\tRASM(final\
+    \ int[] a) {\n\t\tsuper(a.length, (x, y) -> Zwei.of(x.first.longValue() + y.first.longValue(),\
+    \ x.second.longValue() + y.second.longValue()), (x, y) -> Zwei.of(x.first.longValue()\
+    \ + x.second.longValue() * y.longValue(), x.second.longValue()), Long::sum, Zwei.of(0L,\
+    \ 0L), Long.valueOf(Long.MIN_VALUE));\n\t\tn = a.length;\n\t\tb = new Zwei[n];\n\
+    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = Zwei.of((long) a[i], 1L);\n\t\t\
+    }\n\t\tbuild(b);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tRASM(final long[]\
+    \ a) {\n\t\tsuper(a.length, (x, y) -> Zwei.of(x.first.longValue() + y.first.longValue(),\
+    \ x.second.longValue() + y.second.longValue()), (x, y) -> Zwei.of(x.first.longValue()\
+    \ + x.second.longValue() * y.longValue(), x.second.longValue()), Long::sum, Zwei.of(0L,\
+    \ 0L), Long.valueOf(Long.MIN_VALUE));\n\t\tn = a.length;\n\t\tb = new Zwei[n];\n\
+    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = Zwei.of(a[i], 1L);\n\t\t}\n\t\t\
+    build(b);\n\t}\n}\nfinal class RUMX extends LazySegmentTree<Long, Long> {\n\t\
+    RUMX(final int[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new), Long::max,\
+    \ (x, y) -> y, (x, y) -> y, Long.valueOf(Long.MIN_VALUE), Long.valueOf(Long.MIN_VALUE));\
+    \ }\n\tRUMX(final long[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new),\
+    \ Long::max, (x, y) -> y, (x, y) -> y, Long.valueOf(Long.MIN_VALUE), Long.valueOf(Long.MIN_VALUE));\
+    \ }\n}\nfinal class RUMN extends LazySegmentTree<Long, Long> {\n\tRUMN(final int[]\
+    \ a){ super(Arrays.stream(a).boxed().toArray(Long[]::new), Long::min, (x, y) ->\
+    \ y, (x, y) -> y, Long.valueOf(Long.MAX_VALUE), Long.valueOf(Long.MAX_VALUE));\
+    \ }\n\tRUMN(final long[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new),\
+    \ Long::min, (x, y) -> y, (x, y) -> y, Long.valueOf(Long.MAX_VALUE), Long.valueOf(Long.MAX_VALUE));\
+    \ }\n}\nfinal class RUSM extends LazySegmentTree<Zwei<Long>, Long> {\n\tprivate\
+    \ final int n;\n\tprivate final Zwei<Long>[] b;\n\t@SuppressWarnings(\"unchecked\"\
+    )\n\tRUSM(final int[] a) {\n\t\tsuper(a.length, (x, y) -> Zwei.of(x.first.longValue()\
+    \ + y.first.longValue(), x.second.longValue() + y.second.longValue()), (x, y)\
+    \ -> Zwei.of(x.second.longValue() * y.longValue(), x.second.longValue()), (x,\
+    \ y) -> y, Zwei.of(0L, 0L), Long.valueOf(Long.MIN_VALUE));\n\t\tn = a.length;\n\
+    \t\tb = new Zwei[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = Zwei.of((long)\
+    \ a[i], 1L);\n\t\t}\n\t\tbuild(b);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\t\
+    RUSM(final long[] a) {\n\t\tsuper(a.length, (x, y) -> Zwei.of(x.first.longValue()\
+    \ + y.first.longValue(), x.second.longValue() + y.second.longValue()), (x, y)\
+    \ -> Zwei.of(x.second.longValue() * y.longValue(), x.second.longValue()), (x,\
+    \ y) -> y, Zwei.of(0L, 0L), Long.valueOf(Long.MIN_VALUE));\n\t\tn = a.length;\n\
+    \t\tb = new Zwei[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = Zwei.of(a[i],\
+    \ 1L);\n\t\t}\n\t\tbuild(b);\n\t}\n}\n\nfinal class DualSegmentTree<T> {\n\tprivate\
+    \ final int n;\n\tprivate int sz, h;\n\tprivate final Object[] lazy;\n\tprivate\
+    \ final T id;\n\tprivate final BinaryOperator<T> ap;\n\t@SuppressWarnings(\"unchecked\"\
+    )\n\tprivate final void propagate(final int k) {\n\t\tif(lazy[k] != id) {\n\t\t\
+    \tlazy[2 * k] = ap.apply((T) lazy[2 * k], (T) lazy[k]);\n\t\t\tlazy[2 * k + 1]\
+    \ = ap.apply((T) lazy[2 * k + 1], (T) lazy[k]);\n\t\t\tlazy[k] = id;\n\t\t}\n\t\
+    }\n\tprivate final void thrust(final int k) {\n\t\tfor(int i = h; i > 0; i--)\
+    \ {\n\t\t\tpropagate(k >> i);\n\t\t}\n\t}\n\tDualSegmentTree(final int n, final\
+    \ BinaryOperator<T> ap, final T id) {\n\t\tthis.n = n;\n\t\tthis.ap = ap;\n\t\t\
+    this.id = id;\n\t\tsz = 1;\n\t\th = 0;\n\t\twhile(sz < n) {\n\t\t\tsz <<= 1;\n\
+    \t\t\th++;\n\t\t}\n\t\tlazy = new Object[2 * sz];\n\t\tArrays.fill(lazy, id);\n\
+    \t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal void apply(int a, int b, final\
+    \ T x) {\n\t\tthrust(a += sz);\n\t\tthrust(b += sz - 1);\n\t\tfor(int l = a, r\
+    \ = b + 1; l < r; l >>= 1, r >>= 1) {\n\t\t\tif(l % 2 == 1) {\n\t\t\t\tlazy[l]\
+    \ = ap.apply((T) lazy[l], x);\n\t\t\t\tl++;\n\t\t\t}\n\t\t\tif(r % 2 == 1) {\n\
+    \t\t\t\tr--;\n\t\t\t\tlazy[r] = ap.apply((T) lazy[r], x);\n\t\t\t}\n\t\t}\n\t\
+    }\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T get(int k) {\n\t\tthrust(k +=\
+    \ sz);\n\t\treturn (T) lazy[k];\n\t}\n\t@Override\n\tpublic final String toString()\
+    \ {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tsb.append(get(0));\n\
+    \t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\" \" + get(i));\n\t\t}\n\t\t\
+    return sb.toString();\n\t}\n}\n\nfinal class SparseTable {\n\tprivate final long[][]\
+    \ st;\n\tprivate final int[] lookup;\n\tprivate final LongBinaryOperator op;\n\
+    \tSparseTable(final int[] a, final LongBinaryOperator op) {\n\t\tthis.op = op;\n\
+    \t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\t\tst =\
+    \ new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\t\t\tst[0][i]\
+    \ = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\tfor(int j = 0; j + (1\
+    \ << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i - 1][j], st[i\
+    \ - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length +\
+    \ 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
     \ >> 1] + 1;\n\t\t}\n\t}\n\tSparseTable(final long[] a, final LongBinaryOperator\
     \ op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\
     \t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length;\
@@ -2277,7 +2241,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-17 06:14:46+09:00'
+  timestamp: '2024-02-17 06:15:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
