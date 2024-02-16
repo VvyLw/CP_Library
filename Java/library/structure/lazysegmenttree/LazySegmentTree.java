@@ -1,35 +1,41 @@
 package library.structure.lazysegmenttree;
 
 import java.util.Arrays;
-import java.util.function.LongBinaryOperator;
-import java.util.function.LongPredicate;
+import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
+import java.util.function.Predicate;
 
 /**
  * 遅延セグ木
- * 整数型にしか対応していない
  * @see <a href="https://ei1333.github.io/library/structure/segment-tree/lazy-segment-tree.hpp">参考元</a>
  * @see RAMN
  * @see RAMX
  * @see RUMN
  * @see RUMX
  */
-public class LazySegmentTree {
-	private int sz, h;
+public class LazySegmentTree<T, U extends Comparable<? super U>> {
 	private final int n;
-	private final long[] data, lazy;
-	private final LongBinaryOperator f, map, comp;
-	private final long e, id;
-	private final void update(final int k){ data[k] = f.applyAsLong(data[2 * k], data[2 * k + 1]); }
-	private final void allApply(final int k, final long x) {
-		data[k] = map.applyAsLong(data[k], x);
+	private int sz, h;
+	private final Object[] data, lazy;
+	private final BinaryOperator<T> f;
+	private final BiFunction<T, U, T> map;
+	private final BinaryOperator<U> comp;
+	private final T e;
+	private final U id;
+	@SuppressWarnings("unchecked")
+	private final void update(final int k){ data[k] = f.apply((T) data[2 * k], (T) data[2 * k + 1]); }
+	@SuppressWarnings("unchecked")
+	private final void allApply(final int k, final U x) {
+		data[k] = map.apply((T) data[k], x);
 		if(k < sz) {
-			lazy[k] = comp.applyAsLong(lazy[k], x);
+			lazy[k] = comp.apply((U) lazy[k], x);
 		}
 	}
+	@SuppressWarnings("unchecked")
 	private final void propagate(final int k) {
-		if(lazy[k] != id) {
-			allApply(2 * k, lazy[k]);
-			allApply(2 * k + 1, lazy[k]);
+		if(!lazy[k].equals(id)) {
+			allApply(2 * k, (U) lazy[k]);
+			allApply(2 * k + 1, (U) lazy[k]);
 			lazy[k] = id;
 		}
 	}
@@ -42,7 +48,7 @@ public class LazySegmentTree {
 	 * @param e 単位元
 	 * @param id
 	 */
-	public LazySegmentTree(final int n, final LongBinaryOperator f, final LongBinaryOperator map, final LongBinaryOperator comp, final long e, final long id) {
+	public LazySegmentTree(final int n, final BinaryOperator<T> f, final BiFunction<T, U, T> map, final BinaryOperator<U> comp, final T e, final U id) {
 		this.n = n;
 		this.f = f;
 		this.map = map;
@@ -55,34 +61,21 @@ public class LazySegmentTree {
 			sz <<= 1;
 			h++;
 		}
-		data = new long[2 * sz];
+		data = new Object[2 * sz];
 		Arrays.fill(data, e);
-		lazy = new long[2 * sz];
+		lazy = new Object[2 * sz];
 		Arrays.fill(lazy, id);
 	}
 	/**
 	 * コンストラクタ
-	 * @param a
+	 * @param a ボクシングさせた配列
 	 * @param f
 	 * @param map
 	 * @param comp
 	 * @param e
 	 * @param id
 	 */
-	public LazySegmentTree(final int[] a, final LongBinaryOperator f, final LongBinaryOperator map, final LongBinaryOperator comp, final long e, final long id) {
-		this(a.length, f, map, comp, e, id);
-		build(a);
-	}
-	/**
-	 * コンストラクタ
-	 * @param a
-	 * @param f
-	 * @param map
-	 * @param comp
-	 * @param e
-	 * @param id
-	 */
-	public LazySegmentTree(final long[] a, final LongBinaryOperator f, final LongBinaryOperator map, final LongBinaryOperator comp, final long e, final long id) {
+	public LazySegmentTree(final T[] a, final BinaryOperator<T> f, final BiFunction<T, U, T> map, final BinaryOperator<U> comp, final T e, final U id) {
 		this(a.length, f, map, comp, e, id);
 		build(a);
 	}
@@ -90,20 +83,7 @@ public class LazySegmentTree {
 	 * 構築
 	 * @param a
 	 */
-	public final void build(final int[] a) {
-		assert n == a.length;
-		for(int k = 0; k < n; ++k) {
-			data[k + sz] = a[k];
-		}
-		for(int k = sz; --k > 0;) {
-			update(k);
-		}
-	}
-	/**
-	 * 構築
-	 * @param a
-	 */
-	public final void build(final long[] a) {
+	public final void build(final T[] a) {
 		assert n == a.length;
 		for(int k = 0; k < n; ++k) {
 			data[k + sz] = a[k];
@@ -117,7 +97,7 @@ public class LazySegmentTree {
 	 * @param k
 	 * @param x
 	 */
-	public final void set(int k, final long x) {
+	public final void set(int k, final T x) {
 		k += sz;
 		for(int i = h; i > 0; i--) {
 			propagate(k >> i);
@@ -131,19 +111,21 @@ public class LazySegmentTree {
 	 * @param k
 	 * @return k番目の要素
 	 */
-	public final long get(int k) {
+	@SuppressWarnings("unchecked")
+	public final T get(int k) {
 		k += sz;
 		for(int i = h; i > 0; i--) {
 			propagate(k >> i);
 		}
-		return data[k];
+		return (T) data[k];
 	}
 	/**
 	 * @param l
 	 * @param r
 	 * @return 半開区間[l, r)について二項演算した結果
 	 */
-	public final long query(int l, int r) {
+	@SuppressWarnings("unchecked")
+	public final T query(int l, int r) {
 		if(l >= r) {
 			return e;
 		}
@@ -157,32 +139,34 @@ public class LazySegmentTree {
 				propagate((r - 1) >> i);
 			}
 		}
-		long l2 = e, r2 = e;
+		T l2 = e, r2 = e;
 		for(; l < r; l >>= 1, r >>= 1) {
 			if(l % 2 == 1) {
-				l2 = f.applyAsLong(l2, data[l++]);
+				l2 = f.apply(l2, (T) data[l++]);
 			}
 			if(r % 2 == 1) {
-				r2 = f.applyAsLong(data[--r], r2);
+				r2 = f.apply((T) data[--r], r2);
 			}
 		}
-		return f.applyAsLong(l2, r2);
+		return f.apply(l2, r2);
 	}
 	/**
 	 * @return 全体を二項演算した結果
 	 */
-	public final long all(){ return data[1]; }
+	@SuppressWarnings("unchecked")
+	public final T all(){ return (T) data[1]; }
 	/**
 	 * k番目の要素に作用素xを適用する
 	 * @param k
 	 * @param x
 	 */
-	public final void apply(int k, final long x) {
+	@SuppressWarnings("unchecked")
+	public final void apply(int k, final U x) {
 		k += sz;
 		for(int i = h; i > 0; i--) {
 			propagate(k >> i);
 		}
-		data[k] = map.applyAsLong(data[k], x);
+		data[k] = map.apply((T) data[k], x);
 		for(int i = 0; ++i <= h;) {
 			update(k >> i);
 		}
@@ -193,7 +177,7 @@ public class LazySegmentTree {
 	 * @param r
 	 * @param x
 	 */
-	public final void apply(int l, int r, final long x) {
+	public final void apply(int l, int r, final U x) {
 		if(l >= r) {
 			return;
 		}
@@ -233,7 +217,8 @@ public class LazySegmentTree {
 	 * @return 半開区間[l, x)がfnを満たす最初の要素位置x
 	 * if non-existence: n
 	 */
-	public final int findFirst(int l, final LongPredicate fn) {
+	@SuppressWarnings("unchecked")
+	public final int findFirst(int l, final Predicate<T> fn) {
 		if(l >= n) {
 			return n;
 		}
@@ -241,16 +226,16 @@ public class LazySegmentTree {
 		for(int i = h; i > 0; i--) {
 			propagate(l >> i);
 		}
-		long sum = e;
+		T sum = e;
 		do {
 			while((l & 1) == 0) {
 				l >>= 1;
 			}
-			if(fn.test(f.applyAsLong(sum, data[l]))) {
+			if(fn.test(f.apply(sum, (T) data[l]))) {
 				while(l < sz) {
 					propagate(l);
 					l <<= 1;
-					final long nxt = f.applyAsLong(sum, data[l]);
+					final T nxt = f.apply(sum, (T) data[l]);
 					if(!fn.test(nxt)) {
 						sum = nxt;
 						l++;
@@ -258,7 +243,7 @@ public class LazySegmentTree {
 				}
 				return l + 1 - sz;
 			}
-			sum = f.applyAsLong(sum, data[l++]);
+			sum = f.apply(sum, (T) data[l++]);
 		} while((l & -l) != l);
 		return n;
 	}
@@ -268,7 +253,8 @@ public class LazySegmentTree {
 	 * @return 半開区間[x, r)がfnを満たす最後の要素位置x
 	 * if non-existence: −1
 	 */
-	public final int findLast(int r, final LongPredicate fn) {
+	@SuppressWarnings("unchecked")
+	public final int findLast(int r, final Predicate<T> fn) {
 		if(r <= 0) {
 			return -1;
 		}
@@ -276,17 +262,17 @@ public class LazySegmentTree {
 		for(int i = h; i > 0; i--) {
 			propagate((r - 1) >> i);
 		}
-		long sum = e;
+		T sum = e;
 		do {
 			r--;
 			while(r > 1 && r % 2 == 1) {
 				r >>= 1;
 			}
-			if(fn.test(f.applyAsLong(data[r], sum))) {
+			if(fn.test(f.apply((T) data[r], sum))) {
 				while(r < sz) {
 					propagate(r);
 					r = (r << 1) + 1;
-					final long nxt = f.applyAsLong(data[r], sum);
+					final T nxt = f.apply((T) data[r], sum);
 					if(!fn.test(nxt)) {
 						sum = nxt;
 						r--;
@@ -294,7 +280,7 @@ public class LazySegmentTree {
 				}
 				return r - sz;
 			}
-			sum = f.applyAsLong(data[r], sum);
+			sum = f.apply((T) data[r], sum);
 		} while((r & -r) != r);
 		return -1;
 	}

@@ -1,7 +1,7 @@
 package library.structure.lazysegmenttree;
 
 import library.structure.fenwicktree.RangeBIT;
-import library.structure.pair.IntPair;
+import library.structure.pair.Zwei;
 
 /**
  * Range Add Range Sum
@@ -9,24 +9,26 @@ import library.structure.pair.IntPair;
  * RangeBITを使うような問題で二分探索を求められた場合はこちら
  * @see RangeBIT
  */
-public final class RASM extends LazySegmentTreePair {
+public final class RASM extends LazySegmentTree<Zwei<Long>, Long> {
 	private final int n;
-	private final IntPair[] b;
-	RASM(final int[] a) {
-		super(a.length, (x, y) -> x.add(y), (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue() * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0, 0), 0);
+	private final Zwei<Long>[] b;
+	@SuppressWarnings("unchecked")
+	public RASM(final int[] a) {
+		super(a.length, (x, y) -> Zwei.of(x.first.longValue() + y.first.longValue(), x.second.longValue() + y.second.longValue()), (x, y) -> Zwei.of(x.first.longValue() + x.second.longValue() * y.longValue(), x.second.longValue()), Long::sum, Zwei.of(0L, 0L), Long.valueOf(Long.MIN_VALUE));
 		n = a.length;
-		b = new IntPair[n];
+		b = new Zwei[n];
 		for(int i = 0; i < n; ++i) {
-			b[i] = IntPair.of(a[i], 1);
+			b[i] = Zwei.of((long) a[i], 1L);
 		}
 		build(b);
 	}
-	RASM(final long[] a) {
-		super(a.length, (x, y) -> x.add(y), (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue() * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0, 0), 0);
+	@SuppressWarnings("unchecked")
+	public RASM(final long[] a) {
+		super(a.length, (x, y) -> Zwei.of(x.first.longValue() + y.first.longValue(), x.second.longValue() + y.second.longValue()), (x, y) -> Zwei.of(x.first.longValue() + x.second.longValue() * y.longValue(), x.second.longValue()), Long::sum, Zwei.of(0L, 0L), Long.valueOf(Long.MIN_VALUE));
 		n = a.length;
-		b = new IntPair[n];
+		b = new Zwei[n];
 		for(int i = 0; i < n; ++i) {
-			b[i] = IntPair.of(a[i], 1);
+			b[i] = Zwei.of(a[i], 1L);
 		}
 		build(b);
 	}

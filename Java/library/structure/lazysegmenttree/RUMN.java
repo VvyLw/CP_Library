@@ -1,12 +1,12 @@
 package library.structure.lazysegmenttree;
 
-import static java.lang.Math.*;
+import java.util.Arrays;
 
 /**
  * Range Update Range Min
  * 区間更新, 区間最小値
  */
-public final class RUMN extends LazySegmentTree {
-	public RUMN(final int[] a){ super(a, (x, y) -> min(x, y), (x, y) -> y, (x, y) -> y, Integer.MAX_VALUE, Integer.MAX_VALUE); }
-	public RUMN(final long[] a){ super(a, (x, y) -> min(x, y), (x, y) -> y, (x, y) -> y, Long.MAX_VALUE, Long.MAX_VALUE); }
+public final class RUMN extends LazySegmentTree<Long, Long> {
+	public RUMN(final int[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new), Long::min, (x, y) -> y, (x, y) -> y, Long.valueOf(Long.MAX_VALUE), Long.valueOf(Long.MAX_VALUE)); }
+	public RUMN(final long[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new), Long::min, (x, y) -> y, (x, y) -> y, Long.valueOf(Long.MAX_VALUE), Long.valueOf(Long.MAX_VALUE)); }
 }
