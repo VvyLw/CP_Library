@@ -8,10 +8,6 @@ import java.util.function.Predicate;
 /**
  * 遅延セグ木
  * @see <a href="https://ei1333.github.io/library/structure/segment-tree/lazy-segment-tree.hpp">参考元</a>
- * @see RAMN
- * @see RAMX
- * @see RUMN
- * @see RUMX
  */
 public class LazySegmentTree<T, U extends Comparable<? super U>> {
 	private final int n;

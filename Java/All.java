@@ -4021,7 +4021,7 @@ final class RASM extends LazySegmentTree<Zwei<Long>, Long> {
 	private final Zwei<Long>[] b;
 	@SuppressWarnings("unchecked")
 	RASM(final int[] a) {
-		super(a.length, (x, y) -> Zwei.of(x.first.longValue() + y.first.longValue(), x.second.longValue() + y.second.longValue()), (x, y) -> Zwei.of(x.first.longValue() + x.second.longValue() * y.longValue(), x.second.longValue()), Long::sum, Zwei.of(0L, 0L), Long.valueOf(Long.MIN_VALUE));
+		super(a.length, (x, y) -> Zwei.of(x.first.longValue() + y.first.longValue(), x.second.longValue() + y.second.longValue()), (x, y) -> Zwei.of(x.first.longValue() + x.second.longValue() * y.longValue(), x.second.longValue()), Long::sum, Zwei.of(0L, 0L), Long.valueOf(0));
 		n = a.length;
 		b = new Zwei[n];
 		for(int i = 0; i < n; ++i) {
@@ -4031,7 +4031,7 @@ final class RASM extends LazySegmentTree<Zwei<Long>, Long> {
 	}
 	@SuppressWarnings("unchecked")
 	RASM(final long[] a) {
-		super(a.length, (x, y) -> Zwei.of(x.first.longValue() + y.first.longValue(), x.second.longValue() + y.second.longValue()), (x, y) -> Zwei.of(x.first.longValue() + x.second.longValue() * y.longValue(), x.second.longValue()), Long::sum, Zwei.of(0L, 0L), Long.valueOf(Long.MIN_VALUE));
+		super(a.length, (x, y) -> Zwei.of(x.first.longValue() + y.first.longValue(), x.second.longValue() + y.second.longValue()), (x, y) -> Zwei.of(x.first.longValue() + x.second.longValue() * y.longValue(), x.second.longValue()), Long::sum, Zwei.of(0L, 0L), Long.valueOf(0));
 		n = a.length;
 		b = new Zwei[n];
 		for(int i = 0; i < n; ++i) {
