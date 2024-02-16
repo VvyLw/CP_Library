@@ -473,16 +473,16 @@ data:
     \tlazy = new Object[2 * sz];\n\t\tArrays.fill(lazy, id);\n\t}\n\t/**\n\t * \u534A\
     \u958B\u533A\u9593[l, r)\u306B\u4F5C\u7528\u7D20x\u3092\u9069\u7528\n\t * @param\
     \ a\n\t * @param b\n\t * @param x\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\
-    \tfinal void apply(int a, int b, final T x) {\n\t\tthrust(a += sz);\n\t\tthrust(b\
-    \ += sz - 1);\n\t\tfor(int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {\n\t\t\t\
-    if(l % 2 == 1) {\n\t\t\t\tlazy[l] = ap.apply((T) lazy[l], x);\n\t\t\t\tl++;\n\t\
-    \t\t}\n\t\t\tif(r % 2 == 1) {\n\t\t\t\tr--;\n\t\t\t\tlazy[r] = ap.apply((T) lazy[r],\
-    \ x);\n\t\t\t}\n\t\t}\n\t}\n\t/**\n\t * @param k\n\t * @return k\u756A\u76EE\u306E\
-    \u8981\u7D20\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T get(int k)\
-    \ {\n\t\tthrust(k += sz);\n\t\treturn (T) lazy[k];\n\t}\n\t@Override\n\tpublic\
-    \ final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
-    \t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\" \"\
-    \ + get(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
+    \tpublic final void apply(int a, int b, final T x) {\n\t\tthrust(a += sz);\n\t\
+    \tthrust(b += sz - 1);\n\t\tfor(int l = a, r = b + 1; l < r; l >>= 1, r >>= 1)\
+    \ {\n\t\t\tif(l % 2 == 1) {\n\t\t\t\tlazy[l] = ap.apply((T) lazy[l], x);\n\t\t\
+    \t\tl++;\n\t\t\t}\n\t\t\tif(r % 2 == 1) {\n\t\t\t\tr--;\n\t\t\t\tlazy[r] = ap.apply((T)\
+    \ lazy[r], x);\n\t\t\t}\n\t\t}\n\t}\n\t/**\n\t * @param k\n\t * @return k\u756A\
+    \u76EE\u306E\u8981\u7D20\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic\
+    \ final T get(int k) {\n\t\tthrust(k += sz);\n\t\treturn (T) lazy[k];\n\t}\n\t\
+    @Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder sb = new\
+    \ StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\t\
+    \t\tsb.append(\" \" + get(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -635,7 +635,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-17 06:15:15+09:00'
+  timestamp: '2024-02-17 07:21:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/DualSegmentTree.java

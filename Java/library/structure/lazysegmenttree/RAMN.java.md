@@ -459,7 +459,7 @@ data:
   code: "package library.structure.lazysegmenttree;\n\nimport java.util.Arrays;\n\n\
     /**\n * Range Add Range Min\n * \u533A\u9593\u52A0\u7B97, \u533A\u9593\u6700\u5C0F\
     \u5024\n */\npublic final class RAMN extends LazySegmentTree<Long, Long> {\n\t\
-    public RAMN(final int[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new),\
+    public RAMN(final int[] a){ super(Arrays.stream(a).asLongStream().boxed().toArray(Long[]::new),\
     \ Long::min, Long::sum, Long::sum, Long.valueOf(Long.MAX_VALUE), Long.valueOf(0));\
     \ }\n\tpublic RAMN(final long[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new),\
     \ Long::min, Long::sum, Long::sum, Long.valueOf(Long.MAX_VALUE), Long.valueOf(0));\
@@ -616,7 +616,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-17 06:15:15+09:00'
+  timestamp: '2024-02-17 07:21:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/lazysegmenttree/RAMN.java

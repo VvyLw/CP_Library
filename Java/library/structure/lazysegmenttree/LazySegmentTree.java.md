@@ -460,21 +460,20 @@ data:
     import java.util.function.BiFunction;\nimport java.util.function.BinaryOperator;\n\
     import java.util.function.Predicate;\n\n/**\n * \u9045\u5EF6\u30BB\u30B0\u6728\
     \n * @see <a href=\"https://ei1333.github.io/library/structure/segment-tree/lazy-segment-tree.hpp\"\
-    >\u53C2\u8003\u5143</a>\n * @see RAMN\n * @see RAMX\n * @see RUMN\n * @see RUMX\n\
-    \ */\npublic class LazySegmentTree<T, U extends Comparable<? super U>> {\n\tprivate\
-    \ final int n;\n\tprivate int sz, h;\n\tprivate final Object[] data, lazy;\n\t\
-    private final BinaryOperator<T> f;\n\tprivate final BiFunction<T, U, T> map;\n\
-    \tprivate final BinaryOperator<U> comp;\n\tprivate final T e;\n\tprivate final\
-    \ U id;\n\t@SuppressWarnings(\"unchecked\")\n\tprivate final void update(final\
-    \ int k){ data[k] = f.apply((T) data[2 * k], (T) data[2 * k + 1]); }\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tprivate final void allApply(final int k, final U x) {\n\t\tdata[k]\
-    \ = map.apply((T) data[k], x);\n\t\tif(k < sz) {\n\t\t\tlazy[k] = comp.apply((U)\
-    \ lazy[k], x);\n\t\t}\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tprivate final\
-    \ void propagate(final int k) {\n\t\tif(!lazy[k].equals(id)) {\n\t\t\tallApply(2\
-    \ * k, (U) lazy[k]);\n\t\t\tallApply(2 * k + 1, (U) lazy[k]);\n\t\t\tlazy[k] =\
-    \ id;\n\t\t}\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t\
-    \ * @param n \u30B5\u30A4\u30BA\n\t * @param f \u4E8C\u9805\u6F14\u7B97\n\t *\
-    \ @param map mapping\n\t * @param comp composition\n\t * @param e \u5358\u4F4D\
+    >\u53C2\u8003\u5143</a>\n */\npublic class LazySegmentTree<T, U extends Comparable<?\
+    \ super U>> {\n\tprivate final int n;\n\tprivate int sz, h;\n\tprivate final Object[]\
+    \ data, lazy;\n\tprivate final BinaryOperator<T> f;\n\tprivate final BiFunction<T,\
+    \ U, T> map;\n\tprivate final BinaryOperator<U> comp;\n\tprivate final T e;\n\t\
+    private final U id;\n\t@SuppressWarnings(\"unchecked\")\n\tprivate final void\
+    \ update(final int k){ data[k] = f.apply((T) data[2 * k], (T) data[2 * k + 1]);\
+    \ }\n\t@SuppressWarnings(\"unchecked\")\n\tprivate final void allApply(final int\
+    \ k, final U x) {\n\t\tdata[k] = map.apply((T) data[k], x);\n\t\tif(k < sz) {\n\
+    \t\t\tlazy[k] = comp.apply((U) lazy[k], x);\n\t\t}\n\t}\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tprivate final void propagate(final int k) {\n\t\tif(!lazy[k].equals(id))\
+    \ {\n\t\t\tallApply(2 * k, (U) lazy[k]);\n\t\t\tallApply(2 * k + 1, (U) lazy[k]);\n\
+    \t\t\tlazy[k] = id;\n\t\t}\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\
+    \u30BF\n\t * @param n \u30B5\u30A4\u30BA\n\t * @param f \u4E8C\u9805\u6F14\u7B97\
+    \n\t * @param map mapping\n\t * @param comp composition\n\t * @param e \u5358\u4F4D\
     \u5143\n\t * @param id\n\t */\n\tpublic LazySegmentTree(final int n, final BinaryOperator<T>\
     \ f, final BiFunction<T, U, T> map, final BinaryOperator<U> comp, final T e, final\
     \ U id) {\n\t\tthis.n = n;\n\t\tthis.f = f;\n\t\tthis.map = map;\n\t\tthis.comp\
@@ -705,7 +704,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-17 06:15:15+09:00'
+  timestamp: '2024-02-17 07:21:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/lazysegmenttree/LazySegmentTree.java
