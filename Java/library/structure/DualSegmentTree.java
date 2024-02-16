@@ -53,7 +53,7 @@ public final class DualSegmentTree<T> {
 	 * @param x
 	 */
 	@SuppressWarnings("unchecked")
-	final void apply(int a, int b, final T x) {
+	public final void apply(int a, int b, final T x) {
 		thrust(a += sz);
 		thrust(b += sz - 1);
 		for(int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {
@@ -72,7 +72,7 @@ public final class DualSegmentTree<T> {
 	 * @return k番目の要素
 	 */
 	@SuppressWarnings("unchecked")
-	final T get(int k) {
+	public final T get(int k) {
 		thrust(k += sz);
 		return (T) lazy[k];
 	}
