@@ -141,4 +141,13 @@ public final class SegmentTree<T> {
 		}
 		return Math.min(i - n, fini);
 	}
+	@Override
+	public final String toString() {
+		final StringBuilder sb = new StringBuilder();
+		sb.append(query(0, 1));
+		for(int i = 0; ++i < fini;) {
+			sb.append(" " + query(i, i + 1));
+		}
+		return sb.toString();
+	}
 }
