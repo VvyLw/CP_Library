@@ -217,6 +217,7 @@ template <class T> struct zwei {
     T first, second;
     zwei(){}
     zwei(const T &f, const T &s): first(f), second(s){}
+    constexpr bool operator!=(const zwei<T> &z) noexcept { return first != z.first || second != z.second; }
     operator T(){ return first; }
     friend std::ostream &operator<<(std::ostream &os, const zwei &z) {
         os << z.first;
