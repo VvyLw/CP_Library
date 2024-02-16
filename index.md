@@ -4,6 +4,9 @@ data:
   - name: C++
     pages:
     - icon: ':heavy_check_mark:'
+      path: C++/DualSegmentTree.hpp
+      title: "\u53CC\u5BFE\u30BB\u30B0\u6728"
+    - icon: ':heavy_check_mark:'
       path: C++/FenwickTree.hpp
       title: Binary Indexed Tree
     - icon: ':heavy_check_mark:'
@@ -239,6 +242,9 @@ data:
       path: Java/library/structure/DoubleEndedPriorityQueue.java
       title: Java/library/structure/DoubleEndedPriorityQueue.java
     - icon: ':warning:'
+      path: Java/library/structure/DualSegmentTree.java
+      title: Java/library/structure/DualSegmentTree.java
+    - icon: ':warning:'
       path: Java/library/structure/SegmentTree.java
       title: Java/library/structure/SegmentTree.java
     - icon: ':warning:'
@@ -349,6 +355,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/directed.test.cpp
       title: test/directed.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/dualsegtree.test.cpp
+      title: test/dualsegtree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/extgcd.test.cpp
       title: test/extgcd.test.cpp

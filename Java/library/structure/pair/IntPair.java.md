@@ -152,6 +152,9 @@ data:
     path: Java/library/structure/DoubleEndedPriorityQueue.java
     title: Java/library/structure/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
+    path: Java/library/structure/DualSegmentTree.java
+    title: Java/library/structure/DualSegmentTree.java
+  - icon: ':warning:'
     path: Java/library/structure/SegmentTree.java
     title: Java/library/structure/SegmentTree.java
   - icon: ':warning:'
@@ -372,6 +375,9 @@ data:
     path: Java/library/structure/DoubleEndedPriorityQueue.java
     title: Java/library/structure/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
+    path: Java/library/structure/DualSegmentTree.java
+    title: Java/library/structure/DualSegmentTree.java
+  - icon: ':warning:'
     path: Java/library/structure/SegmentTree.java
     title: Java/library/structure/SegmentTree.java
   - icon: ':warning:'
@@ -548,6 +554,7 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
+  - Java/library/structure/DualSegmentTree.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
   - Java/library/structure/lazysegmenttree/RAMN.java
@@ -624,6 +631,7 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
+  - Java/library/structure/DualSegmentTree.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
   - Java/library/structure/lazysegmenttree/RAMN.java
@@ -651,7 +659,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-16 10:05:38+09:00'
+  timestamp: '2024-02-16 10:50:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/pair/IntPair.java

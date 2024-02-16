@@ -128,6 +128,9 @@ data:
     path: Java/library/math/PrimeFactor.java
     title: Java/library/math/PrimeFactor.java
   - icon: ':warning:'
+    path: Java/library/math/PrimeTable.java
+    title: Java/library/math/PrimeTable.java
+  - icon: ':warning:'
     path: Java/library/other/Huitloxopetl.java
     title: Java/library/other/Huitloxopetl.java
   - icon: ':warning:'
@@ -148,9 +151,6 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/DoubleEndedPriorityQueue.java
     title: Java/library/structure/DoubleEndedPriorityQueue.java
-  - icon: ':warning:'
-    path: Java/library/structure/DualSegmentTree.java
-    title: Java/library/structure/DualSegmentTree.java
   - icon: ':warning:'
     path: Java/library/structure/SegmentTree.java
     title: Java/library/structure/SegmentTree.java
@@ -351,6 +351,9 @@ data:
     path: Java/library/math/PrimeFactor.java
     title: Java/library/math/PrimeFactor.java
   - icon: ':warning:'
+    path: Java/library/math/PrimeTable.java
+    title: Java/library/math/PrimeTable.java
+  - icon: ':warning:'
     path: Java/library/other/Huitloxopetl.java
     title: Java/library/other/Huitloxopetl.java
   - icon: ':warning:'
@@ -371,9 +374,6 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/DoubleEndedPriorityQueue.java
     title: Java/library/structure/DoubleEndedPriorityQueue.java
-  - icon: ':warning:'
-    path: Java/library/structure/DualSegmentTree.java
-    title: Java/library/structure/DualSegmentTree.java
   - icon: ':warning:'
     path: Java/library/structure/SegmentTree.java
     title: Java/library/structure/SegmentTree.java
@@ -455,25 +455,30 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/math/PrimeTable.java\n"
-  code: "package library.math;\n\nimport java.util.Arrays;\nimport java.util.stream.IntStream;\n\
-    \n/**\n * n\u4EE5\u4E0B\u306E\u6574\u6570\u306B\u3064\u3044\u3066\u7D20\u6570\u5224\
-    \u5B9A\u3092\u3059\u308B\u30C6\u30FC\u30D6\u30EB\u3092\u4F5C\u6210\u3059\u308B\
-    \u30AF\u30E9\u30B9\n * \u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9\n\
-    \ */\npublic final class PrimeTable {\n\tprivate final int size;\n\tprivate final\
-    \ int[] p;\n\tprivate final boolean[] sieve;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\
-    \u30E9\u30AF\u30BF\n\t * @param n \u6574\u6570\n\t */\n\tpublic PrimeTable(final\
-    \ int n) {\n\t\tsieve = new boolean[n + 1];\n\t\tArrays.fill(sieve, true);\n\t\
-    \tsieve[0] = sieve[1] = false;\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[i])\
-    \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\
-    \t\t\tsieve[j] = false;\n\t\t\t}\n\t\t}\n\t\tsize = (int) IntStream.rangeClosed(0,\
-    \ n).filter(i -> sieve[i]).count();\n\t\tint j = 0;\n\t\tp = new int[size];\n\t\
-    \tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\
-    \t\t}\n\t\t}\n\t}\n\t/**\n\t * @return n\u4EE5\u4E0B\u306E\u7D20\u6570\u5224\u5B9A\
-    \u306E\u7D50\u679C\u3092\u30EA\u30B9\u30C8\u30A2\u30C3\u30D7\u3057\u305F\u914D\
-    \u5217\n\t */\n\tpublic final boolean[] table(){ return sieve; }\n\t/**\n\t *\
-    \ @return n\u4EE5\u4E0B\u306E\u7D20\u6570\u3092\u30EA\u30B9\u30C8\u30A2\u30C3\u30D7\
-    \u3057\u305F\u914D\u5217\n\t */\n\tpublic final int[] get(){ return p; }\n}"
+    RuntimeError: bundler is not specified: Java/library/structure/DualSegmentTree.java\n"
+  code: "package library.structure;\n\nimport java.util.Arrays;\nimport java.util.function.BinaryOperator;\n\
+    \n/**\n * \u53CC\u5BFE\u30BB\u30B0\u6728\n * @param <T>\n * @see <a href=\"https://ei1333.github.io/library/structure/segment-tree/dual-segment-tree.hpp\"\
+    >\u53C2\u8003\u5143</a>\n */\npublic final class DualSegmentTree<T> {\n\tprivate\
+    \ int sz, h;\n\tprivate final Object[] lazy;\n\tprivate final T id;\n\tprivate\
+    \ final BinaryOperator<T> ap;\n\t@SuppressWarnings(\"unchecked\")\n\tprivate final\
+    \ void propagate(final int k) {\n\t\tif(lazy[k] != id) {\n\t\t\tlazy[2 * k] =\
+    \ ap.apply((T) lazy[2 * k], (T) lazy[k]);\n\t\t\tlazy[2 * k + 1] = ap.apply((T)\
+    \ lazy[2 * k + 1], (T) lazy[k]);\n\t\t\tlazy[k] = id;\n\t\t}\n\t}\n\tprivate final\
+    \ void thrust(final int k) {\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(k\
+    \ >> i);\n\t\t}\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\
+    \t * @param n \u30B5\u30A4\u30BA\n\t * @param ap\n\t * @param id\n\t */\n\tpublic\
+    \ DualSegmentTree(final int n, final BinaryOperator<T> ap, final T id) {\n\t\t\
+    this.ap = ap;\n\t\tthis.id = id;\n\t\tsz = 1;\n\t\th = 0;\n\t\twhile(sz < n) {\n\
+    \t\t\tsz <<= 1;\n\t\t\th++;\n\t\t}\n\t\tlazy = new Object[2 * sz];\n\t\tArrays.fill(lazy,\
+    \ id);\n\t}\n\t/**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306B\u4F5C\u7528\u7D20\
+    x\u3092\u9069\u7528\n\t * @param a\n\t * @param b\n\t * @param x\n\t */\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tfinal void apply(int a, int b, final T x) {\n\t\tthrust(a += sz);\n\
+    \t\tthrust(b += sz - 1);\n\t\tfor(int l = a, r = b + 1; l < r; l >>= 1, r >>=\
+    \ 1) {\n\t\t\tif(l % 2 == 1) {\n\t\t\t\tlazy[l] = ap.apply((T) lazy[l], x);\n\t\
+    \t\t\tl++;\n\t\t\t}\n\t\t\tif(r % 2 == 1) {\n\t\t\t\tr--;\n\t\t\t\tlazy[r] = ap.apply((T)\
+    \ lazy[r], x);\n\t\t\t}\n\t\t}\n\t}\n\t/**\n\t * @param k\n\t * @return k\u756A\
+    \u76EE\u306E\u8981\u7D20\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T\
+    \ get(int k) {\n\t\tthrust(k += sz);\n\t\treturn (T) lazy[k];\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -487,6 +492,7 @@ data:
   - Java/library/math/EulerPhiTable.java
   - Java/library/math/PrimeCounter.java
   - Java/library/math/ModPrime.java
+  - Java/library/math/PrimeTable.java
   - Java/library/math/LongPrime.java
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
@@ -520,7 +526,6 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
-  - Java/library/structure/DualSegmentTree.java
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
@@ -550,7 +555,7 @@ data:
   - Java/All.java
   - Java/AOJ.java
   isVerificationFile: false
-  path: Java/library/math/PrimeTable.java
+  path: Java/library/structure/DualSegmentTree.java
   requiredBy:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -564,6 +569,7 @@ data:
   - Java/library/math/EulerPhiTable.java
   - Java/library/math/PrimeCounter.java
   - Java/library/math/ModPrime.java
+  - Java/library/math/PrimeTable.java
   - Java/library/math/LongPrime.java
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
@@ -597,7 +603,6 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
-  - Java/library/structure/DualSegmentTree.java
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
@@ -629,10 +634,10 @@ data:
   timestamp: '2024-02-16 10:50:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/math/PrimeTable.java
+documentation_of: Java/library/structure/DualSegmentTree.java
 layout: document
 redirect_from:
-- /library/Java/library/math/PrimeTable.java
-- /library/Java/library/math/PrimeTable.java.html
-title: Java/library/math/PrimeTable.java
+- /library/Java/library/structure/DualSegmentTree.java
+- /library/Java/library/structure/DualSegmentTree.java.html
+title: Java/library/structure/DualSegmentTree.java
 ---

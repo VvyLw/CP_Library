@@ -149,6 +149,9 @@ data:
     path: Java/library/structure/DoubleEndedPriorityQueue.java
     title: Java/library/structure/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
+    path: Java/library/structure/DualSegmentTree.java
+    title: Java/library/structure/DualSegmentTree.java
+  - icon: ':warning:'
     path: Java/library/structure/SegmentTree.java
     title: Java/library/structure/SegmentTree.java
   - icon: ':warning:'
@@ -368,6 +371,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/DoubleEndedPriorityQueue.java
     title: Java/library/structure/DoubleEndedPriorityQueue.java
+  - icon: ':warning:'
+    path: Java/library/structure/DualSegmentTree.java
+    title: Java/library/structure/DualSegmentTree.java
   - icon: ':warning:'
     path: Java/library/structure/SegmentTree.java
     title: Java/library/structure/SegmentTree.java
@@ -932,44 +938,43 @@ data:
     \ = is;\n\t\tpos = lim = 0;\n\t\tbuf = new byte[1 << 17];\n\t\tcheck = false;\n\
     \t}\n\tprivate final boolean isPunct(final byte bt){ return !Utility.scope(33,\
     \ bt, 126); }\n\tprivate final boolean isNum(final byte bt){ return Utility.scope('0',\
-    \ bt, '9'); }\n\tprivate final boolean isNeg(){ return pos >= 2 && buf[pos - 2]\
-    \ == '-'; }\n\tprivate final byte read() {\n\t\tif(pos == lim && lim != -1) {\n\
-    \t\t\ttry {\n\t\t\t\tlim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final\
+    \ bt, '9'); }\n\tprivate final byte read() {\n\t\tif(pos == lim && lim != -1)\
+    \ {\n\t\t\ttry {\n\t\t\t\tlim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final\
     \ IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t\treturn buf[pos++];\n\
     \t}\n\tprivate final byte next() {\n\t\tbyte bt;\n\t\tif(check) {\n\t\t\tcheck\
     \ = false;\n\t\t\tbt = buf[pos - 1];\n\t\t\tif(!isPunct(bt)) {\n\t\t\t\treturn\
     \ bt;\n\t\t\t}\n\t\t}\n\t\twhile(isPunct(bt = read())){}\n\t\treturn bt;\n\t}\n\
-    \tprivate final byte nextInt() {\n\t\tbyte bt;\n\t\twhile(!isNum(bt = read())){}\n\
-    \t\treturn bt;\n\t}\n\tfinal int ni(){ return toIntExact(nl()); }\n\tfinal long\
-    \ nl() {\n\t\tbyte c = nextInt();\n\t\tfinal boolean neg = isNeg();\n\t\tassert\
-    \ isNum(c);\n\t\tlong res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\tres\
-    \ = 10 * res + c - '0';\n\t\t}\n\t\tcheck = !isNum(c);\n\t\treturn neg ? -res\
-    \ : res;\n\t}\n\tfinal double nd() {\n\t\tbyte c = nextInt();\n\t\tfinal boolean\
-    \ neg = isNeg();\n\t\tassert isNum(c);\n\t\tdouble res = c - '0';\n\t\twhile(isNum(c\
-    \ = read())) {\n\t\t\tres = 10 * res + c - '0';\n\t\t}\n\t\tif(c != '.') {\n\t\
-    \t\tcheck = true;\n\t\t\treturn res;\n\t\t}\n\t\tint i;\n\t\tfor(i = 0; isNum(c\
-    \ = read()); ++i) {\n\t\t\tres = res * 10 + c - '0';\n\t\t}\n\t\tres /= pow(10,\
-    \ i);\n\t\tcheck = true;\n\t\treturn neg ? -res : res;\n\t}\n\tfinal char nc(){\
-    \ return (char) next(); }\n\tfinal String ns() {\n\t\tfinal StringBuilder sb =\
-    \ new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c)) {\n\t\t\t\
-    sb.append((char) c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\t\
-    }\n\tfinal BigInteger nb(){ return new BigInteger(ns()); }\n\tfinal int[] ni(final\
-    \ int n) {\n\t\tfinal int[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = ni());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\t\
-    final long[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\
-    \t\treturn a;\n\t}\n\tfinal double[] nd(final int n) {\n\t\tfinal double[] a =\
-    \ new double[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\treturn\
-    \ a;\n\t}\n\tfinal char[] nc(final int n) {\n\t\tfinal char[] a = new char[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal\
-    \ String[] ns(final int n) {\n\t\tfinal String[] a = new String[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final\
-    \ int n) {\n\t\tfinal BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final\
-    \ int h, final int w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final\
-    \ int h, final int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final\
-    \ int h, final int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
+    \tfinal int ni(){ return toIntExact(nl()); }\n\tfinal long nl() {\n\t\tbyte c\
+    \ = next();\n\t\tfinal boolean neg = c == '-';\n\t\tif(neg) {\n\t\t\tc = next();\n\
+    \t\t}\n\t\tassert isNum(c);\n\t\tlong res = c - '0';\n\t\twhile(isNum(c = read()))\
+    \ {\n\t\t\tres = 10 * res + c - '0';\n\t\t}\n\t\tcheck = !isNum(c);\n\t\treturn\
+    \ neg ? -res : res;\n\t}\n\tfinal double nd() {\n\t\tbyte c = next();\n\t\tfinal\
+    \ boolean neg = c == '-';\n\t\tif(neg) {\n\t\t\tc = next();\n\t\t}\n\t\tassert\
+    \ isNum(c);\n\t\tdouble res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\t\
+    res = 10 * res + c - '0';\n\t\t}\n\t\tif(c != '.') {\n\t\t\tcheck = true;\n\t\t\
+    \treturn res;\n\t\t}\n\t\tint i;\n\t\tfor(i = 0; isNum(c = read()); ++i) {\n\t\
+    \t\tres = res * 10 + c - '0';\n\t\t}\n\t\tres /= pow(10, i);\n\t\tcheck = true;\n\
+    \t\treturn neg ? -res : res;\n\t}\n\tfinal char nc(){ return (char) next(); }\n\
+    \tfinal String ns() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\t\
+    byte c = next();\n\t\twhile(!isPunct(c)) {\n\t\t\tsb.append((char) c);\n\t\t\t\
+    c = read();\n\t\t}\n\t\treturn sb.toString();\n\t}\n\tfinal BigInteger nb(){ return\
+    \ new BigInteger(ns()); }\n\tfinal int[] ni(final int n) {\n\t\tfinal int[] a\
+    \ = new int[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ni());\n\t\treturn\
+    \ a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\tfinal long[] a = new long[n];\n\
+    \t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\treturn a;\n\t}\n\tfinal\
+    \ double[] nd(final int n) {\n\t\tfinal double[] a = new double[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal char[] nc(final int\
+    \ n) {\n\t\tfinal char[] a = new char[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal String[] ns(final int n) {\n\t\
+    \tfinal String[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i]\
+    \ = ns());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final int n) {\n\t\tfinal\
+    \ BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0, n).forEach(i ->\
+    \ a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final int h, final int\
+    \ w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final int h, final\
+    \ int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final int h, final\
+    \ int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\tfinal char[][] nc(final\
     \ int h, final int w) {\n\t\tfinal char[][] a = new char[h][w];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> a[i] = nc(w));\n\t\treturn a;\n\t}\n\tfinal String[][] ns(final\
@@ -1981,30 +1986,56 @@ data:
     \ {\n\tRAMN(final int[] a){ super(a, (x, y) -> min(x, y), (x, y) -> x + y, (x,\
     \ y) -> x + y, Integer.MAX_VALUE, 0); }\n\tRAMN(final long[] a){ super(a, (x,\
     \ y) -> min(x, y), (x, y) -> x + y, (x, y) -> x + y, Long.MAX_VALUE, 0); }\n}\n\
-    final class RUMX extends LazySegmentTree {\n\tRUMX(final int[] a){ super(a, (x,\
-    \ y) -> max(x, y), (x, y) -> y, (x, y) -> y, Integer.MIN_VALUE, Integer.MIN_VALUE);\
-    \ }\n\tRUMX(final long[] a){ super(a, (x, y) -> max(x, y), (x, y) -> y, (x, y)\
-    \ -> y, Long.MIN_VALUE, Long.MIN_VALUE); }\n}\nfinal class RUMN extends LazySegmentTree\
-    \ {\n\tRUMN(final int[] a){ super(a, (x, y) -> min(x, y), (x, y) -> y, (x, y)\
-    \ -> y, Integer.MAX_VALUE, Integer.MAX_VALUE); }\n\tRUMN(final long[] a){ super(a,\
-    \ (x, y) -> min(x, y), (x, y) -> y, (x, y) -> y, Long.MAX_VALUE, Long.MAX_VALUE);\
-    \ }\n}\nfinal class RUSM extends LazySegmentTreePair {\n\tprivate final int n;\n\
-    \tprivate final IntPair[] b;\n\tRUSM(final int[] a) {\n\t\tsuper(a.length, (x,\
-    \ y) -> x.mul(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()),\
-    \ (x, y) -> y, IntPair.of(0, 0), Integer.MIN_VALUE);\n\t\tn = a.length;\n\t\t\
-    b = new IntPair[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i],\
+    final class RASM extends LazySegmentTreePair {\n\tprivate final int n;\n\tprivate\
+    \ final IntPair[] b;\n\tRASM(final int[] a) {\n\t\tsuper(a.length, (x, y) -> x.add(y),\
+    \ (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue() * y, x.second.longValue()),\
+    \ (x, y) -> x + y, IntPair.of(0, 0), Integer.MIN_VALUE);\n\t\tn = a.length;\n\t\
+    \tb = new IntPair[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i],\
+    \ 1);\n\t\t}\n\t\tbuild(b);\n\t}\n\tRASM(final long[] a) {\n\t\tsuper(a.length,\
+    \ (x, y) -> x.add(y), (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue()\
+    \ * y, x.second.longValue()), (x, y) -> x + y, IntPair.of(0, 0), Long.MIN_VALUE);\n\
+    \t\tn = a.length;\n\t\tb = new IntPair[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\
+    \t\t\tb[i] = IntPair.of(a[i], 1);\n\t\t}\n\t\tbuild(b);\n\t}\n}\nfinal class RUMX\
+    \ extends LazySegmentTree {\n\tRUMX(final int[] a){ super(a, (x, y) -> max(x,\
+    \ y), (x, y) -> y, (x, y) -> y, Integer.MIN_VALUE, Integer.MIN_VALUE); }\n\tRUMX(final\
+    \ long[] a){ super(a, (x, y) -> max(x, y), (x, y) -> y, (x, y) -> y, Long.MIN_VALUE,\
+    \ Long.MIN_VALUE); }\n}\nfinal class RUMN extends LazySegmentTree {\n\tRUMN(final\
+    \ int[] a){ super(a, (x, y) -> min(x, y), (x, y) -> y, (x, y) -> y, Integer.MAX_VALUE,\
+    \ Integer.MAX_VALUE); }\n\tRUMN(final long[] a){ super(a, (x, y) -> min(x, y),\
+    \ (x, y) -> y, (x, y) -> y, Long.MAX_VALUE, Long.MAX_VALUE); }\n}\nfinal class\
+    \ RUSM extends LazySegmentTreePair {\n\tprivate final int n;\n\tprivate final\
+    \ IntPair[] b;\n\tRUSM(final int[] a) {\n\t\tsuper(a.length, (x, y) -> x.add(y),\
+    \ (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()), (x, y)\
+    \ -> y, IntPair.of(0, 0), Integer.MIN_VALUE);\n\t\tn = a.length;\n\t\tb = new\
+    \ IntPair[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i],\
     \ 1);\n\t\t}\n\t\tbuild(b);\n\t}\n\tRUSM(final long[] a) {\n\t\tsuper(a.length,\
-    \ (x, y) -> x.mul(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()),\
+    \ (x, y) -> x.add(y), (x, y) -> IntPair.of(x.second.longValue() * y, x.second.longValue()),\
     \ (x, y) -> y, IntPair.of(0, 0), Long.MIN_VALUE);\n\t\tn = a.length;\n\t\tb =\
     \ new IntPair[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i],\
-    \ 1);\n\t\t}\n\t\tbuild(b);\n\t}\n}\n\nfinal class SparseTable {\n\tprivate final\
-    \ long[][] st;\n\tprivate final int[] lookup;\n\tprivate final LongBinaryOperator\
-    \ op;\n\tSparseTable(final int[] a, final LongBinaryOperator op) {\n\t\tthis.op\
-    \ = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\
-    \t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\t\t\t\
-    st[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\tfor(int j = 0;\
-    \ j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i - 1][j],\
-    \ st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
+    \ 1);\n\t\t}\n\t\tbuild(b);\n\t}\n}\n\nfinal class DualSegmentTree<T> {\n\tprivate\
+    \ int sz, h;\n\tprivate final Object[] lazy;\n\tprivate final T id;\n\tprivate\
+    \ final BinaryOperator<T> ap;\n\t@SuppressWarnings(\"unchecked\")\n\tprivate final\
+    \ void propagate(final int k) {\n\t\tif(lazy[k] != id) {\n\t\t\tlazy[2 * k] =\
+    \ ap.apply((T) lazy[2 * k], (T) lazy[k]);\n\t\t\tlazy[2 * k + 1] = ap.apply((T)\
+    \ lazy[2 * k + 1], (T) lazy[k]);\n\t\t\tlazy[k] = id;\n\t\t}\n\t}\n\tprivate final\
+    \ void thrust(final int k) {\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(k\
+    \ >> i);\n\t\t}\n\t}\n\tDualSegmentTree(final int n, final BinaryOperator<T> ap,\
+    \ final T id) {\n\t\tthis.ap = ap;\n\t\tthis.id = id;\n\t\tsz = 1;\n\t\th = 0;\n\
+    \t\twhile(sz < n) {\n\t\t\tsz <<= 1;\n\t\t\th++;\n\t\t}\n\t\tlazy = new Object[2\
+    \ * sz];\n\t\tArrays.fill(lazy, id);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\
+    \tfinal void apply(int a, int b, final T x) {\n\t\tthrust(a += sz);\n\t\tthrust(b\
+    \ += sz - 1);\n\t\tfor(int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {\n\t\t\t\
+    if(l % 2 == 1) {\n\t\t\t\tlazy[l] = ap.apply((T) lazy[l], x);\n\t\t\t\tl++;\n\t\
+    \t\t}\n\t\t\tif(r % 2 == 1) {\n\t\t\t\tr--;\n\t\t\t\tlazy[r] = ap.apply((T) lazy[r],\
+    \ x);\n\t\t\t}\n\t\t}\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T get(int\
+    \ k) {\n\t\tthrust(k += sz);\n\t\treturn (T) lazy[k];\n\t}\n}\n\nfinal class SparseTable\
+    \ {\n\tprivate final long[][] st;\n\tprivate final int[] lookup;\n\tprivate final\
+    \ LongBinaryOperator op;\n\tSparseTable(final int[] a, final LongBinaryOperator\
+    \ op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\
+    \t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length;\
+    \ i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\
+    \tfor(int j = 0; j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i\
+    \ - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
     \ + 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
     \ >> 1] + 1;\n\t\t}\n\t}\n\tSparseTable(final long[] a, final LongBinaryOperator\
     \ op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\
@@ -2141,6 +2172,7 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
+  - Java/library/structure/DualSegmentTree.java
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
@@ -2217,6 +2249,7 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
+  - Java/library/structure/DualSegmentTree.java
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
@@ -2244,7 +2277,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-16 10:05:38+09:00'
+  timestamp: '2024-02-16 10:50:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
