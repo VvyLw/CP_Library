@@ -65,6 +65,9 @@ data:
     path: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
     title: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveLongConsumer.java
+    title: Java/library/core/interfaces/RecursiveLongConsumer.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveLongFunction.java
     title: Java/library/core/interfaces/RecursiveLongFunction.java
   - icon: ':warning:'
@@ -178,9 +181,6 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMX.java
     title: Java/library/structure/lazysegmenttree/RAMX.java
-  - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RASM.java
-    title: Java/library/structure/lazysegmenttree/RASM.java
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUMN.java
     title: Java/library/structure/lazysegmenttree/RUMN.java
@@ -285,6 +285,9 @@ data:
     path: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
     title: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveLongConsumer.java
+    title: Java/library/core/interfaces/RecursiveLongConsumer.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveLongFunction.java
     title: Java/library/core/interfaces/RecursiveLongFunction.java
   - icon: ':warning:'
@@ -399,9 +402,6 @@ data:
     path: Java/library/structure/lazysegmenttree/RAMX.java
     title: Java/library/structure/lazysegmenttree/RAMX.java
   - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RASM.java
-    title: Java/library/structure/lazysegmenttree/RASM.java
-  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUMN.java
     title: Java/library/structure/lazysegmenttree/RUMN.java
   - icon: ':warning:'
@@ -449,12 +449,22 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/core/interfaces/RecursiveLongConsumer.java\n"
-  code: "package library.core.interfaces;\n\nimport java.util.function.LongConsumer;\n\
-    \n/**\n * \u518D\u5E30\u30E9\u30E0\u30C0\u5F0F\u304C\u66F8\u3051\u308BLongConsumer\u30A4\
-    \u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\n * @see LongConsumer\n */\npublic\
-    \ interface RecursiveLongConsumer {\n\tpublic void accept(final RecursiveLongConsumer\
-    \ rec, final long n);\n}"
+    RuntimeError: bundler is not specified: Java/library/structure/lazysegmenttree/RASM.java\n"
+  code: "package library.structure.lazysegmenttree;\n\nimport library.structure.fenwicktree.RangeBIT;\n\
+    import library.structure.pair.IntPair;\n\n/**\n * Range Add Range Sum\n * \u533A\
+    \u9593\u52A0\u7B97, \u533A\u9593\u548C\n * RangeBIT\u3092\u4F7F\u3046\u3088\u3046\
+    \u306A\u554F\u984C\u3067\u4E8C\u5206\u63A2\u7D22\u3092\u6C42\u3081\u3089\u308C\
+    \u305F\u5834\u5408\u306F\u3053\u3061\u3089\n * @see RangeBIT\n */\npublic final\
+    \ class RASM extends LazySegmentTreePair {\n\tprivate final int n;\n\tprivate\
+    \ final IntPair[] b;\n\tRASM(final int[] a) {\n\t\tsuper(a.length, (x, y) -> x.add(y),\
+    \ (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue() * y, x.second.longValue()),\
+    \ (x, y) -> x + y, IntPair.of(0, 0), 0);\n\t\tn = a.length;\n\t\tb = new IntPair[n];\n\
+    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i], 1);\n\t\t}\n\t\
+    \tbuild(b);\n\t}\n\tRASM(final long[] a) {\n\t\tsuper(a.length, (x, y) -> x.add(y),\
+    \ (x, y) -> IntPair.of(x.first.longValue() + x.second.longValue() * y, x.second.longValue()),\
+    \ (x, y) -> x + y, IntPair.of(0, 0), 0);\n\t\tn = a.length;\n\t\tb = new IntPair[n];\n\
+    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = IntPair.of(a[i], 1);\n\t\t}\n\t\
+    \tbuild(b);\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -472,6 +482,7 @@ data:
   - Java/library/math/LongPrime.java
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
+  - Java/library/core/interfaces/RecursiveLongConsumer.java
   - Java/library/core/interfaces/RecursiveIntConsumer.java
   - Java/library/core/interfaces/RecursiveConsumer.java
   - Java/library/core/interfaces/RecursiveTriFunction.java
@@ -509,7 +520,6 @@ data:
   - Java/library/structure/lazysegmenttree/RUSM.java
   - Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - Java/library/structure/lazysegmenttree/RUMN.java
-  - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
@@ -530,7 +540,7 @@ data:
   - Java/All.java
   - Java/AOJ.java
   isVerificationFile: false
-  path: Java/library/core/interfaces/RecursiveLongConsumer.java
+  path: Java/library/structure/lazysegmenttree/RASM.java
   requiredBy:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -548,6 +558,7 @@ data:
   - Java/library/math/LongPrime.java
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
+  - Java/library/core/interfaces/RecursiveLongConsumer.java
   - Java/library/core/interfaces/RecursiveIntConsumer.java
   - Java/library/core/interfaces/RecursiveConsumer.java
   - Java/library/core/interfaces/RecursiveTriFunction.java
@@ -585,7 +596,6 @@ data:
   - Java/library/structure/lazysegmenttree/RUSM.java
   - Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - Java/library/structure/lazysegmenttree/RUMN.java
-  - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
@@ -608,10 +618,10 @@ data:
   timestamp: '2024-02-16 10:05:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/core/interfaces/RecursiveLongConsumer.java
+documentation_of: Java/library/structure/lazysegmenttree/RASM.java
 layout: document
 redirect_from:
-- /library/Java/library/core/interfaces/RecursiveLongConsumer.java
-- /library/Java/library/core/interfaces/RecursiveLongConsumer.java.html
-title: Java/library/core/interfaces/RecursiveLongConsumer.java
+- /library/Java/library/structure/lazysegmenttree/RASM.java
+- /library/Java/library/structure/lazysegmenttree/RASM.java.html
+title: Java/library/structure/lazysegmenttree/RASM.java
 ---

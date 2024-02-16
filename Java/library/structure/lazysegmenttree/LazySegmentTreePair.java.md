@@ -152,9 +152,6 @@ data:
     path: Java/library/structure/DoubleEndedPriorityQueue.java
     title: Java/library/structure/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
-    path: Java/library/structure/FenwickTree.java
-    title: Java/library/structure/FenwickTree.java
-  - icon: ':warning:'
     path: Java/library/structure/SegmentTree.java
     title: Java/library/structure/SegmentTree.java
   - icon: ':warning:'
@@ -167,6 +164,12 @@ data:
     path: Java/library/structure/deque/IntDeque.java
     title: Java/library/structure/deque/IntDeque.java
   - icon: ':warning:'
+    path: Java/library/structure/fenwicktree/FenwickTree.java
+    title: Java/library/structure/fenwicktree/FenwickTree.java
+  - icon: ':warning:'
+    path: Java/library/structure/fenwicktree/RangeBIT.java
+    title: Java/library/structure/fenwicktree/RangeBIT.java
+  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
@@ -175,6 +178,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMX.java
     title: Java/library/structure/lazysegmenttree/RAMX.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RASM.java
+    title: Java/library/structure/lazysegmenttree/RASM.java
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUMN.java
     title: Java/library/structure/lazysegmenttree/RUMN.java
@@ -366,9 +372,6 @@ data:
     path: Java/library/structure/DoubleEndedPriorityQueue.java
     title: Java/library/structure/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
-    path: Java/library/structure/FenwickTree.java
-    title: Java/library/structure/FenwickTree.java
-  - icon: ':warning:'
     path: Java/library/structure/SegmentTree.java
     title: Java/library/structure/SegmentTree.java
   - icon: ':warning:'
@@ -381,6 +384,12 @@ data:
     path: Java/library/structure/deque/IntDeque.java
     title: Java/library/structure/deque/IntDeque.java
   - icon: ':warning:'
+    path: Java/library/structure/fenwicktree/FenwickTree.java
+    title: Java/library/structure/fenwicktree/FenwickTree.java
+  - icon: ':warning:'
+    path: Java/library/structure/fenwicktree/RangeBIT.java
+    title: Java/library/structure/fenwicktree/RangeBIT.java
+  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
@@ -389,6 +398,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMX.java
     title: Java/library/structure/lazysegmenttree/RAMX.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RASM.java
+    title: Java/library/structure/lazysegmenttree/RASM.java
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUMN.java
     title: Java/library/structure/lazysegmenttree/RUMN.java
@@ -442,20 +454,20 @@ data:
     import java.util.function.BiFunction;\nimport java.util.function.BinaryOperator;\n\
     import java.util.function.LongBinaryOperator;\nimport java.util.function.LongPredicate;\n\
     \nimport library.structure.pair.IntPair;\n\n/**\n * \u9045\u5EF6\u30BB\u30B0\u6728\
-    \n * RUSM\u3092\u4F7F\u3046\u306E\u306B\u5FC5\u8981\n * @see LazySegmentTree\n\
-    \ * @see RUSM\n */\npublic class LazySegmentTreePair {\n\tprivate int n, sz, h;\n\
-    \tprivate final IntPair[] data;\n\tprivate final long[] lazy;\n\tprivate final\
-    \ BinaryOperator<IntPair> f;\n\tprivate final BiFunction<IntPair, Long, IntPair>\
-    \ map;\n\tprivate final LongBinaryOperator comp;\n\tprivate final IntPair e;\n\
-    \tprivate final long id;\n\tprivate final void update(final int k){ data[k] =\
-    \ f.apply(data[2 * k], data[2 * k + 1]); }\n\tprivate final void allApply(final\
-    \ int k, final long x) {\n\t\tdata[k] = map.apply(data[k], x);\n\t\tif(k < sz)\
-    \ {\n\t\t\tlazy[k] = comp.applyAsLong(lazy[k], x);\n\t\t}\n\t}\n\tprivate final\
-    \ void propagate(final int k) {\n\t\tif(lazy[k] != id) {\n\t\t\tallApply(2 * k,\
-    \ lazy[k]);\n\t\t\tallApply(2 * k + 1, lazy[k]);\n\t\t\tlazy[k] = id;\n\t\t}\n\
-    \t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param n\n\t\
-    \ * @param f\n\t * @param map\n\t * @param comp\n\t * @param e\n\t * @param id\n\
-    \t */\n\tpublic LazySegmentTreePair(final int n, final BinaryOperator<IntPair>\
+    \n * RASM, RUSM\u3092\u4F7F\u3046\u306E\u306B\u5FC5\u8981\n * @see LazySegmentTree\n\
+    \ * @see RASM\n * @see RUSM\n */\npublic class LazySegmentTreePair {\n\tprivate\
+    \ int sz, h;\n\tprivate final int n;\n\tprivate final IntPair[] data;\n\tprivate\
+    \ final long[] lazy;\n\tprivate final BinaryOperator<IntPair> f;\n\tprivate final\
+    \ BiFunction<IntPair, Long, IntPair> map;\n\tprivate final LongBinaryOperator\
+    \ comp;\n\tprivate final IntPair e;\n\tprivate final long id;\n\tprivate final\
+    \ void update(final int k){ data[k] = f.apply(data[2 * k], data[2 * k + 1]); }\n\
+    \tprivate final void allApply(final int k, final long x) {\n\t\tdata[k] = map.apply(data[k],\
+    \ x);\n\t\tif(k < sz) {\n\t\t\tlazy[k] = comp.applyAsLong(lazy[k], x);\n\t\t}\n\
+    \t}\n\tprivate final void propagate(final int k) {\n\t\tif(lazy[k] != id) {\n\t\
+    \t\tallApply(2 * k, lazy[k]);\n\t\t\tallApply(2 * k + 1, lazy[k]);\n\t\t\tlazy[k]\
+    \ = id;\n\t\t}\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t\
+    \ * @param n\n\t * @param f\n\t * @param map\n\t * @param comp\n\t * @param e\n\
+    \t * @param id\n\t */\n\tpublic LazySegmentTreePair(final int n, final BinaryOperator<IntPair>\
     \ f, final BiFunction<IntPair, Long, IntPair> map, final LongBinaryOperator comp,\
     \ final IntPair e, final long id) {\n\t\tthis.n = n;\n\t\tthis.f = f;\n\t\tthis.map\
     \ = map;\n\t\tthis.comp = comp;\n\t\tthis.e = e;\n\t\tthis.id = id;\n\t\tsz =\
@@ -530,8 +542,8 @@ data:
     \t/**\n\t * \u8981\u7D20\u3092\u30EA\u30BB\u30C3\u30C8\u3059\u308B\n\t */\n\t\
     public final void clear(){ Arrays.fill(data, e); }\n\t@Override\n\tpublic final\
     \ String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\t\
-    sb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(' ');\n\t\t\
-    \tsb.append(get(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
+    sb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\" \" + get(i));\n\
+    \t\t}\n\t\treturn sb.toString();\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -579,7 +591,6 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
-  - Java/library/structure/FenwickTree.java
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
@@ -588,6 +599,7 @@ data:
   - Java/library/structure/lazysegmenttree/RUSM.java
   - Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - Java/library/structure/lazysegmenttree/RUMN.java
+  - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
@@ -596,6 +608,8 @@ data:
   - Java/library/structure/unionfind/UnionFind.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
   - Java/library/structure/AVLTree.java
+  - Java/library/structure/fenwicktree/FenwickTree.java
+  - Java/library/structure/fenwicktree/RangeBIT.java
   - Java/library/structure/deque/Deque.java
   - Java/library/structure/deque/IntDeque.java
   - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
@@ -653,7 +667,6 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
-  - Java/library/structure/FenwickTree.java
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
@@ -662,6 +675,7 @@ data:
   - Java/library/structure/lazysegmenttree/RUSM.java
   - Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - Java/library/structure/lazysegmenttree/RUMN.java
+  - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
@@ -670,6 +684,8 @@ data:
   - Java/library/structure/unionfind/UnionFind.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
   - Java/library/structure/AVLTree.java
+  - Java/library/structure/fenwicktree/FenwickTree.java
+  - Java/library/structure/fenwicktree/RangeBIT.java
   - Java/library/structure/deque/Deque.java
   - Java/library/structure/deque/IntDeque.java
   - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
@@ -678,7 +694,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-15 21:15:35+09:00'
+  timestamp: '2024-02-16 10:05:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/lazysegmenttree/LazySegmentTreePair.java

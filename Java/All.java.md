@@ -149,9 +149,6 @@ data:
     path: Java/library/structure/DoubleEndedPriorityQueue.java
     title: Java/library/structure/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
-    path: Java/library/structure/FenwickTree.java
-    title: Java/library/structure/FenwickTree.java
-  - icon: ':warning:'
     path: Java/library/structure/SegmentTree.java
     title: Java/library/structure/SegmentTree.java
   - icon: ':warning:'
@@ -164,6 +161,12 @@ data:
     path: Java/library/structure/deque/IntDeque.java
     title: Java/library/structure/deque/IntDeque.java
   - icon: ':warning:'
+    path: Java/library/structure/fenwicktree/FenwickTree.java
+    title: Java/library/structure/fenwicktree/FenwickTree.java
+  - icon: ':warning:'
+    path: Java/library/structure/fenwicktree/RangeBIT.java
+    title: Java/library/structure/fenwicktree/RangeBIT.java
+  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
@@ -175,6 +178,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMX.java
     title: Java/library/structure/lazysegmenttree/RAMX.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RASM.java
+    title: Java/library/structure/lazysegmenttree/RASM.java
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUMN.java
     title: Java/library/structure/lazysegmenttree/RUMN.java
@@ -363,9 +369,6 @@ data:
     path: Java/library/structure/DoubleEndedPriorityQueue.java
     title: Java/library/structure/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
-    path: Java/library/structure/FenwickTree.java
-    title: Java/library/structure/FenwickTree.java
-  - icon: ':warning:'
     path: Java/library/structure/SegmentTree.java
     title: Java/library/structure/SegmentTree.java
   - icon: ':warning:'
@@ -378,6 +381,12 @@ data:
     path: Java/library/structure/deque/IntDeque.java
     title: Java/library/structure/deque/IntDeque.java
   - icon: ':warning:'
+    path: Java/library/structure/fenwicktree/FenwickTree.java
+    title: Java/library/structure/fenwicktree/FenwickTree.java
+  - icon: ':warning:'
+    path: Java/library/structure/fenwicktree/RangeBIT.java
+    title: Java/library/structure/fenwicktree/RangeBIT.java
+  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
@@ -389,6 +398,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMX.java
     title: Java/library/structure/lazysegmenttree/RAMX.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RASM.java
+    title: Java/library/structure/lazysegmenttree/RASM.java
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUMN.java
     title: Java/library/structure/lazysegmenttree/RUMN.java
@@ -1767,7 +1779,7 @@ data:
     \ long sum(final int l, final int r){ return sum(r) - sum(l - 1); }\n\tfinal long\
     \ get(final int k){ return sum(k) - sum(k - 1); }\n\tfinal void add(int k, final\
     \ long x) {\n\t\tfor(++k; k < n; k += k & -k) {\n\t\t\tdata[k] += x;\n\t\t}\n\t\
-    }\n\tfinal void imos(final int l, final int r, final long x) {\n\t\tadd(l, x);\n\
+    }\n\tfinal void add(final int l, final int r, final long x) {\n\t\tadd(l, x);\n\
     \t\tadd(r + 1, -x);\n\t}\n\tprivate final int lg(final int n){ return 31 - Integer.numberOfLeadingZeros(n);\
     \ }\n\tfinal int lowerBound(long w) {\n\t\tif(w <= 0) {\n\t\t\treturn 0;\n\t\t\
     }\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x +\
@@ -1778,7 +1790,20 @@ data:
     w -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\t@Override\n\
     \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
     \t\tsb.append(sum(0));\n\t\tfor(int i = 0; ++i < n - 2;) {\n\t\t\tsb.append(\"\
-    \ \" + sum(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nfinal class SegmentTree<T>\
+    \ \" + sum(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}\nfinal class RangeBIT\
+    \ {\n\tprivate final int n;\n\tprivate final FenwickTree a, b;\n\tRangeBIT(final\
+    \ int n) {\n\t\tthis.n = n;\n\t\ta = new FenwickTree(n + 1);\n\t\tb = new FenwickTree(n\
+    \ + 1);\n\t}\n\tRangeBIT(final int[] arr) {\n\t\tthis(arr.length);\n\t\tfor(int\
+    \ i = 0; i < arr.length; ++i) {\n\t\t\tadd(i, i, arr[i]);\n\t\t}\n\t}\n\tRangeBIT(final\
+    \ long[] arr) {\n\t\tthis(arr.length);\n\t\tfor(int i = 0; i < arr.length; ++i)\
+    \ {\n\t\t\tadd(i, i, arr[i]);\n\t\t}\n\t}\n\tfinal void add(final int l, final\
+    \ int r, final long x) {\n\t\ta.add(l, x);\n\t\ta.add(r, -x);\n\t\tb.add(l, x\
+    \ * (1 - l));\n\t\tb.add(r, x * (r - 1));\n\t}\n\tfinal long get(final int i){\
+    \ return sum(i, i + 1); }\n\tfinal long sum(int l, int r) {\n\t\tl--;\n\t\tr--;\n\
+    \t\treturn a.sum(r) * r + b.sum(r) - a.sum(l) * l - b.sum(l);\n\t}\n\t@Override\n\
+    \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
+    \t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\" \"\
+    \ + get(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nfinal class SegmentTree<T>\
     \ {\n\tprivate int n = 1, rank = 0;\n\tprivate final int fini;\n\tprivate final\
     \ BinaryOperator<T> op;\n\tprivate final T e;\n\tprivate final Object[] dat;\n\
     \tSegmentTree(final int fini, final BinaryOperator<T> op, final T e) {\n\t\tthis.fini\
@@ -1810,8 +1835,11 @@ data:
     \t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\tfinal T val2 = op.apply(val,\
     \ (T) dat[i >> h]);\n\t\t\tif(fn.test(val2)) {\n\t\t\t\ti += 1 << h;\n\t\t\t\t\
     if(i == n * 2) {\n\t\t\t\t\treturn fini;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\
-    \t}\n\t\t}\n\t\treturn min(i - n, fini);\n\t}\n}\n\nclass LazySegmentTree {\n\t\
-    private int n, sz, h;\n\tprivate final long[] data, lazy;\n\tprivate final LongBinaryOperator\
+    \t}\n\t\t}\n\t\treturn min(i - n, fini);\n\t}\n\t@Override\n\tpublic final String\
+    \ toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tsb.append(query(0,\
+    \ 1));\n\t\tfor(int i = 0; ++i < fini;) {\n\t\t\tsb.append(\" \" + query(i, i\
+    \ + 1));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nclass LazySegmentTree {\n\
+    \tprivate int n, sz, h;\n\tprivate final long[] data, lazy;\n\tprivate final LongBinaryOperator\
     \ f, map, comp;\n\tprivate final long e, id;\n\tprivate final void update(final\
     \ int k){ data[k] = f.applyAsLong(data[2 * k], data[2 * k + 1]); }\n\tprivate\
     \ final void allApply(final int k, final long x) {\n\t\tdata[k] = map.applyAsLong(data[k],\
@@ -1878,17 +1906,17 @@ data:
     \ != r);\n\t\treturn -1;\n\t}\n\tfinal void clear(){ Arrays.fill(data, e); }\n\
     \t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder sb =\
     \ new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\
-    \t\t\tsb.append(' ');\n\t\t\tsb.append(get(i));\n\t\t}\n\t\treturn sb.toString();\n\
-    \t}\n}\nclass LazySegmentTreePair {\n\tprivate int n, sz, h;\n\tprivate final\
-    \ IntPair[] data;\n\tprivate final long[] lazy;\n\tprivate final BinaryOperator<IntPair>\
-    \ f;\n\tprivate final BiFunction<IntPair, Long, IntPair> map;\n\tprivate final\
-    \ LongBinaryOperator comp;\n\tprivate final IntPair e;\n\tprivate final long id;\n\
-    \tprivate final void update(final int k){ data[k] = f.apply(data[2 * k], data[2\
-    \ * k + 1]); }\n\tprivate final void allApply(final int k, final long x) {\n\t\
-    \tdata[k] = map.apply(data[k], x);\n\t\tif(k < sz) {\n\t\t\tlazy[k] = comp.applyAsLong(lazy[k],\
-    \ x);\n\t\t}\n\t}\n\tprivate final void propagate(final int k) {\n\t\tif(lazy[k]\
-    \ != id) {\n\t\t\tallApply(2 * k, lazy[k]);\n\t\t\tallApply(2 * k + 1, lazy[k]);\n\
-    \t\t\tlazy[k] = id;\n\t\t}\n\t}\n\tLazySegmentTreePair(final int n, final BinaryOperator<IntPair>\
+    \t\t\tsb.append(\" \" + get(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}\nclass\
+    \ LazySegmentTreePair {\n\tprivate int n, sz, h;\n\tprivate final IntPair[] data;\n\
+    \tprivate final long[] lazy;\n\tprivate final BinaryOperator<IntPair> f;\n\tprivate\
+    \ final BiFunction<IntPair, Long, IntPair> map;\n\tprivate final LongBinaryOperator\
+    \ comp;\n\tprivate final IntPair e;\n\tprivate final long id;\n\tprivate final\
+    \ void update(final int k){ data[k] = f.apply(data[2 * k], data[2 * k + 1]); }\n\
+    \tprivate final void allApply(final int k, final long x) {\n\t\tdata[k] = map.apply(data[k],\
+    \ x);\n\t\tif(k < sz) {\n\t\t\tlazy[k] = comp.applyAsLong(lazy[k], x);\n\t\t}\n\
+    \t}\n\tprivate final void propagate(final int k) {\n\t\tif(lazy[k] != id) {\n\t\
+    \t\tallApply(2 * k, lazy[k]);\n\t\t\tallApply(2 * k + 1, lazy[k]);\n\t\t\tlazy[k]\
+    \ = id;\n\t\t}\n\t}\n\tLazySegmentTreePair(final int n, final BinaryOperator<IntPair>\
     \ f, final BiFunction<IntPair, Long, IntPair> map, final LongBinaryOperator comp,\
     \ final IntPair e, final long id) {\n\t\tthis.n = n;\n\t\tthis.f = f;\n\t\tthis.map\
     \ = map;\n\t\tthis.comp = comp;\n\t\tthis.e = e;\n\t\tthis.id = id;\n\t\tsz =\
@@ -2113,7 +2141,6 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
-  - Java/library/structure/FenwickTree.java
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
@@ -2122,6 +2149,7 @@ data:
   - Java/library/structure/lazysegmenttree/RUSM.java
   - Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - Java/library/structure/lazysegmenttree/RUMN.java
+  - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
@@ -2131,6 +2159,8 @@ data:
   - Java/library/structure/unionfind/UnionFind.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
   - Java/library/structure/AVLTree.java
+  - Java/library/structure/fenwicktree/FenwickTree.java
+  - Java/library/structure/fenwicktree/RangeBIT.java
   - Java/library/structure/deque/Deque.java
   - Java/library/structure/deque/IntDeque.java
   - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
@@ -2187,7 +2217,6 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
-  - Java/library/structure/FenwickTree.java
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
@@ -2196,6 +2225,7 @@ data:
   - Java/library/structure/lazysegmenttree/RUSM.java
   - Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - Java/library/structure/lazysegmenttree/RUMN.java
+  - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
@@ -2205,6 +2235,8 @@ data:
   - Java/library/structure/unionfind/UnionFind.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
   - Java/library/structure/AVLTree.java
+  - Java/library/structure/fenwicktree/FenwickTree.java
+  - Java/library/structure/fenwicktree/RangeBIT.java
   - Java/library/structure/deque/Deque.java
   - Java/library/structure/deque/IntDeque.java
   - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
@@ -2212,7 +2244,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-15 21:15:35+09:00'
+  timestamp: '2024-02-16 10:05:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

@@ -28,6 +28,9 @@ data:
       path: C++/Pollards_rho.hpp
       title: Pollard's rho
     - icon: ':heavy_check_mark:'
+      path: C++/RangeBIT.hpp
+      title: C++/RangeBIT.hpp
+    - icon: ':heavy_check_mark:'
       path: C++/SegmentTree.hpp
       title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
     - icon: ':heavy_check_mark:'
@@ -236,9 +239,6 @@ data:
       path: Java/library/structure/DoubleEndedPriorityQueue.java
       title: Java/library/structure/DoubleEndedPriorityQueue.java
     - icon: ':warning:'
-      path: Java/library/structure/FenwickTree.java
-      title: Java/library/structure/FenwickTree.java
-    - icon: ':warning:'
       path: Java/library/structure/SegmentTree.java
       title: Java/library/structure/SegmentTree.java
     - icon: ':warning:'
@@ -252,6 +252,14 @@ data:
     - icon: ':warning:'
       path: Java/library/structure/deque/IntDeque.java
       title: Java/library/structure/deque/IntDeque.java
+  - name: Java/library/structure/fenwicktree
+    pages:
+    - icon: ':warning:'
+      path: Java/library/structure/fenwicktree/FenwickTree.java
+      title: Java/library/structure/fenwicktree/FenwickTree.java
+    - icon: ':warning:'
+      path: Java/library/structure/fenwicktree/RangeBIT.java
+      title: Java/library/structure/fenwicktree/RangeBIT.java
   - name: Java/library/structure/lazysegmenttree
     pages:
     - icon: ':warning:'
@@ -266,6 +274,9 @@ data:
     - icon: ':warning:'
       path: Java/library/structure/lazysegmenttree/RAMX.java
       title: Java/library/structure/lazysegmenttree/RAMX.java
+    - icon: ':warning:'
+      path: Java/library/structure/lazysegmenttree/RASM.java
+      title: Java/library/structure/lazysegmenttree/RASM.java
     - icon: ':warning:'
       path: Java/library/structure/lazysegmenttree/RUMN.java
       title: Java/library/structure/lazysegmenttree/RUMN.java
@@ -348,6 +359,9 @@ data:
       path: test/fwtree2.test.cpp
       title: test/fwtree2.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/fwtree3.test.cpp
+      title: test/fwtree3.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/inv_num.test.cpp
       title: test/inv_num.test.cpp
     - icon: ':heavy_check_mark:'
@@ -362,6 +376,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/lazysegtree2.test.cpp
       title: test/lazysegtree2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/lazysegtree3.test.cpp
+      title: test/lazysegtree3.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/lazysegtree4.test.cpp
+      title: test/lazysegtree4.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/lazysegtree5.test.cpp
+      title: test/lazysegtree5.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/lca.test.cpp
       title: test/lca.test.cpp
@@ -413,6 +436,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/segtree.test.cpp
       title: test/segtree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/segtree2.test.cpp
+      title: test/segtree2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/sr_sum.test.cpp
       title: test/sr_sum.test.cpp

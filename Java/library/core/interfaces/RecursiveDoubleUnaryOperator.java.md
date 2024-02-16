@@ -149,9 +149,6 @@ data:
     path: Java/library/structure/DoubleEndedPriorityQueue.java
     title: Java/library/structure/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
-    path: Java/library/structure/FenwickTree.java
-    title: Java/library/structure/FenwickTree.java
-  - icon: ':warning:'
     path: Java/library/structure/SegmentTree.java
     title: Java/library/structure/SegmentTree.java
   - icon: ':warning:'
@@ -164,6 +161,12 @@ data:
     path: Java/library/structure/deque/IntDeque.java
     title: Java/library/structure/deque/IntDeque.java
   - icon: ':warning:'
+    path: Java/library/structure/fenwicktree/FenwickTree.java
+    title: Java/library/structure/fenwicktree/FenwickTree.java
+  - icon: ':warning:'
+    path: Java/library/structure/fenwicktree/RangeBIT.java
+    title: Java/library/structure/fenwicktree/RangeBIT.java
+  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
@@ -175,6 +178,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMX.java
     title: Java/library/structure/lazysegmenttree/RAMX.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RASM.java
+    title: Java/library/structure/lazysegmenttree/RASM.java
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUMN.java
     title: Java/library/structure/lazysegmenttree/RUMN.java
@@ -363,9 +369,6 @@ data:
     path: Java/library/structure/DoubleEndedPriorityQueue.java
     title: Java/library/structure/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
-    path: Java/library/structure/FenwickTree.java
-    title: Java/library/structure/FenwickTree.java
-  - icon: ':warning:'
     path: Java/library/structure/SegmentTree.java
     title: Java/library/structure/SegmentTree.java
   - icon: ':warning:'
@@ -378,6 +381,12 @@ data:
     path: Java/library/structure/deque/IntDeque.java
     title: Java/library/structure/deque/IntDeque.java
   - icon: ':warning:'
+    path: Java/library/structure/fenwicktree/FenwickTree.java
+    title: Java/library/structure/fenwicktree/FenwickTree.java
+  - icon: ':warning:'
+    path: Java/library/structure/fenwicktree/RangeBIT.java
+    title: Java/library/structure/fenwicktree/RangeBIT.java
+  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
@@ -389,6 +398,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMX.java
     title: Java/library/structure/lazysegmenttree/RAMX.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RASM.java
+    title: Java/library/structure/lazysegmenttree/RASM.java
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUMN.java
     title: Java/library/structure/lazysegmenttree/RUMN.java
@@ -489,7 +501,6 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
-  - Java/library/structure/FenwickTree.java
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
@@ -498,6 +509,7 @@ data:
   - Java/library/structure/lazysegmenttree/RUSM.java
   - Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - Java/library/structure/lazysegmenttree/RUMN.java
+  - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
@@ -507,6 +519,8 @@ data:
   - Java/library/structure/unionfind/UnionFind.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
   - Java/library/structure/AVLTree.java
+  - Java/library/structure/fenwicktree/FenwickTree.java
+  - Java/library/structure/fenwicktree/RangeBIT.java
   - Java/library/structure/deque/Deque.java
   - Java/library/structure/deque/IntDeque.java
   - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
@@ -563,7 +577,6 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
-  - Java/library/structure/FenwickTree.java
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
@@ -572,6 +585,7 @@ data:
   - Java/library/structure/lazysegmenttree/RUSM.java
   - Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - Java/library/structure/lazysegmenttree/RUMN.java
+  - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
@@ -581,6 +595,8 @@ data:
   - Java/library/structure/unionfind/UnionFind.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
   - Java/library/structure/AVLTree.java
+  - Java/library/structure/fenwicktree/FenwickTree.java
+  - Java/library/structure/fenwicktree/RangeBIT.java
   - Java/library/structure/deque/Deque.java
   - Java/library/structure/deque/IntDeque.java
   - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
@@ -589,7 +605,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-15 21:15:35+09:00'
+  timestamp: '2024-02-16 10:05:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java

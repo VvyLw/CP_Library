@@ -149,9 +149,6 @@ data:
     path: Java/library/structure/DoubleEndedPriorityQueue.java
     title: Java/library/structure/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
-    path: Java/library/structure/FenwickTree.java
-    title: Java/library/structure/FenwickTree.java
-  - icon: ':warning:'
     path: Java/library/structure/SegmentTree.java
     title: Java/library/structure/SegmentTree.java
   - icon: ':warning:'
@@ -164,6 +161,12 @@ data:
     path: Java/library/structure/deque/IntDeque.java
     title: Java/library/structure/deque/IntDeque.java
   - icon: ':warning:'
+    path: Java/library/structure/fenwicktree/FenwickTree.java
+    title: Java/library/structure/fenwicktree/FenwickTree.java
+  - icon: ':warning:'
+    path: Java/library/structure/fenwicktree/RangeBIT.java
+    title: Java/library/structure/fenwicktree/RangeBIT.java
+  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
@@ -175,6 +178,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMX.java
     title: Java/library/structure/lazysegmenttree/RAMX.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RASM.java
+    title: Java/library/structure/lazysegmenttree/RASM.java
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUMN.java
     title: Java/library/structure/lazysegmenttree/RUMN.java
@@ -363,9 +369,6 @@ data:
     path: Java/library/structure/DoubleEndedPriorityQueue.java
     title: Java/library/structure/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
-    path: Java/library/structure/FenwickTree.java
-    title: Java/library/structure/FenwickTree.java
-  - icon: ':warning:'
     path: Java/library/structure/SegmentTree.java
     title: Java/library/structure/SegmentTree.java
   - icon: ':warning:'
@@ -378,6 +381,12 @@ data:
     path: Java/library/structure/deque/IntDeque.java
     title: Java/library/structure/deque/IntDeque.java
   - icon: ':warning:'
+    path: Java/library/structure/fenwicktree/FenwickTree.java
+    title: Java/library/structure/fenwicktree/FenwickTree.java
+  - icon: ':warning:'
+    path: Java/library/structure/fenwicktree/RangeBIT.java
+    title: Java/library/structure/fenwicktree/RangeBIT.java
+  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
@@ -389,6 +398,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMX.java
     title: Java/library/structure/lazysegmenttree/RAMX.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RASM.java
+    title: Java/library/structure/lazysegmenttree/RASM.java
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUMN.java
     title: Java/library/structure/lazysegmenttree/RUMN.java
@@ -908,44 +920,43 @@ data:
     \ = is;\n\t\tpos = lim = 0;\n\t\tbuf = new byte[1 << 17];\n\t\tcheck = false;\n\
     \t}\n\tprivate final boolean isPunct(final byte bt){ return !Utility.scope(33,\
     \ bt, 126); }\n\tprivate final boolean isNum(final byte bt){ return Utility.scope('0',\
-    \ bt, '9'); }\n\tprivate final boolean isNeg(){ return pos >= 2 && buf[pos - 2]\
-    \ == '-'; }\n\tprivate final byte read() {\n\t\tif(pos == lim && lim != -1) {\n\
-    \t\t\ttry {\n\t\t\t\tlim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final\
+    \ bt, '9'); }\n\tprivate final byte read() {\n\t\tif(pos == lim && lim != -1)\
+    \ {\n\t\t\ttry {\n\t\t\t\tlim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final\
     \ IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t\treturn buf[pos++];\n\
     \t}\n\tprivate final byte next() {\n\t\tbyte bt;\n\t\tif(check) {\n\t\t\tcheck\
     \ = false;\n\t\t\tbt = buf[pos - 1];\n\t\t\tif(!isPunct(bt)) {\n\t\t\t\treturn\
     \ bt;\n\t\t\t}\n\t\t}\n\t\twhile(isPunct(bt = read())){}\n\t\treturn bt;\n\t}\n\
-    \tprivate final byte nextInt() {\n\t\tbyte bt;\n\t\twhile(!isNum(bt = read())){}\n\
-    \t\treturn bt;\n\t}\n\tfinal int ni(){ return toIntExact(nl()); }\n\tfinal long\
-    \ nl() {\n\t\tbyte c = nextInt();\n\t\tfinal boolean neg = isNeg();\n\t\tassert\
-    \ isNum(c);\n\t\tlong res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\tres\
-    \ = 10 * res + c - '0';\n\t\t}\n\t\tcheck = !isNum(c);\n\t\treturn neg ? -res\
-    \ : res;\n\t}\n\tfinal double nd() {\n\t\tbyte c = nextInt();\n\t\tfinal boolean\
-    \ neg = isNeg();\n\t\tassert isNum(c);\n\t\tdouble res = c - '0';\n\t\twhile(isNum(c\
-    \ = read())) {\n\t\t\tres = 10 * res + c - '0';\n\t\t}\n\t\tif(c != '.') {\n\t\
-    \t\tcheck = true;\n\t\t\treturn res;\n\t\t}\n\t\tint i;\n\t\tfor(i = 0; isNum(c\
-    \ = read()); ++i) {\n\t\t\tres = res * 10 + c - '0';\n\t\t}\n\t\tres /= pow(10,\
-    \ i);\n\t\tcheck = true;\n\t\treturn neg ? -res : res;\n\t}\n\tfinal char nc(){\
-    \ return (char) next(); }\n\tfinal String ns() {\n\t\tfinal StringBuilder sb =\
-    \ new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c)) {\n\t\t\t\
-    sb.append((char) c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\t\
-    }\n\tfinal BigInteger nb(){ return new BigInteger(ns()); }\n\tfinal int[] ni(final\
-    \ int n) {\n\t\tfinal int[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = ni());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\t\
-    final long[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\
-    \t\treturn a;\n\t}\n\tfinal double[] nd(final int n) {\n\t\tfinal double[] a =\
-    \ new double[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\treturn\
-    \ a;\n\t}\n\tfinal char[] nc(final int n) {\n\t\tfinal char[] a = new char[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal\
-    \ String[] ns(final int n) {\n\t\tfinal String[] a = new String[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final\
-    \ int n) {\n\t\tfinal BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final\
-    \ int h, final int w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final\
-    \ int h, final int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final\
-    \ int h, final int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
+    \tfinal int ni(){ return toIntExact(nl()); }\n\tfinal long nl() {\n\t\tbyte c\
+    \ = next();\n\t\tfinal boolean neg = c == '-';\n\t\tif(neg) {\n\t\t\tc = next();\n\
+    \t\t}\n\t\tassert isNum(c);\n\t\tlong res = c - '0';\n\t\twhile(isNum(c = read()))\
+    \ {\n\t\t\tres = 10 * res + c - '0';\n\t\t}\n\t\tcheck = !isNum(c);\n\t\treturn\
+    \ neg ? -res : res;\n\t}\n\tfinal double nd() {\n\t\tbyte c = next();\n\t\tfinal\
+    \ boolean neg = c == '-';\n\t\tif(neg) {\n\t\t\tc = next();\n\t\t}\n\t\tassert\
+    \ isNum(c);\n\t\tdouble res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\t\
+    res = 10 * res + c - '0';\n\t\t}\n\t\tif(c != '.') {\n\t\t\tcheck = true;\n\t\t\
+    \treturn res;\n\t\t}\n\t\tint i;\n\t\tfor(i = 0; isNum(c = read()); ++i) {\n\t\
+    \t\tres = res * 10 + c - '0';\n\t\t}\n\t\tres /= pow(10, i);\n\t\tcheck = true;\n\
+    \t\treturn neg ? -res : res;\n\t}\n\tfinal char nc(){ return (char) next(); }\n\
+    \tfinal String ns() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\t\
+    byte c = next();\n\t\twhile(!isPunct(c)) {\n\t\t\tsb.append((char) c);\n\t\t\t\
+    c = read();\n\t\t}\n\t\treturn sb.toString();\n\t}\n\tfinal BigInteger nb(){ return\
+    \ new BigInteger(ns()); }\n\tfinal int[] ni(final int n) {\n\t\tfinal int[] a\
+    \ = new int[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ni());\n\t\treturn\
+    \ a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\tfinal long[] a = new long[n];\n\
+    \t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\treturn a;\n\t}\n\tfinal\
+    \ double[] nd(final int n) {\n\t\tfinal double[] a = new double[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal char[] nc(final int\
+    \ n) {\n\t\tfinal char[] a = new char[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal String[] ns(final int n) {\n\t\
+    \tfinal String[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i]\
+    \ = ns());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final int n) {\n\t\tfinal\
+    \ BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0, n).forEach(i ->\
+    \ a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final int h, final int\
+    \ w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final int h, final\
+    \ int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final int h, final\
+    \ int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\tfinal char[][] nc(final\
     \ int h, final int w) {\n\t\tfinal char[][] a = new char[h][w];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> a[i] = nc(w));\n\t\treturn a;\n\t}\n\tfinal String[][] ns(final\
@@ -1176,7 +1187,6 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
-  - Java/library/structure/FenwickTree.java
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
@@ -1185,6 +1195,7 @@ data:
   - Java/library/structure/lazysegmenttree/RUSM.java
   - Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - Java/library/structure/lazysegmenttree/RUMN.java
+  - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
@@ -1194,6 +1205,8 @@ data:
   - Java/library/structure/unionfind/UnionFind.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
   - Java/library/structure/AVLTree.java
+  - Java/library/structure/fenwicktree/FenwickTree.java
+  - Java/library/structure/fenwicktree/RangeBIT.java
   - Java/library/structure/deque/Deque.java
   - Java/library/structure/deque/IntDeque.java
   - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
@@ -1250,7 +1263,6 @@ data:
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
-  - Java/library/structure/FenwickTree.java
   - Java/library/structure/pair/IntPair.java
   - Java/library/structure/pair/FloatPair.java
   - Java/library/structure/pair/Pair.java
@@ -1259,6 +1271,7 @@ data:
   - Java/library/structure/lazysegmenttree/RUSM.java
   - Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - Java/library/structure/lazysegmenttree/RUMN.java
+  - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
@@ -1268,6 +1281,8 @@ data:
   - Java/library/structure/unionfind/UnionFind.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
   - Java/library/structure/AVLTree.java
+  - Java/library/structure/fenwicktree/FenwickTree.java
+  - Java/library/structure/fenwicktree/RangeBIT.java
   - Java/library/structure/deque/Deque.java
   - Java/library/structure/deque/IntDeque.java
   - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
@@ -1275,7 +1290,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-15 21:15:35+09:00'
+  timestamp: '2024-02-16 10:05:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java

@@ -11,10 +11,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_F
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D
-  bundledCode: "#line 1 \"test/lazysegtree.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D\"\
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_F
+  bundledCode: "#line 1 \"test/lazysegtree3.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_F\"\
     \n#include <iostream>\n#line 2 \"C++/LazySegmentTree.hpp\"\n\n#include <ostream>\n\
     #include <cassert>\n#include <vector>\n#include <functional>\ntemplate <class\
     \ T, class U> struct LazySegTree {\nprivate:\n    using F = std::function<T(T,\
@@ -126,33 +126,31 @@ data:
     \ ++i) {\n            w[i] = zwei<T>(v[i], 1);\n        }\n        LazySegTree<zwei<T>,\
     \ T>::build(w);\n    }\n};\n\n/**\n * @brief \u9045\u5EF6\u30BB\u30B0\u6728\n\
     \ * @see https://ei1333.github.io/library/structure/segment-tree/lazy-segment-tree.hpp\n\
-    \ */\n#line 4 \"test/lazysegtree.test.cpp\"\nint main() {\n    std::cin.tie(nullptr)\
-    \ -> sync_with_stdio(false);\n    int n, q;\n    std::cin >> n >> q;\n    RUSM<int64_t>\
-    \ seg(std::vector<int64_t>(n, INT32_MAX));\n    while(q--) {\n        int h;\n\
-    \        std::cin >> h;\n        if(h == 0) {\n            int s, t, x;\n    \
-    \        std::cin >> s >> t >> x;\n            seg.apply(s, ++t, x);\n       \
-    \ } else {\n            int i;\n            std::cin >> i;\n            std::cout\
-    \ << seg[i] << '\\n';\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D\"\n#include\
-    \ <iostream>\n#include \"C++/LazySegmentTree.hpp\"\nint main() {\n    std::cin.tie(nullptr)\
-    \ -> sync_with_stdio(false);\n    int n, q;\n    std::cin >> n >> q;\n    RUSM<int64_t>\
-    \ seg(std::vector<int64_t>(n, INT32_MAX));\n    while(q--) {\n        int h;\n\
-    \        std::cin >> h;\n        if(h == 0) {\n            int s, t, x;\n    \
-    \        std::cin >> s >> t >> x;\n            seg.apply(s, ++t, x);\n       \
-    \ } else {\n            int i;\n            std::cin >> i;\n            std::cout\
-    \ << seg[i] << '\\n';\n        }\n    }\n}"
+    \ */\n#line 4 \"test/lazysegtree3.test.cpp\"\nint main() {\n    int n, q;\n  \
+    \  std::cin >> n >> q;\n    RUMN<int> seg(std::vector(n, INT32_MAX));\n    while(q--)\
+    \ {\n        int h, s, t;\n        std::cin >> h >> s >> t;\n        t++;\n  \
+    \      if(h == 0) {\n            int x;\n            std::cin >> x;\n        \
+    \    seg.apply(s, t, x);\n        } else {\n            std::cout << seg.query(s,\
+    \ t) << '\\n';\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_F\"\
+    \n#include <iostream>\n#include \"C++/LazySegmentTree.hpp\"\nint main() {\n  \
+    \  int n, q;\n    std::cin >> n >> q;\n    RUMN<int> seg(std::vector(n, INT32_MAX));\n\
+    \    while(q--) {\n        int h, s, t;\n        std::cin >> h >> s >> t;\n  \
+    \      t++;\n        if(h == 0) {\n            int x;\n            std::cin >>\
+    \ x;\n            seg.apply(s, t, x);\n        } else {\n            std::cout\
+    \ << seg.query(s, t) << '\\n';\n        }\n    }\n}"
   dependsOn:
   - C++/LazySegmentTree.hpp
   isVerificationFile: true
-  path: test/lazysegtree.test.cpp
+  path: test/lazysegtree3.test.cpp
   requiredBy: []
-  timestamp: '2024-02-16 09:59:58+09:00'
+  timestamp: '2024-02-16 10:05:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/lazysegtree.test.cpp
+documentation_of: test/lazysegtree3.test.cpp
 layout: document
 redirect_from:
-- /verify/test/lazysegtree.test.cpp
-- /verify/test/lazysegtree.test.cpp.html
-title: test/lazysegtree.test.cpp
+- /verify/test/lazysegtree3.test.cpp
+- /verify/test/lazysegtree3.test.cpp.html
+title: test/lazysegtree3.test.cpp
 ---

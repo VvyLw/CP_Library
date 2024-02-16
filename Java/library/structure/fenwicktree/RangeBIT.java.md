@@ -164,6 +164,9 @@ data:
     path: Java/library/structure/deque/IntDeque.java
     title: Java/library/structure/deque/IntDeque.java
   - icon: ':warning:'
+    path: Java/library/structure/fenwicktree/FenwickTree.java
+    title: Java/library/structure/fenwicktree/FenwickTree.java
+  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
@@ -175,6 +178,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMX.java
     title: Java/library/structure/lazysegmenttree/RAMX.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RASM.java
+    title: Java/library/structure/lazysegmenttree/RASM.java
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUMN.java
     title: Java/library/structure/lazysegmenttree/RUMN.java
@@ -378,6 +384,9 @@ data:
     path: Java/library/structure/deque/IntDeque.java
     title: Java/library/structure/deque/IntDeque.java
   - icon: ':warning:'
+    path: Java/library/structure/fenwicktree/FenwickTree.java
+    title: Java/library/structure/fenwicktree/FenwickTree.java
+  - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
     title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
@@ -389,6 +398,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RAMX.java
     title: Java/library/structure/lazysegmenttree/RAMX.java
+  - icon: ':warning:'
+    path: Java/library/structure/lazysegmenttree/RASM.java
+    title: Java/library/structure/lazysegmenttree/RASM.java
   - icon: ':warning:'
     path: Java/library/structure/lazysegmenttree/RUMN.java
     title: Java/library/structure/lazysegmenttree/RUMN.java
@@ -437,48 +449,30 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/structure/FenwickTree.java\n"
-  code: "package library.structure;\n\nimport java.util.stream.IntStream;\n\n/**\n\
-    \ * FenwickTree(Binary Indexed Tree[BIT])\n * @see <a href=\"https://nyaannyaan.github.io/library/data-structure/binary-indexed-tree.hpp\"\
-    >\u53C2\u8003\u5143</a>\n */\npublic final class FenwickTree {\n\tprivate final\
-    \ int n;\n\tprivate final long[] data;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\
-    \u30AF\u30BF\n\t * @param n \u30B5\u30A4\u30BA\n\t */\n\tpublic FenwickTree(final\
-    \ int n) {\n\t\tthis.n = n + 2;\n\t\tdata = new long[this.n + 1];\n\t}\n\t/**\n\
-    \t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a int\u578B\u306E\
-    \u914D\u5217\n\t */\n\tpublic FenwickTree(final int[] a) {\n\t\tthis(a.length);\n\
-    \t\tIntStream.range(0, n).forEach(i -> add(i, a[i]));\n\t}\n\t/**\n\t * \u30B3\
-    \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a long\u578B\u306E\u914D\u5217\
-    \n\t */\n\tpublic FenwickTree(final long[] a) {\n\t\tthis(a.length);\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> add(i, a[i]));\n\t}\n\t/**\n\t * @param k\n\t * @return \u9589\
-    \u533A\u9593[0, k]\u306E\u548C\n\t */\n\tpublic final long sum(int k) {\n\t\t\
-    if(k < 0) return 0;\n\t\tlong ret = 0;\n\t\tfor(++k; k > 0; k -= k & -k) {\n\t\
-    \t\tret += data[k];\n\t\t}\n\t\treturn ret;\n\t}\n\t/**\n\t * @param l\n\t * @param\
-    \ r\n\t * @return \u9589\u533A\u9593[l, r]\u306E\u548C\n\t */\n\tpublic final\
-    \ long sum(final int l, final int r){ return sum(r) - sum(l - 1); }\n\t/**\n\t\
-    \ * @param k\n\t * @return k\u756A\u76EE\u306E\u8981\u7D20\n\t */\n\tpublic final\
-    \ long get(final int k){ return sum(k) - sum(k - 1); }\n\t/**\n\t * k\u756A\u76EE\
-    \u306B\u5024\u3092\u52A0\u7B97\n\t * @param k\n\t * @param x\n\t */\n\tpublic\
-    \ final void add(int k, final long x) {\n\t\tfor(++k; k < n; k += k & -k) {\n\t\
-    \t\tdata[k] += x;\n\t\t}\n\t}\n\t/**\n\t * \u9589\u533A\u9593[l, r]\u306B\u5024\
-    \u3092\u52A0\u7B97\u3059\u308B\n\t * @param l\n\t * @param r\n\t * @param x\n\t\
-    \ */\n\tpublic final void add(final int l, final int r, long x) {\n\t\tadd(l,\
-    \ x);\n\t\tadd(r + 1, -x);\n\t}\n\tprivate final int lg(final int n){ return 31\
-    \ - Integer.numberOfLeadingZeros(n); }\n\t/**\n\t * @implNote \u8981\u7D20\u306F\
-    \u5168\u3066\u975E\u8CA0\n\t * @param w\n\t * @return [0, k]\u306E\u533A\u9593\
-    \u548C\u304Cw\u4EE5\u4E0A\u3068\u306A\u308B\u3088\u3046\u306A\u6700\u5C0F\u306E\
-    k\n\t */\n\tpublic final int lowerBound(long w) {\n\t\tif(w <= 0) {\n\t\t\treturn\
-    \ 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>= 1) {\n\t\
-    \t\tif(x + k <= n - 1 && data[x + k] < w) {\n\t\t\t\tw -= data[x + k];\n\t\t\t\
-    \tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\t/**\n\t * @implNote \u8981\u7D20\
-    \u306F\u5168\u3066\u975E\u8CA0\n\t * @param w\n\t * @return [0, k]\u306E\u533A\
-    \u9593\u548C\u304Cw\u3088\u308A\u3082\u5927\u304D\u304F\u306A\u308B\u3088\u3046\
-    \u306A\u6700\u5C0F\u306Ek\n\t */\n\tpublic final int upperBound(long w) {\n\t\t\
-    if(w < 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n);\
-    \ k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <= w) {\n\t\t\t\t\
-    w -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\t@Override\n\
-    \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
-    \t\tsb.append(sum(0));\n\t\tfor(int i = 0; ++i < n - 2;) {\n\t\t\tsb.append(\"\
-    \ \" + sum(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
+    RuntimeError: bundler is not specified: Java/library/structure/fenwicktree/RangeBIT.java\n"
+  code: "package library.structure.fenwicktree;\n\n/**\n * Range Add Range Sum\n *\
+    \ \u533A\u9593\u52A0\u7B97, \u533A\u9593\u548C\n */\npublic final class RangeBIT\
+    \ {\n\tprivate final int n;\n\tprivate final FenwickTree a, b;\n\t/**\n\t * \u30B3\
+    \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param n \u30B5\u30A4\u30BA\n\t */\n\
+    \tpublic RangeBIT(final int n) {\n\t\tthis.n = n;\n\t\ta = new FenwickTree(n +\
+    \ 1);\n\t\tb = new FenwickTree(n + 1);\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\n\t * @param arr\n\t */\n\tpublic RangeBIT(final int[] arr)\
+    \ {\n\t\tthis(arr.length);\n\t\tfor(int i = 0; i < arr.length; ++i) {\n\t\t\t\
+    add(i, i, arr[i]);\n\t\t}\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\
+    \u30BF\n\t * @param arr\n\t */\n\tpublic RangeBIT(final long[] arr) {\n\t\tthis(arr.length);\n\
+    \t\tfor(int i = 0; i < arr.length; ++i) {\n\t\t\tadd(i, i, arr[i]);\n\t\t}\n\t\
+    }\n\t/**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306B\u8981\u7D20\u3092\u52A0\u7B97\
+    \n\t * @param l\n\t * @param r\n\t * @param x\n\t */\n\tpublic final void add(final\
+    \ int l, final int r, final long x) {\n\t\ta.add(l, x);\n\t\ta.add(r, -x);\n\t\
+    \tb.add(l, x * (1 - l));\n\t\tb.add(r, x * (r - 1));\n\t}\n\t/**\n\t * @param\
+    \ i\n\t * @return i\u756A\u76EE\u306E\u8981\u7D20\n\t */\n\tpublic final long\
+    \ get(final int i){ return sum(i, i + 1); }\n\t/**\n\t * @param l\n\t * @param\
+    \ r\n\t * @return \u534A\u958B\u533A\u9593[l, r)\u306E\u548C\n\t */\n\tpublic\
+    \ final long sum(int l, int r) {\n\t\tl--;\n\t\tr--;\n\t\treturn a.sum(r) * r\
+    \ + b.sum(r) - a.sum(l) * l - b.sum(l);\n\t}\n\t@Override\n\tpublic final String\
+    \ toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tsb.append(get(0));\n\
+    \t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\" \" + get(i));\n\t\t}\n\t\t\
+    return sb.toString();\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -534,6 +528,7 @@ data:
   - Java/library/structure/lazysegmenttree/RUSM.java
   - Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - Java/library/structure/lazysegmenttree/RUMN.java
+  - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
@@ -543,6 +538,7 @@ data:
   - Java/library/structure/unionfind/UnionFind.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
   - Java/library/structure/AVLTree.java
+  - Java/library/structure/fenwicktree/FenwickTree.java
   - Java/library/structure/deque/Deque.java
   - Java/library/structure/deque/IntDeque.java
   - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
@@ -552,7 +548,7 @@ data:
   - Java/All.java
   - Java/AOJ.java
   isVerificationFile: false
-  path: Java/library/structure/FenwickTree.java
+  path: Java/library/structure/fenwicktree/RangeBIT.java
   requiredBy:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -608,6 +604,7 @@ data:
   - Java/library/structure/lazysegmenttree/RUSM.java
   - Java/library/structure/lazysegmenttree/LazySegmentTree.java
   - Java/library/structure/lazysegmenttree/RUMN.java
+  - Java/library/structure/lazysegmenttree/RASM.java
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/lazysegmenttree/LazySegmentTreePair.java
   - Java/library/structure/SparseTable.java
@@ -617,6 +614,7 @@ data:
   - Java/library/structure/unionfind/UnionFind.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
   - Java/library/structure/AVLTree.java
+  - Java/library/structure/fenwicktree/FenwickTree.java
   - Java/library/structure/deque/Deque.java
   - Java/library/structure/deque/IntDeque.java
   - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
@@ -625,13 +623,13 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-15 21:15:35+09:00'
+  timestamp: '2024-02-16 10:05:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/structure/FenwickTree.java
+documentation_of: Java/library/structure/fenwicktree/RangeBIT.java
 layout: document
 redirect_from:
-- /library/Java/library/structure/FenwickTree.java
-- /library/Java/library/structure/FenwickTree.java.html
-title: Java/library/structure/FenwickTree.java
+- /library/Java/library/structure/fenwicktree/RangeBIT.java
+- /library/Java/library/structure/fenwicktree/RangeBIT.java.html
+title: Java/library/structure/fenwicktree/RangeBIT.java
 ---
