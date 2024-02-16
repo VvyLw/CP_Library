@@ -46,6 +46,11 @@ public final class SegmentTree<T> {
 		} while(i > 0);
 	}
 	/**
+	 * @param i
+	 * @return i番目の要素
+	 */
+	public final T get(final int i){ return query(i, i + 1); }
+	/**
 	 * @param a
 	 * @param b
 	 * @return 半開区間[l, r)に対して二項演算した結果
@@ -144,9 +149,9 @@ public final class SegmentTree<T> {
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
-		sb.append(query(0, 1));
+		sb.append(get(0));
 		for(int i = 0; ++i < fini;) {
-			sb.append(" " + query(i, i + 1));
+			sb.append(" " + get(i));
 		}
 		return sb.toString();
 	}
