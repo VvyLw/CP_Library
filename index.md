@@ -24,7 +24,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/ModPrime.hpp
       title: ModPrime
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: C++/Modint.hpp
       title: Modint
     - icon: ':heavy_check_mark:'
@@ -433,6 +433,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/phi_table.test.cpp
       title: test/phi_table.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/rangeaffine.test.cpp
+      title: test/rangeaffine.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/rh.test.cpp
       title: test/rh.test.cpp

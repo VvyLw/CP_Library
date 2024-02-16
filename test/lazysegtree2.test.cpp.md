@@ -93,37 +93,38 @@ data:
     \ ++i < seg.size();) {\n            os << ' ' << seg[i];\n        }\n        return\
     \ os;\n    }\n};\n\n\n#include <cmath>\n#include <limits>\n\ntemplate <class T>\
     \ struct zwei {\n    T first, second;\n    zwei(){}\n    zwei(const T &f, const\
-    \ T &s): first(f), second(s){}\n    operator T(){ return first; }\n    friend\
-    \ std::ostream &operator<<(std::ostream &os, const zwei &z) {\n        os << z.first;\n\
-    \        return os;\n    }\n};\n\ntemplate <class T> struct RAMX: LazySegTree<T,\
-    \ T> {    \n    RAMX(const std::vector<T> &v): LazySegTree<T, T>(v, [](const T\
-    \ a, const T b){ return std::max(a, b); }, [](const T a, const T b){ return a\
-    \ + b; }, [](const T a, const T b){ return a + b; }, std::numeric_limits<T>::min(),\
-    \ 0){}\n};\ntemplate <class T> struct RAMN: LazySegTree<T, T> {\n    RAMN(const\
-    \ std::vector<T> &v): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a,\
-    \ b); }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){\
-    \ return a + b; }, std::numeric_limits<T>::max(), 0){}\n};\ntemplate <class T>\
-    \ struct RASM: LazySegTree<zwei<T>, T> {\n    RASM(const std::vector<T> &v): LazySegTree<zwei<T>,\
-    \ T>(v.size(), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first +\
-    \ b.first, a.second + b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.first\
-    \ + a.second * b, a.second); }, [](const T a, const T b){ return a + b; }, zwei<T>(0,\
-    \ 0), 0) {\n        std::vector<zwei<T>> w(v.size());\n        for(size_t i =\
-    \ 0; i < v.size(); ++i) {\n            w[i] = zwei<T>(v[i], 1);\n        }\n \
-    \       LazySegTree<zwei<T>, T>::build(w);\n    }\n};\ntemplate <class T> struct\
-    \ RUMX: LazySegTree<T, T> {    \n    RUMX(const std::vector<T> &v): LazySegTree<T,\
-    \ T>(v, [](const T a, const T b){ return std::max(a, b); }, [](const T, const\
-    \ T b){ return b; }, [](const T, const T b){ return b; }, std::numeric_limits<T>::min(),\
-    \ std::numeric_limits<T>::min()){}\n};\ntemplate <class T> struct RUMN: LazySegTree<T,\
-    \ T> {\n    RUMN(const std::vector<T> &v): LazySegTree<T, T>(v, [](const T a,\
-    \ const T b){ return std::min(a, b); }, [](const T, const T b){ return b; }, [](const\
-    \ T, const T b){ return b; }, std::numeric_limits<T>::max(), std::numeric_limits<T>::max()){}\n\
-    };\ntemplate <class T> struct RUSM: LazySegTree<zwei<T>, T> {\n    RUSM(const\
+    \ T &s): first(f), second(s){}\n    constexpr bool operator!=(const zwei<T> &z)\
+    \ noexcept { return first != z.first || second != z.second; }\n    operator T(){\
+    \ return first; }\n    friend std::ostream &operator<<(std::ostream &os, const\
+    \ zwei &z) {\n        os << z.first;\n        return os;\n    }\n};\n\ntemplate\
+    \ <class T> struct RAMX: LazySegTree<T, T> {    \n    RAMX(const std::vector<T>\
+    \ &v): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a, b); },\
+    \ [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return\
+    \ a + b; }, std::numeric_limits<T>::min(), 0){}\n};\ntemplate <class T> struct\
+    \ RAMN: LazySegTree<T, T> {\n    RAMN(const std::vector<T> &v): LazySegTree<T,\
+    \ T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T a, const\
+    \ T b){ return a + b; }, [](const T a, const T b){ return a + b; }, std::numeric_limits<T>::max(),\
+    \ 0){}\n};\ntemplate <class T> struct RASM: LazySegTree<zwei<T>, T> {\n    RASM(const\
     \ std::vector<T> &v): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const\
     \ zwei<T> b){ return zwei<T>(a.first + b.first, a.second + b.second); }, [](const\
-    \ zwei<T> a, const T b){ return zwei<T>(a.second * b, a.second); }, [](const T\
-    \ a, const T b){ return b; }, zwei<T>(0, 0), std::numeric_limits<T>::min()) {\n\
-    \        std::vector<zwei<T>> w(v.size());\n        for(size_t i = 0; i < v.size();\
-    \ ++i) {\n            w[i] = zwei<T>(v[i], 1);\n        }\n        LazySegTree<zwei<T>,\
+    \ zwei<T> a, const T b){ return zwei<T>(a.first + a.second * b, a.second); },\
+    \ [](const T a, const T b){ return a + b; }, zwei<T>(0, 0), 0) {\n        std::vector<zwei<T>>\
+    \ w(v.size());\n        for(size_t i = 0; i < v.size(); ++i) {\n            w[i]\
+    \ = zwei<T>(v[i], 1);\n        }\n        LazySegTree<zwei<T>, T>::build(w);\n\
+    \    }\n};\ntemplate <class T> struct RUMX: LazySegTree<T, T> {    \n    RUMX(const\
+    \ std::vector<T> &v): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a,\
+    \ b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b;\
+    \ }, std::numeric_limits<T>::min(), std::numeric_limits<T>::min()){}\n};\ntemplate\
+    \ <class T> struct RUMN: LazySegTree<T, T> {\n    RUMN(const std::vector<T> &v):\
+    \ LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const\
+    \ T, const T b){ return b; }, [](const T, const T b){ return b; }, std::numeric_limits<T>::max(),\
+    \ std::numeric_limits<T>::max()){}\n};\ntemplate <class T> struct RUSM: LazySegTree<zwei<T>,\
+    \ T> {\n    RUSM(const std::vector<T> &v): LazySegTree<zwei<T>, T>(v.size(), [](const\
+    \ zwei<T> a, const zwei<T> b){ return zwei<T>(a.first + b.first, a.second + b.second);\
+    \ }, [](const zwei<T> a, const T b){ return zwei<T>(a.second * b, a.second); },\
+    \ [](const T a, const T b){ return b; }, zwei<T>(0, 0), std::numeric_limits<T>::min())\
+    \ {\n        std::vector<zwei<T>> w(v.size());\n        for(size_t i = 0; i <\
+    \ v.size(); ++i) {\n            w[i] = zwei<T>(v[i], 1);\n        }\n        LazySegTree<zwei<T>,\
     \ T>::build(w);\n    }\n};\n\n/**\n * @brief \u9045\u5EF6\u30BB\u30B0\u6728\n\
     \ * @see https://ei1333.github.io/library/structure/segment-tree/lazy-segment-tree.hpp\n\
     \ */\n#line 4 \"test/lazysegtree2.test.cpp\"\nint main() {\n    std::cin.tie(nullptr)\
@@ -146,7 +147,7 @@ data:
   isVerificationFile: true
   path: test/lazysegtree2.test.cpp
   requiredBy: []
-  timestamp: '2024-02-16 09:59:58+09:00'
+  timestamp: '2024-02-16 12:14:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lazysegtree2.test.cpp
