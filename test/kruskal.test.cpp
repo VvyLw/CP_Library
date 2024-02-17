@@ -9,7 +9,7 @@ int main() {
     while(m--) {
         int s, t, w;
         std::cin >> s >> t >> w;
-        e.emplace_back(s, t, w);
+        e.emplace_back(s, t, -1, w);
     }
     std::cout << kruskal(e, n).cost << '\n';
 }

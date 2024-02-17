@@ -1,5 +1,7 @@
 #pragma once
 
+#pragma GCC diagnostic ignored "-Wreorder"
+
 #include <cassert>
 #include <map>
 #include <numeric>
@@ -152,7 +154,7 @@ template <class T> inline std::vector<edge> manhattan(std::vector<T> x, std::vec
                     if(x[i] - x[j] < y[i] - y[j]) {
                         break;
                     }
-                    res.emplace_back(i, j, std::abs(x[i] - x[j]) + std::abs(y[i] - y[j]));
+                    res.emplace_back(i, j, -1, std::abs(x[i] - x[j]) + std::abs(y[i] - y[j]));
                 }
                 idx[-y[i]] = i;
             }

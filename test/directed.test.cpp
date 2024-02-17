@@ -8,7 +8,7 @@ int main() {
     while(e--) {
         int s, t, w;
         std::cin >> s >> t >> w;
-        edges.emplace_back(s, t, w);
+        edges.emplace_back(s, t, -1, w);
     }
     std::cout << directed(edges, v, r).cost << '\n';
 }
