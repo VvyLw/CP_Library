@@ -109,6 +109,9 @@ data:
       path: Java/library/core/interfaces/RecursiveBiFunction.java
       title: Java/library/core/interfaces/RecursiveBiFunction.java
     - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveBiPredicate.java
+      title: Java/library/core/interfaces/RecursiveBiPredicate.java
+    - icon: ':warning:'
       path: Java/library/core/interfaces/RecursiveBinaryOperator.java
       title: Java/library/core/interfaces/RecursiveBinaryOperator.java
     - icon: ':warning:'
@@ -123,6 +126,9 @@ data:
     - icon: ':warning:'
       path: Java/library/core/interfaces/RecursiveDoubleFunction.java
       title: Java/library/core/interfaces/RecursiveDoubleFunction.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveDoublePredicate.java
+      title: Java/library/core/interfaces/RecursiveDoublePredicate.java
     - icon: ':warning:'
       path: Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
       title: Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
@@ -139,6 +145,9 @@ data:
       path: Java/library/core/interfaces/RecursiveIntFunction.java
       title: Java/library/core/interfaces/RecursiveIntFunction.java
     - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveIntPredicate.java
+      title: Java/library/core/interfaces/RecursiveIntPredicate.java
+    - icon: ':warning:'
       path: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
       title: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
     - icon: ':warning:'
@@ -151,8 +160,14 @@ data:
       path: Java/library/core/interfaces/RecursiveLongFunction.java
       title: Java/library/core/interfaces/RecursiveLongFunction.java
     - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveLongPredicate.java
+      title: Java/library/core/interfaces/RecursiveLongPredicate.java
+    - icon: ':warning:'
       path: Java/library/core/interfaces/RecursiveLongUnaryOperator.java
       title: Java/library/core/interfaces/RecursiveLongUnaryOperator.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursivePredicate.java
+      title: Java/library/core/interfaces/RecursivePredicate.java
     - icon: ':warning:'
       path: Java/library/core/interfaces/RecursiveTriConsumer.java
       title: Java/library/core/interfaces/RecursiveTriConsumer.java
@@ -160,11 +175,20 @@ data:
       path: Java/library/core/interfaces/RecursiveTriFunction.java
       title: Java/library/core/interfaces/RecursiveTriFunction.java
     - icon: ':warning:'
+      path: Java/library/core/interfaces/RecursiveTriPredicate.java
+      title: Java/library/core/interfaces/RecursiveTriPredicate.java
+    - icon: ':warning:'
       path: Java/library/core/interfaces/RecursiveUnaryOperator.java
       title: Java/library/core/interfaces/RecursiveUnaryOperator.java
     - icon: ':warning:'
+      path: Java/library/core/interfaces/TriConsumer.java
+      title: Java/library/core/interfaces/TriConsumer.java
+    - icon: ':warning:'
       path: Java/library/core/interfaces/TriFunction.java
       title: Java/library/core/interfaces/TriFunction.java
+    - icon: ':warning:'
+      path: Java/library/core/interfaces/TriPredicate.java
+      title: Java/library/core/interfaces/TriPredicate.java
   - name: Java/library/core/io
     pages:
     - icon: ':warning:'

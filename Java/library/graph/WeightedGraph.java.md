@@ -29,6 +29,9 @@ data:
     path: Java/library/core/interfaces/RecursiveBiFunction.java
     title: Java/library/core/interfaces/RecursiveBiFunction.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveBiPredicate.java
+    title: Java/library/core/interfaces/RecursiveBiPredicate.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveBinaryOperator.java
     title: Java/library/core/interfaces/RecursiveBinaryOperator.java
   - icon: ':warning:'
@@ -43,6 +46,9 @@ data:
   - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveDoubleFunction.java
     title: Java/library/core/interfaces/RecursiveDoubleFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveDoublePredicate.java
+    title: Java/library/core/interfaces/RecursiveDoublePredicate.java
   - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
     title: Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
@@ -59,6 +65,9 @@ data:
     path: Java/library/core/interfaces/RecursiveIntFunction.java
     title: Java/library/core/interfaces/RecursiveIntFunction.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveIntPredicate.java
+    title: Java/library/core/interfaces/RecursiveIntPredicate.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
     title: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
   - icon: ':warning:'
@@ -71,8 +80,14 @@ data:
     path: Java/library/core/interfaces/RecursiveLongFunction.java
     title: Java/library/core/interfaces/RecursiveLongFunction.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveLongPredicate.java
+    title: Java/library/core/interfaces/RecursiveLongPredicate.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveLongUnaryOperator.java
     title: Java/library/core/interfaces/RecursiveLongUnaryOperator.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursivePredicate.java
+    title: Java/library/core/interfaces/RecursivePredicate.java
   - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveTriConsumer.java
     title: Java/library/core/interfaces/RecursiveTriConsumer.java
@@ -80,11 +95,20 @@ data:
     path: Java/library/core/interfaces/RecursiveTriFunction.java
     title: Java/library/core/interfaces/RecursiveTriFunction.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveTriPredicate.java
+    title: Java/library/core/interfaces/RecursiveTriPredicate.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveUnaryOperator.java
     title: Java/library/core/interfaces/RecursiveUnaryOperator.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/TriConsumer.java
+    title: Java/library/core/interfaces/TriConsumer.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/TriFunction.java
     title: Java/library/core/interfaces/TriFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/TriPredicate.java
+    title: Java/library/core/interfaces/TriPredicate.java
   - icon: ':warning:'
     path: Java/library/core/io/MyPrinter.java
     title: Java/library/core/io/MyPrinter.java
@@ -252,6 +276,9 @@ data:
     path: Java/library/core/interfaces/RecursiveBiFunction.java
     title: Java/library/core/interfaces/RecursiveBiFunction.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveBiPredicate.java
+    title: Java/library/core/interfaces/RecursiveBiPredicate.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveBinaryOperator.java
     title: Java/library/core/interfaces/RecursiveBinaryOperator.java
   - icon: ':warning:'
@@ -266,6 +293,9 @@ data:
   - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveDoubleFunction.java
     title: Java/library/core/interfaces/RecursiveDoubleFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveDoublePredicate.java
+    title: Java/library/core/interfaces/RecursiveDoublePredicate.java
   - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
     title: Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
@@ -282,6 +312,9 @@ data:
     path: Java/library/core/interfaces/RecursiveIntFunction.java
     title: Java/library/core/interfaces/RecursiveIntFunction.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveIntPredicate.java
+    title: Java/library/core/interfaces/RecursiveIntPredicate.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
     title: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
   - icon: ':warning:'
@@ -294,8 +327,14 @@ data:
     path: Java/library/core/interfaces/RecursiveLongFunction.java
     title: Java/library/core/interfaces/RecursiveLongFunction.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveLongPredicate.java
+    title: Java/library/core/interfaces/RecursiveLongPredicate.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveLongUnaryOperator.java
     title: Java/library/core/interfaces/RecursiveLongUnaryOperator.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursivePredicate.java
+    title: Java/library/core/interfaces/RecursivePredicate.java
   - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveTriConsumer.java
     title: Java/library/core/interfaces/RecursiveTriConsumer.java
@@ -303,11 +342,20 @@ data:
     path: Java/library/core/interfaces/RecursiveTriFunction.java
     title: Java/library/core/interfaces/RecursiveTriFunction.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveTriPredicate.java
+    title: Java/library/core/interfaces/RecursiveTriPredicate.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveUnaryOperator.java
     title: Java/library/core/interfaces/RecursiveUnaryOperator.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/TriConsumer.java
+    title: Java/library/core/interfaces/TriConsumer.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/TriFunction.java
     title: Java/library/core/interfaces/TriFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/TriPredicate.java
+    title: Java/library/core/interfaces/TriPredicate.java
   - icon: ':warning:'
     path: Java/library/core/io/MyPrinter.java
     title: Java/library/core/io/MyPrinter.java
@@ -469,44 +517,44 @@ data:
     \ super(n, indexed, undirected); }\n\t/**\n\t * \u8FBA\u3092\u8FFD\u52A0\u3059\
     \u308B\n\t * @param a\n\t * @param b\n\t * @param cost\n\t */\n\tpublic final\
     \ void addEdge(int a, int b, final long cost) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\
-    \t\tthis.get(a).add(new Edge(b, cost));\n\t\tedge.add(new Edge(a, b, cost));\n\
-    \t\tif(undirected) {\n\t\t\tthis.get(b).add(new Edge(a, cost));\n\t\t\tedge.add(new\
-    \ Edge(b, a, cost));\n\t\t}\n\t}\n\t/**\n\t * \u8FBA\u3092m\u500B\u5165\u529B\u3059\
-    \u308B\n\t * @param m\n\t */\n\t@Override\n\tpublic final void input(final int\
-    \ m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni(),\
-    \ VvyLw.sc.ni())); }\n\t/**\n\t * Dijkstra\u6CD5\n\t * \u8CA0\u8FBA\u306E\u306A\
-    \u3044\u30B0\u30E9\u30D5\u3067\u5358\u4E00\u59CB\u70B9\u5168\u70B9\u9593\u6700\
-    \u77ED\u8DEF\u3092\u6C42\u3081\u308B\n\t * @param v\n\t */\n\tpublic final long[]\
-    \ dijkstra(final int v) {\n\t\tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost,\
-    \ Long.MAX_VALUE);\n\t\tfinal Queue<IntPair> dj = new PriorityQueue<>();\n\t\t\
-    cost[v] = 0;\n\t\tdj.add(IntPair.of(cost[v], v));\n\t\twhile(!dj.isEmpty()) {\n\
-    \t\t\tfinal IntPair tmp = dj.poll();\n\t\t\tif(cost[tmp.second.intValue()] < tmp.first.longValue())\
-    \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final Edge el: this.get(tmp.second.intValue()))\
-    \ {\n\t\t\t\tif(cost[el.to] > tmp.first.longValue() + el.cost) {\n\t\t\t\t\tcost[el.to]\
-    \ = tmp.first.longValue() + el.cost;\n\t\t\t\t\tdj.add(IntPair.of(cost[el.to],\
-    \ el.to));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\t/**\n\t * Bellman-Ford\u6CD5\
-    \n\t * \u8CA0\u8FBA\u304C\u5B58\u5728\u3057\u3066\u3044\u3066\u3082\u5358\u4E00\
-    \u59CB\u70B9\u5168\u70B9\u9593\u6700\u77ED\u8DEF\u3092\u6C42\u3081\u3089\u308C\
-    \u308B\n\t * \u8CA0\u9589\u8DEF\u3082\u691C\u51FA\u3059\u308B\n\t * @param v\n\
-    \t */\n\tpublic final long[] bellmanFord(final int v) {\n\t\tfinal long[] cost\
-    \ = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tcost[v] = 0;\n\t\
-    \tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final Edge e: edge) {\n\
-    \t\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\
-    \t\t\tif(cost[e.to] > cost[e.src] + e.cost) {\n\t\t\t\t\tcost[e.to] = cost[e.src]\
-    \ + e.cost;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(final Edge e: edge) {\n\t\t\t\
-    if(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tif(cost[e.src]\
-    \ + e.cost < cost[e.to]) {\n\t\t\t\treturn null;\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\
-    \t}\n\t/**\n\t * Warshall-Floyd\u6CD5\n\t * \u5168\u70B9\u5BFE\u9593\u6700\u77ED\
-    \u8DEF\u3092\u6C42\u3081\u308B\n\t */\n\tpublic final long[][] warshallFloyd()\
-    \ {\n\t\tfinal long[][] cost = new long[n][n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> Arrays.fill(cost[i], VvyLw.LINF));\n\t\tIntStream.range(0, n).forEach(i ->\
-    \ cost[i][i] = 0);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final Edge j:\
-    \ this.get(i)) {\n\t\t\t\tcost[i][j.to] = j.cost;\n\t\t\t}\n\t\t}\n\t\tfor(int\
-    \ k = 0; k < n; ++k) {\n\t\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\tfor(int j\
-    \ = 0; j < n; ++j) {\n\t\t\t\t\tif(cost[i][k] == VvyLw.LINF || cost[k][j] == VvyLw.LINF)\
-    \ {\n\t\t\t\t\t\tcontinue;\n\t\t\t\t\t}\n\t\t\t\t\tif(cost[i][j] > cost[i][k]\
-    \ + cost[k][j]) {\n\t\t\t\t\t\tcost[i][j] = cost[i][k] + cost[k][j];\n\t\t\t\t\
-    \t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\t/**\n\t * Kruskal\u6CD5\
+    \t\tthis.get(a).add(new Edge(a, b, cost, id));\n\t\tedge.add(new Edge(a, b, cost,\
+    \ id++));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new Edge(b, a, cost, --id));\n\
+    \t\t\tedge.add(new Edge(b, a, cost, id++));\n\t\t}\n\t}\n\t/**\n\t * \u8FBA\u3092\
+    m\u500B\u5165\u529B\u3059\u308B\n\t * @param m\n\t */\n\t@Override\n\tpublic final\
+    \ void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(),\
+    \ VvyLw.sc.ni(), VvyLw.sc.ni())); }\n\t/**\n\t * Dijkstra\u6CD5\n\t * \u8CA0\u8FBA\
+    \u306E\u306A\u3044\u30B0\u30E9\u30D5\u3067\u5358\u4E00\u59CB\u70B9\u5168\u70B9\
+    \u9593\u6700\u77ED\u8DEF\u3092\u6C42\u3081\u308B\n\t * @param v\n\t */\n\tpublic\
+    \ final long[] dijkstra(final int v) {\n\t\tfinal long[] cost = new long[n];\n\
+    \t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tfinal Queue<IntPair> dj = new PriorityQueue<>();\n\
+    \t\tcost[v] = 0;\n\t\tdj.add(IntPair.of(cost[v], v));\n\t\twhile(!dj.isEmpty())\
+    \ {\n\t\t\tfinal IntPair tmp = dj.poll();\n\t\t\tif(cost[tmp.second.intValue()]\
+    \ < tmp.first.longValue()) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final Edge\
+    \ el: this.get(tmp.second.intValue())) {\n\t\t\t\tif(cost[el.to] > tmp.first.longValue()\
+    \ + el.cost) {\n\t\t\t\t\tcost[el.to] = tmp.first.longValue() + el.cost;\n\t\t\
+    \t\t\tdj.add(IntPair.of(cost[el.to], el.to));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\t\
+    return cost;\n\t}\n\t/**\n\t * Bellman-Ford\u6CD5\n\t * \u8CA0\u8FBA\u304C\u5B58\
+    \u5728\u3057\u3066\u3044\u3066\u3082\u5358\u4E00\u59CB\u70B9\u5168\u70B9\u9593\
+    \u6700\u77ED\u8DEF\u3092\u6C42\u3081\u3089\u308C\u308B\n\t * \u8CA0\u9589\u8DEF\
+    \u3082\u691C\u51FA\u3059\u308B\n\t * @param v\n\t */\n\tpublic final long[] bellmanFord(final\
+    \ int v) {\n\t\tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
+    \t\tcost[v] = 0;\n\t\tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final\
+    \ Edge e: edge) {\n\t\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\t\tcontinue;\n\
+    \t\t\t\t}\n\t\t\t\tif(cost[e.to] > cost[e.src] + e.cost) {\n\t\t\t\t\tcost[e.to]\
+    \ = cost[e.src] + e.cost;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(final Edge e: edge)\
+    \ {\n\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\
+    \t\tif(cost[e.src] + e.cost < cost[e.to]) {\n\t\t\t\treturn null;\n\t\t\t}\n\t\
+    \t}\n\t\treturn cost;\n\t}\n\t/**\n\t * Warshall-Floyd\u6CD5\n\t * \u5168\u70B9\
+    \u5BFE\u9593\u6700\u77ED\u8DEF\u3092\u6C42\u3081\u308B\n\t */\n\tpublic final\
+    \ long[][] warshallFloyd() {\n\t\tfinal long[][] cost = new long[n][n];\n\t\t\
+    IntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], VvyLw.LINF));\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> cost[i][i] = 0);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final\
+    \ Edge j: this.get(i)) {\n\t\t\t\tcost[i][j.to] = j.cost;\n\t\t\t}\n\t\t}\n\t\t\
+    for(int k = 0; k < n; ++k) {\n\t\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\tfor(int\
+    \ j = 0; j < n; ++j) {\n\t\t\t\t\tif(cost[i][k] == VvyLw.LINF || cost[k][j] ==\
+    \ VvyLw.LINF) {\n\t\t\t\t\t\tcontinue;\n\t\t\t\t\t}\n\t\t\t\t\tif(cost[i][j] >\
+    \ cost[i][k] + cost[k][j]) {\n\t\t\t\t\t\tcost[i][j] = cost[i][k] + cost[k][j];\n\
+    \t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\t/**\n\t * Kruskal\u6CD5\
     \u306B\u3088\u3063\u3066\u6700\u5C0F\u5168\u57DF\u6728\u3092\u6C42\u3081\u308B\
     \n\t */\n\tpublic final MST kruskal() {\n\t\tfinal UnionFind uf = new UnionFind(n);\n\
     \t\tfinal ArrayList<Edge> e = new ArrayList<>();\n\t\tlong res = 0;\n\t\tfor(final\
@@ -560,6 +608,7 @@ data:
   - Java/library/core/interfaces/RecursiveIntConsumer.java
   - Java/library/core/interfaces/RecursiveConsumer.java
   - Java/library/core/interfaces/RecursiveTriFunction.java
+  - Java/library/core/interfaces/TriConsumer.java
   - Java/library/core/interfaces/RecursiveDoubleFunction.java
   - Java/library/core/interfaces/RecursiveTriConsumer.java
   - Java/library/core/interfaces/RecursiveLongFunction.java
@@ -568,14 +617,21 @@ data:
   - Java/library/core/interfaces/RecursiveUnaryOperator.java
   - Java/library/core/interfaces/RecursiveLongUnaryOperator.java
   - Java/library/core/interfaces/TriFunction.java
+  - Java/library/core/interfaces/RecursiveDoublePredicate.java
+  - Java/library/core/interfaces/RecursivePredicate.java
   - Java/library/core/interfaces/RecursiveBiConsumer.java
   - Java/library/core/interfaces/RecursiveFunction.java
   - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/TriPredicate.java
   - Java/library/core/interfaces/RecursiveDoubleConsumer.java
+  - Java/library/core/interfaces/RecursiveBiPredicate.java
   - Java/library/core/interfaces/RecursiveBiFunction.java
   - Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveLongPredicate.java
   - Java/library/core/interfaces/RecursiveIntBinaryOperator.java
   - Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveTriPredicate.java
+  - Java/library/core/interfaces/RecursiveIntPredicate.java
   - Java/library/core/interfaces/RecursiveIntFunction.java
   - Java/library/core/interfaces/RecursiveLongBinaryOperator.java
   - Java/library/core/Utility.java
@@ -637,6 +693,7 @@ data:
   - Java/library/core/interfaces/RecursiveIntConsumer.java
   - Java/library/core/interfaces/RecursiveConsumer.java
   - Java/library/core/interfaces/RecursiveTriFunction.java
+  - Java/library/core/interfaces/TriConsumer.java
   - Java/library/core/interfaces/RecursiveDoubleFunction.java
   - Java/library/core/interfaces/RecursiveTriConsumer.java
   - Java/library/core/interfaces/RecursiveLongFunction.java
@@ -645,14 +702,21 @@ data:
   - Java/library/core/interfaces/RecursiveUnaryOperator.java
   - Java/library/core/interfaces/RecursiveLongUnaryOperator.java
   - Java/library/core/interfaces/TriFunction.java
+  - Java/library/core/interfaces/RecursiveDoublePredicate.java
+  - Java/library/core/interfaces/RecursivePredicate.java
   - Java/library/core/interfaces/RecursiveBiConsumer.java
   - Java/library/core/interfaces/RecursiveFunction.java
   - Java/library/core/interfaces/QuadFunction.java
+  - Java/library/core/interfaces/TriPredicate.java
   - Java/library/core/interfaces/RecursiveDoubleConsumer.java
+  - Java/library/core/interfaces/RecursiveBiPredicate.java
   - Java/library/core/interfaces/RecursiveBiFunction.java
   - Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
+  - Java/library/core/interfaces/RecursiveLongPredicate.java
   - Java/library/core/interfaces/RecursiveIntBinaryOperator.java
   - Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
+  - Java/library/core/interfaces/RecursiveTriPredicate.java
+  - Java/library/core/interfaces/RecursiveIntPredicate.java
   - Java/library/core/interfaces/RecursiveIntFunction.java
   - Java/library/core/interfaces/RecursiveLongBinaryOperator.java
   - Java/library/core/Utility.java
@@ -692,7 +756,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-17 07:21:09+09:00'
+  timestamp: '2024-02-17 09:56:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/WeightedGraph.java
