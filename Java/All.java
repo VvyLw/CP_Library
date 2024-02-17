@@ -1020,6 +1020,12 @@ interface TriFunction<T, U, V, R> {
 interface QuadFunction<A, B, C, D, R> {
 	R apply(final A a, final B b, final C c, final D d);
 }
+interface TriConsumer<T, U, V> {
+	void accept(final T a, final U b, final V c);
+}
+interface TriPredicate<T, U, V> {
+	boolean test(final T a, final U b, final V c);
+}
 interface RecursiveFunction<T, R> {
 	R apply(final RecursiveFunction<T, R> rec, final T n);
 }
@@ -1043,6 +1049,15 @@ interface RecursiveBiConsumer<T, U> {
 }
 interface RecursiveTriConsumer<T, U, V> {
 	void accept(final RecursiveTriConsumer<T, U, V> rec, final T x, final U y, final V z);
+}
+interface RecursivePredicate<T> {
+	boolean test(final RecursivePredicate<T> rec, final T n);
+}
+interface RecursiveBiPredicate<T, U> {
+	boolean test(final RecursiveBiPredicate<T, U> rec, final T x, final U y);
+}
+interface RecursiveTriPredicate<T, U, V> {
+	boolean test(final RecursiveTriPredicate<T, U, V> rec, final T x, final U y, final V z);
 }
 interface RecursiveIntFunction<R> {
 	R apply(final RecursiveIntFunction<R> rec, final int n);
@@ -1079,6 +1094,15 @@ interface RecursiveLongConsumer {
 }
 interface RecursiveDoubleConsumer {
 	void accept(final RecursiveDoubleConsumer rec, final double n);
+}
+interface RecursiveIntPredicate {
+	boolean test(final RecursiveIntPredicate rec, final int n);
+}
+interface RecursiveLongPredicate {
+	boolean test(final RecursiveLongPredicate rec, final long n);
+}
+interface RecursiveDoublePredicate {
+	boolean test(final RecursiveDoublePredicate rec, final double n);
 }
 
 final class MyScanner implements Closeable, AutoCloseable {
@@ -1761,18 +1785,18 @@ final class Huitloxopetl {
 }
 
 final class Edge {
-	public int src;
-	public int to;
+	public int src, to, id;
 	public long cost;
-	Edge(final int to){ this.to = to; }
-	Edge(final int to, final long cost) {
+	Edge(final int src, final int to, final int id) {
+		this.src = src;
 		this.to = to;
-		this.cost = cost;
+		this.id = id;
 	}
-	Edge(final int src, final int to, final long cost) {
+	Edge(final int src, final int to, final long cost, final int id) {
 		this.src = src;
 		this.to = to;
 		this.cost = cost;
+		this.id = id;
 	}
 	@Override
 	public final boolean equals(final Object o) {
@@ -1786,29 +1810,31 @@ final class Edge {
 		return src == e.src && to == e.to && cost == e.cost;
 	}
 	@Override
-	public final int hashCode(){ return Objects.hash(src, to, cost); }
+	public final int hashCode(){ return Objects.hash(src, to, cost, id); }
 	@Override
-	public final String toString(){ return "(" + src + ", " + to + ", " + cost + ")"; }
+	public final String toString(){ return "(" + src + ", " + to + ", " + cost + ", " + id + ")"; }
 }
 class Graph extends ArrayList<ArrayList<Edge>> {
 	protected final boolean undirected;
 	protected final int n, indexed;
+	protected int id;
 	protected final ArrayList<Edge> edge;
 	Graph(final int n, final int indexed, final boolean undirected) {
 		this.n = n;
 		this.indexed = indexed;
 		this.undirected = undirected;
+		id = 0;
 		edge = new ArrayList<>();
 		IntStream.range(0, n).forEach(i -> add(new ArrayList<>()));
 	}
 	final void addEdge(int a, int b) {
 		a -= indexed;
 		b -= indexed;
-		this.get(a).add(new Edge(b));
-		edge.add(new Edge(a, b, 0));
+		this.get(a).add(new Edge(a, b, id));
+		edge.add(new Edge(a, b, id++));
 		if(undirected) {
-			this.get(b).add(new Edge(a));
-			edge.add(new Edge(b, a, 0));
+			this.get(b).add(new Edge(b, a, --id));
+			edge.add(new Edge(b, a, id++));
 		}
 	}
 	void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni())); }
@@ -1857,6 +1883,39 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		}
 		return n == ord.size() ? ord : new ArrayList<>();
 	}
+	protected final Edge[] cycleDetector() {
+		final int[] used = new int[n];
+		final Edge[] pre = new Edge[n];
+		final ArrayList<Edge> cycle = new ArrayList<>();
+		final RecursiveIntPredicate dfs = (rec, i) -> {
+			used[i] = 1;
+			for(final Edge e: get(i)) {
+				if(used[e.to] == 0) {
+					pre[e.to] = e;
+					if(rec.test(rec, e.to)) {
+						return true;
+					}
+				} else if(used[e.to] == 1) {
+					int now = i;
+					while(now != e.to) {
+						cycle.add(pre[now]);
+						now = pre[now].src;
+					}
+					cycle.add(e);
+					return true;
+				}
+			}
+			used[i] = 2;
+			return false;
+		};
+		for(int i = 0; i < n; ++i) {
+			if(used[i] == 0 && dfs.test(dfs, i)) {
+				Collections.reverse(cycle);
+				return cycle.toArray(Edge[]::new);
+			}
+		}
+		return new Edge[]{};
+	}
 }
 
 final class MST {
@@ -1872,11 +1931,11 @@ final class WeightedGraph extends Graph {
 	final void addEdge(int a, int b, final long cost) {
 		a -= indexed;
 		b -= indexed;
-		this.get(a).add(new Edge(b, cost));
-		edge.add(new Edge(a, b, cost));
+		this.get(a).add(new Edge(a, b, cost, id));
+		edge.add(new Edge(a, b, cost, id++));
 		if(undirected) {
-			this.get(b).add(new Edge(a, cost));
-			edge.add(new Edge(b, a, cost));
+			this.get(b).add(new Edge(b, a, cost, --id));
+			edge.add(new Edge(b, a, cost, id++));
 		}
 	}
 	final void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni(), VvyLw.sc.ni())); }

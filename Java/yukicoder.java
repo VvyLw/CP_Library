@@ -997,6 +997,12 @@ interface TriFunction<T, U, V, R> {
 interface QuadFunction<A, B, C, D, R> {
 	R apply(final A a, final B b, final C c, final D d);
 }
+interface TriConsumer<T, U, V> {
+	void accept(final T a, final U b, final V c);
+}
+interface TriPredicate<T, U, V> {
+	boolean test(final T a, final U b, final V c);
+}
 interface RecursiveFunction<T, R> {
 	R apply(final RecursiveFunction<T, R> rec, final T n);
 }
@@ -1020,6 +1026,15 @@ interface RecursiveBiConsumer<T, U> {
 }
 interface RecursiveTriConsumer<T, U, V> {
 	void accept(final RecursiveTriConsumer<T, U, V> rec, final T x, final U y, final V z);
+}
+interface RecursivePredicate<T> {
+	boolean test(final RecursivePredicate<T> rec, final T n);
+}
+interface RecursiveBiPredicate<T, U> {
+	boolean test(final RecursiveBiPredicate<T, U> rec, final T x, final U y);
+}
+interface RecursiveTriPredicate<T, U, V> {
+	boolean test(final RecursiveTriPredicate<T, U, V> rec, final T x, final U y, final V z);
 }
 interface RecursiveIntFunction<R> {
 	R apply(final RecursiveIntFunction<R> rec, final int n);
@@ -1056,6 +1071,15 @@ interface RecursiveLongConsumer {
 }
 interface RecursiveDoubleConsumer {
 	void accept(final RecursiveDoubleConsumer rec, final double n);
+}
+interface RecursiveIntPredicate {
+	boolean test(final RecursiveIntPredicate rec, final int n);
+}
+interface RecursiveLongPredicate {
+	boolean test(final RecursiveLongPredicate rec, final long n);
+}
+interface RecursiveDoublePredicate {
+	boolean test(final RecursiveDoublePredicate rec, final double n);
 }
 
 final class MyScanner implements Closeable, AutoCloseable {
