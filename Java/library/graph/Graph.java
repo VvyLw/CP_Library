@@ -3,11 +3,13 @@ package library.graph;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Queue;
 import java.util.Stack;
 import java.util.stream.IntStream;
 
 import library.core.VvyLw;
+import library.core.interfaces.RecursiveIntPredicate;
 
 /**
  * グラフクラス
@@ -15,6 +17,7 @@ import library.core.VvyLw;
 public class Graph extends ArrayList<ArrayList<Edge>> {
 	protected final boolean undirected;
 	protected final int n, indexed;
+	protected int id;
 	protected final ArrayList<Edge> edge;
 	/**
 	 * コンストラクタ
@@ -28,6 +31,7 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 		this.n = n;
 		this.indexed = indexed;
 		this.undirected = undirected;
+		id = 0;
 		edge = new ArrayList<>();
 		IntStream.range(0, n).forEach(i -> add(new ArrayList<>()));
 	}
@@ -39,11 +43,11 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 	public final void addEdge(int a, int b) {
 		a -= indexed;
 		b -= indexed;
-		this.get(a).add(new Edge(b));
-		edge.add(new Edge(a, b, 0));
+		this.get(a).add(new Edge(a, b, id));
+		edge.add(new Edge(a, b, id++));
 		if(undirected) {
-			this.get(b).add(new Edge(a));
-			edge.add(new Edge(b, a, 0));
+			this.get(b).add(new Edge(b, a, --id));
+			edge.add(new Edge(b, a, id++));
 		}
 	}
 	/**
@@ -110,5 +114,43 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 			}
 		}
 		return ord.size() == n ? ord : new ArrayList<>();
+	}
+	/**
+	 * @return サイクル
+	 * if non-existence: 空配列
+	 * @implNote 有向グラフ
+	 */
+	public final Edge[] cycleDetector() {
+		final int[] used = new int[n];
+		final Edge[] pre = new Edge[n];
+		final ArrayList<Edge> cycle = new ArrayList<>();
+		final RecursiveIntPredicate dfs = (rec, i) -> {
+			used[i] = 1;
+			for(final Edge e: get(i)) {
+				if(used[e.to] == 0) {
+					pre[e.to] = e;
+					if(rec.test(rec, e.to)) {
+						return true;
+					}
+				} else if(used[e.to] == 1) {
+					int now = i;
+					while(now != e.to) {
+						cycle.add(pre[now]);
+						now = pre[now].src;
+					}
+					cycle.add(e);
+					return true;
+				}
+			}
+			used[i] = 2;
+			return false;
+		};
+		for(int i = 0; i < n; ++i) {
+			if(used[i] == 0 && dfs.test(dfs, i)) {
+				Collections.reverse(cycle);
+				return cycle.toArray(Edge[]::new);
+			}
+		}
+		return new Edge[]{};
 	}
 }

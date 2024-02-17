@@ -35,11 +35,11 @@ public final class WeightedGraph extends Graph {
 	public final void addEdge(int a, int b, final long cost) {
 		a -= indexed;
 		b -= indexed;
-		this.get(a).add(new Edge(b, cost));
-		edge.add(new Edge(a, b, cost));
+		this.get(a).add(new Edge(a, b, cost, id));
+		edge.add(new Edge(a, b, cost, id++));
 		if(undirected) {
-			this.get(b).add(new Edge(a, cost));
-			edge.add(new Edge(b, a, cost));
+			this.get(b).add(new Edge(b, a, cost, --id));
+			edge.add(new Edge(b, a, cost, id++));
 		}
 	}
 	/**
