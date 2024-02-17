@@ -95,7 +95,7 @@ public:
         }
         return f(L, R);
     }
-    T all() const { return data[1]; }
+    T alle() const { return data[1]; }
     void apply(int k, const U &x) {
         k += sz;
         for(int i = h; i > 0; i--) {
