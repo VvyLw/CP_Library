@@ -11,15 +11,16 @@ template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1
 #include "C++/edge.hpp"
 template <bool undirected = true> struct graph: public std::vector<std::vector<edge>> {
     const int indexed;
+    int id;
     std::vector<edge> edges;
-    graph(const int n, const int indexed_ = 1): indexed(indexed_){ this -> resize(n); }
+    graph(const int n, const int indexed_ = 1): indexed(indexed_), id(0){ this -> resize(n); }
     void add(int a, int b) {
         a -= indexed, b-= indexed;
-        (*this)[a].emplace_back(b);
-        edges.emplace_back(a, b, 0);
+        (*this)[a].emplace_back(a, b, id);
+        edges.emplace_back(a, b, id++);
         if(undirected) {
-            (*this)[b].emplace_back(a);
-            edges.emplace_back(b, a, 0);
+            (*this)[b].emplace_back(b, a, --id);
+            edges.emplace_back(b, a, id++);
         }
     }
     void input(const int m) {
@@ -38,11 +39,11 @@ template <bool undirected = true> struct graph: public std::vector<std::vector<e
             const int tmp = q.front();
             q.pop();
             for(const auto &el: (*this)[tmp]) {
-                if(d[el.to] != -1) {
+                if(d[el] != -1) {
                     continue;
                 }
-                d[el.to] = d[tmp] + 1;
-                q.emplace(el.to);
+                d[el] = d[tmp] + 1;
+                q.emplace(el);
             }
         }
         return d;
@@ -53,7 +54,7 @@ template <bool undirected = true> struct graph: public std::vector<std::vector<e
 		std::vector<int> deg(n);
 		for(int i = 0; i < n; ++i) {
 			for(const auto ed: (*this)[i]) {
-				deg[ed.to]++;
+				deg[ed]++;
 			}
 		}
 		std::stack<int> sk;
@@ -68,17 +69,51 @@ template <bool undirected = true> struct graph: public std::vector<std::vector<e
             sk.pop();
 			ord.emplace_back(tmp);
 			for(const auto ed: (*this)[tmp]) {
-				if(--deg[ed.to] == 0) {
-					sk.emplace(ed.to);
+				if(--deg[ed] == 0) {
+					sk.emplace(ed);
 				}
 			}
 		}
 		return ord.size() == size() ? ord : std::vector<int>{};
 	}
+    std::vector<edge> cycle() {
+        const int n = size();
+        std::vector<int> used(n);
+        std::vector<edge> pre(n), cycle;
+        const auto dfs = [&](const auto &f, const int i) -> bool {
+            used[i] = 1;
+			for(const auto &e: (*this)[i]) {
+				if(used[e] == 0) {
+					pre[e] = e;
+					if(f(f, e)) {
+						return true;
+					}
+				} else if(used[e] == 1) {
+					int now = i;
+					while(now != e) {
+						cycle.emplace_back(pre[now]);
+						now = pre[now].src;
+					}
+					cycle.emplace_back(e);
+					return true;
+				}
+			}
+			used[i] = 2;
+			return false;
+        };
+        for(int i = 0; i < n; ++i) {
+			if(used[i] == 0 && dfs(dfs, i)) {
+				std::reverse(cycle.begin(), cycle.end());
+				return cycle;
+			}
+		}
+		return {};
+    }
 };
 template <bool undirected = true> struct w_graph: public graph<undirected> {
 private:
     using graph<undirected>::indexed;
+    using graph<undirected>::id;
     using graph<undirected>::edges;
 public:
     w_graph(const int n, const int indexed_ = 1): graph<undirected>(n, indexed_){}
@@ -87,11 +122,11 @@ public:
     using graph<undirected>::t_sort;
     void add(int a, int b, const long long cost) {
         a -= indexed, b -= indexed;
-        (*this)[a].emplace_back(b, cost);
-        edges.emplace_back(a, b, cost);
+        (*this)[a].emplace_back(a, b, id, cost);
+        edges.emplace_back(a, b, id++, cost);
         if(undirected) {
-            (*this)[b].emplace_back(a, cost);
-            edges.emplace_back(b, a, cost);
+            (*this)[b].emplace_back(b, a, --id, cost);
+            edges.emplace_back(b, a, id++, cost);
         }
     }
     void input(const int m) {
@@ -115,7 +150,7 @@ public:
             }
             for(const auto &el: (*this)[tmp.second]) {
                 if(chmin(cst[el], tmp.first + el.cost)) {
-                    dj.emplace(cst[el.to], el.to);
+                    dj.emplace(cst[el], el);
                 }
             }
         }
@@ -130,14 +165,14 @@ public:
 				if(cst[e.src] == lim) {
 					continue;
 				}
-				chmin(cst[e.to], cst[e.src] + e.cost);
+				chmin(cst[e], cst[e.src] + e.cost);
 			}
 		}
 		for(const auto &e: edges) {
 			if(cst[e.src] == lim) {
 				continue;
 			}
-			if(cst[e.src] + e.cost < cst[e.to]) {
+			if(cst[e.src] + e.cost < cst[e]) {
 				return std::vector<long long>{};
 			}
 		}
@@ -152,7 +187,7 @@ public:
         }
 		for(int i = 0; i < n; ++i) {
             for(const auto &j: (*this)[i]) {
-                cst[i][j.to] = j.cost;
+                cst[i][j] = j.cost;
             }
         }
 		for(int k = 0; k < n; ++k) {
