@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/MST.hpp
     title: "\u6700\u5C0F\u5168\u57DF\u6728"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/UnionFind.hpp
     title: UnionFind
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/edge.hpp
     title: C++/edge.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/manhattanmst
@@ -23,11 +23,11 @@ data:
   bundledCode: "#line 1 \"test/manhattan.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/manhattanmst\"\
     \n#include <iostream>\n#line 2 \"C++/MST.hpp\"\n\n#include <cassert>\n#include\
     \ <map>\n#include <numeric>\n#line 2 \"C++/edge.hpp\"\n\nstruct edge {\n    int\
-    \ src, to;\n    long long cost;\n    edge(){}\n    edge(const int to_): to(to_){}\n\
-    \    edge(const int to_, const long long cost_): to(to_), cost(cost_){}\n    edge(const\
-    \ int src_, const int to_, const long long cost_): src(src_), to(to_), cost(cost_){}\n\
-    };\n#line 2 \"C++/UnionFind.hpp\"\n\r\n#line 4 \"C++/UnionFind.hpp\"\n#include\
-    \ <vector>\r\n#include <algorithm>\r\nstruct UnionFind {\r\nprivate:\r\n    std::vector<int>\
+    \ src, to, id;\n    long long cost;\n    edge(){}\n    edge(const int src_, const\
+    \ int to_, const int id_ = -1, const long long cost_ = 0): src(src_), to(to_),\
+    \ id(id_), cost(cost_){}\n    operator int() const { return to; }\n};\n#line 2\
+    \ \"C++/UnionFind.hpp\"\n\r\n#line 4 \"C++/UnionFind.hpp\"\n#include <vector>\r\
+    \n#include <algorithm>\r\nstruct UnionFind {\r\nprivate:\r\n    std::vector<int>\
     \ par;\r\npublic:\r\n    UnionFind(const int n): par(n, -1){}\r\n    int operator[](int\
     \ i) {\r\n        while(par[i] >= 0) {\r\n            const int p = par[par[i]];\r\
     \n            if(p < 0) return par[i];\r\n            i = par[i] = p;\r\n    \
@@ -131,8 +131,8 @@ data:
   isVerificationFile: true
   path: test/manhattan.test.cpp
   requiredBy: []
-  timestamp: '2024-02-08 03:21:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-02-17 11:08:09+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/manhattan.test.cpp
 layout: document

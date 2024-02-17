@@ -107,9 +107,9 @@ data:
     \n#include <cmath>\n#include <limits>\n\ntemplate <class T> struct zwei {\n  \
     \  T first, second;\n    zwei(){}\n    zwei(const T &f, const T &s): first(f),\
     \ second(s){}\n    constexpr bool operator!=(const zwei<T> &z) noexcept { return\
-    \ first != z.first || second != z.second; }\n    operator T(){ return first; }\n\
-    \    friend std::ostream &operator<<(std::ostream &os, const zwei &z) {\n    \
-    \    os << z.first;\n        return os;\n    }\n};\n\ntemplate <class T> struct\
+    \ first != z.first || second != z.second; }\n    operator T() const { return first;\
+    \ }\n    friend std::ostream &operator<<(std::ostream &os, const zwei &z) {\n\
+    \        os << z.first;\n        return os;\n    }\n};\n\ntemplate <class T> struct\
     \ RAMX: LazySegTree<T, T> {    \n    RAMX(const std::vector<T> &v): LazySegTree<T,\
     \ T>(v, [](const T a, const T b){ return std::max(a, b); }, [](const T a, const\
     \ T b){ return a + b; }, [](const T a, const T b){ return a + b; }, std::numeric_limits<T>::min(),\
@@ -219,10 +219,10 @@ data:
     \ os;\n    }\n};\n\n\n#include <cmath>\n#include <limits>\n\ntemplate <class T>\
     \ struct zwei {\n    T first, second;\n    zwei(){}\n    zwei(const T &f, const\
     \ T &s): first(f), second(s){}\n    constexpr bool operator!=(const zwei<T> &z)\
-    \ noexcept { return first != z.first || second != z.second; }\n    operator T(){\
-    \ return first; }\n    friend std::ostream &operator<<(std::ostream &os, const\
-    \ zwei &z) {\n        os << z.first;\n        return os;\n    }\n};\n\ntemplate\
-    \ <class T> struct RAMX: LazySegTree<T, T> {    \n    RAMX(const std::vector<T>\
+    \ noexcept { return first != z.first || second != z.second; }\n    operator T()\
+    \ const { return first; }\n    friend std::ostream &operator<<(std::ostream &os,\
+    \ const zwei &z) {\n        os << z.first;\n        return os;\n    }\n};\n\n\
+    template <class T> struct RAMX: LazySegTree<T, T> {    \n    RAMX(const std::vector<T>\
     \ &v): LazySegTree<T, T>(v, [](const T a, const T b){ return std::max(a, b); },\
     \ [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return\
     \ a + b; }, std::numeric_limits<T>::min(), 0){}\n};\ntemplate <class T> struct\
@@ -257,7 +257,7 @@ data:
   isVerificationFile: false
   path: C++/LazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2024-02-16 12:14:01+09:00'
+  timestamp: '2024-02-17 11:08:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/rangeaffine.test.cpp

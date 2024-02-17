@@ -2,25 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/MST.hpp
     title: "\u6700\u5C0F\u5168\u57DF\u6728"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/directed.test.cpp
     title: test/directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/kruskal.test.cpp
     title: test/kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/manhattan.test.cpp
     title: test/manhattan.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: UnionFind
     links:
@@ -84,7 +84,7 @@ data:
   requiredBy:
   - C++/MST.hpp
   timestamp: '2024-02-08 03:21:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/manhattan.test.cpp
   - test/kruskal.test.cpp

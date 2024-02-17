@@ -15,7 +15,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/LazySegmentTree.hpp
       title: "\u9045\u5EF6\u30BB\u30B0\u6728"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/MST.hpp
       title: "\u6700\u5C0F\u5168\u57DF\u6728"
     - icon: ':heavy_check_mark:'
@@ -48,7 +48,7 @@ data:
     - icon: ':warning:'
       path: C++/UFUndo.hpp
       title: "Undo\u53EF\u80FDUnionFind"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/UnionFind.hpp
       title: UnionFind
     - icon: ':heavy_check_mark:'
@@ -60,7 +60,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/depq.hpp
       title: "\u4E21\u7AEF\u512A\u5148\u5EA6\u4ED8\u304D\u30AD\u30E5\u30FC"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/edge.hpp
       title: C++/edge.hpp
     - icon: ':heavy_check_mark:'
@@ -374,12 +374,15 @@ data:
       path: test/bermanford.test.cpp
       title: test/bermanford.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/cycledetector.test.cpp
+      title: test/cycledetector.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/dag_check.test.cpp
       title: test/dag_check.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/depq.test.cpp
       title: test/depq.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/directed.test.cpp
       title: test/directed.test.cpp
     - icon: ':heavy_check_mark:'
@@ -400,7 +403,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/inv_num.test.cpp
       title: test/inv_num.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/kruskal.test.cpp
       title: test/kruskal.test.cpp
     - icon: ':heavy_check_mark:'
@@ -433,7 +436,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/manacher.test.cpp
       title: test/manacher.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/manhattan.test.cpp
       title: test/manhattan.test.cpp
     - icon: ':heavy_check_mark:'
