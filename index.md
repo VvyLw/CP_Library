@@ -252,6 +252,9 @@ data:
       path: Java/library/other/PrefixSum.java
       title: Java/library/other/PrefixSum.java
     - icon: ':warning:'
+      path: Java/library/other/PrefixSum2D.java
+      title: Java/library/other/PrefixSum2D.java
+    - icon: ':warning:'
       path: Java/library/other/SkewHeap.java
       title: Java/library/other/SkewHeap.java
     - icon: ':warning:'

@@ -65,6 +65,9 @@ data:
     path: Java/library/core/interfaces/RecursiveIntFunction.java
     title: Java/library/core/interfaces/RecursiveIntFunction.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveIntPredicate.java
+    title: Java/library/core/interfaces/RecursiveIntPredicate.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
     title: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
   - icon: ':warning:'
@@ -160,9 +163,6 @@ data:
   - icon: ':warning:'
     path: Java/library/other/PrefixSum.java
     title: Java/library/other/PrefixSum.java
-  - icon: ':warning:'
-    path: Java/library/other/PrefixSum2D.java
-    title: Java/library/other/PrefixSum2D.java
   - icon: ':warning:'
     path: Java/library/other/SkewHeap.java
     title: Java/library/other/SkewHeap.java
@@ -315,6 +315,9 @@ data:
     path: Java/library/core/interfaces/RecursiveIntFunction.java
     title: Java/library/core/interfaces/RecursiveIntFunction.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/RecursiveIntPredicate.java
+    title: Java/library/core/interfaces/RecursiveIntPredicate.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
     title: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
   - icon: ':warning:'
@@ -411,9 +414,6 @@ data:
     path: Java/library/other/PrefixSum.java
     title: Java/library/other/PrefixSum.java
   - icon: ':warning:'
-    path: Java/library/other/PrefixSum2D.java
-    title: Java/library/other/PrefixSum2D.java
-  - icon: ':warning:'
     path: Java/library/other/SkewHeap.java
     title: Java/library/other/SkewHeap.java
   - icon: ':warning:'
@@ -509,12 +509,37 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/core/interfaces/RecursiveIntPredicate.java\n"
-  code: "package library.core.interfaces;\n\nimport java.util.function.IntPredicate;\n\
-    \n/**\n * \u518D\u5E30\u30E9\u30E0\u30C0\u5F0F\u304C\u66F8\u3051\u308BIntPredicate\u30A4\
-    \u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\n * @see IntPredicate\n */\npublic\
-    \ interface RecursiveIntPredicate {\n\tpublic boolean test(final RecursiveIntPredicate\
-    \ rec, final int n);\n}"
+    RuntimeError: bundler is not specified: Java/library/other/PrefixSum2D.java\n"
+  code: "package library.other;\n\n/**\n * \u4E8C\u6B21\u5143\u7D2F\u7A4D\u548C\n\
+    \ * @see <a href=\"https://nyaannyaan.github.io/library/verify/verify-aoj-dsl/aoj-dsl-5-b.test.cpp\"\
+    >\u53C2\u8003\u5143</a>\n */\npublic final class PrefixSum2D {\n\tprivate final\
+    \ int h, w;\n\tprivate final long[][] data;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\n\t * @param h\n\t * @param w\n\t */\n\tpublic PrefixSum2D(final\
+    \ int h, final int w) {\n\t\tthis.h = h + 3;\n\t\tthis.w = w + 3;\n\t\tdata =\
+    \ new long[this.h][this.w];\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\
+    \u30BF\n\t * @param a\n\t */\n\tpublic PrefixSum2D(final int[][] a) {\n\t\tthis(a.length,\
+    \ a[0].length);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w;\
+    \ ++j) {\n\t\t\t\tadd(i, j, a[i][j]);\n\t\t\t}\n\t\t}\n\t}\n\t/**\n\t * \u30B3\
+    \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a\n\t */\n\tpublic PrefixSum2D(final\
+    \ long[][] a) {\n\t\tthis(a.length, a[0].length);\n\t\tfor(int i = 0; i < h; ++i)\
+    \ {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tadd(i, j, a[i][j]);\n\t\t\t}\n\
+    \t\t}\n\t}\n\t/**\n\t * (i, j)\u306Bx\u3092\u52A0\u7B97\n\t * @param i\n\t * @param\
+    \ j\n\t * @param x\n\t */\n\tpublic final void add(int i, int j, final long x)\
+    \ {\n\t\ti++;\n\t\tj++;\n\t\tif(i >= h || j >= w) {\n\t\t\treturn;\n\t\t}\n\t\t\
+    data[i][j] += x;\n\t}\n\t/**\n\t * [i1, i2), [j1, j2)\u306Bx\u3092\u52A0\u7B97\
+    \n\t * @param i1\n\t * @param j1\n\t * @param i2\n\t * @param j2\n\t * @param\
+    \ x\n\t */\n\tpublic final void add(final int i1, final int j1, final int i2,\
+    \ final int j2, final long x) {\n\t\tadd(i1, j1, x);\n\t\tadd(i1, j2, -x);\n\t\
+    \tadd(i2, j1, -x);\n\t\tadd(i2, j2, x);\n\t}\n\t/**\n\t * \u69CB\u7BC9\n\t */\n\
+    \tpublic final void build() {\n\t\tfor(int i = 1; i < h; ++i) {\n\t\t\tfor(int\
+    \ j = 1; j < w; ++j) {\n\t\t\t\tdata[i][j] += data[i][j - 1] + data[i - 1][j]\
+    \ - data[i - 1][j - 1];\n\t\t\t}\n\t\t}\n\t}\n\t/**\n\t * @param i1\n\t * @param\
+    \ j1\n\t * @param i2\n\t * @param j2\n\t * @return [i1, i2), [j1, j2)\u306E\u77E9\
+    \u5F62\u548C\n\t */\n\tpublic final long get(final int i1, final int j1, final\
+    \ int i2, final int j2){ return data[i2][j2] - data[i1][j2] - data[i2][j1] + data[i1][j1];\
+    \ }\n\t/**\n\t * @param i\n\t * @param j\n\t * @return (i, j)\u306E\u8981\u7D20\
+    \n\t */\n\tpublic final long get(final int i, final int j){ return data[i + 1][j\
+    \ + 1]; }\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -559,6 +584,7 @@ data:
   - Java/library/core/interfaces/RecursiveIntBinaryOperator.java
   - Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
   - Java/library/core/interfaces/RecursiveTriPredicate.java
+  - Java/library/core/interfaces/RecursiveIntPredicate.java
   - Java/library/core/interfaces/RecursiveIntFunction.java
   - Java/library/core/interfaces/RecursiveLongBinaryOperator.java
   - Java/library/core/Utility.java
@@ -566,7 +592,6 @@ data:
   - Java/library/core/Main.java
   - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
-  - Java/library/other/PrefixSum2D.java
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
@@ -600,7 +625,7 @@ data:
   - Java/All.java
   - Java/AOJ.java
   isVerificationFile: false
-  path: Java/library/core/interfaces/RecursiveIntPredicate.java
+  path: Java/library/other/PrefixSum2D.java
   requiredBy:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -645,6 +670,7 @@ data:
   - Java/library/core/interfaces/RecursiveIntBinaryOperator.java
   - Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
   - Java/library/core/interfaces/RecursiveTriPredicate.java
+  - Java/library/core/interfaces/RecursiveIntPredicate.java
   - Java/library/core/interfaces/RecursiveIntFunction.java
   - Java/library/core/interfaces/RecursiveLongBinaryOperator.java
   - Java/library/core/Utility.java
@@ -652,7 +678,6 @@ data:
   - Java/library/core/Main.java
   - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
-  - Java/library/other/PrefixSum2D.java
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
@@ -688,10 +713,10 @@ data:
   timestamp: '2024-02-17 10:49:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/core/interfaces/RecursiveIntPredicate.java
+documentation_of: Java/library/other/PrefixSum2D.java
 layout: document
 redirect_from:
-- /library/Java/library/core/interfaces/RecursiveIntPredicate.java
-- /library/Java/library/core/interfaces/RecursiveIntPredicate.java.html
-title: Java/library/core/interfaces/RecursiveIntPredicate.java
+- /library/Java/library/other/PrefixSum2D.java
+- /library/Java/library/other/PrefixSum2D.java.html
+title: Java/library/other/PrefixSum2D.java
 ---

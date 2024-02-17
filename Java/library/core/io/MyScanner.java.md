@@ -161,6 +161,9 @@ data:
     path: Java/library/other/PrefixSum.java
     title: Java/library/other/PrefixSum.java
   - icon: ':warning:'
+    path: Java/library/other/PrefixSum2D.java
+    title: Java/library/other/PrefixSum2D.java
+  - icon: ':warning:'
     path: Java/library/other/SkewHeap.java
     title: Java/library/other/SkewHeap.java
   - icon: ':warning:'
@@ -407,6 +410,9 @@ data:
   - icon: ':warning:'
     path: Java/library/other/PrefixSum.java
     title: Java/library/other/PrefixSum.java
+  - icon: ':warning:'
+    path: Java/library/other/PrefixSum2D.java
+    title: Java/library/other/PrefixSum2D.java
   - icon: ':warning:'
     path: Java/library/other/SkewHeap.java
     title: Java/library/other/SkewHeap.java
@@ -661,6 +667,7 @@ data:
   - Java/library/core/Main.java
   - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
+  - Java/library/other/PrefixSum2D.java
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
@@ -746,6 +753,7 @@ data:
   - Java/library/core/Main.java
   - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
+  - Java/library/other/PrefixSum2D.java
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
@@ -778,7 +786,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-17 09:56:38+09:00'
+  timestamp: '2024-02-17 10:49:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyScanner.java

@@ -161,6 +161,9 @@ data:
     path: Java/library/other/PrefixSum.java
     title: Java/library/other/PrefixSum.java
   - icon: ':warning:'
+    path: Java/library/other/PrefixSum2D.java
+    title: Java/library/other/PrefixSum2D.java
+  - icon: ':warning:'
     path: Java/library/other/SkewHeap.java
     title: Java/library/other/SkewHeap.java
   - icon: ':warning:'
@@ -407,6 +410,9 @@ data:
   - icon: ':warning:'
     path: Java/library/other/PrefixSum.java
     title: Java/library/other/PrefixSum.java
+  - icon: ':warning:'
+    path: Java/library/other/PrefixSum2D.java
+    title: Java/library/other/PrefixSum2D.java
   - icon: ':warning:'
     path: Java/library/other/SkewHeap.java
     title: Java/library/other/SkewHeap.java
@@ -1610,11 +1616,29 @@ data:
     \ InclusiveScan {\n\tPrefixSum(final int[] a) {\n\t\tsuper(a, (x, y) -> x + y);\n\
     \t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), 1);\n\t}\n\tPrefixSum(final long[]\
     \ a) {\n\t\tsuper(a, (x, y) -> x + y);\n\t\ts = Utility.rotate(Arrays.copyOf(s,\
-    \ n + 1), 1);\n\t}\n}\n\nfinal class SuffixArray extends ArrayList<Integer> {\n\
-    \tprivate final String vs;\n\tSuffixArray(final String vs, final boolean compress)\
-    \ {\n\t\tthis.vs = vs;\n\t\tfinal int[] newVS = new int[vs.length() + 1];\n\t\t\
-    if(compress) {\n\t\t\tfinal List<Integer> xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());\n\
-    \t\t\tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = Utility.lowerBound(xs,\
+    \ n + 1), 1);\n\t}\n}\nfinal class PrefixSum2D {\n\tprivate final int h, w;\n\t\
+    private final long[][] data;\n\tPrefixSum2D(final int h, final int w) {\n\t\t\
+    this.h = h + 3;\n\t\tthis.w = w + 3;\n\t\tdata = new long[this.h][this.w];\n\t\
+    }\n\tPrefixSum2D(final int[][] a) {\n\t\tthis(a.length, a[0].length);\n\t\tfor(int\
+    \ i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tadd(i, j,\
+    \ a[i][j]);\n\t\t\t}\n\t\t}\n\t\tbuild();\n\t}\n\tPrefixSum2D(final long[][] a)\
+    \ {\n\t\tthis(a.length, a[0].length);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\t\
+    for(int j = 0; j < w; ++j) {\n\t\t\t\tadd(i, j, a[i][j]);\n\t\t\t}\n\t\t}\n\t\t\
+    build();\n\t}\n\tfinal void add(int i, int j, final long x) {\n\t\ti++;\n\t\t\
+    j++;\n\t\tif(i >= h || j >= w) {\n\t\t\treturn;\n\t\t}\n\t\tdata[i][j] += x;\n\
+    \t}\n\tfinal void add(final int i1, final int j1, final int i2, final int j2,\
+    \ final long x) {\n\t\tadd(i1, j1, x);\n\t\tadd(i1, j2, -x);\n\t\tadd(i2, j1,\
+    \ -x);\n\t\tadd(i2, j2, x);\n\t}\n\tfinal void build() {\n\t\tfor(int i = 1; i\
+    \ < h; ++i) {\n\t\t\tfor(int j = 1; j < w; ++j) {\n\t\t\t\tdata[i][j] += data[i][j\
+    \ - 1] + data[i - 1][j] - data[i - 1][j - 1];\n\t\t\t}\n\t\t}\n\t}\n\tfinal long\
+    \ get(final int i1, final int j1, final int i2, final int j2){ return data[i2][j2]\
+    \ - data[i1][j2] - data[i2][j1] + data[i1][j1]; }\n\tfinal long get(final int\
+    \ i, final int j){ return data[i + 1][j + 1]; }\n}\n\nfinal class SuffixArray\
+    \ extends ArrayList<Integer> {\n\tprivate final String vs;\n\tSuffixArray(final\
+    \ String vs, final boolean compress) {\n\t\tthis.vs = vs;\n\t\tfinal int[] newVS\
+    \ = new int[vs.length() + 1];\n\t\tif(compress) {\n\t\t\tfinal List<Integer> xs\
+    \ = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());\n\t\t\
+    \tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = Utility.lowerBound(xs,\
     \ (int) vs.charAt(i)) + 1;\n\t\t\t}\n\t\t} else {\n\t\t\tfinal int d = vs.chars().min().getAsInt();\n\
     \t\t\tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = vs.charAt(i)\
     \ - d + 1;\n\t\t\t}\n\t\t}\n\t\tthis.addAll(Arrays.stream(SAIS(newVS)).boxed().collect(Collectors.toList()));\n\
@@ -2212,6 +2236,7 @@ data:
   - Java/library/core/Main.java
   - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
+  - Java/library/other/PrefixSum2D.java
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
@@ -2297,6 +2322,7 @@ data:
   - Java/library/core/Main.java
   - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
+  - Java/library/other/PrefixSum2D.java
   - Java/library/other/InclusiveScan.java
   - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
@@ -2328,7 +2354,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-17 09:56:38+09:00'
+  timestamp: '2024-02-17 10:49:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
