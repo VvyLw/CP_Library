@@ -63,10 +63,10 @@ data:
     \ e;\n        for(; l < r; l >>= 1, r >>= 1) {\n            if(l & 1) {\n    \
     \            L = f(L, data[l++]);\n            }\n            if(r & 1) {\n  \
     \              R = f(data[--r], R);\n            }\n        }\n        return\
-    \ f(L, R);\n    }\n    T all() const { return data[1]; }\n    void apply(int k,\
-    \ const U &x) {\n        k += sz;\n        for(int i = h; i > 0; i--) {\n    \
-    \        propagate(k >> i);\n        }\n        data[k] = map(data[k], x);\n \
-    \       for(int i = 0; ++i <= h;) {\n            update(k >> i);\n        }\n\
+    \ f(L, R);\n    }\n    T alle() const { return data[1]; }\n    void apply(int\
+    \ k, const U &x) {\n        k += sz;\n        for(int i = h; i > 0; i--) {\n \
+    \           propagate(k >> i);\n        }\n        data[k] = map(data[k], x);\n\
+    \        for(int i = 0; ++i <= h;) {\n            update(k >> i);\n        }\n\
     \    }\n    void apply(int l, int r, const U &x) {\n        if(l >= r) {\n   \
     \         return;\n        }\n        l += sz;\n        r += sz;\n        for(int\
     \ i = h; i > 0; i--) {\n            if(((l >> i) << i) != l) {\n             \
@@ -175,7 +175,7 @@ data:
     \        }\n        T L = e, R = e;\n        for(; l < r; l >>= 1, r >>= 1) {\n\
     \            if(l & 1) {\n                L = f(L, data[l++]);\n            }\n\
     \            if(r & 1) {\n                R = f(data[--r], R);\n            }\n\
-    \        }\n        return f(L, R);\n    }\n    T all() const { return data[1];\
+    \        }\n        return f(L, R);\n    }\n    T alle() const { return data[1];\
     \ }\n    void apply(int k, const U &x) {\n        k += sz;\n        for(int i\
     \ = h; i > 0; i--) {\n            propagate(k >> i);\n        }\n        data[k]\
     \ = map(data[k], x);\n        for(int i = 0; ++i <= h;) {\n            update(k\
@@ -257,7 +257,7 @@ data:
   isVerificationFile: false
   path: C++/LazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2024-02-17 11:08:09+09:00'
+  timestamp: '2024-02-18 06:20:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/rangeaffine.test.cpp
