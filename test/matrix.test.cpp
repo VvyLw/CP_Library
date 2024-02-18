@@ -1,6 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/no/2441"
 #include <iostream>
-#include <C++/Matrix.hpp>
+#include <Matrix.hpp>
 int main() {
     int a, b, c, d;
     std::cin >> a >> b >> c >> d;

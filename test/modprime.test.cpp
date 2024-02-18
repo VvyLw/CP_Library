@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod"
 #include <iostream>
-#include <C++/ModPrime.hpp>
+#include "ModPrime.hpp"
 int main() {
     std::cin.tie(nullptr) -> sync_with_stdio(false);
     int t, m;

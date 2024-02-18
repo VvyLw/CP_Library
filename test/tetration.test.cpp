@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/tetration_mod"
 #include <iostream>
-#include "C++/math.hpp"
+#include "math.hpp"
 void solve() {
     long long a, b, m;
     std::cin >> a >> b >> m;

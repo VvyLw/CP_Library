@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/manhattanmst"
 #include <iostream>
-#include "C++/MST.hpp"
+#include "MST.hpp"
 int main() {
     int n;
     std::cin >> n;

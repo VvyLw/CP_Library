@@ -1,5 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/number_of_substrings"
-#include "C++/Strings.hpp"
+#include "Strings.hpp"
 int main() {
     std::string s;
     std::cin >> s;

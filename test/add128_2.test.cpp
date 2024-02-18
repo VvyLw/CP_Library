@@ -1,5 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/many_aplusb_128bit"
-#include "C++/bignum.hpp"
+#include "bignum.hpp"
 int main() {
     std::cin.tie(nullptr) -> sync_with_stdio(false);
     const auto solve = [&] {

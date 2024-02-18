@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_5_D"
 #include <iostream>
-#include "C++/FenwickTree.hpp"
+#include "FenwickTree.hpp"
 int main() {
     int n;
     std::cin >> n;

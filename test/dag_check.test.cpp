@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_A"
-#include "C++/graph.hpp"
+#include "graph.hpp"
 int main() {
     int v, e;
     std::cin >> v >> e;
