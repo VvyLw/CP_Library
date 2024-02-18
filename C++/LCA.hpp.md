@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/lca.test.cpp
-    title: test/lca.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/LCA.md
     document_title: "\u6700\u5C0F\u5171\u901A\u7956\u5148"
@@ -19,16 +16,16 @@ data:
     \nprivate:\r\n    const int LOG;\r\n    std::vector<int> dep, sum;\r\n    const\
     \ G &g;\r\n    std::vector<std::vector<int>> table;\r\n    void dfs(const int\
     \ idx, const int par, const int d) {\r\n        table[0][idx] = par;\r\n     \
-    \   dep[idx] = d;\r\n        for(const auto &el: g[idx]) {\r\n            if(el.to\
-    \ != par) {\r\n                sum[el.to] = sum[idx] + el.cost;\r\n          \
-    \      dfs(el.to, idx, d + 1);\r\n            }\r\n        }\r\n    }\r\n    void\
-    \ build() {\r\n        dfs(0, -1, 0);\r\n        for(int k = 0; k < LOG - 1; ++k)\
-    \ {\r\n            for(size_t i = 0; i < table[k].size(); ++i) {\r\n         \
-    \       if(table[k][i] == -1) {\r\n                    table[k + 1][i] = -1;\r\
-    \n                }\r\n                else {\r\n                    table[k +\
-    \ 1][i] = table[k][table[k][i]];\r\n                }\r\n            }\r\n   \
-    \     }\r\n    }\r\npublic:\r\n    LowestCommonAncestor(const G &g_) : g(g_),\
-    \ dep(g_.size()), sum(g_.size()), LOG(std::__lg(g_.size()) + 1) {\r\n        table.assign(LOG,\
+    \   dep[idx] = d;\r\n        for(const auto &el: g[idx]) {\r\n            if(el\
+    \ != par) {\r\n                sum[el] = sum[idx] + el.cost;\r\n             \
+    \   dfs(el, idx, d + 1);\r\n            }\r\n        }\r\n    }\r\n    void build()\
+    \ {\r\n        dfs(0, -1, 0);\r\n        for(int k = 0; k < LOG - 1; ++k) {\r\n\
+    \            for(size_t i = 0; i < table[k].size(); ++i) {\r\n               \
+    \ if(table[k][i] == -1) {\r\n                    table[k + 1][i] = -1;\r\n   \
+    \             }\r\n                else {\r\n                    table[k + 1][i]\
+    \ = table[k][table[k][i]];\r\n                }\r\n            }\r\n        }\r\
+    \n    }\r\npublic:\r\n    LowestCommonAncestor(const G &g_) : g(g_), dep(g_.size()),\
+    \ sum(g_.size()), LOG(std::__lg(g_.size()) + 1) {\r\n        table.assign(LOG,\
     \ std::vector<int>(g_.size(), -1));\r\n        build();\r\n    }\r\n    int climb(int\
     \ u, const int k) {\r\n\t\tif(dep[u] < k) {\r\n\t\t\treturn -1;\r\n\t\t}\r\n\t\
     \tfor(int i = LOG; --i >= 0;) {\r\n\t\t\tif((k >> i) & 1) {\r\n              \
@@ -48,11 +45,11 @@ data:
     \n    const int LOG;\r\n    std::vector<int> dep, sum;\r\n    const G &g;\r\n\
     \    std::vector<std::vector<int>> table;\r\n    void dfs(const int idx, const\
     \ int par, const int d) {\r\n        table[0][idx] = par;\r\n        dep[idx]\
-    \ = d;\r\n        for(const auto &el: g[idx]) {\r\n            if(el.to != par)\
-    \ {\r\n                sum[el.to] = sum[idx] + el.cost;\r\n                dfs(el.to,\
-    \ idx, d + 1);\r\n            }\r\n        }\r\n    }\r\n    void build() {\r\n\
-    \        dfs(0, -1, 0);\r\n        for(int k = 0; k < LOG - 1; ++k) {\r\n    \
-    \        for(size_t i = 0; i < table[k].size(); ++i) {\r\n                if(table[k][i]\
+    \ = d;\r\n        for(const auto &el: g[idx]) {\r\n            if(el != par) {\r\
+    \n                sum[el] = sum[idx] + el.cost;\r\n                dfs(el, idx,\
+    \ d + 1);\r\n            }\r\n        }\r\n    }\r\n    void build() {\r\n   \
+    \     dfs(0, -1, 0);\r\n        for(int k = 0; k < LOG - 1; ++k) {\r\n       \
+    \     for(size_t i = 0; i < table[k].size(); ++i) {\r\n                if(table[k][i]\
     \ == -1) {\r\n                    table[k + 1][i] = -1;\r\n                }\r\
     \n                else {\r\n                    table[k + 1][i] = table[k][table[k][i]];\r\
     \n                }\r\n            }\r\n        }\r\n    }\r\npublic:\r\n    LowestCommonAncestor(const\
@@ -75,10 +72,9 @@ data:
   isVerificationFile: false
   path: C++/LCA.hpp
   requiredBy: []
-  timestamp: '2024-02-18 22:01:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/lca.test.cpp
+  timestamp: '2024-02-19 05:38:45+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: C++/LCA.hpp
 layout: document
 redirect_from:

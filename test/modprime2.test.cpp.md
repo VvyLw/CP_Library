@@ -1,59 +1,34 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: C++/ModPrime.hpp
-    title: ModPrime
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/117
-    links:
-    - https://yukicoder.me/problems/no/117
-  bundledCode: "#line 1 \"test/modprime2.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/117\"\
-    \n#include <iostream>\n#line 2 \"C++/ModPrime.hpp\"\n#include <array>\n#include\
-    \ <algorithm>\n#ifndef TEMPLATE\ntemplate <class T> inline T sqr(const T x){ return\
-    \ x * x; }\ntemplate <class T> inline T Mod(T x, const T m) {\n    x %= m;\n \
-    \   return x < 0 ? x + m : x;\n}\n#else\nusing namespace zia_qu;\n#endif\ntemplate\
-    \ <int lim> struct ModPrime {\nprivate:\n    const int64_t mod;\n\tstd::array<int64_t,\
-    \ lim> f{}, rf{};\n\tconst int len = std::min(mod, (int64_t) lim);\n    int64_t\
-    \ inv(int64_t x) {\n        int64_t res = 1, k = mod - 2;\n\t\twhile(k) {\n\t\t\
-    \tif(k & 1) {\n\t\t\t\tres = Mod(res * x, mod);\n\t\t\t}\n\t\t\tx = Mod(sqr(x),\
-    \ mod);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn res;\n    }\npublic:\n    ModPrime(const\
-    \ int64_t mod_): mod(mod_) {\n\t\tf[0] = 1;\n\t\tfor(int i = 0; ++i < len;) {\n\
-    \t\t\tf[i] = Mod(f[i - 1] * i, mod);\n\t\t}\n\t\trf[len - 1] = inv(f[len - 1]);\n\
-    \t\tfor(int i = len; --i > 0;) {\n\t\t\trf[i - 1] = Mod(rf[i] * i, mod);\n\t\t\
-    }\n    }\n    int64_t C(const int n, const int k) const {\n\t\tif(k < 0 || n <\
-    \ k) {\n\t\t\treturn 0;\n\t\t}\n\t\tconst int64_t a = f[n], b = rf[n - k], c =\
-    \ rf[k], bc = Mod(b * c, mod);\n\t\treturn Mod(a * bc, mod);\n\t}\n\tint64_t P(const\
-    \ int n, const int k) const {\n\t\tif (k < 0 || n < k) {\n\t\t\treturn 0;\n\t\t\
-    }\n\t\tconst int64_t a = f[n], b = rf[n - k];\n\t\treturn Mod(a * b, mod);\n\t\
-    }\n\tint64_t H(const int n, const int k) const {\n\t\tif (n == 0 && k == 0) {\n\
-    \t\t\treturn 1;\n\t\t}\n\t\treturn C(n + k - 1, k);\n\t}\n};\n/**\n * @brief ModPrime\n\
-    \ */\n#line 4 \"test/modprime2.test.cpp\"\nconstexpr int mod = 1e9 + 7;\nModPrime<(int)\
-    \ 2e7 + 1> mp(mod);\nint main() {\n    std::cin.tie(nullptr) -> sync_with_stdio(false);\n\
-    \    int t;\n    std::cin >> t;\n    while(t--) {\n        char c, tmp;\n    \
-    \    int n, k;\n        std::cin >> c >> tmp >> n >> tmp >> k >> tmp;\n      \
-    \  std::cout << (c == 'C' ? mp.C(n, k) : c == 'P' ? mp.P(n, k) : mp.H(n, k)) <<\
-    \ '\\n';\n    }\n}\n"
+  _verificationStatusIcon: ':x:'
+  attributes: {}
+  bundledCode: "Traceback (most recent call last):\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ModPrime.hpp:\
+    \ line -1: no such header\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/117\"\n#include <iostream>\n\
-    #include \"C++/ModPrime.hpp\"\nconstexpr int mod = 1e9 + 7;\nModPrime<(int) 2e7\
-    \ + 1> mp(mod);\nint main() {\n    std::cin.tie(nullptr) -> sync_with_stdio(false);\n\
+    #include \"ModPrime.hpp\"\nconstexpr int mod = 1e9 + 7;\nModPrime<(int) 2e7 +\
+    \ 1> mp(mod);\nint main() {\n    std::cin.tie(nullptr) -> sync_with_stdio(false);\n\
     \    int t;\n    std::cin >> t;\n    while(t--) {\n        char c, tmp;\n    \
     \    int n, k;\n        std::cin >> c >> tmp >> n >> tmp >> k >> tmp;\n      \
     \  std::cout << (c == 'C' ? mp.C(n, k) : c == 'P' ? mp.P(n, k) : mp.H(n, k)) <<\
     \ '\\n';\n    }\n}"
-  dependsOn:
-  - C++/ModPrime.hpp
+  dependsOn: []
   isVerificationFile: true
   path: test/modprime2.test.cpp
   requiredBy: []
-  timestamp: '2024-02-02 20:57:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/modprime2.test.cpp
 layout: document

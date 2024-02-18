@@ -1,29 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: C++/edge.hpp
     title: C++/edge.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/bermanford.test.cpp
-    title: test/bermanford.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/cycledetector.test.cpp
-    title: test/cycledetector.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/dag_check.test.cpp
-    title: test/dag_check.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/lca.test.cpp
-    title: test/lca.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/warshallfloyd.test.cpp
-    title: test/warshallfloyd.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     document_title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
     links: []
@@ -207,13 +192,8 @@ data:
   path: C++/graph.hpp
   requiredBy: []
   timestamp: '2024-02-17 11:08:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/cycledetector.test.cpp
-  - test/dag_check.test.cpp
-  - test/lca.test.cpp
-  - test/warshallfloyd.test.cpp
-  - test/bermanford.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: C++/graph.hpp
 layout: document
 redirect_from:

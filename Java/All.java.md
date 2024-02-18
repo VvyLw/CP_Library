@@ -2355,7 +2355,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-18 22:01:43+09:00'
+  timestamp: '2024-02-19 05:38:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

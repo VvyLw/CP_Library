@@ -2,28 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: C++/RangeBIT.hpp
     title: C++/RangeBIT.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/ftree.test.cpp
-    title: test/ftree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/fwtree2.test.cpp
-    title: test/fwtree2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/fwtree3.test.cpp
-    title: test/fwtree3.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/inv_num.test.cpp
-    title: test/inv_num.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/parsum.test.cpp
-    title: test/parsum.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     document_title: Binary Indexed Tree
     links:
@@ -100,13 +85,8 @@ data:
   requiredBy:
   - C++/RangeBIT.hpp
   timestamp: '2024-02-16 09:59:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/fwtree2.test.cpp
-  - test/parsum.test.cpp
-  - test/inv_num.test.cpp
-  - test/ftree.test.cpp
-  - test/fwtree3.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: C++/FenwickTree.hpp
 layout: document
 redirect_from:

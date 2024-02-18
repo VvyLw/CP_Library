@@ -2,16 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/s_rmq.test.cpp
-    title: test/s_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/stable.test.cpp
-    title: test/stable.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     document_title: Sparse Table
     links:
@@ -69,10 +63,8 @@ data:
   path: C++/SparseTable.hpp
   requiredBy: []
   timestamp: '2024-01-30 14:40:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/stable.test.cpp
-  - test/s_rmq.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: C++/SparseTable.hpp
 layout: document
 redirect_from:

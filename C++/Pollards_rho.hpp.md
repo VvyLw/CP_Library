@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/pf.test.cpp
-    title: test/pf.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/Pollards_rho.md
     document_title: Pollard's rho
@@ -76,9 +73,8 @@ data:
   path: C++/Pollards_rho.hpp
   requiredBy: []
   timestamp: '2024-01-30 14:40:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/pf.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: C++/Pollards_rho.hpp
 layout: document
 redirect_from:

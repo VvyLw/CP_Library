@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/dualsegtree.test.cpp
-    title: test/dualsegtree.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     document_title: "\u53CC\u5BFE\u30BB\u30B0\u6728"
     links:
@@ -57,9 +54,8 @@ data:
   path: C++/DualSegmentTree.hpp
   requiredBy: []
   timestamp: '2024-02-16 10:50:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/dualsegtree.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: C++/DualSegmentTree.hpp
 layout: document
 redirect_from:

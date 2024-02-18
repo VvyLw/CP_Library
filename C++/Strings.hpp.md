@@ -2,25 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/lcpa.test.cpp
-    title: test/lcpa.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/manacher.test.cpp
-    title: test/manacher.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/rh.test.cpp
-    title: test/rh.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/sa.test.cpp
-    title: test/sa.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/zalgo.test.cpp
-    title: test/zalgo.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     document_title: "\u6587\u5B57\u5217\u30E9\u30A4\u30D6\u30E9\u30EA"
     links:
@@ -255,13 +240,8 @@ data:
   path: C++/Strings.hpp
   requiredBy: []
   timestamp: '2024-01-30 14:40:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/manacher.test.cpp
-  - test/sa.test.cpp
-  - test/zalgo.test.cpp
-  - test/rh.test.cpp
-  - test/lcpa.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: C++/Strings.hpp
 layout: document
 redirect_from:

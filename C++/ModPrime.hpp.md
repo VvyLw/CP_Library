@@ -2,16 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/modprime.test.cpp
-    title: test/modprime.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/modprime2.test.cpp
-    title: test/modprime2.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     document_title: ModPrime
     links: []
@@ -59,10 +53,8 @@ data:
   path: C++/ModPrime.hpp
   requiredBy: []
   timestamp: '2024-02-02 20:57:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/modprime.test.cpp
-  - test/modprime2.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: C++/ModPrime.hpp
 layout: document
 redirect_from:

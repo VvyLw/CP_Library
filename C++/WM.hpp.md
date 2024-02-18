@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/WM.test.cpp
-    title: test/WM.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/WM.md
     document_title: Wavelet Matrix
@@ -161,9 +158,8 @@ data:
   path: C++/WM.hpp
   requiredBy: []
   timestamp: '2024-01-30 15:02:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/WM.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: C++/WM.hpp
 layout: document
 redirect_from:

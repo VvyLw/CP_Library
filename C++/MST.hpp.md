@@ -1,26 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: C++/UnionFind.hpp
     title: UnionFind
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: C++/edge.hpp
     title: C++/edge.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/directed.test.cpp
-    title: test/directed.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/kruskal.test.cpp
-    title: test/kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/manhattan.test.cpp
-    title: test/manhattan.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     document_title: "\u6700\u5C0F\u5168\u57DF\u6728"
     links: []
@@ -60,8 +51,8 @@ data:
     \ int n) {\n    std::sort(edges.begin(), edges.end(), [&](const edge &e, const\
     \ edge &f){ return e.cost < f.cost; });\n    UnionFind uf(n);\n    std::vector<edge>\
     \ e;\n    long long res = 0;\n    for(const auto &ed: edges) {\n        if(uf.unite(ed.src,\
-    \ ed.to)) {\n            e.emplace_back(ed);\n            res += ed.cost;\n  \
-    \      }\n    }\n    return MST{e, res};\n}\ntemplate<bool is_min = true> struct\
+    \ ed)) {\n            e.emplace_back(ed);\n            res += ed.cost;\n     \
+    \   }\n    }\n    return MST{e, res};\n}\ntemplate<bool is_min = true> struct\
     \ SkewHeap {\n    struct Node {\n        long long key, lazy;\n        Node *l,\
     \ *r;\n        int idx;\n        explicit Node(const long long &key, const int\
     \ idx): key(key), idx(idx), lazy(0), l(nullptr), r(nullptr){}\n    };\nprivate:\n\
@@ -85,23 +76,23 @@ data:
     \    int x = 0;\n    std::vector<int> par(2 * n, -1), vis(par), link(par), st;\n\
     \    using Node = typename SkewHeap<>::Node;\n    SkewHeap heap;\n    std::vector<Node*>\
     \ ins(2 * n, nullptr);\n    for(size_t i = 0; i < edges.size(); ++i) {\n     \
-    \   const auto &e = edges[i];\n        ins[e.to] = heap.push(ins[e.to], e.cost,\
-    \ i);\n    }\n    const auto go = [&](int z) -> int {\n        z = edges[ins[z]\
-    \ -> idx].src;\n        while(link[z] != -1) {\n            st.emplace_back(z);\n\
-    \            z = link[z];\n        }\n        for(const auto &p : st) {\n    \
-    \        link[p] = z;\n        }\n        st.clear();\n        return z;\n   \
-    \ };\n    for(int i = n; ins[x]; ++i) {\n        while(vis[x] == -1) {\n     \
-    \       vis[x] = 0;\n            x = go(x);\n        }\n        while(x != i)\
-    \ {\n            const auto w = ins[x] -> key;\n            auto z = heap.pop(ins[x]);\n\
-    \            z = heap.add(z, -w);\n            ins[i] = heap.meld(ins[i], z);\n\
-    \            par[x] = i;\n            link[x] = i;\n            x = go(x);\n \
-    \       }\n        while(ins[x] && go(x) == x) {\n            ins[x] = heap.pop(ins[x]);\n\
+    \   const auto &e = edges[i];\n        ins[e] = heap.push(ins[e], e.cost, i);\n\
+    \    }\n    const auto go = [&](int z) -> int {\n        z = edges[ins[z] -> idx].src;\n\
+    \        while(link[z] != -1) {\n            st.emplace_back(z);\n           \
+    \ z = link[z];\n        }\n        for(const auto &p : st) {\n            link[p]\
+    \ = z;\n        }\n        st.clear();\n        return z;\n    };\n    for(int\
+    \ i = n; ins[x]; ++i) {\n        while(vis[x] == -1) {\n            vis[x] = 0;\n\
+    \            x = go(x);\n        }\n        while(x != i) {\n            const\
+    \ auto w = ins[x] -> key;\n            auto z = heap.pop(ins[x]);\n          \
+    \  z = heap.add(z, -w);\n            ins[i] = heap.meld(ins[i], z);\n        \
+    \    par[x] = i;\n            link[x] = i;\n            x = go(x);\n        }\n\
+    \        while(ins[x] && go(x) == x) {\n            ins[x] = heap.pop(ins[x]);\n\
     \        }\n    }\n    for(int i = v; i != -1; i = par[i]) {\n\t\tvis[i] = 1;\n\
     \t}\n    long long cost = 0;\n    std::vector<edge> e;\n    for(int i = x; i >=\
     \ 0; i--) {\n\t\tif(vis[i] == 1) {\n\t\t\tcontinue;\n\t\t}\n        cost += edges[ins[i]\
     \ -> idx].cost;\n        e.emplace_back(edges[ins[i] -> idx]);\n        for(int\
-    \ j = edges[ins[i] -> idx].to; j != -1 && vis[j] == 0; j = par[j]) {\n       \
-    \     vis[j] = 1;\n        }\n    }\n    return MST{e, cost};\n}\ntemplate <class\
+    \ j = edges[ins[i] -> idx]; j != -1 && vis[j] == 0; j = par[j]) {\n          \
+    \  vis[j] = 1;\n        }\n    }\n    return MST{e, cost};\n}\ntemplate <class\
     \ T> inline std::vector<edge> manhattan(std::vector<T> x, std::vector<T> y) {\n\
     \    assert(x.size() == y.size());\n    std::vector<edge> res;\n    std::vector<int>\
     \ id(x.size());\n    std::iota(id.begin(), id.end(), 0);\n    for(int s = 0; s\
@@ -123,8 +114,8 @@ data:
     \    std::sort(edges.begin(), edges.end(), [&](const edge &e, const edge &f){\
     \ return e.cost < f.cost; });\n    UnionFind uf(n);\n    std::vector<edge> e;\n\
     \    long long res = 0;\n    for(const auto &ed: edges) {\n        if(uf.unite(ed.src,\
-    \ ed.to)) {\n            e.emplace_back(ed);\n            res += ed.cost;\n  \
-    \      }\n    }\n    return MST{e, res};\n}\ntemplate<bool is_min = true> struct\
+    \ ed)) {\n            e.emplace_back(ed);\n            res += ed.cost;\n     \
+    \   }\n    }\n    return MST{e, res};\n}\ntemplate<bool is_min = true> struct\
     \ SkewHeap {\n    struct Node {\n        long long key, lazy;\n        Node *l,\
     \ *r;\n        int idx;\n        explicit Node(const long long &key, const int\
     \ idx): key(key), idx(idx), lazy(0), l(nullptr), r(nullptr){}\n    };\nprivate:\n\
@@ -148,23 +139,23 @@ data:
     \    int x = 0;\n    std::vector<int> par(2 * n, -1), vis(par), link(par), st;\n\
     \    using Node = typename SkewHeap<>::Node;\n    SkewHeap heap;\n    std::vector<Node*>\
     \ ins(2 * n, nullptr);\n    for(size_t i = 0; i < edges.size(); ++i) {\n     \
-    \   const auto &e = edges[i];\n        ins[e.to] = heap.push(ins[e.to], e.cost,\
-    \ i);\n    }\n    const auto go = [&](int z) -> int {\n        z = edges[ins[z]\
-    \ -> idx].src;\n        while(link[z] != -1) {\n            st.emplace_back(z);\n\
-    \            z = link[z];\n        }\n        for(const auto &p : st) {\n    \
-    \        link[p] = z;\n        }\n        st.clear();\n        return z;\n   \
-    \ };\n    for(int i = n; ins[x]; ++i) {\n        while(vis[x] == -1) {\n     \
-    \       vis[x] = 0;\n            x = go(x);\n        }\n        while(x != i)\
-    \ {\n            const auto w = ins[x] -> key;\n            auto z = heap.pop(ins[x]);\n\
-    \            z = heap.add(z, -w);\n            ins[i] = heap.meld(ins[i], z);\n\
-    \            par[x] = i;\n            link[x] = i;\n            x = go(x);\n \
-    \       }\n        while(ins[x] && go(x) == x) {\n            ins[x] = heap.pop(ins[x]);\n\
+    \   const auto &e = edges[i];\n        ins[e] = heap.push(ins[e], e.cost, i);\n\
+    \    }\n    const auto go = [&](int z) -> int {\n        z = edges[ins[z] -> idx].src;\n\
+    \        while(link[z] != -1) {\n            st.emplace_back(z);\n           \
+    \ z = link[z];\n        }\n        for(const auto &p : st) {\n            link[p]\
+    \ = z;\n        }\n        st.clear();\n        return z;\n    };\n    for(int\
+    \ i = n; ins[x]; ++i) {\n        while(vis[x] == -1) {\n            vis[x] = 0;\n\
+    \            x = go(x);\n        }\n        while(x != i) {\n            const\
+    \ auto w = ins[x] -> key;\n            auto z = heap.pop(ins[x]);\n          \
+    \  z = heap.add(z, -w);\n            ins[i] = heap.meld(ins[i], z);\n        \
+    \    par[x] = i;\n            link[x] = i;\n            x = go(x);\n        }\n\
+    \        while(ins[x] && go(x) == x) {\n            ins[x] = heap.pop(ins[x]);\n\
     \        }\n    }\n    for(int i = v; i != -1; i = par[i]) {\n\t\tvis[i] = 1;\n\
     \t}\n    long long cost = 0;\n    std::vector<edge> e;\n    for(int i = x; i >=\
     \ 0; i--) {\n\t\tif(vis[i] == 1) {\n\t\t\tcontinue;\n\t\t}\n        cost += edges[ins[i]\
     \ -> idx].cost;\n        e.emplace_back(edges[ins[i] -> idx]);\n        for(int\
-    \ j = edges[ins[i] -> idx].to; j != -1 && vis[j] == 0; j = par[j]) {\n       \
-    \     vis[j] = 1;\n        }\n    }\n    return MST{e, cost};\n}\ntemplate <class\
+    \ j = edges[ins[i] -> idx]; j != -1 && vis[j] == 0; j = par[j]) {\n          \
+    \  vis[j] = 1;\n        }\n    }\n    return MST{e, cost};\n}\ntemplate <class\
     \ T> inline std::vector<edge> manhattan(std::vector<T> x, std::vector<T> y) {\n\
     \    assert(x.size() == y.size());\n    std::vector<edge> res;\n    std::vector<int>\
     \ id(x.size());\n    std::iota(id.begin(), id.end(), 0);\n    for(int s = 0; s\
@@ -185,12 +176,9 @@ data:
   isVerificationFile: false
   path: C++/MST.hpp
   requiredBy: []
-  timestamp: '2024-02-17 20:29:05+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/manhattan.test.cpp
-  - test/kruskal.test.cpp
-  - test/directed.test.cpp
+  timestamp: '2024-02-19 05:38:45+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: C++/MST.hpp
 layout: document
 redirect_from:

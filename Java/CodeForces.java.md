@@ -531,29 +531,30 @@ data:
     \ {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String yes(final\
     \ boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String\
     \ no(final boolean ok){ return yes(!ok); }\n\tprotected static final long sqr(final\
-    \ long x){ return x * x; }\n\tprotected static final long mod(long n, final long\
-    \ m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\tprotected static final\
-    \ long ceil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1;\
-    \ }\n\tprotected static final double round(final double a, final long b, final\
-    \ int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn rint((a * d) / b) / d;\n\
-    \t}\n\tprotected static final long pow(long a, int b) {\n\t\tlong res = 1;\n\t\
-    \twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta\
-    \ *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
-    \ long pow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0)\
-    \ {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\
-    \t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\tprotected static final long lcm(final long a, final long b){ return\
-    \ a * b / gcd(a, b); }\n\tprotected static final long lcm(final int... a){ return\
-    \ Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
-    \ static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x,\
-    \ y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final long\
-    \ b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
-    \ int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\
-    \tprotected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0,\
-    \ (x, y) -> gcd(x, y)); }\n\tprotected static final int min(final int... a){ return\
-    \ Arrays.stream(a).min().getAsInt(); }\n\tprotected static final long min(final\
-    \ long... a){ return Arrays.stream(a).min().getAsLong(); }\n\tprotected static\
-    \ final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
+    \ long x){ return x * x; }\n\tprotected static final int mod(long n, final int\
+    \ m) {\n\t\tn %= m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\tprotected static\
+    \ final long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n +\
+    \ m : n;\n\t}\n\tprotected static final long ceil(final long a, final long b){\
+    \ return a == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final double round(final\
+    \ double a, final long b, final int c) {\n\t\tfinal long d = pow(10, c);\n\t\t\
+    return rint((a * d) / b) / d;\n\t}\n\tprotected static final long pow(long a,\
+    \ int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\
+    \t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\tprotected static final long pow(long a, long b, final long m) {\n\t\tlong\
+    \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
+    \t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb\
+    \ >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long lcm(final\
+    \ long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static final\
+    \ long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x,\
+    \ y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){ return\
+    \ Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static final\
+    \ long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }\n\t\
+    protected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
+    \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
+    \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
+    \ final int min(final int... a){ return Arrays.stream(a).min().getAsInt(); }\n\
+    \tprotected static final long min(final long... a){ return Arrays.stream(a).min().getAsLong();\
+    \ }\n\tprotected static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
     \ }\n\tprotected static final int max(final int... a){ return Arrays.stream(a).max().getAsInt();\
     \ }\n\tprotected static final long max(final long... a){ return Arrays.stream(a).max().getAsLong();\
     \ }\n\tprotected static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble();\
@@ -567,17 +568,17 @@ data:
     \ }\n\tprotected static final double ave(final int... a){ return Arrays.stream(a).average().getAsDouble();\
     \ }\n\tprotected static final double ave(final long... a){ return Arrays.stream(a).average().getAsDouble();\
     \ }\n\tprotected static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble();\
-    \ }\n\tprotected static final double median(final int[] a) {\n\t\tassert(isSorted(a));\n\
+    \ }\n\tprotected static final double median(final int[] a) {\n\t\tassert isSorted(a);\n\
     \t\tfinal int m = a.length / 2;\n\t\treturn a.length % 2 != 0 ? a[m] : (a[m -\
     \ 1] + a[m]) / 2.0;\n\t}\n\tprotected static final double median(final long[]\
-    \ a) {\n\t\tassert(isSorted(a));\n\t\tfinal int m = a.length / 2;\n\t\treturn\
-    \ a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;\n\t}\n\tprotected static\
-    \ final double median(final double[] a) {\n\t\tassert(isSorted(a));\n\t\tfinal\
-    \ int m = a.length / 2;\n\t\treturn a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m])\
-    \ / 2;\n\t}\n\tprotected static final long[] div(final long n) {\n\t\tfinal ArrayList<Long>\
-    \ d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n %\
-    \ i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n /\
-    \ i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn d.stream().mapToLong(i -> i).sorted().toArray();\n\
+    \ a) {\n\t\tassert isSorted(a);\n\t\tfinal int m = a.length / 2;\n\t\treturn a.length\
+    \ % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;\n\t}\n\tprotected static final double\
+    \ median(final double[] a) {\n\t\tassert isSorted(a);\n\t\tfinal int m = a.length\
+    \ / 2;\n\t\treturn a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2;\n\t}\n\t\
+    protected static final long[] div(final long n) {\n\t\tfinal ArrayList<Long> d\
+    \ = new ArrayList<>();\n\t\tfor(long i = 1; i * i <= n; ++i) {\n\t\t\tif(n % i\
+    \ == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n) {\n\t\t\t\t\td.add(n / i);\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn d.stream().mapToLong(i -> i).sorted().toArray();\n\
     \t}\n\tprotected static final IntPair[] primeFactor(long n) {\n\t\tfinal ArrayList<IntPair>\
     \ pf = new ArrayList<>();\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n\
     \ % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tint cnt = 0;\n\t\t\twhile(n %\
@@ -1381,7 +1382,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-18 22:01:43+09:00'
+  timestamp: '2024-02-19 05:38:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java

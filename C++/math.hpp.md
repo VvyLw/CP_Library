@@ -2,25 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/kthrooti.test.cpp
-    title: test/kthrooti.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/pcounter.test.cpp
-    title: test/pcounter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/phi.test.cpp
-    title: test/phi.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/phi_table.test.cpp
-    title: test/phi_table.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/tetration.test.cpp
-    title: test/tetration.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"C++/math.hpp\"\n\r\n#include <vector>\r\n#include <cmath>\r\
@@ -228,13 +213,8 @@ data:
   path: C++/math.hpp
   requiredBy: []
   timestamp: '2023-12-16 20:41:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/kthrooti.test.cpp
-  - test/pcounter.test.cpp
-  - test/tetration.test.cpp
-  - test/phi.test.cpp
-  - test/phi_table.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: C++/math.hpp
 layout: document
 redirect_from:
