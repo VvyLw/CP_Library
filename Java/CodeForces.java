@@ -50,6 +50,10 @@ class Utility {
 	protected static final String yes(final boolean ok){ return ok ? "Yes" : "No"; }
 	protected static final String no(final boolean ok){ return yes(!ok); }
 	protected static final long sqr(final long x){ return x * x; }
+	protected static final int mod(long n, final int m) {
+		n %= m;
+		return (int) (n < 0 ? n + m : n);
+	}
 	protected static final long mod(long n, final long m) {
 		n %= m;
 		return n < 0 ? n + m : n;
@@ -105,17 +109,17 @@ class Utility {
 	protected static final double ave(final long... a){ return Arrays.stream(a).average().getAsDouble(); }
 	protected static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble(); }
 	protected static final double median(final int[] a) {
-		assert(isSorted(a));
+		assert isSorted(a);
 		final int m = a.length / 2;
 		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;
 	}
 	protected static final double median(final long[] a) {
-		assert(isSorted(a));
+		assert isSorted(a);
 		final int m = a.length / 2;
 		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;
 	}
 	protected static final double median(final double[] a) {
-		assert(isSorted(a));
+		assert isSorted(a);
 		final int m = a.length / 2;
 		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2;
 	}
