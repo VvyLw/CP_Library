@@ -1,5 +1,7 @@
 #pragma once
 
+#pragma GCC diagnostic ignored "-Wreorder"
+
 #include <vector>
 template <class G> struct LowestCommonAncestor {
 private:

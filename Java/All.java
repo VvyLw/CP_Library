@@ -3643,7 +3643,9 @@ final class FenwickTree {
 		IntStream.range(0, a.length).forEach(i -> add(i, a[i]));
 	}
 	final long sum(int k) {
-		if(k < 0) return 0;
+		if(k < 0) {
+			return 0;
+		}
 		long ret = 0;
 		for(++k; k > 0; k -= k & -k) {
 			ret += data[k];

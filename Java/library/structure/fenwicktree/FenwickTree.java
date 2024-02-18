@@ -38,7 +38,9 @@ public final class FenwickTree {
 	 * @return 閉区間[0, k]の和
 	 */
 	public final long sum(int k) {
-		if(k < 0) return 0;
+		if(k < 0) {
+			return 0;
+		}
 		long ret = 0;
 		for(++k; k > 0; k -= k & -k) {
 			ret += data[k];
