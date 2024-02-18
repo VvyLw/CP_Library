@@ -19,7 +19,7 @@ inline MST kruskal(std::vector<edge> edges, const int n) {
     std::vector<edge> e;
     long long res = 0;
     for(const auto &ed: edges) {
-        if(uf.unite(ed.src, ed.to)) {
+        if(uf.unite(ed.src, ed)) {
             e.emplace_back(ed);
             res += ed.cost;
         }
@@ -90,7 +90,7 @@ inline MST directed(std::vector<edge> edges, const int n, const int v) {
     std::vector<Node*> ins(2 * n, nullptr);
     for(size_t i = 0; i < edges.size(); ++i) {
         const auto &e = edges[i];
-        ins[e.to] = heap.push(ins[e.to], e.cost, i);
+        ins[e] = heap.push(ins[e], e.cost, i);
     }
     const auto go = [&](int z) -> int {
         z = edges[ins[z] -> idx].src;
@@ -133,7 +133,7 @@ inline MST directed(std::vector<edge> edges, const int n, const int v) {
 		}
         cost += edges[ins[i] -> idx].cost;
         e.emplace_back(edges[ins[i] -> idx]);
-        for(int j = edges[ins[i] -> idx].to; j != -1 && vis[j] == 0; j = par[j]) {
+        for(int j = edges[ins[i] -> idx]; j != -1 && vis[j] == 0; j = par[j]) {
             vis[j] = 1;
         }
     }

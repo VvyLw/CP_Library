@@ -13,9 +13,9 @@ private:
         table[0][idx] = par;
         dep[idx] = d;
         for(const auto &el: g[idx]) {
-            if(el.to != par) {
-                sum[el.to] = sum[idx] + el.cost;
-                dfs(el.to, idx, d + 1);
+            if(el != par) {
+                sum[el] = sum[idx] + el.cost;
+                dfs(el, idx, d + 1);
             }
         }
     }
