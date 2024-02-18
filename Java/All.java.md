@@ -1875,47 +1875,48 @@ data:
     \ int[] a) {\n\t\tthis(a.length);\n\t\tIntStream.range(0, a.length).forEach(i\
     \ -> add(i, a[i]));\n\t}\n\tFenwickTree(final long[] a) {\n\t\tthis(a.length);\n\
     \t\tIntStream.range(0, a.length).forEach(i -> add(i, a[i]));\n\t}\n\tfinal long\
-    \ sum(int k) {\n\t\tif(k < 0) return 0;\n\t\tlong ret = 0;\n\t\tfor(++k; k > 0;\
-    \ k -= k & -k) {\n\t\t\tret += data[k];\n\t\t}\n\t\treturn ret;\n\t}\n\tfinal\
-    \ long sum(final int l, final int r){ return sum(r) - sum(l - 1); }\n\tfinal long\
-    \ get(final int k){ return sum(k) - sum(k - 1); }\n\tfinal void add(int k, final\
-    \ long x) {\n\t\tfor(++k; k < n; k += k & -k) {\n\t\t\tdata[k] += x;\n\t\t}\n\t\
-    }\n\tfinal void add(final int l, final int r, final long x) {\n\t\tadd(l, x);\n\
-    \t\tadd(r + 1, -x);\n\t}\n\tprivate final int lg(final int n){ return 31 - Integer.numberOfLeadingZeros(n);\
-    \ }\n\tfinal int lowerBound(long w) {\n\t\tif(w <= 0) {\n\t\t\treturn 0;\n\t\t\
-    }\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x +\
-    \ k <= n - 1 && data[x + k] < w) {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\
-    \t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\tfinal int upperBound(long w) {\n\t\tif(w\
-    \ < 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n);\
-    \ k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <= w) {\n\t\t\t\t\
-    w -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\t@Override\n\
-    \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
-    \t\tsb.append(sum(0));\n\t\tfor(int i = 0; ++i < n - 2;) {\n\t\t\tsb.append(\"\
-    \ \" + sum(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}\nfinal class RangeBIT\
-    \ {\n\tprivate final int n;\n\tprivate final FenwickTree a, b;\n\tRangeBIT(final\
-    \ int n) {\n\t\tthis.n = n;\n\t\ta = new FenwickTree(n + 1);\n\t\tb = new FenwickTree(n\
-    \ + 1);\n\t}\n\tRangeBIT(final int[] arr) {\n\t\tthis(arr.length);\n\t\tfor(int\
-    \ i = 0; i < arr.length; ++i) {\n\t\t\tadd(i, i, arr[i]);\n\t\t}\n\t}\n\tRangeBIT(final\
-    \ long[] arr) {\n\t\tthis(arr.length);\n\t\tfor(int i = 0; i < arr.length; ++i)\
-    \ {\n\t\t\tadd(i, i, arr[i]);\n\t\t}\n\t}\n\tfinal void add(final int l, final\
-    \ int r, final long x) {\n\t\ta.add(l, x);\n\t\ta.add(r, -x);\n\t\tb.add(l, x\
-    \ * (1 - l));\n\t\tb.add(r, x * (r - 1));\n\t}\n\tfinal long get(final int i){\
-    \ return sum(i, i + 1); }\n\tfinal long sum(int l, int r) {\n\t\tl--;\n\t\tr--;\n\
-    \t\treturn a.sum(r) * r + b.sum(r) - a.sum(l) * l - b.sum(l);\n\t}\n\t@Override\n\
-    \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
-    \t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\" \"\
-    \ + get(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nfinal class SegmentTree<T>\
-    \ {\n\tprivate int n = 1, rank = 0;\n\tprivate final int fini;\n\tprivate final\
-    \ BinaryOperator<T> op;\n\tprivate final T e;\n\tprivate final Object[] dat;\n\
-    \tSegmentTree(final int fini, final BinaryOperator<T> op, final T e) {\n\t\tthis.fini\
-    \ = fini;\n\t\tthis.op = op;\n\t\tthis.e = e;\n\t\twhile(this.fini > n) {\n\t\t\
-    \tn <<= 1;\n\t\t\trank++;\n\t\t}\n\t\tdat = new Object[2 * n];\n\t\tArrays.fill(dat,\
-    \ e);\n\t}\n\tSegmentTree(final T[] a, final BinaryOperator<T> op, final T e)\
-    \ {\n\t\tthis(a.length, op, e);\n\t\tIntStream.range(0, a.length).forEach(i ->\
-    \ update(i, a[i]));\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal void update(int\
-    \ i, final T x) {\n\t\ti += n;\n\t\tdat[i] = x;\n\t\tdo {\n\t\t\ti >>= 1;\n\t\t\
-    \tdat[i] = op.apply((T) dat[2 * i], (T) dat[2 * i + 1]);\n\t\t} while(i > 0);\n\
-    \t}\n\tfinal T get(final int i){ return query(i, i + 1); }\n\t@SuppressWarnings(\"\
+    \ sum(int k) {\n\t\tif(k < 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong ret = 0;\n\t\
+    \tfor(++k; k > 0; k -= k & -k) {\n\t\t\tret += data[k];\n\t\t}\n\t\treturn ret;\n\
+    \t}\n\tfinal long sum(final int l, final int r){ return sum(r) - sum(l - 1); }\n\
+    \tfinal long get(final int k){ return sum(k) - sum(k - 1); }\n\tfinal void add(int\
+    \ k, final long x) {\n\t\tfor(++k; k < n; k += k & -k) {\n\t\t\tdata[k] += x;\n\
+    \t\t}\n\t}\n\tfinal void add(final int l, final int r, final long x) {\n\t\tadd(l,\
+    \ x);\n\t\tadd(r + 1, -x);\n\t}\n\tprivate final int lg(final int n){ return 31\
+    \ - Integer.numberOfLeadingZeros(n); }\n\tfinal int lowerBound(long w) {\n\t\t\
+    if(w <= 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n);\
+    \ k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] < w) {\n\t\t\t\tw\
+    \ -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\tfinal\
+    \ int upperBound(long w) {\n\t\tif(w < 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x\
+    \ = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1\
+    \ && data[x + k] <= w) {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\
+    \t\t}\n\t\treturn x;\n\t}\n\t@Override\n\tpublic final String toString() {\n\t\
+    \tfinal StringBuilder sb = new StringBuilder();\n\t\tsb.append(sum(0));\n\t\t\
+    for(int i = 0; ++i < n - 2;) {\n\t\t\tsb.append(\" \" + sum(i));\n\t\t}\n\t\t\
+    return sb.toString();\n\t}\n}\nfinal class RangeBIT {\n\tprivate final int n;\n\
+    \tprivate final FenwickTree a, b;\n\tRangeBIT(final int n) {\n\t\tthis.n = n;\n\
+    \t\ta = new FenwickTree(n + 1);\n\t\tb = new FenwickTree(n + 1);\n\t}\n\tRangeBIT(final\
+    \ int[] arr) {\n\t\tthis(arr.length);\n\t\tfor(int i = 0; i < arr.length; ++i)\
+    \ {\n\t\t\tadd(i, i, arr[i]);\n\t\t}\n\t}\n\tRangeBIT(final long[] arr) {\n\t\t\
+    this(arr.length);\n\t\tfor(int i = 0; i < arr.length; ++i) {\n\t\t\tadd(i, i,\
+    \ arr[i]);\n\t\t}\n\t}\n\tfinal void add(final int l, final int r, final long\
+    \ x) {\n\t\ta.add(l, x);\n\t\ta.add(r, -x);\n\t\tb.add(l, x * (1 - l));\n\t\t\
+    b.add(r, x * (r - 1));\n\t}\n\tfinal long get(final int i){ return sum(i, i +\
+    \ 1); }\n\tfinal long sum(int l, int r) {\n\t\tl--;\n\t\tr--;\n\t\treturn a.sum(r)\
+    \ * r + b.sum(r) - a.sum(l) * l - b.sum(l);\n\t}\n\t@Override\n\tpublic final\
+    \ String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\t\
+    sb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\" \" + get(i));\n\
+    \t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nfinal class SegmentTree<T> {\n\tprivate\
+    \ int n = 1, rank = 0;\n\tprivate final int fini;\n\tprivate final BinaryOperator<T>\
+    \ op;\n\tprivate final T e;\n\tprivate final Object[] dat;\n\tSegmentTree(final\
+    \ int fini, final BinaryOperator<T> op, final T e) {\n\t\tthis.fini = fini;\n\t\
+    \tthis.op = op;\n\t\tthis.e = e;\n\t\twhile(this.fini > n) {\n\t\t\tn <<= 1;\n\
+    \t\t\trank++;\n\t\t}\n\t\tdat = new Object[2 * n];\n\t\tArrays.fill(dat, e);\n\
+    \t}\n\tSegmentTree(final T[] a, final BinaryOperator<T> op, final T e) {\n\t\t\
+    this(a.length, op, e);\n\t\tIntStream.range(0, a.length).forEach(i -> update(i,\
+    \ a[i]));\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal void update(int i,\
+    \ final T x) {\n\t\ti += n;\n\t\tdat[i] = x;\n\t\tdo {\n\t\t\ti >>= 1;\n\t\t\t\
+    dat[i] = op.apply((T) dat[2 * i], (T) dat[2 * i + 1]);\n\t\t} while(i > 0);\n\t\
+    }\n\tfinal T get(final int i){ return query(i, i + 1); }\n\t@SuppressWarnings(\"\
     unchecked\")\n\tfinal T query(int a, int b) {\n\t\tT l = e, r = e;\n\t\tfor(a\
     \ += n, b += n; a < b; a >>= 1, b >>= 1) {\n\t\t\tif(a % 2 == 1) {\n\t\t\t\tl\
     \ = op.apply(l, (T) dat[a++]);\n\t\t\t}\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tr = op.apply((T)\
@@ -2354,7 +2355,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-17 10:49:04+09:00'
+  timestamp: '2024-02-18 22:01:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
