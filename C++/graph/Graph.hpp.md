@@ -60,8 +60,8 @@ data:
     \n        for(int i = 0; i < n; ++i) {\r\n\t\t\tif(used[i] == 0 && dfs(dfs, i))\
     \ {\r\n\t\t\t\tstd::reverse(cycle.begin(), cycle.end());\r\n\t\t\t\treturn cycle;\r\
     \n\t\t\t}\r\n\t\t}\r\n\t\treturn {};\r\n    }\r\n};\r\ntypedef std::vector<edge>\
-    \ ve;\r\ntypedef std::vector<ve> we;\r\n/**\r\n * @brief \u30B0\u30E9\u30D5\u30E9\
-    \u30A4\u30D6\u30E9\u30EA\r\n */"
+    \ ve;\r\ntypedef std::vector<ve> we;\r\n\r\n/**\r\n * @brief \u30B0\u30E9\u30D5\
+    \u30E9\u30A4\u30D6\u30E9\u30EA\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/graph/Graph.hpp

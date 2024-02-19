@@ -7,6 +7,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: "Kruskal\u6CD5"
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
@@ -23,7 +24,7 @@ data:
     \ const edge &f){ return e.cost < f.cost; });\n    UnionFind uf(n);\n    std::vector<edge>\
     \ e;\n    long long res = 0;\n    for(const auto &ed: edges) {\n        if(uf.unite(ed.src,\
     \ ed)) {\n            e.emplace_back(ed);\n            res += ed.cost;\n     \
-    \   }\n    }\n    return MST{e, res};\n}"
+    \   }\n    }\n    return MST{e, res};\n}\n\n/**\n * @brief Kruskal\u6CD5\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/graph/mst/kruskal.hpp
@@ -36,5 +37,5 @@ layout: document
 redirect_from:
 - /library/C++/graph/mst/kruskal.hpp
 - /library/C++/graph/mst/kruskal.hpp.html
-title: C++/graph/mst/kruskal.hpp
+title: "Kruskal\u6CD5"
 ---

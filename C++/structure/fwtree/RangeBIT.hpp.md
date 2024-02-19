@@ -7,6 +7,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: Range BIT
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
@@ -26,7 +27,7 @@ data:
     \ x * (1 - l));\n        b.add(r, x * (r - 1));\n    }\n    inline T operator[](const\
     \ int i) const { return sum(i, i + 1); }\n    inline T sum(int l, int r) {\n \
     \       l--, r--;\n        return a.sum(r) * r + b.sum(r) - a.sum(l) * l - b.sum(l);\n\
-    \    }\n};"
+    \    }\n};\n\n/**\n * @brief Range BIT\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/structure/fwtree/RangeBIT.hpp
@@ -39,5 +40,5 @@ layout: document
 redirect_from:
 - /library/C++/structure/fwtree/RangeBIT.hpp
 - /library/C++/structure/fwtree/RangeBIT.hpp.html
-title: C++/structure/fwtree/RangeBIT.hpp
+title: Range BIT
 ---

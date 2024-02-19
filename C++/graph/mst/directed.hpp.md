@@ -7,7 +7,9 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
+    document_title: Directed MST
+    links:
+    - https://ei1333.github.io/library/graph/mst/directed-mst.hpp
   bundledCode: "Traceback (most recent call last):\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
@@ -40,7 +42,8 @@ data:
     \t\t}\n        cost += edges[ins[i] -> idx].cost;\n        e.emplace_back(edges[ins[i]\
     \ -> idx]);\n        for(int j = edges[ins[i] -> idx]; j != -1 && vis[j] == 0;\
     \ j = par[j]) {\n            vis[j] = 1;\n        }\n    }\n    return MST{e,\
-    \ cost};\n}"
+    \ cost};\n}\n\n/**\n * @brief Directed MST\n * @see https://ei1333.github.io/library/graph/mst/directed-mst.hpp\n\
+    \ */"
   dependsOn: []
   isVerificationFile: false
   path: C++/graph/mst/directed.hpp
@@ -53,5 +56,5 @@ layout: document
 redirect_from:
 - /library/C++/graph/mst/directed.hpp
 - /library/C++/graph/mst/directed.hpp.html
-title: C++/graph/mst/directed.hpp
+title: Directed MST
 ---

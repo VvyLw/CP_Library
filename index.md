@@ -31,10 +31,10 @@ data:
       title: "\u6700\u5C0F\u5171\u901A\u7956\u5148"
     - icon: ':warning:'
       path: C++/graph/WeightedGraph.hpp
-      title: C++/graph/WeightedGraph.hpp
+      title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
     - icon: ':warning:'
       path: C++/graph/edge.hpp
-      title: C++/graph/edge.hpp
+      title: Edge
   - name: C++/graph/mst
     pages:
     - icon: ':warning:'
@@ -42,13 +42,13 @@ data:
       title: "\u6700\u5C0F\u5168\u57DF\u6728"
     - icon: ':warning:'
       path: C++/graph/mst/directed.hpp
-      title: C++/graph/mst/directed.hpp
+      title: Directed MST
     - icon: ':warning:'
       path: C++/graph/mst/kruskal.hpp
-      title: C++/graph/mst/kruskal.hpp
+      title: "Kruskal\u6CD5"
     - icon: ':warning:'
       path: C++/graph/mst/manhattan.hpp
-      title: C++/graph/mst/manhattan.hpp
+      title: Manhattan MST
   - name: C++/io
     pages:
     - icon: ':warning:'
@@ -117,10 +117,10 @@ data:
       title: Manacher
     - icon: ':warning:'
       path: C++/string/runlength.hpp
-      title: C++/string/runlength.hpp
+      title: "\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E"
     - icon: ':warning:'
       path: C++/string/z-algo.hpp
-      title: C++/string/z-algo.hpp
+      title: Z-Algorithm
   - name: C++/structure
     pages:
     - icon: ':warning:'
@@ -148,7 +148,7 @@ data:
       title: Binary Indexed Tree
     - icon: ':warning:'
       path: C++/structure/fwtree/RangeBIT.hpp
-      title: C++/structure/fwtree/RangeBIT.hpp
+      title: Range BIT
   - name: C++/structure/uf
     pages:
     - icon: ':warning:'

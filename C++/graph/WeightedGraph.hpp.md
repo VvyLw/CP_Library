@@ -7,6 +7,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\
+      \u30EA"
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
@@ -57,7 +59,8 @@ data:
     \ {\n                    if(cst[i][k] == lim || cst[k][j] == lim) {\n        \
     \                continue;\n                    }\n                    chmin(cst[i][j],\
     \ cst[i][k] + cst[k][j]);\n                }\n            }\n        }\n\t\treturn\
-    \ cst;\n\t}\n};"
+    \ cst;\n\t}\n};\n\n/**\n * @brief \u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\
+    \u30A4\u30D6\u30E9\u30EA\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/graph/WeightedGraph.hpp
@@ -70,5 +73,5 @@ layout: document
 redirect_from:
 - /library/C++/graph/WeightedGraph.hpp
 - /library/C++/graph/WeightedGraph.hpp.html
-title: C++/graph/WeightedGraph.hpp
+title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
 ---

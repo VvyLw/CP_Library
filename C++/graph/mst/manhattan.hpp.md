@@ -7,7 +7,9 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
+    document_title: Manhattan MST
+    links:
+    - https://ei1333.github.io/library/graph/mst/manhattan-mst.hpp
   bundledCode: "Traceback (most recent call last):\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
@@ -31,7 +33,8 @@ data:
     \ j, -1, std::abs(x[i] - x[j]) + std::abs(y[i] - y[j]));\n                }\n\
     \                idx[-y[i]] = i;\n            }\n            x.swap(y);\n    \
     \    }\n        for(size_t i = 0; i < x.size(); ++i) {\n            x[i] *= -1;\n\
-    \        }\n    }\n    return res;\n}"
+    \        }\n    }\n    return res;\n}\n\n/**\n * @brief Manhattan MST\n * @see\
+    \ https://ei1333.github.io/library/graph/mst/manhattan-mst.hpp\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/graph/mst/manhattan.hpp
@@ -44,5 +47,5 @@ layout: document
 redirect_from:
 - /library/C++/graph/mst/manhattan.hpp
 - /library/C++/graph/mst/manhattan.hpp.html
-title: C++/graph/mst/manhattan.hpp
+title: Manhattan MST
 ---
