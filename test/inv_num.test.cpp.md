@@ -13,13 +13,15 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: math/inverse_num.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: structure/fwtree/FenwickTree.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_5_D\"\n\
-    #include <iostream>\n#include \"math/inverse_num.hpp\"\nint main() {\n    int\
-    \ n;\n    std::cin >> n;\n    std::vector<int> a(n);\n    for(auto &el: a) {\n\
-    \        std::cin >> el;\n    }\n    std::cout << inv_num(a) << '\\n';\n}"
+    #include <iostream>\n#include \"C++/math/inverse_num.hpp\"\nint main() {\n   \
+    \ int n;\n    std::cin >> n;\n    std::vector<int> a(n);\n    for(auto &el: a)\
+    \ {\n        std::cin >> el;\n    }\n    std::cout << inv_num(a) << '\\n';\n}"
   dependsOn: []
   isVerificationFile: true
   path: test/inv_num.test.cpp

@@ -13,15 +13,18 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: graph/Graph.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: graph/edge.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection\"\n#include\
-    \ <iostream>\n#include \"graph/Graph.hpp\"\nint main() {\n    int n, m;\n    std::cin\
-    \ >> n >> m;\n    graph<false> g(n, 0);\n    g.input(m);\n    const auto res =\
-    \ g.cycle();\n    if(res.empty()) {\n        std::cout << -1 << '\\n';\n    }\
-    \ else {\n        std::cout << res.size() << '\\n';\n        for(const auto &e:\
-    \ res) {\n            std::cout << e.id << '\\n';\n        }\n    }\n}"
+    \ <iostream>\n#include \"C++/graph/Graph.hpp\"\nint main() {\n    int n, m;\n\
+    \    std::cin >> n >> m;\n    graph<false> g(n, 0);\n    g.input(m);\n    const\
+    \ auto res = g.cycle();\n    if(res.empty()) {\n        std::cout << -1 << '\\\
+    n';\n    } else {\n        std::cout << res.size() << '\\n';\n        for(const\
+    \ auto &e: res) {\n            std::cout << e.id << '\\n';\n        }\n    }\n\
+    }"
   dependsOn: []
   isVerificationFile: true
   path: test/cycledetector.test.cpp

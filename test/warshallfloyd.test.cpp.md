@@ -13,12 +13,14 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: graph/WeightedGraph.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: graph/Graph.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_C\"\
-    \n#include \"graph/WeightedGraph.hpp\"\nconstexpr long long lim = (1LL << 61)\
-    \ - 1;\nint main() {\n    int v, e;\n    std::cin >> v >> e;\n    w_graph<false>\
+    \n#include \"C++/graph/WeightedGraph.hpp\"\nconstexpr long long lim = (1LL <<\
+    \ 61) - 1;\nint main() {\n    int v, e;\n    std::cin >> v >> e;\n    w_graph<false>\
     \ g(v, 0);\n    g.input(e);\n    const auto res = g.warshall_floyd();\n    for(int\
     \ i = 0; i < v; ++i) {\n        if(res[i][i] < 0) {\n            std::cout <<\
     \ \"NEGATIVE CYCLE\\n\";\n            std::exit(0);\n        }\n    }\n    for(const\

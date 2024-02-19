@@ -13,12 +13,14 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: math/primecounter.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: math/kthrooti.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/counting_primes\"\n#include\
-    \ <iostream>\n#include \"math/primecounter.hpp\"\nint main() {\n    ll n;\n  \
-    \  std::cin >> n;\n    std::cout << p_count(ll(1e11)).pi(n) << '\\n';\n}"
+    \ <iostream>\n#include \"C++/math/primecounter.hpp\"\nint main() {\n    ll n;\n\
+    \    std::cin >> n;\n    std::cout << p_count(ll(1e11)).pi(n) << '\\n';\n}"
   dependsOn: []
   isVerificationFile: true
   path: test/pcounter.test.cpp

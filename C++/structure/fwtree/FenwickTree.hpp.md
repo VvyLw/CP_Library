@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/fwtree2.test.cpp
+    title: test/fwtree2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Binary Indexed Tree
     links:
@@ -66,8 +69,9 @@ data:
   path: C++/structure/fwtree/FenwickTree.hpp
   requiredBy: []
   timestamp: '2024-02-19 12:20:55+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/fwtree2.test.cpp
 documentation_of: C++/structure/fwtree/FenwickTree.hpp
 layout: document
 redirect_from:

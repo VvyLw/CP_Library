@@ -2,10 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/lcpa.test.cpp
+    title: test/lcpa.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/sa.test.cpp
+    title: test/sa.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Suffix Array
     links:
@@ -153,8 +159,10 @@ data:
   path: C++/string/SA.hpp
   requiredBy: []
   timestamp: '2024-02-19 12:20:55+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/sa.test.cpp
+  - test/lcpa.test.cpp
 documentation_of: C++/string/SA.hpp
 layout: document
 redirect_from:
