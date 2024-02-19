@@ -1,6 +1,6 @@
 #pragma once
 
-#include "math/euler_phi.hpp"
+#include "C++/math/euler_phi.hpp"
 #ifndef TEMPLATE
 namespace zia_qu {
 template <class T> inline T pow(T a, T b, const T mod=0) {

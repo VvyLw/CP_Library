@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "graph/edge.hpp"
+#include "C++/graph/edge.hpp"
 struct MST {
     std::vector<edge> tree;
     long long cost;

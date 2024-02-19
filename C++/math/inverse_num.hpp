@@ -1,7 +1,7 @@
 #pragma once
 
 #include <algorithm>
-#include "structure/fwtree/FenwickTree.hpp"
+#include "C++/structure/fwtree/FenwickTree.hpp"
 template <class T> inline long long inv_num(const std::vector<T> &a) {
     std::vector<std::pair<T, int>> p(a.size());
     for(size_t i = 0; i < a.size(); ++i) {

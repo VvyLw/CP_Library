@@ -7,7 +7,7 @@
 #ifndef TEMPLATE
 template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
 #endif
-#include "graph/edge.hpp"
+#include "C++/graph/edge.hpp"
 template <bool undirected = true> struct graph: public std::vector<std::vector<edge>> {
     const int indexed;
     int id;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "mypair.hpp"
+#include "C++/mypair.hpp"
 #ifndef TEMPLATE
 #define sqrp(i,a,b) for(long long i = (a); i * i <= (b); ++i)
 #endif

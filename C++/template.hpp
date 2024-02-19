@@ -22,7 +22,7 @@ std::mt19937 Random() {
 	return engine;
 }
 
-#include "timer.hpp"
+#include "C++/timer.hpp"
 
 #define overload4(_1,_2,_3,_4,name,...) name
 #define overload3(_1,_2,_3,name,...) name
@@ -60,7 +60,7 @@ using ul = unsigned long long;
 using i128 = __int128_t;
 using u128 = __uint128_t;
 
-#include "mypair.hpp"
+#include "C++/mypair.hpp"
 
 using namespace vectors;
 using namespace pairs;
@@ -78,14 +78,14 @@ template <class T, class U> inline bool overflow_if_mul(const T a, const U b){ r
 inline void fix(const short x){ std::cout << std::fixed << std::setprecision(x); }
 inline void alpha(){ std::cout << std::boolalpha; }
 
-#include "io/input.hpp"
-#include "io/output.hpp"
+#include "C++/io/input.hpp"
+#include "C++/io/output.hpp"
 
 using namespace IO;
 
 #ifdef local
 //https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3
-#include <io/debug_print.hpp>
+#include <C++/io/debug_print.hpp>
 #define debug(...) debug_print::multi_print(#__VA_ARGS__, __VA_ARGS__)
 #else
 #define debug(...) static_cast<void>(0)
@@ -288,12 +288,12 @@ template <class T> inline ld vdmul(const T &v){ return std::accumulate(all(v),1.
 template <class T> inline ld vdmul(const T &v, ll a, ll b){ return std::accumulate(all(v,a,b),1.0L,[](ll acc,ll i){ return acc*i; }); }
 } // Lady s&y
 
-#include "math/divisor.hpp"
-#include "math/primefactor.hpp"
-#include "math/primetable.hpp"
-#include "math/primefactortable.hpp"
-#include "math/prefixsum.hpp"
-#include "math/kthrooti.hpp"
+#include "C++/math/divisor.hpp"
+#include "C++/math/primefactor.hpp"
+#include "C++/math/primetable.hpp"
+#include "C++/math/primefactortable.hpp"
+#include "C++/math/prefixsum.hpp"
+#include "C++/math/kthrooti.hpp"
 
 namespace Heileden {
 template <class T, class Boolean=bool> inline T bins(T ok, T ng, const Boolean &fn, const ld eps = 1) {

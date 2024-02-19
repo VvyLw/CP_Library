@@ -3,7 +3,7 @@
 #include <cassert>
 #include <map>
 #include <numeric>
-#include "graph/mst/MST.hpp"
+#include "C++/graph/mst/MST.hpp"
 template <class T> inline std::vector<edge> manhattan(std::vector<T> x, std::vector<T> y) {
     assert(x.size() == y.size());
     std::vector<edge> res;

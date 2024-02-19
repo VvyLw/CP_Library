@@ -14,7 +14,7 @@ int main() {
         }
     }
     for(const auto &w: res) {
-        for(size_t i = 0; i < v; ++i) {
+        for(int i = 0; i < v; ++i) {
             if(w[i] == lim) {
                 std::cout << "INF" << " \n"[i + 1 == v];
             }

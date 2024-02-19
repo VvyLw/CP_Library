@@ -1,8 +1,8 @@
 #pragma once
 
 #include <vector>
-#include "math/kthrooti.hpp"
-#include "math/primetable.hpp"
+#include "C++/math/kthrooti.hpp"
+#include "C++/math/primetable.hpp"
 #ifndef TEMPLATE
 typedef long long ll;
 namespace zia_qu {

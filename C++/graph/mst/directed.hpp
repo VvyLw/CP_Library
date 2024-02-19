@@ -1,7 +1,7 @@
 #pragma once
 
-#include "graph/mst/MST.hpp"
-#include "SkewHeap.hpp"
+#include "C++/graph/mst/MST.hpp"
+#include "C++/SkewHeap.hpp"
 inline MST directed(std::vector<edge> edges, const int n, const int v) {
     for(int i = 0; i < n; ++i) {
         if(i != v) {

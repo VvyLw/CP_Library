@@ -1,7 +1,7 @@
 #pragma once
 
 #include <limits>
-#include "graph/Graph.hpp"
+#include "C++/graph/Graph.hpp"
 template <bool undirected = true> struct w_graph: public graph<undirected> {
 private:
     using graph<undirected>::indexed;
