@@ -16,3 +16,7 @@ inline MST kruskal(std::vector<edge> edges, const int n) {
     }
     return MST{e, res};
 }
+
+/**
+ * @brief Kruskal法
+ */

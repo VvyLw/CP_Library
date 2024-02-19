@@ -64,3 +64,8 @@ inline MST directed(std::vector<edge> edges, const int n, const int v) {
     }
     return MST{e, cost};
 }
+
+/**
+ * @brief Directed MST
+ * @see https://ei1333.github.io/library/graph/mst/directed-mst.hpp
+ */

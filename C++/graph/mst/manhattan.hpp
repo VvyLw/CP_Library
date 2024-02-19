@@ -31,3 +31,8 @@ template <class T> inline std::vector<edge> manhattan(std::vector<T> x, std::vec
     }
     return res;
 }
+
+/**
+ * @brief Manhattan MST
+ * @see https://ei1333.github.io/library/graph/mst/manhattan-mst.hpp
+ */

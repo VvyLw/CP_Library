@@ -111,6 +111,7 @@ template <bool undirected = true> struct graph: public std::vector<std::vector<e
 };
 typedef std::vector<edge> ve;
 typedef std::vector<ve> we;
+
 /**
  * @brief グラフライブラリ
  */

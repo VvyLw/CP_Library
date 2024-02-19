@@ -17,3 +17,7 @@ std::vector<int> zalg(const std::string &s) {
     pre.front() = n;
     return pre;
 }
+
+/**
+ * @brief Z-Algorithm
+ */

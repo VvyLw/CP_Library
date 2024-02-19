@@ -25,3 +25,7 @@ std::string rle_rev(const std::string &s) {
 	}
 	return t;
 }
+
+/**
+ * @brief ランレングス圧縮
+ */

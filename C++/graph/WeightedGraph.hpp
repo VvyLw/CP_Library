@@ -96,3 +96,7 @@ public:
 		return cst;
 	}
 };
+
+/**
+ * @brief 重み付きグラフライブラリ
+ */

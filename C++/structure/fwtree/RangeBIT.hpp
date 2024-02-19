@@ -24,3 +24,7 @@ public:
         return a.sum(r) * r + b.sum(r) - a.sum(l) * l - b.sum(l);
     }
 };
+
+/**
+ * @brief Range BIT
+ */
