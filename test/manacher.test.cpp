@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_palindromes"
 #include <iostream>
-#include "string/manacher.hpp"
+#include "C++/string/manacher.hpp"
 int main() {
     std::string s;
     std::cin >> s;

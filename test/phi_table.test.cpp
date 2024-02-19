@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/2286"
 #include <iostream>
-#include "math/phitable.hpp"
+#include "C++/math/phitable.hpp"
 constexpr int n = 1e6;
 int main() {
     const auto phi = phi_table(n).get();

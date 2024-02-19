@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/double_ended_priority_queue"
 #include <iostream>
-#include "structure/depq.hpp"
+#include "C++/structure/depq.hpp"
 int main() {
     int n, q;
     std::cin >> n >> q;

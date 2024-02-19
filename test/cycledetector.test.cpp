@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/cycle_detection"
 #include <iostream>
-#include "graph/Graph.hpp"
+#include "C++/graph/Graph.hpp"
 int main() {
     int n, m;
     std::cin >> n >> m;

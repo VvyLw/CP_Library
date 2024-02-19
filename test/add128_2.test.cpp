@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/many_aplusb_128bit"
-#include "io/input.hpp"
-#include "io/output.hpp"
+#include "C++/io/input.hpp"
+#include "C++/io/output.hpp"
 using namespace IO;
 int main() {
     std::cin.tie(nullptr) -> sync_with_stdio(false);

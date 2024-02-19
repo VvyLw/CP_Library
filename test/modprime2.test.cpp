@@ -1,6 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/no/117"
 #include <iostream>
-#include "math/ModPrime.hpp"
+#include "C++/math/ModPrime.hpp"
 constexpr int mod = 1e9 + 7;
 ModPrime<(int) 2e7 + 1> mp(mod);
 int main() {

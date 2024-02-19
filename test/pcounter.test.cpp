@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/counting_primes"
 #include <iostream>
-#include "math/primecounter.hpp"
+#include "C++/math/primecounter.hpp"
 int main() {
     ll n;
     std::cin >> n;

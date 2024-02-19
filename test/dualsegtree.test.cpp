@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_D"
 #include <iostream>
-#include "structure/DualSegmentTree.hpp"
+#include "C++/structure/DualSegmentTree.hpp"
 int main() {
     int n, q;
     std::cin >> n >> q;

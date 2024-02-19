@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/GRL_2_B"
 #include <iostream>
-#include "graph/mst/directed.hpp"
+#include "C++/graph/mst/directed.hpp"
 int main() {
     int v, e, r;
     std::cin >> v >> e >> r;

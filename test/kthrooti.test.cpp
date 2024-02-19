@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/kth_root_integer"
 #include <iostream>
-#include "math/kthrooti.hpp"
+#include "C++/math/kthrooti.hpp"
 void solve() {
     ul a;
     int k;

@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_5_D"
 #include <iostream>
-#include "math/inverse_num.hpp"
+#include "C++/math/inverse_num.hpp"
 int main() {
     int n;
     std::cin >> n;
