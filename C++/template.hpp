@@ -1,4 +1,3 @@
-#pragma once
 #ifndef TEMPLATE
 #define TEMPLATE
 #endif
@@ -292,7 +291,7 @@ template <class T> inline ld vdmul(const T &v, ll a, ll b){ return std::accumula
 #include "C++/math/primefactor.hpp"
 #include "C++/math/primetable.hpp"
 #include "C++/math/primefactortable.hpp"
-#include "C++/math/prefixsum.hpp"
+#include "C++/math/psum/psum.hpp"
 #include "C++/math/kthrooti.hpp"
 
 namespace Heileden {
