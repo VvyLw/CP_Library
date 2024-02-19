@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/factorize"
 #include <iostream>
 #include <map>
-#include "Pollards_rho.hpp"
+#include "math/Pollards_rho.hpp"
 int main() {
     std::cin.tie(nullptr) -> sync_with_stdio(false);
     int q;

@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D"
 #include <iostream>
-#include "LazySegmentTree.hpp"
+#include "structure/LazySegmentTree.hpp"
 int main() {
     std::cin.tie(nullptr) -> sync_with_stdio(false);
     int n, q;

@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
-#include "Modint.hpp"
-#include "LazySegmentTree.hpp"
+#include "math/Modint.hpp"
+#include "structure/LazySegmentTree.hpp"
 using Z = zwei<mint>;
 int main() {
     int n, q;

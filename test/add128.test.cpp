@@ -19,6 +19,6 @@ int main() {
 
 void VvyLw::solve() {
     STR(x,y);
-    const i128 a=stoL(x),b=stoL(y);
+    const i128 a=to_i128(x),b=to_i128(y);
     out(a+b);
 }

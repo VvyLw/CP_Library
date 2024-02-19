@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/manhattanmst"
 #include <iostream>
-#include "MST.hpp"
+#include "graph/mst/kruskal.hpp"
+#include "graph/mst/manhattan.hpp"
 int main() {
     int n;
     std::cin >> n;

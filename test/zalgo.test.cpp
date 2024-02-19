@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 #include <iostream>
-#include "Strings.hpp"
+#include "string/z-algo.hpp"
 int main() {
     std::string s;
     std::cin >> s;

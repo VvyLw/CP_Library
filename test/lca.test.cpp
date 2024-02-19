@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/lca"
-#include "LCA.hpp"
-#include "graph.hpp"
+#include "graph/Graph.hpp"
+#include "graph/LCA.hpp"
 int main() {
     std::cin.tie(nullptr) -> sync_with_stdio(false);
     int n, q;

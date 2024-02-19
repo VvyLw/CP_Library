@@ -1,5 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/suffixarray"
-#include "Strings.hpp"
+#include "string/SA.hpp"
 int main() {
     std::string s;
     std::cin >> s;

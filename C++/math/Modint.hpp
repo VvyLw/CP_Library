@@ -6,9 +6,11 @@
 #include <utility>
 #include <type_traits>
 #include <numeric>
+#ifndef TEMPLATE
 typedef long long ll;
 typedef unsigned uint;
 typedef unsigned long long ul;
+#endif
 template <uint mod> struct Modint {
     uint num = 0;
     constexpr Modint() noexcept {}

@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_E"
 #include <iostream>
-#include "FenwickTree.hpp"
+#include "structure/fwtree/FenwickTree.hpp"
 int main() {
     std::cin.tie(nullptr) -> sync_with_stdio(false);
     int n, q;

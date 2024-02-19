@@ -20,7 +20,7 @@ int main() {
 void VvyLw::solve() {
     INT(n,q);
     VEC(ll,a,n);
-    asum s(a);
+    psum s(a);
     while(q--) {
         INT(l,r);
         out(s.query(l,r));

@@ -78,6 +78,6 @@ std::vector<ll> rho(const ll n) {
     return le;
 }
 /**
- * @brief Pollard's rho
+ * @brief Pollard's Rho
  * @docs docs/Pollards_rho.md
  */

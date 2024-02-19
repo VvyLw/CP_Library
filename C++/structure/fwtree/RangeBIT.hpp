@@ -1,6 +1,6 @@
 #pragma once
 
-#include "C++/FenwickTree.hpp"
+#include "structure/fwtree/FenwickTree.hpp"
 template <class T> struct RangeBIT {
 private:
     FenwickTree<T> a, b;
