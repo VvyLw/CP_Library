@@ -2922,21 +2922,19 @@ final class PrefixSum2D {
 	}
 	PrefixSum2D(final int[][] a) {
 		this(a.length, a[0].length);
-		for(int i = 0; i < h; ++i) {
-			for(int j = 0; j < w; ++j) {
+		for(int i = 0; i < a.length; ++i) {
+			for(int j = 0; j < a[i].length; ++j) {
 				add(i, j, a[i][j]);
 			}
 		}
-		build();
 	}
 	PrefixSum2D(final long[][] a) {
 		this(a.length, a[0].length);
-		for(int i = 0; i < h; ++i) {
-			for(int j = 0; j < w; ++j) {
+		for(int i = 0; i < a.length; ++i) {
+			for(int j = 0; j < a[i].length; ++j) {
 				add(i, j, a[i][j]);
 			}
 		}
-		build();
 	}
 	final void add(int i, int j, final long x) {
 		i++;
@@ -2953,8 +2951,8 @@ final class PrefixSum2D {
 		add(i2, j2, x);
 	}
 	final void build() {
-		for(int i = 1; i < h; ++i) {
-			for(int j = 1; j < w; ++j) {
+		for(int i = 0; ++i < h;) {
+			for(int j = 0; ++j < w;) {
 				data[i][j] += data[i][j - 1] + data[i - 1][j] - data[i - 1][j - 1];
 			}
 		}
