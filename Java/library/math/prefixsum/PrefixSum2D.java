@@ -1,4 +1,4 @@
-package library.other;
+package library.math.prefixsum;
 
 /**
  * 二次元累積和

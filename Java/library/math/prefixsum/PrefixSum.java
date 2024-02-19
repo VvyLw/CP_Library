@@ -1,8 +1,9 @@
-package library.other;
+package library.math.prefixsum;
 
 import java.util.Arrays;
 
 import library.core.Utility;
+import library.other.InclusiveScan;
 
 /**
  * 累積和クラス

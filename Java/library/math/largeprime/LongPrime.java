@@ -1,4 +1,4 @@
-package library.math;
+package library.math.largeprime;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
