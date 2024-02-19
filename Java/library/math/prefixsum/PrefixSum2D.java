@@ -2,7 +2,7 @@ package library.math.prefixsum;
 
 /**
  * 二次元累積和
- * @see <a href="https://nyaannyaan.github.io/library/verify/verify-aoj-dsl/aoj-dsl-5-b.test.cpp">参考元</a>
+ * @see <a href="https://nyaannyaan.github.io/library/data-structure-2d/2d-cumulative-sum.hpp">参考元</a>
  */
 public final class PrefixSum2D {
 	private final int h, w;
