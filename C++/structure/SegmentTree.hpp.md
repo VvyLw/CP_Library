@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/segtree.test.cpp
+    title: test/segtree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/segtree2.test.cpp
     title: test/segtree2.test.cpp
   _isVerificationFailed: false
@@ -88,6 +91,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/segtree2.test.cpp
+  - test/segtree.test.cpp
 documentation_of: C++/structure/SegmentTree.hpp
 layout: document
 redirect_from:

@@ -1,17 +1,68 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: C++/constance.hpp
     title: "\u5B9A\u6570"
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: C++/myvector.hpp
     title: C++/myvector.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: C++/io/input.hpp
+    title: "\u5165\u529B"
+  - icon: ':heavy_check_mark:'
+    path: C++/io/output.hpp
+    title: "\u51FA\u529B"
+  - icon: ':heavy_check_mark:'
+    path: C++/math/primefactor.hpp
+    title: "\u7D20\u56E0\u6570\u5206\u89E3"
+  - icon: ':heavy_check_mark:'
+    path: C++/template.hpp
+    title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aarray.test.cpp
+    title: test/aarray.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/add.test.cpp
+    title: test/add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/add128.test.cpp
+    title: test/add128.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/add128_2.test.cpp
+    title: test/add128_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/extgcd.test.cpp
+    title: test/extgcd.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fwtree.test.cpp
+    title: test/fwtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/m_add.test.cpp
+    title: test/m_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/parsum.test.cpp
+    title: test/parsum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/s_rmq.test.cpp
+    title: test/s_rmq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/segtree.test.cpp
+    title: test/segtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/sr_sum.test.cpp
+    title: test/sr_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/stable.test.cpp
+    title: test/stable.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/uf.test.cpp
+    title: test/uf.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"C++/mypair.hpp\"\n\n#include <cassert>\n#include <utility>\n\
@@ -121,49 +172,49 @@ data:
     \ res;\n    for(const auto &el: vp) res.emplace_back(el.second);\n    return res;\n\
     }\n} // pairs\n"
   code: "#pragma once\n\n#include <cassert>\n#include <utility>\n#include <tuple>\n\
-    #include <cmath>\n#include <numeric>\n#include \"constance.hpp\"\n#include \"\
-    myvector.hpp\"\nnamespace pairs {\ntemplate <class T, class U> using P = std::pair<T,\
-    \ U>;\ntemplate <class T> using PP = P<T,T>;\nusing pi = PP<ll>;\nusing pd = PP<ld>;\n\
-    using pc = PP<char>;\nusing ps = PP<std::string>;\ntemplate <class T> constexpr\
-    \ PP<T> operator+(const PP<T>& a, const PP<T>& b) noexcept { return {a.first +\
-    \ b.first, a.second + b.second}; }\ntemplate <class T> constexpr PP<T> operator-(const\
-    \ PP<T>& a, const PP<T>& b) noexcept { return {a.first - b.first, a.second - b.second};\
-    \ }\ntemplate <class T> constexpr PP<T> operator-(const PP<T>& a) noexcept { return\
-    \ {-a.first, -a.second}; }\ntemplate <class T, class U> constexpr PP<T> operator*(const\
-    \ PP<T>& a, const U& b) noexcept { return {a.first * b, a.second * b}; }\ntemplate\
-    \ <class T, class U> constexpr PP<T> operator/(const PP<T>& a, const U& b) noexcept\
-    \ { return {a.first / b, a.second / b}; }\ntemplate <class T> constexpr PP<T>&\
-    \ operator+=(PP<T>& a, const PP<T>& b) noexcept { return a = a + b; }\ntemplate\
-    \ <class T> constexpr PP<T>& operator-=(PP<T>& a, const PP<T>& b) noexcept { return\
-    \ a = a - b; }\ntemplate <class T, class U> constexpr PP<T>& operator*=(PP<T>&\
-    \ a, const U& b) noexcept { return a = a * b; }\ntemplate <class T, class U> PP<T>&\
-    \ operator/=(PP<T>& a, const U& b) noexcept { return a = a / b; }\ntemplate <class\
-    \ T> constexpr bool operator==(const PP<T> &p, const PP<T> &q) noexcept { return\
-    \ p.first==q.first && p.second==q.second; }\ntemplate <class T> constexpr bool\
-    \ operator!=(const PP<T> &p, const PP<T> &q) noexcept { return !(p==q); }\ntemplate\
-    \ <class T> constexpr bool operator<(const PP<T> &p, const PP<T> &q) noexcept\
-    \ { if(p.first==q.first) return p.second<q.second; return p.first<q.first; }\n\
-    template <class T> constexpr bool operator<=(const PP<T> &p, const PP<T> &q) noexcept\
-    \ { if(p.first==q.first) return p.second<=q.second; return p.first<q.first; }\n\
-    template <class T> constexpr bool operator>(const PP<T> &p, const PP<T> &q) noexcept\
-    \ { if(p.first==q.first) return p.second>q.second; return p.first>q.first; }\n\
-    template <class T> constexpr bool operator>=(const PP<T> &p, const PP<T> &q) noexcept\
-    \ { if(p.first==q.first) return p.second>=q.second; return p.first>q.first; }\n\
-    template <class T, class U> constexpr bool operator==(const P<T,U> &p, const P<T,U>\
-    \ &q) noexcept { return p.first==q.first && p.second==q.second; }\ntemplate <class\
-    \ T, class U> constexpr bool operator!=(const P<T,U> &p, const P<T,U> &q) noexcept\
-    \ { return !(p==q); }\ntemplate <class T, class U> constexpr bool operator<(const\
-    \ P<T,U> &p, const P<T,U> &q) noexcept { if(p.first==q.first) return p.second<q.second;\
-    \ return p.first<q.first; }\ntemplate <class T, class U> constexpr bool operator<=(const\
-    \ P<T,U> &p, const P<T,U> &q) noexcept { if(p.first==q.first) return p.second<=q.second;\
-    \ return p.first<q.first; }\ntemplate <class T, class U> constexpr bool operator>(const\
-    \ P<T,U> &p, const P<T,U> &q) noexcept { if(p.first==q.first) return p.second>q.second;\
-    \ return p.first>q.first; }\ntemplate <class T, class U> constexpr bool operator>=(const\
-    \ P<T,U> &p, const P<T,U> &q) noexcept { if(p.first==q.first) return p.second>=q.second;\
-    \ return p.first>q.first; }\ntemplate <class T> inline PP<T> rotate(const PP<T>&\
-    \ a){ return {-a.second, a.first}; } // 90 degree ccw\ntemplate <class T> inline\
-    \ pd rotate(const PP<T>& a, const int ang) {\n    assert(0<=ang && ang<360);\n\
-    \    const ld rad=PI*ang/180;\n    return {a.first*std::cos(rad)-a.second*std::sin(rad),\
+    #include <cmath>\n#include <numeric>\n#include \"C++/constance.hpp\"\n#include\
+    \ \"C++/myvector.hpp\"\nnamespace pairs {\ntemplate <class T, class U> using P\
+    \ = std::pair<T, U>;\ntemplate <class T> using PP = P<T,T>;\nusing pi = PP<ll>;\n\
+    using pd = PP<ld>;\nusing pc = PP<char>;\nusing ps = PP<std::string>;\ntemplate\
+    \ <class T> constexpr PP<T> operator+(const PP<T>& a, const PP<T>& b) noexcept\
+    \ { return {a.first + b.first, a.second + b.second}; }\ntemplate <class T> constexpr\
+    \ PP<T> operator-(const PP<T>& a, const PP<T>& b) noexcept { return {a.first -\
+    \ b.first, a.second - b.second}; }\ntemplate <class T> constexpr PP<T> operator-(const\
+    \ PP<T>& a) noexcept { return {-a.first, -a.second}; }\ntemplate <class T, class\
+    \ U> constexpr PP<T> operator*(const PP<T>& a, const U& b) noexcept { return {a.first\
+    \ * b, a.second * b}; }\ntemplate <class T, class U> constexpr PP<T> operator/(const\
+    \ PP<T>& a, const U& b) noexcept { return {a.first / b, a.second / b}; }\ntemplate\
+    \ <class T> constexpr PP<T>& operator+=(PP<T>& a, const PP<T>& b) noexcept { return\
+    \ a = a + b; }\ntemplate <class T> constexpr PP<T>& operator-=(PP<T>& a, const\
+    \ PP<T>& b) noexcept { return a = a - b; }\ntemplate <class T, class U> constexpr\
+    \ PP<T>& operator*=(PP<T>& a, const U& b) noexcept { return a = a * b; }\ntemplate\
+    \ <class T, class U> PP<T>& operator/=(PP<T>& a, const U& b) noexcept { return\
+    \ a = a / b; }\ntemplate <class T> constexpr bool operator==(const PP<T> &p, const\
+    \ PP<T> &q) noexcept { return p.first==q.first && p.second==q.second; }\ntemplate\
+    \ <class T> constexpr bool operator!=(const PP<T> &p, const PP<T> &q) noexcept\
+    \ { return !(p==q); }\ntemplate <class T> constexpr bool operator<(const PP<T>\
+    \ &p, const PP<T> &q) noexcept { if(p.first==q.first) return p.second<q.second;\
+    \ return p.first<q.first; }\ntemplate <class T> constexpr bool operator<=(const\
+    \ PP<T> &p, const PP<T> &q) noexcept { if(p.first==q.first) return p.second<=q.second;\
+    \ return p.first<q.first; }\ntemplate <class T> constexpr bool operator>(const\
+    \ PP<T> &p, const PP<T> &q) noexcept { if(p.first==q.first) return p.second>q.second;\
+    \ return p.first>q.first; }\ntemplate <class T> constexpr bool operator>=(const\
+    \ PP<T> &p, const PP<T> &q) noexcept { if(p.first==q.first) return p.second>=q.second;\
+    \ return p.first>q.first; }\ntemplate <class T, class U> constexpr bool operator==(const\
+    \ P<T,U> &p, const P<T,U> &q) noexcept { return p.first==q.first && p.second==q.second;\
+    \ }\ntemplate <class T, class U> constexpr bool operator!=(const P<T,U> &p, const\
+    \ P<T,U> &q) noexcept { return !(p==q); }\ntemplate <class T, class U> constexpr\
+    \ bool operator<(const P<T,U> &p, const P<T,U> &q) noexcept { if(p.first==q.first)\
+    \ return p.second<q.second; return p.first<q.first; }\ntemplate <class T, class\
+    \ U> constexpr bool operator<=(const P<T,U> &p, const P<T,U> &q) noexcept { if(p.first==q.first)\
+    \ return p.second<=q.second; return p.first<q.first; }\ntemplate <class T, class\
+    \ U> constexpr bool operator>(const P<T,U> &p, const P<T,U> &q) noexcept { if(p.first==q.first)\
+    \ return p.second>q.second; return p.first>q.first; }\ntemplate <class T, class\
+    \ U> constexpr bool operator>=(const P<T,U> &p, const P<T,U> &q) noexcept { if(p.first==q.first)\
+    \ return p.second>=q.second; return p.first>q.first; }\ntemplate <class T> inline\
+    \ PP<T> rotate(const PP<T>& a){ return {-a.second, a.first}; } // 90 degree ccw\n\
+    template <class T> inline pd rotate(const PP<T>& a, const int ang) {\n    assert(0<=ang\
+    \ && ang<360);\n    const ld rad=PI*ang/180;\n    return {a.first*std::cos(rad)-a.second*std::sin(rad),\
     \ a.first*std::sin(rad)+a.second*std::cos(rad)};\n}\ntemplate <class T> inline\
     \ T dot(const PP<T>& a, const PP<T>& b){ return a.first * b.first + a.second *\
     \ b.second; }\ntemplate <class T> inline T cross(const PP<T>& a, const PP<T>&\
@@ -193,10 +244,27 @@ data:
   - C++/myvector.hpp
   isVerificationFile: false
   path: C++/mypair.hpp
-  requiredBy: []
-  timestamp: '2024-02-19 12:20:55+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - C++/io/output.hpp
+  - C++/io/input.hpp
+  - C++/math/primefactor.hpp
+  - C++/template.hpp
+  timestamp: '2024-02-19 13:17:33+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/sr_sum.test.cpp
+  - test/m_add.test.cpp
+  - test/add.test.cpp
+  - test/parsum.test.cpp
+  - test/segtree.test.cpp
+  - test/stable.test.cpp
+  - test/fwtree.test.cpp
+  - test/uf.test.cpp
+  - test/extgcd.test.cpp
+  - test/add128_2.test.cpp
+  - test/add128.test.cpp
+  - test/s_rmq.test.cpp
+  - test/aarray.test.cpp
 documentation_of: C++/mypair.hpp
 layout: document
 redirect_from:

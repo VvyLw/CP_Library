@@ -1,36 +1,118 @@
 ---
 data:
-  _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: C++/myvector.hpp
+    title: C++/myvector.hpp
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: C++/template.hpp
+    title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aarray.test.cpp
+    title: test/aarray.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/add.test.cpp
+    title: test/add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/add128.test.cpp
+    title: test/add128.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/extgcd.test.cpp
+    title: test/extgcd.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fwtree.test.cpp
+    title: test/fwtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/m_add.test.cpp
+    title: test/m_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/parsum.test.cpp
+    title: test/parsum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/s_rmq.test.cpp
+    title: test/s_rmq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/segtree.test.cpp
+    title: test/segtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/sr_sum.test.cpp
+    title: test/sr_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/stable.test.cpp
+    title: test/stable.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/uf.test.cpp
+    title: test/uf.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u7D04\u6570\u5217\u6319"
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: myvector.hpp:\
-    \ line -1: no such header\n"
-  code: "#pragma once\n\n#include <algorithm>\n#include \"myvector.hpp\"\n#ifndef\
+  bundledCode: "#line 2 \"C++/math/divisor.hpp\"\n\n#include <algorithm>\n#line 2\
+    \ \"C++/myvector.hpp\"\n\n#include <vector>\n\n#ifndef TEMPLATE\ntypedef long\
+    \ long ll;\ntypedef unsigned long long ul;\ntypedef long double ld;\n#endif\n\
+    namespace vectors {\ntemplate <class T> using V = std::vector<T>;\nusing vi =\
+    \ V<ll>;\nusing vu = V<ul>;\nusing vd = V<ld>;\nusing vc = V<char>;\nusing vs\
+    \ = V<std::string>;\nusing vb = V<bool>;\nusing wi = V<vi>;\nusing wu = V<vu>;\n\
+    using wd = V<vd>;\nusing wc = V<vc>;\nusing ws = V<vs>;\nusing wb = V<vb>;\ntemplate\
+    \ <class T, class U> inline V<U> ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n),\
+    \ std::forward<U>(v));\n}\ntemplate <class T, class... Ts> inline decltype(auto)\
+    \ ndiv(T&& n, Ts&&... v) noexcept {\n  return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n),\
+    \ ndiv(std::forward<Ts>(v)...));\n}\ntemplate <class T> constexpr V<T>& operator++(V<T>&\
+    \ v) noexcept { for(auto &el: v) el++; return v; }\ntemplate <class T> constexpr\
+    \ V<T>& operator--(V<T>& v) noexcept { for(auto &el: v) el--; return v; }\ntemplate\
+    \ <class T, class U> constexpr V<T>& operator+=(V<T>& v, const U x) noexcept {\
+    \ for(auto &el: v) el+=x; return v; }\ntemplate <class T, class U> constexpr V<T>&\
+    \ operator-=(V<T>& v, const U x) noexcept { for(auto &el: v) el-=x; return v;\
+    \ }\ntemplate <class T, class U> constexpr V<T>& operator*=(V<T>& v, const U x)\
+    \ noexcept { for(auto &el: v) el*=x; return v; }\ntemplate <class T, class U>\
+    \ constexpr V<T>& operator/=(V<T>& v, const U x) noexcept { for(auto &el: v) el/=x;\
+    \ return v; }\ntemplate <class T, class U> constexpr V<T>& operator%=(V<T>& v,\
+    \ const U x) noexcept { for(auto &el: v) el%=x; return v; }\ntemplate <class T,\
+    \ class U> constexpr V<T> operator+(const V<T>& v, const U x) noexcept { V<T>\
+    \ res = v; res+=x; return res; }\ntemplate <class T, class U> constexpr V<T> operator-(const\
+    \ V<T>& v, const U x) noexcept { V<T> res = v; res-=x; return res; }\ntemplate\
+    \ <class T, class U> constexpr V<T> operator*(const V<T>& v, const U x) noexcept\
+    \ { V<T> res = v; res*=x; return res; }\ntemplate <class T, class U> constexpr\
+    \ V<T> operator/(const V<T>& v, const U x) noexcept { V<T> res = v; res/=x; return\
+    \ res; }\ntemplate <class T, class U> constexpr V<T> operator%(const V<T>& v,\
+    \ const U x) noexcept { V<T> res = v; res%=x; return res; }\n} // vectors\n#line\
+    \ 5 \"C++/math/divisor.hpp\"\n#ifndef TEMPLATE\n#endif\nnamespace Heileden {\n\
+    template <class T> inline vectors::V<T> div(const T n) {\n    vectors::V<T> d;\n\
+    \    for(long long i = 1; i * i <= n; ++i) {\n        if(n%i==0) {\n         \
+    \   d.emplace_back(i);\n            if(i*i!=n) d.emplace_back(n/i);\n        }\n\
+    \    }\n    std::sort(d.begin(), d.end());\n    return d;\n}\n}\n\n/**\n * @brief\
+    \ \u7D04\u6570\u5217\u6319\n */\n"
+  code: "#pragma once\n\n#include <algorithm>\n#include \"C++/myvector.hpp\"\n#ifndef\
     \ TEMPLATE\n#endif\nnamespace Heileden {\ntemplate <class T> inline vectors::V<T>\
     \ div(const T n) {\n    vectors::V<T> d;\n    for(long long i = 1; i * i <= n;\
     \ ++i) {\n        if(n%i==0) {\n            d.emplace_back(i);\n            if(i*i!=n)\
     \ d.emplace_back(n/i);\n        }\n    }\n    std::sort(d.begin(), d.end());\n\
     \    return d;\n}\n}\n\n/**\n * @brief \u7D04\u6570\u5217\u6319\n */"
-  dependsOn: []
+  dependsOn:
+  - C++/myvector.hpp
   isVerificationFile: false
   path: C++/math/divisor.hpp
-  requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - C++/template.hpp
+  timestamp: '2024-02-19 13:17:33+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/sr_sum.test.cpp
+  - test/m_add.test.cpp
+  - test/add.test.cpp
+  - test/parsum.test.cpp
+  - test/segtree.test.cpp
+  - test/stable.test.cpp
+  - test/fwtree.test.cpp
+  - test/uf.test.cpp
+  - test/extgcd.test.cpp
+  - test/add128.test.cpp
+  - test/s_rmq.test.cpp
+  - test/aarray.test.cpp
 documentation_of: C++/math/divisor.hpp
 layout: document
 redirect_from:

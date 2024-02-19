@@ -2,13 +2,64 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
+    path: C++/io/input.hpp
+    title: "\u5165\u529B"
+  - icon: ':heavy_check_mark:'
+    path: C++/io/output.hpp
+    title: "\u51FA\u529B"
+  - icon: ':heavy_check_mark:'
+    path: C++/math/primefactor.hpp
+    title: "\u7D20\u56E0\u6570\u5206\u89E3"
+  - icon: ':heavy_check_mark:'
     path: C++/mypair.hpp
     title: C++/mypair.hpp
-  _extendedVerifiedWith: []
+  - icon: ':heavy_check_mark:'
+    path: C++/template.hpp
+    title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aarray.test.cpp
+    title: test/aarray.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/add.test.cpp
+    title: test/add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/add128.test.cpp
+    title: test/add128.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/add128_2.test.cpp
+    title: test/add128_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/extgcd.test.cpp
+    title: test/extgcd.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fwtree.test.cpp
+    title: test/fwtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/m_add.test.cpp
+    title: test/m_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/parsum.test.cpp
+    title: test/parsum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/s_rmq.test.cpp
+    title: test/s_rmq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/segtree.test.cpp
+    title: test/segtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/sr_sum.test.cpp
+    title: test/sr_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/stable.test.cpp
+    title: test/stable.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/uf.test.cpp
+    title: test/uf.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u5B9A\u6570"
     links: []
@@ -36,10 +87,27 @@ data:
   isVerificationFile: false
   path: C++/constance.hpp
   requiredBy:
+  - C++/io/output.hpp
+  - C++/io/input.hpp
+  - C++/math/primefactor.hpp
   - C++/mypair.hpp
+  - C++/template.hpp
   timestamp: '2024-02-19 12:20:55+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/sr_sum.test.cpp
+  - test/m_add.test.cpp
+  - test/add.test.cpp
+  - test/parsum.test.cpp
+  - test/segtree.test.cpp
+  - test/stable.test.cpp
+  - test/fwtree.test.cpp
+  - test/uf.test.cpp
+  - test/extgcd.test.cpp
+  - test/add128_2.test.cpp
+  - test/add128.test.cpp
+  - test/s_rmq.test.cpp
+  - test/aarray.test.cpp
 documentation_of: C++/constance.hpp
 layout: document
 redirect_from:
