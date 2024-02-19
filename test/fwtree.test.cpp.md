@@ -28,15 +28,15 @@ data:
     \t}\n}"
   dependsOn: []
   isVerificationFile: true
-  path: test/ftree.test.cpp
+  path: test/fwtree.test.cpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/ftree.test.cpp
+documentation_of: test/fwtree.test.cpp
 layout: document
 redirect_from:
-- /verify/test/ftree.test.cpp
-- /verify/test/ftree.test.cpp.html
-title: test/ftree.test.cpp
+- /verify/test/fwtree.test.cpp
+- /verify/test/fwtree.test.cpp.html
+title: test/fwtree.test.cpp
 ---

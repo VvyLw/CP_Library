@@ -484,8 +484,8 @@ data:
       path: test/extgcd.test.cpp
       title: test/extgcd.test.cpp
     - icon: ':x:'
-      path: test/ftree.test.cpp
-      title: test/ftree.test.cpp
+      path: test/fwtree.test.cpp
+      title: test/fwtree.test.cpp
     - icon: ':x:'
       path: test/fwtree2.test.cpp
       title: test/fwtree2.test.cpp
