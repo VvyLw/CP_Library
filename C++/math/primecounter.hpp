@@ -65,7 +65,6 @@ public:
             }
         }
     }
-
     ll pi(const ll n) {
         if(n <= sq) {
             return prime_sum[n];
