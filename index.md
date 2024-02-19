@@ -87,9 +87,6 @@ data:
       path: C++/math/phitable.hpp
       title: Euler's Phi-function(table)
     - icon: ':heavy_check_mark:'
-      path: C++/math/prefixsum.hpp
-      title: "\u7D2F\u7A4D\u548C"
-    - icon: ':heavy_check_mark:'
       path: C++/math/primecounter.hpp
       title: "\u7D20\u6570\u306E\u500B\u6570"
     - icon: ':heavy_check_mark:'
@@ -104,6 +101,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math/tetration.hpp
       title: "Tetration(a\u2191\u2191b)"
+  - name: C++/math/psum
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: C++/math/psum/psum.hpp
+      title: "\u7D2F\u7A4D\u548C"
+    - icon: ':heavy_check_mark:'
+      path: C++/math/psum/psum2d.hpp
+      title: C++/math/psum/psum2d.hpp
   - name: C++/string
     pages:
     - icon: ':heavy_check_mark:'
@@ -555,6 +560,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/phi_table.test.cpp
       title: test/phi_table.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/psum2d.test.cpp
+      title: test/psum2d.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/rangeaffine.test.cpp
       title: test/rangeaffine.test.cpp

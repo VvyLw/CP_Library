@@ -51,7 +51,7 @@ data:
   attributes:
     document_title: "\u7D2F\u7A4D\u548C"
     links: []
-  bundledCode: "#line 2 \"C++/math/prefixsum.hpp\"\n\n#include <numeric>\n#line 2\
+  bundledCode: "#line 2 \"C++/math/psum/psum.hpp\"\n\n#include <numeric>\n#line 2\
     \ \"C++/myvector.hpp\"\n\n#include <vector>\n\n#ifndef TEMPLATE\ntypedef long\
     \ long ll;\ntypedef unsigned long long ul;\ntypedef long double ld;\n#endif\n\
     namespace vectors {\ntemplate <class T> using V = std::vector<T>;\nusing vi =\
@@ -80,7 +80,7 @@ data:
     \ V<T> operator/(const V<T>& v, const U x) noexcept { V<T> res = v; res/=x; return\
     \ res; }\ntemplate <class T, class U> constexpr V<T> operator%(const V<T>& v,\
     \ const U x) noexcept { V<T> res = v; res%=x; return res; }\n} // vectors\n#line\
-    \ 5 \"C++/math/prefixsum.hpp\"\nnamespace Heileden {\nstruct psum {\nprivate:\n\
+    \ 5 \"C++/math/psum/psum.hpp\"\nnamespace Heileden {\nstruct psum {\nprivate:\n\
     \    vectors::vi s;\npublic:\n    psum(const vectors::vi& v): s{0} { std::partial_sum(v.begin(),\
     \ v.end(), std::back_inserter(s)); }\n    vectors::vi get() const { return s;\
     \ }\n    // [l, r]\n    ll query(const int l, const int r) const { return s[r]-s[l];\
@@ -94,10 +94,10 @@ data:
   dependsOn:
   - C++/myvector.hpp
   isVerificationFile: false
-  path: C++/math/prefixsum.hpp
+  path: C++/math/psum/psum.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2024-02-19 13:17:33+09:00'
+  timestamp: '2024-02-20 01:36:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sr_sum.test.cpp
@@ -112,10 +112,10 @@ data:
   - test/add128.test.cpp
   - test/s_rmq.test.cpp
   - test/aarray.test.cpp
-documentation_of: C++/math/prefixsum.hpp
+documentation_of: C++/math/psum/psum.hpp
 layout: document
 redirect_from:
-- /library/C++/math/prefixsum.hpp
-- /library/C++/math/prefixsum.hpp.html
+- /library/C++/math/psum/psum.hpp
+- /library/C++/math/psum/psum.hpp.html
 title: "\u7D2F\u7A4D\u548C"
 ---

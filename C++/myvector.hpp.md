@@ -12,9 +12,6 @@ data:
     path: C++/math/divisor.hpp
     title: "\u7D04\u6570\u5217\u6319"
   - icon: ':heavy_check_mark:'
-    path: C++/math/prefixsum.hpp
-    title: "\u7D2F\u7A4D\u548C"
-  - icon: ':heavy_check_mark:'
     path: C++/math/primecounter.hpp
     title: "\u7D20\u6570\u306E\u500B\u6570"
   - icon: ':heavy_check_mark:'
@@ -26,6 +23,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/math/primetable.hpp
     title: Sieve of Eratosthenes
+  - icon: ':heavy_check_mark:'
+    path: C++/math/psum/psum.hpp
+    title: "\u7D2F\u7A4D\u548C"
   - icon: ':heavy_check_mark:'
     path: C++/mypair.hpp
     title: C++/mypair.hpp
@@ -144,8 +144,8 @@ data:
   - C++/io/input.hpp
   - C++/math/divisor.hpp
   - C++/math/primefactor.hpp
-  - C++/math/prefixsum.hpp
   - C++/math/primetable.hpp
+  - C++/math/psum/psum.hpp
   - C++/math/primefactortable.hpp
   - C++/math/primecounter.hpp
   - C++/mypair.hpp
