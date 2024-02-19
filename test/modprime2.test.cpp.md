@@ -14,11 +14,11 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ModPrime.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: math/ModPrime.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/117\"\n#include <iostream>\n\
-    #include \"ModPrime.hpp\"\nconstexpr int mod = 1e9 + 7;\nModPrime<(int) 2e7 +\
-    \ 1> mp(mod);\nint main() {\n    std::cin.tie(nullptr) -> sync_with_stdio(false);\n\
+    #include \"math/ModPrime.hpp\"\nconstexpr int mod = 1e9 + 7;\nModPrime<(int) 2e7\
+    \ + 1> mp(mod);\nint main() {\n    std::cin.tie(nullptr) -> sync_with_stdio(false);\n\
     \    int t;\n    std::cin >> t;\n    while(t--) {\n        char c, tmp;\n    \
     \    int n, k;\n        std::cin >> c >> tmp >> n >> tmp >> k >> tmp;\n      \
     \  std::cout << (c == 'C' ? mp.C(n, k) : c == 'P' ? mp.P(n, k) : mp.H(n, k)) <<\

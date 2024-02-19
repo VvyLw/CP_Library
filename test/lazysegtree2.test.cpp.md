@@ -14,10 +14,10 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: LazySegmentTree.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: structure/LazySegmentTree.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_F\"\n#include\
-    \ <iostream>\n#include \"LazySegmentTree.hpp\"\nint main() {\n    std::cin.tie(nullptr)\
+    \ <iostream>\n#include \"structure/LazySegmentTree.hpp\"\nint main() {\n    std::cin.tie(nullptr)\
     \ -> sync_with_stdio(false);\n    int n, q;\n    std::cin >> n >> q;\n    RUMN<int>\
     \ seg(std::vector(n, INT32_MAX));\n    while(q--) {\n        int h, s, t;\n  \
     \      std::cin >> h >> s >> t;\n        t++;\n        if(h == 0) {\n        \

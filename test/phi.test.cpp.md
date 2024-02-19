@@ -14,11 +14,11 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: math.hpp: line\
-    \ -1: no such header\n"
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: math/euler_phi.hpp:\
+    \ line -1: no such header\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_D\"\
-    \n#include <iostream>\n#include \"math.hpp\"\nint main() {\n    long n;\n    std::cin\
-    \ >> n;\n    std::cout << euler_phi(n) << '\\n';\n}"
+    \n#include <iostream>\n#include \"math/euler_phi.hpp\"\nint main() {\n    long\
+    \ n;\n    std::cin >> n;\n    std::cout << euler_phi(n) << '\\n';\n}"
   dependsOn: []
   isVerificationFile: true
   path: test/phi.test.cpp

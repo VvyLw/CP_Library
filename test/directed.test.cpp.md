@@ -14,13 +14,13 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: MST.hpp: line\
-    \ -1: no such header\n"
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: graph/mst/directed.hpp:\
+    \ line -1: no such header\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_2_B\"\n#include\
-    \ <iostream>\n#include \"MST.hpp\"\nint main() {\n    int v, e, r;\n    std::cin\
-    \ >> v >> e >> r;\n    std::vector<edge> edges;\n    while(e--) {\n        int\
-    \ s, t, w;\n        std::cin >> s >> t >> w;\n        edges.emplace_back(s, t,\
-    \ -1, w);\n    }\n    std::cout << directed(edges, v, r).cost << '\\n';\n}"
+    \ <iostream>\n#include \"graph/mst/directed.hpp\"\nint main() {\n    int v, e,\
+    \ r;\n    std::cin >> v >> e >> r;\n    std::vector<edge> edges;\n    while(e--)\
+    \ {\n        int s, t, w;\n        std::cin >> s >> t >> w;\n        edges.emplace_back(s,\
+    \ t, -1, w);\n    }\n    std::cout << directed(edges, v, r).cost << '\\n';\n}"
   dependsOn: []
   isVerificationFile: true
   path: test/directed.test.cpp

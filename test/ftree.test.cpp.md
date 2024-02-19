@@ -19,10 +19,10 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
     /*#pragma GCC optimize(\"O3\")\n#pragma GCC optimize(\"unroll-loops\")//*/\n//#pragma\
     \ GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native\")\n#include\
-    \ \"template.hpp\"\n#include \"FenwickTree.hpp\"\nusing namespace zia_qu;\nusing\
-    \ namespace Lady_sANDy;\nusing namespace Heileden;\n\nint main() {\n\tVvyLw::wa_haya_exe();\n\
-    \tnow(start);\n\t/*INT(t); while(t--)//*/\n\tVvyLw::solve();\n\tnow(stop);\n\t\
-    time(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
+    \ \"template.hpp\"\n#include \"structure/fwtree/FenwickTree.hpp\"\nusing namespace\
+    \ zia_qu;\nusing namespace Lady_sANDy;\nusing namespace Heileden;\n\nint main()\
+    \ {\n\tVvyLw::wa_haya_exe();\n\tnow(start);\n\t/*INT(t); while(t--)//*/\n\tVvyLw::solve();\n\
+    \tnow(stop);\n\ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
     \n\nvoid VvyLw::solve() {\n\tINT(n,q);\n\tVEC(ll,a,n);\n\tFenwickTree bit(a);\n\
     \twhile(q--) {\n\t\tINT(t,p,q);\n\t\tif(t) out(bit.sum(p,--q));\n\t\telse bit.add(p,q);\n\
     \t}\n}"

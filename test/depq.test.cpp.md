@@ -14,17 +14,17 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: depq.hpp: line\
-    \ -1: no such header\n"
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: structure/depq.hpp:\
+    \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
-    \n#include <iostream>\n#include \"depq.hpp\"\nint main() {\n    int n, q;\n  \
-    \  std::cin >> n >> q;\n    std::vector<int> s(n);\n    for(auto &el: s) {\n \
-    \       std::cin >> el;\n    }\n    depq<int> depq(s);\n    while(q--) {\n   \
-    \     int t;\n        std::cin >> t;\n        if(t == 0) {\n            int x;\n\
-    \            std::cin >> x;\n            depq.push(x);\n        }\n        else\
-    \ if(t == 1) {\n            std::cout << depq.pop_min() << '\\n';\n        }\n\
-    \        else {\n            std::cout << depq.pop_max() << '\\n';\n        }\n\
-    \    }\n}"
+    \n#include <iostream>\n#include \"structure/depq.hpp\"\nint main() {\n    int\
+    \ n, q;\n    std::cin >> n >> q;\n    std::vector<int> s(n);\n    for(auto &el:\
+    \ s) {\n        std::cin >> el;\n    }\n    depq<int> depq(s);\n    while(q--)\
+    \ {\n        int t;\n        std::cin >> t;\n        if(t == 0) {\n          \
+    \  int x;\n            std::cin >> x;\n            depq.push(x);\n        }\n\
+    \        else if(t == 1) {\n            std::cout << depq.pop_min() << '\\n';\n\
+    \        }\n        else {\n            std::cout << depq.pop_max() << '\\n';\n\
+    \        }\n    }\n}"
   dependsOn: []
   isVerificationFile: true
   path: test/depq.test.cpp

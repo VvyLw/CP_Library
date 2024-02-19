@@ -14,12 +14,13 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: Strings.hpp: line\
-    \ -1: no such header\n"
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: string/SA.hpp:\
+    \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/suffixarray\"\n#include\
-    \ \"Strings.hpp\"\nint main() {\n    std::string s;\n    std::cin >> s;\n    SuffixArray\
-    \ sa(s);\n    sa.erase(sa.begin());\n    for(size_t i = 0; i < sa.size(); ++i)\
-    \ {\n        std::cout << sa[i] << \" \\n\"[i + 1 == sa.size()];\n    }\n}"
+    \ \"string/SA.hpp\"\nint main() {\n    std::string s;\n    std::cin >> s;\n  \
+    \  SuffixArray sa(s);\n    sa.erase(sa.begin());\n    for(size_t i = 0; i < sa.size();\
+    \ ++i) {\n        std::cout << sa[i] << \" \\n\"[i + 1 == sa.size()];\n    }\n\
+    }"
   dependsOn: []
   isVerificationFile: true
   path: test/sa.test.cpp

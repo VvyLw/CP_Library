@@ -14,12 +14,12 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: SegmentTree.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: structure/SegmentTree.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A\"\
-    \n#include <iostream>\n#include <limits>\n#include \"SegmentTree.hpp\"\nint main()\
-    \ {\n    int n, q;\n    std::cin >> n >> q;\n    SegTree<int> seg(n, [](const\
-    \ int x, const int y) -> int { return std::min(x, y); }, std::numeric_limits<int>::max());\n\
+    \n#include <iostream>\n#include <limits>\n#include \"structure/SegmentTree.hpp\"\
+    \nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    SegTree<int> seg(n,\
+    \ [](const int x, const int y) -> int { return std::min(x, y); }, std::numeric_limits<int>::max());\n\
     \    while(q--) {\n        int com, x, y;\n        std::cin >> com >> x >> y;\n\
     \        if(com == 0) {\n            seg.update(x, y);\n        } else {\n   \
     \         std::cout << seg.query(x, y + 1) << '\\n';\n        }\n    }\n}"

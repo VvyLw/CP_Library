@@ -14,16 +14,16 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: UFPotential.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: structure/uf/UFPotential.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_B\"\
-    \n#include <iostream>\n#include \"UFPotential.hpp\"\nint main() {\n    int n,\
-    \ q;\n    std::cin >> n >> q;\n    UFPotential uf(n);\n    while(q--) {\n    \
-    \    int t, x, y;\n        std::cin >> t >> x >> y;\n        if(t) {\n       \
-    \     if(uf[x] == uf[y]) {\n                std::cout << uf.dist(x, y) << '\\\
-    n';\n            }\n            else {\n                std::cout << \"?\\n\"\
-    ;\n            }\n        }\n        else {\n            int z;\n            std::cin\
-    \ >> z;\n            uf.unite(x, y, z);\n        }\n    }\n}"
+    \n#include <iostream>\n#include \"structure/uf/UFPotential.hpp\"\nint main() {\n\
+    \    int n, q;\n    std::cin >> n >> q;\n    UFPotential uf(n);\n    while(q--)\
+    \ {\n        int t, x, y;\n        std::cin >> t >> x >> y;\n        if(t) {\n\
+    \            if(uf[x] == uf[y]) {\n                std::cout << uf.dist(x, y)\
+    \ << '\\n';\n            }\n            else {\n                std::cout << \"\
+    ?\\n\";\n            }\n        }\n        else {\n            int z;\n      \
+    \      std::cin >> z;\n            uf.unite(x, y, z);\n        }\n    }\n}"
   dependsOn: []
   isVerificationFile: true
   path: test/ufpotential.test.cpp

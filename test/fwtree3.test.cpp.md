@@ -14,15 +14,15 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: RangeBIT.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: structure/fwtree/RangeBIT.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_G\"\
-    \n#include <iostream>\n#include \"RangeBIT.hpp\"\nint main() {\n    int n, q;\n\
-    \    std::cin >> n >> q;\n    RangeBIT<int64_t> bit(n);\n    while(q--) {\n  \
-    \      int h, s, t;\n        std::cin >> h >> s >> t;\n        s--;\n        if(h\
-    \ == 0) {\n            int x;\n            std::cin >> x;\n            bit.add(s,\
-    \ t, x);\n        } else {\n            std::cout << bit.sum(s, t) << '\\n';\n\
-    \        }\n    }\n}"
+    \n#include <iostream>\n#include \"structure/fwtree/RangeBIT.hpp\"\nint main()\
+    \ {\n    int n, q;\n    std::cin >> n >> q;\n    RangeBIT<int64_t> bit(n);\n \
+    \   while(q--) {\n        int h, s, t;\n        std::cin >> h >> s >> t;\n   \
+    \     s--;\n        if(h == 0) {\n            int x;\n            std::cin >>\
+    \ x;\n            bit.add(s, t, x);\n        } else {\n            std::cout <<\
+    \ bit.sum(s, t) << '\\n';\n        }\n    }\n}"
   dependsOn: []
   isVerificationFile: true
   path: test/fwtree3.test.cpp

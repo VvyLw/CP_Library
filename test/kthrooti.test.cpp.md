@@ -14,13 +14,13 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: math.hpp: line\
-    \ -1: no such header\n"
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: math/kthrooti.hpp:\
+    \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_root_integer\"\n#include\
-    \ <iostream>\n#include \"math.hpp\"\nvoid solve() {\n    ul a;\n    int k;\n \
-    \   std::cin >> a >> k;\n    std::cout << kthrooti(a, k) << '\\n';\n}\nint main()\
-    \ {\n    std::cin.tie(nullptr) -> sync_with_stdio(false);\n    int t;\n    std::cin\
-    \ >> t;\n    while(t--) {\n        solve();\n    }\n}"
+    \ <iostream>\n#include \"math/kthrooti.hpp\"\nvoid solve() {\n    ul a;\n    int\
+    \ k;\n    std::cin >> a >> k;\n    std::cout << Heileden::kthrooti(a, k) << '\\\
+    n';\n}\nint main() {\n    std::cin.tie(nullptr) -> sync_with_stdio(false);\n \
+    \   int t;\n    std::cin >> t;\n    while(t--) {\n        solve();\n    }\n}"
   dependsOn: []
   isVerificationFile: true
   path: test/kthrooti.test.cpp

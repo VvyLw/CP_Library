@@ -14,16 +14,16 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: FenwickTree.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: structure/fwtree/FenwickTree.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_E\"\n#include\
-    \ <iostream>\n#include \"FenwickTree.hpp\"\nint main() {\n    std::cin.tie(nullptr)\
-    \ -> sync_with_stdio(false);\n    int n, q;\n    std::cin >> n >> q;\n    FenwickTree<int64_t>\
-    \ bit(n);\n    while(q--) {\n        int h;\n        std::cin >> h;\n        if(h\
-    \ == 0) {\n            int s, t, x;\n            std::cin >> s >> t >> x;\n  \
-    \          bit.add(--s, --t, x);\n        } else {\n            int i;\n     \
-    \       std::cin >> i;\n            std::cout << bit.sum(--i) << '\\n';\n    \
-    \    }\n    }\n}"
+    \ <iostream>\n#include \"structure/fwtree/FenwickTree.hpp\"\nint main() {\n  \
+    \  std::cin.tie(nullptr) -> sync_with_stdio(false);\n    int n, q;\n    std::cin\
+    \ >> n >> q;\n    FenwickTree<int64_t> bit(n);\n    while(q--) {\n        int\
+    \ h;\n        std::cin >> h;\n        if(h == 0) {\n            int s, t, x;\n\
+    \            std::cin >> s >> t >> x;\n            bit.add(--s, --t, x);\n   \
+    \     } else {\n            int i;\n            std::cin >> i;\n            std::cout\
+    \ << bit.sum(--i) << '\\n';\n        }\n    }\n}"
   dependsOn: []
   isVerificationFile: true
   path: test/fwtree2.test.cpp

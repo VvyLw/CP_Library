@@ -19,8 +19,8 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n/*#pragma\
     \ GCC optimize(\"O3\")\n#pragma GCC optimize(\"unroll-loops\")//*/\n//#pragma\
     \ GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native\")\n#include\
-    \ \"template.hpp\"\n#include \"UnionFind.hpp\"\nusing namespace zia_qu;\nusing\
-    \ namespace Lady_sANDy;\nusing namespace Heileden;\nint main() {\n  \tVvyLw::wa_haya_exe();\n\
+    \ \"template.hpp\"\n#include \"structure/uf/UnionFind.hpp\"\nusing namespace zia_qu;\n\
+    using namespace Lady_sANDy;\nusing namespace Heileden;\nint main() {\n  \tVvyLw::wa_haya_exe();\n\
     \  \tnow(start);\n  \t//INT(t); while(t--)\n  \tVvyLw::solve();\n  \tnow(stop);\n\
     \  \ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
     \nvoid VvyLw::solve() {\n    INT(n,q);\n    UnionFind uf(n);\n    while(q--) {\n\

@@ -14,14 +14,14 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: graph.hpp: line\
-    \ -1: no such header\n"
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: graph/WeightedGraph.hpp:\
+    \ line -1: no such header\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B\"\
-    \n#include \"graph.hpp\"\nconstexpr long long lim = std::numeric_limits<long long>::max();\n\
-    int main() {\n    int v, e, r;\n    std::cin >> v >> e >> r;\n    w_graph<false>\
-    \ g(v, 0);\n    g.input(e);\n    const auto res = g.bellman_ford(r);\n    if(res.empty())\
-    \ {\n        std::cout << \"NEGATIVE CYCLE\\n\";\n        std::exit(0);\n    }\n\
-    \    for(const auto &el: res) {\n        if(el == lim) {\n            std::cout\
+    \n#include \"graph/WeightedGraph.hpp\"\nconstexpr long long lim = std::numeric_limits<long\
+    \ long>::max();\nint main() {\n    int v, e, r;\n    std::cin >> v >> e >> r;\n\
+    \    w_graph<false> g(v, 0);\n    g.input(e);\n    const auto res = g.bellman_ford(r);\n\
+    \    if(res.empty()) {\n        std::cout << \"NEGATIVE CYCLE\\n\";\n        std::exit(0);\n\
+    \    }\n    for(const auto &el: res) {\n        if(el == lim) {\n            std::cout\
     \ << \"INF\\n\";\n        }\n        else {\n            std::cout << el << '\\\
     n';\n        }\n    }\n}"
   dependsOn: []

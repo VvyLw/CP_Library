@@ -14,13 +14,13 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: math.hpp: line\
-    \ -1: no such header\n"
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: math/tetration.hpp:\
+    \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tetration_mod\"\n#include\
-    \ <iostream>\n#include \"math.hpp\"\nvoid solve() {\n    long long a, b, m;\n\
-    \    std::cin >> a >> b >> m;\n    std::cout << tetration(a, b, m) << '\\n';\n\
-    }\nint main() {\n    int t;\n    std::cin >> t;\n    while(t--) {\n        solve();\n\
-    \    }\n}"
+    \ <iostream>\n#include \"math/tetration.hpp\"\nvoid solve() {\n    long long a,\
+    \ b, m;\n    std::cin >> a >> b >> m;\n    std::cout << tetration(a, b, m) <<\
+    \ '\\n';\n}\nint main() {\n    int t;\n    std::cin >> t;\n    while(t--) {\n\
+    \        solve();\n    }\n}"
   dependsOn: []
   isVerificationFile: true
   path: test/tetration.test.cpp

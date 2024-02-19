@@ -14,10 +14,10 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: Strings.hpp: line\
-    \ -1: no such header\n"
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: string/manacher.hpp:\
+    \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_palindromes\"\
-    \n#include <iostream>\n#include \"Strings.hpp\"\nint main() {\n    std::string\
+    \n#include <iostream>\n#include \"string/manacher.hpp\"\nint main() {\n    std::string\
     \ s;\n    std::cin >> s;\n    const auto res = manacher(s);\n    for(size_t i\
     \ = 0; i < res.size(); ++i) {\n        std::cout << res[i] << \" \\n\"[i + 1 ==\
     \ res.size()];\n    }\n}"

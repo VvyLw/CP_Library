@@ -131,14 +131,8 @@ data:
     path: Java/library/graph/WeightedGraph.java
     title: Java/library/graph/WeightedGraph.java
   - icon: ':warning:'
-    path: Java/library/math/BigPrime.java
-    title: Java/library/math/BigPrime.java
-  - icon: ':warning:'
     path: Java/library/math/EulerPhiTable.java
     title: Java/library/math/EulerPhiTable.java
-  - icon: ':warning:'
-    path: Java/library/math/LongPrime.java
-    title: Java/library/math/LongPrime.java
   - icon: ':warning:'
     path: Java/library/math/Matrix.java
     title: Java/library/math/Matrix.java
@@ -152,17 +146,23 @@ data:
     path: Java/library/math/PrimeFactor.java
     title: Java/library/math/PrimeFactor.java
   - icon: ':warning:'
+    path: Java/library/math/largeprime/BigPrime.java
+    title: Java/library/math/largeprime/BigPrime.java
+  - icon: ':warning:'
+    path: Java/library/math/largeprime/LongPrime.java
+    title: Java/library/math/largeprime/LongPrime.java
+  - icon: ':warning:'
+    path: Java/library/math/prefixsum/PrefixSum.java
+    title: Java/library/math/prefixsum/PrefixSum.java
+  - icon: ':warning:'
+    path: Java/library/math/prefixsum/PrefixSum2D.java
+    title: Java/library/math/prefixsum/PrefixSum2D.java
+  - icon: ':warning:'
     path: Java/library/other/Huitloxopetl.java
     title: Java/library/other/Huitloxopetl.java
   - icon: ':warning:'
     path: Java/library/other/InclusiveScan.java
     title: Java/library/other/InclusiveScan.java
-  - icon: ':warning:'
-    path: Java/library/other/PrefixSum.java
-    title: Java/library/other/PrefixSum.java
-  - icon: ':warning:'
-    path: Java/library/other/PrefixSum2D.java
-    title: Java/library/other/PrefixSum2D.java
   - icon: ':warning:'
     path: Java/library/other/SkewHeap.java
     title: Java/library/other/SkewHeap.java
@@ -381,14 +381,8 @@ data:
     path: Java/library/graph/WeightedGraph.java
     title: Java/library/graph/WeightedGraph.java
   - icon: ':warning:'
-    path: Java/library/math/BigPrime.java
-    title: Java/library/math/BigPrime.java
-  - icon: ':warning:'
     path: Java/library/math/EulerPhiTable.java
     title: Java/library/math/EulerPhiTable.java
-  - icon: ':warning:'
-    path: Java/library/math/LongPrime.java
-    title: Java/library/math/LongPrime.java
   - icon: ':warning:'
     path: Java/library/math/Matrix.java
     title: Java/library/math/Matrix.java
@@ -402,17 +396,23 @@ data:
     path: Java/library/math/PrimeFactor.java
     title: Java/library/math/PrimeFactor.java
   - icon: ':warning:'
+    path: Java/library/math/largeprime/BigPrime.java
+    title: Java/library/math/largeprime/BigPrime.java
+  - icon: ':warning:'
+    path: Java/library/math/largeprime/LongPrime.java
+    title: Java/library/math/largeprime/LongPrime.java
+  - icon: ':warning:'
+    path: Java/library/math/prefixsum/PrefixSum.java
+    title: Java/library/math/prefixsum/PrefixSum.java
+  - icon: ':warning:'
+    path: Java/library/math/prefixsum/PrefixSum2D.java
+    title: Java/library/math/prefixsum/PrefixSum2D.java
+  - icon: ':warning:'
     path: Java/library/other/Huitloxopetl.java
     title: Java/library/other/Huitloxopetl.java
   - icon: ':warning:'
     path: Java/library/other/InclusiveScan.java
     title: Java/library/other/InclusiveScan.java
-  - icon: ':warning:'
-    path: Java/library/other/PrefixSum.java
-    title: Java/library/other/PrefixSum.java
-  - icon: ':warning:'
-    path: Java/library/other/PrefixSum2D.java
-    title: Java/library/other/PrefixSum2D.java
   - icon: ':warning:'
     path: Java/library/other/SkewHeap.java
     title: Java/library/other/SkewHeap.java
@@ -537,11 +537,13 @@ data:
   - Java/library/graph/Edge.java
   - Java/library/math/Matrix.java
   - Java/library/math/PrimeFactor.java
-  - Java/library/math/BigPrime.java
+  - Java/library/math/prefixsum/PrefixSum2D.java
+  - Java/library/math/prefixsum/PrefixSum.java
   - Java/library/math/EulerPhiTable.java
   - Java/library/math/PrimeCounter.java
   - Java/library/math/ModPrime.java
-  - Java/library/math/LongPrime.java
+  - Java/library/math/largeprime/BigPrime.java
+  - Java/library/math/largeprime/LongPrime.java
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
   - Java/library/core/interfaces/RecursiveLongConsumer.java
@@ -579,9 +581,7 @@ data:
   - Java/library/core/Main.java
   - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
-  - Java/library/other/PrefixSum2D.java
   - Java/library/other/InclusiveScan.java
-  - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
   - Java/library/structure/DualSegmentTree.java
   - Java/library/structure/pair/IntPair.java
@@ -623,11 +623,13 @@ data:
   - Java/library/graph/Edge.java
   - Java/library/math/Matrix.java
   - Java/library/math/PrimeFactor.java
-  - Java/library/math/BigPrime.java
+  - Java/library/math/prefixsum/PrefixSum2D.java
+  - Java/library/math/prefixsum/PrefixSum.java
   - Java/library/math/EulerPhiTable.java
   - Java/library/math/PrimeCounter.java
   - Java/library/math/ModPrime.java
-  - Java/library/math/LongPrime.java
+  - Java/library/math/largeprime/BigPrime.java
+  - Java/library/math/largeprime/LongPrime.java
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
   - Java/library/core/interfaces/RecursiveLongConsumer.java
@@ -665,9 +667,7 @@ data:
   - Java/library/core/Main.java
   - Java/library/other/Huitloxopetl.java
   - Java/library/other/SuffixArray.java
-  - Java/library/other/PrefixSum2D.java
   - Java/library/other/InclusiveScan.java
-  - Java/library/other/PrefixSum.java
   - Java/library/other/SkewHeap.java
   - Java/library/structure/DualSegmentTree.java
   - Java/library/structure/pair/IntPair.java
@@ -698,7 +698,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-19 05:38:51+09:00'
+  timestamp: '2024-02-19 09:19:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/PrimeTable.java

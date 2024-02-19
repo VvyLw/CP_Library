@@ -14,14 +14,15 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: MST.hpp: line\
-    \ -1: no such header\n"
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: graph/mst/kruskal.hpp:\
+    \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/manhattanmst\"\n#include\
-    \ <iostream>\n#include \"MST.hpp\"\nint main() {\n    int n;\n    std::cin >>\
-    \ n;\n    std::vector<int> x(n), y(n);\n    for(int i = 0; i < n; ++i) {\n   \
-    \     std::cin >> x[i] >> y[i];\n    }\n    const auto ans = kruskal(manhattan(x,\
-    \ y), n);\n    std::cout << ans.cost << '\\n';\n    for(const auto &e: ans.tree)\
-    \ {\n        std::cout << e.src << ' ' << e.to << '\\n';\n    }\n}"
+    \ <iostream>\n#include \"graph/mst/kruskal.hpp\"\n#include \"graph/mst/manhattan.hpp\"\
+    \nint main() {\n    int n;\n    std::cin >> n;\n    std::vector<int> x(n), y(n);\n\
+    \    for(int i = 0; i < n; ++i) {\n        std::cin >> x[i] >> y[i];\n    }\n\
+    \    const auto ans = kruskal(manhattan(x, y), n);\n    std::cout << ans.cost\
+    \ << '\\n';\n    for(const auto &e: ans.tree) {\n        std::cout << e.src <<\
+    \ ' ' << e.to << '\\n';\n    }\n}"
   dependsOn: []
   isVerificationFile: true
   path: test/manhattan.test.cpp

@@ -14,12 +14,15 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: math.hpp: line\
-    \ -1: no such header\n"
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: math/phitable.hpp:\
+    \ line -1: no such header\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/2286\"\n#include\
-    \ <iostream>\n#include \"math.hpp\"\nint main() {\n    const auto phi = phi_table(int(1e6)).acc();\n\
-    \    int t;\n    std::cin >> t;\n    while(t--) {\n        int i;\n        std::cin\
-    \ >> i;\n        std::cout << phi[i] << '\\n';\n    }\n}"
+    \ <iostream>\n#include \"math/phitable.hpp\"\nconstexpr int n = 1e6;\nint main()\
+    \ {\n    const auto phi = phi_table(n).get();\n    std::vector<int64_t> ret(n\
+    \ + 1);\n    ret[1] = 2;\n    for(int i = 2; i <= n; ++i) {\n        ret[i] =\
+    \ ret[i - 1] + phi[i];\n    }\n    int t;\n    std::cin >> t;\n    while(t--)\
+    \ {\n        int i;\n        std::cin >> i;\n        std::cout << ret[i] << '\\\
+    n';\n    }\n}"
   dependsOn: []
   isVerificationFile: true
   path: test/phi_table.test.cpp

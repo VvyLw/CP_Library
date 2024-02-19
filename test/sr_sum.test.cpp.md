@@ -23,7 +23,7 @@ data:
     \ namespace Heileden;\nint main() {\n  \tVvyLw::wa_haya_exe();\n  \tnow(start);\n\
     \  \t//INT(t); while(t--)\n  \tVvyLw::solve();\n  \tnow(stop);\n  \ttime(start,\
     \ stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
-    \nvoid VvyLw::solve() {\n    INT(n,q);\n    VEC(ll,a,n);\n    asum s(a);\n   \
+    \nvoid VvyLw::solve() {\n    INT(n,q);\n    VEC(ll,a,n);\n    psum s(a);\n   \
     \ while(q--) {\n        INT(l,r);\n        out(s.query(l,r));\n    }\n}"
   dependsOn: []
   isVerificationFile: true

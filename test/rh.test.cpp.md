@@ -14,10 +14,10 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: Strings.hpp: line\
-    \ -1: no such header\n"
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: string/RH.hpp:\
+    \ line -1: no such header\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_B\"\
-    \n#include <iostream>\n#include \"Strings.hpp\"\nint main() {\n    std::string\
+    \n#include <iostream>\n#include \"string/RH.hpp\"\nint main() {\n    std::string\
     \ t, p;\n    std::cin >> t >> p;\n    RH rh1(t), rh2(p);\n    for(size_t i = 0;\
     \ i + p.size() <= t.size(); ++i) {\n        if(rh1.get(i, i + p.size()) == rh2.get(0,\
     \ p.size())) {\n            std::cout << i << '\\n';\n        }\n    }\n}"

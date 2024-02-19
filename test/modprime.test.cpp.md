@@ -14,10 +14,10 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ModPrime.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: math/ModPrime.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
-    \n#include <iostream>\n#include \"ModPrime.hpp\"\nint main() {\n    std::cin.tie(nullptr)\
+    \n#include <iostream>\n#include \"math/ModPrime.hpp\"\nint main() {\n    std::cin.tie(nullptr)\
     \ -> sync_with_stdio(false);\n    int t, m;\n    std::cin >> t >> m;\n    ModPrime<(int)\
     \ 1e7> mp(m);\n    while(t--) {\n        int n, k;\n        std::cin >> n >> k;\n\
     \        std::cout << mp.C(n, k) << '\\n';\n    }\n}"

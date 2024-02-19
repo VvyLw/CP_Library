@@ -14,10 +14,10 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: MST.hpp: line\
-    \ -1: no such header\n"
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: graph/mst/kruskal.hpp:\
+    \ line -1: no such header\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A\"\
-    \n#include <iostream>\n#include \"MST.hpp\"\nint main() {\n    std::cin.tie(nullptr)\
+    \n#include <iostream>\n#include \"graph/mst/kruskal.hpp\"\nint main() {\n    std::cin.tie(nullptr)\
     \ -> sync_with_stdio(false);\n    int n, m;\n    std::cin >> n >> m;\n    std::vector<edge>\
     \ e;\n    while(m--) {\n        int s, t, w;\n        std::cin >> s >> t >> w;\n\
     \        e.emplace_back(s, t, -1, w);\n    }\n    std::cout << kruskal(e, n).cost\

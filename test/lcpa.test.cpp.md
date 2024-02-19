@@ -14,13 +14,13 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: Strings.hpp: line\
-    \ -1: no such header\n"
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: string/SA.hpp:\
+    \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_substrings\"\n\
-    #include \"Strings.hpp\"\nint main() {\n    std::string s;\n    std::cin >> s;\n\
-    \    SuffixArray sa(s);\n    const ll n = s.size();\n    const auto lcp = sa.lcp_array();\n\
-    \    std::cout << n * (n + 1) / 2 - std::accumulate(lcp.begin(), lcp.end(), 0LL)\
-    \ << '\\n';\n}"
+    #include \"string/SA.hpp\"\nint main() {\n    std::string s;\n    std::cin >>\
+    \ s;\n    SuffixArray sa(s);\n    const int64_t n = s.size();\n    const auto\
+    \ lcp = sa.lcp_array();\n    std::cout << n * (n + 1) / 2 - std::accumulate(lcp.begin(),\
+    \ lcp.end(), 0LL) << '\\n';\n}"
   dependsOn: []
   isVerificationFile: true
   path: test/lcpa.test.cpp
