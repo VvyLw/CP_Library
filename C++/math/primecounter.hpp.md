@@ -42,7 +42,7 @@ data:
     \ <= sq; ++i) {\n            prime_sum[i] = prime_sum[i - 1] + prime[i];\n   \
     \     }\n        primes.reserve(prime_sum[sq]);\n        for(int i = 1; i <= sq;\
     \ ++i) {\n            if(prime[i]) {\n                primes.emplace_back(i);\n\
-    \            }\n        }\n    }\n\n    ll pi(const ll n) {\n        if(n <= sq)\
+    \            }\n        }\n    }\n    ll pi(const ll n) {\n        if(n <= sq)\
     \ {\n            return prime_sum[n];\n        }\n        const ll m = Heileden::kthrooti(n,\
     \ 3);\n        const ll a = pi(m);\n        return phi(n, a) + a - 1 - p2(n, m);\n\
     \    }\n};\n\n/**\n * @brief \u7D20\u6570\u306E\u500B\u6570\n */"

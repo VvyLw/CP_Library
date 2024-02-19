@@ -21,8 +21,8 @@ data:
   code: "#pragma once\n\n#include <map>\n#include <numeric>\n#include \"myvector.hpp\"\
     \nnamespace Heileden {\nstruct p_fact {\n    vectors::vi spf;\n    p_fact(const\
     \ int n): spf(n + 1){\n        std::iota(spf.begin(), spf.end(), 0);\n       \
-    \ for(int i = 2; i * i <= n; ++i) {\n            if(spf[i]==i) {\n           \
-    \     for(int j = i * i; j <= n; j += i) {\n                    if(spf[j]==j)\
+    \ for(int64_t i = 2; i * i <= n; ++i) {\n            if(spf[i]==i) {\n       \
+    \         for(int64_t j = i * i; j <= n; j += i) {\n                    if(spf[j]==j)\
     \ spf[j]=i;\n                }\n            }\n        }\n    }\n    std::map<int,int>\
     \ get(int n) {\n        std::map<int,int> m;\n        while(n!=1) {\n        \
     \    m[spf[n]]++;\n            n/=spf[n];\n        }\n        return m;\n    }\n\

@@ -20,11 +20,11 @@ data:
     \ line -1: no such header\n"
   code: "#pragma once\n\n#include \"myvector.hpp\"\nnamespace Heileden {\nstruct p_table\
     \ {\n    vectors::vb SoE;\n    p_table(const int n): SoE(n+1,1){\n        SoE[0]=SoE[1]=0;\n\
-    \        for(int i = 2; i <= n; ++i) {\n            if(!SoE[i]) continue;\n  \
-    \          for(int j = i * i; j <= n; j += i) SoE[j] = 0;\n        }\n    }\n\
-    \    vectors::vi get() {\n        vectors::vi p;\n        for(size_t i = 2; i\
-    \ < SoE.size(); ++i) if(SoE[i]) p.emplace_back(i);\n        return p;\n    }\n\
-    };\n}\n\n/**\n * @brief Sieve of Eratosthenes\n */"
+    \        for(int64_t i = 2; i <= n; ++i) {\n            if(!SoE[i]) continue;\n\
+    \            for(int64_t j = i * i; j <= n; j += i) SoE[j] = 0;\n        }\n \
+    \   }\n    vectors::vi get() {\n        vectors::vi p;\n        for(size_t i =\
+    \ 2; i < SoE.size(); ++i) if(SoE[i]) p.emplace_back(i);\n        return p;\n \
+    \   }\n};\n}\n\n/**\n * @brief Sieve of Eratosthenes\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/math/primetable.hpp
