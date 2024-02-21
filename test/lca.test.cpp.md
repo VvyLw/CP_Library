@@ -29,8 +29,8 @@ data:
     \ to_, const int id_ = -1, const long long cost_ = 0): src(src_), to(to_), id(id_),\
     \ cost(cost_){}\n    operator int() const { return to; }\n};\n\n/**\n * @brief\
     \ Edge\n */\n#line 11 \"C++/graph/Graph.hpp\"\ntemplate <bool undirected = true>\
-    \ struct graph: std::vector<std::vector<edge>> {\r\nprotected:\r\n    const int\
-    \ indexed;\r\n    int id;\r\n    std::vector<edge> edges;\r\npublic:\r\n    graph(const\
+    \ struct graph: std::vector<std::vector<edge>> {\r\nprotected:\r\n    int indexed,\
+    \ id;\r\n    std::vector<edge> edges;\r\npublic:\r\n    graph(){}\r\n    graph(const\
     \ int n, const int indexed_ = 1): indexed(indexed_), id(0){ this -> resize(n);\
     \ }\r\n    void add(int a, int b) {\r\n        a -= indexed, b-= indexed;\r\n\
     \        (*this)[a].emplace_back(a, b, id);\r\n        edges.emplace_back(a, b,\
@@ -83,7 +83,7 @@ data:
     \ + 1][i] = -1;\r\n                }\r\n                else {\r\n           \
     \         table[k + 1][i] = table[k][table[k][i]];\r\n                }\r\n  \
     \          }\r\n        }\r\n    }\r\npublic:\r\n    LowestCommonAncestor(const\
-    \ G &g_) : g(g_), dep(g_.size()), sum(g_.size()), LOG(std::__lg(g_.size()) + 1)\
+    \ G &g_): g(g_), dep(g_.size()), sum(g_.size()), LOG(std::__lg(g_.size()) + 1)\
     \ {\r\n        table.assign(LOG, std::vector<int>(g_.size(), -1));\r\n       \
     \ build();\r\n    }\r\n    int climb(int u, const int k) {\r\n\t\tif(dep[u] <\
     \ k) {\r\n\t\t\treturn -1;\r\n\t\t}\r\n\t\tfor(int i = LOG; --i >= 0;) {\r\n\t\
@@ -117,7 +117,7 @@ data:
   isVerificationFile: true
   path: test/lca.test.cpp
   requiredBy: []
-  timestamp: '2024-02-21 13:55:49+09:00'
+  timestamp: '2024-02-22 06:53:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lca.test.cpp

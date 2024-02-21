@@ -26,8 +26,8 @@ data:
     \ to_, const int id_ = -1, const long long cost_ = 0): src(src_), to(to_), id(id_),\
     \ cost(cost_){}\n    operator int() const { return to; }\n};\n\n/**\n * @brief\
     \ Edge\n */\n#line 11 \"C++/graph/Graph.hpp\"\ntemplate <bool undirected = true>\
-    \ struct graph: std::vector<std::vector<edge>> {\r\nprotected:\r\n    const int\
-    \ indexed;\r\n    int id;\r\n    std::vector<edge> edges;\r\npublic:\r\n    graph(const\
+    \ struct graph: std::vector<std::vector<edge>> {\r\nprotected:\r\n    int indexed,\
+    \ id;\r\n    std::vector<edge> edges;\r\npublic:\r\n    graph(){}\r\n    graph(const\
     \ int n, const int indexed_ = 1): indexed(indexed_), id(0){ this -> resize(n);\
     \ }\r\n    void add(int a, int b) {\r\n        a -= indexed, b-= indexed;\r\n\
     \        (*this)[a].emplace_back(a, b, id);\r\n        edges.emplace_back(a, b,\
@@ -79,7 +79,7 @@ data:
   isVerificationFile: true
   path: test/dag_check.test.cpp
   requiredBy: []
-  timestamp: '2024-02-21 13:55:49+09:00'
+  timestamp: '2024-02-22 06:53:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/dag_check.test.cpp

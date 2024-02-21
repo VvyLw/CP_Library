@@ -29,7 +29,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/graph/LCA.hpp
       title: "\u6700\u5C0F\u5171\u901A\u7956\u5148"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: C++/graph/SCC.hpp
       title: SCC
     - icon: ':heavy_check_mark:'
@@ -581,6 +581,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/sa.test.cpp
       title: test/sa.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/scc.test.cpp
+      title: test/scc.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/segtree.test.cpp
       title: test/segtree.test.cpp

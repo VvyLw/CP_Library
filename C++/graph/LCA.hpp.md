@@ -27,8 +27,8 @@ data:
     \       if(table[k][i] == -1) {\r\n                    table[k + 1][i] = -1;\r\
     \n                }\r\n                else {\r\n                    table[k +\
     \ 1][i] = table[k][table[k][i]];\r\n                }\r\n            }\r\n   \
-    \     }\r\n    }\r\npublic:\r\n    LowestCommonAncestor(const G &g_) : g(g_),\
-    \ dep(g_.size()), sum(g_.size()), LOG(std::__lg(g_.size()) + 1) {\r\n        table.assign(LOG,\
+    \     }\r\n    }\r\npublic:\r\n    LowestCommonAncestor(const G &g_): g(g_), dep(g_.size()),\
+    \ sum(g_.size()), LOG(std::__lg(g_.size()) + 1) {\r\n        table.assign(LOG,\
     \ std::vector<int>(g_.size(), -1));\r\n        build();\r\n    }\r\n    int climb(int\
     \ u, const int k) {\r\n\t\tif(dep[u] < k) {\r\n\t\t\treturn -1;\r\n\t\t}\r\n\t\
     \tfor(int i = LOG; --i >= 0;) {\r\n\t\t\tif((k >> i) & 1) {\r\n              \
@@ -56,7 +56,7 @@ data:
     \ == -1) {\r\n                    table[k + 1][i] = -1;\r\n                }\r\
     \n                else {\r\n                    table[k + 1][i] = table[k][table[k][i]];\r\
     \n                }\r\n            }\r\n        }\r\n    }\r\npublic:\r\n    LowestCommonAncestor(const\
-    \ G &g_) : g(g_), dep(g_.size()), sum(g_.size()), LOG(std::__lg(g_.size()) + 1)\
+    \ G &g_): g(g_), dep(g_.size()), sum(g_.size()), LOG(std::__lg(g_.size()) + 1)\
     \ {\r\n        table.assign(LOG, std::vector<int>(g_.size(), -1));\r\n       \
     \ build();\r\n    }\r\n    int climb(int u, const int k) {\r\n\t\tif(dep[u] <\
     \ k) {\r\n\t\t\treturn -1;\r\n\t\t}\r\n\t\tfor(int i = LOG; --i >= 0;) {\r\n\t\
@@ -75,7 +75,7 @@ data:
   isVerificationFile: false
   path: C++/graph/LCA.hpp
   requiredBy: []
-  timestamp: '2024-02-19 12:20:55+09:00'
+  timestamp: '2024-02-22 06:47:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lca.test.cpp

@@ -30,8 +30,8 @@ data:
     \ = 0): src(src_), to(to_), id(id_), cost(cost_){}\n    operator int() const {\
     \ return to; }\n};\n\n/**\n * @brief Edge\n */\n#line 11 \"C++/graph/Graph.hpp\"\
     \ntemplate <bool undirected = true> struct graph: std::vector<std::vector<edge>>\
-    \ {\r\nprotected:\r\n    const int indexed;\r\n    int id;\r\n    std::vector<edge>\
-    \ edges;\r\npublic:\r\n    graph(const int n, const int indexed_ = 1): indexed(indexed_),\
+    \ {\r\nprotected:\r\n    int indexed, id;\r\n    std::vector<edge> edges;\r\n\
+    public:\r\n    graph(){}\r\n    graph(const int n, const int indexed_ = 1): indexed(indexed_),\
     \ id(0){ this -> resize(n); }\r\n    void add(int a, int b) {\r\n        a -=\
     \ indexed, b-= indexed;\r\n        (*this)[a].emplace_back(a, b, id);\r\n    \
     \    edges.emplace_back(a, b, id++);\r\n        if(undirected) {\r\n         \
@@ -137,7 +137,7 @@ data:
   isVerificationFile: true
   path: test/warshallfloyd.test.cpp
   requiredBy: []
-  timestamp: '2024-02-21 13:55:49+09:00'
+  timestamp: '2024-02-22 06:53:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/warshallfloyd.test.cpp

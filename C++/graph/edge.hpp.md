@@ -5,9 +5,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/graph/Graph.hpp
     title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-  - icon: ':warning:'
-    path: C++/graph/SCC.hpp
-    title: SCC
   - icon: ':heavy_check_mark:'
     path: C++/graph/WeightedGraph.hpp
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
@@ -46,6 +43,9 @@ data:
     path: test/manhattan.test.cpp
     title: test/manhattan.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/scc.test.cpp
+    title: test/scc.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/warshallfloyd.test.cpp
     title: test/warshallfloyd.test.cpp
   _isVerificationFailed: false
@@ -71,13 +71,13 @@ data:
   - C++/graph/mst/manhattan.hpp
   - C++/graph/mst/kruskal.hpp
   - C++/graph/mst/MST.hpp
-  - C++/graph/SCC.hpp
   - C++/graph/WeightedGraph.hpp
   - C++/graph/Graph.hpp
   timestamp: '2024-02-19 12:47:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/cycledetector.test.cpp
+  - test/scc.test.cpp
   - test/manhattan.test.cpp
   - test/kruskal.test.cpp
   - test/dag_check.test.cpp

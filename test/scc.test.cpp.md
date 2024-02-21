@@ -5,6 +5,9 @@ data:
     path: C++/graph/Graph.hpp
     title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
   - icon: ':heavy_check_mark:'
+    path: C++/graph/SCC.hpp
+    title: SCC
+  - icon: ':heavy_check_mark:'
     path: C++/graph/edge.hpp
     title: Edge
   _extendedRequiredBy: []
@@ -14,10 +17,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/cycle_detection
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C
     links:
-    - https://judge.yosupo.jp/problem/cycle_detection
-  bundledCode: "#line 1 \"test/cycledetector.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection\"\
+    - https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C
+  bundledCode: "#line 1 \"test/scc.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C\"\
     \n#include <iostream>\n#line 2 \"C++/graph/Graph.hpp\"\n\r\n#line 4 \"C++/graph/Graph.hpp\"\
     \n#include <vector>\r\n#include <queue>\r\n#include <stack>\r\n#ifndef TEMPLATE\r\
     \ntemplate <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return\
@@ -66,32 +69,51 @@ data:
     \ {\r\n\t\t\t\tstd::reverse(cycle.begin(), cycle.end());\r\n\t\t\t\treturn cycle;\r\
     \n\t\t\t}\r\n\t\t}\r\n\t\treturn {};\r\n    }\r\n};\r\ntypedef std::vector<edge>\
     \ ve;\r\ntypedef std::vector<ve> we;\r\n\r\n/**\r\n * @brief \u30B0\u30E9\u30D5\
-    \u30E9\u30A4\u30D6\u30E9\u30EA\r\n */\n#line 4 \"test/cycledetector.test.cpp\"\
-    \nint main() {\n    int n, m;\n    std::cin >> n >> m;\n    graph<false> g(n,\
-    \ 0);\n    g.input(m);\n    const auto res = g.cycle();\n    if(res.empty()) {\n\
-    \        std::cout << -1 << '\\n';\n    } else {\n        std::cout << res.size()\
-    \ << '\\n';\n        for(const auto &e: res) {\n            std::cout << e.id\
-    \ << '\\n';\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection\"\n#include\
-    \ <iostream>\n#include \"C++/graph/Graph.hpp\"\nint main() {\n    int n, m;\n\
-    \    std::cin >> n >> m;\n    graph<false> g(n, 0);\n    g.input(m);\n    const\
-    \ auto res = g.cycle();\n    if(res.empty()) {\n        std::cout << -1 << '\\\
-    n';\n    } else {\n        std::cout << res.size() << '\\n';\n        for(const\
-    \ auto &e: res) {\n            std::cout << e.id << '\\n';\n        }\n    }\n\
-    }"
+    \u30E9\u30A4\u30D6\u30E9\u30EA\r\n */\n#line 2 \"C++/graph/SCC.hpp\"\n\n#line\
+    \ 4 \"C++/graph/SCC.hpp\"\n#include <algorithm>\ntemplate <class G> struct SCC\
+    \ {\nprivate:\n    std::vector<int> comp, order, used;\n\tstd::vector<std::vector<int>>\
+    \ group;\n\tG g, rg, dag;\n\tvoid dfs(const int i) {\n\t\tif(used[i]) {\n\t\t\t\
+    return;\n\t\t}\n\t\tused[i] = true;\n\t\tfor(const auto &e: g[i]) {\n\t\t\tdfs(e);\n\
+    \t\t}\n\t\torder.push_back(i);\n  \t}\n  \tvoid rdfs(const int i, const int cnt)\
+    \ {\n    \tif(comp[i] != -1) {\n\t\t\treturn;\n\t\t}\n    \tcomp[i] = cnt;\n \
+    \   \tfor(const auto &e: rg[i]) {\n\t\t\trdfs(e, cnt);\n\t\t}\n  \t}\n\tvoid build()\
+    \ {\n\t\tconst int n = g.size();\n\t\trg = G(n, 0);\n\t\tfor(int i = 0; i < n;\
+    \ ++i) {\n\t\t\tfor(const auto &e: g[i]) {\n\t\t\t\trg.add(e.to, e.src);\n\t\t\
+    \t}\n\t\t}\n\t\tused.assign(n, 0);\n\t\tcomp.assign(n, -1);\n\t\tfor(int i = 0;\
+    \ i < n; ++i) {\n\t\t\tdfs(i);\n\t\t}\n\t\tstd::reverse(order.begin(), order.end());\n\
+    \t\tint ptr = 0;\n\t\tfor(const auto &i: order) {\n\t\t\tif(comp[i] == -1) {\n\
+    \t\t\t\trdfs(i, ptr++);\n\t\t\t}\n\t\t}\n\t\tdag = G(ptr, 0);\n\t\tfor(int i =\
+    \ 0; i < n; ++i) {\n\t\t\tfor(const auto &e: g[i]) {\n\t\t\t\tconst int x = comp[e.src],\
+    \ y = comp[e.to];\n\t\t\t\tif(x == y) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\
+    \tdag.add(x, y);\n\t\t\t}\n\t\t}\n\t\tgroup.resize(ptr);\n\t\tfor(int i = 0; i\
+    \ < n; ++i) {\n\t\t\tgroup[comp[i]].emplace_back(i);\n\t\t}\n\t}\npublic:\n  \
+    \  SCC(const G &g): g(g){ build(); }\n\tint operator[](const int i) const { return\
+    \ comp[i]; }\n\tstd::vector<std::vector<int>> groups() const { return group; }\n\
+    \tG DAG() const { return dag; }\n};\n\n/**\n * @brief SCC\n * @see https://ei1333.github.io/library/graph/connected-components/strongly-connected-components.hpp\n\
+    \ */\n#line 5 \"test/scc.test.cpp\"\nint main() {\n    int v, e, q;\n    std::cin\
+    \ >> v >> e;\n    graph<false> g(v, 0);\n    g.input(e);\n    SCC scc(g);\n  \
+    \  std::cin >> q;\n    while(q--) {\n        int a, b;\n        std::cin >> a\
+    \ >> b;\n        std::cout << int(scc[a] == scc[b]) << '\\n';\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C\"\n#include\
+    \ <iostream>\n#include \"C++/graph/Graph.hpp\"\n#include \"C++/graph/SCC.hpp\"\
+    \nint main() {\n    int v, e, q;\n    std::cin >> v >> e;\n    graph<false> g(v,\
+    \ 0);\n    g.input(e);\n    SCC scc(g);\n    std::cin >> q;\n    while(q--) {\n\
+    \        int a, b;\n        std::cin >> a >> b;\n        std::cout << int(scc[a]\
+    \ == scc[b]) << '\\n';\n    }\n}"
   dependsOn:
   - C++/graph/Graph.hpp
   - C++/graph/edge.hpp
+  - C++/graph/SCC.hpp
   isVerificationFile: true
-  path: test/cycledetector.test.cpp
+  path: test/scc.test.cpp
   requiredBy: []
   timestamp: '2024-02-22 06:53:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/cycledetector.test.cpp
+documentation_of: test/scc.test.cpp
 layout: document
 redirect_from:
-- /verify/test/cycledetector.test.cpp
-- /verify/test/cycledetector.test.cpp.html
-title: test/cycledetector.test.cpp
+- /verify/test/scc.test.cpp
+- /verify/test/scc.test.cpp.html
+title: test/scc.test.cpp
 ---
