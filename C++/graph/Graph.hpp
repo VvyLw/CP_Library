@@ -10,10 +10,10 @@ template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1
 #include "C++/graph/edge.hpp"
 template <bool undirected = true> struct graph: std::vector<std::vector<edge>> {
 protected:
-    const int indexed;
-    int id;
+    int indexed, id;
     std::vector<edge> edges;
 public:
+    graph(){}
     graph(const int n, const int indexed_ = 1): indexed(indexed_), id(0){ this -> resize(n); }
     void add(int a, int b) {
         a -= indexed, b-= indexed;
