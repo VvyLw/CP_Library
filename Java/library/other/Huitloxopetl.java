@@ -69,14 +69,13 @@ public final class Huitloxopetl {
 	}
 	/**
 	 * @deprecated verifiedしていない
+	 * 遅い
 	 * @param x
 	 * @param y
 	 * @return manhattan MST
 	 */
 	public final ArrayList<Edge> manhattan(int[] x, int[] y) {
-		if(x.length != y.length) {
-			throw new AssertionError("x.length != y.length");
-		}
+		assert x.length == y.length;
 		final int n = x.length;
 		final var res = new ArrayList<Edge>();
 		for(int s = 0; s < 2; ++s) {
@@ -107,14 +106,13 @@ public final class Huitloxopetl {
 	}
 	/**
 	 * @deprecated verifiedしていない
+	 * 遅い
 	 * @param x
 	 * @param y
 	 * @return manhattan MST
 	 */
 	public final ArrayList<Edge> manhattan(long[] x, long[] y) {
-		if(x.length != y.length) {
-			throw new AssertionError("x.length != y.length");
-		}
+		assert x.length == y.length;
 		final int n = x.length;
 		final var res = new ArrayList<Edge>();
 		for(int s = 0; s < 2; ++s) {
