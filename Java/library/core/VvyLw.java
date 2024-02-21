@@ -1,5 +1,6 @@
 package library.core;
 
+import library.core.io.IO;
 import library.core.io.MyPrinter;
 import library.core.io.MyScanner;
 
@@ -7,12 +8,10 @@ import library.core.io.MyScanner;
  * ここではUtilityクラスのメソッドをクラス宣言なしで使える
  */
 public final class VvyLw extends Utility {
-	public static final MyScanner sc = new MyScanner(System.in);
 	/**
-	 * o: インタラクティブ問題の時はfalseをtrueに変える
-	 * dbg: デバッグ用
+	 * 入出力
 	 */
-	static final MyPrinter o = new MyPrinter(System.out, false), dbg = new MyPrinter(System.err, true);
+	public static final IO io = new IO(new MyScanner(System.in), new MyPrinter(System.out, false), new MyPrinter(System.err, true));
 	/**
 	 * マルチテストケースの問題の時はfalseをtrueに変える
 	 */

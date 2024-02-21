@@ -9,10 +9,7 @@ import java.util.stream.IntStream;
  */
 final class Main {
 	public static void main(final String[] args) {
-		IntStream.range(0, VvyLw.MULTI ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());
-		VvyLw.o.flush();
-		VvyLw.sc.close();
-		VvyLw.o.close();
-		VvyLw.dbg.close();
+		IntStream.range(0, VvyLw.MULTI ? VvyLw.io.ni() : 1).forEach(i -> VvyLw.solve());
+		VvyLw.io.close();
 	}
 }
