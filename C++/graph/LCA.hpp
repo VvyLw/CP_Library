@@ -33,7 +33,7 @@ private:
         }
     }
 public:
-    LowestCommonAncestor(const G &g_) : g(g_), dep(g_.size()), sum(g_.size()), LOG(std::__lg(g_.size()) + 1) {
+    LowestCommonAncestor(const G &g_): g(g_), dep(g_.size()), sum(g_.size()), LOG(std::__lg(g_.size()) + 1) {
         table.assign(LOG, std::vector<int>(g_.size(), -1));
         build();
     }
