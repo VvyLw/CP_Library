@@ -4,7 +4,7 @@
 #include <algorithm>
 template <class G> struct SCC {
 private:
-    std::vector<int> comp, order, used;
+	std::vector<int> comp, order, used;
 	std::vector<std::vector<int>> group;
 	G g, rg, dag;
 	void dfs(const int i) {
