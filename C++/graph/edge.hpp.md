@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/graph/Graph.hpp
     title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
+  - icon: ':warning:'
+    path: C++/graph/SCC.hpp
+    title: SCC
   - icon: ':heavy_check_mark:'
     path: C++/graph/WeightedGraph.hpp
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
@@ -68,6 +71,7 @@ data:
   - C++/graph/mst/manhattan.hpp
   - C++/graph/mst/kruskal.hpp
   - C++/graph/mst/MST.hpp
+  - C++/graph/SCC.hpp
   - C++/graph/WeightedGraph.hpp
   - C++/graph/Graph.hpp
   timestamp: '2024-02-19 12:47:06+09:00'

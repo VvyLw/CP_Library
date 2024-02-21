@@ -29,6 +29,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/graph/LCA.hpp
       title: "\u6700\u5C0F\u5171\u901A\u7956\u5148"
+    - icon: ':warning:'
+      path: C++/graph/SCC.hpp
+      title: SCC
     - icon: ':heavy_check_mark:'
       path: C++/graph/WeightedGraph.hpp
       title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
@@ -304,6 +307,9 @@ data:
     - icon: ':warning:'
       path: Java/library/graph/MST.java
       title: Java/library/graph/MST.java
+    - icon: ':warning:'
+      path: Java/library/graph/SCC.java
+      title: Java/library/graph/SCC.java
     - icon: ':warning:'
       path: Java/library/graph/WeightedGraph.java
       title: Java/library/graph/WeightedGraph.java

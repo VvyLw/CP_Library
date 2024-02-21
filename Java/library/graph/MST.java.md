@@ -125,6 +125,9 @@ data:
     path: Java/library/graph/LowestCommonAncestor.java
     title: Java/library/graph/LowestCommonAncestor.java
   - icon: ':warning:'
+    path: Java/library/graph/SCC.java
+    title: Java/library/graph/SCC.java
+  - icon: ':warning:'
     path: Java/library/graph/WeightedGraph.java
     title: Java/library/graph/WeightedGraph.java
   - icon: ':warning:'
@@ -375,6 +378,9 @@ data:
     path: Java/library/graph/LowestCommonAncestor.java
     title: Java/library/graph/LowestCommonAncestor.java
   - icon: ':warning:'
+    path: Java/library/graph/SCC.java
+    title: Java/library/graph/SCC.java
+  - icon: ':warning:'
     path: Java/library/graph/WeightedGraph.java
     title: Java/library/graph/WeightedGraph.java
   - icon: ':warning:'
@@ -520,6 +526,7 @@ data:
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/Graph.java
+  - Java/library/graph/SCC.java
   - Java/library/graph/Edge.java
   - Java/library/math/Matrix.java
   - Java/library/math/PrimeFactor.java
@@ -606,6 +613,7 @@ data:
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/LowestCommonAncestor.java
   - Java/library/graph/Graph.java
+  - Java/library/graph/SCC.java
   - Java/library/graph/Edge.java
   - Java/library/math/Matrix.java
   - Java/library/math/PrimeFactor.java
@@ -685,7 +693,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-20 01:35:49+09:00'
+  timestamp: '2024-02-21 13:55:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/MST.java

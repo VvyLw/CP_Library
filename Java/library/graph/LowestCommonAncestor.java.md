@@ -125,6 +125,9 @@ data:
     path: Java/library/graph/MST.java
     title: Java/library/graph/MST.java
   - icon: ':warning:'
+    path: Java/library/graph/SCC.java
+    title: Java/library/graph/SCC.java
+  - icon: ':warning:'
     path: Java/library/graph/WeightedGraph.java
     title: Java/library/graph/WeightedGraph.java
   - icon: ':warning:'
@@ -375,6 +378,9 @@ data:
     path: Java/library/graph/MST.java
     title: Java/library/graph/MST.java
   - icon: ':warning:'
+    path: Java/library/graph/SCC.java
+    title: Java/library/graph/SCC.java
+  - icon: ':warning:'
     path: Java/library/graph/WeightedGraph.java
     title: Java/library/graph/WeightedGraph.java
   - icon: ':warning:'
@@ -514,11 +520,11 @@ data:
     \n/**\n * \u6700\u5C0F\u5171\u901A\u7956\u5148\u3092\u6C42\u3081\u308B\u30AF\u30E9\
     \u30B9\n * [\u6CE8\u610F] verify\u3092\u3057\u3066\u3044\u306A\u3044\n * @param\
     \ <G> Graph, \u3042\u308B\u3044\u306FWeightedGraph\u30AF\u30E9\u30B9\u3092\u5165\
-    \u308C\u308B\n */\npublic final class LowestCommonAncestor<G extends Graph> {\n\
-    \tprivate final int log;\n\tprivate final int[] dep, sum;\n\tprivate final G g;\n\
-    \tprivate final int[][] table;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\
-    \u30BF\n\t * @param g \u30B0\u30E9\u30D5\n\t */\n\tpublic LowestCommonAncestor(final\
-    \ G g) {\n\t\tthis.g = g;\n\t\tfinal int n = g.size();\n\t\tdep = new int[n];\n\
+    \u308C\u308B\n */\npublic final class LowestCommonAncestor {\n\tprivate final\
+    \ int log;\n\tprivate final int[] dep, sum;\n\tprivate final Graph g;\n\tprivate\
+    \ final int[][] table;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\
+    \n\t * @param g \u30B0\u30E9\u30D5\n\t */\n\tpublic LowestCommonAncestor(final\
+    \ Graph g) {\n\t\tthis.g = g;\n\t\tfinal int n = g.size();\n\t\tdep = new int[n];\n\
     \t\tsum = new int[n];\n\t\tlog = Integer.toBinaryString(n).length();\n\t\ttable\
     \ = new int[log][n];\n\t\tIntStream.range(0, log).forEach(i -> Arrays.fill(table[i],\
     \ -1));\n\t\tbuild();\n\t}\n\tprivate final void dfs(final int idx, final int\
@@ -549,6 +555,7 @@ data:
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
+  - Java/library/graph/SCC.java
   - Java/library/graph/Edge.java
   - Java/library/math/Matrix.java
   - Java/library/math/PrimeFactor.java
@@ -635,6 +642,7 @@ data:
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/MST.java
   - Java/library/graph/Graph.java
+  - Java/library/graph/SCC.java
   - Java/library/graph/Edge.java
   - Java/library/math/Matrix.java
   - Java/library/math/PrimeFactor.java
@@ -714,7 +722,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-20 01:35:49+09:00'
+  timestamp: '2024-02-21 13:55:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/LowestCommonAncestor.java
