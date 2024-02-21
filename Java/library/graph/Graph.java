@@ -54,7 +54,7 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 	 * 辺をm個入力する
 	 * @param m 辺の個数
 	 */
-	public void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni())); }
+	public void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni())); }
 	/**
 	 * @return 辺のリスト
 	 */

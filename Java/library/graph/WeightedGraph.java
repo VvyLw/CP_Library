@@ -47,7 +47,7 @@ public final class WeightedGraph extends Graph {
 	 * @param m
 	 */
 	@Override
-	public final void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni(), VvyLw.sc.ni())); }
+	public final void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni(), VvyLw.io.nl())); }
 	/**
 	 * Dijkstra法
 	 * 負辺のないグラフで単一始点全点間最短路を求める
