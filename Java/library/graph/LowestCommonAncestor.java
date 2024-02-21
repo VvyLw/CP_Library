@@ -8,16 +8,16 @@ import java.util.stream.IntStream;
  * [注意] verifyをしていない
  * @param <G> Graph, あるいはWeightedGraphクラスを入れる
  */
-public final class LowestCommonAncestor<G extends Graph> {
+public final class LowestCommonAncestor {
 	private final int log;
 	private final int[] dep, sum;
-	private final G g;
+	private final Graph g;
 	private final int[][] table;
 	/**
 	 * コンストラクタ
 	 * @param g グラフ
 	 */
-	public LowestCommonAncestor(final G g) {
+	public LowestCommonAncestor(final Graph g) {
 		this.g = g;
 		final int n = g.size();
 		dep = new int[n];

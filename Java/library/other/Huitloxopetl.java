@@ -1,10 +1,14 @@
 package library.other;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
+import java.util.stream.IntStream;
 
 import library.core.Utility;
-import library.structure.FenwickTree;
+import library.graph.Edge;
+import library.structure.fenwicktree.FenwickTree;
 import library.structure.unionfind.UnionFind;
 
 /**
@@ -60,6 +64,82 @@ public final class Huitloxopetl {
 		for(int i = 0; i < a.length; ++i) {
 			res += i - bit.sum(id.get(a[i]));
 			bit.add(id.get(a[i]), 1);
+		}
+		return res;
+	}
+	/**
+	 * @deprecated verifiedしていない
+	 * @param x
+	 * @param y
+	 * @return manhattan MST
+	 */
+	public final ArrayList<Edge> manhattan(int[] x, int[] y) {
+		if(x.length != y.length) {
+			throw new AssertionError("x.length != y.length");
+		}
+		final int n = x.length;
+		final var res = new ArrayList<Edge>();
+		for(int s = 0; s < 2; ++s) {
+			for(int t = 0; t < 2; ++t) {
+				final var id = IntStream.range(0, n).boxed().sorted((i, j) -> Integer.compare(x[i] + y[i], x[j] + y[j])).mapToInt(i -> i).toArray();
+				final var idx = new TreeMap<Integer, Integer>();
+				for(final var i: id) {
+					final var it = idx.tailMap(y[i]).entrySet().iterator();
+					while(it.hasNext()) {
+						final int j = it.next().getValue();
+						if(x[i] - x[j] < y[i] - y[j]) {
+							break;
+						}
+						res.add(new Edge(i, j, Math.abs(x[i] - x[j]) + Math.abs(y[i] - y[j])));
+						it.remove();
+					}
+					idx.put(-y[i], i);
+				}
+				final var tmp = y.clone();
+				System.arraycopy(x, 0, y, 0, n);
+				System.arraycopy(tmp, 0, x, 0, n);
+			}
+			for(int i = 0; i < n; ++i) {
+				x[i] = -x[i];
+			}
+		}
+		return res;
+	}
+	/**
+	 * @deprecated verifiedしていない
+	 * @param x
+	 * @param y
+	 * @return manhattan MST
+	 */
+	public final ArrayList<Edge> manhattan(long[] x, long[] y) {
+		if(x.length != y.length) {
+			throw new AssertionError("x.length != y.length");
+		}
+		final int n = x.length;
+		final var res = new ArrayList<Edge>();
+		for(int s = 0; s < 2; ++s) {
+			for(int t = 0; t < 2; ++t) {
+				final var id = IntStream.range(0, n).boxed().sorted((i, j) -> Long.compare(x[i] + y[i], x[j] + y[j])).mapToInt(i -> i).toArray();
+				final var idx = new TreeMap<Long, Integer>();
+				for(final var i: id) {
+					final var it = idx.tailMap(y[i]).entrySet().iterator();
+					while(it.hasNext()) {
+						final int j = it.next().getValue();
+						if(x[i] - x[j] < y[i] - y[j]) {
+							break;
+						}
+						res.add(new Edge(i, j, Math.abs(x[i] - x[j]) + Math.abs(y[i] - y[j]), -1));
+						it.remove();
+					}
+					idx.put(-y[i], i);
+				}
+				final var tmp = y.clone();
+				System.arraycopy(x, 0, y, 0, n);
+				System.arraycopy(tmp, 0, x, 0, n);
+			}
+			for(int i = 0; i < n; ++i) {
+				x[i] = -x[i];
+			}
 		}
 		return res;
 	}
