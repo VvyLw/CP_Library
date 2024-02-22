@@ -1,95 +1,165 @@
 package library.graph;
 
+import static java.lang.Math.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.stream.IntStream;
 
-import library.core.interfaces.RecursiveBiConsumer;
-import library.core.interfaces.RecursiveIntConsumer;
+import library.core.Utility;
+import library.core.VvyLw;
 
 /**
  * 強連結成分分解(Strongly Connected Components)
- * 遅い(<a href="https://judge.yosupo.jp/problem/scc">verify用問題</a>のcase:large_cycle_00がTLE)
- * @deprecated {@link StackOverflowError}が起こる(<a href="https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C">発生した問題</a>)
- * @see <a href="https://ei1333.github.io/library/graph/connected-components/strongly-connected-components.hpp">参考元</a>
+ * @see <a href="https://github.com/NASU41/AtCoderLibraryForJava/tree/master/SCC">参考元</a>
  */
 public final class SCC {
-	private final int[] comp;
-	private final ArrayList<ArrayList<Integer>> group;
-	private final Graph dag;
+	private final int n, indexed;
+	private int m;
+	private final ArrayList<Edge> edge;
+	private final int[] start, ids;
+	private int[][] groups;
+	private boolean notBuilt;
 	/**
 	 * コンストラクタ
-	 * @param g
+	 * 1-indexed
+	 * @param n
 	 */
-	public SCC(final Graph g) {
-		final int n = g.size();
-		final Graph rg = new Graph(n, 0, false);
-		for(int i = 0; i < n; ++i) {
-			for(final Edge e: g.get(i)) {
-				rg.addEdge(e.to, e.src);
-			}
-		}
-		final ArrayList<Integer> order = new ArrayList<>();
-		final boolean[] used = new boolean[n];
-		comp = new int[n];
-		Arrays.fill(comp, -1);
-		final RecursiveIntConsumer dfs = (rec, i) -> {
-			if(used[i]) {
-				return;
-			}
-			used[i] = true;
-			for(final Edge e: g.get(i)) {
-				rec.accept(rec, e.to);
-			}
-			order.add(i);
-		};
-		for(int i = 0; i < n; ++i) {
-			dfs.accept(dfs, i);
-		}
-		Collections.reverse(order);
-		int ptr = 0;
-		final RecursiveBiConsumer<Integer, Integer> rdfs = (rec, i, cnt) -> {
-			if(comp[i] != -1) {
-				return;
-			}
-			comp[i] = cnt;
-			for(final Edge e: rg.get(i)) {
-				rec.accept(rec, e.to, cnt);
-			}
-		};
-		for(final int i: order) {
-			if(comp[i] == -1) {
-				rdfs.accept(rdfs, i, ptr++);
-			}
-		}
-		dag = new Graph(ptr, 0, false);
-		for(int i = 0; i < n; ++i) {
-			for(final Edge e: g.get(i)) {
-				final int x = comp[e.src], y = comp[e.to];
-				if(x == y) {
-					continue;
-				}
-				dag.addEdge(x, y);
-			}
-		}
-		group = new ArrayList<>();
-		IntStream.range(0, ptr).forEach(i -> group.add(new ArrayList<>()));
-		for(int i = 0; i < n; ++i) {
-			group.get(comp[i]).add(i);
-		}
+	public SCC(final int n){ this(n, 1); }
+	/**
+	 * コンストラクタ
+	 * 有向グラフを作る
+	 * @param n サイズ
+	 * @param indexed
+	 */
+	public SCC(final int n, final int indexed) {
+		this.n = n;
+		this.indexed = indexed;
+		edge = new ArrayList<>();
+		start = new int[n + 1];
+		ids = new int[n];
+		m = 0;
+		notBuilt = true;
 	}
 	/**
+	 * 辺を追加する
+	 * @param from
+	 * @param to
+	 */
+	public final void addEdge(int from, int to) {
+		from -= indexed;
+		to -= indexed;
+		rangeCheck(from);
+		rangeCheck(to);
+		edge.add(new Edge(from, to, m++));
+		start[from + 1]++;
+	}
+	/**
+	 * 辺をm個入力する
+	 * @param m
+	 */
+	public final void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni())); }
+	/**
 	 * @param i
-	 * @return 各頂点が属する強連結成分のi番目の頂点番号
+	 * @return 頂点iの強連結成分の頂点番号
 	 */
-	public final int get(final int i){ return comp[i]; }
+	public final int id(final int i) {
+		if(notBuilt) {
+			throw new UnsupportedOperationException("Graph hasn't been built.");
+		}
+		rangeCheck(i);
+		return ids[i];
+	}
 	/**
-	 * @return 各強連結成分について属する頂点
+	 * 構築
 	 */
-	public final ArrayList<ArrayList<Integer>> groups(){ return group; }
+	public final void build() {
+		for(int i = 1; i <= n; i++) {
+			start[i] += start[i - 1];
+		}
+		final Edge[] ed = new Edge[m];
+		final int[] count = new int[n + 1];
+		System.arraycopy(start, 0, count, 0, n + 1);
+		for(final Edge e: edge) {
+			ed[count[e.src]++] = e;
+		}
+		int nowOrd = 0, groupNum = 0, k = 0, ptr = 0;
+		final int[] par = new int[n], vis = new int[n], low = new int[n], ord = new int[n];
+		Arrays.fill(ord, -1);
+		final long[] stack = new long[n];
+		for(int i = 0; i < n; i++) {
+			if(ord[i] >= 0) {
+				continue;
+			}
+			par[i] = -1;
+			stack[ptr++] = 0L << 32 | i;
+			while(ptr > 0) {
+				long p = stack[--ptr];
+				int u = (int) (p & 0xffff_ffffl);
+				int j = (int) (p >>> 32);
+				if(j == 0) {
+					low[u] = ord[u] = nowOrd++;
+					vis[k++] = u;
+				}
+				if(start[u] + j < count[u]) {
+					int to = ed[start[u] + j].to;
+					stack[ptr++] += 1l << 32;
+					if(ord[to] == -1) {
+						stack[ptr++] = 0l << 32 | to;
+						par[to] = u;
+					} else {
+						low[u] = min(low[u], ord[to]);
+					}
+				} else {
+					while(j --> 0) {
+						final int to = ed[start[u] + j].to;
+						if(par[to] == u) {
+							low[u] = min(low[u], low[to]);
+						}
+					}
+					if(low[u] == ord[u]) {
+						while(true) {
+							final int v = vis[--k];
+							ord[v] = n;
+							ids[v] = groupNum;
+							if(v == u) {
+								break;
+							}
+						}
+						groupNum++;
+					}
+				}
+			}
+		}
+		for(int i = 0; i < n; i++) {
+			ids[i] = groupNum - 1 - ids[i];
+		}        
+		final int[] counts = new int[groupNum];
+		for(final int x: ids) {
+			counts[x]++;
+		}
+		groups = new int[groupNum][];
+		for(int i = 0; i < groupNum; i++) {
+			groups[i] = new int[counts[i]];
+		}
+		for(int i = 0; i < n; i++) {
+			int cmp = ids[i];
+			groups[cmp][--counts[cmp]] = i;
+		}
+		notBuilt = false;
+	}
 	/**
-	 * @return 縮約後の頂点と辺からなるDAG
+	 * @return 各強連結成分についてそれに属する頂点
 	 */
-	public final Graph DAG(){ return dag; }
+	public final int[][] groups() {
+		if(notBuilt) {
+			throw new UnsupportedOperationException("Graph hasn't been built.");
+		}
+		return groups;
+	}
+	private final void rangeCheck(final int i) {
+		if(!Utility.scope(0, i, n - 1)) {
+			throw new IndexOutOfBoundsException(String.format("Index %d out of bounds for length %d", i, n));
+		}
+	}
 }

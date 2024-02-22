@@ -1924,6 +1924,7 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 	protected final int n, indexed;
 	protected int id;
 	protected final ArrayList<Edge> edge;
+	Graph(final int n, final boolean undirected){ this(n, 1, undirected); }
 	Graph(final int n, final int indexed, final boolean undirected) {
 		this.n = n;
 		this.indexed = indexed;
@@ -2032,6 +2033,7 @@ final class MST {
 	}
 }
 final class WeightedGraph extends Graph {
+	WeightedGraph(final int n, final boolean undirected){ super(n, undirected); }
 	WeightedGraph(final int n, final int indexed, final boolean undirected){ super(n, indexed, undirected); }
 	final void addEdge(int a, int b, final long cost) {
 		a -= indexed;
@@ -2255,69 +2257,124 @@ final class SkewHeap {
 }
 
 final class SCC {
-	private final int[] comp;
-	private final ArrayList<ArrayList<Integer>> group;
-	private final Graph dag;
-	SCC(final Graph g) {
-		final int n = g.size();
-		final Graph rg = new Graph(n, 0, false);
-		for(int i = 0; i < n; ++i) {
-			for(final Edge e: g.get(i)) {
-				rg.addEdge(e.to, e.src);
-			}
+	private final int n, indexed;
+	private int m;
+	private final ArrayList<Edge> edge;
+	private final int[] start, ids;
+	private int[][] groups;
+	private boolean notBuilt;
+	SCC(final int n){ this(n, 1); }
+	SCC(final int n, final int indexed) {
+		this.n = n;
+		this.indexed = indexed;
+		edge = new ArrayList<>();
+		start = new int[n + 1];
+		ids = new int[n];
+		m = 0;
+		notBuilt = true;
+	}
+	final void addEdge(int from, int to) {
+		from -= indexed;
+		to -= indexed;
+		rangeCheck(from);
+		rangeCheck(to);
+		edge.add(new Edge(from, to, m++));
+		start[from + 1]++;
+	}
+	final void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni())); }
+	final int id(final int i) {
+		if(notBuilt) {
+			throw new UnsupportedOperationException("Graph hasn't been built.");
 		}
-		final ArrayList<Integer> order = new ArrayList<>();
-		final boolean[] used = new boolean[n];
-		comp = new int[n];
-		Arrays.fill(comp, -1);
-		final RecursiveIntConsumer dfs = (rec, i) -> {
-			if(used[i]) {
-				return;
-			}
-			used[i] = true;
-			for(final Edge e: g.get(i)) {
-				rec.accept(rec, e.to);
-			}
-			order.add(i);
-		};
-		for(int i = 0; i < n; ++i) {
-			dfs.accept(dfs, i);
+		rangeCheck(i);
+		return ids[i];
+	}
+	final void build() {
+		for(int i = 1; i <= n; i++) {
+			start[i] += start[i - 1];
 		}
-		Collections.reverse(order);
-		int ptr = 0;
-		final RecursiveBiConsumer<Integer, Integer> rdfs = (rec, i, cnt) -> {
-			if(comp[i] != -1) {
-				return;
-			}
-			comp[i] = cnt;
-			for(final Edge e: rg.get(i)) {
-				rec.accept(rec, e.to, cnt);
-			}
-		};
-		for(final int i: order) {
-			if(comp[i] == -1) {
-				rdfs.accept(rdfs, i, ptr++);
-			}
+		final Edge[] ed = new Edge[m];
+		final int[] count = new int[n + 1];
+		System.arraycopy(start, 0, count, 0, n + 1);
+		for(final Edge e: edge) {
+			ed[count[e.src]++] = e;
 		}
-		dag = new Graph(ptr, 0, false);
-		for(int i = 0; i < n; ++i) {
-			for(final Edge e: g.get(i)) {
-				final int x = comp[e.src], y = comp[e.to];
-				if(x == y) {
-					continue;
+		int nowOrd = 0, groupNum = 0, k = 0, ptr = 0;
+		final int[] par = new int[n], vis = new int[n], low = new int[n], ord = new int[n];
+		Arrays.fill(ord, -1);
+		final long[] stack = new long[n];
+		for(int i = 0; i < n; i++) {
+			if(ord[i] >= 0) {
+				continue;
+			}
+			par[i] = -1;
+			stack[ptr++] = 0L << 32 | i;
+			while(ptr > 0) {
+				long p = stack[--ptr];
+				int u = (int) (p & 0xffff_ffffl);
+				int j = (int) (p >>> 32);
+				if(j == 0) {
+					low[u] = ord[u] = nowOrd++;
+					vis[k++] = u;
 				}
-				dag.addEdge(x, y);
+				if(start[u] + j < count[u]) {
+					int to = ed[start[u] + j].to;
+					stack[ptr++] += 1l << 32;
+					if(ord[to] == -1) {
+						stack[ptr++] = 0l << 32 | to;
+						par[to] = u;
+					} else {
+						low[u] = min(low[u], ord[to]);
+					}
+				} else {
+					while(j --> 0) {
+						final int to = ed[start[u] + j].to;
+						if(par[to] == u) {
+							low[u] = min(low[u], low[to]);
+						}
+					}
+					if(low[u] == ord[u]) {
+						while(true) {
+							final int v = vis[--k];
+							ord[v] = n;
+							ids[v] = groupNum;
+							if(v == u) {
+								break;
+							}
+						}
+						groupNum++;
+					}
+				}
 			}
 		}
-		group = new ArrayList<>();
-		IntStream.range(0, ptr).forEach(i -> group.add(new ArrayList<>()));
-		for(int i = 0; i < n; ++i) {
-			group.get(comp[i]).add(i);
+		for(int i = 0; i < n; i++) {
+			ids[i] = groupNum - 1 - ids[i];
+		}
+		final int[] counts = new int[groupNum];
+		for(final int x: ids) {
+			counts[x]++;
+		}
+		groups = new int[groupNum][];
+		for(int i = 0; i < groupNum; i++) {
+			groups[i] = new int[counts[i]];
+		}
+		for(int i = 0; i < n; i++) {
+			int cmp = ids[i];
+			groups[cmp][--counts[cmp]] = i;
+		}
+		notBuilt = false;
+	}
+	final int[][] groups() {
+		if(notBuilt) {
+			throw new UnsupportedOperationException("Graph hasn't been built.");
+		}
+		return groups;
+	}
+	private final void rangeCheck(final int i) {
+		if(!Utility.scope(0, i, n - 1)) {
+			throw new IndexOutOfBoundsException(String.format("Index %d out of bounds for length %d", i, n));
 		}
 	}
-	final int get(final int i){ return comp[i]; }
-	final ArrayList<ArrayList<Integer>> groups(){ return group; }
-	final Graph DAG(){ return dag; }
 }
 
 final class LowestCommonAncestor {
