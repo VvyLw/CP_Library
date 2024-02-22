@@ -41,6 +41,7 @@
 "test/s_rmq.test.cpp": "2024-02-22 09:22:35 +0900",
 "test/sa.test.cpp": "2024-02-19 12:58:12 +0900",
 "test/scc.test.cpp": "2024-02-22 08:54:27 +0900",
+"test/scc2.test.cpp": "2024-02-23 01:50:33 +0900",
 "test/segtree.test.cpp": "2024-02-22 09:22:35 +0900",
 "test/segtree2.test.cpp": "2024-02-19 12:58:12 +0900",
 "test/sr_sum.test.cpp": "2024-02-22 09:22:35 +0900",
