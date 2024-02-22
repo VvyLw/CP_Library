@@ -522,44 +522,63 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/graph/SCC.java\n"
-  code: "package library.graph;\n\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
-    import java.util.Collections;\nimport java.util.stream.IntStream;\n\nimport library.core.interfaces.RecursiveBiConsumer;\n\
-    import library.core.interfaces.RecursiveIntConsumer;\n\n/**\n * \u5F37\u9023\u7D50\
-    \u6210\u5206\u5206\u89E3(Strongly Connected Components)\n * \u9045\u3044(<a href=\"\
-    https://judge.yosupo.jp/problem/scc\">verify\u7528\u554F\u984C</a>\u306Ecase:large_cycle_00\u304C\
-    TLE)\n * @deprecated {@link StackOverflowError}\u304C\u8D77\u3053\u308B(<a href=\"\
-    https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C\">\u767A\u751F\u3057\u305F\u554F\
-    \u984C</a>)\n * @see <a href=\"https://ei1333.github.io/library/graph/connected-components/strongly-connected-components.hpp\"\
-    >\u53C2\u8003\u5143</a>\n */\npublic final class SCC {\n\tprivate final int[]\
-    \ comp;\n\tprivate final ArrayList<ArrayList<Integer>> group;\n\tprivate final\
-    \ Graph dag;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param\
-    \ g\n\t */\n\tpublic SCC(final Graph g) {\n\t\tfinal int n = g.size();\n\t\tfinal\
-    \ Graph rg = new Graph(n, 0, false);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\
-    for(final Edge e: g.get(i)) {\n\t\t\t\trg.addEdge(e.to, e.src);\n\t\t\t}\n\t\t\
-    }\n\t\tfinal ArrayList<Integer> order = new ArrayList<>();\n\t\tfinal boolean[]\
-    \ used = new boolean[n];\n\t\tcomp = new int[n];\n\t\tArrays.fill(comp, -1);\n\
-    \t\tfinal RecursiveIntConsumer dfs = (rec, i) -> {\n\t\t\tif(used[i]) {\n\t\t\t\
-    \treturn;\n\t\t\t}\n\t\t\tused[i] = true;\n\t\t\tfor(final Edge e: g.get(i)) {\n\
-    \t\t\t\trec.accept(rec, e.to);\n\t\t\t}\n\t\t\torder.add(i);\n\t\t};\n\t\tfor(int\
-    \ i = 0; i < n; ++i) {\n\t\t\tdfs.accept(dfs, i);\n\t\t}\n\t\tCollections.reverse(order);\n\
-    \t\tint ptr = 0;\n\t\tfinal RecursiveBiConsumer<Integer, Integer> rdfs = (rec,\
-    \ i, cnt) -> {\n\t\t\tif(comp[i] != -1) {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tcomp[i]\
-    \ = cnt;\n\t\t\tfor(final Edge e: rg.get(i)) {\n\t\t\t\trec.accept(rec, e.to,\
-    \ cnt);\n\t\t\t}\n\t\t};\n\t\tfor(final int i: order) {\n\t\t\tif(comp[i] == -1)\
-    \ {\n\t\t\t\trdfs.accept(rdfs, i, ptr++);\n\t\t\t}\n\t\t}\n\t\tdag = new Graph(ptr,\
-    \ 0, false);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final Edge e: g.get(i))\
-    \ {\n\t\t\t\tfinal int x = comp[e.src], y = comp[e.to];\n\t\t\t\tif(x == y) {\n\
-    \t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\tdag.addEdge(x, y);\n\t\t\t}\n\t\t}\n\t\
-    \tgroup = new ArrayList<>();\n\t\tIntStream.range(0, ptr).forEach(i -> group.add(new\
-    \ ArrayList<>()));\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tgroup.get(comp[i]).add(i);\n\
-    \t\t}\n\t}\n\t/**\n\t * @param i\n\t * @return \u5404\u9802\u70B9\u304C\u5C5E\u3059\
-    \u308B\u5F37\u9023\u7D50\u6210\u5206\u306Ei\u756A\u76EE\u306E\u9802\u70B9\u756A\
-    \u53F7\n\t */\n\tpublic final int get(final int i){ return comp[i]; }\n\t/**\n\
-    \t * @return \u5404\u5F37\u9023\u7D50\u6210\u5206\u306B\u3064\u3044\u3066\u5C5E\
-    \u3059\u308B\u9802\u70B9\n\t */\n\tpublic final ArrayList<ArrayList<Integer>>\
-    \ groups(){ return group; }\n\t/**\n\t * @return \u7E2E\u7D04\u5F8C\u306E\u9802\
-    \u70B9\u3068\u8FBA\u304B\u3089\u306A\u308BDAG\n\t */\n\tpublic final Graph DAG(){\
-    \ return dag; }\n}"
+  code: "package library.graph;\n\nimport static java.lang.Math.*;\n\nimport java.util.ArrayList;\n\
+    import java.util.Arrays;\nimport java.util.stream.IntStream;\n\nimport library.core.Utility;\n\
+    import library.core.VvyLw;\n\n/**\n * \u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
+    (Strongly Connected Components)\n * @see <a href=\"https://github.com/NASU41/AtCoderLibraryForJava/tree/master/SCC\"\
+    >\u53C2\u8003\u5143</a>\n */\npublic final class SCC {\n\tprivate final int n,\
+    \ indexed;\n\tprivate int m;\n\tprivate final ArrayList<Edge> edge;\n\tprivate\
+    \ final int[] start, ids;\n\tprivate int[][] groups;\n\tprivate boolean notBuilt;\n\
+    \t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * 1-indexed\n\t * @param\
+    \ n\n\t */\n\tpublic SCC(final int n){ this(n, 1); }\n\t/**\n\t * \u30B3\u30F3\
+    \u30B9\u30C8\u30E9\u30AF\u30BF\n\t * \u6709\u5411\u30B0\u30E9\u30D5\u3092\u4F5C\
+    \u308B\n\t * @param n \u30B5\u30A4\u30BA\n\t * @param indexed\n\t */\n\tpublic\
+    \ SCC(final int n, final int indexed) {\n\t\tthis.n = n;\n\t\tthis.indexed = indexed;\n\
+    \t\tedge = new ArrayList<>();\n\t\tstart = new int[n + 1];\n\t\tids = new int[n];\n\
+    \t\tm = 0;\n\t\tnotBuilt = true;\n\t}\n\t/**\n\t * \u8FBA\u3092\u8FFD\u52A0\u3059\
+    \u308B\n\t * @param from\n\t * @param to\n\t */\n\tpublic final void addEdge(int\
+    \ from, int to) {\n\t\tfrom -= indexed;\n\t\tto -= indexed;\n\t\trangeCheck(from);\n\
+    \t\trangeCheck(to);\n\t\tedge.add(new Edge(from, to, m++));\n\t\tstart[from +\
+    \ 1]++;\n\t}\n\t/**\n\t * \u8FBA\u3092m\u500B\u5165\u529B\u3059\u308B\n\t * @param\
+    \ m\n\t */\n\tpublic final void input(final int m){ IntStream.range(0, m).forEach(i\
+    \ -> addEdge(VvyLw.io.ni(), VvyLw.io.ni())); }\n\t/**\n\t * @param i\n\t * @return\
+    \ \u9802\u70B9i\u306E\u5F37\u9023\u7D50\u6210\u5206\u306E\u9802\u70B9\u756A\u53F7\
+    \n\t */\n\tpublic final int id(final int i) {\n\t\tif(notBuilt) {\n\t\t\tthrow\
+    \ new UnsupportedOperationException(\"Graph hasn't been built.\");\n\t\t}\n\t\t\
+    rangeCheck(i);\n\t\treturn ids[i];\n\t}\n\t/**\n\t * \u69CB\u7BC9\n\t */\n\tpublic\
+    \ final void build() {\n\t\tfor(int i = 1; i <= n; i++) {\n\t\t\tstart[i] += start[i\
+    \ - 1];\n\t\t}\n\t\tfinal Edge[] ed = new Edge[m];\n\t\tfinal int[] count = new\
+    \ int[n + 1];\n\t\tSystem.arraycopy(start, 0, count, 0, n + 1);\n\t\tfor(final\
+    \ Edge e: edge) {\n\t\t\ted[count[e.src]++] = e;\n\t\t}\n\t\tint nowOrd = 0, groupNum\
+    \ = 0, k = 0, ptr = 0;\n\t\tfinal int[] par = new int[n], vis = new int[n], low\
+    \ = new int[n], ord = new int[n];\n\t\tArrays.fill(ord, -1);\n\t\tfinal long[]\
+    \ stack = new long[n];\n\t\tfor(int i = 0; i < n; i++) {\n\t\t\tif(ord[i] >= 0)\
+    \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tpar[i] = -1;\n\t\t\tstack[ptr++] = 0L <<\
+    \ 32 | i;\n\t\t\twhile(ptr > 0) {\n\t\t\t\tlong p = stack[--ptr];\n\t\t\t\tint\
+    \ u = (int) (p & 0xffff_ffffl);\n\t\t\t\tint j = (int) (p >>> 32);\n\t\t\t\tif(j\
+    \ == 0) {\n\t\t\t\t\tlow[u] = ord[u] = nowOrd++;\n\t\t\t\t\tvis[k++] = u;\n\t\t\
+    \t\t}\n\t\t\t\tif(start[u] + j < count[u]) {\n\t\t\t\t\tint to = ed[start[u] +\
+    \ j].to;\n\t\t\t\t\tstack[ptr++] += 1l << 32;\n\t\t\t\t\tif(ord[to] == -1) {\n\
+    \t\t\t\t\t\tstack[ptr++] = 0l << 32 | to;\n\t\t\t\t\t\tpar[to] = u;\n\t\t\t\t\t\
+    } else {\n\t\t\t\t\t\tlow[u] = min(low[u], ord[to]);\n\t\t\t\t\t}\n\t\t\t\t} else\
+    \ {\n\t\t\t\t\twhile(j --> 0) {\n\t\t\t\t\t\tfinal int to = ed[start[u] + j].to;\n\
+    \t\t\t\t\t\tif(par[to] == u) {\n\t\t\t\t\t\t\tlow[u] = min(low[u], low[to]);\n\
+    \t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tif(low[u] == ord[u]) {\n\t\t\t\t\t\twhile(true)\
+    \ {\n\t\t\t\t\t\t\tfinal int v = vis[--k];\n\t\t\t\t\t\t\tord[v] = n;\n\t\t\t\t\
+    \t\t\tids[v] = groupNum;\n\t\t\t\t\t\t\tif(v == u) {\n\t\t\t\t\t\t\t\tbreak;\n\
+    \t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\tgroupNum++;\n\t\t\t\t\t}\n\t\t\t\t\
+    }\n\t\t\t}\n\t\t}\n\t\tfor(int i = 0; i < n; i++) {\n\t\t\tids[i] = groupNum -\
+    \ 1 - ids[i];\n\t\t}        \n\t\tfinal int[] counts = new int[groupNum];\n\t\t\
+    for(final int x: ids) {\n\t\t\tcounts[x]++;\n\t\t}\n\t\tgroups = new int[groupNum][];\n\
+    \t\tfor(int i = 0; i < groupNum; i++) {\n\t\t\tgroups[i] = new int[counts[i]];\n\
+    \t\t}\n\t\tfor(int i = 0; i < n; i++) {\n\t\t\tint cmp = ids[i];\n\t\t\tgroups[cmp][--counts[cmp]]\
+    \ = i;\n\t\t}\n\t\tnotBuilt = false;\n\t}\n\t/**\n\t * @return \u5404\u5F37\u9023\
+    \u7D50\u6210\u5206\u306B\u3064\u3044\u3066\u305D\u308C\u306B\u5C5E\u3059\u308B\
+    \u9802\u70B9\n\t */\n\tpublic final int[][] groups() {\n\t\tif(notBuilt) {\n\t\
+    \t\tthrow new UnsupportedOperationException(\"Graph hasn't been built.\");\n\t\
+    \t}\n\t\treturn groups;\n\t}\n\tprivate final void rangeCheck(final int i) {\n\
+    \t\tif(!Utility.scope(0, i, n - 1)) {\n\t\t\tthrow new IndexOutOfBoundsException(String.format(\"\
+    Index %d out of bounds for length %d\", i, n));\n\t\t}\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -734,7 +753,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-22 17:05:38+09:00'
+  timestamp: '2024-02-23 01:50:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/SCC.java

@@ -46,6 +46,9 @@ data:
     path: test/scc.test.cpp
     title: test/scc.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/scc2.test.cpp
+    title: test/scc2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/warshallfloyd.test.cpp
     title: test/warshallfloyd.test.cpp
   _isVerificationFailed: false
@@ -81,6 +84,7 @@ data:
   - test/manhattan.test.cpp
   - test/kruskal.test.cpp
   - test/dag_check.test.cpp
+  - test/scc2.test.cpp
   - test/lca.test.cpp
   - test/warshallfloyd.test.cpp
   - test/bermanford.test.cpp

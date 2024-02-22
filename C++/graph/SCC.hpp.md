@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/scc.test.cpp
     title: test/scc.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/scc2.test.cpp
+    title: test/scc2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -64,6 +67,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/scc.test.cpp
+  - test/scc2.test.cpp
 documentation_of: C++/graph/SCC.hpp
 layout: document
 redirect_from:

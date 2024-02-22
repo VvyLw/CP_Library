@@ -588,6 +588,9 @@ data:
       path: test/scc.test.cpp
       title: test/scc.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/scc2.test.cpp
+      title: test/scc2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/segtree.test.cpp
       title: test/segtree.test.cpp
     - icon: ':heavy_check_mark:'
