@@ -45,7 +45,6 @@ final class Main {
 
 final class VvyLw extends Utility {
 	static final IO io = new IO(new MyScanner(System.in), new MyPrinter(System.out, false), new MyPrinter(System.err, true));
-	static final Huitloxopetl why = new Huitloxopetl();
 	static final boolean MULTI = false;
 	static final int INF = 1 << 30;
 	static final long LINF = (1L << 61) - 1;
@@ -1850,8 +1849,8 @@ final class FloatPair extends Pair<Double, Double> {
 	final double abs(){ return hypot(first, second); }
 }
 
-final class Huitloxopetl {
-	final boolean isBipartite(final UnionFind uf) {
+final class Why {
+	static final boolean isBipartite(final UnionFind uf) {
 		assert uf.size() % 2 == 0;
 		final int n = uf.size() / 2;
 		boolean ok = true;
@@ -1860,7 +1859,7 @@ final class Huitloxopetl {
 		}
 		return ok;
 	}
-	final long invNum(final int[] a) {
+	static final long invNum(final int[] a) {
 		final int[] b = Utility.sorted(a);
 		final Map<Integer, Integer> id = new HashMap<>();
 		for(int i = 0; i < a.length; ++i) {
@@ -1874,7 +1873,7 @@ final class Huitloxopetl {
 		}
 		return res;
 	}
-	final long invNum(final long[] a) {
+	static final long invNum(final long[] a) {
 		final long[] b = Utility.sorted(a);
 		final Map<Long, Integer> id = new HashMap<>();
 		for(int i = 0; i < a.length; ++i) {

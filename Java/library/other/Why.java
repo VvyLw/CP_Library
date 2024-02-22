@@ -14,13 +14,13 @@ import library.structure.unionfind.UnionFind;
 /**
  * coreパッケージ以外の外部クラス(Pairを除くを使うメソッドが置いてある
  */
-public final class Huitloxopetl {
+public final class Why {
 	/**
 	 * @param uf
 	 * @return 二分グラフかどうか
 	 * @implNote {@link UnionFind}が必要
 	 */
-	public final boolean isBipartite(final UnionFind uf) {
+	public static final boolean isBipartite(final UnionFind uf) {
 		assert uf.size() % 2 == 0;
 		final int n = uf.size() / 2;
 		boolean ok = true;
@@ -34,7 +34,7 @@ public final class Huitloxopetl {
 	 * @return 転倒数
 	 * @implNote {@link FenwickTree}が必要
 	 */
-	public final long invNum(final int[] a) {
+	public static final long invNum(final int[] a) {
 		final int[] b = Utility.sorted(a);
 		final Map<Integer, Integer> id = new HashMap<>();
 		for(int i = 0; i < a.length; ++i) {
@@ -53,7 +53,7 @@ public final class Huitloxopetl {
 	 * @return 転倒数
 	 * @implNote {@link FenwickTree}が必要
 	 */
-	public final long invNum(final long[] a) {
+	public static final long invNum(final long[] a) {
 		final long[] b = Utility.sorted(a);
 		final Map<Long, Integer> id = new HashMap<>();
 		for(int i = 0; i < a.length; ++i) {
@@ -74,7 +74,7 @@ public final class Huitloxopetl {
 	 * @param y
 	 * @return manhattan MST
 	 */
-	public final ArrayList<Edge> manhattan(int[] x, int[] y) {
+	public static final ArrayList<Edge> manhattan(int[] x, int[] y) {
 		assert x.length == y.length;
 		final int n = x.length;
 		final var res = new ArrayList<Edge>();
@@ -111,7 +111,7 @@ public final class Huitloxopetl {
 	 * @param y
 	 * @return manhattan MST
 	 */
-	public final ArrayList<Edge> manhattan(long[] x, long[] y) {
+	public static final ArrayList<Edge> manhattan(long[] x, long[] y) {
 		assert x.length == y.length;
 		final int n = x.length;
 		final var res = new ArrayList<Edge>();
