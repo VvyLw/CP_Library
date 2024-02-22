@@ -1211,19 +1211,20 @@ data:
     \ = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn\
     \ ok;\n\t}\n\t/**\n\t * \u914D\u5217\u5185\u306E\u6570\u5024\u3092\u500B\u6570\
     \u3092\u6570\u3048\u4E0A\u3052\u308B\n\t * @param a\n\t */\n\tprotected static\
-    \ final int[] count(final int[] a) {\n\t\tfinal int[] res = new int[max(a) + 1];\n\
-    \t\tfor(final int i: a) {\n\t\t\tres[i]++;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\
-    \t * \u914D\u5217\u5185\u306E\u6570\u5024\u3092\u500B\u6570\u3092\u6570\u3048\u4E0A\
-    \u3052\u308B\n\t * @param a\n\t */\n\tprotected static final Map<Long, Integer>\
-    \ count(final long[] a) {\n\t\tfinal Map<Long, Integer> res = new HashMap<>();\n\
-    \t\tfor(final long i: a) {\n\t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\
-    \treturn res;\n\t}\n\t/**\n\t * \u5EA7\u6A19\u5727\u7E2E\n\t * @param a\n\t */\n\
-    \tprotected static final int[] corPress(final int[] a) {\n\t\tfinal int[] res\
-    \ = new int[a.length];\n\t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
-    \t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * \u5EA7\u6A19\u5727\u7E2E\n\t * @param\
-    \ a\n\t */\n\tprotected static final int[] corPress(final long[] a) {\n\t\tfinal\
-    \ int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
+    \ final Map<Integer, Integer> count(final int[] a) {\n\t\tfinal Map<Integer, Integer>\
+    \ res = new HashMap<>();\n\t\tfor(final int i: a) {\n\t\t\tres.merge(i, 1, (x,\
+    \ y) -> x + y);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * \u914D\u5217\u5185\u306E\
+    \u6570\u5024\u3092\u500B\u6570\u3092\u6570\u3048\u4E0A\u3052\u308B\n\t * @param\
+    \ a\n\t */\n\tprotected static final Map<Long, Integer> count(final long[] a)\
+    \ {\n\t\tfinal Map<Long, Integer> res = new HashMap<>();\n\t\tfor(final long i:\
+    \ a) {\n\t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\treturn res;\n\t}\n\
+    \t/**\n\t * \u5EA7\u6A19\u5727\u7E2E\n\t * @param a\n\t */\n\tprotected static\
+    \ final int[] corPress(final int[] a) {\n\t\tfinal int[] res = new int[a.length];\n\
+    \t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tfor(int\
+    \ i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\t\t}\n\t\t\
+    return res;\n\t}\n\t/**\n\t * \u5EA7\u6A19\u5727\u7E2E\n\t * @param a\n\t */\n\
+    \tprotected static final int[] corPress(final long[] a) {\n\t\tfinal int[] res\
+    \ = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
     \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
     \t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param s\n\t * @return \u30E9\u30F3\u30EC\
     \u30F3\u30B0\u30B9\u5727\u7E2E\n\t */\n\tprotected static final String runLenPress(final\
@@ -1461,7 +1462,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-23 01:50:33+09:00'
+  timestamp: '2024-02-23 03:51:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

@@ -896,16 +896,16 @@ data:
     \ fn) {\n\t\twhile(abs(ok - ng) > VvyLw.EPS) {\n\t\t\tfinal double mid = (ok +\
     \ ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\
     \t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final\
-    \ int[] count(final int[] a) {\n\t\tfinal int[] res = new int[max(a) + 1];\n\t\
-    \tfor(final int i: a) {\n\t\t\tres[i]++;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
-    \ static final Map<Long, Integer> count(final long[] a) {\n\t\tfinal Map<Long,\
-    \ Integer> res = new HashMap<>();\n\t\tfor(final long i: a) {\n\t\t\tres.merge(i,\
-    \ 1, (x, y) -> x + y);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
-    \ int[] corPress(final int[] a) {\n\t\tfinal int[] res = new int[a.length];\n\t\
-    \tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tfor(int\
-    \ i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\t\t}\n\t\t\
-    return res;\n\t}\n\tprotected static final int[] corPress(final long[] a) {\n\t\
-    \tfinal int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
+    \ Map<Integer, Integer> count(final int[] a) {\n\t\tfinal Map<Integer, Integer>\
+    \ res = new HashMap<>();\n\t\tfor(final int i: a) {\n\t\t\tres.merge(i, 1, (x,\
+    \ y) -> x + y);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final Map<Long,\
+    \ Integer> count(final long[] a) {\n\t\tfinal Map<Long, Integer> res = new HashMap<>();\n\
+    \t\tfor(final long i: a) {\n\t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\
+    \treturn res;\n\t}\n\tprotected static final int[] corPress(final int[] a) {\n\
+    \t\tfinal int[] res = new int[a.length];\n\t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
+    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
+    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final int[] corPress(final long[]\
+    \ a) {\n\t\tfinal int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
     \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
     \t\t}\n\t\treturn res;\n\t}\n\tprotected static final String runLenPress(final\
     \ String s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder sb = new\
@@ -1472,7 +1472,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-23 01:50:33+09:00'
+  timestamp: '2024-02-23 03:51:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java
