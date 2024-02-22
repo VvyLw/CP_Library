@@ -21,6 +21,13 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 	protected final ArrayList<Edge> edge;
 	/**
 	 * コンストラクタ
+	 * 1-indexed
+	 * @param n
+	 * @param undirected
+	 */
+	public Graph(final int n, final boolean undirected){ this(n, 1, undirected); }
+	/**
+	 * コンストラクタ
 	 * @param n 頂点の個数
 	 * @param indexed ?-indexed
 	 * 0-indexedなら0, 1-indexedなら1

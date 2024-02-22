@@ -22,6 +22,13 @@ public final class WeightedGraph extends Graph {
 	 * コンストラクタ
 	 * グラフクラスから継承
 	 * @param n
+	 * @param undirected
+	 */
+	public WeightedGraph(final int n, final boolean undirected){ super(n, 1, undirected); }
+	/**
+	 * コンストラクタ
+	 * グラフクラスから継承
+	 * @param n
 	 * @param indexed
 	 * @param undirected
 	 */
