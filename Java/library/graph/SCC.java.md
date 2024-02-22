@@ -527,9 +527,9 @@ data:
     import library.core.interfaces.RecursiveIntConsumer;\n\n/**\n * \u5F37\u9023\u7D50\
     \u6210\u5206\u5206\u89E3(Strongly Connected Components)\n * \u9045\u3044(<a href=\"\
     https://judge.yosupo.jp/problem/scc\">verify\u7528\u554F\u984C</a>\u306Ecase:large_cycle_00\u304C\
-    TLE)\n * @deprecated {@link StackOverflowError}\u304C\u305F\u307E\u306B\u8D77\u3053\
-    \u308B(<a href=\"https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C\">\u767A\u751F\
-    \u3057\u305F\u554F\u984C</a>)\n * @see <a href=\"https://ei1333.github.io/library/graph/connected-components/strongly-connected-components.hpp\"\
+    TLE)\n * @deprecated {@link StackOverflowError}\u304C\u8D77\u3053\u308B(<a href=\"\
+    https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C\">\u767A\u751F\u3057\u305F\u554F\
+    \u984C</a>)\n * @see <a href=\"https://ei1333.github.io/library/graph/connected-components/strongly-connected-components.hpp\"\
     >\u53C2\u8003\u5143</a>\n */\npublic final class SCC {\n\tprivate final int[]\
     \ comp;\n\tprivate final ArrayList<ArrayList<Integer>> group;\n\tprivate final\
     \ Graph dag;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param\
@@ -734,7 +734,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-22 09:14:26+09:00'
+  timestamp: '2024-02-22 09:56:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/SCC.java
