@@ -530,8 +530,11 @@ data:
     \n/**\n * \u91CD\u307F\u3064\u304D\u30B0\u30E9\u30D5\u30AF\u30E9\u30B9\n */\n\
     public final class WeightedGraph extends Graph {\n\t/**\n\t * \u30B3\u30F3\u30B9\
     \u30C8\u30E9\u30AF\u30BF\n\t * \u30B0\u30E9\u30D5\u30AF\u30E9\u30B9\u304B\u3089\
-    \u7D99\u627F\n\t * @param n\n\t * @param indexed\n\t * @param undirected\n\t */\n\
-    \tpublic WeightedGraph(final int n, final int indexed, final boolean undirected){\
+    \u7D99\u627F\n\t * @param n\n\t * @param undirected\n\t */\n\tpublic WeightedGraph(final\
+    \ int n, final boolean undirected){ super(n, 1, undirected); }\n\t/**\n\t * \u30B3\
+    \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * \u30B0\u30E9\u30D5\u30AF\u30E9\u30B9\
+    \u304B\u3089\u7D99\u627F\n\t * @param n\n\t * @param indexed\n\t * @param undirected\n\
+    \t */\n\tpublic WeightedGraph(final int n, final int indexed, final boolean undirected){\
     \ super(n, indexed, undirected); }\n\t/**\n\t * \u8FBA\u3092\u8FFD\u52A0\u3059\
     \u308B\n\t * @param a\n\t * @param b\n\t * @param cost\n\t */\n\tpublic final\
     \ void addEdge(int a, int b, final long cost) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\
@@ -780,7 +783,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-22 09:56:53+09:00'
+  timestamp: '2024-02-22 17:05:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/WeightedGraph.java
