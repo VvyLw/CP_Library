@@ -11,7 +11,7 @@ import library.core.interfaces.RecursiveIntConsumer;
 /**
  * 強連結成分分解(Strongly Connected Components)
  * 遅い(<a href="https://judge.yosupo.jp/problem/scc">verify用問題</a>のcase:large_cycle_00がTLE)
- * @deprecated {@link StackOverflowError}がたまに起こる(<a href="https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C">発生した問題</a>)
+ * @deprecated {@link StackOverflowError}が起こる(<a href="https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C">発生した問題</a>)
  * @see <a href="https://ei1333.github.io/library/graph/connected-components/strongly-connected-components.hpp">参考元</a>
  */
 public final class SCC {
