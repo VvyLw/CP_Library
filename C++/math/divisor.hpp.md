@@ -80,25 +80,25 @@ data:
     \ V<T> operator/(const V<T>& v, const U x) noexcept { V<T> res = v; res/=x; return\
     \ res; }\ntemplate <class T, class U> constexpr V<T> operator%(const V<T>& v,\
     \ const U x) noexcept { V<T> res = v; res%=x; return res; }\n} // vectors\n#line\
-    \ 5 \"C++/math/divisor.hpp\"\n#ifndef TEMPLATE\n#endif\nnamespace Heileden {\n\
-    template <class T> inline vectors::V<T> div(const T n) {\n    vectors::V<T> d;\n\
-    \    for(long long i = 1; i * i <= n; ++i) {\n        if(n%i==0) {\n         \
-    \   d.emplace_back(i);\n            if(i*i!=n) d.emplace_back(n/i);\n        }\n\
-    \    }\n    std::sort(d.begin(), d.end());\n    return d;\n}\n}\n\n/**\n * @brief\
-    \ \u7D04\u6570\u5217\u6319\n */\n"
-  code: "#pragma once\n\n#include <algorithm>\n#include \"C++/myvector.hpp\"\n#ifndef\
-    \ TEMPLATE\n#endif\nnamespace Heileden {\ntemplate <class T> inline vectors::V<T>\
-    \ div(const T n) {\n    vectors::V<T> d;\n    for(long long i = 1; i * i <= n;\
-    \ ++i) {\n        if(n%i==0) {\n            d.emplace_back(i);\n            if(i*i!=n)\
-    \ d.emplace_back(n/i);\n        }\n    }\n    std::sort(d.begin(), d.end());\n\
-    \    return d;\n}\n}\n\n/**\n * @brief \u7D04\u6570\u5217\u6319\n */"
+    \ 5 \"C++/math/divisor.hpp\"\nnamespace Heileden {\ntemplate <class T> inline\
+    \ vectors::V<T> div(const T n) {\n    vectors::V<T> d;\n    for(long long i =\
+    \ 1; i * i <= n; ++i) {\n        if(n%i==0) {\n            d.emplace_back(i);\n\
+    \            if(i*i!=n) d.emplace_back(n/i);\n        }\n    }\n    std::sort(d.begin(),\
+    \ d.end());\n    return d;\n}\n}\n\n/**\n * @brief \u7D04\u6570\u5217\u6319\n\
+    \ */\n"
+  code: "#pragma once\n\n#include <algorithm>\n#include \"C++/myvector.hpp\"\nnamespace\
+    \ Heileden {\ntemplate <class T> inline vectors::V<T> div(const T n) {\n    vectors::V<T>\
+    \ d;\n    for(long long i = 1; i * i <= n; ++i) {\n        if(n%i==0) {\n    \
+    \        d.emplace_back(i);\n            if(i*i!=n) d.emplace_back(n/i);\n   \
+    \     }\n    }\n    std::sort(d.begin(), d.end());\n    return d;\n}\n}\n\n/**\n\
+    \ * @brief \u7D04\u6570\u5217\u6319\n */"
   dependsOn:
   - C++/myvector.hpp
   isVerificationFile: false
   path: C++/math/divisor.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2024-02-19 13:17:33+09:00'
+  timestamp: '2024-02-22 09:22:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sr_sum.test.cpp

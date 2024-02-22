@@ -167,14 +167,14 @@ data:
     \ inline vectors::V<U> second(const vectors::V<P<T,U>> &vp) {\n    vectors::V<U>\
     \ res;\n    for(const auto &el: vp) res.emplace_back(el.second);\n    return res;\n\
     }\n} // pairs\n#line 8 \"C++/io/output.hpp\"\n#ifndef TEMPLATE\nusing i128 = __int128_t;\n\
-    using u128 = __uint128_t;\n#define rep(n) for(size_t i = 0; i < n; ++i)\n#endif\n\
-    namespace IO {\nstd::ostream &operator<<(std::ostream &dest, const i128 &value)\
-    \ {\n    std::ostream::sentry s(dest);\n    if(s) {\n        u128 tmp = value\
-    \ < 0 ? -value : value;\n        char buffer[128];\n        char *d = std::end(buffer);\n\
-    \        do {\n            --d;\n            *d = \"0123456789\"[tmp % 10];\n\
-    \            tmp /= 10;\n        } while(tmp != 0);\n        if(value < 0) {\n\
-    \            --d;\n            *d = '-';\n        }\n        int len = std::end(buffer)\
-    \ - d;\n        if(dest.rdbuf() -> sputn(d, len) != len) {\n            dest.setstate(std::ios_base::badbit);\n\
+    using u128 = __uint128_t;\n#endif\nnamespace IO {\nstd::ostream &operator<<(std::ostream\
+    \ &dest, const i128 &value) {\n    std::ostream::sentry s(dest);\n    if(s) {\n\
+    \        u128 tmp = value < 0 ? -value : value;\n        char buffer[128];\n \
+    \       char *d = std::end(buffer);\n        do {\n            --d;\n        \
+    \    *d = \"0123456789\"[tmp % 10];\n            tmp /= 10;\n        } while(tmp\
+    \ != 0);\n        if(value < 0) {\n            --d;\n            *d = '-';\n \
+    \       }\n        int len = std::end(buffer) - d;\n        if(dest.rdbuf() ->\
+    \ sputn(d, len) != len) {\n            dest.setstate(std::ios_base::badbit);\n\
     \        }\n    }\n    return dest;\n}\ntemplate <class T, class U> std::ostream&\
     \ operator<<(std::ostream &os, const pairs::P<T, U> &p){ os << p.first << ' '\
     \ << p.second; return os; }\ntemplate <class T, size_t N> std::ostream& operator<<(std::ostream\
@@ -199,21 +199,21 @@ data:
     \ tail){ std::cout << head << ' '; out<flush>(tail...); }\ntemplate <bool flush=false,\
     \ class T> inline void vout(const T& v){ std::cout << v << '\\n'; if(flush) std::cout.flush();\
     \ }\ntemplate <bool flush=false, class T> inline void vout(const vectors::V<T>&\
-    \ v){ rep(v.size()) std::cout << v[i] << '\\n'; if(flush) std::cout.flush(); }\n\
-    template <bool flush=false, class Head, class... Tail> inline void vout(const\
+    \ v){ for(const auto &el: v) std::cout << el << '\\n'; if(flush) std::cout.flush();\
+    \ }\ntemplate <bool flush=false, class Head, class... Tail> inline void vout(const\
     \ Head& head, const Tail&... tail){ std::cout << head << '\\n'; vout<flush>(tail...);\
     \ }\n\n#define fin(...) do{ out(__VA_ARGS__); return; }while(false)\n} // IO\n\
     \n/**\n * @brief \u51FA\u529B\n */\n"
   code: "#pragma once\n\n#include <iostream>\n#include <map>\n#include <set>\n#include\
     \ <deque>\n#include \"C++/mypair.hpp\"\n#ifndef TEMPLATE\nusing i128 = __int128_t;\n\
-    using u128 = __uint128_t;\n#define rep(n) for(size_t i = 0; i < n; ++i)\n#endif\n\
-    namespace IO {\nstd::ostream &operator<<(std::ostream &dest, const i128 &value)\
-    \ {\n    std::ostream::sentry s(dest);\n    if(s) {\n        u128 tmp = value\
-    \ < 0 ? -value : value;\n        char buffer[128];\n        char *d = std::end(buffer);\n\
-    \        do {\n            --d;\n            *d = \"0123456789\"[tmp % 10];\n\
-    \            tmp /= 10;\n        } while(tmp != 0);\n        if(value < 0) {\n\
-    \            --d;\n            *d = '-';\n        }\n        int len = std::end(buffer)\
-    \ - d;\n        if(dest.rdbuf() -> sputn(d, len) != len) {\n            dest.setstate(std::ios_base::badbit);\n\
+    using u128 = __uint128_t;\n#endif\nnamespace IO {\nstd::ostream &operator<<(std::ostream\
+    \ &dest, const i128 &value) {\n    std::ostream::sentry s(dest);\n    if(s) {\n\
+    \        u128 tmp = value < 0 ? -value : value;\n        char buffer[128];\n \
+    \       char *d = std::end(buffer);\n        do {\n            --d;\n        \
+    \    *d = \"0123456789\"[tmp % 10];\n            tmp /= 10;\n        } while(tmp\
+    \ != 0);\n        if(value < 0) {\n            --d;\n            *d = '-';\n \
+    \       }\n        int len = std::end(buffer) - d;\n        if(dest.rdbuf() ->\
+    \ sputn(d, len) != len) {\n            dest.setstate(std::ios_base::badbit);\n\
     \        }\n    }\n    return dest;\n}\ntemplate <class T, class U> std::ostream&\
     \ operator<<(std::ostream &os, const pairs::P<T, U> &p){ os << p.first << ' '\
     \ << p.second; return os; }\ntemplate <class T, size_t N> std::ostream& operator<<(std::ostream\
@@ -238,8 +238,8 @@ data:
     \ tail){ std::cout << head << ' '; out<flush>(tail...); }\ntemplate <bool flush=false,\
     \ class T> inline void vout(const T& v){ std::cout << v << '\\n'; if(flush) std::cout.flush();\
     \ }\ntemplate <bool flush=false, class T> inline void vout(const vectors::V<T>&\
-    \ v){ rep(v.size()) std::cout << v[i] << '\\n'; if(flush) std::cout.flush(); }\n\
-    template <bool flush=false, class Head, class... Tail> inline void vout(const\
+    \ v){ for(const auto &el: v) std::cout << el << '\\n'; if(flush) std::cout.flush();\
+    \ }\ntemplate <bool flush=false, class Head, class... Tail> inline void vout(const\
     \ Head& head, const Tail&... tail){ std::cout << head << '\\n'; vout<flush>(tail...);\
     \ }\n\n#define fin(...) do{ out(__VA_ARGS__); return; }while(false)\n} // IO\n\
     \n/**\n * @brief \u51FA\u529B\n */"
@@ -251,7 +251,7 @@ data:
   path: C++/io/output.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2024-02-19 13:17:33+09:00'
+  timestamp: '2024-02-22 09:22:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sr_sum.test.cpp

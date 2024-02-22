@@ -228,15 +228,14 @@ data:
     \ vectors::V<type> name(size); in(name)\n#define WEC(type,name,h,w) vectors::V<vectors::V<type>>\
     \ name(h,vectors::V<type>(w)); in(name)\n} // IO\n\n/**\n * @brief \u5165\u529B\
     \n */\n#line 2 \"C++/io/output.hpp\"\n\n#line 8 \"C++/io/output.hpp\"\n#ifndef\
-    \ TEMPLATE\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n#define rep(n)\
-    \ for(size_t i = 0; i < n; ++i)\n#endif\nnamespace IO {\nstd::ostream &operator<<(std::ostream\
-    \ &dest, const i128 &value) {\n    std::ostream::sentry s(dest);\n    if(s) {\n\
-    \        u128 tmp = value < 0 ? -value : value;\n        char buffer[128];\n \
-    \       char *d = std::end(buffer);\n        do {\n            --d;\n        \
-    \    *d = \"0123456789\"[tmp % 10];\n            tmp /= 10;\n        } while(tmp\
-    \ != 0);\n        if(value < 0) {\n            --d;\n            *d = '-';\n \
-    \       }\n        int len = std::end(buffer) - d;\n        if(dest.rdbuf() ->\
-    \ sputn(d, len) != len) {\n            dest.setstate(std::ios_base::badbit);\n\
+    \ TEMPLATE\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n#endif\nnamespace\
+    \ IO {\nstd::ostream &operator<<(std::ostream &dest, const i128 &value) {\n  \
+    \  std::ostream::sentry s(dest);\n    if(s) {\n        u128 tmp = value < 0 ?\
+    \ -value : value;\n        char buffer[128];\n        char *d = std::end(buffer);\n\
+    \        do {\n            --d;\n            *d = \"0123456789\"[tmp % 10];\n\
+    \            tmp /= 10;\n        } while(tmp != 0);\n        if(value < 0) {\n\
+    \            --d;\n            *d = '-';\n        }\n        int len = std::end(buffer)\
+    \ - d;\n        if(dest.rdbuf() -> sputn(d, len) != len) {\n            dest.setstate(std::ios_base::badbit);\n\
     \        }\n    }\n    return dest;\n}\ntemplate <class T, class U> std::ostream&\
     \ operator<<(std::ostream &os, const pairs::P<T, U> &p){ os << p.first << ' '\
     \ << p.second; return os; }\ntemplate <class T, size_t N> std::ostream& operator<<(std::ostream\
@@ -261,8 +260,8 @@ data:
     \ tail){ std::cout << head << ' '; out<flush>(tail...); }\ntemplate <bool flush=false,\
     \ class T> inline void vout(const T& v){ std::cout << v << '\\n'; if(flush) std::cout.flush();\
     \ }\ntemplate <bool flush=false, class T> inline void vout(const vectors::V<T>&\
-    \ v){ rep(v.size()) std::cout << v[i] << '\\n'; if(flush) std::cout.flush(); }\n\
-    template <bool flush=false, class Head, class... Tail> inline void vout(const\
+    \ v){ for(const auto &el: v) std::cout << el << '\\n'; if(flush) std::cout.flush();\
+    \ }\ntemplate <bool flush=false, class Head, class... Tail> inline void vout(const\
     \ Head& head, const Tail&... tail){ std::cout << head << '\\n'; vout<flush>(tail...);\
     \ }\n\n#define fin(...) do{ out(__VA_ARGS__); return; }while(false)\n} // IO\n\
     \n/**\n * @brief \u51FA\u529B\n */\n#line 83 \"C++/template.hpp\"\n\r\nusing namespace\
@@ -435,55 +434,54 @@ data:
     \ acc,ll i){ return acc*i; }); }\r\ntemplate <class T> inline ld vdmul(const T\
     \ &v, ll a, ll b){ return std::accumulate(all(v,a,b),1.0L,[](ll acc,ll i){ return\
     \ acc*i; }); }\r\n} // Lady s&y\r\n\r\n#line 2 \"C++/math/divisor.hpp\"\n\n#line\
-    \ 5 \"C++/math/divisor.hpp\"\n#ifndef TEMPLATE\n#endif\nnamespace Heileden {\n\
-    template <class T> inline vectors::V<T> div(const T n) {\n    vectors::V<T> d;\n\
-    \    for(long long i = 1; i * i <= n; ++i) {\n        if(n%i==0) {\n         \
-    \   d.emplace_back(i);\n            if(i*i!=n) d.emplace_back(n/i);\n        }\n\
-    \    }\n    std::sort(d.begin(), d.end());\n    return d;\n}\n}\n\n/**\n * @brief\
-    \ \u7D04\u6570\u5217\u6319\n */\n#line 2 \"C++/math/primefactor.hpp\"\n\n#line\
-    \ 4 \"C++/math/primefactor.hpp\"\n#ifndef TEMPLATE\n#define sqrp(i,a,b) for(long\
-    \ long i = (a); i * i <= (b); ++i)\n#endif\nnamespace Heileden {\ntemplate <class\
-    \ T> inline vectors::V<pairs::PP<T>> prmfct(T n) {\n    vectors::V<pairs::PP<T>>\
-    \ res;\n    for(T i = 2; i * i <= n; ++i) {\n        if(n%i!=0) continue;\n  \
-    \      T tmp=0;\n        while(n%i==0) {\n            tmp++;\n            n/=i;\n\
-    \        }\n        res.emplace_back(i,tmp);\n    }\n    if(n!=1) res.emplace_back(n,1);\n\
-    \    return res;\n}\n}\n\n/**\n * @brief \u7D20\u56E0\u6570\u5206\u89E3\n */\n\
-    #line 2 \"C++/math/primetable.hpp\"\n\n#line 4 \"C++/math/primetable.hpp\"\nnamespace\
-    \ Heileden {\nstruct p_table {\n    vectors::vb SoE;\n    p_table(const int n):\
-    \ SoE(n+1,1){\n        SoE[0]=SoE[1]=0;\n        for(int64_t i = 2; i <= n; ++i)\
-    \ {\n            if(!SoE[i]) continue;\n            for(int64_t j = i * i; j <=\
-    \ n; j += i) SoE[j] = 0;\n        }\n    }\n    vectors::vi get() {\n        vectors::vi\
-    \ p;\n        for(size_t i = 2; i < SoE.size(); ++i) if(SoE[i]) p.emplace_back(i);\n\
-    \        return p;\n    }\n};\n}\n\n/**\n * @brief Sieve of Eratosthenes\n */\n\
-    #line 2 \"C++/math/primefactortable.hpp\"\n\n#line 6 \"C++/math/primefactortable.hpp\"\
-    \nnamespace Heileden {\nstruct p_fact {\n    vectors::vi spf;\n    p_fact(const\
-    \ int n): spf(n + 1){\n        std::iota(spf.begin(), spf.end(), 0);\n       \
-    \ for(int64_t i = 2; i * i <= n; ++i) {\n            if(spf[i]==i) {\n       \
-    \         for(int64_t j = i * i; j <= n; j += i) {\n                    if(spf[j]==j)\
-    \ spf[j]=i;\n                }\n            }\n        }\n    }\n    std::map<int,int>\
-    \ get(int n) {\n        std::map<int,int> m;\n        while(n!=1) {\n        \
-    \    m[spf[n]]++;\n            n/=spf[n];\n        }\n        return m;\n    }\n\
-    };\n}\n\n/**\n * @brief \u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\u30EB\
-    \n */\n#line 2 \"C++/math/psum/psum.hpp\"\n\n#line 5 \"C++/math/psum/psum.hpp\"\
-    \nnamespace Heileden {\nstruct psum {\nprivate:\n    vectors::vi s;\npublic:\n\
-    \    psum(const vectors::vi& v): s{0} { std::partial_sum(v.begin(), v.end(), std::back_inserter(s));\
-    \ }\n    vectors::vi get() const { return s; }\n    // [l, r]\n    ll query(const\
-    \ int l, const int r) const { return s[r]-s[l]; }\n};\n}\n\n/**\n * @brief \u7D2F\
-    \u7A4D\u548C\n */\n#line 2 \"C++/math/kthrooti.hpp\"\n\n#line 4 \"C++/math/kthrooti.hpp\"\
-    \n#ifndef TEMPLATE\ntypedef unsigned long long ul;\ntemplate <class T, class U>\
-    \ inline bool overflow_if_mul(const T a, const U b){ return (std::numeric_limits<T>::max()/a)<b;\
-    \ }\n#endif\nnamespace Heileden {\ninline ul kthrooti(const ul n, const int k)\
-    \ {\n    if(k==1) {\n\t\treturn n;\n\t}\n\tconst auto chk=[&](const unsigned x)\
-    \ {\n\t\tul mul=1;\n\t\tfor(int i = 0; i < k; ++i) {\n            if(overflow_if_mul(mul,\
-    \ x)) {\n                return false;\n            }\n            mul*=x;\n \
-    \       }\n\t\treturn mul<=n;\n\t};\n\tul ret=0;\n\tfor(int i = 32; --i >= 0;)\
-    \ {\n\t\tif(chk(ret|(1U<<i))) {\n\t\t\tret|=1U<<i;\n\t\t}\n\t}\n\treturn ret;\n\
-    }\n}\n\n/**\n * @brief k\u4E57\u6839(\u6574\u6570)\n */\n#line 296 \"C++/template.hpp\"\
-    \n\r\nnamespace Heileden {\r\ntemplate <class T, class Boolean=bool> inline T\
-    \ bins(T ok, T ng, const Boolean &fn, const ld eps = 1) {\r\n\twhile(std::abs(ok-ng)>eps)\
-    \ {\r\n\t\tT mid=(ok+ng)/2;\r\n\t\t(fn(mid)?ok:ng) = mid;\r\n\t}\r\n\treturn ok;\r\
-    \n}\r\ntemplate <class T> inline V<T> press(const V<T>& v) {\r\n\tV<T> res,cp=v;\r\
-    \n\tLady_sANDy::unq(cp);\r\n\teach(el,v) res.emplace_back(Lady_sANDy::LB(cp,el));\r\
+    \ 5 \"C++/math/divisor.hpp\"\nnamespace Heileden {\ntemplate <class T> inline\
+    \ vectors::V<T> div(const T n) {\n    vectors::V<T> d;\n    for(long long i =\
+    \ 1; i * i <= n; ++i) {\n        if(n%i==0) {\n            d.emplace_back(i);\n\
+    \            if(i*i!=n) d.emplace_back(n/i);\n        }\n    }\n    std::sort(d.begin(),\
+    \ d.end());\n    return d;\n}\n}\n\n/**\n * @brief \u7D04\u6570\u5217\u6319\n\
+    \ */\n#line 2 \"C++/math/primefactor.hpp\"\n\n#line 4 \"C++/math/primefactor.hpp\"\
+    \nnamespace Heileden {\ntemplate <class T> inline vectors::V<pairs::PP<T>> prmfct(T\
+    \ n) {\n    vectors::V<pairs::PP<T>> res;\n    for(T i = 2; i * i <= n; ++i) {\n\
+    \        if(n%i!=0) continue;\n        T tmp=0;\n        while(n%i==0) {\n   \
+    \         tmp++;\n            n/=i;\n        }\n        res.emplace_back(i,tmp);\n\
+    \    }\n    if(n!=1) res.emplace_back(n,1);\n    return res;\n}\n}\n\n/**\n *\
+    \ @brief \u7D20\u56E0\u6570\u5206\u89E3\n */\n#line 2 \"C++/math/primetable.hpp\"\
+    \n\n#line 4 \"C++/math/primetable.hpp\"\nnamespace Heileden {\nstruct p_table\
+    \ {\n    vectors::vb SoE;\n    p_table(const int n): SoE(n+1,1){\n        SoE[0]=SoE[1]=0;\n\
+    \        for(int64_t i = 2; i <= n; ++i) {\n            if(!SoE[i]) continue;\n\
+    \            for(int64_t j = i * i; j <= n; j += i) SoE[j] = 0;\n        }\n \
+    \   }\n    vectors::vi get() {\n        vectors::vi p;\n        for(size_t i =\
+    \ 2; i < SoE.size(); ++i) if(SoE[i]) p.emplace_back(i);\n        return p;\n \
+    \   }\n};\n}\n\n/**\n * @brief Sieve of Eratosthenes\n */\n#line 2 \"C++/math/primefactortable.hpp\"\
+    \n\n#line 6 \"C++/math/primefactortable.hpp\"\nnamespace Heileden {\nstruct p_fact\
+    \ {\n    vectors::vi spf;\n    p_fact(const int n): spf(n + 1){\n        std::iota(spf.begin(),\
+    \ spf.end(), 0);\n        for(int64_t i = 2; i * i <= n; ++i) {\n            if(spf[i]==i)\
+    \ {\n                for(int64_t j = i * i; j <= n; j += i) {\n              \
+    \      if(spf[j]==j) spf[j]=i;\n                }\n            }\n        }\n\
+    \    }\n    std::map<int,int> get(int n) {\n        std::map<int,int> m;\n   \
+    \     while(n!=1) {\n            m[spf[n]]++;\n            n/=spf[n];\n      \
+    \  }\n        return m;\n    }\n};\n}\n\n/**\n * @brief \u7D20\u56E0\u6570\u5206\
+    \u89E3\u30C6\u30FC\u30D6\u30EB\n */\n#line 2 \"C++/math/psum/psum.hpp\"\n\n#line\
+    \ 5 \"C++/math/psum/psum.hpp\"\nnamespace Heileden {\nstruct psum {\nprivate:\n\
+    \    vectors::vi s;\npublic:\n    psum(const vectors::vi& v): s{0} { std::partial_sum(v.begin(),\
+    \ v.end(), std::back_inserter(s)); }\n    vectors::vi get() const { return s;\
+    \ }\n    // [l, r]\n    ll query(const int l, const int r) const { return s[r]-s[l];\
+    \ }\n};\n}\n\n/**\n * @brief \u7D2F\u7A4D\u548C\n */\n#line 2 \"C++/math/kthrooti.hpp\"\
+    \n\n#line 4 \"C++/math/kthrooti.hpp\"\n#ifndef TEMPLATE\ntypedef unsigned long\
+    \ long ul;\ntemplate <class T, class U> inline bool overflow_if_mul(const T a,\
+    \ const U b){ return (std::numeric_limits<T>::max()/a)<b; }\n#endif\nnamespace\
+    \ Heileden {\ninline ul kthrooti(const ul n, const int k) {\n    if(k==1) {\n\t\
+    \treturn n;\n\t}\n\tconst auto chk=[&](const unsigned x) {\n\t\tul mul=1;\n\t\t\
+    for(int i = 0; i < k; ++i) {\n            if(overflow_if_mul(mul, x)) {\n    \
+    \            return false;\n            }\n            mul*=x;\n        }\n\t\t\
+    return mul<=n;\n\t};\n\tul ret=0;\n\tfor(int i = 32; --i >= 0;) {\n\t\tif(chk(ret|(1U<<i)))\
+    \ {\n\t\t\tret|=1U<<i;\n\t\t}\n\t}\n\treturn ret;\n}\n}\n\n/**\n * @brief k\u4E57\
+    \u6839(\u6574\u6570)\n */\n#line 296 \"C++/template.hpp\"\n\r\nnamespace Heileden\
+    \ {\r\ntemplate <class T, class Boolean=bool> inline T bins(T ok, T ng, const\
+    \ Boolean &fn, const ld eps = 1) {\r\n\twhile(std::abs(ok-ng)>eps) {\r\n\t\tT\
+    \ mid=(ok+ng)/2;\r\n\t\t(fn(mid)?ok:ng) = mid;\r\n\t}\r\n\treturn ok;\r\n}\r\n\
+    template <class T> inline V<T> press(const V<T>& v) {\r\n\tV<T> res,cp=v;\r\n\t\
+    Lady_sANDy::unq(cp);\r\n\teach(el,v) res.emplace_back(Lady_sANDy::LB(cp,el));\r\
     \n\treturn res;\r\n}\r\ntemplate <class T> inline V<T> press(V<T> &c1, V<T> &c2)\
     \ {\r\n\tV<T> res;\r\n\tconst int n = c1.size();\r\n\trep(n) {\r\n\t\tfor(T d\
     \ = 0; d < 1; d++) {\r\n\t\t\tT tc1 = c1[i]+d;\r\n\t\t\tT tc2 = c2[i]+d;\r\n\t\
@@ -537,7 +535,7 @@ data:
   isVerificationFile: true
   path: test/m_add.test.cpp
   requiredBy: []
-  timestamp: '2024-02-22 06:53:00+09:00'
+  timestamp: '2024-02-22 09:22:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/m_add.test.cpp

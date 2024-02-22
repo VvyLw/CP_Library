@@ -162,15 +162,13 @@ data:
     \ res.emplace_back(el.first);\n    return res;\n}\ntemplate <class T, class U>\
     \ inline vectors::V<U> second(const vectors::V<P<T,U>> &vp) {\n    vectors::V<U>\
     \ res;\n    for(const auto &el: vp) res.emplace_back(el.second);\n    return res;\n\
-    }\n} // pairs\n#line 4 \"C++/math/primefactor.hpp\"\n#ifndef TEMPLATE\n#define\
-    \ sqrp(i,a,b) for(long long i = (a); i * i <= (b); ++i)\n#endif\nnamespace Heileden\
-    \ {\ntemplate <class T> inline vectors::V<pairs::PP<T>> prmfct(T n) {\n    vectors::V<pairs::PP<T>>\
+    }\n} // pairs\n#line 4 \"C++/math/primefactor.hpp\"\nnamespace Heileden {\ntemplate\
+    \ <class T> inline vectors::V<pairs::PP<T>> prmfct(T n) {\n    vectors::V<pairs::PP<T>>\
     \ res;\n    for(T i = 2; i * i <= n; ++i) {\n        if(n%i!=0) continue;\n  \
     \      T tmp=0;\n        while(n%i==0) {\n            tmp++;\n            n/=i;\n\
     \        }\n        res.emplace_back(i,tmp);\n    }\n    if(n!=1) res.emplace_back(n,1);\n\
     \    return res;\n}\n}\n\n/**\n * @brief \u7D20\u56E0\u6570\u5206\u89E3\n */\n"
-  code: "#pragma once\n\n#include \"C++/mypair.hpp\"\n#ifndef TEMPLATE\n#define sqrp(i,a,b)\
-    \ for(long long i = (a); i * i <= (b); ++i)\n#endif\nnamespace Heileden {\ntemplate\
+  code: "#pragma once\n\n#include \"C++/mypair.hpp\"\nnamespace Heileden {\ntemplate\
     \ <class T> inline vectors::V<pairs::PP<T>> prmfct(T n) {\n    vectors::V<pairs::PP<T>>\
     \ res;\n    for(T i = 2; i * i <= n; ++i) {\n        if(n%i!=0) continue;\n  \
     \      T tmp=0;\n        while(n%i==0) {\n            tmp++;\n            n/=i;\n\
@@ -184,7 +182,7 @@ data:
   path: C++/math/primefactor.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2024-02-19 13:17:33+09:00'
+  timestamp: '2024-02-22 09:22:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sr_sum.test.cpp
