@@ -355,9 +355,6 @@ data:
   - name: Java/library/other
     pages:
     - icon: ':warning:'
-      path: Java/library/other/Huitloxopetl.java
-      title: Java/library/other/Huitloxopetl.java
-    - icon: ':warning:'
       path: Java/library/other/InclusiveScan.java
       title: Java/library/other/InclusiveScan.java
     - icon: ':warning:'
@@ -366,6 +363,9 @@ data:
     - icon: ':warning:'
       path: Java/library/other/SuffixArray.java
       title: Java/library/other/SuffixArray.java
+    - icon: ':warning:'
+      path: Java/library/other/Why.java
+      title: Java/library/other/Why.java
   - name: Java/library/structure
     pages:
     - icon: ':warning:'

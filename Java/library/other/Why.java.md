@@ -521,35 +521,35 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/other/Huitloxopetl.java\n"
+    RuntimeError: bundler is not specified: Java/library/other/Why.java\n"
   code: "package library.other;\n\nimport java.util.ArrayList;\nimport java.util.HashMap;\n\
     import java.util.Map;\nimport java.util.TreeMap;\nimport java.util.stream.IntStream;\n\
     \nimport library.core.Utility;\nimport library.graph.Edge;\nimport library.structure.fenwicktree.FenwickTree;\n\
     import library.structure.unionfind.UnionFind;\n\n/**\n * core\u30D1\u30C3\u30B1\
     \u30FC\u30B8\u4EE5\u5916\u306E\u5916\u90E8\u30AF\u30E9\u30B9(Pair\u3092\u9664\u304F\
     \u3092\u4F7F\u3046\u30E1\u30BD\u30C3\u30C9\u304C\u7F6E\u3044\u3066\u3042\u308B\
-    \n */\npublic final class Huitloxopetl {\n\t/**\n\t * @param uf\n\t * @return\
-    \ \u4E8C\u5206\u30B0\u30E9\u30D5\u304B\u3069\u3046\u304B\n\t * @implNote {@link\
-    \ UnionFind}\u304C\u5FC5\u8981\n\t */\n\tpublic final boolean isBipartite(final\
-    \ UnionFind uf) {\n\t\tassert uf.size() % 2 == 0;\n\t\tfinal int n = uf.size()\
-    \ / 2;\n\t\tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &=\
-    \ uf.root(i) != uf.root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n\t/**\n\t * @param\
-    \ a\n\t * @return \u8EE2\u5012\u6570\n\t * @implNote {@link FenwickTree}\u304C\
-    \u5FC5\u8981\n\t */\n\tpublic final long invNum(final int[] a) {\n\t\tfinal int[]\
-    \ b = Utility.sorted(a);\n\t\tfinal Map<Integer, Integer> id = new HashMap<>();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
+    \n */\npublic final class Why {\n\t/**\n\t * @param uf\n\t * @return \u4E8C\u5206\
+    \u30B0\u30E9\u30D5\u304B\u3069\u3046\u304B\n\t * @implNote {@link UnionFind}\u304C\
+    \u5FC5\u8981\n\t */\n\tpublic static final boolean isBipartite(final UnionFind\
+    \ uf) {\n\t\tassert uf.size() % 2 == 0;\n\t\tfinal int n = uf.size() / 2;\n\t\t\
+    boolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &= uf.root(i) !=\
+    \ uf.root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n\t/**\n\t * @param a\n\t * @return\
+    \ \u8EE2\u5012\u6570\n\t * @implNote {@link FenwickTree}\u304C\u5FC5\u8981\n\t\
+    \ */\n\tpublic static final long invNum(final int[] a) {\n\t\tfinal int[] b =\
+    \ Utility.sorted(a);\n\t\tfinal Map<Integer, Integer> id = new HashMap<>();\n\t\
+    \tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
     \ FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int\
     \ i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\t\
     bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\
     \t * @return \u8EE2\u5012\u6570\n\t * @implNote {@link FenwickTree}\u304C\u5FC5\
-    \u8981\n\t */\n\tpublic final long invNum(final long[] a) {\n\t\tfinal long[]\
-    \ b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer> id = new HashMap<>();\n\
+    \u8981\n\t */\n\tpublic static final long invNum(final long[] a) {\n\t\tfinal\
+    \ long[] b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer> id = new HashMap<>();\n\
     \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
     \ FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int\
     \ i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\t\
     bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @deprecated\
     \ verified\u3057\u3066\u3044\u306A\u3044\n\t * \u9045\u3044\n\t * @param x\n\t\
-    \ * @param y\n\t * @return manhattan MST\n\t */\n\tpublic final ArrayList<Edge>\
+    \ * @param y\n\t * @return manhattan MST\n\t */\n\tpublic static final ArrayList<Edge>\
     \ manhattan(int[] x, int[] y) {\n\t\tassert x.length == y.length;\n\t\tfinal int\
     \ n = x.length;\n\t\tfinal var res = new ArrayList<Edge>();\n\t\tfor(int s = 0;\
     \ s < 2; ++s) {\n\t\t\tfor(int t = 0; t < 2; ++t) {\n\t\t\t\tfinal var id = IntStream.range(0,\
@@ -565,8 +565,8 @@ data:
     \ i = 0; i < n; ++i) {\n\t\t\t\tx[i] = -x[i];\n\t\t\t}\n\t\t}\n\t\treturn res;\n\
     \t}\n\t/**\n\t * @deprecated verified\u3057\u3066\u3044\u306A\u3044\n\t * \u9045\
     \u3044\n\t * @param x\n\t * @param y\n\t * @return manhattan MST\n\t */\n\tpublic\
-    \ final ArrayList<Edge> manhattan(long[] x, long[] y) {\n\t\tassert x.length ==\
-    \ y.length;\n\t\tfinal int n = x.length;\n\t\tfinal var res = new ArrayList<Edge>();\n\
+    \ static final ArrayList<Edge> manhattan(long[] x, long[] y) {\n\t\tassert x.length\
+    \ == y.length;\n\t\tfinal int n = x.length;\n\t\tfinal var res = new ArrayList<Edge>();\n\
     \t\tfor(int s = 0; s < 2; ++s) {\n\t\t\tfor(int t = 0; t < 2; ++t) {\n\t\t\t\t\
     final var id = IntStream.range(0, n).boxed().sorted((i, j) -> Long.compare(x[i]\
     \ + y[i], x[j] + y[j])).mapToInt(i -> i).toArray();\n\t\t\t\tfinal var idx = new\
@@ -666,7 +666,7 @@ data:
   - Java/All.java
   - Java/AOJ.java
   isVerificationFile: false
-  path: Java/library/other/Huitloxopetl.java
+  path: Java/library/other/Why.java
   requiredBy:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -753,13 +753,13 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-22 09:08:10+09:00'
+  timestamp: '2024-02-22 09:14:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/other/Huitloxopetl.java
+documentation_of: Java/library/other/Why.java
 layout: document
 redirect_from:
-- /library/Java/library/other/Huitloxopetl.java
-- /library/Java/library/other/Huitloxopetl.java.html
-title: Java/library/other/Huitloxopetl.java
+- /library/Java/library/other/Why.java
+- /library/Java/library/other/Why.java.html
+title: Java/library/other/Why.java
 ---

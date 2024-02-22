@@ -164,9 +164,6 @@ data:
     path: Java/library/math/prefixsum/PrefixSum2D.java
     title: Java/library/math/prefixsum/PrefixSum2D.java
   - icon: ':warning:'
-    path: Java/library/other/Huitloxopetl.java
-    title: Java/library/other/Huitloxopetl.java
-  - icon: ':warning:'
     path: Java/library/other/InclusiveScan.java
     title: Java/library/other/InclusiveScan.java
   - icon: ':warning:'
@@ -175,6 +172,9 @@ data:
   - icon: ':warning:'
     path: Java/library/other/SuffixArray.java
     title: Java/library/other/SuffixArray.java
+  - icon: ':warning:'
+    path: Java/library/other/Why.java
+    title: Java/library/other/Why.java
   - icon: ':warning:'
     path: Java/library/structure/AVLTree.java
     title: Java/library/structure/AVLTree.java
@@ -420,9 +420,6 @@ data:
     path: Java/library/math/prefixsum/PrefixSum2D.java
     title: Java/library/math/prefixsum/PrefixSum2D.java
   - icon: ':warning:'
-    path: Java/library/other/Huitloxopetl.java
-    title: Java/library/other/Huitloxopetl.java
-  - icon: ':warning:'
     path: Java/library/other/InclusiveScan.java
     title: Java/library/other/InclusiveScan.java
   - icon: ':warning:'
@@ -431,6 +428,9 @@ data:
   - icon: ':warning:'
     path: Java/library/other/SuffixArray.java
     title: Java/library/other/SuffixArray.java
+  - icon: ':warning:'
+    path: Java/library/other/Why.java
+    title: Java/library/other/Why.java
   - icon: ':warning:'
     path: Java/library/structure/AVLTree.java
     title: Java/library/structure/AVLTree.java
@@ -540,39 +540,38 @@ data:
     \ VvyLw.MULTI ? VvyLw.io.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.io.close();\n\
     \t}\n}\n\nfinal class VvyLw extends Utility {\n\tstatic final IO io = new IO(new\
     \ MyScanner(System.in), new MyPrinter(System.out, false), new MyPrinter(System.err,\
-    \ true));\n\tstatic final Huitloxopetl why = new Huitloxopetl();\n\tstatic final\
-    \ boolean MULTI = false;\n\tstatic final int INF = 1 << 30;\n\tstatic final long\
-    \ LINF = (1L << 61) - 1;\n\tstatic final double EPS = 1e-18;\n\tstatic final int\
-    \ MOD = 998244353;\n\tstatic final int M0D = (int) 1e9 + 7;\n\tstatic final int[]\
-    \ dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1,\
-    \ 1, -1, 1, -1, 1};\n\tstatic final void solve() {\n\t\t\n\t}\n}\nclass Utility\
-    \ {\n\tprotected static final String yes(final boolean ok){ return ok ? \"Yes\"\
-    \ : \"No\"; }\n\tprotected static final String no(final boolean ok){ return yes(!ok);\
-    \ }\n\tprotected static final long sqr(final long x){ return x * x; }\n\tprotected\
-    \ static final int mod(long n, final int m) {\n\t\tn %= m;\n\t\treturn (int) (n\
-    \ < 0 ? n + m : n);\n\t}\n\tprotected static final long mod(long n, final long\
-    \ m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\tprotected static final\
-    \ long ceil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1;\
-    \ }\n\tprotected static final double round(final double a, final long b, final\
-    \ int c) {\n\t\tfinal long d = pow(10, c);\n\t\treturn rint((a * d) / b) / d;\n\
-    \t}\n\tprotected static final long pow(long a, int b) {\n\t\tlong res = 1;\n\t\
-    \twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta\
-    \ *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
-    \ long pow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0)\
-    \ {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\
-    \t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\tprotected static final long lcm(final long a, final long b){ return\
-    \ a * b / gcd(a, b); }\n\tprotected static final long lcm(final int... a){ return\
-    \ Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected\
-    \ static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x,\
-    \ y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final long\
-    \ b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
-    \ int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\
-    \tprotected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0,\
-    \ (x, y) -> gcd(x, y)); }\n\tprotected static final int min(final int... a){ return\
-    \ Arrays.stream(a).min().getAsInt(); }\n\tprotected static final long min(final\
-    \ long... a){ return Arrays.stream(a).min().getAsLong(); }\n\tprotected static\
-    \ final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
+    \ true));\n\tstatic final boolean MULTI = false;\n\tstatic final int INF = 1 <<\
+    \ 30;\n\tstatic final long LINF = (1L << 61) - 1;\n\tstatic final double EPS =\
+    \ 1e-18;\n\tstatic final int MOD = 998244353;\n\tstatic final int M0D = (int)\
+    \ 1e9 + 7;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic\
+    \ final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final void solve()\
+    \ {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String yes(final\
+    \ boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String\
+    \ no(final boolean ok){ return yes(!ok); }\n\tprotected static final long sqr(final\
+    \ long x){ return x * x; }\n\tprotected static final int mod(long n, final int\
+    \ m) {\n\t\tn %= m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\tprotected static\
+    \ final long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n +\
+    \ m : n;\n\t}\n\tprotected static final long ceil(final long a, final long b){\
+    \ return a == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final double round(final\
+    \ double a, final long b, final int c) {\n\t\tfinal long d = pow(10, c);\n\t\t\
+    return rint((a * d) / b) / d;\n\t}\n\tprotected static final long pow(long a,\
+    \ int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\
+    \t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\tprotected static final long pow(long a, long b, final long m) {\n\t\tlong\
+    \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
+    \t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb\
+    \ >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long lcm(final\
+    \ long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static final\
+    \ long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x,\
+    \ y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){ return\
+    \ Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static final\
+    \ long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }\n\t\
+    protected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
+    \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
+    \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
+    \ final int min(final int... a){ return Arrays.stream(a).min().getAsInt(); }\n\
+    \tprotected static final long min(final long... a){ return Arrays.stream(a).min().getAsLong();\
+    \ }\n\tprotected static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
     \ }\n\tprotected static final int max(final int... a){ return Arrays.stream(a).max().getAsInt();\
     \ }\n\tprotected static final long max(final long... a){ return Arrays.stream(a).max().getAsLong();\
     \ }\n\tprotected static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble();\
@@ -1308,19 +1307,19 @@ data:
     \ return dot(this); }\n\tfinal double grad() { \n\t\ttry {\n\t\t\treturn second\
     \ / first;\n\t\t} catch(final ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
     \t\t}\n\t\tthrow new Error();\n\t}\n\tfinal double abs(){ return hypot(first,\
-    \ second); }\n}\n\nfinal class Huitloxopetl {\n\tfinal boolean isBipartite(final\
+    \ second); }\n}\n\nfinal class Why {\n\tstatic final boolean isBipartite(final\
     \ UnionFind uf) {\n\t\tassert uf.size() % 2 == 0;\n\t\tfinal int n = uf.size()\
     \ / 2;\n\t\tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &=\
-    \ uf.root(i) != uf.root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n\tfinal long invNum(final\
-    \ int[] a) {\n\t\tfinal int[] b = Utility.sorted(a);\n\t\tfinal Map<Integer, Integer>\
-    \ id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i],\
-    \ i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\t\tlong\
-    \ res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
-    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\tfinal long invNum(final\
-    \ long[] a) {\n\t\tfinal long[] b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer>\
-    \ id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i],\
-    \ i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\t\tlong\
-    \ res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
+    \ uf.root(i) != uf.root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n\tstatic final long\
+    \ invNum(final int[] a) {\n\t\tfinal int[] b = Utility.sorted(a);\n\t\tfinal Map<Integer,\
+    \ Integer> id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\
+    \tid.put(b[i], i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\
+    \t\tlong res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
+    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\tstatic final long\
+    \ invNum(final long[] a) {\n\t\tfinal long[] b = Utility.sorted(a);\n\t\tfinal\
+    \ Map<Long, Integer> id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length; ++i)\
+    \ {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\
+    \t\tlong res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
     \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class\
     \ Edge {\n\tpublic int src, to, id;\n\tpublic long cost;\n\tEdge(final int src,\
     \ final int to, final int id) {\n\t\tthis.src = src;\n\t\tthis.to = to;\n\t\t\
@@ -2348,7 +2347,7 @@ data:
   - Java/library/core/Utility.java
   - Java/library/core/VvyLw.java
   - Java/library/core/Main.java
-  - Java/library/other/Huitloxopetl.java
+  - Java/library/other/Why.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/InclusiveScan.java
   - Java/library/other/SkewHeap.java
@@ -2436,7 +2435,7 @@ data:
   - Java/library/core/Utility.java
   - Java/library/core/VvyLw.java
   - Java/library/core/Main.java
-  - Java/library/other/Huitloxopetl.java
+  - Java/library/other/Why.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/InclusiveScan.java
   - Java/library/other/SkewHeap.java
@@ -2468,7 +2467,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-22 09:08:10+09:00'
+  timestamp: '2024-02-22 09:14:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

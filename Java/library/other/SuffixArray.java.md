@@ -167,14 +167,14 @@ data:
     path: Java/library/math/prefixsum/PrefixSum2D.java
     title: Java/library/math/prefixsum/PrefixSum2D.java
   - icon: ':warning:'
-    path: Java/library/other/Huitloxopetl.java
-    title: Java/library/other/Huitloxopetl.java
-  - icon: ':warning:'
     path: Java/library/other/InclusiveScan.java
     title: Java/library/other/InclusiveScan.java
   - icon: ':warning:'
     path: Java/library/other/SkewHeap.java
     title: Java/library/other/SkewHeap.java
+  - icon: ':warning:'
+    path: Java/library/other/Why.java
+    title: Java/library/other/Why.java
   - icon: ':warning:'
     path: Java/library/structure/AVLTree.java
     title: Java/library/structure/AVLTree.java
@@ -423,14 +423,14 @@ data:
     path: Java/library/math/prefixsum/PrefixSum2D.java
     title: Java/library/math/prefixsum/PrefixSum2D.java
   - icon: ':warning:'
-    path: Java/library/other/Huitloxopetl.java
-    title: Java/library/other/Huitloxopetl.java
-  - icon: ':warning:'
     path: Java/library/other/InclusiveScan.java
     title: Java/library/other/InclusiveScan.java
   - icon: ':warning:'
     path: Java/library/other/SkewHeap.java
     title: Java/library/other/SkewHeap.java
+  - icon: ':warning:'
+    path: Java/library/other/Why.java
+    title: Java/library/other/Why.java
   - icon: ':warning:'
     path: Java/library/structure/AVLTree.java
     title: Java/library/structure/AVLTree.java
@@ -654,7 +654,7 @@ data:
   - Java/library/core/Utility.java
   - Java/library/core/VvyLw.java
   - Java/library/core/Main.java
-  - Java/library/other/Huitloxopetl.java
+  - Java/library/other/Why.java
   - Java/library/other/InclusiveScan.java
   - Java/library/other/SkewHeap.java
   - Java/library/structure/DualSegmentTree.java
@@ -742,7 +742,7 @@ data:
   - Java/library/core/Utility.java
   - Java/library/core/VvyLw.java
   - Java/library/core/Main.java
-  - Java/library/other/Huitloxopetl.java
+  - Java/library/other/Why.java
   - Java/library/other/InclusiveScan.java
   - Java/library/other/SkewHeap.java
   - Java/library/structure/DualSegmentTree.java
@@ -774,7 +774,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-22 09:08:10+09:00'
+  timestamp: '2024-02-22 09:14:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/SuffixArray.java
