@@ -288,6 +288,9 @@ data:
   - name: Java/library/core/io
     pages:
     - icon: ':warning:'
+      path: Java/library/core/io/IO.java
+      title: Java/library/core/io/IO.java
+    - icon: ':warning:'
       path: Java/library/core/io/MyPrinter.java
       title: Java/library/core/io/MyPrinter.java
     - icon: ':warning:'

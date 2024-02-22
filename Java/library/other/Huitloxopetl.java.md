@@ -110,6 +110,9 @@ data:
     path: Java/library/core/interfaces/TriPredicate.java
     title: Java/library/core/interfaces/TriPredicate.java
   - icon: ':warning:'
+    path: Java/library/core/io/IO.java
+    title: Java/library/core/io/IO.java
+  - icon: ':warning:'
     path: Java/library/core/io/MyPrinter.java
     title: Java/library/core/io/MyPrinter.java
   - icon: ':warning:'
@@ -363,6 +366,9 @@ data:
     path: Java/library/core/interfaces/TriPredicate.java
     title: Java/library/core/interfaces/TriPredicate.java
   - icon: ':warning:'
+    path: Java/library/core/io/IO.java
+    title: Java/library/core/io/IO.java
+  - icon: ':warning:'
     path: Java/library/core/io/MyPrinter.java
     title: Java/library/core/io/MyPrinter.java
   - icon: ':warning:'
@@ -542,15 +548,14 @@ data:
     \ FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int\
     \ i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\t\
     bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @deprecated\
-    \ verified\u3057\u3066\u3044\u306A\u3044\n\t * @param x\n\t * @param y\n\t * @return\
-    \ manhattan MST\n\t */\n\tpublic final ArrayList<Edge> manhattan(int[] x, int[]\
-    \ y) {\n\t\tif(x.length != y.length) {\n\t\t\tthrow new AssertionError(\"x.length\
-    \ != y.length\");\n\t\t}\n\t\tfinal int n = x.length;\n\t\tfinal var res = new\
-    \ ArrayList<Edge>();\n\t\tfor(int s = 0; s < 2; ++s) {\n\t\t\tfor(int t = 0; t\
-    \ < 2; ++t) {\n\t\t\t\tfinal var id = IntStream.range(0, n).boxed().sorted((i,\
-    \ j) -> Integer.compare(x[i] + y[i], x[j] + y[j])).mapToInt(i -> i).toArray();\n\
-    \t\t\t\tfinal var idx = new TreeMap<Integer, Integer>();\n\t\t\t\tfor(final var\
-    \ i: id) {\n\t\t\t\t\tfinal var it = idx.tailMap(y[i]).entrySet().iterator();\n\
+    \ verified\u3057\u3066\u3044\u306A\u3044\n\t * \u9045\u3044\n\t * @param x\n\t\
+    \ * @param y\n\t * @return manhattan MST\n\t */\n\tpublic final ArrayList<Edge>\
+    \ manhattan(int[] x, int[] y) {\n\t\tassert x.length == y.length;\n\t\tfinal int\
+    \ n = x.length;\n\t\tfinal var res = new ArrayList<Edge>();\n\t\tfor(int s = 0;\
+    \ s < 2; ++s) {\n\t\t\tfor(int t = 0; t < 2; ++t) {\n\t\t\t\tfinal var id = IntStream.range(0,\
+    \ n).boxed().sorted((i, j) -> Integer.compare(x[i] + y[i], x[j] + y[j])).mapToInt(i\
+    \ -> i).toArray();\n\t\t\t\tfinal var idx = new TreeMap<Integer, Integer>();\n\
+    \t\t\t\tfor(final var i: id) {\n\t\t\t\t\tfinal var it = idx.tailMap(y[i]).entrySet().iterator();\n\
     \t\t\t\t\twhile(it.hasNext()) {\n\t\t\t\t\t\tfinal int j = it.next().getValue();\n\
     \t\t\t\t\t\tif(x[i] - x[j] < y[i] - y[j]) {\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t\
     }\n\t\t\t\t\t\tres.add(new Edge(i, j, Math.abs(x[i] - x[j]) + Math.abs(y[i] -\
@@ -558,23 +563,22 @@ data:
     \t\t\t\t}\n\t\t\t\tfinal var tmp = y.clone();\n\t\t\t\tSystem.arraycopy(x, 0,\
     \ y, 0, n);\n\t\t\t\tSystem.arraycopy(tmp, 0, x, 0, n);\n\t\t\t}\n\t\t\tfor(int\
     \ i = 0; i < n; ++i) {\n\t\t\t\tx[i] = -x[i];\n\t\t\t}\n\t\t}\n\t\treturn res;\n\
-    \t}\n\t/**\n\t * @deprecated verified\u3057\u3066\u3044\u306A\u3044\n\t * @param\
-    \ x\n\t * @param y\n\t * @return manhattan MST\n\t */\n\tpublic final ArrayList<Edge>\
-    \ manhattan(long[] x, long[] y) {\n\t\tif(x.length != y.length) {\n\t\t\tthrow\
-    \ new AssertionError(\"x.length != y.length\");\n\t\t}\n\t\tfinal int n = x.length;\n\
-    \t\tfinal var res = new ArrayList<Edge>();\n\t\tfor(int s = 0; s < 2; ++s) {\n\
-    \t\t\tfor(int t = 0; t < 2; ++t) {\n\t\t\t\tfinal var id = IntStream.range(0,\
-    \ n).boxed().sorted((i, j) -> Long.compare(x[i] + y[i], x[j] + y[j])).mapToInt(i\
-    \ -> i).toArray();\n\t\t\t\tfinal var idx = new TreeMap<Long, Integer>();\n\t\t\
-    \t\tfor(final var i: id) {\n\t\t\t\t\tfinal var it = idx.tailMap(y[i]).entrySet().iterator();\n\
-    \t\t\t\t\twhile(it.hasNext()) {\n\t\t\t\t\t\tfinal int j = it.next().getValue();\n\
-    \t\t\t\t\t\tif(x[i] - x[j] < y[i] - y[j]) {\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t\
-    }\n\t\t\t\t\t\tres.add(new Edge(i, j, Math.abs(x[i] - x[j]) + Math.abs(y[i] -\
-    \ y[j]), -1));\n\t\t\t\t\t\tit.remove();\n\t\t\t\t\t}\n\t\t\t\t\tidx.put(-y[i],\
-    \ i);\n\t\t\t\t}\n\t\t\t\tfinal var tmp = y.clone();\n\t\t\t\tSystem.arraycopy(x,\
-    \ 0, y, 0, n);\n\t\t\t\tSystem.arraycopy(tmp, 0, x, 0, n);\n\t\t\t}\n\t\t\tfor(int\
-    \ i = 0; i < n; ++i) {\n\t\t\t\tx[i] = -x[i];\n\t\t\t}\n\t\t}\n\t\treturn res;\n\
-    \t}\n}"
+    \t}\n\t/**\n\t * @deprecated verified\u3057\u3066\u3044\u306A\u3044\n\t * \u9045\
+    \u3044\n\t * @param x\n\t * @param y\n\t * @return manhattan MST\n\t */\n\tpublic\
+    \ final ArrayList<Edge> manhattan(long[] x, long[] y) {\n\t\tassert x.length ==\
+    \ y.length;\n\t\tfinal int n = x.length;\n\t\tfinal var res = new ArrayList<Edge>();\n\
+    \t\tfor(int s = 0; s < 2; ++s) {\n\t\t\tfor(int t = 0; t < 2; ++t) {\n\t\t\t\t\
+    final var id = IntStream.range(0, n).boxed().sorted((i, j) -> Long.compare(x[i]\
+    \ + y[i], x[j] + y[j])).mapToInt(i -> i).toArray();\n\t\t\t\tfinal var idx = new\
+    \ TreeMap<Long, Integer>();\n\t\t\t\tfor(final var i: id) {\n\t\t\t\t\tfinal var\
+    \ it = idx.tailMap(y[i]).entrySet().iterator();\n\t\t\t\t\twhile(it.hasNext())\
+    \ {\n\t\t\t\t\t\tfinal int j = it.next().getValue();\n\t\t\t\t\t\tif(x[i] - x[j]\
+    \ < y[i] - y[j]) {\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tres.add(new\
+    \ Edge(i, j, Math.abs(x[i] - x[j]) + Math.abs(y[i] - y[j]), -1));\n\t\t\t\t\t\t\
+    it.remove();\n\t\t\t\t\t}\n\t\t\t\t\tidx.put(-y[i], i);\n\t\t\t\t}\n\t\t\t\tfinal\
+    \ var tmp = y.clone();\n\t\t\t\tSystem.arraycopy(x, 0, y, 0, n);\n\t\t\t\tSystem.arraycopy(tmp,\
+    \ 0, x, 0, n);\n\t\t\t}\n\t\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\tx[i] = -x[i];\n\
+    \t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -595,6 +599,7 @@ data:
   - Java/library/math/PrimeTable.java
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
+  - Java/library/core/io/IO.java
   - Java/library/core/interfaces/RecursiveLongConsumer.java
   - Java/library/core/interfaces/RecursiveIntConsumer.java
   - Java/library/core/interfaces/RecursiveConsumer.java
@@ -682,6 +687,7 @@ data:
   - Java/library/math/PrimeTable.java
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
+  - Java/library/core/io/IO.java
   - Java/library/core/interfaces/RecursiveLongConsumer.java
   - Java/library/core/interfaces/RecursiveIntConsumer.java
   - Java/library/core/interfaces/RecursiveConsumer.java
@@ -747,7 +753,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-21 13:55:20+09:00'
+  timestamp: '2024-02-22 09:08:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/Huitloxopetl.java

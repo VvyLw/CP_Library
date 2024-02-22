@@ -110,6 +110,9 @@ data:
     path: Java/library/core/interfaces/TriPredicate.java
     title: Java/library/core/interfaces/TriPredicate.java
   - icon: ':warning:'
+    path: Java/library/core/io/IO.java
+    title: Java/library/core/io/IO.java
+  - icon: ':warning:'
     path: Java/library/core/io/MyPrinter.java
     title: Java/library/core/io/MyPrinter.java
   - icon: ':warning:'
@@ -363,6 +366,9 @@ data:
     path: Java/library/core/interfaces/TriPredicate.java
     title: Java/library/core/interfaces/TriPredicate.java
   - icon: ':warning:'
+    path: Java/library/core/io/IO.java
+    title: Java/library/core/io/IO.java
+  - icon: ':warning:'
     path: Java/library/core/io/MyPrinter.java
     title: Java/library/core/io/MyPrinter.java
   - icon: ':warning:'
@@ -537,7 +543,7 @@ data:
     \t\tif(undirected) {\n\t\t\tthis.get(b).add(new Edge(b, a, --id));\n\t\t\tedge.add(new\
     \ Edge(b, a, id++));\n\t\t}\n\t}\n\t/**\n\t * \u8FBA\u3092m\u500B\u5165\u529B\u3059\
     \u308B\n\t * @param m \u8FBA\u306E\u500B\u6570\n\t */\n\tpublic void input(final\
-    \ int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni()));\
+    \ int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni()));\
     \ }\n\t/**\n\t * @return \u8FBA\u306E\u30EA\u30B9\u30C8\n\t */\n\tpublic final\
     \ ArrayList<Edge> getEdge(){ return edge; }\n\t/**\n\t * BFS\u3092\u3057\u3066\
     \u9802\u70B9v\u304B\u3089\u5404\u9802\u70B9\u306B\u5BFE\u3059\u308B\u8DDD\u96E2\
@@ -592,6 +598,7 @@ data:
   - Java/library/math/PrimeTable.java
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
+  - Java/library/core/io/IO.java
   - Java/library/core/interfaces/RecursiveLongConsumer.java
   - Java/library/core/interfaces/RecursiveIntConsumer.java
   - Java/library/core/interfaces/RecursiveConsumer.java
@@ -679,6 +686,7 @@ data:
   - Java/library/math/PrimeTable.java
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
+  - Java/library/core/io/IO.java
   - Java/library/core/interfaces/RecursiveLongConsumer.java
   - Java/library/core/interfaces/RecursiveIntConsumer.java
   - Java/library/core/interfaces/RecursiveConsumer.java
@@ -745,7 +753,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-21 13:55:20+09:00'
+  timestamp: '2024-02-22 09:08:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/Graph.java

@@ -107,6 +107,9 @@ data:
     path: Java/library/core/interfaces/TriPredicate.java
     title: Java/library/core/interfaces/TriPredicate.java
   - icon: ':warning:'
+    path: Java/library/core/io/IO.java
+    title: Java/library/core/io/IO.java
+  - icon: ':warning:'
     path: Java/library/core/io/MyPrinter.java
     title: Java/library/core/io/MyPrinter.java
   - icon: ':warning:'
@@ -360,6 +363,9 @@ data:
     path: Java/library/core/interfaces/TriPredicate.java
     title: Java/library/core/interfaces/TriPredicate.java
   - icon: ':warning:'
+    path: Java/library/core/io/IO.java
+    title: Java/library/core/io/IO.java
+  - icon: ':warning:'
     path: Java/library/core/io/MyPrinter.java
     title: Java/library/core/io/MyPrinter.java
   - icon: ':warning:'
@@ -531,11 +537,10 @@ data:
     import java.util.function.LongPredicate;\nimport java.util.function.Predicate;\n\
     import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nfinal\
     \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
-    \ VvyLw.MULTI ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.o.flush();\n\
-    \t\tVvyLw.sc.close();\n\t\tVvyLw.o.close();\n\t\tVvyLw.dbg.close();\n\t}\n}\n\n\
-    final class VvyLw extends Utility {\n\tstatic final MyScanner sc = new MyScanner(System.in);\n\
-    \tstatic final MyPrinter o = new MyPrinter(System.out, false), dbg = new MyPrinter(System.err,\
-    \ true);\n\tstatic final Huitloxopetl why = new Huitloxopetl();\n\tstatic final\
+    \ VvyLw.MULTI ? VvyLw.io.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.io.close();\n\
+    \t}\n}\n\nfinal class VvyLw extends Utility {\n\tstatic final IO io = new IO(new\
+    \ MyScanner(System.in), new MyPrinter(System.out, false), new MyPrinter(System.err,\
+    \ true));\n\tstatic final Huitloxopetl why = new Huitloxopetl();\n\tstatic final\
     \ boolean MULTI = false;\n\tstatic final int INF = 1 << 30;\n\tstatic final long\
     \ LINF = (1L << 61) - 1;\n\tstatic final double EPS = 1e-18;\n\tstatic final int\
     \ MOD = 998244353;\n\tstatic final int M0D = (int) 1e9 + 7;\n\tstatic final int[]\
@@ -1003,49 +1008,124 @@ data:
     \ RecursiveIntPredicate rec, final int n);\n}\ninterface RecursiveLongPredicate\
     \ {\n\tboolean test(final RecursiveLongPredicate rec, final long n);\n}\ninterface\
     \ RecursiveDoublePredicate {\n\tboolean test(final RecursiveDoublePredicate rec,\
-    \ final double n);\n}\n\nfinal class MyScanner implements Closeable, AutoCloseable\
-    \ {\n\tprivate int pos, lim;\n\tprivate final byte[] buf;\n\tprivate final InputStream\
-    \ is;\n\tprivate boolean check;\n\tMyScanner(final InputStream is) {\n\t\tthis.is\
-    \ = is;\n\t\tpos = lim = 0;\n\t\tbuf = new byte[1 << 17];\n\t\tcheck = false;\n\
-    \t}\n\tprivate final boolean isPunct(final byte bt){ return !Utility.scope(33,\
-    \ bt, 126); }\n\tprivate final boolean isNum(final byte bt){ return Utility.scope('0',\
-    \ bt, '9'); }\n\tprivate final byte read() {\n\t\tif(pos == lim && lim != -1)\
-    \ {\n\t\t\ttry {\n\t\t\t\tlim = is.read(buf);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final\
-    \ IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t\treturn buf[pos++];\n\
-    \t}\n\tprivate final byte next() {\n\t\tbyte bt;\n\t\tif(check) {\n\t\t\tcheck\
-    \ = false;\n\t\t\tbt = buf[pos - 1];\n\t\t\tif(!isPunct(bt)) {\n\t\t\t\treturn\
-    \ bt;\n\t\t\t}\n\t\t}\n\t\twhile(isPunct(bt = read())){}\n\t\treturn bt;\n\t}\n\
-    \tfinal int ni(){ return toIntExact(nl()); }\n\tfinal long nl() {\n\t\tbyte c\
-    \ = next();\n\t\tfinal boolean neg = c == '-';\n\t\tif(neg) {\n\t\t\tc = next();\n\
-    \t\t}\n\t\tassert isNum(c);\n\t\tlong res = c - '0';\n\t\twhile(isNum(c = read()))\
-    \ {\n\t\t\tres = 10 * res + c - '0';\n\t\t}\n\t\tcheck = !isNum(c);\n\t\treturn\
-    \ neg ? -res : res;\n\t}\n\tfinal double nd() {\n\t\tbyte c = next();\n\t\tfinal\
-    \ boolean neg = c == '-';\n\t\tif(neg) {\n\t\t\tc = next();\n\t\t}\n\t\tassert\
-    \ isNum(c);\n\t\tdouble res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\t\
-    res = 10 * res + c - '0';\n\t\t}\n\t\tif(c != '.') {\n\t\t\tcheck = true;\n\t\t\
-    \treturn res;\n\t\t}\n\t\tint i;\n\t\tfor(i = 0; isNum(c = read()); ++i) {\n\t\
-    \t\tres = res * 10 + c - '0';\n\t\t}\n\t\tres /= pow(10, i);\n\t\tcheck = true;\n\
-    \t\treturn neg ? -res : res;\n\t}\n\tfinal char nc(){ return (char) next(); }\n\
-    \tfinal String ns() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\t\
-    byte c = next();\n\t\twhile(!isPunct(c)) {\n\t\t\tsb.append((char) c);\n\t\t\t\
-    c = read();\n\t\t}\n\t\treturn sb.toString();\n\t}\n\tfinal BigInteger nb(){ return\
-    \ new BigInteger(ns()); }\n\tfinal int[] ni(final int n) {\n\t\tfinal int[] a\
-    \ = new int[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ni());\n\t\treturn\
-    \ a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\tfinal long[] a = new long[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\treturn a;\n\t}\n\tfinal\
-    \ double[] nd(final int n) {\n\t\tfinal double[] a = new double[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal char[] nc(final int\
-    \ n) {\n\t\tfinal char[] a = new char[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal String[] ns(final int n) {\n\t\
-    \tfinal String[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i]\
-    \ = ns());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final int n) {\n\t\tfinal\
-    \ BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0, n).forEach(i ->\
-    \ a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final int h, final int\
-    \ w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i\
-    \ -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final int h, final\
-    \ int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0, h).forEach(i\
-    \ -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final int h, final\
-    \ int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
+    \ final double n);\n}\n\nfinal class IO implements Closeable, AutoCloseable {\n\
+    \tprivate final MyScanner in;\n\tprivate final MyPrinter out, err;\n\tIO(final\
+    \ MyScanner in, final MyPrinter out, final MyPrinter err) {\n\t\tthis.in = in;\n\
+    \t\tthis.out = out;\n\t\tthis.err = err;\n\t}\n\tfinal int ni(){ return in.ni();\
+    \ }\n\tfinal long nl(){ return in.nl(); }\n\tfinal double nd(){ return in.nd();\
+    \ }\n\tfinal char nc(){ return in.nc(); }\n\tfinal String ns(){ return in.ns();\
+    \ }\n\tfinal BigInteger nb(){ return in.nb(); }\n\tfinal IntPair pi(){ return\
+    \ in.pi(); }\n\tfinal FloatPair pf(){ return in.pf(); }\n\tfinal int[] ni(final\
+    \ int n){ return in.ni(n); }\n\tfinal long[] nl(final int n){ return in.nl(n);\
+    \ }\n\tfinal double[] nd(final int n){ return in.nd(n); }\n\tfinal char[] nc(final\
+    \ int n){ return in.nc(n); }\n\tfinal String[] ns(final int n){ return in.ns(n);\
+    \ }\n\tfinal BigInteger[] nb(final int n){ return in.nb(n); }\n\tfinal IntPair[]\
+    \ pi(final int n){ return in.pi(n); }\n\tfinal FloatPair[] pf(final int n){ return\
+    \ in.pf(n); }\n\tfinal int[][] ni(final int h, final int w){ return in.ni(h, w);\
+    \ }\n\tfinal long[][] nl(final int h, final int w){ return in.nl(h, w); }\n\t\
+    final double[][] nd(final int h, final int w){ return in.nd(h, w); }\n\tfinal\
+    \ char[][] nc(final int h, final int w){ return in.nc(h, w); }\n\tfinal String[][]\
+    \ ns(final int h, final int w){ return in.ns(h, w); }\n\tfinal BigInteger[][]\
+    \ nb(final int h, final int w){ return in.nb(h, w); }\n\tfinal String line(){\
+    \ return in.line(); }\n\tfinal void print(final Object arg){ out.print(arg); }\n\
+    \tfinal void printf(final String fmt, final Object... args){ out.printf(fmt, args);\
+    \ }\n\tfinal void out(){ out.out(); }\n\tfinal void out(final Object head, final\
+    \ Object... tail){ out.out(head, tail); }\n\tfinal <F extends Comparable<? super\
+    \ F>, S extends Comparable<? super S>> void out(final Pair<F, S> p){ out.out(p);\
+    \ }\n\tfinal void out(final int[] a){ out.out(a); }\n\tfinal void out(final long[]\
+    \ a){ out.out(a); }\n\tfinal void out(final double[] a){ out.out(a); }\n\tfinal\
+    \ void out(final boolean[] a){ out.out(a); }\n\tfinal void out(final char[] a){\
+    \ out.out(a); }\n\tfinal void out(final Object[] a){ out.out(a); }\n\tfinal <E>\
+    \ void out(final Collection<E> a){ out.out(a); }\n\tfinal void outl(final Object\
+    \ head, final Object... tail){ out.outl(head, tail); }\n\tfinal void outl(final\
+    \ int[] a){ out.outl(a); }\n\tfinal void outl(final int[][] a){ out.outl(a); }\n\
+    \tfinal void outl(final long[] a){ out.outl(a); }\n\tfinal void outl(final long[][]\
+    \ a){ out.outl(a); }\n\tfinal void outl(final double[] a){ out.outl(a); }\n\t\
+    final void outl(final double[][] a){ out.outl(a); }\n\tfinal void outl(final boolean[]\
+    \ a){ out.outl(a); }\n\tfinal void outl(final boolean[][] a){ out.outl(a); }\n\
+    \tfinal void outl(final char[] a){ out.outl(a); }\n\tfinal void outl(final char[][]\
+    \ a){ out.outl(a); }\n\tfinal void outl(final Object[] a){ out.outl(a); }\n\t\
+    final void outl(final Object[][] a){ out.outl(a); }\n\tfinal <F extends Comparable<?\
+    \ super F>, S extends Comparable<? super S>> void outl(final Pair<F, S>[] a){\
+    \ out.outl(a); }\n\tfinal <E> void outl(final Collection<E> a){ out.outl(a); }\n\
+    \tfinal void fin(final Object head, final Object... tail){ out.fin(head, tail);\
+    \ }\n\tfinal <F extends Comparable<? super F>, S extends Comparable<? super S>>\
+    \ void fin(final Pair<F, S> p){ out.fin(p); }\n\tfinal void fin(final int[] a){\
+    \ out.fin(a); }\n\tfinal void fin(final long[] a){ out.fin(a); }\n\tfinal void\
+    \ fin(final double[] a){ out.fin(a); }\n\tfinal void fin(final boolean[] a){ out.fin(a);\
+    \ }\n\tfinal void fin(final char[] a){ out.fin(a); }\n\tfinal void fin(final Object[]\
+    \ a){ out.fin(a); }\n\tfinal <E> void fin(final Collection<E> a){ out.fin(a);\
+    \ }\n\tfinal void ende(final Object head, final Object... tail){ out.ende(head,\
+    \ tail); }\n\tfinal void ende(final int[] a){ out.ende(a); }\n\tfinal void ende(final\
+    \ int[][] a){ out.ende(a); }\n\tfinal void ende(final long[] a){ out.ende(a);\
+    \ }\n\tfinal void ende(final long[][] a){ out.ende(a); }\n\tfinal void ende(final\
+    \ double[] a){ out.ende(a); }\n\tfinal void ende(final double[][] a){ out.ende(a);\
+    \ }\n\tfinal void ende(final boolean[] a){ out.ende(a); }\n\tfinal void ende(final\
+    \ boolean[][] a){ out.ende(a); }\n\tfinal void ende(final char[] a){ out.ende(a);\
+    \ }\n\tfinal void ende(final char[][] a){ out.ende(a); }\n\tfinal void ende(final\
+    \ Object[] a){ out.ende(a); }\n\tfinal void ende(final Object[][] a){ out.ende(a);\
+    \ }\n\tfinal <F extends Comparable<? super F>, S extends Comparable<? super S>>\
+    \ void ende(final Pair<F, S>[] a){ out.ende(a); }\n\tfinal <E> void ende(final\
+    \ Collection<E> a){ out.ende(a); }\n\tfinal void dbg(final Object head, final\
+    \ Object... tail){ err.out(head, tail); }\n\tfinal void dbg(final int[] a){ err.out(a);\
+    \ }\n\tfinal void dbg(final long[] a){ err.out(a); }\n\tfinal void dbg(final double[]\
+    \ a){ err.out(a); }\n\tfinal void dbg(final boolean[] a){ err.out(a); }\n\tfinal\
+    \ void dbg(final char[] a){ err.out(a); }\n\tfinal void dbg(final Object[] a){\
+    \ err.out(a); }\n\tfinal void debug(final Object head, final Object... tail){\
+    \ err.outl(head, tail); }\n\tfinal void debug(final int[] a){ err.outl(a); }\n\
+    \tfinal void debug(final int[][] a){ err.outl(a); }\n\tfinal void debug(final\
+    \ long[] a){ err.outl(a); }\n\tfinal void debug(final long[][] a){ err.outl(a);\
+    \ }\n\tfinal void debug(final double[] a){ err.outl(a); }\n\tfinal void debug(final\
+    \ double[][] a){ err.outl(a); }\n\tfinal void debug(final boolean[] a){ err.outl(a);\
+    \ }\n\tfinal void debug(final boolean[][] a){ err.outl(a); }\n\tfinal void debug(final\
+    \ char[] a){ err.outl(a); }\n\tfinal void debug(final char[][] a){ err.outl(a);\
+    \ }\n\tfinal void debug(final Object[] a){ err.outl(a); }\n\tfinal void debug(final\
+    \ Object[][] a){ err.outl(a); }\n\tfinal <F extends Comparable<? super F>, S extends\
+    \ Comparable<? super S>> void debug(final Pair<F, S>[] a){ err.outl(a); }\n\t\
+    @Override\n\tpublic final void close() {\n\t\tout.flush();\n\t\tin.close();\n\t\
+    \tout.close();\n\t\terr.close();\n\t}\n}\nfinal class MyScanner implements Closeable,\
+    \ AutoCloseable {\n\tprivate int pos, lim;\n\tprivate final byte[] buf;\n\tprivate\
+    \ final InputStream is;\n\tprivate boolean check;\n\tMyScanner(final InputStream\
+    \ is) {\n\t\tthis.is = is;\n\t\tpos = lim = 0;\n\t\tbuf = new byte[1 << 17];\n\
+    \t\tcheck = false;\n\t}\n\tprivate final boolean isPunct(final byte bt){ return\
+    \ !Utility.scope(33, bt, 126); }\n\tprivate final boolean isNum(final byte bt){\
+    \ return Utility.scope('0', bt, '9'); }\n\tprivate final byte read() {\n\t\tif(pos\
+    \ == lim && lim != -1) {\n\t\t\ttry {\n\t\t\t\tlim = is.read(buf);\n\t\t\t\tpos\
+    \ = 0;\n\t\t\t} catch(final IOException e) {\n\t\t\t\te.printStackTrace();\n\t\
+    \t\t}\n\t\t}\n\t\treturn buf[pos++];\n\t}\n\tprivate final byte next() {\n\t\t\
+    byte bt;\n\t\tif(check) {\n\t\t\tcheck = false;\n\t\t\tbt = buf[pos - 1];\n\t\t\
+    \tif(!isPunct(bt)) {\n\t\t\t\treturn bt;\n\t\t\t}\n\t\t}\n\t\twhile(isPunct(bt\
+    \ = read())){}\n\t\treturn bt;\n\t}\n\tfinal int ni(){ return toIntExact(nl());\
+    \ }\n\tfinal long nl() {\n\t\tbyte c = next();\n\t\tfinal boolean neg = c == '-';\n\
+    \t\tif(neg) {\n\t\t\tc = next();\n\t\t}\n\t\tassert isNum(c);\n\t\tlong res =\
+    \ c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\tres = 10 * res + c - '0';\n\t\
+    \t}\n\t\tcheck = !isNum(c);\n\t\treturn neg ? -res : res;\n\t}\n\tfinal double\
+    \ nd() {\n\t\tbyte c = next();\n\t\tfinal boolean neg = c == '-';\n\t\tif(neg)\
+    \ {\n\t\t\tc = next();\n\t\t}\n\t\tassert isNum(c);\n\t\tdouble res = c - '0';\n\
+    \t\twhile(isNum(c = read())) {\n\t\t\tres = 10 * res + c - '0';\n\t\t}\n\t\tif(c\
+    \ != '.') {\n\t\t\tcheck = true;\n\t\t\treturn res;\n\t\t}\n\t\tint i;\n\t\tfor(i\
+    \ = 0; isNum(c = read()); ++i) {\n\t\t\tres = res * 10 + c - '0';\n\t\t}\n\t\t\
+    res /= pow(10, i);\n\t\tcheck = true;\n\t\treturn neg ? -res : res;\n\t}\n\tfinal\
+    \ char nc(){ return (char) next(); }\n\tfinal String ns() {\n\t\tfinal StringBuilder\
+    \ sb = new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c)) {\n\t\
+    \t\tsb.append((char) c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\
+    \t}\n\tfinal BigInteger nb(){ return new BigInteger(ns()); }\n\tfinal int[] ni(final\
+    \ int n) {\n\t\tfinal int[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = ni());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\t\
+    final long[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\
+    \t\treturn a;\n\t}\n\tfinal double[] nd(final int n) {\n\t\tfinal double[] a =\
+    \ new double[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\treturn\
+    \ a;\n\t}\n\tfinal char[] nc(final int n) {\n\t\tfinal char[] a = new char[n];\n\
+    \t\tIntStream.range(0, n).forEach(i -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal\
+    \ String[] ns(final int n) {\n\t\tfinal String[] a = new String[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final\
+    \ int n) {\n\t\tfinal BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final\
+    \ int h, final int w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0,\
+    \ h).forEach(i -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final\
+    \ int h, final int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0,\
+    \ h).forEach(i -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final\
+    \ int h, final int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\tfinal char[][] nc(final\
     \ int h, final int w) {\n\t\tfinal char[][] a = new char[h][w];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> a[i] = nc(w));\n\t\treturn a;\n\t}\n\tfinal String[][] ns(final\
@@ -1062,7 +1142,7 @@ data:
     \ int n) {\n\t\tfinal FloatPair[] p = new FloatPair[n];\n\t\tIntStream.range(0,\
     \ n).forEach(i -> p[i] = pf());\n\t\treturn p;\n\t}\n\t@Override\n\tpublic final\
     \ void close() {\n\t\ttry {\n\t\t\tis.close();\n\t\t} catch(final IOException\
-    \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n}\n\nfinal class MyPrinter implements\
+    \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n}\nfinal class MyPrinter implements\
     \ Closeable, Flushable, AutoCloseable {\n\tprivate OutputStream os;\n\tprivate\
     \ final boolean autoFlush;\n\tprivate final byte[] buf;\n\tprivate int pos;\n\t\
     private final boolean debug;\n\tMyPrinter(final OutputStream os, final boolean\
@@ -1261,8 +1341,8 @@ data:
     \ void addEdge(int a, int b) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new\
     \ Edge(a, b, id));\n\t\tedge.add(new Edge(a, b, id++));\n\t\tif(undirected) {\n\
     \t\t\tthis.get(b).add(new Edge(b, a, --id));\n\t\t\tedge.add(new Edge(b, a, id++));\n\
-    \t\t}\n\t}\n\tvoid input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(),\
-    \ VvyLw.sc.ni())); }\n\tprotected final ArrayList<Edge> getEdge(){ return edge;\
+    \t\t}\n\t}\n\tvoid input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(),\
+    \ VvyLw.io.ni())); }\n\tprotected final ArrayList<Edge> getEdge(){ return edge;\
     \ }\n\tprotected final int[] allDist(final int v) {\n\t\tfinal int[] d = new int[n];\n\
     \t\tArrays.fill(d, -1);\n\t\tfinal Queue<Integer> q = new ArrayDeque<>();\n\t\t\
     d[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\
@@ -1298,7 +1378,7 @@ data:
     \ b, cost, id));\n\t\tedge.add(new Edge(a, b, cost, id++));\n\t\tif(undirected)\
     \ {\n\t\t\tthis.get(b).add(new Edge(b, a, cost, --id));\n\t\t\tedge.add(new Edge(b,\
     \ a, cost, id++));\n\t\t}\n\t}\n\tfinal void input(final int m){ IntStream.range(0,\
-    \ m).forEach(i -> addEdge(VvyLw.sc.ni(), VvyLw.sc.ni(), VvyLw.sc.ni())); }\n\t\
+    \ m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni(), VvyLw.io.nl())); }\n\t\
     final long[] dijkstra(final int v) {\n\t\tfinal long[] cost = new long[n];\n\t\
     \tArrays.fill(cost, Long.MAX_VALUE);\n\t\tfinal Queue<IntPair> dj = new PriorityQueue<>();\n\
     \t\tcost[v] = 0;\n\t\tdj.add(IntPair.of(cost[v], v));\n\t\twhile(!dj.isEmpty())\
@@ -1371,69 +1451,92 @@ data:
     \ Node t) {\n\t\tif(t == null) {\n\t\t\tthrow new NullPointerException();\n\t\t\
     }\n\t\treturn meld(t.l, t.r);\n\t}\n\tfinal Node add(final Node t, final long\
     \ lazy) {\n\t\tif(t != null) {\n\t\t\tt.lazy += lazy;\n\t\t\tpropagate(t);\n\t\
-    \t}\n\t\treturn t;\n\t}\n}\n\nfinal class LowestCommonAncestor<G extends Graph>\
-    \ {\n\tprivate final int log;\n\tprivate final int[] dep, sum;\n\tprivate final\
-    \ G g;\n\tprivate final int[][] table;\n\tLowestCommonAncestor(final G g) {\n\t\
-    \tthis.g = g;\n\t\tfinal int n = g.size();\n\t\tdep = new int[n];\n\t\tsum = new\
-    \ int[n];\n\t\tlog = Integer.toBinaryString(n).length();\n\t\ttable = new int[log][n];\n\
-    \t\tIntStream.range(0, log).forEach(i -> Arrays.fill(table[i], -1));\n\t\tbuild();\n\
-    \t}\n\tprivate final void dfs(final int idx, final int par, final int d) {\n\t\
-    \ttable[0][idx] = par;\n\t\tdep[idx] = d;\n\t\tfor(final Edge el: g.get(idx))\
-    \ {\n\t\t\tif(el.to != par) {\n\t\t\t\tsum[el.to] = (int) (sum[idx] + el.cost);\
-    \ \n\t\t\t\tdfs(el.to, idx, d + 1);\n\t\t\t}\n\t\t}\n\t}\n\tprivate final void\
-    \ build() {\n\t\tdfs(0, -1, 0);\n\t\tfor(int k = 0; k < log - 1; ++k) {\n\t\t\t\
-    for(int i = 0; i < table[k].length; ++i) {\n\t\t\t\tif(table[k][i] == -1) {\n\t\
-    \t\t\t\ttable[k + 1][i] = -1;\n\t\t\t\t} else {\n\t\t\t\t\ttable[k + 1][i] = table[k][table[k][i]];\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal int query(int u, int v) {\n\t\tif(dep[u]\
-    \ > dep[v]) {\n\t\t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\tv = climb(v,\
-    \ dep[v] - dep[u]);\n\t\tif(u == v) {\n\t\t\treturn u;\n\t\t}\n\t\tfor(int i =\
-    \ log; --i >= 0;) {\n\t\t\tif(table[i][u] != table[i][v]) {\n\t\t\t\tu = table[i][u];\n\
-    \t\t\t\tv = table[i][v];\n\t\t\t}\n\t\t}\n\t\treturn table[0][u];\n\t}\n\tfinal\
-    \ int climb(int u, final int k) {\n\t\tif(dep[u] < k) {\n\t\t\treturn -1;\n\t\t\
-    }\n\t\tfor(int i = log; --i >= 0;) {\n\t\t\tif(((k >> i) % 2) == 1) {\n\t\t\t\t\
-    u = table[i][u];\n\t\t\t}\n\t\t}\n\t\treturn u;\n\t}\n\tfinal int dist(final int\
-    \ u, final int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }\n}\n\nfinal\
-    \ class UnionFind {\n\tprivate final int[] par;\n\tUnionFind(final int n) {\n\t\
-    \tpar = new int[n];\n\t\tArrays.fill(par, -1);\n\t}\n\tfinal int root(final int\
-    \ i){ return par[i] >= 0 ? par[i] = root(par[i]) : i; }\n\tfinal int size(final\
-    \ int i){ return -par[root(i)]; }\n\tfinal int size(){ return par.length; }\n\t\
-    final boolean unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\t\
-    if(i == j) {\n\t\t\treturn false;\n\t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\
-    \tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\t\
-    return true;\n\t}\n\tfinal boolean same(final int i, final int j){ return root(i)\
-    \ == root(j); }\n\tfinal ArrayList<ArrayList<Integer>> groups() {\n\t\tfinal int\
-    \ n = par.length;\n\t\tfinal ArrayList<ArrayList<Integer>> res = new ArrayList<>(n);\n\
-    \t\tIntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\
-    \t\treturn res;\n\t}\n}\n\nfinal class WeightedUnionFind {\n\tprivate final int[]\
-    \ par;\n\tprivate final long[] weight;\n\tWeightedUnionFind(final int n) {\n\t\
-    \tpar = new int[n];\n\t\tweight = new long[n];\n\t\tArrays.fill(par, -1);\n\t\
-    }\n\tfinal int root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t\
-    }\n\t\tfinal int r = root(par[i]);\n\t\tweight[i] += weight[par[i]];\n\t\treturn\
-    \ par[i] = r;\n\t}\n\tfinal long get(final int i) {\n\t\troot(i);\n\t\treturn\
-    \ weight[i];\n\t}\n\tfinal long diff(final int x, final int y){ return get(y)\
-    \ - get(x); }\n\tfinal int unite(int x, int y, long w) {\n\t\tw += diff(y, x);\n\
-    \t\tx = root(x);\n\t\ty = root(y);\n\t\tif(x == y) {\n\t\t\treturn w == 0 ? 0\
-    \ : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\t\
-    x ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\tweight[y]\
-    \ = w;\n\t\treturn 1;\n\t}\n\tfinal boolean same(final int x, final int y){ return\
-    \ root(x) == root(y); }\n}\n\nfinal class UndoUnionFind {\n\tprivate final int[]\
-    \ par;\n\tprivate final Stack<Pair<Integer, Integer>> his;\n\tUndoUnionFind(final\
-    \ int n) {\n\t    par = new int[n];\n\t    Arrays.fill(par, -1);\n\t    his =\
-    \ new Stack<>();\n\t}\n\tfinal boolean unite(int x, int y) {\n\t\tx = root(x);\n\
-    \t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\t\this.add(Pair.of(y, par[y]));\n\
-    \t\tif(x == y) {\n\t\t\treturn false;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\t\
-    x ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y]\
-    \ = x;\n\t\treturn true;\n\t}\n\tfinal int root(final int i) {\n\t\tif(par[i]\
-    \ < 0) {\n\t\t\treturn i;\n\t\t}\n\t\treturn root(par[i]);\n\t}\n\tfinal int size(final\
-    \ int i){ return -par[root(i)]; }\n\tfinal void undo() {\n\t\tfinal Pair<Integer,\
-    \ Integer> pop1 = his.pop(), pop2 = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\
-    \t\tpar[pop2.first] = pop2.second;\n\t}\n\tfinal void snapshot() {\n\t\twhile(!his.empty())\
-    \ {\n\t\t\this.pop();\n\t\t}\n\t}\n\tfinal void rollback() {\n\t\twhile(!his.empty())\
-    \ {\n\t\t\tundo();\n\t\t}\n\t}\n}\n\nfinal class PrimeTable {\n\tprivate final\
-    \ int size;\n\tprivate final int[] p;\n\tprivate final boolean[] sieve;\n\tPrimeTable(final\
-    \ int n) {\n\t\tsieve = new boolean[n + 1];\n\t\tArrays.fill(sieve, true);\n\t\
-    \tsieve[0] = sieve[1] = false;\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[i])\
+    \t}\n\t\treturn t;\n\t}\n}\n\nfinal class SCC {\n\tprivate final int[] comp;\n\
+    \tprivate final ArrayList<ArrayList<Integer>> group;\n\tprivate final Graph dag;\n\
+    \tSCC(final Graph g) {\n\t\tfinal int n = g.size();\n\t\tfinal Graph rg = new\
+    \ Graph(n, 0, false);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final Edge\
+    \ e: g.get(i)) {\n\t\t\t\trg.addEdge(e.to, e.src);\n\t\t\t}\n\t\t}\n\t\tfinal\
+    \ ArrayList<Integer> order = new ArrayList<>();\n\t\tfinal boolean[] used = new\
+    \ boolean[n];\n\t\tcomp = new int[n];\n\t\tArrays.fill(comp, -1);\n\t\tfinal RecursiveIntConsumer\
+    \ dfs = (rec, i) -> {\n\t\t\tif(used[i]) {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tused[i]\
+    \ = true;\n\t\t\tfor(final Edge e: g.get(i)) {\n\t\t\t\trec.accept(rec, e.to);\n\
+    \t\t\t}\n\t\t\torder.add(i);\n\t\t};\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\
+    dfs.accept(dfs, i);\n\t\t}\n\t\tCollections.reverse(order);\n\t\tint ptr = 0;\n\
+    \t\tfinal RecursiveBiConsumer<Integer, Integer> rdfs = (rec, i, cnt) -> {\n\t\t\
+    \tif(comp[i] != -1) {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tcomp[i] = cnt;\n\t\t\t\
+    for(final Edge e: rg.get(i)) {\n\t\t\t\trec.accept(rec, e.to, cnt);\n\t\t\t}\n\
+    \t\t};\n\t\tfor(final int i: order) {\n\t\t\tif(comp[i] == -1) {\n\t\t\t\trdfs.accept(rdfs,\
+    \ i, ptr++);\n\t\t\t}\n\t\t}\n\t\tdag = new Graph(ptr, 0, false);\n\t\tfor(int\
+    \ i = 0; i < n; ++i) {\n\t\t\tfor(final Edge e: g.get(i)) {\n\t\t\t\tfinal int\
+    \ x = comp[e.src], y = comp[e.to];\n\t\t\t\tif(x == y) {\n\t\t\t\t\tcontinue;\n\
+    \t\t\t\t}\n\t\t\t\tdag.addEdge(x, y);\n\t\t\t}\n\t\t}\n\t\tgroup = new ArrayList<>();\n\
+    \t\tIntStream.range(0, ptr).forEach(i -> group.add(new ArrayList<>()));\n\t\t\
+    for(int i = 0; i < n; ++i) {\n\t\t\tgroup.get(comp[i]).add(i);\n\t\t}\n\t}\n\t\
+    final int get(final int i){ return comp[i]; }\n\tfinal ArrayList<ArrayList<Integer>>\
+    \ groups(){ return group; }\n\tfinal Graph DAG(){ return dag; }\n}\n\nfinal class\
+    \ LowestCommonAncestor {\n\tprivate final int log;\n\tprivate final int[] dep,\
+    \ sum;\n\tprivate final Graph g;\n\tprivate final int[][] table;\n\tLowestCommonAncestor(final\
+    \ Graph g) {\n\t\tthis.g = g;\n\t\tfinal int n = g.size();\n\t\tdep = new int[n];\n\
+    \t\tsum = new int[n];\n\t\tlog = Integer.toBinaryString(n).length();\n\t\ttable\
+    \ = new int[log][n];\n\t\tIntStream.range(0, log).forEach(i -> Arrays.fill(table[i],\
+    \ -1));\n\t\tbuild();\n\t}\n\tprivate final void dfs(final int idx, final int\
+    \ par, final int d) {\n\t\ttable[0][idx] = par;\n\t\tdep[idx] = d;\n\t\tfor(final\
+    \ Edge el: g.get(idx)) {\n\t\t\tif(el.to != par) {\n\t\t\t\tsum[el.to] = (int)\
+    \ (sum[idx] + el.cost); \n\t\t\t\tdfs(el.to, idx, d + 1);\n\t\t\t}\n\t\t}\n\t\
+    }\n\tprivate final void build() {\n\t\tdfs(0, -1, 0);\n\t\tfor(int k = 0; k <\
+    \ log - 1; ++k) {\n\t\t\tfor(int i = 0; i < table[k].length; ++i) {\n\t\t\t\t\
+    if(table[k][i] == -1) {\n\t\t\t\t\ttable[k + 1][i] = -1;\n\t\t\t\t} else {\n\t\
+    \t\t\t\ttable[k + 1][i] = table[k][table[k][i]];\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\
+    }\n\tfinal int query(int u, int v) {\n\t\tif(dep[u] > dep[v]) {\n\t\t\tu ^= v;\n\
+    \t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\tv = climb(v, dep[v] - dep[u]);\n\t\t\
+    if(u == v) {\n\t\t\treturn u;\n\t\t}\n\t\tfor(int i = log; --i >= 0;) {\n\t\t\t\
+    if(table[i][u] != table[i][v]) {\n\t\t\t\tu = table[i][u];\n\t\t\t\tv = table[i][v];\n\
+    \t\t\t}\n\t\t}\n\t\treturn table[0][u];\n\t}\n\tfinal int climb(int u, final int\
+    \ k) {\n\t\tif(dep[u] < k) {\n\t\t\treturn -1;\n\t\t}\n\t\tfor(int i = log; --i\
+    \ >= 0;) {\n\t\t\tif(((k >> i) % 2) == 1) {\n\t\t\t\tu = table[i][u];\n\t\t\t\
+    }\n\t\t}\n\t\treturn u;\n\t}\n\tfinal int dist(final int u, final int v){ return\
+    \ sum[u] + sum[v] - 2 * sum[query(u, v)]; }\n}\n\nfinal class UnionFind {\n\t\
+    private final int[] par;\n\tUnionFind(final int n) {\n\t\tpar = new int[n];\n\t\
+    \tArrays.fill(par, -1);\n\t}\n\tfinal int root(final int i){ return par[i] >=\
+    \ 0 ? par[i] = root(par[i]) : i; }\n\tfinal int size(final int i){ return -par[root(i)];\
+    \ }\n\tfinal int size(){ return par.length; }\n\tfinal boolean unite(int i, int\
+    \ j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) {\n\t\t\treturn false;\n\
+    \t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\
+    \tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\t}\n\tfinal boolean same(final\
+    \ int i, final int j){ return root(i) == root(j); }\n\tfinal ArrayList<ArrayList<Integer>>\
+    \ groups() {\n\t\tfinal int n = par.length;\n\t\tfinal ArrayList<ArrayList<Integer>>\
+    \ res = new ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> res.add(new\
+    \ ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\
+    \t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n}\n\nfinal class\
+    \ WeightedUnionFind {\n\tprivate final int[] par;\n\tprivate final long[] weight;\n\
+    \tWeightedUnionFind(final int n) {\n\t\tpar = new int[n];\n\t\tweight = new long[n];\n\
+    \t\tArrays.fill(par, -1);\n\t}\n\tfinal int root(final int i) {\n\t\tif(par[i]\
+    \ < 0) {\n\t\t\treturn i;\n\t\t}\n\t\tfinal int r = root(par[i]);\n\t\tweight[i]\
+    \ += weight[par[i]];\n\t\treturn par[i] = r;\n\t}\n\tfinal long get(final int\
+    \ i) {\n\t\troot(i);\n\t\treturn weight[i];\n\t}\n\tfinal long diff(final int\
+    \ x, final int y){ return get(y) - get(x); }\n\tfinal int unite(int x, int y,\
+    \ long w) {\n\t\tw += diff(y, x);\n\t\tx = root(x);\n\t\ty = root(y);\n\t\tif(x\
+    \ == y) {\n\t\t\treturn w == 0 ? 0 : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\
+    \t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x] +=\
+    \ par[y];\n\t\tpar[y] = x;\n\t\tweight[y] = w;\n\t\treturn 1;\n\t}\n\tfinal boolean\
+    \ same(final int x, final int y){ return root(x) == root(y); }\n}\n\nfinal class\
+    \ UndoUnionFind {\n\tprivate final int[] par;\n\tprivate final Stack<Pair<Integer,\
+    \ Integer>> his;\n\tUndoUnionFind(final int n) {\n\t    par = new int[n];\n\t\
+    \    Arrays.fill(par, -1);\n\t    his = new Stack<>();\n\t}\n\tfinal boolean unite(int\
+    \ x, int y) {\n\t\tx = root(x);\n\t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\
+    \t\this.add(Pair.of(y, par[y]));\n\t\tif(x == y) {\n\t\t\treturn false;\n\t\t\
+    }\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t\
+    }\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\treturn true;\n\t}\n\tfinal int\
+    \ root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\t\treturn\
+    \ root(par[i]);\n\t}\n\tfinal int size(final int i){ return -par[root(i)]; }\n\
+    \tfinal void undo() {\n\t\tfinal Pair<Integer, Integer> pop1 = his.pop(), pop2\
+    \ = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\t\tpar[pop2.first] = pop2.second;\n\
+    \t}\n\tfinal void snapshot() {\n\t\twhile(!his.empty()) {\n\t\t\this.pop();\n\t\
+    \t}\n\t}\n\tfinal void rollback() {\n\t\twhile(!his.empty()) {\n\t\t\tundo();\n\
+    \t\t}\n\t}\n}\n\nfinal class PrimeTable {\n\tprivate final int size;\n\tprivate\
+    \ final int[] p;\n\tprivate final boolean[] sieve;\n\tPrimeTable(final int n)\
+    \ {\n\t\tsieve = new boolean[n + 1];\n\t\tArrays.fill(sieve, true);\n\t\tsieve[0]\
+    \ = sieve[1] = false;\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[i])\
     \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\
     \t\t\tsieve[j] = false;\n\t\t\t}\n\t\t}\n\t\tsize = (int) IntStream.rangeClosed(0,\
     \ n).filter(i -> sieve[i]).count();\n\t\tint j = 0;\n\t\tp = new int[size];\n\t\
@@ -2211,6 +2314,7 @@ data:
   - Java/library/math/PrimeTable.java
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
+  - Java/library/core/io/IO.java
   - Java/library/core/interfaces/RecursiveLongConsumer.java
   - Java/library/core/interfaces/RecursiveIntConsumer.java
   - Java/library/core/interfaces/RecursiveConsumer.java
@@ -2298,6 +2402,7 @@ data:
   - Java/library/math/PrimeTable.java
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
+  - Java/library/core/io/IO.java
   - Java/library/core/interfaces/RecursiveLongConsumer.java
   - Java/library/core/interfaces/RecursiveIntConsumer.java
   - Java/library/core/interfaces/RecursiveConsumer.java
@@ -2363,7 +2468,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-21 13:55:20+09:00'
+  timestamp: '2024-02-22 09:08:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

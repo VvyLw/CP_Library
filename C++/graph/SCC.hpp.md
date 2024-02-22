@@ -14,7 +14,7 @@ data:
     links:
     - https://ei1333.github.io/library/graph/connected-components/strongly-connected-components.hpp
   bundledCode: "#line 2 \"C++/graph/SCC.hpp\"\n\n#include <vector>\n#include <algorithm>\n\
-    template <class G> struct SCC {\nprivate:\n    std::vector<int> comp, order, used;\n\
+    template <class G> struct SCC {\nprivate:\n\tstd::vector<int> comp, order, used;\n\
     \tstd::vector<std::vector<int>> group;\n\tG g, rg, dag;\n\tvoid dfs(const int\
     \ i) {\n\t\tif(used[i]) {\n\t\t\treturn;\n\t\t}\n\t\tused[i] = true;\n\t\tfor(const\
     \ auto &e: g[i]) {\n\t\t\tdfs(e);\n\t\t}\n\t\torder.push_back(i);\n  \t}\n  \t\
@@ -36,7 +36,7 @@ data:
     \ * @see https://ei1333.github.io/library/graph/connected-components/strongly-connected-components.hpp\n\
     \ */\n"
   code: "#pragma once\n\n#include <vector>\n#include <algorithm>\ntemplate <class\
-    \ G> struct SCC {\nprivate:\n    std::vector<int> comp, order, used;\n\tstd::vector<std::vector<int>>\
+    \ G> struct SCC {\nprivate:\n\tstd::vector<int> comp, order, used;\n\tstd::vector<std::vector<int>>\
     \ group;\n\tG g, rg, dag;\n\tvoid dfs(const int i) {\n\t\tif(used[i]) {\n\t\t\t\
     return;\n\t\t}\n\t\tused[i] = true;\n\t\tfor(const auto &e: g[i]) {\n\t\t\tdfs(e);\n\
     \t\t}\n\t\torder.push_back(i);\n  \t}\n  \tvoid rdfs(const int i, const int cnt)\
@@ -60,7 +60,7 @@ data:
   isVerificationFile: false
   path: C++/graph/SCC.hpp
   requiredBy: []
-  timestamp: '2024-02-22 06:53:31+09:00'
+  timestamp: '2024-02-22 08:54:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/scc.test.cpp

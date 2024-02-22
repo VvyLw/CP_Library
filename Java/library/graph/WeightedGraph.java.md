@@ -110,6 +110,9 @@ data:
     path: Java/library/core/interfaces/TriPredicate.java
     title: Java/library/core/interfaces/TriPredicate.java
   - icon: ':warning:'
+    path: Java/library/core/io/IO.java
+    title: Java/library/core/io/IO.java
+  - icon: ':warning:'
     path: Java/library/core/io/MyPrinter.java
     title: Java/library/core/io/MyPrinter.java
   - icon: ':warning:'
@@ -363,6 +366,9 @@ data:
     path: Java/library/core/interfaces/TriPredicate.java
     title: Java/library/core/interfaces/TriPredicate.java
   - icon: ':warning:'
+    path: Java/library/core/io/IO.java
+    title: Java/library/core/io/IO.java
+  - icon: ':warning:'
     path: Java/library/core/io/MyPrinter.java
     title: Java/library/core/io/MyPrinter.java
   - icon: ':warning:'
@@ -533,8 +539,8 @@ data:
     \ id++));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new Edge(b, a, cost, --id));\n\
     \t\t\tedge.add(new Edge(b, a, cost, id++));\n\t\t}\n\t}\n\t/**\n\t * \u8FBA\u3092\
     m\u500B\u5165\u529B\u3059\u308B\n\t * @param m\n\t */\n\t@Override\n\tpublic final\
-    \ void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.sc.ni(),\
-    \ VvyLw.sc.ni(), VvyLw.sc.ni())); }\n\t/**\n\t * Dijkstra\u6CD5\n\t * \u8CA0\u8FBA\
+    \ void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(),\
+    \ VvyLw.io.ni(), VvyLw.io.nl())); }\n\t/**\n\t * Dijkstra\u6CD5\n\t * \u8CA0\u8FBA\
     \u306E\u306A\u3044\u30B0\u30E9\u30D5\u3067\u5358\u4E00\u59CB\u70B9\u5168\u70B9\
     \u9593\u6700\u77ED\u8DEF\u3092\u6C42\u3081\u308B\n\t * @param v\n\t */\n\tpublic\
     \ final long[] dijkstra(final int v) {\n\t\tfinal long[] cost = new long[n];\n\
@@ -619,6 +625,7 @@ data:
   - Java/library/math/PrimeTable.java
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
+  - Java/library/core/io/IO.java
   - Java/library/core/interfaces/RecursiveLongConsumer.java
   - Java/library/core/interfaces/RecursiveIntConsumer.java
   - Java/library/core/interfaces/RecursiveConsumer.java
@@ -706,6 +713,7 @@ data:
   - Java/library/math/PrimeTable.java
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
+  - Java/library/core/io/IO.java
   - Java/library/core/interfaces/RecursiveLongConsumer.java
   - Java/library/core/interfaces/RecursiveIntConsumer.java
   - Java/library/core/interfaces/RecursiveConsumer.java
@@ -772,7 +780,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-21 13:55:20+09:00'
+  timestamp: '2024-02-22 09:08:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/WeightedGraph.java

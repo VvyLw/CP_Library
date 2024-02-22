@@ -71,7 +71,7 @@ data:
     \ ve;\r\ntypedef std::vector<ve> we;\r\n\r\n/**\r\n * @brief \u30B0\u30E9\u30D5\
     \u30E9\u30A4\u30D6\u30E9\u30EA\r\n */\n#line 2 \"C++/graph/SCC.hpp\"\n\n#line\
     \ 4 \"C++/graph/SCC.hpp\"\n#include <algorithm>\ntemplate <class G> struct SCC\
-    \ {\nprivate:\n    std::vector<int> comp, order, used;\n\tstd::vector<std::vector<int>>\
+    \ {\nprivate:\n\tstd::vector<int> comp, order, used;\n\tstd::vector<std::vector<int>>\
     \ group;\n\tG g, rg, dag;\n\tvoid dfs(const int i) {\n\t\tif(used[i]) {\n\t\t\t\
     return;\n\t\t}\n\t\tused[i] = true;\n\t\tfor(const auto &e: g[i]) {\n\t\t\tdfs(e);\n\
     \t\t}\n\t\torder.push_back(i);\n  \t}\n  \tvoid rdfs(const int i, const int cnt)\
@@ -107,7 +107,7 @@ data:
   isVerificationFile: true
   path: test/scc.test.cpp
   requiredBy: []
-  timestamp: '2024-02-22 06:53:31+09:00'
+  timestamp: '2024-02-22 08:54:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/scc.test.cpp
