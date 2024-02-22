@@ -1541,10 +1541,10 @@ public class Utility {
 	 * 配列内の数値を個数を数え上げる
 	 * @param a
 	 */
-	protected static final int[] count(final int[] a) {
-		final int[] res = new int[max(a) + 1];
+	protected static final Map<Integer, Integer> count(final int[] a) {
+		final Map<Integer, Integer> res = new HashMap<>();
 		for(final int i: a) {
-			res[i]++;
+			res.merge(i, 1, (x, y) -> x + y);
 		}
 		return res;
 	}
