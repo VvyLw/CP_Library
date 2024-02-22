@@ -8,7 +8,6 @@
 #ifndef TEMPLATE
 using i128 = __int128_t;
 using u128 = __uint128_t;
-#define rep(n) for(size_t i = 0; i < n; ++i)
 #endif
 namespace IO {
 std::ostream &operator<<(std::ostream &dest, const i128 &value) {
@@ -44,7 +43,7 @@ inline void out(){ std::cout << '\n'; }
 template <bool flush=false, class T> inline void out(const T& x){ std::cout << x << '\n'; if(flush) std::cout.flush(); }
 template <bool flush=false, class Head, class... Tail> inline void out(const Head& head, const Tail&... tail){ std::cout << head << ' '; out<flush>(tail...); }
 template <bool flush=false, class T> inline void vout(const T& v){ std::cout << v << '\n'; if(flush) std::cout.flush(); }
-template <bool flush=false, class T> inline void vout(const vectors::V<T>& v){ rep(v.size()) std::cout << v[i] << '\n'; if(flush) std::cout.flush(); }
+template <bool flush=false, class T> inline void vout(const vectors::V<T>& v){ for(const auto &el: v) std::cout << el << '\n'; if(flush) std::cout.flush(); }
 template <bool flush=false, class Head, class... Tail> inline void vout(const Head& head, const Tail&... tail){ std::cout << head << '\n'; vout<flush>(tail...); }
 
 #define fin(...) do{ out(__VA_ARGS__); return; }while(false)

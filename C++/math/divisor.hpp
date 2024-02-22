@@ -2,8 +2,6 @@
 
 #include <algorithm>
 #include "C++/myvector.hpp"
-#ifndef TEMPLATE
-#endif
 namespace Heileden {
 template <class T> inline vectors::V<T> div(const T n) {
     vectors::V<T> d;

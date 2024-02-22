@@ -1,9 +1,6 @@
 #pragma once
 
 #include "C++/mypair.hpp"
-#ifndef TEMPLATE
-#define sqrp(i,a,b) for(long long i = (a); i * i <= (b); ++i)
-#endif
 namespace Heileden {
 template <class T> inline vectors::V<pairs::PP<T>> prmfct(T n) {
     vectors::V<pairs::PP<T>> res;
