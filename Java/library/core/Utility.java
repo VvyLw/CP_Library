@@ -62,15 +62,15 @@ public class Utility {
 	 * @param a
 	 * @param b
 	 */
-	protected static final long ceil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }
+	protected static final long intCeil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }
 	/**
 	 * a / bを小数点c桁で四捨五入して求める
 	 * @param a
 	 * @param b
 	 * @param c
 	 */
-	protected static final double round(final double a, final long b, final int c) {
-		final long d = pow(10, c);
+	protected static final double intRound(final double a, final long b, final int c) {
+		final long d = intPow(10, c);
 		return Math.rint((a * d) / b) / d;
 	}
 	/**
@@ -78,7 +78,7 @@ public class Utility {
 	 * @param b
 	 * @return aのb乗
 	 */
-	protected static final long pow(long a, int b) {
+	protected static final long intPow(long a, int b) {
 		long res = 1;
 		while(b > 0) {
 			if(b % 2 == 1) {
@@ -94,7 +94,7 @@ public class Utility {
 	 * @param b
 	 * @return aのb乗のmを法とした剰余
 	 */
-	protected static final long pow(long a, long b, final long m) {
+	protected static final long intPow(long a, long b, final long m) {
 		long res = 1;
 		while(b > 0) {
 			if(b % 2 == 1) {
@@ -742,6 +742,34 @@ public class Utility {
 		final int m = (s + e + 1) / 2;
 		return a[m] > dest ? findRev(dest, a, s, m - 1) : findRev(dest, a, m, e);
 	}
+	private static void reverse(final int[] arr, int start, int end) {
+		while(start < end) {
+			swap(arr, start, end);
+			start++;
+			end--;
+		}
+	}
+	private static void reverse(final long[] arr, int start, int end) {
+		while(start < end) {
+			swap(arr, start, end);
+			start++;
+			end--;
+		}
+	}
+	private static void reverse(final double[] arr, int start, int end) {
+		while(start < end) {
+			swap(arr, start, end);
+			start++;
+			end--;
+		}
+	}
+	private static void reverse(final char[] arr, int start, int end) {
+		while(start < end) {
+			swap(arr, start, end);
+			start++;
+			end--;
+		}
+	}
 	/**
 	 * 配列aの中にxがあれば何番目にあるか
 	 * 存在しない場合, -1を返す
@@ -1104,34 +1132,6 @@ public class Utility {
 			b[n - 1 - i] = a[i];
 		}
 		return b;
-	}
-	private static void reverse(final int[] arr, int start, int end) {
-		while(start < end) {
-			swap(arr, start, end);
-			start++;
-			end--;
-		}
-	}
-	private static void reverse(final long[] arr, int start, int end) {
-		while(start < end) {
-			swap(arr, start, end);
-			start++;
-			end--;
-		}
-	}
-	private static void reverse(final double[] arr, int start, int end) {
-		while(start < end) {
-			swap(arr, start, end);
-			start++;
-			end--;
-		}
-	}
-	private static void reverse(final char[] arr, int start, int end) {
-		while(start < end) {
-			swap(arr, start, end);
-			start++;
-			end--;
-		}
 	}
 	/**
 	 * C++のstd::rotateに相当するメソッド
@@ -1866,14 +1866,14 @@ public class Utility {
 			return a % m;
 		}
 		if(b == 2) {
-			return pow(a, a, m);
+			return intPow(a, a, m);
 		}
 		final long phi = eulerPhi(m);
 		long tmp = tetration(a, b - 1, phi);
 		if(tmp == 0) {
 			tmp += phi;
 		}
-		return pow(a, tmp, m);
+		return intPow(a, tmp, m);
 	}
 	/**
 	 * @param n
