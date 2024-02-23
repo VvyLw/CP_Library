@@ -628,45 +628,76 @@ data:
     \ long x, final long r){ return l <= x && x <= r; }\n\tprotected static final\
     \ boolean scope(final double l, final double x, final double r){ return l <= x\
     \ && x <= r; }\n\tprotected static final boolean isBit(final long i, final long\
-    \ j){ return (i >> j & 1) == 1; }\n\tprotected static final int[] nextPerm(final\
-    \ int[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i])\
-    \ {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a,\
-    \ i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t\
-    }\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final long[] nextPerm(final\
-    \ long[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i])\
-    \ {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a,\
-    \ i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t\
-    }\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final double[] nextPerm(final\
-    \ double[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i])\
-    \ {\n\t\t\t\tfinal int j = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a,\
-    \ i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t\
-    }\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final String nextPerm(final\
-    \ String s) {\n\t\tfinal List<Character> a = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());\n\
-    \t\tfor(int i = a.size(); --i > 0;) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
-    \ < 0) {\n\t\t\t\tfinal int j = find(a.get(i - 1), a, i, a.size() - 1);\n\t\t\t\
-    \tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()));\n\
-    \t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
-    \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final int[] prevPerm(final\
-    \ int[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] > a[i])\
-    \ {\n\t\t\t\tfinal int j = findRev(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a,\
-    \ i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn reverse(a);\n\
-    \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final long[] prevPerm(final\
-    \ long[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] > a[i])\
-    \ {\n\t\t\t\tfinal int j = findRev(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a,\
-    \ i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn reverse(a);\n\
-    \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final double[] prevPerm(final\
-    \ double[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] > a[i])\
-    \ {\n\t\t\t\tfinal int j = findRev(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a,\
-    \ i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treturn reverse(a);\n\
-    \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprotected static final String prevPerm(final\
-    \ String s) {\n\t\tfinal List<Character> a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());\n\
-    \t\tfor(int i = a.size(); --i > 0;) {\n\t\t\tif(a.get(i - 1).compareTo(a.get(i))\
-    \ > 0) {\n\t\t\t\tfinal int j = findRev(a.get(i - 1), a, i, a.size() - 1);\n\t\
-    \t\t\tCollections.swap(a, i - 1, j);\n\t\t\t\tCollections.sort(a.subList(i, a.size()),\
-    \ Collections.reverseOrder());\n\t\t\t\treturn a.stream().map(String::valueOf).collect(Collectors.joining());\n\
-    \t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprivate static final int find(final int\
-    \ dest, final int[] a, final int s, final int e) {\n\t\tif(s == e) {\n\t\t\treturn\
-    \ s;\n\t\t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn a[m] <= dest ? find(dest,\
+    \ j){ return (i >> j & 1) == 1; }\n\tprotected static final boolean nextPerm(final\
+    \ int[] a) {\n\t\ttry {\n\t\t\tfinal int[] res = nextPermutation(a);\n\t\t\tSystem.arraycopy(res,\
+    \ 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final NullPointerException\
+    \ e) {\n\t\t\tArrays.sort(a);\n\t\t\treturn false;\n\t\t}\n\t}\n\tprotected static\
+    \ final boolean nextPerm(final long[] a) {\n\t\ttry {\n\t\t\tfinal long[] res\
+    \ = nextPermutation(a);\n\t\t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\
+    \treturn true;\n\t\t} catch(final NullPointerException e) {\n\t\t\tArrays.sort(a);\n\
+    \t\t\treturn false;\n\t\t}\n\t}\n\tprotected static final boolean nextPerm(final\
+    \ double[] a) {\n\t\ttry {\n\t\t\tfinal double[] res = nextPermutation(a);\n\t\
+    \t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final\
+    \ NullPointerException e) {\n\t\t\tArrays.sort(a);\n\t\t\treturn false;\n\t\t\
+    }\n\t}\n\tprotected static final boolean nextPerm(final char[] a) {\n\t\ttry {\n\
+    \t\t\tfinal char[] res = nextPermutation(a);\n\t\t\tSystem.arraycopy(res, 0, a,\
+    \ 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final NullPointerException e)\
+    \ {\n\t\t\tArrays.sort(a);\n\t\t\treturn false;\n\t\t}\n\t}\n\tprotected static\
+    \ final boolean prevPerm(final int[] a) {\n\t\ttry {\n\t\t\tfinal int[] res =\
+    \ prevPermutation(a);\n\t\t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\t\
+    return true;\n\t\t} catch(final NullPointerException e) {\n\t\t\tfinal int[] res\
+    \ = reverse(sorted(a));\n\t\t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\
+    \treturn false;\n\t\t}\n\t}\n\tprotected static final boolean prevPerm(final long[]\
+    \ a) {\n\t\ttry {\n\t\t\tfinal long[] res = prevPermutation(a);\n\t\t\tSystem.arraycopy(res,\
+    \ 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final NullPointerException\
+    \ e) {\n\t\t\tfinal long[] res = reverse(sorted(a));\n\t\t\tSystem.arraycopy(res,\
+    \ 0, a, 0, a.length);\n\t\t\treturn false;\n\t\t}\n\t}\n\tprotected static final\
+    \ boolean prevPerm(final double[] a) {\n\t\ttry {\n\t\t\tfinal double[] res =\
+    \ prevPermutation(a);\n\t\t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\t\
+    return true;\n\t\t} catch(final NullPointerException e) {\n\t\t\tfinal double[]\
+    \ res = reverse(sorted(a));\n\t\t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\
+    \t\t\treturn false;\n\t\t}\n\t}\n\tprotected static final boolean prevPerm(final\
+    \ char[] a) {\n\t\ttry {\n\t\t\tfinal char[] res = prevPermutation(a);\n\t\t\t\
+    System.arraycopy(res, 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final\
+    \ NullPointerException e) {\n\t\t\tfinal char[] res = reverse(sorted(a));\n\t\t\
+    \tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\treturn false;\n\t\t}\n\t}\n\
+    \tprivate static final int[] nextPermutation(final int[] a) {\n\t\tfor(int i =\
+    \ a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal int j = find(a[i\
+    \ - 1], a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\t\tArrays.sort(a,\
+    \ i, a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\t\
+    private static final long[] nextPermutation(final long[] a) {\n\t\tfor(int i =\
+    \ a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal int j = find(a[i\
+    \ - 1], a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\t\tArrays.sort(a,\
+    \ i, a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\t\
+    private static final double[] nextPermutation(final double[] a) {\n\t\tfor(int\
+    \ i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal int j\
+    \ = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\t\t\
+    Arrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\
+    \t}\n\tprivate static final char[] nextPermutation(final char[] a) {\n\t\tfor(int\
+    \ i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] < a[i]) {\n\t\t\t\tfinal int j\
+    \ = find(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\t\t\
+    Arrays.sort(a, i, a.length);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\
+    \t}\n\tprivate static final int[] prevPermutation(final int[] a) {\n\t\tfor(int\
+    \ i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] > a[i]) {\n\t\t\t\tfinal int j\
+    \ = findRev(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\t\
+    \tArrays.sort(a, i, a.length);\n\t\t\t\treverse(a, i, a.length - 1);\n\t\t\t\t\
+    return a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprivate static final long[]\
+    \ prevPermutation(final long[] a) {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\
+    \t\tif(a[i - 1] > a[i]) {\n\t\t\t\tfinal int j = findRev(a[i - 1], a, i, a.length\
+    \ - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\
+    \t\treverse(a, i, a.length - 1);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ null;\n\t}\n\tprivate static final double[] prevPermutation(final double[] a)\
+    \ {\n\t\tfor(int i = a.length; --i > 0;) {\n\t\t\tif(a[i - 1] > a[i]) {\n\t\t\t\
+    \tfinal int j = findRev(a[i - 1], a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1,\
+    \ j);\n\t\t\t\tArrays.sort(a, i, a.length);\n\t\t\t\treverse(a, i, a.length -\
+    \ 1);\n\t\t\t\treturn a;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\tprivate static\
+    \ final char[] prevPermutation(final char[] a) {\n\t\tfor(int i = a.length; --i\
+    \ > 0;) {\n\t\t\tif(a[i - 1] > a[i]) {\n\t\t\t\tfinal int j = findRev(a[i - 1],\
+    \ a, i, a.length - 1);\n\t\t\t\tswap(a, i - 1, j);\n\t\t\t\tArrays.sort(a, i,\
+    \ a.length);\n\t\t\t\treverse(a, i, a.length - 1);\n\t\t\t\treturn a;\n\t\t\t\
+    }\n\t\t}\n\t\treturn null;\n\t}\n\tprivate static final int find(final int dest,\
+    \ final int[] a, final int s, final int e) {\n\t\tif(s == e) {\n\t\t\treturn s;\n\
+    \t\t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn a[m] <= dest ? find(dest,\
     \ a, s, m - 1) : find(dest, a, m, e);\n\t}\n\tprivate static final int find(final\
     \ long dest, final long[] a, final int s, final int e) {\n\t\tif(s == e) {\n\t\
     \t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn a[m] <= dest\
@@ -674,23 +705,31 @@ data:
     \ int find(final double dest, final double[] a, final int s, final int e) {\n\t\
     \tif(s == e) {\n\t\t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\
     \treturn a[m] <= dest ? find(dest, a, s, m - 1) : find(dest, a, m, e);\n\t}\n\t\
-    private static final int find(final char dest, final List<Character> a, final\
-    \ int s, final int e) {\n\t\tif(s == e) {\n\t\t\treturn s;\n\t\t}\n\t\tfinal int\
-    \ m = (s + e + 1) / 2;\n\t\treturn a.get(m).compareTo(dest) <= 0 ? find(dest,\
-    \ a, s, m - 1) : find(dest, a, m, e);\n\t}\n\tprivate static final int findRev(final\
-    \ int dest, final int[] a, final int s, final int e) {\n\t\tif(s == e) {\n\t\t\
-    \treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn a[m] > dest\
-    \ ? findRev(dest, a, s, m - 1) : findRev(dest, a, m, e);\n\t}\n\tprivate static\
-    \ final int findRev(final long dest, final long[] a, final int s, final int e)\
-    \ {\n\t\tif(s == e) {\n\t\t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1) /\
-    \ 2;\n\t\treturn a[m] > dest ? findRev(dest, a, s, m - 1) : findRev(dest, a, m,\
-    \ e);\n\t}\n\tprivate static final int findRev(final double dest, final double[]\
+    private static final int find(final char dest, final char[] a, final int s, final\
+    \ int e) {\n\t\tif(s == e) {\n\t\t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e\
+    \ + 1) / 2;\n\t\treturn a[m] <= dest ? find(dest, a, s, m - 1) : find(dest, a,\
+    \ m, e);\n\t}\n\tprivate static final int findRev(final int dest, final int[]\
     \ a, final int s, final int e) {\n\t\tif(s == e) {\n\t\t\treturn s;\n\t\t}\n\t\
     \tfinal int m = (s + e + 1) / 2;\n\t\treturn a[m] > dest ? findRev(dest, a, s,\
     \ m - 1) : findRev(dest, a, m, e);\n\t}\n\tprivate static final int findRev(final\
-    \ char dest, final List<Character> a, final int s, final int e) {\n\t\tif(s ==\
-    \ e) {\n\t\t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn\
-    \ a.get(m).compareTo(dest) > 0 ? find(dest, a, s, m - 1) : find(dest, a, m, e);\n\
+    \ long dest, final long[] a, final int s, final int e) {\n\t\tif(s == e) {\n\t\
+    \t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1) / 2;\n\t\treturn a[m] > dest\
+    \ ? findRev(dest, a, s, m - 1) : findRev(dest, a, m, e);\n\t}\n\tprivate static\
+    \ final int findRev(final double dest, final double[] a, final int s, final int\
+    \ e) {\n\t\tif(s == e) {\n\t\t\treturn s;\n\t\t}\n\t\tfinal int m = (s + e + 1)\
+    \ / 2;\n\t\treturn a[m] > dest ? findRev(dest, a, s, m - 1) : findRev(dest, a,\
+    \ m, e);\n\t}\n\tprivate static final int findRev(final char dest, final char[]\
+    \ a, final int s, final int e) {\n\t\tif(s == e) {\n\t\t\treturn s;\n\t\t}\n\t\
+    \tfinal int m = (s + e + 1) / 2;\n\t\treturn a[m] > dest ? findRev(dest, a, s,\
+    \ m - 1) : findRev(dest, a, m, e);\n\t}\n\tprivate static void reverse(final int[]\
+    \ arr, int start, int end) {\n\t\twhile(start < end) {\n\t\t\tswap(arr, start,\
+    \ end);\n\t\t\tstart++;\n\t\t\tend--;\n\t\t}\n\t}\n\tprivate static void reverse(final\
+    \ long[] arr, int start, int end) {\n\t\twhile(start < end) {\n\t\t\tswap(arr,\
+    \ start, end);\n\t\t\tstart++;\n\t\t\tend--;\n\t\t}\n\t}\n\tprivate static void\
+    \ reverse(final double[] arr, int start, int end) {\n\t\twhile(start < end) {\n\
+    \t\t\tswap(arr, start, end);\n\t\t\tstart++;\n\t\t\tend--;\n\t\t}\n\t}\n\tprivate\
+    \ static void reverse(final char[] arr, int start, int end) {\n\t\twhile(start\
+    \ < end) {\n\t\t\tswap(arr, start, end);\n\t\t\tstart++;\n\t\t\tend--;\n\t\t}\n\
     \t}\n\tprotected static final int find(final int[] a, final int x) {\n\t\tfor(int\
     \ i = 0; i < a.length; ++i) {\n\t\t\tif(a[i] == x) {\n\t\t\t\treturn i;\n\t\t\t\
     }\n\t\t}\n\t\treturn -1;\n\t}\n\tprotected static final int find(final long[]\
@@ -741,53 +780,59 @@ data:
     \ }\n\tprotected static final int[] sorted(final int[] a){ return Arrays.stream(a).sorted().toArray();\
     \ }\n\tprotected static final long[] sorted(final long[] a){ return Arrays.stream(a).sorted().toArray();\
     \ }\n\tprotected static final double[] sorted(final double[] a){ return Arrays.stream(a).sorted().toArray();\
-    \ }\n\tprotected static final <T extends Comparable<? super T>> T[] sorted(final\
-    \ T[] a){ return Arrays.stream(a).sorted().toArray(n -> Arrays.copyOf(a, n));\
-    \ }\n\tprotected static final boolean isSorted(final String s){ return s.equals(sorted(s));\
-    \ }\n\tprotected static final boolean isSorted(final int[] a){ return Arrays.equals(a,\
-    \ sorted(a)); }\n\tprotected static final boolean isSorted(final long[] a){ return\
-    \ Arrays.equals(a, sorted(a)); }\n\tprotected static final boolean isSorted(final\
-    \ double[] a){ return Arrays.equals(a, sorted(a)); }\n\tprotected static final\
-    \ <T extends Comparable<? super T>> boolean isSorted(final T[] a){ return Arrays.equals(a,\
-    \ sorted(a)); }\n\tprotected static final String reverse(final String s){ return\
-    \ new StringBuilder(s).reverse().toString(); }\n\tprotected static final int[]\
-    \ reverse(final int[] a) {\n\t\tfinal int n = a.length;\n\t\tfinal int[] b = new\
-    \ int[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\
-    \t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected static final\
-    \ long[] reverse(final long[] a) {\n\t\tfinal int n = a.length;\n\t\tfinal long[]\
-    \ b = new long[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n -\
-    \ 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected\
-    \ static final double[] reverse(final double[] a) {\n\t\tfinal int n = a.length;\n\
-    \t\tfinal double[] b = new double[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\
-    \t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\
-    \t}\n\tprotected static final Object[] reverse(final Object[] a) {\n\t\tfinal\
-    \ int n = a.length;\n\t\tfinal Object[] b = new Object[n];\n\t\tfor(int i = 0;\
+    \ }\n\tprotected static final char[] sorted(final char[] a){ return sorted(new\
+    \ String(a)).toCharArray(); }\n\tprotected static final <T extends Comparable<?\
+    \ super T>> T[] sorted(final T[] a){ return Arrays.stream(a).sorted().toArray(n\
+    \ -> Arrays.copyOf(a, n)); }\n\tprotected static final boolean isSorted(final\
+    \ String s){ return s.equals(sorted(s)); }\n\tprotected static final boolean isSorted(final\
+    \ int[] a){ return Arrays.equals(a, sorted(a)); }\n\tprotected static final boolean\
+    \ isSorted(final long[] a){ return Arrays.equals(a, sorted(a)); }\n\tprotected\
+    \ static final boolean isSorted(final double[] a){ return Arrays.equals(a, sorted(a));\
+    \ }\n\tprotected static final boolean isSorted(final char[] a){ return Arrays.equals(a,\
+    \ sorted(a)); }\n\tprotected static final <T extends Comparable<? super T>> boolean\
+    \ isSorted(final T[] a){ return Arrays.equals(a, sorted(a)); }\n\tprotected static\
+    \ final String reverse(final String s){ return new StringBuilder(s).reverse().toString();\
+    \ }\n\tprotected static final int[] reverse(final int[] a) {\n\t\tfinal int n\
+    \ = a.length;\n\t\tfinal int[] b = new int[n];\n\t\tfor(int i = 0; i <= n / 2;\
+    \ ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\t\
+    return b;\n\t}\n\tprotected static final long[] reverse(final long[] a) {\n\t\t\
+    final int n = a.length;\n\t\tfinal long[] b = new long[n];\n\t\tfor(int i = 0;\
     \ i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\
-    \t\t}\n\t\treturn b;\n\t}\n\tprotected static final int[] rotate(final int[] a,\
-    \ final int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\tfinal\
-    \ int[] res = new int[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a,\
-    \ 0, res, n - k, k);\n\t\treturn res;\n\t}\n\tprotected static final long[] rotate(final\
-    \ long[] a, final int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\
-    \t\tfinal long[] res = new long[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\
-    \t\tSystem.arraycopy(a, 0, res, n - k, k);\n\t\treturn res;\n\t}\n\tprotected\
-    \ static final double[] rotate(final double[] a, final int id) {\n\t\tfinal int\
-    \ n = a.length, k = (int) mod(id, n);\n\t\tfinal double[] res = new double[n];\n\
+    \t\t}\n\t\treturn b;\n\t}\n\tprotected static final double[] reverse(final double[]\
+    \ a) {\n\t\tfinal int n = a.length;\n\t\tfinal double[] b = new double[n];\n\t\
+    \tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1\
+    \ - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected static final char[] reverse(final\
+    \ char[] a) {\n\t\tfinal int n = a.length;\n\t\tfinal char[] b = new char[n];\n\
+    \t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n -\
+    \ 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected static final Object[]\
+    \ reverse(final Object[] a) {\n\t\tfinal int n = a.length;\n\t\tfinal Object[]\
+    \ b = new Object[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n\
+    \ - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprotected\
+    \ static final int[] rotate(final int[] a, final int id) {\n\t\tfinal int n =\
+    \ a.length, k = (int) mod(id, n);\n\t\tfinal int[] res = new int[n];\n\t\tSystem.arraycopy(a,\
+    \ k, res, 0, n - k);\n\t\tSystem.arraycopy(a, 0, res, n - k, k);\n\t\treturn res;\n\
+    \t}\n\tprotected static final long[] rotate(final long[] a, final int id) {\n\t\
+    \tfinal int n = a.length, k = (int) mod(id, n);\n\t\tfinal long[] res = new long[n];\n\
     \t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a, 0, res, n\
-    \ - k, k);\n\t\treturn res;\n\t}\n\tprotected static final char[] rotate(final\
-    \ char[] a, final int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\
-    \t\tfinal char[] res = new char[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\
-    \t\tSystem.arraycopy(a, 0, res, n - k, k);\n\t\treturn res;\n\t}\n\tprotected\
-    \ static final boolean[] rotate(final boolean[] a, final int id) {\n\t\tfinal\
-    \ int n = a.length, k = (int) mod(id, n);\n\t\tfinal boolean[] res = new boolean[n];\n\
-    \t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a, 0, res, n\
-    \ - k, k);\n\t\treturn res;\n\t}\n\tprotected static final Object[] rotate(final\
-    \ Object[] a, final int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\
-    \t\tfinal Object[] res = new Object[n];\n\t\tSystem.arraycopy(a, k, res, 0, n\
+    \ - k, k);\n\t\treturn res;\n\t}\n\tprotected static final double[] rotate(final\
+    \ double[] a, final int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\
+    \t\tfinal double[] res = new double[n];\n\t\tSystem.arraycopy(a, k, res, 0, n\
     \ - k);\n\t\tSystem.arraycopy(a, 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t\
-    protected static final String rotate(final String s, final int id) {\n\t\tfinal\
-    \ List<Character> t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());\n\
-    \t\tCollections.rotate(t, id);\n\t\treturn t.stream().map(String::valueOf).collect(Collectors.joining());\n\
-    \t}\n\tprotected static final int[][] rotateR(final int[][] a) {\n\t\tfinal int\
+    protected static final char[] rotate(final char[] a, final int id) {\n\t\tfinal\
+    \ int n = a.length, k = (int) mod(id, n);\n\t\tfinal char[] res = new char[n];\n\
+    \t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a, 0, res, n\
+    \ - k, k);\n\t\treturn res;\n\t}\n\tprotected static final boolean[] rotate(final\
+    \ boolean[] a, final int id) {\n\t\tfinal int n = a.length, k = (int) mod(id,\
+    \ n);\n\t\tfinal boolean[] res = new boolean[n];\n\t\tSystem.arraycopy(a, k, res,\
+    \ 0, n - k);\n\t\tSystem.arraycopy(a, 0, res, n - k, k);\n\t\treturn res;\n\t\
+    }\n\tprotected static final Object[] rotate(final Object[] a, final int id) {\n\
+    \t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\tfinal Object[] res = new\
+    \ Object[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a,\
+    \ 0, res, n - k, k);\n\t\treturn res;\n\t}\n\tprotected static final String rotate(final\
+    \ String s, final int id) {\n\t\tfinal List<Character> t = s.chars().mapToObj(i\
+    \ -> (char) i).collect(Collectors.toList());\n\t\tCollections.rotate(t, id);\n\
+    \t\treturn t.stream().map(String::valueOf).collect(Collectors.joining());\n\t\
+    }\n\tprotected static final int[][] rotateR(final int[][] a) {\n\t\tfinal int\
     \ h = a.length, w = a[0].length;\n\t\tfinal int[][] b = new int[w][h];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> {\n\t\t\tArrays.setAll(b[i], j -> a[j][i]);\n\t\t});\n\t\tIntStream.range(0,\
     \ w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\tprotected static\
@@ -1472,7 +1517,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-23 03:51:25+09:00'
+  timestamp: '2024-02-23 09:55:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java
