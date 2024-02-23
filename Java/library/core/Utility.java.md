@@ -548,26 +548,26 @@ data:
     \ * @param m\n\t */\n\tpublic static final long mod(long n, final long m) {\n\t\
     \tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\t/**\n\t * a / b\u3092\u5C0F\u6570\
     \u70B9\u4EE5\u4E0B\u5207\u308A\u4E0A\u3052\u3067\u6C42\u3081\u308B\n\t * @param\
-    \ a\n\t * @param b\n\t */\n\tprotected static final long ceil(final long a, final\
-    \ long b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\t/**\n\t * a / b\u3092\u5C0F\
-    \u6570\u70B9c\u6841\u3067\u56DB\u6368\u4E94\u5165\u3057\u3066\u6C42\u3081\u308B\
-    \n\t * @param a\n\t * @param b\n\t * @param c\n\t */\n\tprotected static final\
-    \ double round(final double a, final long b, final int c) {\n\t\tfinal long d\
-    \ = pow(10, c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\t/**\n\t * @param\
-    \ a\n\t * @param b\n\t * @return a\u306Eb\u4E57\n\t */\n\tprotected static final\
-    \ long pow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b\
-    \ % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t\
-    }\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @param b\n\t * @return a\u306E\
-    b\u4E57\u306Em\u3092\u6CD5\u3068\u3057\u305F\u5270\u4F59\n\t */\n\tprotected static\
-    \ final long pow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b\
-    \ > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\
-    \t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\t/**\n\t * @param a\n\t * @param b\n\t * @return a\u3068b\u306E\u6700\
-    \u5C0F\u516C\u500D\u6570\n\t */\n\tpublic static final long lcm(final long a,\
-    \ final long b){ return a * b / gcd(a, b); }\n\t/**\n\t * e.g.) lcm(2, 3, 5) =\
-    \ 30\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\
-    \u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u516C\u500D\u6570\n\t */\n\tpublic\
-    \ static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1,\
+    \ a\n\t * @param b\n\t */\n\tprotected static final long intCeil(final long a,\
+    \ final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\t/**\n\t * a / b\u3092\
+    \u5C0F\u6570\u70B9c\u6841\u3067\u56DB\u6368\u4E94\u5165\u3057\u3066\u6C42\u3081\
+    \u308B\n\t * @param a\n\t * @param b\n\t * @param c\n\t */\n\tprotected static\
+    \ final double intRound(final double a, final long b, final int c) {\n\t\tfinal\
+    \ long d = intPow(10, c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\t/**\n\
+    \t * @param a\n\t * @param b\n\t * @return a\u306Eb\u4E57\n\t */\n\tprotected\
+    \ static final long intPow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b >\
+    \ 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\
+    \tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @param b\n\
+    \t * @return a\u306Eb\u4E57\u306Em\u3092\u6CD5\u3068\u3057\u305F\u5270\u4F59\n\
+    \t */\n\tprotected static final long intPow(long a, long b, final long m) {\n\t\
+    \tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
+    \t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\
+    \tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @param b\n\
+    \t * @return a\u3068b\u306E\u6700\u5C0F\u516C\u500D\u6570\n\t */\n\tpublic static\
+    \ final long lcm(final long a, final long b){ return a * b / gcd(a, b); }\n\t\
+    /**\n\t * e.g.) lcm(2, 3, 5) = 30\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\
+    \u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u516C\
+    \u500D\u6570\n\t */\n\tpublic static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1,\
     \ (x, y) -> lcm(x, y)); }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\
     \u308B\u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u516C\
     \u500D\u6570\n\t */\n\tpublic static final long lcm(final long... a){ return Arrays.stream(a).reduce(1,\
@@ -822,16 +822,25 @@ data:
     \ m, e);\n\t}\n\tprivate static final int findRev(final char dest, final char[]\
     \ a, final int s, final int e) {\n\t\tif(s == e) {\n\t\t\treturn s;\n\t\t}\n\t\
     \tfinal int m = (s + e + 1) / 2;\n\t\treturn a[m] > dest ? findRev(dest, a, s,\
-    \ m - 1) : findRev(dest, a, m, e);\n\t}\n\t/**\n\t * \u914D\u5217a\u306E\u4E2D\
-    \u306Bx\u304C\u3042\u308C\u3070\u4F55\u756A\u76EE\u306B\u3042\u308B\u304B\n\t\
-    \ * \u5B58\u5728\u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\n\t * @param\
-    \ a\n\t * @param x\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/find.html\"\
-    >std::find</a>\n\t */\n\tprotected static final int find(final int[] a, final\
-    \ int x) {\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tif(a[i] == x) {\n\t\
-    \t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t * \u914D\u5217\
-    a\u306E\u4E2D\u306Bx\u304C\u3042\u308C\u3070\u4F55\u756A\u76EE\u306B\u3042\u308B\
-    \u304B\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\n\
-    \t * @param a\n\t * @param x\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/find.html\"\
+    \ m - 1) : findRev(dest, a, m, e);\n\t}\n\tprivate static void reverse(final int[]\
+    \ arr, int start, int end) {\n\t\twhile(start < end) {\n\t\t\tswap(arr, start,\
+    \ end);\n\t\t\tstart++;\n\t\t\tend--;\n\t\t}\n\t}\n\tprivate static void reverse(final\
+    \ long[] arr, int start, int end) {\n\t\twhile(start < end) {\n\t\t\tswap(arr,\
+    \ start, end);\n\t\t\tstart++;\n\t\t\tend--;\n\t\t}\n\t}\n\tprivate static void\
+    \ reverse(final double[] arr, int start, int end) {\n\t\twhile(start < end) {\n\
+    \t\t\tswap(arr, start, end);\n\t\t\tstart++;\n\t\t\tend--;\n\t\t}\n\t}\n\tprivate\
+    \ static void reverse(final char[] arr, int start, int end) {\n\t\twhile(start\
+    \ < end) {\n\t\t\tswap(arr, start, end);\n\t\t\tstart++;\n\t\t\tend--;\n\t\t}\n\
+    \t}\n\t/**\n\t * \u914D\u5217a\u306E\u4E2D\u306Bx\u304C\u3042\u308C\u3070\u4F55\
+    \u756A\u76EE\u306B\u3042\u308B\u304B\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\
+    \u5408, -1\u3092\u8FD4\u3059\n\t * @param a\n\t * @param x\n\t * @see <a href=\"\
+    https://cpprefjp.github.io/reference/algorithm/find.html\">std::find</a>\n\t */\n\
+    \tprotected static final int find(final int[] a, final int x) {\n\t\tfor(int i\
+    \ = 0; i < a.length; ++i) {\n\t\t\tif(a[i] == x) {\n\t\t\t\treturn i;\n\t\t\t\
+    }\n\t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t * \u914D\u5217a\u306E\u4E2D\u306Bx\u304C\
+    \u3042\u308C\u3070\u4F55\u756A\u76EE\u306B\u3042\u308B\u304B\n\t * \u5B58\u5728\
+    \u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\n\t * @param a\n\t * @param\
+    \ x\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/find.html\"\
     >std::find</a>\n\t */\n\tprotected static final int find(final long[] a, final\
     \ long x) {\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tif(a[i] == x) {\n\t\
     \t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t * \u914D\u5217\
@@ -1005,33 +1014,24 @@ data:
     Object\u30AF\u30E9\u30B9\u306E\u914D\u5217\n\t */\n\tprotected static final Object[]\
     \ reverse(final Object[] a) {\n\t\tfinal int n = a.length;\n\t\tfinal Object[]\
     \ b = new Object[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n\
-    \ - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\tprivate\
-    \ static void reverse(final int[] arr, int start, int end) {\n\t\twhile(start\
-    \ < end) {\n\t\t\tswap(arr, start, end);\n\t\t\tstart++;\n\t\t\tend--;\n\t\t}\n\
-    \t}\n\tprivate static void reverse(final long[] arr, int start, int end) {\n\t\
-    \twhile(start < end) {\n\t\t\tswap(arr, start, end);\n\t\t\tstart++;\n\t\t\tend--;\n\
-    \t\t}\n\t}\n\tprivate static void reverse(final double[] arr, int start, int end)\
-    \ {\n\t\twhile(start < end) {\n\t\t\tswap(arr, start, end);\n\t\t\tstart++;\n\t\
-    \t\tend--;\n\t\t}\n\t}\n\tprivate static void reverse(final char[] arr, int start,\
-    \ int end) {\n\t\twhile(start < end) {\n\t\t\tswap(arr, start, end);\n\t\t\tstart++;\n\
-    \t\t\tend--;\n\t\t}\n\t}\n\t/**\n\t * C++\u306Estd::rotate\u306B\u76F8\u5F53\u3059\
-    \u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t * @param id\n\t * @see <a href=\"\
-    https://cpprefjp.github.io/reference/algorithm/rotate.html\">std::rotate</a>\n\
-    \t */\n\tpublic static final int[] rotate(final int[] a, final int id) {\n\t\t\
-    final int n = a.length, k = (int) mod(id, n);\n\t\tfinal int[] res = new int[n];\n\
-    \t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a, 0, res, n\
-    \ - k, k);\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @param id\n\t * @see\
-    \ <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\">std::rotate</a>\n\
-    \t */\n\tpublic static final long[] rotate(final long[] a, final int id) {\n\t\
-    \tfinal int n = a.length, k = (int) mod(id, n);\n\t\tfinal long[] res = new long[n];\n\
-    \t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a, 0, res, n\
-    \ - k, k);\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @param id\n\t * @see\
-    \ <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\">std::rotate</a>\n\
-    \t */\n\tpublic static final double[] rotate(final double[] a, final int id) {\n\
-    \t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\tfinal double[] res = new\
-    \ double[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a,\
+    \ - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\t/**\n\t\
+    \ * C++\u306Estd::rotate\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\
+    \n\t * @param a\n\t * @param id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
+    >std::rotate</a>\n\t */\n\tpublic static final int[] rotate(final int[] a, final\
+    \ int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\tfinal int[]\
+    \ res = new int[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a,\
     \ 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @param\
     \ id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
+    >std::rotate</a>\n\t */\n\tpublic static final long[] rotate(final long[] a, final\
+    \ int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\tfinal long[]\
+    \ res = new long[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a,\
+    \ 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @param\
+    \ id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
+    >std::rotate</a>\n\t */\n\tpublic static final double[] rotate(final double[]\
+    \ a, final int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\t\
+    final double[] res = new double[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\
+    \t\tSystem.arraycopy(a, 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t/**\n\t *\
+    \ @param a\n\t * @param id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
     >std::rotate</a>\n\t */\n\tpublic static final char[] rotate(final char[] a, final\
     \ int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\tfinal char[]\
     \ res = new char[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a,\
@@ -1324,11 +1324,11 @@ data:
     \ static final long tetration(final long a, final long b, final long m) {\n\t\t\
     if(m == 1) {\n\t\t\treturn 0;\n\t\t}\n\t\tif(a == 0) {\n\t\t\treturn (b & 1) ==\
     \ 0 ? 1 : 0;\n\t\t}\n\t\tif(b == 0) {\n\t\t\treturn 1;\n\t\t}\n\t\tif(b == 1)\
-    \ {\n\t\t\treturn a % m;\n\t\t}\n\t\tif(b == 2) {\n\t\t\treturn pow(a, a, m);\n\
+    \ {\n\t\t\treturn a % m;\n\t\t}\n\t\tif(b == 2) {\n\t\t\treturn intPow(a, a, m);\n\
     \t\t}\n\t\tfinal long phi = eulerPhi(m);\n\t\tlong tmp = tetration(a, b - 1, phi);\n\
-    \t\tif(tmp == 0) {\n\t\t\ttmp += phi;\n\t\t}\n\t\treturn pow(a, tmp, m);\n\t}\n\
-    \t/**\n\t * @param n\n\t * @param m\n\t * @param a\n\t * @param b\n\t * @see <a\
-    \ href=\"https://atcoder.github.io/ac-library/production/document_ja/math.html\"\
+    \t\tif(tmp == 0) {\n\t\t\ttmp += phi;\n\t\t}\n\t\treturn intPow(a, tmp, m);\n\t\
+    }\n\t/**\n\t * @param n\n\t * @param m\n\t * @param a\n\t * @param b\n\t * @see\
+    \ <a href=\"https://atcoder.github.io/ac-library/production/document_ja/math.html\"\
     >atcoder::math::floor_sum</a>\n\t */\n\tprotected static final long floorSum(final\
     \ long n, final long m, long a, long b) {\n\t\tlong ans = 0;\n\t\tif(a >= m) {\n\
     \t\t\tans += (n - 1) * n * (a / m) / 2;\n\t\t\ta %= m;\n\t\t}\n\t\tif(b >= m)\
@@ -1510,7 +1510,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-23 09:55:23+09:00'
+  timestamp: '2024-02-23 21:48:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

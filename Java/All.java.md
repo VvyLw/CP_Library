@@ -551,16 +551,16 @@ data:
     \ long x){ return x * x; }\n\tprotected static final int mod(long n, final int\
     \ m) {\n\t\tn %= m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\tprotected static\
     \ final long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n +\
-    \ m : n;\n\t}\n\tprotected static final long ceil(final long a, final long b){\
-    \ return a == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final double round(final\
-    \ double a, final long b, final int c) {\n\t\tfinal long d = pow(10, c);\n\t\t\
-    return rint((a * d) / b) / d;\n\t}\n\tprotected static final long pow(long a,\
-    \ int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\
-    \t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static final long pow(long a, long b, final long m) {\n\t\tlong\
-    \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
-    \t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb\
-    \ >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long lcm(final\
+    \ m : n;\n\t}\n\tprotected static final long intCeil(final long a, final long\
+    \ b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final double\
+    \ intRound(final double a, final long b, final int c) {\n\t\tfinal long d = intPow(10,\
+    \ c);\n\t\treturn rint((a * d) / b) / d;\n\t}\n\tprotected static final long intPow(long\
+    \ a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\
+    \t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\tprotected static final long intPow(long a, long b, final long m) {\n\t\t\
+    long res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
+    \t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\
+    \tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long lcm(final\
     \ long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static final\
     \ long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x,\
     \ y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){ return\
@@ -1003,21 +1003,21 @@ data:
     \ static final long tetration(final long a, final long b, final long m) {\n\t\t\
     if(m == 1) {\n\t\t\treturn 0;\n\t\t}\n\t\tif(a == 0) {\n\t\t\treturn (b & 1) ==\
     \ 0 ? 1 : 0;\n\t\t}\n\t\tif(b == 0) {\n\t\t\treturn 1;\n\t\t}\n\t\tif(b == 1)\
-    \ {\n\t\t\treturn a % m;\n\t\t}\n\t\tif(b == 2) {\n\t\t\treturn pow(a, a, m);\n\
+    \ {\n\t\t\treturn a % m;\n\t\t}\n\t\tif(b == 2) {\n\t\t\treturn intPow(a, a, m);\n\
     \t\t}\n\t\tfinal long phi = eulerPhi(m);\n\t\tlong tmp = tetration(a, b - 1, phi);\n\
-    \t\tif(tmp == 0) {\n\t\t\ttmp += phi;\n\t\t}\n\t\treturn pow(a, tmp, m);\n\t}\n\
-    \tprotected static final long floorSum(final long n, final long m, long a, long\
-    \ b) {\n\t\tlong ans = 0;\n\t\tif(a >= m) {\n\t\t\tans += (n - 1) * n * (a / m)\
-    \ / 2;\n\t\t\ta %= m;\n\t\t}\n\t\tif(b >= m) {\n\t\t\tans += n * (b / m);\n\t\t\
-    \tb %= m;\n\t\t}\n\t\tfinal long ym = (a * n + b) / m, xm = (ym * m - b);\n\t\t\
-    if(ym == 0) {\n\t\t\treturn ans;\n\t\t}\n\t\tans += (n - (xm + a - 1) / a) * ym;\n\
-    \t\tans += floorSum(ym, a, m, (a - xm % a) % a);\n\t\treturn ans;\n\t}\n}\n\n\
-    interface TriFunction<T, U, V, R> {\n\tR apply(final T a, final U b, final V c);\n\
-    }\ninterface QuadFunction<A, B, C, D, R> {\n\tR apply(final A a, final B b, final\
-    \ C c, final D d);\n}\ninterface TriConsumer<T, U, V> {\n\tvoid accept(final T\
-    \ a, final U b, final V c);\n}\ninterface TriPredicate<T, U, V> {\n\tboolean test(final\
-    \ T a, final U b, final V c);\n}\ninterface RecursiveFunction<T, R> {\n\tR apply(final\
-    \ RecursiveFunction<T, R> rec, final T n);\n}\ninterface RecursiveBiFunction<T,\
+    \t\tif(tmp == 0) {\n\t\t\ttmp += phi;\n\t\t}\n\t\treturn intPow(a, tmp, m);\n\t\
+    }\n\tprotected static final long floorSum(final long n, final long m, long a,\
+    \ long b) {\n\t\tlong ans = 0;\n\t\tif(a >= m) {\n\t\t\tans += (n - 1) * n * (a\
+    \ / m) / 2;\n\t\t\ta %= m;\n\t\t}\n\t\tif(b >= m) {\n\t\t\tans += n * (b / m);\n\
+    \t\t\tb %= m;\n\t\t}\n\t\tfinal long ym = (a * n + b) / m, xm = (ym * m - b);\n\
+    \t\tif(ym == 0) {\n\t\t\treturn ans;\n\t\t}\n\t\tans += (n - (xm + a - 1) / a)\
+    \ * ym;\n\t\tans += floorSum(ym, a, m, (a - xm % a) % a);\n\t\treturn ans;\n\t\
+    }\n}\n\ninterface TriFunction<T, U, V, R> {\n\tR apply(final T a, final U b, final\
+    \ V c);\n}\ninterface QuadFunction<A, B, C, D, R> {\n\tR apply(final A a, final\
+    \ B b, final C c, final D d);\n}\ninterface TriConsumer<T, U, V> {\n\tvoid accept(final\
+    \ T a, final U b, final V c);\n}\ninterface TriPredicate<T, U, V> {\n\tboolean\
+    \ test(final T a, final U b, final V c);\n}\ninterface RecursiveFunction<T, R>\
+    \ {\n\tR apply(final RecursiveFunction<T, R> rec, final T n);\n}\ninterface RecursiveBiFunction<T,\
     \ U, R> {\n\tR apply(final RecursiveBiFunction<T, U, R> rec, final T n, final\
     \ U m);\n}\ninterface RecursiveTriFunction<T, U, V, R> {\n\tR apply(final RecursiveTriFunction<T,\
     \ U, V, R> rec, final T p, final U q, final V r);\n}\ninterface RecursiveUnaryOperator<T>\
@@ -2534,7 +2534,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-23 09:55:23+09:00'
+  timestamp: '2024-02-23 21:48:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

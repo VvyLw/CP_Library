@@ -541,16 +541,16 @@ data:
     \ long x){ return x * x; }\n\tprotected static final int mod(long n, final int\
     \ m) {\n\t\tn %= m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\tprotected static\
     \ final long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n +\
-    \ m : n;\n\t}\n\tprotected static final long ceil(final long a, final long b){\
-    \ return a == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final double round(final\
-    \ double a, final long b, final int c) {\n\t\tfinal long d = pow(10, c);\n\t\t\
-    return rint((a * d) / b) / d;\n\t}\n\tprotected static final long pow(long a,\
-    \ int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\
-    \t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static final long pow(long a, long b, final long m) {\n\t\tlong\
-    \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
-    \t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb\
-    \ >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long lcm(final\
+    \ m : n;\n\t}\n\tprotected static final long intCeil(final long a, final long\
+    \ b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final double\
+    \ intRound(final double a, final long b, final int c) {\n\t\tfinal long d = intPow(10,\
+    \ c);\n\t\treturn rint((a * d) / b) / d;\n\t}\n\tprotected static final long intPow(long\
+    \ a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\
+    \t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\tprotected static final long intPow(long a, long b, final long m) {\n\t\t\
+    long res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
+    \t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\
+    \tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long lcm(final\
     \ long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static final\
     \ long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x,\
     \ y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){ return\
@@ -975,7 +975,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/All.java
-  timestamp: '2024-02-23 09:55:23+09:00'
+  timestamp: '2024-02-23 21:48:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java
