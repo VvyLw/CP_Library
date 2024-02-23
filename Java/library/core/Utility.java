@@ -479,14 +479,122 @@ public class Utility {
 	 */
 	protected static final boolean isBit(final long i, final long j){ return (i >> j & 1) == 1; }
 	/**
-	 * How to Use:
-	 * do {
-	 * 
-	 * } while((a = nextPerm(a)) != null);
 	 * @param a
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/next_permutation.html">std::next_permutation</a>
 	 */
-	protected static final int[] nextPerm(final int[] a) {
+	protected static final boolean nextPerm(final int[] a) {
+		try {
+			final int[] res = nextPermutation(a);
+			System.arraycopy(res, 0, a, 0, a.length);
+			return true;
+		} catch(final NullPointerException e) {
+			Arrays.sort(a);
+			return false;
+		}
+	}
+	/**
+	 * @param a
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/next_permutation.html">std::next_permutation</a>
+	 */
+	protected static final boolean nextPerm(final long[] a) {
+		try {
+			final long[] res = nextPermutation(a);
+			System.arraycopy(res, 0, a, 0, a.length);
+			return true;
+		} catch(final NullPointerException e) {
+			Arrays.sort(a);
+			return false;
+		}
+	}
+	/**
+	 * @param a
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/next_permutation.html">std::next_permutation</a>
+	 */
+	protected static final boolean nextPerm(final double[] a) {
+		try {
+			final double[] res = nextPermutation(a);
+			System.arraycopy(res, 0, a, 0, a.length);
+			return true;
+		} catch(final NullPointerException e) {
+			Arrays.sort(a);
+			return false;
+		}
+	}
+	/**
+	 * @param a
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/next_permutation.html">std::next_permutation</a>
+	 */
+	protected static final boolean nextPerm(final char[] a) {
+		try {
+			final char[] res = nextPermutation(a);
+			System.arraycopy(res, 0, a, 0, a.length);
+			return true;
+		} catch(final NullPointerException e) {
+			Arrays.sort(a);
+			return false;
+		}
+	}
+	/**
+	 * @param a
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/prev_permutation.html">std::prev_permutation</a>
+	 */
+	protected static final boolean prevPerm(final int[] a) {
+		try {
+			final int[] res = prevPermutation(a);
+			System.arraycopy(res, 0, a, 0, a.length);
+			return true;
+		} catch(final NullPointerException e) {
+			final int[] res = reverse(sorted(a));
+			System.arraycopy(res, 0, a, 0, a.length);
+			return false;
+		}
+	}
+	/**
+	 * @param a
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/prev_permutation.html">std::prev_permutation</a>
+	 */
+	protected static final boolean prevPerm(final long[] a) {
+		try {
+			final long[] res = prevPermutation(a);
+			System.arraycopy(res, 0, a, 0, a.length);
+			return true;
+		} catch(final NullPointerException e) {
+			final long[] res = reverse(sorted(a));
+			System.arraycopy(res, 0, a, 0, a.length);
+			return false;
+		}
+	}
+	/**
+	 * @param a
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/prev_permutation.html">std::prev_permutation</a>
+	 */
+	protected static final boolean prevPerm(final double[] a) {
+		try {
+			final double[] res = prevPermutation(a);
+			System.arraycopy(res, 0, a, 0, a.length);
+			return true;
+		} catch(final NullPointerException e) {
+			final double[] res = reverse(sorted(a));
+			System.arraycopy(res, 0, a, 0, a.length);
+			return false;
+		}
+	}
+	/**
+	 * @param a
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/prev_permutation.html">std::prev_permutation</a>
+	 */
+	protected static final boolean prevPerm(final char[] a) {
+		try {
+			final char[] res = prevPermutation(a);
+			System.arraycopy(res, 0, a, 0, a.length);
+			return true;
+		} catch(final NullPointerException e) {
+			final char[] res = reverse(sorted(a));
+			System.arraycopy(res, 0, a, 0, a.length);
+			return false;
+		}
+	}
+	private static final int[] nextPermutation(final int[] a) {
 		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] < a[i]) {
 				final int j = find(a[i - 1], a, i, a.length - 1);
@@ -497,11 +605,7 @@ public class Utility {
 		}
 		return null;
 	}
-	/**
-	 * @param a
-	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/next_permutation.html">std::next_permutation</a>
-	 */
-	protected static final long[] nextPerm(final long[] a) {
+	private static final long[] nextPermutation(final long[] a) {
 		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] < a[i]) {
 				final int j = find(a[i - 1], a, i, a.length - 1);
@@ -512,11 +616,7 @@ public class Utility {
 		}
 		return null;
 	}
-	/**
-	 * @param a
-	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/next_permutation.html">std::next_permutation</a>
-	 */
-	protected static final double[] nextPerm(final double[] a) {
+	private static final double[] nextPermutation(final double[] a) {
 		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] < a[i]) {
 				final int j = find(a[i - 1], a, i, a.length - 1);
@@ -527,83 +627,61 @@ public class Utility {
 		}
 		return null;
 	}
-	/**
-	 * @param s
-	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/next_permutation.html">std::next_permutation</a>
-	 */
-	protected static final String nextPerm(final String s) {
-		final List<Character> a = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
-		for(int i = a.size(); --i > 0;) {
-			if(a.get(i - 1).compareTo(a.get(i)) < 0) {
-				final int j = find(a.get(i - 1), a, i, a.size() - 1);
-				Collections.swap(a, i - 1, j);
-				Collections.sort(a.subList(i, a.size()));
-				return a.stream().map(String::valueOf).collect(Collectors.joining());
+	private static final char[] nextPermutation(final char[] a) {
+		for(int i = a.length; --i > 0;) {
+			if(a[i - 1] < a[i]) {
+				final int j = find(a[i - 1], a, i, a.length - 1);
+				swap(a, i - 1, j);
+				Arrays.sort(a, i, a.length);
+				return a;
 			}
 		}
 		return null;
 	}
-	/**
-	 * How to Use:
-	 * do {
-	 * 
-	 * } while((a = prevPerm(a)) != null);
-	 * @param a
-	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/prev_permutation.html">std::prev_permutation</a>
-	 */
-	protected static final int[] prevPerm(final int[] a) {
+	private static final int[] prevPermutation(final int[] a) {
 		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] > a[i]) {
 				final int j = findRev(a[i - 1], a, i, a.length - 1);
 				swap(a, i - 1, j);
 				Arrays.sort(a, i, a.length);
-				return reverse(a);
+				reverse(a, i, a.length - 1);
+				return a;
 			}
 		}
 		return null;
 	}
-	/**
-	 * @param a
-	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/prev_permutation.html">std::prev_permutation</a>
-	 */
-	protected static final long[] prevPerm(final long[] a) {
+	private static final long[] prevPermutation(final long[] a) {
 		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] > a[i]) {
 				final int j = findRev(a[i - 1], a, i, a.length - 1);
 				swap(a, i - 1, j);
 				Arrays.sort(a, i, a.length);
-				return reverse(a);
+				reverse(a, i, a.length - 1);
+				return a;
 			}
 		}
 		return null;
 	}
-	/**
-	 * @param a
-	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/prev_permutation.html">std::prev_permutation</a>
-	 */
-	protected static final double[] prevPerm(final double[] a) {
+	private static final double[] prevPermutation(final double[] a) {
 		for(int i = a.length; --i > 0;) {
 			if(a[i - 1] > a[i]) {
 				final int j = findRev(a[i - 1], a, i, a.length - 1);
 				swap(a, i - 1, j);
 				Arrays.sort(a, i, a.length);
-				return reverse(a);
+				reverse(a, i, a.length - 1);
+				return a;
 			}
 		}
 		return null;
 	}
-	/**
-	 * @param s
-	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/prev_permutation.html">std::prev_permutation</a>
-	 */
-	protected static final String prevPerm(final String s) {
-		final List<Character> a = s.chars().mapToObj(i -> (char)i).collect(Collectors.toList());
-		for(int i = a.size(); --i > 0;) {
-			if(a.get(i - 1).compareTo(a.get(i)) > 0) {
-				final int j = findRev(a.get(i - 1), a, i, a.size() - 1);
-				Collections.swap(a, i - 1, j);
-				Collections.sort(a.subList(i, a.size()), Collections.reverseOrder());
-				return a.stream().map(String::valueOf).collect(Collectors.joining());
+	private static final char[] prevPermutation(final char[] a) {
+		for(int i = a.length; --i > 0;) {
+			if(a[i - 1] > a[i]) {
+				final int j = findRev(a[i - 1], a, i, a.length - 1);
+				swap(a, i - 1, j);
+				Arrays.sort(a, i, a.length);
+				reverse(a, i, a.length - 1);
+				return a;
 			}
 		}
 		return null;
@@ -629,12 +707,12 @@ public class Utility {
 		final int m = (s + e + 1) / 2;
 		return a[m] <= dest ? find(dest, a, s, m - 1) : find(dest, a, m, e);
 	}
-	private static final int find(final char dest, final List<Character> a, final int s, final int e) {
+	private static final int find(final char dest, final char[] a, final int s, final int e) {
 		if(s == e) {
 			return s;
 		}
 		final int m = (s + e + 1) / 2;
-		return a.get(m).compareTo(dest) <= 0 ? find(dest, a, s, m - 1) : find(dest, a, m, e);
+		return a[m] <= dest ? find(dest, a, s, m - 1) : find(dest, a, m, e);
 	}
 	private static final int findRev(final int dest, final int[] a, final int s, final int e) {
 		if(s == e) {
@@ -657,12 +735,12 @@ public class Utility {
 		final int m = (s + e + 1) / 2;
 		return a[m] > dest ? findRev(dest, a, s, m - 1) : findRev(dest, a, m, e);
 	}
-	private static final int findRev(final char dest, final List<Character> a, final int s, final int e) {
+	private static final int findRev(final char dest, final char[] a, final int s, final int e) {
 		if(s == e) {
 			return s;
 		}
 		final int m = (s + e + 1) / 2;
-		return a.get(m).compareTo(dest) > 0 ? find(dest, a, s, m - 1) : find(dest, a, m, e);
+		return a[m] > dest ? findRev(dest, a, s, m - 1) : findRev(dest, a, m, e);
 	}
 	/**
 	 * 配列aの中にxがあれば何番目にあるか
@@ -916,6 +994,11 @@ public class Utility {
 	 */
 	public static final double[] sorted(final double[] a){ return Arrays.stream(a).sorted().toArray(); }
 	/**
+	 * @param a
+	 * @return 昇順にソートしたchar型配列
+	 */
+	public static final char[] sorted(final char[] a){ return sorted(new String(a)).toCharArray(); }
+	/**
 	 * @param <T> Comparableなクラス
 	 * @param a
 	 * @return 昇順にソートした総称型配列
@@ -941,6 +1024,11 @@ public class Utility {
 	 * @return 配列がソートされているかどうか
 	 */
 	protected static final boolean isSorted(final double[] a){ return Arrays.equals(a, sorted(a)); }
+	/**
+	 * @param a
+	 * @return 配列がソートされているかどうか
+	 */
+	protected static final boolean isSorted(final char[] a){ return Arrays.equals(a, sorted(a)); }
 	/**
 	 * @param <T> {@link Comparable}なクラス
 	 * @param a
@@ -993,6 +1081,19 @@ public class Utility {
 	}
 	/**
 	 * @param a
+	 * @return 逆順に並び替えたchar型配列
+	 */
+	protected static final char[] reverse(final char[] a) {
+		final int n = a.length;
+		final char[] b = new char[n];
+		for(int i = 0; i <= n / 2; ++i) {
+			b[i] = a[n - 1 - i];
+			b[n - 1 - i] = a[i];
+		}
+		return b;
+	}
+	/**
+	 * @param a
 	 * @return 逆順に並び替えたObjectクラスの配列
 	 */
 	protected static final Object[] reverse(final Object[] a) {
@@ -1003,6 +1104,34 @@ public class Utility {
 			b[n - 1 - i] = a[i];
 		}
 		return b;
+	}
+	private static void reverse(final int[] arr, int start, int end) {
+		while(start < end) {
+			swap(arr, start, end);
+			start++;
+			end--;
+		}
+	}
+	private static void reverse(final long[] arr, int start, int end) {
+		while(start < end) {
+			swap(arr, start, end);
+			start++;
+			end--;
+		}
+	}
+	private static void reverse(final double[] arr, int start, int end) {
+		while(start < end) {
+			swap(arr, start, end);
+			start++;
+			end--;
+		}
+	}
+	private static void reverse(final char[] arr, int start, int end) {
+		while(start < end) {
+			swap(arr, start, end);
+			start++;
+			end--;
+		}
 	}
 	/**
 	 * C++のstd::rotateに相当するメソッド
