@@ -239,6 +239,9 @@ data:
     path: Java/library/structure/pair/Zwei.java
     title: Java/library/structure/pair/Zwei.java
   - icon: ':warning:'
+    path: Java/library/structure/unionfind/MergeUnionFind.java
+    title: Java/library/structure/unionfind/MergeUnionFind.java
+  - icon: ':warning:'
     path: Java/library/structure/unionfind/UndoUnionFind.java
     title: Java/library/structure/unionfind/UndoUnionFind.java
   - icon: ':warning:'
@@ -495,6 +498,9 @@ data:
     path: Java/library/structure/pair/Zwei.java
     title: Java/library/structure/pair/Zwei.java
   - icon: ':warning:'
+    path: Java/library/structure/unionfind/MergeUnionFind.java
+    title: Java/library/structure/unionfind/MergeUnionFind.java
+  - icon: ':warning:'
     path: Java/library/structure/unionfind/UndoUnionFind.java
     title: Java/library/structure/unionfind/UndoUnionFind.java
   - icon: ':warning:'
@@ -524,9 +530,9 @@ data:
     RuntimeError: bundler is not specified: Java/library/structure/unionfind/UnionFind.java\n"
   code: "package library.structure.unionfind;\n\nimport java.util.ArrayList;\nimport\
     \ java.util.Arrays;\nimport java.util.stream.IntStream;\n\n/**\n * UnionFind\n\
-    \ */\npublic final class UnionFind {\n\tprivate final int[] par;\n\t/**\n\t *\
-    \ \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param n \u30B5\u30A4\u30BA\
-    \n\t */\n\tpublic UnionFind(final int n) {\n\t\tpar = new int[n];\n\t\tArrays.fill(par,\
+    \ */\npublic class UnionFind {\n\tprotected final int[] par;\n\t/**\n\t * \u30B3\
+    \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param n \u30B5\u30A4\u30BA\n\t */\n\
+    \tpublic UnionFind(final int n) {\n\t\tpar = new int[n];\n\t\tArrays.fill(par,\
     \ -1);\n\t}\n\t/**\n\t * @param i\n\t * @return i\u306E\u6839\n\t */\n\tpublic\
     \ final int root(final int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i;\
     \ }\n\t/**\n\t * @param i\n\t * @return i\u3092\u542B\u3080\u9023\u7D50\u6210\u5206\
@@ -535,12 +541,12 @@ data:
     \ */\n\tpublic final int size(){ return par.length; }\n\t/**\n\t * i\u3068j\u3092\
     \u30DE\u30FC\u30B8\u3059\u308B\n\t * @param i\n\t * @param j\n\t * @return \u672A\
     \u30DE\u30FC\u30B8\u3067true, \u30DE\u30FC\u30B8\u6E08\u3067false\n\t */\n\tpublic\
-    \ final boolean unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\t\
-    if(i == j) {\n\t\t\treturn false;\n\t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\
-    \tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\t\
-    return true;\n\t}\n\t/**\n\t * i\u3068j\u304C\u540C\u3058\u9023\u7D50\u6210\u5206\
-    \u306B\u6240\u5C5E\u3057\u3066\u3044\u308B\u304B\u3069\u3046\u304B\u5224\u5B9A\
-    \u3059\u308B\n\t * @param i\n\t * @param j\n\t */\n\tpublic final boolean same(final\
+    \ boolean unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i\
+    \ == j) {\n\t\t\treturn false;\n\t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\t\
+    j ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\treturn\
+    \ true;\n\t}\n\t/**\n\t * i\u3068j\u304C\u540C\u3058\u9023\u7D50\u6210\u5206\u306B\
+    \u6240\u5C5E\u3057\u3066\u3044\u308B\u304B\u3069\u3046\u304B\u5224\u5B9A\u3059\
+    \u308B\n\t * @param i\n\t * @param j\n\t */\n\tpublic final boolean same(final\
     \ int i, final int j){ return root(i) == root(j); }\n\t/**\n\t * \u30B0\u30E9\u30D5\
     \u3092\u9023\u7D50\u6210\u5206\u306B\u5206\u3051\u3001\u305D\u306E\u60C5\u5831\
     \u3092\u8FD4\u3059\n\t * @see <a href=\"https://atcoder.github.io/ac-library/production/document_ja/dsu.html\"\
@@ -621,6 +627,7 @@ data:
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
+  - Java/library/structure/unionfind/MergeUnionFind.java
   - Java/library/structure/unionfind/UndoUnionFind.java
   - Java/library/structure/unionfind/WeightedUnionFind.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
@@ -709,6 +716,7 @@ data:
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
+  - Java/library/structure/unionfind/MergeUnionFind.java
   - Java/library/structure/unionfind/UndoUnionFind.java
   - Java/library/structure/unionfind/WeightedUnionFind.java
   - Java/library/structure/DoubleEndedPriorityQueue.java
@@ -723,7 +731,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-25 06:12:01+09:00'
+  timestamp: '2024-02-25 07:14:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/unionfind/UnionFind.java

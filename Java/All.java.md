@@ -236,6 +236,9 @@ data:
     path: Java/library/structure/pair/Zwei.java
     title: Java/library/structure/pair/Zwei.java
   - icon: ':warning:'
+    path: Java/library/structure/unionfind/MergeUnionFind.java
+    title: Java/library/structure/unionfind/MergeUnionFind.java
+  - icon: ':warning:'
     path: Java/library/structure/unionfind/UndoUnionFind.java
     title: Java/library/structure/unionfind/UndoUnionFind.java
   - icon: ':warning:'
@@ -491,6 +494,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/pair/Zwei.java
     title: Java/library/structure/pair/Zwei.java
+  - icon: ':warning:'
+    path: Java/library/structure/unionfind/MergeUnionFind.java
+    title: Java/library/structure/unionfind/MergeUnionFind.java
   - icon: ':warning:'
     path: Java/library/structure/unionfind/UndoUnionFind.java
     title: Java/library/structure/unionfind/UndoUnionFind.java
@@ -1558,61 +1564,67 @@ data:
     \ k) {\n\t\tif(dep[u] < k) {\n\t\t\treturn -1;\n\t\t}\n\t\tfor(int i = log; --i\
     \ >= 0;) {\n\t\t\tif(((k >> i) % 2) == 1) {\n\t\t\t\tu = table[i][u];\n\t\t\t\
     }\n\t\t}\n\t\treturn u;\n\t}\n\tfinal int dist(final int u, final int v){ return\
-    \ sum[u] + sum[v] - 2 * sum[query(u, v)]; }\n}\n\nfinal class UnionFind {\n\t\
-    private final int[] par;\n\tUnionFind(final int n) {\n\t\tpar = new int[n];\n\t\
-    \tArrays.fill(par, -1);\n\t}\n\tfinal int root(final int i){ return par[i] >=\
-    \ 0 ? par[i] = root(par[i]) : i; }\n\tfinal int size(final int i){ return -par[root(i)];\
-    \ }\n\tfinal int size(){ return par.length; }\n\tfinal boolean unite(int i, int\
-    \ j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) {\n\t\t\treturn false;\n\
-    \t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\
-    \tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\t}\n\tfinal boolean same(final\
-    \ int i, final int j){ return root(i) == root(j); }\n\tfinal ArrayList<ArrayList<Integer>>\
-    \ groups() {\n\t\tfinal int n = par.length;\n\t\tfinal ArrayList<ArrayList<Integer>>\
-    \ res = new ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> res.add(new\
-    \ ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\
-    \t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n}\n\nfinal class\
-    \ WeightedUnionFind {\n\tprivate final int[] par;\n\tprivate final long[] weight;\n\
-    \tWeightedUnionFind(final int n) {\n\t\tpar = new int[n];\n\t\tweight = new long[n];\n\
-    \t\tArrays.fill(par, -1);\n\t}\n\tfinal int root(final int i) {\n\t\tif(par[i]\
-    \ < 0) {\n\t\t\treturn i;\n\t\t}\n\t\tfinal int r = root(par[i]);\n\t\tweight[i]\
-    \ += weight[par[i]];\n\t\treturn par[i] = r;\n\t}\n\tfinal long get(final int\
-    \ i) {\n\t\troot(i);\n\t\treturn weight[i];\n\t}\n\tfinal long diff(final int\
-    \ x, final int y){ return get(y) - get(x); }\n\tfinal int unite(int x, int y,\
-    \ long w) {\n\t\tw += diff(y, x);\n\t\tx = root(x);\n\t\ty = root(y);\n\t\tif(x\
-    \ == y) {\n\t\t\treturn w == 0 ? 0 : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\
-    \t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x] +=\
-    \ par[y];\n\t\tpar[y] = x;\n\t\tweight[y] = w;\n\t\treturn 1;\n\t}\n\tfinal boolean\
-    \ same(final int x, final int y){ return root(x) == root(y); }\n}\n\nfinal class\
-    \ UndoUnionFind {\n\tprivate final int[] par;\n\tprivate final Stack<Pair<Integer,\
-    \ Integer>> his;\n\tUndoUnionFind(final int n) {\n\t    par = new int[n];\n\t\
-    \    Arrays.fill(par, -1);\n\t    his = new Stack<>();\n\t}\n\tfinal boolean unite(int\
-    \ x, int y) {\n\t\tx = root(x);\n\t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\
-    \t\this.add(Pair.of(y, par[y]));\n\t\tif(x == y) {\n\t\t\treturn false;\n\t\t\
-    }\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t\
-    }\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\treturn true;\n\t}\n\tfinal int\
-    \ root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\t\treturn\
-    \ root(par[i]);\n\t}\n\tfinal int size(final int i){ return -par[root(i)]; }\n\
-    \tfinal void undo() {\n\t\tfinal Pair<Integer, Integer> pop1 = his.pop(), pop2\
-    \ = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\t\tpar[pop2.first] = pop2.second;\n\
-    \t}\n\tfinal void snapshot() {\n\t\twhile(!his.empty()) {\n\t\t\this.pop();\n\t\
-    \t}\n\t}\n\tfinal void rollback() {\n\t\twhile(!his.empty()) {\n\t\t\tundo();\n\
-    \t\t}\n\t}\n}\n\nfinal class PrimeTable {\n\tprivate final int[] p;\n\tprivate\
-    \ final boolean[] sieve;\n\tPrimeTable(final int n) {\n\t\tsieve = new boolean[n\
-    \ + 1];\n\t\tArrays.fill(sieve, true);\n\t\tsieve[0] = sieve[1] = false;\n\t\t\
-    for(int i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[i]) {\n\t\t\t\tcontinue;\n\t\t\t\
-    }\n\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\tsieve[j] = false;\n\t\t\
-    \t}\n\t\t}\n\t\tfinal int size = (int) IntStream.rangeClosed(0, n).filter(i ->\
-    \ sieve[i]).count();\n\t\tint j = 0;\n\t\tp = new int[size];\n\t\tfor(int i =\
-    \ 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\t\t}\n\t\t\
-    }\n\t}\n\tfinal boolean[] table(){ return sieve; }\n\tfinal int[] get(){ return\
-    \ p; }\n}\n\nfinal class PrimeFactor {\n\tprivate final int[] spf;\n\tPrimeFactor(final\
-    \ int n) {\n\t\tspf = Utility.iota(n + 1).toArray();\n\t\tfor(int i = 2; i * i\
-    \ <= n; ++i) {\n\t\t\tif(spf[i] != i) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(int\
-    \ j = i * i; j <= n; j += i) {\n\t\t\t\tif(spf[j] == j) {\n\t\t\t\t\tspf[j] =\
-    \ i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal TreeMap<Integer, Integer> get(int\
-    \ n) {\n\t\tfinal TreeMap<Integer, Integer> m = new TreeMap<>();\n\t\twhile(n\
-    \ != 1) {\n\t\t\tm.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\t\
-    \t}\n\t\treturn m;\n\t}\n}\n\nfinal class PrimeCounter {\n\tprivate final int\
+    \ sum[u] + sum[v] - 2 * sum[query(u, v)]; }\n}\n\nclass UnionFind {\n\tprotected\
+    \ final int[] par;\n\tUnionFind(final int n) {\n\t\tpar = new int[n];\n\t\tArrays.fill(par,\
+    \ -1);\n\t}\n\tprotected final int root(final int i){ return par[i] >= 0 ? par[i]\
+    \ = root(par[i]) : i; }\n\tprotected final int size(final int i){ return -par[root(i)];\
+    \ }\n\tprotected final int size(){ return par.length; }\n\tprotected boolean unite(int\
+    \ i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) {\n\t\t\treturn\
+    \ false;\n\t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\
+    \t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\t}\n\tprotected\
+    \ final boolean same(final int i, final int j){ return root(i) == root(j); }\n\
+    \tprotected final ArrayList<ArrayList<Integer>> groups() {\n\t\tfinal int n =\
+    \ par.length;\n\t\tfinal ArrayList<ArrayList<Integer>> res = new ArrayList<>(n);\n\
+    \t\tIntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\
+    \t\treturn res;\n\t}\n}\n\nabstract class MergeUnionFind<T> extends UnionFind\
+    \ {\n\tMergeUnionFind(final int n){ super(n); }\n\tabstract void merge(final int\
+    \ i, final int j);\n\tabstract T get(final int i);\n\tprotected final boolean\
+    \ unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) {\n\
+    \t\t\treturn false;\n\t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\
+    \ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\tmerge(i, j);\n\t\
+    \treturn true;\n\t}\n}\n\nfinal class WeightedUnionFind {\n\tprivate final int[]\
+    \ par;\n\tprivate final long[] weight;\n\tWeightedUnionFind(final int n) {\n\t\
+    \tpar = new int[n];\n\t\tweight = new long[n];\n\t\tArrays.fill(par, -1);\n\t\
+    }\n\tfinal int root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t\
+    }\n\t\tfinal int r = root(par[i]);\n\t\tweight[i] += weight[par[i]];\n\t\treturn\
+    \ par[i] = r;\n\t}\n\tfinal long get(final int i) {\n\t\troot(i);\n\t\treturn\
+    \ weight[i];\n\t}\n\tfinal long diff(final int x, final int y){ return get(y)\
+    \ - get(x); }\n\tfinal int unite(int x, int y, long w) {\n\t\tw += diff(y, x);\n\
+    \t\tx = root(x);\n\t\ty = root(y);\n\t\tif(x == y) {\n\t\t\treturn w == 0 ? 0\
+    \ : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\t\
+    x ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\tweight[y]\
+    \ = w;\n\t\treturn 1;\n\t}\n\tfinal boolean same(final int x, final int y){ return\
+    \ root(x) == root(y); }\n}\n\nfinal class UndoUnionFind {\n\tprivate final int[]\
+    \ par;\n\tprivate final Stack<Pair<Integer, Integer>> his;\n\tUndoUnionFind(final\
+    \ int n) {\n\t    par = new int[n];\n\t    Arrays.fill(par, -1);\n\t    his =\
+    \ new Stack<>();\n\t}\n\tfinal boolean unite(int x, int y) {\n\t\tx = root(x);\n\
+    \t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\t\this.add(Pair.of(y, par[y]));\n\
+    \t\tif(x == y) {\n\t\t\treturn false;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\t\
+    x ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y]\
+    \ = x;\n\t\treturn true;\n\t}\n\tfinal int root(final int i) {\n\t\tif(par[i]\
+    \ < 0) {\n\t\t\treturn i;\n\t\t}\n\t\treturn root(par[i]);\n\t}\n\tfinal int size(final\
+    \ int i){ return -par[root(i)]; }\n\tfinal void undo() {\n\t\tfinal Pair<Integer,\
+    \ Integer> pop1 = his.pop(), pop2 = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\
+    \t\tpar[pop2.first] = pop2.second;\n\t}\n\tfinal void snapshot() {\n\t\twhile(!his.empty())\
+    \ {\n\t\t\this.pop();\n\t\t}\n\t}\n\tfinal void rollback() {\n\t\twhile(!his.empty())\
+    \ {\n\t\t\tundo();\n\t\t}\n\t}\n}\n\nfinal class PrimeTable {\n\tprivate final\
+    \ int[] p;\n\tprivate final boolean[] sieve;\n\tPrimeTable(final int n) {\n\t\t\
+    sieve = new boolean[n + 1];\n\t\tArrays.fill(sieve, true);\n\t\tsieve[0] = sieve[1]\
+    \ = false;\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[i]) {\n\t\t\t\t\
+    continue;\n\t\t\t}\n\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\tsieve[j]\
+    \ = false;\n\t\t\t}\n\t\t}\n\t\tfinal int size = (int) IntStream.rangeClosed(0,\
+    \ n).filter(i -> sieve[i]).count();\n\t\tint j = 0;\n\t\tp = new int[size];\n\t\
+    \tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\
+    \t\t}\n\t\t}\n\t}\n\tfinal boolean[] table(){ return sieve; }\n\tfinal int[] get(){\
+    \ return p; }\n}\n\nfinal class PrimeFactor {\n\tprivate final int[] spf;\n\t\
+    PrimeFactor(final int n) {\n\t\tspf = Utility.iota(n + 1).toArray();\n\t\tfor(int\
+    \ i = 2; i * i <= n; ++i) {\n\t\t\tif(spf[i] != i) {\n\t\t\t\tcontinue;\n\t\t\t\
+    }\n\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\tif(spf[j] == j) {\n\t\t\
+    \t\t\tspf[j] = i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal TreeMap<Integer, Integer>\
+    \ get(int n) {\n\t\tfinal TreeMap<Integer, Integer> m = new TreeMap<>();\n\t\t\
+    while(n != 1) {\n\t\t\tm.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\
+    \t\t}\n\t\treturn m;\n\t}\n}\n\nfinal class PrimeCounter {\n\tprivate final int\
     \ sq;\n\tprivate final boolean[] p;\n\tprivate final int[] psum;\n\tprivate final\
     \ ArrayList<Integer> ps;\n\tPrimeCounter(final long n) {\n\t\tsq = (int) kthRooti(n,\
     \ 2);\n\t\tpsum = new int[sq + 1];\n\t\tp = new PrimeTable(sq).table();\n\t\t\
@@ -2429,6 +2441,7 @@ data:
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
+  - Java/library/structure/unionfind/MergeUnionFind.java
   - Java/library/structure/unionfind/UndoUnionFind.java
   - Java/library/structure/unionfind/WeightedUnionFind.java
   - Java/library/structure/unionfind/UnionFind.java
@@ -2517,6 +2530,7 @@ data:
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
+  - Java/library/structure/unionfind/MergeUnionFind.java
   - Java/library/structure/unionfind/UndoUnionFind.java
   - Java/library/structure/unionfind/WeightedUnionFind.java
   - Java/library/structure/unionfind/UnionFind.java
@@ -2531,7 +2545,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-25 06:12:01+09:00'
+  timestamp: '2024-02-25 07:14:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

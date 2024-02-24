@@ -439,6 +439,9 @@ data:
   - name: Java/library/structure/unionfind
     pages:
     - icon: ':warning:'
+      path: Java/library/structure/unionfind/MergeUnionFind.java
+      title: Java/library/structure/unionfind/MergeUnionFind.java
+    - icon: ':warning:'
       path: Java/library/structure/unionfind/UndoUnionFind.java
       title: Java/library/structure/unionfind/UndoUnionFind.java
     - icon: ':warning:'

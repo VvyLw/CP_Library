@@ -239,6 +239,9 @@ data:
     path: Java/library/structure/pair/Zwei.java
     title: Java/library/structure/pair/Zwei.java
   - icon: ':warning:'
+    path: Java/library/structure/unionfind/MergeUnionFind.java
+    title: Java/library/structure/unionfind/MergeUnionFind.java
+  - icon: ':warning:'
     path: Java/library/structure/unionfind/UndoUnionFind.java
     title: Java/library/structure/unionfind/UndoUnionFind.java
   - icon: ':warning:'
@@ -494,6 +497,9 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/pair/Zwei.java
     title: Java/library/structure/pair/Zwei.java
+  - icon: ':warning:'
+    path: Java/library/structure/unionfind/MergeUnionFind.java
+    title: Java/library/structure/unionfind/MergeUnionFind.java
   - icon: ':warning:'
     path: Java/library/structure/unionfind/UndoUnionFind.java
     title: Java/library/structure/unionfind/UndoUnionFind.java
@@ -1410,6 +1416,7 @@ data:
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
+  - Java/library/structure/unionfind/MergeUnionFind.java
   - Java/library/structure/unionfind/UndoUnionFind.java
   - Java/library/structure/unionfind/WeightedUnionFind.java
   - Java/library/structure/unionfind/UnionFind.java
@@ -1498,6 +1505,7 @@ data:
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
+  - Java/library/structure/unionfind/MergeUnionFind.java
   - Java/library/structure/unionfind/UndoUnionFind.java
   - Java/library/structure/unionfind/WeightedUnionFind.java
   - Java/library/structure/unionfind/UnionFind.java
@@ -1513,7 +1521,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-25 06:12:01+09:00'
+  timestamp: '2024-02-25 07:14:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java

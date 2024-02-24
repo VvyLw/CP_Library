@@ -167,6 +167,9 @@ data:
     path: Java/library/math/prefixsum/PrefixSum2D.java
     title: Java/library/math/prefixsum/PrefixSum2D.java
   - icon: ':warning:'
+    path: Java/library/other/InclusiveScan.java
+    title: Java/library/other/InclusiveScan.java
+  - icon: ':warning:'
     path: Java/library/other/SkewHeap.java
     title: Java/library/other/SkewHeap.java
   - icon: ':warning:'
@@ -235,9 +238,6 @@ data:
   - icon: ':warning:'
     path: Java/library/structure/pair/Zwei.java
     title: Java/library/structure/pair/Zwei.java
-  - icon: ':warning:'
-    path: Java/library/structure/unionfind/MergeUnionFind.java
-    title: Java/library/structure/unionfind/MergeUnionFind.java
   - icon: ':warning:'
     path: Java/library/structure/unionfind/UndoUnionFind.java
     title: Java/library/structure/unionfind/UndoUnionFind.java
@@ -426,6 +426,9 @@ data:
     path: Java/library/math/prefixsum/PrefixSum2D.java
     title: Java/library/math/prefixsum/PrefixSum2D.java
   - icon: ':warning:'
+    path: Java/library/other/InclusiveScan.java
+    title: Java/library/other/InclusiveScan.java
+  - icon: ':warning:'
     path: Java/library/other/SkewHeap.java
     title: Java/library/other/SkewHeap.java
   - icon: ':warning:'
@@ -495,9 +498,6 @@ data:
     path: Java/library/structure/pair/Zwei.java
     title: Java/library/structure/pair/Zwei.java
   - icon: ':warning:'
-    path: Java/library/structure/unionfind/MergeUnionFind.java
-    title: Java/library/structure/unionfind/MergeUnionFind.java
-  - icon: ':warning:'
     path: Java/library/structure/unionfind/UndoUnionFind.java
     title: Java/library/structure/unionfind/UndoUnionFind.java
   - icon: ':warning:'
@@ -527,23 +527,14 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/other/InclusiveScan.java\n"
-  code: "package library.other;\n\nimport java.util.Arrays;\nimport java.util.function.LongBinaryOperator;\n\
-    \n/**\n * C++\u306Estd::inclusive_scan\u306B\u76F8\u5F53\u3059\u308B\u30AF\u30E9\
-    \u30B9\n */\npublic class InclusiveScan {\n\tprotected final int n;\n\tprotected\
-    \ long[] s;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param\
-    \ a\n\t * @param op \u4E8C\u9805\u6F14\u7B97\n\t */\n\tpublic InclusiveScan(final\
-    \ int[] a, final LongBinaryOperator op) {\n\t\tn = a.length;\n\t\ts = Arrays.stream(a).asLongStream().toArray();\n\
-    \t\tArrays.parallelPrefix(s, op);\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\
-    \u30AF\u30BF\n\t * @param a\n\t * @param op \u4E8C\u9805\u6F14\u7B97\n\t */\n\t\
-    public InclusiveScan(final long[] a, final LongBinaryOperator op) {\n\t\tn = a.length;\n\
-    \t\ts = a.clone();\n\t\tArrays.parallelPrefix(s, op);\n\t}\n\t/**\n\t * @see <a\
-    \ href=\"https://cpprefjp.github.io/reference/numeric/inclusive_scan.html\">std::inclusive_scan</a>\
-    \ \n\t */\n\tpublic long[] get(){ return s; }\n\t/**\n\t * \u4E3B\u306B\u7D2F\u7A4D\
-    \u548C\u306E\u5DEE\u3092\u6C42\u3081\u308B\u306E\u306B\u4F7F\u3046\n\t * @param\
-    \ l\n\t * @param r\n\t * @return \u534A\u958B\u533A\u9593[l, r)\u306B\u304A\u3051\
-    \u308Bs[l]\u3068s[r]\u3068\u306E\u5DEE\n\t * @see PrefixSum\n\t */\n\tpublic long\
-    \ query(final int l, final int r){ return s[r] - s[l]; }\n}"
+    RuntimeError: bundler is not specified: Java/library/structure/unionfind/MergeUnionFind.java\n"
+  code: "package library.structure.unionfind;\n\npublic abstract class MergeUnionFind<T>\
+    \ extends UnionFind {\n\tpublic MergeUnionFind(final int n){ super(n); }\n\tabstract\
+    \ void merge(final int i, final int j);\n\tabstract T get(final int i);\n\tpublic\
+    \ final boolean unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\t\
+    if(i == j) {\n\t\t\treturn false;\n\t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\
+    \tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\t\
+    merge(i, j);\n\t\treturn true;\n\t}\n}\n"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -600,6 +591,7 @@ data:
   - Java/library/core/Main.java
   - Java/library/other/Why.java
   - Java/library/other/SuffixArray.java
+  - Java/library/other/InclusiveScan.java
   - Java/library/other/SkewHeap.java
   - Java/library/structure/DualSegmentTree.java
   - Java/library/structure/pair/IntPair.java
@@ -615,7 +607,6 @@ data:
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
-  - Java/library/structure/unionfind/MergeUnionFind.java
   - Java/library/structure/unionfind/UndoUnionFind.java
   - Java/library/structure/unionfind/WeightedUnionFind.java
   - Java/library/structure/unionfind/UnionFind.java
@@ -632,7 +623,7 @@ data:
   - Java/All.java
   - Java/AOJ.java
   isVerificationFile: false
-  path: Java/library/other/InclusiveScan.java
+  path: Java/library/structure/unionfind/MergeUnionFind.java
   requiredBy:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -689,6 +680,7 @@ data:
   - Java/library/core/Main.java
   - Java/library/other/Why.java
   - Java/library/other/SuffixArray.java
+  - Java/library/other/InclusiveScan.java
   - Java/library/other/SkewHeap.java
   - Java/library/structure/DualSegmentTree.java
   - Java/library/structure/pair/IntPair.java
@@ -704,7 +696,6 @@ data:
   - Java/library/structure/lazysegmenttree/RUMX.java
   - Java/library/structure/SparseTable.java
   - Java/library/structure/SegmentTree.java
-  - Java/library/structure/unionfind/MergeUnionFind.java
   - Java/library/structure/unionfind/UndoUnionFind.java
   - Java/library/structure/unionfind/WeightedUnionFind.java
   - Java/library/structure/unionfind/UnionFind.java
@@ -723,10 +714,10 @@ data:
   timestamp: '2024-02-25 07:14:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/other/InclusiveScan.java
+documentation_of: Java/library/structure/unionfind/MergeUnionFind.java
 layout: document
 redirect_from:
-- /library/Java/library/other/InclusiveScan.java
-- /library/Java/library/other/InclusiveScan.java.html
-title: Java/library/other/InclusiveScan.java
+- /library/Java/library/structure/unionfind/MergeUnionFind.java
+- /library/Java/library/structure/unionfind/MergeUnionFind.java.html
+title: Java/library/structure/unionfind/MergeUnionFind.java
 ---
