@@ -2694,7 +2694,6 @@ final class UndoUnionFind {
 }
 
 final class PrimeTable {
-	private final int size;
 	private final int[] p;
 	private final boolean[] sieve;
 	PrimeTable(final int n) {
@@ -2709,7 +2708,7 @@ final class PrimeTable {
 				sieve[j] = false;
 			}
 		}
-		size = (int) IntStream.rangeClosed(0, n).filter(i -> sieve[i]).count();
+		final int size = (int) IntStream.rangeClosed(0, n).filter(i -> sieve[i]).count();
 		int j = 0;
 		p = new int[size];
 		for(int i = 2; i <= n; ++i) {
