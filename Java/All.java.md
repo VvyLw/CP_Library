@@ -1596,23 +1596,23 @@ data:
     \ = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\t\tpar[pop2.first] = pop2.second;\n\
     \t}\n\tfinal void snapshot() {\n\t\twhile(!his.empty()) {\n\t\t\this.pop();\n\t\
     \t}\n\t}\n\tfinal void rollback() {\n\t\twhile(!his.empty()) {\n\t\t\tundo();\n\
-    \t\t}\n\t}\n}\n\nfinal class PrimeTable {\n\tprivate final int size;\n\tprivate\
-    \ final int[] p;\n\tprivate final boolean[] sieve;\n\tPrimeTable(final int n)\
-    \ {\n\t\tsieve = new boolean[n + 1];\n\t\tArrays.fill(sieve, true);\n\t\tsieve[0]\
-    \ = sieve[1] = false;\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[i])\
-    \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\
-    \t\t\tsieve[j] = false;\n\t\t\t}\n\t\t}\n\t\tsize = (int) IntStream.rangeClosed(0,\
-    \ n).filter(i -> sieve[i]).count();\n\t\tint j = 0;\n\t\tp = new int[size];\n\t\
-    \tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\
-    \t\t}\n\t\t}\n\t}\n\tfinal boolean[] table(){ return sieve; }\n\tfinal int[] get(){\
-    \ return p; }\n}\n\nfinal class PrimeFactor {\n\tprivate final int[] spf;\n\t\
-    PrimeFactor(final int n) {\n\t\tspf = Utility.iota(n + 1).toArray();\n\t\tfor(int\
-    \ i = 2; i * i <= n; ++i) {\n\t\t\tif(spf[i] != i) {\n\t\t\t\tcontinue;\n\t\t\t\
-    }\n\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\tif(spf[j] == j) {\n\t\t\
-    \t\t\tspf[j] = i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal TreeMap<Integer, Integer>\
-    \ get(int n) {\n\t\tfinal TreeMap<Integer, Integer> m = new TreeMap<>();\n\t\t\
-    while(n != 1) {\n\t\t\tm.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\
-    \t\t}\n\t\treturn m;\n\t}\n}\n\nfinal class PrimeCounter {\n\tprivate final int\
+    \t\t}\n\t}\n}\n\nfinal class PrimeTable {\n\tprivate final int[] p;\n\tprivate\
+    \ final boolean[] sieve;\n\tPrimeTable(final int n) {\n\t\tsieve = new boolean[n\
+    \ + 1];\n\t\tArrays.fill(sieve, true);\n\t\tsieve[0] = sieve[1] = false;\n\t\t\
+    for(int i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[i]) {\n\t\t\t\tcontinue;\n\t\t\t\
+    }\n\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\tsieve[j] = false;\n\t\t\
+    \t}\n\t\t}\n\t\tfinal int size = (int) IntStream.rangeClosed(0, n).filter(i ->\
+    \ sieve[i]).count();\n\t\tint j = 0;\n\t\tp = new int[size];\n\t\tfor(int i =\
+    \ 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\t\t}\n\t\t\
+    }\n\t}\n\tfinal boolean[] table(){ return sieve; }\n\tfinal int[] get(){ return\
+    \ p; }\n}\n\nfinal class PrimeFactor {\n\tprivate final int[] spf;\n\tPrimeFactor(final\
+    \ int n) {\n\t\tspf = Utility.iota(n + 1).toArray();\n\t\tfor(int i = 2; i * i\
+    \ <= n; ++i) {\n\t\t\tif(spf[i] != i) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(int\
+    \ j = i * i; j <= n; j += i) {\n\t\t\t\tif(spf[j] == j) {\n\t\t\t\t\tspf[j] =\
+    \ i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal TreeMap<Integer, Integer> get(int\
+    \ n) {\n\t\tfinal TreeMap<Integer, Integer> m = new TreeMap<>();\n\t\twhile(n\
+    \ != 1) {\n\t\t\tm.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\t\
+    \t}\n\t\treturn m;\n\t}\n}\n\nfinal class PrimeCounter {\n\tprivate final int\
     \ sq;\n\tprivate final boolean[] p;\n\tprivate final int[] psum;\n\tprivate final\
     \ ArrayList<Integer> ps;\n\tPrimeCounter(final long n) {\n\t\tsq = (int) kthRooti(n,\
     \ 2);\n\t\tpsum = new int[sq + 1];\n\t\tp = new PrimeTable(sq).table();\n\t\t\
@@ -2531,7 +2531,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-25 05:10:06+09:00'
+  timestamp: '2024-02-25 06:12:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
