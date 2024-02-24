@@ -521,14 +521,14 @@ data:
     \n        while(i>>=1LL) dat[i]=f(dat[2*i],dat[2*i+1]);\r\n    }\r\n    T query(int\
     \ a, int b) const {\r\n        T l=e,r=e;\r\n        for(a+=n, b+=n; a<b; a>>=1LL,b>>=1LL)\
     \ {\r\n            if(a&1) l=f(l,dat[a++]);\r\n            if(b&1) r=f(dat[--b],r);\r\
-    \n        }\r\n        return f(l,r);\r\n    }\r\n    template <class Boolean=bool>\
-    \ inline int find_left(int r, const Boolean &fn) {\r\n        if(!r) return 0;\r\
-    \n        int h=0,i=r+n;\r\n        T val=e;\r\n        for(; h <= rank; h++)\
-    \ if(i>>h&1){\r\n            T val2=f(val,dat[i>>h^1]);\r\n            if(fn(val2)){\r\
-    \n                i -= 1<<h;\r\n                if(i==n) return 0;\r\n       \
-    \         val=val2;\r\n            }\r\n            else break;\r\n        }\r\
-    \n        for(; h--;){\r\n            T val2 = f(val,dat[(i>>h)-1]);\r\n     \
-    \       if(fn(val2)){\r\n                i-=1<<h;\r\n                if(i==n)\
+    \n        }\r\n        return f(l,r);\r\n    }\r\n    T alle() const { return\
+    \ dat[1]; }\r\n    template <class Boolean=bool> inline int find_left(int r, const\
+    \ Boolean &fn) {\r\n        if(!r) return 0;\r\n        int h=0,i=r+n;\r\n   \
+    \     T val=e;\r\n        for(; h <= rank; h++) if(i>>h&1){\r\n            T val2=f(val,dat[i>>h^1]);\r\
+    \n            if(fn(val2)){\r\n                i -= 1<<h;\r\n                if(i==n)\
+    \ return 0;\r\n                val=val2;\r\n            }\r\n            else\
+    \ break;\r\n        }\r\n        for(; h--;){\r\n            T val2 = f(val,dat[(i>>h)-1]);\r\
+    \n            if(fn(val2)){\r\n                i-=1<<h;\r\n                if(i==n)\
     \ return 0;\r\n                val=val2;\r\n            }\r\n        }\r\n   \
     \     return i-n;\r\n    }\r\n    template <class Boolean=bool> inline int find_right(int\
     \ l, const Boolean &fn) {\r\n        if(l==fine) return fine;\r\n        int h=0,i=l+n;\r\
@@ -578,7 +578,7 @@ data:
   isVerificationFile: true
   path: test/segtree.test.cpp
   requiredBy: []
-  timestamp: '2024-02-22 09:22:35+09:00'
+  timestamp: '2024-02-24 12:04:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segtree.test.cpp

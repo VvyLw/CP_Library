@@ -1067,67 +1067,62 @@ data:
     \t\tfinal double[][] b = new double[w][h];\n\t\tIntStream.range(0, h).forEach(i\
     \ -> {\n\t\t\tArrays.setAll(b[i], j -> a[j][i]);\n\t\t});\n\t\tIntStream.range(0,\
     \ w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\t/**\n\t * @param\
-    \ s\n\t * @return \u6587\u5B57\u5217\u914D\u5217\u3092char\u578B\u4E8C\u6B21\u5143\
-    \u914D\u5217\u3068\u898B\u3066\u53F3\u56DE\u8EE2\u3055\u305B\u305F\u3082\u306E\
-    \n\t */\n\tprotected static final String[] rotateR(final String[] s) {\n\t\tfinal\
-    \ int h = s.length, w = s[0].length();\n\t\tfinal char[][] t = new char[w][h];\n\
-    \t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j\
-    \ -> t[j][i] = s[i].charAt(j));\n\t\t});\n\t\tIntStream.range(0, w).forEach(i\
-    \ -> t[i] = new StringBuilder(new String(t[i])).reverse().toString().toCharArray());\n\
-    \t\tfinal String[] res = new String[w];\n\t\tArrays.setAll(res, i -> String.valueOf(t[i]));\n\
-    \t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @return \u4E8C\u6B21\u5143\u914D\
-    \u5217\u3092\u5DE6\u56DE\u8EE2\u3055\u305B\u305F\u3082\u306E\n\t */\n\tprotected\
-    \ static final int[][] rotateL(final int[][] a) {\n\t\tfinal int h = a.length,\
-    \ w = a[0].length;\n\t\tfinal int[][] b = new int[w][h];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> {\n\t\t\tArrays.setAll(b[i], j -> a[j][w - i - 1]);\n\t\t});\n\
-    \t\treturn b;\n\t}\n\t/**\n\t * @param a\n\t * @return \u4E8C\u6B21\u5143\u914D\
-    \u5217\u3092\u5DE6\u56DE\u8EE2\u3055\u305B\u305F\u3082\u306E\n\t */\n\tprotected\
-    \ static final long[][] rotateL(final long[][] a) {\n\t\tfinal int h = a.length,\
-    \ w = a[0].length;\n\t\tfinal long[][] b = new long[w][h];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> {\n\t\t\tArrays.setAll(b[i], j -> a[j][w - i - 1]);\n\t\t});\n\
-    \t\treturn b;\n\t}\n\t/**\n\t * @param a\n\t * @return \u4E8C\u6B21\u5143\u914D\
-    \u5217\u3092\u5DE6\u56DE\u8EE2\u3055\u305B\u305F\u3082\u306E\n\t */\n\tprotected\
-    \ static final double[][] rotateL(final double[][] a) {\n\t\tfinal int h = a.length,\
-    \ w = a[0].length;\n\t\tfinal double[][] b = new double[w][h];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> {\n\t\t\tArrays.setAll(b[i], j -> a[j][w - i - 1]);\n\t\t});\n\
-    \t\treturn b;\n\t}\n\t/**\n\t * @param s\n\t * @return \u6587\u5B57\u5217\u914D\
-    \u5217\u3092char\u578B\u4E8C\u6B21\u5143\u914D\u5217\u3068\u898B\u3066\u5DE6\u56DE\
-    \u8EE2\u3055\u305B\u305F\u3082\u306E\n\t */\n\tprotected static final String[]\
-    \ rotateL(final String[] s) {\n\t\tfinal int h = s.length, w = s[0].length();\n\
-    \t\tfinal char[][] t = new char[w][h];\n\t\tIntStream.range(0, h).forEach(i ->\
-    \ {\n\t\t\tIntStream.range(0, w).forEach(j -> t[w - j - 1][i] = s[i].charAt(j));\n\
-    \t\t});\n\t\tfinal String[] res = new String[w];\n\t\tArrays.setAll(res, i ->\
-    \ String.valueOf(t[i]));\n\t\treturn res;\n\t}\n\t/**\n\t * \u914D\u5217\u306E\
-    i\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\u308C\u66FF\u3048\u308B\n\t * @param\
-    \ a\n\t * @param i\n\t * @param j\n\t * @see <a href=\"https://cpprefjp.github.io/reference/utility/swap.html\"\
-    >std::swap</a>\n\t */\n\tpublic static final void swap(final int[] a, final int\
+    \ a\n\t * @return \u4E8C\u6B21\u5143\u914D\u5217\u3092\u53F3\u56DE\u8EE2\u3055\
+    \u305B\u305F\u3082\u306E\n\t */\n\tprotected static final char[][] rotateR(final\
+    \ char[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\t\tfinal char[][]\
+    \ b = new char[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0,\
+    \ w).forEach(j -> b[j][i] = a[i][j]);\n\t\t});\n\t\tIntStream.range(0, w).forEach(i\
+    \ -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\t/**\n\t * @param a\n\t * @return\
+    \ \u4E8C\u6B21\u5143\u914D\u5217\u3092\u5DE6\u56DE\u8EE2\u3055\u305B\u305F\u3082\
+    \u306E\n\t */\n\tprotected static final int[][] rotateL(final int[][] a) {\n\t\
+    \tfinal int h = a.length, w = a[0].length;\n\t\tfinal int[][] b = new int[w][h];\n\
+    \t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tArrays.setAll(b[i], j -> a[j][w\
+    \ - i - 1]);\n\t\t});\n\t\treturn b;\n\t}\n\t/**\n\t * @param a\n\t * @return\
+    \ \u4E8C\u6B21\u5143\u914D\u5217\u3092\u5DE6\u56DE\u8EE2\u3055\u305B\u305F\u3082\
+    \u306E\n\t */\n\tprotected static final long[][] rotateL(final long[][] a) {\n\
+    \t\tfinal int h = a.length, w = a[0].length;\n\t\tfinal long[][] b = new long[w][h];\n\
+    \t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tArrays.setAll(b[i], j -> a[j][w\
+    \ - i - 1]);\n\t\t});\n\t\treturn b;\n\t}\n\t/**\n\t * @param a\n\t * @return\
+    \ \u4E8C\u6B21\u5143\u914D\u5217\u3092\u5DE6\u56DE\u8EE2\u3055\u305B\u305F\u3082\
+    \u306E\n\t */\n\tprotected static final double[][] rotateL(final double[][] a)\
+    \ {\n\t\tfinal int h = a.length, w = a[0].length;\n\t\tfinal double[][] b = new\
+    \ double[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tArrays.setAll(b[i],\
+    \ j -> a[j][w - i - 1]);\n\t\t});\n\t\treturn b;\n\t}\n\t/**\n\t * @param a\n\t\
+    \ * @return \u4E8C\u6B21\u5143\u914D\u5217\u3092\u5DE6\u56DE\u8EE2\u3055\u305B\
+    \u305F\u3082\u306E\n\t */\n\tprotected static final char[][] rotateL(final char[][]\
+    \ a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\t\tfinal char[][] b = new\
+    \ char[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0,\
+    \ w).forEach(j -> b[w - j - 1][i] = a[i][j]);\n\t\t});\n\t\treturn b;\n\t}\n\t\
+    /**\n\t * \u914D\u5217\u306Ei\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\u308C\
+    \u66FF\u3048\u308B\n\t * @param a\n\t * @param i\n\t * @param j\n\t * @see <a\
+    \ href=\"https://cpprefjp.github.io/reference/utility/swap.html\">std::swap</a>\n\
+    \t */\n\tpublic static final void swap(final int[] a, final int i, final int j)\
+    \ {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\t/**\n\t *\
+    \ \u914D\u5217\u306Ei\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\u308C\u66FF\u3048\
+    \u308B\n\t * @param a\n\t * @param i\n\t * @param j\n\t * @see <a href=\"https://cpprefjp.github.io/reference/utility/swap.html\"\
+    >std::swap</a>\n\t */\n\tpublic static final void swap(final long[] a, final int\
     \ i, final int j) {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\
     \t}\n\t/**\n\t * \u914D\u5217\u306Ei\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\
     \u308C\u66FF\u3048\u308B\n\t * @param a\n\t * @param i\n\t * @param j\n\t * @see\
     \ <a href=\"https://cpprefjp.github.io/reference/utility/swap.html\">std::swap</a>\n\
-    \t */\n\tpublic static final void swap(final long[] a, final int i, final int\
+    \t */\n\tpublic static final void swap(final double[] a, final int i, final int\
+    \ j) {\n\t\tfinal double tmp = a[i];\n\t\ta[i] = a[j];\n\t\ta[j] = tmp;\n\t}\n\
+    \t/**\n\t * \u914D\u5217\u306Ei\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\u308C\
+    \u66FF\u3048\u308B\n\t * @param a\n\t * @param i\n\t * @param j\n\t * @see <a\
+    \ href=\"https://cpprefjp.github.io/reference/utility/swap.html\">std::swap</a>\n\
+    \t */\n\tpublic static final void swap(final char[] a, final int i, final int\
     \ j) {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\t/**\n\t\
     \ * \u914D\u5217\u306Ei\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\u308C\u66FF\
     \u3048\u308B\n\t * @param a\n\t * @param i\n\t * @param j\n\t * @see <a href=\"\
     https://cpprefjp.github.io/reference/utility/swap.html\">std::swap</a>\n\t */\n\
-    \tpublic static final void swap(final double[] a, final int i, final int j) {\n\
-    \t\tfinal double tmp = a[i];\n\t\ta[i] = a[j];\n\t\ta[j] = tmp;\n\t}\n\t/**\n\t\
-    \ * \u914D\u5217\u306Ei\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\u308C\u66FF\
-    \u3048\u308B\n\t * @param a\n\t * @param i\n\t * @param j\n\t * @see <a href=\"\
-    https://cpprefjp.github.io/reference/utility/swap.html\">std::swap</a>\n\t */\n\
-    \tpublic static final void swap(final char[] a, final int i, final int j) {\n\t\
-    \ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\t/**\n\t * \u914D\
+    \tpublic static final void swap(final boolean[] a, final int i, final int j) {\n\
+    \t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\t/**\n\t * \u914D\
     \u5217\u306Ei\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\u308C\u66FF\u3048\u308B\
     \n\t * @param a\n\t * @param i\n\t * @param j\n\t * @see <a href=\"https://cpprefjp.github.io/reference/utility/swap.html\"\
-    >std::swap</a>\n\t */\n\tpublic static final void swap(final boolean[] a, final\
-    \ int i, final int j) {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\
-    \t}\n\t/**\n\t * \u914D\u5217\u306Ei\u756A\u76EE\u3068j\u756A\u76EE\u3092\u5165\
-    \u308C\u66FF\u3048\u308B\n\t * @param a\n\t * @param i\n\t * @param j\n\t * @see\
-    \ <a href=\"https://cpprefjp.github.io/reference/utility/swap.html\">std::swap</a>\n\
-    \t */\n\tpublic static final void swap(final Object[] a, final int i, final int\
-    \ j) {\n\t\tfinal Object tmp = a[i];\n\t\ta[i] = a[j];\n\t\ta[j] = tmp;\n\t}\n\
-    \t/**\n\t * \u4E8C\u3064\u306E\u914D\u5217\u3092\u5165\u308C\u66FF\u3048\u308B\
-    \n\t * @param a\n\t * @param b\n\t * @see <a href=\"https://cpprefjp.github.io/reference/vector/vector/swap.html\"\
+    >std::swap</a>\n\t */\n\tpublic static final void swap(final Object[] a, final\
+    \ int i, final int j) {\n\t\tfinal Object tmp = a[i];\n\t\ta[i] = a[j];\n\t\t\
+    a[j] = tmp;\n\t}\n\t/**\n\t * \u4E8C\u3064\u306E\u914D\u5217\u3092\u5165\u308C\
+    \u66FF\u3048\u308B\n\t * @param a\n\t * @param b\n\t * @see <a href=\"https://cpprefjp.github.io/reference/vector/vector/swap.html\"\
     >std::vector::swap</a>\n\t */\n\tpublic static final void swap(final int[] a,\
     \ final int[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\
     \t\tfinal int[] c = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
@@ -1510,7 +1505,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-23 21:48:17+09:00'
+  timestamp: '2024-02-24 12:04:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

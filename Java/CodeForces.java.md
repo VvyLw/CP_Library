@@ -844,14 +844,13 @@ data:
     \ w = a[0].length;\n\t\tfinal double[][] b = new double[w][h];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> {\n\t\t\tArrays.setAll(b[i], j -> a[j][i]);\n\t\t});\n\t\tIntStream.range(0,\
     \ w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\tprotected static\
-    \ final String[] rotateR(final String[] s) {\n\t\tfinal int h = s.length, w =\
-    \ s[0].length();\n\t\tfinal char[][] t = new char[w][h];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j -> t[j][i] = s[i].charAt(j));\n\
-    \t\t});\n\t\tIntStream.range(0, w).forEach(i -> t[i] = new StringBuilder(new String(t[i])).reverse().toString().toCharArray());\n\
-    \t\tfinal String[] res = new String[w];\n\t\tArrays.setAll(res, i -> String.valueOf(t[i]));\n\
-    \t\treturn res;\n\t}\n\tprotected static final int[][] rotateL(final int[][] a)\
-    \ {\n\t\tfinal int h = a.length, w = a[0].length;\n\t\tfinal int[][] b = new int[w][h];\n\
-    \t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tArrays.setAll(b[i], j -> a[j][w\
+    \ final char[][] rotateR(final char[][] a) {\n\t\tfinal int h = a.length, w =\
+    \ a[0].length;\n\t\tfinal char[][] b = new char[w][h];\n\t\tIntStream.range(0,\
+    \ h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);\n\
+    \t\t});\n\t\tIntStream.range(0, w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn\
+    \ b;\n\t}\n\tprotected static final int[][] rotateL(final int[][] a) {\n\t\tfinal\
+    \ int h = a.length, w = a[0].length;\n\t\tfinal int[][] b = new int[w][h];\n\t\
+    \tIntStream.range(0, h).forEach(i -> {\n\t\t\tArrays.setAll(b[i], j -> a[j][w\
     \ - i - 1]);\n\t\t});\n\t\treturn b;\n\t}\n\tprotected static final long[][] rotateL(final\
     \ long[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\t\tfinal long[][]\
     \ b = new long[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tArrays.setAll(b[i],\
@@ -859,78 +858,76 @@ data:
     \ double[][] rotateL(final double[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\
     \t\tfinal double[][] b = new double[w][h];\n\t\tIntStream.range(0, h).forEach(i\
     \ -> {\n\t\t\tArrays.setAll(b[i], j -> a[j][w - i - 1]);\n\t\t});\n\t\treturn\
-    \ b;\n\t}\n\tprotected static final String[] rotateL(final String[] s) {\n\t\t\
-    final int h = s.length, w = s[0].length();\n\t\tfinal char[][] t = new char[w][h];\n\
+    \ b;\n\t}\n\tprotected static final char[][] rotateL(final char[][] a) {\n\t\t\
+    final int h = a.length, w = a[0].length;\n\t\tfinal char[][] b = new char[w][h];\n\
     \t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0, w).forEach(j\
-    \ -> t[w - j - 1][i] = s[i].charAt(j));\n\t\t});\n\t\tfinal String[] res = new\
-    \ String[w];\n\t\tArrays.setAll(res, i -> String.valueOf(t[i]));\n\t\treturn res;\n\
-    \t}\n\tprotected static final void swap(final int[] a, final int i, final int\
-    \ j) {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\tprotected\
-    \ static final void swap(final long[] a, final int i, final int j) {\n\t\ta[i]\
-    \ ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\tprotected static final\
-    \ void swap(final double[] a, final int i, final int j) {\n\t\tfinal double tmp\
-    \ = a[i];\n\t\ta[i] = a[j];\n\t\ta[j] = tmp;\n\t}\n\tprotected static final void\
-    \ swap(final char[] a, final int i, final int j) {\n\t\ta[i] ^= a[j];\n\t\ta[j]\
-    \ ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\tprotected static final void swap(final boolean[]\
-    \ a, final int i, final int j) {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i]\
-    \ ^= a[j];\n\t}\n\tprotected static final void swap(final Object[] a, final int\
-    \ i, final int j) {\n\t\tfinal Object tmp = a[i];\n\t\ta[i] = a[j];\n\t\ta[j]\
-    \ = tmp;\n\t}\n\tprotected static final void swap(final int[] a, final int[] b)\
-    \ {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\t\tfinal\
-    \ int[] c = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
-    \ 0, b, 0, n);\n\t}\n\tprotected static final void swap(final long[] a, final\
-    \ long[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\
-    \t\tfinal long[] c = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
-    \ 0, b, 0, n);\n\t}\n\tprotected static final void swap(final double[] a, final\
-    \ double[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\
-    \t\tfinal double[] c = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\t\
-    System.arraycopy(c, 0, b, 0, n);\n\t}\n\tprotected static final void swap(final\
-    \ char[] a, final char[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int\
-    \ n = a.length;\n\t\tfinal char[] c = a.clone();\n\t\tSystem.arraycopy(b, 0, a,\
-    \ 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t}\n\tprotected static final\
-    \ void swap(final boolean[] a, final boolean[] b) {\n\t\tassert a.length == b.length;\n\
-    \t\tfinal int n = a.length;\n\t\tfinal boolean[] c = a.clone();\n\t\tSystem.arraycopy(b,\
+    \ -> b[w - j - 1][i] = a[i][j]);\n\t\t});\n\t\treturn b;\n\t}\n\tprotected static\
+    \ final void swap(final int[] a, final int i, final int j) {\n\t\ta[i] ^= a[j];\n\
+    \t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\tprotected static final void swap(final\
+    \ long[] a, final int i, final int j) {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\
+    \t\ta[i] ^= a[j];\n\t}\n\tprotected static final void swap(final double[] a, final\
+    \ int i, final int j) {\n\t\tfinal double tmp = a[i];\n\t\ta[i] = a[j];\n\t\t\
+    a[j] = tmp;\n\t}\n\tprotected static final void swap(final char[] a, final int\
+    \ i, final int j) {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\
+    \t}\n\tprotected static final void swap(final boolean[] a, final int i, final\
+    \ int j) {\n\t\ta[i] ^= a[j];\n\t\ta[j] ^= a[i];\n\t\ta[i] ^= a[j];\n\t}\n\tprotected\
+    \ static final void swap(final Object[] a, final int i, final int j) {\n\t\tfinal\
+    \ Object tmp = a[i];\n\t\ta[i] = a[j];\n\t\ta[j] = tmp;\n\t}\n\tprotected static\
+    \ final void swap(final int[] a, final int[] b) {\n\t\tassert a.length == b.length;\n\
+    \t\tfinal int n = a.length;\n\t\tfinal int[] c = a.clone();\n\t\tSystem.arraycopy(b,\
     \ 0, a, 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t}\n\tprotected static\
-    \ final void swap(final Object[] a, final Object[] b) {\n\t\tassert a.length ==\
-    \ b.length;\n\t\tfinal int n = a.length;\n\t\tfinal Object[] c = a.clone();\n\t\
+    \ final void swap(final long[] a, final long[] b) {\n\t\tassert a.length == b.length;\n\
+    \t\tfinal int n = a.length;\n\t\tfinal long[] c = a.clone();\n\t\tSystem.arraycopy(b,\
+    \ 0, a, 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t}\n\tprotected static\
+    \ final void swap(final double[] a, final double[] b) {\n\t\tassert a.length ==\
+    \ b.length;\n\t\tfinal int n = a.length;\n\t\tfinal double[] c = a.clone();\n\t\
     \tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t}\n\
-    \tprotected static final <F extends Comparable<? super F>, S extends Comparable<?\
-    \ super S>> Pair<S, F>[] swap(final Pair<F, S>[] p) {\n\t\t@SuppressWarnings(\"\
-    unchecked\")\n\t\tfinal Pair<S, F>[] q = new Pair[p.length];\n\t\tIntStream.range(0,\
-    \ p.length).forEach(i -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\tprotected\
-    \ static final IntPair[] swap(final IntPair[] p) {\n\t\tfinal IntPair[] q = new\
-    \ IntPair[p.length];\n\t\tIntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());\n\
-    \t\treturn q;\n\t}\n\tprotected static final FloatPair[] swap(final FloatPair[]\
-    \ p) {\n\t\tfinal FloatPair[] q = new FloatPair[p.length];\n\t\tIntStream.range(0,\
-    \ p.length).forEach(i -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\t@SuppressWarnings(\"\
+    \tprotected static final void swap(final char[] a, final char[] b) {\n\t\tassert\
+    \ a.length == b.length;\n\t\tfinal int n = a.length;\n\t\tfinal char[] c = a.clone();\n\
+    \t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t\
+    }\n\tprotected static final void swap(final boolean[] a, final boolean[] b) {\n\
+    \t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\t\tfinal boolean[]\
+    \ c = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\tSystem.arraycopy(c,\
+    \ 0, b, 0, n);\n\t}\n\tprotected static final void swap(final Object[] a, final\
+    \ Object[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n = a.length;\n\
+    \t\tfinal Object[] c = a.clone();\n\t\tSystem.arraycopy(b, 0, a, 0, n);\n\t\t\
+    System.arraycopy(c, 0, b, 0, n);\n\t}\n\tprotected static final <F extends Comparable<?\
+    \ super F>, S extends Comparable<? super S>> Pair<S, F>[] swap(final Pair<F, S>[]\
+    \ p) {\n\t\t@SuppressWarnings(\"unchecked\")\n\t\tfinal Pair<S, F>[] q = new Pair[p.length];\n\
+    \t\tIntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());\n\t\treturn\
+    \ q;\n\t}\n\tprotected static final IntPair[] swap(final IntPair[] p) {\n\t\t\
+    final IntPair[] q = new IntPair[p.length];\n\t\tIntStream.range(0, p.length).forEach(i\
+    \ -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\tprotected static final FloatPair[]\
+    \ swap(final FloatPair[] p) {\n\t\tfinal FloatPair[] q = new FloatPair[p.length];\n\
+    \t\tIntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());\n\t\treturn\
+    \ q;\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tprotected static final <F extends\
+    \ Comparable<? super F>, S extends Comparable<? super S>> F[] first(final Pair<F,\
+    \ S>[] p){ return (F[]) Arrays.stream(p).map(i -> i.first).toArray(); }\n\tprotected\
+    \ static final long[] first(final IntPair[] p){ return Arrays.stream(p).mapToLong(i\
+    \ -> i.first).toArray(); }\n\tprotected static final double[] first(final FloatPair[]\
+    \ p){ return Arrays.stream(p).mapToDouble(i -> i.first).toArray(); }\n\t@SuppressWarnings(\"\
     unchecked\")\n\tprotected static final <F extends Comparable<? super F>, S extends\
-    \ Comparable<? super S>> F[] first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i\
-    \ -> i.first).toArray(); }\n\tprotected static final long[] first(final IntPair[]\
-    \ p){ return Arrays.stream(p).mapToLong(i -> i.first).toArray(); }\n\tprotected\
-    \ static final double[] first(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i\
-    \ -> i.first).toArray(); }\n\t@SuppressWarnings(\"unchecked\")\n\tprotected static\
-    \ final <F extends Comparable<? super F>, S extends Comparable<? super S>> S[]\
-    \ second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i -> i.second).toArray();\
-    \ }\n\tprotected static final long[] second(final IntPair[] p){ return Arrays.stream(p).mapToLong(i\
-    \ -> i.second).toArray(); }\n\tprotected static final double[] second(final FloatPair[]\
-    \ p){ return Arrays.stream(p).mapToDouble(i -> i.second).toArray(); }\n\tprotected\
-    \ static final int[] iota(final int n){ return IntStream.range(0, n).toArray();\
-    \ }\n\tprotected static final int[] iota(final int n, final int init){ return\
-    \ IntStream.range(0 + init, n + init).toArray(); }\n\tprotected static final int[]\
-    \ merge(final int[] a, final int[] b) {\n\t\tfinal int[] c = new int[a.length\
+    \ Comparable<? super S>> S[] second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i\
+    \ -> i.second).toArray(); }\n\tprotected static final long[] second(final IntPair[]\
+    \ p){ return Arrays.stream(p).mapToLong(i -> i.second).toArray(); }\n\tprotected\
+    \ static final double[] second(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i\
+    \ -> i.second).toArray(); }\n\tprotected static final int[] iota(final int n){\
+    \ return IntStream.range(0, n).toArray(); }\n\tprotected static final int[] iota(final\
+    \ int n, final int init){ return IntStream.range(0 + init, n + init).toArray();\
+    \ }\n\tprotected static final int[] merge(final int[] a, final int[] b) {\n\t\t\
+    final int[] c = new int[a.length + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0,\
+    \ a.length);\n\t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\
+    \t\treturn c;\n\t}\n\tprotected static final long[] merge(final long[] a, final\
+    \ long[] b) {\n\t\tfinal long[] c = new long[a.length + b.length];\n\t\tSystem.arraycopy(a,\
+    \ 0, c, 0, a.length);\n\t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\t\
+    Arrays.sort(c);\n\t\treturn c;\n\t}\n\tprotected static final double[] merge(final\
+    \ double[] a, final double[] b) {\n\t\tfinal double[] c = new double[a.length\
     \ + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0, a.length);\n\t\tSystem.arraycopy(b,\
     \ 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\t\treturn c;\n\t}\n\tprotected\
-    \ static final long[] merge(final long[] a, final long[] b) {\n\t\tfinal long[]\
-    \ c = new long[a.length + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0, a.length);\n\
-    \t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\t\t\
-    return c;\n\t}\n\tprotected static final double[] merge(final double[] a, final\
-    \ double[] b) {\n\t\tfinal double[] c = new double[a.length + b.length];\n\t\t\
-    System.arraycopy(a, 0, c, 0, a.length);\n\t\tSystem.arraycopy(b, 0, c, a.length,\
-    \ b.length);\n\t\tArrays.sort(c);\n\t\treturn c;\n\t}\n\tprotected static final\
-    \ String[] merge(final String[] a, final String[] b) {\n\t\tfinal String[] c =\
-    \ new String[a.length + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0, a.length);\n\
-    \t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\t\t\
-    return c;\n\t}\n\tprotected static final int bins(int ok, int ng, final IntPredicate\
+    \ static final String[] merge(final String[] a, final String[] b) {\n\t\tfinal\
+    \ String[] c = new String[a.length + b.length];\n\t\tSystem.arraycopy(a, 0, c,\
+    \ 0, a.length);\n\t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\
+    \t\treturn c;\n\t}\n\tprotected static final int bins(int ok, int ng, final IntPredicate\
     \ fn) {\n\t\twhile(abs(ok - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\
     \t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng\
     \ = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final long bins(long\
@@ -1517,7 +1514,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-23 21:48:17+09:00'
+  timestamp: '2024-02-24 12:04:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java

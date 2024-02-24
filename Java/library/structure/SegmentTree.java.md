@@ -549,9 +549,11 @@ data:
     \ T query(int a, int b) {\n\t\tT l = e, r = e;\n\t\tfor(a += n, b += n; a < b;\
     \ a >>= 1, b >>= 1) {\n\t\t\tif(a % 2 == 1) {\n\t\t\t\tl = op.apply(l, (T) dat[a++]);\n\
     \t\t\t}\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tr = op.apply((T) dat[--b], r);\n\t\t\t\
-    }\n\t\t}\n\t\treturn op.apply(l, r);\n\t}\n\t/**\n\t * \u7279\u5B9A\u306E\u6761\
-    \u4EF6\u3092\u6E80\u305F\u3059\u6700\u3082\u5DE6\u306E\u4F4D\u7F6E\u3092\u63A2\
-    \u3059\n\t * @param r\n\t * @param fn\n\t */\n\t@SuppressWarnings(\"unchecked\"\
+    }\n\t\t}\n\t\treturn op.apply(l, r);\n\t}\n\t/**\n\t * @return \u5168\u4F53\u3092\
+    \u4E8C\u9805\u6F14\u7B97\u3057\u305F\u7D50\u679C\n\t */\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tfinal T all(){ return (T) dat[1]; }\n\t/**\n\t * \u7279\u5B9A\u306E\
+    \u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\u3082\u5DE6\u306E\u4F4D\u7F6E\u3092\
+    \u63A2\u3059\n\t * @param r\n\t * @param fn\n\t */\n\t@SuppressWarnings(\"unchecked\"\
     )\n\tpublic final int findLeft(final int r, final Predicate<T> fn) {\n\t\tif(r\
     \ == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint h = 0, i = r + n;\n\t\tT val = e;\n\
     \t\tfor(; h <= rank; h++) {\n\t\t\tif(i >> (h & 1) > 0) {\n\t\t\t\tfinal T val2\
@@ -751,7 +753,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-23 21:48:17+09:00'
+  timestamp: '2024-02-24 12:04:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/SegmentTree.java
