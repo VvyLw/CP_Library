@@ -880,8 +880,8 @@ class Utility {
 	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> S[] second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i -> i.second).toArray(); }
 	protected static final long[] second(final IntPair[] p){ return Arrays.stream(p).mapToLong(i -> i.second).toArray(); }
 	protected static final double[] second(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i -> i.second).toArray(); }
-	protected static final int[] iota(final int n){ return IntStream.range(0, n).toArray(); }
-	protected static final int[] iota(final int n, final int init){ return IntStream.range(0 + init, n + init).toArray(); }
+	protected static final IntStream iota(final int n){ return IntStream.range(0, n); }
+	protected static final IntStream iota(final int n, final int init){ return IntStream.range(0 + init, n + init); }
 	protected static final int[] merge(final int[] a, final int[] b) {
 		final int[] c = new int[a.length + b.length];
 		System.arraycopy(a, 0, c, 0, a.length);
@@ -2725,7 +2725,7 @@ final class PrimeTable {
 final class PrimeFactor {
 	private final int[] spf;
 	PrimeFactor(final int n) {
-		spf = Utility.iota(n + 1);
+		spf = Utility.iota(n + 1).toArray();
 		for(int i = 2; i * i <= n; ++i) {
 			if(spf[i] != i) {
 				continue;
@@ -3059,7 +3059,7 @@ final class ModPrime {
 final class EulerPhiTable {
 	private final int[] euler;
 	EulerPhiTable(final int n) {
-		euler = Utility.iota(n + 1);
+		euler = Utility.iota(n + 1).toArray();
 		for(int i = 2; i <= n; ++i) {
 			if(euler[i] == i) {
 				for(int j = i; j <= n; j += i) {

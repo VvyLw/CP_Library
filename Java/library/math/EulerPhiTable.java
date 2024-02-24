@@ -12,7 +12,7 @@ public final class EulerPhiTable {
 	 * @param n 整数
 	 */
 	public EulerPhiTable(final int n) {
-		euler = Utility.iota(n + 1);
+		euler = Utility.iota(n + 1).toArray();
 		for(int i = 2; i <= n; ++i) {
 			if(euler[i] == i) {
 				for(int j = i; j <= n; j += i) {

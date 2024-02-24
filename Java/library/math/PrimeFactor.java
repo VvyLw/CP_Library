@@ -10,7 +10,7 @@ import library.core.Utility;
 public final class PrimeFactor {
 	private final int[] spf;
 	public PrimeFactor(final int n) {
-		spf = Utility.iota(n + 1);
+		spf = Utility.iota(n + 1).toArray();
 		for(int i = 2; i * i <= n; ++i) {
 			if(spf[i] != i) {
 				continue;

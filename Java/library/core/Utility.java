@@ -1534,12 +1534,13 @@ public class Utility {
 	protected static final double[] second(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i -> i.second).toArray(); }
 	/**
 	 * C++のstd::iotaに相当するメソッド
+	 * IntStreamで止めてあるため、配列化するにはtoArray()する必要がある
 	 * @param n
-	 * @return [0, 1, 2, ..., n - 1]
+	 * @return [0, 1, 2, ..., n - 1]のIntStream
 	 * @see <a href="https://cpprefjp.github.io/reference/numeric/iota.html">std::iota</a>
 	 * @see <a href="https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L449">Lady_sANDy::iot</a>
 	 */
-	public static final int[] iota(final int n){ return IntStream.range(0, n).toArray(); }
+	public static final IntStream iota(final int n){ return IntStream.range(0, n); }
 	/**
 	 * @param n
 	 * @param init
@@ -1547,7 +1548,7 @@ public class Utility {
 	 * @see <a href="https://cpprefjp.github.io/reference/numeric/iota.html">std::iota</a>
 	 * @see <a href="https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L449">Lady_sANDy::iot</a>
 	 */
-	public static final int[] iota(final int n, final int init){ return IntStream.range(0 + init, n + init).toArray(); }
+	public static final IntStream iota(final int n, final int init){ return IntStream.range(0 + init, n + init); }
 	/**
 	 * @param a
 	 * @param b
