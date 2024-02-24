@@ -2606,6 +2606,7 @@ abstract class MergeUnionFind<T> extends UnionFind {
 	MergeUnionFind(final int n){ super(n); }
 	abstract void merge(final int i, final int j);
 	abstract T get(final int i);
+	@Override
 	protected final boolean unite(int i, int j) {
 		i = root(i);
 		j = root(j);
