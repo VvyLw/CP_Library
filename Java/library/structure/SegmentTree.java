@@ -80,6 +80,11 @@ public final class SegmentTree<T> {
 		return op.apply(l, r);
 	}
 	/**
+	 * @return 全体を二項演算した結果
+	 */
+	@SuppressWarnings("unchecked")
+	final T all(){ return (T) dat[1]; }
+	/**
 	 * 特定の条件を満たす最も左の位置を探す
 	 * @param r
 	 * @param fn

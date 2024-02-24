@@ -36,6 +36,7 @@ public:
         }
         return f(l,r);
     }
+    T alle() const { return dat[1]; }
     template <class Boolean=bool> inline int find_left(int r, const Boolean &fn) {
         if(!r) return 0;
         int h=0,i=r+n;

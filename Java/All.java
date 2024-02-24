@@ -4135,6 +4135,8 @@ final class SegmentTree<T> {
 		return op.apply(l, r);
 	}
 	@SuppressWarnings("unchecked")
+	final T all(){ return (T) dat[1]; }
+	@SuppressWarnings("unchecked")
 	final int findLeft(final int r, final Predicate<T> fn) {
 		if(r == 0) {
 			return 0;
