@@ -743,16 +743,14 @@ class Utility {
 		IntStream.range(0, w).forEach(i -> b[i] = reverse(b[i]));
 		return b;
 	}
-	protected static final String[] rotateR(final String[] s) {
-		final int h = s.length, w = s[0].length();
-		final char[][] t = new char[w][h];
+	protected static final char[][] rotateR(final char[][] a) {
+		final int h = a.length, w = a[0].length;
+		final char[][] b = new char[w][h];
 		IntStream.range(0, h).forEach(i -> {
-			IntStream.range(0, w).forEach(j -> t[j][i] = s[i].charAt(j));
+			IntStream.range(0, w).forEach(j -> b[j][i] = a[i][j]);
 		});
-		IntStream.range(0, w).forEach(i -> t[i] = new StringBuilder(new String(t[i])).reverse().toString().toCharArray());
-		final String[] res = new String[w];
-		Arrays.setAll(res, i -> String.valueOf(t[i]));
-		return res;
+		IntStream.range(0, w).forEach(i -> b[i] = reverse(b[i]));
+		return b;
 	}
 	protected static final int[][] rotateL(final int[][] a) {
 		final int h = a.length, w = a[0].length;
@@ -778,15 +776,13 @@ class Utility {
 		});
 		return b;
 	}
-	protected static final String[] rotateL(final String[] s) {
-		final int h = s.length, w = s[0].length();
-		final char[][] t = new char[w][h];
+	protected static final char[][] rotateL(final char[][] a) {
+		final int h = a.length, w = a[0].length;
+		final char[][] b = new char[w][h];
 		IntStream.range(0, h).forEach(i -> {
-			IntStream.range(0, w).forEach(j -> t[w - j - 1][i] = s[i].charAt(j));
+			IntStream.range(0, w).forEach(j -> b[w - j - 1][i] = a[i][j]);
 		});
-		final String[] res = new String[w];
-		Arrays.setAll(res, i -> String.valueOf(t[i]));
-		return res;
+		return b;
 	}
 	protected static final void swap(final int[] a, final int i, final int j) {
 		a[i] ^= a[j];
