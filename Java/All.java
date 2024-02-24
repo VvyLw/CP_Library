@@ -2567,16 +2567,16 @@ final class LowestCommonAncestor {
 	final int dist(final int u, final int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }
 }
 
-final class UnionFind {
-	private final int[] par;
+class UnionFind {
+	protected final int[] par;
 	UnionFind(final int n) {
 		par = new int[n];
 		Arrays.fill(par, -1);
 	}
-	final int root(final int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i; }
-	final int size(final int i){ return -par[root(i)]; }
-	final int size(){ return par.length; }
-	final boolean unite(int i, int j) {
+	protected final int root(final int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i; }
+	protected final int size(final int i){ return -par[root(i)]; }
+	protected final int size(){ return par.length; }
+	protected boolean unite(int i, int j) {
 		i = root(i);
 		j = root(j);
 		if(i == j) {
@@ -2591,14 +2591,36 @@ final class UnionFind {
 		par[j] = i;
 		return true;
 	}
-	final boolean same(final int i, final int j){ return root(i) == root(j); }
-	final ArrayList<ArrayList<Integer>> groups() {
+	protected final boolean same(final int i, final int j){ return root(i) == root(j); }
+	protected final ArrayList<ArrayList<Integer>> groups() {
 		final int n = par.length;
 		final ArrayList<ArrayList<Integer>> res = new ArrayList<>(n);
 		IntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));
 		IntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));
 		res.removeIf(ArrayList::isEmpty);
 		return res;
+	}
+}
+
+abstract class MergeUnionFind<T> extends UnionFind {
+	MergeUnionFind(final int n){ super(n); }
+	abstract void merge(final int i, final int j);
+	abstract T get(final int i);
+	protected final boolean unite(int i, int j) {
+		i = root(i);
+		j = root(j);
+		if(i == j) {
+			return false;
+		}
+		if(i > j) {
+			i ^= j;
+			j ^= i;
+			i ^= j;
+		}
+		par[i] += par[j];
+		par[j] = i;
+		merge(i, j);
+		return true;
 	}
 }
 

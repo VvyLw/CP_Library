@@ -7,8 +7,8 @@ import java.util.stream.IntStream;
 /**
  * UnionFind
  */
-public final class UnionFind {
-	private final int[] par;
+public class UnionFind {
+	protected final int[] par;
 	/**
 	 * コンストラクタ
 	 * @param n サイズ
@@ -37,7 +37,7 @@ public final class UnionFind {
 	 * @param j
 	 * @return 未マージでtrue, マージ済でfalse
 	 */
-	public final boolean unite(int i, int j) {
+	public boolean unite(int i, int j) {
 		i = root(i);
 		j = root(j);
 		if(i == j) {
