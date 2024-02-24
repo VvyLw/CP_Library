@@ -704,7 +704,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-24 12:04:34+09:00'
+  timestamp: '2024-02-25 05:10:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/lazysegmenttree/RUMX.java

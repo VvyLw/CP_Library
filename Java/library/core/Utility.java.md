@@ -1196,17 +1196,19 @@ data:
     \u8981\u7D20\u3092\u53D6\u308A\u51FA\u3057\u305F\u914D\u5217\n\t */\n\tprotected\
     \ static final double[] second(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i\
     \ -> i.second).toArray(); }\n\t/**\n\t * C++\u306Estd::iota\u306B\u76F8\u5F53\u3059\
-    \u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param n\n\t * @return [0, 1, 2, ..., n -\
-    \ 1]\n\t * @see <a href=\"https://cpprefjp.github.io/reference/numeric/iota.html\"\
+    \u308B\u30E1\u30BD\u30C3\u30C9\n\t * IntStream\u3067\u6B62\u3081\u3066\u3042\u308B\
+    \u305F\u3081\u3001\u914D\u5217\u5316\u3059\u308B\u306B\u306FtoArray()\u3059\u308B\
+    \u5FC5\u8981\u304C\u3042\u308B\n\t * @param n\n\t * @return [0, 1, 2, ..., n -\
+    \ 1]\u306EIntStream\n\t * @see <a href=\"https://cpprefjp.github.io/reference/numeric/iota.html\"\
     >std::iota</a>\n\t * @see <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L449\"\
-    >Lady_sANDy::iot</a>\n\t */\n\tpublic static final int[] iota(final int n){ return\
-    \ IntStream.range(0, n).toArray(); }\n\t/**\n\t * @param n\n\t * @param init\n\
-    \t * @return [init, init + 1, init + 2, ..., init + n - 1]\n\t * @see <a href=\"\
+    >Lady_sANDy::iot</a>\n\t */\n\tpublic static final IntStream iota(final int n){\
+    \ return IntStream.range(0, n); }\n\t/**\n\t * @param n\n\t * @param init\n\t\
+    \ * @return [init, init + 1, init + 2, ..., init + n - 1]\n\t * @see <a href=\"\
     https://cpprefjp.github.io/reference/numeric/iota.html\">std::iota</a>\n\t * @see\
     \ <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L449\"\
-    >Lady_sANDy::iot</a>\n\t */\n\tpublic static final int[] iota(final int n, final\
-    \ int init){ return IntStream.range(0 + init, n + init).toArray(); }\n\t/**\n\t\
-    \ * @param a\n\t * @param b\n\t * @return \u914D\u5217\u3092merge\u3057\u305F\u3082\
+    >Lady_sANDy::iot</a>\n\t */\n\tpublic static final IntStream iota(final int n,\
+    \ final int init){ return IntStream.range(0 + init, n + init); }\n\t/**\n\t *\
+    \ @param a\n\t * @param b\n\t * @return \u914D\u5217\u3092merge\u3057\u305F\u3082\
     \u306E\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/merge.html\"\
     >std::merge</a>\n\t * @implNote std::merge\u3068\u9055\u3063\u3066a, b\u304Csort\u3055\
     \u308C\u3066\u3044\u306A\u304F\u3066\u3082\u52D5\u304F\n\t */\n\tprotected static\
@@ -1505,7 +1507,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-24 12:04:34+09:00'
+  timestamp: '2024-02-25 05:10:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

@@ -528,13 +528,13 @@ data:
     \u30EB\u3092\u4F5C\u6210\u3059\u308B\u30AF\u30E9\u30B9\n */\npublic final class\
     \ EulerPhiTable {\n\tprivate final int[] euler;\n\t/**\n\t * \u30B3\u30F3\u30B9\
     \u30C8\u30E9\u30AF\u30BF\n\t * @param n \u6574\u6570\n\t */\n\tpublic EulerPhiTable(final\
-    \ int n) {\n\t\teuler = Utility.iota(n + 1);\n\t\tfor(int i = 2; i <= n; ++i)\
-    \ {\n\t\t\tif(euler[i] == i) {\n\t\t\t\tfor(int j = i; j <= n; j += i) {\n\t\t\
-    \t\t\teuler[j] = euler[j] / i * (i - 1);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\t/**\n\
-    \t * @return 1\u304B\u3089n\u307E\u3067\u306E\u6574\u6570\u306E\u3046\u3061n\u3068\
-    \u4E92\u3044\u306B\u7D20\u306A\u3082\u306E\u306E\u500B\u6570\u3092\u6C42\u3081\
-    \u308B\u30C6\u30FC\u30D6\u30EB\n\t */\n\tpublic final int[] get(){ return euler;\
-    \ }\n}"
+    \ int n) {\n\t\teuler = Utility.iota(n + 1).toArray();\n\t\tfor(int i = 2; i <=\
+    \ n; ++i) {\n\t\t\tif(euler[i] == i) {\n\t\t\t\tfor(int j = i; j <= n; j += i)\
+    \ {\n\t\t\t\t\teuler[j] = euler[j] / i * (i - 1);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
+    \t}\n\t/**\n\t * @return 1\u304B\u3089n\u307E\u3067\u306E\u6574\u6570\u306E\u3046\
+    \u3061n\u3068\u4E92\u3044\u306B\u7D20\u306A\u3082\u306E\u306E\u500B\u6570\u3092\
+    \u6C42\u3081\u308B\u30C6\u30FC\u30D6\u30EB\n\t */\n\tpublic final int[] get(){\
+    \ return euler; }\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -709,7 +709,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-24 12:04:34+09:00'
+  timestamp: '2024-02-25 05:10:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/EulerPhiTable.java

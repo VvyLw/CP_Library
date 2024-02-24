@@ -911,14 +911,14 @@ data:
     \ -> i.second).toArray(); }\n\tprotected static final long[] second(final IntPair[]\
     \ p){ return Arrays.stream(p).mapToLong(i -> i.second).toArray(); }\n\tprotected\
     \ static final double[] second(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i\
-    \ -> i.second).toArray(); }\n\tprotected static final int[] iota(final int n){\
-    \ return IntStream.range(0, n).toArray(); }\n\tprotected static final int[] iota(final\
-    \ int n, final int init){ return IntStream.range(0 + init, n + init).toArray();\
-    \ }\n\tprotected static final int[] merge(final int[] a, final int[] b) {\n\t\t\
-    final int[] c = new int[a.length + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0,\
-    \ a.length);\n\t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\
-    \t\treturn c;\n\t}\n\tprotected static final long[] merge(final long[] a, final\
-    \ long[] b) {\n\t\tfinal long[] c = new long[a.length + b.length];\n\t\tSystem.arraycopy(a,\
+    \ -> i.second).toArray(); }\n\tprotected static final IntStream iota(final int\
+    \ n){ return IntStream.range(0, n); }\n\tprotected static final IntStream iota(final\
+    \ int n, final int init){ return IntStream.range(0 + init, n + init); }\n\tprotected\
+    \ static final int[] merge(final int[] a, final int[] b) {\n\t\tfinal int[] c\
+    \ = new int[a.length + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0, a.length);\n\
+    \t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\t\t\
+    return c;\n\t}\n\tprotected static final long[] merge(final long[] a, final long[]\
+    \ b) {\n\t\tfinal long[] c = new long[a.length + b.length];\n\t\tSystem.arraycopy(a,\
     \ 0, c, 0, a.length);\n\t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\t\
     Arrays.sort(c);\n\t\treturn c;\n\t}\n\tprotected static final double[] merge(final\
     \ double[] a, final double[] b) {\n\t\tfinal double[] c = new double[a.length\
@@ -1514,7 +1514,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-24 12:04:34+09:00'
+  timestamp: '2024-02-25 05:10:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java

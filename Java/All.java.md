@@ -921,14 +921,14 @@ data:
     \ -> i.second).toArray(); }\n\tprotected static final long[] second(final IntPair[]\
     \ p){ return Arrays.stream(p).mapToLong(i -> i.second).toArray(); }\n\tprotected\
     \ static final double[] second(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i\
-    \ -> i.second).toArray(); }\n\tprotected static final int[] iota(final int n){\
-    \ return IntStream.range(0, n).toArray(); }\n\tprotected static final int[] iota(final\
-    \ int n, final int init){ return IntStream.range(0 + init, n + init).toArray();\
-    \ }\n\tprotected static final int[] merge(final int[] a, final int[] b) {\n\t\t\
-    final int[] c = new int[a.length + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0,\
-    \ a.length);\n\t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\
-    \t\treturn c;\n\t}\n\tprotected static final long[] merge(final long[] a, final\
-    \ long[] b) {\n\t\tfinal long[] c = new long[a.length + b.length];\n\t\tSystem.arraycopy(a,\
+    \ -> i.second).toArray(); }\n\tprotected static final IntStream iota(final int\
+    \ n){ return IntStream.range(0, n); }\n\tprotected static final IntStream iota(final\
+    \ int n, final int init){ return IntStream.range(0 + init, n + init); }\n\tprotected\
+    \ static final int[] merge(final int[] a, final int[] b) {\n\t\tfinal int[] c\
+    \ = new int[a.length + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0, a.length);\n\
+    \t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\t\t\
+    return c;\n\t}\n\tprotected static final long[] merge(final long[] a, final long[]\
+    \ b) {\n\t\tfinal long[] c = new long[a.length + b.length];\n\t\tSystem.arraycopy(a,\
     \ 0, c, 0, a.length);\n\t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\t\
     Arrays.sort(c);\n\t\treturn c;\n\t}\n\tprotected static final double[] merge(final\
     \ double[] a, final double[] b) {\n\t\tfinal double[] c = new double[a.length\
@@ -1606,10 +1606,10 @@ data:
     \tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\
     \t\t}\n\t\t}\n\t}\n\tfinal boolean[] table(){ return sieve; }\n\tfinal int[] get(){\
     \ return p; }\n}\n\nfinal class PrimeFactor {\n\tprivate final int[] spf;\n\t\
-    PrimeFactor(final int n) {\n\t\tspf = Utility.iota(n + 1);\n\t\tfor(int i = 2;\
-    \ i * i <= n; ++i) {\n\t\t\tif(spf[i] != i) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\
-    \tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\tif(spf[j] == j) {\n\t\t\t\t\t\
-    spf[j] = i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal TreeMap<Integer, Integer>\
+    PrimeFactor(final int n) {\n\t\tspf = Utility.iota(n + 1).toArray();\n\t\tfor(int\
+    \ i = 2; i * i <= n; ++i) {\n\t\t\tif(spf[i] != i) {\n\t\t\t\tcontinue;\n\t\t\t\
+    }\n\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\tif(spf[j] == j) {\n\t\t\
+    \t\t\tspf[j] = i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal TreeMap<Integer, Integer>\
     \ get(int n) {\n\t\tfinal TreeMap<Integer, Integer> m = new TreeMap<>();\n\t\t\
     while(n != 1) {\n\t\t\tm.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\
     \t\t}\n\t\treturn m;\n\t}\n}\n\nfinal class PrimeCounter {\n\tprivate final int\
@@ -1717,13 +1717,13 @@ data:
     \ == 0) {\n\t\t\treturn 1;\n\t\t}\n\t\treturn C(n + k - 1, k);\n\t}\n\tfinal long\
     \ fact(final int n){ return f[n]; }\n}\n\nfinal class EulerPhiTable {\n\tprivate\
     \ final int[] euler;\n\tEulerPhiTable(final int n) {\n\t\teuler = Utility.iota(n\
-    \ + 1);\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(euler[i] == i) {\n\t\t\t\t\
-    for(int j = i; j <= n; j += i) {\n\t\t\t\t\teuler[j] = euler[j] / i * (i - 1);\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal int[] get(){ return euler; }\n}\n\nfinal\
-    \ class Matrix implements Cloneable {\n\tprivate final int h, w;\n\tprivate final\
-    \ long[][] mat;\n\tMatrix(final int n){ this(n, n); }\n\tMatrix(final int h, final\
-    \ int w) {\n\t\tthis.h = h;\n\t\tthis.w = w;\n\t\tmat = new long[h][w];\n\t}\n\
-    \tMatrix(final int[][] m) {\n\t\tthis(m.length, m[0].length);\n\t\tIntStream.range(0,\
+    \ + 1).toArray();\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(euler[i] == i)\
+    \ {\n\t\t\t\tfor(int j = i; j <= n; j += i) {\n\t\t\t\t\teuler[j] = euler[j] /\
+    \ i * (i - 1);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal int[] get(){ return euler;\
+    \ }\n}\n\nfinal class Matrix implements Cloneable {\n\tprivate final int h, w;\n\
+    \tprivate final long[][] mat;\n\tMatrix(final int n){ this(n, n); }\n\tMatrix(final\
+    \ int h, final int w) {\n\t\tthis.h = h;\n\t\tthis.w = w;\n\t\tmat = new long[h][w];\n\
+    \t}\n\tMatrix(final int[][] m) {\n\t\tthis(m.length, m[0].length);\n\t\tIntStream.range(0,\
     \ h).forEach(i -> IntStream.range(0, w).forEach(j -> mat[i][j] = m[i][j]));\n\t\
     }\n\tMatrix(final long[][] m) {\n\t\tthis(m.length, m[0].length);\n\t\tIntStream.range(0,\
     \ h).forEach(i -> IntStream.range(0, w).forEach(j -> mat[i][j] = m[i][j]));\n\t\
@@ -2531,7 +2531,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-24 12:04:34+09:00'
+  timestamp: '2024-02-25 05:10:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
