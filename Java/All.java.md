@@ -1579,24 +1579,24 @@ data:
     \ n).forEach(i -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\
     \t\treturn res;\n\t}\n}\n\nabstract class MergeUnionFind<T> extends UnionFind\
     \ {\n\tMergeUnionFind(final int n){ super(n); }\n\tabstract void merge(final int\
-    \ i, final int j);\n\tabstract T get(final int i);\n\tprotected final boolean\
-    \ unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) {\n\
-    \t\t\treturn false;\n\t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\
-    \ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\tmerge(i, j);\n\t\
-    \treturn true;\n\t}\n}\n\nfinal class WeightedUnionFind {\n\tprivate final int[]\
-    \ par;\n\tprivate final long[] weight;\n\tWeightedUnionFind(final int n) {\n\t\
-    \tpar = new int[n];\n\t\tweight = new long[n];\n\t\tArrays.fill(par, -1);\n\t\
-    }\n\tfinal int root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t\
-    }\n\t\tfinal int r = root(par[i]);\n\t\tweight[i] += weight[par[i]];\n\t\treturn\
-    \ par[i] = r;\n\t}\n\tfinal long get(final int i) {\n\t\troot(i);\n\t\treturn\
-    \ weight[i];\n\t}\n\tfinal long diff(final int x, final int y){ return get(y)\
-    \ - get(x); }\n\tfinal int unite(int x, int y, long w) {\n\t\tw += diff(y, x);\n\
-    \t\tx = root(x);\n\t\ty = root(y);\n\t\tif(x == y) {\n\t\t\treturn w == 0 ? 0\
-    \ : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\t\
-    x ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\tweight[y]\
-    \ = w;\n\t\treturn 1;\n\t}\n\tfinal boolean same(final int x, final int y){ return\
-    \ root(x) == root(y); }\n}\n\nfinal class UndoUnionFind {\n\tprivate final int[]\
-    \ par;\n\tprivate final Stack<Pair<Integer, Integer>> his;\n\tUndoUnionFind(final\
+    \ i, final int j);\n\tabstract T get(final int i);\n\t@Override\n\tprotected final\
+    \ boolean unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i\
+    \ == j) {\n\t\t\treturn false;\n\t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\t\
+    j ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\tmerge(i,\
+    \ j);\n\t\treturn true;\n\t}\n}\n\nfinal class WeightedUnionFind {\n\tprivate\
+    \ final int[] par;\n\tprivate final long[] weight;\n\tWeightedUnionFind(final\
+    \ int n) {\n\t\tpar = new int[n];\n\t\tweight = new long[n];\n\t\tArrays.fill(par,\
+    \ -1);\n\t}\n\tfinal int root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn\
+    \ i;\n\t\t}\n\t\tfinal int r = root(par[i]);\n\t\tweight[i] += weight[par[i]];\n\
+    \t\treturn par[i] = r;\n\t}\n\tfinal long get(final int i) {\n\t\troot(i);\n\t\
+    \treturn weight[i];\n\t}\n\tfinal long diff(final int x, final int y){ return\
+    \ get(y) - get(x); }\n\tfinal int unite(int x, int y, long w) {\n\t\tw += diff(y,\
+    \ x);\n\t\tx = root(x);\n\t\ty = root(y);\n\t\tif(x == y) {\n\t\t\treturn w ==\
+    \ 0 ? 0 : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\
+    \t\t\tx ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\
+    \tweight[y] = w;\n\t\treturn 1;\n\t}\n\tfinal boolean same(final int x, final\
+    \ int y){ return root(x) == root(y); }\n}\n\nfinal class UndoUnionFind {\n\tprivate\
+    \ final int[] par;\n\tprivate final Stack<Pair<Integer, Integer>> his;\n\tUndoUnionFind(final\
     \ int n) {\n\t    par = new int[n];\n\t    Arrays.fill(par, -1);\n\t    his =\
     \ new Stack<>();\n\t}\n\tfinal boolean unite(int x, int y) {\n\t\tx = root(x);\n\
     \t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\t\this.add(Pair.of(y, par[y]));\n\
@@ -2545,7 +2545,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-25 07:14:15+09:00'
+  timestamp: '2024-02-25 07:18:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
