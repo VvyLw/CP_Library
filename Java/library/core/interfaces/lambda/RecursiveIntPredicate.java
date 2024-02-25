@@ -1,4 +1,4 @@
-package library.core.interfaces;
+package library.core.interfaces.lambda;
 
 import java.util.function.IntPredicate;
 

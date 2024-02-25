@@ -1,12 +1,16 @@
 package library.structure.unionfind;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.IntStream;
+
+import library.core.interfaces.DSU;
 
 /**
  * 重みつきUnionFind(PotentialつきUnionFind)
  * @see <a href="https://ei1333.github.io/library/structure/union-find/weighted-union-find.hpp">参考元</a>
  */
-public final class WeightedUnionFind {
+public final class WeightedUnionFind implements DSU {
 	private final int[] par;
 	private final long[] weight;
 	/**
@@ -18,10 +22,7 @@ public final class WeightedUnionFind {
 		weight = new long[n];
 		Arrays.fill(par, -1);
 	}
-	/**
-	 * @param i
-	 * @return iの根
-	 */
+	@Override
 	public final int root(final int i) {
 		if(par[i] < 0) {
 			return i;
@@ -31,7 +32,6 @@ public final class WeightedUnionFind {
 		return par[i] = r;
 	}
 	/**
-	 * 
 	 * @param i
 	 * @return iの根の重み
 	 */
@@ -70,10 +70,25 @@ public final class WeightedUnionFind {
 		weight[y] = w;
 		return 1;
 	}
-	/**
-	 * xとyが同じ連結成分に所属しているかどうか判定する
-	 * @param x
-	 * @param y
-	 */
+	@Override
 	public final boolean same(final int x, final int y){ return root(x) == root(y); }
+	@Override
+	public final int size(final int i){ return -par[root(i)]; }
+	@Override
+	public final int size(){ return par.length; }
+	/**
+	 * @deprecated インターフェースで仕方なく適当に実装
+	 * @implNote AOJの時はdeprecatedを外してください(CEするので)
+	 */
+	@Override
+	public final boolean unite(int i, int j){ return unite(i, j, 0) > 0; }
+	@Override
+	public final ArrayList<ArrayList<Integer>> groups() {
+		final int n = par.length;
+		final ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+		IntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));
+		IntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));
+		res.removeIf(ArrayList::isEmpty);
+		return res;
+	}
 }

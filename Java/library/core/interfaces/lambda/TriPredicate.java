@@ -1,4 +1,4 @@
-package library.core.interfaces;
+package library.core.interfaces.lambda;
 
 /**
  * 引数を三つ持てるPredicateインターフェース

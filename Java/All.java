@@ -2573,16 +2573,29 @@ final class LowestCommonAncestor {
 	final int dist(final int u, final int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }
 }
 
-class UnionFind {
+interface DSU {
+	int root(final int i);
+	int size(final int i);
+	int size();
+	boolean same(final int i, final int j);
+	boolean unite(int i, int j);
+	ArrayList<ArrayList<Integer>> groups();
+}
+
+class UnionFind implements DSU {
 	protected final int[] par;
 	UnionFind(final int n) {
 		par = new int[n];
 		Arrays.fill(par, -1);
 	}
-	protected final int root(final int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i; }
-	protected final int size(final int i){ return -par[root(i)]; }
-	protected final int size(){ return par.length; }
-	protected boolean unite(int i, int j) {
+	@Override
+	public final int root(final int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i; }
+	@Override
+	public final int size(final int i){ return -par[root(i)]; }
+	@Override
+	public final int size(){ return par.length; }
+	@Override
+	public boolean unite(int i, int j) {
 		i = root(i);
 		j = root(j);
 		if(i == j) {
@@ -2597,8 +2610,10 @@ class UnionFind {
 		par[j] = i;
 		return true;
 	}
-	protected final boolean same(final int i, final int j){ return root(i) == root(j); }
-	protected final ArrayList<ArrayList<Integer>> groups() {
+	@Override
+	public final boolean same(final int i, final int j){ return root(i) == root(j); }
+	@Override
+	public final ArrayList<ArrayList<Integer>> groups() {
 		final int n = par.length;
 		final ArrayList<ArrayList<Integer>> res = new ArrayList<>(n);
 		IntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));
@@ -2613,7 +2628,7 @@ abstract class MergeUnionFind<T> extends UnionFind {
 	abstract void merge(final int i, final int j);
 	abstract T get(final int i);
 	@Override
-	protected final boolean unite(int i, int j) {
+	public final boolean unite(int i, int j) {
 		i = root(i);
 		j = root(j);
 		if(i == j) {
@@ -2631,7 +2646,7 @@ abstract class MergeUnionFind<T> extends UnionFind {
 	}
 }
 
-final class WeightedUnionFind {
+final class WeightedUnionFind implements DSU {
 	private final int[] par;
 	private final long[] weight;
 	WeightedUnionFind(final int n) {
@@ -2639,7 +2654,8 @@ final class WeightedUnionFind {
 		weight = new long[n];
 		Arrays.fill(par, -1);
 	}
-	final int root(final int i) {
+	@Override
+	public final int root(final int i) {
 		if(par[i] < 0) {
 			return i;
 		}
@@ -2670,10 +2686,27 @@ final class WeightedUnionFind {
 		weight[y] = w;
 		return 1;
 	}
-	final boolean same(final int x, final int y){ return root(x) == root(y); }
+	@Override
+	public final int size(final int i){ return -par[root(i)]; }
+	@Override
+	public final int size(){ return par.length; }
+	@Override
+	public final boolean same(final int x, final int y){ return root(x) == root(y); }
+	@Override
+	public final ArrayList<ArrayList<Integer>> groups() {
+		final int n = par.length;
+		final ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+		IntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));
+		IntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));
+		res.removeIf(ArrayList::isEmpty);
+		return res;
+	}
+	// deprecated
+	@Override
+	public final boolean unite(final int i, final int j){ return unite(i, j, 0) > 0; }
 }
 
-final class UndoUnionFind {
+final class UndoUnionFind implements DSU {
 	private final int[] par;
 	private final Stack<Pair<Integer, Integer>> his;
 	UndoUnionFind(final int n) {
@@ -2681,7 +2714,8 @@ final class UndoUnionFind {
 	    Arrays.fill(par, -1);
 	    his = new Stack<>();
 	}
-	final boolean unite(int x, int y) {
+	@Override
+	public final boolean unite(int x, int y) {
 		x = root(x);
 		y = root(y);
 		his.add(Pair.of(x, par[x]));
@@ -2698,13 +2732,28 @@ final class UndoUnionFind {
 		par[y] = x;
 		return true;
 	}
-	final int root(final int i) {
+	@Override
+	public final int root(final int i) {
 		if(par[i] < 0) {
 			return i;
 		}
 		return root(par[i]);
 	}
-	final int size(final int i){ return -par[root(i)]; }
+	@Override
+	public final boolean same(final int x, final int y){ return root(x) == root(y); }
+	@Override
+	public final int size(final int i){ return -par[root(i)]; }
+	@Override
+	public final int size(){ return par.length; }
+	@Override
+	public final ArrayList<ArrayList<Integer>> groups() {
+		final int n = par.length;
+		final ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+		IntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));
+		IntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));
+		res.removeIf(ArrayList::isEmpty);
+		return res;
+	}
 	final void undo() {
 		final Pair<Integer, Integer> pop1 = his.pop(), pop2 = his.pop();
 		par[pop1.first] = pop1.second;

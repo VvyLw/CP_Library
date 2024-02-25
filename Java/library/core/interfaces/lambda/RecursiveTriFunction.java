@@ -1,4 +1,4 @@
-package library.core.interfaces;
+package library.core.interfaces.lambda;
 
 /**
  * 再帰ラムダ式が書けるTriFunctionインターフェース

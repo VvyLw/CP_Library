@@ -1,8 +1,11 @@
 package library.structure.unionfind;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
+import java.util.stream.IntStream;
 
+import library.core.interfaces.DSU;
 import library.structure.pair.Pair;
 
 /**
@@ -10,7 +13,7 @@ import library.structure.pair.Pair;
  * [注意] verifyしていない
  * @see <a href="https://ei1333.github.io/library/structure/union-find/union-find-undo.hpp">参考元</a>
  */
-public final class UndoUnionFind {
+public final class UndoUnionFind implements DSU {
 	private final int[] par;
 	private final Stack<Pair<Integer, Integer>> his;
 	/**
@@ -22,12 +25,7 @@ public final class UndoUnionFind {
 	    Arrays.fill(par, -1);
 	    his = new Stack<>();
 	}
-	/**
-	 * xとyをマージする
-	 * @param x
-	 * @param y
-	 * @return 未マージでtrue, マージ済でfalse
-	 */
+	@Override
 	public final boolean unite(int x, int y) {
 		x = root(x);
 		y = root(y);
@@ -45,21 +43,27 @@ public final class UndoUnionFind {
 		par[y] = x;
 		return true;
 	}
-	/**
-	 * @param i
-	 * @return iの根
-	 */
+	@Override
 	public final int root(final int i) {
 		if(par[i] < 0) {
 			return i;
 		}
 		return root(par[i]);
 	}
-	/**
-	 * @param i
-	 * @return iを含む連結成分のサイズ
-	 */
+	@Override
 	public final int size(final int i){ return -par[root(i)]; }
+	@Override
+	public final int size(){ return par.length; }
+	@Override
+	public final boolean same(final int i, final int j){ return root(i) == root(j); }
+	public final ArrayList<ArrayList<Integer>> groups() {
+		final int n = par.length;
+		ArrayList<ArrayList<Integer>> res = new ArrayList<>(n);
+		IntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));
+		IntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));
+		res.removeIf(ArrayList::isEmpty);
+		return res;
+	}
 	/**
 	 * 直前のuniteの操作を取り消す
 	 */
@@ -69,7 +73,7 @@ public final class UndoUnionFind {
 		par[pop2.first] = pop2.second;
 	}
 	/**
-	 * 現在のの状態を保存する
+	 * 現在の状態を保存する
 	 */
 	public final void snapshot() {
 		while(!his.empty()) {
