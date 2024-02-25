@@ -169,9 +169,7 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	 * @param args
 	 */
 	public final void out(final char[] args) {
-		if(debug) {
-			print(Arrays.toString(args));
-		} else if(args.length > 0) {
+		if(args.length > 0) {
 			print(args[0]);
 			for(int i = 0; ++i < args.length;) {
 				print(" " + args[i]);

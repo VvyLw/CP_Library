@@ -125,6 +125,10 @@ public final class MyScanner implements Closeable, AutoCloseable {
 		return sb.toString();
 	}
 	/**
+	 * 受け取った文字列をtoCharArrayにして返す
+	 */
+	public final char[] nt(){ return ns().toCharArray(); }
+	/**
 	 * nextBigInteger
 	 * 多倍長整数を入力する
 	 */
@@ -173,6 +177,15 @@ public final class MyScanner implements Closeable, AutoCloseable {
 	public final String[] ns(final int n) {
 		final String[] a = new String[n];
 		IntStream.range(0, n).forEach(i -> a[i] = ns());
+		return a;
+	}
+	/**
+	 * n個の文字列をtoCharArrayして返す
+	 * @param n 配列の大きさ
+	 */
+	public final char[][] nt(final int n) {
+		final char[][] a = new char[n][];
+		IntStream.range(0, n).forEach(i -> a[i] = nt());
 		return a;
 	}
 	/**

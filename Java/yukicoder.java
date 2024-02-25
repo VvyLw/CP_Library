@@ -1216,6 +1216,7 @@ final class IO implements Closeable, AutoCloseable {
 	final double nd(){ return in.nd(); }
 	final char nc(){ return in.nc(); }
 	final String ns(){ return in.ns(); }
+	final char[] nt(){ return in.nt(); }
 	final BigInteger nb(){ return in.nb(); }
 	final IntPair pi(){ return in.pi(); }
 	final FloatPair pf(){ return in.pf(); }
@@ -1224,6 +1225,7 @@ final class IO implements Closeable, AutoCloseable {
 	final double[] nd(final int n){ return in.nd(n); }
 	final char[] nc(final int n){ return in.nc(n); }
 	final String[] ns(final int n){ return in.ns(n); }
+	final char[][] nt(final int n){ return in.nt(n); }
 	final BigInteger[] nb(final int n){ return in.nb(n); }
 	final IntPair[] pi(final int n){ return in.pi(n); }
 	final FloatPair[] pf(final int n){ return in.pf(n); }
@@ -1398,6 +1400,7 @@ final class MyScanner implements Closeable, AutoCloseable {
 		}
 		return sb.toString();
 	}
+	final char[] nt(){ return ns().toCharArray(); }
 	final BigInteger nb(){ return new BigInteger(ns()); }
 	final int[] ni(final int n) {
 		final int[] a = new int[n];
@@ -1422,6 +1425,11 @@ final class MyScanner implements Closeable, AutoCloseable {
 	final String[] ns(final int n) {
 		final String[] a = new String[n];
 		IntStream.range(0, n).forEach(i -> a[i] = ns());
+		return a;
+	}
+	final char[][] nt(final int n) {
+		final char[][] a = new char[n][];
+		IntStream.range(0, n).forEach(i -> a[i] = nt());
 		return a;
 	}
 	final BigInteger[] nb(final int n) {
@@ -1589,9 +1597,7 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		newLine();
 	}
 	final void out(final char[] args) {
-		if(debug) {
-			print(Arrays.toString(args));
-		} else if(args.length > 0) {
+		if(args.length > 0) {
 			print(args[0]);
 			for(int i = 0; ++i < args.length;) {
 				print(" " + args[i]);

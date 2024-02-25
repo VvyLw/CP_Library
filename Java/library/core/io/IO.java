@@ -46,6 +46,10 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public final String ns(){ return in.ns(); }
 	/**
+	 * @see MyScanner#nt
+	 */
+	public final char[] nt(){ return in.nt(); }
+	/**
 	 * @see MyScanner#nb
 	 */
 	public final BigInteger nb(){ return in.nb(); }
@@ -82,6 +86,11 @@ public final class IO implements Closeable, AutoCloseable {
 	 * @see MyScanner#ns
 	 */
 	public final String[] ns(final int n){ return in.ns(n); }
+	/**
+	 * @param n
+	 * @see MyScanner#nt
+	 */
+	public final char[][] nt(final int n){ return in.nt(n); }
 	/**
 	 * @param n
 	 * @see MyScanner#nb
