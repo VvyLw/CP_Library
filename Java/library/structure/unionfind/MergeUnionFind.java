@@ -15,12 +15,12 @@ public abstract class MergeUnionFind<T> extends UnionFind {
 	 * @param i
 	 * @param j
 	 */
-	abstract void merge(final int i, final int j);
+	public abstract void merge(final int i, final int j);
 	/**
 	 * @param i
 	 * @return
 	 */
-	abstract T get(final int i);
+	public abstract T get(final int i);
 	@Override
 	public final boolean unite(int i, int j) {
 		i = root(i);
