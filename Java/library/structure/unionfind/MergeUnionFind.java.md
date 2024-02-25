@@ -533,13 +533,13 @@ data:
     \u30AF\u30E9\u30B9\n * @param <T>\n */\npublic abstract class MergeUnionFind<T>\
     \ extends UnionFind {\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\
     \t * @param n\n\t */\n\tpublic MergeUnionFind(final int n){ super(n); }\n\t/**\n\
-    \t * \u30DE\u30FC\u30B8\u30C6\u30AF\n\t * @param i\n\t * @param j\n\t */\n\tabstract\
-    \ void merge(final int i, final int j);\n\t/**\n\t * @param i\n\t * @return\n\t\
-    \ */\n\tabstract T get(final int i);\n\t@Override\n\tpublic final boolean unite(int\
-    \ i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) {\n\t\t\treturn\
-    \ false;\n\t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\
-    \t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\tmerge(i, j);\n\t\treturn true;\n\
-    \t}\n}"
+    \t * \u30DE\u30FC\u30B8\u30C6\u30AF\n\t * @param i\n\t * @param j\n\t */\n\tpublic\
+    \ abstract void merge(final int i, final int j);\n\t/**\n\t * @param i\n\t * @return\n\
+    \t */\n\tpublic abstract T get(final int i);\n\t@Override\n\tpublic final boolean\
+    \ unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) {\n\
+    \t\t\treturn false;\n\t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\
+    \ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\tmerge(i, j);\n\t\
+    \treturn true;\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -716,7 +716,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-25 07:18:20+09:00'
+  timestamp: '2024-02-25 15:36:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/unionfind/MergeUnionFind.java
