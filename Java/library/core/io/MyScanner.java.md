@@ -566,7 +566,9 @@ data:
     \u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic final String ns() {\n\t\tfinal\
     \ StringBuilder sb = new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c))\
     \ {\n\t\t\tsb.append((char) c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\
-    \t}\n\t/**\n\t * nextBigInteger\n\t * \u591A\u500D\u9577\u6574\u6570\u3092\u5165\
+    \t}\n\t/**\n\t * \u53D7\u3051\u53D6\u3063\u305F\u6587\u5B57\u5217\u3092toCharArray\u306B\
+    \u3057\u3066\u8FD4\u3059\n\t */\n\tpublic final char[] nt(){ return ns().toCharArray();\
+    \ }\n\t/**\n\t * nextBigInteger\n\t * \u591A\u500D\u9577\u6574\u6570\u3092\u5165\
     \u529B\u3059\u308B\n\t */\n\tpublic final BigInteger nb(){ return new BigInteger(ns());\
     \ }\n\t/**\n\t * \u5927\u304D\u3055n\u306Eint\u578B\u914D\u5217\u3092\u5165\u529B\
     \u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic\
@@ -587,53 +589,56 @@ data:
     \u3092\u5165\u529B\u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\
     \n\t */\n\tpublic final String[] ns(final int n) {\n\t\tfinal String[] a = new\
     \ String[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ns());\n\t\treturn\
-    \ a;\n\t}\n\t/**\n\t * [maybe_unused]\n\t * \u5927\u304D\u3055n\u306E\u591A\u500D\
-    \u9577\u6574\u6570\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n \u914D\
-    \u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic final BigInteger[] nb(final int\
-    \ n) {\n\t\tfinal BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = nb());\n\t\treturn a;\n\t}\n\t/**\n\t * h\xD7w\u306E\
-    int\u578B\u306E\u4E8C\u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t\
-    \ * @param h\n\t * @param w\n\t */\n\tpublic final int[][] ni(final int h, final\
-    \ int w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i\
-    \ -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\t/**\n\t * h\xD7w\u306Elong\u578B\u306E\
-    \u4E8C\u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t\
-    \ * @param w\n\t */\n\tpublic final long[][] nl(final int h, final int w) {\n\t\
-    \tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i]\
-    \ = nl(w));\n\t\treturn a;\n\t}\n\t/**\n\t * h\xD7w\u306Edouble\u578B\u306E\u4E8C\
+    \ a;\n\t}\n\t/**\n\t * n\u500B\u306E\u6587\u5B57\u5217\u3092toCharArray\u3057\u3066\
+    \u8FD4\u3059\n\t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic\
+    \ final char[][] nt(final int n) {\n\t\tfinal char[][] a = new char[n][];\n\t\t\
+    IntStream.range(0, n).forEach(i -> a[i] = nt());\n\t\treturn a;\n\t}\n\t/**\n\t\
+    \ * [maybe_unused]\n\t * \u5927\u304D\u3055n\u306E\u591A\u500D\u9577\u6574\u6570\
+    \u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\
+    \u304D\u3055\n\t */\n\tpublic final BigInteger[] nb(final int n) {\n\t\tfinal\
+    \ BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0, n).forEach(i ->\
+    \ a[i] = nb());\n\t\treturn a;\n\t}\n\t/**\n\t * h\xD7w\u306Eint\u578B\u306E\u4E8C\
     \u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t * @param\
-    \ w\n\t */\n\tpublic final double[][] nd(final int h, final int w) {\n\t\tfinal\
-    \ double[][] a = new double[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i]\
-    \ = nd(w));\n\t\treturn a;\n\t}\n\t/**\n\t * h\xD7w\u306Echar\u578B\u306E\u4E8C\
-    \u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t * @param\
-    \ w\n\t */\n\tpublic final char[][] nc(final int h, final int w) {\n\t\tfinal\
-    \ char[][] a = new char[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] =\
-    \ nc(w));\n\t\treturn a;\n\t}\n\t/**\n\t * [maybe_unused]\n\t * h\xD7w\u306E\u6587\
-    \u5B57\u5217\u306E\u4E8C\u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\
-    \n\t * @param h\n\t * @param w\n\t */\n\tpublic final String[][] ns(final int\
-    \ h, final int w) {\n\t\tfinal String[][] a = new String[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = ns(w));\n\t\treturn a;\n\t}\n\t/**\n\t * [maybe_unused]\n\
-    \t * h\xD7w\u306E\u591A\u500D\u9577\u6574\u6570\u306E\u4E8C\u6B21\u5143\u914D\u5217\
+    \ w\n\t */\n\tpublic final int[][] ni(final int h, final int w) {\n\t\tfinal int[][]\
+    \ a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] = ni(w));\n\t\
+    \treturn a;\n\t}\n\t/**\n\t * h\xD7w\u306Elong\u578B\u306E\u4E8C\u6B21\u5143\u914D\
+    \u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t * @param w\n\t */\n\t\
+    public final long[][] nl(final int h, final int w) {\n\t\tfinal long[][] a = new\
+    \ long[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] = nl(w));\n\t\treturn\
+    \ a;\n\t}\n\t/**\n\t * h\xD7w\u306Edouble\u578B\u306E\u4E8C\u6B21\u5143\u914D\u5217\
     \u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t * @param w\n\t */\n\tpublic\
-    \ final BigInteger[][] nb(final int h, final int w) {\n\t\tfinal BigInteger[][]\
-    \ a = new BigInteger[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] = nb(w));\n\
-    \t\treturn a;\n\t}\n\t/**\n\t * [maybe_unused]\n\t * \u4E00\u884C\u5168\u90E8\u3092\
-    \u5165\u529B\u3059\u308B\n\t */\n\tpublic final String line() {\n\t\tfinal StringBuilder\
-    \ sb = new StringBuilder();\n\t\tbyte c;\n\t\twhile((c = read()) != '\\n') {\n\
-    \t\t\tsb.append((char) c);\n\t\t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t *\
-    \ IntPair\u578B\u3092\u5165\u529B\u3059\u308B\n\t * @see IntPair\n\t */\n\tpublic\
-    \ final IntPair pi(){ return IntPair.of(nl(), nl()); }\n\t/**\n\t * IntPair\u578B\
-    \u306E\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n\n\t * @see IntPair\n\
-    \t */\n\tpublic final IntPair[] pi(final int n) {\n\t\tfinal IntPair[] p = new\
-    \ IntPair[n];\n\t\tIntStream.range(0, n).forEach(i -> p[i] = pi());\n\t\treturn\
-    \ p;\n\t}\n\t/**\n\t * FloatPair\u578B\u3092\u5165\u529B\u3059\u308B\n\t * @see\
-    \ FloatPair\n\t */\n\tpublic final FloatPair pf(){ return FloatPair.of(nd(), nd());\
-    \ }\n\t/**\n\t * FloatPair\u578B\u306E\u914D\u5217\u3092\u5165\u529B\u3059\u308B\
-    \n\t * @param n\n\t * @see FloatPair\n\t */\n\tpublic final FloatPair[] pf(final\
-    \ int n) {\n\t\tfinal FloatPair[] p = new FloatPair[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> p[i] = pf());\n\t\treturn p;\n\t}\n\t/**\n\t * InputStream\u3092\
-    \u9589\u3058\u308B\n\t */\n\t@Override\n\tpublic final void close() {\n\t\ttry\
-    \ {\n\t\t\tis.close();\n\t\t} catch(final IOException e) {\n\t\t\te.printStackTrace();\n\
-    \t\t}\n\t}\n}"
+    \ final double[][] nd(final int h, final int w) {\n\t\tfinal double[][] a = new\
+    \ double[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] = nd(w));\n\t\treturn\
+    \ a;\n\t}\n\t/**\n\t * h\xD7w\u306Echar\u578B\u306E\u4E8C\u6B21\u5143\u914D\u5217\
+    \u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t * @param w\n\t */\n\tpublic\
+    \ final char[][] nc(final int h, final int w) {\n\t\tfinal char[][] a = new char[h][w];\n\
+    \t\tIntStream.range(0, h).forEach(i -> a[i] = nc(w));\n\t\treturn a;\n\t}\n\t\
+    /**\n\t * [maybe_unused]\n\t * h\xD7w\u306E\u6587\u5B57\u5217\u306E\u4E8C\u6B21\
+    \u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t * @param w\n\
+    \t */\n\tpublic final String[][] ns(final int h, final int w) {\n\t\tfinal String[][]\
+    \ a = new String[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] = ns(w));\n\
+    \t\treturn a;\n\t}\n\t/**\n\t * [maybe_unused]\n\t * h\xD7w\u306E\u591A\u500D\u9577\
+    \u6574\u6570\u306E\u4E8C\u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\
+    \n\t * @param h\n\t * @param w\n\t */\n\tpublic final BigInteger[][] nb(final\
+    \ int h, final int w) {\n\t\tfinal BigInteger[][] a = new BigInteger[h][w];\n\t\
+    \tIntStream.range(0, h).forEach(i -> a[i] = nb(w));\n\t\treturn a;\n\t}\n\t/**\n\
+    \t * [maybe_unused]\n\t * \u4E00\u884C\u5168\u90E8\u3092\u5165\u529B\u3059\u308B\
+    \n\t */\n\tpublic final String line() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
+    \t\tbyte c;\n\t\twhile((c = read()) != '\\n') {\n\t\t\tsb.append((char) c);\n\t\
+    \t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t * IntPair\u578B\u3092\u5165\u529B\
+    \u3059\u308B\n\t * @see IntPair\n\t */\n\tpublic final IntPair pi(){ return IntPair.of(nl(),\
+    \ nl()); }\n\t/**\n\t * IntPair\u578B\u306E\u914D\u5217\u3092\u5165\u529B\u3059\
+    \u308B\n\t * @param n\n\t * @see IntPair\n\t */\n\tpublic final IntPair[] pi(final\
+    \ int n) {\n\t\tfinal IntPair[] p = new IntPair[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> p[i] = pi());\n\t\treturn p;\n\t}\n\t/**\n\t * FloatPair\u578B\u3092\u5165\
+    \u529B\u3059\u308B\n\t * @see FloatPair\n\t */\n\tpublic final FloatPair pf(){\
+    \ return FloatPair.of(nd(), nd()); }\n\t/**\n\t * FloatPair\u578B\u306E\u914D\u5217\
+    \u3092\u5165\u529B\u3059\u308B\n\t * @param n\n\t * @see FloatPair\n\t */\n\t\
+    public final FloatPair[] pf(final int n) {\n\t\tfinal FloatPair[] p = new FloatPair[n];\n\
+    \t\tIntStream.range(0, n).forEach(i -> p[i] = pf());\n\t\treturn p;\n\t}\n\t/**\n\
+    \t * InputStream\u3092\u9589\u3058\u308B\n\t */\n\t@Override\n\tpublic final void\
+    \ close() {\n\t\ttry {\n\t\t\tis.close();\n\t\t} catch(final IOException e) {\n\
+    \t\t\te.printStackTrace();\n\t\t}\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -810,7 +815,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-25 15:36:41+09:00'
+  timestamp: '2024-02-25 16:24:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyScanner.java

@@ -1051,11 +1051,12 @@ data:
     \t\tthis.out = out;\n\t\tthis.err = err;\n\t}\n\tfinal int ni(){ return in.ni();\
     \ }\n\tfinal long nl(){ return in.nl(); }\n\tfinal double nd(){ return in.nd();\
     \ }\n\tfinal char nc(){ return in.nc(); }\n\tfinal String ns(){ return in.ns();\
-    \ }\n\tfinal BigInteger nb(){ return in.nb(); }\n\tfinal IntPair pi(){ return\
-    \ in.pi(); }\n\tfinal FloatPair pf(){ return in.pf(); }\n\tfinal int[] ni(final\
-    \ int n){ return in.ni(n); }\n\tfinal long[] nl(final int n){ return in.nl(n);\
-    \ }\n\tfinal double[] nd(final int n){ return in.nd(n); }\n\tfinal char[] nc(final\
-    \ int n){ return in.nc(n); }\n\tfinal String[] ns(final int n){ return in.ns(n);\
+    \ }\n\tfinal char[] nt(){ return in.nt(); }\n\tfinal BigInteger nb(){ return in.nb();\
+    \ }\n\tfinal IntPair pi(){ return in.pi(); }\n\tfinal FloatPair pf(){ return in.pf();\
+    \ }\n\tfinal int[] ni(final int n){ return in.ni(n); }\n\tfinal long[] nl(final\
+    \ int n){ return in.nl(n); }\n\tfinal double[] nd(final int n){ return in.nd(n);\
+    \ }\n\tfinal char[] nc(final int n){ return in.nc(n); }\n\tfinal String[] ns(final\
+    \ int n){ return in.ns(n); }\n\tfinal char[][] nt(final int n){ return in.nt(n);\
     \ }\n\tfinal BigInteger[] nb(final int n){ return in.nb(n); }\n\tfinal IntPair[]\
     \ pi(final int n){ return in.pi(n); }\n\tfinal FloatPair[] pf(final int n){ return\
     \ in.pf(n); }\n\tfinal int[][] ni(final int h, final int w){ return in.ni(h, w);\
@@ -1146,27 +1147,30 @@ data:
     \ char nc(){ return (char) next(); }\n\tfinal String ns() {\n\t\tfinal StringBuilder\
     \ sb = new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c)) {\n\t\
     \t\tsb.append((char) c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\
-    \t}\n\tfinal BigInteger nb(){ return new BigInteger(ns()); }\n\tfinal int[] ni(final\
-    \ int n) {\n\t\tfinal int[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = ni());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\t\
-    final long[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\
-    \t\treturn a;\n\t}\n\tfinal double[] nd(final int n) {\n\t\tfinal double[] a =\
-    \ new double[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\treturn\
-    \ a;\n\t}\n\tfinal char[] nc(final int n) {\n\t\tfinal char[] a = new char[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal\
-    \ String[] ns(final int n) {\n\t\tfinal String[] a = new String[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final\
-    \ int n) {\n\t\tfinal BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final\
-    \ int h, final int w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final\
-    \ int h, final int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final\
-    \ int h, final int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\tfinal char[][] nc(final\
-    \ int h, final int w) {\n\t\tfinal char[][] a = new char[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = nc(w));\n\t\treturn a;\n\t}\n\tfinal String[][] ns(final\
-    \ int h, final int w) {\n\t\tfinal String[][] a = new String[h][w];\n\t\tIntStream.range(0,\
+    \t}\n\tfinal char[] nt(){ return ns().toCharArray(); }\n\tfinal BigInteger nb(){\
+    \ return new BigInteger(ns()); }\n\tfinal int[] ni(final int n) {\n\t\tfinal int[]\
+    \ a = new int[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ni());\n\t\t\
+    return a;\n\t}\n\tfinal long[] nl(final int n) {\n\t\tfinal long[] a = new long[n];\n\
+    \t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\treturn a;\n\t}\n\tfinal\
+    \ double[] nd(final int n) {\n\t\tfinal double[] a = new double[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal char[] nc(final int\
+    \ n) {\n\t\tfinal char[] a = new char[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal String[] ns(final int n) {\n\t\
+    \tfinal String[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i]\
+    \ = ns());\n\t\treturn a;\n\t}\n\tfinal char[][] nt(final int n) {\n\t\tfinal\
+    \ char[][] a = new char[n][];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nt());\n\
+    \t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final int n) {\n\t\tfinal BigInteger[]\
+    \ a = new BigInteger[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nb());\n\
+    \t\treturn a;\n\t}\n\tfinal int[][] ni(final int h, final int w) {\n\t\tfinal\
+    \ int[][] a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] = ni(w));\n\
+    \t\treturn a;\n\t}\n\tfinal long[][] nl(final int h, final int w) {\n\t\tfinal\
+    \ long[][] a = new long[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] =\
+    \ nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final int h, final int w)\
+    \ {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\tfinal char[][] nc(final int h, final\
+    \ int w) {\n\t\tfinal char[][] a = new char[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = nc(w));\n\t\treturn a;\n\t}\n\tfinal String[][] ns(final int h, final\
+    \ int w) {\n\t\tfinal String[][] a = new String[h][w];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> a[i] = ns(w));\n\t\treturn a;\n\t}\n\tfinal BigInteger[][] nb(final\
     \ int h, final int w) {\n\t\tfinal BigInteger[][] a = new BigInteger[h][w];\n\t\
     \tIntStream.range(0, h).forEach(i -> a[i] = nb(w));\n\t\treturn a;\n\t}\n\tfinal\
@@ -1211,20 +1215,19 @@ data:
     \ out(final boolean[] args) {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\
     \t\t} else if(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0;\
     \ ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\t\
-    newLine();\n\t}\n\tfinal void out(final char[] args) {\n\t\tif(debug) {\n\t\t\t\
-    print(Arrays.toString(args));\n\t\t} else if(args.length > 0) {\n\t\t\tprint(args[0]);\n\
-    \t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\
-    \t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final Object[] args) {\n\t\
-    \tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\t\t} else if(args.length\
-    \ > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\
-    \t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal <E>\
-    \ void out(final Collection<E> args) {\n\t\tif(debug) {\n\t\t\tprint(args.toString());\n\
-    \t\t} else {\n\t\t\tint i = 0;\n\t\t\tfor(final var el: args) {\n\t\t\t\tprint(el);\n\
-    \t\t\t\tif(++i != args.size()) {\n\t\t\t\t\tprint(\" \");\n\t\t\t\t}\n\t\t\t}\n\
-    \t\t}\n\t\tnewLine();\n\t}\n\tfinal void outl(final Object head, final Object...\
-    \ tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::out);\n\t}\n\t\
-    final void outl(final int[] args){ Arrays.stream(args).forEach(this::out); }\n\
-    \tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
+    newLine();\n\t}\n\tfinal void out(final char[] args) {\n\t\tif(args.length > 0)\
+    \ {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\
+    \tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final\
+    \ Object[] args) {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\t\t\
+    } else if(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i\
+    \ < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\
+    \t}\n\tfinal <E> void out(final Collection<E> args) {\n\t\tif(debug) {\n\t\t\t\
+    print(args.toString());\n\t\t} else {\n\t\t\tint i = 0;\n\t\t\tfor(final var el:\
+    \ args) {\n\t\t\t\tprint(el);\n\t\t\t\tif(++i != args.size()) {\n\t\t\t\t\tprint(\"\
+    \ \");\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void outl(final\
+    \ Object head, final Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::out);\n\
+    \t}\n\tfinal void outl(final int[] args){ Arrays.stream(args).forEach(this::out);\
+    \ }\n\tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final long[] args){ Arrays.stream(args).forEach(this::out);\
     \ }\n\tfinal void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final double[] args){ Arrays.stream(args).forEach(this::out);\
@@ -1522,7 +1525,7 @@ data:
   - Java/library/structure/waveletmatrix/WaveletMatrix.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-25 15:36:41+09:00'
+  timestamp: '2024-02-25 16:24:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java

@@ -543,10 +543,11 @@ data:
     \ }\n\t/**\n\t * @see MyScanner#nd\n\t */\n\tpublic final double nd(){ return\
     \ in.nd(); }\n\t/**\n\t * @see MyScanner#nc\n\t */\n\tpublic final char nc(){\
     \ return in.nc(); }\n\t/**\n\t * @see MyScanner#ns\n\t */\n\tpublic final String\
-    \ ns(){ return in.ns(); }\n\t/**\n\t * @see MyScanner#nb\n\t */\n\tpublic final\
-    \ BigInteger nb(){ return in.nb(); }\n\t/**\n\t * @see MyScanner#pi\n\t */\n\t\
-    public final IntPair pi(){ return in.pi(); }\n\t/**\n\t * @see MyScanner#pf\n\t\
-    \ */\n\tpublic final FloatPair pf(){ return in.pf(); }\n\t/**\n\t * @param n\n\
+    \ ns(){ return in.ns(); }\n\t/**\n\t * @see MyScanner#nt\n\t */\n\tpublic final\
+    \ char[] nt(){ return in.nt(); }\n\t/**\n\t * @see MyScanner#nb\n\t */\n\tpublic\
+    \ final BigInteger nb(){ return in.nb(); }\n\t/**\n\t * @see MyScanner#pi\n\t\
+    \ */\n\tpublic final IntPair pi(){ return in.pi(); }\n\t/**\n\t * @see MyScanner#pf\n\
+    \t */\n\tpublic final FloatPair pf(){ return in.pf(); }\n\t/**\n\t * @param n\n\
     \t * @see MyScanner#ni\n\t */\n\tpublic final int[] ni(final int n){ return in.ni(n);\
     \ }\n\t/**\n\t * @param n\n\t * @see MyScanner#nl\n\t */\n\tpublic final long[]\
     \ nl(final int n){ return in.nl(n); }\n\t/**\n\t * @param n\n\t * @see MyScanner#nd\n\
@@ -554,26 +555,27 @@ data:
     \ * @param n\n\t * @see MyScanner#nc\n\t */\n\tpublic final char[] nc(final int\
     \ n){ return in.nc(n); }\n\t/**\n\t * @param n\n\t * @see MyScanner#ns\n\t */\n\
     \tpublic final String[] ns(final int n){ return in.ns(n); }\n\t/**\n\t * @param\
-    \ n\n\t * @see MyScanner#nb\n\t */\n\tpublic final BigInteger[] nb(final int n){\
-    \ return in.nb(n); }\n\t/**\n\t * @param n\n\t * @see MyScanner#pi\n\t */\n\t\
-    public final IntPair[] pi(final int n){ return in.pi(n); }\n\t/**\n\t * @param\
-    \ n\n\t * @see MyScanner#pf\n\t */\n\tpublic final FloatPair[] pf(final int n){\
-    \ return in.pf(n); }\n\t/**\n\t * @param h\n\t * @param w\n\t * @see MyScanner#ni\n\
-    \t */\n\tpublic final int[][] ni(final int h, final int w){ return in.ni(h, w);\
-    \ }\n\t/**\n\t * @param h\n\t * @param w\n\t * @see MyScanner#nl\n\t */\n\tpublic\
-    \ final long[][] nl(final int h, final int w){ return in.nl(h, w); }\n\t/**\n\t\
-    \ * @param h\n\t * @param w\n\t * @see MyScanner#nd\n\t */\n\tpublic final double[][]\
-    \ nd(final int h, final int w){ return in.nd(h, w); }\n\t/**\n\t * @param h\n\t\
-    \ * @param w\n\t * @see MyScanner#nc\n\t */\n\tpublic final char[][] nc(final\
-    \ int h, final int w){ return in.nc(h, w); }\n\t/**\n\t * @param h\n\t * @param\
-    \ w\n\t * @see MyScanner#ns\n\t */\n\tpublic final String[][] ns(final int h,\
-    \ final int w){ return in.ns(h, w); }\n\t/**\n\t * @param h\n\t * @param w\n\t\
-    \ * @see MyScanner#nb\n\t */\n\tpublic final BigInteger[][] nb(final int h, final\
-    \ int w){ return in.nb(h, w); }\n\t/**\n\t * @see MyScanner#line\n\t */\n\tpublic\
-    \ final String line(){ return in.line(); }\n\t/**\n\t * @param arg\n\t * @see\
-    \ MyPrinter#print\n\t */\n\tpublic final void print(final Object arg){ out.print(arg);\
-    \ }\n\t/**\n\t * @param fmt\n\t * @param args\n\t * @see MyPrinter#printf\n\t\
-    \ */\n\tpublic final void printf(final String fmt, final Object... args){ out.printf(fmt,\
+    \ n\n\t * @see MyScanner#nt\n\t */\n\tpublic final char[][] nt(final int n){ return\
+    \ in.nt(n); }\n\t/**\n\t * @param n\n\t * @see MyScanner#nb\n\t */\n\tpublic final\
+    \ BigInteger[] nb(final int n){ return in.nb(n); }\n\t/**\n\t * @param n\n\t *\
+    \ @see MyScanner#pi\n\t */\n\tpublic final IntPair[] pi(final int n){ return in.pi(n);\
+    \ }\n\t/**\n\t * @param n\n\t * @see MyScanner#pf\n\t */\n\tpublic final FloatPair[]\
+    \ pf(final int n){ return in.pf(n); }\n\t/**\n\t * @param h\n\t * @param w\n\t\
+    \ * @see MyScanner#ni\n\t */\n\tpublic final int[][] ni(final int h, final int\
+    \ w){ return in.ni(h, w); }\n\t/**\n\t * @param h\n\t * @param w\n\t * @see MyScanner#nl\n\
+    \t */\n\tpublic final long[][] nl(final int h, final int w){ return in.nl(h, w);\
+    \ }\n\t/**\n\t * @param h\n\t * @param w\n\t * @see MyScanner#nd\n\t */\n\tpublic\
+    \ final double[][] nd(final int h, final int w){ return in.nd(h, w); }\n\t/**\n\
+    \t * @param h\n\t * @param w\n\t * @see MyScanner#nc\n\t */\n\tpublic final char[][]\
+    \ nc(final int h, final int w){ return in.nc(h, w); }\n\t/**\n\t * @param h\n\t\
+    \ * @param w\n\t * @see MyScanner#ns\n\t */\n\tpublic final String[][] ns(final\
+    \ int h, final int w){ return in.ns(h, w); }\n\t/**\n\t * @param h\n\t * @param\
+    \ w\n\t * @see MyScanner#nb\n\t */\n\tpublic final BigInteger[][] nb(final int\
+    \ h, final int w){ return in.nb(h, w); }\n\t/**\n\t * @see MyScanner#line\n\t\
+    \ */\n\tpublic final String line(){ return in.line(); }\n\t/**\n\t * @param arg\n\
+    \t * @see MyPrinter#print\n\t */\n\tpublic final void print(final Object arg){\
+    \ out.print(arg); }\n\t/**\n\t * @param fmt\n\t * @param args\n\t * @see MyPrinter#printf\n\
+    \t */\n\tpublic final void printf(final String fmt, final Object... args){ out.printf(fmt,\
     \ args); }\n\t/**\n\t * @see MyPrinter#out\n\t */\n\tpublic final void out(){\
     \ out.out(); }\n\t/**\n\t * @param head\n\t * @param tail\n\t * @see MyPrinter#out\n\
     \t */\n\tpublic final void out(final Object head, final Object... tail){ out.out(head,\
@@ -873,7 +875,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-25 15:36:41+09:00'
+  timestamp: '2024-02-25 16:24:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/IO.java

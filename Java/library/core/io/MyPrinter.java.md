@@ -590,12 +590,11 @@ data:
     \t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t\
     \ * char\u578B\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\u3067\u51FA\u529B\
     \u3059\u308B\n\t * @param args\n\t */\n\tpublic final void out(final char[] args)\
-    \ {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\t\t} else if(args.length\
-    \ > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\
-    \t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t\
-    \ * {@link Object}\u30AF\u30E9\u30B9\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\
-    \u304D\u3067\u51FA\u529B\u3059\u308B\n\t * @param args\n\t */\n\tpublic final\
-    \ void out(final Object[] args) {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\
+    \ {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i\
+    \ < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\
+    \t}\n\t/**\n\t * {@link Object}\u30AF\u30E9\u30B9\u306E\u914D\u5217\u3092\u7A7A\
+    \u767D\u304A\u304D\u3067\u51FA\u529B\u3059\u308B\n\t * @param args\n\t */\n\t\
+    public final void out(final Object[] args) {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\
     \t\t} else if(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0;\
     \ ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\t\
     newLine();\n\t}\n\t/**\n\t * {@link Collection}\u3092\u51FA\u529B\u3059\u308B\n\
@@ -914,7 +913,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-25 15:36:41+09:00'
+  timestamp: '2024-02-25 16:24:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyPrinter.java
