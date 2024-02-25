@@ -20,95 +20,98 @@ data:
     path: Java/library/core/VvyLw.java
     title: Java/library/core/VvyLw.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/QuadFunction.java
-    title: Java/library/core/interfaces/QuadFunction.java
+    path: Java/library/core/interfaces/DSU.java
+    title: Java/library/core/interfaces/DSU.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveBiConsumer.java
-    title: Java/library/core/interfaces/RecursiveBiConsumer.java
+    path: Java/library/core/interfaces/lambda/QuadFunction.java
+    title: Java/library/core/interfaces/lambda/QuadFunction.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveBiFunction.java
-    title: Java/library/core/interfaces/RecursiveBiFunction.java
+    path: Java/library/core/interfaces/lambda/RecursiveBiConsumer.java
+    title: Java/library/core/interfaces/lambda/RecursiveBiConsumer.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveBiPredicate.java
-    title: Java/library/core/interfaces/RecursiveBiPredicate.java
+    path: Java/library/core/interfaces/lambda/RecursiveBiFunction.java
+    title: Java/library/core/interfaces/lambda/RecursiveBiFunction.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveBinaryOperator.java
-    title: Java/library/core/interfaces/RecursiveBinaryOperator.java
+    path: Java/library/core/interfaces/lambda/RecursiveBiPredicate.java
+    title: Java/library/core/interfaces/lambda/RecursiveBiPredicate.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveConsumer.java
-    title: Java/library/core/interfaces/RecursiveConsumer.java
+    path: Java/library/core/interfaces/lambda/RecursiveBinaryOperator.java
+    title: Java/library/core/interfaces/lambda/RecursiveBinaryOperator.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
-    title: Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
+    path: Java/library/core/interfaces/lambda/RecursiveConsumer.java
+    title: Java/library/core/interfaces/lambda/RecursiveConsumer.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveDoubleConsumer.java
-    title: Java/library/core/interfaces/RecursiveDoubleConsumer.java
+    path: Java/library/core/interfaces/lambda/RecursiveDoubleBinaryOperator.java
+    title: Java/library/core/interfaces/lambda/RecursiveDoubleBinaryOperator.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveDoubleFunction.java
-    title: Java/library/core/interfaces/RecursiveDoubleFunction.java
+    path: Java/library/core/interfaces/lambda/RecursiveDoubleConsumer.java
+    title: Java/library/core/interfaces/lambda/RecursiveDoubleConsumer.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveDoublePredicate.java
-    title: Java/library/core/interfaces/RecursiveDoublePredicate.java
+    path: Java/library/core/interfaces/lambda/RecursiveDoubleFunction.java
+    title: Java/library/core/interfaces/lambda/RecursiveDoubleFunction.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
-    title: Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
+    path: Java/library/core/interfaces/lambda/RecursiveDoublePredicate.java
+    title: Java/library/core/interfaces/lambda/RecursiveDoublePredicate.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveFunction.java
-    title: Java/library/core/interfaces/RecursiveFunction.java
+    path: Java/library/core/interfaces/lambda/RecursiveDoubleUnaryOperator.java
+    title: Java/library/core/interfaces/lambda/RecursiveDoubleUnaryOperator.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveIntBinaryOperator.java
-    title: Java/library/core/interfaces/RecursiveIntBinaryOperator.java
+    path: Java/library/core/interfaces/lambda/RecursiveFunction.java
+    title: Java/library/core/interfaces/lambda/RecursiveFunction.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveIntConsumer.java
-    title: Java/library/core/interfaces/RecursiveIntConsumer.java
+    path: Java/library/core/interfaces/lambda/RecursiveIntBinaryOperator.java
+    title: Java/library/core/interfaces/lambda/RecursiveIntBinaryOperator.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveIntFunction.java
-    title: Java/library/core/interfaces/RecursiveIntFunction.java
+    path: Java/library/core/interfaces/lambda/RecursiveIntConsumer.java
+    title: Java/library/core/interfaces/lambda/RecursiveIntConsumer.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveIntPredicate.java
-    title: Java/library/core/interfaces/RecursiveIntPredicate.java
+    path: Java/library/core/interfaces/lambda/RecursiveIntFunction.java
+    title: Java/library/core/interfaces/lambda/RecursiveIntFunction.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
-    title: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+    path: Java/library/core/interfaces/lambda/RecursiveIntPredicate.java
+    title: Java/library/core/interfaces/lambda/RecursiveIntPredicate.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
-    title: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
+    path: Java/library/core/interfaces/lambda/RecursiveIntUnaryOperator.java
+    title: Java/library/core/interfaces/lambda/RecursiveIntUnaryOperator.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveLongConsumer.java
-    title: Java/library/core/interfaces/RecursiveLongConsumer.java
+    path: Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
+    title: Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveLongFunction.java
-    title: Java/library/core/interfaces/RecursiveLongFunction.java
+    path: Java/library/core/interfaces/lambda/RecursiveLongConsumer.java
+    title: Java/library/core/interfaces/lambda/RecursiveLongConsumer.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveLongPredicate.java
-    title: Java/library/core/interfaces/RecursiveLongPredicate.java
+    path: Java/library/core/interfaces/lambda/RecursiveLongFunction.java
+    title: Java/library/core/interfaces/lambda/RecursiveLongFunction.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveLongUnaryOperator.java
-    title: Java/library/core/interfaces/RecursiveLongUnaryOperator.java
+    path: Java/library/core/interfaces/lambda/RecursiveLongPredicate.java
+    title: Java/library/core/interfaces/lambda/RecursiveLongPredicate.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursivePredicate.java
-    title: Java/library/core/interfaces/RecursivePredicate.java
+    path: Java/library/core/interfaces/lambda/RecursiveLongUnaryOperator.java
+    title: Java/library/core/interfaces/lambda/RecursiveLongUnaryOperator.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveTriConsumer.java
-    title: Java/library/core/interfaces/RecursiveTriConsumer.java
+    path: Java/library/core/interfaces/lambda/RecursivePredicate.java
+    title: Java/library/core/interfaces/lambda/RecursivePredicate.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveTriFunction.java
-    title: Java/library/core/interfaces/RecursiveTriFunction.java
+    path: Java/library/core/interfaces/lambda/RecursiveTriConsumer.java
+    title: Java/library/core/interfaces/lambda/RecursiveTriConsumer.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveTriPredicate.java
-    title: Java/library/core/interfaces/RecursiveTriPredicate.java
+    path: Java/library/core/interfaces/lambda/RecursiveTriFunction.java
+    title: Java/library/core/interfaces/lambda/RecursiveTriFunction.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveUnaryOperator.java
-    title: Java/library/core/interfaces/RecursiveUnaryOperator.java
+    path: Java/library/core/interfaces/lambda/RecursiveTriPredicate.java
+    title: Java/library/core/interfaces/lambda/RecursiveTriPredicate.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/TriConsumer.java
-    title: Java/library/core/interfaces/TriConsumer.java
+    path: Java/library/core/interfaces/lambda/RecursiveUnaryOperator.java
+    title: Java/library/core/interfaces/lambda/RecursiveUnaryOperator.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/TriFunction.java
-    title: Java/library/core/interfaces/TriFunction.java
+    path: Java/library/core/interfaces/lambda/TriConsumer.java
+    title: Java/library/core/interfaces/lambda/TriConsumer.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/TriPredicate.java
-    title: Java/library/core/interfaces/TriPredicate.java
+    path: Java/library/core/interfaces/lambda/TriFunction.java
+    title: Java/library/core/interfaces/lambda/TriFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/lambda/TriPredicate.java
+    title: Java/library/core/interfaces/lambda/TriPredicate.java
   - icon: ':warning:'
     path: Java/library/core/io/IO.java
     title: Java/library/core/io/IO.java
@@ -279,95 +282,98 @@ data:
     path: Java/library/core/VvyLw.java
     title: Java/library/core/VvyLw.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/QuadFunction.java
-    title: Java/library/core/interfaces/QuadFunction.java
+    path: Java/library/core/interfaces/DSU.java
+    title: Java/library/core/interfaces/DSU.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveBiConsumer.java
-    title: Java/library/core/interfaces/RecursiveBiConsumer.java
+    path: Java/library/core/interfaces/lambda/QuadFunction.java
+    title: Java/library/core/interfaces/lambda/QuadFunction.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveBiFunction.java
-    title: Java/library/core/interfaces/RecursiveBiFunction.java
+    path: Java/library/core/interfaces/lambda/RecursiveBiConsumer.java
+    title: Java/library/core/interfaces/lambda/RecursiveBiConsumer.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveBiPredicate.java
-    title: Java/library/core/interfaces/RecursiveBiPredicate.java
+    path: Java/library/core/interfaces/lambda/RecursiveBiFunction.java
+    title: Java/library/core/interfaces/lambda/RecursiveBiFunction.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveBinaryOperator.java
-    title: Java/library/core/interfaces/RecursiveBinaryOperator.java
+    path: Java/library/core/interfaces/lambda/RecursiveBiPredicate.java
+    title: Java/library/core/interfaces/lambda/RecursiveBiPredicate.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveConsumer.java
-    title: Java/library/core/interfaces/RecursiveConsumer.java
+    path: Java/library/core/interfaces/lambda/RecursiveBinaryOperator.java
+    title: Java/library/core/interfaces/lambda/RecursiveBinaryOperator.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
-    title: Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
+    path: Java/library/core/interfaces/lambda/RecursiveConsumer.java
+    title: Java/library/core/interfaces/lambda/RecursiveConsumer.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveDoubleConsumer.java
-    title: Java/library/core/interfaces/RecursiveDoubleConsumer.java
+    path: Java/library/core/interfaces/lambda/RecursiveDoubleBinaryOperator.java
+    title: Java/library/core/interfaces/lambda/RecursiveDoubleBinaryOperator.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveDoubleFunction.java
-    title: Java/library/core/interfaces/RecursiveDoubleFunction.java
+    path: Java/library/core/interfaces/lambda/RecursiveDoubleConsumer.java
+    title: Java/library/core/interfaces/lambda/RecursiveDoubleConsumer.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveDoublePredicate.java
-    title: Java/library/core/interfaces/RecursiveDoublePredicate.java
+    path: Java/library/core/interfaces/lambda/RecursiveDoubleFunction.java
+    title: Java/library/core/interfaces/lambda/RecursiveDoubleFunction.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
-    title: Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
+    path: Java/library/core/interfaces/lambda/RecursiveDoublePredicate.java
+    title: Java/library/core/interfaces/lambda/RecursiveDoublePredicate.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveFunction.java
-    title: Java/library/core/interfaces/RecursiveFunction.java
+    path: Java/library/core/interfaces/lambda/RecursiveDoubleUnaryOperator.java
+    title: Java/library/core/interfaces/lambda/RecursiveDoubleUnaryOperator.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveIntBinaryOperator.java
-    title: Java/library/core/interfaces/RecursiveIntBinaryOperator.java
+    path: Java/library/core/interfaces/lambda/RecursiveFunction.java
+    title: Java/library/core/interfaces/lambda/RecursiveFunction.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveIntConsumer.java
-    title: Java/library/core/interfaces/RecursiveIntConsumer.java
+    path: Java/library/core/interfaces/lambda/RecursiveIntBinaryOperator.java
+    title: Java/library/core/interfaces/lambda/RecursiveIntBinaryOperator.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveIntFunction.java
-    title: Java/library/core/interfaces/RecursiveIntFunction.java
+    path: Java/library/core/interfaces/lambda/RecursiveIntConsumer.java
+    title: Java/library/core/interfaces/lambda/RecursiveIntConsumer.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveIntPredicate.java
-    title: Java/library/core/interfaces/RecursiveIntPredicate.java
+    path: Java/library/core/interfaces/lambda/RecursiveIntFunction.java
+    title: Java/library/core/interfaces/lambda/RecursiveIntFunction.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
-    title: Java/library/core/interfaces/RecursiveIntUnaryOperator.java
+    path: Java/library/core/interfaces/lambda/RecursiveIntPredicate.java
+    title: Java/library/core/interfaces/lambda/RecursiveIntPredicate.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
-    title: Java/library/core/interfaces/RecursiveLongBinaryOperator.java
+    path: Java/library/core/interfaces/lambda/RecursiveIntUnaryOperator.java
+    title: Java/library/core/interfaces/lambda/RecursiveIntUnaryOperator.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveLongConsumer.java
-    title: Java/library/core/interfaces/RecursiveLongConsumer.java
+    path: Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
+    title: Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveLongFunction.java
-    title: Java/library/core/interfaces/RecursiveLongFunction.java
+    path: Java/library/core/interfaces/lambda/RecursiveLongConsumer.java
+    title: Java/library/core/interfaces/lambda/RecursiveLongConsumer.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveLongPredicate.java
-    title: Java/library/core/interfaces/RecursiveLongPredicate.java
+    path: Java/library/core/interfaces/lambda/RecursiveLongFunction.java
+    title: Java/library/core/interfaces/lambda/RecursiveLongFunction.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveLongUnaryOperator.java
-    title: Java/library/core/interfaces/RecursiveLongUnaryOperator.java
+    path: Java/library/core/interfaces/lambda/RecursiveLongPredicate.java
+    title: Java/library/core/interfaces/lambda/RecursiveLongPredicate.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursivePredicate.java
-    title: Java/library/core/interfaces/RecursivePredicate.java
+    path: Java/library/core/interfaces/lambda/RecursiveLongUnaryOperator.java
+    title: Java/library/core/interfaces/lambda/RecursiveLongUnaryOperator.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveTriConsumer.java
-    title: Java/library/core/interfaces/RecursiveTriConsumer.java
+    path: Java/library/core/interfaces/lambda/RecursivePredicate.java
+    title: Java/library/core/interfaces/lambda/RecursivePredicate.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveTriFunction.java
-    title: Java/library/core/interfaces/RecursiveTriFunction.java
+    path: Java/library/core/interfaces/lambda/RecursiveTriConsumer.java
+    title: Java/library/core/interfaces/lambda/RecursiveTriConsumer.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveTriPredicate.java
-    title: Java/library/core/interfaces/RecursiveTriPredicate.java
+    path: Java/library/core/interfaces/lambda/RecursiveTriFunction.java
+    title: Java/library/core/interfaces/lambda/RecursiveTriFunction.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/RecursiveUnaryOperator.java
-    title: Java/library/core/interfaces/RecursiveUnaryOperator.java
+    path: Java/library/core/interfaces/lambda/RecursiveTriPredicate.java
+    title: Java/library/core/interfaces/lambda/RecursiveTriPredicate.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/TriConsumer.java
-    title: Java/library/core/interfaces/TriConsumer.java
+    path: Java/library/core/interfaces/lambda/RecursiveUnaryOperator.java
+    title: Java/library/core/interfaces/lambda/RecursiveUnaryOperator.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/TriFunction.java
-    title: Java/library/core/interfaces/TriFunction.java
+    path: Java/library/core/interfaces/lambda/TriConsumer.java
+    title: Java/library/core/interfaces/lambda/TriConsumer.java
   - icon: ':warning:'
-    path: Java/library/core/interfaces/TriPredicate.java
-    title: Java/library/core/interfaces/TriPredicate.java
+    path: Java/library/core/interfaces/lambda/TriFunction.java
+    title: Java/library/core/interfaces/lambda/TriFunction.java
+  - icon: ':warning:'
+    path: Java/library/core/interfaces/lambda/TriPredicate.java
+    title: Java/library/core/interfaces/lambda/TriPredicate.java
   - icon: ':warning:'
     path: Java/library/core/io/IO.java
     title: Java/library/core/io/IO.java
@@ -529,28 +535,19 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/structure/unionfind/UnionFind.java\n"
   code: "package library.structure.unionfind;\n\nimport java.util.ArrayList;\nimport\
-    \ java.util.Arrays;\nimport java.util.stream.IntStream;\n\n/**\n * UnionFind\n\
-    \ */\npublic class UnionFind {\n\tprotected final int[] par;\n\t/**\n\t * \u30B3\
-    \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param n \u30B5\u30A4\u30BA\n\t */\n\
-    \tpublic UnionFind(final int n) {\n\t\tpar = new int[n];\n\t\tArrays.fill(par,\
-    \ -1);\n\t}\n\t/**\n\t * @param i\n\t * @return i\u306E\u6839\n\t */\n\tpublic\
-    \ final int root(final int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i;\
-    \ }\n\t/**\n\t * @param i\n\t * @return i\u3092\u542B\u3080\u9023\u7D50\u6210\u5206\
-    \u306E\u30B5\u30A4\u30BA\n\t */\n\tpublic final int size(final int i){ return\
-    \ -par[root(i)]; }\n\t/**\n\t * @return UnionFind\u306E\u30B5\u30A4\u30BA\n\t\
-    \ */\n\tpublic final int size(){ return par.length; }\n\t/**\n\t * i\u3068j\u3092\
-    \u30DE\u30FC\u30B8\u3059\u308B\n\t * @param i\n\t * @param j\n\t * @return \u672A\
-    \u30DE\u30FC\u30B8\u3067true, \u30DE\u30FC\u30B8\u6E08\u3067false\n\t */\n\tpublic\
-    \ boolean unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i\
-    \ == j) {\n\t\t\treturn false;\n\t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\t\
-    j ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\treturn\
-    \ true;\n\t}\n\t/**\n\t * i\u3068j\u304C\u540C\u3058\u9023\u7D50\u6210\u5206\u306B\
-    \u6240\u5C5E\u3057\u3066\u3044\u308B\u304B\u3069\u3046\u304B\u5224\u5B9A\u3059\
-    \u308B\n\t * @param i\n\t * @param j\n\t */\n\tpublic final boolean same(final\
-    \ int i, final int j){ return root(i) == root(j); }\n\t/**\n\t * \u30B0\u30E9\u30D5\
-    \u3092\u9023\u7D50\u6210\u5206\u306B\u5206\u3051\u3001\u305D\u306E\u60C5\u5831\
-    \u3092\u8FD4\u3059\n\t * @see <a href=\"https://atcoder.github.io/ac-library/production/document_ja/dsu.html\"\
-    >atcoder::dsu::groups</a>\n\t */\n\tpublic final ArrayList<ArrayList<Integer>>\
+    \ java.util.Arrays;\nimport java.util.stream.IntStream;\n\nimport library.core.interfaces.DSU;\n\
+    \n/**\n * UnionFind\n */\npublic class UnionFind implements DSU {\n\tprotected\
+    \ final int[] par;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t\
+    \ * @param n \u30B5\u30A4\u30BA\n\t */\n\tpublic UnionFind(final int n) {\n\t\t\
+    par = new int[n];\n\t\tArrays.fill(par, -1);\n\t}\n\t@Override\n\tpublic final\
+    \ int root(final int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i; }\n\t\
+    @Override\n\tpublic final int size(final int i){ return -par[root(i)]; }\n\t@Override\n\
+    \tpublic final int size(){ return par.length; }\n\t@Override\n\tpublic boolean\
+    \ unite(int i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) {\n\
+    \t\t\treturn false;\n\t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\
+    \ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\t\
+    }\n\t@Override\n\tpublic final boolean same(final int i, final int j){ return\
+    \ root(i) == root(j); }\n\t@Override\n\tpublic final ArrayList<ArrayList<Integer>>\
     \ groups() {\n\t\tfinal int n = par.length;\n\t\tArrayList<ArrayList<Integer>>\
     \ res = new ArrayList<>(n);\n\t\tIntStream.range(0, n).forEach(i -> res.add(new\
     \ ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\
@@ -576,36 +573,37 @@ data:
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
   - Java/library/core/io/IO.java
-  - Java/library/core/interfaces/RecursiveLongConsumer.java
-  - Java/library/core/interfaces/RecursiveIntConsumer.java
-  - Java/library/core/interfaces/RecursiveConsumer.java
-  - Java/library/core/interfaces/RecursiveTriFunction.java
-  - Java/library/core/interfaces/TriConsumer.java
-  - Java/library/core/interfaces/RecursiveDoubleFunction.java
-  - Java/library/core/interfaces/RecursiveTriConsumer.java
-  - Java/library/core/interfaces/RecursiveLongFunction.java
-  - Java/library/core/interfaces/RecursiveIntUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveBinaryOperator.java
-  - Java/library/core/interfaces/RecursiveUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveLongUnaryOperator.java
-  - Java/library/core/interfaces/TriFunction.java
-  - Java/library/core/interfaces/RecursiveDoublePredicate.java
-  - Java/library/core/interfaces/RecursivePredicate.java
-  - Java/library/core/interfaces/RecursiveBiConsumer.java
-  - Java/library/core/interfaces/RecursiveFunction.java
-  - Java/library/core/interfaces/QuadFunction.java
-  - Java/library/core/interfaces/TriPredicate.java
-  - Java/library/core/interfaces/RecursiveDoubleConsumer.java
-  - Java/library/core/interfaces/RecursiveBiPredicate.java
-  - Java/library/core/interfaces/RecursiveBiFunction.java
-  - Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
-  - Java/library/core/interfaces/RecursiveLongPredicate.java
-  - Java/library/core/interfaces/RecursiveIntBinaryOperator.java
-  - Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveTriPredicate.java
-  - Java/library/core/interfaces/RecursiveIntPredicate.java
-  - Java/library/core/interfaces/RecursiveIntFunction.java
-  - Java/library/core/interfaces/RecursiveLongBinaryOperator.java
+  - Java/library/core/interfaces/DSU.java
+  - Java/library/core/interfaces/lambda/RecursiveLongConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveIntConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveTriFunction.java
+  - Java/library/core/interfaces/lambda/TriConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveDoubleFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveLongFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveIntUnaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveBinaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveUnaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveLongUnaryOperator.java
+  - Java/library/core/interfaces/lambda/TriFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveDoublePredicate.java
+  - Java/library/core/interfaces/lambda/RecursivePredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveFunction.java
+  - Java/library/core/interfaces/lambda/QuadFunction.java
+  - Java/library/core/interfaces/lambda/TriPredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveDoubleConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveBiPredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveBiFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveDoubleBinaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveLongPredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveIntBinaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveDoubleUnaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveTriPredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveIntPredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveIntFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
   - Java/library/core/Utility.java
   - Java/library/core/VvyLw.java
   - Java/library/core/Main.java
@@ -665,36 +663,37 @@ data:
   - Java/library/core/io/MyScanner.java
   - Java/library/core/io/MyPrinter.java
   - Java/library/core/io/IO.java
-  - Java/library/core/interfaces/RecursiveLongConsumer.java
-  - Java/library/core/interfaces/RecursiveIntConsumer.java
-  - Java/library/core/interfaces/RecursiveConsumer.java
-  - Java/library/core/interfaces/RecursiveTriFunction.java
-  - Java/library/core/interfaces/TriConsumer.java
-  - Java/library/core/interfaces/RecursiveDoubleFunction.java
-  - Java/library/core/interfaces/RecursiveTriConsumer.java
-  - Java/library/core/interfaces/RecursiveLongFunction.java
-  - Java/library/core/interfaces/RecursiveIntUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveBinaryOperator.java
-  - Java/library/core/interfaces/RecursiveUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveLongUnaryOperator.java
-  - Java/library/core/interfaces/TriFunction.java
-  - Java/library/core/interfaces/RecursiveDoublePredicate.java
-  - Java/library/core/interfaces/RecursivePredicate.java
-  - Java/library/core/interfaces/RecursiveBiConsumer.java
-  - Java/library/core/interfaces/RecursiveFunction.java
-  - Java/library/core/interfaces/QuadFunction.java
-  - Java/library/core/interfaces/TriPredicate.java
-  - Java/library/core/interfaces/RecursiveDoubleConsumer.java
-  - Java/library/core/interfaces/RecursiveBiPredicate.java
-  - Java/library/core/interfaces/RecursiveBiFunction.java
-  - Java/library/core/interfaces/RecursiveDoubleBinaryOperator.java
-  - Java/library/core/interfaces/RecursiveLongPredicate.java
-  - Java/library/core/interfaces/RecursiveIntBinaryOperator.java
-  - Java/library/core/interfaces/RecursiveDoubleUnaryOperator.java
-  - Java/library/core/interfaces/RecursiveTriPredicate.java
-  - Java/library/core/interfaces/RecursiveIntPredicate.java
-  - Java/library/core/interfaces/RecursiveIntFunction.java
-  - Java/library/core/interfaces/RecursiveLongBinaryOperator.java
+  - Java/library/core/interfaces/DSU.java
+  - Java/library/core/interfaces/lambda/RecursiveLongConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveIntConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveTriFunction.java
+  - Java/library/core/interfaces/lambda/TriConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveDoubleFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveLongFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveIntUnaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveBinaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveUnaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveLongUnaryOperator.java
+  - Java/library/core/interfaces/lambda/TriFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveDoublePredicate.java
+  - Java/library/core/interfaces/lambda/RecursivePredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveFunction.java
+  - Java/library/core/interfaces/lambda/QuadFunction.java
+  - Java/library/core/interfaces/lambda/TriPredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveDoubleConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveBiPredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveBiFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveDoubleBinaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveLongPredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveIntBinaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveDoubleUnaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveTriPredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveIntPredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveIntFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
   - Java/library/core/Utility.java
   - Java/library/core/VvyLw.java
   - Java/library/core/Main.java
@@ -731,7 +730,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-25 16:24:06+09:00'
+  timestamp: '2024-02-26 08:19:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/structure/unionfind/UnionFind.java
