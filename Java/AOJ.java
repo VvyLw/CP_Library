@@ -9,7 +9,6 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Formatter;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 final class Main {
@@ -98,11 +97,8 @@ class Utility {
 	protected static final boolean scope(final int l, final int x, final int r){ return l <= x && x <= r; }
 	protected static final boolean scope(final long l, final long x, final long r){ return l <= x && x <= r; }
 	protected static final boolean scope(final double l, final double x, final double r){ return l <= x && x <= r; }
-	protected static final String sorted(final String s){ return s.chars().sorted().mapToObj(Character::toString).collect(Collectors.joining()); }
-	protected static final int[] sorted(final int[] a){ return Arrays.stream(a).sorted().toArray(); }
-	protected static final long[] sorted(final long[] a){ return Arrays.stream(a).sorted().toArray(); }
-	protected static final double[] sorted(final double[] a){ return Arrays.stream(a).sorted().toArray(); }
-	protected static final <T extends Comparable<? super T>> T[] sorted(final T[] a){ return Arrays.stream(a).sorted().toArray(n -> Arrays.copyOf(a, n)); }
+	public static final IntStream iota(final int n){ return IntStream.range(0, n); }
+	public static final IntStream iota(final int n, final int init){ return IntStream.range(0 + init, n + init); }
 }
 
 final class IO implements Closeable, AutoCloseable {
