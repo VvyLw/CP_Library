@@ -509,7 +509,7 @@ data:
     \ return n == std::floor(n); }\r\ninline bool is_sqr(const ll n){ return is_int(std::sqrt(n));\
     \ }\r\n} // Heileden\r\n\r\n/**\r\n * @brief \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\
     \r\n * @docs docs/template.md\r\n */\n#line 2 \"C++/structure/uf/UnionFind.hpp\"\
-    \n\r\n#line 6 \"C++/structure/uf/UnionFind.hpp\"\nstruct UnionFind {\r\nprivate:\r\
+    \n\r\n#line 6 \"C++/structure/uf/UnionFind.hpp\"\nstruct UnionFind {\r\nprotected:\r\
     \n    std::vector<int> par;\r\npublic:\r\n    UnionFind(const int n): par(n, -1){}\r\
     \n    int operator[](int i) {\r\n        while(par[i] >= 0) {\r\n            const\
     \ int p = par[par[i]];\r\n            if(p < 0) return par[i];\r\n           \
@@ -569,7 +569,7 @@ data:
   isVerificationFile: true
   path: test/uf.test.cpp
   requiredBy: []
-  timestamp: '2024-02-22 09:22:35+09:00'
+  timestamp: '2024-02-26 10:43:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/uf.test.cpp

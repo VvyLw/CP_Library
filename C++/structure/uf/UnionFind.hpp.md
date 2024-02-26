@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/graph/mst/kruskal.hpp
     title: "Kruskal\u6CD5"
+  - icon: ':warning:'
+    path: C++/structure/uf/MergeUF.hpp
+    title: C++/structure/uf/MergeUF.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/kruskal.test.cpp
@@ -23,7 +26,7 @@ data:
     links:
     - https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp
   bundledCode: "#line 2 \"C++/structure/uf/UnionFind.hpp\"\n\r\n#include <cassert>\r\
-    \n#include <vector>\r\n#include <algorithm>\r\nstruct UnionFind {\r\nprivate:\r\
+    \n#include <vector>\r\n#include <algorithm>\r\nstruct UnionFind {\r\nprotected:\r\
     \n    std::vector<int> par;\r\npublic:\r\n    UnionFind(const int n): par(n, -1){}\r\
     \n    int operator[](int i) {\r\n        while(par[i] >= 0) {\r\n            const\
     \ int p = par[par[i]];\r\n            if(p < 0) return par[i];\r\n           \
@@ -50,10 +53,10 @@ data:
     \ https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\r\n\
     \ */\n"
   code: "#pragma once\r\n\r\n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\
-    \nstruct UnionFind {\r\nprivate:\r\n    std::vector<int> par;\r\npublic:\r\n \
-    \   UnionFind(const int n): par(n, -1){}\r\n    int operator[](int i) {\r\n  \
-    \      while(par[i] >= 0) {\r\n            const int p = par[par[i]];\r\n    \
-    \        if(p < 0) return par[i];\r\n            i = par[i] = p;\r\n        }\r\
+    \nstruct UnionFind {\r\nprotected:\r\n    std::vector<int> par;\r\npublic:\r\n\
+    \    UnionFind(const int n): par(n, -1){}\r\n    int operator[](int i) {\r\n \
+    \       while(par[i] >= 0) {\r\n            const int p = par[par[i]];\r\n   \
+    \         if(p < 0) return par[i];\r\n            i = par[i] = p;\r\n        }\r\
     \n        return i;\r\n    }\r\n    bool unite(int x, int y) {\r\n        x =\
     \ (*this)[x], y = (*this)[y];\r\n        if(x == y) return false;\r\n        if(-par[x]\
     \ < -par[y]) {\r\n            std::swap(x, y);\r\n        }\r\n        par[x]\
@@ -80,7 +83,8 @@ data:
   path: C++/structure/uf/UnionFind.hpp
   requiredBy:
   - C++/graph/mst/kruskal.hpp
-  timestamp: '2024-02-19 12:20:55+09:00'
+  - C++/structure/uf/MergeUF.hpp
+  timestamp: '2024-02-26 10:43:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manhattan.test.cpp
