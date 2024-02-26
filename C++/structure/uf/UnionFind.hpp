@@ -4,7 +4,7 @@
 #include <vector>
 #include <algorithm>
 struct UnionFind {
-private:
+protected:
     std::vector<int> par;
 public:
     UnionFind(const int n): par(n, -1){}
