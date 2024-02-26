@@ -38,3 +38,7 @@ public:
     T get(const int i1, const int j1, const int i2, const int j2) const { return data[i2][j2] - data[i1][j2] - data[i2][j1] + data[i1][j1]; }
     T get(const int i, const int j) const { return data[i + 1][j + 1]; }
 };
+
+/**
+ * @brief 二次元累積和
+ */
