@@ -21,3 +21,6 @@ template <class T> struct MergeUF: UnionFind {
 		return true;
 	}
 };
+/**
+ * @brief MergeUnionFind
+ */
