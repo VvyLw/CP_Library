@@ -10,6 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    document_title: "\u4E8C\u6B21\u5143\u7D2F\u7A4D\u548C"
     links: []
   bundledCode: "#line 2 \"C++/math/psum/psum2d.hpp\"\n\n#include <vector>\ntemplate\
     \ <class T> struct psum2d {\nprivate:\n    int h, w;\n    std::vector<std::vector<T>>\
@@ -27,7 +28,8 @@ data:
     \ - 1][j] - data[i - 1][j - 1];\n\t\t\t}\n\t\t}\n\t}\n    T get(const int i1,\
     \ const int j1, const int i2, const int j2) const { return data[i2][j2] - data[i1][j2]\
     \ - data[i2][j1] + data[i1][j1]; }\n    T get(const int i, const int j) const\
-    \ { return data[i + 1][j + 1]; }\n};\n"
+    \ { return data[i + 1][j + 1]; }\n};\n\n/**\n * @brief \u4E8C\u6B21\u5143\u7D2F\
+    \u7A4D\u548C\n */\n"
   code: "#pragma once\n\n#include <vector>\ntemplate <class T> struct psum2d {\nprivate:\n\
     \    int h, w;\n    std::vector<std::vector<T>> data;\npublic:\n    psum2d(const\
     \ int h, const int w): h(h + 3), w(w + 3), data(h + 3, std::vector<T>(w + 3)){}\n\
@@ -44,12 +46,13 @@ data:
     \ - 1];\n\t\t\t}\n\t\t}\n\t}\n    T get(const int i1, const int j1, const int\
     \ i2, const int j2) const { return data[i2][j2] - data[i1][j2] - data[i2][j1]\
     \ + data[i1][j1]; }\n    T get(const int i, const int j) const { return data[i\
-    \ + 1][j + 1]; }\n};"
+    \ + 1][j + 1]; }\n};\n\n/**\n * @brief \u4E8C\u6B21\u5143\u7D2F\u7A4D\u548C\n\
+    \ */"
   dependsOn: []
   isVerificationFile: false
   path: C++/math/psum/psum2d.hpp
   requiredBy: []
-  timestamp: '2024-02-20 01:36:11+09:00'
+  timestamp: '2024-02-27 02:51:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/psum2d.test.cpp
@@ -58,5 +61,5 @@ layout: document
 redirect_from:
 - /library/C++/math/psum/psum2d.hpp
 - /library/C++/math/psum/psum2d.hpp.html
-title: C++/math/psum/psum2d.hpp
+title: "\u4E8C\u6B21\u5143\u7D2F\u7A4D\u548C"
 ---

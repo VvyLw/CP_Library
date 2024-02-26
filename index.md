@@ -111,7 +111,7 @@ data:
       title: "\u7D2F\u7A4D\u548C"
     - icon: ':heavy_check_mark:'
       path: C++/math/psum/psum2d.hpp
-      title: C++/math/psum/psum2d.hpp
+      title: "\u4E8C\u6B21\u5143\u7D2F\u7A4D\u548C"
   - name: C++/string
     pages:
     - icon: ':heavy_check_mark:'
