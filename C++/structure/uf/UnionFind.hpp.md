@@ -7,7 +7,7 @@ data:
     title: "Kruskal\u6CD5"
   - icon: ':warning:'
     path: C++/structure/uf/MergeUF.hpp
-    title: C++/structure/uf/MergeUF.hpp
+    title: MergeUnionFind
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/kruskal.test.cpp

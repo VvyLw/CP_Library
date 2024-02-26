@@ -10,6 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: MergeUnionFind
     links: []
   bundledCode: "#line 2 \"C++/structure/uf/MergeUF.hpp\"\n\n#line 2 \"C++/structure/uf/UnionFind.hpp\"\
     \n\r\n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\nstruct\
@@ -45,7 +46,7 @@ data:
     \ int y) {\n\t\tx = (*this)[x], y = (*this)[y];\n        if(x == y) return false;\n\
     \        if(-par[x] < -par[y]) {\n            std::swap(x, y);\n        }\n  \
     \      par[x] += par[y], par[y] = x;\n\t\tmerge(x, y);\n\t\treturn true;\n\t}\n\
-    };\n"
+    };\n/**\n * @brief MergeUnionFind\n */\n"
   code: "#pragma once\n\n#include \"C++/structure/uf/UnionFind.hpp\"\ntemplate <class\
     \ T> struct MergeUF: UnionFind {\n    using UnionFind::par;\n    using UnionFind::operator[];\n\
     \    using UnionFind::size;\n    using UnionFind::groups;\n    MergeUF(const int\
@@ -54,13 +55,13 @@ data:
     \ int y) {\n\t\tx = (*this)[x], y = (*this)[y];\n        if(x == y) return false;\n\
     \        if(-par[x] < -par[y]) {\n            std::swap(x, y);\n        }\n  \
     \      par[x] += par[y], par[y] = x;\n\t\tmerge(x, y);\n\t\treturn true;\n\t}\n\
-    };"
+    };\n/**\n * @brief MergeUnionFind\n */"
   dependsOn:
   - C++/structure/uf/UnionFind.hpp
   isVerificationFile: false
   path: C++/structure/uf/MergeUF.hpp
   requiredBy: []
-  timestamp: '2024-02-26 10:43:07+09:00'
+  timestamp: '2024-02-27 02:45:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/structure/uf/MergeUF.hpp
@@ -68,5 +69,5 @@ layout: document
 redirect_from:
 - /library/C++/structure/uf/MergeUF.hpp
 - /library/C++/structure/uf/MergeUF.hpp.html
-title: C++/structure/uf/MergeUF.hpp
+title: MergeUnionFind
 ---

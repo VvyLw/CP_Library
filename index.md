@@ -161,7 +161,7 @@ data:
     pages:
     - icon: ':warning:'
       path: C++/structure/uf/MergeUF.hpp
-      title: C++/structure/uf/MergeUF.hpp
+      title: MergeUnionFind
     - icon: ':heavy_check_mark:'
       path: C++/structure/uf/UFPotential.hpp
       title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304DUnionFind"
