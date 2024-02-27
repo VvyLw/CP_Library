@@ -4,9 +4,9 @@ import java.io.Closeable;
 import java.math.BigInteger;
 import java.util.Collection;
 
-import library.structure.pair.FloatPair;
-import library.structure.pair.IntPair;
-import library.structure.pair.Pair;
+import library.ds.pair.FloatPair;
+import library.ds.pair.IntPair;
+import library.ds.pair.Pair;
 
 /**
  * 入出力をまとめたクラス

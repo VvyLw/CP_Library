@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import library.core.VvyLw;
+import library.ds.pair.IntPair;
+import library.ds.unionfind.UnionFind;
 import library.other.SkewHeap;
-import library.structure.pair.IntPair;
-import library.structure.unionfind.UnionFind;
 
 /**
  * 重みつきグラフクラス

@@ -7,9 +7,9 @@ import java.util.TreeMap;
 import java.util.stream.IntStream;
 
 import library.core.Utility;
+import library.ds.fenwicktree.FenwickTree;
+import library.ds.unionfind.UnionFind;
 import library.graph.Edge;
-import library.structure.fenwicktree.FenwickTree;
-import library.structure.unionfind.UnionFind;
 
 /**
  * coreパッケージ以外の外部クラス(Pairを除くを使うメソッドが置いてある

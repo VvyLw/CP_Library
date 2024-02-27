@@ -9,7 +9,7 @@ import java.util.Stack;
 import java.util.stream.IntStream;
 
 import library.core.VvyLw;
-import library.core.interfaces.RecursiveIntPredicate;
+import library.core.interfaces.lambda.RecursiveIntPredicate;
 
 /**
  * グラフクラス

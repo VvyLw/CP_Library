@@ -3,6 +3,8 @@ package library.other;
 import java.util.Arrays;
 import java.util.function.LongBinaryOperator;
 
+import library.math.prefixsum.PrefixSum;
+
 /**
  * C++のstd::inclusive_scanに相当するクラス
  */

@@ -12,9 +12,9 @@ import java.util.function.LongPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import library.structure.pair.FloatPair;
-import library.structure.pair.IntPair;
-import library.structure.pair.Pair;
+import library.ds.pair.FloatPair;
+import library.ds.pair.IntPair;
+import library.ds.pair.Pair;
 
 /**
  * 便利なメソッド集

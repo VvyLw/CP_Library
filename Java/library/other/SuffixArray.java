@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import library.core.Utility;
-import library.structure.pair.Pair;
+import library.ds.pair.Pair;
 
 /**
  * 接尾辞配列

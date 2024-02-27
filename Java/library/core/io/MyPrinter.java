@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.Formatter;
 import java.util.stream.IntStream;
 
-import library.structure.pair.Pair;
+import library.ds.pair.Pair;
 
 /**
  * 出力クラス

@@ -9,8 +9,8 @@ import java.math.BigInteger;
 import java.util.stream.IntStream;
 
 import library.core.Utility;
-import library.structure.pair.FloatPair;
-import library.structure.pair.IntPair;
+import library.ds.pair.FloatPair;
+import library.ds.pair.IntPair;
 
 /**
  * 入力クラス
