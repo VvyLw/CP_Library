@@ -7,6 +7,7 @@ package library.math.prefixsum;
 public final class PrefixSum2D {
 	private final int h, w;
 	private final long[][] data;
+	private boolean built;
 	/**
 	 * コンストラクタ
 	 * @param h
@@ -16,6 +17,7 @@ public final class PrefixSum2D {
 		this.h = h + 3;
 		this.w = w + 3;
 		data = new long[this.h][this.w];
+		built = false;
 	}
 	/**
 	 * コンストラクタ
@@ -48,6 +50,9 @@ public final class PrefixSum2D {
 	 * @param x
 	 */
 	public final void add(int i, int j, final long x) {
+		if(built) {
+			throw new UnsupportedOperationException("Prefix Sum 2D has been built.");
+		}
 		i++;
 		j++;
 		if(i >= h || j >= w) {
@@ -73,6 +78,7 @@ public final class PrefixSum2D {
 	 * 構築
 	 */
 	public final void build() {
+		assert !built;
 		for(int i = 1; i < h; ++i) {
 			for(int j = 1; j < w; ++j) {
 				data[i][j] += data[i][j - 1] + data[i - 1][j] - data[i - 1][j - 1];
@@ -86,13 +92,23 @@ public final class PrefixSum2D {
 	 * @param j2
 	 * @return [i1, i2), [j1, j2)の矩形和
 	 */
-	public final long get(final int i1, final int j1, final int i2, final int j2){ return data[i2][j2] - data[i1][j2] - data[i2][j1] + data[i1][j1]; }
+	public final long get(final int i1, final int j1, final int i2, final int j2) {
+		if(!built) {
+			throw new UnsupportedOperationException("Prefix Sum 2D hasn't been built.");
+		}
+		return data[i2][j2] - data[i1][j2] - data[i2][j1] + data[i1][j1];
+	}
 	/**
 	 * @param i
 	 * @param j
 	 * @return (i, j)の要素
 	 */
-	public final long get(final int i, final int j){ return data[i + 1][j + 1]; }
+	public final long get(final int i, final int j) {
+		if(!built) {
+			throw new UnsupportedOperationException("Prefix Sum 2D hasn't been built.");
+		}
+		return data[i + 1][j + 1];
+	}
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
