@@ -2,10 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/segtree.test.cpp
+    title: test/segtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/segtree2.test.cpp
+    title: test/segtree2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
     links:
@@ -83,8 +89,10 @@ data:
   path: C++/ds/SegmentTree.hpp
   requiredBy: []
   timestamp: '2024-02-27 10:38:23+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/segtree2.test.cpp
+  - test/segtree.test.cpp
 documentation_of: C++/ds/SegmentTree.hpp
 layout: document
 redirect_from:

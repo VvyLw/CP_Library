@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: C++/ds/uf/UnionFind.hpp
+    title: UnionFind
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -9,17 +12,42 @@ data:
   attributes:
     document_title: MergeUnionFind
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: C++/structure/uf/UnionFind.hpp:\
-    \ line -1: no such header\n"
-  code: "#pragma once\n\n#include \"C++/structure/uf/UnionFind.hpp\"\ntemplate <class\
-    \ T> struct MergeUF: UnionFind {\n    using UnionFind::par;\n    using UnionFind::operator[];\n\
+  bundledCode: "#line 2 \"C++/ds/uf/MergeUF.hpp\"\n\n#line 2 \"C++/ds/uf/UnionFind.hpp\"\
+    \n\r\n#include <cassert>\r\n#include <vector>\r\n#include <algorithm>\r\nstruct\
+    \ UnionFind {\r\nprotected:\r\n    std::vector<int> par;\r\npublic:\r\n    UnionFind(const\
+    \ int n): par(n, -1){}\r\n    int operator[](int i) {\r\n        while(par[i]\
+    \ >= 0) {\r\n            const int p = par[par[i]];\r\n            if(p < 0) return\
+    \ par[i];\r\n            i = par[i] = p;\r\n        }\r\n        return i;\r\n\
+    \    }\r\n    bool unite(int x, int y) {\r\n        x = (*this)[x], y = (*this)[y];\r\
+    \n        if(x == y) return false;\r\n        if(-par[x] < -par[y]) {\r\n    \
+    \        std::swap(x, y);\r\n        }\r\n        par[x] += par[y], par[y] = x;\r\
+    \n        return true;\r\n    }\r\n    int size(const int x) {\r\n        return\
+    \ -par[(*this)[x]];\r\n    }\r\n    int size() const { return par.size(); }\r\n\
+    #if __cplusplus >= 202101L\r\n    std::vector<std::vector<int>> groups() {\r\n\
+    \        const int n = std::ssize(par);\r\n        std::vector<std::vector<int>>\
+    \ res(n);\r\n        for(int i = 0; i < n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\
+    \n        }\r\n        const auto it = std::ranges::remove_if(res, [&](const std::vector<int>\
+    \ &v){ return v.empty(); });\r\n        res.erase(it.begin(), it.end());\r\n \
+    \       return res;\r\n    }\r\n#else\r\n    std::vector<std::vector<int>> groups()\
+    \ {\r\n        const int n = par.size();\r\n        std::vector<std::vector<int>>\
+    \ res(n);\r\n        for(int i = 0; i < n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\
+    \n        }\r\n        res.erase(std::remove_if(res.begin(), res.end(), [&](const\
+    \ std::vector<int> &v){ return v.empty(); }), res.end());\r\n        return res;\r\
+    \n    }\r\n#endif\r\n};\r\n\r\ninline bool is_bipartite(UnionFind uf) {\r\n  \
+    \  assert(uf.size() % 2 == 0);\r\n    const int n = uf.size() / 2;\r\n    bool\
+    \ ok = true;\r\n    for(int i = 0; i < n; ++i) {\r\n        ok &= uf[i] != uf[i\
+    \ + n];\r\n    }\r\n    return ok;\r\n}\r\n/**\r\n * @brief UnionFind\r\n * @see\
+    \ https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\r\n\
+    \ */\n#line 4 \"C++/ds/uf/MergeUF.hpp\"\ntemplate <class T> struct MergeUF: UnionFind\
+    \ {\n    using UnionFind::par;\n    using UnionFind::operator[];\n    using UnionFind::size;\n\
+    \    using UnionFind::groups;\n    MergeUF(const int n): UnionFind(n){}\n    ~MergeUF(){}\n\
+    \    virtual T get(const int i) = 0;\n    virtual void merge(const int i, const\
+    \ int j) = 0;\n    bool unite(int x, int y) {\n\t\tx = (*this)[x], y = (*this)[y];\n\
+    \        if(x == y) return false;\n        if(-par[x] < -par[y]) {\n         \
+    \   std::swap(x, y);\n        }\n        par[x] += par[y], par[y] = x;\n\t\tmerge(x,\
+    \ y);\n\t\treturn true;\n\t}\n};\n/**\n * @brief MergeUnionFind\n */\n"
+  code: "#pragma once\n\n#include \"C++/ds/uf/UnionFind.hpp\"\ntemplate <class T>\
+    \ struct MergeUF: UnionFind {\n    using UnionFind::par;\n    using UnionFind::operator[];\n\
     \    using UnionFind::size;\n    using UnionFind::groups;\n    MergeUF(const int\
     \ n): UnionFind(n){}\n    ~MergeUF(){}\n    virtual T get(const int i) = 0;\n\
     \    virtual void merge(const int i, const int j) = 0;\n    bool unite(int x,\
@@ -27,11 +55,12 @@ data:
     \        if(-par[x] < -par[y]) {\n            std::swap(x, y);\n        }\n  \
     \      par[x] += par[y], par[y] = x;\n\t\tmerge(x, y);\n\t\treturn true;\n\t}\n\
     };\n/**\n * @brief MergeUnionFind\n */"
-  dependsOn: []
+  dependsOn:
+  - C++/ds/uf/UnionFind.hpp
   isVerificationFile: false
   path: C++/ds/uf/MergeUF.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2024-02-27 11:03:02+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/ds/uf/MergeUF.hpp

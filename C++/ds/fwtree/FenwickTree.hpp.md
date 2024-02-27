@@ -1,11 +1,32 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: C++/ds/fwtree/RangeBIT.hpp
+    title: Range BIT
+  - icon: ':heavy_check_mark:'
+    path: C++/math/inverse_num.hpp
+    title: "\u8EE2\u5012\u6570"
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/fwtree.test.cpp
+    title: test/fwtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fwtree2.test.cpp
+    title: test/fwtree2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fwtree3.test.cpp
+    title: test/fwtree3.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/inv_num.test.cpp
+    title: test/inv_num.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/parsum.test.cpp
+    title: test/parsum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Binary Indexed Tree
     links:
@@ -64,10 +85,17 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: C++/ds/fwtree/FenwickTree.hpp
-  requiredBy: []
+  requiredBy:
+  - C++/math/inverse_num.hpp
+  - C++/ds/fwtree/RangeBIT.hpp
   timestamp: '2024-02-27 10:38:23+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/fwtree2.test.cpp
+  - test/parsum.test.cpp
+  - test/fwtree.test.cpp
+  - test/inv_num.test.cpp
+  - test/fwtree3.test.cpp
 documentation_of: C++/ds/fwtree/FenwickTree.hpp
 layout: document
 redirect_from:

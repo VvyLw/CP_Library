@@ -8,13 +8,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/graph/mst/directed.hpp
     title: Directed MST
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
+    path: C++/graph/mst/kruskal.hpp
+    title: "Kruskal\u6CD5"
+  - icon: ':heavy_check_mark:'
     path: C++/graph/mst/manhattan.hpp
     title: Manhattan MST
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/directed.test.cpp
     title: test/directed.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/kruskal.test.cpp
+    title: test/kruskal.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/manhattan.test.cpp
+    title: test/manhattan.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -38,9 +47,12 @@ data:
   requiredBy:
   - C++/graph/mst/directed.hpp
   - C++/graph/mst/manhattan.hpp
+  - C++/graph/mst/kruskal.hpp
   timestamp: '2024-02-19 13:17:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/manhattan.test.cpp
+  - test/kruskal.test.cpp
   - test/directed.test.cpp
 documentation_of: C++/graph/mst/MST.hpp
 layout: document
