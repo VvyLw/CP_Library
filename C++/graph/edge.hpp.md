@@ -14,10 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/graph/mst/directed.hpp
     title: Directed MST
-  - icon: ':heavy_check_mark:'
-    path: C++/graph/mst/kruskal.hpp
-    title: "Kruskal\u6CD5"
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: C++/graph/mst/manhattan.hpp
     title: Manhattan MST
   _extendedVerifiedWith:
@@ -34,14 +31,8 @@ data:
     path: test/directed.test.cpp
     title: test/directed.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/kruskal.test.cpp
-    title: test/kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/lca.test.cpp
     title: test/lca.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/manhattan.test.cpp
-    title: test/manhattan.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/scc.test.cpp
     title: test/scc.test.cpp
@@ -72,7 +63,6 @@ data:
   requiredBy:
   - C++/graph/mst/directed.hpp
   - C++/graph/mst/manhattan.hpp
-  - C++/graph/mst/kruskal.hpp
   - C++/graph/mst/MST.hpp
   - C++/graph/WeightedGraph.hpp
   - C++/graph/Graph.hpp
@@ -81,8 +71,6 @@ data:
   verifiedWith:
   - test/cycledetector.test.cpp
   - test/scc.test.cpp
-  - test/manhattan.test.cpp
-  - test/kruskal.test.cpp
   - test/dag_check.test.cpp
   - test/scc2.test.cpp
   - test/lca.test.cpp

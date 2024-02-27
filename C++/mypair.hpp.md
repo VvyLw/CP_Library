@@ -37,29 +37,11 @@ data:
     path: test/extgcd.test.cpp
     title: test/extgcd.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/fwtree.test.cpp
-    title: test/fwtree.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/m_add.test.cpp
     title: test/m_add.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/parsum.test.cpp
-    title: test/parsum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/s_rmq.test.cpp
-    title: test/s_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/segtree.test.cpp
-    title: test/segtree.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/stable.test.cpp
-    title: test/stable.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/uf.test.cpp
-    title: test/uf.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -255,15 +237,9 @@ data:
   - test/sr_sum.test.cpp
   - test/m_add.test.cpp
   - test/add.test.cpp
-  - test/parsum.test.cpp
-  - test/segtree.test.cpp
-  - test/stable.test.cpp
-  - test/fwtree.test.cpp
-  - test/uf.test.cpp
   - test/extgcd.test.cpp
   - test/add128_2.test.cpp
   - test/add128.test.cpp
-  - test/s_rmq.test.cpp
   - test/aarray.test.cpp
 documentation_of: C++/mypair.hpp
 layout: document

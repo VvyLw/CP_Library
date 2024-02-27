@@ -119,6 +119,87 @@ data:
     path: Java/library/core/io/MyScanner.java
     title: Java/library/core/io/MyScanner.java
   - icon: ':warning:'
+    path: Java/library/ds/AVLTree.java
+    title: Java/library/ds/AVLTree.java
+  - icon: ':warning:'
+    path: Java/library/ds/DoubleEndedPriorityQueue.java
+    title: Java/library/ds/DoubleEndedPriorityQueue.java
+  - icon: ':warning:'
+    path: Java/library/ds/DualSegmentTree.java
+    title: Java/library/ds/DualSegmentTree.java
+  - icon: ':warning:'
+    path: Java/library/ds/SegmentTree.java
+    title: Java/library/ds/SegmentTree.java
+  - icon: ':warning:'
+    path: Java/library/ds/SparseTable.java
+    title: Java/library/ds/SparseTable.java
+  - icon: ':warning:'
+    path: Java/library/ds/deque/Deque.java
+    title: Java/library/ds/deque/Deque.java
+  - icon: ':warning:'
+    path: Java/library/ds/deque/IntDeque.java
+    title: Java/library/ds/deque/IntDeque.java
+  - icon: ':warning:'
+    path: Java/library/ds/fenwicktree/FenwickTree.java
+    title: Java/library/ds/fenwicktree/FenwickTree.java
+  - icon: ':warning:'
+    path: Java/library/ds/fenwicktree/RangeBIT.java
+    title: Java/library/ds/fenwicktree/RangeBIT.java
+  - icon: ':warning:'
+    path: Java/library/ds/lazysegmenttree/LazySegmentTree.java
+    title: Java/library/ds/lazysegmenttree/LazySegmentTree.java
+  - icon: ':warning:'
+    path: Java/library/ds/lazysegmenttree/RAMN.java
+    title: Java/library/ds/lazysegmenttree/RAMN.java
+  - icon: ':warning:'
+    path: Java/library/ds/lazysegmenttree/RAMX.java
+    title: Java/library/ds/lazysegmenttree/RAMX.java
+  - icon: ':warning:'
+    path: Java/library/ds/lazysegmenttree/RASM.java
+    title: Java/library/ds/lazysegmenttree/RASM.java
+  - icon: ':warning:'
+    path: Java/library/ds/lazysegmenttree/RUMN.java
+    title: Java/library/ds/lazysegmenttree/RUMN.java
+  - icon: ':warning:'
+    path: Java/library/ds/lazysegmenttree/RUMX.java
+    title: Java/library/ds/lazysegmenttree/RUMX.java
+  - icon: ':warning:'
+    path: Java/library/ds/lazysegmenttree/RUSM.java
+    title: Java/library/ds/lazysegmenttree/RUSM.java
+  - icon: ':warning:'
+    path: Java/library/ds/pair/FloatPair.java
+    title: Java/library/ds/pair/FloatPair.java
+  - icon: ':warning:'
+    path: Java/library/ds/pair/IntPair.java
+    title: Java/library/ds/pair/IntPair.java
+  - icon: ':warning:'
+    path: Java/library/ds/pair/Pair.java
+    title: Java/library/ds/pair/Pair.java
+  - icon: ':warning:'
+    path: Java/library/ds/pair/Zwei.java
+    title: Java/library/ds/pair/Zwei.java
+  - icon: ':warning:'
+    path: Java/library/ds/unionfind/MergeUnionFind.java
+    title: Java/library/ds/unionfind/MergeUnionFind.java
+  - icon: ':warning:'
+    path: Java/library/ds/unionfind/UndoUnionFind.java
+    title: Java/library/ds/unionfind/UndoUnionFind.java
+  - icon: ':warning:'
+    path: Java/library/ds/unionfind/UnionFind.java
+    title: Java/library/ds/unionfind/UnionFind.java
+  - icon: ':warning:'
+    path: Java/library/ds/unionfind/WeightedUnionFind.java
+    title: Java/library/ds/unionfind/WeightedUnionFind.java
+  - icon: ':warning:'
+    path: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
+    title: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
+  - icon: ':warning:'
+    path: Java/library/ds/waveletmatrix/WaveletMatrix.java
+    title: Java/library/ds/waveletmatrix/WaveletMatrix.java
+  - icon: ':warning:'
+    path: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
+    title: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
+  - icon: ':warning:'
     path: Java/library/graph/Edge.java
     title: Java/library/graph/Edge.java
   - icon: ':warning:'
@@ -178,87 +259,6 @@ data:
   - icon: ':warning:'
     path: Java/library/other/Why.java
     title: Java/library/other/Why.java
-  - icon: ':warning:'
-    path: Java/library/structure/AVLTree.java
-    title: Java/library/structure/AVLTree.java
-  - icon: ':warning:'
-    path: Java/library/structure/DoubleEndedPriorityQueue.java
-    title: Java/library/structure/DoubleEndedPriorityQueue.java
-  - icon: ':warning:'
-    path: Java/library/structure/DualSegmentTree.java
-    title: Java/library/structure/DualSegmentTree.java
-  - icon: ':warning:'
-    path: Java/library/structure/SegmentTree.java
-    title: Java/library/structure/SegmentTree.java
-  - icon: ':warning:'
-    path: Java/library/structure/SparseTable.java
-    title: Java/library/structure/SparseTable.java
-  - icon: ':warning:'
-    path: Java/library/structure/deque/Deque.java
-    title: Java/library/structure/deque/Deque.java
-  - icon: ':warning:'
-    path: Java/library/structure/deque/IntDeque.java
-    title: Java/library/structure/deque/IntDeque.java
-  - icon: ':warning:'
-    path: Java/library/structure/fenwicktree/FenwickTree.java
-    title: Java/library/structure/fenwicktree/FenwickTree.java
-  - icon: ':warning:'
-    path: Java/library/structure/fenwicktree/RangeBIT.java
-    title: Java/library/structure/fenwicktree/RangeBIT.java
-  - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
-    title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
-  - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RAMN.java
-    title: Java/library/structure/lazysegmenttree/RAMN.java
-  - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RAMX.java
-    title: Java/library/structure/lazysegmenttree/RAMX.java
-  - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RASM.java
-    title: Java/library/structure/lazysegmenttree/RASM.java
-  - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RUMN.java
-    title: Java/library/structure/lazysegmenttree/RUMN.java
-  - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RUMX.java
-    title: Java/library/structure/lazysegmenttree/RUMX.java
-  - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RUSM.java
-    title: Java/library/structure/lazysegmenttree/RUSM.java
-  - icon: ':warning:'
-    path: Java/library/structure/pair/FloatPair.java
-    title: Java/library/structure/pair/FloatPair.java
-  - icon: ':warning:'
-    path: Java/library/structure/pair/IntPair.java
-    title: Java/library/structure/pair/IntPair.java
-  - icon: ':warning:'
-    path: Java/library/structure/pair/Pair.java
-    title: Java/library/structure/pair/Pair.java
-  - icon: ':warning:'
-    path: Java/library/structure/pair/Zwei.java
-    title: Java/library/structure/pair/Zwei.java
-  - icon: ':warning:'
-    path: Java/library/structure/unionfind/MergeUnionFind.java
-    title: Java/library/structure/unionfind/MergeUnionFind.java
-  - icon: ':warning:'
-    path: Java/library/structure/unionfind/UndoUnionFind.java
-    title: Java/library/structure/unionfind/UndoUnionFind.java
-  - icon: ':warning:'
-    path: Java/library/structure/unionfind/UnionFind.java
-    title: Java/library/structure/unionfind/UnionFind.java
-  - icon: ':warning:'
-    path: Java/library/structure/unionfind/WeightedUnionFind.java
-    title: Java/library/structure/unionfind/WeightedUnionFind.java
-  - icon: ':warning:'
-    path: Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
-    title: Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
-  - icon: ':warning:'
-    path: Java/library/structure/waveletmatrix/WaveletMatrix.java
-    title: Java/library/structure/waveletmatrix/WaveletMatrix.java
-  - icon: ':warning:'
-    path: Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-    title: Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
   - icon: ':warning:'
     path: Java/yukicoder.java
     title: Java/yukicoder.java
@@ -381,6 +381,87 @@ data:
     path: Java/library/core/io/MyScanner.java
     title: Java/library/core/io/MyScanner.java
   - icon: ':warning:'
+    path: Java/library/ds/AVLTree.java
+    title: Java/library/ds/AVLTree.java
+  - icon: ':warning:'
+    path: Java/library/ds/DoubleEndedPriorityQueue.java
+    title: Java/library/ds/DoubleEndedPriorityQueue.java
+  - icon: ':warning:'
+    path: Java/library/ds/DualSegmentTree.java
+    title: Java/library/ds/DualSegmentTree.java
+  - icon: ':warning:'
+    path: Java/library/ds/SegmentTree.java
+    title: Java/library/ds/SegmentTree.java
+  - icon: ':warning:'
+    path: Java/library/ds/SparseTable.java
+    title: Java/library/ds/SparseTable.java
+  - icon: ':warning:'
+    path: Java/library/ds/deque/Deque.java
+    title: Java/library/ds/deque/Deque.java
+  - icon: ':warning:'
+    path: Java/library/ds/deque/IntDeque.java
+    title: Java/library/ds/deque/IntDeque.java
+  - icon: ':warning:'
+    path: Java/library/ds/fenwicktree/FenwickTree.java
+    title: Java/library/ds/fenwicktree/FenwickTree.java
+  - icon: ':warning:'
+    path: Java/library/ds/fenwicktree/RangeBIT.java
+    title: Java/library/ds/fenwicktree/RangeBIT.java
+  - icon: ':warning:'
+    path: Java/library/ds/lazysegmenttree/LazySegmentTree.java
+    title: Java/library/ds/lazysegmenttree/LazySegmentTree.java
+  - icon: ':warning:'
+    path: Java/library/ds/lazysegmenttree/RAMN.java
+    title: Java/library/ds/lazysegmenttree/RAMN.java
+  - icon: ':warning:'
+    path: Java/library/ds/lazysegmenttree/RAMX.java
+    title: Java/library/ds/lazysegmenttree/RAMX.java
+  - icon: ':warning:'
+    path: Java/library/ds/lazysegmenttree/RASM.java
+    title: Java/library/ds/lazysegmenttree/RASM.java
+  - icon: ':warning:'
+    path: Java/library/ds/lazysegmenttree/RUMN.java
+    title: Java/library/ds/lazysegmenttree/RUMN.java
+  - icon: ':warning:'
+    path: Java/library/ds/lazysegmenttree/RUMX.java
+    title: Java/library/ds/lazysegmenttree/RUMX.java
+  - icon: ':warning:'
+    path: Java/library/ds/lazysegmenttree/RUSM.java
+    title: Java/library/ds/lazysegmenttree/RUSM.java
+  - icon: ':warning:'
+    path: Java/library/ds/pair/FloatPair.java
+    title: Java/library/ds/pair/FloatPair.java
+  - icon: ':warning:'
+    path: Java/library/ds/pair/IntPair.java
+    title: Java/library/ds/pair/IntPair.java
+  - icon: ':warning:'
+    path: Java/library/ds/pair/Pair.java
+    title: Java/library/ds/pair/Pair.java
+  - icon: ':warning:'
+    path: Java/library/ds/pair/Zwei.java
+    title: Java/library/ds/pair/Zwei.java
+  - icon: ':warning:'
+    path: Java/library/ds/unionfind/MergeUnionFind.java
+    title: Java/library/ds/unionfind/MergeUnionFind.java
+  - icon: ':warning:'
+    path: Java/library/ds/unionfind/UndoUnionFind.java
+    title: Java/library/ds/unionfind/UndoUnionFind.java
+  - icon: ':warning:'
+    path: Java/library/ds/unionfind/UnionFind.java
+    title: Java/library/ds/unionfind/UnionFind.java
+  - icon: ':warning:'
+    path: Java/library/ds/unionfind/WeightedUnionFind.java
+    title: Java/library/ds/unionfind/WeightedUnionFind.java
+  - icon: ':warning:'
+    path: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
+    title: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
+  - icon: ':warning:'
+    path: Java/library/ds/waveletmatrix/WaveletMatrix.java
+    title: Java/library/ds/waveletmatrix/WaveletMatrix.java
+  - icon: ':warning:'
+    path: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
+    title: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
+  - icon: ':warning:'
     path: Java/library/graph/Edge.java
     title: Java/library/graph/Edge.java
   - icon: ':warning:'
@@ -441,87 +522,6 @@ data:
     path: Java/library/other/Why.java
     title: Java/library/other/Why.java
   - icon: ':warning:'
-    path: Java/library/structure/AVLTree.java
-    title: Java/library/structure/AVLTree.java
-  - icon: ':warning:'
-    path: Java/library/structure/DoubleEndedPriorityQueue.java
-    title: Java/library/structure/DoubleEndedPriorityQueue.java
-  - icon: ':warning:'
-    path: Java/library/structure/DualSegmentTree.java
-    title: Java/library/structure/DualSegmentTree.java
-  - icon: ':warning:'
-    path: Java/library/structure/SegmentTree.java
-    title: Java/library/structure/SegmentTree.java
-  - icon: ':warning:'
-    path: Java/library/structure/SparseTable.java
-    title: Java/library/structure/SparseTable.java
-  - icon: ':warning:'
-    path: Java/library/structure/deque/Deque.java
-    title: Java/library/structure/deque/Deque.java
-  - icon: ':warning:'
-    path: Java/library/structure/deque/IntDeque.java
-    title: Java/library/structure/deque/IntDeque.java
-  - icon: ':warning:'
-    path: Java/library/structure/fenwicktree/FenwickTree.java
-    title: Java/library/structure/fenwicktree/FenwickTree.java
-  - icon: ':warning:'
-    path: Java/library/structure/fenwicktree/RangeBIT.java
-    title: Java/library/structure/fenwicktree/RangeBIT.java
-  - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
-    title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
-  - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RAMN.java
-    title: Java/library/structure/lazysegmenttree/RAMN.java
-  - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RAMX.java
-    title: Java/library/structure/lazysegmenttree/RAMX.java
-  - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RASM.java
-    title: Java/library/structure/lazysegmenttree/RASM.java
-  - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RUMN.java
-    title: Java/library/structure/lazysegmenttree/RUMN.java
-  - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RUMX.java
-    title: Java/library/structure/lazysegmenttree/RUMX.java
-  - icon: ':warning:'
-    path: Java/library/structure/lazysegmenttree/RUSM.java
-    title: Java/library/structure/lazysegmenttree/RUSM.java
-  - icon: ':warning:'
-    path: Java/library/structure/pair/FloatPair.java
-    title: Java/library/structure/pair/FloatPair.java
-  - icon: ':warning:'
-    path: Java/library/structure/pair/IntPair.java
-    title: Java/library/structure/pair/IntPair.java
-  - icon: ':warning:'
-    path: Java/library/structure/pair/Pair.java
-    title: Java/library/structure/pair/Pair.java
-  - icon: ':warning:'
-    path: Java/library/structure/pair/Zwei.java
-    title: Java/library/structure/pair/Zwei.java
-  - icon: ':warning:'
-    path: Java/library/structure/unionfind/MergeUnionFind.java
-    title: Java/library/structure/unionfind/MergeUnionFind.java
-  - icon: ':warning:'
-    path: Java/library/structure/unionfind/UndoUnionFind.java
-    title: Java/library/structure/unionfind/UndoUnionFind.java
-  - icon: ':warning:'
-    path: Java/library/structure/unionfind/UnionFind.java
-    title: Java/library/structure/unionfind/UnionFind.java
-  - icon: ':warning:'
-    path: Java/library/structure/unionfind/WeightedUnionFind.java
-    title: Java/library/structure/unionfind/WeightedUnionFind.java
-  - icon: ':warning:'
-    path: Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
-    title: Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
-  - icon: ':warning:'
-    path: Java/library/structure/waveletmatrix/WaveletMatrix.java
-    title: Java/library/structure/waveletmatrix/WaveletMatrix.java
-  - icon: ':warning:'
-    path: Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-    title: Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-  - icon: ':warning:'
     path: Java/yukicoder.java
     title: Java/yukicoder.java
   _extendedVerifiedWith: []
@@ -538,51 +538,51 @@ data:
     import java.util.Collections;\nimport java.util.HashMap;\nimport java.util.List;\n\
     import java.util.Map;\nimport java.util.function.DoublePredicate;\nimport java.util.function.IntPredicate;\n\
     import java.util.function.LongPredicate;\nimport java.util.stream.Collectors;\n\
-    import java.util.stream.IntStream;\n\nimport library.structure.pair.FloatPair;\n\
-    import library.structure.pair.IntPair;\nimport library.structure.pair.Pair;\n\n\
-    /**\n * \u4FBF\u5229\u306A\u30E1\u30BD\u30C3\u30C9\u96C6\n * Pair\u30AF\u30E9\u30B9\
-    \u4EE5\u5916\u306E\u5916\u90E8\u30AF\u30E9\u30B9\u4E0D\u4F7F\u7528\n */\npublic\
-    \ class Utility {\n\t/**\n\t * \u53E4\u306EYESNO\u30D1\u30BF\u30FC\u30F3\u3084\
-    yesno\u30D1\u30BF\u30FC\u30F3\u306E\u6642\u306F{@link String#toUpperCase}\u3084\
-    {@link String#toLowerCase}\u3092\u4F7F\u3046\u3068\u826F\u3044\n\t * @param ok\
-    \ boolean\n\t * @return ok\u304Ctrue\u306A\u3089\"Yes\" false\u306A\u3089\"No\"\
-    \n\t */\n\tprotected static final String yes(final boolean ok){ return ok ? \"\
-    Yes\" : \"No\"; }\n\t/**\n\t * {@link #yes}\u306E\u9006\n\t * @param ok boolean\n\
-    \t * @return ok\u304Ctrue\u306A\u3089\"No\" false\u306A\u3089\"Yes\"\n\t */\n\t\
-    protected static final String no(final boolean ok){ return yes(!ok); }\n\t/**\n\
-    \t * @param x\n\t * @return x\u306E\u5E73\u65B9\u6570\n\t */\n\tprotected static\
-    \ final long sqr(final long x){ return x * x; }\n\t/**\n\t * n\u304C\u8CA0\u306E\
-    \u6642\u3067\u3082\u6B63\u306E\u5270\u4F59\u3092\u6C42\u3081\u308B\n\t * \u6CD5\
-    \u304Cint\u306E\u6642, int\u3067\u8FD4\u3059\n\t * @param n\n\t * @param m\n\t\
-    \ */\n\tprotected static final int mod(long n, final int m) {\n\t\tn %= m;\n\t\
-    \treturn (int) (n < 0 ? n + m : n);\n\t}\n\t/**\n\t * n\u304C\u8CA0\u306E\u6642\
-    \u3067\u3082\u6B63\u306E\u5270\u4F59\u3092\u6C42\u3081\u308B\n\t * @param n\n\t\
-    \ * @param m\n\t */\n\tpublic static final long mod(long n, final long m) {\n\t\
-    \tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\t/**\n\t * a / b\u3092\u5C0F\u6570\
-    \u70B9\u4EE5\u4E0B\u5207\u308A\u4E0A\u3052\u3067\u6C42\u3081\u308B\n\t * @param\
-    \ a\n\t * @param b\n\t */\n\tprotected static final long intCeil(final long a,\
-    \ final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\t/**\n\t * a / b\u3092\
-    \u5C0F\u6570\u70B9c\u6841\u3067\u56DB\u6368\u4E94\u5165\u3057\u3066\u6C42\u3081\
-    \u308B\n\t * @param a\n\t * @param b\n\t * @param c\n\t */\n\tprotected static\
-    \ final double intRound(final double a, final long b, final int c) {\n\t\tfinal\
-    \ long d = intPow(10, c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\t/**\n\
-    \t * @param a\n\t * @param b\n\t * @return a\u306Eb\u4E57\n\t */\n\tprotected\
-    \ static final long intPow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b >\
-    \ 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\
-    \tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @param b\n\
-    \t * @return a\u306Eb\u4E57\u306Em\u3092\u6CD5\u3068\u3057\u305F\u5270\u4F59\n\
-    \t */\n\tprotected static final long intPow(long a, long b, final long m) {\n\t\
-    \tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
-    \t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\
-    \tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @param b\n\
-    \t * @return a\u3068b\u306E\u6700\u5C0F\u516C\u500D\u6570\n\t */\n\tpublic static\
-    \ final long lcm(final long a, final long b){ return a * b / gcd(a, b); }\n\t\
-    /**\n\t * e.g.) lcm(2, 3, 5) = 30\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\
-    \u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u516C\
-    \u500D\u6570\n\t */\n\tpublic static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1,\
-    \ (x, y) -> lcm(x, y)); }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\
-    \u308B\u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u516C\
-    \u500D\u6570\n\t */\n\tpublic static final long lcm(final long... a){ return Arrays.stream(a).reduce(1,\
+    import java.util.stream.IntStream;\n\nimport library.ds.pair.FloatPair;\nimport\
+    \ library.ds.pair.IntPair;\nimport library.ds.pair.Pair;\n\n/**\n * \u4FBF\u5229\
+    \u306A\u30E1\u30BD\u30C3\u30C9\u96C6\n * Pair\u30AF\u30E9\u30B9\u4EE5\u5916\u306E\
+    \u5916\u90E8\u30AF\u30E9\u30B9\u4E0D\u4F7F\u7528\n */\npublic class Utility {\n\
+    \t/**\n\t * \u53E4\u306EYESNO\u30D1\u30BF\u30FC\u30F3\u3084yesno\u30D1\u30BF\u30FC\
+    \u30F3\u306E\u6642\u306F{@link String#toUpperCase}\u3084{@link String#toLowerCase}\u3092\
+    \u4F7F\u3046\u3068\u826F\u3044\n\t * @param ok boolean\n\t * @return ok\u304C\
+    true\u306A\u3089\"Yes\" false\u306A\u3089\"No\"\n\t */\n\tprotected static final\
+    \ String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\t/**\n\t * {@link\
+    \ #yes}\u306E\u9006\n\t * @param ok boolean\n\t * @return ok\u304Ctrue\u306A\u3089\
+    \"No\" false\u306A\u3089\"Yes\"\n\t */\n\tprotected static final String no(final\
+    \ boolean ok){ return yes(!ok); }\n\t/**\n\t * @param x\n\t * @return x\u306E\u5E73\
+    \u65B9\u6570\n\t */\n\tprotected static final long sqr(final long x){ return x\
+    \ * x; }\n\t/**\n\t * n\u304C\u8CA0\u306E\u6642\u3067\u3082\u6B63\u306E\u5270\u4F59\
+    \u3092\u6C42\u3081\u308B\n\t * \u6CD5\u304Cint\u306E\u6642, int\u3067\u8FD4\u3059\
+    \n\t * @param n\n\t * @param m\n\t */\n\tprotected static final int mod(long n,\
+    \ final int m) {\n\t\tn %= m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\t\
+    /**\n\t * n\u304C\u8CA0\u306E\u6642\u3067\u3082\u6B63\u306E\u5270\u4F59\u3092\u6C42\
+    \u3081\u308B\n\t * @param n\n\t * @param m\n\t */\n\tpublic static final long\
+    \ mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t\
+    }\n\t/**\n\t * a / b\u3092\u5C0F\u6570\u70B9\u4EE5\u4E0B\u5207\u308A\u4E0A\u3052\
+    \u3067\u6C42\u3081\u308B\n\t * @param a\n\t * @param b\n\t */\n\tprotected static\
+    \ final long intCeil(final long a, final long b){ return a == 0 ? 0 : (a - 1)\
+    \ / b + 1; }\n\t/**\n\t * a / b\u3092\u5C0F\u6570\u70B9c\u6841\u3067\u56DB\u6368\
+    \u4E94\u5165\u3057\u3066\u6C42\u3081\u308B\n\t * @param a\n\t * @param b\n\t *\
+    \ @param c\n\t */\n\tprotected static final double intRound(final double a, final\
+    \ long b, final int c) {\n\t\tfinal long d = intPow(10, c);\n\t\treturn Math.rint((a\
+    \ * d) / b) / d;\n\t}\n\t/**\n\t * @param a\n\t * @param b\n\t * @return a\u306E\
+    b\u4E57\n\t */\n\tprotected static final long intPow(long a, int b) {\n\t\tlong\
+    \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
+    \t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param\
+    \ a\n\t * @param b\n\t * @return a\u306Eb\u4E57\u306Em\u3092\u6CD5\u3068\u3057\
+    \u305F\u5270\u4F59\n\t */\n\tprotected static final long intPow(long a, long b,\
+    \ final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1)\
+    \ {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\
+    \t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param\
+    \ a\n\t * @param b\n\t * @return a\u3068b\u306E\u6700\u5C0F\u516C\u500D\u6570\n\
+    \t */\n\tpublic static final long lcm(final long a, final long b){ return a *\
+    \ b / gcd(a, b); }\n\t/**\n\t * e.g.) lcm(2, 3, 5) = 30\n\t * @param a int\u578B\
+    \u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return\
+    \ a\u306E\u6700\u5C0F\u516C\u500D\u6570\n\t */\n\tpublic static final long lcm(final\
+    \ int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x,\
+    \ y)); }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\
+    \u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u516C\u500D\u6570\
+    \n\t */\n\tpublic static final long lcm(final long... a){ return Arrays.stream(a).reduce(1,\
     \ (x, y) -> lcm(x, y)); }\n\t/**\n\t * @param a\n\t * @param b\n\t * @return a\u3068\
     b\u306E\u6700\u5927\u516C\u7D04\u6570\n\t */\n\tpublic static final long gcd(final\
     \ long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }\n\t/**\n\t * e.g.)\
@@ -1403,33 +1403,33 @@ data:
   - Java/library/other/SuffixArray.java
   - Java/library/other/InclusiveScan.java
   - Java/library/other/SkewHeap.java
-  - Java/library/structure/DualSegmentTree.java
-  - Java/library/structure/pair/IntPair.java
-  - Java/library/structure/pair/FloatPair.java
-  - Java/library/structure/pair/Pair.java
-  - Java/library/structure/pair/Zwei.java
-  - Java/library/structure/lazysegmenttree/RAMN.java
-  - Java/library/structure/lazysegmenttree/RAMX.java
-  - Java/library/structure/lazysegmenttree/RUSM.java
-  - Java/library/structure/lazysegmenttree/LazySegmentTree.java
-  - Java/library/structure/lazysegmenttree/RUMN.java
-  - Java/library/structure/lazysegmenttree/RASM.java
-  - Java/library/structure/lazysegmenttree/RUMX.java
-  - Java/library/structure/SparseTable.java
-  - Java/library/structure/SegmentTree.java
-  - Java/library/structure/unionfind/MergeUnionFind.java
-  - Java/library/structure/unionfind/UndoUnionFind.java
-  - Java/library/structure/unionfind/WeightedUnionFind.java
-  - Java/library/structure/unionfind/UnionFind.java
-  - Java/library/structure/DoubleEndedPriorityQueue.java
-  - Java/library/structure/AVLTree.java
-  - Java/library/structure/fenwicktree/FenwickTree.java
-  - Java/library/structure/fenwicktree/RangeBIT.java
-  - Java/library/structure/deque/Deque.java
-  - Java/library/structure/deque/IntDeque.java
-  - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
-  - Java/library/structure/waveletmatrix/WaveletMatrix.java
+  - Java/library/ds/DualSegmentTree.java
+  - Java/library/ds/pair/IntPair.java
+  - Java/library/ds/pair/FloatPair.java
+  - Java/library/ds/pair/Pair.java
+  - Java/library/ds/pair/Zwei.java
+  - Java/library/ds/lazysegmenttree/RAMN.java
+  - Java/library/ds/lazysegmenttree/RAMX.java
+  - Java/library/ds/lazysegmenttree/RUSM.java
+  - Java/library/ds/lazysegmenttree/LazySegmentTree.java
+  - Java/library/ds/lazysegmenttree/RUMN.java
+  - Java/library/ds/lazysegmenttree/RASM.java
+  - Java/library/ds/lazysegmenttree/RUMX.java
+  - Java/library/ds/SparseTable.java
+  - Java/library/ds/SegmentTree.java
+  - Java/library/ds/unionfind/MergeUnionFind.java
+  - Java/library/ds/unionfind/UndoUnionFind.java
+  - Java/library/ds/unionfind/WeightedUnionFind.java
+  - Java/library/ds/unionfind/UnionFind.java
+  - Java/library/ds/DoubleEndedPriorityQueue.java
+  - Java/library/ds/AVLTree.java
+  - Java/library/ds/fenwicktree/FenwickTree.java
+  - Java/library/ds/fenwicktree/RangeBIT.java
+  - Java/library/ds/deque/Deque.java
+  - Java/library/ds/deque/IntDeque.java
+  - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
+  - Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
+  - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
@@ -1493,37 +1493,37 @@ data:
   - Java/library/other/SuffixArray.java
   - Java/library/other/InclusiveScan.java
   - Java/library/other/SkewHeap.java
-  - Java/library/structure/DualSegmentTree.java
-  - Java/library/structure/pair/IntPair.java
-  - Java/library/structure/pair/FloatPair.java
-  - Java/library/structure/pair/Pair.java
-  - Java/library/structure/pair/Zwei.java
-  - Java/library/structure/lazysegmenttree/RAMN.java
-  - Java/library/structure/lazysegmenttree/RAMX.java
-  - Java/library/structure/lazysegmenttree/RUSM.java
-  - Java/library/structure/lazysegmenttree/LazySegmentTree.java
-  - Java/library/structure/lazysegmenttree/RUMN.java
-  - Java/library/structure/lazysegmenttree/RASM.java
-  - Java/library/structure/lazysegmenttree/RUMX.java
-  - Java/library/structure/SparseTable.java
-  - Java/library/structure/SegmentTree.java
-  - Java/library/structure/unionfind/MergeUnionFind.java
-  - Java/library/structure/unionfind/UndoUnionFind.java
-  - Java/library/structure/unionfind/WeightedUnionFind.java
-  - Java/library/structure/unionfind/UnionFind.java
-  - Java/library/structure/DoubleEndedPriorityQueue.java
-  - Java/library/structure/AVLTree.java
-  - Java/library/structure/fenwicktree/FenwickTree.java
-  - Java/library/structure/fenwicktree/RangeBIT.java
-  - Java/library/structure/deque/Deque.java
-  - Java/library/structure/deque/IntDeque.java
-  - Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
-  - Java/library/structure/waveletmatrix/WaveletMatrix.java
+  - Java/library/ds/DualSegmentTree.java
+  - Java/library/ds/pair/IntPair.java
+  - Java/library/ds/pair/FloatPair.java
+  - Java/library/ds/pair/Pair.java
+  - Java/library/ds/pair/Zwei.java
+  - Java/library/ds/lazysegmenttree/RAMN.java
+  - Java/library/ds/lazysegmenttree/RAMX.java
+  - Java/library/ds/lazysegmenttree/RUSM.java
+  - Java/library/ds/lazysegmenttree/LazySegmentTree.java
+  - Java/library/ds/lazysegmenttree/RUMN.java
+  - Java/library/ds/lazysegmenttree/RASM.java
+  - Java/library/ds/lazysegmenttree/RUMX.java
+  - Java/library/ds/SparseTable.java
+  - Java/library/ds/SegmentTree.java
+  - Java/library/ds/unionfind/MergeUnionFind.java
+  - Java/library/ds/unionfind/UndoUnionFind.java
+  - Java/library/ds/unionfind/WeightedUnionFind.java
+  - Java/library/ds/unionfind/UnionFind.java
+  - Java/library/ds/DoubleEndedPriorityQueue.java
+  - Java/library/ds/AVLTree.java
+  - Java/library/ds/fenwicktree/FenwickTree.java
+  - Java/library/ds/fenwicktree/RangeBIT.java
+  - Java/library/ds/deque/Deque.java
+  - Java/library/ds/deque/IntDeque.java
+  - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
+  - Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
+  - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-26 08:19:03+09:00'
+  timestamp: '2024-02-27 10:38:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

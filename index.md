@@ -21,6 +21,48 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/timer.hpp
       title: "\u30BF\u30A4\u30DE\u30FC"
+  - name: C++/ds
+    pages:
+    - icon: ':warning:'
+      path: C++/ds/DualSegmentTree.hpp
+      title: "\u53CC\u5BFE\u30BB\u30B0\u6728"
+    - icon: ':warning:'
+      path: C++/ds/LazySegmentTree.hpp
+      title: "\u9045\u5EF6\u30BB\u30B0\u6728"
+    - icon: ':warning:'
+      path: C++/ds/SegmentTree.hpp
+      title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
+    - icon: ':warning:'
+      path: C++/ds/SparseTable.hpp
+      title: Sparse Table
+    - icon: ':warning:'
+      path: C++/ds/WM.hpp
+      title: Wavelet Matrix
+    - icon: ':warning:'
+      path: C++/ds/depq.hpp
+      title: "\u4E21\u7AEF\u512A\u5148\u5EA6\u4ED8\u304D\u30AD\u30E5\u30FC"
+  - name: C++/ds/fwtree
+    pages:
+    - icon: ':warning:'
+      path: C++/ds/fwtree/FenwickTree.hpp
+      title: Binary Indexed Tree
+    - icon: ':warning:'
+      path: C++/ds/fwtree/RangeBIT.hpp
+      title: Range BIT
+  - name: C++/ds/uf
+    pages:
+    - icon: ':warning:'
+      path: C++/ds/uf/MergeUF.hpp
+      title: MergeUnionFind
+    - icon: ':warning:'
+      path: C++/ds/uf/UFPotential.hpp
+      title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304DUnionFind"
+    - icon: ':warning:'
+      path: C++/ds/uf/UFUndo.hpp
+      title: "Undo\u53EF\u80FDUnionFind"
+    - icon: ':warning:'
+      path: C++/ds/uf/UnionFind.hpp
+      title: UnionFind
   - name: C++/graph
     pages:
     - icon: ':heavy_check_mark:'
@@ -46,10 +88,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/graph/mst/directed.hpp
       title: Directed MST
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: C++/graph/mst/kruskal.hpp
       title: "Kruskal\u6CD5"
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: C++/graph/mst/manhattan.hpp
       title: Manhattan MST
   - name: C++/io
@@ -68,7 +110,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math/ModPrime.hpp
       title: ModPrime
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: C++/math/Modint.hpp
       title: Modint
     - icon: ':heavy_check_mark:'
@@ -80,7 +122,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math/euler_phi.hpp
       title: Euler's Phi-function
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: C++/math/inverse_num.hpp
       title: "\u8EE2\u5012\u6570"
     - icon: ':heavy_check_mark:'
@@ -129,48 +171,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/string/z-algo.hpp
       title: Z-Algorithm
-  - name: C++/structure
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: C++/structure/DualSegmentTree.hpp
-      title: "\u53CC\u5BFE\u30BB\u30B0\u6728"
-    - icon: ':heavy_check_mark:'
-      path: C++/structure/LazySegmentTree.hpp
-      title: "\u9045\u5EF6\u30BB\u30B0\u6728"
-    - icon: ':heavy_check_mark:'
-      path: C++/structure/SegmentTree.hpp
-      title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-    - icon: ':heavy_check_mark:'
-      path: C++/structure/SparseTable.hpp
-      title: Sparse Table
-    - icon: ':heavy_check_mark:'
-      path: C++/structure/WM.hpp
-      title: Wavelet Matrix
-    - icon: ':heavy_check_mark:'
-      path: C++/structure/depq.hpp
-      title: "\u4E21\u7AEF\u512A\u5148\u5EA6\u4ED8\u304D\u30AD\u30E5\u30FC"
-  - name: C++/structure/fwtree
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: C++/structure/fwtree/FenwickTree.hpp
-      title: Binary Indexed Tree
-    - icon: ':heavy_check_mark:'
-      path: C++/structure/fwtree/RangeBIT.hpp
-      title: Range BIT
-  - name: C++/structure/uf
-    pages:
-    - icon: ':warning:'
-      path: C++/structure/uf/MergeUF.hpp
-      title: MergeUnionFind
-    - icon: ':heavy_check_mark:'
-      path: C++/structure/uf/UFPotential.hpp
-      title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304DUnionFind"
-    - icon: ':warning:'
-      path: C++/structure/uf/UFUndo.hpp
-      title: "Undo\u53EF\u80FDUnionFind"
-    - icon: ':heavy_check_mark:'
-      path: C++/structure/uf/UnionFind.hpp
-      title: UnionFind
   - name: Java
     pages:
     - icon: ':warning:'
@@ -304,6 +304,101 @@ data:
     - icon: ':warning:'
       path: Java/library/core/io/MyScanner.java
       title: Java/library/core/io/MyScanner.java
+  - name: Java/library/ds
+    pages:
+    - icon: ':warning:'
+      path: Java/library/ds/AVLTree.java
+      title: Java/library/ds/AVLTree.java
+    - icon: ':warning:'
+      path: Java/library/ds/DoubleEndedPriorityQueue.java
+      title: Java/library/ds/DoubleEndedPriorityQueue.java
+    - icon: ':warning:'
+      path: Java/library/ds/DualSegmentTree.java
+      title: Java/library/ds/DualSegmentTree.java
+    - icon: ':warning:'
+      path: Java/library/ds/SegmentTree.java
+      title: Java/library/ds/SegmentTree.java
+    - icon: ':warning:'
+      path: Java/library/ds/SparseTable.java
+      title: Java/library/ds/SparseTable.java
+  - name: Java/library/ds/deque
+    pages:
+    - icon: ':warning:'
+      path: Java/library/ds/deque/Deque.java
+      title: Java/library/ds/deque/Deque.java
+    - icon: ':warning:'
+      path: Java/library/ds/deque/IntDeque.java
+      title: Java/library/ds/deque/IntDeque.java
+  - name: Java/library/ds/fenwicktree
+    pages:
+    - icon: ':warning:'
+      path: Java/library/ds/fenwicktree/FenwickTree.java
+      title: Java/library/ds/fenwicktree/FenwickTree.java
+    - icon: ':warning:'
+      path: Java/library/ds/fenwicktree/RangeBIT.java
+      title: Java/library/ds/fenwicktree/RangeBIT.java
+  - name: Java/library/ds/lazysegmenttree
+    pages:
+    - icon: ':warning:'
+      path: Java/library/ds/lazysegmenttree/LazySegmentTree.java
+      title: Java/library/ds/lazysegmenttree/LazySegmentTree.java
+    - icon: ':warning:'
+      path: Java/library/ds/lazysegmenttree/RAMN.java
+      title: Java/library/ds/lazysegmenttree/RAMN.java
+    - icon: ':warning:'
+      path: Java/library/ds/lazysegmenttree/RAMX.java
+      title: Java/library/ds/lazysegmenttree/RAMX.java
+    - icon: ':warning:'
+      path: Java/library/ds/lazysegmenttree/RASM.java
+      title: Java/library/ds/lazysegmenttree/RASM.java
+    - icon: ':warning:'
+      path: Java/library/ds/lazysegmenttree/RUMN.java
+      title: Java/library/ds/lazysegmenttree/RUMN.java
+    - icon: ':warning:'
+      path: Java/library/ds/lazysegmenttree/RUMX.java
+      title: Java/library/ds/lazysegmenttree/RUMX.java
+    - icon: ':warning:'
+      path: Java/library/ds/lazysegmenttree/RUSM.java
+      title: Java/library/ds/lazysegmenttree/RUSM.java
+  - name: Java/library/ds/pair
+    pages:
+    - icon: ':warning:'
+      path: Java/library/ds/pair/FloatPair.java
+      title: Java/library/ds/pair/FloatPair.java
+    - icon: ':warning:'
+      path: Java/library/ds/pair/IntPair.java
+      title: Java/library/ds/pair/IntPair.java
+    - icon: ':warning:'
+      path: Java/library/ds/pair/Pair.java
+      title: Java/library/ds/pair/Pair.java
+    - icon: ':warning:'
+      path: Java/library/ds/pair/Zwei.java
+      title: Java/library/ds/pair/Zwei.java
+  - name: Java/library/ds/unionfind
+    pages:
+    - icon: ':warning:'
+      path: Java/library/ds/unionfind/MergeUnionFind.java
+      title: Java/library/ds/unionfind/MergeUnionFind.java
+    - icon: ':warning:'
+      path: Java/library/ds/unionfind/UndoUnionFind.java
+      title: Java/library/ds/unionfind/UndoUnionFind.java
+    - icon: ':warning:'
+      path: Java/library/ds/unionfind/UnionFind.java
+      title: Java/library/ds/unionfind/UnionFind.java
+    - icon: ':warning:'
+      path: Java/library/ds/unionfind/WeightedUnionFind.java
+      title: Java/library/ds/unionfind/WeightedUnionFind.java
+  - name: Java/library/ds/waveletmatrix
+    pages:
+    - icon: ':warning:'
+      path: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
+      title: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
+    - icon: ':warning:'
+      path: Java/library/ds/waveletmatrix/WaveletMatrix.java
+      title: Java/library/ds/waveletmatrix/WaveletMatrix.java
+    - icon: ':warning:'
+      path: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
+      title: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
   - name: Java/library/graph
     pages:
     - icon: ':warning:'
@@ -374,105 +469,10 @@ data:
     - icon: ':warning:'
       path: Java/library/other/Why.java
       title: Java/library/other/Why.java
-  - name: Java/library/structure
-    pages:
-    - icon: ':warning:'
-      path: Java/library/structure/AVLTree.java
-      title: Java/library/structure/AVLTree.java
-    - icon: ':warning:'
-      path: Java/library/structure/DoubleEndedPriorityQueue.java
-      title: Java/library/structure/DoubleEndedPriorityQueue.java
-    - icon: ':warning:'
-      path: Java/library/structure/DualSegmentTree.java
-      title: Java/library/structure/DualSegmentTree.java
-    - icon: ':warning:'
-      path: Java/library/structure/SegmentTree.java
-      title: Java/library/structure/SegmentTree.java
-    - icon: ':warning:'
-      path: Java/library/structure/SparseTable.java
-      title: Java/library/structure/SparseTable.java
-  - name: Java/library/structure/deque
-    pages:
-    - icon: ':warning:'
-      path: Java/library/structure/deque/Deque.java
-      title: Java/library/structure/deque/Deque.java
-    - icon: ':warning:'
-      path: Java/library/structure/deque/IntDeque.java
-      title: Java/library/structure/deque/IntDeque.java
-  - name: Java/library/structure/fenwicktree
-    pages:
-    - icon: ':warning:'
-      path: Java/library/structure/fenwicktree/FenwickTree.java
-      title: Java/library/structure/fenwicktree/FenwickTree.java
-    - icon: ':warning:'
-      path: Java/library/structure/fenwicktree/RangeBIT.java
-      title: Java/library/structure/fenwicktree/RangeBIT.java
-  - name: Java/library/structure/lazysegmenttree
-    pages:
-    - icon: ':warning:'
-      path: Java/library/structure/lazysegmenttree/LazySegmentTree.java
-      title: Java/library/structure/lazysegmenttree/LazySegmentTree.java
-    - icon: ':warning:'
-      path: Java/library/structure/lazysegmenttree/RAMN.java
-      title: Java/library/structure/lazysegmenttree/RAMN.java
-    - icon: ':warning:'
-      path: Java/library/structure/lazysegmenttree/RAMX.java
-      title: Java/library/structure/lazysegmenttree/RAMX.java
-    - icon: ':warning:'
-      path: Java/library/structure/lazysegmenttree/RASM.java
-      title: Java/library/structure/lazysegmenttree/RASM.java
-    - icon: ':warning:'
-      path: Java/library/structure/lazysegmenttree/RUMN.java
-      title: Java/library/structure/lazysegmenttree/RUMN.java
-    - icon: ':warning:'
-      path: Java/library/structure/lazysegmenttree/RUMX.java
-      title: Java/library/structure/lazysegmenttree/RUMX.java
-    - icon: ':warning:'
-      path: Java/library/structure/lazysegmenttree/RUSM.java
-      title: Java/library/structure/lazysegmenttree/RUSM.java
-  - name: Java/library/structure/pair
-    pages:
-    - icon: ':warning:'
-      path: Java/library/structure/pair/FloatPair.java
-      title: Java/library/structure/pair/FloatPair.java
-    - icon: ':warning:'
-      path: Java/library/structure/pair/IntPair.java
-      title: Java/library/structure/pair/IntPair.java
-    - icon: ':warning:'
-      path: Java/library/structure/pair/Pair.java
-      title: Java/library/structure/pair/Pair.java
-    - icon: ':warning:'
-      path: Java/library/structure/pair/Zwei.java
-      title: Java/library/structure/pair/Zwei.java
-  - name: Java/library/structure/unionfind
-    pages:
-    - icon: ':warning:'
-      path: Java/library/structure/unionfind/MergeUnionFind.java
-      title: Java/library/structure/unionfind/MergeUnionFind.java
-    - icon: ':warning:'
-      path: Java/library/structure/unionfind/UndoUnionFind.java
-      title: Java/library/structure/unionfind/UndoUnionFind.java
-    - icon: ':warning:'
-      path: Java/library/structure/unionfind/UnionFind.java
-      title: Java/library/structure/unionfind/UnionFind.java
-    - icon: ':warning:'
-      path: Java/library/structure/unionfind/WeightedUnionFind.java
-      title: Java/library/structure/unionfind/WeightedUnionFind.java
-  - name: Java/library/structure/waveletmatrix
-    pages:
-    - icon: ':warning:'
-      path: Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
-      title: Java/library/structure/waveletmatrix/SuccientIndexableDictionary.java
-    - icon: ':warning:'
-      path: Java/library/structure/waveletmatrix/WaveletMatrix.java
-      title: Java/library/structure/waveletmatrix/WaveletMatrix.java
-    - icon: ':warning:'
-      path: Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
-      title: Java/library/structure/waveletmatrix/WaveletMatrixBeta.java
   verificationCategories:
   - name: test
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/WM.test.cpp
       title: test/WM.test.cpp
     - icon: ':heavy_check_mark:'
@@ -496,49 +496,49 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/dag_check.test.cpp
       title: test/dag_check.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/depq.test.cpp
       title: test/depq.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/directed.test.cpp
       title: test/directed.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/dualsegtree.test.cpp
       title: test/dualsegtree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/extgcd.test.cpp
       title: test/extgcd.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/fwtree.test.cpp
       title: test/fwtree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/fwtree2.test.cpp
       title: test/fwtree2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/fwtree3.test.cpp
       title: test/fwtree3.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/inv_num.test.cpp
       title: test/inv_num.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/kruskal.test.cpp
       title: test/kruskal.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/kthrooti.test.cpp
       title: test/kthrooti.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/lazysegtree.test.cpp
       title: test/lazysegtree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/lazysegtree2.test.cpp
       title: test/lazysegtree2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/lazysegtree3.test.cpp
       title: test/lazysegtree3.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/lazysegtree4.test.cpp
       title: test/lazysegtree4.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/lazysegtree5.test.cpp
       title: test/lazysegtree5.test.cpp
     - icon: ':heavy_check_mark:'
@@ -553,7 +553,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/manacher.test.cpp
       title: test/manacher.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/manhattan.test.cpp
       title: test/manhattan.test.cpp
     - icon: ':heavy_check_mark:'
@@ -565,7 +565,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/modprime2.test.cpp
       title: test/modprime2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/parsum.test.cpp
       title: test/parsum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -583,13 +583,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/psum2d.test.cpp
       title: test/psum2d.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/rangeaffine.test.cpp
       title: test/rangeaffine.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/rh.test.cpp
       title: test/rh.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/s_rmq.test.cpp
       title: test/s_rmq.test.cpp
     - icon: ':heavy_check_mark:'
@@ -601,25 +601,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/scc2.test.cpp
       title: test/scc2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/segtree.test.cpp
       title: test/segtree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/segtree2.test.cpp
       title: test/segtree2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/sr_sum.test.cpp
       title: test/sr_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/stable.test.cpp
       title: test/stable.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/tetration.test.cpp
       title: test/tetration.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/uf.test.cpp
       title: test/uf.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/ufpotential.test.cpp
       title: test/ufpotential.test.cpp
     - icon: ':heavy_check_mark:'

@@ -8,13 +8,10 @@ data:
     path: C++/graph/mst/MST.hpp
     title: "\u6700\u5C0F\u5168\u57DF\u6728"
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/manhattan.test.cpp
-    title: test/manhattan.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     document_title: Manhattan MST
     links:
@@ -65,9 +62,8 @@ data:
   path: C++/graph/mst/manhattan.hpp
   requiredBy: []
   timestamp: '2024-02-19 13:17:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/manhattan.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: C++/graph/mst/manhattan.hpp
 layout: document
 redirect_from:
