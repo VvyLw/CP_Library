@@ -3,7 +3,7 @@
 #pragma GCC optimize("unroll-loops")//*/
 //#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
 #include "C++/template.hpp"
-#include "C++/structure/fwtree/FenwickTree.hpp"
+#include "C++/ds/fwtree/FenwickTree.hpp"
 using namespace zia_qu;
 using namespace Lady_sANDy;
 using namespace Heileden;

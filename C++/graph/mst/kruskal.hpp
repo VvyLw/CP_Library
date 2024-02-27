@@ -2,7 +2,7 @@
 
 #include <vector>
 #include "C++/graph/mst/MST.hpp"
-#include "C++/structure/uf/UnionFind.hpp"
+#include "C++/ds/uf/UnionFind.hpp"
 inline MST kruskal(std::vector<edge> edges, const int n) {
     std::sort(edges.begin(), edges.end(), [&](const edge &e, const edge &f){ return e.cost < f.cost; });
     UnionFind uf(n);

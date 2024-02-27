@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_F"
 #include <iostream>
-#include "C++/structure/LazySegmentTree.hpp"
+#include "C++/ds/LazySegmentTree.hpp"
 int main() {
     int n, q;
     std::cin >> n >> q;

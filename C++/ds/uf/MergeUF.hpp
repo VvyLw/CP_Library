@@ -1,6 +1,6 @@
 #pragma once
 
-#include "C++/structure/uf/UnionFind.hpp"
+#include "C++/ds/uf/UnionFind.hpp"
 template <class T> struct MergeUF: UnionFind {
     using UnionFind::par;
     using UnionFind::operator[];
