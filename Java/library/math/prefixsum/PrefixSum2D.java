@@ -93,4 +93,18 @@ public final class PrefixSum2D {
 	 * @return (i, j)の要素
 	 */
 	public final long get(final int i, final int j){ return data[i + 1][j + 1]; }
+	@Override
+	public final String toString() {
+		final StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < h - 3; ++i) {
+			sb.append(get(i, 0));
+			for(int j = 0; ++j < w - 3;) {
+				sb.append(" " + get(i, j));
+			}
+			if(i + 1 < h) {
+				sb.append('\n');
+			}
+		}
+		return sb.toString();
+	}
 }

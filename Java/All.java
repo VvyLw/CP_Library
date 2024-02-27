@@ -3385,6 +3385,20 @@ final class PrefixSum2D {
 	}
 	final long get(final int i1, final int j1, final int i2, final int j2){ return data[i2][j2] - data[i1][j2] - data[i2][j1] + data[i1][j1]; }
 	final long get(final int i, final int j){ return data[i + 1][j + 1]; }
+	@Override
+	public final String toString() {
+		final StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < h - 3; ++i) {
+			sb.append(get(i, 0));
+			for(int j = 0; ++j < w - 3;) {
+				sb.append(" " + get(i, j));
+			}
+			if(i + 1 < h) {
+				sb.append('\n');
+			}
+		}
+		return sb.toString();
+	}
 }
 
 final class SuffixArray extends ArrayList<Integer> {
