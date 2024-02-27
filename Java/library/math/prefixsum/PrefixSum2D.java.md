@@ -563,7 +563,12 @@ data:
     \ get(final int i1, final int j1, final int i2, final int j2){ return data[i2][j2]\
     \ - data[i1][j2] - data[i2][j1] + data[i1][j1]; }\n\t/**\n\t * @param i\n\t *\
     \ @param j\n\t * @return (i, j)\u306E\u8981\u7D20\n\t */\n\tpublic final long\
-    \ get(final int i, final int j){ return data[i + 1][j + 1]; }\n}"
+    \ get(final int i, final int j){ return data[i + 1][j + 1]; }\n\t@Override\n\t\
+    public final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
+    \t\tfor(int i = 0; i < h - 3; ++i) {\n\t\t\tsb.append(get(i, 0));\n\t\t\tfor(int\
+    \ j = 0; ++j < w - 3;) {\n\t\t\t\tsb.append(\" \" + get(i, j));\n\t\t\t}\n\t\t\
+    \tif(i + 1 < h) {\n\t\t\t\tsb.append('\\n');\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\
+    \t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -742,7 +747,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-27 10:38:23+09:00'
+  timestamp: '2024-02-27 17:42:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/prefixsum/PrefixSum2D.java

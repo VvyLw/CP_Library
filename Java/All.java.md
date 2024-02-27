@@ -1845,12 +1845,16 @@ data:
     \ 1] + data[i - 1][j] - data[i - 1][j - 1];\n\t\t\t}\n\t\t}\n\t}\n\tfinal long\
     \ get(final int i1, final int j1, final int i2, final int j2){ return data[i2][j2]\
     \ - data[i1][j2] - data[i2][j1] + data[i1][j1]; }\n\tfinal long get(final int\
-    \ i, final int j){ return data[i + 1][j + 1]; }\n}\n\nfinal class SuffixArray\
-    \ extends ArrayList<Integer> {\n\tprivate final String vs;\n\tSuffixArray(final\
-    \ String vs, final boolean compress) {\n\t\tthis.vs = vs;\n\t\tfinal int[] newVS\
-    \ = new int[vs.length() + 1];\n\t\tif(compress) {\n\t\t\tfinal List<Integer> xs\
-    \ = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());\n\t\t\
-    \tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = Utility.lowerBound(xs,\
+    \ i, final int j){ return data[i + 1][j + 1]; }\n\t@Override\n\tpublic final String\
+    \ toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfor(int\
+    \ i = 0; i < h - 3; ++i) {\n\t\t\tsb.append(get(i, 0));\n\t\t\tfor(int j = 0;\
+    \ ++j < w - 3;) {\n\t\t\t\tsb.append(\" \" + get(i, j));\n\t\t\t}\n\t\t\tif(i\
+    \ + 1 < h) {\n\t\t\t\tsb.append('\\n');\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\
+    \t}\n}\n\nfinal class SuffixArray extends ArrayList<Integer> {\n\tprivate final\
+    \ String vs;\n\tSuffixArray(final String vs, final boolean compress) {\n\t\tthis.vs\
+    \ = vs;\n\t\tfinal int[] newVS = new int[vs.length() + 1];\n\t\tif(compress) {\n\
+    \t\t\tfinal List<Integer> xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());\n\
+    \t\t\tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = Utility.lowerBound(xs,\
     \ (int) vs.charAt(i)) + 1;\n\t\t\t}\n\t\t} else {\n\t\t\tfinal int d = vs.chars().min().getAsInt();\n\
     \t\t\tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = vs.charAt(i)\
     \ - d + 1;\n\t\t\t}\n\t\t}\n\t\tthis.addAll(Arrays.stream(SAIS(newVS)).boxed().collect(Collectors.toList()));\n\
@@ -2575,7 +2579,7 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-27 10:38:23+09:00'
+  timestamp: '2024-02-27 17:42:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
