@@ -180,30 +180,66 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public final void out(final int[] a){ out.out(a); }
 	/**
+	 * @param head
+	 * @param tail
+	 * @see MyPrinter#out
+	 */
+	public final void out(final int[] head, final int[]...tail){ out.out(head, tail); }
+	/**
 	 * @param a
 	 * @see MyPrinter#out
 	 */
 	public final void out(final long[] a){ out.out(a); }
+	/**
+	 * @param head
+	 * @param tail
+	 * @see MyPrinter#out
+	 */
+	public final void out(final long[] head, final long[]...tail){ out.out(head, tail); }
 	/**
 	 * @param a
 	 * @see MyPrinter#out
 	 */
 	public final void out(final double[] a){ out.out(a); }
 	/**
+	 * @param head
+	 * @param tail
+	 * @see MyPrinter#out
+	 */
+	public final void out(final double[] head, final double[]...tail){ out.out(head, tail); }
+	/**
 	 * @param a
 	 * @see MyPrinter#out
 	 */
 	public final void out(final boolean[] a){ out.out(a); }
+	/**
+	 * @param head
+	 * @param tail
+	 * @see MyPrinter#out
+	 */
+	public final void out(final boolean[] head, final boolean[]...tail){ out.out(head, tail); }
 	/**
 	 * @param a
 	 * @see MyPrinter#out
 	 */
 	public final void out(final char[] a){ out.out(a); }
 	/**
+	 * @param head
+	 * @param tail
+	 * @see MyPrinter#out
+	 */
+	public final void out(final char[] head, final char[]...tail){ out.out(head, tail); }
+	/**
 	 * @param a
 	 * @see MyPrinter#out
 	 */
 	public final void out(final Object[] a){ out.out(a); }
+	/**
+	 * @param head
+	 * @param tail
+	 * @see MyPrinter#out
+	 */
+	public final void out(final Object[] head, final Object[]...tail){ out.out(head, tail); }
 	/**
 	 * @param <E>
 	 * @see MyPrinter#out
@@ -430,10 +466,24 @@ public final class IO implements Closeable, AutoCloseable {
 	public final void dump(final int[] a){ err.out(a); }
 	/**
 	 * デバッグ用
+	 * @param head
+	 * @param tail
+	 * @see MyPrinter#out
+	 */
+	public final void dump(final int[] head, final int[]...tail){ err.out(head, tail); }
+	/**
+	 * デバッグ用
 	 * @param a
 	 * @see MyPrinter#out
 	 */
 	public final void dump(final long[] a){ err.out(a); }
+	/**
+	 * デバッグ用
+	 * @param head
+	 * @param tail
+	 * @see MyPrinter#out
+	 */
+	public final void dump(final long[] head, final long[]...tail){ err.out(head, tail); }
 	/**
 	 * デバッグ用
 	 * @param a
@@ -442,10 +492,24 @@ public final class IO implements Closeable, AutoCloseable {
 	public final void dump(final double[] a){ err.out(a); }
 	/**
 	 * デバッグ用
+	 * @param head
+	 * @param tail
+	 * @see MyPrinter#out
+	 */
+	public final void dump(final double[] head, final double[]...tail){ err.out(head, tail); }
+	/**
+	 * デバッグ用
 	 * @param a
 	 * @see MyPrinter#out
 	 */
 	public final void dump(final boolean[] a){ err.out(a); }
+	/**
+	 * デバッグ用
+	 * @param head
+	 * @param tail
+	 * @see MyPrinter#out
+	 */
+	public final void dump(final boolean[] head, final boolean[]...tail){ err.out(head, tail); }
 	/**
 	 * デバッグ用
 	 * @param a
@@ -454,10 +518,24 @@ public final class IO implements Closeable, AutoCloseable {
 	public final void dump(final char[] a){ err.out(a); }
 	/**
 	 * デバッグ用
+	 * @param head
+	 * @param tail
+	 * @see MyPrinter#out
+	 */
+	public final void dump(final char[] head, final char[]...tail){ err.out(head, tail); }
+	/**
+	 * デバッグ用
 	 * @param a
 	 * @see MyPrinter#out
 	 */
 	public final void dump(final Object[] a){ err.out(a); }
+	/**
+	 * デバッグ用
+	 * @param head
+	 * @param tail
+	 * @see MyPrinter#out
+	 */
+	public final void dump(final Object[] head, final Object[]...tail){ err.out(head, tail); }
 	/**
 	 * デバッグ用
 	 * @param head

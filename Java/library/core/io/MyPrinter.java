@@ -123,6 +123,17 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		newLine();
 	}
 	/**
+	 * int型の配列を複数出力する
+	 * @param head
+	 * @param tail
+	 */
+	public final void out(final int[] head, final int[]... tail) {
+		out(head);
+		for(final int[] a: tail) {
+			out(a);
+		}
+	}
+	/**
 	 * long型の配列を空白おきで出力する
 	 * @param args
 	 */
@@ -136,6 +147,17 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 			}
 		}
 		newLine();
+	}
+	/**
+	 * long型の配列を複数出力する
+	 * @param head
+	 * @param tail
+	 */
+	public final void out(final long[] head, final long[]... tail) {
+		out(head);
+		for(final long[] a: tail) {
+			out(a);
+		}
 	}
 	/**
 	 * double型の配列を空白おきで出力する
@@ -153,6 +175,17 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		newLine();
 	}
 	/**
+	 * double型の配列を複数出力する
+	 * @param head
+	 * @param tail
+	 */
+	public final void out(final double[] head, final double[]... tail) {
+		out(head);
+		for(final double[] a: tail) {
+			out(a);
+		}
+	}
+	/**
 	 * boolean型の配列を空白おきで出力する
 	 * @param args
 	 */
@@ -168,6 +201,17 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		newLine();
 	}
 	/**
+	 * boolean型の配列を複数出力する
+	 * @param head
+	 * @param tail
+	 */
+	public final void out(final boolean[] head, final boolean[]... tail) {
+		out(head);
+		for(final boolean[] a: tail) {
+			out(a);
+		}
+	}
+	/**
 	 * char型の配列を空白おきで出力する
 	 * @param args
 	 */
@@ -181,7 +225,18 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		newLine();
 	}
 	/**
-	 * {@link Object}クラスの配列を空白おきで出力する
+	 * char型の配列を複数出力する
+	 * @param head
+	 * @param tail
+	 */
+	public final void out(final char[] head, final char[]... tail) {
+		out(head);
+		for(final char[] a: tail) {
+			out(a);
+		}
+	}
+	/**
+	 * Objectクラスの配列を空白おきで出力する
 	 * @param args
 	 */
 	public final void out(final Object[] args) {
@@ -194,6 +249,17 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 			}
 		}
 		newLine();
+	}
+	/**
+	 * Objectクラスの配列を複数出力する
+	 * @param head
+	 * @param tail
+	 */
+	public final void out(final Object[] head, final Object[]... tail) {
+		out(head);
+		for(final Object[] a: tail) {
+			out(a);
+		}
 	}
 	/**
 	 * {@link Collection}を出力する
