@@ -73,12 +73,6 @@ class Utility {
 		}
 		return res;
 	}
-	protected static final long lcm(final long a, final long b){ return a * b / gcd(a, b); }
-	protected static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }
-	protected static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }
-	protected static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }
-	protected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }
-	protected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }
 	protected static final int min(final int... a){ return Arrays.stream(a).min().getAsInt(); }
 	protected static final long min(final long... a){ return Arrays.stream(a).min().getAsLong(); }
 	protected static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble(); }
@@ -88,12 +82,6 @@ class Utility {
 	protected static final long sum(final int... a){ return Arrays.stream(a).asLongStream().sum(); }
 	protected static final long sum(final long... a){ return Arrays.stream(a).sum(); }
 	protected static final double sum(final double... a){ return Arrays.stream(a).sum(); }
-	protected static final long prod(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> x * y); }
-	protected static final long prod(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y); }
-	protected static final double prod(final double... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y); }
-	protected static final double ave(final int... a){ return Arrays.stream(a).average().getAsDouble(); }
-	protected static final double ave(final long... a){ return Arrays.stream(a).average().getAsDouble(); }
-	protected static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble(); }
 	protected static final boolean scope(final int l, final int x, final int r){ return l <= x && x <= r; }
 	protected static final boolean scope(final long l, final long x, final long r){ return l <= x && x <= r; }
 	protected static final boolean scope(final double l, final double x, final double r){ return l <= x && x <= r; }
@@ -135,11 +123,17 @@ final class IO implements Closeable, AutoCloseable {
 	final void out(){ out.out(); }
 	final void out(final Object head, final Object... tail){ out.out(head, tail); }
 	final void out(final int[] a){ out.out(a); }
+	final void out(final int[] head, final int[]...tail){ out.out(head, tail); }
 	final void out(final long[] a){ out.out(a); }
+	final void out(final long[] head, final long[]...tail){ out.out(head, tail); }
 	final void out(final double[] a){ out.out(a); }
+	final void out(final double[] head, final double[]...tail){ out.out(head, tail); }
 	final void out(final boolean[] a){ out.out(a); }
+	final void out(final boolean[] head, final boolean[]...tail){ out.out(head, tail); }
 	final void out(final char[] a){ out.out(a); }
+	final void out(final char[] head, final char[]...tail){ out.out(head, tail); }
 	final void out(final Object[] a){ out.out(a); }
+	final void out(final Object[] head, final Object[]...tail){ out.out(head, tail); }
 	final <E> void out(final Collection<E> a){ out.out(a); }
 	final void outl(final Object head, final Object... tail){ out.outl(head, tail); }
 	final void outl(final int[] a){ out.outl(a); }
@@ -177,13 +171,19 @@ final class IO implements Closeable, AutoCloseable {
 	final void ende(final Object[] a){ out.ende(a); }
 	final void ende(final Object[][] a){ out.ende(a); }
 	final <E> void ende(final Collection<E> a){ out.ende(a); }
-	final void dbg(final Object head, final Object... tail){ err.out(head, tail); }
-	final void dbg(final int[] a){ err.out(a); }
-	final void dbg(final long[] a){ err.out(a); }
-	final void dbg(final double[] a){ err.out(a); }
-	final void dbg(final boolean[] a){ err.out(a); }
-	final void dbg(final char[] a){ err.out(a); }
-	final void dbg(final Object[] a){ err.out(a); }
+	final void dump(final Object head, final Object... tail){ err.out(head, tail); }
+	final void dump(final int[] a){ err.out(a); }
+	final void dump(final int[] head, final int[]...tail){ err.out(head, tail); }
+	final void dump(final long[] a){ err.out(a); }
+	final void dump(final long[] head, final long[]...tail){ err.out(head, tail); }
+	final void dump(final double[] a){ err.out(a); }
+	final void dump(final double[] head, final double[]...tail){ err.out(head, tail); }
+	final void dump(final boolean[] a){ err.out(a); }
+	final void dump(final boolean[] head, final boolean[]...tail){ err.out(head, tail); }
+	final void dump(final char[] a){ err.out(a); }
+	final void dump(final char[] head, final char[]...tail){ err.out(head, tail); }
+	final void dump(final Object[] a){ err.out(a); }
+	final void dump(final Object[] head, final Object[]...tail){ err.out(head, tail); }
 	final void debug(final Object head, final Object... tail){ err.outl(head, tail); }
 	final void debug(final int[] a){ err.outl(a); }
 	final void debug(final int[][] a){ err.outl(a); }
@@ -433,6 +433,12 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 		newLine();
 	}
+	final void out(final int[] head, final int[]... tail) {
+		out(head);
+		for(final int[] a: tail) {
+			out(a);
+		}
+	}
 	final void out(final long[] args) {
 		if(debug) {
 			print(Arrays.toString(args));
@@ -443,6 +449,12 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 			}
 		}
 		newLine();
+	}
+	final void out(final long[] head, final long[]... tail) {
+		out(head);
+		for(final long[] a: tail) {
+			out(a);
+		}
 	}
 	final void out(final double[] args) {
 		if(debug) {
@@ -455,6 +467,12 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 		newLine();
 	}
+	final void out(final double[] head, final double[]... tail) {
+		out(head);
+		for(final double[] a: tail) {
+			out(a);
+		}
+	}
 	final void out(final boolean[] args) {
 		if(debug) {
 			print(Arrays.toString(args));
@@ -466,6 +484,12 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 		newLine();
 	}
+	final void out(final boolean[] head, final boolean[]... tail) {
+		out(head);
+		for(final boolean[] a: tail) {
+			out(a);
+		}
+	}
 	final void out(final char[] args) {
 		if(args.length > 0) {
 			print(args[0]);
@@ -474,6 +498,12 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 			}
 		}
 		newLine();
+	}
+	final void out(final char[] head, final char[]... tail) {
+		out(head);
+		for(final char[] a: tail) {
+			out(a);
+		}
 	}
 	final void out(final Object[] args) {
 		if(debug) {
@@ -485,6 +515,12 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 			}
 		}
 		newLine();
+	}
+	final void out(final Object[] head, final Object[]... tail) {
+		out(head);
+		for(final Object[] a: tail) {
+			out(a);
+		}
 	}
 	final <E> void out(final Collection<E> args) {
 		if(debug) {
