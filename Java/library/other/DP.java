@@ -192,6 +192,28 @@ public final class DP {
 		return Utility.max(dp);
 	}
 	/**
+	 * Longest Common Subsequence
+	 * @param s
+	 * @param t
+	 * @return 最長共通部分列の長さ
+	 * @see <a href="https://maku.blog/p/a3jyhwd/">参考元</a>
+	 */
+	public static final int lcs(final String s, final String t) {
+		final int n = s.length();
+		final int[] dp = new int[n + 1], ndp = new int[n + 1];
+		for(int i = 0; i < t.length(); ++i) {
+			for(int j = 0; j < n; ++j) {
+				if(s.charAt(j) == t.charAt(i)) {
+					ndp[j + 1] = dp[j] + 1;
+				} else {
+					ndp[j + 1] = Math.max(ndp[j], dp[j + 1]);
+				}
+			}
+			Utility.swap(dp, ndp);
+		}
+		return dp[n];
+	}
+	/**
 	 * @param a
 	 * @return 最長増加部分列(Longest Increasing Subsequence)
 	 * @see <a href="https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp">参考元</a>

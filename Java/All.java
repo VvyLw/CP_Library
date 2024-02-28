@@ -3380,6 +3380,21 @@ final class DP {
 		}
 		return Utility.max(dp);
 	}
+	static final int lcs(final String s, final String t) {
+		final int n = s.length();
+		final int[] dp = new int[n + 1], ndp = new int[n + 1];
+		for(int i = 0; i < t.length(); ++i) {
+			for(int j = 0; j < n; ++j) {
+				if(s.charAt(j) == t.charAt(i)) {
+					ndp[j + 1] = dp[j] + 1;
+				} else {
+					ndp[j + 1] = max(ndp[j], dp[j + 1]);
+				}
+			}
+			Utility.swap(dp, ndp);
+		}
+		return dp[n];
+	}
 	static final int[] lis(final int[] a) {
 		final int n = a.length;
 		List<IntPair> dp = new ArrayList<IntPair>();

@@ -149,6 +149,22 @@ template <class T> T knapsack(const std::vector<int> &a, const std::vector<T> &v
  * @see https://ei1333.github.io/library/dp/knapsack.hpp
  */
 
+inline int lcs(const std::string &s, const std::string &t) {
+    const int n = s.size();
+    std::vector<int> dp(n + 1), ndp(n + 1);
+    for(size_t i = 0; i < t.size(); ++i) {
+        for(int j = 0; j < n; ++j) {
+            if(s[j] == t[i]) {
+                ndp[j + 1] = dp[j] + 1;
+            } else {
+                ndp[j + 1] = std::max(ndp[j], dp[j + 1]);
+            }
+        }
+        dp.swap(ndp);
+    }
+    return dp[n];
+}
+
 template <class T> inline std::vector<int> lis(const std::vector<T> &v) {
     const int n = v.size();
     std::vector<std::pair<T, int>> dp;
