@@ -164,6 +164,9 @@ inline int lcs(const std::string &s, const std::string &t) {
     }
     return dp[n];
 }
+/**
+ * @see https://maku.blog/p/a3jyhwd/
+ */
 
 template <class T> inline std::vector<int> lis(const std::vector<T> &v) {
     const int n = v.size();
@@ -191,5 +194,5 @@ template <class T> inline std::vector<int> lis(const std::vector<T> &v) {
  */
 
 /**
- * @brief DP(Knapsack & LIS)
+ * @brief DP(Knapsack, LCS, LIS)
  */
