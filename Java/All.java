@@ -1087,6 +1087,52 @@ class Utility {
 		}
 		return ret;
 	}
+	protected static final int[] lis(final int[] a) {
+		final int n = a.length;
+		List<IntPair> dp = new ArrayList<IntPair>();
+		final int[] p = new int[n];
+		Arrays.fill(p, -1);
+		for(int i = 0; i < n; ++i) {
+			final int id = lowerBound(dp, IntPair.of(a[i], -i));
+			if(id != 0) {
+				p[i] = -dp.get(id - 1).second.intValue();
+			}
+			if(id == dp.size()) {
+				dp.add(IntPair.of(a[i], -i));
+			} else {
+				dp.set(id, IntPair.of(a[i], -i));
+			}
+		}
+		final List<Integer> res = new ArrayList<Integer>();
+		for(int i = -dp.get(dp.size() - 1).second.intValue(); i != -1; i = p[i]) {
+			res.add(i);
+		}
+		Collections.reverse(res);
+		return res.stream().mapToInt(i -> i).toArray();
+	}
+	protected static final int[] lis(final long[] a) {
+		final int n = a.length;
+		List<IntPair> dp = new ArrayList<IntPair>();
+		final int[] p = new int[n];
+		Arrays.fill(p, -1);
+		for(int i = 0; i < n; ++i) {
+			final int id = lowerBound(dp, IntPair.of(a[i], -i));
+			if(id != 0) {
+				p[i] = -dp.get(id - 1).second.intValue();
+			}
+			if(id == n) {
+				dp.add(IntPair.of(a[i], -i));
+			} else {
+				dp.set(id, IntPair.of(a[i], -i));
+			}
+		}
+		final List<Integer> res = new ArrayList<Integer>();
+		for(int i = -dp.get(dp.size() - 1).second.intValue(); i != -1; i = p[i]) {
+			res.add(i);
+		}
+		Collections.reverse(res);
+		return res.stream().mapToInt(i -> i).toArray();
+	}
 	protected static final long tetration(final long a, final long b, final long m) {
 		if(m == 1) {
 			return 0;
