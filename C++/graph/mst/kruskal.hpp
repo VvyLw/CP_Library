@@ -14,7 +14,7 @@ inline MST kruskal(std::vector<edge> edges, const int n) {
             res += ed.cost;
         }
     }
-    return MST{e, res};
+    return {e, res};
 }
 
 /**

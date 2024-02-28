@@ -62,7 +62,7 @@ inline MST directed(std::vector<edge> edges, const int n, const int v) {
             vis[j] = 1;
         }
     }
-    return MST{e, cost};
+    return {e, cost};
 }
 
 /**

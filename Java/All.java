@@ -2221,6 +2221,24 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 	}
 }
 
+final class ShortestPath {
+	private final long[] cost;
+	private final int[] src;
+	ShortestPath(final long[] cost, final int[] src) {
+		this.cost = cost;
+		this.src = src;
+	}
+	final boolean isThrough(final int i){ return src[i] != -1; }
+	final int[] path(int i) {
+		final List<Integer> res = new ArrayList<>();
+		for(; i != -1; i = src[i]) {
+			res.add(i);
+		}
+		Collections.reverse(res);
+		return res.stream().mapToInt(k -> k).toArray();
+	}
+	final long[] get(){ return cost; }
+}
 final class MST {
 	public final ArrayList<Edge> tree;
 	public final long cost;
@@ -2243,9 +2261,11 @@ final class WeightedGraph extends Graph {
 		}
 	}
 	final void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni(), VvyLw.io.nl())); }
-	final long[] dijkstra(final int v) {
+	final ShortestPath dijkstra(final int v) {
 		final long[] cost = new long[n];
+		final int[] src = new int[n];
 		Arrays.fill(cost, Long.MAX_VALUE);
+		Arrays.fill(src, -1);
 		final Queue<IntPair> dj = new PriorityQueue<>();
 		cost[v] = 0;
 		dj.add(IntPair.of(cost[v], v));
@@ -2254,14 +2274,17 @@ final class WeightedGraph extends Graph {
 			if(cost[tmp.second.intValue()] < tmp.first.longValue()) {
 				continue;
 			}
-			for(final Edge el: this.get(tmp.second.intValue())) {
-				if(cost[el.to] > tmp.first.longValue() + el.cost) {
-					cost[el.to] = tmp.first.longValue() + el.cost;
-					dj.add(IntPair.of(cost[el.to], el.to));
+			for(final Edge ed: this.get(tmp.second.intValue())) {
+				final long next = tmp.first.longValue() + ed.cost;
+				if(cost[ed.to] <= next) {
+					continue;
 				}
+				cost[ed.to] = next;
+				src[ed.to] = tmp.second.intValue();
+				dj.add(IntPair.of(cost[ed.to], ed.to));
 			}
 		}
-		return cost;
+		return new ShortestPath(cost, src);
 	}
 	final long[] bellmanFord(final int v) {
 		final long[] cost = new long[n];
@@ -3374,7 +3397,7 @@ final class DP {
 			}
 		}
 		final List<Integer> res = new ArrayList<Integer>();
-		for(int i = -dp.getLast().second.intValue(); i != -1; i = p[i]) {
+		for(int i = -dp.get(dp.size() - 1).second.intValue(); i != -1; i = p[i]) {
 			res.add(i);
 		}
 		Collections.reverse(res);
@@ -3397,7 +3420,7 @@ final class DP {
 			}
 		}
 		final List<Integer> res = new ArrayList<Integer>();
-		for(int i = -dp.getLast().second.intValue(); i != -1; i = p[i]) {
+		for(int i = -dp.get(dp.size() - 1).second.intValue(); i != -1; i = p[i]) {
 			res.add(i);
 		}
 		Collections.reverse(res);

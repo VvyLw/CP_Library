@@ -2,6 +2,7 @@
 
 #include <limits>
 #include "C++/graph/Graph.hpp"
+#include "C++/graph/ShortestPath.hpp"
 template <bool undirected = true> struct w_graph: public graph<undirected> {
 private:
     using graph<undirected>::indexed;
@@ -30,8 +31,9 @@ public:
             add(a, b, c);
         }
     }
-    std::vector<long long> dijkstra(const int v) {
+    ShortestPath dijkstra(const int v) {
         std::vector<long long> cst(this -> size(), (1LL << 61) - 1);
+        std::vector<int> src(this -> size(), -1);
         std::priority_queue<std::pair<long long, int>, std::vector<std::pair<long long, int>>, std::greater<std::pair<long long, int>>> dj;
         cst[v] = 0;
         dj.emplace(cst[v], v);
@@ -43,11 +45,12 @@ public:
             }
             for(const auto &el: (*this)[tmp.second]) {
                 if(chmin(cst[el], tmp.first + el.cost)) {
+                    src[el] = tmp.second;
                     dj.emplace(cst[el], el);
                 }
             }
         }
-        return cst;
+        return {cst, src};
     }
     std::vector<long long> bellman_ford(const int v) {
         const long long lim = std::numeric_limits<long long>::max();

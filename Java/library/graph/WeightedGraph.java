@@ -60,9 +60,11 @@ public final class WeightedGraph extends Graph {
 	 * 負辺のないグラフで単一始点全点間最短路を求める
 	 * @param v
 	 */
-	public final long[] dijkstra(final int v) {
+	public final ShortestPath dijkstra(final int v) {
 		final long[] cost = new long[n];
+		final int[] src = new int[n];
 		Arrays.fill(cost, Long.MAX_VALUE);
+		Arrays.fill(src, -1);
 		final Queue<IntPair> dj = new PriorityQueue<>();
 		cost[v] = 0;
 		dj.add(IntPair.of(cost[v], v));
@@ -71,14 +73,17 @@ public final class WeightedGraph extends Graph {
 			if(cost[tmp.second.intValue()] < tmp.first.longValue()) {
 				continue;
 			}
-			for(final Edge el: this.get(tmp.second.intValue())) {
-				if(cost[el.to] > tmp.first.longValue() + el.cost) {
-					cost[el.to] = tmp.first.longValue() + el.cost;
-					dj.add(IntPair.of(cost[el.to], el.to));
+			for(final Edge ed: this.get(tmp.second.intValue())) {
+				final long next = tmp.first.longValue() + ed.cost;
+				if(cost[ed.to] <= next) {
+					continue;
 				}
+				cost[ed.to] = next;
+				src[ed.to] = tmp.second.intValue();
+				dj.add(IntPair.of(cost[ed.to], ed.to));
 			}
 		}
-		return cost;
+		return new ShortestPath(cost, src);
 	}
 	/**
 	 * Bellman-Ford法
