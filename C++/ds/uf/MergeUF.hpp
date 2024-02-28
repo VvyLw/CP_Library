@@ -11,7 +11,7 @@ template <class T> struct MergeUF: UnionFind {
     virtual T get(const int i) = 0;
     virtual void merge(const int i, const int j) = 0;
     bool unite(int x, int y) {
-		x = (*this)[x], y = (*this)[y];
+        x = (*this)[x], y = (*this)[y];
         if(x == y) return false;
         if(-par[x] < -par[y]) {
             std::swap(x, y);
