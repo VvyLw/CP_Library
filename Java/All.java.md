@@ -1476,7 +1476,7 @@ data:
     \t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nfinal class ShortestPath {\n\tprivate\
     \ final long[] cost;\n\tprivate final int[] src;\n\tShortestPath(final long[]\
     \ cost, final int[] src) {\n\t\tthis.cost = cost;\n\t\tthis.src = src;\n\t}\n\t\
-    final boolean isThrough(final int i){ return src[i] != -1; }\n\tfinal int[] path(int\
+    final boolean isThru(final int i){ return src[i] != -1; }\n\tfinal int[] path(int\
     \ i) {\n\t\tfinal List<Integer> res = new ArrayList<>();\n\t\tfor(; i != -1; i\
     \ = src[i]) {\n\t\t\tres.add(i);\n\t\t}\n\t\tCollections.reverse(res);\n\t\treturn\
     \ res.stream().mapToInt(k -> k).toArray();\n\t}\n\tfinal long[] get(){ return\
@@ -2717,7 +2717,7 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-29 01:03:52+09:00'
+  timestamp: '2024-02-29 05:14:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

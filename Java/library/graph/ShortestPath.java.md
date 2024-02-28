@@ -559,7 +559,7 @@ data:
     \ cost\n\t * @param src\n\t */\n\tpublic ShortestPath(final long[] cost, final\
     \ int[] src) {\n\t\tthis.cost = cost;\n\t\tthis.src = src;\n\t}\n\t/**\n\t * @param\
     \ i\n\t * @return \u7D4C\u8DEF\u304C\u3042\u308B\u304B\n\t */\n\tpublic final\
-    \ boolean isThrough(final int i){ return src[i] != -1; }\n\t/**\n\t * \u7D4C\u8DEF\
+    \ boolean isThru(final int i){ return src[i] != -1; }\n\t/**\n\t * \u7D4C\u8DEF\
     \u5FA9\u5143\n\t * @param i\n\t */\n\tpublic final int[] path(int i) {\n\t\tfinal\
     \ List<Integer> res = new ArrayList<>();\n\t\tfor(; i != -1; i = src[i]) {\n\t\
     \t\tres.add(i);\n\t\t}\n\t\tCollections.reverse(res);\n\t\treturn res.stream().mapToInt(k\
@@ -749,7 +749,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-29 01:03:52+09:00'
+  timestamp: '2024-02-29 05:14:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/ShortestPath.java
