@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: C++/dp.hpp
-    title: DP(Knapsack & LIS)
+    title: DP(Knapsack, LCS, LIS)
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -80,17 +80,18 @@ data:
     \ i = 0; i < t.size(); ++i) {\n        for(int j = 0; j < n; ++j) {\n        \
     \    if(s[j] == t[i]) {\n                ndp[j + 1] = dp[j] + 1;\n           \
     \ } else {\n                ndp[j + 1] = std::max(ndp[j], dp[j + 1]);\n      \
-    \      }\n        }\n        dp.swap(ndp);\n    }\n    return dp[n];\n}\n\ntemplate\
-    \ <class T> inline std::vector<int> lis(const std::vector<T> &v) {\n    const\
-    \ int n = v.size();\n    std::vector<std::pair<T, int>> dp;\n    std::vector<int>\
-    \ p(n, -1), res;\n    for(int i = 0; i < n; ++i) {\n        const auto it = std::ranges::lower_bound(dp,\
-    \ std::make_pair(v[i], -i));\n        if(it != dp.begin()) {\n            p[i]\
-    \ = -prev(it) -> second;\n        }\n        if(it == dp.end()) {\n          \
-    \  dp.emplace_back(std::make_pair(v[i], -i));\n        } else {\n            *it\
-    \ = std::make_pair(v[i], -i);\n        }\n    }\n    for(int i = -dp.back().second;\
-    \ i != -1; i = p[i]) {\n        res.emplace_back(i);\n    }\n    std::ranges::reverse(res);\n\
-    \    return res;\n}\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
-    \ */\n\n/**\n * @brief DP(Knapsack & LIS)\n */\n#line 4 \"test/lis2.test.cpp\"\
+    \      }\n        }\n        dp.swap(ndp);\n    }\n    return dp[n];\n}\n/**\n\
+    \ * @see https://maku.blog/p/a3jyhwd/\n */\n\ntemplate <class T> inline std::vector<int>\
+    \ lis(const std::vector<T> &v) {\n    const int n = v.size();\n    std::vector<std::pair<T,\
+    \ int>> dp;\n    std::vector<int> p(n, -1), res;\n    for(int i = 0; i < n; ++i)\
+    \ {\n        const auto it = std::ranges::lower_bound(dp, std::make_pair(v[i],\
+    \ -i));\n        if(it != dp.begin()) {\n            p[i] = -prev(it) -> second;\n\
+    \        }\n        if(it == dp.end()) {\n            dp.emplace_back(std::make_pair(v[i],\
+    \ -i));\n        } else {\n            *it = std::make_pair(v[i], -i);\n     \
+    \   }\n    }\n    for(int i = -dp.back().second; i != -1; i = p[i]) {\n      \
+    \  res.emplace_back(i);\n    }\n    std::ranges::reverse(res);\n    return res;\n\
+    }\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
+    \ */\n\n/**\n * @brief DP(Knapsack, LCS, LIS)\n */\n#line 4 \"test/lis2.test.cpp\"\
     \nint main() {\n    int n;\n    std::cin >> n;\n    std::vector<int> a(n);\n \
     \   for(auto &el: a) {\n        std::cin >> el;\n    }\n    std::cout << lis(a).size()\
     \ << '\\n';\n}\n"
@@ -103,7 +104,7 @@ data:
   isVerificationFile: true
   path: test/lis2.test.cpp
   requiredBy: []
-  timestamp: '2024-02-29 06:36:34+09:00'
+  timestamp: '2024-02-29 06:40:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lis2.test.cpp

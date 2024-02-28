@@ -11,7 +11,7 @@ data:
       title: "\u5B9A\u6570"
     - icon: ':heavy_check_mark:'
       path: C++/dp.hpp
-      title: DP(Knapsack & LIS)
+      title: DP(Knapsack, LCS, LIS)
     - icon: ':heavy_check_mark:'
       path: C++/mypair.hpp
       title: C++/mypair.hpp
