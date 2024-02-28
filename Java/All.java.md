@@ -1852,11 +1852,11 @@ data:
     \ j1, x);\n\t\tadd(i1, j2, -x);\n\t\tadd(i2, j1, -x);\n\t\tadd(i2, j2, x);\n\t\
     }\n\tfinal void build() {\n\t\tassert !built;\n\t\tfor(int i = 0; ++i < h;) {\n\
     \t\t\tfor(int j = 0; ++j < w;) {\n\t\t\t\tdata[i][j] += data[i][j - 1] + data[i\
-    \ - 1][j] - data[i - 1][j - 1];\n\t\t\t}\n\t\t}\n\t}\n\tfinal long get(final int\
-    \ i1, final int j1, final int i2, final int j2) {\n\t\tif(!built) {\n\t\t\tthrow\
-    \ new UnsupportedOperationException(\"Prefix Sum 2D hasn't been built.\");\n\t\
-    \t}\n\t\treturn data[i2][j2] - data[i1][j2] - data[i2][j1] + data[i1][j1];\n\t\
-    }\n\tfinal long get(final int i, final int j) {\n\t\tif(!built) {\n\t\t\tthrow\
+    \ - 1][j] - data[i - 1][j - 1];\n\t\t\t}\n\t\t}\n\t\tbuilt = true;\n\t}\n\tfinal\
+    \ long get(final int i1, final int j1, final int i2, final int j2) {\n\t\tif(!built)\
+    \ {\n\t\t\tthrow new UnsupportedOperationException(\"Prefix Sum 2D hasn't been\
+    \ built.\");\n\t\t}\n\t\treturn data[i2][j2] - data[i1][j2] - data[i2][j1] + data[i1][j1];\n\
+    \t}\n\tfinal long get(final int i, final int j) {\n\t\tif(!built) {\n\t\t\tthrow\
     \ new UnsupportedOperationException(\"Prefix Sum 2D hasn't been built.\");\n\t\
     \t}\n\t\treturn data[i + 1][j + 1];\n\t}\n\t@Override\n\tpublic final String toString()\
     \ {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfor(int i = 0; i <\
@@ -2592,7 +2592,7 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-28 09:31:03+09:00'
+  timestamp: '2024-02-28 09:51:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

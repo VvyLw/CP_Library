@@ -560,11 +560,11 @@ data:
     }\n\t/**\n\t * \u69CB\u7BC9\n\t */\n\tpublic final void build() {\n\t\tassert\
     \ !built;\n\t\tfor(int i = 1; i < h; ++i) {\n\t\t\tfor(int j = 1; j < w; ++j)\
     \ {\n\t\t\t\tdata[i][j] += data[i][j - 1] + data[i - 1][j] - data[i - 1][j - 1];\n\
-    \t\t\t}\n\t\t}\n\t}\n\t/**\n\t * @param i1\n\t * @param j1\n\t * @param i2\n\t\
-    \ * @param j2\n\t * @return [i1, i2), [j1, j2)\u306E\u77E9\u5F62\u548C\n\t */\n\
-    \tpublic final long get(final int i1, final int j1, final int i2, final int j2)\
-    \ {\n\t\tif(!built) {\n\t\t\tthrow new UnsupportedOperationException(\"Prefix\
-    \ Sum 2D hasn't been built.\");\n\t\t}\n\t\treturn data[i2][j2] - data[i1][j2]\
+    \t\t\t}\n\t\t}\n\t\tbuilt = true;\n\t}\n\t/**\n\t * @param i1\n\t * @param j1\n\
+    \t * @param i2\n\t * @param j2\n\t * @return [i1, i2), [j1, j2)\u306E\u77E9\u5F62\
+    \u548C\n\t */\n\tpublic final long get(final int i1, final int j1, final int i2,\
+    \ final int j2) {\n\t\tif(!built) {\n\t\t\tthrow new UnsupportedOperationException(\"\
+    Prefix Sum 2D hasn't been built.\");\n\t\t}\n\t\treturn data[i2][j2] - data[i1][j2]\
     \ - data[i2][j1] + data[i1][j1];\n\t}\n\t/**\n\t * @param i\n\t * @param j\n\t\
     \ * @return (i, j)\u306E\u8981\u7D20\n\t */\n\tpublic final long get(final int\
     \ i, final int j) {\n\t\tif(!built) {\n\t\t\tthrow new UnsupportedOperationException(\"\
@@ -752,7 +752,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-28 09:31:03+09:00'
+  timestamp: '2024-02-28 09:51:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/prefixsum/PrefixSum2D.java
