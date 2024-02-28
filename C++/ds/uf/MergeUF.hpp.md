@@ -42,7 +42,7 @@ data:
     \ {\n    using UnionFind::par;\n    using UnionFind::operator[];\n    using UnionFind::size;\n\
     \    using UnionFind::groups;\n    MergeUF(const int n): UnionFind(n){}\n    ~MergeUF(){}\n\
     \    virtual T get(const int i) = 0;\n    virtual void merge(const int i, const\
-    \ int j) = 0;\n    bool unite(int x, int y) {\n\t\tx = (*this)[x], y = (*this)[y];\n\
+    \ int j) = 0;\n    bool unite(int x, int y) {\n        x = (*this)[x], y = (*this)[y];\n\
     \        if(x == y) return false;\n        if(-par[x] < -par[y]) {\n         \
     \   std::swap(x, y);\n        }\n        par[x] += par[y], par[y] = x;\n\t\tmerge(x,\
     \ y);\n\t\treturn true;\n\t}\n};\n/**\n * @brief MergeUnionFind\n */\n"
@@ -51,16 +51,16 @@ data:
     \    using UnionFind::size;\n    using UnionFind::groups;\n    MergeUF(const int\
     \ n): UnionFind(n){}\n    ~MergeUF(){}\n    virtual T get(const int i) = 0;\n\
     \    virtual void merge(const int i, const int j) = 0;\n    bool unite(int x,\
-    \ int y) {\n\t\tx = (*this)[x], y = (*this)[y];\n        if(x == y) return false;\n\
-    \        if(-par[x] < -par[y]) {\n            std::swap(x, y);\n        }\n  \
-    \      par[x] += par[y], par[y] = x;\n\t\tmerge(x, y);\n\t\treturn true;\n\t}\n\
-    };\n/**\n * @brief MergeUnionFind\n */"
+    \ int y) {\n        x = (*this)[x], y = (*this)[y];\n        if(x == y) return\
+    \ false;\n        if(-par[x] < -par[y]) {\n            std::swap(x, y);\n    \
+    \    }\n        par[x] += par[y], par[y] = x;\n\t\tmerge(x, y);\n\t\treturn true;\n\
+    \t}\n};\n/**\n * @brief MergeUnionFind\n */"
   dependsOn:
   - C++/ds/uf/UnionFind.hpp
   isVerificationFile: false
   path: C++/ds/uf/MergeUF.hpp
   requiredBy: []
-  timestamp: '2024-02-27 11:03:02+09:00'
+  timestamp: '2024-02-28 09:53:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/ds/uf/MergeUF.hpp
