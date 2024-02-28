@@ -60,6 +60,9 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		} else {
 			print(String.valueOf(arg));
 		}
+		if(autoFlush) {
+			flush();
+		}
 	}
 	/**
 	 * {@link PrintWriter#printf}と使い方は同じ
