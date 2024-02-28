@@ -146,47 +146,47 @@ public class Utility {
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの最小値
 	 */
-	protected static final int min(final int... a){ return Arrays.stream(a).min().getAsInt(); }
+	public static final int min(final int... a){ return Arrays.stream(a).min().getAsInt(); }
 	/**
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの最小値
 	 */
-	protected static final long min(final long... a){ return Arrays.stream(a).min().getAsLong(); }
+	public static final long min(final long... a){ return Arrays.stream(a).min().getAsLong(); }
 	/**
 	 * @param a double型タプル あるいはdouble型配列
 	 * @return aの最小値
 	 */
-	protected static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble(); }
+	public static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble(); }
 	/**
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの最大値
 	 */
-	protected static final int max(final int... a){ return Arrays.stream(a).max().getAsInt(); }
+	public static final int max(final int... a){ return Arrays.stream(a).max().getAsInt(); }
 	/**
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの最大値
 	 */
-	protected static final long max(final long... a){ return Arrays.stream(a).max().getAsLong(); }
+	public static final long max(final long... a){ return Arrays.stream(a).max().getAsLong(); }
 	/**
 	 * @param a double型タプル あるいはdouble型配列
 	 * @return aの最大値
 	 */
-	protected static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble(); }
+	public static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble(); }
 	/**
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの総和
 	 */
-	protected static final long sum(final int... a){ return Arrays.stream(a).asLongStream().sum(); }
+	public static final long sum(final int... a){ return Arrays.stream(a).asLongStream().sum(); }
 	/**
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの総和
 	 */
-	protected static final long sum(final long... a){ return Arrays.stream(a).sum(); }
+	public static final long sum(final long... a){ return Arrays.stream(a).sum(); }
 	/**
 	 * @param a double型タプル あるいはdouble型配列
 	 * @return aの総和
 	 */
-	protected static final double sum(final double... a){ return Arrays.stream(a).sum(); }
+	public static final double sum(final double... a){ return Arrays.stream(a).sum(); }
 	/**
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの総乗
@@ -1841,64 +1841,6 @@ public class Utility {
 			}
 		}
 		return ret;
-	}
-	/**
-	 * @param a
-	 * @return 最長増加部分列(Longest Increasing Subsequence)
-	 * @see <a href="https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp">参考元</a>
-	 * @implNote Java21より前のVerの場合、getLastをget(dp.size() - 1)に変える
-	 */
-	protected static final int[] lis(final int[] a) {
-		final int n = a.length;
-		List<IntPair> dp = new ArrayList<IntPair>();
-		final int[] p = new int[n];
-		Arrays.fill(p, -1);
-		for(int i = 0; i < n; ++i) {
-			final int id = lowerBound(dp, IntPair.of(a[i], -i));
-			if(id != 0) {
-				p[i] = -dp.get(id - 1).second.intValue();
-			}
-			if(id == dp.size()) {
-				dp.add(IntPair.of(a[i], -i));
-			} else {
-				dp.set(id, IntPair.of(a[i], -i));
-			}
-		}
-		final List<Integer> res = new ArrayList<Integer>();
-		for(int i = -dp.getLast().second.intValue(); i != -1; i = p[i]) {
-			res.add(i);
-		}
-		Collections.reverse(res);
-		return res.stream().mapToInt(i -> i).toArray();
-	}
-	/**
-	 * @param a
-	 * @return 最長増加部分列(Longest Increasing Subsequence)
-	 * @see <a href="https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp">参考元</a>
-	 * @implNote Java21より前のVerの場合、getLastをget(dp.size() - 1)に変える
-	 */
-	protected static final int[] lis(final long[] a) {
-		final int n = a.length;
-		List<IntPair> dp = new ArrayList<IntPair>();
-		final int[] p = new int[n];
-		Arrays.fill(p, -1);
-		for(int i = 0; i < n; ++i) {
-			final int id = lowerBound(dp, IntPair.of(a[i], -i));
-			if(id != 0) {
-				p[i] = -dp.get(id - 1).second.intValue();
-			}
-			if(id == n) {
-				dp.add(IntPair.of(a[i], -i));
-			} else {
-				dp.set(id, IntPair.of(a[i], -i));
-			}
-		}
-		final List<Integer> res = new ArrayList<Integer>();
-		for(int i = -dp.getLast().second.intValue(); i != -1; i = p[i]) {
-			res.add(i);
-		}
-		Collections.reverse(res);
-		return res.stream().mapToInt(i -> i).toArray();
 	}
 	/** 
 	 * a↑↑bはa^a^a^...^a(aはb個ある)を表す
