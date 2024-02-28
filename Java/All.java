@@ -1305,13 +1305,13 @@ final class IO implements Closeable, AutoCloseable {
 	final void ende(final Object[][] a){ out.ende(a); }
 	final <F extends Comparable<? super F>, S extends Comparable<? super S>> void ende(final Pair<F, S>[] a){ out.ende(a); }
 	final <E> void ende(final Collection<E> a){ out.ende(a); }
-	final void dbg(final Object head, final Object... tail){ err.out(head, tail); }
-	final void dbg(final int[] a){ err.out(a); }
-	final void dbg(final long[] a){ err.out(a); }
-	final void dbg(final double[] a){ err.out(a); }
-	final void dbg(final boolean[] a){ err.out(a); }
-	final void dbg(final char[] a){ err.out(a); }
-	final void dbg(final Object[] a){ err.out(a); }
+	final void dump(final Object head, final Object... tail){ err.out(head, tail); }
+	final void dump(final int[] a){ err.out(a); }
+	final void dump(final long[] a){ err.out(a); }
+	final void dump(final double[] a){ err.out(a); }
+	final void dump(final boolean[] a){ err.out(a); }
+	final void dump(final char[] a){ err.out(a); }
+	final void dump(final Object[] a){ err.out(a); }
 	final void debug(final Object head, final Object... tail){ err.outl(head, tail); }
 	final void debug(final int[] a){ err.outl(a); }
 	final void debug(final int[][] a){ err.outl(a); }
@@ -1546,6 +1546,9 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 			}
 		} else {
 			print(String.valueOf(arg));
+		}
+		if(autoFlush) {
+			flush();
 		}
 	}
 	final void printf(final String fmt, final Object... args) {
@@ -2044,7 +2047,7 @@ final class Edge {
 	@Override
 	public final int hashCode(){ return Objects.hash(src, to, cost, id); }
 	@Override
-	public final String toString(){ return "(" + src + ", " + to + ", " + cost + ", " + id + ")"; }
+	public final String toString(){ return String.valueOf(to); }
 }
 class Graph extends ArrayList<ArrayList<Edge>> {
 	protected final boolean undirected;
@@ -2148,6 +2151,25 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 			}
 		}
 		return new Edge[]{};
+	}
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < n; ++i) {
+			final int m = get(i).size();
+			sb.append(i + ": [");
+			for(int j = 0; j < m; ++j) {
+				sb.append(get(i).get(j).to);
+				if(j + 1 < m) {
+					sb.append(", ");
+				}
+			}
+			sb.append(']');
+			if(i + 1 < n) {
+				sb.append('\n');
+			}
+		}
+		return sb.toString();
 	}
 }
 
@@ -2319,6 +2341,25 @@ final class WeightedGraph extends Graph {
 			}
 		}
 		return new MST(e, cost);
+	}
+	@Override
+	public final String toString() {
+		final StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < n; ++i) {
+			final int m = get(i).size();
+			sb.append(i + ": [");
+			for(int j = 0; j < m; ++j) {
+				sb.append("(to: " + get(i).get(j).to + ", cost: " + get(i).get(j).cost + ')');
+				if(j + 1 < m) {
+					sb.append(", ");
+				}
+			}
+			sb.append(']');
+			if(i + 1 < n) {
+				sb.append('\n');
+			}
+		}
+		return sb.toString();
 	}
 }
 final class SkewHeap {
@@ -2577,7 +2618,7 @@ interface DSU {
 	int root(final int i);
 	int size(final int i);
 	int size();
-	boolean same(final int i, final int j);
+	default boolean same(final int i, final int j){ return root(i) == root(j); }
 	boolean unite(int i, int j);
 	ArrayList<ArrayList<Integer>> groups();
 }
@@ -2610,8 +2651,6 @@ class UnionFind implements DSU {
 		par[j] = i;
 		return true;
 	}
-	@Override
-	public final boolean same(final int i, final int j){ return root(i) == root(j); }
 	@Override
 	public final ArrayList<ArrayList<Integer>> groups() {
 		final int n = par.length;
@@ -2691,8 +2730,6 @@ final class WeightedUnionFind implements DSU {
 	@Override
 	public final int size(){ return par.length; }
 	@Override
-	public final boolean same(final int x, final int y){ return root(x) == root(y); }
-	@Override
 	public final ArrayList<ArrayList<Integer>> groups() {
 		final int n = par.length;
 		final ArrayList<ArrayList<Integer>> res = new ArrayList<>();
@@ -2739,8 +2776,6 @@ final class UndoUnionFind implements DSU {
 		}
 		return root(par[i]);
 	}
-	@Override
-	public final boolean same(final int x, final int y){ return root(x) == root(y); }
 	@Override
 	public final int size(final int i){ return -par[root(i)]; }
 	@Override
@@ -3341,10 +3376,12 @@ final class PrefixSum extends InclusiveScan {
 final class PrefixSum2D {
 	private final int h, w;
 	private final long[][] data;
+	private boolean built;
 	PrefixSum2D(final int h, final int w) {
 		this.h = h + 3;
 		this.w = w + 3;
 		data = new long[this.h][this.w];
+		built = false;
 	}
 	PrefixSum2D(final int[][] a) {
 		this(a.length, a[0].length);
@@ -3363,6 +3400,9 @@ final class PrefixSum2D {
 		}
 	}
 	final void add(int i, int j, final long x) {
+		if(built) {
+			throw new UnsupportedOperationException("Prefix Sum 2D has been built.");
+		}
 		i++;
 		j++;
 		if(i >= h || j >= w) {
@@ -3377,14 +3417,25 @@ final class PrefixSum2D {
 		add(i2, j2, x);
 	}
 	final void build() {
+		assert !built;
 		for(int i = 0; ++i < h;) {
 			for(int j = 0; ++j < w;) {
 				data[i][j] += data[i][j - 1] + data[i - 1][j] - data[i - 1][j - 1];
 			}
 		}
 	}
-	final long get(final int i1, final int j1, final int i2, final int j2){ return data[i2][j2] - data[i1][j2] - data[i2][j1] + data[i1][j1]; }
-	final long get(final int i, final int j){ return data[i + 1][j + 1]; }
+	final long get(final int i1, final int j1, final int i2, final int j2) {
+		if(!built) {
+			throw new UnsupportedOperationException("Prefix Sum 2D hasn't been built.");
+		}
+		return data[i2][j2] - data[i1][j2] - data[i2][j1] + data[i1][j1];
+	}
+	final long get(final int i, final int j) {
+		if(!built) {
+			throw new UnsupportedOperationException("Prefix Sum 2D hasn't been built.");
+		}
+		return data[i + 1][j + 1];
+	}
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
