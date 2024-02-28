@@ -122,6 +122,9 @@ data:
     path: Java/library/ds/AVLTree.java
     title: Java/library/ds/AVLTree.java
   - icon: ':warning:'
+    path: Java/library/ds/ConvexHullTrick.java
+    title: Java/library/ds/ConvexHullTrick.java
+  - icon: ':warning:'
     path: Java/library/ds/DoubleEndedPriorityQueue.java
     title: Java/library/ds/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
@@ -247,6 +250,9 @@ data:
   - icon: ':warning:'
     path: Java/library/math/prefixsum/PrefixSum2D.java
     title: Java/library/math/prefixsum/PrefixSum2D.java
+  - icon: ':warning:'
+    path: Java/library/other/DP.java
+    title: Java/library/other/DP.java
   - icon: ':warning:'
     path: Java/library/other/InclusiveScan.java
     title: Java/library/other/InclusiveScan.java
@@ -384,6 +390,9 @@ data:
     path: Java/library/ds/AVLTree.java
     title: Java/library/ds/AVLTree.java
   - icon: ':warning:'
+    path: Java/library/ds/ConvexHullTrick.java
+    title: Java/library/ds/ConvexHullTrick.java
+  - icon: ':warning:'
     path: Java/library/ds/DoubleEndedPriorityQueue.java
     title: Java/library/ds/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
@@ -510,6 +519,9 @@ data:
     path: Java/library/math/prefixsum/PrefixSum2D.java
     title: Java/library/math/prefixsum/PrefixSum2D.java
   - icon: ':warning:'
+    path: Java/library/other/DP.java
+    title: Java/library/other/DP.java
+  - icon: ':warning:'
     path: Java/library/other/InclusiveScan.java
     title: Java/library/other/InclusiveScan.java
   - icon: ':warning:'
@@ -594,41 +606,41 @@ data:
     \n\t * @return a\u306E\u6700\u5927\u516C\u7D04\u6570\n\t */\n\tpublic static final\
     \ long gcd(final long... a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x,\
     \ y)); }\n\t/**\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    int\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tprotected\
+    int\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tpublic\
     \ static final int min(final int... a){ return Arrays.stream(a).min().getAsInt();\
     \ }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    long\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tprotected\
+    long\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tpublic\
     \ static final long min(final long... a){ return Arrays.stream(a).min().getAsLong();\
     \ }\n\t/**\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    double\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tprotected\
+    double\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tpublic\
     \ static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
     \ }\n\t/**\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    int\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\n\t */\n\tprotected\
+    int\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\n\t */\n\tpublic\
     \ static final int max(final int... a){ return Arrays.stream(a).max().getAsInt();\
     \ }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    long\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\n\t */\n\tprotected\
+    long\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\n\t */\n\tpublic\
     \ static final long max(final long... a){ return Arrays.stream(a).max().getAsLong();\
     \ }\n\t/**\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    double\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\n\t */\n\tprotected\
+    double\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\n\t */\n\tpublic\
     \ static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble();\
     \ }\n\t/**\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    int\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\tprotected static\
+    int\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\tpublic static\
     \ final long sum(final int... a){ return Arrays.stream(a).asLongStream().sum();\
     \ }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    long\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\tprotected static\
+    long\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\tpublic static\
     \ final long sum(final long... a){ return Arrays.stream(a).sum(); }\n\t/**\n\t\
     \ * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fdouble\u578B\
-    \u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\tprotected static final\
-    \ double sum(final double... a){ return Arrays.stream(a).sum(); }\n\t/**\n\t *\
-    \ @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\
-    \u5217\n\t * @return a\u306E\u7DCF\u4E57\n\t */\n\tprotected static final long\
-    \ prod(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y)\
-    \ -> x * y); }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\
-    \u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u4E57\n\t */\n\t\
-    protected static final long prod(final long... a){ return Arrays.stream(a).reduce(1,\
-    \ (x, y) -> x * y); }\n\t/**\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\
-    \u308B\u3044\u306Fdouble\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u4E57\n\
-    \t */\n\tprotected static final double prod(final double... a){ return Arrays.stream(a).reduce(1,\
+    \u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\tpublic static final double\
+    \ sum(final double... a){ return Arrays.stream(a).sum(); }\n\t/**\n\t * @param\
+    \ a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\u5217\n\
+    \t * @return a\u306E\u7DCF\u4E57\n\t */\n\tprotected static final long prod(final\
+    \ int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> x * y);\
+    \ }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
+    long\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u4E57\n\t */\n\tprotected static\
+    \ final long prod(final long... a){ return Arrays.stream(a).reduce(1, (x, y) ->\
+    \ x * y); }\n\t/**\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\
+    \u306Fdouble\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u4E57\n\t */\n\tprotected\
+    \ static final double prod(final double... a){ return Arrays.stream(a).reduce(1,\
     \ (x, y) -> x * y); }\n\t/**\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\
     \u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u5E73\u5747\u5024\
     \n\t */\n\tprotected static final double ave(final int... a){ return Arrays.stream(a).average().getAsDouble();\
@@ -1402,6 +1414,7 @@ data:
   - Java/library/other/Why.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/InclusiveScan.java
+  - Java/library/other/DP.java
   - Java/library/other/SkewHeap.java
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/pair/IntPair.java
@@ -1427,6 +1440,7 @@ data:
   - Java/library/ds/fenwicktree/RangeBIT.java
   - Java/library/ds/deque/Deque.java
   - Java/library/ds/deque/IntDeque.java
+  - Java/library/ds/ConvexHullTrick.java
   - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
   - Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
@@ -1492,6 +1506,7 @@ data:
   - Java/library/other/Why.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/InclusiveScan.java
+  - Java/library/other/DP.java
   - Java/library/other/SkewHeap.java
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/pair/IntPair.java
@@ -1517,13 +1532,14 @@ data:
   - Java/library/ds/fenwicktree/RangeBIT.java
   - Java/library/ds/deque/Deque.java
   - Java/library/ds/deque/IntDeque.java
+  - Java/library/ds/ConvexHullTrick.java
   - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
   - Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-28 10:38:41+09:00'
+  timestamp: '2024-02-28 19:18:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

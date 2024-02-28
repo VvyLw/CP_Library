@@ -125,9 +125,6 @@ data:
     path: Java/library/ds/AVLTree.java
     title: Java/library/ds/AVLTree.java
   - icon: ':warning:'
-    path: Java/library/ds/ConvexHullTrick.java
-    title: Java/library/ds/ConvexHullTrick.java
-  - icon: ':warning:'
     path: Java/library/ds/DoubleEndedPriorityQueue.java
     title: Java/library/ds/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
@@ -265,6 +262,9 @@ data:
   - icon: ':warning:'
     path: Java/library/other/SuffixArray.java
     title: Java/library/other/SuffixArray.java
+  - icon: ':warning:'
+    path: Java/library/other/Why.java
+    title: Java/library/other/Why.java
   - icon: ':warning:'
     path: Java/yukicoder.java
     title: Java/yukicoder.java
@@ -393,9 +393,6 @@ data:
     path: Java/library/ds/AVLTree.java
     title: Java/library/ds/AVLTree.java
   - icon: ':warning:'
-    path: Java/library/ds/ConvexHullTrick.java
-    title: Java/library/ds/ConvexHullTrick.java
-  - icon: ':warning:'
     path: Java/library/ds/DoubleEndedPriorityQueue.java
     title: Java/library/ds/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
@@ -534,6 +531,9 @@ data:
     path: Java/library/other/SuffixArray.java
     title: Java/library/other/SuffixArray.java
   - icon: ':warning:'
+    path: Java/library/other/Why.java
+    title: Java/library/other/Why.java
+  - icon: ':warning:'
     path: Java/yukicoder.java
     title: Java/yukicoder.java
   _extendedVerifiedWith: []
@@ -545,64 +545,47 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/other/Why.java\n"
-  code: "package library.other;\n\nimport java.util.ArrayList;\nimport java.util.HashMap;\n\
-    import java.util.Map;\nimport java.util.TreeMap;\nimport java.util.stream.IntStream;\n\
-    \nimport library.core.Utility;\nimport library.ds.fenwicktree.FenwickTree;\nimport\
-    \ library.ds.unionfind.UnionFind;\nimport library.graph.Edge;\n\n/**\n * core\u30D1\
-    \u30C3\u30B1\u30FC\u30B8\u4EE5\u5916\u306E\u5916\u90E8\u30AF\u30E9\u30B9(Pair\u3092\
-    \u9664\u304F\u3092\u4F7F\u3046\u30E1\u30BD\u30C3\u30C9\u304C\u7F6E\u3044\u3066\
-    \u3042\u308B\n */\npublic final class Why {\n\t/**\n\t * @param uf\n\t * @return\
-    \ \u4E8C\u5206\u30B0\u30E9\u30D5\u304B\u3069\u3046\u304B\n\t * @implNote {@link\
-    \ UnionFind}\u304C\u5FC5\u8981\n\t */\n\tpublic static final boolean isBipartite(final\
-    \ UnionFind uf) {\n\t\tassert uf.size() % 2 == 0;\n\t\tfinal int n = uf.size()\
-    \ / 2;\n\t\tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &=\
-    \ uf.root(i) != uf.root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n\t/**\n\t * @param\
-    \ a\n\t * @return \u8EE2\u5012\u6570\n\t * @implNote {@link FenwickTree}\u304C\
-    \u5FC5\u8981\n\t */\n\tpublic static final long invNum(final int[] a) {\n\t\t\
-    final int[] b = Utility.sorted(a);\n\t\tfinal Map<Integer, Integer> id = new HashMap<>();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
-    \ FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int\
-    \ i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\t\
-    bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\
-    \t * @return \u8EE2\u5012\u6570\n\t * @implNote {@link FenwickTree}\u304C\u5FC5\
-    \u8981\n\t */\n\tpublic static final long invNum(final long[] a) {\n\t\tfinal\
-    \ long[] b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer> id = new HashMap<>();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
-    \ FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int\
-    \ i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\t\
-    bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @deprecated\
-    \ verified\u3057\u3066\u3044\u306A\u3044\n\t * \u9045\u3044\n\t * @param x\n\t\
-    \ * @param y\n\t * @return manhattan MST\n\t */\n\tpublic static final ArrayList<Edge>\
-    \ manhattan(int[] x, int[] y) {\n\t\tassert x.length == y.length;\n\t\tfinal int\
-    \ n = x.length;\n\t\tfinal var res = new ArrayList<Edge>();\n\t\tfor(int s = 0;\
-    \ s < 2; ++s) {\n\t\t\tfor(int t = 0; t < 2; ++t) {\n\t\t\t\tfinal var id = IntStream.range(0,\
-    \ n).boxed().sorted((i, j) -> Integer.compare(x[i] + y[i], x[j] + y[j])).mapToInt(i\
-    \ -> i).toArray();\n\t\t\t\tfinal var idx = new TreeMap<Integer, Integer>();\n\
-    \t\t\t\tfor(final var i: id) {\n\t\t\t\t\tfinal var it = idx.tailMap(y[i]).entrySet().iterator();\n\
-    \t\t\t\t\twhile(it.hasNext()) {\n\t\t\t\t\t\tfinal int j = it.next().getValue();\n\
-    \t\t\t\t\t\tif(x[i] - x[j] < y[i] - y[j]) {\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t\
-    }\n\t\t\t\t\t\tres.add(new Edge(i, j, Math.abs(x[i] - x[j]) + Math.abs(y[i] -\
-    \ y[j])));\n\t\t\t\t\t\tit.remove();\n\t\t\t\t\t}\n\t\t\t\t\tidx.put(-y[i], i);\n\
-    \t\t\t\t}\n\t\t\t\tfinal var tmp = y.clone();\n\t\t\t\tSystem.arraycopy(x, 0,\
-    \ y, 0, n);\n\t\t\t\tSystem.arraycopy(tmp, 0, x, 0, n);\n\t\t\t}\n\t\t\tfor(int\
-    \ i = 0; i < n; ++i) {\n\t\t\t\tx[i] = -x[i];\n\t\t\t}\n\t\t}\n\t\treturn res;\n\
-    \t}\n\t/**\n\t * @deprecated verified\u3057\u3066\u3044\u306A\u3044\n\t * \u9045\
-    \u3044\n\t * @param x\n\t * @param y\n\t * @return manhattan MST\n\t */\n\tpublic\
-    \ static final ArrayList<Edge> manhattan(long[] x, long[] y) {\n\t\tassert x.length\
-    \ == y.length;\n\t\tfinal int n = x.length;\n\t\tfinal var res = new ArrayList<Edge>();\n\
-    \t\tfor(int s = 0; s < 2; ++s) {\n\t\t\tfor(int t = 0; t < 2; ++t) {\n\t\t\t\t\
-    final var id = IntStream.range(0, n).boxed().sorted((i, j) -> Long.compare(x[i]\
-    \ + y[i], x[j] + y[j])).mapToInt(i -> i).toArray();\n\t\t\t\tfinal var idx = new\
-    \ TreeMap<Long, Integer>();\n\t\t\t\tfor(final var i: id) {\n\t\t\t\t\tfinal var\
-    \ it = idx.tailMap(y[i]).entrySet().iterator();\n\t\t\t\t\twhile(it.hasNext())\
-    \ {\n\t\t\t\t\t\tfinal int j = it.next().getValue();\n\t\t\t\t\t\tif(x[i] - x[j]\
-    \ < y[i] - y[j]) {\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tres.add(new\
-    \ Edge(i, j, Math.abs(x[i] - x[j]) + Math.abs(y[i] - y[j]), -1));\n\t\t\t\t\t\t\
-    it.remove();\n\t\t\t\t\t}\n\t\t\t\t\tidx.put(-y[i], i);\n\t\t\t\t}\n\t\t\t\tfinal\
-    \ var tmp = y.clone();\n\t\t\t\tSystem.arraycopy(x, 0, y, 0, n);\n\t\t\t\tSystem.arraycopy(tmp,\
-    \ 0, x, 0, n);\n\t\t\t}\n\t\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\tx[i] = -x[i];\n\
-    \t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n}"
+    RuntimeError: bundler is not specified: Java/library/ds/ConvexHullTrick.java\n"
+  code: "package library.ds;\n\nimport library.ds.deque.Deque;\nimport library.ds.pair.IntPair;\n\
+    \n/**\n * Convex Hull Trick Add Monotone\n * \u6574\u6570\u578B\u306B\u3057\u304B\
+    \u5BFE\u5FDC\u3057\u3066\u3044\u306A\u3044\n * @deprecated verify\u3057\u3066\u3044\
+    \u306A\u3044\n * @see <a href=\"https://ei1333.github.io/library/structure/convex-hull-trick/convex-hull-trick-add-monotone.hpp\"\
+    >\u53C2\u8003\u5143</a>\n */\npublic final class ConvexHullTrick {\n\tprivate\
+    \ final Deque<IntPair> h;\n\tprivate final boolean isMin;\n\tConvexHullTrick(final\
+    \ boolean isMin) {\n\t\tthis.isMin = isMin;\n\t\th = new Deque<>();\n\t}\n\tprivate\
+    \ final boolean isEmpty(){ return h.isEmpty(); }\n\tfinal void clear(){ h.clear();\
+    \ }\n\tfinal int size(){ return h.size(); }\n\tfinal Deque<IntPair> get(){ return\
+    \ h; }\n\tprivate final int sgn(final long x){ return x == 0 ? 0 : (x < 0 ? -1\
+    \ : 1); }\n\tprivate final boolean check(final IntPair a, final IntPair b, final\
+    \ IntPair c) {\n\t\tif(b.second.longValue() == a.second.longValue() || c.second.longValue()\
+    \ == b.second.longValue()) {\n\t\t\treturn sgn(b.first.longValue() - a.first.longValue())\
+    \ * sgn(c.second.longValue() - b.second.longValue()) >= sgn(c.first.longValue()\
+    \ - b.first.longValue()) * sgn(b.second.longValue() - a.second.longValue());\n\
+    \t\t}\n\t\treturn (b.second.longValue() - a.second.longValue()) / (a.first.longValue()\
+    \ - b.first.longValue()) >= (c.second.longValue() - b.second.longValue()) / (b.first.longValue()\
+    \ - c.first.longValue());\n\t}\n\tfinal void add(long a, long b) {\n\t\tif(!isMin)\
+    \ {\n\t\t\ta = -a;\n\t\t\tb = -b;\n\t\t}\n\t\tfinal IntPair line = IntPair.of(a,\
+    \ b);\n\t\tif(isEmpty()) {\n\t\t\th.add(line);\n\t\t\treturn;\n\t\t}\n\t\tif(h.peekFirst().first.longValue()\
+    \ <= a) {\n\t\t\tif(h.peekFirst().first.longValue() == a) {\n\t\t\t\tif(h.peekFirst().second.longValue()\
+    \ <= b) {\n\t\t\t\t\treturn;\n\t\t\t\t}\n\t\t\t\th.pollFirst();\n\t\t\t}\n\t\t\
+    \twhile(h.size() >= 2 && check(line, h.peekFirst(), h.get(1))) {\n\t\t\t\th.pollFirst();\n\
+    \t\t\t}\n\t\t\th.add(line);\n\t\t} else {\n\t\t\tassert a <= h.peekLast().first.longValue();\n\
+    \t\t\tif(h.peekLast().first.longValue() == a) {\n\t\t\t\tif(h.peekLast().second.longValue()\
+    \ <= b) {\n\t\t\t\t\treturn;\n\t\t\t\t}\n\t\t\t\th.pollLast();\n\t\t\t}\n\t\t\t\
+    while(h.size() >= 2 && check(h.get(h.size() - 2), h.peekLast(), line)) {\n\t\t\
+    \t\th.pollLast();\n\t\t\t}\n\t\t\th.add(line);\n\t\t}\n\t}\n\tprivate final long\
+    \ get(final IntPair p, final long x){ return p.first.longValue() * x + p.second.longValue();\
+    \ }\n\tfinal long query(final long x) {\n\t\tassert !isEmpty();\n\t\tint l = -1,\
+    \ r = h.size() - 1;\n\t\twhile(l + 1 < r) {\n\t\t\tint m = (l + r) >> 1;\n\t\t\
+    \tif(get(h.get(m), x) >= get(h.get(m + 1), x)) {\n\t\t\t\tl = m;\n\t\t\t} else\
+    \ {\n\t\t\t\tr = m;\n\t\t\t}\n\t\t}\n\t\treturn isMin ? get(h.get(r), x) : -get(h.get(r),\
+    \ x);\n\t}\n\tfinal long queryMonotoneInc(final long x) {\n\t\tassert !isEmpty();\n\
+    \t\twhile(h.size() >= 2 && get(h.peekFirst(), x) >= get(h.get(1), x)) {\n\t\t\t\
+    h.pollFirst();\n\t\t}\n\t\treturn isMin ? get(h.peekFirst(), x) : -get(h.peekFirst(),\
+    \ x);\n\t}\n\tfinal long queryMonotoneDec(final long x) {\n\t\tassert !isEmpty();\n\
+    \t\twhile(h.size() >= 2 && get(h.peekLast(), x) >= get(h.get(h.size() - 2), x))\
+    \ {\n\t\t\th.pollLast();\n\t\t}\n\t\treturn isMin ? get(h.peekLast(), x) : -get(h.peekLast(),\
+    \ x);\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -658,6 +641,7 @@ data:
   - Java/library/core/Utility.java
   - Java/library/core/VvyLw.java
   - Java/library/core/Main.java
+  - Java/library/other/Why.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/InclusiveScan.java
   - Java/library/other/DP.java
@@ -686,7 +670,6 @@ data:
   - Java/library/ds/fenwicktree/RangeBIT.java
   - Java/library/ds/deque/Deque.java
   - Java/library/ds/deque/IntDeque.java
-  - Java/library/ds/ConvexHullTrick.java
   - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
   - Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
@@ -694,7 +677,7 @@ data:
   - Java/All.java
   - Java/AOJ.java
   isVerificationFile: false
-  path: Java/library/other/Why.java
+  path: Java/library/ds/ConvexHullTrick.java
   requiredBy:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -750,6 +733,7 @@ data:
   - Java/library/core/Utility.java
   - Java/library/core/VvyLw.java
   - Java/library/core/Main.java
+  - Java/library/other/Why.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/InclusiveScan.java
   - Java/library/other/DP.java
@@ -778,7 +762,6 @@ data:
   - Java/library/ds/fenwicktree/RangeBIT.java
   - Java/library/ds/deque/Deque.java
   - Java/library/ds/deque/IntDeque.java
-  - Java/library/ds/ConvexHullTrick.java
   - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
   - Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
@@ -788,10 +771,10 @@ data:
   timestamp: '2024-02-28 19:18:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/other/Why.java
+documentation_of: Java/library/ds/ConvexHullTrick.java
 layout: document
 redirect_from:
-- /library/Java/library/other/Why.java
-- /library/Java/library/other/Why.java.html
-title: Java/library/other/Why.java
+- /library/Java/library/ds/ConvexHullTrick.java
+- /library/Java/library/ds/ConvexHullTrick.java.html
+title: Java/library/ds/ConvexHullTrick.java
 ---

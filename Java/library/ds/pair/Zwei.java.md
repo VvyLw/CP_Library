@@ -125,6 +125,9 @@ data:
     path: Java/library/ds/AVLTree.java
     title: Java/library/ds/AVLTree.java
   - icon: ':warning:'
+    path: Java/library/ds/ConvexHullTrick.java
+    title: Java/library/ds/ConvexHullTrick.java
+  - icon: ':warning:'
     path: Java/library/ds/DoubleEndedPriorityQueue.java
     title: Java/library/ds/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
@@ -247,6 +250,9 @@ data:
   - icon: ':warning:'
     path: Java/library/math/prefixsum/PrefixSum2D.java
     title: Java/library/math/prefixsum/PrefixSum2D.java
+  - icon: ':warning:'
+    path: Java/library/other/DP.java
+    title: Java/library/other/DP.java
   - icon: ':warning:'
     path: Java/library/other/InclusiveScan.java
     title: Java/library/other/InclusiveScan.java
@@ -387,6 +393,9 @@ data:
     path: Java/library/ds/AVLTree.java
     title: Java/library/ds/AVLTree.java
   - icon: ':warning:'
+    path: Java/library/ds/ConvexHullTrick.java
+    title: Java/library/ds/ConvexHullTrick.java
+  - icon: ':warning:'
     path: Java/library/ds/DoubleEndedPriorityQueue.java
     title: Java/library/ds/DoubleEndedPriorityQueue.java
   - icon: ':warning:'
@@ -510,6 +519,9 @@ data:
     path: Java/library/math/prefixsum/PrefixSum2D.java
     title: Java/library/math/prefixsum/PrefixSum2D.java
   - icon: ':warning:'
+    path: Java/library/other/DP.java
+    title: Java/library/other/DP.java
+  - icon: ':warning:'
     path: Java/library/other/InclusiveScan.java
     title: Java/library/other/InclusiveScan.java
   - icon: ':warning:'
@@ -609,6 +621,7 @@ data:
   - Java/library/other/Why.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/InclusiveScan.java
+  - Java/library/other/DP.java
   - Java/library/other/SkewHeap.java
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/pair/IntPair.java
@@ -633,6 +646,7 @@ data:
   - Java/library/ds/fenwicktree/RangeBIT.java
   - Java/library/ds/deque/Deque.java
   - Java/library/ds/deque/IntDeque.java
+  - Java/library/ds/ConvexHullTrick.java
   - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
   - Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
@@ -699,6 +713,7 @@ data:
   - Java/library/other/Why.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/InclusiveScan.java
+  - Java/library/other/DP.java
   - Java/library/other/SkewHeap.java
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/pair/IntPair.java
@@ -723,13 +738,14 @@ data:
   - Java/library/ds/fenwicktree/RangeBIT.java
   - Java/library/ds/deque/Deque.java
   - Java/library/ds/deque/IntDeque.java
+  - Java/library/ds/ConvexHullTrick.java
   - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
   - Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-28 10:38:41+09:00'
+  timestamp: '2024-02-28 19:18:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/pair/Zwei.java

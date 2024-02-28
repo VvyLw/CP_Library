@@ -10,6 +10,9 @@ data:
       path: C++/constance.hpp
       title: "\u5B9A\u6570"
     - icon: ':heavy_check_mark:'
+      path: C++/dp.hpp
+      title: Longest Increasing Subsequence
+    - icon: ':heavy_check_mark:'
       path: C++/mypair.hpp
       title: C++/mypair.hpp
     - icon: ':heavy_check_mark:'
@@ -310,6 +313,9 @@ data:
       path: Java/library/ds/AVLTree.java
       title: Java/library/ds/AVLTree.java
     - icon: ':warning:'
+      path: Java/library/ds/ConvexHullTrick.java
+      title: Java/library/ds/ConvexHullTrick.java
+    - icon: ':warning:'
       path: Java/library/ds/DoubleEndedPriorityQueue.java
       title: Java/library/ds/DoubleEndedPriorityQueue.java
     - icon: ':warning:'
@@ -458,6 +464,9 @@ data:
   - name: Java/library/other
     pages:
     - icon: ':warning:'
+      path: Java/library/other/DP.java
+      title: Java/library/other/DP.java
+    - icon: ':warning:'
       path: Java/library/other/InclusiveScan.java
       title: Java/library/other/InclusiveScan.java
     - icon: ':warning:'
@@ -521,6 +530,21 @@ data:
       path: test/inv_num.test.cpp
       title: test/inv_num.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/knapsack.test.cpp
+      title: test/knapsack.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/knapsack2.test.cpp
+      title: test/knapsack2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/knapsack3.test.cpp
+      title: test/knapsack3.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/knapsack4.test.cpp
+      title: test/knapsack4.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/knapsack5.test.cpp
+      title: test/knapsack5.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/kruskal.test.cpp
       title: test/kruskal.test.cpp
     - icon: ':heavy_check_mark:'
@@ -547,6 +571,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/lcpa.test.cpp
       title: test/lcpa.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/lis.test.cpp
+      title: test/lis.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/lis2.test.cpp
+      title: test/lis2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/m_add.test.cpp
       title: test/m_add.test.cpp

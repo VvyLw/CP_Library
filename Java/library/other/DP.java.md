@@ -254,9 +254,6 @@ data:
     path: Java/library/math/prefixsum/PrefixSum2D.java
     title: Java/library/math/prefixsum/PrefixSum2D.java
   - icon: ':warning:'
-    path: Java/library/other/DP.java
-    title: Java/library/other/DP.java
-  - icon: ':warning:'
     path: Java/library/other/InclusiveScan.java
     title: Java/library/other/InclusiveScan.java
   - icon: ':warning:'
@@ -265,6 +262,9 @@ data:
   - icon: ':warning:'
     path: Java/library/other/SuffixArray.java
     title: Java/library/other/SuffixArray.java
+  - icon: ':warning:'
+    path: Java/library/other/Why.java
+    title: Java/library/other/Why.java
   - icon: ':warning:'
     path: Java/yukicoder.java
     title: Java/yukicoder.java
@@ -522,9 +522,6 @@ data:
     path: Java/library/math/prefixsum/PrefixSum2D.java
     title: Java/library/math/prefixsum/PrefixSum2D.java
   - icon: ':warning:'
-    path: Java/library/other/DP.java
-    title: Java/library/other/DP.java
-  - icon: ':warning:'
     path: Java/library/other/InclusiveScan.java
     title: Java/library/other/InclusiveScan.java
   - icon: ':warning:'
@@ -533,6 +530,9 @@ data:
   - icon: ':warning:'
     path: Java/library/other/SuffixArray.java
     title: Java/library/other/SuffixArray.java
+  - icon: ':warning:'
+    path: Java/library/other/Why.java
+    title: Java/library/other/Why.java
   - icon: ':warning:'
     path: Java/yukicoder.java
     title: Java/yukicoder.java
@@ -545,64 +545,124 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/other/Why.java\n"
-  code: "package library.other;\n\nimport java.util.ArrayList;\nimport java.util.HashMap;\n\
-    import java.util.Map;\nimport java.util.TreeMap;\nimport java.util.stream.IntStream;\n\
-    \nimport library.core.Utility;\nimport library.ds.fenwicktree.FenwickTree;\nimport\
-    \ library.ds.unionfind.UnionFind;\nimport library.graph.Edge;\n\n/**\n * core\u30D1\
-    \u30C3\u30B1\u30FC\u30B8\u4EE5\u5916\u306E\u5916\u90E8\u30AF\u30E9\u30B9(Pair\u3092\
-    \u9664\u304F\u3092\u4F7F\u3046\u30E1\u30BD\u30C3\u30C9\u304C\u7F6E\u3044\u3066\
-    \u3042\u308B\n */\npublic final class Why {\n\t/**\n\t * @param uf\n\t * @return\
-    \ \u4E8C\u5206\u30B0\u30E9\u30D5\u304B\u3069\u3046\u304B\n\t * @implNote {@link\
-    \ UnionFind}\u304C\u5FC5\u8981\n\t */\n\tpublic static final boolean isBipartite(final\
-    \ UnionFind uf) {\n\t\tassert uf.size() % 2 == 0;\n\t\tfinal int n = uf.size()\
-    \ / 2;\n\t\tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &=\
-    \ uf.root(i) != uf.root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n\t/**\n\t * @param\
-    \ a\n\t * @return \u8EE2\u5012\u6570\n\t * @implNote {@link FenwickTree}\u304C\
-    \u5FC5\u8981\n\t */\n\tpublic static final long invNum(final int[] a) {\n\t\t\
-    final int[] b = Utility.sorted(a);\n\t\tfinal Map<Integer, Integer> id = new HashMap<>();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
-    \ FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int\
-    \ i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\t\
-    bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\
-    \t * @return \u8EE2\u5012\u6570\n\t * @implNote {@link FenwickTree}\u304C\u5FC5\
-    \u8981\n\t */\n\tpublic static final long invNum(final long[] a) {\n\t\tfinal\
-    \ long[] b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer> id = new HashMap<>();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
-    \ FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int\
-    \ i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\t\
-    bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @deprecated\
-    \ verified\u3057\u3066\u3044\u306A\u3044\n\t * \u9045\u3044\n\t * @param x\n\t\
-    \ * @param y\n\t * @return manhattan MST\n\t */\n\tpublic static final ArrayList<Edge>\
-    \ manhattan(int[] x, int[] y) {\n\t\tassert x.length == y.length;\n\t\tfinal int\
-    \ n = x.length;\n\t\tfinal var res = new ArrayList<Edge>();\n\t\tfor(int s = 0;\
-    \ s < 2; ++s) {\n\t\t\tfor(int t = 0; t < 2; ++t) {\n\t\t\t\tfinal var id = IntStream.range(0,\
-    \ n).boxed().sorted((i, j) -> Integer.compare(x[i] + y[i], x[j] + y[j])).mapToInt(i\
-    \ -> i).toArray();\n\t\t\t\tfinal var idx = new TreeMap<Integer, Integer>();\n\
-    \t\t\t\tfor(final var i: id) {\n\t\t\t\t\tfinal var it = idx.tailMap(y[i]).entrySet().iterator();\n\
-    \t\t\t\t\twhile(it.hasNext()) {\n\t\t\t\t\t\tfinal int j = it.next().getValue();\n\
-    \t\t\t\t\t\tif(x[i] - x[j] < y[i] - y[j]) {\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t\
-    }\n\t\t\t\t\t\tres.add(new Edge(i, j, Math.abs(x[i] - x[j]) + Math.abs(y[i] -\
-    \ y[j])));\n\t\t\t\t\t\tit.remove();\n\t\t\t\t\t}\n\t\t\t\t\tidx.put(-y[i], i);\n\
-    \t\t\t\t}\n\t\t\t\tfinal var tmp = y.clone();\n\t\t\t\tSystem.arraycopy(x, 0,\
-    \ y, 0, n);\n\t\t\t\tSystem.arraycopy(tmp, 0, x, 0, n);\n\t\t\t}\n\t\t\tfor(int\
-    \ i = 0; i < n; ++i) {\n\t\t\t\tx[i] = -x[i];\n\t\t\t}\n\t\t}\n\t\treturn res;\n\
-    \t}\n\t/**\n\t * @deprecated verified\u3057\u3066\u3044\u306A\u3044\n\t * \u9045\
-    \u3044\n\t * @param x\n\t * @param y\n\t * @return manhattan MST\n\t */\n\tpublic\
-    \ static final ArrayList<Edge> manhattan(long[] x, long[] y) {\n\t\tassert x.length\
-    \ == y.length;\n\t\tfinal int n = x.length;\n\t\tfinal var res = new ArrayList<Edge>();\n\
-    \t\tfor(int s = 0; s < 2; ++s) {\n\t\t\tfor(int t = 0; t < 2; ++t) {\n\t\t\t\t\
-    final var id = IntStream.range(0, n).boxed().sorted((i, j) -> Long.compare(x[i]\
-    \ + y[i], x[j] + y[j])).mapToInt(i -> i).toArray();\n\t\t\t\tfinal var idx = new\
-    \ TreeMap<Long, Integer>();\n\t\t\t\tfor(final var i: id) {\n\t\t\t\t\tfinal var\
-    \ it = idx.tailMap(y[i]).entrySet().iterator();\n\t\t\t\t\twhile(it.hasNext())\
-    \ {\n\t\t\t\t\t\tfinal int j = it.next().getValue();\n\t\t\t\t\t\tif(x[i] - x[j]\
-    \ < y[i] - y[j]) {\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tres.add(new\
-    \ Edge(i, j, Math.abs(x[i] - x[j]) + Math.abs(y[i] - y[j]), -1));\n\t\t\t\t\t\t\
-    it.remove();\n\t\t\t\t\t}\n\t\t\t\t\tidx.put(-y[i], i);\n\t\t\t\t}\n\t\t\t\tfinal\
-    \ var tmp = y.clone();\n\t\t\t\tSystem.arraycopy(x, 0, y, 0, n);\n\t\t\t\tSystem.arraycopy(tmp,\
-    \ 0, x, 0, n);\n\t\t\t}\n\t\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\tx[i] = -x[i];\n\
-    \t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n}"
+    RuntimeError: bundler is not specified: Java/library/other/DP.java\n"
+  code: "package library.other;\n\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
+    import java.util.Collections;\nimport java.util.List;\n\nimport library.core.Utility;\n\
+    import library.ds.pair.IntPair;\n\n/**\n * DP\u3092\u4F7F\u3063\u305F\u4FBF\u5229\
+    \u30E1\u30BD\u30C3\u30C9\u307E\u3068\u3081\n */\npublic final class DP {\n\t/**\n\
+    \t * 01\u30CA\u30C3\u30D7\u30B6\u30C3\u30AF\n\t * \u91CD\u3055a_i, \u4FA1\u5024\
+    v_i\u3067\u3042\u308B\u3088\u3046\u306An\u500B\u306E\u54C1\u7269\u304C\u3042\u308A\
+    \u3001\u91CD\u3055\u306E\u548C\u304Cw\u4EE5\u4E0B\u3068\u306A\u308B\u3088\u3046\
+    \u306B\u9078\u3076\u3068\u304D\u306E\u4FA1\u5024\u306E\u6700\u5927\u5024\u3092\
+    \u6C42\u3081\u308B\n\t * @param a\n\t * @param v\n\t * @param w\n\t * @return\
+    \ dp\u306E\u6700\u5927\u5024\n\t * @implNote O(NW)\n\t */\n\tpublic static final\
+    \ long knapsack01(final int[] a, final long[] v, final int w) {\n\t\tfinal int\
+    \ n = a.length;\n\t\tfinal long[] dp = new long[w + 1];\n\t\tArrays.fill(dp, Long.MIN_VALUE);\n\
+    \t\tdp[0] = 0;\n\t\tfor(int i = 0; i < n; i++) {\n\t\t\tfor(int j = w; j >= a[i];\
+    \ j--) {\n\t\t\t\tif(dp[j - a[i]] != Long.MIN_VALUE) {\n\t\t\t\t\tif(dp[j - a[i]]\
+    \ + v[i] > dp[j]) {\n\t\t\t\t\t\tdp[j] = dp[j - a[i]] + v[i];\n\t\t\t\t\t}\n\t\
+    \t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn Utility.max(dp);\n\t}\n\t/**\n\t * 01\u30CA\
+    \u30C3\u30D7\u30B6\u30C3\u30AF\n\t * \u91CD\u3055w_i, \u4FA1\u5024v_i\u3067\u3042\
+    \u308B\u3088\u3046\u306An\u500B\u306E\u54C1\u7269\u304C\u3042\u308A\u3001\u91CD\
+    \u3055\u306E\u548C\u304Cw\u4EE5\u4E0B\u3068\u306A\u308B\u3088\u3046\u306B\u9078\
+    \u3076\u3068\u304D\u306E\u4FA1\u5024\u306E\u6700\u5927\u5024\u3092\u6C42\u3081\
+    \u308B\n\t * @param a\n\t * @param v\n\t * @param w\n\t * @return dp\u306E\u6700\
+    \u5927\u5024\n\t * @implNote O(N sum(v))\n\t */\n\tpublic static final int knapsack01(final\
+    \ long[] a, final int[] v, final long w) {\n\t\tfinal int n = a.length;\n\t\t\
+    final int s = (int) Utility.sum(v);\n\t\tfinal long[] dp = new long[s + 1];\n\t\
+    \tArrays.fill(dp, w + 1);\n\t\tdp[0] = 0;\n\t\tfor(int i = 0; i < n; i++) {\n\t\
+    \t\tfor(int j = s; j >= v[i]; j--) {\n\t\t\t\tdp[j] = Math.min(dp[j], dp[j - v[i]]\
+    \ + a[i]);\n\t\t\t}\n\t\t}\n\t\tint res = 0;\n\t\tfor(int i = 0; i <= s; i++)\
+    \ {\n\t\t\tif(dp[i] <= w) {\n\t\t\t\tres = i;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\
+    \t}\n\tprivate static final long[] knapsack(final int[] a, final long[] v, final\
+    \ int[] m, final int w, final boolean less) {\n\t\tfinal int n = a.length;\n\t\
+    \tfinal long[] dp = new long[w + 1], deqv = new long[w + 1];\n\t\tArrays.fill(dp,\
+    \ Long.MIN_VALUE);\n\t\tdp[0] = 0;\n\t\tfinal int[] deq = new int[w + 1];\n\t\t\
+    for(int i = 0; i < n; ++i) {\n\t\t\tif(a[i] == 0) {\n\t\t\t\tfor(int j = 0; j\
+    \ <= w; ++j) {\n\t\t\t\t\tif(dp[j] != Long.MIN_VALUE && (less ? dp[j] + v[i] *\
+    \ m[i] < dp[j] : dp[j] + v[i] * m[i] > dp[j])) {\n\t\t\t\t\t\tdp[j] = dp[j] +\
+    \ v[i] * m[i];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\tfor(int k = 0;\
+    \ k < a[i]; ++k) {\n\t\t\t\t\tint s = 0, t = 0;\n\t\t\t\t\tfor(int j = 0; a[i]\
+    \ * j + k <= w; ++j) {\n\t\t\t\t\t\tif(dp[a[i] * j + k] != Long.MIN_VALUE) {\n\
+    \t\t\t\t\t\t\tfinal long val = dp[a[i] * j + k] - j * v[i];\n\t\t\t\t\t\t\twhile(s\
+    \ < t && (less ? val < deqv[t - 1] : val > deqv[t - 1])) {\n\t\t\t\t\t\t\t\tt--;\n\
+    \t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tdeq[t] = j;\n\t\t\t\t\t\t\tdeqv[t++] = val;\n\t\
+    \t\t\t\t\t}\n\t\t\t\t\t\tif(s < t) {\n\t\t\t\t\t\t\tdp[j * a[i] + k] = deqv[s]\
+    \ + j * v[i];\n\t\t\t\t\t\t\tif(deq[s] == j - m[i]) {\n\t\t\t\t\t\t\t\ts++;\n\t\
+    \t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ dp;\n\t}\n\t/**\n\t * \u500B\u6570\u5236\u9650\u3064\u304D\u30CA\u30C3\u30D7\
+    \u30B6\u30C3\u30AF\n\t * \u91CD\u3055w_i, \u4FA1\u5024v_i\u3067\u3042\u308B\u3088\
+    \u3046\u306An\u7A2E\u985E\u306E\u54C1\u7269\u304C\u3042\u308A\u3001i\u756A\u76EE\
+    \u306E\u54C1\u7269\u306Fm_i\u500B\u307E\u3067\u9078\u3076\u3053\u3068\u304C\u3067\
+    \u304D\u308B\n\t * \u91CD\u3055\u306E\u548C\u304Cw\u4EE5\u4E0B\u3068\u306A\u308B\
+    \u3088\u3046\u306B\u9078\u3076\u3068\u304D\u306E\u4FA1\u5024\u306E\u6700\u5927\
+    \u5024\u3092\u6C42\u3081\u308B\n\t * @param a\n\t * @param v\n\t * @param m\n\t\
+    \ * @param w\n\t * @return dp\u306E\u6700\u5927\u5024\n\t * @implNote O(NW)\n\t\
+    \ */\n\tpublic static final long knapsack(final int[] a, final long[] v, final\
+    \ int[] m, final int w){ return Utility.max(knapsack(a, v, m, w, false)); }\n\t\
+    /**\n\t * \u500B\u6570\u5236\u9650\u3064\u304D\u30CA\u30C3\u30D7\u30B6\u30C3\u30AF\
+    \n\t * \u91CD\u3055w_i, \u4FA1\u5024v_i\u3067\u3042\u308B\u3088\u3046\u306An\u7A2E\
+    \u985E\u306E\u54C1\u7269\u304C\u3042\u308A\u3001i\u756A\u76EE\u306E\u54C1\u7269\
+    \u306Fm_i\u500B\u307E\u3067\u9078\u3076\u3053\u3068\u304C\u3067\u304D\u308B\n\t\
+    \ * \u91CD\u3055\u306E\u548C\u304Cw\u4EE5\u4E0B\u3068\u306A\u308B\u3088\u3046\u306B\
+    \u9078\u3076\u3068\u304D\u306E\u4FA1\u5024\u306E\u6700\u5927\u5024\u3092\u6C42\
+    \u3081\u308B\n\t * @param a\n\t * @param v\n\t * @param m\n\t * @param w\n\t *\
+    \ @return dp\u306E\u6700\u5927\u5024\n\t * @implNote O((N max(v))^2)\n\t */\n\t\
+    public static final long knapsack(final long[] a, final int[] v, final long[]\
+    \ m, final long w) {\n\t\tfinal int n = a.length;\n\t\tfinal int max = Utility.max(v);\n\
+    \t\tif(max == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal int[] ma = new int[n];\n\
+    \t\tfinal long[] mb = new long[n];\n\t\tfor(int i = 0; i < n; i++) {\n\t\t\tma[i]\
+    \ = (int) Math.min(m[i], max - 1);\n\t\t\tmb[i] = m[i] - ma[i];\n\t\t}\n\t\tint\
+    \ sum = 0;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tsum += ma[i] * v[i];\n\t\t\
+    }\n\t\tfinal long[] dp = knapsack(v, a, ma, sum, true);\n\t\tfinal int[] id =\
+    \ Utility.iota(n).boxed().sorted((i, j) -> -Long.compare(v[i] * a[j], v[j] * a[i])).mapToInt(i\
+    \ -> i).toArray();\n\t\tlong res = 0;\n\t\tfor(int i = 0; i < dp.length; ++i)\
+    \ {\n\t\t\tif(dp[i] > w || dp[i] == Long.MIN_VALUE) {\n\t\t\t\tcontinue;\n\t\t\
+    \t}\n\t\t\tlong rest = w - dp[i], cost = i;\n\t\t\tfor(final int j: id) {\n\t\t\
+    \t\tfinal long get = Math.min(mb[j], rest / a[j]);\n\t\t\t\tif(get <= 0) {\n\t\
+    \t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\tcost += get * v[j];\n\t\t\t\trest -= get\
+    \ * a[j];\n\t\t\t}\n\t\t\tres = Math.max(res, cost);\n\t\t}\n\t\treturn res;\n\
+    \t}\n\t/**\n\t * \u500B\u6570\u5236\u9650\u306A\u3057\u30CA\u30C3\u30D7\u30B5\u30C3\
+    \u30AF\n\t * \u91CD\u3055w_i, \u4FA1\u5024v_i\u3067\u3042\u308B\u3088\u3046\u306A\
+    n\u7A2E\u985E\u306E\u54C1\u7269\u304C\u3042\u308A\u3001\u91CD\u3055\u306E\u548C\
+    \u304Cw\u4EE5\u4E0B\u3068\u306A\u308B\u3088\u3046\u306B\u9078\u3076\u3068\u304D\
+    \u306E\u4FA1\u5024\u306E\u6700\u5927\u5024\u3092\u6C42\u3081\u308B\n\t * @param\
+    \ a\n\t * @param v\n\t * @param w\n\t * @return dp\u306E\u6700\u5927\u5024\n\t\
+    \ * @implNote O(NW)\n\t */\n\tpublic static final long knapsack(final int[] a,\
+    \ final long[] v, final int w) {\n\t\tfinal int n = a.length;\n\t\tfinal long[]\
+    \ dp = new long[w + 1];\n\t\tArrays.fill(dp, Long.MIN_VALUE);\n\t\tdp[0] = 0;\n\
+    \t\tfor(int i = 0; i < n; i++) {\n\t\t\tfor(int j = a[i]; j <= w; j++) {\n\t\t\
+    \t\tif(dp[j - a[i]] != Long.MIN_VALUE) {\n\t\t\t\t\tif(dp[j - a[i]] + v[i] > dp[j])\
+    \ {\n\t\t\t\t\t\tdp[j] = dp[j - a[i]] + v[i];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\
+    }\n\t\t}\n\t\treturn Utility.max(dp);\n\t}\n\t/**\n\t * @param a\n\t * @return\
+    \ \u6700\u9577\u5897\u52A0\u90E8\u5206\u5217(Longest Increasing Subsequence)\n\
+    \t * @see <a href=\"https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\"\
+    >\u53C2\u8003\u5143</a>\n\t * @implNote Java21\u3088\u308A\u524D\u306EVer\u306E\
+    \u5834\u5408\u3001getLast\u3092get(dp.size() - 1)\u306B\u5909\u3048\u308B\n\t\
+    \ */\n\tpublic static final int[] lis(final int[] a) {\n\t\tfinal int n = a.length;\n\
+    \t\tList<IntPair> dp = new ArrayList<IntPair>();\n\t\tfinal int[] p = new int[n];\n\
+    \t\tArrays.fill(p, -1);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int id\
+    \ = Utility.lowerBound(dp, IntPair.of(a[i], -i));\n\t\t\tif(id != 0) {\n\t\t\t\
+    \tp[i] = -dp.get(id - 1).second.intValue();\n\t\t\t}\n\t\t\tif(id == dp.size())\
+    \ {\n\t\t\t\tdp.add(IntPair.of(a[i], -i));\n\t\t\t} else {\n\t\t\t\tdp.set(id,\
+    \ IntPair.of(a[i], -i));\n\t\t\t}\n\t\t}\n\t\tfinal List<Integer> res = new ArrayList<Integer>();\n\
+    \t\tfor(int i = -dp.getLast().second.intValue(); i != -1; i = p[i]) {\n\t\t\t\
+    res.add(i);\n\t\t}\n\t\tCollections.reverse(res);\n\t\treturn res.stream().mapToInt(i\
+    \ -> i).toArray();\n\t}\n\t/**\n\t * @param a\n\t * @return \u6700\u9577\u5897\
+    \u52A0\u90E8\u5206\u5217(Longest Increasing Subsequence)\n\t * @see <a href=\"\
+    https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\">\u53C2\
+    \u8003\u5143</a>\n\t * @implNote Java21\u3088\u308A\u524D\u306EVer\u306E\u5834\
+    \u5408\u3001getLast\u3092get(dp.size() - 1)\u306B\u5909\u3048\u308B\n\t */\n\t\
+    public static final int[] lis(final long[] a) {\n\t\tfinal int n = a.length;\n\
+    \t\tList<IntPair> dp = new ArrayList<IntPair>();\n\t\tfinal int[] p = new int[n];\n\
+    \t\tArrays.fill(p, -1);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int id\
+    \ = Utility.lowerBound(dp, IntPair.of(a[i], -i));\n\t\t\tif(id != 0) {\n\t\t\t\
+    \tp[i] = -dp.get(id - 1).second.intValue();\n\t\t\t}\n\t\t\tif(id == n) {\n\t\t\
+    \t\tdp.add(IntPair.of(a[i], -i));\n\t\t\t} else {\n\t\t\t\tdp.set(id, IntPair.of(a[i],\
+    \ -i));\n\t\t\t}\n\t\t}\n\t\tfinal List<Integer> res = new ArrayList<Integer>();\n\
+    \t\tfor(int i = -dp.getLast().second.intValue(); i != -1; i = p[i]) {\n\t\t\t\
+    res.add(i);\n\t\t}\n\t\tCollections.reverse(res);\n\t\treturn res.stream().mapToInt(i\
+    \ -> i).toArray();\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -658,9 +718,9 @@ data:
   - Java/library/core/Utility.java
   - Java/library/core/VvyLw.java
   - Java/library/core/Main.java
+  - Java/library/other/Why.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/InclusiveScan.java
-  - Java/library/other/DP.java
   - Java/library/other/SkewHeap.java
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/pair/IntPair.java
@@ -694,7 +754,7 @@ data:
   - Java/All.java
   - Java/AOJ.java
   isVerificationFile: false
-  path: Java/library/other/Why.java
+  path: Java/library/other/DP.java
   requiredBy:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -750,9 +810,9 @@ data:
   - Java/library/core/Utility.java
   - Java/library/core/VvyLw.java
   - Java/library/core/Main.java
+  - Java/library/other/Why.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/InclusiveScan.java
-  - Java/library/other/DP.java
   - Java/library/other/SkewHeap.java
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/pair/IntPair.java
@@ -788,10 +848,10 @@ data:
   timestamp: '2024-02-28 19:18:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/other/Why.java
+documentation_of: Java/library/other/DP.java
 layout: document
 redirect_from:
-- /library/Java/library/other/Why.java
-- /library/Java/library/other/Why.java.html
-title: Java/library/other/Why.java
+- /library/Java/library/other/DP.java
+- /library/Java/library/other/DP.java.html
+title: Java/library/other/DP.java
 ---
