@@ -11,10 +11,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/longest_increasing_subsequence
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_10_C
     links:
-    - https://judge.yosupo.jp/problem/longest_increasing_subsequence
-  bundledCode: "#line 1 \"test/lis.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/longest_increasing_subsequence\"\
+    - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_10_C
+  bundledCode: "#line 1 \"test/lcs.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_10_C\"\
     \n#include <iostream>\n#line 2 \"C++/dp.hpp\"\n\n#include <vector>\n#include <utility>\n\
     #include <algorithm>\n#include <iterator>\n#include <limits>\n#include <numeric>\n\
     \ntemplate <class T> T knapsack01_v(const std::vector<int> &a, const std::vector<T>\
@@ -90,29 +90,27 @@ data:
     \ = std::make_pair(v[i], -i);\n        }\n    }\n    for(int i = -dp.back().second;\
     \ i != -1; i = p[i]) {\n        res.emplace_back(i);\n    }\n    std::ranges::reverse(res);\n\
     \    return res;\n}\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
-    \ */\n\n/**\n * @brief DP(Knapsack & LIS)\n */\n#line 4 \"test/lis.test.cpp\"\n\
-    int main() {\n    int n;\n    std::cin >> n;\n    std::vector<int> a(n), res;\n\
-    \    for(auto &el: a) {\n        std::cin >> el;\n    }\n    res = lis(a);\n \
-    \   std::cout << res.size() << '\\n';\n    for(size_t i = 0; i < res.size(); ++i)\
-    \ {\n        std::cout << res[i] << \" \\n\"[i + 1 == res.size()];\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/longest_increasing_subsequence\"\
-    \n#include <iostream>\n#include \"C++/dp.hpp\"\nint main() {\n    int n;\n   \
-    \ std::cin >> n;\n    std::vector<int> a(n), res;\n    for(auto &el: a) {\n  \
-    \      std::cin >> el;\n    }\n    res = lis(a);\n    std::cout << res.size()\
-    \ << '\\n';\n    for(size_t i = 0; i < res.size(); ++i) {\n        std::cout <<\
-    \ res[i] << \" \\n\"[i + 1 == res.size()];\n    }\n}"
+    \ */\n\n/**\n * @brief DP(Knapsack & LIS)\n */\n#line 4 \"test/lcs.test.cpp\"\n\
+    int main() {\n    int q;\n    std::cin >> q;\n    while(q--) {\n        std::string\
+    \ x, y;\n        std::cin >> x >> y;\n        const int z = lcs(x, y);\n     \
+    \   std::cout << z << '\\n';\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_10_C\"\n\
+    #include <iostream>\n#include \"C++/dp.hpp\"\nint main() {\n    int q;\n    std::cin\
+    \ >> q;\n    while(q--) {\n        std::string x, y;\n        std::cin >> x >>\
+    \ y;\n        const int z = lcs(x, y);\n        std::cout << z << '\\n';\n   \
+    \ }\n}"
   dependsOn:
   - C++/dp.hpp
   isVerificationFile: true
-  path: test/lis.test.cpp
+  path: test/lcs.test.cpp
   requiredBy: []
   timestamp: '2024-02-29 06:36:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/lis.test.cpp
+documentation_of: test/lcs.test.cpp
 layout: document
 redirect_from:
-- /verify/test/lis.test.cpp
-- /verify/test/lis.test.cpp.html
-title: test/lis.test.cpp
+- /verify/test/lcs.test.cpp
+- /verify/test/lcs.test.cpp.html
+title: test/lcs.test.cpp
 ---

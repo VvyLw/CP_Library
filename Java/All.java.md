@@ -1869,78 +1869,84 @@ data:
     \ {\n\t\t\tfor(int j = a[i]; j <= w; j++) {\n\t\t\t\tif(dp[j - a[i]] != Long.MIN_VALUE)\
     \ {\n\t\t\t\t\tif(dp[j - a[i]] + v[i] > dp[j]) {\n\t\t\t\t\t\tdp[j] = dp[j - a[i]]\
     \ + v[i];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn Utility.max(dp);\n\
-    \t}\n\tstatic final int[] lis(final int[] a) {\n\t\tfinal int n = a.length;\n\t\
-    \tList<IntPair> dp = new ArrayList<IntPair>();\n\t\tfinal int[] p = new int[n];\n\
+    \t}\n\tstatic final int lcs(final String s, final String t) {\n\t\tfinal int n\
+    \ = s.length();\n\t\tfinal int[] dp = new int[n + 1], ndp = new int[n + 1];\n\t\
+    \tfor(int i = 0; i < t.length(); ++i) {\n\t\t\tfor(int j = 0; j < n; ++j) {\n\t\
+    \t\t\tif(s.charAt(j) == t.charAt(i)) {\n\t\t\t\t\tndp[j + 1] = dp[j] + 1;\n\t\t\
+    \t\t} else {\n\t\t\t\t\tndp[j + 1] = max(ndp[j], dp[j + 1]);\n\t\t\t\t}\n\t\t\t\
+    }\n\t\t\tUtility.swap(dp, ndp);\n\t\t}\n\t\treturn dp[n];\n\t}\n\tstatic final\
+    \ int[] lis(final int[] a) {\n\t\tfinal int n = a.length;\n\t\tList<IntPair> dp\
+    \ = new ArrayList<IntPair>();\n\t\tfinal int[] p = new int[n];\n\t\tArrays.fill(p,\
+    \ -1);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int id = Utility.lowerBound(dp,\
+    \ IntPair.of(a[i], -i));\n\t\t\tif(id != 0) {\n\t\t\t\tp[i] = -dp.get(id - 1).second.intValue();\n\
+    \t\t\t}\n\t\t\tif(id == dp.size()) {\n\t\t\t\tdp.add(IntPair.of(a[i], -i));\n\t\
+    \t\t} else {\n\t\t\t\tdp.set(id, IntPair.of(a[i], -i));\n\t\t\t}\n\t\t}\n\t\t\
+    final List<Integer> res = new ArrayList<Integer>();\n\t\tfor(int i = -dp.get(dp.size()\
+    \ - 1).second.intValue(); i != -1; i = p[i]) {\n\t\t\tres.add(i);\n\t\t}\n\t\t\
+    Collections.reverse(res);\n\t\treturn res.stream().mapToInt(i -> i).toArray();\n\
+    \t}\n\tstatic final int[] lis(final long[] a) {\n\t\tfinal int n = a.length;\n\
+    \t\tList<IntPair> dp = new ArrayList<IntPair>();\n\t\tfinal int[] p = new int[n];\n\
     \t\tArrays.fill(p, -1);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int id\
     \ = Utility.lowerBound(dp, IntPair.of(a[i], -i));\n\t\t\tif(id != 0) {\n\t\t\t\
-    \tp[i] = -dp.get(id - 1).second.intValue();\n\t\t\t}\n\t\t\tif(id == dp.size())\
-    \ {\n\t\t\t\tdp.add(IntPair.of(a[i], -i));\n\t\t\t} else {\n\t\t\t\tdp.set(id,\
-    \ IntPair.of(a[i], -i));\n\t\t\t}\n\t\t}\n\t\tfinal List<Integer> res = new ArrayList<Integer>();\n\
+    \tp[i] = -dp.get(id - 1).second.intValue();\n\t\t\t}\n\t\t\tif(id == n) {\n\t\t\
+    \t\tdp.add(IntPair.of(a[i], -i));\n\t\t\t} else {\n\t\t\t\tdp.set(id, IntPair.of(a[i],\
+    \ -i));\n\t\t\t}\n\t\t}\n\t\tfinal List<Integer> res = new ArrayList<Integer>();\n\
     \t\tfor(int i = -dp.get(dp.size() - 1).second.intValue(); i != -1; i = p[i]) {\n\
     \t\t\tres.add(i);\n\t\t}\n\t\tCollections.reverse(res);\n\t\treturn res.stream().mapToInt(i\
-    \ -> i).toArray();\n\t}\n\tstatic final int[] lis(final long[] a) {\n\t\tfinal\
-    \ int n = a.length;\n\t\tList<IntPair> dp = new ArrayList<IntPair>();\n\t\tfinal\
-    \ int[] p = new int[n];\n\t\tArrays.fill(p, -1);\n\t\tfor(int i = 0; i < n; ++i)\
-    \ {\n\t\t\tfinal int id = Utility.lowerBound(dp, IntPair.of(a[i], -i));\n\t\t\t\
-    if(id != 0) {\n\t\t\t\tp[i] = -dp.get(id - 1).second.intValue();\n\t\t\t}\n\t\t\
-    \tif(id == n) {\n\t\t\t\tdp.add(IntPair.of(a[i], -i));\n\t\t\t} else {\n\t\t\t\
-    \tdp.set(id, IntPair.of(a[i], -i));\n\t\t\t}\n\t\t}\n\t\tfinal List<Integer> res\
-    \ = new ArrayList<Integer>();\n\t\tfor(int i = -dp.get(dp.size() - 1).second.intValue();\
-    \ i != -1; i = p[i]) {\n\t\t\tres.add(i);\n\t\t}\n\t\tCollections.reverse(res);\n\
-    \t\treturn res.stream().mapToInt(i -> i).toArray();\n\t}\n}\n\nfinal class Matrix\
-    \ implements Cloneable {\n\tprivate final int h, w;\n\tprivate final long[][]\
-    \ mat;\n\tMatrix(final int n){ this(n, n); }\n\tMatrix(final int h, final int\
-    \ w) {\n\t\tthis.h = h;\n\t\tthis.w = w;\n\t\tmat = new long[h][w];\n\t}\n\tMatrix(final\
-    \ int[][] m) {\n\t\tthis(m.length, m[0].length);\n\t\tIntStream.range(0, h).forEach(i\
-    \ -> IntStream.range(0, w).forEach(j -> mat[i][j] = m[i][j]));\n\t}\n\tMatrix(final\
-    \ long[][] m) {\n\t\tthis(m.length, m[0].length);\n\t\tIntStream.range(0, h).forEach(i\
-    \ -> IntStream.range(0, w).forEach(j -> mat[i][j] = m[i][j]));\n\t}\n\tstatic\
-    \ final Matrix E(final int n) {\n\t\tfinal Matrix m = new Matrix(n);\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> m.set(i, i, 1));\n\t\treturn m;\n\t}\n\tfinal long[] getH(final\
-    \ int i){ return mat[i]; }\n\tfinal long[] getW(final int i){ return IntStream.range(0,\
-    \ h).mapToLong(j -> mat[j][i]).toArray(); }\n\tfinal long[][] get(){ return mat;\
-    \ }\n\tfinal long get(final int i, final int j){ return mat[i][j]; }\n\tfinal\
-    \ void set(final int i, final int j, final long x){ mat[i][j] = x; }\n\tfinal\
-    \ Matrix add(final Matrix m) {\n\t\tassert h == m.h && w == m.w;\n\t\tfinal Matrix\
-    \ mt = new Matrix(h, w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j =\
-    \ 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, mat[i][j] + m.get(i, j));\n\t\t\t}\n\t\
-    \t}\n\t\treturn mt;\n\t}\n\tfinal Matrix add(final Matrix m, final long mod) {\n\
-    \t\tassert h == m.h && w == m.w;\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\t\
-    for(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i,\
-    \ j, Utility.mod(mat[i][j] + m.get(i, j), mod));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\
-    \t}\n\tfinal Matrix sub(final Matrix m) {\n\t\tassert h == m.h && w == m.w;\n\t\
-    \tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\t\
-    for(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, mat[i][j] - m.get(i, j));\n\
-    \t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix sub(final Matrix m, final\
-    \ long mod) {\n\t\tassert h == m.h && w == m.w;\n\t\tfinal Matrix mt = new Matrix(h,\
+    \ -> i).toArray();\n\t}\n}\n\nfinal class Matrix implements Cloneable {\n\tprivate\
+    \ final int h, w;\n\tprivate final long[][] mat;\n\tMatrix(final int n){ this(n,\
+    \ n); }\n\tMatrix(final int h, final int w) {\n\t\tthis.h = h;\n\t\tthis.w = w;\n\
+    \t\tmat = new long[h][w];\n\t}\n\tMatrix(final int[][] m) {\n\t\tthis(m.length,\
+    \ m[0].length);\n\t\tIntStream.range(0, h).forEach(i -> IntStream.range(0, w).forEach(j\
+    \ -> mat[i][j] = m[i][j]));\n\t}\n\tMatrix(final long[][] m) {\n\t\tthis(m.length,\
+    \ m[0].length);\n\t\tIntStream.range(0, h).forEach(i -> IntStream.range(0, w).forEach(j\
+    \ -> mat[i][j] = m[i][j]));\n\t}\n\tstatic final Matrix E(final int n) {\n\t\t\
+    final Matrix m = new Matrix(n);\n\t\tIntStream.range(0, n).forEach(i -> m.set(i,\
+    \ i, 1));\n\t\treturn m;\n\t}\n\tfinal long[] getH(final int i){ return mat[i];\
+    \ }\n\tfinal long[] getW(final int i){ return IntStream.range(0, h).mapToLong(j\
+    \ -> mat[j][i]).toArray(); }\n\tfinal long[][] get(){ return mat; }\n\tfinal long\
+    \ get(final int i, final int j){ return mat[i][j]; }\n\tfinal void set(final int\
+    \ i, final int j, final long x){ mat[i][j] = x; }\n\tfinal Matrix add(final Matrix\
+    \ m) {\n\t\tassert h == m.h && w == m.w;\n\t\tfinal Matrix mt = new Matrix(h,\
     \ w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\
-    \t\t\tmt.set(i, j, Utility.mod(mat[i][j] - m.get(i, j), mod));\n\t\t\t}\n\t\t\
-    }\n\t\treturn mt;\n\t}\n\tfinal Matrix mul(final Matrix m) {\n\t\tassert w ==\
-    \ m.h;\n\t\tfinal Matrix mt = new Matrix(h, m.w);\n\t\tfor(int i = 0; i < h; ++i)\
-    \ {\n\t\t\tfor(int j = 0; j < m.w; ++j) {\n\t\t\t\tfor(int k = 0; k < w; ++k)\
-    \ {\n\t\t\t\t\tmt.set(i, j, mt.get(i, j) + mat[i][k] * m.get(k, j));\n\t\t\t\t\
-    }\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix mul(final Matrix m, final\
-    \ long mod) {\n\t\tassert w == m.h;\n\t\tfinal Matrix mt = new Matrix(h, m.w);\n\
+    \t\t\tmt.set(i, j, mat[i][j] + m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\
+    \t}\n\tfinal Matrix add(final Matrix m, final long mod) {\n\t\tassert h == m.h\
+    \ && w == m.w;\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i\
+    \ < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, Utility.mod(mat[i][j]\
+    \ + m.get(i, j), mod));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix sub(final\
+    \ Matrix m) {\n\t\tassert h == m.h && w == m.w;\n\t\tfinal Matrix mt = new Matrix(h,\
+    \ w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\
+    \t\t\tmt.set(i, j, mat[i][j] - m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\
+    \t}\n\tfinal Matrix sub(final Matrix m, final long mod) {\n\t\tassert h == m.h\
+    \ && w == m.w;\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i\
+    \ < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, Utility.mod(mat[i][j]\
+    \ - m.get(i, j), mod));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix mul(final\
+    \ Matrix m) {\n\t\tassert w == m.h;\n\t\tfinal Matrix mt = new Matrix(h, m.w);\n\
     \t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < m.w; ++j) {\n\t\t\t\
-    \tfor(int k = 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i, j, Utility.mod(mt.get(i, j)\
-    \ + mat[i][k] * m.get(k, j), mod));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\
-    \t}\n\tfinal Matrix pow(int k) {\n\t\tMatrix n = clone();\n\t\tMatrix m = Matrix.E(h);\n\
-    \t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(n);\n\t\t\t}\n\t\
-    \t\tn = n.mul(n);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn m;\n\t}\n\tfinal Matrix pow(long\
-    \ k, final long mod) {\n\t\tMatrix n = clone();\n\t\tMatrix m = Matrix.E(h);\n\
-    \t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tm = m.mul(n, mod);\n\t\t\t\
-    }\n\t\t\tn = n.mul(n, mod);\n\t\t\tk >>= 1L;\n\t\t}\n\t\treturn m;\n\t}\n\t@Override\n\
-    \tpublic final boolean equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn\
-    \ true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn\
-    \ false;\n\t\t}\n\t\tfinal Matrix m = (Matrix) o;\n\t\tif(h != m.h || w != m.w)\
-    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int\
-    \ j = 0; j < w; ++j) {\n\t\t\t\tif(mat[i][j] != m.get(i, j)) {\n\t\t\t\t\treturn\
-    \ false;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\t@Override\n\tpublic\
-    \ final Matrix clone() {\n\t\tfinal Matrix m = new Matrix(h, w);\n\t\tfor(int\
-    \ i = 0; i < h; ++i) {\n\t\t\tm.mat[i] = Arrays.copyOf(mat[i], w);\n\t\t}\n\t\t\
-    return m;\n\t}\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
-    \ sb = new StringBuilder();\n\t\tfinal int interval = String.valueOf(IntStream.range(0,\
-    \ h).mapToLong(i -> IntStream.range(0, w).mapToLong(j -> mat[i][j]).max().getAsLong()).max().getAsLong()).length()\
+    \tfor(int k = 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i, j, mt.get(i, j) + mat[i][k]\
+    \ * m.get(k, j));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix\
+    \ mul(final Matrix m, final long mod) {\n\t\tassert w == m.h;\n\t\tfinal Matrix\
+    \ mt = new Matrix(h, m.w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j\
+    \ = 0; j < m.w; ++j) {\n\t\t\t\tfor(int k = 0; k < w; ++k) {\n\t\t\t\t\tmt.set(i,\
+    \ j, Utility.mod(mt.get(i, j) + mat[i][k] * m.get(k, j), mod));\n\t\t\t\t}\n\t\
+    \t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix pow(int k) {\n\t\tMatrix n =\
+    \ clone();\n\t\tMatrix m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 ==\
+    \ 1) {\n\t\t\t\tm = m.mul(n);\n\t\t\t}\n\t\t\tn = n.mul(n);\n\t\t\tk >>= 1;\n\t\
+    \t}\n\t\treturn m;\n\t}\n\tfinal Matrix pow(long k, final long mod) {\n\t\tMatrix\
+    \ n = clone();\n\t\tMatrix m = Matrix.E(h);\n\t\twhile(k > 0) {\n\t\t\tif(k %\
+    \ 2 == 1) {\n\t\t\t\tm = m.mul(n, mod);\n\t\t\t}\n\t\t\tn = n.mul(n, mod);\n\t\
+    \t\tk >>= 1L;\n\t\t}\n\t\treturn m;\n\t}\n\t@Override\n\tpublic final boolean\
+    \ equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\
+    \tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\
+    \tfinal Matrix m = (Matrix) o;\n\t\tif(h != m.h || w != m.w) {\n\t\t\treturn false;\n\
+    \t\t}\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\
+    \t\t\tif(mat[i][j] != m.get(i, j)) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\
+    \t}\n\t\t}\n\t\treturn true;\n\t}\n\t@Override\n\tpublic final Matrix clone()\
+    \ {\n\t\tfinal Matrix m = new Matrix(h, w);\n\t\tfor(int i = 0; i < h; ++i) {\n\
+    \t\t\tm.mat[i] = Arrays.copyOf(mat[i], w);\n\t\t}\n\t\treturn m;\n\t}\n\t@Override\n\
+    \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
+    \t\tfinal int interval = String.valueOf(IntStream.range(0, h).mapToLong(i -> IntStream.range(0,\
+    \ w).mapToLong(j -> mat[i][j]).max().getAsLong()).max().getAsLong()).length()\
     \ + 1;\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tsb.append(\"[\");\n\t\t\tfor(int\
     \ j = 0; j < w; ++j) {\n\t\t\t\tsb.append(String.format(\"%\" + interval + \"\
     d\", mat[i][j]));\n\t\t\t\tif(j + 1 == w) {\n\t\t\t\t\tsb.append(\"]\");\n\t\t\
@@ -2717,7 +2723,7 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-29 05:14:34+09:00'
+  timestamp: '2024-02-29 06:36:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

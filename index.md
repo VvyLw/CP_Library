@@ -578,6 +578,9 @@ data:
       path: test/lcpa.test.cpp
       title: test/lcpa.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/lcs.test.cpp
+      title: test/lcs.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/lis.test.cpp
       title: test/lis.test.cpp
     - icon: ':heavy_check_mark:'

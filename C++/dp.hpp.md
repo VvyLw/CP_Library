@@ -19,6 +19,9 @@ data:
     path: test/knapsack5.test.cpp
     title: test/knapsack5.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/lcs.test.cpp
+    title: test/lcs.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/lis.test.cpp
     title: test/lis.test.cpp
   - icon: ':heavy_check_mark:'
@@ -96,15 +99,21 @@ data:
     \ {\n                if(dp[j - a[i]] + v[i] > dp[j]) {\n                    dp[j]\
     \ = dp[j - a[i]] + v[i];\n                }\n            }\n        }\n    }\n\
     \    return *std::ranges::max_element(dp);\n}\n/**\n * @see https://ei1333.github.io/library/dp/knapsack.hpp\n\
-    \ */\n\ntemplate <class T> inline std::vector<int> lis(const std::vector<T> &v)\
-    \ {\n    const int n = v.size();\n    std::vector<std::pair<T, int>> dp;\n   \
-    \ std::vector<int> p(n, -1), res;\n    for(int i = 0; i < n; ++i) {\n        const\
-    \ auto it = std::ranges::lower_bound(dp, std::make_pair(v[i], -i));\n        if(it\
-    \ != dp.begin()) {\n            p[i] = -prev(it) -> second;\n        }\n     \
-    \   if(it == dp.end()) {\n            dp.emplace_back(std::make_pair(v[i], -i));\n\
-    \        } else {\n            *it = std::make_pair(v[i], -i);\n        }\n  \
-    \  }\n    for(int i = -dp.back().second; i != -1; i = p[i]) {\n        res.emplace_back(i);\n\
-    \    }\n    std::ranges::reverse(res);\n    return res;\n}\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
+    \ */\n\ninline int lcs(const std::string &s, const std::string &t) {\n    const\
+    \ int n = s.size();\n    std::vector<int> dp(n + 1), ndp(n + 1);\n    for(size_t\
+    \ i = 0; i < t.size(); ++i) {\n        for(int j = 0; j < n; ++j) {\n        \
+    \    if(s[j] == t[i]) {\n                ndp[j + 1] = dp[j] + 1;\n           \
+    \ } else {\n                ndp[j + 1] = std::max(ndp[j], dp[j + 1]);\n      \
+    \      }\n        }\n        dp.swap(ndp);\n    }\n    return dp[n];\n}\n\ntemplate\
+    \ <class T> inline std::vector<int> lis(const std::vector<T> &v) {\n    const\
+    \ int n = v.size();\n    std::vector<std::pair<T, int>> dp;\n    std::vector<int>\
+    \ p(n, -1), res;\n    for(int i = 0; i < n; ++i) {\n        const auto it = std::ranges::lower_bound(dp,\
+    \ std::make_pair(v[i], -i));\n        if(it != dp.begin()) {\n            p[i]\
+    \ = -prev(it) -> second;\n        }\n        if(it == dp.end()) {\n          \
+    \  dp.emplace_back(std::make_pair(v[i], -i));\n        } else {\n            *it\
+    \ = std::make_pair(v[i], -i);\n        }\n    }\n    for(int i = -dp.back().second;\
+    \ i != -1; i = p[i]) {\n        res.emplace_back(i);\n    }\n    std::ranges::reverse(res);\n\
+    \    return res;\n}\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
     \ */\n\n/**\n * @brief DP(Knapsack & LIS)\n */\n"
   code: "#pragma once\n\n#include <vector>\n#include <utility>\n#include <algorithm>\n\
     #include <iterator>\n#include <limits>\n#include <numeric>\n\ntemplate <class\
@@ -166,21 +175,27 @@ data:
     \ {\n                if(dp[j - a[i]] + v[i] > dp[j]) {\n                    dp[j]\
     \ = dp[j - a[i]] + v[i];\n                }\n            }\n        }\n    }\n\
     \    return *std::ranges::max_element(dp);\n}\n/**\n * @see https://ei1333.github.io/library/dp/knapsack.hpp\n\
-    \ */\n\ntemplate <class T> inline std::vector<int> lis(const std::vector<T> &v)\
-    \ {\n    const int n = v.size();\n    std::vector<std::pair<T, int>> dp;\n   \
-    \ std::vector<int> p(n, -1), res;\n    for(int i = 0; i < n; ++i) {\n        const\
-    \ auto it = std::ranges::lower_bound(dp, std::make_pair(v[i], -i));\n        if(it\
-    \ != dp.begin()) {\n            p[i] = -prev(it) -> second;\n        }\n     \
-    \   if(it == dp.end()) {\n            dp.emplace_back(std::make_pair(v[i], -i));\n\
-    \        } else {\n            *it = std::make_pair(v[i], -i);\n        }\n  \
-    \  }\n    for(int i = -dp.back().second; i != -1; i = p[i]) {\n        res.emplace_back(i);\n\
-    \    }\n    std::ranges::reverse(res);\n    return res;\n}\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
+    \ */\n\ninline int lcs(const std::string &s, const std::string &t) {\n    const\
+    \ int n = s.size();\n    std::vector<int> dp(n + 1), ndp(n + 1);\n    for(size_t\
+    \ i = 0; i < t.size(); ++i) {\n        for(int j = 0; j < n; ++j) {\n        \
+    \    if(s[j] == t[i]) {\n                ndp[j + 1] = dp[j] + 1;\n           \
+    \ } else {\n                ndp[j + 1] = std::max(ndp[j], dp[j + 1]);\n      \
+    \      }\n        }\n        dp.swap(ndp);\n    }\n    return dp[n];\n}\n\ntemplate\
+    \ <class T> inline std::vector<int> lis(const std::vector<T> &v) {\n    const\
+    \ int n = v.size();\n    std::vector<std::pair<T, int>> dp;\n    std::vector<int>\
+    \ p(n, -1), res;\n    for(int i = 0; i < n; ++i) {\n        const auto it = std::ranges::lower_bound(dp,\
+    \ std::make_pair(v[i], -i));\n        if(it != dp.begin()) {\n            p[i]\
+    \ = -prev(it) -> second;\n        }\n        if(it == dp.end()) {\n          \
+    \  dp.emplace_back(std::make_pair(v[i], -i));\n        } else {\n            *it\
+    \ = std::make_pair(v[i], -i);\n        }\n    }\n    for(int i = -dp.back().second;\
+    \ i != -1; i = p[i]) {\n        res.emplace_back(i);\n    }\n    std::ranges::reverse(res);\n\
+    \    return res;\n}\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
     \ */\n\n/**\n * @brief DP(Knapsack & LIS)\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/dp.hpp
   requiredBy: []
-  timestamp: '2024-02-28 20:21:46+09:00'
+  timestamp: '2024-02-29 06:36:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lis2.test.cpp
@@ -189,6 +204,7 @@ data:
   - test/knapsack.test.cpp
   - test/knapsack4.test.cpp
   - test/lis.test.cpp
+  - test/lcs.test.cpp
   - test/knapsack5.test.cpp
 documentation_of: C++/dp.hpp
 layout: document
