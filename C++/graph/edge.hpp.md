@@ -31,11 +31,11 @@ data:
     path: test/dag_check.test.cpp
     title: test/dag_check.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/dijkstra.test.cpp
+    title: test/dijkstra.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/directed.test.cpp
     title: test/directed.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/kruskal.test.cpp
-    title: test/kruskal.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/lca.test.cpp
     title: test/lca.test.cpp
@@ -48,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/scc2.test.cpp
     title: test/scc2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/shortestpath.test.cpp
+    title: test/shortestpath.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/warshallfloyd.test.cpp
     title: test/warshallfloyd.test.cpp
@@ -82,12 +85,13 @@ data:
   - test/cycledetector.test.cpp
   - test/scc.test.cpp
   - test/manhattan.test.cpp
-  - test/kruskal.test.cpp
   - test/dag_check.test.cpp
   - test/scc2.test.cpp
   - test/lca.test.cpp
   - test/warshallfloyd.test.cpp
   - test/bermanford.test.cpp
+  - test/shortestpath.test.cpp
+  - test/dijkstra.test.cpp
   - test/directed.test.cpp
 documentation_of: C++/graph/edge.hpp
 layout: document

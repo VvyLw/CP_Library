@@ -74,12 +74,12 @@ data:
     \ 0; i--) {\n\t\tif(vis[i] == 1) {\n\t\t\tcontinue;\n\t\t}\n        cost += edges[ins[i]\
     \ -> idx].cost;\n        e.emplace_back(edges[ins[i] -> idx]);\n        for(int\
     \ j = edges[ins[i] -> idx]; j != -1 && vis[j] == 0; j = par[j]) {\n          \
-    \  vis[j] = 1;\n        }\n    }\n    return MST{e, cost};\n}\n\n/**\n * @brief\
-    \ Directed MST\n * @see https://ei1333.github.io/library/graph/mst/directed-mst.hpp\n\
-    \ */\n#line 4 \"test/directed.test.cpp\"\nint main() {\n    int v, e, r;\n   \
-    \ std::cin >> v >> e >> r;\n    std::vector<edge> edges;\n    while(e--) {\n \
-    \       int s, t, w;\n        std::cin >> s >> t >> w;\n        edges.emplace_back(s,\
-    \ t, -1, w);\n    }\n    std::cout << directed(edges, v, r).cost << '\\n';\n}\n"
+    \  vis[j] = 1;\n        }\n    }\n    return {e, cost};\n}\n\n/**\n * @brief Directed\
+    \ MST\n * @see https://ei1333.github.io/library/graph/mst/directed-mst.hpp\n */\n\
+    #line 4 \"test/directed.test.cpp\"\nint main() {\n    int v, e, r;\n    std::cin\
+    \ >> v >> e >> r;\n    std::vector<edge> edges;\n    while(e--) {\n        int\
+    \ s, t, w;\n        std::cin >> s >> t >> w;\n        edges.emplace_back(s, t,\
+    \ -1, w);\n    }\n    std::cout << directed(edges, v, r).cost << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_2_B\"\n#include\
     \ <iostream>\n#include \"C++/graph/mst/directed.hpp\"\nint main() {\n    int v,\
     \ e, r;\n    std::cin >> v >> e >> r;\n    std::vector<edge> edges;\n    while(e--)\
@@ -93,7 +93,7 @@ data:
   isVerificationFile: true
   path: test/directed.test.cpp
   requiredBy: []
-  timestamp: '2024-02-19 13:17:33+09:00'
+  timestamp: '2024-02-29 01:03:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/directed.test.cpp

@@ -78,6 +78,9 @@ data:
       path: C++/graph/SCC.hpp
       title: SCC
     - icon: ':heavy_check_mark:'
+      path: C++/graph/ShortestPath.hpp
+      title: "\u6700\u77ED\u8DEF"
+    - icon: ':heavy_check_mark:'
       path: C++/graph/WeightedGraph.hpp
       title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
     - icon: ':heavy_check_mark:'
@@ -423,6 +426,9 @@ data:
       path: Java/library/graph/SCC.java
       title: Java/library/graph/SCC.java
     - icon: ':warning:'
+      path: Java/library/graph/ShortestPath.java
+      title: Java/library/graph/ShortestPath.java
+    - icon: ':warning:'
       path: Java/library/graph/WeightedGraph.java
       title: Java/library/graph/WeightedGraph.java
   - name: Java/library/math
@@ -509,6 +515,9 @@ data:
       path: test/depq.test.cpp
       title: test/depq.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/dijkstra.test.cpp
+      title: test/dijkstra.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/directed.test.cpp
       title: test/directed.test.cpp
     - icon: ':heavy_check_mark:'
@@ -544,9 +553,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/knapsack5.test.cpp
       title: test/knapsack5.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/kruskal.test.cpp
-      title: test/kruskal.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/kthrooti.test.cpp
       title: test/kthrooti.test.cpp
@@ -637,6 +643,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/segtree2.test.cpp
       title: test/segtree2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/shortestpath.test.cpp
+      title: test/shortestpath.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/sr_sum.test.cpp
       title: test/sr_sum.test.cpp

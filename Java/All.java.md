@@ -218,6 +218,9 @@ data:
     path: Java/library/graph/SCC.java
     title: Java/library/graph/SCC.java
   - icon: ':warning:'
+    path: Java/library/graph/ShortestPath.java
+    title: Java/library/graph/ShortestPath.java
+  - icon: ':warning:'
     path: Java/library/graph/WeightedGraph.java
     title: Java/library/graph/WeightedGraph.java
   - icon: ':warning:'
@@ -485,6 +488,9 @@ data:
   - icon: ':warning:'
     path: Java/library/graph/SCC.java
     title: Java/library/graph/SCC.java
+  - icon: ':warning:'
+    path: Java/library/graph/ShortestPath.java
+    title: Java/library/graph/ShortestPath.java
   - icon: ':warning:'
     path: Java/library/graph/WeightedGraph.java
     title: Java/library/graph/WeightedGraph.java
@@ -1467,28 +1473,37 @@ data:
     \t\t\tsb.append(i + \": [\");\n\t\t\tfor(int j = 0; j < m; ++j) {\n\t\t\t\tsb.append(get(i).get(j).to);\n\
     \t\t\t\tif(j + 1 < m) {\n\t\t\t\t\tsb.append(\", \");\n\t\t\t\t}\n\t\t\t}\n\t\t\
     \tsb.append(']');\n\t\t\tif(i + 1 < n) {\n\t\t\t\tsb.append('\\n');\n\t\t\t}\n\
-    \t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nfinal class MST {\n\tpublic final\
-    \ ArrayList<Edge> tree;\n\tpublic final long cost;\n\tMST(final ArrayList<Edge>\
-    \ tree, final long cost) {\n\t\tthis.tree = tree;\n\t\tthis.cost = cost;\n\t}\n\
-    }\nfinal class WeightedGraph extends Graph {\n\tWeightedGraph(final int n, final\
-    \ boolean undirected){ super(n, undirected); }\n\tWeightedGraph(final int n, final\
-    \ int indexed, final boolean undirected){ super(n, indexed, undirected); }\n\t\
-    final void addEdge(int a, int b, final long cost) {\n\t\ta -= indexed;\n\t\tb\
-    \ -= indexed;\n\t\tthis.get(a).add(new Edge(a, b, cost, id));\n\t\tedge.add(new\
-    \ Edge(a, b, cost, id++));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new Edge(b,\
-    \ a, cost, --id));\n\t\t\tedge.add(new Edge(b, a, cost, id++));\n\t\t}\n\t}\n\t\
-    final void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(),\
-    \ VvyLw.io.ni(), VvyLw.io.nl())); }\n\tfinal long[] dijkstra(final int v) {\n\t\
+    \t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nfinal class ShortestPath {\n\tprivate\
+    \ final long[] cost;\n\tprivate final int[] src;\n\tShortestPath(final long[]\
+    \ cost, final int[] src) {\n\t\tthis.cost = cost;\n\t\tthis.src = src;\n\t}\n\t\
+    final boolean isThrough(final int i){ return src[i] != -1; }\n\tfinal int[] path(int\
+    \ i) {\n\t\tfinal List<Integer> res = new ArrayList<>();\n\t\tfor(; i != -1; i\
+    \ = src[i]) {\n\t\t\tres.add(i);\n\t\t}\n\t\tCollections.reverse(res);\n\t\treturn\
+    \ res.stream().mapToInt(k -> k).toArray();\n\t}\n\tfinal long[] get(){ return\
+    \ cost; }\n}\nfinal class MST {\n\tpublic final ArrayList<Edge> tree;\n\tpublic\
+    \ final long cost;\n\tMST(final ArrayList<Edge> tree, final long cost) {\n\t\t\
+    this.tree = tree;\n\t\tthis.cost = cost;\n\t}\n}\nfinal class WeightedGraph extends\
+    \ Graph {\n\tWeightedGraph(final int n, final boolean undirected){ super(n, undirected);\
+    \ }\n\tWeightedGraph(final int n, final int indexed, final boolean undirected){\
+    \ super(n, indexed, undirected); }\n\tfinal void addEdge(int a, int b, final long\
+    \ cost) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(a,\
+    \ b, cost, id));\n\t\tedge.add(new Edge(a, b, cost, id++));\n\t\tif(undirected)\
+    \ {\n\t\t\tthis.get(b).add(new Edge(b, a, cost, --id));\n\t\t\tedge.add(new Edge(b,\
+    \ a, cost, id++));\n\t\t}\n\t}\n\tfinal void input(final int m){ IntStream.range(0,\
+    \ m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni(), VvyLw.io.nl())); }\n\t\
+    final ShortestPath dijkstra(final int v) {\n\t\tfinal long[] cost = new long[n];\n\
+    \t\tfinal int[] src = new int[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\t\
+    Arrays.fill(src, -1);\n\t\tfinal Queue<IntPair> dj = new PriorityQueue<>();\n\t\
+    \tcost[v] = 0;\n\t\tdj.add(IntPair.of(cost[v], v));\n\t\twhile(!dj.isEmpty())\
+    \ {\n\t\t\tfinal IntPair tmp = dj.poll();\n\t\t\tif(cost[tmp.second.intValue()]\
+    \ < tmp.first.longValue()) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final Edge\
+    \ ed: this.get(tmp.second.intValue())) {\n\t\t\t\tfinal long next = tmp.first.longValue()\
+    \ + ed.cost;\n\t\t\t\tif(cost[ed.to] <= next) {\n\t\t\t\t\tcontinue;\n\t\t\t\t\
+    }\n\t\t\t\tcost[ed.to] = next;\n\t\t\t\tsrc[ed.to] = tmp.second.intValue();\n\t\
+    \t\t\tdj.add(IntPair.of(cost[ed.to], ed.to));\n\t\t\t}\n\t\t}\n\t\treturn new\
+    \ ShortestPath(cost, src);\n\t}\n\tfinal long[] bellmanFord(final int v) {\n\t\
     \tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\
-    \tfinal Queue<IntPair> dj = new PriorityQueue<>();\n\t\tcost[v] = 0;\n\t\tdj.add(IntPair.of(cost[v],\
-    \ v));\n\t\twhile(!dj.isEmpty()) {\n\t\t\tfinal IntPair tmp = dj.poll();\n\t\t\
-    \tif(cost[tmp.second.intValue()] < tmp.first.longValue()) {\n\t\t\t\tcontinue;\n\
-    \t\t\t}\n\t\t\tfor(final Edge el: this.get(tmp.second.intValue())) {\n\t\t\t\t\
-    if(cost[el.to] > tmp.first.longValue() + el.cost) {\n\t\t\t\t\tcost[el.to] = tmp.first.longValue()\
-    \ + el.cost;\n\t\t\t\t\tdj.add(IntPair.of(cost[el.to], el.to));\n\t\t\t\t}\n\t\
-    \t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[] bellmanFord(final int v) {\n\
-    \t\tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
-    \t\tcost[v] = 0;\n\t\tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final\
+    \tcost[v] = 0;\n\t\tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final\
     \ Edge e: edge) {\n\t\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\t\tcontinue;\n\
     \t\t\t\t}\n\t\t\t\tif(cost[e.to] > cost[e.src] + e.cost) {\n\t\t\t\t\tcost[e.to]\
     \ = cost[e.src] + e.cost;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(final Edge e: edge)\
@@ -1861,8 +1876,8 @@ data:
     \tp[i] = -dp.get(id - 1).second.intValue();\n\t\t\t}\n\t\t\tif(id == dp.size())\
     \ {\n\t\t\t\tdp.add(IntPair.of(a[i], -i));\n\t\t\t} else {\n\t\t\t\tdp.set(id,\
     \ IntPair.of(a[i], -i));\n\t\t\t}\n\t\t}\n\t\tfinal List<Integer> res = new ArrayList<Integer>();\n\
-    \t\tfor(int i = -dp.getLast().second.intValue(); i != -1; i = p[i]) {\n\t\t\t\
-    res.add(i);\n\t\t}\n\t\tCollections.reverse(res);\n\t\treturn res.stream().mapToInt(i\
+    \t\tfor(int i = -dp.get(dp.size() - 1).second.intValue(); i != -1; i = p[i]) {\n\
+    \t\t\tres.add(i);\n\t\t}\n\t\tCollections.reverse(res);\n\t\treturn res.stream().mapToInt(i\
     \ -> i).toArray();\n\t}\n\tstatic final int[] lis(final long[] a) {\n\t\tfinal\
     \ int n = a.length;\n\t\tList<IntPair> dp = new ArrayList<IntPair>();\n\t\tfinal\
     \ int[] p = new int[n];\n\t\tArrays.fill(p, -1);\n\t\tfor(int i = 0; i < n; ++i)\
@@ -1870,7 +1885,7 @@ data:
     if(id != 0) {\n\t\t\t\tp[i] = -dp.get(id - 1).second.intValue();\n\t\t\t}\n\t\t\
     \tif(id == n) {\n\t\t\t\tdp.add(IntPair.of(a[i], -i));\n\t\t\t} else {\n\t\t\t\
     \tdp.set(id, IntPair.of(a[i], -i));\n\t\t\t}\n\t\t}\n\t\tfinal List<Integer> res\
-    \ = new ArrayList<Integer>();\n\t\tfor(int i = -dp.getLast().second.intValue();\
+    \ = new ArrayList<Integer>();\n\t\tfor(int i = -dp.get(dp.size() - 1).second.intValue();\
     \ i != -1; i = p[i]) {\n\t\t\tres.add(i);\n\t\t}\n\t\tCollections.reverse(res);\n\
     \t\treturn res.stream().mapToInt(i -> i).toArray();\n\t}\n}\n\nfinal class Matrix\
     \ implements Cloneable {\n\tprivate final int h, w;\n\tprivate final long[][]\
@@ -2523,6 +2538,7 @@ data:
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/MST.java
   - Java/library/graph/LowestCommonAncestor.java
+  - Java/library/graph/ShortestPath.java
   - Java/library/graph/Graph.java
   - Java/library/graph/SCC.java
   - Java/library/graph/Edge.java
@@ -2615,6 +2631,7 @@ data:
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/MST.java
   - Java/library/graph/LowestCommonAncestor.java
+  - Java/library/graph/ShortestPath.java
   - Java/library/graph/Graph.java
   - Java/library/graph/SCC.java
   - Java/library/graph/Edge.java
@@ -2700,7 +2717,7 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-28 20:12:22+09:00'
+  timestamp: '2024-02-29 01:03:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

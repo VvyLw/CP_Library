@@ -5,6 +5,9 @@ data:
     path: C++/graph/Graph.hpp
     title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
   - icon: ':heavy_check_mark:'
+    path: C++/graph/ShortestPath.hpp
+    title: "\u6700\u77ED\u8DEF"
+  - icon: ':heavy_check_mark:'
     path: C++/graph/WeightedGraph.hpp
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
   - icon: ':heavy_check_mark:'
@@ -69,7 +72,16 @@ data:
     \ {\r\n\t\t\t\tstd::reverse(cycle.begin(), cycle.end());\r\n\t\t\t\treturn cycle;\r\
     \n\t\t\t}\r\n\t\t}\r\n\t\treturn {};\r\n    }\r\n};\r\ntypedef std::vector<edge>\
     \ ve;\r\ntypedef std::vector<ve> we;\r\n\r\n/**\r\n * @brief \u30B0\u30E9\u30D5\
-    \u30E9\u30A4\u30D6\u30E9\u30EA\r\n */\n#line 5 \"C++/graph/WeightedGraph.hpp\"\
+    \u30E9\u30A4\u30D6\u30E9\u30EA\r\n */\n#line 2 \"C++/graph/ShortestPath.hpp\"\n\
+    \n#pragma GCC diagnostic ignored \"-Wreorder\"\n\n#line 6 \"C++/graph/ShortestPath.hpp\"\
+    \n#include <algorithm>\nstruct ShortestPath {\nprivate:\n    const std::vector<long\
+    \ long> cost;\n    const std::vector<int> src;\npublic:\n    ShortestPath(const\
+    \ std::vector<long long> &cost, const std::vector<int> &src): cost(cost), src(src){}\n\
+    \    bool is_thru(const int i){ return src[i] != -1; }\n    std::vector<int> path(int\
+    \ i) {\n        std::vector<int> res;\n        for(; i != -1; i = src[i]) {\n\t\
+    \t\tres.emplace_back(i);\n\t\t}\n        std::ranges::reverse(res);\n        return\
+    \ res;\n    }\n    std::vector<long long> get() const { return cost; }\n};\n\n\
+    /**\n * @brief \u6700\u77ED\u8DEF\n */\n#line 6 \"C++/graph/WeightedGraph.hpp\"\
     \ntemplate <bool undirected = true> struct w_graph: public graph<undirected> {\n\
     private:\n    using graph<undirected>::indexed;\n    using graph<undirected>::id;\n\
     \    using graph<undirected>::edges;\npublic:\n    w_graph(const int n, const\
@@ -82,44 +94,45 @@ data:
     \ a, id++, cost);\n        }\n    }\n    void input(const int m) {\n        for(int\
     \ i = 0; i < m; ++i) {\n            int a, b;\n            long long c;\n    \
     \        std::cin >> a >> b >> c;\n            add(a, b, c);\n        }\n    }\n\
-    \    std::vector<long long> dijkstra(const int v) {\n        std::vector<long\
-    \ long> cst(this -> size(), (1LL << 61) - 1);\n        std::priority_queue<std::pair<long\
-    \ long, int>, std::vector<std::pair<long long, int>>, std::greater<std::pair<long\
-    \ long, int>>> dj;\n        cst[v] = 0;\n        dj.emplace(cst[v], v);\n    \
-    \    while(dj.size()) {\n            const auto tmp = dj.top();\n            dj.pop();\n\
-    \            if(cst[tmp.second] < tmp.first) {\n                continue;\n  \
-    \          }\n            for(const auto &el: (*this)[tmp.second]) {\n       \
-    \         if(chmin(cst[el], tmp.first + el.cost)) {\n                    dj.emplace(cst[el],\
-    \ el);\n                }\n            }\n        }\n        return cst;\n   \
-    \ }\n    std::vector<long long> bellman_ford(const int v) {\n        const long\
-    \ long lim = std::numeric_limits<long long>::max();\n        std::vector<long\
-    \ long> cst(this -> size(), lim);\n        cst[v] = 0;\n        for(size_t i =\
-    \ 0; i < this -> size() - 1; ++i) {\n\t\t\tfor(const auto &e: edges) {\n\t\t\t\
-    \tif(cst[e.src] == lim) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\tchmin(cst[e],\
-    \ cst[e.src] + e.cost);\n\t\t\t}\n\t\t}\n\t\tfor(const auto &e: edges) {\n\t\t\
-    \tif(cst[e.src] == lim) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tif(cst[e.src] + e.cost\
-    \ < cst[e]) {\n\t\t\t\treturn std::vector<long long>{};\n\t\t\t}\n\t\t}\n\t\t\
-    return cst;\n    }\n    std::vector<std::vector<long long>> warshall_floyd() {\n\
-    \t\tconst int n = this -> size();\n        const long long lim = (1LL << 61) -\
-    \ 1;\n\t\tstd::vector cst(n, std::vector(n, lim));\n\t\tfor(int i = 0; i < n;\
-    \ ++i) {\n            cst[i][i] = 0;\n        }\n\t\tfor(int i = 0; i < n; ++i)\
-    \ {\n            for(const auto &j: (*this)[i]) {\n                cst[i][j] =\
-    \ j.cost;\n            }\n        }\n\t\tfor(int k = 0; k < n; ++k) {\n      \
-    \      for(int i = 0; i < n; ++i) {\n                for(int j = 0; j < n; ++j)\
-    \ {\n                    if(cst[i][k] == lim || cst[k][j] == lim) {\n        \
-    \                continue;\n                    }\n                    chmin(cst[i][j],\
-    \ cst[i][k] + cst[k][j]);\n                }\n            }\n        }\n\t\treturn\
-    \ cst;\n\t}\n};\n\n/**\n * @brief \u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\
-    \u30A4\u30D6\u30E9\u30EA\n */\n#line 3 \"test/warshallfloyd.test.cpp\"\nconstexpr\
-    \ long long lim = (1LL << 61) - 1;\nint main() {\n    int v, e;\n    std::cin\
-    \ >> v >> e;\n    w_graph<false> g(v, 0);\n    g.input(e);\n    const auto res\
-    \ = g.warshall_floyd();\n    for(int i = 0; i < v; ++i) {\n        if(res[i][i]\
-    \ < 0) {\n            std::cout << \"NEGATIVE CYCLE\\n\";\n            std::exit(0);\n\
-    \        }\n    }\n    for(const auto &w: res) {\n        for(int i = 0; i < v;\
-    \ ++i) {\n            if(w[i] == lim) {\n                std::cout << \"INF\"\
-    \ << \" \\n\"[i + 1 == v];\n            }\n            else {\n              \
-    \  std::cout << w[i] << \" \\n\"[i + 1 == v];\n            }\n        }\n    }\n\
-    }\n"
+    \    ShortestPath dijkstra(const int v) {\n        std::vector<long long> cst(this\
+    \ -> size(), (1LL << 61) - 1);\n        std::vector<int> src(this -> size(), -1);\n\
+    \        std::priority_queue<std::pair<long long, int>, std::vector<std::pair<long\
+    \ long, int>>, std::greater<std::pair<long long, int>>> dj;\n        cst[v] =\
+    \ 0;\n        dj.emplace(cst[v], v);\n        while(dj.size()) {\n           \
+    \ const auto tmp = dj.top();\n            dj.pop();\n            if(cst[tmp.second]\
+    \ < tmp.first) {\n                continue;\n            }\n            for(const\
+    \ auto &el: (*this)[tmp.second]) {\n                if(chmin(cst[el], tmp.first\
+    \ + el.cost)) {\n                    src[el] = tmp.second;\n                 \
+    \   dj.emplace(cst[el], el);\n                }\n            }\n        }\n  \
+    \      return {cst, src};\n    }\n    std::vector<long long> bellman_ford(const\
+    \ int v) {\n        const long long lim = std::numeric_limits<long long>::max();\n\
+    \        std::vector<long long> cst(this -> size(), lim);\n        cst[v] = 0;\n\
+    \        for(size_t i = 0; i < this -> size() - 1; ++i) {\n\t\t\tfor(const auto\
+    \ &e: edges) {\n\t\t\t\tif(cst[e.src] == lim) {\n\t\t\t\t\tcontinue;\n\t\t\t\t\
+    }\n\t\t\t\tchmin(cst[e], cst[e.src] + e.cost);\n\t\t\t}\n\t\t}\n\t\tfor(const\
+    \ auto &e: edges) {\n\t\t\tif(cst[e.src] == lim) {\n\t\t\t\tcontinue;\n\t\t\t\
+    }\n\t\t\tif(cst[e.src] + e.cost < cst[e]) {\n\t\t\t\treturn std::vector<long long>{};\n\
+    \t\t\t}\n\t\t}\n\t\treturn cst;\n    }\n    std::vector<std::vector<long long>>\
+    \ warshall_floyd() {\n\t\tconst int n = this -> size();\n        const long long\
+    \ lim = (1LL << 61) - 1;\n\t\tstd::vector cst(n, std::vector(n, lim));\n\t\tfor(int\
+    \ i = 0; i < n; ++i) {\n            cst[i][i] = 0;\n        }\n\t\tfor(int i =\
+    \ 0; i < n; ++i) {\n            for(const auto &j: (*this)[i]) {\n           \
+    \     cst[i][j] = j.cost;\n            }\n        }\n\t\tfor(int k = 0; k < n;\
+    \ ++k) {\n            for(int i = 0; i < n; ++i) {\n                for(int j\
+    \ = 0; j < n; ++j) {\n                    if(cst[i][k] == lim || cst[k][j] ==\
+    \ lim) {\n                        continue;\n                    }\n         \
+    \           chmin(cst[i][j], cst[i][k] + cst[k][j]);\n                }\n    \
+    \        }\n        }\n\t\treturn cst;\n\t}\n};\n\n/**\n * @brief \u91CD\u307F\
+    \u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA\n */\n#line 3 \"\
+    test/warshallfloyd.test.cpp\"\nconstexpr long long lim = (1LL << 61) - 1;\nint\
+    \ main() {\n    int v, e;\n    std::cin >> v >> e;\n    w_graph<false> g(v, 0);\n\
+    \    g.input(e);\n    const auto res = g.warshall_floyd();\n    for(int i = 0;\
+    \ i < v; ++i) {\n        if(res[i][i] < 0) {\n            std::cout << \"NEGATIVE\
+    \ CYCLE\\n\";\n            std::exit(0);\n        }\n    }\n    for(const auto\
+    \ &w: res) {\n        for(int i = 0; i < v; ++i) {\n            if(w[i] == lim)\
+    \ {\n                std::cout << \"INF\" << \" \\n\"[i + 1 == v];\n         \
+    \   }\n            else {\n                std::cout << w[i] << \" \\n\"[i + 1\
+    \ == v];\n            }\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_C\"\
     \n#include \"C++/graph/WeightedGraph.hpp\"\nconstexpr long long lim = (1LL <<\
     \ 61) - 1;\nint main() {\n    int v, e;\n    std::cin >> v >> e;\n    w_graph<false>\
@@ -134,10 +147,11 @@ data:
   - C++/graph/WeightedGraph.hpp
   - C++/graph/Graph.hpp
   - C++/graph/edge.hpp
+  - C++/graph/ShortestPath.hpp
   isVerificationFile: true
   path: test/warshallfloyd.test.cpp
   requiredBy: []
-  timestamp: '2024-02-22 06:53:31+09:00'
+  timestamp: '2024-02-29 01:03:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/warshallfloyd.test.cpp

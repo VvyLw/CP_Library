@@ -10,9 +10,6 @@ data:
     title: "Kruskal\u6CD5"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/kruskal.test.cpp
-    title: test/kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/manhattan.test.cpp
     title: test/manhattan.test.cpp
   - icon: ':heavy_check_mark:'
@@ -88,7 +85,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manhattan.test.cpp
-  - test/kruskal.test.cpp
   - test/uf.test.cpp
 documentation_of: C++/ds/uf/UnionFind.hpp
 layout: document

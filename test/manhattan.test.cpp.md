@@ -65,8 +65,8 @@ data:
     \ &e, const edge &f){ return e.cost < f.cost; });\n    UnionFind uf(n);\n    std::vector<edge>\
     \ e;\n    long long res = 0;\n    for(const auto &ed: edges) {\n        if(uf.unite(ed.src,\
     \ ed)) {\n            e.emplace_back(ed);\n            res += ed.cost;\n     \
-    \   }\n    }\n    return MST{e, res};\n}\n\n/**\n * @brief Kruskal\u6CD5\n */\n\
-    #line 2 \"C++/graph/mst/manhattan.hpp\"\n\n#line 4 \"C++/graph/mst/manhattan.hpp\"\
+    \   }\n    }\n    return {e, res};\n}\n\n/**\n * @brief Kruskal\u6CD5\n */\n#line\
+    \ 2 \"C++/graph/mst/manhattan.hpp\"\n\n#line 4 \"C++/graph/mst/manhattan.hpp\"\
     \n#include <map>\n#include <numeric>\n#line 7 \"C++/graph/mst/manhattan.hpp\"\n\
     template <class T> inline std::vector<edge> manhattan(std::vector<T> x, std::vector<T>\
     \ y) {\n    assert(x.size() == y.size());\n    std::vector<edge> res;\n    std::vector<int>\
@@ -103,7 +103,7 @@ data:
   isVerificationFile: true
   path: test/manhattan.test.cpp
   requiredBy: []
-  timestamp: '2024-02-27 11:03:02+09:00'
+  timestamp: '2024-02-29 01:03:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/manhattan.test.cpp

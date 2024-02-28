@@ -19,9 +19,6 @@ data:
     path: test/directed.test.cpp
     title: test/directed.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/kruskal.test.cpp
-    title: test/kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/manhattan.test.cpp
     title: test/manhattan.test.cpp
   _isVerificationFailed: false
@@ -52,7 +49,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manhattan.test.cpp
-  - test/kruskal.test.cpp
   - test/directed.test.cpp
 documentation_of: C++/graph/mst/MST.hpp
 layout: document

@@ -72,9 +72,8 @@ data:
     \ 0; i--) {\n\t\tif(vis[i] == 1) {\n\t\t\tcontinue;\n\t\t}\n        cost += edges[ins[i]\
     \ -> idx].cost;\n        e.emplace_back(edges[ins[i] -> idx]);\n        for(int\
     \ j = edges[ins[i] -> idx]; j != -1 && vis[j] == 0; j = par[j]) {\n          \
-    \  vis[j] = 1;\n        }\n    }\n    return MST{e, cost};\n}\n\n/**\n * @brief\
-    \ Directed MST\n * @see https://ei1333.github.io/library/graph/mst/directed-mst.hpp\n\
-    \ */\n"
+    \  vis[j] = 1;\n        }\n    }\n    return {e, cost};\n}\n\n/**\n * @brief Directed\
+    \ MST\n * @see https://ei1333.github.io/library/graph/mst/directed-mst.hpp\n */\n"
   code: "#pragma once\n\n#include \"C++/graph/mst/MST.hpp\"\n#include \"C++/SkewHeap.hpp\"\
     \ninline MST directed(std::vector<edge> edges, const int n, const int v) {\n \
     \   for(int i = 0; i < n; ++i) {\n        if(i != v) {\n            edges.emplace_back(i,\
@@ -97,8 +96,8 @@ data:
     \ e;\n    for(int i = x; i >= 0; i--) {\n\t\tif(vis[i] == 1) {\n\t\t\tcontinue;\n\
     \t\t}\n        cost += edges[ins[i] -> idx].cost;\n        e.emplace_back(edges[ins[i]\
     \ -> idx]);\n        for(int j = edges[ins[i] -> idx]; j != -1 && vis[j] == 0;\
-    \ j = par[j]) {\n            vis[j] = 1;\n        }\n    }\n    return MST{e,\
-    \ cost};\n}\n\n/**\n * @brief Directed MST\n * @see https://ei1333.github.io/library/graph/mst/directed-mst.hpp\n\
+    \ j = par[j]) {\n            vis[j] = 1;\n        }\n    }\n    return {e, cost};\n\
+    }\n\n/**\n * @brief Directed MST\n * @see https://ei1333.github.io/library/graph/mst/directed-mst.hpp\n\
     \ */"
   dependsOn:
   - C++/graph/mst/MST.hpp
@@ -107,7 +106,7 @@ data:
   isVerificationFile: false
   path: C++/graph/mst/directed.hpp
   requiredBy: []
-  timestamp: '2024-02-19 13:17:33+09:00'
+  timestamp: '2024-02-29 01:03:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/directed.test.cpp

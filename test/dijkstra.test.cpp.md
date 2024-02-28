@@ -8,36 +8,29 @@ data:
     path: C++/graph/ShortestPath.hpp
     title: "\u6700\u77ED\u8DEF"
   - icon: ':heavy_check_mark:'
+    path: C++/graph/WeightedGraph.hpp
+    title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
+  - icon: ':heavy_check_mark:'
     path: C++/graph/edge.hpp
     title: Edge
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/bermanford.test.cpp
-    title: test/bermanford.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/dijkstra.test.cpp
-    title: test/dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/shortestpath.test.cpp
-    title: test/shortestpath.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/warshallfloyd.test.cpp
-    title: test/warshallfloyd.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    document_title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\
-      \u30EA"
-    links: []
-  bundledCode: "#line 2 \"C++/graph/WeightedGraph.hpp\"\n\n#include <limits>\n#line\
-    \ 2 \"C++/graph/Graph.hpp\"\n\r\n#include <iostream>\r\n#include <vector>\r\n\
-    #include <queue>\r\n#include <stack>\r\n#ifndef TEMPLATE\r\ntemplate <class T,\
-    \ class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }\r\
-    \n#endif\r\n#line 2 \"C++/graph/edge.hpp\"\n\nstruct edge {\n    int src, to,\
-    \ id;\n    long long cost;\n    edge(){}\n    edge(const int src_, const int to_,\
-    \ const int id_ = -1, const long long cost_ = 0): src(src_), to(to_), id(id_),\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A
+  bundledCode: "#line 1 \"test/dijkstra.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A\"\
+    \n#include <iostream>\n#line 2 \"C++/graph/WeightedGraph.hpp\"\n\n#include <limits>\n\
+    #line 2 \"C++/graph/Graph.hpp\"\n\r\n#line 4 \"C++/graph/Graph.hpp\"\n#include\
+    \ <vector>\r\n#include <queue>\r\n#include <stack>\r\n#ifndef TEMPLATE\r\ntemplate\
+    \ <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return\
+    \ 0; }\r\n#endif\r\n#line 2 \"C++/graph/edge.hpp\"\n\nstruct edge {\n    int src,\
+    \ to, id;\n    long long cost;\n    edge(){}\n    edge(const int src_, const int\
+    \ to_, const int id_ = -1, const long long cost_ = 0): src(src_), to(to_), id(id_),\
     \ cost(cost_){}\n    operator int() const { return to; }\n};\n\n/**\n * @brief\
     \ Edge\n */\n#line 11 \"C++/graph/Graph.hpp\"\ntemplate <bool undirected = true>\
     \ struct graph: std::vector<std::vector<edge>> {\r\nprotected:\r\n    int indexed,\
@@ -131,69 +124,34 @@ data:
     \ lim) {\n                        continue;\n                    }\n         \
     \           chmin(cst[i][j], cst[i][k] + cst[k][j]);\n                }\n    \
     \        }\n        }\n\t\treturn cst;\n\t}\n};\n\n/**\n * @brief \u91CD\u307F\
-    \u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA\n */\n"
-  code: "#pragma once\n\n#include <limits>\n#include \"C++/graph/Graph.hpp\"\n#include\
-    \ \"C++/graph/ShortestPath.hpp\"\ntemplate <bool undirected = true> struct w_graph:\
-    \ public graph<undirected> {\nprivate:\n    using graph<undirected>::indexed;\n\
-    \    using graph<undirected>::id;\n    using graph<undirected>::edges;\npublic:\n\
-    \    w_graph(const int n, const int indexed_ = 1): graph<undirected>(n, indexed_){}\n\
-    \    using graph<undirected>::all_dist;\n    using graph<undirected>::dist;\n\
-    \    using graph<undirected>::t_sort;\n    using graph<undirected>::cycle;\n \
-    \   void add(int a, int b, const long long cost) {\n        a -= indexed, b -=\
-    \ indexed;\n        (*this)[a].emplace_back(a, b, id, cost);\n        edges.emplace_back(a,\
-    \ b, id++, cost);\n        if(undirected) {\n            (*this)[b].emplace_back(b,\
-    \ a, --id, cost);\n            edges.emplace_back(b, a, id++, cost);\n       \
-    \ }\n    }\n    void input(const int m) {\n        for(int i = 0; i < m; ++i)\
-    \ {\n            int a, b;\n            long long c;\n            std::cin >>\
-    \ a >> b >> c;\n            add(a, b, c);\n        }\n    }\n    ShortestPath\
-    \ dijkstra(const int v) {\n        std::vector<long long> cst(this -> size(),\
-    \ (1LL << 61) - 1);\n        std::vector<int> src(this -> size(), -1);\n     \
-    \   std::priority_queue<std::pair<long long, int>, std::vector<std::pair<long\
-    \ long, int>>, std::greater<std::pair<long long, int>>> dj;\n        cst[v] =\
-    \ 0;\n        dj.emplace(cst[v], v);\n        while(dj.size()) {\n           \
-    \ const auto tmp = dj.top();\n            dj.pop();\n            if(cst[tmp.second]\
-    \ < tmp.first) {\n                continue;\n            }\n            for(const\
-    \ auto &el: (*this)[tmp.second]) {\n                if(chmin(cst[el], tmp.first\
-    \ + el.cost)) {\n                    src[el] = tmp.second;\n                 \
-    \   dj.emplace(cst[el], el);\n                }\n            }\n        }\n  \
-    \      return {cst, src};\n    }\n    std::vector<long long> bellman_ford(const\
-    \ int v) {\n        const long long lim = std::numeric_limits<long long>::max();\n\
-    \        std::vector<long long> cst(this -> size(), lim);\n        cst[v] = 0;\n\
-    \        for(size_t i = 0; i < this -> size() - 1; ++i) {\n\t\t\tfor(const auto\
-    \ &e: edges) {\n\t\t\t\tif(cst[e.src] == lim) {\n\t\t\t\t\tcontinue;\n\t\t\t\t\
-    }\n\t\t\t\tchmin(cst[e], cst[e.src] + e.cost);\n\t\t\t}\n\t\t}\n\t\tfor(const\
-    \ auto &e: edges) {\n\t\t\tif(cst[e.src] == lim) {\n\t\t\t\tcontinue;\n\t\t\t\
-    }\n\t\t\tif(cst[e.src] + e.cost < cst[e]) {\n\t\t\t\treturn std::vector<long long>{};\n\
-    \t\t\t}\n\t\t}\n\t\treturn cst;\n    }\n    std::vector<std::vector<long long>>\
-    \ warshall_floyd() {\n\t\tconst int n = this -> size();\n        const long long\
-    \ lim = (1LL << 61) - 1;\n\t\tstd::vector cst(n, std::vector(n, lim));\n\t\tfor(int\
-    \ i = 0; i < n; ++i) {\n            cst[i][i] = 0;\n        }\n\t\tfor(int i =\
-    \ 0; i < n; ++i) {\n            for(const auto &j: (*this)[i]) {\n           \
-    \     cst[i][j] = j.cost;\n            }\n        }\n\t\tfor(int k = 0; k < n;\
-    \ ++k) {\n            for(int i = 0; i < n; ++i) {\n                for(int j\
-    \ = 0; j < n; ++j) {\n                    if(cst[i][k] == lim || cst[k][j] ==\
-    \ lim) {\n                        continue;\n                    }\n         \
-    \           chmin(cst[i][j], cst[i][k] + cst[k][j]);\n                }\n    \
-    \        }\n        }\n\t\treturn cst;\n\t}\n};\n\n/**\n * @brief \u91CD\u307F\
-    \u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA\n */"
+    \u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA\n */\n#line 4 \"\
+    test/dijkstra.test.cpp\"\nconstexpr long long LINF = (1LL << 61) - 1;\nint main()\
+    \ {\n    int v, e, r;\n    std::cin >> v >> e >> r;\n    w_graph<false> g(v, 0);\n\
+    \    g.input(e);\n    const auto dj = g.dijkstra(r).get();\n    for(const auto\
+    \ &el: dj) {\n        if(el == LINF) {\n            std::cout << \"INF\\n\";\n\
+    \        } else {\n            std::cout << el << '\\n';\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A\"\n#include\
+    \ <iostream>\n#include \"C++/graph/WeightedGraph.hpp\"\nconstexpr long long LINF\
+    \ = (1LL << 61) - 1;\nint main() {\n    int v, e, r;\n    std::cin >> v >> e >>\
+    \ r;\n    w_graph<false> g(v, 0);\n    g.input(e);\n    const auto dj = g.dijkstra(r).get();\n\
+    \    for(const auto &el: dj) {\n        if(el == LINF) {\n            std::cout\
+    \ << \"INF\\n\";\n        } else {\n            std::cout << el << '\\n';\n  \
+    \      }\n    }\n}"
   dependsOn:
+  - C++/graph/WeightedGraph.hpp
   - C++/graph/Graph.hpp
   - C++/graph/edge.hpp
   - C++/graph/ShortestPath.hpp
-  isVerificationFile: false
-  path: C++/graph/WeightedGraph.hpp
+  isVerificationFile: true
+  path: test/dijkstra.test.cpp
   requiredBy: []
   timestamp: '2024-02-29 01:03:52+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/warshallfloyd.test.cpp
-  - test/bermanford.test.cpp
-  - test/shortestpath.test.cpp
-  - test/dijkstra.test.cpp
-documentation_of: C++/graph/WeightedGraph.hpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/dijkstra.test.cpp
 layout: document
 redirect_from:
-- /library/C++/graph/WeightedGraph.hpp
-- /library/C++/graph/WeightedGraph.hpp.html
-title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
+- /verify/test/dijkstra.test.cpp
+- /verify/test/dijkstra.test.cpp.html
+title: test/dijkstra.test.cpp
 ---

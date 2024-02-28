@@ -13,9 +13,6 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/kruskal.test.cpp
-    title: test/kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/manhattan.test.cpp
     title: test/manhattan.test.cpp
   _isVerificationFailed: false
@@ -62,14 +59,14 @@ data:
     \ &e, const edge &f){ return e.cost < f.cost; });\n    UnionFind uf(n);\n    std::vector<edge>\
     \ e;\n    long long res = 0;\n    for(const auto &ed: edges) {\n        if(uf.unite(ed.src,\
     \ ed)) {\n            e.emplace_back(ed);\n            res += ed.cost;\n     \
-    \   }\n    }\n    return MST{e, res};\n}\n\n/**\n * @brief Kruskal\u6CD5\n */\n"
+    \   }\n    }\n    return {e, res};\n}\n\n/**\n * @brief Kruskal\u6CD5\n */\n"
   code: "#pragma once\n\n#include <vector>\n#include \"C++/graph/mst/MST.hpp\"\n#include\
     \ \"C++/ds/uf/UnionFind.hpp\"\ninline MST kruskal(std::vector<edge> edges, const\
     \ int n) {\n    std::sort(edges.begin(), edges.end(), [&](const edge &e, const\
     \ edge &f){ return e.cost < f.cost; });\n    UnionFind uf(n);\n    std::vector<edge>\
     \ e;\n    long long res = 0;\n    for(const auto &ed: edges) {\n        if(uf.unite(ed.src,\
     \ ed)) {\n            e.emplace_back(ed);\n            res += ed.cost;\n     \
-    \   }\n    }\n    return MST{e, res};\n}\n\n/**\n * @brief Kruskal\u6CD5\n */"
+    \   }\n    }\n    return {e, res};\n}\n\n/**\n * @brief Kruskal\u6CD5\n */"
   dependsOn:
   - C++/graph/mst/MST.hpp
   - C++/graph/edge.hpp
@@ -77,11 +74,10 @@ data:
   isVerificationFile: false
   path: C++/graph/mst/kruskal.hpp
   requiredBy: []
-  timestamp: '2024-02-27 11:03:02+09:00'
+  timestamp: '2024-02-29 01:03:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manhattan.test.cpp
-  - test/kruskal.test.cpp
 documentation_of: C++/graph/mst/kruskal.hpp
 layout: document
 redirect_from:
