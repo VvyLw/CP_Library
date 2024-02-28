@@ -562,31 +562,16 @@ data:
     \t}\n\tprotected static final long intPow(long a, long b, final long m) {\n\t\t\
     long res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
     \t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\
-    \tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long lcm(final\
-    \ long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static final\
-    \ long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x,\
-    \ y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){ return\
-    \ Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static final\
-    \ long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }\n\t\
-    protected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
-    \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
-    \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
-    \ final int min(final int... a){ return Arrays.stream(a).min().getAsInt(); }\n\
-    \tprotected static final long min(final long... a){ return Arrays.stream(a).min().getAsLong();\
-    \ }\n\tprotected static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
+    \tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final int min(final\
+    \ int... a){ return Arrays.stream(a).min().getAsInt(); }\n\tprotected static final\
+    \ long min(final long... a){ return Arrays.stream(a).min().getAsLong(); }\n\t\
+    protected static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
     \ }\n\tprotected static final int max(final int... a){ return Arrays.stream(a).max().getAsInt();\
     \ }\n\tprotected static final long max(final long... a){ return Arrays.stream(a).max().getAsLong();\
     \ }\n\tprotected static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble();\
     \ }\n\tprotected static final long sum(final int... a){ return Arrays.stream(a).asLongStream().sum();\
     \ }\n\tprotected static final long sum(final long... a){ return Arrays.stream(a).sum();\
     \ }\n\tprotected static final double sum(final double... a){ return Arrays.stream(a).sum();\
-    \ }\n\tprotected static final long prod(final int... a){ return Arrays.stream(a).asLongStream().reduce(1,\
-    \ (x, y) -> x * y); }\n\tprotected static final long prod(final long... a){ return\
-    \ Arrays.stream(a).reduce(1, (x, y) -> x * y); }\n\tprotected static final double\
-    \ prod(final double... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y);\
-    \ }\n\tprotected static final double ave(final int... a){ return Arrays.stream(a).average().getAsDouble();\
-    \ }\n\tprotected static final double ave(final long... a){ return Arrays.stream(a).average().getAsDouble();\
-    \ }\n\tprotected static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble();\
     \ }\n\tprotected static final boolean scope(final int l, final int x, final int\
     \ r){ return l <= x && x <= r; }\n\tprotected static final boolean scope(final\
     \ long l, final long x, final long r){ return l <= x && x <= r; }\n\tprotected\
@@ -615,43 +600,55 @@ data:
     \ }\n\tfinal void printf(final String fmt, final Object... args){ out.printf(fmt,\
     \ args); }\n\tfinal void out(){ out.out(); }\n\tfinal void out(final Object head,\
     \ final Object... tail){ out.out(head, tail); }\n\tfinal void out(final int[]\
-    \ a){ out.out(a); }\n\tfinal void out(final long[] a){ out.out(a); }\n\tfinal\
-    \ void out(final double[] a){ out.out(a); }\n\tfinal void out(final boolean[]\
-    \ a){ out.out(a); }\n\tfinal void out(final char[] a){ out.out(a); }\n\tfinal\
-    \ void out(final Object[] a){ out.out(a); }\n\tfinal <E> void out(final Collection<E>\
-    \ a){ out.out(a); }\n\tfinal void outl(final Object head, final Object... tail){\
-    \ out.outl(head, tail); }\n\tfinal void outl(final int[] a){ out.outl(a); }\n\t\
-    final void outl(final int[][] a){ out.outl(a); }\n\tfinal void outl(final long[]\
-    \ a){ out.outl(a); }\n\tfinal void outl(final long[][] a){ out.outl(a); }\n\t\
-    final void outl(final double[] a){ out.outl(a); }\n\tfinal void outl(final double[][]\
-    \ a){ out.outl(a); }\n\tfinal void outl(final boolean[] a){ out.outl(a); }\n\t\
-    final void outl(final boolean[][] a){ out.outl(a); }\n\tfinal void outl(final\
-    \ char[] a){ out.outl(a); }\n\tfinal void outl(final char[][] a){ out.outl(a);\
-    \ }\n\tfinal void outl(final Object[] a){ out.outl(a); }\n\tfinal void outl(final\
-    \ Object[][] a){ out.outl(a); }\n\tfinal <E> void outl(final Collection<E> a){\
-    \ out.outl(a); }\n\tfinal void fin(final Object head, final Object... tail){ out.fin(head,\
-    \ tail); }\n\tfinal void fin(final int[] a){ out.fin(a); }\n\tfinal void fin(final\
-    \ long[] a){ out.fin(a); }\n\tfinal void fin(final double[] a){ out.fin(a); }\n\
-    \tfinal void fin(final boolean[] a){ out.fin(a); }\n\tfinal void fin(final char[]\
-    \ a){ out.fin(a); }\n\tfinal void fin(final Object[] a){ out.fin(a); }\n\tfinal\
-    \ <E> void fin(final Collection<E> a){ out.fin(a); }\n\tfinal void ende(final\
-    \ Object head, final Object... tail){ out.ende(head, tail); }\n\tfinal void ende(final\
-    \ int[] a){ out.ende(a); }\n\tfinal void ende(final int[][] a){ out.ende(a); }\n\
-    \tfinal void ende(final long[] a){ out.ende(a); }\n\tfinal void ende(final long[][]\
+    \ a){ out.out(a); }\n\tfinal void out(final int[] head, final int[]...tail){ out.out(head,\
+    \ tail); }\n\tfinal void out(final long[] a){ out.out(a); }\n\tfinal void out(final\
+    \ long[] head, final long[]...tail){ out.out(head, tail); }\n\tfinal void out(final\
+    \ double[] a){ out.out(a); }\n\tfinal void out(final double[] head, final double[]...tail){\
+    \ out.out(head, tail); }\n\tfinal void out(final boolean[] a){ out.out(a); }\n\
+    \tfinal void out(final boolean[] head, final boolean[]...tail){ out.out(head,\
+    \ tail); }\n\tfinal void out(final char[] a){ out.out(a); }\n\tfinal void out(final\
+    \ char[] head, final char[]...tail){ out.out(head, tail); }\n\tfinal void out(final\
+    \ Object[] a){ out.out(a); }\n\tfinal void out(final Object[] head, final Object[]...tail){\
+    \ out.out(head, tail); }\n\tfinal <E> void out(final Collection<E> a){ out.out(a);\
+    \ }\n\tfinal void outl(final Object head, final Object... tail){ out.outl(head,\
+    \ tail); }\n\tfinal void outl(final int[] a){ out.outl(a); }\n\tfinal void outl(final\
+    \ int[][] a){ out.outl(a); }\n\tfinal void outl(final long[] a){ out.outl(a);\
+    \ }\n\tfinal void outl(final long[][] a){ out.outl(a); }\n\tfinal void outl(final\
+    \ double[] a){ out.outl(a); }\n\tfinal void outl(final double[][] a){ out.outl(a);\
+    \ }\n\tfinal void outl(final boolean[] a){ out.outl(a); }\n\tfinal void outl(final\
+    \ boolean[][] a){ out.outl(a); }\n\tfinal void outl(final char[] a){ out.outl(a);\
+    \ }\n\tfinal void outl(final char[][] a){ out.outl(a); }\n\tfinal void outl(final\
+    \ Object[] a){ out.outl(a); }\n\tfinal void outl(final Object[][] a){ out.outl(a);\
+    \ }\n\tfinal <E> void outl(final Collection<E> a){ out.outl(a); }\n\tfinal void\
+    \ fin(final Object head, final Object... tail){ out.fin(head, tail); }\n\tfinal\
+    \ void fin(final int[] a){ out.fin(a); }\n\tfinal void fin(final long[] a){ out.fin(a);\
+    \ }\n\tfinal void fin(final double[] a){ out.fin(a); }\n\tfinal void fin(final\
+    \ boolean[] a){ out.fin(a); }\n\tfinal void fin(final char[] a){ out.fin(a); }\n\
+    \tfinal void fin(final Object[] a){ out.fin(a); }\n\tfinal <E> void fin(final\
+    \ Collection<E> a){ out.fin(a); }\n\tfinal void ende(final Object head, final\
+    \ Object... tail){ out.ende(head, tail); }\n\tfinal void ende(final int[] a){\
+    \ out.ende(a); }\n\tfinal void ende(final int[][] a){ out.ende(a); }\n\tfinal\
+    \ void ende(final long[] a){ out.ende(a); }\n\tfinal void ende(final long[][]\
     \ a){ out.ende(a); }\n\tfinal void ende(final double[] a){ out.ende(a); }\n\t\
     final void ende(final double[][] a){ out.ende(a); }\n\tfinal void ende(final boolean[]\
     \ a){ out.ende(a); }\n\tfinal void ende(final boolean[][] a){ out.ende(a); }\n\
     \tfinal void ende(final char[] a){ out.ende(a); }\n\tfinal void ende(final char[][]\
     \ a){ out.ende(a); }\n\tfinal void ende(final Object[] a){ out.ende(a); }\n\t\
     final void ende(final Object[][] a){ out.ende(a); }\n\tfinal <E> void ende(final\
-    \ Collection<E> a){ out.ende(a); }\n\tfinal void dbg(final Object head, final\
-    \ Object... tail){ err.out(head, tail); }\n\tfinal void dbg(final int[] a){ err.out(a);\
-    \ }\n\tfinal void dbg(final long[] a){ err.out(a); }\n\tfinal void dbg(final double[]\
-    \ a){ err.out(a); }\n\tfinal void dbg(final boolean[] a){ err.out(a); }\n\tfinal\
-    \ void dbg(final char[] a){ err.out(a); }\n\tfinal void dbg(final Object[] a){\
-    \ err.out(a); }\n\tfinal void debug(final Object head, final Object... tail){\
-    \ err.outl(head, tail); }\n\tfinal void debug(final int[] a){ err.outl(a); }\n\
-    \tfinal void debug(final int[][] a){ err.outl(a); }\n\tfinal void debug(final\
+    \ Collection<E> a){ out.ende(a); }\n\tfinal void dump(final Object head, final\
+    \ Object... tail){ err.out(head, tail); }\n\tfinal void dump(final int[] a){ err.out(a);\
+    \ }\n\tfinal void dump(final int[] head, final int[]...tail){ err.out(head, tail);\
+    \ }\n\tfinal void dump(final long[] a){ err.out(a); }\n\tfinal void dump(final\
+    \ long[] head, final long[]...tail){ err.out(head, tail); }\n\tfinal void dump(final\
+    \ double[] a){ err.out(a); }\n\tfinal void dump(final double[] head, final double[]...tail){\
+    \ err.out(head, tail); }\n\tfinal void dump(final boolean[] a){ err.out(a); }\n\
+    \tfinal void dump(final boolean[] head, final boolean[]...tail){ err.out(head,\
+    \ tail); }\n\tfinal void dump(final char[] a){ err.out(a); }\n\tfinal void dump(final\
+    \ char[] head, final char[]...tail){ err.out(head, tail); }\n\tfinal void dump(final\
+    \ Object[] a){ err.out(a); }\n\tfinal void dump(final Object[] head, final Object[]...tail){\
+    \ err.out(head, tail); }\n\tfinal void debug(final Object head, final Object...\
+    \ tail){ err.outl(head, tail); }\n\tfinal void debug(final int[] a){ err.outl(a);\
+    \ }\n\tfinal void debug(final int[][] a){ err.outl(a); }\n\tfinal void debug(final\
     \ long[] a){ err.outl(a); }\n\tfinal void debug(final long[][] a){ err.outl(a);\
     \ }\n\tfinal void debug(final double[] a){ err.outl(a); }\n\tfinal void debug(final\
     \ double[][] a){ err.outl(a); }\n\tfinal void debug(final boolean[] a){ err.outl(a);\
@@ -736,29 +733,39 @@ data:
     \ args) {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\t\t} else if(args.length\
     \ > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\
     \t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void\
-    \ out(final long[] args) {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\
-    \t\t} else if(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0;\
-    \ ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\t\
-    newLine();\n\t}\n\tfinal void out(final double[] args) {\n\t\tif(debug) {\n\t\t\
-    \tprint(Arrays.toString(args));\n\t\t} else if(args.length > 0) {\n\t\t\tprint(args[0]);\n\
-    \t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\
-    \t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final boolean[] args) {\n\t\
-    \tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\t\t} else if(args.length\
+    \ out(final int[] head, final int[]... tail) {\n\t\tout(head);\n\t\tfor(final\
+    \ int[] a: tail) {\n\t\t\tout(a);\n\t\t}\n\t}\n\tfinal void out(final long[] args)\
+    \ {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\t\t} else if(args.length\
     \ > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\
     \t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void\
-    \ out(final char[] args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\
-    \t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\
-    \t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final Object[] args) {\n\t\
-    \tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\t\t} else if(args.length\
+    \ out(final long[] head, final long[]... tail) {\n\t\tout(head);\n\t\tfor(final\
+    \ long[] a: tail) {\n\t\t\tout(a);\n\t\t}\n\t}\n\tfinal void out(final double[]\
+    \ args) {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\t\t} else if(args.length\
     \ > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\
-    \t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal <E>\
-    \ void out(final Collection<E> args) {\n\t\tif(debug) {\n\t\t\tprint(args.toString());\n\
-    \t\t} else {\n\t\t\tint i = 0;\n\t\t\tfor(final var el: args) {\n\t\t\t\tprint(el);\n\
-    \t\t\t\tif(++i != args.size()) {\n\t\t\t\t\tprint(\" \");\n\t\t\t\t}\n\t\t\t}\n\
-    \t\t}\n\t\tnewLine();\n\t}\n\tfinal void outl(final Object head, final Object...\
-    \ tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::out);\n\t}\n\t\
-    final void outl(final int[] args){ Arrays.stream(args).forEach(this::out); }\n\
-    \tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
+    \t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void\
+    \ out(final double[] head, final double[]... tail) {\n\t\tout(head);\n\t\tfor(final\
+    \ double[] a: tail) {\n\t\t\tout(a);\n\t\t}\n\t}\n\tfinal void out(final boolean[]\
+    \ args) {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\t\t} else if(args.length\
+    \ > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\
+    \t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void\
+    \ out(final boolean[] head, final boolean[]... tail) {\n\t\tout(head);\n\t\tfor(final\
+    \ boolean[] a: tail) {\n\t\t\tout(a);\n\t\t}\n\t}\n\tfinal void out(final char[]\
+    \ args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i =\
+    \ 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\
+    \tnewLine();\n\t}\n\tfinal void out(final char[] head, final char[]... tail) {\n\
+    \t\tout(head);\n\t\tfor(final char[] a: tail) {\n\t\t\tout(a);\n\t\t}\n\t}\n\t\
+    final void out(final Object[] args) {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\
+    \t\t} else if(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0;\
+    \ ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\t\
+    newLine();\n\t}\n\tfinal void out(final Object[] head, final Object[]... tail)\
+    \ {\n\t\tout(head);\n\t\tfor(final Object[] a: tail) {\n\t\t\tout(a);\n\t\t}\n\
+    \t}\n\tfinal <E> void out(final Collection<E> args) {\n\t\tif(debug) {\n\t\t\t\
+    print(args.toString());\n\t\t} else {\n\t\t\tint i = 0;\n\t\t\tfor(final var el:\
+    \ args) {\n\t\t\t\tprint(el);\n\t\t\t\tif(++i != args.size()) {\n\t\t\t\t\tprint(\"\
+    \ \");\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void outl(final\
+    \ Object head, final Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::out);\n\
+    \t}\n\tfinal void outl(final int[] args){ Arrays.stream(args).forEach(this::out);\
+    \ }\n\tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final long[] args){ Arrays.stream(args).forEach(this::out);\
     \ }\n\tfinal void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final double[] args){ Arrays.stream(args).forEach(this::out);\
@@ -990,7 +997,7 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/All.java
-  timestamp: '2024-02-28 09:51:23+09:00'
+  timestamp: '2024-02-28 10:38:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java

@@ -588,24 +588,36 @@ data:
     \ MyPrinter#out\n\t */\n\tpublic final <F extends Comparable<? super F>, S extends\
     \ Comparable<? super S>> void out(final Pair<F, S> p){ out.out(p); }\n\t/**\n\t\
     \ * @param a\n\t * @see MyPrinter#out\n\t */\n\tpublic final void out(final int[]\
-    \ a){ out.out(a); }\n\t/**\n\t * @param a\n\t * @see MyPrinter#out\n\t */\n\t\
-    public final void out(final long[] a){ out.out(a); }\n\t/**\n\t * @param a\n\t\
-    \ * @see MyPrinter#out\n\t */\n\tpublic final void out(final double[] a){ out.out(a);\
-    \ }\n\t/**\n\t * @param a\n\t * @see MyPrinter#out\n\t */\n\tpublic final void\
-    \ out(final boolean[] a){ out.out(a); }\n\t/**\n\t * @param a\n\t * @see MyPrinter#out\n\
-    \t */\n\tpublic final void out(final char[] a){ out.out(a); }\n\t/**\n\t * @param\
-    \ a\n\t * @see MyPrinter#out\n\t */\n\tpublic final void out(final Object[] a){\
-    \ out.out(a); }\n\t/**\n\t * @param <E>\n\t * @see MyPrinter#out\n\t */\n\tpublic\
-    \ final <E> void out(final Collection<E> a){ out.out(a); }\n\t/**\n\t * @param\
-    \ head\n\t * @param tail\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void\
-    \ outl(final Object head, final Object... tail){ out.outl(head, tail); }\n\t/**\n\
-    \t * @param a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void outl(final\
-    \ int[] a){ out.outl(a); }\n\t/**\n\t * @param a\n\t * @see MyPrinter#outl\n\t\
-    \ */\n\tpublic final void outl(final int[][] a){ out.outl(a); }\n\t/**\n\t * @param\
-    \ a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void outl(final long[] a){\
-    \ out.outl(a); }\n\t/**\n\t * @param a\n\t * @see MyPrinter#outl\n\t */\n\tpublic\
-    \ final void outl(final long[][] a){ out.outl(a); }\n\t/**\n\t * @param a\n\t\
-    \ * @see MyPrinter#outl\n\t */\n\tpublic final void outl(final double[] a){ out.outl(a);\
+    \ a){ out.out(a); }\n\t/**\n\t * @param head\n\t * @param tail\n\t * @see MyPrinter#out\n\
+    \t */\n\tpublic final void out(final int[] head, final int[]...tail){ out.out(head,\
+    \ tail); }\n\t/**\n\t * @param a\n\t * @see MyPrinter#out\n\t */\n\tpublic final\
+    \ void out(final long[] a){ out.out(a); }\n\t/**\n\t * @param head\n\t * @param\
+    \ tail\n\t * @see MyPrinter#out\n\t */\n\tpublic final void out(final long[] head,\
+    \ final long[]...tail){ out.out(head, tail); }\n\t/**\n\t * @param a\n\t * @see\
+    \ MyPrinter#out\n\t */\n\tpublic final void out(final double[] a){ out.out(a);\
+    \ }\n\t/**\n\t * @param head\n\t * @param tail\n\t * @see MyPrinter#out\n\t */\n\
+    \tpublic final void out(final double[] head, final double[]...tail){ out.out(head,\
+    \ tail); }\n\t/**\n\t * @param a\n\t * @see MyPrinter#out\n\t */\n\tpublic final\
+    \ void out(final boolean[] a){ out.out(a); }\n\t/**\n\t * @param head\n\t * @param\
+    \ tail\n\t * @see MyPrinter#out\n\t */\n\tpublic final void out(final boolean[]\
+    \ head, final boolean[]...tail){ out.out(head, tail); }\n\t/**\n\t * @param a\n\
+    \t * @see MyPrinter#out\n\t */\n\tpublic final void out(final char[] a){ out.out(a);\
+    \ }\n\t/**\n\t * @param head\n\t * @param tail\n\t * @see MyPrinter#out\n\t */\n\
+    \tpublic final void out(final char[] head, final char[]...tail){ out.out(head,\
+    \ tail); }\n\t/**\n\t * @param a\n\t * @see MyPrinter#out\n\t */\n\tpublic final\
+    \ void out(final Object[] a){ out.out(a); }\n\t/**\n\t * @param head\n\t * @param\
+    \ tail\n\t * @see MyPrinter#out\n\t */\n\tpublic final void out(final Object[]\
+    \ head, final Object[]...tail){ out.out(head, tail); }\n\t/**\n\t * @param <E>\n\
+    \t * @see MyPrinter#out\n\t */\n\tpublic final <E> void out(final Collection<E>\
+    \ a){ out.out(a); }\n\t/**\n\t * @param head\n\t * @param tail\n\t * @see MyPrinter#outl\n\
+    \t */\n\tpublic final void outl(final Object head, final Object... tail){ out.outl(head,\
+    \ tail); }\n\t/**\n\t * @param a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final\
+    \ void outl(final int[] a){ out.outl(a); }\n\t/**\n\t * @param a\n\t * @see MyPrinter#outl\n\
+    \t */\n\tpublic final void outl(final int[][] a){ out.outl(a); }\n\t/**\n\t *\
+    \ @param a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void outl(final long[]\
+    \ a){ out.outl(a); }\n\t/**\n\t * @param a\n\t * @see MyPrinter#outl\n\t */\n\t\
+    public final void outl(final long[][] a){ out.outl(a); }\n\t/**\n\t * @param a\n\
+    \t * @see MyPrinter#outl\n\t */\n\tpublic final void outl(final double[] a){ out.outl(a);\
     \ }\n\t/**\n\t * @param a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void\
     \ outl(final double[][] a){ out.outl(a); }\n\t/**\n\t * @param a\n\t * @see MyPrinter#outl\n\
     \t */\n\tpublic final void outl(final boolean[] a){ out.outl(a); }\n\t/**\n\t\
@@ -664,46 +676,62 @@ data:
     \ final void dump(final Object head, final Object... tail){ err.out(head, tail);\
     \ }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param a\n\t * @see MyPrinter#out\n\
     \t */\n\tpublic final void dump(final int[] a){ err.out(a); }\n\t/**\n\t * \u30C7\
-    \u30D0\u30C3\u30B0\u7528\n\t * @param a\n\t * @see MyPrinter#out\n\t */\n\tpublic\
-    \ final void dump(final long[] a){ err.out(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\
-    \u30B0\u7528\n\t * @param a\n\t * @see MyPrinter#out\n\t */\n\tpublic final void\
-    \ dump(final double[] a){ err.out(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\
-    \n\t * @param a\n\t * @see MyPrinter#out\n\t */\n\tpublic final void dump(final\
-    \ boolean[] a){ err.out(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t\
-    \ * @param a\n\t * @see MyPrinter#out\n\t */\n\tpublic final void dump(final char[]\
-    \ a){ err.out(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param a\n\
-    \t * @see MyPrinter#out\n\t */\n\tpublic final void dump(final Object[] a){ err.out(a);\
+    \u30D0\u30C3\u30B0\u7528\n\t * @param head\n\t * @param tail\n\t * @see MyPrinter#out\n\
+    \t */\n\tpublic final void dump(final int[] head, final int[]...tail){ err.out(head,\
+    \ tail); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param a\n\t * @see\
+    \ MyPrinter#out\n\t */\n\tpublic final void dump(final long[] a){ err.out(a);\
     \ }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param head\n\t * @param\
-    \ tail\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void debug(final Object\
-    \ head, final Object... tail){ err.outl(head, tail); }\n\t/**\n\t * \u30C7\u30D0\
-    \u30C3\u30B0\u7528\n\t * @param a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final\
-    \ void debug(final int[] a){ err.outl(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\
-    \u7528\n\t * @param a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void debug(final\
-    \ int[][] a){ err.outl(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t *\
-    \ @param a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void debug(final long[]\
-    \ a){ err.outl(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param\
-    \ a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void debug(final long[][]\
-    \ a){ err.outl(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param\
-    \ a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void debug(final double[]\
-    \ a){ err.outl(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param\
-    \ a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void debug(final double[][]\
-    \ a){ err.outl(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param\
-    \ a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void debug(final boolean[]\
-    \ a){ err.outl(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param\
-    \ a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void debug(final boolean[][]\
-    \ a){ err.outl(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param\
-    \ a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void debug(final char[] a){\
-    \ err.outl(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param a\n\t\
-    \ * @see MyPrinter#outl\n\t */\n\tpublic final void debug(final char[][] a){ err.outl(a);\
+    \ tail\n\t * @see MyPrinter#out\n\t */\n\tpublic final void dump(final long[]\
+    \ head, final long[]...tail){ err.out(head, tail); }\n\t/**\n\t * \u30C7\u30D0\
+    \u30C3\u30B0\u7528\n\t * @param a\n\t * @see MyPrinter#out\n\t */\n\tpublic final\
+    \ void dump(final double[] a){ err.out(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\
+    \u7528\n\t * @param head\n\t * @param tail\n\t * @see MyPrinter#out\n\t */\n\t\
+    public final void dump(final double[] head, final double[]...tail){ err.out(head,\
+    \ tail); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param a\n\t * @see\
+    \ MyPrinter#out\n\t */\n\tpublic final void dump(final boolean[] a){ err.out(a);\
+    \ }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param head\n\t * @param\
+    \ tail\n\t * @see MyPrinter#out\n\t */\n\tpublic final void dump(final boolean[]\
+    \ head, final boolean[]...tail){ err.out(head, tail); }\n\t/**\n\t * \u30C7\u30D0\
+    \u30C3\u30B0\u7528\n\t * @param a\n\t * @see MyPrinter#out\n\t */\n\tpublic final\
+    \ void dump(final char[] a){ err.out(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\
+    \u7528\n\t * @param head\n\t * @param tail\n\t * @see MyPrinter#out\n\t */\n\t\
+    public final void dump(final char[] head, final char[]...tail){ err.out(head,\
+    \ tail); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param a\n\t * @see\
+    \ MyPrinter#out\n\t */\n\tpublic final void dump(final Object[] a){ err.out(a);\
+    \ }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param head\n\t * @param\
+    \ tail\n\t * @see MyPrinter#out\n\t */\n\tpublic final void dump(final Object[]\
+    \ head, final Object[]...tail){ err.out(head, tail); }\n\t/**\n\t * \u30C7\u30D0\
+    \u30C3\u30B0\u7528\n\t * @param head\n\t * @param tail\n\t * @see MyPrinter#outl\n\
+    \t */\n\tpublic final void debug(final Object head, final Object... tail){ err.outl(head,\
+    \ tail); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param a\n\t * @see\
+    \ MyPrinter#outl\n\t */\n\tpublic final void debug(final int[] a){ err.outl(a);\
     \ }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param a\n\t * @see MyPrinter#outl\n\
-    \t */\n\tpublic final void debug(final Object[] a){ err.outl(a); }\n\t/**\n\t\
-    \ * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param a\n\t * @see MyPrinter#outl\n\t\
-    \ */\n\tpublic final void debug(final Object[][] a){ err.outl(a); }\n\t/**\n\t\
-    \ * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param <F>\n\t * @param <S>\n\t * @param\
-    \ a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final <F extends Comparable<? super\
-    \ F>, S extends Comparable<? super S>> void debug(final Pair<F, S>[] a){ err.outl(a);\
-    \ }\n\t@Override\n\tpublic final void close() {\n\t\tout.flush();\n\t\tin.close();\n\
-    \t\tout.close();\n\t\terr.close();\n\t}\n}"
+    \t */\n\tpublic final void debug(final int[][] a){ err.outl(a); }\n\t/**\n\t *\
+    \ \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param a\n\t * @see MyPrinter#outl\n\t\
+    \ */\n\tpublic final void debug(final long[] a){ err.outl(a); }\n\t/**\n\t * \u30C7\
+    \u30D0\u30C3\u30B0\u7528\n\t * @param a\n\t * @see MyPrinter#outl\n\t */\n\tpublic\
+    \ final void debug(final long[][] a){ err.outl(a); }\n\t/**\n\t * \u30C7\u30D0\
+    \u30C3\u30B0\u7528\n\t * @param a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final\
+    \ void debug(final double[] a){ err.outl(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\
+    \u30B0\u7528\n\t * @param a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void\
+    \ debug(final double[][] a){ err.outl(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\
+    \u7528\n\t * @param a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void debug(final\
+    \ boolean[] a){ err.outl(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t\
+    \ * @param a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void debug(final\
+    \ boolean[][] a){ err.outl(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\
+    \t * @param a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void debug(final\
+    \ char[] a){ err.outl(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t *\
+    \ @param a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void debug(final char[][]\
+    \ a){ err.outl(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param\
+    \ a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void debug(final Object[]\
+    \ a){ err.outl(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param\
+    \ a\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void debug(final Object[][]\
+    \ a){ err.outl(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param\
+    \ <F>\n\t * @param <S>\n\t * @param a\n\t * @see MyPrinter#outl\n\t */\n\tpublic\
+    \ final <F extends Comparable<? super F>, S extends Comparable<? super S>> void\
+    \ debug(final Pair<F, S>[] a){ err.outl(a); }\n\t@Override\n\tpublic final void\
+    \ close() {\n\t\tout.flush();\n\t\tin.close();\n\t\tout.close();\n\t\terr.close();\n\
+    \t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -882,7 +910,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-28 09:51:23+09:00'
+  timestamp: '2024-02-28 10:38:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/IO.java
