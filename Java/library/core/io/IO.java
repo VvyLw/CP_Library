@@ -241,89 +241,53 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public final void out(final Object[] head, final Object[]...tail){ out.out(head, tail); }
 	/**
+	 * @param <F>
+	 * @param <S>
+	 * @param a
+	 * @see MyPrinter#out
+	 */
+	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> void out(final Pair<F, S>[] a){ out.out(a); }
+	/**
 	 * @param <E>
 	 * @see MyPrinter#out
 	 */
 	public final <E> void out(final Collection<E> a){ out.out(a); }
+	/**
+	 * @param a
+	 * @see MyPrinter#out
+	 */
+	public final void out(final int[][] a){ out.out(a); }
+	/**
+	 * @param a
+	 * @see MyPrinter#out
+	 */
+	public final void out(final long[][] a){ out.out(a); }
+	/**
+	 * @param a
+	 * @see MyPrinter#out
+	 */
+	public final void out(final double[][] a){ out.out(a); }
+	/**
+	 * @param a
+	 * @see MyPrinter#out
+	 */
+	public final void out(final boolean[][] a){ out.out(a); }
+	/**
+	 * @param a
+	 * @see MyPrinter#out
+	 */
+	public final void out(final char[][] a){ out.out(a); }
+	/**
+	 * @param a
+	 * @see MyPrinter#out
+	 */
+	public final void out(final Object[][] a){ out.out(a); }
 	/**
 	 * @param head
 	 * @param tail
 	 * @see MyPrinter#outl
 	 */
 	public final void outl(final Object head, final Object... tail){ out.outl(head, tail); }
-	/**
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void outl(final int[] a){ out.outl(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void outl(final int[][] a){ out.outl(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void outl(final long[] a){ out.outl(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void outl(final long[][] a){ out.outl(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void outl(final double[] a){ out.outl(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void outl(final double[][] a){ out.outl(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void outl(final boolean[] a){ out.outl(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void outl(final boolean[][] a){ out.outl(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void outl(final char[] a){ out.outl(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void outl(final char[][] a){ out.outl(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void outl(final Object[] a){ out.outl(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void outl(final Object[][] a){ out.outl(a); }
-	/**
-	 * @param <F>
-	 * @param <S>
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> void outl(final Pair<F, S>[] a){ out.outl(a); }
-	/**
-	 * @param <E>
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final <E> void outl(final Collection<E> a){ out.outl(a); }
 	/**
 	 * @param head
 	 * @param tail
@@ -368,89 +332,53 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public final void fin(final Object[] a){ out.fin(a); }
 	/**
+	 * @param <F>
+	 * @param <S>
+	 * @param a
+	 * @see MyPrinter#fin
+	 */
+	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> void fin(final Pair<F, S>[] a){ out.fin(a); }
+	/**
 	 * @param a
 	 * @see MyPrinter#fin
 	 */
 	public final <E> void fin(final Collection<E> a){ out.fin(a); }
+	/**
+	 * @param a
+	 * @see MyPrinter#fin
+	 */
+	public final void fin(final int[][] a){ out.fin(a); }
+	/**
+	 * @param a
+	 * @see MyPrinter#fin
+	 */
+	public final void fin(final long[][] a){ out.fin(a); }
+	/**
+	 * @param a
+	 * @see MyPrinter#fin
+	 */
+	public final void fin(final double[][] a){ out.fin(a); }
+	/**
+	 * @param a
+	 * @see MyPrinter#fin
+	 */
+	public final void fin(final boolean[][] a){ out.fin(a); }
+	/**
+	 * @param a
+	 * @see MyPrinter#fin
+	 */
+	public final void fin(final char[][] a){ out.fin(a); }
+	/**
+	 * @param a
+	 * @see MyPrinter#fin
+	 */
+	public final void fin(final Object[][] a){ out.fin(a); }
 	/**
 	 * @param head
 	 * @param tail
 	 * @see MyPrinter#ende
 	 */
 	public final void ende(final Object head, final Object... tail){ out.ende(head, tail); }
-	/**
-	 * @param a
-	 * @see MyPrinter#ende
-	 */
-	public final void ende(final int[] a){ out.ende(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#ende
-	 */
-	public final void ende(final int[][] a){ out.ende(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#ende
-	 */
-	public final void ende(final long[] a){ out.ende(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#ende
-	 */
-	public final void ende(final long[][] a){ out.ende(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#ende
-	 */
-	public final void ende(final double[] a){ out.ende(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#ende
-	 */
-	public final void ende(final double[][] a){ out.ende(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#ende
-	 */
-	public final void ende(final boolean[] a){ out.ende(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#ende
-	 */
-	public final void ende(final boolean[][] a){ out.ende(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#ende
-	 */
-	public final void ende(final char[] a){ out.ende(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#ende
-	 */
-	public final void ende(final char[][] a){ out.ende(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#ende
-	 */
-	public final void ende(final Object[] a){ out.ende(a); }
-	/**
-	 * @param a
-	 * @see MyPrinter#ende
-	 */
-	public final void ende(final Object[][] a){ out.ende(a); }
-	/**
-	 * @param <F>
-	 * @param <S>
-	 * @param a
-	 * @see MyPrinter#ende
-	 */
-	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> void ende(final Pair<F, S>[] a){ out.ende(a); }
-	/**
-	 * @param <E>
-	 * @param a
-	 * @see MyPrinter#ende
-	 */
-	public final <E> void ende(final Collection<E> a){ out.ende(a); }
 	/**
 	 * デバッグ用
 	 * @param head
@@ -538,91 +466,48 @@ public final class IO implements Closeable, AutoCloseable {
 	public final void dump(final Object[] head, final Object[]...tail){ err.out(head, tail); }
 	/**
 	 * デバッグ用
-	 * @param head
-	 * @param tail
-	 * @see MyPrinter#outl
-	 */
-	public final void debug(final Object head, final Object... tail){ err.outl(head, tail); }
-	/**
-	 * デバッグ用
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void debug(final int[] a){ err.outl(a); }
-	/**
-	 * デバッグ用
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void debug(final int[][] a){ err.outl(a); }
-	/**
-	 * デバッグ用
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void debug(final long[] a){ err.outl(a); }
-	/**
-	 * デバッグ用
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void debug(final long[][] a){ err.outl(a); }
-	/**
-	 * デバッグ用
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void debug(final double[] a){ err.outl(a); }
-	/**
-	 * デバッグ用
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void debug(final double[][] a){ err.outl(a); }
-	/**
-	 * デバッグ用
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void debug(final boolean[] a){ err.outl(a); }
-	/**
-	 * デバッグ用
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void debug(final boolean[][] a){ err.outl(a); }
-	/**
-	 * デバッグ用
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void debug(final char[] a){ err.outl(a); }
-	/**
-	 * デバッグ用
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void debug(final char[][] a){ err.outl(a); }
-	/**
-	 * デバッグ用
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void debug(final Object[] a){ err.outl(a); }
-	/**
-	 * デバッグ用
-	 * @param a
-	 * @see MyPrinter#outl
-	 */
-	public final void debug(final Object[][] a){ err.outl(a); }
-	/**
-	 * デバッグ用
 	 * @param <F>
 	 * @param <S>
 	 * @param a
-	 * @see MyPrinter#outl
+	 * @see MyPrinter#out
 	 */
-	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> void debug(final Pair<F, S>[] a){ err.outl(a); }
+	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> void dump(final Pair<F, S>[] a){ err.out(a); }
+	/**
+	 * デバッグ用
+	 * @param a
+	 * @see MyPrinter#out
+	 */
+	public final void dump(final int[][] a){ err.out(a); }
+	/**
+	 * デバッグ用
+	 * @param a
+	 * @see MyPrinter#out
+	 */
+	public final void dump(final long[][] a){ err.out(a); }
+	/**
+	 * デバッグ用
+	 * @param a
+	 * @see MyPrinter#out
+	 */
+	public final void dump(final double[][] a){ err.out(a); }
+	/**
+	 * デバッグ用
+	 * @param a
+	 * @see MyPrinter#out
+	 */
+	public final void dump(final boolean[][] a){ err.out(a); }
+	/**
+	 * デバッグ用
+	 * @param a
+	 * @see MyPrinter#out
+	 */
+	public final void dump(final char[][] a){ err.out(a); }
+	/**
+	 * デバッグ用
+	 * @param a
+	 * @see MyPrinter#out
+	 */
+	public final void dump(final Object[][] a){ err.out(a); }
 	@Override
 	public final void close() {
 		out.flush();

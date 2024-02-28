@@ -20,7 +20,7 @@ final class Main {
 
 final class VvyLw extends Utility {
 	static final IO io = new IO(new MyScanner(System.in), new MyPrinter(System.out, false), new MyPrinter(System.err, true));
-	static final boolean MULTI = false;
+	static final boolean MULTI = true;
 	static final int INF = 1 << 30;
 	static final long LINF = (1L << 61) - 1;
 	static final double EPS = 1e-18;
@@ -135,20 +135,13 @@ final class IO implements Closeable, AutoCloseable {
 	final void out(final Object[] a){ out.out(a); }
 	final void out(final Object[] head, final Object[]...tail){ out.out(head, tail); }
 	final <E> void out(final Collection<E> a){ out.out(a); }
+	final void out(final int[][] a){ out.out(a); }
+	final void out(final long[][] a){ out.out(a); }
+	final void out(final double[][] a){ out.out(a); }
+	final void out(final boolean[][] a){ out.out(a); }
+	final void out(final char[][] a){ out.out(a); }
+	final void out(final Object[][] a){ out.out(a); }
 	final void outl(final Object head, final Object... tail){ out.outl(head, tail); }
-	final void outl(final int[] a){ out.outl(a); }
-	final void outl(final int[][] a){ out.outl(a); }
-	final void outl(final long[] a){ out.outl(a); }
-	final void outl(final long[][] a){ out.outl(a); }
-	final void outl(final double[] a){ out.outl(a); }
-	final void outl(final double[][] a){ out.outl(a); }
-	final void outl(final boolean[] a){ out.outl(a); }
-	final void outl(final boolean[][] a){ out.outl(a); }
-	final void outl(final char[] a){ out.outl(a); }
-	final void outl(final char[][] a){ out.outl(a); }
-	final void outl(final Object[] a){ out.outl(a); }
-	final void outl(final Object[][] a){ out.outl(a); }
-	final <E> void outl(final Collection<E> a){ out.outl(a); }
 	final void fin(final Object head, final Object... tail){ out.fin(head, tail); }
 	final void fin(final int[] a){ out.fin(a); }
 	final void fin(final long[] a){ out.fin(a); }
@@ -157,20 +150,13 @@ final class IO implements Closeable, AutoCloseable {
 	final void fin(final char[] a){ out.fin(a); }
 	final void fin(final Object[] a){ out.fin(a); }
 	final <E> void fin(final Collection<E> a){ out.fin(a); }
+	final void fin(final int[][] a){ out.fin(a); }
+	final void fin(final long[][] a){ out.fin(a); }
+	final void fin(final double[][] a){ out.fin(a); }
+	final void fin(final boolean[][] a){ out.fin(a); }
+	final void fin(final char[][] a){ out.fin(a); }
+	final void fin(final Object[][] a){ out.fin(a); }
 	final void ende(final Object head, final Object... tail){ out.ende(head, tail); }
-	final void ende(final int[] a){ out.ende(a); }
-	final void ende(final int[][] a){ out.ende(a); }
-	final void ende(final long[] a){ out.ende(a); }
-	final void ende(final long[][] a){ out.ende(a); }
-	final void ende(final double[] a){ out.ende(a); }
-	final void ende(final double[][] a){ out.ende(a); }
-	final void ende(final boolean[] a){ out.ende(a); }
-	final void ende(final boolean[][] a){ out.ende(a); }
-	final void ende(final char[] a){ out.ende(a); }
-	final void ende(final char[][] a){ out.ende(a); }
-	final void ende(final Object[] a){ out.ende(a); }
-	final void ende(final Object[][] a){ out.ende(a); }
-	final <E> void ende(final Collection<E> a){ out.ende(a); }
 	final void dump(final Object head, final Object... tail){ err.out(head, tail); }
 	final void dump(final int[] a){ err.out(a); }
 	final void dump(final int[] head, final int[]...tail){ err.out(head, tail); }
@@ -184,19 +170,12 @@ final class IO implements Closeable, AutoCloseable {
 	final void dump(final char[] head, final char[]...tail){ err.out(head, tail); }
 	final void dump(final Object[] a){ err.out(a); }
 	final void dump(final Object[] head, final Object[]...tail){ err.out(head, tail); }
-	final void debug(final Object head, final Object... tail){ err.outl(head, tail); }
-	final void debug(final int[] a){ err.outl(a); }
-	final void debug(final int[][] a){ err.outl(a); }
-	final void debug(final long[] a){ err.outl(a); }
-	final void debug(final long[][] a){ err.outl(a); }
-	final void debug(final double[] a){ err.outl(a); }
-	final void debug(final double[][] a){ err.outl(a); }
-	final void debug(final boolean[] a){ err.outl(a); }
-	final void debug(final boolean[][] a){ err.outl(a); }
-	final void debug(final char[] a){ err.outl(a); }
-	final void debug(final char[][] a){ err.outl(a); }
-	final void debug(final Object[] a){ err.outl(a); }
-	final void debug(final Object[][] a){ err.outl(a); }
+	final void dump(final int[][] a){ err.out(a); }
+	final void dump(final long[][] a){ err.out(a); }
+	final void dump(final double[][] a){ err.out(a); }
+	final void dump(final boolean[][] a){ err.out(a); }
+	final void dump(final char[][] a){ err.out(a); }
+	final void dump(final Object[][] a){ err.out(a); }
 	@Override
 	public final void close() {
 		out.flush();
@@ -536,23 +515,16 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 		newLine();
 	}
+	final void out(final int[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	final void out(final long[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	final void out(final double[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	final void out(final boolean[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	final void out(final char[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	final void out(final Object[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void outl(final Object head, final Object... tail) {
 		out(head);
 		Arrays.stream(tail).forEach(this::out);
 	}
-	final void outl(final int[] args){ Arrays.stream(args).forEach(this::out); }
-	final void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
-	final void outl(final long[] args){ Arrays.stream(args).forEach(this::out); }
-	final void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
-	final void outl(final double[] args){ Arrays.stream(args).forEach(this::out); }
-	final void outl(final double[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
-	final void outl(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
-	final void outl(final boolean[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
-	final void outl(final char[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
-	final void outl(final char[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
-	final void outl(final Object[] args){ Arrays.stream(args).forEach(this::out); }
-	final void outl(final Object[][] args){ Arrays.stream(args).forEach(this::out); }
-	final <E> void outl(final Collection<E> args){ args.stream().forEach(this::out); }
 	final void fin(final Object head, final Object... tail) {
 		out(head, tail);
 		if(!autoFlush) {
@@ -609,99 +581,50 @@ final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 		System.exit(0);
 	}
-	final void ende(final Object head, final Object... tail ) {
+	final void fin(final int[][] args) {
+		out(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	final void fin(final long[][] args) {
+		out(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	final void fin(final double[][] args) {
+		out(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	final void fin(final boolean[][] args) {
+		out(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	final void fin(final char[][] args) {
+		out(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	final void fin(final Object[][] args) {
+		out(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	final void ende(final Object head, final Object... tail) {
 		outl(head, tail);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	final void ende(final int[] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	final void ende(final int[][] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	final void ende(final long[] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	final void ende(final long[][] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	final void ende(final double[] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	final void ende(final double[][] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	final void ende(final boolean[] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	final void ende(final boolean[][] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	final void ende(final char[] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	final void ende(final char[][] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	final void ende(final Object[] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	final void ende(final Object[][] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	final <E> void ende(final Collection<E> args) {
-		outl(args);
 		if(!autoFlush) {
 			flush();
 		}

@@ -262,6 +262,13 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 	}
 	/**
+	 * Pairクラスの配列を出力する
+	 * @param <F>
+	 * @param <S>
+	 * @param args 
+	 */
+	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> void out(final Pair<F, S>[] args){ Arrays.stream(args).forEach(this::out); }
+	/**
 	 * {@link Collection}を出力する
 	 * @param args
 	 */
@@ -280,6 +287,36 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		newLine();
 	}
 	/**
+	 * int型二次元配列を出力する
+	 * @param args
+	 */
+	public final void out(final int[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	/**
+	 * long型二次元配列を出力する
+	 * @param args
+	 */
+	public final void out(final long[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	/**
+	 * double型二次元配列を出力する
+	 * @param args
+	 */
+	public final void out(final double[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	/**
+	 * boolean型二次元配列を出力する
+	 * @param args
+	 */
+	public final void out(final boolean[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	/**
+	 * char型二次元配列を出力する
+	 * @param args
+	 */
+	public final void out(final char[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
+	/**
+	 * Objectクラスの二次元配列を出力する
+	 * @param args
+	 */
+	public final void out(final Object[][] args){ Arrays.stream(args).forEach(this::out); }
+	/**
 	 * outl(a, b, c)で, "a\nb\nc\n"の形式で出力される
 	 * @param head
 	 * @param tail
@@ -288,78 +325,6 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		out(head);
 		Arrays.stream(tail).forEach(this::out);
 	}
-	/**
-	 * {@link #out}の改行おき出力版
-	 * @param args
-	 */
-	public final void outl(final int[] args){ Arrays.stream(args).forEach(this::out); }
-	/**
-	 * {@link #out}をargs.length回呼び出す
-	 * @param args
-	 */
-	public final void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
-	/**
-	 * {@link #out}の改行おき出力版
-	 * @param args
-	 */
-	public final void outl(final long[] args){ Arrays.stream(args).forEach(this::out); }
-	/**
-	 * {@link #out}をargs.length回呼び出す
-	 * @param args
-	 */
-	public final void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
-	/**
-	 * {@link #out}の改行おき出力版
-	 * @param args
-	 */
-	public final void outl(final double[] args){ Arrays.stream(args).forEach(this::out); }
-	/**
-	 * {@link #out}をargs.length回呼び出す
-	 * @param args
-	 */
-	public final void outl(final double[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
-	/**
-	 * {@link #out}の改行おき出力版
-	 * @param args
-	 */
-	public final void outl(final boolean[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
-	/**
-	 * {@link #out}をargs.length回呼び出す
-	 * @param args
-	 */
-	public final void outl(final boolean[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
-	/**
-	 * {@link #out}の改行おき出力版
-	 * @param args
-	 */
-	public final void outl(final char[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
-	/**
-	 * {@link #out}をargs.length回呼び出す
-	 * @param args
-	 */
-	public final void outl(final char[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
-	/**
-	 * {@link #out}の改行おき出力版
-	 * @param args
-	 */
-	public final void outl(final Object[] args){ Arrays.stream(args).forEach(this::out); }
-	/**
-	 * {@link #out}をargs.length回呼び出す
-	 * @param args
-	 */
-	public final void outl(final Object[][] args){ Arrays.stream(args).forEach(this::out); }
-	/**
-	 * {@link #out}の改行おき出力版
-	 * @param <F>
-	 * @param <S>
-	 * @param args 
-	 */
-	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> void outl(final Pair<F, S>[] args){ Arrays.stream(args).forEach(this::out); }
-	/**
-	 * {@link #out}の改行おき出力版
-	 * @param args
-	 */
-	public final <E> void outl(final Collection<E> args){ args.stream().forEach(this::out); }
 	/**
 	 * この出力を最後に処理を終了する
 	 * @param head
@@ -461,11 +426,97 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	}
 	/**
 	 * この出力を最後に処理を終了する
+	 * @param <F>
+	 * @param <S>
+	 * @param args
+	 * @see #out
+	 */
+	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> void fin(final Pair<F, S>[] args) {
+		out(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	/**
+	 * この出力を最後に処理を終了する
 	 * @param <E>
 	 * @param args
 	 * @see #out
 	 */
 	public final <E> void fin(final Collection<E> args) {
+		out(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	/**
+	 * この出力を最後に処理を終了する
+	 * @param args
+	 * @see #out
+	 */
+	public final void fin(final int[][] args) {
+		out(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	/**
+	 * この出力を最後に処理を終了する
+	 * @param args
+	 * @see #out
+	 */
+	public final void fin(final long[][] args) {
+		out(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	/**
+	 * この出力を最後に処理を終了する
+	 * @param args
+	 * @see #out
+	 */
+	public final void fin(final double[][] args) {
+		out(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	/**
+	 * この出力を最後に処理を終了する
+	 * @param args
+	 * @see #out
+	 */
+	public final void fin(final boolean[][] args) {
+		out(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	/**
+	 * この出力を最後に処理を終了する
+	 * @param args
+	 * @see #out
+	 */
+	public final void fin(final char[][] args) {
+		out(args);
+		if(!autoFlush) {
+			flush();
+		}
+		System.exit(0);
+	}
+	/**
+	 * この出力を最後に処理を終了する
+	 * @param args
+	 * @see #out
+	 */
+	public final void fin(final Object[][] args) {
 		out(args);
 		if(!autoFlush) {
 			flush();
@@ -480,177 +531,6 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	 */
 	public final void ende(final Object head, final Object... tail ) {
 		outl(head, tail);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #outl
-	 */
-	public final void ende(final int[] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #outl
-	 */
-	public final void ende(final int[][] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #outl
-	 */
-	public final void ende(final long[] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #outl
-	 */
-	public final void ende(final long[][] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #outl
-	 */
-	public final void ende(final double[] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #outl
-	 */
-	public final void ende(final double[][] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #outl
-	 */
-	public final void ende(final boolean[] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #outl
-	 */
-	public final void ende(final boolean[][] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #outl
-	 */
-	public final void ende(final char[] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #outl
-	 */
-	public final void ende(final char[][] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #outl
-	 */
-	public final void ende(final Object[] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #outl
-	 */
-	public final void ende(final Object[][] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param <F>
-	 * @param <S>
-	 * @param args
-	 * @see #outl
-	 */
-	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> void ende(final Pair<F, S>[] args) {
-		outl(args);
-		if(!autoFlush) {
-			flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param <E>
-	 * @param args
-	 * @see #outl
-	 */
-	public final <E> void ende(final Collection<E> args) {
-		outl(args);
 		if(!autoFlush) {
 			flush();
 		}
