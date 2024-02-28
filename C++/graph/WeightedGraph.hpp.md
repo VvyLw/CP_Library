@@ -33,19 +33,19 @@ data:
     links: []
   bundledCode: "#line 2 \"C++/graph/WeightedGraph.hpp\"\n\n#include <limits>\n#line\
     \ 2 \"C++/graph/Graph.hpp\"\n\r\n#include <iostream>\r\n#include <vector>\r\n\
-    #include <queue>\r\n#include <stack>\r\n#ifndef TEMPLATE\r\ntemplate <class T,\
-    \ class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }\r\
-    \n#endif\r\n#line 2 \"C++/graph/edge.hpp\"\n\nstruct edge {\n    int src, to,\
-    \ id;\n    long long cost;\n    edge(){}\n    edge(const int src_, const int to_,\
-    \ const int id_ = -1, const long long cost_ = 0): src(src_), to(to_), id(id_),\
-    \ cost(cost_){}\n    operator int() const { return to; }\n};\n\n/**\n * @brief\
-    \ Edge\n */\n#line 11 \"C++/graph/Graph.hpp\"\ntemplate <bool undirected = true>\
-    \ struct graph: std::vector<std::vector<edge>> {\r\nprotected:\r\n    int indexed,\
-    \ id;\r\n    std::vector<edge> edges;\r\npublic:\r\n    graph(){}\r\n    graph(const\
-    \ int n, const int indexed_ = 1): indexed(indexed_), id(0){ this -> resize(n);\
-    \ }\r\n    void add(int a, int b) {\r\n        a -= indexed, b-= indexed;\r\n\
-    \        (*this)[a].emplace_back(a, b, id);\r\n        edges.emplace_back(a, b,\
-    \ id++);\r\n        if(undirected) {\r\n            (*this)[b].emplace_back(b,\
+    #include <algorithm>\r\n#include <queue>\r\n#include <stack>\r\n#ifndef TEMPLATE\r\
+    \ntemplate <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return\
+    \ 1; } return 0; }\r\n#endif\r\n#line 2 \"C++/graph/edge.hpp\"\n\nstruct edge\
+    \ {\n    int src, to, id;\n    long long cost;\n    edge(){}\n    edge(const int\
+    \ src_, const int to_, const int id_ = -1, const long long cost_ = 0): src(src_),\
+    \ to(to_), id(id_), cost(cost_){}\n    operator int() const { return to; }\n};\n\
+    \n/**\n * @brief Edge\n */\n#line 12 \"C++/graph/Graph.hpp\"\ntemplate <bool undirected\
+    \ = true> struct graph: std::vector<std::vector<edge>> {\r\nprotected:\r\n   \
+    \ int indexed, id;\r\n    std::vector<edge> edges;\r\npublic:\r\n    graph(){}\r\
+    \n    graph(const int n, const int indexed_ = 1): indexed(indexed_), id(0){ this\
+    \ -> resize(n); }\r\n    void add(int a, int b) {\r\n        a -= indexed, b-=\
+    \ indexed;\r\n        (*this)[a].emplace_back(a, b, id);\r\n        edges.emplace_back(a,\
+    \ b, id++);\r\n        if(undirected) {\r\n            (*this)[b].emplace_back(b,\
     \ a, --id);\r\n            edges.emplace_back(b, a, id++);\r\n        }\r\n  \
     \  }\r\n    void input(const int m) {\r\n        for(int i = 0; i < m; ++i) {\r\
     \n            int a, b;\r\n            std::cin >> a >> b;\r\n            add(a,\
@@ -81,11 +81,11 @@ data:
     \n\t\t\t}\r\n\t\t}\r\n\t\treturn {};\r\n    }\r\n};\r\ntypedef std::vector<edge>\
     \ ve;\r\ntypedef std::vector<ve> we;\r\n\r\n/**\r\n * @brief \u30B0\u30E9\u30D5\
     \u30E9\u30A4\u30D6\u30E9\u30EA\r\n */\n#line 2 \"C++/graph/ShortestPath.hpp\"\n\
-    \n#pragma GCC diagnostic ignored \"-Wreorder\"\n\n#line 6 \"C++/graph/ShortestPath.hpp\"\
-    \n#include <algorithm>\nstruct ShortestPath {\nprivate:\n    const std::vector<long\
-    \ long> cost;\n    const std::vector<int> src;\npublic:\n    ShortestPath(const\
-    \ std::vector<long long> &cost, const std::vector<int> &src): cost(cost), src(src){}\n\
-    \    bool is_thru(const int i){ return src[i] != -1; }\n    std::vector<int> path(int\
+    \n#pragma GCC diagnostic ignored \"-Wreorder\"\n\n#line 7 \"C++/graph/ShortestPath.hpp\"\
+    \nstruct ShortestPath {\nprivate:\n    const std::vector<long long> cost;\n  \
+    \  const std::vector<int> src;\npublic:\n    ShortestPath(const std::vector<long\
+    \ long> &cost, const std::vector<int> &src): cost(cost), src(src){}\n    bool\
+    \ is_thru(const int i){ return src[i] != -1; }\n    std::vector<int> path(int\
     \ i) {\n        std::vector<int> res;\n        for(; i != -1; i = src[i]) {\n\t\
     \t\tres.emplace_back(i);\n\t\t}\n        std::ranges::reverse(res);\n        return\
     \ res;\n    }\n    std::vector<long long> get() const { return cost; }\n};\n\n\
@@ -183,7 +183,7 @@ data:
   isVerificationFile: false
   path: C++/graph/WeightedGraph.hpp
   requiredBy: []
-  timestamp: '2024-02-29 01:03:52+09:00'
+  timestamp: '2024-02-29 08:49:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/warshallfloyd.test.cpp

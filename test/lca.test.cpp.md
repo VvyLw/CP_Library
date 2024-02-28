@@ -22,19 +22,19 @@ data:
     - https://judge.yosupo.jp/problem/lca
   bundledCode: "#line 1 \"test/lca.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\
     \n#line 2 \"C++/graph/Graph.hpp\"\n\r\n#include <iostream>\r\n#include <vector>\r\
-    \n#include <queue>\r\n#include <stack>\r\n#ifndef TEMPLATE\r\ntemplate <class\
-    \ T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0;\
-    \ }\r\n#endif\r\n#line 2 \"C++/graph/edge.hpp\"\n\nstruct edge {\n    int src,\
-    \ to, id;\n    long long cost;\n    edge(){}\n    edge(const int src_, const int\
-    \ to_, const int id_ = -1, const long long cost_ = 0): src(src_), to(to_), id(id_),\
-    \ cost(cost_){}\n    operator int() const { return to; }\n};\n\n/**\n * @brief\
-    \ Edge\n */\n#line 11 \"C++/graph/Graph.hpp\"\ntemplate <bool undirected = true>\
-    \ struct graph: std::vector<std::vector<edge>> {\r\nprotected:\r\n    int indexed,\
-    \ id;\r\n    std::vector<edge> edges;\r\npublic:\r\n    graph(){}\r\n    graph(const\
-    \ int n, const int indexed_ = 1): indexed(indexed_), id(0){ this -> resize(n);\
-    \ }\r\n    void add(int a, int b) {\r\n        a -= indexed, b-= indexed;\r\n\
-    \        (*this)[a].emplace_back(a, b, id);\r\n        edges.emplace_back(a, b,\
-    \ id++);\r\n        if(undirected) {\r\n            (*this)[b].emplace_back(b,\
+    \n#include <algorithm>\r\n#include <queue>\r\n#include <stack>\r\n#ifndef TEMPLATE\r\
+    \ntemplate <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return\
+    \ 1; } return 0; }\r\n#endif\r\n#line 2 \"C++/graph/edge.hpp\"\n\nstruct edge\
+    \ {\n    int src, to, id;\n    long long cost;\n    edge(){}\n    edge(const int\
+    \ src_, const int to_, const int id_ = -1, const long long cost_ = 0): src(src_),\
+    \ to(to_), id(id_), cost(cost_){}\n    operator int() const { return to; }\n};\n\
+    \n/**\n * @brief Edge\n */\n#line 12 \"C++/graph/Graph.hpp\"\ntemplate <bool undirected\
+    \ = true> struct graph: std::vector<std::vector<edge>> {\r\nprotected:\r\n   \
+    \ int indexed, id;\r\n    std::vector<edge> edges;\r\npublic:\r\n    graph(){}\r\
+    \n    graph(const int n, const int indexed_ = 1): indexed(indexed_), id(0){ this\
+    \ -> resize(n); }\r\n    void add(int a, int b) {\r\n        a -= indexed, b-=\
+    \ indexed;\r\n        (*this)[a].emplace_back(a, b, id);\r\n        edges.emplace_back(a,\
+    \ b, id++);\r\n        if(undirected) {\r\n            (*this)[b].emplace_back(b,\
     \ a, --id);\r\n            edges.emplace_back(b, a, id++);\r\n        }\r\n  \
     \  }\r\n    void input(const int m) {\r\n        for(int i = 0; i < m; ++i) {\r\
     \n            int a, b;\r\n            std::cin >> a >> b;\r\n            add(a,\
@@ -117,7 +117,7 @@ data:
   isVerificationFile: true
   path: test/lca.test.cpp
   requiredBy: []
-  timestamp: '2024-02-22 06:53:31+09:00'
+  timestamp: '2024-02-29 08:49:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lca.test.cpp
