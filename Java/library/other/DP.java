@@ -21,7 +21,7 @@ public final class DP {
 	 * @return dpの最大値
 	 * @implNote O(NW)
 	 */
-	protected static final long knapsack01(final int[] a, final long[] v, final int w) {
+	public static final long knapsack01(final int[] a, final long[] v, final int w) {
 		final int n = a.length;
 		final long[] dp = new long[w + 1];
 		Arrays.fill(dp, Long.MIN_VALUE);
@@ -46,7 +46,7 @@ public final class DP {
 	 * @return dpの最大値
 	 * @implNote O(N sum(v))
 	 */
-	protected static final int knapsack01(final long[] a, final int[] v, final long w) {
+	public static final int knapsack01(final long[] a, final int[] v, final long w) {
 		final int n = a.length;
 		final int s = (int) Utility.sum(v);
 		final long[] dp = new long[s + 1];
@@ -113,7 +113,7 @@ public final class DP {
 	 * @return dpの最大値
 	 * @implNote O(NW)
 	 */
-	protected static final long knapsack(final int[] a, final long[] v, final int[] m, final int w){ return Utility.max(knapsack(a, v, m, w, false)); }
+	public static final long knapsack(final int[] a, final long[] v, final int[] m, final int w){ return Utility.max(knapsack(a, v, m, w, false)); }
 	/**
 	 * 個数制限つきナップザック
 	 * 重さw_i, 価値v_iであるようなn種類の品物があり、i番目の品物はm_i個まで選ぶことができる
@@ -125,7 +125,7 @@ public final class DP {
 	 * @return dpの最大値
 	 * @implNote O((N max(v))^2)
 	 */
-	protected static final long knapsack(final long[] a, final int[] v, final long[] m, final long w) {
+	public static final long knapsack(final long[] a, final int[] v, final long[] m, final long w) {
 		final int n = a.length;
 		final int max = Utility.max(v);
 		if(max == 0) {
@@ -170,7 +170,7 @@ public final class DP {
 	 * @return dpの最大値
 	 * @implNote O(NW)
 	 */
-	protected static final long knapsack(final int[] a, final long[] v, final int w) {
+	public static final long knapsack(final int[] a, final long[] v, final int w) {
 		final int n = a.length;
 		final long[] dp = new long[w + 1];
 		Arrays.fill(dp, Long.MIN_VALUE);
@@ -192,7 +192,7 @@ public final class DP {
 	 * @see <a href="https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp">参考元</a>
 	 * @implNote Java21より前のVerの場合、getLastをget(dp.size() - 1)に変える
 	 */
-	protected static final int[] lis(final int[] a) {
+	public static final int[] lis(final int[] a) {
 		final int n = a.length;
 		List<IntPair> dp = new ArrayList<IntPair>();
 		final int[] p = new int[n];
@@ -221,7 +221,7 @@ public final class DP {
 	 * @see <a href="https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp">参考元</a>
 	 * @implNote Java21より前のVerの場合、getLastをget(dp.size() - 1)に変える
 	 */
-	protected static final int[] lis(final long[] a) {
+	public static final int[] lis(final long[] a) {
 		final int n = a.length;
 		List<IntPair> dp = new ArrayList<IntPair>();
 		final int[] p = new int[n];
