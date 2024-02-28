@@ -175,5 +175,5 @@ template <class T> inline std::vector<int> lis(const std::vector<T> &v) {
  */
 
 /**
- * @brief DP
+ * @brief DP(Knapsack & LIS)
  */
