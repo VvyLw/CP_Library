@@ -1104,59 +1104,44 @@ data:
     \ out(final char[] a){ out.out(a); }\n\tfinal void out(final char[] head, final\
     \ char[]...tail){ out.out(head, tail); }\n\tfinal void out(final Object[] a){\
     \ out.out(a); }\n\tfinal void out(final Object[] head, final Object[]...tail){\
-    \ out.out(head, tail); }\n\tfinal <E> void out(final Collection<E> a){ out.out(a);\
-    \ }\n\tfinal void outl(final Object head, final Object... tail){ out.outl(head,\
-    \ tail); }\n\tfinal void outl(final int[] a){ out.outl(a); }\n\tfinal void outl(final\
-    \ int[][] a){ out.outl(a); }\n\tfinal void outl(final long[] a){ out.outl(a);\
-    \ }\n\tfinal void outl(final long[][] a){ out.outl(a); }\n\tfinal void outl(final\
-    \ double[] a){ out.outl(a); }\n\tfinal void outl(final double[][] a){ out.outl(a);\
-    \ }\n\tfinal void outl(final boolean[] a){ out.outl(a); }\n\tfinal void outl(final\
-    \ boolean[][] a){ out.outl(a); }\n\tfinal void outl(final char[] a){ out.outl(a);\
-    \ }\n\tfinal void outl(final char[][] a){ out.outl(a); }\n\tfinal void outl(final\
-    \ Object[] a){ out.outl(a); }\n\tfinal void outl(final Object[][] a){ out.outl(a);\
+    \ out.out(head, tail); }\n\tfinal <F extends Comparable<? super F>, S extends\
+    \ Comparable<? super S>> void out(final Pair<F, S>[] a){ out.out(a); }\n\tfinal\
+    \ <E> void out(final Collection<E> a){ out.out(a); }\n\tfinal void out(final int[][]\
+    \ a){ out.out(a); }\n\tfinal void out(final long[][] a){ out.out(a); }\n\tfinal\
+    \ void out(final double[][] a){ out.out(a); }\n\tfinal void out(final boolean[][]\
+    \ a){ out.out(a); }\n\tfinal void out(final char[][] a){ out.out(a); }\n\tfinal\
+    \ void out(final Object[][] a){ out.out(a); }\n\tfinal void outl(final Object\
+    \ head, final Object... tail){ out.outl(head, tail); }\n\tfinal void fin(final\
+    \ Object head, final Object... tail){ out.fin(head, tail); }\n\tfinal <F extends\
+    \ Comparable<? super F>, S extends Comparable<? super S>> void fin(final Pair<F,\
+    \ S> p){ out.fin(p); }\n\tfinal void fin(final int[] a){ out.fin(a); }\n\tfinal\
+    \ void fin(final long[] a){ out.fin(a); }\n\tfinal void fin(final double[] a){\
+    \ out.fin(a); }\n\tfinal void fin(final boolean[] a){ out.fin(a); }\n\tfinal void\
+    \ fin(final char[] a){ out.fin(a); }\n\tfinal void fin(final Object[] a){ out.fin(a);\
     \ }\n\tfinal <F extends Comparable<? super F>, S extends Comparable<? super S>>\
-    \ void outl(final Pair<F, S>[] a){ out.outl(a); }\n\tfinal <E> void outl(final\
-    \ Collection<E> a){ out.outl(a); }\n\tfinal void fin(final Object head, final\
-    \ Object... tail){ out.fin(head, tail); }\n\tfinal <F extends Comparable<? super\
-    \ F>, S extends Comparable<? super S>> void fin(final Pair<F, S> p){ out.fin(p);\
-    \ }\n\tfinal void fin(final int[] a){ out.fin(a); }\n\tfinal void fin(final long[]\
-    \ a){ out.fin(a); }\n\tfinal void fin(final double[] a){ out.fin(a); }\n\tfinal\
-    \ void fin(final boolean[] a){ out.fin(a); }\n\tfinal void fin(final char[] a){\
-    \ out.fin(a); }\n\tfinal void fin(final Object[] a){ out.fin(a); }\n\tfinal <E>\
-    \ void fin(final Collection<E> a){ out.fin(a); }\n\tfinal void ende(final Object\
-    \ head, final Object... tail){ out.ende(head, tail); }\n\tfinal void ende(final\
-    \ int[] a){ out.ende(a); }\n\tfinal void ende(final int[][] a){ out.ende(a); }\n\
-    \tfinal void ende(final long[] a){ out.ende(a); }\n\tfinal void ende(final long[][]\
-    \ a){ out.ende(a); }\n\tfinal void ende(final double[] a){ out.ende(a); }\n\t\
-    final void ende(final double[][] a){ out.ende(a); }\n\tfinal void ende(final boolean[]\
-    \ a){ out.ende(a); }\n\tfinal void ende(final boolean[][] a){ out.ende(a); }\n\
-    \tfinal void ende(final char[] a){ out.ende(a); }\n\tfinal void ende(final char[][]\
-    \ a){ out.ende(a); }\n\tfinal void ende(final Object[] a){ out.ende(a); }\n\t\
-    final void ende(final Object[][] a){ out.ende(a); }\n\tfinal <F extends Comparable<?\
-    \ super F>, S extends Comparable<? super S>> void ende(final Pair<F, S>[] a){\
-    \ out.ende(a); }\n\tfinal <E> void ende(final Collection<E> a){ out.ende(a); }\n\
-    \tfinal void dump(final Object head, final Object... tail){ err.out(head, tail);\
-    \ }\n\tfinal void dump(final int[] a){ err.out(a); }\n\tfinal void dump(final\
-    \ int[] head, final int[]...tail){ err.out(head, tail); }\n\tfinal void dump(final\
-    \ long[] a){ err.out(a); }\n\tfinal void dump(final long[] head, final long[]...tail){\
-    \ err.out(head, tail); }\n\tfinal void dump(final double[] a){ err.out(a); }\n\
-    \tfinal void dump(final double[] head, final double[]...tail){ err.out(head, tail);\
-    \ }\n\tfinal void dump(final boolean[] a){ err.out(a); }\n\tfinal void dump(final\
-    \ boolean[] head, final boolean[]...tail){ err.out(head, tail); }\n\tfinal void\
-    \ dump(final char[] a){ err.out(a); }\n\tfinal void dump(final char[] head, final\
-    \ char[]...tail){ err.out(head, tail); }\n\tfinal void dump(final Object[] a){\
-    \ err.out(a); }\n\tfinal void dump(final Object[] head, final Object[]...tail){\
-    \ err.out(head, tail); }\n\tfinal void debug(final Object head, final Object...\
-    \ tail){ err.outl(head, tail); }\n\tfinal void debug(final int[] a){ err.outl(a);\
-    \ }\n\tfinal void debug(final int[][] a){ err.outl(a); }\n\tfinal void debug(final\
-    \ long[] a){ err.outl(a); }\n\tfinal void debug(final long[][] a){ err.outl(a);\
-    \ }\n\tfinal void debug(final double[] a){ err.outl(a); }\n\tfinal void debug(final\
-    \ double[][] a){ err.outl(a); }\n\tfinal void debug(final boolean[] a){ err.outl(a);\
-    \ }\n\tfinal void debug(final boolean[][] a){ err.outl(a); }\n\tfinal void debug(final\
-    \ char[] a){ err.outl(a); }\n\tfinal void debug(final char[][] a){ err.outl(a);\
-    \ }\n\tfinal void debug(final Object[] a){ err.outl(a); }\n\tfinal void debug(final\
-    \ Object[][] a){ err.outl(a); }\n\tfinal <F extends Comparable<? super F>, S extends\
-    \ Comparable<? super S>> void debug(final Pair<F, S>[] a){ err.outl(a); }\n\t\
+    \ void fin(final Pair<F, S>[] a){ out.fin(a); }\n\tfinal <E> void fin(final Collection<E>\
+    \ a){ out.fin(a); }\n\tfinal void fin(final int[][] a){ out.fin(a); }\n\tfinal\
+    \ void fin(final long[][] a){ out.fin(a); }\n\tfinal void fin(final double[][]\
+    \ a){ out.fin(a); }\n\tfinal void fin(final boolean[][] a){ out.fin(a); }\n\t\
+    final void fin(final char[][] a){ out.fin(a); }\n\tfinal void fin(final Object[][]\
+    \ a){ out.fin(a); }\n\tfinal void ende(final Object head, final Object... tail){\
+    \ out.ende(head, tail); }\n\tfinal void dump(final Object head, final Object...\
+    \ tail){ err.out(head, tail); }\n\tfinal void dump(final int[] a){ err.out(a);\
+    \ }\n\tfinal void dump(final int[] head, final int[]...tail){ err.out(head, tail);\
+    \ }\n\tfinal void dump(final long[] a){ err.out(a); }\n\tfinal void dump(final\
+    \ long[] head, final long[]...tail){ err.out(head, tail); }\n\tfinal void dump(final\
+    \ double[] a){ err.out(a); }\n\tfinal void dump(final double[] head, final double[]...tail){\
+    \ err.out(head, tail); }\n\tfinal void dump(final boolean[] a){ err.out(a); }\n\
+    \tfinal void dump(final boolean[] head, final boolean[]...tail){ err.out(head,\
+    \ tail); }\n\tfinal void dump(final char[] a){ err.out(a); }\n\tfinal void dump(final\
+    \ char[] head, final char[]...tail){ err.out(head, tail); }\n\tfinal void dump(final\
+    \ Object[] a){ err.out(a); }\n\tfinal void dump(final Object[] head, final Object[]...tail){\
+    \ err.out(head, tail); }\n\tfinal <F extends Comparable<? super F>, S extends\
+    \ Comparable<? super S>> void dump(final Pair<F, S>[] a){ err.out(a); }\n\tfinal\
+    \ void dump(final int[][] a){ err.out(a); }\n\tfinal void dump(final long[][]\
+    \ a){ err.out(a); }\n\tfinal void dump(final double[][] a){ err.out(a); }\n\t\
+    final void dump(final boolean[][] a){ err.out(a); }\n\tfinal void dump(final char[][]\
+    \ a){ err.out(a); }\n\tfinal void dump(final Object[][] a){ err.out(a); }\n\t\
     @Override\n\tpublic final void close() {\n\t\tout.flush();\n\t\tin.close();\n\t\
     \tout.close();\n\t\terr.close();\n\t}\n}\nfinal class MyScanner implements Closeable,\
     \ AutoCloseable {\n\tprivate int pos, lim;\n\tprivate final byte[] buf;\n\tprivate\
@@ -1268,29 +1253,22 @@ data:
     \ > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\
     \t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void\
     \ out(final Object[] head, final Object[]... tail) {\n\t\tout(head);\n\t\tfor(final\
-    \ Object[] a: tail) {\n\t\t\tout(a);\n\t\t}\n\t}\n\tfinal <E> void out(final Collection<E>\
+    \ Object[] a: tail) {\n\t\t\tout(a);\n\t\t}\n\t}\n\tfinal <F extends Comparable<?\
+    \ super F>, S extends Comparable<? super S>> void out(final Pair<F, S>[] args){\
+    \ Arrays.stream(args).forEach(this::out); }\n\tfinal <E> void out(final Collection<E>\
     \ args) {\n\t\tif(debug) {\n\t\t\tprint(args.toString());\n\t\t} else {\n\t\t\t\
     int i = 0;\n\t\t\tfor(final var el: args) {\n\t\t\t\tprint(el);\n\t\t\t\tif(++i\
     \ != args.size()) {\n\t\t\t\t\tprint(\" \");\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\t\
-    newLine();\n\t}\n\tfinal void outl(final Object head, final Object... tail) {\n\
-    \t\tout(head);\n\t\tArrays.stream(tail).forEach(this::out);\n\t}\n\tfinal void\
-    \ outl(final int[] args){ Arrays.stream(args).forEach(this::out); }\n\tfinal void\
-    \ outl(final int[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i]));\
-    \ }\n\tfinal void outl(final long[] args){ Arrays.stream(args).forEach(this::out);\
-    \ }\n\tfinal void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> out(args[i])); }\n\tfinal void outl(final double[] args){ Arrays.stream(args).forEach(this::out);\
-    \ }\n\tfinal void outl(final double[][] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> out(args[i])); }\n\tfinal void outl(final boolean[] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> out(args[i])); }\n\tfinal void outl(final boolean[][]\
+    newLine();\n\t}\n\tfinal void out(final int[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> out(args[i])); }\n\tfinal void out(final long[][] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> out(args[i])); }\n\tfinal void out(final double[][]\
     \ args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }\n\tfinal\
-    \ void outl(final char[] args){ IntStream.range(0, args.length).forEach(i -> out(args[i]));\
-    \ }\n\tfinal void outl(final char[][] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> out(args[i])); }\n\tfinal void outl(final Object[] args){ Arrays.stream(args).forEach(this::out);\
-    \ }\n\tfinal void outl(final Object[][] args){ Arrays.stream(args).forEach(this::out);\
-    \ }\n\tfinal <F extends Comparable<? super F>, S extends Comparable<? super S>>\
-    \ void outl(final Pair<F, S>[] args){ Arrays.stream(args).forEach(this::out);\
-    \ }\n\tfinal <E> void outl(final Collection<E> args){ args.stream().forEach(this::out);\
-    \ }\n\tfinal void fin(final Object head, final Object... tail) {\n\t\tout(head,\
+    \ void out(final boolean[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> out(args[i])); }\n\tfinal void out(final char[][] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> out(args[i])); }\n\tfinal void out(final Object[][]\
+    \ args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }\n\tfinal\
+    \ void outl(final Object head, final Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::out);\n\
+    \t}\n\tfinal void fin(final Object head, final Object... tail) {\n\t\tout(head,\
     \ tail);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t\
     }\n\tfinal <F extends Comparable<? super F>, S extends Comparable<? super S>>\
     \ void fin(final Pair<F, S> arg) {\n\t\tout(arg);\n\t\tif(!autoFlush) {\n\t\t\t\
@@ -1303,50 +1281,37 @@ data:
     \ {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void fin(final char[]\
     \ args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
     \t}\n\tfinal void fin(final Object[] args) {\n\t\tout(args);\n\t\tif(!autoFlush)\
-    \ {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal <E> void fin(final\
-    \ Collection<E> args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\
-    \t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void ende(final Object head, final Object...\
-    \ tail ) {\n\t\toutl(head, tail);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t\
-    }\n\t\tSystem.exit(0);\n\t}\n\tfinal void ende(final int[] args) {\n\t\toutl(args);\n\
-    \t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal\
-    \ void ende(final int[][] args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\
-    \tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void ende(final long[] args)\
-    \ {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
-    \t}\n\tfinal void ende(final long[][] args) {\n\t\toutl(args);\n\t\tif(!autoFlush)\
+    \ {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal <F extends Comparable<?\
+    \ super F>, S extends Comparable<? super S>> void fin(final Pair<F, S>[] args)\
+    \ {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
+    \t}\n\tfinal <E> void fin(final Collection<E> args) {\n\t\tout(args);\n\t\tif(!autoFlush)\
+    \ {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void fin(final int[][]\
+    \ args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
+    \t}\n\tfinal void fin(final long[][] args) {\n\t\tout(args);\n\t\tif(!autoFlush)\
+    \ {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void fin(final double[][]\
+    \ args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
+    \t}\n\tfinal void fin(final boolean[][] args) {\n\t\tout(args);\n\t\tif(!autoFlush)\
+    \ {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void fin(final char[][]\
+    \ args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
+    \t}\n\tfinal void fin(final Object[][] args) {\n\t\tout(args);\n\t\tif(!autoFlush)\
     \ {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void ende(final\
-    \ double[] args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t\
-    }\n\t\tSystem.exit(0);\n\t}\n\tfinal void ende(final double[][] args) {\n\t\t\
-    outl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
-    \t}\n\tfinal void ende(final boolean[] args) {\n\t\toutl(args);\n\t\tif(!autoFlush)\
-    \ {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void ende(final\
-    \ boolean[][] args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\
-    \t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void ende(final char[] args) {\n\t\t\
-    outl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
-    \t}\n\tfinal void ende(final char[][] args) {\n\t\toutl(args);\n\t\tif(!autoFlush)\
-    \ {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void ende(final\
-    \ Object[] args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t\
-    }\n\t\tSystem.exit(0);\n\t}\n\tfinal void ende(final Object[][] args) {\n\t\t\
-    outl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
-    \t}\n\tfinal <F extends Comparable<? super F>, S extends Comparable<? super S>>\
-    \ void ende(final Pair<F, S>[] args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\
-    \t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal <E> void ende(final Collection<E>\
-    \ args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\t\
-    System.exit(0);\n\t}\n\t@Override\n\tpublic final void flush() {\n\t\ttry {\n\t\
-    \t\tos.write(buf, 0, pos);\n\t\t\tpos = 0;\n\t\t} catch(final IOException e) {\n\
-    \t\t\te.printStackTrace();\n\t\t}\n\t}\n\t@Override\n\tpublic final void close()\
-    \ {\n\t\tif(os == null) {\n\t\t\treturn;\n\t\t}\n\t\ttry {\n\t\t\tos.close();\n\
-    \t\t\tos = null;\n\t\t} catch(final IOException e) {\n\t\t\te.printStackTrace();\n\
-    \t\t}\n\t}\n}\n\nclass Pair<F extends Comparable<? super F>, S extends Comparable<?\
-    \ super S>> implements Comparable<Pair<F, S>>, Cloneable {\n\tpublic F first;\n\
-    \tpublic S second;\n\tprotected Pair(final F first, final S second) {\n\t\tthis.first\
-    \ = first;\n\t\tthis.second = second;\n\t}\n\tstatic final <F extends Comparable<?\
-    \ super F>, S extends Comparable<? super S>> Pair<F, S> of(final F a, final S\
-    \ b){ return new Pair<>(a, b); }\n\tPair<S, F> swap(){ return Pair.of(second,\
-    \ first); }\n\t@Override\n\tpublic final boolean equals(final Object o) {\n\t\t\
-    if(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() !=\
-    \ o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?,\
-    \ ?>) o;\n\t\treturn first.equals(p.first) && second.equals(p.second);\n\t}\n\t\
-    @Override\n\tpublic final int hashCode(){ return Objects.hash(first, second);\
+    \ Object head, final Object... tail) {\n\t\toutl(head, tail);\n\t\tif(!autoFlush)\
+    \ {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t@Override\n\tpublic final\
+    \ void flush() {\n\t\ttry {\n\t\t\tos.write(buf, 0, pos);\n\t\t\tpos = 0;\n\t\t\
+    } catch(final IOException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n\t@Override\n\
+    \tpublic final void close() {\n\t\tif(os == null) {\n\t\t\treturn;\n\t\t}\n\t\t\
+    try {\n\t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(final IOException e) {\n\
+    \t\t\te.printStackTrace();\n\t\t}\n\t}\n}\n\nclass Pair<F extends Comparable<?\
+    \ super F>, S extends Comparable<? super S>> implements Comparable<Pair<F, S>>,\
+    \ Cloneable {\n\tpublic F first;\n\tpublic S second;\n\tprotected Pair(final F\
+    \ first, final S second) {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\
+    \t}\n\tstatic final <F extends Comparable<? super F>, S extends Comparable<? super\
+    \ S>> Pair<F, S> of(final F a, final S b){ return new Pair<>(a, b); }\n\tPair<S,\
+    \ F> swap(){ return Pair.of(second, first); }\n\t@Override\n\tpublic final boolean\
+    \ equals(final Object o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\
+    \tif(o == null || getClass() != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\
+    \tfinal Pair<?, ?> p = (Pair<?, ?>) o;\n\t\treturn first.equals(p.first) && second.equals(p.second);\n\
+    \t}\n\t@Override\n\tpublic final int hashCode(){ return Objects.hash(first, second);\
     \ }\n\t@Override\n\tpublic final String toString(){ return \"(\" + first + \"\
     , \" + second + \")\"; }\n\t@SuppressWarnings(\"unchecked\")\n\t@Override\n\t\
     public final Pair<F, S> clone() {\n\t\ttry {\n\t\t\treturn (Pair<F, S>) super.clone();\n\
@@ -1581,7 +1546,7 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-29 06:36:34+09:00'
+  timestamp: '2024-02-29 08:29:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java

@@ -641,60 +641,45 @@ data:
     newLine();\n\t}\n\t/**\n\t * Object\u30AF\u30E9\u30B9\u306E\u914D\u5217\u3092\u8907\
     \u6570\u51FA\u529B\u3059\u308B\n\t * @param head\n\t * @param tail\n\t */\n\t\
     public final void out(final Object[] head, final Object[]... tail) {\n\t\tout(head);\n\
-    \t\tfor(final Object[] a: tail) {\n\t\t\tout(a);\n\t\t}\n\t}\n\t/**\n\t * {@link\
-    \ Collection}\u3092\u51FA\u529B\u3059\u308B\n\t * @param args\n\t */\n\tpublic\
-    \ final <E> void out(final Collection<E> args) {\n\t\tif(debug) {\n\t\t\tprint(args.toString());\n\
-    \t\t} else {\n\t\t\tint i = 0;\n\t\t\tfor(final var el: args) {\n\t\t\t\tprint(el);\n\
+    \t\tfor(final Object[] a: tail) {\n\t\t\tout(a);\n\t\t}\n\t}\n\t/**\n\t * Pair\u30AF\
+    \u30E9\u30B9\u306E\u914D\u5217\u3092\u51FA\u529B\u3059\u308B\n\t * @param <F>\n\
+    \t * @param <S>\n\t * @param args \n\t */\n\tpublic final <F extends Comparable<?\
+    \ super F>, S extends Comparable<? super S>> void out(final Pair<F, S>[] args){\
+    \ Arrays.stream(args).forEach(this::out); }\n\t/**\n\t * {@link Collection}\u3092\
+    \u51FA\u529B\u3059\u308B\n\t * @param args\n\t */\n\tpublic final <E> void out(final\
+    \ Collection<E> args) {\n\t\tif(debug) {\n\t\t\tprint(args.toString());\n\t\t\
+    } else {\n\t\t\tint i = 0;\n\t\t\tfor(final var el: args) {\n\t\t\t\tprint(el);\n\
     \t\t\t\tif(++i != args.size()) {\n\t\t\t\t\tprint(\" \");\n\t\t\t\t}\n\t\t\t}\n\
-    \t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t * outl(a, b, c)\u3067, \"a\\nb\\nc\\n\"\u306E\
-    \u5F62\u5F0F\u3067\u51FA\u529B\u3055\u308C\u308B\n\t * @param head\n\t * @param\
-    \ tail\n\t */\n\tpublic final void outl(final Object head, final Object... tail)\
-    \ {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::out);\n\t}\n\t/**\n\
-    \t * {@link #out}\u306E\u6539\u884C\u304A\u304D\u51FA\u529B\u7248\n\t * @param\
-    \ args\n\t */\n\tpublic final void outl(final int[] args){ Arrays.stream(args).forEach(this::out);\
-    \ }\n\t/**\n\t * {@link #out}\u3092args.length\u56DE\u547C\u3073\u51FA\u3059\n\
-    \t * @param args\n\t */\n\tpublic final void outl(final int[][] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> out(args[i])); }\n\t/**\n\t * {@link #out}\u306E\u6539\
-    \u884C\u304A\u304D\u51FA\u529B\u7248\n\t * @param args\n\t */\n\tpublic final\
-    \ void outl(final long[] args){ Arrays.stream(args).forEach(this::out); }\n\t\
-    /**\n\t * {@link #out}\u3092args.length\u56DE\u547C\u3073\u51FA\u3059\n\t * @param\
-    \ args\n\t */\n\tpublic final void outl(final long[][] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> out(args[i])); }\n\t/**\n\t * {@link #out}\u306E\u6539\
-    \u884C\u304A\u304D\u51FA\u529B\u7248\n\t * @param args\n\t */\n\tpublic final\
-    \ void outl(final double[] args){ Arrays.stream(args).forEach(this::out); }\n\t\
-    /**\n\t * {@link #out}\u3092args.length\u56DE\u547C\u3073\u51FA\u3059\n\t * @param\
-    \ args\n\t */\n\tpublic final void outl(final double[][] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> out(args[i])); }\n\t/**\n\t * {@link #out}\u306E\u6539\
-    \u884C\u304A\u304D\u51FA\u529B\u7248\n\t * @param args\n\t */\n\tpublic final\
-    \ void outl(final boolean[] args){ IntStream.range(0, args.length).forEach(i ->\
-    \ out(args[i])); }\n\t/**\n\t * {@link #out}\u3092args.length\u56DE\u547C\u3073\
-    \u51FA\u3059\n\t * @param args\n\t */\n\tpublic final void outl(final boolean[][]\
-    \ args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }\n\t/**\n\
-    \t * {@link #out}\u306E\u6539\u884C\u304A\u304D\u51FA\u529B\u7248\n\t * @param\
-    \ args\n\t */\n\tpublic final void outl(final char[] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> out(args[i])); }\n\t/**\n\t * {@link #out}\u3092args.length\u56DE\
-    \u547C\u3073\u51FA\u3059\n\t * @param args\n\t */\n\tpublic final void outl(final\
-    \ char[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i]));\
-    \ }\n\t/**\n\t * {@link #out}\u306E\u6539\u884C\u304A\u304D\u51FA\u529B\u7248\n\
-    \t * @param args\n\t */\n\tpublic final void outl(final Object[] args){ Arrays.stream(args).forEach(this::out);\
-    \ }\n\t/**\n\t * {@link #out}\u3092args.length\u56DE\u547C\u3073\u51FA\u3059\n\
-    \t * @param args\n\t */\n\tpublic final void outl(final Object[][] args){ Arrays.stream(args).forEach(this::out);\
-    \ }\n\t/**\n\t * {@link #out}\u306E\u6539\u884C\u304A\u304D\u51FA\u529B\u7248\n\
-    \t * @param <F>\n\t * @param <S>\n\t * @param args \n\t */\n\tpublic final <F\
-    \ extends Comparable<? super F>, S extends Comparable<? super S>> void outl(final\
-    \ Pair<F, S>[] args){ Arrays.stream(args).forEach(this::out); }\n\t/**\n\t * {@link\
-    \ #out}\u306E\u6539\u884C\u304A\u304D\u51FA\u529B\u7248\n\t * @param args\n\t\
-    \ */\n\tpublic final <E> void outl(final Collection<E> args){ args.stream().forEach(this::out);\
-    \ }\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\
-    \u7D42\u4E86\u3059\u308B\n\t * @param head\n\t * @param tail\n\t * @see #out\n\
-    \t */\n\tpublic final void fin(final Object head, final Object... tail) {\n\t\t\
-    out(head, tail);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
-    \t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\
-    \u7D42\u4E86\u3059\u308B\n\t * @param <F> first\u306E\u578B\n\t * @param <S> second\u306E\
-    \u578B\n\t * @param arg\n\t * @see #out\n\t */\n\tpublic final <F extends Comparable<?\
-    \ super F>, S extends Comparable<? super S>> void fin(final Pair<F, S> arg) {\n\
-    \t\tout(arg);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
-    \t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\
+    \t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t * int\u578B\u4E8C\u6B21\u5143\u914D\u5217\
+    \u3092\u51FA\u529B\u3059\u308B\n\t * @param args\n\t */\n\tpublic final void out(final\
+    \ int[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }\n\
+    \t/**\n\t * long\u578B\u4E8C\u6B21\u5143\u914D\u5217\u3092\u51FA\u529B\u3059\u308B\
+    \n\t * @param args\n\t */\n\tpublic final void out(final long[][] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> out(args[i])); }\n\t/**\n\t * double\u578B\u4E8C\u6B21\
+    \u5143\u914D\u5217\u3092\u51FA\u529B\u3059\u308B\n\t * @param args\n\t */\n\t\
+    public final void out(final double[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> out(args[i])); }\n\t/**\n\t * boolean\u578B\u4E8C\u6B21\u5143\u914D\u5217\
+    \u3092\u51FA\u529B\u3059\u308B\n\t * @param args\n\t */\n\tpublic final void out(final\
+    \ boolean[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i]));\
+    \ }\n\t/**\n\t * char\u578B\u4E8C\u6B21\u5143\u914D\u5217\u3092\u51FA\u529B\u3059\
+    \u308B\n\t * @param args\n\t */\n\tpublic final void out(final char[][] args){\
+    \ IntStream.range(0, args.length).forEach(i -> out(args[i])); }\n\t/**\n\t * Object\u30AF\
+    \u30E9\u30B9\u306E\u4E8C\u6B21\u5143\u914D\u5217\u3092\u51FA\u529B\u3059\u308B\
+    \n\t * @param args\n\t */\n\tpublic final void out(final Object[][] args){ Arrays.stream(args).forEach(this::out);\
+    \ }\n\t/**\n\t * outl(a, b, c)\u3067, \"a\\nb\\nc\\n\"\u306E\u5F62\u5F0F\u3067\
+    \u51FA\u529B\u3055\u308C\u308B\n\t * @param head\n\t * @param tail\n\t */\n\t\
+    public final void outl(final Object head, final Object... tail) {\n\t\tout(head);\n\
+    \t\tArrays.stream(tail).forEach(this::out);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\
+    \u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t *\
+    \ @param head\n\t * @param tail\n\t * @see #out\n\t */\n\tpublic final void fin(final\
+    \ Object head, final Object... tail) {\n\t\tout(head, tail);\n\t\tif(!autoFlush)\
+    \ {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\
+    \u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\
+    \n\t * @param <F> first\u306E\u578B\n\t * @param <S> second\u306E\u578B\n\t *\
+    \ @param arg\n\t * @see #out\n\t */\n\tpublic final <F extends Comparable<? super\
+    \ F>, S extends Comparable<? super S>> void fin(final Pair<F, S> arg) {\n\t\t\
+    out(arg);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t\
+    }\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\
     \u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see #out\n\t */\n\tpublic final\
     \ void fin(final int[] args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\
     \t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\
@@ -716,63 +701,38 @@ data:
     \ #out\n\t */\n\tpublic final void fin(final Object[] args) {\n\t\tout(args);\n\
     \t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\
     \t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\
-    \u3059\u308B\n\t * @param <E>\n\t * @param args\n\t * @see #out\n\t */\n\tpublic\
-    \ final <E> void fin(final Collection<E> args) {\n\t\tout(args);\n\t\tif(!autoFlush)\
+    \u3059\u308B\n\t * @param <F>\n\t * @param <S>\n\t * @param args\n\t * @see #out\n\
+    \t */\n\tpublic final <F extends Comparable<? super F>, S extends Comparable<?\
+    \ super S>> void fin(final Pair<F, S>[] args) {\n\t\tout(args);\n\t\tif(!autoFlush)\
     \ {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\
     \u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\
-    \n\t * @param head\n\t * @param tail\n\t * @see #outl\n\t */\n\tpublic final void\
-    \ ende(final Object head, final Object... tail ) {\n\t\toutl(head, tail);\n\t\t\
-    if(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t *\
-    \ \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\
-    \u3059\u308B\n\t * @param args\n\t * @see #outl\n\t */\n\tpublic final void ende(final\
-    \ int[] args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\
-    \t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\
-    \u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see\
-    \ #outl\n\t */\n\tpublic final void ende(final int[][] args) {\n\t\toutl(args);\n\
-    \t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\
-    \t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\
-    \u3059\u308B\n\t * @param args\n\t * @see #outl\n\t */\n\tpublic final void ende(final\
-    \ long[] args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t\
-    }\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\
-    \u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see\
-    \ #outl\n\t */\n\tpublic final void ende(final long[][] args) {\n\t\toutl(args);\n\
-    \t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\
-    \t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\
-    \u3059\u308B\n\t * @param args\n\t * @see #outl\n\t */\n\tpublic final void ende(final\
-    \ double[] args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t\
-    }\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\
-    \u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see\
-    \ #outl\n\t */\n\tpublic final void ende(final double[][] args) {\n\t\toutl(args);\n\
-    \t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\
-    \t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\
-    \u3059\u308B\n\t * @param args\n\t * @see #outl\n\t */\n\tpublic final void ende(final\
-    \ boolean[] args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\
-    \t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\
-    \u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param args\n\t *\
-    \ @see #outl\n\t */\n\tpublic final void ende(final boolean[][] args) {\n\t\t\
-    outl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
+    \n\t * @param <E>\n\t * @param args\n\t * @see #out\n\t */\n\tpublic final <E>\
+    \ void fin(final Collection<E> args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\
+    \t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\
+    \u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t *\
+    \ @param args\n\t * @see #out\n\t */\n\tpublic final void fin(final int[][] args)\
+    \ {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
     \t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\
-    \u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see #outl\n\t */\n\tpublic final\
-    \ void ende(final char[] args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\t\
+    \u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see #out\n\t */\n\tpublic final\
+    \ void fin(final long[][] args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\t\
     flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\
     \u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param\
-    \ args\n\t * @see #outl\n\t */\n\tpublic final void ende(final char[][] args)\
-    \ {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
+    \ args\n\t * @see #out\n\t */\n\tpublic final void fin(final double[][] args)\
+    \ {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
     \t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\
-    \u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see #outl\n\t */\n\tpublic final\
-    \ void ende(final Object[] args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\
+    \u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see #out\n\t */\n\tpublic final\
+    \ void fin(final boolean[][] args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\
+    \t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\
+    \u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param\
+    \ args\n\t * @see #out\n\t */\n\tpublic final void fin(final char[][] args) {\n\
+    \t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
+    \t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\
+    \u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see #out\n\t */\n\tpublic final\
+    \ void fin(final Object[][] args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\
     \tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\
     \u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param\
-    \ args\n\t * @see #outl\n\t */\n\tpublic final void ende(final Object[][] args)\
-    \ {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\
-    \t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\
-    \u7D42\u4E86\u3059\u308B\n\t * @param <F>\n\t * @param <S>\n\t * @param args\n\
-    \t * @see #outl\n\t */\n\tpublic final <F extends Comparable<? super F>, S extends\
-    \ Comparable<? super S>> void ende(final Pair<F, S>[] args) {\n\t\toutl(args);\n\
-    \t\tif(!autoFlush) {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\
-    \t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\
-    \u3059\u308B\n\t * @param <E>\n\t * @param args\n\t * @see #outl\n\t */\n\tpublic\
-    \ final <E> void ende(final Collection<E> args) {\n\t\toutl(args);\n\t\tif(!autoFlush)\
+    \ head\n\t * @param tail\n\t * @see #outl\n\t */\n\tpublic final void ende(final\
+    \ Object head, final Object... tail ) {\n\t\toutl(head, tail);\n\t\tif(!autoFlush)\
     \ {\n\t\t\tflush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u51FA\u529B\
     \u3092flush\u3059\u308B\n\t * @see PrintWriter#flush\n\t */\n\t@Override\n\tpublic\
     \ final void flush() {\n\t\ttry {\n\t\t\tos.write(buf, 0, pos);\n\t\t\tpos = 0;\n\
@@ -965,7 +925,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-29 06:36:34+09:00'
+  timestamp: '2024-02-29 08:29:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyPrinter.java
