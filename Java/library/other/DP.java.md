@@ -555,92 +555,97 @@ data:
     \u3001\u91CD\u3055\u306E\u548C\u304Cw\u4EE5\u4E0B\u3068\u306A\u308B\u3088\u3046\
     \u306B\u9078\u3076\u3068\u304D\u306E\u4FA1\u5024\u306E\u6700\u5927\u5024\u3092\
     \u6C42\u3081\u308B\n\t * @param a\n\t * @param v\n\t * @param w\n\t * @return\
-    \ dp\u306E\u6700\u5927\u5024\n\t * @implNote O(NW)\n\t */\n\tpublic static final\
-    \ long knapsack01(final int[] a, final long[] v, final int w) {\n\t\tfinal int\
-    \ n = a.length;\n\t\tfinal long[] dp = new long[w + 1];\n\t\tArrays.fill(dp, Long.MIN_VALUE);\n\
-    \t\tdp[0] = 0;\n\t\tfor(int i = 0; i < n; i++) {\n\t\t\tfor(int j = w; j >= a[i];\
-    \ j--) {\n\t\t\t\tif(dp[j - a[i]] != Long.MIN_VALUE) {\n\t\t\t\t\tif(dp[j - a[i]]\
-    \ + v[i] > dp[j]) {\n\t\t\t\t\t\tdp[j] = dp[j - a[i]] + v[i];\n\t\t\t\t\t}\n\t\
-    \t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn Utility.max(dp);\n\t}\n\t/**\n\t * 01\u30CA\
-    \u30C3\u30D7\u30B6\u30C3\u30AF\n\t * \u91CD\u3055w_i, \u4FA1\u5024v_i\u3067\u3042\
-    \u308B\u3088\u3046\u306An\u500B\u306E\u54C1\u7269\u304C\u3042\u308A\u3001\u91CD\
-    \u3055\u306E\u548C\u304Cw\u4EE5\u4E0B\u3068\u306A\u308B\u3088\u3046\u306B\u9078\
-    \u3076\u3068\u304D\u306E\u4FA1\u5024\u306E\u6700\u5927\u5024\u3092\u6C42\u3081\
-    \u308B\n\t * @param a\n\t * @param v\n\t * @param w\n\t * @return dp\u306E\u6700\
-    \u5927\u5024\n\t * @implNote O(N sum(v))\n\t */\n\tpublic static final int knapsack01(final\
-    \ long[] a, final int[] v, final long w) {\n\t\tfinal int n = a.length;\n\t\t\
-    final int s = (int) Utility.sum(v);\n\t\tfinal long[] dp = new long[s + 1];\n\t\
-    \tArrays.fill(dp, w + 1);\n\t\tdp[0] = 0;\n\t\tfor(int i = 0; i < n; i++) {\n\t\
-    \t\tfor(int j = s; j >= v[i]; j--) {\n\t\t\t\tdp[j] = Math.min(dp[j], dp[j - v[i]]\
-    \ + a[i]);\n\t\t\t}\n\t\t}\n\t\tint res = 0;\n\t\tfor(int i = 0; i <= s; i++)\
-    \ {\n\t\t\tif(dp[i] <= w) {\n\t\t\t\tres = i;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprivate static final long[] knapsack(final int[] a, final long[] v, final\
-    \ int[] m, final int w, final boolean less) {\n\t\tfinal int n = a.length;\n\t\
-    \tfinal long[] dp = new long[w + 1], deqv = new long[w + 1];\n\t\tArrays.fill(dp,\
-    \ Long.MIN_VALUE);\n\t\tdp[0] = 0;\n\t\tfinal int[] deq = new int[w + 1];\n\t\t\
-    for(int i = 0; i < n; ++i) {\n\t\t\tif(a[i] == 0) {\n\t\t\t\tfor(int j = 0; j\
-    \ <= w; ++j) {\n\t\t\t\t\tif(dp[j] != Long.MIN_VALUE && (less ? dp[j] + v[i] *\
-    \ m[i] < dp[j] : dp[j] + v[i] * m[i] > dp[j])) {\n\t\t\t\t\t\tdp[j] = dp[j] +\
-    \ v[i] * m[i];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\tfor(int k = 0;\
-    \ k < a[i]; ++k) {\n\t\t\t\t\tint s = 0, t = 0;\n\t\t\t\t\tfor(int j = 0; a[i]\
-    \ * j + k <= w; ++j) {\n\t\t\t\t\t\tif(dp[a[i] * j + k] != Long.MIN_VALUE) {\n\
-    \t\t\t\t\t\t\tfinal long val = dp[a[i] * j + k] - j * v[i];\n\t\t\t\t\t\t\twhile(s\
-    \ < t && (less ? val < deqv[t - 1] : val > deqv[t - 1])) {\n\t\t\t\t\t\t\t\tt--;\n\
-    \t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tdeq[t] = j;\n\t\t\t\t\t\t\tdeqv[t++] = val;\n\t\
-    \t\t\t\t\t}\n\t\t\t\t\t\tif(s < t) {\n\t\t\t\t\t\t\tdp[j * a[i] + k] = deqv[s]\
-    \ + j * v[i];\n\t\t\t\t\t\t\tif(deq[s] == j - m[i]) {\n\t\t\t\t\t\t\t\ts++;\n\t\
-    \t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ dp;\n\t}\n\t/**\n\t * \u500B\u6570\u5236\u9650\u3064\u304D\u30CA\u30C3\u30D7\
-    \u30B6\u30C3\u30AF\n\t * \u91CD\u3055w_i, \u4FA1\u5024v_i\u3067\u3042\u308B\u3088\
-    \u3046\u306An\u7A2E\u985E\u306E\u54C1\u7269\u304C\u3042\u308A\u3001i\u756A\u76EE\
-    \u306E\u54C1\u7269\u306Fm_i\u500B\u307E\u3067\u9078\u3076\u3053\u3068\u304C\u3067\
-    \u304D\u308B\n\t * \u91CD\u3055\u306E\u548C\u304Cw\u4EE5\u4E0B\u3068\u306A\u308B\
-    \u3088\u3046\u306B\u9078\u3076\u3068\u304D\u306E\u4FA1\u5024\u306E\u6700\u5927\
-    \u5024\u3092\u6C42\u3081\u308B\n\t * @param a\n\t * @param v\n\t * @param m\n\t\
-    \ * @param w\n\t * @return dp\u306E\u6700\u5927\u5024\n\t * @implNote O(NW)\n\t\
-    \ */\n\tpublic static final long knapsack(final int[] a, final long[] v, final\
-    \ int[] m, final int w){ return Utility.max(knapsack(a, v, m, w, false)); }\n\t\
-    /**\n\t * \u500B\u6570\u5236\u9650\u3064\u304D\u30CA\u30C3\u30D7\u30B6\u30C3\u30AF\
-    \n\t * \u91CD\u3055w_i, \u4FA1\u5024v_i\u3067\u3042\u308B\u3088\u3046\u306An\u7A2E\
-    \u985E\u306E\u54C1\u7269\u304C\u3042\u308A\u3001i\u756A\u76EE\u306E\u54C1\u7269\
-    \u306Fm_i\u500B\u307E\u3067\u9078\u3076\u3053\u3068\u304C\u3067\u304D\u308B\n\t\
-    \ * \u91CD\u3055\u306E\u548C\u304Cw\u4EE5\u4E0B\u3068\u306A\u308B\u3088\u3046\u306B\
-    \u9078\u3076\u3068\u304D\u306E\u4FA1\u5024\u306E\u6700\u5927\u5024\u3092\u6C42\
-    \u3081\u308B\n\t * @param a\n\t * @param v\n\t * @param m\n\t * @param w\n\t *\
-    \ @return dp\u306E\u6700\u5927\u5024\n\t * @implNote O((N max(v))^2)\n\t */\n\t\
-    public static final long knapsack(final long[] a, final int[] v, final long[]\
-    \ m, final long w) {\n\t\tfinal int n = a.length;\n\t\tfinal int max = Utility.max(v);\n\
-    \t\tif(max == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal int[] ma = new int[n];\n\
-    \t\tfinal long[] mb = new long[n];\n\t\tfor(int i = 0; i < n; i++) {\n\t\t\tma[i]\
-    \ = (int) Math.min(m[i], max - 1);\n\t\t\tmb[i] = m[i] - ma[i];\n\t\t}\n\t\tint\
-    \ sum = 0;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tsum += ma[i] * v[i];\n\t\t\
-    }\n\t\tfinal long[] dp = knapsack(v, a, ma, sum, true);\n\t\tfinal int[] id =\
-    \ Utility.iota(n).boxed().sorted((i, j) -> -Long.compare(v[i] * a[j], v[j] * a[i])).mapToInt(i\
-    \ -> i).toArray();\n\t\tlong res = 0;\n\t\tfor(int i = 0; i < dp.length; ++i)\
-    \ {\n\t\t\tif(dp[i] > w || dp[i] == Long.MIN_VALUE) {\n\t\t\t\tcontinue;\n\t\t\
-    \t}\n\t\t\tlong rest = w - dp[i], cost = i;\n\t\t\tfor(final int j: id) {\n\t\t\
-    \t\tfinal long get = Math.min(mb[j], rest / a[j]);\n\t\t\t\tif(get <= 0) {\n\t\
-    \t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\tcost += get * v[j];\n\t\t\t\trest -= get\
-    \ * a[j];\n\t\t\t}\n\t\t\tres = Math.max(res, cost);\n\t\t}\n\t\treturn res;\n\
-    \t}\n\t/**\n\t * \u500B\u6570\u5236\u9650\u306A\u3057\u30CA\u30C3\u30D7\u30B5\u30C3\
-    \u30AF\n\t * \u91CD\u3055w_i, \u4FA1\u5024v_i\u3067\u3042\u308B\u3088\u3046\u306A\
-    n\u7A2E\u985E\u306E\u54C1\u7269\u304C\u3042\u308A\u3001\u91CD\u3055\u306E\u548C\
+    \ dp\u306E\u6700\u5927\u5024\n\t * @implNote O(NW)\n\t * @see <a href=\"https://ei1333.github.io/library/dp/knapsack-01.hpp\"\
+    >\u53C2\u8003\u5143</a>\n\t */\n\tpublic static final long knapsack01(final int[]\
+    \ a, final long[] v, final int w) {\n\t\tfinal int n = a.length;\n\t\tfinal long[]\
+    \ dp = new long[w + 1];\n\t\tArrays.fill(dp, Long.MIN_VALUE);\n\t\tdp[0] = 0;\n\
+    \t\tfor(int i = 0; i < n; i++) {\n\t\t\tfor(int j = w; j >= a[i]; j--) {\n\t\t\
+    \t\tif(dp[j - a[i]] != Long.MIN_VALUE) {\n\t\t\t\t\tif(dp[j - a[i]] + v[i] > dp[j])\
+    \ {\n\t\t\t\t\t\tdp[j] = dp[j - a[i]] + v[i];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\
+    }\n\t\t}\n\t\treturn Utility.max(dp);\n\t}\n\t/**\n\t * 01\u30CA\u30C3\u30D7\u30B6\
+    \u30C3\u30AF\n\t * \u91CD\u3055w_i, \u4FA1\u5024v_i\u3067\u3042\u308B\u3088\u3046\
+    \u306An\u500B\u306E\u54C1\u7269\u304C\u3042\u308A\u3001\u91CD\u3055\u306E\u548C\
     \u304Cw\u4EE5\u4E0B\u3068\u306A\u308B\u3088\u3046\u306B\u9078\u3076\u3068\u304D\
     \u306E\u4FA1\u5024\u306E\u6700\u5927\u5024\u3092\u6C42\u3081\u308B\n\t * @param\
     \ a\n\t * @param v\n\t * @param w\n\t * @return dp\u306E\u6700\u5927\u5024\n\t\
-    \ * @implNote O(NW)\n\t */\n\tpublic static final long knapsack(final int[] a,\
-    \ final long[] v, final int w) {\n\t\tfinal int n = a.length;\n\t\tfinal long[]\
-    \ dp = new long[w + 1];\n\t\tArrays.fill(dp, Long.MIN_VALUE);\n\t\tdp[0] = 0;\n\
-    \t\tfor(int i = 0; i < n; i++) {\n\t\t\tfor(int j = a[i]; j <= w; j++) {\n\t\t\
-    \t\tif(dp[j - a[i]] != Long.MIN_VALUE) {\n\t\t\t\t\tif(dp[j - a[i]] + v[i] > dp[j])\
-    \ {\n\t\t\t\t\t\tdp[j] = dp[j - a[i]] + v[i];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\
-    }\n\t\t}\n\t\treturn Utility.max(dp);\n\t}\n\t/**\n\t * @param a\n\t * @return\
-    \ \u6700\u9577\u5897\u52A0\u90E8\u5206\u5217(Longest Increasing Subsequence)\n\
-    \t * @see <a href=\"https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\"\
-    >\u53C2\u8003\u5143</a>\n\t * @implNote Java21\u3088\u308A\u524D\u306EVer\u306E\
-    \u5834\u5408\u3001getLast\u3092get(dp.size() - 1)\u306B\u5909\u3048\u308B\n\t\
-    \ */\n\tpublic static final int[] lis(final int[] a) {\n\t\tfinal int n = a.length;\n\
-    \t\tList<IntPair> dp = new ArrayList<IntPair>();\n\t\tfinal int[] p = new int[n];\n\
+    \ * @implNote O(N sum(v))\n\t * @see <a href=\"https://ei1333.github.io/library/dp/knapsack-01-2.hpp\"\
+    >\u53C2\u8003\u5143</a>\n\t */\n\tpublic static final int knapsack01(final long[]\
+    \ a, final int[] v, final long w) {\n\t\tfinal int n = a.length;\n\t\tfinal int\
+    \ s = (int) Utility.sum(v);\n\t\tfinal long[] dp = new long[s + 1];\n\t\tArrays.fill(dp,\
+    \ w + 1);\n\t\tdp[0] = 0;\n\t\tfor(int i = 0; i < n; i++) {\n\t\t\tfor(int j =\
+    \ s; j >= v[i]; j--) {\n\t\t\t\tdp[j] = Math.min(dp[j], dp[j - v[i]] + a[i]);\n\
+    \t\t\t}\n\t\t}\n\t\tint res = 0;\n\t\tfor(int i = 0; i <= s; i++) {\n\t\t\tif(dp[i]\
+    \ <= w) {\n\t\t\t\tres = i;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n\tprivate static\
+    \ final long[] knapsack(final int[] a, final long[] v, final int[] m, final int\
+    \ w, final boolean less) {\n\t\tfinal int n = a.length;\n\t\tfinal long[] dp =\
+    \ new long[w + 1], deqv = new long[w + 1];\n\t\tArrays.fill(dp, Long.MIN_VALUE);\n\
+    \t\tdp[0] = 0;\n\t\tfinal int[] deq = new int[w + 1];\n\t\tfor(int i = 0; i <\
+    \ n; ++i) {\n\t\t\tif(a[i] == 0) {\n\t\t\t\tfor(int j = 0; j <= w; ++j) {\n\t\t\
+    \t\t\tif(dp[j] != Long.MIN_VALUE && (less ? dp[j] + v[i] * m[i] < dp[j] : dp[j]\
+    \ + v[i] * m[i] > dp[j])) {\n\t\t\t\t\t\tdp[j] = dp[j] + v[i] * m[i];\n\t\t\t\t\
+    \t}\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\tfor(int k = 0; k < a[i]; ++k) {\n\t\t\t\
+    \t\tint s = 0, t = 0;\n\t\t\t\t\tfor(int j = 0; a[i] * j + k <= w; ++j) {\n\t\t\
+    \t\t\t\tif(dp[a[i] * j + k] != Long.MIN_VALUE) {\n\t\t\t\t\t\t\tfinal long val\
+    \ = dp[a[i] * j + k] - j * v[i];\n\t\t\t\t\t\t\twhile(s < t && (less ? val < deqv[t\
+    \ - 1] : val > deqv[t - 1])) {\n\t\t\t\t\t\t\t\tt--;\n\t\t\t\t\t\t\t}\n\t\t\t\t\
+    \t\t\tdeq[t] = j;\n\t\t\t\t\t\t\tdeqv[t++] = val;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\
+    if(s < t) {\n\t\t\t\t\t\t\tdp[j * a[i] + k] = deqv[s] + j * v[i];\n\t\t\t\t\t\t\
+    \tif(deq[s] == j - m[i]) {\n\t\t\t\t\t\t\t\ts++;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\
+    }\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn dp;\n\t}\n\t/**\n\t * \u500B\
+    \u6570\u5236\u9650\u3064\u304D\u30CA\u30C3\u30D7\u30B6\u30C3\u30AF\n\t * \u91CD\
+    \u3055w_i, \u4FA1\u5024v_i\u3067\u3042\u308B\u3088\u3046\u306An\u7A2E\u985E\u306E\
+    \u54C1\u7269\u304C\u3042\u308A\u3001i\u756A\u76EE\u306E\u54C1\u7269\u306Fm_i\u500B\
+    \u307E\u3067\u9078\u3076\u3053\u3068\u304C\u3067\u304D\u308B\n\t * \u91CD\u3055\
+    \u306E\u548C\u304Cw\u4EE5\u4E0B\u3068\u306A\u308B\u3088\u3046\u306B\u9078\u3076\
+    \u3068\u304D\u306E\u4FA1\u5024\u306E\u6700\u5927\u5024\u3092\u6C42\u3081\u308B\
+    \n\t * @param a\n\t * @param v\n\t * @param m\n\t * @param w\n\t * @return dp\u306E\
+    \u6700\u5927\u5024\n\t * @implNote O(NW)\n\t * @see <a href=\"https://ei1333.github.io/library/dp/knapsack-limitations.hpp\"\
+    >\u53C2\u8003\u5143</a>\n\t */\n\tpublic static final long knapsack(final int[]\
+    \ a, final long[] v, final int[] m, final int w){ return Utility.max(knapsack(a,\
+    \ v, m, w, false)); }\n\t/**\n\t * \u500B\u6570\u5236\u9650\u3064\u304D\u30CA\u30C3\
+    \u30D7\u30B6\u30C3\u30AF\n\t * \u91CD\u3055w_i, \u4FA1\u5024v_i\u3067\u3042\u308B\
+    \u3088\u3046\u306An\u7A2E\u985E\u306E\u54C1\u7269\u304C\u3042\u308A\u3001i\u756A\
+    \u76EE\u306E\u54C1\u7269\u306Fm_i\u500B\u307E\u3067\u9078\u3076\u3053\u3068\u304C\
+    \u3067\u304D\u308B\n\t * \u91CD\u3055\u306E\u548C\u304Cw\u4EE5\u4E0B\u3068\u306A\
+    \u308B\u3088\u3046\u306B\u9078\u3076\u3068\u304D\u306E\u4FA1\u5024\u306E\u6700\
+    \u5927\u5024\u3092\u6C42\u3081\u308B\n\t * @param a\n\t * @param v\n\t * @param\
+    \ m\n\t * @param w\n\t * @return dp\u306E\u6700\u5927\u5024\n\t * @implNote O((N\
+    \ max(v))^2)\n\t * @see <a href=\"https://ei1333.github.io/library/dp/knapsack-limitations-2.hpp\"\
+    >\u53C2\u8003\u5143</a>\n\t */\n\tpublic static final long knapsack(final long[]\
+    \ a, final int[] v, final long[] m, final long w) {\n\t\tfinal int n = a.length;\n\
+    \t\tfinal int max = Utility.max(v);\n\t\tif(max == 0) {\n\t\t\treturn 0;\n\t\t\
+    }\n\t\tfinal int[] ma = new int[n];\n\t\tfinal long[] mb = new long[n];\n\t\t\
+    for(int i = 0; i < n; i++) {\n\t\t\tma[i] = (int) Math.min(m[i], max - 1);\n\t\
+    \t\tmb[i] = m[i] - ma[i];\n\t\t}\n\t\tint sum = 0;\n\t\tfor(int i = 0; i < n;\
+    \ ++i) {\n\t\t\tsum += ma[i] * v[i];\n\t\t}\n\t\tfinal long[] dp = knapsack(v,\
+    \ a, ma, sum, true);\n\t\tfinal int[] id = Utility.iota(n).boxed().sorted((i,\
+    \ j) -> -Long.compare(v[i] * a[j], v[j] * a[i])).mapToInt(i -> i).toArray();\n\
+    \t\tlong res = 0;\n\t\tfor(int i = 0; i < dp.length; ++i) {\n\t\t\tif(dp[i] >\
+    \ w || dp[i] == Long.MIN_VALUE) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tlong rest\
+    \ = w - dp[i], cost = i;\n\t\t\tfor(final int j: id) {\n\t\t\t\tfinal long get\
+    \ = Math.min(mb[j], rest / a[j]);\n\t\t\t\tif(get <= 0) {\n\t\t\t\t\tcontinue;\n\
+    \t\t\t\t}\n\t\t\t\tcost += get * v[j];\n\t\t\t\trest -= get * a[j];\n\t\t\t}\n\
+    \t\t\tres = Math.max(res, cost);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * \u500B\
+    \u6570\u5236\u9650\u306A\u3057\u30CA\u30C3\u30D7\u30B5\u30C3\u30AF\n\t * \u91CD\
+    \u3055w_i, \u4FA1\u5024v_i\u3067\u3042\u308B\u3088\u3046\u306An\u7A2E\u985E\u306E\
+    \u54C1\u7269\u304C\u3042\u308A\u3001\u91CD\u3055\u306E\u548C\u304Cw\u4EE5\u4E0B\
+    \u3068\u306A\u308B\u3088\u3046\u306B\u9078\u3076\u3068\u304D\u306E\u4FA1\u5024\
+    \u306E\u6700\u5927\u5024\u3092\u6C42\u3081\u308B\n\t * @param a\n\t * @param v\n\
+    \t * @param w\n\t * @return dp\u306E\u6700\u5927\u5024\n\t * @implNote O(NW)\n\
+    \t * @see <a href=\"https://ei1333.github.io/library/dp/knapsack.hpp\">\u53C2\u8003\
+    \u5143</a>\n\t */\n\tpublic static final long knapsack(final int[] a, final long[]\
+    \ v, final int w) {\n\t\tfinal int n = a.length;\n\t\tfinal long[] dp = new long[w\
+    \ + 1];\n\t\tArrays.fill(dp, Long.MIN_VALUE);\n\t\tdp[0] = 0;\n\t\tfor(int i =\
+    \ 0; i < n; i++) {\n\t\t\tfor(int j = a[i]; j <= w; j++) {\n\t\t\t\tif(dp[j -\
+    \ a[i]] != Long.MIN_VALUE) {\n\t\t\t\t\tif(dp[j - a[i]] + v[i] > dp[j]) {\n\t\t\
+    \t\t\t\tdp[j] = dp[j - a[i]] + v[i];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
+    \t\treturn Utility.max(dp);\n\t}\n\t/**\n\t * @param a\n\t * @return \u6700\u9577\
+    \u5897\u52A0\u90E8\u5206\u5217(Longest Increasing Subsequence)\n\t * @see <a href=\"\
+    https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\">\u53C2\
+    \u8003\u5143</a>\n\t * @implNote Java21\u3088\u308A\u524D\u306EVer\u306E\u5834\
+    \u5408\u3001getLast\u3092get(dp.size() - 1)\u306B\u5909\u3048\u308B\n\t */\n\t\
+    public static final int[] lis(final int[] a) {\n\t\tfinal int n = a.length;\n\t\
+    \tList<IntPair> dp = new ArrayList<IntPair>();\n\t\tfinal int[] p = new int[n];\n\
     \t\tArrays.fill(p, -1);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int id\
     \ = Utility.lowerBound(dp, IntPair.of(a[i], -i));\n\t\t\tif(id != 0) {\n\t\t\t\
     \tp[i] = -dp.get(id - 1).second.intValue();\n\t\t\t}\n\t\t\tif(id == dp.size())\
@@ -845,7 +850,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-28 19:18:29+09:00'
+  timestamp: '2024-02-28 20:12:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/DP.java
