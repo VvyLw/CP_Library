@@ -160,4 +160,23 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 		}
 		return new Edge[]{};
 	}
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < n; ++i) {
+			final int m = get(i).size();
+			sb.append(i + ": [");
+			for(int j = 0; j < m; ++j) {
+				sb.append(get(i).get(j).to);
+				if(j + 1 < m) {
+					sb.append(", ");
+				}
+			}
+			sb.append(']');
+			if(i + 1 < n) {
+				sb.append('\n');
+			}
+		}
+		return sb.toString();
+	}
 }

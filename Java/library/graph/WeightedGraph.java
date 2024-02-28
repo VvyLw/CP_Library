@@ -225,4 +225,23 @@ public final class WeightedGraph extends Graph {
 		}
 		return new MST(e, cost);
 	}
+	@Override
+	public final String toString() {
+		final StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < n; ++i) {
+			final int m = get(i).size();
+			sb.append(i + ": [");
+			for(int j = 0; j < m; ++j) {
+				sb.append("(to: " + get(i).get(j).to + ", cost: " + get(i).get(j).cost + ')');
+				if(j + 1 < m) {
+					sb.append(", ");
+				}
+			}
+			sb.append(']');
+			if(i + 1 < n) {
+				sb.append('\n');
+			}
+		}
+		return sb.toString();
+	}
 }
