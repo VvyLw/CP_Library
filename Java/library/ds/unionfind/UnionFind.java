@@ -42,8 +42,6 @@ public class UnionFind implements DSU {
 		return true;
 	}
 	@Override
-	public final boolean same(final int i, final int j){ return root(i) == root(j); }
-	@Override
 	public final ArrayList<ArrayList<Integer>> groups() {
 		final int n = par.length;
 		ArrayList<ArrayList<Integer>> res = new ArrayList<>(n);

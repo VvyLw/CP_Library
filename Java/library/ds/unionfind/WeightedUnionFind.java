@@ -71,8 +71,6 @@ public final class WeightedUnionFind implements DSU {
 		return 1;
 	}
 	@Override
-	public final boolean same(final int x, final int y){ return root(x) == root(y); }
-	@Override
 	public final int size(final int i){ return -par[root(i)]; }
 	@Override
 	public final int size(){ return par.length; }

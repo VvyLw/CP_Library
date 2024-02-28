@@ -54,8 +54,6 @@ public final class UndoUnionFind implements DSU {
 	public final int size(final int i){ return -par[root(i)]; }
 	@Override
 	public final int size(){ return par.length; }
-	@Override
-	public final boolean same(final int i, final int j){ return root(i) == root(j); }
 	public final ArrayList<ArrayList<Integer>> groups() {
 		final int n = par.length;
 		ArrayList<ArrayList<Integer>> res = new ArrayList<>(n);
