@@ -22,6 +22,9 @@ template <class T> T knapsack01_v(const std::vector<int> &a, const std::vector<T
     }
     return *std::ranges::max_element(dp);
 }
+/**
+ * @see https://ei1333.github.io/library/dp/knapsack-01.hpp
+ */
 
 template <class T> int knapsack01_w(const std::vector<T> &a, const std::vector<int> &v, const T &w) {
     const int n = a.size();
@@ -41,6 +44,9 @@ template <class T> int knapsack01_w(const std::vector<T> &a, const std::vector<i
     }
     return res;
 }
+/**
+ * @see https://ei1333.github.io/library/dp/knapsack-01-2.hpp
+ */
 
 template <class T> std::vector<T> knapsack_sup_v(const std::vector<int> &a, const std::vector<T> &v, const std::vector<int> &m, const int w, const bool less = false) {
     const int n = a.size();
@@ -78,6 +84,9 @@ template <class T> std::vector<T> knapsack_sup_v(const std::vector<int> &a, cons
     }
     return dp;
 }
+/**
+ * @see https://ei1333.github.io/library/dp/knapsack-limitations.hpp
+ */
 
 template <class T> T knapsack_sup_w(const std::vector<T> &a, const std::vector<int> &v, const std::vector<T> &m, const T &w) {
     const int n = a.size();
@@ -117,6 +126,9 @@ template <class T> T knapsack_sup_w(const std::vector<T> &a, const std::vector<i
     }
     return res;
 }
+/**
+ * @see https://ei1333.github.io/library/dp/knapsack-limitations-2.hpp
+ */
 
 template <class T> T knapsack(const std::vector<int> &a, const std::vector<T> &v, const int w) {
     const int n = a.size();
@@ -133,6 +145,9 @@ template <class T> T knapsack(const std::vector<int> &a, const std::vector<T> &v
     }
     return *std::ranges::max_element(dp);
 }
+/**
+ * @see https://ei1333.github.io/library/dp/knapsack.hpp
+ */
 
 template <class T> inline std::vector<int> lis(const std::vector<T> &v) {
     const int n = v.size();
@@ -156,6 +171,9 @@ template <class T> inline std::vector<int> lis(const std::vector<T> &v) {
     return res;
 }
 /**
- * @brief Longest Increasing Subsequence
  * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp
+ */
+
+/**
+ * @brief DPまとめ
  */

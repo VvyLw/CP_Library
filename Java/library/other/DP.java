@@ -20,6 +20,7 @@ public final class DP {
 	 * @param w
 	 * @return dpの最大値
 	 * @implNote O(NW)
+	 * @see <a href="https://ei1333.github.io/library/dp/knapsack-01.hpp">参考元</a>
 	 */
 	public static final long knapsack01(final int[] a, final long[] v, final int w) {
 		final int n = a.length;
@@ -45,6 +46,7 @@ public final class DP {
 	 * @param w
 	 * @return dpの最大値
 	 * @implNote O(N sum(v))
+	 * @see <a href="https://ei1333.github.io/library/dp/knapsack-01-2.hpp">参考元</a>
 	 */
 	public static final int knapsack01(final long[] a, final int[] v, final long w) {
 		final int n = a.length;
@@ -112,6 +114,7 @@ public final class DP {
 	 * @param w
 	 * @return dpの最大値
 	 * @implNote O(NW)
+	 * @see <a href="https://ei1333.github.io/library/dp/knapsack-limitations.hpp">参考元</a>
 	 */
 	public static final long knapsack(final int[] a, final long[] v, final int[] m, final int w){ return Utility.max(knapsack(a, v, m, w, false)); }
 	/**
@@ -124,6 +127,7 @@ public final class DP {
 	 * @param w
 	 * @return dpの最大値
 	 * @implNote O((N max(v))^2)
+	 * @see <a href="https://ei1333.github.io/library/dp/knapsack-limitations-2.hpp">参考元</a>
 	 */
 	public static final long knapsack(final long[] a, final int[] v, final long[] m, final long w) {
 		final int n = a.length;
@@ -169,6 +173,7 @@ public final class DP {
 	 * @param w
 	 * @return dpの最大値
 	 * @implNote O(NW)
+	 * @see <a href="https://ei1333.github.io/library/dp/knapsack.hpp">参考元</a>
 	 */
 	public static final long knapsack(final int[] a, final long[] v, final int w) {
 		final int n = a.length;
