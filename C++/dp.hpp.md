@@ -28,7 +28,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    document_title: DP
+    document_title: DP(Knapsack & LIS)
     links:
     - https://ei1333.github.io/library/dp/knapsack-01-2.hpp
     - https://ei1333.github.io/library/dp/knapsack-01.hpp
@@ -105,7 +105,7 @@ data:
     \        } else {\n            *it = std::make_pair(v[i], -i);\n        }\n  \
     \  }\n    for(int i = -dp.back().second; i != -1; i = p[i]) {\n        res.emplace_back(i);\n\
     \    }\n    std::ranges::reverse(res);\n    return res;\n}\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
-    \ */\n\n/**\n * @brief DP\n */\n"
+    \ */\n\n/**\n * @brief DP(Knapsack & LIS)\n */\n"
   code: "#pragma once\n\n#include <vector>\n#include <utility>\n#include <algorithm>\n\
     #include <iterator>\n#include <limits>\n#include <numeric>\n\ntemplate <class\
     \ T> T knapsack01_v(const std::vector<int> &a, const std::vector<T> &v, const\
@@ -175,12 +175,12 @@ data:
     \        } else {\n            *it = std::make_pair(v[i], -i);\n        }\n  \
     \  }\n    for(int i = -dp.back().second; i != -1; i = p[i]) {\n        res.emplace_back(i);\n\
     \    }\n    std::ranges::reverse(res);\n    return res;\n}\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
-    \ */\n\n/**\n * @brief DP\n */"
+    \ */\n\n/**\n * @brief DP(Knapsack & LIS)\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/dp.hpp
   requiredBy: []
-  timestamp: '2024-02-28 20:13:45+09:00'
+  timestamp: '2024-02-28 20:21:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lis2.test.cpp
@@ -195,5 +195,5 @@ layout: document
 redirect_from:
 - /library/C++/dp.hpp
 - /library/C++/dp.hpp.html
-title: DP
+title: DP(Knapsack & LIS)
 ---

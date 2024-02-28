@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: C++/dp.hpp
-    title: DP
+    title: DP(Knapsack & LIS)
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -84,10 +84,10 @@ data:
     \        } else {\n            *it = std::make_pair(v[i], -i);\n        }\n  \
     \  }\n    for(int i = -dp.back().second; i != -1; i = p[i]) {\n        res.emplace_back(i);\n\
     \    }\n    std::ranges::reverse(res);\n    return res;\n}\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
-    \ */\n\n/**\n * @brief DP\n */\n#line 4 \"test/lis2.test.cpp\"\nint main() {\n\
-    \    int n;\n    std::cin >> n;\n    std::vector<int> a(n);\n    for(auto &el:\
-    \ a) {\n        std::cin >> el;\n    }\n    std::cout << lis(a).size() << '\\\
-    n';\n}\n"
+    \ */\n\n/**\n * @brief DP(Knapsack & LIS)\n */\n#line 4 \"test/lis2.test.cpp\"\
+    \nint main() {\n    int n;\n    std::cin >> n;\n    std::vector<int> a(n);\n \
+    \   for(auto &el: a) {\n        std::cin >> el;\n    }\n    std::cout << lis(a).size()\
+    \ << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_D\"\n#include\
     \ <iostream>\n#include \"C++/dp.hpp\"\nint main() {\n    int n;\n    std::cin\
     \ >> n;\n    std::vector<int> a(n);\n    for(auto &el: a) {\n        std::cin\
@@ -97,7 +97,7 @@ data:
   isVerificationFile: true
   path: test/lis2.test.cpp
   requiredBy: []
-  timestamp: '2024-02-28 20:12:22+09:00'
+  timestamp: '2024-02-28 20:21:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lis2.test.cpp

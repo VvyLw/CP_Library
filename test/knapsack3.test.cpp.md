@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: C++/dp.hpp
-    title: DP
+    title: DP(Knapsack & LIS)
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -84,8 +84,8 @@ data:
     \        } else {\n            *it = std::make_pair(v[i], -i);\n        }\n  \
     \  }\n    for(int i = -dp.back().second; i != -1; i = p[i]) {\n        res.emplace_back(i);\n\
     \    }\n    std::ranges::reverse(res);\n    return res;\n}\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
-    \ */\n\n/**\n * @brief DP\n */\n#line 4 \"test/knapsack3.test.cpp\"\nint main()\
-    \ {\n    int n;\n    int64_t wg;\n    std::cin >> n >> wg;\n    std::vector<int>\
+    \ */\n\n/**\n * @brief DP(Knapsack & LIS)\n */\n#line 4 \"test/knapsack3.test.cpp\"\
+    \nint main() {\n    int n;\n    int64_t wg;\n    std::cin >> n >> wg;\n    std::vector<int>\
     \ v(n);\n    std::vector<int64_t> w(n), m(n);\n    for(int i = 0; i < n; ++i)\
     \ {\n        std::cin >> v[i] >> w[i] >> m[i];\n    }\n    std::cout << knapsack_sup_w(w,\
     \ v, m, wg) << '\\n';\n}\n"
@@ -99,7 +99,7 @@ data:
   isVerificationFile: true
   path: test/knapsack3.test.cpp
   requiredBy: []
-  timestamp: '2024-02-28 20:12:22+09:00'
+  timestamp: '2024-02-28 20:21:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/knapsack3.test.cpp
