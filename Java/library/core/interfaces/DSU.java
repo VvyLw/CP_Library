@@ -25,7 +25,7 @@ public interface DSU {
 	 * @param j
 	 * @return iとjが同じ連結成分に所属しているか
 	 */
-	public boolean same(final int i, final int j);
+	public default boolean same(final int i, final int j){ return root(i) == root(j); }
 	/**
 	 * @param i
 	 * @param j
