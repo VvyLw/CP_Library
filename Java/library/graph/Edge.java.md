@@ -548,8 +548,7 @@ data:
     \ {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Edge e = (Edge) o;\n\t\treturn src\
     \ == e.src && to == e.to && cost == e.cost;\n\t}\n\t@Override\n\tpublic final\
     \ int hashCode(){ return Objects.hash(src, to, cost, id); }\n\t@Override\n\tpublic\
-    \ final String toString(){ return \"(\" + src + \", \" + to + \", \" + cost +\
-    \ \", \" + id + \")\"; }\n}"
+    \ final String toString(){ return String.valueOf(to); }\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -728,7 +727,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-27 17:42:07+09:00'
+  timestamp: '2024-02-28 09:31:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/Edge.java

@@ -661,18 +661,18 @@ data:
     \t * @param a\n\t * @see MyPrinter#ende\n\t */\n\tpublic final <E> void ende(final\
     \ Collection<E> a){ out.ende(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\
     \n\t * @param head\n\t * @param tail\n\t * @see MyPrinter#out\n\t */\n\tpublic\
-    \ final void dbg(final Object head, final Object... tail){ err.out(head, tail);\
+    \ final void dump(final Object head, final Object... tail){ err.out(head, tail);\
     \ }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param a\n\t * @see MyPrinter#out\n\
-    \t */\n\tpublic final void dbg(final int[] a){ err.out(a); }\n\t/**\n\t * \u30C7\
+    \t */\n\tpublic final void dump(final int[] a){ err.out(a); }\n\t/**\n\t * \u30C7\
     \u30D0\u30C3\u30B0\u7528\n\t * @param a\n\t * @see MyPrinter#out\n\t */\n\tpublic\
-    \ final void dbg(final long[] a){ err.out(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\
+    \ final void dump(final long[] a){ err.out(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\
     \u30B0\u7528\n\t * @param a\n\t * @see MyPrinter#out\n\t */\n\tpublic final void\
-    \ dbg(final double[] a){ err.out(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\
-    \n\t * @param a\n\t * @see MyPrinter#out\n\t */\n\tpublic final void dbg(final\
+    \ dump(final double[] a){ err.out(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\
+    \n\t * @param a\n\t * @see MyPrinter#out\n\t */\n\tpublic final void dump(final\
     \ boolean[] a){ err.out(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t\
-    \ * @param a\n\t * @see MyPrinter#out\n\t */\n\tpublic final void dbg(final char[]\
+    \ * @param a\n\t * @see MyPrinter#out\n\t */\n\tpublic final void dump(final char[]\
     \ a){ err.out(a); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param a\n\
-    \t * @see MyPrinter#out\n\t */\n\tpublic final void dbg(final Object[] a){ err.out(a);\
+    \t * @see MyPrinter#out\n\t */\n\tpublic final void dump(final Object[] a){ err.out(a);\
     \ }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param head\n\t * @param\
     \ tail\n\t * @see MyPrinter#outl\n\t */\n\tpublic final void debug(final Object\
     \ head, final Object... tail){ err.outl(head, tail); }\n\t/**\n\t * \u30C7\u30D0\
@@ -882,7 +882,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-27 17:42:07+09:00'
+  timestamp: '2024-02-28 09:31:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/IO.java

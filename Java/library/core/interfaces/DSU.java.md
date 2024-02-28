@@ -542,10 +542,11 @@ data:
     \u30A4\u30BA\n\t */\n\tpublic int size(final int i);\n\t/**\n\t * @return UnionFind\u306E\
     \u30B5\u30A4\u30BA\n\t */\n\tpublic int size();\n\t/**\n\t * @param i\n\t * @param\
     \ j\n\t * @return i\u3068j\u304C\u540C\u3058\u9023\u7D50\u6210\u5206\u306B\u6240\
-    \u5C5E\u3057\u3066\u3044\u308B\u304B\n\t */\n\tpublic boolean same(final int i,\
-    \ final int j);\n\t/**\n\t * @param i\n\t * @param j\n\t * @return \u672A\u30DE\
-    \u30FC\u30B8\u3067true, \u30DE\u30FC\u30B8\u6E08\u3067false\n\t */\n\tpublic boolean\
-    \ unite(int i, int j);\n\t/**\n\t * @see <a href=\"https://atcoder.github.io/ac-library/production/document_ja/dsu.html\"\
+    \u5C5E\u3057\u3066\u3044\u308B\u304B\n\t */\n\tpublic default boolean same(final\
+    \ int i, final int j){ return root(i) == root(j); }\n\t/**\n\t * @param i\n\t\
+    \ * @param j\n\t * @return \u672A\u30DE\u30FC\u30B8\u3067true, \u30DE\u30FC\u30B8\
+    \u6E08\u3067false\n\t */\n\tpublic boolean unite(int i, int j);\n\t/**\n\t * @see\
+    \ <a href=\"https://atcoder.github.io/ac-library/production/document_ja/dsu.html\"\
     >atcoder::dsu::groups</a>\n\t * @return \u30B0\u30E9\u30D5\u3092\u9023\u7D50\u6210\
     \u5206\u306B\u5206\u3051\u3001\u305D\u306E\u60C5\u5831\u3092\u8FD4\u3059\n\t */\n\
     \tpublic ArrayList<ArrayList<Integer>> groups();\n}"
@@ -727,7 +728,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-27 17:42:07+09:00'
+  timestamp: '2024-02-28 09:31:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/interfaces/DSU.java

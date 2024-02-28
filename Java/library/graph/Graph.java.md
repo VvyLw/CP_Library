@@ -592,7 +592,13 @@ data:
     \treturn true;\n\t\t\t\t}\n\t\t\t}\n\t\t\tused[i] = 2;\n\t\t\treturn false;\n\t\
     \t};\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(used[i] == 0 && dfs.test(dfs,\
     \ i)) {\n\t\t\t\tCollections.reverse(cycle);\n\t\t\t\treturn cycle.toArray(Edge[]::new);\n\
-    \t\t\t}\n\t\t}\n\t\treturn new Edge[]{};\n\t}\n}"
+    \t\t\t}\n\t\t}\n\t\treturn new Edge[]{};\n\t}\n\t@Override\n\tpublic String toString()\
+    \ {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfor(int i = 0; i <\
+    \ n; ++i) {\n\t\t\tfinal int m = get(i).size();\n\t\t\tsb.append(i + \": [\");\n\
+    \t\t\tfor(int j = 0; j < m; ++j) {\n\t\t\t\tsb.append(get(i).get(j).to);\n\t\t\
+    \t\tif(j + 1 < m) {\n\t\t\t\t\tsb.append(\", \");\n\t\t\t\t}\n\t\t\t}\n\t\t\t\
+    sb.append(']');\n\t\t\tif(i + 1 < n) {\n\t\t\t\tsb.append('\\n');\n\t\t\t}\n\t\
+    \t}\n\t\treturn sb.toString();\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -771,7 +777,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-27 17:42:07+09:00'
+  timestamp: '2024-02-28 09:31:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/Graph.java

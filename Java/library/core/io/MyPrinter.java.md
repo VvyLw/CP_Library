@@ -557,22 +557,22 @@ data:
     \u3044\u65B9\u306F\u540C\u3058\n\t * @param arg\n\t * @see PrintWriter#print\n\
     \t */\n\tpublic final void print(final Object arg) {\n\t\tif(arg instanceof final\
     \ String s) {\n\t\t\tfor(final char c: s.toCharArray()) {\n\t\t\t\twrite((byte)\
-    \ c);\n\t\t\t}\n\t\t} else {\n\t\t\tprint(String.valueOf(arg));\n\t\t}\n\t}\n\t\
-    /**\n\t * {@link PrintWriter#printf}\u3068\u4F7F\u3044\u65B9\u306F\u540C\u3058\
-    \n\t * @param fmt\n\t * @param args\n\t * @see PrintWriter#printf\n\t */\n\tpublic\
-    \ final void printf(final String fmt, final Object... args) {\n\t\tprint(new Formatter().format(fmt,\
-    \ args));\n\t\tif(autoFlush) {\n\t\t\tflush();\n\t\t}\n\t}\n\t/**\n\t * \u51FA\
-    \u529B\u3059\u308B\u305F\u3081\u306E\u30E1\u30BD\u30C3\u30C9\n\t * \u5F15\u6570\
-    \u306A\u3057\u3067\u6539\u884C\u3092\u51FA\u529B\u3059\u308B\n\t */\n\tpublic\
-    \ final void out(){ newLine(); }\n\t/**\n\t * out(a, b, c)\u3067, \"a b c\"\u306E\
-    \u5F62\u5F0F\u3067\u51FA\u529B\u3059\u308B\n\t * @param head\n\t * @param tail\n\
-    \t */\n\tpublic final void out(final Object head, final Object... tail) {\n\t\t\
-    print(head);\n\t\tfor(final var el: tail) {\n\t\t\tprint(\" \" + el);\n\t\t}\n\
-    \t\tnewLine();\n\t}\n\t/**\n\t * {@link Pair}\u3092\u51FA\u529B\u3059\u308B\n\t\
-    \ * \u30C7\u30D0\u30C3\u30B0\u6642\u306F{@link Pair#toString}\u3092\u63A8\u5968\
-    \n\t * @param <F> first\u306E\u578B\n\t * @param <S> second\u306E\u578B\n\t */\n\
-    \tpublic final <F extends Comparable<? super F>, S extends Comparable<? super\
-    \ S>> void out(final Pair<F, S> arg) {\n\t\tif(debug) {\n\t\t\tprint(arg.toString());\n\
+    \ c);\n\t\t\t}\n\t\t} else {\n\t\t\tprint(String.valueOf(arg));\n\t\t}\n\t\tif(autoFlush)\
+    \ {\n\t\t\tflush();\n\t\t}\n\t}\n\t/**\n\t * {@link PrintWriter#printf}\u3068\u4F7F\
+    \u3044\u65B9\u306F\u540C\u3058\n\t * @param fmt\n\t * @param args\n\t * @see PrintWriter#printf\n\
+    \t */\n\tpublic final void printf(final String fmt, final Object... args) {\n\t\
+    \tprint(new Formatter().format(fmt, args));\n\t\tif(autoFlush) {\n\t\t\tflush();\n\
+    \t\t}\n\t}\n\t/**\n\t * \u51FA\u529B\u3059\u308B\u305F\u3081\u306E\u30E1\u30BD\
+    \u30C3\u30C9\n\t * \u5F15\u6570\u306A\u3057\u3067\u6539\u884C\u3092\u51FA\u529B\
+    \u3059\u308B\n\t */\n\tpublic final void out(){ newLine(); }\n\t/**\n\t * out(a,\
+    \ b, c)\u3067, \"a b c\"\u306E\u5F62\u5F0F\u3067\u51FA\u529B\u3059\u308B\n\t *\
+    \ @param head\n\t * @param tail\n\t */\n\tpublic final void out(final Object head,\
+    \ final Object... tail) {\n\t\tprint(head);\n\t\tfor(final var el: tail) {\n\t\
+    \t\tprint(\" \" + el);\n\t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t * {@link Pair}\u3092\
+    \u51FA\u529B\u3059\u308B\n\t * \u30C7\u30D0\u30C3\u30B0\u6642\u306F{@link Pair#toString}\u3092\
+    \u63A8\u5968\n\t * @param <F> first\u306E\u578B\n\t * @param <S> second\u306E\u578B\
+    \n\t */\n\tpublic final <F extends Comparable<? super F>, S extends Comparable<?\
+    \ super S>> void out(final Pair<F, S> arg) {\n\t\tif(debug) {\n\t\t\tprint(arg.toString());\n\
     \t\t} else {\n\t\t\tprint(arg.first + \" \" + arg.second);\n\t\t}\n\t\tnewLine();\n\
     \t}\n\t/**\n\t * int\u578B\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\u3067\
     \u51FA\u529B\u3059\u308B\n\t * @param args\n\t */\n\tpublic final void out(final\
@@ -921,7 +921,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-27 17:42:07+09:00'
+  timestamp: '2024-02-28 09:31:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyPrinter.java

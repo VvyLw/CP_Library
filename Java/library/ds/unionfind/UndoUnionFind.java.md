@@ -550,14 +550,13 @@ data:
     \ = x;\n\t\treturn true;\n\t}\n\t@Override\n\tpublic final int root(final int\
     \ i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\t\treturn root(par[i]);\n\
     \t}\n\t@Override\n\tpublic final int size(final int i){ return -par[root(i)];\
-    \ }\n\t@Override\n\tpublic final int size(){ return par.length; }\n\t@Override\n\
-    \tpublic final boolean same(final int i, final int j){ return root(i) == root(j);\
-    \ }\n\tpublic final ArrayList<ArrayList<Integer>> groups() {\n\t\tfinal int n\
-    \ = par.length;\n\t\tArrayList<ArrayList<Integer>> res = new ArrayList<>(n);\n\
-    \t\tIntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\
-    \t\treturn res;\n\t}\n\t/**\n\t * \u76F4\u524D\u306Eunite\u306E\u64CD\u4F5C\u3092\
-    \u53D6\u308A\u6D88\u3059\n\t */\n\tpublic final void undo() {\n\t\tfinal Pair<Integer,\
+    \ }\n\t@Override\n\tpublic final int size(){ return par.length; }\n\tpublic final\
+    \ ArrayList<ArrayList<Integer>> groups() {\n\t\tfinal int n = par.length;\n\t\t\
+    ArrayList<ArrayList<Integer>> res = new ArrayList<>(n);\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> res.add(new ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn\
+    \ res;\n\t}\n\t/**\n\t * \u76F4\u524D\u306Eunite\u306E\u64CD\u4F5C\u3092\u53D6\
+    \u308A\u6D88\u3059\n\t */\n\tpublic final void undo() {\n\t\tfinal Pair<Integer,\
     \ Integer> pop1 = his.pop(), pop2 = his.pop();\n\t\tpar[pop1.first] = pop1.second;\n\
     \t\tpar[pop2.first] = pop2.second;\n\t}\n\t/**\n\t * \u73FE\u5728\u306E\u72B6\u614B\
     \u3092\u4FDD\u5B58\u3059\u308B\n\t */\n\tpublic final void snapshot() {\n\t\t\
@@ -742,7 +741,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-27 17:42:07+09:00'
+  timestamp: '2024-02-28 09:31:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/unionfind/UndoUnionFind.java

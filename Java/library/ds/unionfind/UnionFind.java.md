@@ -546,12 +546,11 @@ data:
     \ i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) {\n\t\t\treturn\
     \ false;\n\t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\
     \t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\t}\n\t@Override\n\
-    \tpublic final boolean same(final int i, final int j){ return root(i) == root(j);\
-    \ }\n\t@Override\n\tpublic final ArrayList<ArrayList<Integer>> groups() {\n\t\t\
-    final int n = par.length;\n\t\tArrayList<ArrayList<Integer>> res = new ArrayList<>(n);\n\
-    \t\tIntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\
-    \t\treturn res;\n\t}\n}"
+    \tpublic final ArrayList<ArrayList<Integer>> groups() {\n\t\tfinal int n = par.length;\n\
+    \t\tArrayList<ArrayList<Integer>> res = new ArrayList<>(n);\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> res.add(new ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn\
+    \ res;\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -730,7 +729,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-27 17:42:07+09:00'
+  timestamp: '2024-02-28 09:31:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/unionfind/UnionFind.java

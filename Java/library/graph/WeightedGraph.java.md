@@ -620,7 +620,14 @@ data:
     \tfor(int i = x; i >= 0; i--) {\n\t\t\tif(vis[i] == 1) {\n\t\t\t\tcontinue;\n\t\
     \t\t}\n\t\t\tcost += ed.get(ins[i].idx).cost;\n\t\t\te.add(ed.get(ins[i].idx));\n\
     \t\t\tfor(int j = ed.get(ins[i].idx).to; j != -1 && vis[j] == 0; j = par[j]) {\n\
-    \t\t\t\tvis[j] = 1;\n\t\t\t}\n\t\t}\n\t\treturn new MST(e, cost);\n\t}\n}"
+    \t\t\t\tvis[j] = 1;\n\t\t\t}\n\t\t}\n\t\treturn new MST(e, cost);\n\t}\n\t@Override\n\
+    \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
+    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int m = get(i).size();\n\t\t\tsb.append(i\
+    \ + \": [\");\n\t\t\tfor(int j = 0; j < m; ++j) {\n\t\t\t\tsb.append(\"(to: \"\
+    \ + get(i).get(j).to + \", cost: \" + get(i).get(j).cost + ')');\n\t\t\t\tif(j\
+    \ + 1 < m) {\n\t\t\t\t\tsb.append(\", \");\n\t\t\t\t}\n\t\t\t}\n\t\t\tsb.append(']');\n\
+    \t\t\tif(i + 1 < n) {\n\t\t\t\tsb.append('\\n');\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\
+    \t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/MST.java
@@ -799,7 +806,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-27 17:42:07+09:00'
+  timestamp: '2024-02-28 09:31:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/WeightedGraph.java

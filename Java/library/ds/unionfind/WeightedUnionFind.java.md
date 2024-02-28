@@ -557,12 +557,11 @@ data:
     \ y) {\n\t\t\treturn w == 0 ? 0 : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\t\
     x ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x] += par[y];\n\
     \t\tpar[y] = x;\n\t\tweight[y] = w;\n\t\treturn 1;\n\t}\n\t@Override\n\tpublic\
-    \ final boolean same(final int x, final int y){ return root(x) == root(y); }\n\
-    \t@Override\n\tpublic final int size(final int i){ return -par[root(i)]; }\n\t\
-    @Override\n\tpublic final int size(){ return par.length; }\n\t/**\n\t * @deprecated\
-    \ \u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\u3067\u4ED5\u65B9\u306A\u304F\
-    \u9069\u5F53\u306B\u5B9F\u88C5\n\t */\n\t@Override\n\tpublic final boolean unite(int\
-    \ i, int j){ return unite(i, j, 0) > 0; }\n\t@Override\n\tpublic final ArrayList<ArrayList<Integer>>\
+    \ final int size(final int i){ return -par[root(i)]; }\n\t@Override\n\tpublic\
+    \ final int size(){ return par.length; }\n\t/**\n\t * @deprecated \u30A4\u30F3\
+    \u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\u3067\u4ED5\u65B9\u306A\u304F\u9069\u5F53\
+    \u306B\u5B9F\u88C5\n\t */\n\t@Override\n\tpublic final boolean unite(int i, int\
+    \ j){ return unite(i, j, 0) > 0; }\n\t@Override\n\tpublic final ArrayList<ArrayList<Integer>>\
     \ groups() {\n\t\tfinal int n = par.length;\n\t\tfinal ArrayList<ArrayList<Integer>>\
     \ res = new ArrayList<>();\n\t\tIntStream.range(0, n).forEach(i -> res.add(new\
     \ ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\
@@ -745,7 +744,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-27 17:42:07+09:00'
+  timestamp: '2024-02-28 09:31:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/unionfind/WeightedUnionFind.java

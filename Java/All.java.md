@@ -1120,14 +1120,14 @@ data:
     \ Object[] a){ out.ende(a); }\n\tfinal void ende(final Object[][] a){ out.ende(a);\
     \ }\n\tfinal <F extends Comparable<? super F>, S extends Comparable<? super S>>\
     \ void ende(final Pair<F, S>[] a){ out.ende(a); }\n\tfinal <E> void ende(final\
-    \ Collection<E> a){ out.ende(a); }\n\tfinal void dbg(final Object head, final\
-    \ Object... tail){ err.out(head, tail); }\n\tfinal void dbg(final int[] a){ err.out(a);\
-    \ }\n\tfinal void dbg(final long[] a){ err.out(a); }\n\tfinal void dbg(final double[]\
-    \ a){ err.out(a); }\n\tfinal void dbg(final boolean[] a){ err.out(a); }\n\tfinal\
-    \ void dbg(final char[] a){ err.out(a); }\n\tfinal void dbg(final Object[] a){\
-    \ err.out(a); }\n\tfinal void debug(final Object head, final Object... tail){\
-    \ err.outl(head, tail); }\n\tfinal void debug(final int[] a){ err.outl(a); }\n\
-    \tfinal void debug(final int[][] a){ err.outl(a); }\n\tfinal void debug(final\
+    \ Collection<E> a){ out.ende(a); }\n\tfinal void dump(final Object head, final\
+    \ Object... tail){ err.out(head, tail); }\n\tfinal void dump(final int[] a){ err.out(a);\
+    \ }\n\tfinal void dump(final long[] a){ err.out(a); }\n\tfinal void dump(final\
+    \ double[] a){ err.out(a); }\n\tfinal void dump(final boolean[] a){ err.out(a);\
+    \ }\n\tfinal void dump(final char[] a){ err.out(a); }\n\tfinal void dump(final\
+    \ Object[] a){ err.out(a); }\n\tfinal void debug(final Object head, final Object...\
+    \ tail){ err.outl(head, tail); }\n\tfinal void debug(final int[] a){ err.outl(a);\
+    \ }\n\tfinal void debug(final int[][] a){ err.outl(a); }\n\tfinal void debug(final\
     \ long[] a){ err.outl(a); }\n\tfinal void debug(final long[][] a){ err.outl(a);\
     \ }\n\tfinal void debug(final double[] a){ err.outl(a); }\n\tfinal void debug(final\
     \ double[][] a){ err.outl(a); }\n\tfinal void debug(final boolean[] a){ err.outl(a);\
@@ -1210,40 +1210,41 @@ data:
     \ '\\n');\n\t\tif(autoFlush) {\n\t\t\tflush();\n\t\t}\n\t}\n\tfinal void print(final\
     \ Object arg) {\n\t\tif(arg instanceof final String s) {\n\t\t\tfor(final char\
     \ c: s.toCharArray()) {\n\t\t\t\twrite((byte) c);\n\t\t\t}\n\t\t} else {\n\t\t\
-    \tprint(String.valueOf(arg));\n\t\t}\n\t}\n\tfinal void printf(final String fmt,\
-    \ final Object... args) {\n\t\tprint(new Formatter().format(fmt, args));\n\t\t\
-    if(autoFlush) {\n\t\t\tflush();\n\t\t}\n\t}\n\tfinal void out(){ newLine(); }\n\
-    \tfinal void out(final Object head, final Object... tail) {\n\t\tprint(head);\n\
-    \t\tfor(final var el: tail) {\n\t\t\tprint(\" \" + el);\n\t\t}\n\t\tnewLine();\n\
-    \t}\n\tfinal <F extends Comparable<? super F>, S extends Comparable<? super S>>\
-    \ void out(final Pair<F, S> arg) {\n\t\tif(debug) {\n\t\t\tprint(arg.toString());\n\
-    \t\t} else {\n\t\t\tprint(arg.first + \" \" + arg.second);\n\t\t}\n\t\tnewLine();\n\
-    \t}\n\tfinal void out(final int[] args) {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\
+    \tprint(String.valueOf(arg));\n\t\t}\n\t\tif(autoFlush) {\n\t\t\tflush();\n\t\t\
+    }\n\t}\n\tfinal void printf(final String fmt, final Object... args) {\n\t\tprint(new\
+    \ Formatter().format(fmt, args));\n\t\tif(autoFlush) {\n\t\t\tflush();\n\t\t}\n\
+    \t}\n\tfinal void out(){ newLine(); }\n\tfinal void out(final Object head, final\
+    \ Object... tail) {\n\t\tprint(head);\n\t\tfor(final var el: tail) {\n\t\t\tprint(\"\
+    \ \" + el);\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal <F extends Comparable<? super\
+    \ F>, S extends Comparable<? super S>> void out(final Pair<F, S> arg) {\n\t\t\
+    if(debug) {\n\t\t\tprint(arg.toString());\n\t\t} else {\n\t\t\tprint(arg.first\
+    \ + \" \" + arg.second);\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final int[]\
+    \ args) {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\t\t} else if(args.length\
+    \ > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\
+    \t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void\
+    \ out(final long[] args) {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\
     \t\t} else if(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0;\
     \ ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\t\
-    newLine();\n\t}\n\tfinal void out(final long[] args) {\n\t\tif(debug) {\n\t\t\t\
-    print(Arrays.toString(args));\n\t\t} else if(args.length > 0) {\n\t\t\tprint(args[0]);\n\
+    newLine();\n\t}\n\tfinal void out(final double[] args) {\n\t\tif(debug) {\n\t\t\
+    \tprint(Arrays.toString(args));\n\t\t} else if(args.length > 0) {\n\t\t\tprint(args[0]);\n\
     \t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\
-    \t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final double[] args) {\n\t\
+    \t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final boolean[] args) {\n\t\
     \tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\t\t} else if(args.length\
     \ > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\
     \t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void\
-    \ out(final boolean[] args) {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\
-    \t\t} else if(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0;\
-    \ ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\t\
-    newLine();\n\t}\n\tfinal void out(final char[] args) {\n\t\tif(args.length > 0)\
-    \ {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\
-    \tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final\
-    \ Object[] args) {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\t\t\
-    } else if(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i\
-    \ < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\
-    \t}\n\tfinal <E> void out(final Collection<E> args) {\n\t\tif(debug) {\n\t\t\t\
-    print(args.toString());\n\t\t} else {\n\t\t\tint i = 0;\n\t\t\tfor(final var el:\
-    \ args) {\n\t\t\t\tprint(el);\n\t\t\t\tif(++i != args.size()) {\n\t\t\t\t\tprint(\"\
-    \ \");\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void outl(final\
-    \ Object head, final Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::out);\n\
-    \t}\n\tfinal void outl(final int[] args){ Arrays.stream(args).forEach(this::out);\
-    \ }\n\tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ out(final char[] args) {\n\t\tif(args.length > 0) {\n\t\t\tprint(args[0]);\n\
+    \t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\
+    \t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal void out(final Object[] args) {\n\t\
+    \tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\t\t} else if(args.length\
+    \ > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\
+    \t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tfinal <E>\
+    \ void out(final Collection<E> args) {\n\t\tif(debug) {\n\t\t\tprint(args.toString());\n\
+    \t\t} else {\n\t\t\tint i = 0;\n\t\t\tfor(final var el: args) {\n\t\t\t\tprint(el);\n\
+    \t\t\t\tif(++i != args.size()) {\n\t\t\t\t\tprint(\" \");\n\t\t\t\t}\n\t\t\t}\n\
+    \t\t}\n\t\tnewLine();\n\t}\n\tfinal void outl(final Object head, final Object...\
+    \ tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::out);\n\t}\n\t\
+    final void outl(final int[] args){ Arrays.stream(args).forEach(this::out); }\n\
+    \tfinal void outl(final int[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final long[] args){ Arrays.stream(args).forEach(this::out);\
     \ }\n\tfinal void outl(final long[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> out(args[i])); }\n\tfinal void outl(final double[] args){ Arrays.stream(args).forEach(this::out);\
@@ -1387,18 +1388,18 @@ data:
     \ != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Edge e = (Edge) o;\n\
     \t\treturn src == e.src && to == e.to && cost == e.cost;\n\t}\n\t@Override\n\t\
     public final int hashCode(){ return Objects.hash(src, to, cost, id); }\n\t@Override\n\
-    \tpublic final String toString(){ return \"(\" + src + \", \" + to + \", \" +\
-    \ cost + \", \" + id + \")\"; }\n}\nclass Graph extends ArrayList<ArrayList<Edge>>\
-    \ {\n\tprotected final boolean undirected;\n\tprotected final int n, indexed;\n\
-    \tprotected int id;\n\tprotected final ArrayList<Edge> edge;\n\tGraph(final int\
-    \ n, final boolean undirected){ this(n, 1, undirected); }\n\tGraph(final int n,\
-    \ final int indexed, final boolean undirected) {\n\t\tthis.n = n;\n\t\tthis.indexed\
-    \ = indexed;\n\t\tthis.undirected = undirected;\n\t\tid = 0;\n\t\tedge = new ArrayList<>();\n\
-    \t\tIntStream.range(0, n).forEach(i -> add(new ArrayList<>()));\n\t}\n\tfinal\
-    \ void addEdge(int a, int b) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new\
-    \ Edge(a, b, id));\n\t\tedge.add(new Edge(a, b, id++));\n\t\tif(undirected) {\n\
-    \t\t\tthis.get(b).add(new Edge(b, a, --id));\n\t\t\tedge.add(new Edge(b, a, id++));\n\
-    \t\t}\n\t}\n\tvoid input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(),\
+    \tpublic final String toString(){ return String.valueOf(to); }\n}\nclass Graph\
+    \ extends ArrayList<ArrayList<Edge>> {\n\tprotected final boolean undirected;\n\
+    \tprotected final int n, indexed;\n\tprotected int id;\n\tprotected final ArrayList<Edge>\
+    \ edge;\n\tGraph(final int n, final boolean undirected){ this(n, 1, undirected);\
+    \ }\n\tGraph(final int n, final int indexed, final boolean undirected) {\n\t\t\
+    this.n = n;\n\t\tthis.indexed = indexed;\n\t\tthis.undirected = undirected;\n\t\
+    \tid = 0;\n\t\tedge = new ArrayList<>();\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> add(new ArrayList<>()));\n\t}\n\tfinal void addEdge(int a, int b) {\n\t\t\
+    a -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(a, b, id));\n\t\
+    \tedge.add(new Edge(a, b, id++));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new\
+    \ Edge(b, a, --id));\n\t\t\tedge.add(new Edge(b, a, id++));\n\t\t}\n\t}\n\tvoid\
+    \ input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(),\
     \ VvyLw.io.ni())); }\n\tprotected final ArrayList<Edge> getEdge(){ return edge;\
     \ }\n\tprotected final int[] allDist(final int v) {\n\t\tfinal int[] d = new int[n];\n\
     \t\tArrays.fill(d, -1);\n\t\tfinal Queue<Integer> q = new ArrayDeque<>();\n\t\t\
@@ -1426,45 +1427,50 @@ data:
     }\n\t\t\tused[i] = 2;\n\t\t\treturn false;\n\t\t};\n\t\tfor(int i = 0; i < n;\
     \ ++i) {\n\t\t\tif(used[i] == 0 && dfs.test(dfs, i)) {\n\t\t\t\tCollections.reverse(cycle);\n\
     \t\t\t\treturn cycle.toArray(Edge[]::new);\n\t\t\t}\n\t\t}\n\t\treturn new Edge[]{};\n\
-    \t}\n}\n\nfinal class MST {\n\tpublic final ArrayList<Edge> tree;\n\tpublic final\
-    \ long cost;\n\tMST(final ArrayList<Edge> tree, final long cost) {\n\t\tthis.tree\
-    \ = tree;\n\t\tthis.cost = cost;\n\t}\n}\nfinal class WeightedGraph extends Graph\
-    \ {\n\tWeightedGraph(final int n, final boolean undirected){ super(n, undirected);\
-    \ }\n\tWeightedGraph(final int n, final int indexed, final boolean undirected){\
-    \ super(n, indexed, undirected); }\n\tfinal void addEdge(int a, int b, final long\
-    \ cost) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(a,\
-    \ b, cost, id));\n\t\tedge.add(new Edge(a, b, cost, id++));\n\t\tif(undirected)\
-    \ {\n\t\t\tthis.get(b).add(new Edge(b, a, cost, --id));\n\t\t\tedge.add(new Edge(b,\
-    \ a, cost, id++));\n\t\t}\n\t}\n\tfinal void input(final int m){ IntStream.range(0,\
-    \ m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni(), VvyLw.io.nl())); }\n\t\
-    final long[] dijkstra(final int v) {\n\t\tfinal long[] cost = new long[n];\n\t\
-    \tArrays.fill(cost, Long.MAX_VALUE);\n\t\tfinal Queue<IntPair> dj = new PriorityQueue<>();\n\
-    \t\tcost[v] = 0;\n\t\tdj.add(IntPair.of(cost[v], v));\n\t\twhile(!dj.isEmpty())\
-    \ {\n\t\t\tfinal IntPair tmp = dj.poll();\n\t\t\tif(cost[tmp.second.intValue()]\
-    \ < tmp.first.longValue()) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(final Edge\
-    \ el: this.get(tmp.second.intValue())) {\n\t\t\t\tif(cost[el.to] > tmp.first.longValue()\
-    \ + el.cost) {\n\t\t\t\t\tcost[el.to] = tmp.first.longValue() + el.cost;\n\t\t\
-    \t\t\tdj.add(IntPair.of(cost[el.to], el.to));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\t\
-    return cost;\n\t}\n\tfinal long[] bellmanFord(final int v) {\n\t\tfinal long[]\
-    \ cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tcost[v] = 0;\n\
-    \t\tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final Edge e: edge)\
-    \ {\n\t\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\t\tcontinue;\n\t\t\t\t\
-    }\n\t\t\t\tif(cost[e.to] > cost[e.src] + e.cost) {\n\t\t\t\t\tcost[e.to] = cost[e.src]\
-    \ + e.cost;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(final Edge e: edge) {\n\t\t\t\
-    if(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tif(cost[e.src]\
-    \ + e.cost < cost[e.to]) {\n\t\t\t\treturn null;\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\
-    \t}\n\tfinal long[][] warshallFloyd() {\n\t\tfinal long[][] cost = new long[n][n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], VvyLw.LINF));\n\t\t\
-    IntStream.range(0, n).forEach(i -> cost[i][i] = 0);\n\t\tfor(int i = 0; i < n;\
-    \ ++i) {\n\t\t\tfor(final Edge j: this.get(i)) {\n\t\t\t\tcost[i][j.to] = j.cost;\n\
-    \t\t\t}\n\t\t}\n\t\tfor(int k = 0; k < n; ++k) {\n\t\t\tfor(int i = 0; i < n;\
-    \ ++i) {\n\t\t\t\tfor(int j = 0; j < n; ++j) {\n\t\t\t\t\tif(cost[i][k] == VvyLw.LINF\
-    \ || cost[k][j] == VvyLw.LINF) {\n\t\t\t\t\t\tcontinue;\n\t\t\t\t\t}\n\t\t\t\t\
-    \tif(cost[i][j] > cost[i][k] + cost[k][j]) {\n\t\t\t\t\t\tcost[i][j] = cost[i][k]\
-    \ + cost[k][j];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t\
-    }\n\tfinal MST kruskal() {\n\t\tfinal UnionFind uf = new UnionFind(n);\n\t\tfinal\
-    \ ArrayList<Edge> e = new ArrayList<>();\n\t\tlong res = 0;\n\t\tfor(final Edge\
-    \ ed: edge.stream().sorted(Comparator.comparing(ed -> ed.cost)).collect(Collectors.toList()))\
+    \t}\n\t@Override\n\tpublic String toString() {\n\t\tfinal StringBuilder sb = new\
+    \ StringBuilder();\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int m = get(i).size();\n\
+    \t\t\tsb.append(i + \": [\");\n\t\t\tfor(int j = 0; j < m; ++j) {\n\t\t\t\tsb.append(get(i).get(j).to);\n\
+    \t\t\t\tif(j + 1 < m) {\n\t\t\t\t\tsb.append(\", \");\n\t\t\t\t}\n\t\t\t}\n\t\t\
+    \tsb.append(']');\n\t\t\tif(i + 1 < n) {\n\t\t\t\tsb.append('\\n');\n\t\t\t}\n\
+    \t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nfinal class MST {\n\tpublic final\
+    \ ArrayList<Edge> tree;\n\tpublic final long cost;\n\tMST(final ArrayList<Edge>\
+    \ tree, final long cost) {\n\t\tthis.tree = tree;\n\t\tthis.cost = cost;\n\t}\n\
+    }\nfinal class WeightedGraph extends Graph {\n\tWeightedGraph(final int n, final\
+    \ boolean undirected){ super(n, undirected); }\n\tWeightedGraph(final int n, final\
+    \ int indexed, final boolean undirected){ super(n, indexed, undirected); }\n\t\
+    final void addEdge(int a, int b, final long cost) {\n\t\ta -= indexed;\n\t\tb\
+    \ -= indexed;\n\t\tthis.get(a).add(new Edge(a, b, cost, id));\n\t\tedge.add(new\
+    \ Edge(a, b, cost, id++));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new Edge(b,\
+    \ a, cost, --id));\n\t\t\tedge.add(new Edge(b, a, cost, id++));\n\t\t}\n\t}\n\t\
+    final void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(),\
+    \ VvyLw.io.ni(), VvyLw.io.nl())); }\n\tfinal long[] dijkstra(final int v) {\n\t\
+    \tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\
+    \tfinal Queue<IntPair> dj = new PriorityQueue<>();\n\t\tcost[v] = 0;\n\t\tdj.add(IntPair.of(cost[v],\
+    \ v));\n\t\twhile(!dj.isEmpty()) {\n\t\t\tfinal IntPair tmp = dj.poll();\n\t\t\
+    \tif(cost[tmp.second.intValue()] < tmp.first.longValue()) {\n\t\t\t\tcontinue;\n\
+    \t\t\t}\n\t\t\tfor(final Edge el: this.get(tmp.second.intValue())) {\n\t\t\t\t\
+    if(cost[el.to] > tmp.first.longValue() + el.cost) {\n\t\t\t\t\tcost[el.to] = tmp.first.longValue()\
+    \ + el.cost;\n\t\t\t\t\tdj.add(IntPair.of(cost[el.to], el.to));\n\t\t\t\t}\n\t\
+    \t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[] bellmanFord(final int v) {\n\
+    \t\tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\
+    \t\tcost[v] = 0;\n\t\tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final\
+    \ Edge e: edge) {\n\t\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\t\tcontinue;\n\
+    \t\t\t\t}\n\t\t\t\tif(cost[e.to] > cost[e.src] + e.cost) {\n\t\t\t\t\tcost[e.to]\
+    \ = cost[e.src] + e.cost;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(final Edge e: edge)\
+    \ {\n\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\
+    \t\tif(cost[e.src] + e.cost < cost[e.to]) {\n\t\t\t\treturn null;\n\t\t\t}\n\t\
+    \t}\n\t\treturn cost;\n\t}\n\tfinal long[][] warshallFloyd() {\n\t\tfinal long[][]\
+    \ cost = new long[n][n];\n\t\tIntStream.range(0, n).forEach(i -> Arrays.fill(cost[i],\
+    \ VvyLw.LINF));\n\t\tIntStream.range(0, n).forEach(i -> cost[i][i] = 0);\n\t\t\
+    for(int i = 0; i < n; ++i) {\n\t\t\tfor(final Edge j: this.get(i)) {\n\t\t\t\t\
+    cost[i][j.to] = j.cost;\n\t\t\t}\n\t\t}\n\t\tfor(int k = 0; k < n; ++k) {\n\t\t\
+    \tfor(int i = 0; i < n; ++i) {\n\t\t\t\tfor(int j = 0; j < n; ++j) {\n\t\t\t\t\
+    \tif(cost[i][k] == VvyLw.LINF || cost[k][j] == VvyLw.LINF) {\n\t\t\t\t\t\tcontinue;\n\
+    \t\t\t\t\t}\n\t\t\t\t\tif(cost[i][j] > cost[i][k] + cost[k][j]) {\n\t\t\t\t\t\t\
+    cost[i][j] = cost[i][k] + cost[k][j];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
+    \t\treturn cost;\n\t}\n\tfinal MST kruskal() {\n\t\tfinal UnionFind uf = new UnionFind(n);\n\
+    \t\tfinal ArrayList<Edge> e = new ArrayList<>();\n\t\tlong res = 0;\n\t\tfor(final\
+    \ Edge ed: edge.stream().sorted(Comparator.comparing(ed -> ed.cost)).collect(Collectors.toList()))\
     \ {\n\t\t\tif(uf.unite(ed.src, ed.to)) {\n\t\t\t\te.add(ed);\n\t\t\t\tres += ed.cost;\n\
     \t\t\t}\n\t\t}\n\t\treturn new MST(e, res);\n\t}\n\tfinal MST directed(final int\
     \ v) {\n\t\t@SuppressWarnings(\"unchecked\")\n\t\tfinal ArrayList<Edge> ed = (ArrayList<Edge>)\
@@ -1490,13 +1496,19 @@ data:
     \tfor(int i = x; i >= 0; i--) {\n\t\t\tif(vis[i] == 1) {\n\t\t\t\tcontinue;\n\t\
     \t\t}\n\t\t\tcost += ed.get(ins[i].idx).cost;\n\t\t\te.add(ed.get(ins[i].idx));\n\
     \t\t\tfor(int j = ed.get(ins[i].idx).to; j != -1 && vis[j] == 0; j = par[j]) {\n\
-    \t\t\t\tvis[j] = 1;\n\t\t\t}\n\t\t}\n\t\treturn new MST(e, cost);\n\t}\n}\nfinal\
-    \ class SkewHeap {\n\tstatic final class Node {\n\t\tlong key, lazy;\n\t\tNode\
-    \ l, r;\n\t\tfinal int idx;\n\t\tNode(final long key, final int idx) {\n\t\t\t\
-    this.key = key;\n\t\t\tthis.idx = idx;\n\t\t\tlazy = 0;\n\t\t\tl = null;\n\t\t\
-    \tr = null;\n\t\t}\n\t}\n\tprivate final boolean isMin;\n\tSkewHeap(final boolean\
-    \ isMin){ this.isMin = isMin; }\n\tprivate final Node alloc(final long key, final\
-    \ int idx){ return new Node(key, idx); }\n\tprivate final Node propagate(final\
+    \t\t\t\tvis[j] = 1;\n\t\t\t}\n\t\t}\n\t\treturn new MST(e, cost);\n\t}\n\t@Override\n\
+    \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
+    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int m = get(i).size();\n\t\t\tsb.append(i\
+    \ + \": [\");\n\t\t\tfor(int j = 0; j < m; ++j) {\n\t\t\t\tsb.append(\"(to: \"\
+    \ + get(i).get(j).to + \", cost: \" + get(i).get(j).cost + ')');\n\t\t\t\tif(j\
+    \ + 1 < m) {\n\t\t\t\t\tsb.append(\", \");\n\t\t\t\t}\n\t\t\t}\n\t\t\tsb.append(']');\n\
+    \t\t\tif(i + 1 < n) {\n\t\t\t\tsb.append('\\n');\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\
+    \t}\n}\nfinal class SkewHeap {\n\tstatic final class Node {\n\t\tlong key, lazy;\n\
+    \t\tNode l, r;\n\t\tfinal int idx;\n\t\tNode(final long key, final int idx) {\n\
+    \t\t\tthis.key = key;\n\t\t\tthis.idx = idx;\n\t\t\tlazy = 0;\n\t\t\tl = null;\n\
+    \t\t\tr = null;\n\t\t}\n\t}\n\tprivate final boolean isMin;\n\tSkewHeap(final\
+    \ boolean isMin){ this.isMin = isMin; }\n\tprivate final Node alloc(final long\
+    \ key, final int idx){ return new Node(key, idx); }\n\tprivate final Node propagate(final\
     \ Node t) {\n\t\tif(t != null && t.lazy != 0) {\n\t\t\tif(t.l != null) {\n\t\t\
     \t\tt.l.lazy += t.lazy;\n\t\t\t}\n\t\t\tif(t.r != null) {\n\t\t\t\tt.r.lazy +=\
     \ t.lazy;\n\t\t\t}\n\t\t\tt.key += t.lazy;\n\t\t\tt.lazy = 0;\n\t\t}\n\t\treturn\
@@ -1574,20 +1586,19 @@ data:
     \ >= 0;) {\n\t\t\tif(((k >> i) % 2) == 1) {\n\t\t\t\tu = table[i][u];\n\t\t\t\
     }\n\t\t}\n\t\treturn u;\n\t}\n\tfinal int dist(final int u, final int v){ return\
     \ sum[u] + sum[v] - 2 * sum[query(u, v)]; }\n}\n\ninterface DSU {\n\tint root(final\
-    \ int i);\n\tint size(final int i);\n\tint size();\n\tboolean same(final int i,\
-    \ final int j);\n\tboolean unite(int i, int j);\n\tArrayList<ArrayList<Integer>>\
-    \ groups();\n}\n\nclass UnionFind implements DSU {\n\tprotected final int[] par;\n\
-    \tUnionFind(final int n) {\n\t\tpar = new int[n];\n\t\tArrays.fill(par, -1);\n\
-    \t}\n\t@Override\n\tpublic final int root(final int i){ return par[i] >= 0 ? par[i]\
-    \ = root(par[i]) : i; }\n\t@Override\n\tpublic final int size(final int i){ return\
-    \ -par[root(i)]; }\n\t@Override\n\tpublic final int size(){ return par.length;\
-    \ }\n\t@Override\n\tpublic boolean unite(int i, int j) {\n\t\ti = root(i);\n\t\
-    \tj = root(j);\n\t\tif(i == j) {\n\t\t\treturn false;\n\t\t}\n\t\tif(i > j) {\n\
-    \t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\t\t}\n\t\tpar[i] += par[j];\n\t\t\
-    par[j] = i;\n\t\treturn true;\n\t}\n\t@Override\n\tpublic final boolean same(final\
-    \ int i, final int j){ return root(i) == root(j); }\n\t@Override\n\tpublic final\
-    \ ArrayList<ArrayList<Integer>> groups() {\n\t\tfinal int n = par.length;\n\t\t\
-    final ArrayList<ArrayList<Integer>> res = new ArrayList<>(n);\n\t\tIntStream.range(0,\
+    \ int i);\n\tint size(final int i);\n\tint size();\n\tdefault boolean same(final\
+    \ int i, final int j){ return root(i) == root(j); }\n\tboolean unite(int i, int\
+    \ j);\n\tArrayList<ArrayList<Integer>> groups();\n}\n\nclass UnionFind implements\
+    \ DSU {\n\tprotected final int[] par;\n\tUnionFind(final int n) {\n\t\tpar = new\
+    \ int[n];\n\t\tArrays.fill(par, -1);\n\t}\n\t@Override\n\tpublic final int root(final\
+    \ int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i; }\n\t@Override\n\tpublic\
+    \ final int size(final int i){ return -par[root(i)]; }\n\t@Override\n\tpublic\
+    \ final int size(){ return par.length; }\n\t@Override\n\tpublic boolean unite(int\
+    \ i, int j) {\n\t\ti = root(i);\n\t\tj = root(j);\n\t\tif(i == j) {\n\t\t\treturn\
+    \ false;\n\t\t}\n\t\tif(i > j) {\n\t\t\ti ^= j;\n\t\t\tj ^= i;\n\t\t\ti ^= j;\n\
+    \t\t}\n\t\tpar[i] += par[j];\n\t\tpar[j] = i;\n\t\treturn true;\n\t}\n\t@Override\n\
+    \tpublic final ArrayList<ArrayList<Integer>> groups() {\n\t\tfinal int n = par.length;\n\
+    \t\tfinal ArrayList<ArrayList<Integer>> res = new ArrayList<>(n);\n\t\tIntStream.range(0,\
     \ n).forEach(i -> res.add(new ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i\
     \ -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn\
     \ res;\n\t}\n}\n\nabstract class MergeUnionFind<T> extends UnionFind {\n\tMergeUnionFind(final\
@@ -1609,26 +1620,23 @@ data:
     x ^= y;\n\t\t\tw = -w;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\tweight[y]\
     \ = w;\n\t\treturn 1;\n\t}\n\t@Override\n\tpublic final int size(final int i){\
     \ return -par[root(i)]; }\n\t@Override\n\tpublic final int size(){ return par.length;\
-    \ }\n\t@Override\n\tpublic final boolean same(final int x, final int y){ return\
-    \ root(x) == root(y); }\n\t@Override\n\tpublic final ArrayList<ArrayList<Integer>>\
-    \ groups() {\n\t\tfinal int n = par.length;\n\t\tfinal ArrayList<ArrayList<Integer>>\
-    \ res = new ArrayList<>();\n\t\tIntStream.range(0, n).forEach(i -> res.add(new\
-    \ ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\
-    \t\tres.removeIf(ArrayList::isEmpty);\n\t\treturn res;\n\t}\n\t// deprecated\n\
-    \t@Override\n\tpublic final boolean unite(final int i, final int j){ return unite(i,\
-    \ j, 0) > 0; }\n}\n\nfinal class UndoUnionFind implements DSU {\n\tprivate final\
-    \ int[] par;\n\tprivate final Stack<Pair<Integer, Integer>> his;\n\tUndoUnionFind(final\
-    \ int n) {\n\t    par = new int[n];\n\t    Arrays.fill(par, -1);\n\t    his =\
-    \ new Stack<>();\n\t}\n\t@Override\n\tpublic final boolean unite(int x, int y)\
-    \ {\n\t\tx = root(x);\n\t\ty = root(y);\n\t\this.add(Pair.of(x, par[x]));\n\t\t\
-    his.add(Pair.of(y, par[y]));\n\t\tif(x == y) {\n\t\t\treturn false;\n\t\t}\n\t\
-    \tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\ty ^= x;\n\t\t\tx ^= y;\n\t\t}\n\t\
-    \tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\treturn true;\n\t}\n\t@Override\n\tpublic\
-    \ final int root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\
-    \t\treturn root(par[i]);\n\t}\n\t@Override\n\tpublic final boolean same(final\
-    \ int x, final int y){ return root(x) == root(y); }\n\t@Override\n\tpublic final\
-    \ int size(final int i){ return -par[root(i)]; }\n\t@Override\n\tpublic final\
-    \ int size(){ return par.length; }\n\t@Override\n\tpublic final ArrayList<ArrayList<Integer>>\
+    \ }\n\t@Override\n\tpublic final ArrayList<ArrayList<Integer>> groups() {\n\t\t\
+    final int n = par.length;\n\t\tfinal ArrayList<ArrayList<Integer>> res = new ArrayList<>();\n\
+    \t\tIntStream.range(0, n).forEach(i -> res.add(new ArrayList<>()));\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> res.get(root(i)).add(i));\n\t\tres.removeIf(ArrayList::isEmpty);\n\
+    \t\treturn res;\n\t}\n\t// deprecated\n\t@Override\n\tpublic final boolean unite(final\
+    \ int i, final int j){ return unite(i, j, 0) > 0; }\n}\n\nfinal class UndoUnionFind\
+    \ implements DSU {\n\tprivate final int[] par;\n\tprivate final Stack<Pair<Integer,\
+    \ Integer>> his;\n\tUndoUnionFind(final int n) {\n\t    par = new int[n];\n\t\
+    \    Arrays.fill(par, -1);\n\t    his = new Stack<>();\n\t}\n\t@Override\n\tpublic\
+    \ final boolean unite(int x, int y) {\n\t\tx = root(x);\n\t\ty = root(y);\n\t\t\
+    his.add(Pair.of(x, par[x]));\n\t\this.add(Pair.of(y, par[y]));\n\t\tif(x == y)\
+    \ {\n\t\t\treturn false;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\tx ^= y;\n\t\t\
+    \ty ^= x;\n\t\t\tx ^= y;\n\t\t}\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\t\
+    return true;\n\t}\n\t@Override\n\tpublic final int root(final int i) {\n\t\tif(par[i]\
+    \ < 0) {\n\t\t\treturn i;\n\t\t}\n\t\treturn root(par[i]);\n\t}\n\t@Override\n\
+    \tpublic final int size(final int i){ return -par[root(i)]; }\n\t@Override\n\t\
+    public final int size(){ return par.length; }\n\t@Override\n\tpublic final ArrayList<ArrayList<Integer>>\
     \ groups() {\n\t\tfinal int n = par.length;\n\t\tfinal ArrayList<ArrayList<Integer>>\
     \ res = new ArrayList<>();\n\t\tIntStream.range(0, n).forEach(i -> res.add(new\
     \ ArrayList<>()));\n\t\tIntStream.range(0, n).forEach(i -> res.get(root(i)).add(i));\n\
@@ -1829,31 +1837,36 @@ data:
     \t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), 1);\n\t}\n\tPrefixSum(final long[]\
     \ a) {\n\t\tsuper(a, (x, y) -> x + y);\n\t\ts = Utility.rotate(Arrays.copyOf(s,\
     \ n + 1), 1);\n\t}\n}\nfinal class PrefixSum2D {\n\tprivate final int h, w;\n\t\
-    private final long[][] data;\n\tPrefixSum2D(final int h, final int w) {\n\t\t\
-    this.h = h + 3;\n\t\tthis.w = w + 3;\n\t\tdata = new long[this.h][this.w];\n\t\
-    }\n\tPrefixSum2D(final int[][] a) {\n\t\tthis(a.length, a[0].length);\n\t\tfor(int\
-    \ i = 0; i < a.length; ++i) {\n\t\t\tfor(int j = 0; j < a[i].length; ++j) {\n\t\
-    \t\t\tadd(i, j, a[i][j]);\n\t\t\t}\n\t\t}\n\t}\n\tPrefixSum2D(final long[][] a)\
-    \ {\n\t\tthis(a.length, a[0].length);\n\t\tfor(int i = 0; i < a.length; ++i) {\n\
-    \t\t\tfor(int j = 0; j < a[i].length; ++j) {\n\t\t\t\tadd(i, j, a[i][j]);\n\t\t\
-    \t}\n\t\t}\n\t}\n\tfinal void add(int i, int j, final long x) {\n\t\ti++;\n\t\t\
-    j++;\n\t\tif(i >= h || j >= w) {\n\t\t\treturn;\n\t\t}\n\t\tdata[i][j] += x;\n\
-    \t}\n\tfinal void add(final int i1, final int j1, final int i2, final int j2,\
-    \ final long x) {\n\t\tadd(i1, j1, x);\n\t\tadd(i1, j2, -x);\n\t\tadd(i2, j1,\
-    \ -x);\n\t\tadd(i2, j2, x);\n\t}\n\tfinal void build() {\n\t\tfor(int i = 0; ++i\
-    \ < h;) {\n\t\t\tfor(int j = 0; ++j < w;) {\n\t\t\t\tdata[i][j] += data[i][j -\
-    \ 1] + data[i - 1][j] - data[i - 1][j - 1];\n\t\t\t}\n\t\t}\n\t}\n\tfinal long\
-    \ get(final int i1, final int j1, final int i2, final int j2){ return data[i2][j2]\
-    \ - data[i1][j2] - data[i2][j1] + data[i1][j1]; }\n\tfinal long get(final int\
-    \ i, final int j){ return data[i + 1][j + 1]; }\n\t@Override\n\tpublic final String\
-    \ toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfor(int\
-    \ i = 0; i < h - 3; ++i) {\n\t\t\tsb.append(get(i, 0));\n\t\t\tfor(int j = 0;\
-    \ ++j < w - 3;) {\n\t\t\t\tsb.append(\" \" + get(i, j));\n\t\t\t}\n\t\t\tif(i\
-    \ + 1 < h) {\n\t\t\t\tsb.append('\\n');\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\
-    \t}\n}\n\nfinal class SuffixArray extends ArrayList<Integer> {\n\tprivate final\
-    \ String vs;\n\tSuffixArray(final String vs, final boolean compress) {\n\t\tthis.vs\
-    \ = vs;\n\t\tfinal int[] newVS = new int[vs.length() + 1];\n\t\tif(compress) {\n\
-    \t\t\tfinal List<Integer> xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());\n\
+    private final long[][] data;\n\tprivate boolean built;\n\tPrefixSum2D(final int\
+    \ h, final int w) {\n\t\tthis.h = h + 3;\n\t\tthis.w = w + 3;\n\t\tdata = new\
+    \ long[this.h][this.w];\n\t\tbuilt = false;\n\t}\n\tPrefixSum2D(final int[][]\
+    \ a) {\n\t\tthis(a.length, a[0].length);\n\t\tfor(int i = 0; i < a.length; ++i)\
+    \ {\n\t\t\tfor(int j = 0; j < a[i].length; ++j) {\n\t\t\t\tadd(i, j, a[i][j]);\n\
+    \t\t\t}\n\t\t}\n\t}\n\tPrefixSum2D(final long[][] a) {\n\t\tthis(a.length, a[0].length);\n\
+    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tfor(int j = 0; j < a[i].length;\
+    \ ++j) {\n\t\t\t\tadd(i, j, a[i][j]);\n\t\t\t}\n\t\t}\n\t}\n\tfinal void add(int\
+    \ i, int j, final long x) {\n\t\tif(built) {\n\t\t\tthrow new UnsupportedOperationException(\"\
+    Prefix Sum 2D has been built.\");\n\t\t}\n\t\ti++;\n\t\tj++;\n\t\tif(i >= h ||\
+    \ j >= w) {\n\t\t\treturn;\n\t\t}\n\t\tdata[i][j] += x;\n\t}\n\tfinal void add(final\
+    \ int i1, final int j1, final int i2, final int j2, final long x) {\n\t\tadd(i1,\
+    \ j1, x);\n\t\tadd(i1, j2, -x);\n\t\tadd(i2, j1, -x);\n\t\tadd(i2, j2, x);\n\t\
+    }\n\tfinal void build() {\n\t\tassert !built;\n\t\tfor(int i = 0; ++i < h;) {\n\
+    \t\t\tfor(int j = 0; ++j < w;) {\n\t\t\t\tdata[i][j] += data[i][j - 1] + data[i\
+    \ - 1][j] - data[i - 1][j - 1];\n\t\t\t}\n\t\t}\n\t}\n\tfinal long get(final int\
+    \ i1, final int j1, final int i2, final int j2) {\n\t\tif(!built) {\n\t\t\tthrow\
+    \ new UnsupportedOperationException(\"Prefix Sum 2D hasn't been built.\");\n\t\
+    \t}\n\t\treturn data[i2][j2] - data[i1][j2] - data[i2][j1] + data[i1][j1];\n\t\
+    }\n\tfinal long get(final int i, final int j) {\n\t\tif(!built) {\n\t\t\tthrow\
+    \ new UnsupportedOperationException(\"Prefix Sum 2D hasn't been built.\");\n\t\
+    \t}\n\t\treturn data[i + 1][j + 1];\n\t}\n\t@Override\n\tpublic final String toString()\
+    \ {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfor(int i = 0; i <\
+    \ h - 3; ++i) {\n\t\t\tsb.append(get(i, 0));\n\t\t\tfor(int j = 0; ++j < w - 3;)\
+    \ {\n\t\t\t\tsb.append(\" \" + get(i, j));\n\t\t\t}\n\t\t\tif(i + 1 < h) {\n\t\
+    \t\t\tsb.append('\\n');\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\t}\n}\n\n\
+    final class SuffixArray extends ArrayList<Integer> {\n\tprivate final String vs;\n\
+    \tSuffixArray(final String vs, final boolean compress) {\n\t\tthis.vs = vs;\n\t\
+    \tfinal int[] newVS = new int[vs.length() + 1];\n\t\tif(compress) {\n\t\t\tfinal\
+    \ List<Integer> xs = vs.chars().sorted().distinct().boxed().collect(Collectors.toList());\n\
     \t\t\tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = Utility.lowerBound(xs,\
     \ (int) vs.charAt(i)) + 1;\n\t\t\t}\n\t\t} else {\n\t\t\tfinal int d = vs.chars().min().getAsInt();\n\
     \t\t\tfor(int i = 0; i < vs.length(); ++i) {\n\t\t\t\tnewVS[i] = vs.charAt(i)\
@@ -2579,7 +2592,7 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-27 17:42:07+09:00'
+  timestamp: '2024-02-28 09:31:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
