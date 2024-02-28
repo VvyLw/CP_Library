@@ -84,6 +84,7 @@ public final class PrefixSum2D {
 				data[i][j] += data[i][j - 1] + data[i - 1][j] - data[i - 1][j - 1];
 			}
 		}
+		built = true;
 	}
 	/**
 	 * @param i1

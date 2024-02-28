@@ -3423,6 +3423,7 @@ final class PrefixSum2D {
 				data[i][j] += data[i][j - 1] + data[i - 1][j] - data[i - 1][j - 1];
 			}
 		}
+		built = true;
 	}
 	final long get(final int i1, final int j1, final int i2, final int j2) {
 		if(!built) {
