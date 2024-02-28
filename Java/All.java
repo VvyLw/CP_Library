@@ -2228,7 +2228,7 @@ final class ShortestPath {
 		this.cost = cost;
 		this.src = src;
 	}
-	final boolean isThrough(final int i){ return src[i] != -1; }
+	final boolean isThru(final int i){ return src[i] != -1; }
 	final int[] path(int i) {
 		final List<Integer> res = new ArrayList<>();
 		for(; i != -1; i = src[i]) {

@@ -23,7 +23,7 @@ public final class ShortestPath {
 	 * @param i
 	 * @return 経路があるか
 	 */
-	public final boolean isThrough(final int i){ return src[i] != -1; }
+	public final boolean isThru(final int i){ return src[i] != -1; }
 	/**
 	 * 経路復元
 	 * @param i
