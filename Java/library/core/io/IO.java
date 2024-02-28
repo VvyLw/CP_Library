@@ -421,43 +421,43 @@ public final class IO implements Closeable, AutoCloseable {
 	 * @param tail
 	 * @see MyPrinter#out
 	 */
-	public final void dbg(final Object head, final Object... tail){ err.out(head, tail); }
+	public final void dump(final Object head, final Object... tail){ err.out(head, tail); }
 	/**
 	 * デバッグ用
 	 * @param a
 	 * @see MyPrinter#out
 	 */
-	public final void dbg(final int[] a){ err.out(a); }
+	public final void dump(final int[] a){ err.out(a); }
 	/**
 	 * デバッグ用
 	 * @param a
 	 * @see MyPrinter#out
 	 */
-	public final void dbg(final long[] a){ err.out(a); }
+	public final void dump(final long[] a){ err.out(a); }
 	/**
 	 * デバッグ用
 	 * @param a
 	 * @see MyPrinter#out
 	 */
-	public final void dbg(final double[] a){ err.out(a); }
+	public final void dump(final double[] a){ err.out(a); }
 	/**
 	 * デバッグ用
 	 * @param a
 	 * @see MyPrinter#out
 	 */
-	public final void dbg(final boolean[] a){ err.out(a); }
+	public final void dump(final boolean[] a){ err.out(a); }
 	/**
 	 * デバッグ用
 	 * @param a
 	 * @see MyPrinter#out
 	 */
-	public final void dbg(final char[] a){ err.out(a); }
+	public final void dump(final char[] a){ err.out(a); }
 	/**
 	 * デバッグ用
 	 * @param a
 	 * @see MyPrinter#out
 	 */
-	public final void dbg(final Object[] a){ err.out(a); }
+	public final void dump(final Object[] a){ err.out(a); }
 	/**
 	 * デバッグ用
 	 * @param head
