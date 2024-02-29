@@ -556,15 +556,14 @@ data:
     import library.other.InclusiveScan;\n\n/**\n * \u7D2F\u7A4D\u548C\u30AF\u30E9\u30B9\
     \n * @see InclusiveScan\n */\npublic final class PrefixSum extends InclusiveScan\
     \ {\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a\n\t\
-    \ */\n\tpublic PrefixSum(final int[] a) {\n\t\tsuper(a, (x, y) -> x + y);\n\t\t\
-    s = Utility.rotate(Arrays.copyOf(s, n + 1), 1);\n\t}\n\t/**\n\t * \u30B3\u30F3\
-    \u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a\n\t */\n\tpublic PrefixSum(final\
-    \ long[] a) {\n\t\tsuper(a, (x, y) -> x + y);\n\t\ts = Utility.rotate(Arrays.copyOf(s,\
-    \ n + 1), 1);\n\t}\n\t/**\n\t * \u4E3B\u306B\u7D2F\u7A4D\u548C\u306E\u5DEE\u3092\
-    \u6C42\u3081\u308B\u306E\u306B\u4F7F\u3046\n\t * @param l\n\t * @param r\n\t *\
-    \ @return \u534A\u958B\u533A\u9593[l, r)\u306B\u304A\u3051\u308Bs[l]\u3068s[r]\u3068\
-    \u306E\u5DEE\n\t */\n\tpublic final long query(final int l, final int r){ return\
-    \ s[r] - s[l]; }\n}"
+    \ */\n\tpublic PrefixSum(final int[] a) {\n\t\tsuper(a, Long::sum);\n\t\ts = Utility.rotate(Arrays.copyOf(s,\
+    \ n + 1), -1);\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t\
+    \ * @param a\n\t */\n\tpublic PrefixSum(final long[] a) {\n\t\tsuper(a, Long::sum);\n\
+    \t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), -1);\n\t}\n\t/**\n\t * \u4E3B\u306B\
+    \u7D2F\u7A4D\u548C\u306E\u5DEE\u3092\u6C42\u3081\u308B\u306E\u306B\u4F7F\u3046\
+    \n\t * @param l\n\t * @param r\n\t * @return \u534A\u958B\u533A\u9593[l, r)\u306B\
+    \u304A\u3051\u308Bs[l]\u3068s[r]\u3068\u306E\u5DEE\n\t */\n\tpublic final long\
+    \ query(final int l, final int r){ return s[r] - s[l]; }\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -749,7 +748,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-29 09:41:41+09:00'
+  timestamp: '2024-02-29 10:09:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/prefixsum/PrefixSum.java

@@ -793,7 +793,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-29 09:41:41+09:00'
+  timestamp: '2024-02-29 10:09:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/SegmentTree.java

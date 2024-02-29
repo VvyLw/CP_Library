@@ -870,7 +870,7 @@ data:
     \ Object[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a,\
     \ 0, res, n - k, k);\n\t\treturn res;\n\t}\n\tprotected static final String rotate(final\
     \ String s, final int id) {\n\t\tfinal List<Character> t = s.chars().mapToObj(i\
-    \ -> (char) i).collect(Collectors.toList());\n\t\tCollections.rotate(t, id);\n\
+    \ -> (char) i).collect(Collectors.toList());\n\t\tCollections.rotate(t, -id);\n\
     \t\treturn t.stream().map(String::valueOf).collect(Collectors.joining());\n\t\
     }\n\tprotected static final int[][] rotateR(final int[][] a) {\n\t\tfinal int\
     \ h = a.length, w = a[0].length;\n\t\tfinal int[][] b = new int[w][h];\n\t\tIntStream.range(0,\
@@ -1467,16 +1467,18 @@ data:
     \ + ed.cost;\n\t\t\t\tif(cost[ed.to] <= next) {\n\t\t\t\t\tcontinue;\n\t\t\t\t\
     }\n\t\t\t\tcost[ed.to] = next;\n\t\t\t\tsrc[ed.to] = tmp.second.intValue();\n\t\
     \t\t\tdj.add(IntPair.of(cost[ed.to], ed.to));\n\t\t\t}\n\t\t}\n\t\treturn new\
-    \ ShortestPath(cost, src);\n\t}\n\tfinal long[] bellmanFord(final int v) {\n\t\
-    \tfinal long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\
-    \tcost[v] = 0;\n\t\tfor(int i = 0; i < edge.size() - 1; ++i) {\n\t\t\tfor(final\
-    \ Edge e: edge) {\n\t\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\t\tcontinue;\n\
-    \t\t\t\t}\n\t\t\t\tif(cost[e.to] > cost[e.src] + e.cost) {\n\t\t\t\t\tcost[e.to]\
-    \ = cost[e.src] + e.cost;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(final Edge e: edge)\
-    \ {\n\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\
-    \t\tif(cost[e.src] + e.cost < cost[e.to]) {\n\t\t\t\treturn null;\n\t\t\t}\n\t\
-    \t}\n\t\treturn cost;\n\t}\n\tfinal long[][] warshallFloyd() {\n\t\tfinal long[][]\
-    \ cost = new long[n][n];\n\t\tIntStream.range(0, n).forEach(i -> Arrays.fill(cost[i],\
+    \ ShortestPath(cost, src);\n\t}\n\tfinal long[] spfa(final int v) {\n\t\tfinal\
+    \ long[] cost = new long[n];\n\t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tfinal\
+    \ boolean[] pend = new boolean[n];\n\t\tfinal int[] cnt = new int[n];\n\t\tfinal\
+    \ Queue<Integer> q = new ArrayDeque<>();\n\t\tq.add(v);\n\t\tpend[v] = true;\n\
+    \t\tcnt[v]++;\n\t\tcost[v] = 0;\n\t\twhile(!q.isEmpty()) {\n\t\t\tfinal int p\
+    \ = q.poll();\n\t\t\tpend[p] = false;\n\t\t\tfor(final Edge e: this.get(p)) {\n\
+    \t\t\t\tfinal long next = cost[p] + e.cost;\n\t\t\t\tif(next >= cost[e.to]) {\n\
+    \t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\tcost[e.to] = next;\n\t\t\t\tif(!pend[e.to])\
+    \ {\n\t\t\t\t\tif(++cnt[e.to] >= n) {\n\t\t\t\t\t\treturn new long[]{};\n\t\t\t\
+    \t\t}\n\t\t\t\t\tpend[e.to] = true;\n\t\t\t\t\tq.add(e.to);\n\t\t\t\t}\n\t\t\t\
+    }\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[][] floydWarshall() {\n\t\tfinal\
+    \ long[][] cost = new long[n][n];\n\t\tIntStream.range(0, n).forEach(i -> Arrays.fill(cost[i],\
     \ VvyLw.LINF));\n\t\tIntStream.range(0, n).forEach(i -> cost[i][i] = 0);\n\t\t\
     for(int i = 0; i < n; ++i) {\n\t\t\tfor(final Edge j: this.get(i)) {\n\t\t\t\t\
     cost[i][j.to] = j.cost;\n\t\t\t}\n\t\t}\n\t\tfor(int k = 0; k < n; ++k) {\n\t\t\
@@ -1923,13 +1925,13 @@ data:
     \t\tArrays.parallelPrefix(s, op);\n\t}\n\tInclusiveScan(final long[] a, final\
     \ LongBinaryOperator op) {\n\t\tn = a.length;\n\t\ts = a.clone();\n\t\tArrays.parallelPrefix(s,\
     \ op);\n\t}\n\tprotected final long[] get(){ return s; }\n}\nfinal class PrefixSum\
-    \ extends InclusiveScan {\n\tPrefixSum(final int[] a) {\n\t\tsuper(a, (x, y) ->\
-    \ x + y);\n\t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), 1);\n\t}\n\tPrefixSum(final\
-    \ long[] a) {\n\t\tsuper(a, (x, y) -> x + y);\n\t\ts = Utility.rotate(Arrays.copyOf(s,\
-    \ n + 1), 1);\n\t}\n\tfinal long query(final int l, final int r){ return s[r]\
-    \ - s[l]; }\n}\nfinal class PrefixSum2D {\n\tprivate final int h, w;\n\tprivate\
-    \ final long[][] data;\n\tprivate boolean built;\n\tPrefixSum2D(final int h, final\
-    \ int w) {\n\t\tthis.h = h + 3;\n\t\tthis.w = w + 3;\n\t\tdata = new long[this.h][this.w];\n\
+    \ extends InclusiveScan {\n\tPrefixSum(final int[] a) {\n\t\tsuper(a, Long::sum);\n\
+    \t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), -1);\n\t}\n\tPrefixSum(final long[]\
+    \ a) {\n\t\tsuper(a, Long::sum);\n\t\ts = Utility.rotate(Arrays.copyOf(s, n +\
+    \ 1), -1);\n\t}\n\tfinal long query(final int l, final int r){ return s[r] - s[l];\
+    \ }\n}\nfinal class PrefixSum2D {\n\tprivate final int h, w;\n\tprivate final\
+    \ long[][] data;\n\tprivate boolean built;\n\tPrefixSum2D(final int h, final int\
+    \ w) {\n\t\tthis.h = h + 3;\n\t\tthis.w = w + 3;\n\t\tdata = new long[this.h][this.w];\n\
     \t\tbuilt = false;\n\t}\n\tPrefixSum2D(final int[][] a) {\n\t\tthis(a.length,\
     \ a[0].length);\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tfor(int j = 0;\
     \ j < a[i].length; ++j) {\n\t\t\t\tadd(i, j, a[i][j]);\n\t\t\t}\n\t\t}\n\t}\n\t\
@@ -2689,7 +2691,7 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-29 09:41:41+09:00'
+  timestamp: '2024-02-29 10:09:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

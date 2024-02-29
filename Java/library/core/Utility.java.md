@@ -1046,40 +1046,61 @@ data:
     \ b = new Object[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n\
     \ - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\t/**\n\t\
     \ * C++\u306Estd::rotate\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\
-    \n\t * @param a\n\t * @param id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
+    \n\t * @param a\n\t * @param id \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\
+    \u3042\u308B\u5024\u306F\u5F8C\u308D\u306B\u79FB\u52D5\u3057\u3001\u8CA0\u306E\
+    \u6570\u306E\u6642\u3001\u5F8C\u308D\u306B\u3042\u308B\u5024\u306F\u524D\u306B\
+    \u79FB\u52D5\u3059\u308B\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
     >std::rotate</a>\n\t */\n\tpublic static final int[] rotate(final int[] a, final\
     \ int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\tfinal int[]\
     \ res = new int[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a,\
     \ 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @param\
-    \ id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
+    \ id \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\u3042\u308B\u5024\u306F\u5F8C\
+    \u308D\u306B\u79FB\u52D5\u3057\u3001\u8CA0\u306E\u6570\u306E\u6642\u3001\u5F8C\
+    \u308D\u306B\u3042\u308B\u5024\u306F\u524D\u306B\u79FB\u52D5\u3059\u308B\n\t *\
+    \ @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
     >std::rotate</a>\n\t */\n\tpublic static final long[] rotate(final long[] a, final\
     \ int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\tfinal long[]\
     \ res = new long[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a,\
     \ 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @param\
-    \ id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
+    \ id \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\u3042\u308B\u5024\u306F\u5F8C\
+    \u308D\u306B\u79FB\u52D5\u3057\u3001\u8CA0\u306E\u6570\u306E\u6642\u3001\u5F8C\
+    \u308D\u306B\u3042\u308B\u5024\u306F\u524D\u306B\u79FB\u52D5\u3059\u308B\n\t *\
+    \ @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
     >std::rotate</a>\n\t */\n\tpublic static final double[] rotate(final double[]\
     \ a, final int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\t\
     final double[] res = new double[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\
     \t\tSystem.arraycopy(a, 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t/**\n\t *\
-    \ @param a\n\t * @param id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
+    \ @param a\n\t * @param id \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\u3042\
+    \u308B\u5024\u306F\u5F8C\u308D\u306B\u79FB\u52D5\u3057\u3001\u8CA0\u306E\u6570\
+    \u306E\u6642\u3001\u5F8C\u308D\u306B\u3042\u308B\u5024\u306F\u524D\u306B\u79FB\
+    \u52D5\u3059\u308B\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
     >std::rotate</a>\n\t */\n\tpublic static final char[] rotate(final char[] a, final\
     \ int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\tfinal char[]\
     \ res = new char[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a,\
     \ 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @param\
-    \ id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
+    \ id \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\u3042\u308B\u5024\u306F\u5F8C\
+    \u308D\u306B\u79FB\u52D5\u3057\u3001\u8CA0\u306E\u6570\u306E\u6642\u3001\u5F8C\
+    \u308D\u306B\u3042\u308B\u5024\u306F\u524D\u306B\u79FB\u52D5\u3059\u308B\n\t *\
+    \ @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
     >std::rotate</a>\n\t */\n\tpublic static final boolean[] rotate(final boolean[]\
     \ a, final int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\t\
     final boolean[] res = new boolean[n];\n\t\tSystem.arraycopy(a, k, res, 0, n -\
     \ k);\n\t\tSystem.arraycopy(a, 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t/**\n\
-    \t * @param a\n\t * @param id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
+    \t * @param a\n\t * @param id \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\
+    \u3042\u308B\u5024\u306F\u5F8C\u308D\u306B\u79FB\u52D5\u3057\u3001\u8CA0\u306E\
+    \u6570\u306E\u6642\u3001\u5F8C\u308D\u306B\u3042\u308B\u5024\u306F\u524D\u306B\
+    \u79FB\u52D5\u3059\u308B\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
     >std::rotate</a>\n\t */\n\tpublic static final Object[] rotate(final Object[]\
     \ a, final int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\t\
     final Object[] res = new Object[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\
     \t\tSystem.arraycopy(a, 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t/**\n\t *\
-    \ @param s\n\t * @param id\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
+    \ @param s\n\t * @param id \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\u3042\
+    \u308B\u5024\u306F\u5F8C\u308D\u306B\u79FB\u52D5\u3057\u3001\u8CA0\u306E\u6570\
+    \u306E\u6642\u3001\u5F8C\u308D\u306B\u3042\u308B\u5024\u306F\u524D\u306B\u79FB\
+    \u52D5\u3059\u308B\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
     >std::rotate</a>\n\t */\n\tpublic static final String rotate(final String s, final\
     \ int id) {\n\t\tfinal List<Character> t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());\n\
-    \t\tCollections.rotate(t, id);\n\t\treturn t.stream().map(String::valueOf).collect(Collectors.joining());\n\
+    \t\tCollections.rotate(t, -id);\n\t\treturn t.stream().map(String::valueOf).collect(Collectors.joining());\n\
     \t}\n\t/**\n\t * @param a\n\t * @return \u4E8C\u6B21\u5143\u914D\u5217\u3092\u53F3\
     \u56DE\u8EE2\u3055\u305B\u305F\u3082\u306E\n\t */\n\tprotected static final int[][]\
     \ rotateR(final int[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\t\
@@ -1547,7 +1568,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-29 09:41:41+09:00'
+  timestamp: '2024-02-29 10:09:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java
