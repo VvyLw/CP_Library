@@ -1666,62 +1666,63 @@ data:
     }\n}\n\nfinal class PrimeTable {\n\tprivate final int[] p;\n\tprivate final boolean[]\
     \ sieve;\n\tPrimeTable(final int n) {\n\t\tsieve = new boolean[n + 1];\n\t\tArrays.fill(sieve,\
     \ true);\n\t\tsieve[0] = sieve[1] = false;\n\t\tfor(int i = 2; i <= n; ++i) {\n\
-    \t\t\tif(!sieve[i]) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(int j = i * i; j\
-    \ <= n; j += i) {\n\t\t\t\tsieve[j] = false;\n\t\t\t}\n\t\t}\n\t\tfinal int size\
-    \ = (int) IntStream.rangeClosed(0, n).filter(i -> sieve[i]).count();\n\t\tint\
-    \ j = 0;\n\t\tp = new int[size];\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i])\
-    \ {\n\t\t\t\tp[j++] = i; \n\t\t\t}\n\t\t}\n\t}\n\tfinal boolean[] table(){ return\
-    \ sieve; }\n\tfinal int[] get(){ return p; }\n}\n\nfinal class PrimeFactor {\n\
-    \tprivate final int[] spf;\n\tPrimeFactor(final int n) {\n\t\tspf = Utility.iota(n\
-    \ + 1).toArray();\n\t\tfor(int i = 2; i * i <= n; ++i) {\n\t\t\tif(spf[i] != i)\
-    \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\
-    \t\t\tif(spf[j] == j) {\n\t\t\t\t\tspf[j] = i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\
-    }\n\tfinal TreeMap<Integer, Integer> get(int n) {\n\t\tfinal TreeMap<Integer,\
-    \ Integer> m = new TreeMap<>();\n\t\twhile(n != 1) {\n\t\t\tm.merge(spf[n], 1,\
-    \ (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\t\t}\n\t\treturn m;\n\t}\n}\n\nfinal\
-    \ class PrimeCounter {\n\tprivate final int sq;\n\tprivate final boolean[] p;\n\
-    \tprivate final int[] psum;\n\tprivate final ArrayList<Integer> ps;\n\tPrimeCounter(final\
-    \ long n) {\n\t\tsq = (int) kthRooti(n, 2);\n\t\tpsum = new int[sq + 1];\n\t\t\
-    p = new PrimeTable(sq).table();\n\t\tfor(int i = 1; i <= sq; ++i) {\n\t\t\tpsum[i]\
-    \ = psum[i - 1] + (p[i] ? 1 : 0);\n\t\t}\n\t\tps = new ArrayList<>();\n\t\tfor(int\
-    \ i = 1; i <= sq; ++i) {\n\t\t\tif(p[i]) {\n\t\t\t\tps.add(i);\n\t\t\t}\n\t\t\
-    }\n\t}\n\tprivate final long kthRooti(final long n, final int k){ return Utility.kthRoot(n,\
-    \ k); }\n\tprivate final long p2(final long x, final long y) {\n\t\tif(x < 4)\
-    \ {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal long a = pi(y);\n\t\tfinal long b = pi(kthRooti(x,\
-    \ 2));\n\t\tif(a >= b) {\n\t\t\treturn 0;\n\t\t}\n\t\tlong sum = (long) (a - 2)\
-    \ * (a + 1) / 2 - (b - 2) * (b + 1) / 2;\n\t\tfor(long i = a; i < b; ++i) {\n\t\
-    \t\tsum += pi(x / ps.get((int) i));\n\t\t}\n\t\treturn sum;\n\t}\n\tprivate final\
-    \ long phi(final long m, final long a) {\n\t\tif(m < 1) {\n\t\t\treturn 0;\n\t\
-    \t}\n\t\tif(a > m) {\n\t\t\treturn 1;\n\t\t}\n\t\tif(a < 1) {\n\t\t\treturn m;\n\
-    \t\t}\n\t\tif(m <= (long) ps.get((int) (a - 1)) * ps.get((int) (a - 1))) {\n\t\
-    \t\treturn pi(m) - a + 1;\n\t\t}\n\t\tif(m <= (long) ps.get((int) (a - 1)) * ps.get((int)\
-    \ (a - 1)) * ps.get((int) (a - 1)) && m <= sq) {\n\t\t\tfinal long sx = pi(kthRooti(m,\
-    \ 2));\n\t\t\tlong ans = pi(m) - (long) (sx + a - 2) * (sx - a + 1) / 2;\n\t\t\
-    \tfor(long i = a; i < sx; ++i) {\n\t\t\t\tans += pi(m / ps.get((int) i));\n\t\t\
-    \t}\n\t\t\treturn ans;\n\t\t}\n\t\treturn phi(m, a - 1) - phi(m / ps.get((int)\
-    \ (a - 1)), a - 1);\n\t}\n\tfinal long pi(final long n) {\n\t\tif(n <= sq) {\n\
-    \t\t\treturn psum[(int) n];\n\t\t}\n\t\tfinal long m = kthRooti(n, 3);\n\t\tfinal\
-    \ long a = pi(m);\n\t\treturn phi(n, a) + a - 1 - p2(n, m);\n\t}\n}\n\n// N <=\
-    \ 1e18;\nfinal class LongPrime {\n\tprivate final int bsf(final long x){ return\
-    \ Long.numberOfTrailingZeros(x); }\n\tprivate final long gcd(long a, long b) {\n\
-    \t\ta = abs(a);\n\t\tb = abs(b);\n\t\tif(a == 0) {\n\t\t\treturn b;\n\t\t}\n\t\
-    \tif(b == 0) {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int shift = bsf(a|b);\n\t\t\
-    a >>= bsf(a);\n\t\tdo {\n\t\t\tb >>= bsf(b);\n\t\t\tif(a > b) {\n\t\t\t\ta ^=\
-    \ b;\n\t\t\t\tb ^= a;\n\t\t\t\ta ^= b;\n\t\t\t}\n\t\t\tb -= a;\n\t\t} while(b\
-    \ > 0);\n\t\treturn a << shift;\n\t}\n\tfinal boolean isPrime(final long n) {\n\
-    \t\tif(n <= 1) {\n\t\t\treturn false;\n\t\t}\n\t\tif(n == 2) {\n\t\t\treturn true;\n\
-    \t\t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn false;\n\t\t}\n\t\tlong d = n - 1;\n\
-    \t\twhile(d % 2 == 0) {\n\t\t\td /= 2;\n\t\t}\n\t\tfinal long[] sample = {2, 3,\
-    \ 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};\n\t\tfor(final long a: sample) {\n\t\t\
-    \tif(n <= a) {\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\tlong t = d;\n\t\t\tBigInteger y\
-    \ = BigInteger.valueOf(a).modPow(BigInteger.valueOf(t), BigInteger.valueOf(n));\n\
-    \t\t\twhile(t != n - 1 && !y.equals(BigInteger.ONE) && !y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)))\
-    \ {\n\t\t\t\ty = y.multiply(y).mod(BigInteger.valueOf(n));\n\t\t\t\tt <<= 1;\n\
-    \t\t\t}\n\t\t\tif(!y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)) &&\
-    \ t % 2 == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\
-    \tfinal private long find(final long n) {\n\t\tif(isPrime(n)) {\n\t\t\treturn\
-    \ n;\n\t\t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn 2;\n\t\t}\n\t\tlong st = 0;\n\t\
-    \tfinal LongBinaryOperator f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue();\
+    \t\t\tif(!sieve[i]) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(long j = (long) i\
+    \ * i; j <= n; j += i) {\n\t\t\t\tsieve[(int) j] = false;\n\t\t\t}\n\t\t}\n\t\t\
+    final int size = (int) IntStream.rangeClosed(0, n).filter(i -> sieve[i]).count();\n\
+    \t\tint j = 0;\n\t\tp = new int[size];\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\
+    \tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\t\t}\n\t\t}\n\t}\n\tfinal boolean[]\
+    \ table(){ return sieve; }\n\tfinal int[] get(){ return p; }\n}\n\nfinal class\
+    \ PrimeFactor {\n\tprivate final int[] spf;\n\tPrimeFactor(final int n) {\n\t\t\
+    spf = Utility.iota(n + 1).toArray();\n\t\tfor(int i = 2; i * i <= n; ++i) {\n\t\
+    \t\tif(spf[i] != i) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(int j = i * i; j\
+    \ <= n; j += i) {\n\t\t\t\tif(spf[j] == j) {\n\t\t\t\t\tspf[j] = i;\n\t\t\t\t\
+    }\n\t\t\t}\n\t\t}\n\t}\n\tfinal TreeMap<Integer, Integer> get(int n) {\n\t\tfinal\
+    \ TreeMap<Integer, Integer> m = new TreeMap<>();\n\t\twhile(n != 1) {\n\t\t\t\
+    m.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\t\t}\n\t\treturn\
+    \ m;\n\t}\n}\n\nfinal class PrimeCounter {\n\tprivate final int sq;\n\tprivate\
+    \ final boolean[] p;\n\tprivate final int[] psum;\n\tprivate final ArrayList<Integer>\
+    \ ps;\n\tPrimeCounter(final long n) {\n\t\tsq = (int) kthRooti(n, 2);\n\t\tpsum\
+    \ = new int[sq + 1];\n\t\tp = new PrimeTable(sq).table();\n\t\tfor(int i = 1;\
+    \ i <= sq; ++i) {\n\t\t\tpsum[i] = psum[i - 1] + (p[i] ? 1 : 0);\n\t\t}\n\t\t\
+    ps = new ArrayList<>();\n\t\tfor(int i = 1; i <= sq; ++i) {\n\t\t\tif(p[i]) {\n\
+    \t\t\t\tps.add(i);\n\t\t\t}\n\t\t}\n\t}\n\tprivate final long kthRooti(final long\
+    \ n, final int k){ return Utility.kthRoot(n, k); }\n\tprivate final long p2(final\
+    \ long x, final long y) {\n\t\tif(x < 4) {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal\
+    \ long a = pi(y);\n\t\tfinal long b = pi(kthRooti(x, 2));\n\t\tif(a >= b) {\n\t\
+    \t\treturn 0;\n\t\t}\n\t\tlong sum = (long) (a - 2) * (a + 1) / 2 - (b - 2) *\
+    \ (b + 1) / 2;\n\t\tfor(long i = a; i < b; ++i) {\n\t\t\tsum += pi(x / ps.get((int)\
+    \ i));\n\t\t}\n\t\treturn sum;\n\t}\n\tprivate final long phi(final long m, final\
+    \ long a) {\n\t\tif(m < 1) {\n\t\t\treturn 0;\n\t\t}\n\t\tif(a > m) {\n\t\t\t\
+    return 1;\n\t\t}\n\t\tif(a < 1) {\n\t\t\treturn m;\n\t\t}\n\t\tif(m <= (long)\
+    \ ps.get((int) (a - 1)) * ps.get((int) (a - 1))) {\n\t\t\treturn pi(m) - a + 1;\n\
+    \t\t}\n\t\tif(m <= (long) ps.get((int) (a - 1)) * ps.get((int) (a - 1)) * ps.get((int)\
+    \ (a - 1)) && m <= sq) {\n\t\t\tfinal long sx = pi(kthRooti(m, 2));\n\t\t\tlong\
+    \ ans = pi(m) - (long) (sx + a - 2) * (sx - a + 1) / 2;\n\t\t\tfor(long i = a;\
+    \ i < sx; ++i) {\n\t\t\t\tans += pi(m / ps.get((int) i));\n\t\t\t}\n\t\t\treturn\
+    \ ans;\n\t\t}\n\t\treturn phi(m, a - 1) - phi(m / ps.get((int) (a - 1)), a - 1);\n\
+    \t}\n\tfinal long pi(final long n) {\n\t\tif(n <= sq) {\n\t\t\treturn psum[(int)\
+    \ n];\n\t\t}\n\t\tfinal long m = kthRooti(n, 3);\n\t\tfinal long a = pi(m);\n\t\
+    \treturn phi(n, a) + a - 1 - p2(n, m);\n\t}\n}\n\n// N <= 1e18;\nfinal class LongPrime\
+    \ {\n\tprivate final int bsf(final long x){ return Long.numberOfTrailingZeros(x);\
+    \ }\n\tprivate final long gcd(long a, long b) {\n\t\ta = abs(a);\n\t\tb = abs(b);\n\
+    \t\tif(a == 0) {\n\t\t\treturn b;\n\t\t}\n\t\tif(b == 0) {\n\t\t\treturn a;\n\t\
+    \t}\n\t\tfinal int shift = bsf(a|b);\n\t\ta >>= bsf(a);\n\t\tdo {\n\t\t\tb >>=\
+    \ bsf(b);\n\t\t\tif(a > b) {\n\t\t\t\ta ^= b;\n\t\t\t\tb ^= a;\n\t\t\t\ta ^= b;\n\
+    \t\t\t}\n\t\t\tb -= a;\n\t\t} while(b > 0);\n\t\treturn a << shift;\n\t}\n\tfinal\
+    \ boolean isPrime(final long n) {\n\t\tif(n <= 1) {\n\t\t\treturn false;\n\t\t\
+    }\n\t\tif(n == 2) {\n\t\t\treturn true;\n\t\t}\n\t\tif(n % 2 == 0) {\n\t\t\treturn\
+    \ false;\n\t\t}\n\t\tlong d = n - 1;\n\t\twhile(d % 2 == 0) {\n\t\t\td /= 2;\n\
+    \t\t}\n\t\tfinal long[] sample = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};\n\
+    \t\tfor(final long a: sample) {\n\t\t\tif(n <= a) {\n\t\t\t\tbreak;\n\t\t\t}\n\
+    \t\t\tlong t = d;\n\t\t\tBigInteger y = BigInteger.valueOf(a).modPow(BigInteger.valueOf(t),\
+    \ BigInteger.valueOf(n));\n\t\t\twhile(t != n - 1 && !y.equals(BigInteger.ONE)\
+    \ && !y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE))) {\n\t\t\t\ty =\
+    \ y.multiply(y).mod(BigInteger.valueOf(n));\n\t\t\t\tt <<= 1;\n\t\t\t}\n\t\t\t\
+    if(!y.equals(BigInteger.valueOf(n).subtract(BigInteger.ONE)) && t % 2 == 0) {\n\
+    \t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\tfinal private\
+    \ long find(final long n) {\n\t\tif(isPrime(n)) {\n\t\t\treturn n;\n\t\t}\n\t\t\
+    if(n % 2 == 0) {\n\t\t\treturn 2;\n\t\t}\n\t\tlong st = 0;\n\t\tfinal LongBinaryOperator\
+    \ f = (x, y) -> { return BigInteger.valueOf(x).multiply(BigInteger.valueOf(x)).add(BigInteger.valueOf(y)).mod(BigInteger.valueOf(n)).longValue();\
     \ };\n\t\twhile(true) {\n\t\t\tst++;\n\t\t\tlong x = st, y = f.applyAsLong(x,\
     \ st);\n\t\t\twhile(true) {\n\t\t\t\tfinal long p = gcd(y - x + n, n);\n\t\t\t\
     \tif(p == 0 || p == n) {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\tif(p != 1) {\n\t\
@@ -1920,38 +1921,46 @@ data:
     d\", mat[i][j]));\n\t\t\t\tif(j + 1 == w) {\n\t\t\t\t\tsb.append(\"]\");\n\t\t\
     \t\t}\n\t\t\t}\n\t\t\tif(i + 1 != h) {\n\t\t\t\tsb.append(\"\\n\");\n\t\t\t}\n\
     \t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nclass InclusiveScan {\n\tprotected\
-    \ final int n;\n\tprotected long[] s;\n\tInclusiveScan(final int[] a, final LongBinaryOperator\
-    \ op) {\n\t\tn = a.length;\n\t\ts = Arrays.stream(a).asLongStream().toArray();\n\
-    \t\tArrays.parallelPrefix(s, op);\n\t}\n\tInclusiveScan(final long[] a, final\
-    \ LongBinaryOperator op) {\n\t\tn = a.length;\n\t\ts = a.clone();\n\t\tArrays.parallelPrefix(s,\
-    \ op);\n\t}\n\tprotected final long[] get(){ return s; }\n}\nfinal class PrefixSum\
-    \ extends InclusiveScan {\n\tPrefixSum(final int[] a) {\n\t\tsuper(a, Long::sum);\n\
-    \t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), -1);\n\t}\n\tPrefixSum(final long[]\
-    \ a) {\n\t\tsuper(a, Long::sum);\n\t\ts = Utility.rotate(Arrays.copyOf(s, n +\
-    \ 1), -1);\n\t}\n\tfinal long query(final int l, final int r){ return s[r] - s[l];\
-    \ }\n}\nfinal class PrefixSum2D {\n\tprivate final int h, w;\n\tprivate final\
-    \ long[][] data;\n\tprivate boolean built;\n\tPrefixSum2D(final int h, final int\
-    \ w) {\n\t\tthis.h = h + 3;\n\t\tthis.w = w + 3;\n\t\tdata = new long[this.h][this.w];\n\
-    \t\tbuilt = false;\n\t}\n\tPrefixSum2D(final int[][] a) {\n\t\tthis(a.length,\
-    \ a[0].length);\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tfor(int j = 0;\
-    \ j < a[i].length; ++j) {\n\t\t\t\tadd(i, j, a[i][j]);\n\t\t\t}\n\t\t}\n\t}\n\t\
-    PrefixSum2D(final long[][] a) {\n\t\tthis(a.length, a[0].length);\n\t\tfor(int\
+    \ final int n;\n\tprotected long[] s;\n\tprotected InclusiveScan(final int n){\
+    \ this.n = n; }\n\tInclusiveScan(final int[] a, final LongBinaryOperator op) {\n\
+    \t\tn = a.length;\n\t\ts = Arrays.stream(a).asLongStream().toArray();\n\t\tArrays.parallelPrefix(s,\
+    \ op);\n\t}\n\tInclusiveScan(final long[] a, final LongBinaryOperator op) {\n\t\
+    \tn = a.length;\n\t\ts = a.clone();\n\t\tArrays.parallelPrefix(s, op);\n\t}\n\t\
+    protected final long[] get(){ return s; }\n}\nfinal class PrefixSum extends InclusiveScan\
+    \ {\n\tprivate long[] imos;\n\tprivate boolean built;\n\tPrefixSum(final int n)\
+    \ {\n\t\tsuper(n);\n\t\timos = new long[n + 1];\n\t\tbuilt = false;\n\t}\n\tPrefixSum(final\
+    \ int[] a) {\n\t\tsuper(a, Long::sum);\n\t\ts = Utility.rotate(Arrays.copyOf(s,\
+    \ n + 1), -1);\n\t}\n\tPrefixSum(final long[] a) {\n\t\tsuper(a, Long::sum);\n\
+    \t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), -1);\n\t}\n\tfinal long query(final\
+    \ int l, final int r){ return s[r] - s[l]; }\n\tfinal void add(final int l, final\
+    \ int r, final long x) {\n\t\tif(built) {\n\t\t\tthrow new UnsupportedOperationException(\"\
+    Prefix Sum has been built.\");\n\t\t}\n\t\timos[l] += x;\n\t\timos[r] -= x;\n\t\
+    }\n\tfinal void add(final int l, final int r){ add(l, r, 1); }\n\tfinal long[]\
+    \ build() {\n\t\tassert !built;\n\t\tArrays.parallelPrefix(imos, Long::sum);\n\
+    \t\tbuilt = true;\n\t\treturn Arrays.copyOf(imos, n);\n\t}\n}\nfinal class PrefixSum2D\
+    \ {\n\tprivate final int h, w;\n\tprivate final long[][] data;\n\tprivate boolean\
+    \ built;\n\tPrefixSum2D(final int h, final int w) {\n\t\tthis.h = h + 3;\n\t\t\
+    this.w = w + 3;\n\t\tdata = new long[this.h][this.w];\n\t\tbuilt = false;\n\t\
+    }\n\tPrefixSum2D(final int[][] a) {\n\t\tthis(a.length, a[0].length);\n\t\tfor(int\
     \ i = 0; i < a.length; ++i) {\n\t\t\tfor(int j = 0; j < a[i].length; ++j) {\n\t\
-    \t\t\tadd(i, j, a[i][j]);\n\t\t\t}\n\t\t}\n\t}\n\tfinal void add(int i, int j,\
-    \ final long x) {\n\t\tif(built) {\n\t\t\tthrow new UnsupportedOperationException(\"\
-    Prefix Sum 2D has been built.\");\n\t\t}\n\t\ti++;\n\t\tj++;\n\t\tif(i >= h ||\
-    \ j >= w) {\n\t\t\treturn;\n\t\t}\n\t\tdata[i][j] += x;\n\t}\n\tfinal void add(final\
-    \ int i1, final int j1, final int i2, final int j2, final long x) {\n\t\tadd(i1,\
-    \ j1, x);\n\t\tadd(i1, j2, -x);\n\t\tadd(i2, j1, -x);\n\t\tadd(i2, j2, x);\n\t\
-    }\n\tfinal void build() {\n\t\tassert !built;\n\t\tfor(int i = 0; ++i < h;) {\n\
-    \t\t\tfor(int j = 0; ++j < w;) {\n\t\t\t\tdata[i][j] += data[i][j - 1] + data[i\
-    \ - 1][j] - data[i - 1][j - 1];\n\t\t\t}\n\t\t}\n\t\tbuilt = true;\n\t}\n\tfinal\
-    \ long get(final int i1, final int j1, final int i2, final int j2) {\n\t\tif(!built)\
-    \ {\n\t\t\tthrow new UnsupportedOperationException(\"Prefix Sum 2D hasn't been\
-    \ built.\");\n\t\t}\n\t\treturn data[i2][j2] - data[i1][j2] - data[i2][j1] + data[i1][j1];\n\
-    \t}\n\tfinal long get(final int i, final int j) {\n\t\tif(!built) {\n\t\t\tthrow\
-    \ new UnsupportedOperationException(\"Prefix Sum 2D hasn't been built.\");\n\t\
-    \t}\n\t\treturn data[i + 1][j + 1];\n\t}\n\t@Override\n\tpublic final String toString()\
+    \t\t\tadd(i, j, a[i][j]);\n\t\t\t}\n\t\t}\n\t}\n\tPrefixSum2D(final long[][] a)\
+    \ {\n\t\tthis(a.length, a[0].length);\n\t\tfor(int i = 0; i < a.length; ++i) {\n\
+    \t\t\tfor(int j = 0; j < a[i].length; ++j) {\n\t\t\t\tadd(i, j, a[i][j]);\n\t\t\
+    \t}\n\t\t}\n\t}\n\tfinal void add(int i, int j, final long x) {\n\t\tif(built)\
+    \ {\n\t\t\tthrow new UnsupportedOperationException(\"Prefix Sum 2D has been built.\"\
+    );\n\t\t}\n\t\ti++;\n\t\tj++;\n\t\tif(i >= h || j >= w) {\n\t\t\treturn;\n\t\t\
+    }\n\t\tdata[i][j] += x;\n\t}\n\tfinal void add(final int i1, final int j1, final\
+    \ int i2, final int j2, final long x) {\n\t\tadd(i1, j1, x);\n\t\tadd(i1, j2,\
+    \ -x);\n\t\tadd(i2, j1, -x);\n\t\tadd(i2, j2, x);\n\t}\n\tfinal void build() {\n\
+    \t\tassert !built;\n\t\tfor(int i = 0; ++i < h;) {\n\t\t\tfor(int j = 0; ++j <\
+    \ w;) {\n\t\t\t\tdata[i][j] += data[i][j - 1] + data[i - 1][j] - data[i - 1][j\
+    \ - 1];\n\t\t\t}\n\t\t}\n\t\tbuilt = true;\n\t}\n\tfinal long get(final int i1,\
+    \ final int j1, final int i2, final int j2) {\n\t\tif(!built) {\n\t\t\tthrow new\
+    \ UnsupportedOperationException(\"Prefix Sum 2D hasn't been built.\");\n\t\t}\n\
+    \t\treturn data[i2][j2] - data[i1][j2] - data[i2][j1] + data[i1][j1];\n\t}\n\t\
+    final long get(final int i, final int j) {\n\t\tif(!built) {\n\t\t\tthrow new\
+    \ UnsupportedOperationException(\"Prefix Sum 2D hasn't been built.\");\n\t\t}\n\
+    \t\treturn data[i + 1][j + 1];\n\t}\n\t@Override\n\tpublic final String toString()\
     \ {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfor(int i = 0; i <\
     \ h - 3; ++i) {\n\t\t\tsb.append(get(i, 0));\n\t\t\tfor(int j = 0; ++j < w - 3;)\
     \ {\n\t\t\t\tsb.append(\" \" + get(i, j));\n\t\t\t}\n\t\t\tif(i + 1 < h) {\n\t\
@@ -2691,7 +2700,7 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-29 11:00:00+09:00'
+  timestamp: '2024-02-29 11:09:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

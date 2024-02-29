@@ -834,7 +834,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-29 11:00:00+09:00'
+  timestamp: '2024-02-29 11:09:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/WeightedGraph.java

@@ -561,8 +561,8 @@ data:
     \ * @param n \u6574\u6570\n\t */\n\tpublic PrimeTable(final int n) {\n\t\tsieve\
     \ = new boolean[n + 1];\n\t\tArrays.fill(sieve, true);\n\t\tsieve[0] = sieve[1]\
     \ = false;\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(!sieve[i]) {\n\t\t\t\t\
-    continue;\n\t\t\t}\n\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\tsieve[j]\
-    \ = false;\n\t\t\t}\n\t\t}\n\t\tfinal int size = (int) IntStream.rangeClosed(0,\
+    continue;\n\t\t\t}\n\t\t\tfor(long j = (long) i * i; j <= n; j += i) {\n\t\t\t\
+    \tsieve[(int) j] = false;\n\t\t\t}\n\t\t}\n\t\tfinal int size = (int) IntStream.rangeClosed(0,\
     \ n).filter(i -> sieve[i]).count();\n\t\tint j = 0;\n\t\tp = new int[size];\n\t\
     \tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\
     \t\t}\n\t\t}\n\t}\n\t/**\n\t * @return n\u4EE5\u4E0B\u306E\u7D20\u6570\u5224\u5B9A\
@@ -754,7 +754,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-29 11:00:00+09:00'
+  timestamp: '2024-02-29 11:09:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/PrimeTable.java
