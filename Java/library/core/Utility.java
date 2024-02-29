@@ -1136,7 +1136,7 @@ public class Utility {
 	/**
 	 * C++のstd::rotateに相当するメソッド
 	 * @param a
-	 * @param id
+	 * @param id 正の数の時、前にある値は後ろに移動し、負の数の時、後ろにある値は前に移動する
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
 	 */
 	public static final int[] rotate(final int[] a, final int id) {
@@ -1148,7 +1148,7 @@ public class Utility {
 	}
 	/**
 	 * @param a
-	 * @param id
+	 * @param id 正の数の時、前にある値は後ろに移動し、負の数の時、後ろにある値は前に移動する
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
 	 */
 	public static final long[] rotate(final long[] a, final int id) {
@@ -1160,7 +1160,7 @@ public class Utility {
 	}
 	/**
 	 * @param a
-	 * @param id
+	 * @param id 正の数の時、前にある値は後ろに移動し、負の数の時、後ろにある値は前に移動する
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
 	 */
 	public static final double[] rotate(final double[] a, final int id) {
@@ -1172,7 +1172,7 @@ public class Utility {
 	}
 	/**
 	 * @param a
-	 * @param id
+	 * @param id 正の数の時、前にある値は後ろに移動し、負の数の時、後ろにある値は前に移動する
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
 	 */
 	public static final char[] rotate(final char[] a, final int id) {
@@ -1184,7 +1184,7 @@ public class Utility {
 	}
 	/**
 	 * @param a
-	 * @param id
+	 * @param id 正の数の時、前にある値は後ろに移動し、負の数の時、後ろにある値は前に移動する
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
 	 */
 	public static final boolean[] rotate(final boolean[] a, final int id) {
@@ -1196,7 +1196,7 @@ public class Utility {
 	}
 	/**
 	 * @param a
-	 * @param id
+	 * @param id 正の数の時、前にある値は後ろに移動し、負の数の時、後ろにある値は前に移動する
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
 	 */
 	public static final Object[] rotate(final Object[] a, final int id) {
@@ -1208,12 +1208,12 @@ public class Utility {
 	}
 	/**
 	 * @param s
-	 * @param id
+	 * @param id 正の数の時、前にある値は後ろに移動し、負の数の時、後ろにある値は前に移動する
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
 	 */
 	public static final String rotate(final String s, final int id) {
 		final List<Character> t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
-		Collections.rotate(t, id);
+		Collections.rotate(t, -id);
 		return t.stream().map(String::valueOf).collect(Collectors.joining());
 	}
 	/**
