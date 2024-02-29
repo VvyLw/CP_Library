@@ -22,8 +22,8 @@ public final class PrimeTable {
 			if(!sieve[i]) {
 				continue;
 			}
-			for(int j = i * i; j <= n; j += i) {
-				sieve[j] = false;
+			for(long j = (long) i * i; j <= n; j += i) {
+				sieve[(int) j] = false;
 			}
 		}
 		final int size = (int) IntStream.rangeClosed(0, n).filter(i -> sieve[i]).count();

@@ -2817,8 +2817,8 @@ final class PrimeTable {
 			if(!sieve[i]) {
 				continue;
 			}
-			for(int j = i * i; j <= n; j += i) {
-				sieve[j] = false;
+			for(long j = (long) i * i; j <= n; j += i) {
+				sieve[(int) j] = false;
 			}
 		}
 		final int size = (int) IntStream.rangeClosed(0, n).filter(i -> sieve[i]).count();
@@ -3539,6 +3539,7 @@ final class Matrix implements Cloneable {
 class InclusiveScan {
 	protected final int n;
 	protected long[] s;
+	protected InclusiveScan(final int n){ this.n = n; }
 	InclusiveScan(final int[] a, final LongBinaryOperator op) {
 		n = a.length;
 		s = Arrays.stream(a).asLongStream().toArray();
@@ -3552,6 +3553,13 @@ class InclusiveScan {
 	protected final long[] get(){ return s; }
 }
 final class PrefixSum extends InclusiveScan {
+	private long[] imos;
+	private boolean built;
+	PrefixSum(final int n) {
+		super(n);
+		imos = new long[n + 1];
+		built = false;
+	}
 	PrefixSum(final int[] a) {
 		super(a, Long::sum);
 		s = Utility.rotate(Arrays.copyOf(s, n + 1), -1);
@@ -3561,6 +3569,20 @@ final class PrefixSum extends InclusiveScan {
 		s = Utility.rotate(Arrays.copyOf(s, n + 1), -1);
 	}
 	final long query(final int l, final int r){ return s[r] - s[l]; }
+	final void add(final int l, final int r, final long x) {
+		if(built) {
+			throw new UnsupportedOperationException("Prefix Sum has been built.");
+		}
+		imos[l] += x;
+		imos[r] -= x;
+	}
+	final void add(final int l, final int r){ add(l, r, 1); }
+	final long[] build() {
+		assert !built;
+		Arrays.parallelPrefix(imos, Long::sum);
+		built = true;
+		return Arrays.copyOf(imos, n);
+	}
 }
 final class PrefixSum2D {
 	private final int h, w;
