@@ -554,16 +554,31 @@ data:
     RuntimeError: bundler is not specified: Java/library/math/prefixsum/PrefixSum.java\n"
   code: "package library.math.prefixsum;\n\nimport java.util.Arrays;\n\nimport library.core.Utility;\n\
     import library.other.InclusiveScan;\n\n/**\n * \u7D2F\u7A4D\u548C\u30AF\u30E9\u30B9\
-    \n * @see InclusiveScan\n */\npublic final class PrefixSum extends InclusiveScan\
-    \ {\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a\n\t\
-    \ */\n\tpublic PrefixSum(final int[] a) {\n\t\tsuper(a, Long::sum);\n\t\ts = Utility.rotate(Arrays.copyOf(s,\
+    \n * C++\u306Estd::partial_sum\u306E\u3088\u3046\u306A\u5074\u9762\u3068imos\u6CD5\
+    \u306B\u3088\u308B\u7D2F\u7A4D\u548C\u306E\u4E21\u65B9\u304C\u53EF\u80FD\n * @see\
+    \ InclusiveScan\n */\npublic final class PrefixSum extends InclusiveScan {\n\t\
+    private long[] imos;\n\tprivate boolean built;\n\t/**\n\t * \u30B3\u30F3\u30B9\
+    \u30C8\u30E9\u30AF\u30BF\n\t * imos\u6CD5\u3092\u4F7F\u3063\u305F\u7D2F\u7A4D\u548C\
+    \u306F\u3053\u3063\u3061\n\t * @param n\n\t */\n\tpublic PrefixSum(final int n)\
+    \ {\n\t\tsuper(n);\n\t\timos = new long[n + 1];\n\t\tbuilt = false;\n\t}\n\t/**\n\
+    \t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a\n\t */\n\tpublic\
+    \ PrefixSum(final int[] a) {\n\t\tsuper(a, Long::sum);\n\t\ts = Utility.rotate(Arrays.copyOf(s,\
     \ n + 1), -1);\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t\
     \ * @param a\n\t */\n\tpublic PrefixSum(final long[] a) {\n\t\tsuper(a, Long::sum);\n\
     \t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), -1);\n\t}\n\t/**\n\t * \u4E3B\u306B\
     \u7D2F\u7A4D\u548C\u306E\u5DEE\u3092\u6C42\u3081\u308B\u306E\u306B\u4F7F\u3046\
-    \n\t * @param l\n\t * @param r\n\t * @return \u534A\u958B\u533A\u9593[l, r)\u306B\
-    \u304A\u3051\u308Bs[l]\u3068s[r]\u3068\u306E\u5DEE\n\t */\n\tpublic final long\
-    \ query(final int l, final int r){ return s[r] - s[l]; }\n}"
+    \n\t * @param l\n\t * @param r\n\t * @return \u9589\u533A\u9593[l, r]\u306B\u304A\
+    \u3051\u308Bs[l]\u3068s[r]\u3068\u306E\u5DEE\n\t */\n\tpublic final long query(final\
+    \ int l, final int r){ return s[r] - s[l]; }\n\t/**\n\t * \u534A\u958B\u533A\u9593\
+    [l, r)\u306Bx\u3092\u52A0\u7B97\u3059\u308B\n\t * @param l\n\t * @param r\n\t\
+    \ * @param x\n\t */\n\tpublic final void add(final int l, final int r, final long\
+    \ x) {\n\t\tif(built) {\n\t\t\tthrow new UnsupportedOperationException(\"Prefix\
+    \ Sum has been built.\");\n\t\t}\n\t\timos[l] += x;\n\t\timos[r] -= x;\n\t}\n\t\
+    /**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306B1\u3092\u52A0\u7B97\u3059\u308B\n\
+    \t * @param l\n\t * @param r\n\t */\n\tpublic final void add(final int l, final\
+    \ int r){ add(l, r, 1); }\n\t/**\n\t * \u69CB\u7BC9\n\t * @return \u7D2F\u7A4D\
+    \u548C\n\t */\n\tpublic final long[] build() {\n\t\tassert !built;\n\t\tArrays.parallelPrefix(imos,\
+    \ Long::sum);\n\t\tbuilt = true;\n\t\treturn Arrays.copyOf(imos, n);\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/library/graph/WeightedGraph.java
@@ -748,7 +763,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-29 10:09:58+09:00'
+  timestamp: '2024-02-29 11:00:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/prefixsum/PrefixSum.java

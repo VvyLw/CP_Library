@@ -51,12 +51,12 @@ data:
   attributes:
     document_title: "\u7D2F\u7A4D\u548C"
     links: []
-  bundledCode: "#line 2 \"C++/math/psum/psum.hpp\"\n\n#include <numeric>\n#line 2\
-    \ \"C++/myvector.hpp\"\n\n#include <vector>\n\n#ifndef TEMPLATE\ntypedef long\
-    \ long ll;\ntypedef unsigned long long ul;\ntypedef long double ld;\n#endif\n\
-    namespace vectors {\ntemplate <class T> using V = std::vector<T>;\nusing vi =\
-    \ V<ll>;\nusing vu = V<ul>;\nusing vd = V<ld>;\nusing vc = V<char>;\nusing vs\
-    \ = V<std::string>;\nusing vb = V<bool>;\nusing wi = V<vi>;\nusing wu = V<vu>;\n\
+  bundledCode: "#line 2 \"C++/math/psum/psum.hpp\"\n\n#include <cassert>\n#include\
+    \ <numeric>\n#line 2 \"C++/myvector.hpp\"\n\n#include <vector>\n\n#ifndef TEMPLATE\n\
+    typedef long long ll;\ntypedef unsigned long long ul;\ntypedef long double ld;\n\
+    #endif\nnamespace vectors {\ntemplate <class T> using V = std::vector<T>;\nusing\
+    \ vi = V<ll>;\nusing vu = V<ul>;\nusing vd = V<ld>;\nusing vc = V<char>;\nusing\
+    \ vs = V<std::string>;\nusing vb = V<bool>;\nusing wi = V<vi>;\nusing wu = V<vu>;\n\
     using wd = V<vd>;\nusing wc = V<vc>;\nusing ws = V<vs>;\nusing wb = V<vb>;\ntemplate\
     \ <class T, class U> inline V<U> ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n),\
     \ std::forward<U>(v));\n}\ntemplate <class T, class... Ts> inline decltype(auto)\
@@ -80,24 +80,35 @@ data:
     \ V<T> operator/(const V<T>& v, const U x) noexcept { V<T> res = v; res/=x; return\
     \ res; }\ntemplate <class T, class U> constexpr V<T> operator%(const V<T>& v,\
     \ const U x) noexcept { V<T> res = v; res%=x; return res; }\n} // vectors\n#line\
-    \ 5 \"C++/math/psum/psum.hpp\"\nnamespace Heileden {\nstruct psum {\nprivate:\n\
-    \    vectors::vi s;\npublic:\n    psum(const vectors::vi& v): s{0} { std::partial_sum(v.begin(),\
-    \ v.end(), std::back_inserter(s)); }\n    vectors::vi get() const { return s;\
-    \ }\n    // [l, r]\n    ll query(const int l, const int r) const { return s[r]-s[l];\
-    \ }\n};\n}\n\n/**\n * @brief \u7D2F\u7A4D\u548C\n */\n"
-  code: "#pragma once\n\n#include <numeric>\n#include \"C++/myvector.hpp\"\nnamespace\
-    \ Heileden {\nstruct psum {\nprivate:\n    vectors::vi s;\npublic:\n    psum(const\
+    \ 6 \"C++/math/psum/psum.hpp\"\nnamespace Heileden {\nstruct psum {\nprivate:\n\
+    \    int n;\n    bool not_built;\n    vectors::vi s, imos;\npublic:\n    psum(const\
     \ vectors::vi& v): s{0} { std::partial_sum(v.begin(), v.end(), std::back_inserter(s));\
-    \ }\n    vectors::vi get() const { return s; }\n    // [l, r]\n    ll query(const\
-    \ int l, const int r) const { return s[r]-s[l]; }\n};\n}\n\n/**\n * @brief \u7D2F\
-    \u7A4D\u548C\n */"
+    \ }\n    psum(const int n): n(n), not_built(true), imos(n + 1){}\n    vectors::vi\
+    \ get() const { return s; }\n    // [l, r]\n    ll query(const int l, const int\
+    \ r) const { return s[r] - s[l]; }\n    void add(const int l, const int r, const\
+    \ ll x = 1) {\n\t\tassert(not_built);\n\t\timos[l] += x;\n\t\timos[r] -= x;\n\t\
+    }\n    vectors::vi build() {\n\t\tassert(not_built);\n        vectors::vi res;\n\
+    \t\tstd::partial_sum(imos.begin(), imos.end(), std::back_inserter(res));\n\t\t\
+    not_built = false;\n        res.resize(n);\n\t\treturn res;\n\t}\n};\n}\n\n/**\n\
+    \ * @brief \u7D2F\u7A4D\u548C\n */\n"
+  code: "#pragma once\n\n#include <cassert>\n#include <numeric>\n#include \"C++/myvector.hpp\"\
+    \nnamespace Heileden {\nstruct psum {\nprivate:\n    int n;\n    bool not_built;\n\
+    \    vectors::vi s, imos;\npublic:\n    psum(const vectors::vi& v): s{0} { std::partial_sum(v.begin(),\
+    \ v.end(), std::back_inserter(s)); }\n    psum(const int n): n(n), not_built(true),\
+    \ imos(n + 1){}\n    vectors::vi get() const { return s; }\n    // [l, r]\n  \
+    \  ll query(const int l, const int r) const { return s[r] - s[l]; }\n    void\
+    \ add(const int l, const int r, const ll x = 1) {\n\t\tassert(not_built);\n\t\t\
+    imos[l] += x;\n\t\timos[r] -= x;\n\t}\n    vectors::vi build() {\n\t\tassert(not_built);\n\
+    \        vectors::vi res;\n\t\tstd::partial_sum(imos.begin(), imos.end(), std::back_inserter(res));\n\
+    \t\tnot_built = false;\n        res.resize(n);\n\t\treturn res;\n\t}\n};\n}\n\n\
+    /**\n * @brief \u7D2F\u7A4D\u548C\n */"
   dependsOn:
   - C++/myvector.hpp
   isVerificationFile: false
   path: C++/math/psum/psum.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2024-02-20 01:36:11+09:00'
+  timestamp: '2024-02-29 11:00:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sr_sum.test.cpp

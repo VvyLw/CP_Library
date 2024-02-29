@@ -465,64 +465,69 @@ data:
     \     while(n!=1) {\n            m[spf[n]]++;\n            n/=spf[n];\n      \
     \  }\n        return m;\n    }\n};\n}\n\n/**\n * @brief \u7D20\u56E0\u6570\u5206\
     \u89E3\u30C6\u30FC\u30D6\u30EB\n */\n#line 2 \"C++/math/psum/psum.hpp\"\n\n#line\
-    \ 5 \"C++/math/psum/psum.hpp\"\nnamespace Heileden {\nstruct psum {\nprivate:\n\
-    \    vectors::vi s;\npublic:\n    psum(const vectors::vi& v): s{0} { std::partial_sum(v.begin(),\
-    \ v.end(), std::back_inserter(s)); }\n    vectors::vi get() const { return s;\
-    \ }\n    // [l, r]\n    ll query(const int l, const int r) const { return s[r]-s[l];\
-    \ }\n};\n}\n\n/**\n * @brief \u7D2F\u7A4D\u548C\n */\n#line 2 \"C++/math/kthrooti.hpp\"\
-    \n\n#line 4 \"C++/math/kthrooti.hpp\"\n#ifndef TEMPLATE\ntypedef unsigned long\
-    \ long ul;\ntemplate <class T, class U> inline bool overflow_if_mul(const T a,\
-    \ const U b){ return (std::numeric_limits<T>::max()/a)<b; }\n#endif\nnamespace\
-    \ Heileden {\ninline ul kthrooti(const ul n, const int k) {\n    if(k==1) {\n\t\
-    \treturn n;\n\t}\n\tconst auto chk=[&](const unsigned x) {\n\t\tul mul=1;\n\t\t\
-    for(int i = 0; i < k; ++i) {\n            if(overflow_if_mul(mul, x)) {\n    \
-    \            return false;\n            }\n            mul*=x;\n        }\n\t\t\
-    return mul<=n;\n\t};\n\tul ret=0;\n\tfor(int i = 32; --i >= 0;) {\n\t\tif(chk(ret|(1U<<i)))\
-    \ {\n\t\t\tret|=1U<<i;\n\t\t}\n\t}\n\treturn ret;\n}\n}\n\n/**\n * @brief k\u4E57\
-    \u6839(\u6574\u6570)\n */\n#line 296 \"C++/template.hpp\"\n\r\nnamespace Heileden\
-    \ {\r\ntemplate <class T, class Boolean=bool> inline T bins(T ok, T ng, const\
-    \ Boolean &fn, const ld eps = 1) {\r\n\twhile(std::abs(ok-ng)>eps) {\r\n\t\tT\
-    \ mid=(ok+ng)/2;\r\n\t\t(fn(mid)?ok:ng) = mid;\r\n\t}\r\n\treturn ok;\r\n}\r\n\
-    template <class T> inline V<T> press(const V<T>& v) {\r\n\tV<T> res,cp=v;\r\n\t\
-    Lady_sANDy::unq(cp);\r\n\teach(el,v) res.emplace_back(Lady_sANDy::LB(cp,el));\r\
-    \n\treturn res;\r\n}\r\ntemplate <class T> inline V<T> press(V<T> &c1, V<T> &c2)\
-    \ {\r\n\tV<T> res;\r\n\tconst int n = c1.size();\r\n\trep(n) {\r\n\t\tfor(T d\
-    \ = 0; d < 1; d++) {\r\n\t\t\tT tc1 = c1[i]+d;\r\n\t\t\tT tc2 = c2[i]+d;\r\n\t\
-    \t\tres.emplace_back(tc1);\r\n\t\t\tres.emplace_back(tc2);\r\n\t\t}\r\n\t}\r\n\
-    \tLady_sANDy::unq(res);\r\n\trep(n) {\r\n\t\tc1[i]=Lady_sANDy::LB(res,c1[i]);\r\
-    \n\t\tc2[i]=Lady_sANDy::LB(res,c2[i]);\r\n\t}\r\n\treturn res;\r\n}\r\ninline\
-    \ vs rtt(const vs &s) {\r\n\tconst int h=s.size(), w=s.front().size();\r\n\tvs\
-    \ t(w,std::string(h,{}));\r\n\trep(h) rep(j,w) t[j][i]=s[i][j];\r\n\trep(w) Lady_sANDy::rev(t[i]);\r\
-    \n\treturn t;\r\n}\r\ntemplate <class T> inline V<V<T>> rtt(const V<V<T>>& v)\
-    \ {\r\n\tconst int h=v.size(), w=v.front().size();\r\n\tV<V<T>> res(w,V<T>(h));\r\
-    \n\trep(h) rep(j,w) res[j][i]=v[i][j];\r\n\trep(w) Lady_sANDy::rev(res[i]);\r\n\
-    \treturn res;\r\n}\r\ntemplate <class T> inline T factor(T n, const T mod=0) {\r\
-    \n\tT res=1;\r\n\twhile(n>0) {\r\n\t\tres*=n--;\r\n\t\tif(mod) res%=mod;\r\n\t\
-    }\r\n\treturn res;\r\n}\r\ntemplate <class T=ll> inline T perm(T n, const T r,\
-    \ const T mod=0) {\r\n\tconst T tmp=n;\r\n\tT res=1;\r\n\twhile(n>tmp-r) {\r\n\
-    \t\tres*=n--;\r\n\t\tif(mod) res%=mod;\r\n\t}\r\n\treturn res;\r\n}\r\ntemplate\
-    \ <class T=ll> inline T binom(T n, const T r, const T mod=0) {\r\n\tif(r < 0 ||\
-    \ n < r) return 0;\r\n\tT res = 1;\r\n\trep(i,1,r) {\r\n\t\tres*=n--;\r\n\t\t\
-    if(mod) res%=mod;\r\n\t\tres/=i;\r\n\t\tif(mod) res%=mod;\r\n\t}\r\n\treturn res;\r\
-    \n}\r\ninline bool is_prime(const ul n) {\r\n\tif(n==1) return 0;\r\n\tsqrp(i,2,n)\
-    \ if(n%i==0) return 0;\r\n\treturn 1;\r\n}\r\ninline bool is_int(const ld n){\
-    \ return n == std::floor(n); }\r\ninline bool is_sqr(const ll n){ return is_int(std::sqrt(n));\
-    \ }\r\n} // Heileden\r\n\r\n/**\r\n * @brief \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\
-    \r\n * @docs docs/template.md\r\n */\n#line 2 \"C++/ds/uf/UnionFind.hpp\"\n\r\n\
-    #line 6 \"C++/ds/uf/UnionFind.hpp\"\nstruct UnionFind {\r\nprotected:\r\n    std::vector<int>\
-    \ par;\r\npublic:\r\n    UnionFind(const int n): par(n, -1){}\r\n    int operator[](int\
-    \ i) {\r\n        while(par[i] >= 0) {\r\n            const int p = par[par[i]];\r\
-    \n            if(p < 0) return par[i];\r\n            i = par[i] = p;\r\n    \
-    \    }\r\n        return i;\r\n    }\r\n    bool unite(int x, int y) {\r\n   \
-    \     x = (*this)[x], y = (*this)[y];\r\n        if(x == y) return false;\r\n\
-    \        if(-par[x] < -par[y]) {\r\n            std::swap(x, y);\r\n        }\r\
-    \n        par[x] += par[y], par[y] = x;\r\n        return true;\r\n    }\r\n \
-    \   int size(const int x) {\r\n        return -par[(*this)[x]];\r\n    }\r\n \
-    \   int size() const { return par.size(); }\r\n#if __cplusplus >= 202101L\r\n\
-    \    std::vector<std::vector<int>> groups() {\r\n        const int n = std::ssize(par);\r\
-    \n        std::vector<std::vector<int>> res(n);\r\n        for(int i = 0; i <\
-    \ n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\n        }\r\n \
-    \       const auto it = std::ranges::remove_if(res, [&](const std::vector<int>\
+    \ 6 \"C++/math/psum/psum.hpp\"\nnamespace Heileden {\nstruct psum {\nprivate:\n\
+    \    int n;\n    bool not_built;\n    vectors::vi s, imos;\npublic:\n    psum(const\
+    \ vectors::vi& v): s{0} { std::partial_sum(v.begin(), v.end(), std::back_inserter(s));\
+    \ }\n    psum(const int n): n(n), not_built(true), imos(n + 1){}\n    vectors::vi\
+    \ get() const { return s; }\n    // [l, r]\n    ll query(const int l, const int\
+    \ r) const { return s[r] - s[l]; }\n    void add(const int l, const int r, const\
+    \ ll x = 1) {\n\t\tassert(not_built);\n\t\timos[l] += x;\n\t\timos[r] -= x;\n\t\
+    }\n    vectors::vi build() {\n\t\tassert(not_built);\n        vectors::vi res;\n\
+    \t\tstd::partial_sum(imos.begin(), imos.end(), std::back_inserter(res));\n\t\t\
+    not_built = false;\n        res.resize(n);\n\t\treturn res;\n\t}\n};\n}\n\n/**\n\
+    \ * @brief \u7D2F\u7A4D\u548C\n */\n#line 2 \"C++/math/kthrooti.hpp\"\n\n#line\
+    \ 4 \"C++/math/kthrooti.hpp\"\n#ifndef TEMPLATE\ntypedef unsigned long long ul;\n\
+    template <class T, class U> inline bool overflow_if_mul(const T a, const U b){\
+    \ return (std::numeric_limits<T>::max()/a)<b; }\n#endif\nnamespace Heileden {\n\
+    inline ul kthrooti(const ul n, const int k) {\n    if(k==1) {\n\t\treturn n;\n\
+    \t}\n\tconst auto chk=[&](const unsigned x) {\n\t\tul mul=1;\n\t\tfor(int i =\
+    \ 0; i < k; ++i) {\n            if(overflow_if_mul(mul, x)) {\n              \
+    \  return false;\n            }\n            mul*=x;\n        }\n\t\treturn mul<=n;\n\
+    \t};\n\tul ret=0;\n\tfor(int i = 32; --i >= 0;) {\n\t\tif(chk(ret|(1U<<i))) {\n\
+    \t\t\tret|=1U<<i;\n\t\t}\n\t}\n\treturn ret;\n}\n}\n\n/**\n * @brief k\u4E57\u6839\
+    (\u6574\u6570)\n */\n#line 296 \"C++/template.hpp\"\n\r\nnamespace Heileden {\r\
+    \ntemplate <class T, class Boolean=bool> inline T bins(T ok, T ng, const Boolean\
+    \ &fn, const ld eps = 1) {\r\n\twhile(std::abs(ok-ng)>eps) {\r\n\t\tT mid=(ok+ng)/2;\r\
+    \n\t\t(fn(mid)?ok:ng) = mid;\r\n\t}\r\n\treturn ok;\r\n}\r\ntemplate <class T>\
+    \ inline V<T> press(const V<T>& v) {\r\n\tV<T> res,cp=v;\r\n\tLady_sANDy::unq(cp);\r\
+    \n\teach(el,v) res.emplace_back(Lady_sANDy::LB(cp,el));\r\n\treturn res;\r\n}\r\
+    \ntemplate <class T> inline V<T> press(V<T> &c1, V<T> &c2) {\r\n\tV<T> res;\r\n\
+    \tconst int n = c1.size();\r\n\trep(n) {\r\n\t\tfor(T d = 0; d < 1; d++) {\r\n\
+    \t\t\tT tc1 = c1[i]+d;\r\n\t\t\tT tc2 = c2[i]+d;\r\n\t\t\tres.emplace_back(tc1);\r\
+    \n\t\t\tres.emplace_back(tc2);\r\n\t\t}\r\n\t}\r\n\tLady_sANDy::unq(res);\r\n\t\
+    rep(n) {\r\n\t\tc1[i]=Lady_sANDy::LB(res,c1[i]);\r\n\t\tc2[i]=Lady_sANDy::LB(res,c2[i]);\r\
+    \n\t}\r\n\treturn res;\r\n}\r\ninline vs rtt(const vs &s) {\r\n\tconst int h=s.size(),\
+    \ w=s.front().size();\r\n\tvs t(w,std::string(h,{}));\r\n\trep(h) rep(j,w) t[j][i]=s[i][j];\r\
+    \n\trep(w) Lady_sANDy::rev(t[i]);\r\n\treturn t;\r\n}\r\ntemplate <class T> inline\
+    \ V<V<T>> rtt(const V<V<T>>& v) {\r\n\tconst int h=v.size(), w=v.front().size();\r\
+    \n\tV<V<T>> res(w,V<T>(h));\r\n\trep(h) rep(j,w) res[j][i]=v[i][j];\r\n\trep(w)\
+    \ Lady_sANDy::rev(res[i]);\r\n\treturn res;\r\n}\r\ntemplate <class T> inline\
+    \ T factor(T n, const T mod=0) {\r\n\tT res=1;\r\n\twhile(n>0) {\r\n\t\tres*=n--;\r\
+    \n\t\tif(mod) res%=mod;\r\n\t}\r\n\treturn res;\r\n}\r\ntemplate <class T=ll>\
+    \ inline T perm(T n, const T r, const T mod=0) {\r\n\tconst T tmp=n;\r\n\tT res=1;\r\
+    \n\twhile(n>tmp-r) {\r\n\t\tres*=n--;\r\n\t\tif(mod) res%=mod;\r\n\t}\r\n\treturn\
+    \ res;\r\n}\r\ntemplate <class T=ll> inline T binom(T n, const T r, const T mod=0)\
+    \ {\r\n\tif(r < 0 || n < r) return 0;\r\n\tT res = 1;\r\n\trep(i,1,r) {\r\n\t\t\
+    res*=n--;\r\n\t\tif(mod) res%=mod;\r\n\t\tres/=i;\r\n\t\tif(mod) res%=mod;\r\n\
+    \t}\r\n\treturn res;\r\n}\r\ninline bool is_prime(const ul n) {\r\n\tif(n==1)\
+    \ return 0;\r\n\tsqrp(i,2,n) if(n%i==0) return 0;\r\n\treturn 1;\r\n}\r\ninline\
+    \ bool is_int(const ld n){ return n == std::floor(n); }\r\ninline bool is_sqr(const\
+    \ ll n){ return is_int(std::sqrt(n)); }\r\n} // Heileden\r\n\r\n/**\r\n * @brief\
+    \ \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\n */\n#line\
+    \ 2 \"C++/ds/uf/UnionFind.hpp\"\n\r\n#line 6 \"C++/ds/uf/UnionFind.hpp\"\nstruct\
+    \ UnionFind {\r\nprotected:\r\n    std::vector<int> par;\r\npublic:\r\n    UnionFind(const\
+    \ int n): par(n, -1){}\r\n    int operator[](int i) {\r\n        while(par[i]\
+    \ >= 0) {\r\n            const int p = par[par[i]];\r\n            if(p < 0) return\
+    \ par[i];\r\n            i = par[i] = p;\r\n        }\r\n        return i;\r\n\
+    \    }\r\n    bool unite(int x, int y) {\r\n        x = (*this)[x], y = (*this)[y];\r\
+    \n        if(x == y) return false;\r\n        if(-par[x] < -par[y]) {\r\n    \
+    \        std::swap(x, y);\r\n        }\r\n        par[x] += par[y], par[y] = x;\r\
+    \n        return true;\r\n    }\r\n    int size(const int x) {\r\n        return\
+    \ -par[(*this)[x]];\r\n    }\r\n    int size() const { return par.size(); }\r\n\
+    #if __cplusplus >= 202101L\r\n    std::vector<std::vector<int>> groups() {\r\n\
+    \        const int n = std::ssize(par);\r\n        std::vector<std::vector<int>>\
+    \ res(n);\r\n        for(int i = 0; i < n; ++i) {\r\n            res[(*this)[i]].emplace_back(i);\r\
+    \n        }\r\n        const auto it = std::ranges::remove_if(res, [&](const std::vector<int>\
     \ &v){ return v.empty(); });\r\n        res.erase(it.begin(), it.end());\r\n \
     \       return res;\r\n    }\r\n#else\r\n    std::vector<std::vector<int>> groups()\
     \ {\r\n        const int n = par.size();\r\n        std::vector<std::vector<int>>\
@@ -569,7 +574,7 @@ data:
   isVerificationFile: true
   path: test/uf.test.cpp
   requiredBy: []
-  timestamp: '2024-02-27 11:03:02+09:00'
+  timestamp: '2024-02-29 11:00:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/uf.test.cpp

@@ -465,70 +465,76 @@ data:
     \     while(n!=1) {\n            m[spf[n]]++;\n            n/=spf[n];\n      \
     \  }\n        return m;\n    }\n};\n}\n\n/**\n * @brief \u7D20\u56E0\u6570\u5206\
     \u89E3\u30C6\u30FC\u30D6\u30EB\n */\n#line 2 \"C++/math/psum/psum.hpp\"\n\n#line\
-    \ 5 \"C++/math/psum/psum.hpp\"\nnamespace Heileden {\nstruct psum {\nprivate:\n\
-    \    vectors::vi s;\npublic:\n    psum(const vectors::vi& v): s{0} { std::partial_sum(v.begin(),\
-    \ v.end(), std::back_inserter(s)); }\n    vectors::vi get() const { return s;\
-    \ }\n    // [l, r]\n    ll query(const int l, const int r) const { return s[r]-s[l];\
-    \ }\n};\n}\n\n/**\n * @brief \u7D2F\u7A4D\u548C\n */\n#line 2 \"C++/math/kthrooti.hpp\"\
-    \n\n#line 4 \"C++/math/kthrooti.hpp\"\n#ifndef TEMPLATE\ntypedef unsigned long\
-    \ long ul;\ntemplate <class T, class U> inline bool overflow_if_mul(const T a,\
-    \ const U b){ return (std::numeric_limits<T>::max()/a)<b; }\n#endif\nnamespace\
-    \ Heileden {\ninline ul kthrooti(const ul n, const int k) {\n    if(k==1) {\n\t\
-    \treturn n;\n\t}\n\tconst auto chk=[&](const unsigned x) {\n\t\tul mul=1;\n\t\t\
-    for(int i = 0; i < k; ++i) {\n            if(overflow_if_mul(mul, x)) {\n    \
-    \            return false;\n            }\n            mul*=x;\n        }\n\t\t\
-    return mul<=n;\n\t};\n\tul ret=0;\n\tfor(int i = 32; --i >= 0;) {\n\t\tif(chk(ret|(1U<<i)))\
-    \ {\n\t\t\tret|=1U<<i;\n\t\t}\n\t}\n\treturn ret;\n}\n}\n\n/**\n * @brief k\u4E57\
-    \u6839(\u6574\u6570)\n */\n#line 296 \"C++/template.hpp\"\n\r\nnamespace Heileden\
-    \ {\r\ntemplate <class T, class Boolean=bool> inline T bins(T ok, T ng, const\
-    \ Boolean &fn, const ld eps = 1) {\r\n\twhile(std::abs(ok-ng)>eps) {\r\n\t\tT\
-    \ mid=(ok+ng)/2;\r\n\t\t(fn(mid)?ok:ng) = mid;\r\n\t}\r\n\treturn ok;\r\n}\r\n\
-    template <class T> inline V<T> press(const V<T>& v) {\r\n\tV<T> res,cp=v;\r\n\t\
-    Lady_sANDy::unq(cp);\r\n\teach(el,v) res.emplace_back(Lady_sANDy::LB(cp,el));\r\
-    \n\treturn res;\r\n}\r\ntemplate <class T> inline V<T> press(V<T> &c1, V<T> &c2)\
-    \ {\r\n\tV<T> res;\r\n\tconst int n = c1.size();\r\n\trep(n) {\r\n\t\tfor(T d\
-    \ = 0; d < 1; d++) {\r\n\t\t\tT tc1 = c1[i]+d;\r\n\t\t\tT tc2 = c2[i]+d;\r\n\t\
-    \t\tres.emplace_back(tc1);\r\n\t\t\tres.emplace_back(tc2);\r\n\t\t}\r\n\t}\r\n\
-    \tLady_sANDy::unq(res);\r\n\trep(n) {\r\n\t\tc1[i]=Lady_sANDy::LB(res,c1[i]);\r\
-    \n\t\tc2[i]=Lady_sANDy::LB(res,c2[i]);\r\n\t}\r\n\treturn res;\r\n}\r\ninline\
-    \ vs rtt(const vs &s) {\r\n\tconst int h=s.size(), w=s.front().size();\r\n\tvs\
-    \ t(w,std::string(h,{}));\r\n\trep(h) rep(j,w) t[j][i]=s[i][j];\r\n\trep(w) Lady_sANDy::rev(t[i]);\r\
-    \n\treturn t;\r\n}\r\ntemplate <class T> inline V<V<T>> rtt(const V<V<T>>& v)\
-    \ {\r\n\tconst int h=v.size(), w=v.front().size();\r\n\tV<V<T>> res(w,V<T>(h));\r\
-    \n\trep(h) rep(j,w) res[j][i]=v[i][j];\r\n\trep(w) Lady_sANDy::rev(res[i]);\r\n\
-    \treturn res;\r\n}\r\ntemplate <class T> inline T factor(T n, const T mod=0) {\r\
-    \n\tT res=1;\r\n\twhile(n>0) {\r\n\t\tres*=n--;\r\n\t\tif(mod) res%=mod;\r\n\t\
-    }\r\n\treturn res;\r\n}\r\ntemplate <class T=ll> inline T perm(T n, const T r,\
-    \ const T mod=0) {\r\n\tconst T tmp=n;\r\n\tT res=1;\r\n\twhile(n>tmp-r) {\r\n\
-    \t\tres*=n--;\r\n\t\tif(mod) res%=mod;\r\n\t}\r\n\treturn res;\r\n}\r\ntemplate\
-    \ <class T=ll> inline T binom(T n, const T r, const T mod=0) {\r\n\tif(r < 0 ||\
-    \ n < r) return 0;\r\n\tT res = 1;\r\n\trep(i,1,r) {\r\n\t\tres*=n--;\r\n\t\t\
-    if(mod) res%=mod;\r\n\t\tres/=i;\r\n\t\tif(mod) res%=mod;\r\n\t}\r\n\treturn res;\r\
-    \n}\r\ninline bool is_prime(const ul n) {\r\n\tif(n==1) return 0;\r\n\tsqrp(i,2,n)\
-    \ if(n%i==0) return 0;\r\n\treturn 1;\r\n}\r\ninline bool is_int(const ld n){\
-    \ return n == std::floor(n); }\r\ninline bool is_sqr(const ll n){ return is_int(std::sqrt(n));\
-    \ }\r\n} // Heileden\r\n\r\n/**\r\n * @brief \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\
-    \r\n * @docs docs/template.md\r\n */\n#line 2 \"C++/ds/SegmentTree.hpp\"\n\r\n\
-    #pragma GCC diagnostic ignored \"-Wreorder\"\r\n\r\n#line 7 \"C++/ds/SegmentTree.hpp\"\
-    \ntemplate <class T> struct SegTree {\r\nprivate:\r\n    using F = std::function<T(T,\
-    \ T)>;\r\n    int n, rank, fine;\r\n    const F f;\r\n    const T e;\r\n    std::vector<T>\
-    \ dat;\r\npublic:\r\n    SegTree(const int n_, const F f_, const T& e_): f(f_),\
-    \ e(e_), fine(n_) {\r\n        n=1,rank=0;\r\n        while(fine>n) n<<=1LL,rank++;\r\
-    \n        dat.assign(2*n,e_);\r\n    }\r\n    T operator[](int i) const { return\
-    \ dat[i+n]; }\r\n    void update(int i, const T& x) {\r\n        i+=n;\r\n   \
-    \     dat[i]=x;\r\n        while(i>>=1LL) dat[i]=f(dat[2*i],dat[2*i+1]);\r\n \
-    \   }\r\n    void add(int i, const T& x) {\r\n        i+=n;\r\n        dat[i]+=x;\r\
-    \n        while(i>>=1LL) dat[i]=f(dat[2*i],dat[2*i+1]);\r\n    }\r\n    T query(int\
-    \ a, int b) const {\r\n        T l=e,r=e;\r\n        for(a+=n, b+=n; a<b; a>>=1LL,b>>=1LL)\
-    \ {\r\n            if(a&1) l=f(l,dat[a++]);\r\n            if(b&1) r=f(dat[--b],r);\r\
-    \n        }\r\n        return f(l,r);\r\n    }\r\n    T alle() const { return\
-    \ dat[1]; }\r\n    template <class Boolean=bool> inline int find_left(int r, const\
-    \ Boolean &fn) {\r\n        if(!r) return 0;\r\n        int h=0,i=r+n;\r\n   \
-    \     T val=e;\r\n        for(; h <= rank; h++) if(i>>h&1){\r\n            T val2=f(val,dat[i>>h^1]);\r\
-    \n            if(fn(val2)){\r\n                i -= 1<<h;\r\n                if(i==n)\
-    \ return 0;\r\n                val=val2;\r\n            }\r\n            else\
-    \ break;\r\n        }\r\n        for(; h--;){\r\n            T val2 = f(val,dat[(i>>h)-1]);\r\
-    \n            if(fn(val2)){\r\n                i-=1<<h;\r\n                if(i==n)\
+    \ 6 \"C++/math/psum/psum.hpp\"\nnamespace Heileden {\nstruct psum {\nprivate:\n\
+    \    int n;\n    bool not_built;\n    vectors::vi s, imos;\npublic:\n    psum(const\
+    \ vectors::vi& v): s{0} { std::partial_sum(v.begin(), v.end(), std::back_inserter(s));\
+    \ }\n    psum(const int n): n(n), not_built(true), imos(n + 1){}\n    vectors::vi\
+    \ get() const { return s; }\n    // [l, r]\n    ll query(const int l, const int\
+    \ r) const { return s[r] - s[l]; }\n    void add(const int l, const int r, const\
+    \ ll x = 1) {\n\t\tassert(not_built);\n\t\timos[l] += x;\n\t\timos[r] -= x;\n\t\
+    }\n    vectors::vi build() {\n\t\tassert(not_built);\n        vectors::vi res;\n\
+    \t\tstd::partial_sum(imos.begin(), imos.end(), std::back_inserter(res));\n\t\t\
+    not_built = false;\n        res.resize(n);\n\t\treturn res;\n\t}\n};\n}\n\n/**\n\
+    \ * @brief \u7D2F\u7A4D\u548C\n */\n#line 2 \"C++/math/kthrooti.hpp\"\n\n#line\
+    \ 4 \"C++/math/kthrooti.hpp\"\n#ifndef TEMPLATE\ntypedef unsigned long long ul;\n\
+    template <class T, class U> inline bool overflow_if_mul(const T a, const U b){\
+    \ return (std::numeric_limits<T>::max()/a)<b; }\n#endif\nnamespace Heileden {\n\
+    inline ul kthrooti(const ul n, const int k) {\n    if(k==1) {\n\t\treturn n;\n\
+    \t}\n\tconst auto chk=[&](const unsigned x) {\n\t\tul mul=1;\n\t\tfor(int i =\
+    \ 0; i < k; ++i) {\n            if(overflow_if_mul(mul, x)) {\n              \
+    \  return false;\n            }\n            mul*=x;\n        }\n\t\treturn mul<=n;\n\
+    \t};\n\tul ret=0;\n\tfor(int i = 32; --i >= 0;) {\n\t\tif(chk(ret|(1U<<i))) {\n\
+    \t\t\tret|=1U<<i;\n\t\t}\n\t}\n\treturn ret;\n}\n}\n\n/**\n * @brief k\u4E57\u6839\
+    (\u6574\u6570)\n */\n#line 296 \"C++/template.hpp\"\n\r\nnamespace Heileden {\r\
+    \ntemplate <class T, class Boolean=bool> inline T bins(T ok, T ng, const Boolean\
+    \ &fn, const ld eps = 1) {\r\n\twhile(std::abs(ok-ng)>eps) {\r\n\t\tT mid=(ok+ng)/2;\r\
+    \n\t\t(fn(mid)?ok:ng) = mid;\r\n\t}\r\n\treturn ok;\r\n}\r\ntemplate <class T>\
+    \ inline V<T> press(const V<T>& v) {\r\n\tV<T> res,cp=v;\r\n\tLady_sANDy::unq(cp);\r\
+    \n\teach(el,v) res.emplace_back(Lady_sANDy::LB(cp,el));\r\n\treturn res;\r\n}\r\
+    \ntemplate <class T> inline V<T> press(V<T> &c1, V<T> &c2) {\r\n\tV<T> res;\r\n\
+    \tconst int n = c1.size();\r\n\trep(n) {\r\n\t\tfor(T d = 0; d < 1; d++) {\r\n\
+    \t\t\tT tc1 = c1[i]+d;\r\n\t\t\tT tc2 = c2[i]+d;\r\n\t\t\tres.emplace_back(tc1);\r\
+    \n\t\t\tres.emplace_back(tc2);\r\n\t\t}\r\n\t}\r\n\tLady_sANDy::unq(res);\r\n\t\
+    rep(n) {\r\n\t\tc1[i]=Lady_sANDy::LB(res,c1[i]);\r\n\t\tc2[i]=Lady_sANDy::LB(res,c2[i]);\r\
+    \n\t}\r\n\treturn res;\r\n}\r\ninline vs rtt(const vs &s) {\r\n\tconst int h=s.size(),\
+    \ w=s.front().size();\r\n\tvs t(w,std::string(h,{}));\r\n\trep(h) rep(j,w) t[j][i]=s[i][j];\r\
+    \n\trep(w) Lady_sANDy::rev(t[i]);\r\n\treturn t;\r\n}\r\ntemplate <class T> inline\
+    \ V<V<T>> rtt(const V<V<T>>& v) {\r\n\tconst int h=v.size(), w=v.front().size();\r\
+    \n\tV<V<T>> res(w,V<T>(h));\r\n\trep(h) rep(j,w) res[j][i]=v[i][j];\r\n\trep(w)\
+    \ Lady_sANDy::rev(res[i]);\r\n\treturn res;\r\n}\r\ntemplate <class T> inline\
+    \ T factor(T n, const T mod=0) {\r\n\tT res=1;\r\n\twhile(n>0) {\r\n\t\tres*=n--;\r\
+    \n\t\tif(mod) res%=mod;\r\n\t}\r\n\treturn res;\r\n}\r\ntemplate <class T=ll>\
+    \ inline T perm(T n, const T r, const T mod=0) {\r\n\tconst T tmp=n;\r\n\tT res=1;\r\
+    \n\twhile(n>tmp-r) {\r\n\t\tres*=n--;\r\n\t\tif(mod) res%=mod;\r\n\t}\r\n\treturn\
+    \ res;\r\n}\r\ntemplate <class T=ll> inline T binom(T n, const T r, const T mod=0)\
+    \ {\r\n\tif(r < 0 || n < r) return 0;\r\n\tT res = 1;\r\n\trep(i,1,r) {\r\n\t\t\
+    res*=n--;\r\n\t\tif(mod) res%=mod;\r\n\t\tres/=i;\r\n\t\tif(mod) res%=mod;\r\n\
+    \t}\r\n\treturn res;\r\n}\r\ninline bool is_prime(const ul n) {\r\n\tif(n==1)\
+    \ return 0;\r\n\tsqrp(i,2,n) if(n%i==0) return 0;\r\n\treturn 1;\r\n}\r\ninline\
+    \ bool is_int(const ld n){ return n == std::floor(n); }\r\ninline bool is_sqr(const\
+    \ ll n){ return is_int(std::sqrt(n)); }\r\n} // Heileden\r\n\r\n/**\r\n * @brief\
+    \ \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\n */\n#line\
+    \ 2 \"C++/ds/SegmentTree.hpp\"\n\r\n#pragma GCC diagnostic ignored \"-Wreorder\"\
+    \r\n\r\n#line 7 \"C++/ds/SegmentTree.hpp\"\ntemplate <class T> struct SegTree\
+    \ {\r\nprivate:\r\n    using F = std::function<T(T, T)>;\r\n    int n, rank, fine;\r\
+    \n    const F f;\r\n    const T e;\r\n    std::vector<T> dat;\r\npublic:\r\n \
+    \   SegTree(const int n_, const F f_, const T& e_): f(f_), e(e_), fine(n_) {\r\
+    \n        n=1,rank=0;\r\n        while(fine>n) n<<=1LL,rank++;\r\n        dat.assign(2*n,e_);\r\
+    \n    }\r\n    T operator[](int i) const { return dat[i+n]; }\r\n    void update(int\
+    \ i, const T& x) {\r\n        i+=n;\r\n        dat[i]=x;\r\n        while(i>>=1LL)\
+    \ dat[i]=f(dat[2*i],dat[2*i+1]);\r\n    }\r\n    void add(int i, const T& x) {\r\
+    \n        i+=n;\r\n        dat[i]+=x;\r\n        while(i>>=1LL) dat[i]=f(dat[2*i],dat[2*i+1]);\r\
+    \n    }\r\n    T query(int a, int b) const {\r\n        T l=e,r=e;\r\n       \
+    \ for(a+=n, b+=n; a<b; a>>=1LL,b>>=1LL) {\r\n            if(a&1) l=f(l,dat[a++]);\r\
+    \n            if(b&1) r=f(dat[--b],r);\r\n        }\r\n        return f(l,r);\r\
+    \n    }\r\n    T alle() const { return dat[1]; }\r\n    template <class Boolean=bool>\
+    \ inline int find_left(int r, const Boolean &fn) {\r\n        if(!r) return 0;\r\
+    \n        int h=0,i=r+n;\r\n        T val=e;\r\n        for(; h <= rank; h++)\
+    \ if(i>>h&1){\r\n            T val2=f(val,dat[i>>h^1]);\r\n            if(fn(val2)){\r\
+    \n                i -= 1<<h;\r\n                if(i==n) return 0;\r\n       \
+    \         val=val2;\r\n            }\r\n            else break;\r\n        }\r\
+    \n        for(; h--;){\r\n            T val2 = f(val,dat[(i>>h)-1]);\r\n     \
+    \       if(fn(val2)){\r\n                i-=1<<h;\r\n                if(i==n)\
     \ return 0;\r\n                val=val2;\r\n            }\r\n        }\r\n   \
     \     return i-n;\r\n    }\r\n    template <class Boolean=bool> inline int find_right(int\
     \ l, const Boolean &fn) {\r\n        if(l==fine) return fine;\r\n        int h=0,i=l+n;\r\
@@ -578,7 +584,7 @@ data:
   isVerificationFile: true
   path: test/segtree.test.cpp
   requiredBy: []
-  timestamp: '2024-02-27 11:03:02+09:00'
+  timestamp: '2024-02-29 11:00:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segtree.test.cpp
