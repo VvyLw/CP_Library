@@ -20,7 +20,7 @@ final class Main {
 
 final class VvyLw extends Utility {
 	static final IO io = new IO(new MyScanner(System.in), new MyPrinter(System.out, false), new MyPrinter(System.err, true));
-	static final boolean MULTI = true;
+	static final boolean MULTI = false;
 	static final int INF = 1 << 30;
 	static final long LINF = (1L << 61) - 1;
 	static final double EPS = 1e-18;
