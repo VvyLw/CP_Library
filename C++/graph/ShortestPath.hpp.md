@@ -30,8 +30,8 @@ data:
     \ src;\npublic:\n    ShortestPath(const std::vector<long long> &cost, const std::vector<int>\
     \ &src): cost(cost), src(src){}\n    bool is_thru(const int i){ return src[i]\
     \ != -1; }\n    std::vector<int> path(int i) {\n        std::vector<int> res;\n\
-    \        for(; i != -1; i = src[i]) {\n\t\t\tres.emplace_back(i);\n\t\t}\n   \
-    \     std::ranges::reverse(res);\n        return res;\n    }\n    std::vector<long\
+    \        for(; i != -1; i = src[i]) {\n            res.emplace_back(i);\n    \
+    \    }\n        std::ranges::reverse(res);\n        return res;\n    }\n    std::vector<long\
     \ long> get() const { return cost; }\n};\n\n/**\n * @brief \u6700\u77ED\u8DEF\n\
     \ */\n"
   code: "#pragma once\n\n#pragma GCC diagnostic ignored \"-Wreorder\"\n\n#include\
@@ -39,16 +39,16 @@ data:
     \ long> cost;\n    const std::vector<int> src;\npublic:\n    ShortestPath(const\
     \ std::vector<long long> &cost, const std::vector<int> &src): cost(cost), src(src){}\n\
     \    bool is_thru(const int i){ return src[i] != -1; }\n    std::vector<int> path(int\
-    \ i) {\n        std::vector<int> res;\n        for(; i != -1; i = src[i]) {\n\t\
-    \t\tres.emplace_back(i);\n\t\t}\n        std::ranges::reverse(res);\n        return\
-    \ res;\n    }\n    std::vector<long long> get() const { return cost; }\n};\n\n\
-    /**\n * @brief \u6700\u77ED\u8DEF\n */"
+    \ i) {\n        std::vector<int> res;\n        for(; i != -1; i = src[i]) {\n\
+    \            res.emplace_back(i);\n        }\n        std::ranges::reverse(res);\n\
+    \        return res;\n    }\n    std::vector<long long> get() const { return cost;\
+    \ }\n};\n\n/**\n * @brief \u6700\u77ED\u8DEF\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/graph/ShortestPath.hpp
   requiredBy:
   - C++/graph/WeightedGraph.hpp
-  timestamp: '2024-02-29 01:03:52+09:00'
+  timestamp: '2024-02-29 11:41:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/spfa.test.cpp

@@ -79,10 +79,10 @@ data:
     \  const std::vector<int> src;\npublic:\n    ShortestPath(const std::vector<long\
     \ long> &cost, const std::vector<int> &src): cost(cost), src(src){}\n    bool\
     \ is_thru(const int i){ return src[i] != -1; }\n    std::vector<int> path(int\
-    \ i) {\n        std::vector<int> res;\n        for(; i != -1; i = src[i]) {\n\t\
-    \t\tres.emplace_back(i);\n\t\t}\n        std::ranges::reverse(res);\n        return\
-    \ res;\n    }\n    std::vector<long long> get() const { return cost; }\n};\n\n\
-    /**\n * @brief \u6700\u77ED\u8DEF\n */\n#line 5 \"C++/graph/WeightedGraph.hpp\"\
+    \ i) {\n        std::vector<int> res;\n        for(; i != -1; i = src[i]) {\n\
+    \            res.emplace_back(i);\n        }\n        std::ranges::reverse(res);\n\
+    \        return res;\n    }\n    std::vector<long long> get() const { return cost;\
+    \ }\n};\n\n/**\n * @brief \u6700\u77ED\u8DEF\n */\n#line 5 \"C++/graph/WeightedGraph.hpp\"\
     \ntemplate <bool undirected = true> struct w_graph: public graph<undirected> {\n\
     private:\n    using graph<undirected>::indexed;\n    using graph<undirected>::id;\n\
     \    using graph<undirected>::edges;\npublic:\n    w_graph(const int n, const\
@@ -156,7 +156,7 @@ data:
   isVerificationFile: true
   path: test/warshallfloyd.test.cpp
   requiredBy: []
-  timestamp: '2024-02-29 09:41:41+09:00'
+  timestamp: '2024-02-29 11:41:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/warshallfloyd.test.cpp
