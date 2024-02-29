@@ -15,16 +15,16 @@ public final class PrefixSum extends InclusiveScan {
 	 * @param a
 	 */
 	public PrefixSum(final int[] a) {
-		super(a, (x, y) -> x + y);
-		s = Utility.rotate(Arrays.copyOf(s, n + 1), 1);
+		super(a, Long::sum);
+		s = Utility.rotate(Arrays.copyOf(s, n + 1), -1);
 	}
 	/**
 	 * コンストラクタ
 	 * @param a
 	 */
 	public PrefixSum(final long[] a) {
-		super(a, (x, y) -> x + y);
-		s = Utility.rotate(Arrays.copyOf(s, n + 1), 1);
+		super(a, Long::sum);
+		s = Utility.rotate(Arrays.copyOf(s, n + 1), -1);
 	}
 	/**
 	 * 主に累積和の差を求めるのに使う

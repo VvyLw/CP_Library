@@ -713,7 +713,7 @@ class Utility {
 	}
 	protected static final String rotate(final String s, final int id) {
 		final List<Character> t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());
-		Collections.rotate(t, id);
+		Collections.rotate(t, -id);
 		return t.stream().map(String::valueOf).collect(Collectors.joining());
 	}
 	protected static final int[][] rotateR(final int[][] a) {
@@ -2209,31 +2209,37 @@ final class WeightedGraph extends Graph {
 		}
 		return new ShortestPath(cost, src);
 	}
-	final long[] bellmanFord(final int v) {
+	final long[] spfa(final int v) {
 		final long[] cost = new long[n];
 		Arrays.fill(cost, Long.MAX_VALUE);
+		final boolean[] pend = new boolean[n];
+		final int[] cnt = new int[n];
+		final Queue<Integer> q = new ArrayDeque<>();
+		q.add(v);
+		pend[v] = true;
+		cnt[v]++;
 		cost[v] = 0;
-		for(int i = 0; i < edge.size() - 1; ++i) {
-			for(final Edge e: edge) {
-				if(cost[e.src] == Long.MAX_VALUE) {
+		while(!q.isEmpty()) {
+			final int p = q.poll();
+			pend[p] = false;
+			for(final Edge e: this.get(p)) {
+				final long next = cost[p] + e.cost;
+				if(next >= cost[e.to]) {
 					continue;
 				}
-				if(cost[e.to] > cost[e.src] + e.cost) {
-					cost[e.to] = cost[e.src] + e.cost;
+				cost[e.to] = next;
+				if(!pend[e.to]) {
+					if(++cnt[e.to] >= n) {
+						return new long[]{};
+					}
+					pend[e.to] = true;
+					q.add(e.to);
 				}
-			}
-		}
-		for(final Edge e: edge) {
-			if(cost[e.src] == Long.MAX_VALUE) {
-				continue;
-			}
-			if(cost[e.src] + e.cost < cost[e.to]) {
-				return null;
 			}
 		}
 		return cost;
 	}
-	final long[][] warshallFloyd() {
+	final long[][] floydWarshall() {
 		final long[][] cost = new long[n][n];
 		IntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], VvyLw.LINF));
 		IntStream.range(0, n).forEach(i -> cost[i][i] = 0);
@@ -3547,12 +3553,12 @@ class InclusiveScan {
 }
 final class PrefixSum extends InclusiveScan {
 	PrefixSum(final int[] a) {
-		super(a, (x, y) -> x + y);
-		s = Utility.rotate(Arrays.copyOf(s, n + 1), 1);
+		super(a, Long::sum);
+		s = Utility.rotate(Arrays.copyOf(s, n + 1), -1);
 	}
 	PrefixSum(final long[] a) {
-		super(a, (x, y) -> x + y);
-		s = Utility.rotate(Arrays.copyOf(s, n + 1), 1);
+		super(a, Long::sum);
+		s = Utility.rotate(Arrays.copyOf(s, n + 1), -1);
 	}
 	final long query(final int l, final int r){ return s[r] - s[l]; }
 }
