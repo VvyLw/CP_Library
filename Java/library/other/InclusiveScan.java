@@ -10,6 +10,7 @@ import java.util.function.LongBinaryOperator;
 public class InclusiveScan {
 	protected final int n;
 	protected long[] s;
+	protected InclusiveScan(final int n){ this.n = n; }
 	/**
 	 * コンストラクタ
 	 * @param a
