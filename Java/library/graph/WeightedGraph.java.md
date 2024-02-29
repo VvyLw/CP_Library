@@ -552,9 +552,9 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/graph/WeightedGraph.java\n"
-  code: "package library.graph;\n\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
-    import java.util.Comparator;\nimport java.util.PriorityQueue;\nimport java.util.Queue;\n\
-    import java.util.function.IntUnaryOperator;\nimport java.util.stream.Collectors;\n\
+  code: "package library.graph;\n\nimport java.util.ArrayDeque;\nimport java.util.ArrayList;\n\
+    import java.util.Arrays;\nimport java.util.Comparator;\nimport java.util.PriorityQueue;\n\
+    import java.util.Queue;\nimport java.util.function.IntUnaryOperator;\nimport java.util.stream.Collectors;\n\
     import java.util.stream.IntStream;\n\nimport library.core.VvyLw;\nimport library.ds.pair.IntPair;\n\
     import library.ds.unionfind.UnionFind;\nimport library.other.SkewHeap;\n\n/**\n\
     \ * \u91CD\u307F\u3064\u304D\u30B0\u30E9\u30D5\u30AF\u30E9\u30B9\n */\npublic\
@@ -586,20 +586,22 @@ data:
     \ + ed.cost;\n\t\t\t\tif(cost[ed.to] <= next) {\n\t\t\t\t\tcontinue;\n\t\t\t\t\
     }\n\t\t\t\tcost[ed.to] = next;\n\t\t\t\tsrc[ed.to] = tmp.second.intValue();\n\t\
     \t\t\tdj.add(IntPair.of(cost[ed.to], ed.to));\n\t\t\t}\n\t\t}\n\t\treturn new\
-    \ ShortestPath(cost, src);\n\t}\n\t/**\n\t * Bellman-Ford\u6CD5\n\t * \u8CA0\u8FBA\
-    \u304C\u5B58\u5728\u3057\u3066\u3044\u3066\u3082\u5358\u4E00\u59CB\u70B9\u5168\
-    \u70B9\u9593\u6700\u77ED\u8DEF\u3092\u6C42\u3081\u3089\u308C\u308B\n\t * \u8CA0\
-    \u9589\u8DEF\u3082\u691C\u51FA\u3059\u308B\n\t * @param v\n\t */\n\tpublic final\
-    \ long[] bellmanFord(final int v) {\n\t\tfinal long[] cost = new long[n];\n\t\t\
-    Arrays.fill(cost, Long.MAX_VALUE);\n\t\tcost[v] = 0;\n\t\tfor(int i = 0; i < edge.size()\
-    \ - 1; ++i) {\n\t\t\tfor(final Edge e: edge) {\n\t\t\t\tif(cost[e.src] == Long.MAX_VALUE)\
-    \ {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\tif(cost[e.to] > cost[e.src] + e.cost)\
-    \ {\n\t\t\t\t\tcost[e.to] = cost[e.src] + e.cost;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
-    \t\tfor(final Edge e: edge) {\n\t\t\tif(cost[e.src] == Long.MAX_VALUE) {\n\t\t\
-    \t\tcontinue;\n\t\t\t}\n\t\t\tif(cost[e.src] + e.cost < cost[e.to]) {\n\t\t\t\t\
-    return null;\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\t/**\n\t * Warshall-Floyd\u6CD5\
+    \ ShortestPath(cost, src);\n\t}\n\t/**\n\t * Shortest Path Faster Algorithm\n\t\
+    \ * \u8CA0\u8FBA\u304C\u5B58\u5728\u3057\u3066\u3044\u3066\u3082\u5358\u4E00\u59CB\
+    \u70B9\u5168\u70B9\u9593\u6700\u77ED\u8DEF\u3092\u6C42\u3081\u3089\u308C\u308B\
+    \n\t * \u8CA0\u9589\u8DEF\u3082\u691C\u51FA\u3059\u308B\n\t * @param v\n\t */\n\
+    \tpublic final long[] spfa(final int v) {\n\t\tfinal long[] cost = new long[n];\n\
+    \t\tArrays.fill(cost, Long.MAX_VALUE);\n\t\tfinal boolean[] pend = new boolean[n];\n\
+    \t\tfinal int[] cnt = new int[n];\n\t\tfinal Queue<Integer> q = new ArrayDeque<>();\n\
+    \t\tq.add(v);\n\t\tpend[v] = true;\n\t\tcnt[v]++;\n\t\tcost[v] = 0;\n\t\twhile(!q.isEmpty())\
+    \ {\n\t\t\tfinal int p = q.poll();\n\t\t\tpend[p] = false;\n\t\t\tfor(final Edge\
+    \ e: this.get(p)) {\n\t\t\t\tfinal long next = cost[p] + e.cost;\n\t\t\t\tif(next\
+    \ >= cost[e.to]) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\tcost[e.to] = next;\n\
+    \t\t\t\tif(!pend[e.to]) {\n\t\t\t\t\tif(++cnt[e.to] >= n) {\n\t\t\t\t\t\treturn\
+    \ null;\n\t\t\t\t\t}\n\t\t\t\t\tpend[e.to] = true;\n\t\t\t\t\tq.add(e.to);\n\t\
+    \t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\t/**\n\t * Floyd-Warshall\u6CD5\
     \n\t * \u5168\u70B9\u5BFE\u9593\u6700\u77ED\u8DEF\u3092\u6C42\u3081\u308B\n\t\
-    \ */\n\tpublic final long[][] warshallFloyd() {\n\t\tfinal long[][] cost = new\
+    \ */\n\tpublic final long[][] floydWarshall() {\n\t\tfinal long[][] cost = new\
     \ long[n][n];\n\t\tIntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], VvyLw.LINF));\n\
     \t\tIntStream.range(0, n).forEach(i -> cost[i][i] = 0);\n\t\tfor(int i = 0; i\
     \ < n; ++i) {\n\t\t\tfor(final Edge j: this.get(i)) {\n\t\t\t\tcost[i][j.to] =\
@@ -832,7 +834,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-29 08:29:54+09:00'
+  timestamp: '2024-02-29 09:41:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/WeightedGraph.java

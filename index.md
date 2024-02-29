@@ -503,9 +503,6 @@ data:
       path: test/add128_2.test.cpp
       title: test/add128_2.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/bermanford.test.cpp
-      title: test/bermanford.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/cycledetector.test.cpp
       title: test/cycledetector.test.cpp
     - icon: ':heavy_check_mark:'
@@ -649,6 +646,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/shortestpath.test.cpp
       title: test/shortestpath.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/spfa.test.cpp
+      title: test/spfa.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/sr_sum.test.cpp
       title: test/sr_sum.test.cpp

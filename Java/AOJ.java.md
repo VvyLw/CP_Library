@@ -560,7 +560,7 @@ data:
     \ VvyLw.MULTI ? VvyLw.io.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.io.close();\n\
     \t}\n}\n\nfinal class VvyLw extends Utility {\n\tstatic final IO io = new IO(new\
     \ MyScanner(System.in), new MyPrinter(System.out, false), new MyPrinter(System.err,\
-    \ true));\n\tstatic final boolean MULTI = true;\n\tstatic final int INF = 1 <<\
+    \ true));\n\tstatic final boolean MULTI = false;\n\tstatic final int INF = 1 <<\
     \ 30;\n\tstatic final long LINF = (1L << 61) - 1;\n\tstatic final double EPS =\
     \ 1e-18;\n\tstatic final int MOD = 998244353;\n\tstatic final int M0D = (int)\
     \ 1e9 + 7;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic\
@@ -988,7 +988,7 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/All.java
-  timestamp: '2024-02-29 08:29:54+09:00'
+  timestamp: '2024-02-29 09:41:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java

@@ -22,9 +22,6 @@ data:
     title: Manhattan MST
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/bermanford.test.cpp
-    title: test/bermanford.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/cycledetector.test.cpp
     title: test/cycledetector.test.cpp
   - icon: ':heavy_check_mark:'
@@ -51,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/shortestpath.test.cpp
     title: test/shortestpath.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/spfa.test.cpp
+    title: test/spfa.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/warshallfloyd.test.cpp
     title: test/warshallfloyd.test.cpp
@@ -88,8 +88,8 @@ data:
   - test/dag_check.test.cpp
   - test/scc2.test.cpp
   - test/lca.test.cpp
+  - test/spfa.test.cpp
   - test/warshallfloyd.test.cpp
-  - test/bermanford.test.cpp
   - test/shortestpath.test.cpp
   - test/dijkstra.test.cpp
   - test/directed.test.cpp
