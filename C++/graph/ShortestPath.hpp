@@ -14,8 +14,8 @@ public:
     std::vector<int> path(int i) {
         std::vector<int> res;
         for(; i != -1; i = src[i]) {
-			res.emplace_back(i);
-		}
+            res.emplace_back(i);
+        }
         std::ranges::reverse(res);
         return res;
     }
