@@ -1,5 +1,6 @@
 package library.graph;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -86,40 +87,46 @@ public final class WeightedGraph extends Graph {
 		return new ShortestPath(cost, src);
 	}
 	/**
-	 * Bellman-Ford法
+	 * Shortest Path Faster Algorithm
 	 * 負辺が存在していても単一始点全点間最短路を求められる
 	 * 負閉路も検出する
 	 * @param v
 	 */
-	public final long[] bellmanFord(final int v) {
+	public final long[] spfa(final int v) {
 		final long[] cost = new long[n];
 		Arrays.fill(cost, Long.MAX_VALUE);
+		final boolean[] pend = new boolean[n];
+		final int[] cnt = new int[n];
+		final Queue<Integer> q = new ArrayDeque<>();
+		q.add(v);
+		pend[v] = true;
+		cnt[v]++;
 		cost[v] = 0;
-		for(int i = 0; i < edge.size() - 1; ++i) {
-			for(final Edge e: edge) {
-				if(cost[e.src] == Long.MAX_VALUE) {
+		while(!q.isEmpty()) {
+			final int p = q.poll();
+			pend[p] = false;
+			for(final Edge e: this.get(p)) {
+				final long next = cost[p] + e.cost;
+				if(next >= cost[e.to]) {
 					continue;
 				}
-				if(cost[e.to] > cost[e.src] + e.cost) {
-					cost[e.to] = cost[e.src] + e.cost;
+				cost[e.to] = next;
+				if(!pend[e.to]) {
+					if(++cnt[e.to] >= n) {
+						return null;
+					}
+					pend[e.to] = true;
+					q.add(e.to);
 				}
-			}
-		}
-		for(final Edge e: edge) {
-			if(cost[e.src] == Long.MAX_VALUE) {
-				continue;
-			}
-			if(cost[e.src] + e.cost < cost[e.to]) {
-				return null;
 			}
 		}
 		return cost;
 	}
 	/**
-	 * Warshall-Floyd法
+	 * Floyd-Warshall法
 	 * 全点対間最短路を求める
 	 */
-	public final long[][] warshallFloyd() {
+	public final long[][] floydWarshall() {
 		final long[][] cost = new long[n][n];
 		IntStream.range(0, n).forEach(i -> Arrays.fill(cost[i], VvyLw.LINF));
 		IntStream.range(0, n).forEach(i -> cost[i][i] = 0);

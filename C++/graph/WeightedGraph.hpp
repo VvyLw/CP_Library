@@ -1,6 +1,5 @@
 #pragma once
 
-#include <limits>
 #include "C++/graph/Graph.hpp"
 #include "C++/graph/ShortestPath.hpp"
 template <bool undirected = true> struct w_graph: public graph<undirected> {
@@ -52,26 +51,34 @@ public:
         }
         return {cst, src};
     }
-    std::vector<long long> bellman_ford(const int v) {
-        const long long lim = std::numeric_limits<long long>::max();
-        std::vector<long long> cst(this -> size(), lim);
+    std::vector<long long> spfa(const int v) {
+        const int n = this -> size();
+        std::vector<long long> cst(n, INT64_MAX);
+        std::vector<int> pending(n), times(n);
+        std::queue<int> q;
+        q.emplace(v);
+        pending[v] = 1;
+        ++times[v];
         cst[v] = 0;
-        for(size_t i = 0; i < this -> size() - 1; ++i) {
-			for(const auto &e: edges) {
-				if(cst[e.src] == lim) {
-					continue;
-				}
-				chmin(cst[e], cst[e.src] + e.cost);
-			}
-		}
-		for(const auto &e: edges) {
-			if(cst[e.src] == lim) {
-				continue;
-			}
-			if(cst[e.src] + e.cost < cst[e]) {
-				return std::vector<long long>{};
-			}
-		}
+        while(!q.empty()) {
+            const int p = q.front();
+            q.pop();
+            pending[p] = 0;
+            for(const auto &e : (*this)[p]) {
+                const long long next = cst[p] + e.cost;
+                if(next >= cst[e]) {
+                    continue;
+                }
+                cst[e] = next;
+                if(!pending[e]) {
+                    if(++times[e] >= n) {
+                        return std::vector<long long>();
+                    }
+                    pending[e] = 1;
+                    q.emplace(e);
+                }
+            }
+        }
 		return cst;
     }
     std::vector<std::vector<long long>> warshall_floyd() {

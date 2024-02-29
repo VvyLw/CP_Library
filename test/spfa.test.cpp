@@ -1,18 +1,17 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B"
 #include "C++/graph/WeightedGraph.hpp"
-constexpr long long lim = std::numeric_limits<long long>::max();
 int main() {
     int v, e, r;
     std::cin >> v >> e >> r;
     w_graph<false> g(v, 0);
     g.input(e);
-    const auto res = g.bellman_ford(r);
+    const auto res = g.spfa(r);
     if(res.empty()) {
         std::cout << "NEGATIVE CYCLE\n";
         std::exit(0);
     }
     for(const auto &el: res) {
-        if(el == lim) {
+        if(el == INT64_MAX) {
             std::cout << "INF\n";
         }
         else {
