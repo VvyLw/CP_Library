@@ -484,6 +484,11 @@ data:
     - icon: ':warning:'
       path: Java/library/other/Why.java
       title: Java/library/other/Why.java
+  - name: Python
+    pages:
+    - icon: ':warning:'
+      path: Python/UnionFind.py
+      title: Python/UnionFind.py
   verificationCategories:
   - name: test
     pages:

@@ -90,10 +90,10 @@ data:
     \            res.emplace_back(i);\n        }\n        std::ranges::reverse(res);\n\
     \        return res;\n    }\n    std::vector<long long> get() const { return cost;\
     \ }\n};\n\n/**\n * @brief \u6700\u77ED\u8DEF\n */\n#line 5 \"C++/graph/WeightedGraph.hpp\"\
-    \ntemplate <bool undirected = true> struct w_graph: public graph<undirected> {\n\
-    private:\n    using graph<undirected>::indexed;\n    using graph<undirected>::id;\n\
-    \    using graph<undirected>::edges;\npublic:\n    w_graph(const int n, const\
-    \ int indexed_ = 1): graph<undirected>(n, indexed_){}\n    using graph<undirected>::all_dist;\n\
+    \ntemplate <bool undirected = true> struct w_graph: graph<undirected> {\nprivate:\n\
+    \    using graph<undirected>::indexed;\n    using graph<undirected>::id;\n   \
+    \ using graph<undirected>::edges;\npublic:\n    w_graph(const int n, const int\
+    \ indexed_ = 1): graph<undirected>(n, indexed_){}\n    using graph<undirected>::all_dist;\n\
     \    using graph<undirected>::dist;\n    using graph<undirected>::t_sort;\n  \
     \  using graph<undirected>::cycle;\n    void add(int a, int b, const long long\
     \ cost) {\n        a -= indexed, b -= indexed;\n        (*this)[a].emplace_back(a,\
@@ -137,10 +137,10 @@ data:
     \ cst;\n\t}\n};\n\n/**\n * @brief \u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\
     \u30A4\u30D6\u30E9\u30EA\n */\n"
   code: "#pragma once\n\n#include \"C++/graph/Graph.hpp\"\n#include \"C++/graph/ShortestPath.hpp\"\
-    \ntemplate <bool undirected = true> struct w_graph: public graph<undirected> {\n\
-    private:\n    using graph<undirected>::indexed;\n    using graph<undirected>::id;\n\
-    \    using graph<undirected>::edges;\npublic:\n    w_graph(const int n, const\
-    \ int indexed_ = 1): graph<undirected>(n, indexed_){}\n    using graph<undirected>::all_dist;\n\
+    \ntemplate <bool undirected = true> struct w_graph: graph<undirected> {\nprivate:\n\
+    \    using graph<undirected>::indexed;\n    using graph<undirected>::id;\n   \
+    \ using graph<undirected>::edges;\npublic:\n    w_graph(const int n, const int\
+    \ indexed_ = 1): graph<undirected>(n, indexed_){}\n    using graph<undirected>::all_dist;\n\
     \    using graph<undirected>::dist;\n    using graph<undirected>::t_sort;\n  \
     \  using graph<undirected>::cycle;\n    void add(int a, int b, const long long\
     \ cost) {\n        a -= indexed, b -= indexed;\n        (*this)[a].emplace_back(a,\
@@ -190,7 +190,7 @@ data:
   isVerificationFile: false
   path: C++/graph/WeightedGraph.hpp
   requiredBy: []
-  timestamp: '2024-02-29 11:41:45+09:00'
+  timestamp: '2024-03-01 10:48:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/spfa.test.cpp

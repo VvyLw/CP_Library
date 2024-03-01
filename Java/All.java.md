@@ -1375,11 +1375,11 @@ data:
     \ second); }\n}\n\nfinal class Why {\n\tstatic final boolean isBipartite(final\
     \ UnionFind uf) {\n\t\tassert uf.size() % 2 == 0;\n\t\tfinal int n = uf.size()\
     \ / 2;\n\t\tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &=\
-    \ uf.root(i) != uf.root(i + n);\n\t\t}\n\t\treturn ok;\n\t}\n\tstatic final long\
-    \ invNum(final int[] a) {\n\t\tfinal int[] b = Utility.sorted(a);\n\t\tfinal Map<Integer,\
-    \ Integer> id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\
-    \tid.put(b[i], i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\
-    \t\tlong res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
+    \ !uf.same(i, i + n);\n\t\t}\n\t\treturn ok;\n\t}\n\tstatic final long invNum(final\
+    \ int[] a) {\n\t\tfinal int[] b = Utility.sorted(a);\n\t\tfinal Map<Integer, Integer>\
+    \ id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i],\
+    \ i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\t\tlong\
+    \ res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
     \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\tstatic final long\
     \ invNum(final long[] a) {\n\t\tfinal long[] b = Utility.sorted(a);\n\t\tfinal\
     \ Map<Long, Integer> id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length; ++i)\
@@ -2700,7 +2700,7 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-02-29 11:09:46+09:00'
+  timestamp: '2024-03-01 12:06:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

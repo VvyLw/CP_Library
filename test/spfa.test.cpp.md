@@ -83,10 +83,10 @@ data:
     \            res.emplace_back(i);\n        }\n        std::ranges::reverse(res);\n\
     \        return res;\n    }\n    std::vector<long long> get() const { return cost;\
     \ }\n};\n\n/**\n * @brief \u6700\u77ED\u8DEF\n */\n#line 5 \"C++/graph/WeightedGraph.hpp\"\
-    \ntemplate <bool undirected = true> struct w_graph: public graph<undirected> {\n\
-    private:\n    using graph<undirected>::indexed;\n    using graph<undirected>::id;\n\
-    \    using graph<undirected>::edges;\npublic:\n    w_graph(const int n, const\
-    \ int indexed_ = 1): graph<undirected>(n, indexed_){}\n    using graph<undirected>::all_dist;\n\
+    \ntemplate <bool undirected = true> struct w_graph: graph<undirected> {\nprivate:\n\
+    \    using graph<undirected>::indexed;\n    using graph<undirected>::id;\n   \
+    \ using graph<undirected>::edges;\npublic:\n    w_graph(const int n, const int\
+    \ indexed_ = 1): graph<undirected>(n, indexed_){}\n    using graph<undirected>::all_dist;\n\
     \    using graph<undirected>::dist;\n    using graph<undirected>::t_sort;\n  \
     \  using graph<undirected>::cycle;\n    void add(int a, int b, const long long\
     \ cost) {\n        a -= indexed, b -= indexed;\n        (*this)[a].emplace_back(a,\
@@ -151,7 +151,7 @@ data:
   isVerificationFile: true
   path: test/spfa.test.cpp
   requiredBy: []
-  timestamp: '2024-02-29 11:41:45+09:00'
+  timestamp: '2024-03-01 10:48:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/spfa.test.cpp

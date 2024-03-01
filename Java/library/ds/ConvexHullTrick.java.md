@@ -557,38 +557,39 @@ data:
     \u5BFE\u5FDC\u3057\u3066\u3044\u306A\u3044\n * @deprecated verify\u3057\u3066\u3044\
     \u306A\u3044\n * @see <a href=\"https://ei1333.github.io/library/structure/convex-hull-trick/convex-hull-trick-add-monotone.hpp\"\
     >\u53C2\u8003\u5143</a>\n */\npublic final class ConvexHullTrick {\n\tprivate\
-    \ final Deque<IntPair> h;\n\tprivate final boolean isMin;\n\tConvexHullTrick(final\
+    \ final Deque<IntPair> h;\n\tprivate final boolean isMin;\n\tpublic ConvexHullTrick(final\
     \ boolean isMin) {\n\t\tthis.isMin = isMin;\n\t\th = new Deque<>();\n\t}\n\tprivate\
-    \ final boolean isEmpty(){ return h.isEmpty(); }\n\tfinal void clear(){ h.clear();\
-    \ }\n\tfinal int size(){ return h.size(); }\n\tfinal Deque<IntPair> get(){ return\
-    \ h; }\n\tprivate final int sgn(final long x){ return x == 0 ? 0 : (x < 0 ? -1\
-    \ : 1); }\n\tprivate final boolean check(final IntPair a, final IntPair b, final\
-    \ IntPair c) {\n\t\tif(b.second.longValue() == a.second.longValue() || c.second.longValue()\
-    \ == b.second.longValue()) {\n\t\t\treturn sgn(b.first.longValue() - a.first.longValue())\
-    \ * sgn(c.second.longValue() - b.second.longValue()) >= sgn(c.first.longValue()\
-    \ - b.first.longValue()) * sgn(b.second.longValue() - a.second.longValue());\n\
-    \t\t}\n\t\treturn (b.second.longValue() - a.second.longValue()) / (a.first.longValue()\
-    \ - b.first.longValue()) >= (c.second.longValue() - b.second.longValue()) / (b.first.longValue()\
-    \ - c.first.longValue());\n\t}\n\tfinal void add(long a, long b) {\n\t\tif(!isMin)\
-    \ {\n\t\t\ta = -a;\n\t\t\tb = -b;\n\t\t}\n\t\tfinal IntPair line = IntPair.of(a,\
-    \ b);\n\t\tif(isEmpty()) {\n\t\t\th.add(line);\n\t\t\treturn;\n\t\t}\n\t\tif(h.peekFirst().first.longValue()\
-    \ <= a) {\n\t\t\tif(h.peekFirst().first.longValue() == a) {\n\t\t\t\tif(h.peekFirst().second.longValue()\
-    \ <= b) {\n\t\t\t\t\treturn;\n\t\t\t\t}\n\t\t\t\th.pollFirst();\n\t\t\t}\n\t\t\
-    \twhile(h.size() >= 2 && check(line, h.peekFirst(), h.get(1))) {\n\t\t\t\th.pollFirst();\n\
-    \t\t\t}\n\t\t\th.add(line);\n\t\t} else {\n\t\t\tassert a <= h.peekLast().first.longValue();\n\
-    \t\t\tif(h.peekLast().first.longValue() == a) {\n\t\t\t\tif(h.peekLast().second.longValue()\
-    \ <= b) {\n\t\t\t\t\treturn;\n\t\t\t\t}\n\t\t\t\th.pollLast();\n\t\t\t}\n\t\t\t\
-    while(h.size() >= 2 && check(h.get(h.size() - 2), h.peekLast(), line)) {\n\t\t\
-    \t\th.pollLast();\n\t\t\t}\n\t\t\th.add(line);\n\t\t}\n\t}\n\tprivate final long\
-    \ get(final IntPair p, final long x){ return p.first.longValue() * x + p.second.longValue();\
-    \ }\n\tfinal long query(final long x) {\n\t\tassert !isEmpty();\n\t\tint l = -1,\
-    \ r = h.size() - 1;\n\t\twhile(l + 1 < r) {\n\t\t\tint m = (l + r) >> 1;\n\t\t\
-    \tif(get(h.get(m), x) >= get(h.get(m + 1), x)) {\n\t\t\t\tl = m;\n\t\t\t} else\
-    \ {\n\t\t\t\tr = m;\n\t\t\t}\n\t\t}\n\t\treturn isMin ? get(h.get(r), x) : -get(h.get(r),\
-    \ x);\n\t}\n\tfinal long queryMonotoneInc(final long x) {\n\t\tassert !isEmpty();\n\
-    \t\twhile(h.size() >= 2 && get(h.peekFirst(), x) >= get(h.get(1), x)) {\n\t\t\t\
-    h.pollFirst();\n\t\t}\n\t\treturn isMin ? get(h.peekFirst(), x) : -get(h.peekFirst(),\
-    \ x);\n\t}\n\tfinal long queryMonotoneDec(final long x) {\n\t\tassert !isEmpty();\n\
+    \ final boolean isEmpty(){ return h.isEmpty(); }\n\tpublic final void clear(){\
+    \ h.clear(); }\n\tpublic final int size(){ return h.size(); }\n\tpublic final\
+    \ Deque<IntPair> get(){ return h; }\n\tprivate final int sgn(final long x){ return\
+    \ x == 0 ? 0 : (x < 0 ? -1 : 1); }\n\tprivate final boolean check(final IntPair\
+    \ a, final IntPair b, final IntPair c) {\n\t\tif(b.second.longValue() == a.second.longValue()\
+    \ || c.second.longValue() == b.second.longValue()) {\n\t\t\treturn sgn(b.first.longValue()\
+    \ - a.first.longValue()) * sgn(c.second.longValue() - b.second.longValue()) >=\
+    \ sgn(c.first.longValue() - b.first.longValue()) * sgn(b.second.longValue() -\
+    \ a.second.longValue());\n\t\t}\n\t\treturn (b.second.longValue() - a.second.longValue())\
+    \ / (a.first.longValue() - b.first.longValue()) >= (c.second.longValue() - b.second.longValue())\
+    \ / (b.first.longValue() - c.first.longValue());\n\t}\n\tpublic final void add(long\
+    \ a, long b) {\n\t\tif(!isMin) {\n\t\t\ta = -a;\n\t\t\tb = -b;\n\t\t}\n\t\tfinal\
+    \ IntPair line = IntPair.of(a, b);\n\t\tif(isEmpty()) {\n\t\t\th.add(line);\n\t\
+    \t\treturn;\n\t\t}\n\t\tif(h.peekFirst().first.longValue() <= a) {\n\t\t\tif(h.peekFirst().first.longValue()\
+    \ == a) {\n\t\t\t\tif(h.peekFirst().second.longValue() <= b) {\n\t\t\t\t\treturn;\n\
+    \t\t\t\t}\n\t\t\t\th.pollFirst();\n\t\t\t}\n\t\t\twhile(h.size() >= 2 && check(line,\
+    \ h.peekFirst(), h.get(1))) {\n\t\t\t\th.pollFirst();\n\t\t\t}\n\t\t\th.add(line);\n\
+    \t\t} else {\n\t\t\tassert a <= h.peekLast().first.longValue();\n\t\t\tif(h.peekLast().first.longValue()\
+    \ == a) {\n\t\t\t\tif(h.peekLast().second.longValue() <= b) {\n\t\t\t\t\treturn;\n\
+    \t\t\t\t}\n\t\t\t\th.pollLast();\n\t\t\t}\n\t\t\twhile(h.size() >= 2 && check(h.get(h.size()\
+    \ - 2), h.peekLast(), line)) {\n\t\t\t\th.pollLast();\n\t\t\t}\n\t\t\th.add(line);\n\
+    \t\t}\n\t}\n\tprivate final long get(final IntPair p, final long x){ return p.first.longValue()\
+    \ * x + p.second.longValue(); }\n\tpublic final long query(final long x) {\n\t\
+    \tassert !isEmpty();\n\t\tint l = -1, r = h.size() - 1;\n\t\twhile(l + 1 < r)\
+    \ {\n\t\t\tint m = (l + r) >> 1;\n\t\t\tif(get(h.get(m), x) >= get(h.get(m + 1),\
+    \ x)) {\n\t\t\t\tl = m;\n\t\t\t} else {\n\t\t\t\tr = m;\n\t\t\t}\n\t\t}\n\t\t\
+    return isMin ? get(h.get(r), x) : -get(h.get(r), x);\n\t}\n\tpublic final long\
+    \ queryMonotoneInc(final long x) {\n\t\tassert !isEmpty();\n\t\twhile(h.size()\
+    \ >= 2 && get(h.peekFirst(), x) >= get(h.get(1), x)) {\n\t\t\th.pollFirst();\n\
+    \t\t}\n\t\treturn isMin ? get(h.peekFirst(), x) : -get(h.peekFirst(), x);\n\t\
+    }\n\tpublic final long queryMonotoneDec(final long x) {\n\t\tassert !isEmpty();\n\
     \t\twhile(h.size() >= 2 && get(h.peekLast(), x) >= get(h.get(h.size() - 2), x))\
     \ {\n\t\t\th.pollLast();\n\t\t}\n\t\treturn isMin ? get(h.peekLast(), x) : -get(h.peekLast(),\
     \ x);\n\t}\n}"
@@ -776,7 +777,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-02-29 11:09:46+09:00'
+  timestamp: '2024-03-01 12:06:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/ConvexHullTrick.java
