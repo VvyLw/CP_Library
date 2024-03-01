@@ -25,7 +25,7 @@ public final class Why {
 		final int n = uf.size() / 2;
 		boolean ok = true;
 		for(int i = 0; i < n; ++i) {
-			ok &= uf.root(i) != uf.root(i + n);
+			ok &= !uf.same(i, i + n);
 		}
 		return ok;
 	}
