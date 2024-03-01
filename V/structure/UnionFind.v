@@ -36,7 +36,7 @@ pub fn is_bipartite(mut uf UnionFind) bool {
 	n:=uf.par.len/2
 	mut ok:=true
 	for i in 0..n {
-		ok=ok && uf.root(i)!=uf.root(i+n)
+		ok=ok && !uf.same(i,i+n)
 	}
 	return ok
 }
