@@ -49,6 +49,13 @@ template <bool flush=false, class Head, class... Tail> inline void vout(const He
 #define fin(...) do{ out(__VA_ARGS__); return; }while(false)
 } // IO
 
+#if local
+//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3
+#include <C++/io/debug_print.hpp>
+#else
+#define dump(...) static_cast<void>(0)
+#endif
+
 /**
  * @brief 出力
  */

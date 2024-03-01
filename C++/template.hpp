@@ -83,13 +83,6 @@ inline void alpha(){ std::cout << std::boolalpha; }
 
 using namespace IO;
 
-#if local
-//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3
-#include <C++/io/debug_print.hpp>
-#else
-#define debug(...) static_cast<void>(0)
-#endif
-
 namespace zia_qu {
 #define elif else if
 #define eid(el,v) size_t(&el-&v[0])
