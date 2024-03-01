@@ -12,14 +12,14 @@ import library.ds.pair.IntPair;
 public final class ConvexHullTrick {
 	private final Deque<IntPair> h;
 	private final boolean isMin;
-	ConvexHullTrick(final boolean isMin) {
+	public ConvexHullTrick(final boolean isMin) {
 		this.isMin = isMin;
 		h = new Deque<>();
 	}
 	private final boolean isEmpty(){ return h.isEmpty(); }
-	final void clear(){ h.clear(); }
-	final int size(){ return h.size(); }
-	final Deque<IntPair> get(){ return h; }
+	public final void clear(){ h.clear(); }
+	public final int size(){ return h.size(); }
+	public final Deque<IntPair> get(){ return h; }
 	private final int sgn(final long x){ return x == 0 ? 0 : (x < 0 ? -1 : 1); }
 	private final boolean check(final IntPair a, final IntPair b, final IntPair c) {
 		if(b.second.longValue() == a.second.longValue() || c.second.longValue() == b.second.longValue()) {
@@ -27,7 +27,7 @@ public final class ConvexHullTrick {
 		}
 		return (b.second.longValue() - a.second.longValue()) / (a.first.longValue() - b.first.longValue()) >= (c.second.longValue() - b.second.longValue()) / (b.first.longValue() - c.first.longValue());
 	}
-	final void add(long a, long b) {
+	public final void add(long a, long b) {
 		if(!isMin) {
 			a = -a;
 			b = -b;
@@ -63,7 +63,7 @@ public final class ConvexHullTrick {
 		}
 	}
 	private final long get(final IntPair p, final long x){ return p.first.longValue() * x + p.second.longValue(); }
-	final long query(final long x) {
+	public final long query(final long x) {
 		assert !isEmpty();
 		int l = -1, r = h.size() - 1;
 		while(l + 1 < r) {
@@ -76,14 +76,14 @@ public final class ConvexHullTrick {
 		}
 		return isMin ? get(h.get(r), x) : -get(h.get(r), x);
 	}
-	final long queryMonotoneInc(final long x) {
+	public final long queryMonotoneInc(final long x) {
 		assert !isEmpty();
 		while(h.size() >= 2 && get(h.peekFirst(), x) >= get(h.get(1), x)) {
 			h.pollFirst();
 		}
 		return isMin ? get(h.peekFirst(), x) : -get(h.peekFirst(), x);
 	}
-	final long queryMonotoneDec(final long x) {
+	public final long queryMonotoneDec(final long x) {
 		assert !isEmpty();
 		while(h.size() >= 2 && get(h.peekLast(), x) >= get(h.get(h.size() - 2), x)) {
 			h.pollLast();
