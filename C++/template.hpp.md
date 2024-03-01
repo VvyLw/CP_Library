@@ -81,8 +81,7 @@ data:
   attributes:
     _deprecated_at_docs: docs/template.md
     document_title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
-    links:
-    - https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3
+    links: []
   bundledCode: "#line 2 \"C++/template.hpp\"\n#ifndef TEMPLATE\r\n#define TEMPLATE\r\
     \n#endif\r\n#pragma GCC diagnostic ignored \"-Wunused-parameter\"\r\n#pragma GCC\
     \ diagnostic ignored \"-Wsign-compare\"\r\n#pragma GCC diagnostic ignored \"-Wdeprecated-copy\"\
@@ -294,12 +293,12 @@ data:
     \ }\ntemplate <bool flush=false, class Head, class... Tail> inline void vout(const\
     \ Head& head, const Tail&... tail){ std::cout << head << '\\n'; vout<flush>(tail...);\
     \ }\n\n#define fin(...) do{ out(__VA_ARGS__); return; }while(false)\n} // IO\n\
-    \n/**\n * @brief \u51FA\u529B\n */\n#line 83 \"C++/template.hpp\"\n\r\nusing namespace\
-    \ IO;\r\n\r\n#if local\r\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\r\
-    \n#include <C++/io/debug_print.hpp>\r\n#else\r\n#define debug(...) static_cast<void>(0)\r\
-    \n#endif\r\n\r\nnamespace zia_qu {\r\n#define elif else if\r\n#define eid(el,v)\
-    \ size_t(&el-&v[0])\r\n#define bif(bit,tar) if(((bit)>>(tar))&1)\r\n#define nxp(x)\
-    \ std::next_permutation(all(x))\r\n#define prp(x) std::prev_permutation(all(x))\r\
+    \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
+    #include <C++/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
+    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 83 \"C++/template.hpp\"\n\r\n\
+    using namespace IO;\r\n\r\nnamespace zia_qu {\r\n#define elif else if\r\n#define\
+    \ eid(el,v) size_t(&el-&v[0])\r\n#define bif(bit,tar) if(((bit)>>(tar))&1)\r\n\
+    #define nxp(x) std::next_permutation(all(x))\r\n#define prp(x) std::prev_permutation(all(x))\r\
     \n#define strpl(s,a,b) std::regex_replace(s,std::regex(a),b)\r\n#define rgxsr(s,rgx)\
     \ std::regex_search(s,std::regex(rgx))\r\ninline void YES(const bool ok=1){ out(ok?\"\
     YES\":\"NO\"); }\r\ninline void NO(const bool ok=1){ YES(!ok); }\r\ninline void\
@@ -512,7 +511,7 @@ data:
     \  return false;\n            }\n            mul*=x;\n        }\n\t\treturn mul<=n;\n\
     \t};\n\tul ret=0;\n\tfor(int i = 32; --i >= 0;) {\n\t\tif(chk(ret|(1U<<i))) {\n\
     \t\t\tret|=1U<<i;\n\t\t}\n\t}\n\treturn ret;\n}\n}\n\n/**\n * @brief k\u4E57\u6839\
-    (\u6574\u6570)\n */\n#line 296 \"C++/template.hpp\"\n\r\nnamespace Heileden {\r\
+    (\u6574\u6570)\n */\n#line 289 \"C++/template.hpp\"\n\r\nnamespace Heileden {\r\
     \ntemplate <class T, class Boolean=bool> inline T bins(T ok, T ng, const Boolean\
     \ &fn, const ld eps = 1) {\r\n\twhile(std::abs(ok-ng)>eps) {\r\n\t\tT mid=(ok+ng)/2;\r\
     \n\t\t(fn(mid)?ok:ng) = mid;\r\n\t}\r\n\treturn ok;\r\n}\r\ntemplate <class T>\
@@ -583,11 +582,9 @@ data:
     \ U b){ return (LIM<T>/a)<b; }\r\ninline void fix(const short x){ std::cout <<\
     \ std::fixed << std::setprecision(x); }\r\ninline void alpha(){ std::cout << std::boolalpha;\
     \ }\r\n\r\n#include \"C++/io/input.hpp\"\r\n#include \"C++/io/output.hpp\"\r\n\
-    \r\nusing namespace IO;\r\n\r\n#if local\r\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\r\
-    \n#include <C++/io/debug_print.hpp>\r\n#else\r\n#define debug(...) static_cast<void>(0)\r\
-    \n#endif\r\n\r\nnamespace zia_qu {\r\n#define elif else if\r\n#define eid(el,v)\
-    \ size_t(&el-&v[0])\r\n#define bif(bit,tar) if(((bit)>>(tar))&1)\r\n#define nxp(x)\
-    \ std::next_permutation(all(x))\r\n#define prp(x) std::prev_permutation(all(x))\r\
+    \r\nusing namespace IO;\r\n\r\nnamespace zia_qu {\r\n#define elif else if\r\n\
+    #define eid(el,v) size_t(&el-&v[0])\r\n#define bif(bit,tar) if(((bit)>>(tar))&1)\r\
+    \n#define nxp(x) std::next_permutation(all(x))\r\n#define prp(x) std::prev_permutation(all(x))\r\
     \n#define strpl(s,a,b) std::regex_replace(s,std::regex(a),b)\r\n#define rgxsr(s,rgx)\
     \ std::regex_search(s,std::regex(rgx))\r\ninline void YES(const bool ok=1){ out(ok?\"\
     YES\":\"NO\"); }\r\ninline void NO(const bool ok=1){ YES(!ok); }\r\ninline void\
@@ -799,7 +796,7 @@ data:
   isVerificationFile: false
   path: C++/template.hpp
   requiredBy: []
-  timestamp: '2024-02-29 11:00:00+09:00'
+  timestamp: '2024-03-01 16:58:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sr_sum.test.cpp

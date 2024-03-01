@@ -59,7 +59,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u51FA\u529B"
-    links: []
+    links:
+    - https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3
   bundledCode: "#line 2 \"C++/io/output.hpp\"\n\n#include <iostream>\n#include <map>\n\
     #include <set>\n#include <deque>\n#line 2 \"C++/mypair.hpp\"\n\n#include <cassert>\n\
     #include <utility>\n#include <tuple>\n#include <cmath>\n#include <numeric>\n#line\
@@ -203,7 +204,9 @@ data:
     \ }\ntemplate <bool flush=false, class Head, class... Tail> inline void vout(const\
     \ Head& head, const Tail&... tail){ std::cout << head << '\\n'; vout<flush>(tail...);\
     \ }\n\n#define fin(...) do{ out(__VA_ARGS__); return; }while(false)\n} // IO\n\
-    \n/**\n * @brief \u51FA\u529B\n */\n"
+    \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
+    #include <C++/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
+    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n"
   code: "#pragma once\n\n#include <iostream>\n#include <map>\n#include <set>\n#include\
     \ <deque>\n#include \"C++/mypair.hpp\"\n#ifndef TEMPLATE\nusing i128 = __int128_t;\n\
     using u128 = __uint128_t;\n#endif\nnamespace IO {\nstd::ostream &operator<<(std::ostream\
@@ -242,7 +245,9 @@ data:
     \ }\ntemplate <bool flush=false, class Head, class... Tail> inline void vout(const\
     \ Head& head, const Tail&... tail){ std::cout << head << '\\n'; vout<flush>(tail...);\
     \ }\n\n#define fin(...) do{ out(__VA_ARGS__); return; }while(false)\n} // IO\n\
-    \n/**\n * @brief \u51FA\u529B\n */"
+    \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
+    #include <C++/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
+    #endif\n\n/**\n * @brief \u51FA\u529B\n */"
   dependsOn:
   - C++/mypair.hpp
   - C++/constance.hpp
@@ -251,7 +256,7 @@ data:
   path: C++/io/output.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2024-02-22 09:22:35+09:00'
+  timestamp: '2024-03-01 16:58:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sr_sum.test.cpp
