@@ -14,7 +14,7 @@ class UnionFind
         i
     end
     def size(i)
-        -@par[i]
+        -@par[self[i]]
     end
     def unite(i, j)
         i = self[i]
