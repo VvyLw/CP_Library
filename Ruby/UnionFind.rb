@@ -34,6 +34,6 @@ def is_bipartite?(uf)
     raise "Assertion failed: Length of UnionFind must be even" unless uf.length % 2 == 0
     n = uf.length / 2
     ok = true
-    n.times{ok &&= uf[_1] != uf[_1 + n] }
+    n.times{ok &&= uf[_1] != uf[_1 + n]}
     ok
 end
