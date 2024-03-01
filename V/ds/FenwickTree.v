@@ -1,4 +1,4 @@
-module structure
+module ds
 
 import math.bits{leading_zeros_32}
 pub struct FenwickTree {

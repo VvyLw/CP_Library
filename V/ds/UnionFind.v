@@ -1,4 +1,4 @@
-module structure
+module ds
 
 pub struct UnionFind {
 mut:

@@ -1,4 +1,4 @@
-module structure
+module ds
 
 import math { radians, cos, sin, hypot }
 
