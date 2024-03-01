@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * UnionFindのベースとなるインターフェース
+ * Disjoint Set Union
  */
 public interface DSU {
 	/**
