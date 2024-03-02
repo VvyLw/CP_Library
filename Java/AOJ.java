@@ -9,7 +9,6 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Formatter;
-import java.util.function.DoubleUnaryOperator;
 import java.util.function.IntUnaryOperator;
 import java.util.function.LongUnaryOperator;
 import java.util.stream.IntStream;
@@ -125,7 +124,6 @@ final class IO implements Closeable, AutoCloseable {
 		IntStream.range(0, n).forEach(i -> a[i] = nd());
 		return a;
 	}
-	final double[] nd(final int n, final DoubleUnaryOperator f){ return Arrays.stream(nd(n)).map(f).toArray(); }
 	final char[] nc(final int n) {
 		final char[] a = new char[n];
 		IntStream.range(0, n).forEach(i -> a[i] = nc());

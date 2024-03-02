@@ -16,11 +16,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.DoublePredicate;
-import java.util.function.DoubleUnaryOperator;
 import java.util.function.IntPredicate;
 import java.util.function.IntUnaryOperator;
 import java.util.function.LongPredicate;
 import java.util.function.LongUnaryOperator;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -1241,7 +1241,6 @@ final class IO implements Closeable, AutoCloseable {
 		IntStream.range(0, n).forEach(i -> a[i] = nd());
 		return a;
 	}
-	final double[] nd(final int n, final DoubleUnaryOperator f){ return Arrays.stream(nd(n)).map(f).toArray(); }
 	final char[] nc(final int n) {
 		final char[] a = new char[n];
 		IntStream.range(0, n).forEach(i -> a[i] = nc());
@@ -1267,6 +1266,7 @@ final class IO implements Closeable, AutoCloseable {
 		IntStream.range(0, n).forEach(i -> p[i] = pi());
 		return p;
 	}
+	final IntPair[] pi(final int n, final UnaryOperator<IntPair> f){ return Arrays.stream(pi(n)).map(f).toArray(IntPair[]::new); }
 	final FloatPair[] pf(final int n) {
 		final FloatPair[] p = new FloatPair[n];
 		IntStream.range(0, n).forEach(i -> p[i] = pf());
