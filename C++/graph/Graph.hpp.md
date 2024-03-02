@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/edge.hpp
     title: Edge
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/WeightedGraph.hpp
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
   _extendedVerifiedWith:
@@ -21,24 +21,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lca.test.cpp
     title: test/lca.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/scc.test.cpp
     title: test/scc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/scc2.test.cpp
     title: test/scc2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/shortestpath.test.cpp
     title: test/shortestpath.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/spfa.test.cpp
     title: test/spfa.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/warshallfloyd.test.cpp
     title: test/warshallfloyd.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
     links: []
@@ -143,7 +143,7 @@ data:
   requiredBy:
   - C++/graph/WeightedGraph.hpp
   timestamp: '2024-02-29 08:49:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/cycledetector.test.cpp
   - test/scc.test.cpp

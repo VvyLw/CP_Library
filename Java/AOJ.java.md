@@ -555,36 +555,35 @@ data:
   code: "import static java.lang.Math.*;\n\nimport java.io.Closeable;\nimport java.io.Flushable;\n\
     import java.io.IOException;\nimport java.io.InputStream;\nimport java.io.OutputStream;\n\
     import java.math.BigInteger;\nimport java.util.Arrays;\nimport java.util.Collection;\n\
-    import java.util.Formatter;\nimport java.util.function.DoubleUnaryOperator;\n\
-    import java.util.function.IntUnaryOperator;\nimport java.util.function.LongUnaryOperator;\n\
-    import java.util.stream.IntStream;\n\nfinal class Main {\n\tpublic static void\
-    \ main(final String[] args) {\n\t\tIntStream.range(0, VvyLw.MULTI ? VvyLw.io.ni()\
-    \ : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.io.close();\n\t}\n}\n\nfinal class\
-    \ VvyLw extends Utility {\n\tstatic final IO io = new IO(System.in, System.out,\
-    \ System.err, false);\n\tstatic final boolean MULTI = false;\n\tstatic final int\
-    \ INF = 1 << 30;\n\tstatic final long LINF = (1L << 61) - 1;\n\tstatic final double\
-    \ EPS = 1e-18;\n\tstatic final int MOD = 998244353;\n\tstatic final int M0D =\
-    \ (int) 1e9 + 7;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\t\
-    static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final void solve()\
-    \ {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String yes(final\
-    \ boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String\
-    \ no(final boolean ok){ return yes(!ok); }\n\tprotected static final long sqr(final\
-    \ long x){ return x * x; }\n\tprotected static final int mod(long n, final int\
-    \ m) {\n\t\tn %= m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\tprotected static\
-    \ final long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n +\
-    \ m : n;\n\t}\n\tprotected static final long intCeil(final long a, final long\
-    \ b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final double\
-    \ intRound(final double a, final long b, final int c) {\n\t\tfinal long d = intPow(10,\
-    \ c);\n\t\treturn rint((a * d) / b) / d;\n\t}\n\tprotected static final long intPow(long\
-    \ a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\
-    \t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static final long intPow(long a, long b, final long m) {\n\t\t\
-    long res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
-    \t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\
-    \tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final int min(final\
-    \ int... a){ return Arrays.stream(a).min().getAsInt(); }\n\tprotected static final\
-    \ long min(final long... a){ return Arrays.stream(a).min().getAsLong(); }\n\t\
-    protected static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
+    import java.util.Formatter;\nimport java.util.function.IntUnaryOperator;\nimport\
+    \ java.util.function.LongUnaryOperator;\nimport java.util.stream.IntStream;\n\n\
+    final class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
+    \ VvyLw.MULTI ? VvyLw.io.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.io.close();\n\
+    \t}\n}\n\nfinal class VvyLw extends Utility {\n\tstatic final IO io = new IO(System.in,\
+    \ System.out, System.err, false);\n\tstatic final boolean MULTI = false;\n\tstatic\
+    \ final int INF = 1 << 30;\n\tstatic final long LINF = (1L << 61) - 1;\n\tstatic\
+    \ final double EPS = 1e-18;\n\tstatic final int MOD = 998244353;\n\tstatic final\
+    \ int M0D = (int) 1e9 + 7;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1,\
+    \ 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic\
+    \ final void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final\
+    \ String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static\
+    \ final String no(final boolean ok){ return yes(!ok); }\n\tprotected static final\
+    \ long sqr(final long x){ return x * x; }\n\tprotected static final int mod(long\
+    \ n, final int m) {\n\t\tn %= m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\
+    \tprotected static final long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn\
+    \ n < 0 ? n + m : n;\n\t}\n\tprotected static final long intCeil(final long a,\
+    \ final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final\
+    \ double intRound(final double a, final long b, final int c) {\n\t\tfinal long\
+    \ d = intPow(10, c);\n\t\treturn rint((a * d) / b) / d;\n\t}\n\tprotected static\
+    \ final long intPow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\
+    \t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\
+    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long intPow(long a, long\
+    \ b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 ==\
+    \ 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\
+    \t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
+    \ static final int min(final int... a){ return Arrays.stream(a).min().getAsInt();\
+    \ }\n\tprotected static final long min(final long... a){ return Arrays.stream(a).min().getAsLong();\
+    \ }\n\tprotected static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
     \ }\n\tprotected static final int max(final int... a){ return Arrays.stream(a).max().getAsInt();\
     \ }\n\tprotected static final long max(final long... a){ return Arrays.stream(a).max().getAsLong();\
     \ }\n\tprotected static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble();\
@@ -614,32 +613,31 @@ data:
     \ = nl());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int n, final LongUnaryOperator\
     \ f){ return Arrays.stream(nl(n)).map(f).toArray(); }\n\tfinal double[] nd(final\
     \ int n) {\n\t\tfinal double[] a = new double[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal double[] nd(final int n, final\
-    \ DoubleUnaryOperator f){ return Arrays.stream(nd(n)).map(f).toArray(); }\n\t\
-    final char[] nc(final int n) {\n\t\tfinal char[] a = new char[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal String[] ns(final\
-    \ int n) {\n\t\tfinal String[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal char[][] nt(final int n) {\n\t\
-    \tfinal char[][] a = new char[n][];\n\t\tIntStream.range(0, n).forEach(i -> a[i]\
-    \ = nt());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final int n) {\n\t\tfinal\
-    \ BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0, n).forEach(i ->\
-    \ a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final int h, final int\
-    \ w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i\
-    \ -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final int h, final\
-    \ int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0, h).forEach(i\
-    \ -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final int h, final\
-    \ int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\tfinal char[][] nc(final\
-    \ int h, final int w) {\n\t\tfinal char[][] a = new char[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = nc(w));\n\t\treturn a;\n\t}\n\tfinal String[][] ns(final\
-    \ int h, final int w) {\n\t\tfinal String[][] a = new String[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = ns(w));\n\t\treturn a;\n\t}\n\tfinal BigInteger[][] nb(final\
-    \ int h, final int w) {\n\t\tfinal BigInteger[][] a = new BigInteger[h][w];\n\t\
-    \tIntStream.range(0, h).forEach(i -> a[i] = nb(w));\n\t\treturn a;\n\t}\n\tfinal\
-    \ String line(){ return in.line(); }\n\tfinal void print(final Object arg){ out.print(arg);\
-    \ }\n\tfinal void printf(final String fmt, final Object... args){ out.printf(fmt,\
-    \ args); }\n\tfinal void out(){ out.out(); }\n\tfinal void out(final Object head,\
-    \ final Object... tail){ out.out(head, tail); }\n\tfinal <E> void out(final Collection<E>\
+    \ -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal char[] nc(final int n) {\n\t\t\
+    final char[] a = new char[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nc());\n\
+    \t\treturn a;\n\t}\n\tfinal String[] ns(final int n) {\n\t\tfinal String[] a =\
+    \ new String[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ns());\n\t\treturn\
+    \ a;\n\t}\n\tfinal char[][] nt(final int n) {\n\t\tfinal char[][] a = new char[n][];\n\
+    \t\tIntStream.range(0, n).forEach(i -> a[i] = nt());\n\t\treturn a;\n\t}\n\tfinal\
+    \ BigInteger[] nb(final int n) {\n\t\tfinal BigInteger[] a = new BigInteger[n];\n\
+    \t\tIntStream.range(0, n).forEach(i -> a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal\
+    \ int[][] ni(final int h, final int w) {\n\t\tfinal int[][] a = new int[h][w];\n\
+    \t\tIntStream.range(0, h).forEach(i -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\t\
+    final long[][] nl(final int h, final int w) {\n\t\tfinal long[][] a = new long[h][w];\n\
+    \t\tIntStream.range(0, h).forEach(i -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\t\
+    final double[][] nd(final int h, final int w) {\n\t\tfinal double[][] a = new\
+    \ double[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] = nd(w));\n\t\treturn\
+    \ a;\n\t}\n\tfinal char[][] nc(final int h, final int w) {\n\t\tfinal char[][]\
+    \ a = new char[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] = nc(w));\n\
+    \t\treturn a;\n\t}\n\tfinal String[][] ns(final int h, final int w) {\n\t\tfinal\
+    \ String[][] a = new String[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i]\
+    \ = ns(w));\n\t\treturn a;\n\t}\n\tfinal BigInteger[][] nb(final int h, final\
+    \ int w) {\n\t\tfinal BigInteger[][] a = new BigInteger[h][w];\n\t\tIntStream.range(0,\
+    \ h).forEach(i -> a[i] = nb(w));\n\t\treturn a;\n\t}\n\tfinal String line(){ return\
+    \ in.line(); }\n\tfinal void print(final Object arg){ out.print(arg); }\n\tfinal\
+    \ void printf(final String fmt, final Object... args){ out.printf(fmt, args);\
+    \ }\n\tfinal void out(){ out.out(); }\n\tfinal void out(final Object head, final\
+    \ Object... tail){ out.out(head, tail); }\n\tfinal <E> void out(final Collection<E>\
     \ a){ out.out(a); }\n\tfinal void out(final int[] head, final int[]...tail){ out.out(head,\
     \ tail); }\n\tfinal void out(final long[] head, final long[]...tail){ out.out(head,\
     \ tail); }\n\tfinal void out(final double[] head, final double[]...tail){ out.out(head,\
@@ -974,7 +972,7 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/All.java
-  timestamp: '2024-03-02 09:36:06+09:00'
+  timestamp: '2024-03-03 07:03:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java

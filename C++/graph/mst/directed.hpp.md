@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/SkewHeap.hpp
     title: SkewHeap
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/edge.hpp
     title: Edge
   - icon: ':heavy_check_mark:'

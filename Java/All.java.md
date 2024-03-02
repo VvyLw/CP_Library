@@ -562,10 +562,10 @@ data:
     import java.util.Queue;\nimport java.util.Stack;\nimport java.util.TreeMap;\n\
     import java.util.function.BiFunction;\nimport java.util.function.BiPredicate;\n\
     import java.util.function.BinaryOperator;\nimport java.util.function.Consumer;\n\
-    import java.util.function.DoublePredicate;\nimport java.util.function.DoubleUnaryOperator;\n\
-    import java.util.function.IntPredicate;\nimport java.util.function.IntUnaryOperator;\n\
-    import java.util.function.LongBinaryOperator;\nimport java.util.function.LongPredicate;\n\
-    import java.util.function.LongUnaryOperator;\nimport java.util.function.Predicate;\n\
+    import java.util.function.DoublePredicate;\nimport java.util.function.IntPredicate;\n\
+    import java.util.function.IntUnaryOperator;\nimport java.util.function.LongBinaryOperator;\n\
+    import java.util.function.LongPredicate;\nimport java.util.function.LongUnaryOperator;\n\
+    import java.util.function.Predicate;\nimport java.util.function.UnaryOperator;\n\
     import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nfinal\
     \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
     \ VvyLw.MULTI ? VvyLw.io.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.io.close();\n\
@@ -1097,24 +1097,24 @@ data:
     \ long[] nl(final int n, final LongUnaryOperator f){ return Arrays.stream(nl(n)).map(f).toArray();\
     \ }\n\tfinal double[] nd(final int n) {\n\t\tfinal double[] a = new double[n];\n\
     \t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal\
-    \ double[] nd(final int n, final DoubleUnaryOperator f){ return Arrays.stream(nd(n)).map(f).toArray();\
-    \ }\n\tfinal char[] nc(final int n) {\n\t\tfinal char[] a = new char[n];\n\t\t\
-    IntStream.range(0, n).forEach(i -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal\
-    \ String[] ns(final int n) {\n\t\tfinal String[] a = new String[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal char[][] nt(final\
-    \ int n) {\n\t\tfinal char[][] a = new char[n][];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = nt());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final int n) {\n\
-    \t\tfinal BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal IntPair[] pi(final int n) {\n\t\
-    \tfinal IntPair[] p = new IntPair[n];\n\t\tIntStream.range(0, n).forEach(i ->\
-    \ p[i] = pi());\n\t\treturn p;\n\t}\n\tfinal FloatPair[] pf(final int n) {\n\t\
-    \tfinal FloatPair[] p = new FloatPair[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> p[i] = pf());\n\t\treturn p;\n\t}\n\tfinal int[][] ni(final int h, final\
-    \ int w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i\
-    \ -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final int h, final\
-    \ int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0, h).forEach(i\
-    \ -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final int h, final\
-    \ int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
+    \ char[] nc(final int n) {\n\t\tfinal char[] a = new char[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal String[] ns(final\
+    \ int n) {\n\t\tfinal String[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal char[][] nt(final int n) {\n\t\
+    \tfinal char[][] a = new char[n][];\n\t\tIntStream.range(0, n).forEach(i -> a[i]\
+    \ = nt());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final int n) {\n\t\tfinal\
+    \ BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0, n).forEach(i ->\
+    \ a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal IntPair[] pi(final int n) {\n\t\t\
+    final IntPair[] p = new IntPair[n];\n\t\tIntStream.range(0, n).forEach(i -> p[i]\
+    \ = pi());\n\t\treturn p;\n\t}\n\tfinal IntPair[] pi(final int n, final UnaryOperator<IntPair>\
+    \ f){ return Arrays.stream(pi(n)).map(f).toArray(IntPair[]::new); }\n\tfinal FloatPair[]\
+    \ pf(final int n) {\n\t\tfinal FloatPair[] p = new FloatPair[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> p[i] = pf());\n\t\treturn p;\n\t}\n\tfinal int[][] ni(final\
+    \ int h, final int w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0,\
+    \ h).forEach(i -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final\
+    \ int h, final int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0,\
+    \ h).forEach(i -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final\
+    \ int h, final int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\tfinal char[][] nc(final\
     \ int h, final int w) {\n\t\tfinal char[][] a = new char[h][w];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> a[i] = nc(w));\n\t\treturn a;\n\t}\n\tfinal String[][] ns(final\
@@ -2679,7 +2679,7 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/CodeForces.java
   - Java/AOJ.java
-  timestamp: '2024-03-02 09:36:06+09:00'
+  timestamp: '2024-03-03 07:03:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

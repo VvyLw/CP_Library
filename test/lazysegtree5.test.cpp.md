@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/ds/LazySegmentTree.hpp
     title: "\u9045\u5EF6\u30BB\u30B0\u6728"
   _extendedRequiredBy: []

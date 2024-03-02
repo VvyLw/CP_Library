@@ -2,34 +2,34 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/io/input.hpp
     title: "\u5165\u529B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/io/output.hpp
     title: "\u51FA\u529B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/divisor.hpp
     title: "\u7D04\u6570\u5217\u6319"
   - icon: ':heavy_check_mark:'
     path: C++/math/primecounter.hpp
     title: "\u7D20\u6570\u306E\u500B\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/primefactor.hpp
     title: "\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/primefactortable.hpp
     title: "\u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/primetable.hpp
     title: Sieve of Eratosthenes
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/psum/psum.hpp
     title: "\u7D2F\u7A4D\u548C"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/mypair.hpp
     title: C++/mypair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedVerifiedWith:
@@ -60,24 +60,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/pcounter.test.cpp
     title: test/pcounter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/s_rmq.test.cpp
     title: test/s_rmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stable.test.cpp
     title: test/stable.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"C++/myvector.hpp\"\n\n#include <vector>\n\n#ifndef TEMPLATE\n\
@@ -151,7 +151,7 @@ data:
   - C++/mypair.hpp
   - C++/template.hpp
   timestamp: '2024-02-19 12:20:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sr_sum.test.cpp
   - test/m_add.test.cpp

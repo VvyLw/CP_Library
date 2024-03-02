@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/kthrooti.hpp
     title: "k\u4E57\u6839(\u6574\u6570)"
   _extendedRequiredBy: []

@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/constance.hpp
     title: "\u5B9A\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/io/input.hpp
     title: "\u5165\u529B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/io/output.hpp
     title: "\u51FA\u529B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/divisor.hpp
     title: "\u7D04\u6570\u5217\u6319"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/kthrooti.hpp
     title: "k\u4E57\u6839(\u6574\u6570)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/primefactor.hpp
     title: "\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/primefactortable.hpp
     title: "\u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/primetable.hpp
     title: Sieve of Eratosthenes
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/psum/psum.hpp
     title: "\u7D2F\u7A4D\u548C"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/mypair.hpp
     title: C++/mypair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/myvector.hpp
     title: C++/myvector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/timer.hpp
     title: "\u30BF\u30A4\u30DE\u30FC"
   _extendedRequiredBy: []
@@ -60,24 +60,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/s_rmq.test.cpp
     title: test/s_rmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stable.test.cpp
     title: test/stable.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/template.md
     document_title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
@@ -797,7 +797,7 @@ data:
   path: C++/template.hpp
   requiredBy: []
   timestamp: '2024-03-01 16:58:27+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sr_sum.test.cpp
   - test/m_add.test.cpp

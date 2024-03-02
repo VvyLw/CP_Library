@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/psum2d.test.cpp
     title: test/psum2d.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u4E8C\u6B21\u5143\u7D2F\u7A4D\u548C"
     links: []
@@ -53,7 +53,7 @@ data:
   path: C++/math/psum/psum2d.hpp
   requiredBy: []
   timestamp: '2024-02-27 02:51:07+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/psum2d.test.cpp
 documentation_of: C++/math/psum/psum2d.hpp

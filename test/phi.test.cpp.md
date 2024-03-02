@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/euler_phi.hpp
     title: Euler's Phi-function
   _extendedRequiredBy: []

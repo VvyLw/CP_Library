@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/phi_table.test.cpp
     title: test/phi_table.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Euler's Phi-function(table)
     links: []
@@ -31,7 +31,7 @@ data:
   path: C++/math/phitable.hpp
   requiredBy: []
   timestamp: '2024-02-19 12:20:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/phi_table.test.cpp
 documentation_of: C++/math/phitable.hpp

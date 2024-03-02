@@ -741,7 +741,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-03-02 09:36:06+09:00'
+  timestamp: '2024-03-03 07:03:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java

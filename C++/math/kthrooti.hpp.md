@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/math/primecounter.hpp
     title: "\u7D20\u6570\u306E\u500B\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedVerifiedWith:
@@ -36,24 +36,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/pcounter.test.cpp
     title: test/pcounter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/s_rmq.test.cpp
     title: test/s_rmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stable.test.cpp
     title: test/stable.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "k\u4E57\u6839(\u6574\u6570)"
     links: []
@@ -84,7 +84,7 @@ data:
   - C++/math/primecounter.hpp
   - C++/template.hpp
   timestamp: '2024-02-19 12:20:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sr_sum.test.cpp
   - test/m_add.test.cpp

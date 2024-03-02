@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lcpa.test.cpp
     title: test/lcpa.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sa.test.cpp
     title: test/sa.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Suffix Array
     links:
@@ -159,7 +159,7 @@ data:
   path: C++/string/SA.hpp
   requiredBy: []
   timestamp: '2024-02-19 12:20:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sa.test.cpp
   - test/lcpa.test.cpp

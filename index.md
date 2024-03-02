@@ -6,22 +6,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/SkewHeap.hpp
       title: SkewHeap
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/constance.hpp
       title: "\u5B9A\u6570"
     - icon: ':heavy_check_mark:'
       path: C++/dp.hpp
       title: DP(Knapsack, LCS, LIS)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/mypair.hpp
       title: C++/mypair.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/myvector.hpp
       title: C++/myvector.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/template.hpp
       title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/timer.hpp
       title: "\u30BF\u30A4\u30DE\u30FC"
   - name: C++/ds
@@ -29,13 +29,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/ds/DualSegmentTree.hpp
       title: "\u53CC\u5BFE\u30BB\u30B0\u6728"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/ds/LazySegmentTree.hpp
       title: "\u9045\u5EF6\u30BB\u30B0\u6728"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/ds/SegmentTree.hpp
       title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/ds/SparseTable.hpp
       title: Sparse Table
     - icon: ':heavy_check_mark:'
@@ -57,33 +57,33 @@ data:
     - icon: ':warning:'
       path: C++/ds/uf/MergeUF.hpp
       title: MergeUnionFind
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/ds/uf/UFPotential.hpp
       title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304DUnionFind"
     - icon: ':warning:'
       path: C++/ds/uf/UFUndo.hpp
       title: "Undo\u53EF\u80FDUnionFind"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/ds/uf/UnionFind.hpp
       title: UnionFind
   - name: C++/graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/graph/Graph.hpp
       title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
     - icon: ':heavy_check_mark:'
       path: C++/graph/LCA.hpp
       title: "\u6700\u5C0F\u5171\u901A\u7956\u5148"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/graph/SCC.hpp
       title: SCC
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/graph/ShortestPath.hpp
       title: "\u6700\u77ED\u8DEF"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/graph/WeightedGraph.hpp
       title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/graph/edge.hpp
       title: Edge
   - name: C++/graph/mst
@@ -102,10 +102,10 @@ data:
       title: Manhattan MST
   - name: C++/io
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/io/input.hpp
       title: "\u5165\u529B"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/io/output.hpp
       title: "\u51FA\u529B"
   - name: C++/math
@@ -116,56 +116,56 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math/ModPrime.hpp
       title: ModPrime
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/Modint.hpp
       title: Modint
     - icon: ':heavy_check_mark:'
       path: C++/math/Pollards_rho.hpp
       title: Pollard's Rho
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/divisor.hpp
       title: "\u7D04\u6570\u5217\u6319"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/euler_phi.hpp
       title: Euler's Phi-function
     - icon: ':heavy_check_mark:'
       path: C++/math/inverse_num.hpp
       title: "\u8EE2\u5012\u6570"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/kthrooti.hpp
       title: "k\u4E57\u6839(\u6574\u6570)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/phitable.hpp
       title: Euler's Phi-function(table)
     - icon: ':heavy_check_mark:'
       path: C++/math/primecounter.hpp
       title: "\u7D20\u6570\u306E\u500B\u6570"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/primefactor.hpp
       title: "\u7D20\u56E0\u6570\u5206\u89E3"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/primefactortable.hpp
       title: "\u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/primetable.hpp
       title: Sieve of Eratosthenes
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/tetration.hpp
       title: "Tetration(a\u2191\u2191b)"
   - name: C++/math/psum
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/psum/psum.hpp
       title: "\u7D2F\u7A4D\u548C"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/psum/psum2d.hpp
       title: "\u4E8C\u6B21\u5143\u7D2F\u7A4D\u548C"
   - name: C++/string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/string/RH.hpp
       title: Rolling Hash
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/string/SA.hpp
       title: Suffix Array
     - icon: ':heavy_check_mark:'
@@ -174,7 +174,7 @@ data:
     - icon: ':warning:'
       path: C++/string/runlength.hpp
       title: "\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/string/z-algo.hpp
       title: Z-Algorithm
   - name: Java
@@ -626,61 +626,61 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/phi.test.cpp
       title: test/phi.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/phi_table.test.cpp
       title: test/phi_table.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/psum2d.test.cpp
       title: test/psum2d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/rangeaffine.test.cpp
       title: test/rangeaffine.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/rh.test.cpp
       title: test/rh.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/s_rmq.test.cpp
       title: test/s_rmq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/sa.test.cpp
       title: test/sa.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/scc.test.cpp
       title: test/scc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/scc2.test.cpp
       title: test/scc2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/segtree.test.cpp
       title: test/segtree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/segtree2.test.cpp
       title: test/segtree2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/shortestpath.test.cpp
       title: test/shortestpath.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/spfa.test.cpp
       title: test/spfa.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/sr_sum.test.cpp
       title: test/sr_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/stable.test.cpp
       title: test/stable.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/tetration.test.cpp
       title: test/tetration.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/uf.test.cpp
       title: test/uf.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/ufpotential.test.cpp
       title: test/ufpotential.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/warshallfloyd.test.cpp
       title: test/warshallfloyd.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/zalgo.test.cpp
       title: test/zalgo.test.cpp
 layout: toppage

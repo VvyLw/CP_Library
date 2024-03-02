@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/kthrooti.hpp
     title: "k\u4E57\u6839(\u6574\u6570)"
   - icon: ':heavy_check_mark:'
     path: C++/math/primecounter.hpp
     title: "\u7D20\u6570\u306E\u500B\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/primetable.hpp
     title: Sieve of Eratosthenes
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/myvector.hpp
     title: C++/myvector.hpp
   _extendedRequiredBy: []

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/euler_phi.hpp
     title: Euler's Phi-function
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/tetration.hpp
     title: "Tetration(a\u2191\u2191b)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/tetration_mod
@@ -50,7 +50,7 @@ data:
   path: test/tetration.test.cpp
   requiredBy: []
   timestamp: '2024-03-03 06:51:22+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/tetration.test.cpp
 layout: document
