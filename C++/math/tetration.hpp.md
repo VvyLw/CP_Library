@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/tetration.test.cpp
-    title: test/tetration.test.cpp
+    path: test/C++/tetration.test.cpp
+    title: test/C++/tetration.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -52,7 +52,7 @@ data:
   timestamp: '2024-02-19 13:17:33+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/tetration.test.cpp
+  - test/C++/tetration.test.cpp
 documentation_of: C++/math/tetration.hpp
 layout: document
 redirect_from:

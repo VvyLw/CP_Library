@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/phi_table.test.cpp
-    title: test/phi_table.test.cpp
+    path: test/C++/phi_table.test.cpp
+    title: test/C++/phi_table.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -33,7 +33,7 @@ data:
   timestamp: '2024-02-19 12:20:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/phi_table.test.cpp
+  - test/C++/phi_table.test.cpp
 documentation_of: C++/math/phitable.hpp
 layout: document
 redirect_from:

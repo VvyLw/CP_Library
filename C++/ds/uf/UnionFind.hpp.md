@@ -5,19 +5,19 @@ data:
   - icon: ':warning:'
     path: C++/ds/uf/MergeUF.hpp
     title: MergeUnionFind
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/mst/kruskal.hpp
     title: "Kruskal\u6CD5"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/C++/manhattan.test.cpp
+    title: test/C++/manhattan.test.cpp
   - icon: ':x:'
-    path: test/manhattan.test.cpp
-    title: test/manhattan.test.cpp
-  - icon: ':x:'
-    path: test/uf.test.cpp
-    title: test/uf.test.cpp
+    path: test/C++/uf.test.cpp
+    title: test/C++/uf.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: UnionFind
     links:
@@ -82,10 +82,10 @@ data:
   - C++/graph/mst/kruskal.hpp
   - C++/ds/uf/MergeUF.hpp
   timestamp: '2024-02-27 10:38:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/manhattan.test.cpp
-  - test/uf.test.cpp
+  - test/C++/manhattan.test.cpp
+  - test/C++/uf.test.cpp
 documentation_of: C++/ds/uf/UnionFind.hpp
 layout: document
 redirect_from:

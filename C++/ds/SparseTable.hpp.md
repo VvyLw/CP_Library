@@ -4,11 +4,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/s_rmq.test.cpp
-    title: test/s_rmq.test.cpp
+    path: test/C++/s_rmq.test.cpp
+    title: test/C++/s_rmq.test.cpp
   - icon: ':x:'
-    path: test/stable.test.cpp
-    title: test/stable.test.cpp
+    path: test/C++/stable.test.cpp
+    title: test/C++/stable.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -71,8 +71,8 @@ data:
   timestamp: '2024-02-27 10:38:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/stable.test.cpp
-  - test/s_rmq.test.cpp
+  - test/C++/stable.test.cpp
+  - test/C++/s_rmq.test.cpp
 documentation_of: C++/ds/SparseTable.hpp
 layout: document
 redirect_from:

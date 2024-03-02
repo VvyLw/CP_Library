@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/psum2d.test.cpp
-    title: test/psum2d.test.cpp
+    path: test/C++/psum2d.test.cpp
+    title: test/C++/psum2d.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -55,7 +55,7 @@ data:
   timestamp: '2024-02-27 02:51:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/psum2d.test.cpp
+  - test/C++/psum2d.test.cpp
 documentation_of: C++/math/psum/psum2d.hpp
 layout: document
 redirect_from:

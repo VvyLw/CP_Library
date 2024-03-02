@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/rh.test.cpp
-    title: test/rh.test.cpp
+    path: test/C++/rh.test.cpp
+    title: test/C++/rh.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -69,7 +69,7 @@ data:
   timestamp: '2024-02-19 12:20:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/rh.test.cpp
+  - test/C++/rh.test.cpp
 documentation_of: C++/string/RH.hpp
 layout: document
 redirect_from:

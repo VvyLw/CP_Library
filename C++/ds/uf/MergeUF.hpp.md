@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/ds/uf/UnionFind.hpp
     title: UnionFind
   _extendedRequiredBy: []

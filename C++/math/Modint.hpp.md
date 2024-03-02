@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/rangeaffine.test.cpp
-    title: test/rangeaffine.test.cpp
+    path: test/C++/rangeaffine.test.cpp
+    title: test/C++/rangeaffine.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -215,7 +215,7 @@ data:
   timestamp: '2024-02-19 12:20:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/rangeaffine.test.cpp
+  - test/C++/rangeaffine.test.cpp
 documentation_of: C++/math/Modint.hpp
 layout: document
 redirect_from:

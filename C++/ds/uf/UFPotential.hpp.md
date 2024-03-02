@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/ufpotential.test.cpp
-    title: test/ufpotential.test.cpp
+    path: test/C++/ufpotential.test.cpp
+    title: test/C++/ufpotential.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -50,7 +50,7 @@ data:
   timestamp: '2024-02-27 10:38:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/ufpotential.test.cpp
+  - test/C++/ufpotential.test.cpp
 documentation_of: C++/ds/uf/UFPotential.hpp
 layout: document
 redirect_from:

@@ -2,31 +2,31 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/ds/fwtree/RangeBIT.hpp
     title: Range BIT
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/inverse_num.hpp
     title: "\u8EE2\u5012\u6570"
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/fwtree.test.cpp
-    title: test/fwtree.test.cpp
-  - icon: ':x:'
-    path: test/fwtree2.test.cpp
-    title: test/fwtree2.test.cpp
-  - icon: ':x:'
-    path: test/fwtree3.test.cpp
-    title: test/fwtree3.test.cpp
-  - icon: ':x:'
-    path: test/inv_num.test.cpp
-    title: test/inv_num.test.cpp
-  - icon: ':x:'
-    path: test/parsum.test.cpp
-    title: test/parsum.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/C++/fwtree.test.cpp
+    title: test/C++/fwtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/C++/fwtree2.test.cpp
+    title: test/C++/fwtree2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/C++/fwtree3.test.cpp
+    title: test/C++/fwtree3.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/C++/inv_num.test.cpp
+    title: test/C++/inv_num.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/C++/parsum.test.cpp
+    title: test/C++/parsum.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Binary Indexed Tree
     links:
@@ -89,13 +89,13 @@ data:
   - C++/math/inverse_num.hpp
   - C++/ds/fwtree/RangeBIT.hpp
   timestamp: '2024-02-27 10:38:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/fwtree2.test.cpp
-  - test/parsum.test.cpp
-  - test/fwtree.test.cpp
-  - test/inv_num.test.cpp
-  - test/fwtree3.test.cpp
+  - test/C++/fwtree2.test.cpp
+  - test/C++/parsum.test.cpp
+  - test/C++/fwtree.test.cpp
+  - test/C++/inv_num.test.cpp
+  - test/C++/fwtree3.test.cpp
 documentation_of: C++/ds/fwtree/FenwickTree.hpp
 layout: document
 redirect_from:

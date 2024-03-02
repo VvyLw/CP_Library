@@ -12,12 +12,12 @@ data:
     title: C++/myvector.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/pcounter.test.cpp
-    title: test/pcounter.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/C++/pcounter.test.cpp
+    title: test/C++/pcounter.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u7D20\u6570\u306E\u500B\u6570"
     links: []
@@ -129,9 +129,9 @@ data:
   path: C++/math/primecounter.hpp
   requiredBy: []
   timestamp: '2024-02-19 13:17:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/pcounter.test.cpp
+  - test/C++/pcounter.test.cpp
 documentation_of: C++/math/primecounter.hpp
 layout: document
 redirect_from:

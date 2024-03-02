@@ -5,25 +5,25 @@ data:
     path: C++/graph/edge.hpp
     title: Edge
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/mst/directed.hpp
     title: Directed MST
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/mst/kruskal.hpp
     title: "Kruskal\u6CD5"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/mst/manhattan.hpp
     title: Manhattan MST
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/directed.test.cpp
-    title: test/directed.test.cpp
-  - icon: ':x:'
-    path: test/manhattan.test.cpp
-    title: test/manhattan.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/C++/directed.test.cpp
+    title: test/C++/directed.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/C++/manhattan.test.cpp
+    title: test/C++/manhattan.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u6700\u5C0F\u5168\u57DF\u6728"
     links: []
@@ -46,10 +46,10 @@ data:
   - C++/graph/mst/manhattan.hpp
   - C++/graph/mst/kruskal.hpp
   timestamp: '2024-02-19 13:17:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/manhattan.test.cpp
-  - test/directed.test.cpp
+  - test/C++/manhattan.test.cpp
+  - test/C++/directed.test.cpp
 documentation_of: C++/graph/mst/MST.hpp
 layout: document
 redirect_from:

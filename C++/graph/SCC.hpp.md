@@ -4,11 +4,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/scc.test.cpp
-    title: test/scc.test.cpp
+    path: test/C++/scc.test.cpp
+    title: test/C++/scc.test.cpp
   - icon: ':x:'
-    path: test/scc2.test.cpp
-    title: test/scc2.test.cpp
+    path: test/C++/scc2.test.cpp
+    title: test/C++/scc2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -66,8 +66,8 @@ data:
   timestamp: '2024-02-22 08:54:27+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/scc.test.cpp
-  - test/scc2.test.cpp
+  - test/C++/scc.test.cpp
+  - test/C++/scc2.test.cpp
 documentation_of: C++/graph/SCC.hpp
 layout: document
 redirect_from:

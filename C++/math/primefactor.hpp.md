@@ -16,41 +16,41 @@ data:
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aarray.test.cpp
-    title: test/aarray.test.cpp
+    path: test/C++/aarray.test.cpp
+    title: test/C++/aarray.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/add.test.cpp
-    title: test/add.test.cpp
+    path: test/C++/add.test.cpp
+    title: test/C++/add.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/add128.test.cpp
-    title: test/add128.test.cpp
+    path: test/C++/add128.test.cpp
+    title: test/C++/add128.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/C++/extgcd.test.cpp
+    title: test/C++/extgcd.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/C++/fwtree.test.cpp
+    title: test/C++/fwtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/C++/m_add.test.cpp
+    title: test/C++/m_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/C++/parsum.test.cpp
+    title: test/C++/parsum.test.cpp
   - icon: ':x:'
-    path: test/extgcd.test.cpp
-    title: test/extgcd.test.cpp
+    path: test/C++/s_rmq.test.cpp
+    title: test/C++/s_rmq.test.cpp
   - icon: ':x:'
-    path: test/fwtree.test.cpp
-    title: test/fwtree.test.cpp
+    path: test/C++/segtree.test.cpp
+    title: test/C++/segtree.test.cpp
   - icon: ':x:'
-    path: test/m_add.test.cpp
-    title: test/m_add.test.cpp
+    path: test/C++/sr_sum.test.cpp
+    title: test/C++/sr_sum.test.cpp
   - icon: ':x:'
-    path: test/parsum.test.cpp
-    title: test/parsum.test.cpp
+    path: test/C++/stable.test.cpp
+    title: test/C++/stable.test.cpp
   - icon: ':x:'
-    path: test/s_rmq.test.cpp
-    title: test/s_rmq.test.cpp
-  - icon: ':x:'
-    path: test/segtree.test.cpp
-    title: test/segtree.test.cpp
-  - icon: ':x:'
-    path: test/sr_sum.test.cpp
-    title: test/sr_sum.test.cpp
-  - icon: ':x:'
-    path: test/stable.test.cpp
-    title: test/stable.test.cpp
-  - icon: ':x:'
-    path: test/uf.test.cpp
-    title: test/uf.test.cpp
+    path: test/C++/uf.test.cpp
+    title: test/C++/uf.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -185,18 +185,18 @@ data:
   timestamp: '2024-02-22 09:22:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/sr_sum.test.cpp
-  - test/m_add.test.cpp
-  - test/add.test.cpp
-  - test/parsum.test.cpp
-  - test/segtree.test.cpp
-  - test/stable.test.cpp
-  - test/fwtree.test.cpp
-  - test/uf.test.cpp
-  - test/extgcd.test.cpp
-  - test/add128.test.cpp
-  - test/s_rmq.test.cpp
-  - test/aarray.test.cpp
+  - test/C++/sr_sum.test.cpp
+  - test/C++/m_add.test.cpp
+  - test/C++/add.test.cpp
+  - test/C++/parsum.test.cpp
+  - test/C++/segtree.test.cpp
+  - test/C++/stable.test.cpp
+  - test/C++/fwtree.test.cpp
+  - test/C++/uf.test.cpp
+  - test/C++/extgcd.test.cpp
+  - test/C++/add128.test.cpp
+  - test/C++/s_rmq.test.cpp
+  - test/C++/aarray.test.cpp
 documentation_of: C++/math/primefactor.hpp
 layout: document
 redirect_from:
