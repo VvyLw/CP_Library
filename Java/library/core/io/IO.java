@@ -6,6 +6,9 @@ import java.io.OutputStream;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.function.DoubleUnaryOperator;
+import java.util.function.IntUnaryOperator;
+import java.util.function.LongUnaryOperator;
 import java.util.stream.IntStream;
 
 import library.ds.pair.FloatPair;
@@ -77,6 +80,12 @@ public final class IO implements Closeable, AutoCloseable {
 		return a;
 	}
 	/**
+	 * @param n
+	 * @param f
+	 * @return 大きさnのint型配列を入力し、fを施したものを返す
+	 */
+	public final int[] ni(final int n, final IntUnaryOperator f){ return Arrays.stream(ni(n)).map(f).toArray(); }
+	/**
 	 * 大きさnのlong型配列を入力する
 	 * @param n 配列の大きさ
 	 */
@@ -86,6 +95,12 @@ public final class IO implements Closeable, AutoCloseable {
 		return a;
 	}
 	/**
+	 * @param n
+	 * @param f
+	 * @return 大きさnのlong型配列を入力し、fを施したものを返す
+	 */
+	public final long[] nl(final int n, final LongUnaryOperator f){ return Arrays.stream(nl(n)).map(f).toArray(); }
+	/**
 	 * 大きさnのdouble型配列を入力する
 	 * @param n 配列の大きさ
 	 */
@@ -94,6 +109,12 @@ public final class IO implements Closeable, AutoCloseable {
 		IntStream.range(0, n).forEach(i -> a[i] = nd());
 		return a;
 	}
+	/**
+	 * @param n
+	 * @param f
+	 * @return 大きさnのdouble型配列を入力し、fを施したものを返す
+	 */
+	public final double[] nl(final int n, final DoubleUnaryOperator f){ return Arrays.stream(nd(n)).map(f).toArray(); }
 	/**
 	 * [maybe_unused]
 	 * 大きさnのchar型配列を入力する
@@ -362,6 +383,19 @@ public final class IO implements Closeable, AutoCloseable {
 	}
 	/**
 	 * この出力を最後に処理を終了する
+	 * @param <E>
+	 * @param args
+	 * @see #out
+	 */
+	public final <E> void fin(final Collection<E> args) {
+		out(args);
+		if(!autoFlush) {
+			out.flush();
+		}
+		System.exit(0);
+	}
+	/**
+	 * この出力を最後に処理を終了する
 	 * @param args
 	 * @see #out
 	 */
@@ -440,19 +474,6 @@ public final class IO implements Closeable, AutoCloseable {
 	 * @see #out
 	 */
 	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> void fin(final Pair<F, S>[] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param <E>
-	 * @param args
-	 * @see #out
-	 */
-	public final <E> void fin(final Collection<E> args) {
 		out(args);
 		if(!autoFlush) {
 			out.flush();
