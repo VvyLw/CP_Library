@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/depq.test.cpp
-    title: test/depq.test.cpp
+    path: test/C++/depq.test.cpp
+    title: test/C++/depq.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -90,7 +90,7 @@ data:
   timestamp: '2024-02-27 10:38:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/depq.test.cpp
+  - test/C++/depq.test.cpp
 documentation_of: C++/ds/depq.hpp
 layout: document
 redirect_from:

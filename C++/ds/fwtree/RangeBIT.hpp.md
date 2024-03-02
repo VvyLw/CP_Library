@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/ds/fwtree/FenwickTree.hpp
     title: Binary Indexed Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/fwtree3.test.cpp
-    title: test/fwtree3.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/C++/fwtree3.test.cpp
+    title: test/C++/fwtree3.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Range BIT
     links: []
@@ -66,9 +66,9 @@ data:
   path: C++/ds/fwtree/RangeBIT.hpp
   requiredBy: []
   timestamp: '2024-02-27 11:03:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/fwtree3.test.cpp
+  - test/C++/fwtree3.test.cpp
 documentation_of: C++/ds/fwtree/RangeBIT.hpp
 layout: document
 redirect_from:

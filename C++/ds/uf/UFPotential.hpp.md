@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/ufpotential.test.cpp
-    title: test/ufpotential.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/C++/ufpotential.test.cpp
+    title: test/C++/ufpotential.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304DUnionFind"
     links:
@@ -48,9 +48,9 @@ data:
   path: C++/ds/uf/UFPotential.hpp
   requiredBy: []
   timestamp: '2024-02-27 10:38:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/ufpotential.test.cpp
+  - test/C++/ufpotential.test.cpp
 documentation_of: C++/ds/uf/UFPotential.hpp
 layout: document
 redirect_from:

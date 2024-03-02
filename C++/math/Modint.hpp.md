@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/rangeaffine.test.cpp
-    title: test/rangeaffine.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/C++/rangeaffine.test.cpp
+    title: test/C++/rangeaffine.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/Modint.md
     document_title: Modint
@@ -213,9 +213,9 @@ data:
   path: C++/math/Modint.hpp
   requiredBy: []
   timestamp: '2024-02-19 12:20:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/rangeaffine.test.cpp
+  - test/C++/rangeaffine.test.cpp
 documentation_of: C++/math/Modint.hpp
 layout: document
 redirect_from:

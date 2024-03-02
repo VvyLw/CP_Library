@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/ds/fwtree/FenwickTree.hpp
     title: Binary Indexed Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/inv_num.test.cpp
-    title: test/inv_num.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/C++/inv_num.test.cpp
+    title: test/C++/inv_num.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: "\u8EE2\u5012\u6570"
     links: []
@@ -64,9 +64,9 @@ data:
   path: C++/math/inverse_num.hpp
   requiredBy: []
   timestamp: '2024-02-27 11:03:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/inv_num.test.cpp
+  - test/C++/inv_num.test.cpp
 documentation_of: C++/math/inverse_num.hpp
 layout: document
 redirect_from:

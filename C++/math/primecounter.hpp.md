@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/math/kthrooti.hpp
     title: "k\u4E57\u6839(\u6574\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/math/primetable.hpp
     title: Sieve of Eratosthenes
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/myvector.hpp
     title: C++/myvector.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/pcounter.test.cpp
-    title: test/pcounter.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/C++/pcounter.test.cpp
+    title: test/C++/pcounter.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: "\u7D20\u6570\u306E\u500B\u6570"
     links: []
@@ -129,9 +129,9 @@ data:
   path: C++/math/primecounter.hpp
   requiredBy: []
   timestamp: '2024-02-19 13:17:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/pcounter.test.cpp
+  - test/C++/pcounter.test.cpp
 documentation_of: C++/math/primecounter.hpp
 layout: document
 redirect_from:

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/manacher.test.cpp
-    title: test/manacher.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/C++/manacher.test.cpp
+    title: test/C++/manacher.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Manacher
     links:
@@ -50,9 +50,9 @@ data:
   path: C++/string/manacher.hpp
   requiredBy: []
   timestamp: '2024-02-19 12:20:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/manacher.test.cpp
+  - test/C++/manacher.test.cpp
 documentation_of: C++/string/manacher.hpp
 layout: document
 redirect_from:

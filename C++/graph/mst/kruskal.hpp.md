@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/ds/uf/UnionFind.hpp
     title: UnionFind
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/edge.hpp
     title: Edge
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/graph/mst/MST.hpp
     title: "\u6700\u5C0F\u5168\u57DF\u6728"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/manhattan.test.cpp
-    title: test/manhattan.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/C++/manhattan.test.cpp
+    title: test/C++/manhattan.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: "Kruskal\u6CD5"
     links: []
@@ -75,9 +75,9 @@ data:
   path: C++/graph/mst/kruskal.hpp
   requiredBy: []
   timestamp: '2024-02-29 01:03:52+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/manhattan.test.cpp
+  - test/C++/manhattan.test.cpp
 documentation_of: C++/graph/mst/kruskal.hpp
 layout: document
 redirect_from:

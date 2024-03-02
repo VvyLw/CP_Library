@@ -3,39 +3,39 @@ data:
   libraryCategories:
   - name: C++
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/SkewHeap.hpp
       title: SkewHeap
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/constance.hpp
       title: "\u5B9A\u6570"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/dp.hpp
       title: DP(Knapsack, LCS, LIS)
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/mypair.hpp
       title: C++/mypair.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/myvector.hpp
       title: C++/myvector.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/template.hpp
       title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/timer.hpp
       title: "\u30BF\u30A4\u30DE\u30FC"
   - name: C++/ds
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/ds/DualSegmentTree.hpp
       title: "\u53CC\u5BFE\u30BB\u30B0\u6728"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/ds/LazySegmentTree.hpp
       title: "\u9045\u5EF6\u30BB\u30B0\u6728"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/ds/SegmentTree.hpp
       title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/ds/SparseTable.hpp
       title: Sparse Table
     - icon: ':heavy_check_mark:'
@@ -46,10 +46,10 @@ data:
       title: "\u4E21\u7AEF\u512A\u5148\u5EA6\u4ED8\u304D\u30AD\u30E5\u30FC"
   - name: C++/ds/fwtree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/ds/fwtree/FenwickTree.hpp
       title: Binary Indexed Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/ds/fwtree/RangeBIT.hpp
       title: Range BIT
   - name: C++/ds/uf
@@ -57,124 +57,124 @@ data:
     - icon: ':warning:'
       path: C++/ds/uf/MergeUF.hpp
       title: MergeUnionFind
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/ds/uf/UFPotential.hpp
       title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304DUnionFind"
     - icon: ':warning:'
       path: C++/ds/uf/UFUndo.hpp
       title: "Undo\u53EF\u80FDUnionFind"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/ds/uf/UnionFind.hpp
       title: UnionFind
   - name: C++/graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/graph/Graph.hpp
       title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/graph/LCA.hpp
       title: "\u6700\u5C0F\u5171\u901A\u7956\u5148"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/graph/SCC.hpp
       title: SCC
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/graph/ShortestPath.hpp
       title: "\u6700\u77ED\u8DEF"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/graph/WeightedGraph.hpp
       title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/graph/edge.hpp
       title: Edge
   - name: C++/graph/mst
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/graph/mst/MST.hpp
       title: "\u6700\u5C0F\u5168\u57DF\u6728"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/graph/mst/directed.hpp
       title: Directed MST
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/graph/mst/kruskal.hpp
       title: "Kruskal\u6CD5"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/graph/mst/manhattan.hpp
       title: Manhattan MST
   - name: C++/io
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/io/input.hpp
       title: "\u5165\u529B"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/io/output.hpp
       title: "\u51FA\u529B"
   - name: C++/math
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/math/Matrix.hpp
       title: "\u884C\u5217\u30E9\u30A4\u30D6\u30E9\u30EA"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/math/ModPrime.hpp
       title: ModPrime
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/math/Modint.hpp
       title: Modint
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/math/Pollards_rho.hpp
       title: Pollard's Rho
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/math/divisor.hpp
       title: "\u7D04\u6570\u5217\u6319"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/math/euler_phi.hpp
       title: Euler's Phi-function
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/math/inverse_num.hpp
       title: "\u8EE2\u5012\u6570"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/math/kthrooti.hpp
       title: "k\u4E57\u6839(\u6574\u6570)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/math/phitable.hpp
       title: Euler's Phi-function(table)
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/math/primecounter.hpp
       title: "\u7D20\u6570\u306E\u500B\u6570"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/math/primefactor.hpp
       title: "\u7D20\u56E0\u6570\u5206\u89E3"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/math/primefactortable.hpp
       title: "\u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/math/primetable.hpp
       title: Sieve of Eratosthenes
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/math/tetration.hpp
       title: "Tetration(a\u2191\u2191b)"
   - name: C++/math/psum
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/math/psum/psum.hpp
       title: "\u7D2F\u7A4D\u548C"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/math/psum/psum2d.hpp
       title: "\u4E8C\u6B21\u5143\u7D2F\u7A4D\u548C"
   - name: C++/string
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/string/RH.hpp
       title: Rolling Hash
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/string/SA.hpp
       title: Suffix Array
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/string/manacher.hpp
       title: Manacher
     - icon: ':warning:'
       path: C++/string/runlength.hpp
       title: "\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/string/z-algo.hpp
       title: Z-Algorithm
   - name: Java
@@ -495,191 +495,196 @@ data:
       path: Python/UnionFind.py
       title: Python/UnionFind.py
   verificationCategories:
-  - name: test
+  - name: test/C++
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/WM.test.cpp
-      title: test/WM.test.cpp
+      path: test/C++/WM.test.cpp
+      title: test/C++/WM.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aarray.test.cpp
-      title: test/aarray.test.cpp
+      path: test/C++/aarray.test.cpp
+      title: test/C++/aarray.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/add.test.cpp
-      title: test/add.test.cpp
+      path: test/C++/add.test.cpp
+      title: test/C++/add.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/add128.test.cpp
-      title: test/add128.test.cpp
+      path: test/C++/add128.test.cpp
+      title: test/C++/add128.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/add128_2.test.cpp
-      title: test/add128_2.test.cpp
+      path: test/C++/add128_2.test.cpp
+      title: test/C++/add128_2.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/cycledetector.test.cpp
-      title: test/cycledetector.test.cpp
+      path: test/C++/cycledetector.test.cpp
+      title: test/C++/cycledetector.test.cpp
+    - icon: ':x:'
+      path: test/C++/dag_check.test.cpp
+      title: test/C++/dag_check.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/dag_check.test.cpp
-      title: test/dag_check.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/depq.test.cpp
-      title: test/depq.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/dijkstra.test.cpp
-      title: test/dijkstra.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/directed.test.cpp
-      title: test/directed.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/dualsegtree.test.cpp
-      title: test/dualsegtree.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/extgcd.test.cpp
-      title: test/extgcd.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/fwtree.test.cpp
-      title: test/fwtree.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/fwtree2.test.cpp
-      title: test/fwtree2.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/fwtree3.test.cpp
-      title: test/fwtree3.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/inv_num.test.cpp
-      title: test/inv_num.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/knapsack.test.cpp
-      title: test/knapsack.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/knapsack2.test.cpp
-      title: test/knapsack2.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/knapsack3.test.cpp
-      title: test/knapsack3.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/knapsack4.test.cpp
-      title: test/knapsack4.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/knapsack5.test.cpp
-      title: test/knapsack5.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/kthrooti.test.cpp
-      title: test/kthrooti.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/lazysegtree.test.cpp
-      title: test/lazysegtree.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/lazysegtree2.test.cpp
-      title: test/lazysegtree2.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/lazysegtree3.test.cpp
-      title: test/lazysegtree3.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/lazysegtree4.test.cpp
-      title: test/lazysegtree4.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/lazysegtree5.test.cpp
-      title: test/lazysegtree5.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/lca.test.cpp
-      title: test/lca.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/lcpa.test.cpp
-      title: test/lcpa.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/lcs.test.cpp
-      title: test/lcs.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/lis.test.cpp
-      title: test/lis.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/lis2.test.cpp
-      title: test/lis2.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/m_add.test.cpp
-      title: test/m_add.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/manacher.test.cpp
-      title: test/manacher.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/manhattan.test.cpp
-      title: test/manhattan.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/matrix.test.cpp
-      title: test/matrix.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/modprime.test.cpp
-      title: test/modprime.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/modprime2.test.cpp
-      title: test/modprime2.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/parsum.test.cpp
-      title: test/parsum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/pcounter.test.cpp
-      title: test/pcounter.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/pf.test.cpp
-      title: test/pf.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/phi.test.cpp
-      title: test/phi.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/phi_table.test.cpp
-      title: test/phi_table.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/psum2d.test.cpp
-      title: test/psum2d.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/rangeaffine.test.cpp
-      title: test/rangeaffine.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/rh.test.cpp
-      title: test/rh.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/s_rmq.test.cpp
-      title: test/s_rmq.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/sa.test.cpp
-      title: test/sa.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/scc.test.cpp
-      title: test/scc.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/scc2.test.cpp
-      title: test/scc2.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/segtree.test.cpp
-      title: test/segtree.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/segtree2.test.cpp
-      title: test/segtree2.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/shortestpath.test.cpp
-      title: test/shortestpath.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/spfa.test.cpp
-      title: test/spfa.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/sr_sum.test.cpp
-      title: test/sr_sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/stable.test.cpp
-      title: test/stable.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/tetration.test.cpp
-      title: test/tetration.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/uf.test.cpp
-      title: test/uf.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/ufpotential.test.cpp
-      title: test/ufpotential.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/warshallfloyd.test.cpp
-      title: test/warshallfloyd.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/zalgo.test.cpp
-      title: test/zalgo.test.cpp
+      path: test/C++/depq.test.cpp
+      title: test/C++/depq.test.cpp
+    - icon: ':x:'
+      path: test/C++/dijkstra.test.cpp
+      title: test/C++/dijkstra.test.cpp
+    - icon: ':x:'
+      path: test/C++/directed.test.cpp
+      title: test/C++/directed.test.cpp
+    - icon: ':x:'
+      path: test/C++/dualsegtree.test.cpp
+      title: test/C++/dualsegtree.test.cpp
+    - icon: ':x:'
+      path: test/C++/extgcd.test.cpp
+      title: test/C++/extgcd.test.cpp
+    - icon: ':x:'
+      path: test/C++/fwtree.test.cpp
+      title: test/C++/fwtree.test.cpp
+    - icon: ':x:'
+      path: test/C++/fwtree2.test.cpp
+      title: test/C++/fwtree2.test.cpp
+    - icon: ':x:'
+      path: test/C++/fwtree3.test.cpp
+      title: test/C++/fwtree3.test.cpp
+    - icon: ':x:'
+      path: test/C++/inv_num.test.cpp
+      title: test/C++/inv_num.test.cpp
+    - icon: ':x:'
+      path: test/C++/knapsack.test.cpp
+      title: test/C++/knapsack.test.cpp
+    - icon: ':x:'
+      path: test/C++/knapsack2.test.cpp
+      title: test/C++/knapsack2.test.cpp
+    - icon: ':x:'
+      path: test/C++/knapsack3.test.cpp
+      title: test/C++/knapsack3.test.cpp
+    - icon: ':x:'
+      path: test/C++/knapsack4.test.cpp
+      title: test/C++/knapsack4.test.cpp
+    - icon: ':x:'
+      path: test/C++/knapsack5.test.cpp
+      title: test/C++/knapsack5.test.cpp
+    - icon: ':x:'
+      path: test/C++/kthrooti.test.cpp
+      title: test/C++/kthrooti.test.cpp
+    - icon: ':x:'
+      path: test/C++/lazysegtree.test.cpp
+      title: test/C++/lazysegtree.test.cpp
+    - icon: ':x:'
+      path: test/C++/lazysegtree2.test.cpp
+      title: test/C++/lazysegtree2.test.cpp
+    - icon: ':x:'
+      path: test/C++/lazysegtree3.test.cpp
+      title: test/C++/lazysegtree3.test.cpp
+    - icon: ':x:'
+      path: test/C++/lazysegtree4.test.cpp
+      title: test/C++/lazysegtree4.test.cpp
+    - icon: ':x:'
+      path: test/C++/lazysegtree5.test.cpp
+      title: test/C++/lazysegtree5.test.cpp
+    - icon: ':x:'
+      path: test/C++/lca.test.cpp
+      title: test/C++/lca.test.cpp
+    - icon: ':x:'
+      path: test/C++/lcpa.test.cpp
+      title: test/C++/lcpa.test.cpp
+    - icon: ':x:'
+      path: test/C++/lcs.test.cpp
+      title: test/C++/lcs.test.cpp
+    - icon: ':x:'
+      path: test/C++/lis.test.cpp
+      title: test/C++/lis.test.cpp
+    - icon: ':x:'
+      path: test/C++/lis2.test.cpp
+      title: test/C++/lis2.test.cpp
+    - icon: ':x:'
+      path: test/C++/m_add.test.cpp
+      title: test/C++/m_add.test.cpp
+    - icon: ':x:'
+      path: test/C++/manacher.test.cpp
+      title: test/C++/manacher.test.cpp
+    - icon: ':x:'
+      path: test/C++/manhattan.test.cpp
+      title: test/C++/manhattan.test.cpp
+    - icon: ':x:'
+      path: test/C++/matrix.test.cpp
+      title: test/C++/matrix.test.cpp
+    - icon: ':x:'
+      path: test/C++/modprime.test.cpp
+      title: test/C++/modprime.test.cpp
+    - icon: ':x:'
+      path: test/C++/modprime2.test.cpp
+      title: test/C++/modprime2.test.cpp
+    - icon: ':x:'
+      path: test/C++/parsum.test.cpp
+      title: test/C++/parsum.test.cpp
+    - icon: ':x:'
+      path: test/C++/pcounter.test.cpp
+      title: test/C++/pcounter.test.cpp
+    - icon: ':x:'
+      path: test/C++/pf.test.cpp
+      title: test/C++/pf.test.cpp
+    - icon: ':x:'
+      path: test/C++/phi.test.cpp
+      title: test/C++/phi.test.cpp
+    - icon: ':x:'
+      path: test/C++/phi_table.test.cpp
+      title: test/C++/phi_table.test.cpp
+    - icon: ':x:'
+      path: test/C++/psum2d.test.cpp
+      title: test/C++/psum2d.test.cpp
+    - icon: ':x:'
+      path: test/C++/rangeaffine.test.cpp
+      title: test/C++/rangeaffine.test.cpp
+    - icon: ':x:'
+      path: test/C++/rh.test.cpp
+      title: test/C++/rh.test.cpp
+    - icon: ':x:'
+      path: test/C++/s_rmq.test.cpp
+      title: test/C++/s_rmq.test.cpp
+    - icon: ':x:'
+      path: test/C++/sa.test.cpp
+      title: test/C++/sa.test.cpp
+    - icon: ':x:'
+      path: test/C++/scc.test.cpp
+      title: test/C++/scc.test.cpp
+    - icon: ':x:'
+      path: test/C++/scc2.test.cpp
+      title: test/C++/scc2.test.cpp
+    - icon: ':x:'
+      path: test/C++/segtree.test.cpp
+      title: test/C++/segtree.test.cpp
+    - icon: ':x:'
+      path: test/C++/segtree2.test.cpp
+      title: test/C++/segtree2.test.cpp
+    - icon: ':x:'
+      path: test/C++/shortestpath.test.cpp
+      title: test/C++/shortestpath.test.cpp
+    - icon: ':x:'
+      path: test/C++/spfa.test.cpp
+      title: test/C++/spfa.test.cpp
+    - icon: ':x:'
+      path: test/C++/sr_sum.test.cpp
+      title: test/C++/sr_sum.test.cpp
+    - icon: ':x:'
+      path: test/C++/stable.test.cpp
+      title: test/C++/stable.test.cpp
+    - icon: ':x:'
+      path: test/C++/tetration.test.cpp
+      title: test/C++/tetration.test.cpp
+    - icon: ':x:'
+      path: test/C++/uf.test.cpp
+      title: test/C++/uf.test.cpp
+    - icon: ':x:'
+      path: test/C++/ufpotential.test.cpp
+      title: test/C++/ufpotential.test.cpp
+    - icon: ':x:'
+      path: test/C++/warshallfloyd.test.cpp
+      title: test/C++/warshallfloyd.test.cpp
+    - icon: ':x:'
+      path: test/C++/zalgo.test.cpp
+      title: test/C++/zalgo.test.cpp
+  - name: test/Nim
+    pages:
+    - icon: ':x:'
+      path: test/Nim/UnionFind_test.nim
+      title: test/Nim/UnionFind_test.nim
 layout: toppage
 ---
 ## Library for Competitive Programming

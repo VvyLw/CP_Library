@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/zalgo.test.cpp
-    title: test/zalgo.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/C++/zalgo.test.cpp
+    title: test/C++/zalgo.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Z-Algorithm
     links: []
@@ -32,9 +32,9 @@ data:
   path: C++/string/z-algo.hpp
   requiredBy: []
   timestamp: '2024-02-19 12:47:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/zalgo.test.cpp
+  - test/C++/zalgo.test.cpp
 documentation_of: C++/string/z-algo.hpp
 layout: document
 redirect_from:

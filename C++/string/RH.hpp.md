@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/rh.test.cpp
-    title: test/rh.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/C++/rh.test.cpp
+    title: test/C++/rh.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Rolling Hash
     links:
@@ -67,9 +67,9 @@ data:
   path: C++/string/RH.hpp
   requiredBy: []
   timestamp: '2024-02-19 12:20:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/rh.test.cpp
+  - test/C++/rh.test.cpp
 documentation_of: C++/string/RH.hpp
 layout: document
 redirect_from:

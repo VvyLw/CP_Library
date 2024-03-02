@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/lca.test.cpp
-    title: test/lca.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/C++/lca.test.cpp
+    title: test/C++/lca.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/LCA.md
     document_title: "\u6700\u5C0F\u5171\u901A\u7956\u5148"
@@ -76,9 +76,9 @@ data:
   path: C++/graph/LCA.hpp
   requiredBy: []
   timestamp: '2024-02-22 06:47:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/lca.test.cpp
+  - test/C++/lca.test.cpp
 documentation_of: C++/graph/LCA.hpp
 layout: document
 redirect_from:
