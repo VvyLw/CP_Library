@@ -776,7 +776,7 @@ data:
   - Java/CodeForces.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-03-01 16:54:37+09:00'
+  timestamp: '2024-03-02 09:36:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/prefixsum/PrefixSum2D.java

@@ -484,6 +484,11 @@ data:
     - icon: ':warning:'
       path: Java/library/other/Why.java
       title: Java/library/other/Why.java
+  - name: Nim
+    pages:
+    - icon: ':warning:'
+      path: Nim/UnionFind.nim
+      title: Nim/UnionFind.nim
   - name: Python
     pages:
     - icon: ':warning:'

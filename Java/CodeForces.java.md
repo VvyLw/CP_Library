@@ -557,39 +557,40 @@ data:
     import java.math.BigInteger;\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
     import java.util.Collection;\nimport java.util.Collections;\nimport java.util.Formatter;\n\
     import java.util.HashMap;\nimport java.util.List;\nimport java.util.Map;\nimport\
-    \ java.util.Objects;\nimport java.util.function.DoublePredicate;\nimport java.util.function.IntPredicate;\n\
-    import java.util.function.LongPredicate;\nimport java.util.stream.Collectors;\n\
-    import java.util.stream.IntStream;\n\npublic final class Main {\n\tpublic static\
-    \ void main(final String[] args) {\n\t\tIntStream.range(0, VvyLw.MULTI ? VvyLw.io.ni()\
-    \ : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.io.close();\n\t}\n}\n\nfinal class\
-    \ VvyLw extends Utility {\n\tstatic final IO io = new IO(System.in, System.out,\
-    \ System.err, false);\n\tstatic final boolean MULTI = true;\n\tstatic final int\
-    \ INF = 1 << 30;\n\tstatic final long LINF = (1L << 61) - 1;\n\tstatic final double\
-    \ EPS = 1e-18;\n\tstatic final int MOD = 998244353;\n\tstatic final int M0D =\
-    \ (int) 1e9 + 7;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\t\
-    static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final void solve()\
-    \ {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String yes(final\
-    \ boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final String\
-    \ no(final boolean ok){ return yes(!ok); }\n\tprotected static final long sqr(final\
-    \ long x){ return x * x; }\n\tprotected static final int mod(long n, final int\
-    \ m) {\n\t\tn %= m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\tprotected static\
-    \ final long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n +\
-    \ m : n;\n\t}\n\tprotected static final long intCeil(final long a, final long\
-    \ b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final double\
-    \ intRound(final double a, final long b, final int c) {\n\t\tfinal long d = intPow(10,\
-    \ c);\n\t\treturn rint((a * d) / b) / d;\n\t}\n\tprotected static final long intPow(long\
-    \ a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\
-    \t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static final long intPow(long a, long b, final long m) {\n\t\t\
-    long res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
-    \t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\
-    \tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long lcm(final\
-    \ long a, final long b){ return a * b / gcd(a, b); }\n\tprotected static final\
-    \ long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x,\
-    \ y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){ return\
-    \ Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static final\
-    \ long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }\n\t\
-    protected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
+    \ java.util.Objects;\nimport java.util.function.DoublePredicate;\nimport java.util.function.DoubleUnaryOperator;\n\
+    import java.util.function.IntPredicate;\nimport java.util.function.IntUnaryOperator;\n\
+    import java.util.function.LongPredicate;\nimport java.util.function.LongUnaryOperator;\n\
+    import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\npublic\
+    \ final class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
+    \ VvyLw.MULTI ? VvyLw.io.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.io.close();\n\
+    \t}\n}\n\nfinal class VvyLw extends Utility {\n\tstatic final IO io = new IO(System.in,\
+    \ System.out, System.err, false);\n\tstatic final boolean MULTI = true;\n\tstatic\
+    \ final int INF = 1 << 30;\n\tstatic final long LINF = (1L << 61) - 1;\n\tstatic\
+    \ final double EPS = 1e-18;\n\tstatic final int MOD = 998244353;\n\tstatic final\
+    \ int M0D = (int) 1e9 + 7;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1,\
+    \ 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic\
+    \ final void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final\
+    \ String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static\
+    \ final String no(final boolean ok){ return yes(!ok); }\n\tprotected static final\
+    \ long sqr(final long x){ return x * x; }\n\tprotected static final int mod(long\
+    \ n, final int m) {\n\t\tn %= m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\
+    \tprotected static final long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn\
+    \ n < 0 ? n + m : n;\n\t}\n\tprotected static final long intCeil(final long a,\
+    \ final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final\
+    \ double intRound(final double a, final long b, final int c) {\n\t\tfinal long\
+    \ d = intPow(10, c);\n\t\treturn rint((a * d) / b) / d;\n\t}\n\tprotected static\
+    \ final long intPow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\
+    \t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\
+    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long intPow(long a, long\
+    \ b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 ==\
+    \ 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\
+    \t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
+    \ static final long lcm(final long a, final long b){ return a * b / gcd(a, b);\
+    \ }\n\tprotected static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1,\
+    \ (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){\
+    \ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static\
+    \ final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a;\
+    \ }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
     \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
     \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
     \ final int min(final int... a){ return Arrays.stream(a).min().getAsInt(); }\n\
@@ -1079,27 +1080,31 @@ data:
     \ char[] nt(){ return in.nt(); }\n\tfinal BigInteger nb(){ return in.nb(); }\n\
     \tfinal IntPair pi(){ return in.pi(); }\n\tfinal FloatPair pf(){ return in.pf();\
     \ }\n\tfinal int[] ni(final int n) {\n\t\tfinal int[] a = new int[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = ni());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int\
-    \ n) {\n\t\tfinal long[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = nl());\n\t\treturn a;\n\t}\n\tfinal double[] nd(final int n) {\n\t\
-    \tfinal double[] a = new double[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i]\
-    \ = nd());\n\t\treturn a;\n\t}\n\tfinal char[] nc(final int n) {\n\t\tfinal char[]\
-    \ a = new char[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nc());\n\t\t\
-    return a;\n\t}\n\tfinal String[] ns(final int n) {\n\t\tfinal String[] a = new\
-    \ String[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ns());\n\t\treturn\
-    \ a;\n\t}\n\tfinal char[][] nt(final int n) {\n\t\tfinal char[][] a = new char[n][];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = nt());\n\t\treturn a;\n\t}\n\tfinal\
-    \ BigInteger[] nb(final int n) {\n\t\tfinal BigInteger[] a = new BigInteger[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal\
-    \ IntPair[] pi(final int n) {\n\t\tfinal IntPair[] p = new IntPair[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> p[i] = pi());\n\t\treturn p;\n\t}\n\tfinal FloatPair[] pf(final\
-    \ int n) {\n\t\tfinal FloatPair[] p = new FloatPair[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> p[i] = pf());\n\t\treturn p;\n\t}\n\tfinal int[][] ni(final\
-    \ int h, final int w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final\
-    \ int h, final int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final\
-    \ int h, final int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = ni());\n\t\treturn a;\n\t}\n\tfinal int[] ni(final int\
+    \ n, final IntUnaryOperator f){ return Arrays.stream(ni(n)).map(f).toArray();\
+    \ }\n\tfinal long[] nl(final int n) {\n\t\tfinal long[] a = new long[n];\n\t\t\
+    IntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\treturn a;\n\t}\n\tfinal\
+    \ long[] nl(final int n, final LongUnaryOperator f){ return Arrays.stream(nl(n)).map(f).toArray();\
+    \ }\n\tfinal double[] nd(final int n) {\n\t\tfinal double[] a = new double[n];\n\
+    \t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal\
+    \ double[] nd(final int n, final DoubleUnaryOperator f){ return Arrays.stream(nd(n)).map(f).toArray();\
+    \ }\n\tfinal char[] nc(final int n) {\n\t\tfinal char[] a = new char[n];\n\t\t\
+    IntStream.range(0, n).forEach(i -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal\
+    \ String[] ns(final int n) {\n\t\tfinal String[] a = new String[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal char[][] nt(final\
+    \ int n) {\n\t\tfinal char[][] a = new char[n][];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = nt());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final int n) {\n\
+    \t\tfinal BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal IntPair[] pi(final int n) {\n\t\
+    \tfinal IntPair[] p = new IntPair[n];\n\t\tIntStream.range(0, n).forEach(i ->\
+    \ p[i] = pi());\n\t\treturn p;\n\t}\n\tfinal FloatPair[] pf(final int n) {\n\t\
+    \tfinal FloatPair[] p = new FloatPair[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> p[i] = pf());\n\t\treturn p;\n\t}\n\tfinal int[][] ni(final int h, final\
+    \ int w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final int h, final\
+    \ int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0, h).forEach(i\
+    \ -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final int h, final\
+    \ int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\tfinal char[][] nc(final\
     \ int h, final int w) {\n\t\tfinal char[][] a = new char[h][w];\n\t\tIntStream.range(0,\
     \ h).forEach(i -> a[i] = nc(w));\n\t\treturn a;\n\t}\n\tfinal String[][] ns(final\
@@ -1521,7 +1526,7 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-03-01 16:54:37+09:00'
+  timestamp: '2024-03-02 09:36:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java
