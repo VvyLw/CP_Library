@@ -1,9 +1,10 @@
 {
-"test/C++/WM.test.cpp": "2024-03-02 19:12:32 +0900",
-"test/C++/aarray.test.cpp": "2024-03-02 19:12:32 +0900",
-"test/C++/add.test.cpp": "2024-03-02 19:12:32 +0900",
-"test/C++/add128.test.cpp": "2024-03-02 19:12:32 +0900",
-"test/C++/add128_2.test.cpp": "2024-03-02 19:12:32 +0900",
-"test/C++/cycledetector.test.cpp": "2024-03-02 19:12:32 +0900",
-"test/C++/depq.test.cpp": "2024-03-02 19:12:32 +0900"
+"test/UnionFind.test.py": "2024-03-02 19:57:59 +0900",
+"test/WM.test.cpp": "2024-03-02 19:57:59 +0900",
+"test/aarray.test.cpp": "2024-03-02 19:57:59 +0900",
+"test/add.test.cpp": "2024-03-02 19:57:59 +0900",
+"test/add128.test.cpp": "2024-03-02 19:57:59 +0900",
+"test/add128_2.test.cpp": "2024-03-02 19:57:59 +0900",
+"test/cycledetector.test.cpp": "2024-03-02 19:57:59 +0900",
+"test/depq.test.cpp": "2024-03-02 19:57:59 +0900"
 }
