@@ -13,8 +13,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/C++/pcounter.test.cpp
-    title: test/C++/pcounter.test.cpp
+    path: test/pcounter.test.cpp
+    title: test/pcounter.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -131,7 +131,7 @@ data:
   timestamp: '2024-02-19 13:17:33+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/C++/pcounter.test.cpp
+  - test/pcounter.test.cpp
 documentation_of: C++/math/primecounter.hpp
 layout: document
 redirect_from:

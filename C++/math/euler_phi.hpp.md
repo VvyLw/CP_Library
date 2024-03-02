@@ -7,11 +7,11 @@ data:
     title: "Tetration(a\u2191\u2191b)"
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/C++/phi.test.cpp
-    title: test/C++/phi.test.cpp
+    path: test/phi.test.cpp
+    title: test/phi.test.cpp
   - icon: ':x:'
-    path: test/C++/tetration.test.cpp
-    title: test/C++/tetration.test.cpp
+    path: test/tetration.test.cpp
+    title: test/tetration.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -36,8 +36,8 @@ data:
   timestamp: '2024-02-19 12:20:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/C++/tetration.test.cpp
-  - test/C++/phi.test.cpp
+  - test/tetration.test.cpp
+  - test/phi.test.cpp
 documentation_of: C++/math/euler_phi.hpp
 layout: document
 redirect_from:

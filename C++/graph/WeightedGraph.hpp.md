@@ -13,17 +13,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/C++/dijkstra.test.cpp
-    title: test/C++/dijkstra.test.cpp
+    path: test/dijkstra.test.cpp
+    title: test/dijkstra.test.cpp
   - icon: ':x:'
-    path: test/C++/shortestpath.test.cpp
-    title: test/C++/shortestpath.test.cpp
+    path: test/shortestpath.test.cpp
+    title: test/shortestpath.test.cpp
   - icon: ':x:'
-    path: test/C++/spfa.test.cpp
-    title: test/C++/spfa.test.cpp
+    path: test/spfa.test.cpp
+    title: test/spfa.test.cpp
   - icon: ':x:'
-    path: test/C++/warshallfloyd.test.cpp
-    title: test/C++/warshallfloyd.test.cpp
+    path: test/warshallfloyd.test.cpp
+    title: test/warshallfloyd.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -193,10 +193,10 @@ data:
   timestamp: '2024-03-01 10:48:53+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/C++/spfa.test.cpp
-  - test/C++/warshallfloyd.test.cpp
-  - test/C++/shortestpath.test.cpp
-  - test/C++/dijkstra.test.cpp
+  - test/spfa.test.cpp
+  - test/warshallfloyd.test.cpp
+  - test/shortestpath.test.cpp
+  - test/dijkstra.test.cpp
 documentation_of: C++/graph/WeightedGraph.hpp
 layout: document
 redirect_from:

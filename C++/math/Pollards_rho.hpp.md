@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/C++/pf.test.cpp
-    title: test/C++/pf.test.cpp
+    path: test/pf.test.cpp
+    title: test/pf.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -78,7 +78,7 @@ data:
   timestamp: '2024-02-19 12:20:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/C++/pf.test.cpp
+  - test/pf.test.cpp
 documentation_of: C++/math/Pollards_rho.hpp
 layout: document
 redirect_from:

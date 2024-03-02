@@ -4,11 +4,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/C++/lcpa.test.cpp
-    title: test/C++/lcpa.test.cpp
+    path: test/lcpa.test.cpp
+    title: test/lcpa.test.cpp
   - icon: ':x:'
-    path: test/C++/sa.test.cpp
-    title: test/C++/sa.test.cpp
+    path: test/sa.test.cpp
+    title: test/sa.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -161,8 +161,8 @@ data:
   timestamp: '2024-02-19 12:20:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/C++/sa.test.cpp
-  - test/C++/lcpa.test.cpp
+  - test/sa.test.cpp
+  - test/lcpa.test.cpp
 documentation_of: C++/string/SA.hpp
 layout: document
 redirect_from:

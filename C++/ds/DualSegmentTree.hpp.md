@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/C++/dualsegtree.test.cpp
-    title: test/C++/dualsegtree.test.cpp
+    path: test/dualsegtree.test.cpp
+    title: test/dualsegtree.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -59,7 +59,7 @@ data:
   timestamp: '2024-02-27 10:38:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/C++/dualsegtree.test.cpp
+  - test/dualsegtree.test.cpp
 documentation_of: C++/ds/DualSegmentTree.hpp
 layout: document
 redirect_from:
