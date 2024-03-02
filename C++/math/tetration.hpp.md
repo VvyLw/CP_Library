@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/math/euler_phi.hpp
     title: Euler's Phi-function
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/C++/tetration.test.cpp
-    title: test/C++/tetration.test.cpp
+    path: test/tetration.test.cpp
+    title: test/tetration.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -52,7 +52,7 @@ data:
   timestamp: '2024-02-19 13:17:33+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/C++/tetration.test.cpp
+  - test/tetration.test.cpp
 documentation_of: C++/math/tetration.hpp
 layout: document
 redirect_from:

@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/C++/inv_num.test.cpp
-    title: test/C++/inv_num.test.cpp
+    path: test/inv_num.test.cpp
+    title: test/inv_num.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -66,7 +66,7 @@ data:
   timestamp: '2024-02-27 11:03:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/C++/inv_num.test.cpp
+  - test/inv_num.test.cpp
 documentation_of: C++/math/inverse_num.hpp
 layout: document
 redirect_from:

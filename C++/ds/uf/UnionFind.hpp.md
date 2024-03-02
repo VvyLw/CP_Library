@@ -10,11 +10,11 @@ data:
     title: "Kruskal\u6CD5"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/C++/manhattan.test.cpp
-    title: test/C++/manhattan.test.cpp
+    path: test/manhattan.test.cpp
+    title: test/manhattan.test.cpp
   - icon: ':x:'
-    path: test/C++/uf.test.cpp
-    title: test/C++/uf.test.cpp
+    path: test/uf.test.cpp
+    title: test/uf.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -84,8 +84,8 @@ data:
   timestamp: '2024-02-27 10:38:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/C++/manhattan.test.cpp
-  - test/C++/uf.test.cpp
+  - test/manhattan.test.cpp
+  - test/uf.test.cpp
 documentation_of: C++/ds/uf/UnionFind.hpp
 layout: document
 redirect_from:

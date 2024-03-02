@@ -16,11 +16,11 @@ data:
     title: Manhattan MST
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/C++/directed.test.cpp
-    title: test/C++/directed.test.cpp
+    path: test/directed.test.cpp
+    title: test/directed.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/C++/manhattan.test.cpp
-    title: test/C++/manhattan.test.cpp
+    path: test/manhattan.test.cpp
+    title: test/manhattan.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -48,8 +48,8 @@ data:
   timestamp: '2024-02-19 13:17:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/C++/manhattan.test.cpp
-  - test/C++/directed.test.cpp
+  - test/manhattan.test.cpp
+  - test/directed.test.cpp
 documentation_of: C++/graph/mst/MST.hpp
 layout: document
 redirect_from:

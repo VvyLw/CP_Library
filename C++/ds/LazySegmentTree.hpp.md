@@ -4,23 +4,23 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/C++/lazysegtree.test.cpp
-    title: test/C++/lazysegtree.test.cpp
+    path: test/lazysegtree.test.cpp
+    title: test/lazysegtree.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/C++/lazysegtree2.test.cpp
-    title: test/C++/lazysegtree2.test.cpp
+    path: test/lazysegtree2.test.cpp
+    title: test/lazysegtree2.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/C++/lazysegtree3.test.cpp
-    title: test/C++/lazysegtree3.test.cpp
+    path: test/lazysegtree3.test.cpp
+    title: test/lazysegtree3.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/C++/lazysegtree4.test.cpp
-    title: test/C++/lazysegtree4.test.cpp
+    path: test/lazysegtree4.test.cpp
+    title: test/lazysegtree4.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/C++/lazysegtree5.test.cpp
-    title: test/C++/lazysegtree5.test.cpp
+    path: test/lazysegtree5.test.cpp
+    title: test/lazysegtree5.test.cpp
   - icon: ':x:'
-    path: test/C++/rangeaffine.test.cpp
-    title: test/C++/rangeaffine.test.cpp
+    path: test/rangeaffine.test.cpp
+    title: test/rangeaffine.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -260,12 +260,12 @@ data:
   timestamp: '2024-02-27 10:38:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/C++/rangeaffine.test.cpp
-  - test/C++/lazysegtree.test.cpp
-  - test/C++/lazysegtree3.test.cpp
-  - test/C++/lazysegtree4.test.cpp
-  - test/C++/lazysegtree5.test.cpp
-  - test/C++/lazysegtree2.test.cpp
+  - test/rangeaffine.test.cpp
+  - test/lazysegtree.test.cpp
+  - test/lazysegtree3.test.cpp
+  - test/lazysegtree4.test.cpp
+  - test/lazysegtree5.test.cpp
+  - test/lazysegtree2.test.cpp
 documentation_of: C++/ds/LazySegmentTree.hpp
 layout: document
 redirect_from:

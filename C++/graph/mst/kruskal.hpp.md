@@ -13,8 +13,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/C++/manhattan.test.cpp
-    title: test/C++/manhattan.test.cpp
+    path: test/manhattan.test.cpp
+    title: test/manhattan.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -77,7 +77,7 @@ data:
   timestamp: '2024-02-29 01:03:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/C++/manhattan.test.cpp
+  - test/manhattan.test.cpp
 documentation_of: C++/graph/mst/kruskal.hpp
 layout: document
 redirect_from:

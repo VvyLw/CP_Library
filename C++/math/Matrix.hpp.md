@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/C++/matrix.test.cpp
-    title: test/C++/matrix.test.cpp
+    path: test/matrix.test.cpp
+    title: test/matrix.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -109,7 +109,7 @@ data:
   timestamp: '2024-02-19 12:20:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/C++/matrix.test.cpp
+  - test/matrix.test.cpp
 documentation_of: C++/math/Matrix.hpp
 layout: document
 redirect_from:

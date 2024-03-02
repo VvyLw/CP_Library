@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/C++/lca.test.cpp
-    title: test/C++/lca.test.cpp
+    path: test/lca.test.cpp
+    title: test/lca.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -78,7 +78,7 @@ data:
   timestamp: '2024-02-22 06:47:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/C++/lca.test.cpp
+  - test/lca.test.cpp
 documentation_of: C++/graph/LCA.hpp
 layout: document
 redirect_from:

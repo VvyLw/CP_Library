@@ -4,11 +4,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/C++/modprime.test.cpp
-    title: test/C++/modprime.test.cpp
+    path: test/modprime.test.cpp
+    title: test/modprime.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/C++/modprime2.test.cpp
-    title: test/C++/modprime2.test.cpp
+    path: test/modprime2.test.cpp
+    title: test/modprime2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -61,8 +61,8 @@ data:
   timestamp: '2024-02-19 12:20:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/C++/modprime.test.cpp
-  - test/C++/modprime2.test.cpp
+  - test/modprime.test.cpp
+  - test/modprime2.test.cpp
 documentation_of: C++/math/ModPrime.hpp
 layout: document
 redirect_from:

@@ -7,17 +7,17 @@ data:
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/C++/dijkstra.test.cpp
-    title: test/C++/dijkstra.test.cpp
+    path: test/dijkstra.test.cpp
+    title: test/dijkstra.test.cpp
   - icon: ':x:'
-    path: test/C++/shortestpath.test.cpp
-    title: test/C++/shortestpath.test.cpp
+    path: test/shortestpath.test.cpp
+    title: test/shortestpath.test.cpp
   - icon: ':x:'
-    path: test/C++/spfa.test.cpp
-    title: test/C++/spfa.test.cpp
+    path: test/spfa.test.cpp
+    title: test/spfa.test.cpp
   - icon: ':x:'
-    path: test/C++/warshallfloyd.test.cpp
-    title: test/C++/warshallfloyd.test.cpp
+    path: test/warshallfloyd.test.cpp
+    title: test/warshallfloyd.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -51,10 +51,10 @@ data:
   timestamp: '2024-02-29 11:41:45+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/C++/spfa.test.cpp
-  - test/C++/warshallfloyd.test.cpp
-  - test/C++/shortestpath.test.cpp
-  - test/C++/dijkstra.test.cpp
+  - test/spfa.test.cpp
+  - test/warshallfloyd.test.cpp
+  - test/shortestpath.test.cpp
+  - test/dijkstra.test.cpp
 documentation_of: C++/graph/ShortestPath.hpp
 layout: document
 redirect_from:

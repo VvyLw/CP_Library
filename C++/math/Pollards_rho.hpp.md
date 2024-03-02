@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/C++/pf.test.cpp
-    title: test/C++/pf.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/pf.test.cpp
+    title: test/pf.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/Pollards_rho.md
     document_title: Pollard's Rho
@@ -76,9 +76,9 @@ data:
   path: C++/math/Pollards_rho.hpp
   requiredBy: []
   timestamp: '2024-02-19 12:20:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/C++/pf.test.cpp
+  - test/pf.test.cpp
 documentation_of: C++/math/Pollards_rho.hpp
 layout: document
 redirect_from:

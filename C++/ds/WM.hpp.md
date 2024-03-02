@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/C++/WM.test.cpp
-    title: test/C++/WM.test.cpp
+    path: test/WM.test.cpp
+    title: test/WM.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -163,7 +163,7 @@ data:
   timestamp: '2024-02-27 10:38:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/C++/WM.test.cpp
+  - test/WM.test.cpp
 documentation_of: C++/ds/WM.hpp
 layout: document
 redirect_from:

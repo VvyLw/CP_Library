@@ -7,8 +7,8 @@ data:
     title: Directed MST
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/C++/directed.test.cpp
-    title: test/C++/directed.test.cpp
+    path: test/directed.test.cpp
+    title: test/directed.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -67,7 +67,7 @@ data:
   timestamp: '2024-02-19 12:20:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/C++/directed.test.cpp
+  - test/directed.test.cpp
 documentation_of: C++/SkewHeap.hpp
 layout: document
 redirect_from:
