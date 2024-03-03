@@ -11,10 +11,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
+    PROBLEM: https://judge.yosupo.jp/problem/static_range_frequency
     links:
-    - https://judge.yosupo.jp/problem/range_kth_smallest
-  bundledCode: "#line 1 \"test/WM.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\
+    - https://judge.yosupo.jp/problem/static_range_frequency
+  bundledCode: "#line 1 \"test/WM2.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_frequency\"\
     \n#include <iostream>\n#line 2 \"C++/ds/WM.hpp\"\n\n#include <cassert>\n#include\
     \ <vector>\n#include <algorithm>\n#include <tuple>\nstruct SIDict {\nprivate:\n\
     \    int blk;\n    std::vector<int> bit, sum;\npublic:\n    SIDict(){}\n    SIDict(const\
@@ -85,29 +85,29 @@ data:
     \    }\n    T next(const int l, const int r, const T lower) {\n        const auto\
     \ ret = mat.next(l, r, get(lower));\n        return ret == -1 ? (T)-1 : ys[ret];\n\
     \    }\n};\n/**\n * @brief Wavelet Matrix\n * @docs docs/WM.md\n * @see https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n\
-    \ */\n#line 4 \"test/WM.test.cpp\"\nint main() {\n    int n, q;\n    std::cin\
+    \ */\n#line 4 \"test/WM2.test.cpp\"\nint main() {\n    int n, q;\n    std::cin\
     \ >> n >> q;\n    std::vector<int> a(n);\n    for(auto &el: a) {\n        std::cin\
-    \ >> el;\n    }\n    WaveletMatrix<int> wm(a);\n    while(q--) {\n        int\
-    \ l, r, k;\n        std::cin >> l >> r >> k;\n        std::cout << wm.kth_min(l,\
-    \ r, k) << '\\n';\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
-    #include <iostream>\n#include \"C++/ds/WM.hpp\"\nint main() {\n    int n, q;\n\
+    \ >> el;\n    }\n    WaveletMatrix wm(a);\n    while(q--) {\n        int l, r,\
+    \ x;\n        std::cin >> l >> r >> x;\n        std::cout << wm.rank(x, r) - wm.rank(x,\
+    \ l) << '\\n';\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_frequency\"\
+    \n#include <iostream>\n#include \"C++/ds/WM.hpp\"\nint main() {\n    int n, q;\n\
     \    std::cin >> n >> q;\n    std::vector<int> a(n);\n    for(auto &el: a) {\n\
-    \        std::cin >> el;\n    }\n    WaveletMatrix<int> wm(a);\n    while(q--)\
-    \ {\n        int l, r, k;\n        std::cin >> l >> r >> k;\n        std::cout\
-    \ << wm.kth_min(l, r, k) << '\\n';\n    }\n}"
+    \        std::cin >> el;\n    }\n    WaveletMatrix wm(a);\n    while(q--) {\n\
+    \        int l, r, x;\n        std::cin >> l >> r >> x;\n        std::cout <<\
+    \ wm.rank(x, r) - wm.rank(x, l) << '\\n';\n    }\n}"
   dependsOn:
   - C++/ds/WM.hpp
   isVerificationFile: true
-  path: test/WM.test.cpp
+  path: test/WM2.test.cpp
   requiredBy: []
   timestamp: '2024-03-04 00:36:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/WM.test.cpp
+documentation_of: test/WM2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/WM.test.cpp
-- /verify/test/WM.test.cpp.html
-title: test/WM.test.cpp
+- /verify/test/WM2.test.cpp
+- /verify/test/WM2.test.cpp.html
+title: test/WM2.test.cpp
 ---

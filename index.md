@@ -498,11 +498,11 @@ data:
   - name: test
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/UnionFind.test.py
-      title: test/UnionFind.test.py
-    - icon: ':heavy_check_mark:'
       path: test/WM.test.cpp
       title: test/WM.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/WM2.test.cpp
+      title: test/WM2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aarray.test.cpp
       title: test/aarray.test.cpp
