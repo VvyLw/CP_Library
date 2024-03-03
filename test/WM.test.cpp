@@ -8,7 +8,7 @@ int main() {
     for(auto &el: a) {
         std::cin >> el;
     }
-    WaveletMatrix<int, 18> wm(a);
+    WaveletMatrix<int> wm(a);
     while(q--) {
         int l, r, k;
         std::cin >> l >> r >> k;
