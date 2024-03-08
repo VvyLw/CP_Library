@@ -1,5 +1,6 @@
 import std.algorithm: swap, filter;
 import std.array: array;
+import std.range;
 class UnionFind {
 private:
     int n;
@@ -37,8 +38,8 @@ public:
 }
 
 bool isBipartite(UnionFind uf) {
-    assert(uf.length() % 2 == 0);
-    const n = uf.length() / 2;
+    assert(uf.length % 2 == 0);
+    const n = uf.length / 2;
     bool ok = true;
     foreach(i; 0..n) {
         ok &= !uf.same(i, i + n);
