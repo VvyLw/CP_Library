@@ -1,6 +1,4 @@
 {
-"test/WM.test.cpp": "2024-03-04 00:36:37 +0900",
-"test/WM2.test.cpp": "2024-03-04 00:36:37 +0900",
 "test/aarray.test.cpp": "2024-03-03 06:51:22 +0900",
 "test/add.test.cpp": "2024-03-03 06:51:22 +0900",
 "test/add128.test.cpp": "2024-03-03 06:51:22 +0900",
@@ -60,5 +58,7 @@
 "test/uf.test.cpp": "2024-03-03 06:51:22 +0900",
 "test/ufpotential.test.cpp": "2024-03-03 06:51:22 +0900",
 "test/warshallfloyd.test.cpp": "2024-03-03 06:51:22 +0900",
+"test/wm.test.cpp": "2024-03-08 22:57:11 +0900",
+"test/wm3.test.cpp": "2024-03-08 22:57:11 +0900",
 "test/zalgo.test.cpp": "2024-03-03 06:51:22 +0900"
 }
