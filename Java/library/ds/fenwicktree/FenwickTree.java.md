@@ -560,39 +560,40 @@ data:
     \ int sz) {\n\t\tn = sz + 2;\n\t\tdata = new long[n + 1];\n\t}\n\t/**\n\t * \u30B3\
     \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a int\u578B\u306E\u914D\u5217\
     \n\t */\n\tpublic FenwickTree(final int[] a) {\n\t\tthis(a.length);\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> add(i, a[i]));\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\
-    \u30AF\u30BF\n\t * @param a long\u578B\u306E\u914D\u5217\n\t */\n\tpublic FenwickTree(final\
-    \ long[] a) {\n\t\tthis(a.length);\n\t\tIntStream.range(0, n).forEach(i -> add(i,\
-    \ a[i]));\n\t}\n\t/**\n\t * @param k\n\t * @return \u9589\u533A\u9593[0, k]\u306E\
-    \u548C\n\t */\n\tpublic final long sum(int k) {\n\t\tif(k < 0) {\n\t\t\treturn\
-    \ 0;\n\t\t}\n\t\tlong ret = 0;\n\t\tfor(++k; k > 0; k -= k & -k) {\n\t\t\tret\
-    \ += data[k];\n\t\t}\n\t\treturn ret;\n\t}\n\t/**\n\t * @param l\n\t * @param\
-    \ r\n\t * @return \u9589\u533A\u9593[l, r]\u306E\u548C\n\t */\n\tpublic final\
-    \ long sum(final int l, final int r){ return sum(r) - sum(l - 1); }\n\t/**\n\t\
-    \ * @param k\n\t * @return k\u756A\u76EE\u306E\u8981\u7D20\n\t */\n\tpublic final\
-    \ long get(final int k){ return sum(k) - sum(k - 1); }\n\t/**\n\t * k\u756A\u76EE\
-    \u306B\u5024\u3092\u52A0\u7B97\n\t * @param k\n\t * @param x\n\t */\n\tpublic\
-    \ final void add(int k, final long x) {\n\t\tfor(++k; k < n; k += k & -k) {\n\t\
-    \t\tdata[k] += x;\n\t\t}\n\t}\n\t/**\n\t * \u9589\u533A\u9593[l, r]\u306B\u5024\
-    \u3092\u52A0\u7B97\u3059\u308B\n\t * @param l\n\t * @param r\n\t * @param x\n\t\
-    \ */\n\tpublic final void add(final int l, final int r, final long x) {\n\t\t\
-    add(l, x);\n\t\tadd(r + 1, -x);\n\t}\n\tprivate final int lg(final int n){ return\
-    \ 31 - Integer.numberOfLeadingZeros(n); }\n\t/**\n\t * @implNote \u8981\u7D20\u306F\
-    \u5168\u3066\u975E\u8CA0\n\t * @param w\n\t * @return [0, k]\u306E\u533A\u9593\
-    \u548C\u304Cw\u4EE5\u4E0A\u3068\u306A\u308B\u3088\u3046\u306A\u6700\u5C0F\u306E\
-    k\n\t */\n\tpublic final int lowerBound(long w) {\n\t\tif(w <= 0) {\n\t\t\treturn\
-    \ 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>= 1) {\n\t\
-    \t\tif(x + k <= n - 1 && data[x + k] < w) {\n\t\t\t\tw -= data[x + k];\n\t\t\t\
-    \tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\t/**\n\t * @implNote \u8981\u7D20\
-    \u306F\u5168\u3066\u975E\u8CA0\n\t * @param w\n\t * @return [0, k]\u306E\u533A\
-    \u9593\u548C\u304Cw\u3088\u308A\u3082\u5927\u304D\u304F\u306A\u308B\u3088\u3046\
-    \u306A\u6700\u5C0F\u306Ek\n\t */\n\tpublic final int upperBound(long w) {\n\t\t\
-    if(w < 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n);\
-    \ k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <= w) {\n\t\t\t\t\
-    w -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\t@Override\n\
-    \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
-    \t\tsb.append(sum(0));\n\t\tfor(int i = 0; ++i < n - 2;) {\n\t\t\tsb.append(\"\
-    \ \" + sum(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
+    \ a.length).forEach(i -> add(i, a[i]));\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\n\t * @param a long\u578B\u306E\u914D\u5217\n\t */\n\tpublic\
+    \ FenwickTree(final long[] a) {\n\t\tthis(a.length);\n\t\tIntStream.range(0, a.length).forEach(i\
+    \ -> add(i, a[i]));\n\t}\n\t/**\n\t * @param k\n\t * @return \u9589\u533A\u9593\
+    [0, k]\u306E\u548C\n\t */\n\tpublic final long sum(int k) {\n\t\tif(k < 0) {\n\
+    \t\t\treturn 0;\n\t\t}\n\t\tlong ret = 0;\n\t\tfor(++k; k > 0; k -= k & -k) {\n\
+    \t\t\tret += data[k];\n\t\t}\n\t\treturn ret;\n\t}\n\t/**\n\t * @param l\n\t *\
+    \ @param r\n\t * @return \u9589\u533A\u9593[l, r]\u306E\u548C\n\t */\n\tpublic\
+    \ final long sum(final int l, final int r){ return sum(r) - sum(l - 1); }\n\t\
+    /**\n\t * @param k\n\t * @return k\u756A\u76EE\u306E\u8981\u7D20\n\t */\n\tpublic\
+    \ final long get(final int k){ return sum(k) - sum(k - 1); }\n\t/**\n\t * k\u756A\
+    \u76EE\u306B\u5024\u3092\u52A0\u7B97\n\t * @param k\n\t * @param x\n\t */\n\t\
+    public final void add(int k, final long x) {\n\t\tfor(++k; k < n; k += k & -k)\
+    \ {\n\t\t\tdata[k] += x;\n\t\t}\n\t}\n\t/**\n\t * \u9589\u533A\u9593[l, r]\u306B\
+    \u5024\u3092\u52A0\u7B97\u3059\u308B\n\t * @param l\n\t * @param r\n\t * @param\
+    \ x\n\t */\n\tpublic final void add(final int l, final int r, final long x) {\n\
+    \t\tadd(l, x);\n\t\tadd(r + 1, -x);\n\t}\n\tprivate final int lg(final int n){\
+    \ return 31 - Integer.numberOfLeadingZeros(n); }\n\t/**\n\t * @implNote \u8981\
+    \u7D20\u306F\u5168\u3066\u975E\u8CA0\n\t * @param w\n\t * @return [0, k]\u306E\
+    \u533A\u9593\u548C\u304Cw\u4EE5\u4E0A\u3068\u306A\u308B\u3088\u3046\u306A\u6700\
+    \u5C0F\u306Ek\n\t */\n\tpublic final int lowerBound(long w) {\n\t\tif(w <= 0)\
+    \ {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0;\
+    \ k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] < w) {\n\t\t\t\tw -= data[x\
+    \ + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\t/**\n\t * @implNote\
+    \ \u8981\u7D20\u306F\u5168\u3066\u975E\u8CA0\n\t * @param w\n\t * @return [0,\
+    \ k]\u306E\u533A\u9593\u548C\u304Cw\u3088\u308A\u3082\u5927\u304D\u304F\u306A\u308B\
+    \u3088\u3046\u306A\u6700\u5C0F\u306Ek\n\t */\n\tpublic final int upperBound(long\
+    \ w) {\n\t\tif(w < 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k\
+    \ = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <= w)\
+    \ {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\
+    \t}\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
+    \ sb = new StringBuilder();\n\t\tsb.append(sum(0));\n\t\tfor(int i = 0; ++i <\
+    \ n - 2;) {\n\t\t\tsb.append(\" \" + sum(i));\n\t\t}\n\t\treturn sb.toString();\n\
+    \t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/AOJ.java
@@ -777,7 +778,7 @@ data:
   - Java/library/math/largeprime/LongPrime.java
   - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
-  timestamp: '2024-03-03 07:03:04+09:00'
+  timestamp: '2024-03-08 15:39:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/fenwicktree/FenwickTree.java
