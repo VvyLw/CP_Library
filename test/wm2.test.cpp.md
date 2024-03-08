@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/ds/WM.hpp
     title: Wavelet Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_frequency
@@ -90,21 +90,21 @@ data:
     #line 4 \"test/wm2.test.cpp\"\nint main() {\n    int n, q;\n    std::cin >> n\
     \ >> q;\n    std::vector<int> a(n);\n    for(auto &el: a) {\n        std::cin\
     \ >> el;\n    }\n    WaveletMatrix wm(a);\n    while(q--) {\n        int l, r,\
-    \ x;\n        std::cin >> l >> r >> x;\n        std::cout << wm.rank(x, r) - wm.rank(x,\
-    \ l) << '\\n';\n    }\n}\n"
+    \ x;\n        std::cin >> l >> r >> x;\n        std::cout << wm.rank(l, r, x)\
+    \ << '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_frequency\"\
     \n#include <iostream>\n#include \"C++/ds/WM.hpp\"\nint main() {\n    int n, q;\n\
     \    std::cin >> n >> q;\n    std::vector<int> a(n);\n    for(auto &el: a) {\n\
     \        std::cin >> el;\n    }\n    WaveletMatrix wm(a);\n    while(q--) {\n\
     \        int l, r, x;\n        std::cin >> l >> r >> x;\n        std::cout <<\
-    \ wm.rank(x, r) - wm.rank(x, l) << '\\n';\n    }\n}"
+    \ wm.rank(l, r, x) << '\\n';\n    }\n}"
   dependsOn:
   - C++/ds/WM.hpp
   isVerificationFile: true
   path: test/wm2.test.cpp
   requiredBy: []
-  timestamp: '2024-03-08 22:57:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-08 23:08:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/wm2.test.cpp
 layout: document

@@ -38,7 +38,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/ds/SparseTable.hpp
       title: Sparse Table
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/ds/WM.hpp
       title: Wavelet Matrix
     - icon: ':heavy_check_mark:'
@@ -677,7 +677,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/wm.test.cpp
       title: test/wm.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/wm2.test.cpp
       title: test/wm2.test.cpp
     - icon: ':heavy_check_mark:'
