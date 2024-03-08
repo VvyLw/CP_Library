@@ -1526,7 +1526,7 @@ data:
   - Java/library/math/ModPrime.java
   - Java/library/math/largeprime/LongPrime.java
   - Java/library/math/largeprime/BigPrime.java
-  timestamp: '2024-03-08 15:39:00+09:00'
+  timestamp: '2024-03-08 22:57:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java

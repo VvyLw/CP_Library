@@ -38,7 +38,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/ds/SparseTable.hpp
       title: Sparse Table
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/ds/WM.hpp
       title: Wavelet Matrix
     - icon: ':heavy_check_mark:'
@@ -498,12 +498,6 @@ data:
   - name: test
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/WM.test.cpp
-      title: test/WM.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/WM2.test.cpp
-      title: test/WM2.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/aarray.test.cpp
       title: test/aarray.test.cpp
     - icon: ':heavy_check_mark:'
@@ -680,6 +674,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/warshallfloyd.test.cpp
       title: test/warshallfloyd.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/wm.test.cpp
+      title: test/wm.test.cpp
+    - icon: ':x:'
+      path: test/wm2.test.cpp
+      title: test/wm2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/wm3.test.cpp
+      title: test/wm3.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/zalgo.test.cpp
       title: test/zalgo.test.cpp

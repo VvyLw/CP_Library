@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/ds/WM.hpp
     title: Wavelet Matrix
   _extendedRequiredBy: []
@@ -11,10 +11,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/static_range_frequency
+    PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
     links:
-    - https://judge.yosupo.jp/problem/static_range_frequency
-  bundledCode: "#line 1 \"test/WM2.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_frequency\"\
+    - https://judge.yosupo.jp/problem/range_kth_smallest
+  bundledCode: "#line 1 \"test/wm.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\
     \n#include <iostream>\n#line 2 \"C++/ds/WM.hpp\"\n\n#include <cassert>\n#include\
     \ <vector>\n#include <algorithm>\n#include <tuple>\nstruct SIDict {\nprivate:\n\
     \    int blk;\n    std::vector<int> bit, sum;\npublic:\n    SIDict(){}\n    SIDict(const\
@@ -64,7 +64,7 @@ data:
     \ cnt == 0 ? (T)-1 : kth_min(l, r, cnt - 1);\n\t}\n    T next(const int l, const\
     \ int r, const T lower) const {\n\t\tconst int cnt = range_freq(l, r, lower);\n\
     \t\treturn cnt == r - l ? (T)-1 : kth_min(l, r, cnt);\n\t}\n};\n\ntemplate <class\
-    \ T, int log = 18> struct WaveletMatrix {\nprivate:\n    WMBeta<int, log> mat;\n\
+    \ T, int log = 20> struct WaveletMatrix {\nprivate:\n    WMBeta<int, log> mat;\n\
     \    std::vector<T> ys;\n    inline int get(const T x) const { return std::lower_bound(ys.cbegin(),\
     \ ys.cend(), x) - ys.cbegin(); }\n    T access(const int k) const { return ys[mat[k]];\
     \ }\npublic:\n    WaveletMatrix(const std::vector<T> v): ys(v) {\n        std::sort(ys.begin(),\
@@ -72,42 +72,44 @@ data:
     \        std::vector<int> t(v.size());\n        for(int i = 0; auto &el: v) {\n\
     \            t[i++] = get(el);\n        }\n        mat = WMBeta<int, log>(t);\n\
     \    }\n    T operator[](const int k) noexcept { return access(k); }\n    int\
-    \ rank(const T x, const int r) const {\n        const auto pos = get(x);\n   \
+    \ rank(const int r, const T x) const {\n        const auto pos = get(x);\n   \
     \     if(pos == std::ssize(ys) || ys[pos] != x) {\n            return 0;\n   \
-    \     }\n        return mat.rank(pos, r);\n    }\n    T kth_min(const int l, const\
-    \ int r, const int k) const { return ys[mat.kth_min(l, r, k)]; }\n    T kth_max(const\
-    \ int l, const int r, const int k) const { return ys[mat.kth_max(l, r, k)]; }\n\
-    \    int range_freq(const int l, const int r, const T upper) const { return mat.range_freq(l,\
-    \ r, get(upper)); }\n    int range_freq(const int l, const int r, const T lower,\
-    \ const T upper) const { return mat.range_freq(l, r, get(lower), get(upper));\
-    \ }\n    T prev(const int l, const int r, const T upper) {\n        const auto\
-    \ ret = mat.prev(l, r, get(upper));\n        return ret == -1 ? (T)-1 : ys[ret];\n\
-    \    }\n    T next(const int l, const int r, const T lower) {\n        const auto\
-    \ ret = mat.next(l, r, get(lower));\n        return ret == -1 ? (T)-1 : ys[ret];\n\
-    \    }\n};\n/**\n * @brief Wavelet Matrix\n * @docs docs/WM.md\n * @see https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n\
-    \ */\n#line 4 \"test/WM2.test.cpp\"\nint main() {\n    int n, q;\n    std::cin\
-    \ >> n >> q;\n    std::vector<int> a(n);\n    for(auto &el: a) {\n        std::cin\
-    \ >> el;\n    }\n    WaveletMatrix wm(a);\n    while(q--) {\n        int l, r,\
-    \ x;\n        std::cin >> l >> r >> x;\n        std::cout << wm.rank(x, r) - wm.rank(x,\
-    \ l) << '\\n';\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_frequency\"\
-    \n#include <iostream>\n#include \"C++/ds/WM.hpp\"\nint main() {\n    int n, q;\n\
+    \     }\n        return mat.rank(pos, r);\n    }\n    int rank(const int l, const\
+    \ int r, const T x) const { return rank(r, x) - rank(l, x); }\n    T kth_min(const\
+    \ int l, const int r, const int k) const { return ys[mat.kth_min(l, r, k)]; }\n\
+    \    T kth_max(const int l, const int r, const int k) const { return ys[mat.kth_max(l,\
+    \ r, k)]; }\n    int range_freq(const int l, const int r, const T upper) const\
+    \ { return mat.range_freq(l, r, get(upper)); }\n    int range_freq(const int l,\
+    \ const int r, const T lower, const T upper) const { return mat.range_freq(l,\
+    \ r, get(lower), get(upper)); }\n    T prev(const int l, const int r, const T\
+    \ upper) {\n        const auto ret = mat.prev(l, r, get(upper));\n        return\
+    \ ret == -1 ? (T)-1 : ys[ret];\n    }\n    T next(const int l, const int r, const\
+    \ T lower) {\n        const auto ret = mat.next(l, r, get(lower));\n        return\
+    \ ret == -1 ? (T)-1 : ys[ret];\n    }\n};\n/**\n * @brief Wavelet Matrix\n * @see\
+    \ https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n */\n\
+    #line 4 \"test/wm.test.cpp\"\nint main() {\n    int n, q;\n    std::cin >> n >>\
+    \ q;\n    std::vector<int> a(n);\n    for(auto &el: a) {\n        std::cin >>\
+    \ el;\n    }\n    WaveletMatrix<int> wm(a);\n    while(q--) {\n        int l,\
+    \ r, k;\n        std::cin >> l >> r >> k;\n        std::cout << wm.kth_min(l,\
+    \ r, k) << '\\n';\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
+    #include <iostream>\n#include \"C++/ds/WM.hpp\"\nint main() {\n    int n, q;\n\
     \    std::cin >> n >> q;\n    std::vector<int> a(n);\n    for(auto &el: a) {\n\
-    \        std::cin >> el;\n    }\n    WaveletMatrix wm(a);\n    while(q--) {\n\
-    \        int l, r, x;\n        std::cin >> l >> r >> x;\n        std::cout <<\
-    \ wm.rank(x, r) - wm.rank(x, l) << '\\n';\n    }\n}"
+    \        std::cin >> el;\n    }\n    WaveletMatrix<int> wm(a);\n    while(q--)\
+    \ {\n        int l, r, k;\n        std::cin >> l >> r >> k;\n        std::cout\
+    \ << wm.kth_min(l, r, k) << '\\n';\n    }\n}"
   dependsOn:
   - C++/ds/WM.hpp
   isVerificationFile: true
-  path: test/WM2.test.cpp
+  path: test/wm.test.cpp
   requiredBy: []
-  timestamp: '2024-03-04 00:36:37+09:00'
+  timestamp: '2024-03-08 22:57:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/WM2.test.cpp
+documentation_of: test/wm.test.cpp
 layout: document
 redirect_from:
-- /verify/test/WM2.test.cpp
-- /verify/test/WM2.test.cpp.html
-title: test/WM2.test.cpp
+- /verify/test/wm.test.cpp
+- /verify/test/wm.test.cpp.html
+title: test/wm.test.cpp
 ---

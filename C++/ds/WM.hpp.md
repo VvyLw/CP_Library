@@ -4,16 +4,18 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/WM.test.cpp
-    title: test/WM.test.cpp
+    path: test/wm.test.cpp
+    title: test/wm.test.cpp
+  - icon: ':x:'
+    path: test/wm2.test.cpp
+    title: test/wm2.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/WM2.test.cpp
-    title: test/WM2.test.cpp
-  _isVerificationFailed: false
+    path: test/wm3.test.cpp
+    title: test/wm3.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
-    _deprecated_at_docs: docs/WM.md
     document_title: Wavelet Matrix
     links:
     - https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp
@@ -66,7 +68,7 @@ data:
     \ cnt == 0 ? (T)-1 : kth_min(l, r, cnt - 1);\n\t}\n    T next(const int l, const\
     \ int r, const T lower) const {\n\t\tconst int cnt = range_freq(l, r, lower);\n\
     \t\treturn cnt == r - l ? (T)-1 : kth_min(l, r, cnt);\n\t}\n};\n\ntemplate <class\
-    \ T, int log = 18> struct WaveletMatrix {\nprivate:\n    WMBeta<int, log> mat;\n\
+    \ T, int log = 20> struct WaveletMatrix {\nprivate:\n    WMBeta<int, log> mat;\n\
     \    std::vector<T> ys;\n    inline int get(const T x) const { return std::lower_bound(ys.cbegin(),\
     \ ys.cend(), x) - ys.cbegin(); }\n    T access(const int k) const { return ys[mat[k]];\
     \ }\npublic:\n    WaveletMatrix(const std::vector<T> v): ys(v) {\n        std::sort(ys.begin(),\
@@ -74,20 +76,21 @@ data:
     \        std::vector<int> t(v.size());\n        for(int i = 0; auto &el: v) {\n\
     \            t[i++] = get(el);\n        }\n        mat = WMBeta<int, log>(t);\n\
     \    }\n    T operator[](const int k) noexcept { return access(k); }\n    int\
-    \ rank(const T x, const int r) const {\n        const auto pos = get(x);\n   \
+    \ rank(const int r, const T x) const {\n        const auto pos = get(x);\n   \
     \     if(pos == std::ssize(ys) || ys[pos] != x) {\n            return 0;\n   \
-    \     }\n        return mat.rank(pos, r);\n    }\n    T kth_min(const int l, const\
-    \ int r, const int k) const { return ys[mat.kth_min(l, r, k)]; }\n    T kth_max(const\
-    \ int l, const int r, const int k) const { return ys[mat.kth_max(l, r, k)]; }\n\
-    \    int range_freq(const int l, const int r, const T upper) const { return mat.range_freq(l,\
-    \ r, get(upper)); }\n    int range_freq(const int l, const int r, const T lower,\
-    \ const T upper) const { return mat.range_freq(l, r, get(lower), get(upper));\
-    \ }\n    T prev(const int l, const int r, const T upper) {\n        const auto\
-    \ ret = mat.prev(l, r, get(upper));\n        return ret == -1 ? (T)-1 : ys[ret];\n\
-    \    }\n    T next(const int l, const int r, const T lower) {\n        const auto\
-    \ ret = mat.next(l, r, get(lower));\n        return ret == -1 ? (T)-1 : ys[ret];\n\
-    \    }\n};\n/**\n * @brief Wavelet Matrix\n * @docs docs/WM.md\n * @see https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n\
-    \ */\n"
+    \     }\n        return mat.rank(pos, r);\n    }\n    int rank(const int l, const\
+    \ int r, const T x) const { return rank(r, x) - rank(l, x); }\n    T kth_min(const\
+    \ int l, const int r, const int k) const { return ys[mat.kth_min(l, r, k)]; }\n\
+    \    T kth_max(const int l, const int r, const int k) const { return ys[mat.kth_max(l,\
+    \ r, k)]; }\n    int range_freq(const int l, const int r, const T upper) const\
+    \ { return mat.range_freq(l, r, get(upper)); }\n    int range_freq(const int l,\
+    \ const int r, const T lower, const T upper) const { return mat.range_freq(l,\
+    \ r, get(lower), get(upper)); }\n    T prev(const int l, const int r, const T\
+    \ upper) {\n        const auto ret = mat.prev(l, r, get(upper));\n        return\
+    \ ret == -1 ? (T)-1 : ys[ret];\n    }\n    T next(const int l, const int r, const\
+    \ T lower) {\n        const auto ret = mat.next(l, r, get(lower));\n        return\
+    \ ret == -1 ? (T)-1 : ys[ret];\n    }\n};\n/**\n * @brief Wavelet Matrix\n * @see\
+    \ https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n */\n"
   code: "#pragma once\n\n#include <cassert>\n#include <vector>\n#include <algorithm>\n\
     #include <tuple>\nstruct SIDict {\nprivate:\n    int blk;\n    std::vector<int>\
     \ bit, sum;\npublic:\n    SIDict(){}\n    SIDict(const int len): blk((len + 31)\
@@ -137,7 +140,7 @@ data:
     \ cnt == 0 ? (T)-1 : kth_min(l, r, cnt - 1);\n\t}\n    T next(const int l, const\
     \ int r, const T lower) const {\n\t\tconst int cnt = range_freq(l, r, lower);\n\
     \t\treturn cnt == r - l ? (T)-1 : kth_min(l, r, cnt);\n\t}\n};\n\ntemplate <class\
-    \ T, int log = 18> struct WaveletMatrix {\nprivate:\n    WMBeta<int, log> mat;\n\
+    \ T, int log = 20> struct WaveletMatrix {\nprivate:\n    WMBeta<int, log> mat;\n\
     \    std::vector<T> ys;\n    inline int get(const T x) const { return std::lower_bound(ys.cbegin(),\
     \ ys.cend(), x) - ys.cbegin(); }\n    T access(const int k) const { return ys[mat[k]];\
     \ }\npublic:\n    WaveletMatrix(const std::vector<T> v): ys(v) {\n        std::sort(ys.begin(),\
@@ -145,29 +148,31 @@ data:
     \        std::vector<int> t(v.size());\n        for(int i = 0; auto &el: v) {\n\
     \            t[i++] = get(el);\n        }\n        mat = WMBeta<int, log>(t);\n\
     \    }\n    T operator[](const int k) noexcept { return access(k); }\n    int\
-    \ rank(const T x, const int r) const {\n        const auto pos = get(x);\n   \
+    \ rank(const int r, const T x) const {\n        const auto pos = get(x);\n   \
     \     if(pos == std::ssize(ys) || ys[pos] != x) {\n            return 0;\n   \
-    \     }\n        return mat.rank(pos, r);\n    }\n    T kth_min(const int l, const\
-    \ int r, const int k) const { return ys[mat.kth_min(l, r, k)]; }\n    T kth_max(const\
-    \ int l, const int r, const int k) const { return ys[mat.kth_max(l, r, k)]; }\n\
-    \    int range_freq(const int l, const int r, const T upper) const { return mat.range_freq(l,\
-    \ r, get(upper)); }\n    int range_freq(const int l, const int r, const T lower,\
-    \ const T upper) const { return mat.range_freq(l, r, get(lower), get(upper));\
-    \ }\n    T prev(const int l, const int r, const T upper) {\n        const auto\
-    \ ret = mat.prev(l, r, get(upper));\n        return ret == -1 ? (T)-1 : ys[ret];\n\
-    \    }\n    T next(const int l, const int r, const T lower) {\n        const auto\
-    \ ret = mat.next(l, r, get(lower));\n        return ret == -1 ? (T)-1 : ys[ret];\n\
-    \    }\n};\n/**\n * @brief Wavelet Matrix\n * @docs docs/WM.md\n * @see https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n\
-    \ */"
+    \     }\n        return mat.rank(pos, r);\n    }\n    int rank(const int l, const\
+    \ int r, const T x) const { return rank(r, x) - rank(l, x); }\n    T kth_min(const\
+    \ int l, const int r, const int k) const { return ys[mat.kth_min(l, r, k)]; }\n\
+    \    T kth_max(const int l, const int r, const int k) const { return ys[mat.kth_max(l,\
+    \ r, k)]; }\n    int range_freq(const int l, const int r, const T upper) const\
+    \ { return mat.range_freq(l, r, get(upper)); }\n    int range_freq(const int l,\
+    \ const int r, const T lower, const T upper) const { return mat.range_freq(l,\
+    \ r, get(lower), get(upper)); }\n    T prev(const int l, const int r, const T\
+    \ upper) {\n        const auto ret = mat.prev(l, r, get(upper));\n        return\
+    \ ret == -1 ? (T)-1 : ys[ret];\n    }\n    T next(const int l, const int r, const\
+    \ T lower) {\n        const auto ret = mat.next(l, r, get(lower));\n        return\
+    \ ret == -1 ? (T)-1 : ys[ret];\n    }\n};\n/**\n * @brief Wavelet Matrix\n * @see\
+    \ https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/ds/WM.hpp
   requiredBy: []
-  timestamp: '2024-03-04 00:36:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-03-08 22:57:11+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/WM2.test.cpp
-  - test/WM.test.cpp
+  - test/wm3.test.cpp
+  - test/wm2.test.cpp
+  - test/wm.test.cpp
 documentation_of: C++/ds/WM.hpp
 layout: document
 redirect_from:
@@ -175,4 +180,3 @@ redirect_from:
 - /library/C++/ds/WM.hpp.html
 title: Wavelet Matrix
 ---
-[mojaで作った問題](https://mojacoder.app/users/VvyLw/problems/range_k-th_largest_query)で答えが他の人と合わなかったので、もしかしたら間違っているかもしれません。
