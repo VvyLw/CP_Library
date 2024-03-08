@@ -12,26 +12,34 @@ public:
         par[] = -1;
     }
     int length() const { return n; }
-    int root(const int i){ return par[i] >= 0 ? par[i] = root(par[i]) : i; }
-    int size(const int i){ return -par[root(i)]; }
+    ref auto opIndex(int i) {
+        while(par[i] >= 0) {
+            const p = par[par[i]];
+            if(p < 0) {
+                return par[i];
+            }
+            i = par[i] = p;
+        }
+        return i;
+    }
+    int size(const int i){ return -par[this[i]]; }
     bool unite(int i, int j) {
-        i = root(i);
-        j = root(j);
-        if (i == j) {
+        i = this[i];
+        j = this[j];
+        if(i == j) {
             return false;
         }
-        if (i > j) {
+        if(i > j) {
             swap(i, j);
         }
         par[i] += par[j];
         par[j] = i;
         return true;
     }
-    bool same(const int i, const int j){ return root(i) == root(j); }
     int[][] groups() {
         int[][] res = new int[][n];
         foreach(i; 0..n) {
-            res[root(i)] ~= i;
+            res[this[i]] ~= i;
         }
         return res.filter!(a => !a.empty).array;
     }
@@ -42,7 +50,7 @@ bool isBipartite(UnionFind uf) {
     const n = uf.length / 2;
     bool ok = true;
     foreach(i; 0..n) {
-        ok &= !uf.same(i, i + n);
+        ok &= uf[i] != uf[i + n];
     }
     return ok;
 }
