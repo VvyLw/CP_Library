@@ -166,8 +166,8 @@ data:
   timestamp: '2024-03-04 00:36:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/WM.test.cpp
   - test/WM2.test.cpp
+  - test/WM.test.cpp
 documentation_of: C++/ds/WM.hpp
 layout: document
 redirect_from:

@@ -195,8 +195,8 @@ data:
   verifiedWith:
   - test/spfa.test.cpp
   - test/warshallfloyd.test.cpp
-  - test/shortestpath.test.cpp
   - test/dijkstra.test.cpp
+  - test/shortestpath.test.cpp
 documentation_of: C++/graph/WeightedGraph.hpp
 layout: document
 redirect_from:

@@ -161,8 +161,8 @@ data:
   timestamp: '2024-02-19 12:20:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/sa.test.cpp
   - test/lcpa.test.cpp
+  - test/sa.test.cpp
 documentation_of: C++/string/SA.hpp
 layout: document
 redirect_from:
