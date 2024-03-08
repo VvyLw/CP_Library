@@ -23,7 +23,7 @@ public final class FenwickTree {
 	 */
 	public FenwickTree(final int[] a) {
 		this(a.length);
-		IntStream.range(0, n).forEach(i -> add(i, a[i]));
+		IntStream.range(0, a.length).forEach(i -> add(i, a[i]));
 	}
 	/**
 	 * コンストラクタ
@@ -31,7 +31,7 @@ public final class FenwickTree {
 	 */
 	public FenwickTree(final long[] a) {
 		this(a.length);
-		IntStream.range(0, n).forEach(i -> add(i, a[i]));
+		IntStream.range(0, a.length).forEach(i -> add(i, a[i]));
 	}
 	/**
 	 * @param k
