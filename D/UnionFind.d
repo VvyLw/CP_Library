@@ -1,7 +1,7 @@
+class UnionFind {
 import std.algorithm: swap, filter;
 import std.array: array;
 import std.range;
-class UnionFind {
 private:
     int n;
     int[] par;
