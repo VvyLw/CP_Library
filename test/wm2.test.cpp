@@ -12,6 +12,6 @@ int main() {
     while(q--) {
         int l, r, x;
         std::cin >> l >> r >> x;
-        std::cout << wm.rank(x, r) - wm.rank(x, l) << '\n';
+        std::cout << wm.rank(l, r, x) << '\n';
     }
 }
