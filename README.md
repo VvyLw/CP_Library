@@ -11,7 +11,7 @@
   
 C++とJavaとで書いてあることは同じです。  
 javadocは記述済なのでライブラリの説明はJavaを見ると良いです。  
-Python, Ruby, Rust, D, NimはUnionFindだけ置いてあります。  
+Python, Ruby, Rust, NimはUnionFindだけ置いてあります。  
 バグ等あればIssueを投げるなりDMするなりお願いします。  
   
 [Luzhiled's Library](https://ei1333.github.io/library/)を基本的に参考にしています。
