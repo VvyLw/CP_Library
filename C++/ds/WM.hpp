@@ -109,7 +109,7 @@ public:
 	}
 };
 
-template <class T, int log = 18> struct WaveletMatrix {
+template <class T, int log = 20> struct WaveletMatrix {
 private:
     WMBeta<int, log> mat;
     std::vector<T> ys;
@@ -126,13 +126,14 @@ public:
         mat = WMBeta<int, log>(t);
     }
     T operator[](const int k) noexcept { return access(k); }
-    int rank(const T x, const int r) const {
+    int rank(const int r, const T x) const {
         const auto pos = get(x);
         if(pos == std::ssize(ys) || ys[pos] != x) {
             return 0;
         }
         return mat.rank(pos, r);
     }
+    int rank(const int l, const int r, const T x) const { return rank(r, x) - rank(l, x); }
     T kth_min(const int l, const int r, const int k) const { return ys[mat.kth_min(l, r, k)]; }
     T kth_max(const int l, const int r, const int k) const { return ys[mat.kth_max(l, r, k)]; }
     int range_freq(const int l, const int r, const T upper) const { return mat.range_freq(l, r, get(upper)); }
@@ -148,6 +149,5 @@ public:
 };
 /**
  * @brief Wavelet Matrix
- * @docs docs/WM.md
  * @see https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp
  */

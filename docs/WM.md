@@ -1,1 +1,0 @@
-[mojaで作った問題](https://mojacoder.app/users/VvyLw/problems/range_k-th_largest_query)で答えが他の人と合わなかったので、もしかしたら間違っているかもしれません。
