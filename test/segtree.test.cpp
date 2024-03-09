@@ -22,11 +22,8 @@ int main() {
 
 void VvyLw::solve() {
 	INT(n,q);
-	SegTree<ll> rsq(n,[](ll a, ll b){ return a+b; },0);
-	rep(n) {
-		INT(a);
-        rsq.update(i,a);
-	}
+	VEC(ll,a,n);
+	SegTree<ll> rsq(a,[](ll a, ll b){ return a+b; },0);
 	while(q--) {
 		INT(t,p,q);
 		if(t) out(rsq.query(p,q));

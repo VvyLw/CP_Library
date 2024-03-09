@@ -17,6 +17,12 @@ public:
         while(fine>n) n<<=1LL,rank++;
         dat.assign(2*n,e_);
     }
+    SegTree(const std::vector<T> &v, const F f_, const T e_): f(f_), e(e_), fine(v.size()) {
+        n=1,rank=0;
+        while(fine>n) n<<=1LL,rank++;
+        dat.assign(2*n,e_);
+        for(size_t i=0; i<v.size(); ++i) update(i,v[i]);
+    }
     T operator[](int i) const { return dat[i+n]; }
     void update(int i, const T& x) {
         i+=n;
