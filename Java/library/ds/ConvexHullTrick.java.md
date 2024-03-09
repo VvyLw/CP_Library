@@ -137,11 +137,11 @@ data:
     path: Java/library/ds/SparseTable.java
     title: Java/library/ds/SparseTable.java
   - icon: ':warning:'
-    path: Java/library/ds/deque/Deque.java
-    title: Java/library/ds/deque/Deque.java
-  - icon: ':warning:'
     path: Java/library/ds/deque/IntDeque.java
     title: Java/library/ds/deque/IntDeque.java
+  - icon: ':warning:'
+    path: Java/library/ds/deque/MyDeque.java
+    title: Java/library/ds/deque/MyDeque.java
   - icon: ':warning:'
     path: Java/library/ds/fenwicktree/FenwickTree.java
     title: Java/library/ds/fenwicktree/FenwickTree.java
@@ -408,11 +408,11 @@ data:
     path: Java/library/ds/SparseTable.java
     title: Java/library/ds/SparseTable.java
   - icon: ':warning:'
-    path: Java/library/ds/deque/Deque.java
-    title: Java/library/ds/deque/Deque.java
-  - icon: ':warning:'
     path: Java/library/ds/deque/IntDeque.java
     title: Java/library/ds/deque/IntDeque.java
+  - icon: ':warning:'
+    path: Java/library/ds/deque/MyDeque.java
+    title: Java/library/ds/deque/MyDeque.java
   - icon: ':warning:'
     path: Java/library/ds/fenwicktree/FenwickTree.java
     title: Java/library/ds/fenwicktree/FenwickTree.java
@@ -552,47 +552,47 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/ds/ConvexHullTrick.java\n"
-  code: "package library.ds;\n\nimport library.ds.deque.Deque;\nimport library.ds.pair.IntPair;\n\
+  code: "package library.ds;\n\nimport library.ds.deque.MyDeque;\nimport library.ds.pair.IntPair;\n\
     \n/**\n * Convex Hull Trick Add Monotone\n * \u6574\u6570\u578B\u306B\u3057\u304B\
     \u5BFE\u5FDC\u3057\u3066\u3044\u306A\u3044\n * @deprecated verify\u3057\u3066\u3044\
     \u306A\u3044\n * @see <a href=\"https://ei1333.github.io/library/structure/convex-hull-trick/convex-hull-trick-add-monotone.hpp\"\
     >\u53C2\u8003\u5143</a>\n */\npublic final class ConvexHullTrick {\n\tprivate\
-    \ final Deque<IntPair> h;\n\tprivate final boolean isMin;\n\tpublic ConvexHullTrick(final\
-    \ boolean isMin) {\n\t\tthis.isMin = isMin;\n\t\th = new Deque<>();\n\t}\n\tprivate\
-    \ final boolean isEmpty(){ return h.isEmpty(); }\n\tpublic final void clear(){\
+    \ final MyDeque<IntPair> h;\n\tprivate final boolean isMin;\n\tpublic ConvexHullTrick(final\
+    \ boolean isMin) {\n\t\tthis.isMin = isMin;\n\t\th = new MyDeque<>();\n\t}\n\t\
+    private final boolean isEmpty(){ return h.isEmpty(); }\n\tpublic final void clear(){\
     \ h.clear(); }\n\tpublic final int size(){ return h.size(); }\n\tpublic final\
-    \ Deque<IntPair> get(){ return h; }\n\tprivate final int sgn(final long x){ return\
-    \ x == 0 ? 0 : (x < 0 ? -1 : 1); }\n\tprivate final boolean check(final IntPair\
-    \ a, final IntPair b, final IntPair c) {\n\t\tif(b.second.longValue() == a.second.longValue()\
-    \ || c.second.longValue() == b.second.longValue()) {\n\t\t\treturn sgn(b.first.longValue()\
-    \ - a.first.longValue()) * sgn(c.second.longValue() - b.second.longValue()) >=\
-    \ sgn(c.first.longValue() - b.first.longValue()) * sgn(b.second.longValue() -\
-    \ a.second.longValue());\n\t\t}\n\t\treturn (b.second.longValue() - a.second.longValue())\
-    \ / (a.first.longValue() - b.first.longValue()) >= (c.second.longValue() - b.second.longValue())\
-    \ / (b.first.longValue() - c.first.longValue());\n\t}\n\tpublic final void add(long\
-    \ a, long b) {\n\t\tif(!isMin) {\n\t\t\ta = -a;\n\t\t\tb = -b;\n\t\t}\n\t\tfinal\
-    \ IntPair line = IntPair.of(a, b);\n\t\tif(isEmpty()) {\n\t\t\th.add(line);\n\t\
-    \t\treturn;\n\t\t}\n\t\tif(h.peekFirst().first.longValue() <= a) {\n\t\t\tif(h.peekFirst().first.longValue()\
-    \ == a) {\n\t\t\t\tif(h.peekFirst().second.longValue() <= b) {\n\t\t\t\t\treturn;\n\
-    \t\t\t\t}\n\t\t\t\th.pollFirst();\n\t\t\t}\n\t\t\twhile(h.size() >= 2 && check(line,\
-    \ h.peekFirst(), h.get(1))) {\n\t\t\t\th.pollFirst();\n\t\t\t}\n\t\t\th.add(line);\n\
-    \t\t} else {\n\t\t\tassert a <= h.peekLast().first.longValue();\n\t\t\tif(h.peekLast().first.longValue()\
-    \ == a) {\n\t\t\t\tif(h.peekLast().second.longValue() <= b) {\n\t\t\t\t\treturn;\n\
-    \t\t\t\t}\n\t\t\t\th.pollLast();\n\t\t\t}\n\t\t\twhile(h.size() >= 2 && check(h.get(h.size()\
-    \ - 2), h.peekLast(), line)) {\n\t\t\t\th.pollLast();\n\t\t\t}\n\t\t\th.add(line);\n\
-    \t\t}\n\t}\n\tprivate final long get(final IntPair p, final long x){ return p.first.longValue()\
-    \ * x + p.second.longValue(); }\n\tpublic final long query(final long x) {\n\t\
-    \tassert !isEmpty();\n\t\tint l = -1, r = h.size() - 1;\n\t\twhile(l + 1 < r)\
-    \ {\n\t\t\tint m = (l + r) >> 1;\n\t\t\tif(get(h.get(m), x) >= get(h.get(m + 1),\
-    \ x)) {\n\t\t\t\tl = m;\n\t\t\t} else {\n\t\t\t\tr = m;\n\t\t\t}\n\t\t}\n\t\t\
-    return isMin ? get(h.get(r), x) : -get(h.get(r), x);\n\t}\n\tpublic final long\
-    \ queryMonotoneInc(final long x) {\n\t\tassert !isEmpty();\n\t\twhile(h.size()\
-    \ >= 2 && get(h.peekFirst(), x) >= get(h.get(1), x)) {\n\t\t\th.pollFirst();\n\
-    \t\t}\n\t\treturn isMin ? get(h.peekFirst(), x) : -get(h.peekFirst(), x);\n\t\
-    }\n\tpublic final long queryMonotoneDec(final long x) {\n\t\tassert !isEmpty();\n\
-    \t\twhile(h.size() >= 2 && get(h.peekLast(), x) >= get(h.get(h.size() - 2), x))\
-    \ {\n\t\t\th.pollLast();\n\t\t}\n\t\treturn isMin ? get(h.peekLast(), x) : -get(h.peekLast(),\
-    \ x);\n\t}\n}"
+    \ MyDeque<IntPair> get(){ return h; }\n\tprivate final int sgn(final long x){\
+    \ return x == 0 ? 0 : (x < 0 ? -1 : 1); }\n\tprivate final boolean check(final\
+    \ IntPair a, final IntPair b, final IntPair c) {\n\t\tif(b.second.longValue()\
+    \ == a.second.longValue() || c.second.longValue() == b.second.longValue()) {\n\
+    \t\t\treturn sgn(b.first.longValue() - a.first.longValue()) * sgn(c.second.longValue()\
+    \ - b.second.longValue()) >= sgn(c.first.longValue() - b.first.longValue()) *\
+    \ sgn(b.second.longValue() - a.second.longValue());\n\t\t}\n\t\treturn (b.second.longValue()\
+    \ - a.second.longValue()) / (a.first.longValue() - b.first.longValue()) >= (c.second.longValue()\
+    \ - b.second.longValue()) / (b.first.longValue() - c.first.longValue());\n\t}\n\
+    \tpublic final void add(long a, long b) {\n\t\tif(!isMin) {\n\t\t\ta = -a;\n\t\
+    \t\tb = -b;\n\t\t}\n\t\tfinal IntPair line = IntPair.of(a, b);\n\t\tif(isEmpty())\
+    \ {\n\t\t\th.add(line);\n\t\t\treturn;\n\t\t}\n\t\tif(h.peekFirst().first.longValue()\
+    \ <= a) {\n\t\t\tif(h.peekFirst().first.longValue() == a) {\n\t\t\t\tif(h.peekFirst().second.longValue()\
+    \ <= b) {\n\t\t\t\t\treturn;\n\t\t\t\t}\n\t\t\t\th.pollFirst();\n\t\t\t}\n\t\t\
+    \twhile(h.size() >= 2 && check(line, h.peekFirst(), h.get(1))) {\n\t\t\t\th.pollFirst();\n\
+    \t\t\t}\n\t\t\th.add(line);\n\t\t} else {\n\t\t\tassert a <= h.peekLast().first.longValue();\n\
+    \t\t\tif(h.peekLast().first.longValue() == a) {\n\t\t\t\tif(h.peekLast().second.longValue()\
+    \ <= b) {\n\t\t\t\t\treturn;\n\t\t\t\t}\n\t\t\t\th.pollLast();\n\t\t\t}\n\t\t\t\
+    while(h.size() >= 2 && check(h.get(h.size() - 2), h.peekLast(), line)) {\n\t\t\
+    \t\th.pollLast();\n\t\t\t}\n\t\t\th.add(line);\n\t\t}\n\t}\n\tprivate final long\
+    \ get(final IntPair p, final long x){ return p.first.longValue() * x + p.second.longValue();\
+    \ }\n\tpublic final long query(final long x) {\n\t\tassert !isEmpty();\n\t\tint\
+    \ l = -1, r = h.size() - 1;\n\t\twhile(l + 1 < r) {\n\t\t\tint m = (l + r) >>\
+    \ 1;\n\t\t\tif(get(h.get(m), x) >= get(h.get(m + 1), x)) {\n\t\t\t\tl = m;\n\t\
+    \t\t} else {\n\t\t\t\tr = m;\n\t\t\t}\n\t\t}\n\t\treturn isMin ? get(h.get(r),\
+    \ x) : -get(h.get(r), x);\n\t}\n\tpublic final long queryMonotoneInc(final long\
+    \ x) {\n\t\tassert !isEmpty();\n\t\twhile(h.size() >= 2 && get(h.peekFirst(),\
+    \ x) >= get(h.get(1), x)) {\n\t\t\th.pollFirst();\n\t\t}\n\t\treturn isMin ? get(h.peekFirst(),\
+    \ x) : -get(h.peekFirst(), x);\n\t}\n\tpublic final long queryMonotoneDec(final\
+    \ long x) {\n\t\tassert !isEmpty();\n\t\twhile(h.size() >= 2 && get(h.peekLast(),\
+    \ x) >= get(h.get(h.size() - 2), x)) {\n\t\t\th.pollLast();\n\t\t}\n\t\treturn\
+    \ isMin ? get(h.peekLast(), x) : -get(h.peekLast(), x);\n\t}\n}"
   dependsOn:
   - Java/yukicoder.java
   - Java/AOJ.java
@@ -628,8 +628,8 @@ data:
   - Java/library/ds/pair/IntPair.java
   - Java/library/ds/pair/Zwei.java
   - Java/library/ds/pair/Pair.java
+  - Java/library/ds/deque/MyDeque.java
   - Java/library/ds/deque/IntDeque.java
-  - Java/library/ds/deque/Deque.java
   - Java/library/ds/AVLTree.java
   - Java/library/other/Why.java
   - Java/library/other/DP.java
@@ -721,8 +721,8 @@ data:
   - Java/library/ds/pair/IntPair.java
   - Java/library/ds/pair/Zwei.java
   - Java/library/ds/pair/Pair.java
+  - Java/library/ds/deque/MyDeque.java
   - Java/library/ds/deque/IntDeque.java
-  - Java/library/ds/deque/Deque.java
   - Java/library/ds/AVLTree.java
   - Java/library/other/Why.java
   - Java/library/other/DP.java
@@ -777,7 +777,7 @@ data:
   - Java/library/math/largeprime/LongPrime.java
   - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
-  timestamp: '2024-03-08 22:57:11+09:00'
+  timestamp: '2024-03-09 11:04:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/ConvexHullTrick.java

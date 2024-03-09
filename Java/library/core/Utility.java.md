@@ -137,11 +137,11 @@ data:
     path: Java/library/ds/SparseTable.java
     title: Java/library/ds/SparseTable.java
   - icon: ':warning:'
-    path: Java/library/ds/deque/Deque.java
-    title: Java/library/ds/deque/Deque.java
-  - icon: ':warning:'
     path: Java/library/ds/deque/IntDeque.java
     title: Java/library/ds/deque/IntDeque.java
+  - icon: ':warning:'
+    path: Java/library/ds/deque/MyDeque.java
+    title: Java/library/ds/deque/MyDeque.java
   - icon: ':warning:'
     path: Java/library/ds/fenwicktree/FenwickTree.java
     title: Java/library/ds/fenwicktree/FenwickTree.java
@@ -408,11 +408,11 @@ data:
     path: Java/library/ds/SparseTable.java
     title: Java/library/ds/SparseTable.java
   - icon: ':warning:'
-    path: Java/library/ds/deque/Deque.java
-    title: Java/library/ds/deque/Deque.java
-  - icon: ':warning:'
     path: Java/library/ds/deque/IntDeque.java
     title: Java/library/ds/deque/IntDeque.java
+  - icon: ':warning:'
+    path: Java/library/ds/deque/MyDeque.java
+    title: Java/library/ds/deque/MyDeque.java
   - icon: ':warning:'
     path: Java/library/ds/fenwicktree/FenwickTree.java
     title: Java/library/ds/fenwicktree/FenwickTree.java
@@ -1209,17 +1209,16 @@ data:
     \u5BFE\u3057\u3066{@link Pair#swap}\u3092\u3057\u305F\u914D\u5217\n\t */\n\tpublic\
     \ static final <F extends Comparable<? super F>, S extends Comparable<? super\
     \ S>> Pair<S, F>[] swap(final Pair<F, S>[] p) {\n\t\t@SuppressWarnings(\"unchecked\"\
-    )\n\t\tfinal Pair<S, F>[] q = new Pair[p.length];\n\t\tIntStream.range(0, p.length).forEach(i\
-    \ -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\t/**\n\t * @param p\n\t * @return\
-    \ IntPair\u914D\u5217\u306E\u5404IntPair\u306B\u5BFE\u3057\u3066{@link IntPair#swap}\u3092\
-    \u3057\u305F\u914D\u5217\n\t */\n\tpublic static final IntPair[] swap(final IntPair[]\
-    \ p) {\n\t\tfinal IntPair[] q = new IntPair[p.length];\n\t\tIntStream.range(0,\
-    \ p.length).forEach(i -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\t/**\n\t *\
-    \ @param p\n\t * @return FloatPair\u914D\u5217\u306E\u5404FloatPair\u306B\u5BFE\
-    \u3057\u3066{@link FloatPair#swap}\u3092\u3057\u305F\u914D\u5217\n\t */\n\tpublic\
-    \ static final FloatPair[] swap(final FloatPair[] p) {\n\t\tfinal FloatPair[]\
-    \ q = new FloatPair[p.length];\n\t\tIntStream.range(0, p.length).forEach(i ->\
-    \ q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\t/**\n\t * @param <F>\n\t * @param\
+    )\n\t\tfinal Pair<S, F>[] q = new Pair[p.length];\n\t\tArrays.setAll(q, i -> p[i].swap());\n\
+    \t\treturn q;\n\t}\n\t/**\n\t * @param p\n\t * @return IntPair\u914D\u5217\u306E\
+    \u5404IntPair\u306B\u5BFE\u3057\u3066{@link IntPair#swap}\u3092\u3057\u305F\u914D\
+    \u5217\n\t */\n\tpublic static final IntPair[] swap(final IntPair[] p) {\n\t\t\
+    final IntPair[] q = new IntPair[p.length];\n\t\tArrays.setAll(q, i -> p[i].swap());\n\
+    \t\treturn q;\n\t}\n\t/**\n\t * @param p\n\t * @return FloatPair\u914D\u5217\u306E\
+    \u5404FloatPair\u306B\u5BFE\u3057\u3066{@link FloatPair#swap}\u3092\u3057\u305F\
+    \u914D\u5217\n\t */\n\tpublic static final FloatPair[] swap(final FloatPair[]\
+    \ p) {\n\t\tfinal FloatPair[] q = new FloatPair[p.length];\n\t\tArrays.setAll(q,\
+    \ i -> p[i].swap());\n\t\treturn q;\n\t}\n\t/**\n\t * @param <F>\n\t * @param\
     \ <S>\n\t * @param p\n\t * @return Pair\u30AF\u30E9\u30B9\u306E\u914D\u5217\u306B\
     \u5BFE\u3057\u3066first\u306E\u307F\u306E\u8981\u7D20\u3092\u53D6\u308A\u51FA\u3057\
     \u305F\u914D\u5217\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tprotected static\
@@ -1316,23 +1315,22 @@ data:
     \ a) {\n\t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\treturn res;\n\t}\n\
     \t/**\n\t * \u5EA7\u6A19\u5727\u7E2E\n\t * @param a\n\t */\n\tprotected static\
     \ final int[] corPress(final int[] a) {\n\t\tfinal int[] res = new int[a.length];\n\
-    \t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tfor(int\
-    \ i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\t\t}\n\t\t\
-    return res;\n\t}\n\t/**\n\t * \u5EA7\u6A19\u5727\u7E2E\n\t * @param a\n\t */\n\
-    \tprotected static final int[] corPress(final long[] a) {\n\t\tfinal int[] res\
-    \ = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
-    \t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param s\n\t * @return \u30E9\u30F3\u30EC\
-    \u30F3\u30B0\u30B9\u5727\u7E2E\n\t */\n\tprotected static final String runLenPress(final\
+    \t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tArrays.setAll(res,\
+    \ i -> lowerBound(x, a[i]));\n\t\treturn res;\n\t}\n\t/**\n\t * \u5EA7\u6A19\u5727\
+    \u7E2E\n\t * @param a\n\t */\n\tprotected static final int[] corPress(final long[]\
+    \ a) {\n\t\tfinal int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
+    \t\tArrays.setAll(res, i -> lowerBound(x, a[i]));\n\t\treturn res;\n\t}\n\t/**\n\
+    \t * @param s\n\t * @return \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\n\
+    \t */\n\tprotected static final String runLenPress(final String s) {\n\t\tfinal\
+    \ int n = s.length();\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\t\
+    for(int l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\t\t\tfor(; r < n && s.charAt(l)\
+    \ == s.charAt(r); ++r){}\n\t\t\tsb.append(s.charAt(l));\n\t\t\tsb.append(r - l);\n\
+    \t\t\tl = r;\n\t\t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t * @param s\n\t\
+    \ * @return \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\u3057\u305F\u3082\
+    \u306E\u3092\u623B\u3059\n\t */\n\tprotected static final String runLenRev(final\
     \ String s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder sb = new\
     \ StringBuilder();\n\t\tfor(int l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\t\t\t\
-    for(; r < n && s.charAt(l) == s.charAt(r); ++r){}\n\t\t\tsb.append(s.charAt(l));\n\
-    \t\t\tsb.append(r - l);\n\t\t\tl = r;\n\t\t}\n\t\treturn sb.toString();\n\t}\n\
-    \t/**\n\t * @param s\n\t * @return \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\
-    \u3057\u305F\u3082\u306E\u3092\u623B\u3059\n\t */\n\tprotected static final String\
-    \ runLenRev(final String s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder\
-    \ sb = new StringBuilder();\n\t\tfor(int l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\
-    \t\t\tfor(; r < n && scope('0', s.charAt(r), '9'); ++r){}\n\t\t\tsb.append(String.valueOf(s.charAt(l)).repeat(Integer.parseInt(s.substring(l\
+    for(; r < n && scope('0', s.charAt(r), '9'); ++r){}\n\t\t\tsb.append(String.valueOf(s.charAt(l)).repeat(Integer.parseInt(s.substring(l\
     \ + 1, r))));\n\t\t\tl = r;\n\t\t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t\
     \ * @param s\n\t * @see <a href=\"https://ei1333.github.io/library/string/z-algorithm.hpp\"\
     >Z-Algorithm</a>\n\t */\n\tprotected static final int[] zAlgorithm(final String\
@@ -1419,8 +1417,8 @@ data:
   - Java/library/ds/pair/IntPair.java
   - Java/library/ds/pair/Zwei.java
   - Java/library/ds/pair/Pair.java
+  - Java/library/ds/deque/MyDeque.java
   - Java/library/ds/deque/IntDeque.java
-  - Java/library/ds/deque/Deque.java
   - Java/library/ds/ConvexHullTrick.java
   - Java/library/ds/AVLTree.java
   - Java/library/other/Why.java
@@ -1512,8 +1510,8 @@ data:
   - Java/library/ds/pair/IntPair.java
   - Java/library/ds/pair/Zwei.java
   - Java/library/ds/pair/Pair.java
+  - Java/library/ds/deque/MyDeque.java
   - Java/library/ds/deque/IntDeque.java
-  - Java/library/ds/deque/Deque.java
   - Java/library/ds/ConvexHullTrick.java
   - Java/library/ds/AVLTree.java
   - Java/library/other/Why.java
@@ -1568,7 +1566,7 @@ data:
   - Java/library/math/largeprime/LongPrime.java
   - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
-  timestamp: '2024-03-08 22:57:11+09:00'
+  timestamp: '2024-03-09 11:04:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

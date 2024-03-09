@@ -140,11 +140,11 @@ data:
     path: Java/library/ds/SparseTable.java
     title: Java/library/ds/SparseTable.java
   - icon: ':warning:'
-    path: Java/library/ds/deque/Deque.java
-    title: Java/library/ds/deque/Deque.java
-  - icon: ':warning:'
     path: Java/library/ds/deque/IntDeque.java
     title: Java/library/ds/deque/IntDeque.java
+  - icon: ':warning:'
+    path: Java/library/ds/deque/MyDeque.java
+    title: Java/library/ds/deque/MyDeque.java
   - icon: ':warning:'
     path: Java/library/ds/fenwicktree/FenwickTree.java
     title: Java/library/ds/fenwicktree/FenwickTree.java
@@ -411,11 +411,11 @@ data:
     path: Java/library/ds/SparseTable.java
     title: Java/library/ds/SparseTable.java
   - icon: ':warning:'
-    path: Java/library/ds/deque/Deque.java
-    title: Java/library/ds/deque/Deque.java
-  - icon: ':warning:'
     path: Java/library/ds/deque/IntDeque.java
     title: Java/library/ds/deque/IntDeque.java
+  - icon: ':warning:'
+    path: Java/library/ds/deque/MyDeque.java
+    title: Java/library/ds/deque/MyDeque.java
   - icon: ':warning:'
     path: Java/library/ds/fenwicktree/FenwickTree.java
     title: Java/library/ds/fenwicktree/FenwickTree.java
@@ -614,8 +614,8 @@ data:
   - Java/library/ds/pair/IntPair.java
   - Java/library/ds/pair/Zwei.java
   - Java/library/ds/pair/Pair.java
+  - Java/library/ds/deque/MyDeque.java
   - Java/library/ds/deque/IntDeque.java
-  - Java/library/ds/deque/Deque.java
   - Java/library/ds/ConvexHullTrick.java
   - Java/library/ds/AVLTree.java
   - Java/library/other/Why.java
@@ -707,8 +707,8 @@ data:
   - Java/library/ds/pair/IntPair.java
   - Java/library/ds/pair/Zwei.java
   - Java/library/ds/pair/Pair.java
+  - Java/library/ds/deque/MyDeque.java
   - Java/library/ds/deque/IntDeque.java
-  - Java/library/ds/deque/Deque.java
   - Java/library/ds/ConvexHullTrick.java
   - Java/library/ds/AVLTree.java
   - Java/library/other/Why.java
@@ -763,7 +763,7 @@ data:
   - Java/library/math/largeprime/LongPrime.java
   - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
-  timestamp: '2024-03-08 22:57:11+09:00'
+  timestamp: '2024-03-09 11:04:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/prefixsum/PrefixSum.java

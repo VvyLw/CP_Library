@@ -137,11 +137,11 @@ data:
     path: Java/library/ds/SparseTable.java
     title: Java/library/ds/SparseTable.java
   - icon: ':warning:'
-    path: Java/library/ds/deque/Deque.java
-    title: Java/library/ds/deque/Deque.java
-  - icon: ':warning:'
     path: Java/library/ds/deque/IntDeque.java
     title: Java/library/ds/deque/IntDeque.java
+  - icon: ':warning:'
+    path: Java/library/ds/deque/MyDeque.java
+    title: Java/library/ds/deque/MyDeque.java
   - icon: ':warning:'
     path: Java/library/ds/fenwicktree/FenwickTree.java
     title: Java/library/ds/fenwicktree/FenwickTree.java
@@ -408,11 +408,11 @@ data:
     path: Java/library/ds/SparseTable.java
     title: Java/library/ds/SparseTable.java
   - icon: ':warning:'
-    path: Java/library/ds/deque/Deque.java
-    title: Java/library/ds/deque/Deque.java
-  - icon: ':warning:'
     path: Java/library/ds/deque/IntDeque.java
     title: Java/library/ds/deque/IntDeque.java
+  - icon: ':warning:'
+    path: Java/library/ds/deque/MyDeque.java
+    title: Java/library/ds/deque/MyDeque.java
   - icon: ':warning:'
     path: Java/library/ds/fenwicktree/FenwickTree.java
     title: Java/library/ds/fenwicktree/FenwickTree.java
@@ -606,36 +606,33 @@ data:
     final double nd(){ return in.nd(); }\n\tfinal char nc(){ return in.nc(); }\n\t\
     final String ns(){ return in.ns(); }\n\tfinal char[] nt(){ return in.nt(); }\n\
     \tfinal BigInteger nb(){ return in.nb(); }\n\tfinal int[] ni(final int n) {\n\t\
-    \tfinal int[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ni());\n\
-    \t\treturn a;\n\t}\n\tfinal int[] ni(final int n, final IntUnaryOperator f){ return\
-    \ Arrays.stream(ni(n)).map(f).toArray(); }\n\tfinal long[] nl(final int n) {\n\
-    \t\tfinal long[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i]\
-    \ = nl());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int n, final LongUnaryOperator\
-    \ f){ return Arrays.stream(nl(n)).map(f).toArray(); }\n\tfinal double[] nd(final\
-    \ int n) {\n\t\tfinal double[] a = new double[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal char[] nc(final int n) {\n\t\t\
-    final char[] a = new char[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nc());\n\
-    \t\treturn a;\n\t}\n\tfinal String[] ns(final int n) {\n\t\tfinal String[] a =\
-    \ new String[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = ns());\n\t\treturn\
+    \tfinal int[] a = new int[n];\n\t\tArrays.setAll(a, i -> ni());\n\t\treturn a;\n\
+    \t}\n\tfinal int[] ni(final int n, final IntUnaryOperator f){ return Arrays.stream(ni(n)).map(f).toArray();\
+    \ }\n\tfinal long[] nl(final int n) {\n\t\tfinal long[] a = new long[n];\n\t\t\
+    Arrays.setAll(a, i -> nl());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int\
+    \ n, final LongUnaryOperator f){ return Arrays.stream(nl(n)).map(f).toArray();\
+    \ }\n\tfinal double[] nd(final int n) {\n\t\tfinal double[] a = new double[n];\n\
+    \t\tArrays.setAll(a, i -> nd());\n\t\treturn a;\n\t}\n\tfinal char[] nc(final\
+    \ int n) {\n\t\tfinal char[] a = new char[n];\n\t\tIntStream.range(0, n).forEach(i\
+    \ -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal String[] ns(final int n) {\n\t\
+    \tfinal String[] a = new String[n];\n\t\tArrays.setAll(a, i -> ns());\n\t\treturn\
     \ a;\n\t}\n\tfinal char[][] nt(final int n) {\n\t\tfinal char[][] a = new char[n][];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = nt());\n\t\treturn a;\n\t}\n\tfinal\
-    \ BigInteger[] nb(final int n) {\n\t\tfinal BigInteger[] a = new BigInteger[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal\
-    \ int[][] ni(final int h, final int w) {\n\t\tfinal int[][] a = new int[h][w];\n\
-    \t\tIntStream.range(0, h).forEach(i -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\t\
-    final long[][] nl(final int h, final int w) {\n\t\tfinal long[][] a = new long[h][w];\n\
-    \t\tIntStream.range(0, h).forEach(i -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\t\
-    final double[][] nd(final int h, final int w) {\n\t\tfinal double[][] a = new\
-    \ double[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] = nd(w));\n\t\treturn\
-    \ a;\n\t}\n\tfinal char[][] nc(final int h, final int w) {\n\t\tfinal char[][]\
-    \ a = new char[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] = nc(w));\n\
-    \t\treturn a;\n\t}\n\tfinal String[][] ns(final int h, final int w) {\n\t\tfinal\
-    \ String[][] a = new String[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i]\
-    \ = ns(w));\n\t\treturn a;\n\t}\n\tfinal BigInteger[][] nb(final int h, final\
-    \ int w) {\n\t\tfinal BigInteger[][] a = new BigInteger[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = nb(w));\n\t\treturn a;\n\t}\n\tfinal String line(){ return\
-    \ in.line(); }\n\tfinal void print(final Object arg){ out.print(arg); }\n\tfinal\
-    \ void printf(final String fmt, final Object... args){ out.printf(fmt, args);\
+    \t\tArrays.setAll(a, i -> nt());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final\
+    \ int n) {\n\t\tfinal BigInteger[] a = new BigInteger[n];\n\t\tArrays.setAll(a,\
+    \ i -> nb());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final int h, final int w)\
+    \ {\n\t\tfinal int[][] a = new int[h][w];\n\t\tArrays.setAll(a, i -> ni(w));\n\
+    \t\treturn a;\n\t}\n\tfinal long[][] nl(final int h, final int w) {\n\t\tfinal\
+    \ long[][] a = new long[h][w];\n\t\tArrays.setAll(a, i -> nl(w));\n\t\treturn\
+    \ a;\n\t}\n\tfinal double[][] nd(final int h, final int w) {\n\t\tfinal double[][]\
+    \ a = new double[h][w];\n\t\tArrays.setAll(a, i -> nd(w));\n\t\treturn a;\n\t\
+    }\n\tfinal char[][] nc(final int h, final int w) {\n\t\tfinal char[][] a = new\
+    \ char[h][w];\n\t\tArrays.setAll(a, i -> nc(w));\n\t\treturn a;\n\t}\n\tfinal\
+    \ String[][] ns(final int h, final int w) {\n\t\tfinal String[][] a = new String[h][w];\n\
+    \t\tArrays.setAll(a, i -> ns(w));\n\t\treturn a;\n\t}\n\tfinal BigInteger[][]\
+    \ nb(final int h, final int w) {\n\t\tfinal BigInteger[][] a = new BigInteger[h][w];\n\
+    \t\tArrays.setAll(a, i -> nb(w));\n\t\treturn a;\n\t}\n\tfinal String line(){\
+    \ return in.line(); }\n\tfinal void print(final Object arg){ out.print(arg); }\n\
+    \tfinal void printf(final String fmt, final Object... args){ out.printf(fmt, args);\
     \ }\n\tfinal void out(){ out.out(); }\n\tfinal void out(final Object head, final\
     \ Object... tail){ out.out(head, tail); }\n\tfinal <E> void out(final Collection<E>\
     \ a){ out.out(a); }\n\tfinal void out(final int[] head, final int[]...tail){ out.out(head,\
@@ -822,8 +819,8 @@ data:
   - Java/library/ds/pair/IntPair.java
   - Java/library/ds/pair/Zwei.java
   - Java/library/ds/pair/Pair.java
+  - Java/library/ds/deque/MyDeque.java
   - Java/library/ds/deque/IntDeque.java
-  - Java/library/ds/deque/Deque.java
   - Java/library/ds/ConvexHullTrick.java
   - Java/library/ds/AVLTree.java
   - Java/library/other/Why.java
@@ -915,8 +912,8 @@ data:
   - Java/library/ds/pair/IntPair.java
   - Java/library/ds/pair/Zwei.java
   - Java/library/ds/pair/Pair.java
+  - Java/library/ds/deque/MyDeque.java
   - Java/library/ds/deque/IntDeque.java
-  - Java/library/ds/deque/Deque.java
   - Java/library/ds/ConvexHullTrick.java
   - Java/library/ds/AVLTree.java
   - Java/library/other/Why.java
@@ -972,7 +969,7 @@ data:
   - Java/library/math/largeprime/LongPrime.java
   - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
-  timestamp: '2024-03-08 22:57:11+09:00'
+  timestamp: '2024-03-09 11:04:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java

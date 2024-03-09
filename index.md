@@ -333,11 +333,11 @@ data:
   - name: Java/library/ds/deque
     pages:
     - icon: ':warning:'
-      path: Java/library/ds/deque/Deque.java
-      title: Java/library/ds/deque/Deque.java
-    - icon: ':warning:'
       path: Java/library/ds/deque/IntDeque.java
       title: Java/library/ds/deque/IntDeque.java
+    - icon: ':warning:'
+      path: Java/library/ds/deque/MyDeque.java
+      title: Java/library/ds/deque/MyDeque.java
   - name: Java/library/ds/fenwicktree
     pages:
     - icon: ':warning:'

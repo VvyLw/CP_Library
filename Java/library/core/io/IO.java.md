@@ -137,11 +137,11 @@ data:
     path: Java/library/ds/SparseTable.java
     title: Java/library/ds/SparseTable.java
   - icon: ':warning:'
-    path: Java/library/ds/deque/Deque.java
-    title: Java/library/ds/deque/Deque.java
-  - icon: ':warning:'
     path: Java/library/ds/deque/IntDeque.java
     title: Java/library/ds/deque/IntDeque.java
+  - icon: ':warning:'
+    path: Java/library/ds/deque/MyDeque.java
+    title: Java/library/ds/deque/MyDeque.java
   - icon: ':warning:'
     path: Java/library/ds/fenwicktree/FenwickTree.java
     title: Java/library/ds/fenwicktree/FenwickTree.java
@@ -408,11 +408,11 @@ data:
     path: Java/library/ds/SparseTable.java
     title: Java/library/ds/SparseTable.java
   - icon: ':warning:'
-    path: Java/library/ds/deque/Deque.java
-    title: Java/library/ds/deque/Deque.java
-  - icon: ':warning:'
     path: Java/library/ds/deque/IntDeque.java
     title: Java/library/ds/deque/IntDeque.java
+  - icon: ':warning:'
+    path: Java/library/ds/deque/MyDeque.java
+    title: Java/library/ds/deque/MyDeque.java
   - icon: ':warning:'
     path: Java/library/ds/fenwicktree/FenwickTree.java
     title: Java/library/ds/fenwicktree/FenwickTree.java
@@ -579,80 +579,75 @@ data:
     \t */\n\tpublic final FloatPair pf(){ return in.pf(); }\n\t/**\n\t * \u5927\u304D\
     \u3055n\u306Eint\u578B\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param\
     \ n \u914D\u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic final int[] ni(final\
-    \ int n) {\n\t\tfinal int[] a = new int[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = ni());\n\t\treturn a;\n\t}\n\t/**\n\t * @param n\n\t * @param f\n\t\
-    \ * @return int\u578B\u914D\u5217\u306Bf\u3092\u65BD\u3057\u305F\u3082\u306E\n\
-    \t */\n\tpublic final int[] ni(final int n, final IntUnaryOperator f){ return\
-    \ Arrays.stream(ni(n)).map(f).toArray(); }\n\t/**\n\t * \u5927\u304D\u3055n\u306E\
-    long\u578B\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n \u914D\u5217\
-    \u306E\u5927\u304D\u3055\n\t */\n\tpublic final long[] nl(final int n) {\n\t\t\
-    final long[] a = new long[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nl());\n\
-    \t\treturn a;\n\t}\n\t/**\n\t * @param n\n\t * @param f\n\t * @return long\u578B\
+    \ int n) {\n\t\tfinal int[] a = new int[n];\n\t\tArrays.setAll(a, i -> ni());\n\
+    \t\treturn a;\n\t}\n\t/**\n\t * @param n\n\t * @param f\n\t * @return int\u578B\
     \u914D\u5217\u306Bf\u3092\u65BD\u3057\u305F\u3082\u306E\n\t */\n\tpublic final\
-    \ long[] nl(final int n, final LongUnaryOperator f){ return Arrays.stream(nl(n)).map(f).toArray();\
+    \ int[] ni(final int n, final IntUnaryOperator f){ return Arrays.stream(ni(n)).map(f).toArray();\
+    \ }\n\t/**\n\t * \u5927\u304D\u3055n\u306Elong\u578B\u914D\u5217\u3092\u5165\u529B\
+    \u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic\
+    \ final long[] nl(final int n) {\n\t\tfinal long[] a = new long[n];\n\t\tArrays.setAll(a,\
+    \ i -> nl());\n\t\treturn a;\n\t}\n\t/**\n\t * @param n\n\t * @param f\n\t * @return\
+    \ long\u578B\u914D\u5217\u306Bf\u3092\u65BD\u3057\u305F\u3082\u306E\n\t */\n\t\
+    public final long[] nl(final int n, final LongUnaryOperator f){ return Arrays.stream(nl(n)).map(f).toArray();\
     \ }\n\t/**\n\t * \u5927\u304D\u3055n\u306Edouble\u578B\u914D\u5217\u3092\u5165\
     \u529B\u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\n\t */\n\
     \tpublic final double[] nd(final int n) {\n\t\tfinal double[] a = new double[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\t/**\n\
-    \t * [maybe_unused]\n\t * \u5927\u304D\u3055n\u306Echar\u578B\u914D\u5217\u3092\
-    \u5165\u529B\u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\n\
-    \t */\n\tpublic final char[] nc(final int n) {\n\t\tfinal char[] a = new char[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = nc());\n\t\treturn a;\n\t}\n\t/**\n\
-    \t * \u5927\u304D\u3055n\u306E\u6587\u5B57\u5217\u914D\u5217\u3092\u5165\u529B\
-    \u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic\
-    \ final String[] ns(final int n) {\n\t\tfinal String[] a = new String[n];\n\t\t\
-    IntStream.range(0, n).forEach(i -> a[i] = ns());\n\t\treturn a;\n\t}\n\t/**\n\t\
-    \ * n\u500B\u306E\u6587\u5B57\u5217\u3092toCharArray\u3057\u3066\u8FD4\u3059\n\
-    \t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic final char[][]\
-    \ nt(final int n) {\n\t\tfinal char[][] a = new char[n][];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = nt());\n\t\treturn a;\n\t}\n\t/**\n\t * [maybe_unused]\n\
+    \t\tArrays.setAll(a, i -> nd());\n\t\treturn a;\n\t}\n\t/**\n\t * [maybe_unused]\n\
+    \t * \u5927\u304D\u3055n\u306Echar\u578B\u914D\u5217\u3092\u5165\u529B\u3059\u308B\
+    \n\t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic final char[]\
+    \ nc(final int n) {\n\t\tfinal char[] a = new char[n];\n\t\tIntStream.range(0,\
+    \ n).forEach(i -> a[i] = nc());\n\t\treturn a;\n\t}\n\t/**\n\t * \u5927\u304D\u3055\
+    n\u306E\u6587\u5B57\u5217\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param\
+    \ n \u914D\u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic final String[] ns(final\
+    \ int n) {\n\t\tfinal String[] a = new String[n];\n\t\tArrays.setAll(a, i -> ns());\n\
+    \t\treturn a;\n\t}\n\t/**\n\t * n\u500B\u306E\u6587\u5B57\u5217\u3092toCharArray\u3057\
+    \u3066\u8FD4\u3059\n\t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\n\t */\n\
+    \tpublic final char[][] nt(final int n) {\n\t\tfinal char[][] a = new char[n][];\n\
+    \t\tArrays.setAll(a, i -> nt());\n\t\treturn a;\n\t}\n\t/**\n\t * [maybe_unused]\n\
     \t * \u5927\u304D\u3055n\u306E\u591A\u500D\u9577\u6574\u6570\u914D\u5217\u3092\
     \u5165\u529B\u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\n\
     \t */\n\tpublic final BigInteger[] nb(final int n) {\n\t\tfinal BigInteger[] a\
-    \ = new BigInteger[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nb());\n\
-    \t\treturn a;\n\t}\n\t/**\n\t * IntPair\u578B\u306E\u914D\u5217\u3092\u5165\u529B\
-    \u3059\u308B\n\t * @param n\n\t * @see IntPair\n\t */\n\tpublic final IntPair[]\
-    \ pi(final int n) {\n\t\tfinal IntPair[] p = new IntPair[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> p[i] = pi());\n\t\treturn p;\n\t}\n\t/**\n\t * @param n\n\t\
-    \ * @param f\n\t * @return IntPair\u914D\u5217\u306Bf\u3092\u65BD\u3057\u305F\u3082\
-    \u306E\n\t */\n\tpublic final IntPair[] pi(final int n, final UnaryOperator<IntPair>\
-    \ f){ return Arrays.stream(pi(n)).map(f).toArray(IntPair[]::new); }\n\t/**\n\t\
-    \ * FloatPair\u578B\u306E\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param\
-    \ n\n\t * @see FloatPair\n\t */\n\tpublic final FloatPair[] pf(final int n) {\n\
-    \t\tfinal FloatPair[] p = new FloatPair[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> p[i] = pf());\n\t\treturn p;\n\t}\n\t/**\n\t * h\xD7w\u306Eint\u578B\u306E\
-    \u4E8C\u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t\
-    \ * @param w\n\t */\n\tpublic final int[][] ni(final int h, final int w) {\n\t\
-    \tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i]\
-    \ = ni(w));\n\t\treturn a;\n\t}\n\t/**\n\t * h\xD7w\u306Elong\u578B\u306E\u4E8C\
+    \ = new BigInteger[n];\n\t\tArrays.setAll(a, i -> nb());\n\t\treturn a;\n\t}\n\
+    \t/**\n\t * IntPair\u578B\u306E\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t\
+    \ * @param n\n\t * @see IntPair\n\t */\n\tpublic final IntPair[] pi(final int\
+    \ n) {\n\t\tfinal IntPair[] a = new IntPair[n];\n\t\tArrays.setAll(a, i -> pi());\n\
+    \t\treturn a;\n\t}\n\t/**\n\t * @param n\n\t * @param f\n\t * @return IntPair\u914D\
+    \u5217\u306Bf\u3092\u65BD\u3057\u305F\u3082\u306E\n\t */\n\tpublic final IntPair[]\
+    \ pi(final int n, final UnaryOperator<IntPair> f){ return Arrays.stream(pi(n)).map(f).toArray(IntPair[]::new);\
+    \ }\n\t/**\n\t * FloatPair\u578B\u306E\u914D\u5217\u3092\u5165\u529B\u3059\u308B\
+    \n\t * @param n\n\t * @see FloatPair\n\t */\n\tpublic final FloatPair[] pf(final\
+    \ int n) {\n\t\tfinal FloatPair[] a = new FloatPair[n];\n\t\tArrays.setAll(a,\
+    \ i -> pf());\n\t\treturn a;\n\t}\n\t/**\n\t * h\xD7w\u306Eint\u578B\u306E\u4E8C\
     \u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t * @param\
-    \ w\n\t */\n\tpublic final long[][] nl(final int h, final int w) {\n\t\tfinal\
-    \ long[][] a = new long[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] =\
-    \ nl(w));\n\t\treturn a;\n\t}\n\t/**\n\t * h\xD7w\u306Edouble\u578B\u306E\u4E8C\
-    \u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t * @param\
-    \ w\n\t */\n\tpublic final double[][] nd(final int h, final int w) {\n\t\tfinal\
-    \ double[][] a = new double[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i]\
-    \ = nd(w));\n\t\treturn a;\n\t}\n\t/**\n\t * h\xD7w\u306Echar\u578B\u306E\u4E8C\
-    \u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t * @param\
-    \ w\n\t */\n\tpublic final char[][] nc(final int h, final int w) {\n\t\tfinal\
-    \ char[][] a = new char[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] =\
-    \ nc(w));\n\t\treturn a;\n\t}\n\t/**\n\t * [maybe_unused]\n\t * h\xD7w\u306E\u6587\
-    \u5B57\u5217\u306E\u4E8C\u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\
-    \n\t * @param h\n\t * @param w\n\t */\n\tpublic final String[][] ns(final int\
-    \ h, final int w) {\n\t\tfinal String[][] a = new String[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = ns(w));\n\t\treturn a;\n\t}\n\t/**\n\t * [maybe_unused]\n\
-    \t * h\xD7w\u306E\u591A\u500D\u9577\u6574\u6570\u306E\u4E8C\u6B21\u5143\u914D\u5217\
-    \u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t * @param w\n\t */\n\tpublic\
-    \ final BigInteger[][] nb(final int h, final int w) {\n\t\tfinal BigInteger[][]\
-    \ a = new BigInteger[h][w];\n\t\tIntStream.range(0, h).forEach(i -> a[i] = nb(w));\n\
-    \t\treturn a;\n\t}\n\t/**\n\t * @see MyScanner#line\n\t */\n\tpublic final String\
-    \ line(){ return in.line(); }\n\t/**\n\t * @param arg\n\t * @see MyPrinter#print\n\
-    \t */\n\tpublic final void print(final Object arg){ out.print(arg); }\n\t/**\n\
-    \t * @param fmt\n\t * @param args\n\t * @see MyPrinter#printf\n\t */\n\tpublic\
-    \ final void printf(final String fmt, final Object... args){ out.printf(fmt, args);\
-    \ }\n\t/**\n\t * @see MyPrinter#out\n\t */\n\tpublic final void out(){ out.out();\
-    \ }\n\t/**\n\t * @param head\n\t * @param tail\n\t * @see MyPrinter#out\n\t */\n\
-    \tpublic final void out(final Object head, final Object... tail){ out.out(head,\
+    \ w\n\t */\n\tpublic final int[][] ni(final int h, final int w) {\n\t\tfinal int[][]\
+    \ a = new int[h][w];\n\t\tArrays.setAll(a, i -> ni(w));\n\t\treturn a;\n\t}\n\t\
+    /**\n\t * h\xD7w\u306Elong\u578B\u306E\u4E8C\u6B21\u5143\u914D\u5217\u3092\u5165\
+    \u529B\u3059\u308B\n\t * @param h\n\t * @param w\n\t */\n\tpublic final long[][]\
+    \ nl(final int h, final int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\t\
+    Arrays.setAll(a, i -> nl(w));\n\t\treturn a;\n\t}\n\t/**\n\t * h\xD7w\u306Edouble\u578B\
+    \u306E\u4E8C\u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param\
+    \ h\n\t * @param w\n\t */\n\tpublic final double[][] nd(final int h, final int\
+    \ w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tArrays.setAll(a, i ->\
+    \ nd(w));\n\t\treturn a;\n\t}\n\t/**\n\t * h\xD7w\u306Echar\u578B\u306E\u4E8C\u6B21\
+    \u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t * @param w\n\
+    \t */\n\tpublic final char[][] nc(final int h, final int w) {\n\t\tfinal char[][]\
+    \ a = new char[h][w];\n\t\tArrays.setAll(a, i -> nc(w));\n\t\treturn a;\n\t}\n\
+    \t/**\n\t * [maybe_unused]\n\t * h\xD7w\u306E\u6587\u5B57\u5217\u306E\u4E8C\u6B21\
+    \u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param h\n\t * @param w\n\
+    \t */\n\tpublic final String[][] ns(final int h, final int w) {\n\t\tfinal String[][]\
+    \ a = new String[h][w];\n\t\tArrays.setAll(a, i -> ns(w));\n\t\treturn a;\n\t\
+    }\n\t/**\n\t * [maybe_unused]\n\t * h\xD7w\u306E\u591A\u500D\u9577\u6574\u6570\
+    \u306E\u4E8C\u6B21\u5143\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param\
+    \ h\n\t * @param w\n\t */\n\tpublic final BigInteger[][] nb(final int h, final\
+    \ int w) {\n\t\tfinal BigInteger[][] a = new BigInteger[h][w];\n\t\tArrays.setAll(a,\
+    \ i -> nb(w));\n\t\treturn a;\n\t}\n\t/**\n\t * @see MyScanner#line\n\t */\n\t\
+    public final String line(){ return in.line(); }\n\t/**\n\t * @param arg\n\t *\
+    \ @see MyPrinter#print\n\t */\n\tpublic final void print(final Object arg){ out.print(arg);\
+    \ }\n\t/**\n\t * @param fmt\n\t * @param args\n\t * @see MyPrinter#printf\n\t\
+    \ */\n\tpublic final void printf(final String fmt, final Object... args){ out.printf(fmt,\
+    \ args); }\n\t/**\n\t * @see MyPrinter#out\n\t */\n\tpublic final void out(){\
+    \ out.out(); }\n\t/**\n\t * @param head\n\t * @param tail\n\t * @see MyPrinter#out\n\
+    \t */\n\tpublic final void out(final Object head, final Object... tail){ out.out(head,\
     \ tail); }\n\t/**\n\t * @param <F>\n\t * @param <S>\n\t * @param p\n\t * @see\
     \ MyPrinter#out\n\t */\n\tpublic final <F extends Comparable<? super F>, S extends\
     \ Comparable<? super S>> void out(final Pair<F, S> p){ out.out(p); }\n\t/**\n\t\
@@ -829,8 +824,8 @@ data:
   - Java/library/ds/pair/IntPair.java
   - Java/library/ds/pair/Zwei.java
   - Java/library/ds/pair/Pair.java
+  - Java/library/ds/deque/MyDeque.java
   - Java/library/ds/deque/IntDeque.java
-  - Java/library/ds/deque/Deque.java
   - Java/library/ds/ConvexHullTrick.java
   - Java/library/ds/AVLTree.java
   - Java/library/other/Why.java
@@ -922,8 +917,8 @@ data:
   - Java/library/ds/pair/IntPair.java
   - Java/library/ds/pair/Zwei.java
   - Java/library/ds/pair/Pair.java
+  - Java/library/ds/deque/MyDeque.java
   - Java/library/ds/deque/IntDeque.java
-  - Java/library/ds/deque/Deque.java
   - Java/library/ds/ConvexHullTrick.java
   - Java/library/ds/AVLTree.java
   - Java/library/other/Why.java
@@ -978,7 +973,7 @@ data:
   - Java/library/math/largeprime/LongPrime.java
   - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
-  timestamp: '2024-03-08 22:57:11+09:00'
+  timestamp: '2024-03-09 11:04:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/IO.java

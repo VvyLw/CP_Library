@@ -551,20 +551,20 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/ds/deque/Deque.java\n"
-  code: "package library.ds.deque;\n\nimport java.util.Arrays;\nimport java.util.Iterator;\n\
-    import java.util.NoSuchElementException;\n\n/**\n * \u30E9\u30F3\u30C0\u30E0\u30A2\
-    \u30AF\u30BB\u30B9\u304C\u53EF\u80FD\u306ADeque\n * viral\u3055\u3093\u306B\u611F\
-    \u8B1D\n * @see <a href=\"https://github.com/viral8code/Primitive-Specialized-Library/blob/main/util/ArrayDeque/IntRingBuffer/IntRingBuffer.java\"\
+    RuntimeError: bundler is not specified: Java/library/ds/deque/MyDeque.java\n"
+  code: "package library.ds.deque;\n\nimport java.util.Arrays;\nimport java.util.Deque;\n\
+    import java.util.Iterator;\nimport java.util.NoSuchElementException;\n\n/**\n\
+    \ * \u30E9\u30F3\u30C0\u30E0\u30A2\u30AF\u30BB\u30B9\u304C\u53EF\u80FD\u306ADeque\n\
+    \ * viral\u3055\u3093\u306B\u611F\u8B1D\n * @see <a href=\"https://github.com/viral8code/Primitive-Specialized-Library/blob/main/util/ArrayDeque/IntRingBuffer/IntRingBuffer.java\"\
     >\u53C2\u8003\u5143</a>\n * @param <T> \u30AF\u30E9\u30B9\u3092\u4E57\u305B\u308B\
-    \n */\npublic final class Deque<T> implements Iterable<T> {\n\tprivate int n,\
-    \ head, tail;\n\tprivate Object[] buf;\n\tpublic Deque(){ this(1 << 17); }\n\t\
-    private Deque(final int n) {\n\t\tthis.n = n;\n\t\thead = tail = 0;\n\t\tbuf =\
-    \ new Object[n];\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u306B\
-    int[]\u3092\u4E57\u305B\u305F\u3044\u5834\u5408, \u53C2\u8003\u307E\u3067\u306B\
-    \u4EE5\u4E0B\u306E\u3088\u3046\u306B\u66F8\u304F\u3053\u3068\u304C\u3067\u304D\
-    \u308B\n\t * new Deque<Integer>(Arrays.stream(a).boxed().toArray(Integer[]::new));\n\
-    \t * @param a \u30AF\u30E9\u30B9T\u306E\u914D\u5217\n\t */\n\tpublic Deque(final\
+    \n */\npublic final class MyDeque<T> implements Iterable<T> {\n\tprivate int n,\
+    \ head, tail;\n\tprivate Object[] buf;\n\tpublic MyDeque(){ this(1 << 17); }\n\
+    \tprivate MyDeque(final int n) {\n\t\tthis.n = n;\n\t\thead = tail = 0;\n\t\t\
+    buf = new Object[n];\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\
+    \u306Bint[]\u3092\u4E57\u305B\u305F\u3044\u5834\u5408, \u53C2\u8003\u307E\u3067\
+    \u306B\u4EE5\u4E0B\u306E\u3088\u3046\u306B\u66F8\u304F\u3053\u3068\u304C\u3067\
+    \u304D\u308B\n\t * new Deque<Integer>(Arrays.stream(a).boxed().toArray(Integer[]::new));\n\
+    \t * @param a \u30AF\u30E9\u30B9T\u306E\u914D\u5217\n\t */\n\tpublic MyDeque(final\
     \ T[] a) {\n\t\tthis(a.length);\n\t\tArrays.stream(a).forEach(i -> add(i));\n\t\
     }\n\tprivate final int next(final int index) {\n\t\tfinal int next = index + 1;\n\
     \t\treturn next == n ? 0 : next;\n\t}\n\tprivate final int prev(final int index)\
@@ -734,7 +734,7 @@ data:
   - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
   isVerificationFile: false
-  path: Java/library/ds/deque/Deque.java
+  path: Java/library/ds/deque/MyDeque.java
   requiredBy:
   - Java/yukicoder.java
   - Java/AOJ.java
@@ -826,13 +826,13 @@ data:
   - Java/library/math/largeprime/LongPrime.java
   - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
-  timestamp: '2024-03-08 22:57:11+09:00'
+  timestamp: '2024-03-09 11:04:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/ds/deque/Deque.java
+documentation_of: Java/library/ds/deque/MyDeque.java
 layout: document
 redirect_from:
-- /library/Java/library/ds/deque/Deque.java
-- /library/Java/library/ds/deque/Deque.java.html
-title: Java/library/ds/deque/Deque.java
+- /library/Java/library/ds/deque/MyDeque.java
+- /library/Java/library/ds/deque/MyDeque.java.html
+title: Java/library/ds/deque/MyDeque.java
 ---
