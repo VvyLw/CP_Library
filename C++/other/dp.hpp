@@ -3,6 +3,7 @@
 #include <vector>
 #include <utility>
 #include <algorithm>
+#include <stack>
 #include <iterator>
 #include <limits>
 #include <numeric>
@@ -147,6 +148,25 @@ template <class T> T knapsack(const std::vector<int> &a, const std::vector<T> &v
 }
 /**
  * @see https://ei1333.github.io/library/dp/knapsack.hpp
+ */
+
+template <class T> inline long long max_rectangle(std::vector<T> h) {
+    h.resize(h.size() + 1);
+    std::stack<size_t> sk;
+    std::vector<int> l(h.size());
+    long long res = 0;
+    for(size_t i = 0; i < h.size(); i++) {
+        while(!sk.empty() && h[sk.top()] >= h[i]) {
+            res = std::max(res, (long long) (i - l[sk.top()] - 1) * h[sk.top()]);
+            sk.pop();
+        }
+        l[i] = sk.empty() ? -1 : sk.top();
+        sk.emplace(i);
+    }
+    return res;
+}
+/**
+ * @see https://ei1333.github.io/library/dp/largest-rectangle.hpp
  */
 
 inline int lcs(const std::string &s, const std::string &t) {
