@@ -33,7 +33,7 @@ public final class Matrix implements Cloneable {
 	 */
 	public Matrix(final int[][] m) {
 		this(m.length, m[0].length);
-		IntStream.range(0, h).forEach(i -> IntStream.range(0, w).forEach(j -> mat[i][j] = m[i][j]));
+		IntStream.range(0, h).forEach(i -> Arrays.setAll(mat[i], j -> m[i][j]));
 	}
 	/**
 	 * コンストラクタ
@@ -41,7 +41,7 @@ public final class Matrix implements Cloneable {
 	 */
 	public Matrix(final long[][] m) {
 		this(m.length, m[0].length);
-		IntStream.range(0, h).forEach(i -> IntStream.range(0, w).forEach(j -> mat[i][j] = m[i][j]));
+		IntStream.range(0, h).forEach(i -> Arrays.setAll(mat[i], j -> m[i][j]));
 	}
 	/**
 	 * 単位行列

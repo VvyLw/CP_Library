@@ -1475,7 +1475,7 @@ public class Utility {
 	public static final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<S, F>[] swap(final Pair<F, S>[] p) {
 		@SuppressWarnings("unchecked")
 		final Pair<S, F>[] q = new Pair[p.length];
-		IntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());
+		Arrays.setAll(q, i -> p[i].swap());
 		return q;
 	}
 	/**
@@ -1484,7 +1484,7 @@ public class Utility {
 	 */
 	public static final IntPair[] swap(final IntPair[] p) {
 		final IntPair[] q = new IntPair[p.length];
-		IntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());
+		Arrays.setAll(q, i -> p[i].swap());
 		return q;
 	}
 	/**
@@ -1493,7 +1493,7 @@ public class Utility {
 	 */
 	public static final FloatPair[] swap(final FloatPair[] p) {
 		final FloatPair[] q = new FloatPair[p.length];
-		IntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());
+		Arrays.setAll(q, i -> p[i].swap());
 		return q;
 	}
 	/**
@@ -1692,9 +1692,7 @@ public class Utility {
 	protected static final int[] corPress(final int[] a) {
 		final int[] res = new int[a.length];
 		final int[] x = Arrays.stream(a).sorted().distinct().toArray();
-		for(int i = 0; i < a.length; ++i) {
-			res[i] = lowerBound(x, a[i]);
-		}
+		Arrays.setAll(res, i -> lowerBound(x, a[i]));
 		return res;
 	}
 	/**
@@ -1704,9 +1702,7 @@ public class Utility {
 	protected static final int[] corPress(final long[] a) {
 		final int[] res = new int[a.length];
 		final long[] x = Arrays.stream(a).sorted().distinct().toArray();
-		for(int i = 0; i < a.length; ++i) {
-			res[i] = lowerBound(x, a[i]);
-		}
+		Arrays.setAll(res, i -> lowerBound(x, a[i]));
 		return res;
 	}
 	/**

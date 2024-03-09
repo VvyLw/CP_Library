@@ -76,7 +76,7 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public final int[] ni(final int n) {
 		final int[] a = new int[n];
-		IntStream.range(0, n).forEach(i -> a[i] = ni());
+		Arrays.setAll(a, i -> ni());
 		return a;
 	}
 	/**
@@ -91,7 +91,7 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public final long[] nl(final int n) {
 		final long[] a = new long[n];
-		IntStream.range(0, n).forEach(i -> a[i] = nl());
+		Arrays.setAll(a, i -> nl());
 		return a;
 	}
 	/**
@@ -106,7 +106,7 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public final double[] nd(final int n) {
 		final double[] a = new double[n];
-		IntStream.range(0, n).forEach(i -> a[i] = nd());
+		Arrays.setAll(a, i -> nd());
 		return a;
 	}
 	/**
@@ -125,7 +125,7 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public final String[] ns(final int n) {
 		final String[] a = new String[n];
-		IntStream.range(0, n).forEach(i -> a[i] = ns());
+		Arrays.setAll(a, i -> ns());
 		return a;
 	}
 	/**
@@ -134,7 +134,7 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public final char[][] nt(final int n) {
 		final char[][] a = new char[n][];
-		IntStream.range(0, n).forEach(i -> a[i] = nt());
+		Arrays.setAll(a, i -> nt());
 		return a;
 	}
 	/**
@@ -144,7 +144,7 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public final BigInteger[] nb(final int n) {
 		final BigInteger[] a = new BigInteger[n];
-		IntStream.range(0, n).forEach(i -> a[i] = nb());
+		Arrays.setAll(a, i -> nb());
 		return a;
 	}
 	/**
@@ -153,9 +153,9 @@ public final class IO implements Closeable, AutoCloseable {
 	 * @see IntPair
 	 */
 	public final IntPair[] pi(final int n) {
-		final IntPair[] p = new IntPair[n];
-		IntStream.range(0, n).forEach(i -> p[i] = pi());
-		return p;
+		final IntPair[] a = new IntPair[n];
+		Arrays.setAll(a, i -> pi());
+		return a;
 	}
 	/**
 	 * @param n
@@ -169,9 +169,9 @@ public final class IO implements Closeable, AutoCloseable {
 	 * @see FloatPair
 	 */
 	public final FloatPair[] pf(final int n) {
-		final FloatPair[] p = new FloatPair[n];
-		IntStream.range(0, n).forEach(i -> p[i] = pf());
-		return p;
+		final FloatPair[] a = new FloatPair[n];
+		Arrays.setAll(a, i -> pf());
+		return a;
 	}
 	/**
 	 * h×wのint型の二次元配列を入力する
@@ -180,7 +180,7 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public final int[][] ni(final int h, final int w) {
 		final int[][] a = new int[h][w];
-		IntStream.range(0, h).forEach(i -> a[i] = ni(w));
+		Arrays.setAll(a, i -> ni(w));
 		return a;
 	}
 	/**
@@ -190,7 +190,7 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public final long[][] nl(final int h, final int w) {
 		final long[][] a = new long[h][w];
-		IntStream.range(0, h).forEach(i -> a[i] = nl(w));
+		Arrays.setAll(a, i -> nl(w));
 		return a;
 	}
 	/**
@@ -200,7 +200,7 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public final double[][] nd(final int h, final int w) {
 		final double[][] a = new double[h][w];
-		IntStream.range(0, h).forEach(i -> a[i] = nd(w));
+		Arrays.setAll(a, i -> nd(w));
 		return a;
 	}
 	/**
@@ -210,7 +210,7 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public final char[][] nc(final int h, final int w) {
 		final char[][] a = new char[h][w];
-		IntStream.range(0, h).forEach(i -> a[i] = nc(w));
+		Arrays.setAll(a, i -> nc(w));
 		return a;
 	}
 	/**
@@ -221,7 +221,7 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public final String[][] ns(final int h, final int w) {
 		final String[][] a = new String[h][w];
-		IntStream.range(0, h).forEach(i -> a[i] = ns(w));
+		Arrays.setAll(a, i -> ns(w));
 		return a;
 	}
 	/**
@@ -232,7 +232,7 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public final BigInteger[][] nb(final int h, final int w) {
 		final BigInteger[][] a = new BigInteger[h][w];
-		IntStream.range(0, h).forEach(i -> a[i] = nb(w));
+		Arrays.setAll(a, i -> nb(w));
 		return a;
 	}
 	/**

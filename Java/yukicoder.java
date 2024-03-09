@@ -844,17 +844,17 @@ class Utility {
 	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> Pair<S, F>[] swap(final Pair<F, S>[] p) {
 		@SuppressWarnings("unchecked")
 		final Pair<S, F>[] q = new Pair[p.length];
-		IntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());
+		Arrays.setAll(q, i -> p[i].swap());
 		return q;
 	}
 	protected static final IntPair[] swap(final IntPair[] p) {
 		final IntPair[] q = new IntPair[p.length];
-		IntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());
+		Arrays.setAll(q, i -> p[i].swap());
 		return q;
 	}
 	protected static final FloatPair[] swap(final FloatPair[] p) {
 		final FloatPair[] q = new FloatPair[p.length];
-		IntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());
+		Arrays.setAll(q, i -> p[i].swap());
 		return q;
 	}
 	@SuppressWarnings("unchecked")
@@ -948,17 +948,13 @@ class Utility {
 	protected static final int[] corPress(final int[] a) {
 		final int[] res = new int[a.length];
 		final int[] x = Arrays.stream(a).sorted().distinct().toArray();
-		for(int i = 0; i < a.length; ++i) {
-			res[i] = lowerBound(x, a[i]);
-		}
+		Arrays.setAll(res, i -> lowerBound(x, a[i]));
 		return res;
 	}
 	protected static final int[] corPress(final long[] a) {
 		final int[] res = new int[a.length];
 		final long[] x = Arrays.stream(a).sorted().distinct().toArray();
-		for(int i = 0; i < a.length; ++i) {
-			res[i] = lowerBound(x, a[i]);
-		}
+		Arrays.setAll(res, i -> lowerBound(x, a[i]));
 		return res;
 	}
 	protected static final String runLenPress(final String s) {
@@ -1226,19 +1222,19 @@ final class IO implements Closeable, AutoCloseable {
 	final FloatPair pf(){ return in.pf(); }
 	final int[] ni(final int n) {
 		final int[] a = new int[n];
-		IntStream.range(0, n).forEach(i -> a[i] = ni());
+		Arrays.setAll(a, i -> ni());
 		return a;
 	}
 	final int[] ni(final int n, final IntUnaryOperator f){ return Arrays.stream(ni(n)).map(f).toArray(); }
 	final long[] nl(final int n) {
 		final long[] a = new long[n];
-		IntStream.range(0, n).forEach(i -> a[i] = nl());
+		Arrays.setAll(a, i -> nl());
 		return a;
 	}
 	final long[] nl(final int n, final LongUnaryOperator f){ return Arrays.stream(nl(n)).map(f).toArray(); }
 	final double[] nd(final int n) {
 		final double[] a = new double[n];
-		IntStream.range(0, n).forEach(i -> a[i] = nd());
+		Arrays.setAll(a, i -> nd());
 		return a;
 	}
 	final char[] nc(final int n) {
@@ -1248,58 +1244,58 @@ final class IO implements Closeable, AutoCloseable {
 	}
 	final String[] ns(final int n) {
 		final String[] a = new String[n];
-		IntStream.range(0, n).forEach(i -> a[i] = ns());
+		Arrays.setAll(a, i -> ns());
 		return a;
 	}
 	final char[][] nt(final int n) {
 		final char[][] a = new char[n][];
-		IntStream.range(0, n).forEach(i -> a[i] = nt());
+		Arrays.setAll(a, i -> nt());
 		return a;
 	}
 	final BigInteger[] nb(final int n) {
 		final BigInteger[] a = new BigInteger[n];
-		IntStream.range(0, n).forEach(i -> a[i] = nb());
+		Arrays.setAll(a, i -> nb());
 		return a;
 	}
 	final IntPair[] pi(final int n) {
-		final IntPair[] p = new IntPair[n];
-		IntStream.range(0, n).forEach(i -> p[i] = pi());
-		return p;
+		final IntPair[] a = new IntPair[n];
+		Arrays.setAll(a, i -> pi());
+		return a;
 	}
 	final IntPair[] pi(final int n, final UnaryOperator<IntPair> f){ return Arrays.stream(pi(n)).map(f).toArray(IntPair[]::new); }
 	final FloatPair[] pf(final int n) {
-		final FloatPair[] p = new FloatPair[n];
-		IntStream.range(0, n).forEach(i -> p[i] = pf());
-		return p;
+		final FloatPair[] a = new FloatPair[n];
+		Arrays.setAll(a, i -> pf());
+		return a;
 	}
 	final int[][] ni(final int h, final int w) {
 		final int[][] a = new int[h][w];
-		IntStream.range(0, h).forEach(i -> a[i] = ni(w));
+		Arrays.setAll(a, i -> ni(w));
 		return a;
 	}
 	final long[][] nl(final int h, final int w) {
 		final long[][] a = new long[h][w];
-		IntStream.range(0, h).forEach(i -> a[i] = nl(w));
+		Arrays.setAll(a, i -> nl(w));
 		return a;
 	}
 	final double[][] nd(final int h, final int w) {
 		final double[][] a = new double[h][w];
-		IntStream.range(0, h).forEach(i -> a[i] = nd(w));
+		Arrays.setAll(a, i -> nd(w));
 		return a;
 	}
 	final char[][] nc(final int h, final int w) {
 		final char[][] a = new char[h][w];
-		IntStream.range(0, h).forEach(i -> a[i] = nc(w));
+		Arrays.setAll(a, i -> nc(w));
 		return a;
 	}
 	final String[][] ns(final int h, final int w) {
 		final String[][] a = new String[h][w];
-		IntStream.range(0, h).forEach(i -> a[i] = ns(w));
+		Arrays.setAll(a, i -> ns(w));
 		return a;
 	}
 	final BigInteger[][] nb(final int h, final int w) {
 		final BigInteger[][] a = new BigInteger[h][w];
-		IntStream.range(0, h).forEach(i -> a[i] = nb(w));
+		Arrays.setAll(a, i -> nb(w));
 		return a;
 	}
 	final String line(){ return in.line(); }
