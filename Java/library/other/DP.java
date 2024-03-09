@@ -210,7 +210,7 @@ public final class DP {
 				res = Math.max(res, (i - l[sk.peek()] - 1) * h[sk.peek()]);
 				sk.pop();
 			}
-			l[i] = sk.empty() ? -1 : sk.peek();
+			l[i] = sk.isEmpty() ? -1 : sk.peek();
 			sk.add(i);
 		}
 		return res;
@@ -230,7 +230,7 @@ public final class DP {
 				res = Math.max(res, (i - l[sk.peek()] - 1) * h[sk.peek()]);
 				sk.pop();
 			}
-			l[i] = sk.empty() ? -1 : sk.peek();
+			l[i] = sk.isEmpty() ? -1 : sk.peek();
 			sk.add(i);
 		}
 		return res;
