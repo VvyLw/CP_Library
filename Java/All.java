@@ -3273,8 +3273,7 @@ final class DP {
 		long res = 0;
 		for(int i = 0; i < h.length; i++) {
 			while(!sk.isEmpty() && h[sk.peek()] >= h[i]) {
-				res = max(res, (i - l[sk.peek()] - 1) * h[sk.peek()]);
-				sk.pop();
+				res = max(res, (i - l[sk.peek()] - 1) * h[sk.pop()]);
 			}
 			l[i] = sk.isEmpty() ? -1 : sk.peek();
 			sk.add(i);
@@ -3288,8 +3287,7 @@ final class DP {
 		long res = 0;
 		for(int i = 0; i < h.length; i++) {
 			while(!sk.isEmpty() && h[sk.peek()] >= h[i]) {
-				res = max(res, (i - l[sk.peek()] - 1) * h[sk.peek()]);
-				sk.pop();
+				res = max(res, (i - l[sk.peek()] - 1) * h[sk.pop()]);
 			}
 			l[i] = sk.isEmpty() ? -1 : sk.peek();
 			sk.add(i);

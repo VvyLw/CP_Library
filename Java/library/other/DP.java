@@ -196,6 +196,7 @@ public final class DP {
 	 * @param a
 	 * @return ヒストグラムの最大長方形の面積
 	 * @implNote O(N)
+	 * @see <a href="https://ei1333.github.io/library/dp/largest-rectangle.hpp">参考元</a>
 	 */
 	public static final long maxRectangle(final int[] a) {
 		final Stack<Integer> sk = new Stack<>();
@@ -207,8 +208,7 @@ public final class DP {
 		long res = 0;
 		for(int i = 0; i < h.length; i++) {
 			while(!sk.isEmpty() && h[sk.peek()] >= h[i]) {
-				res = Math.max(res, (i - l[sk.peek()] - 1) * h[sk.peek()]);
-				sk.pop();
+				res = Math.max(res, (i - l[sk.peek()] - 1) * h[sk.pop()]);
 			}
 			l[i] = sk.isEmpty() ? -1 : sk.peek();
 			sk.add(i);
@@ -219,6 +219,7 @@ public final class DP {
 	 * @param a
 	 * @return ヒストグラムの最大長方形の面積
 	 * @implNote O(N)
+	 * @see <a href="https://ei1333.github.io/library/dp/largest-rectangle.hpp">参考元</a>
 	 */
 	public static final long maxRectangle(final long[] a) {
 		final Stack<Integer> sk = new Stack<>();
@@ -227,8 +228,7 @@ public final class DP {
 		long res = 0;
 		for(int i = 0; i < h.length; i++) {
 			while(!sk.isEmpty() && h[sk.peek()] >= h[i]) {
-				res = Math.max(res, (i - l[sk.peek()] - 1) * h[sk.peek()]);
-				sk.pop();
+				res = Math.max(res, (i - l[sk.peek()] - 1) * h[sk.pop()]);
 			}
 			l[i] = sk.isEmpty() ? -1 : sk.peek();
 			sk.add(i);
