@@ -1,4 +1,4 @@
-class FenwickTree(T) {
+final class FenwickTree(T) {
 import core.bitop: bsr;
 private:
     int n;
