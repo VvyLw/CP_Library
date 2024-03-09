@@ -48,7 +48,7 @@ data:
   attributes:
     document_title: "\u30BF\u30A4\u30DE\u30FC"
     links: []
-  bundledCode: "#line 2 \"C++/timer.hpp\"\n\n#include <ostream>\n#include <chrono>\n\
+  bundledCode: "#line 2 \"C++/core/timer.hpp\"\n\n#include <ostream>\n#include <chrono>\n\
     using Timer = std::chrono::system_clock::time_point;\n[[maybe_unused]] Timer start,\
     \ stop;\n#if local\nvoid now(Timer &t){ t = std::chrono::system_clock::now();\
     \ }\nvoid time(const Timer &t1, const Timer &t2){ std::cerr << std::chrono::duration_cast<std::chrono::milliseconds>(t2\
@@ -63,10 +63,10 @@ data:
     #endif\n\n/**\n * @brief \u30BF\u30A4\u30DE\u30FC\n */"
   dependsOn: []
   isVerificationFile: false
-  path: C++/timer.hpp
+  path: C++/core/timer.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2024-02-19 12:20:55+09:00'
+  timestamp: '2024-03-09 13:04:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sr_sum.test.cpp
@@ -81,10 +81,10 @@ data:
   - test/parsum.test.cpp
   - test/m_add.test.cpp
   - test/s_rmq.test.cpp
-documentation_of: C++/timer.hpp
+documentation_of: C++/core/timer.hpp
 layout: document
 redirect_from:
-- /library/C++/timer.hpp
-- /library/C++/timer.hpp.html
+- /library/C++/core/timer.hpp
+- /library/C++/core/timer.hpp.html
 title: "\u30BF\u30A4\u30DE\u30FC"
 ---

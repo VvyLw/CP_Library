@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: C++/core/myvector.hpp
+    title: C++/core/myvector.hpp
+  - icon: ':heavy_check_mark:'
     path: C++/math/kthrooti.hpp
     title: "k\u4E57\u6839(\u6574\u6570)"
   - icon: ':heavy_check_mark:'
@@ -10,9 +13,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/math/primetable.hpp
     title: Sieve of Eratosthenes
-  - icon: ':heavy_check_mark:'
-    path: C++/myvector.hpp
-    title: C++/myvector.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -34,8 +34,8 @@ data:
     \            return false;\n            }\n            mul*=x;\n        }\n\t\t\
     return mul<=n;\n\t};\n\tul ret=0;\n\tfor(int i = 32; --i >= 0;) {\n\t\tif(chk(ret|(1U<<i)))\
     \ {\n\t\t\tret|=1U<<i;\n\t\t}\n\t}\n\treturn ret;\n}\n}\n\n/**\n * @brief k\u4E57\
-    \u6839(\u6574\u6570)\n */\n#line 2 \"C++/math/primetable.hpp\"\n\n#line 2 \"C++/myvector.hpp\"\
-    \n\n#line 4 \"C++/myvector.hpp\"\n\n#ifndef TEMPLATE\ntypedef long long ll;\n\
+    \u6839(\u6574\u6570)\n */\n#line 2 \"C++/math/primetable.hpp\"\n\n#line 2 \"C++/core/myvector.hpp\"\
+    \n\n#line 4 \"C++/core/myvector.hpp\"\n\n#ifndef TEMPLATE\ntypedef long long ll;\n\
     typedef unsigned long long ul;\ntypedef long double ld;\n#endif\nnamespace vectors\
     \ {\ntemplate <class T> using V = std::vector<T>;\nusing vi = V<ll>;\nusing vu\
     \ = V<ul>;\nusing vd = V<ld>;\nusing vc = V<char>;\nusing vs = V<std::string>;\n\
@@ -105,11 +105,11 @@ data:
   - C++/math/primecounter.hpp
   - C++/math/kthrooti.hpp
   - C++/math/primetable.hpp
-  - C++/myvector.hpp
+  - C++/core/myvector.hpp
   isVerificationFile: true
   path: test/pcounter.test.cpp
   requiredBy: []
-  timestamp: '2024-03-03 06:51:22+09:00'
+  timestamp: '2024-03-09 13:04:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/pcounter.test.cpp

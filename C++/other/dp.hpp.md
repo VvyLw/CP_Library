@@ -40,7 +40,7 @@ data:
     - https://ei1333.github.io/library/dp/knapsack.hpp
     - https://maku.blog/p/a3jyhwd/
     - https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp
-  bundledCode: "#line 2 \"C++/dp.hpp\"\n\n#include <vector>\n#include <utility>\n\
+  bundledCode: "#line 2 \"C++/other/dp.hpp\"\n\n#include <vector>\n#include <utility>\n\
     #include <algorithm>\n#include <iterator>\n#include <limits>\n#include <numeric>\n\
     \ntemplate <class T> T knapsack01_v(const std::vector<int> &a, const std::vector<T>\
     \ &v, const int w) {\n    const int n = a.size();\n    std::vector dp(w + 1, std::numeric_limits<T>::min());\n\
@@ -196,9 +196,9 @@ data:
     \ */\n\n/**\n * @brief DP(Knapsack, LCS, LIS)\n */"
   dependsOn: []
   isVerificationFile: false
-  path: C++/dp.hpp
+  path: C++/other/dp.hpp
   requiredBy: []
-  timestamp: '2024-02-29 06:40:23+09:00'
+  timestamp: '2024-03-09 13:04:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/knapsack2.test.cpp
@@ -209,10 +209,10 @@ data:
   - test/lis2.test.cpp
   - test/knapsack3.test.cpp
   - test/knapsack4.test.cpp
-documentation_of: C++/dp.hpp
+documentation_of: C++/other/dp.hpp
 layout: document
 redirect_from:
-- /library/C++/dp.hpp
-- /library/C++/dp.hpp.html
+- /library/C++/other/dp.hpp
+- /library/C++/other/dp.hpp.html
 title: DP(Knapsack, LCS, LIS)
 ---

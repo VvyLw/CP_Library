@@ -6,7 +6,8 @@ data:
     title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
   - icon: ':heavy_check_mark:'
     path: C++/graph/SCC.hpp
-    title: SCC
+    title: "Strongly Connected Components(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
+      )"
   - icon: ':heavy_check_mark:'
     path: C++/graph/edge.hpp
     title: Edge
@@ -88,8 +89,8 @@ data:
     }\n\t\t}\n\t\tgroup.resize(ptr);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tgroup[comp[i]].emplace_back(i);\n\
     \t\t}\n\t}\npublic:\n    SCC(const G &g): g(g){ build(); }\n\tint operator[](const\
     \ int i) const { return comp[i]; }\n\tstd::vector<std::vector<int>> groups() const\
-    \ { return group; }\n\tG DAG() const { return dag; }\n};\n\n/**\n * @brief SCC\n\
-    \ * @see https://ei1333.github.io/library/graph/connected-components/strongly-connected-components.hpp\n\
+    \ { return group; }\n\tG DAG() const { return dag; }\n};\n\n/**\n * @brief Strongly\
+    \ Connected Components(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @see https://ei1333.github.io/library/graph/connected-components/strongly-connected-components.hpp\n\
     \ */\n#line 5 \"test/scc2.test.cpp\"\nint main() {\n    int n, m;\n    std::cin\
     \ >> n >> m;\n    graph<false> g(n, 0);\n    g.input(m);\n    SCC scc(g);\n  \
     \  const auto res = scc.groups();\n    std::cout << res.size() << '\\n';\n   \
@@ -110,7 +111,7 @@ data:
   isVerificationFile: true
   path: test/scc2.test.cpp
   requiredBy: []
-  timestamp: '2024-03-03 06:51:22+09:00'
+  timestamp: '2024-03-09 12:28:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/scc2.test.cpp

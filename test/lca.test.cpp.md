@@ -6,7 +6,7 @@ data:
     title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
   - icon: ':heavy_check_mark:'
     path: C++/graph/LCA.hpp
-    title: "\u6700\u5C0F\u5171\u901A\u7956\u5148"
+    title: "Lowest Common Ancestor(\u6700\u5C0F\u5171\u901A\u7956\u5148)"
   - icon: ':heavy_check_mark:'
     path: C++/graph/edge.hpp
     title: Edge
@@ -95,8 +95,8 @@ data:
     \ table[i][v]) {\r\n                u = table[i][u];\r\n                v = table[i][v];\r\
     \n            }\r\n        }\r\n        return table[0][u];\r\n    }\r\n    int\
     \ dist(const int u, const int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)];\
-    \ }\r\n};\r\n/**\r\n * @brief \u6700\u5C0F\u5171\u901A\u7956\u5148\r\n * @docs\
-    \ docs/LCA.md\r\n * @see https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html\r\
+    \ }\r\n};\r\n/**\r\n * @brief Lowest Common Ancestor(\u6700\u5C0F\u5171\u901A\u7956\
+    \u5148)\r\n * @docs docs/LCA.md\r\n * @see https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html\r\
     \n */\n#line 4 \"test/lca.test.cpp\"\nint main() {\n    std::cin.tie(nullptr)\
     \ -> sync_with_stdio(false);\n    int n, q;\n    std::cin >> n >> q;\n    graph<false>\
     \ g(n, 0);\n    for(int i = 1; i < n; ++i) {\n        int p;\n        std::cin\
@@ -117,7 +117,7 @@ data:
   isVerificationFile: true
   path: test/lca.test.cpp
   requiredBy: []
-  timestamp: '2024-03-03 06:51:22+09:00'
+  timestamp: '2024-03-09 12:28:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lca.test.cpp

@@ -3,17 +3,17 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: C++/io/input.hpp
+    path: C++/core/io/input.hpp
     title: "\u5165\u529B"
   - icon: ':heavy_check_mark:'
-    path: C++/io/output.hpp
+    path: C++/core/io/output.hpp
     title: "\u51FA\u529B"
+  - icon: ':heavy_check_mark:'
+    path: C++/core/mypair.hpp
+    title: C++/core/mypair.hpp
   - icon: ':heavy_check_mark:'
     path: C++/math/primefactor.hpp
     title: "\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':heavy_check_mark:'
-    path: C++/mypair.hpp
-    title: C++/mypair.hpp
   - icon: ':heavy_check_mark:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
@@ -63,7 +63,7 @@ data:
   attributes:
     document_title: "\u5B9A\u6570"
     links: []
-  bundledCode: "#line 2 \"C++/constance.hpp\"\n\n#include <limits>\n#ifndef TEMPLATE\n\
+  bundledCode: "#line 2 \"C++/core/constance.hpp\"\n\n#include <limits>\n#ifndef TEMPLATE\n\
     using ll = long long;\nusing ld = long double;\n#endif\ntemplate <class T> using\
     \ L = std::numeric_limits<T>;\nconstexpr int dx[] = {0, 0, 0, -1, 1, -1, -1, 1,\
     \ 1};\nconstexpr int dy[] = {0, -1, 1, 0, 0, -1, 1, -1, 1};\nconstexpr int MOD\
@@ -85,14 +85,14 @@ data:
     \n/**\n * @brief \u5B9A\u6570\n */"
   dependsOn: []
   isVerificationFile: false
-  path: C++/constance.hpp
+  path: C++/core/constance.hpp
   requiredBy:
-  - C++/mypair.hpp
   - C++/template.hpp
-  - C++/io/output.hpp
-  - C++/io/input.hpp
+  - C++/core/mypair.hpp
+  - C++/core/io/output.hpp
+  - C++/core/io/input.hpp
   - C++/math/primefactor.hpp
-  timestamp: '2024-02-19 12:20:55+09:00'
+  timestamp: '2024-03-09 13:04:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sr_sum.test.cpp
@@ -108,10 +108,10 @@ data:
   - test/parsum.test.cpp
   - test/m_add.test.cpp
   - test/s_rmq.test.cpp
-documentation_of: C++/constance.hpp
+documentation_of: C++/core/constance.hpp
 layout: document
 redirect_from:
-- /library/C++/constance.hpp
-- /library/C++/constance.hpp.html
+- /library/C++/core/constance.hpp
+- /library/C++/core/constance.hpp.html
 title: "\u5B9A\u6570"
 ---

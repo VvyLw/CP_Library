@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: C++/dp.hpp
+    path: C++/other/dp.hpp
     title: DP(Knapsack, LCS, LIS)
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
@@ -15,17 +15,18 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_10_C
   bundledCode: "#line 1 \"test/lcs.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_10_C\"\
-    \n#include <iostream>\n#line 2 \"C++/dp.hpp\"\n\n#include <vector>\n#include <utility>\n\
-    #include <algorithm>\n#include <iterator>\n#include <limits>\n#include <numeric>\n\
-    \ntemplate <class T> T knapsack01_v(const std::vector<int> &a, const std::vector<T>\
-    \ &v, const int w) {\n    const int n = a.size();\n    std::vector dp(w + 1, std::numeric_limits<T>::min());\n\
-    \    dp[0] = 0;\n    for(int i = 0; i < n; i++) {\n        for(int j = w; j >=\
-    \ a[i]; j--) {\n            if(dp[j - a[i]] != std::numeric_limits<T>::min())\
-    \ {\n                if(dp[j - a[i]] + v[i] > dp[j]) {\n                    dp[j]\
-    \ = dp[j - a[i]] + v[i];\n                }\n            }\n        }\n    }\n\
-    \    return *std::ranges::max_element(dp);\n}\n/**\n * @see https://ei1333.github.io/library/dp/knapsack-01.hpp\n\
-    \ */\n\ntemplate <class T> int knapsack01_w(const std::vector<T> &a, const std::vector<int>\
-    \ &v, const T &w) {\n    const int n = a.size();\n    const int s = std::accumulate(v.begin(),\
+    \n#include <iostream>\n#line 2 \"C++/other/dp.hpp\"\n\n#include <vector>\n#include\
+    \ <utility>\n#include <algorithm>\n#include <iterator>\n#include <limits>\n#include\
+    \ <numeric>\n\ntemplate <class T> T knapsack01_v(const std::vector<int> &a, const\
+    \ std::vector<T> &v, const int w) {\n    const int n = a.size();\n    std::vector\
+    \ dp(w + 1, std::numeric_limits<T>::min());\n    dp[0] = 0;\n    for(int i = 0;\
+    \ i < n; i++) {\n        for(int j = w; j >= a[i]; j--) {\n            if(dp[j\
+    \ - a[i]] != std::numeric_limits<T>::min()) {\n                if(dp[j - a[i]]\
+    \ + v[i] > dp[j]) {\n                    dp[j] = dp[j - a[i]] + v[i];\n      \
+    \          }\n            }\n        }\n    }\n    return *std::ranges::max_element(dp);\n\
+    }\n/**\n * @see https://ei1333.github.io/library/dp/knapsack-01.hpp\n */\n\ntemplate\
+    \ <class T> int knapsack01_w(const std::vector<T> &a, const std::vector<int> &v,\
+    \ const T &w) {\n    const int n = a.size();\n    const int s = std::accumulate(v.begin(),\
     \ v.end(), 0);\n    std::vector dp(s + 1, w + 1);\n    dp[0] = 0;\n    for(int\
     \ i = 0; i < n; i++) {\n        for(int j = s; j >= v[i]; j--) {\n           \
     \ dp[j] = std::min(dp[j], dp[j - v[i]] + a[i]);\n        }\n    }\n    int res\
@@ -96,16 +97,16 @@ data:
     \ x, y;\n        std::cin >> x >> y;\n        const int z = lcs(x, y);\n     \
     \   std::cout << z << '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_10_C\"\n\
-    #include <iostream>\n#include \"C++/dp.hpp\"\nint main() {\n    int q;\n    std::cin\
-    \ >> q;\n    while(q--) {\n        std::string x, y;\n        std::cin >> x >>\
-    \ y;\n        const int z = lcs(x, y);\n        std::cout << z << '\\n';\n   \
-    \ }\n}"
+    #include <iostream>\n#include \"C++/other/dp.hpp\"\nint main() {\n    int q;\n\
+    \    std::cin >> q;\n    while(q--) {\n        std::string x, y;\n        std::cin\
+    \ >> x >> y;\n        const int z = lcs(x, y);\n        std::cout << z << '\\\
+    n';\n    }\n}"
   dependsOn:
-  - C++/dp.hpp
+  - C++/other/dp.hpp
   isVerificationFile: true
   path: test/lcs.test.cpp
   requiredBy: []
-  timestamp: '2024-03-03 06:51:22+09:00'
+  timestamp: '2024-03-09 13:04:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lcs.test.cpp

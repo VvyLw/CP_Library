@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: C++/myvector.hpp
-    title: C++/myvector.hpp
+    path: C++/core/myvector.hpp
+    title: C++/core/myvector.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: C++/math/primecounter.hpp
@@ -57,7 +57,7 @@ data:
   attributes:
     document_title: Sieve of Eratosthenes
     links: []
-  bundledCode: "#line 2 \"C++/math/primetable.hpp\"\n\n#line 2 \"C++/myvector.hpp\"\
+  bundledCode: "#line 2 \"C++/math/primetable.hpp\"\n\n#line 2 \"C++/core/myvector.hpp\"\
     \n\n#include <vector>\n\n#ifndef TEMPLATE\ntypedef long long ll;\ntypedef unsigned\
     \ long long ul;\ntypedef long double ld;\n#endif\nnamespace vectors {\ntemplate\
     \ <class T> using V = std::vector<T>;\nusing vi = V<ll>;\nusing vu = V<ul>;\n\
@@ -93,21 +93,21 @@ data:
     \ }\n    vectors::vi get() {\n        vectors::vi p;\n        for(size_t i = 2;\
     \ i < SoE.size(); ++i) if(SoE[i]) p.emplace_back(i);\n        return p;\n    }\n\
     };\n}\n\n/**\n * @brief Sieve of Eratosthenes\n */\n"
-  code: "#pragma once\n\n#include \"C++/myvector.hpp\"\nnamespace Heileden {\nstruct\
-    \ p_table {\n    vectors::vb SoE;\n    p_table(const int n): SoE(n+1,1){\n   \
-    \     SoE[0]=SoE[1]=0;\n        for(int64_t i = 2; i <= n; ++i) {\n          \
-    \  if(!SoE[i]) continue;\n            for(int64_t j = i * i; j <= n; j += i) SoE[j]\
-    \ = 0;\n        }\n    }\n    vectors::vi get() {\n        vectors::vi p;\n  \
-    \      for(size_t i = 2; i < SoE.size(); ++i) if(SoE[i]) p.emplace_back(i);\n\
+  code: "#pragma once\n\n#include \"C++/core/myvector.hpp\"\nnamespace Heileden {\n\
+    struct p_table {\n    vectors::vb SoE;\n    p_table(const int n): SoE(n+1,1){\n\
+    \        SoE[0]=SoE[1]=0;\n        for(int64_t i = 2; i <= n; ++i) {\n       \
+    \     if(!SoE[i]) continue;\n            for(int64_t j = i * i; j <= n; j += i)\
+    \ SoE[j] = 0;\n        }\n    }\n    vectors::vi get() {\n        vectors::vi\
+    \ p;\n        for(size_t i = 2; i < SoE.size(); ++i) if(SoE[i]) p.emplace_back(i);\n\
     \        return p;\n    }\n};\n}\n\n/**\n * @brief Sieve of Eratosthenes\n */"
   dependsOn:
-  - C++/myvector.hpp
+  - C++/core/myvector.hpp
   isVerificationFile: false
   path: C++/math/primetable.hpp
   requiredBy:
   - C++/template.hpp
   - C++/math/primecounter.hpp
-  timestamp: '2024-02-19 13:17:33+09:00'
+  timestamp: '2024-03-09 13:04:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sr_sum.test.cpp

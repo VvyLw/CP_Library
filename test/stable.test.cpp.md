@@ -2,17 +2,26 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: C++/constance.hpp
+    path: C++/core/constance.hpp
     title: "\u5B9A\u6570"
+  - icon: ':heavy_check_mark:'
+    path: C++/core/io/input.hpp
+    title: "\u5165\u529B"
+  - icon: ':heavy_check_mark:'
+    path: C++/core/io/output.hpp
+    title: "\u51FA\u529B"
+  - icon: ':heavy_check_mark:'
+    path: C++/core/mypair.hpp
+    title: C++/core/mypair.hpp
+  - icon: ':heavy_check_mark:'
+    path: C++/core/myvector.hpp
+    title: C++/core/myvector.hpp
+  - icon: ':heavy_check_mark:'
+    path: C++/core/timer.hpp
+    title: "\u30BF\u30A4\u30DE\u30FC"
   - icon: ':heavy_check_mark:'
     path: C++/ds/SparseTable.hpp
     title: Sparse Table
-  - icon: ':heavy_check_mark:'
-    path: C++/io/input.hpp
-    title: "\u5165\u529B"
-  - icon: ':heavy_check_mark:'
-    path: C++/io/output.hpp
-    title: "\u51FA\u529B"
   - icon: ':heavy_check_mark:'
     path: C++/math/divisor.hpp
     title: "\u7D04\u6570\u5217\u6319"
@@ -32,17 +41,8 @@ data:
     path: C++/math/psum/psum.hpp
     title: "\u7D2F\u7A4D\u548C"
   - icon: ':heavy_check_mark:'
-    path: C++/mypair.hpp
-    title: C++/mypair.hpp
-  - icon: ':heavy_check_mark:'
-    path: C++/myvector.hpp
-    title: C++/myvector.hpp
-  - icon: ':heavy_check_mark:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
-  - icon: ':heavy_check_mark:'
-    path: C++/timer.hpp
-    title: "\u30BF\u30A4\u30DE\u30FC"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -65,7 +65,7 @@ data:
     \n} // VvyLw\r\nnamespace zia_qu {\r\ninline bool isdigit(const std::string &s);\r\
     \n}\r\nstd::mt19937 EhaL(std::hash<std::string>()(\"Huitloxopetl\"));\r\nstd::mt19937\
     \ Random() {\r\n\tstd::random_device seed_gen;\r\n\tstd::mt19937 engine {seed_gen()};\r\
-    \n\treturn engine;\r\n}\r\n\r\n#line 2 \"C++/timer.hpp\"\n\n#line 5 \"C++/timer.hpp\"\
+    \n\treturn engine;\r\n}\r\n\r\n#line 2 \"C++/core/timer.hpp\"\n\n#line 5 \"C++/core/timer.hpp\"\
     \nusing Timer = std::chrono::system_clock::time_point;\n[[maybe_unused]] Timer\
     \ start, stop;\n#if local\nvoid now(Timer &t){ t = std::chrono::system_clock::now();\
     \ }\nvoid time(const Timer &t1, const Timer &t2){ std::cerr << std::chrono::duration_cast<std::chrono::milliseconds>(t2\
@@ -90,23 +90,24 @@ data:
     \ sqrp(...) overload3(__VA_ARGS__,sqrp3,sqrp2,sqrp1)(__VA_ARGS__)\r\n\r\nusing\
     \ ll = long long;\r\nusing ld = long double;\r\nusing uint = unsigned;\r\nusing\
     \ ul = unsigned long long;\r\nusing i128 = __int128_t;\r\nusing u128 = __uint128_t;\r\
-    \n\r\n#line 2 \"C++/mypair.hpp\"\n\n#line 2 \"C++/constance.hpp\"\n\n#line 4 \"\
-    C++/constance.hpp\"\n#ifndef TEMPLATE\nusing ll = long long;\nusing ld = long\
-    \ double;\n#endif\ntemplate <class T> using L = std::numeric_limits<T>;\nconstexpr\
-    \ int dx[] = {0, 0, 0, -1, 1, -1, -1, 1, 1};\nconstexpr int dy[] = {0, -1, 1,\
-    \ 0, 0, -1, 1, -1, 1};\nconstexpr int MOD = 0x3b800001;\nconstexpr int M0D = 1e9\
-    \ + 7;\nconstexpr int INF = 1 << 30;\nconstexpr ll LINF = (1LL << 61) - 1;\nconstexpr\
-    \ ld DINF = L<ld>::infinity();\ntemplate <class T> constexpr T LIM = L<T>::max();\n\
-    #if __cplusplus >= 202100L\n#include <numbers>\nconstexpr ld PI = std::numbers::pi;\n\
-    constexpr ld E = std::numbers::e;\n#else\n#include <cmath>\nconst ld PI = std::acos(-1);\n\
-    const ld E = 2.718281828459045;\n#endif\n\n/**\n * @brief \u5B9A\u6570\n */\n\
-    #line 2 \"C++/myvector.hpp\"\n\n#line 4 \"C++/myvector.hpp\"\n\n#ifndef TEMPLATE\n\
-    typedef long long ll;\ntypedef unsigned long long ul;\ntypedef long double ld;\n\
-    #endif\nnamespace vectors {\ntemplate <class T> using V = std::vector<T>;\nusing\
-    \ vi = V<ll>;\nusing vu = V<ul>;\nusing vd = V<ld>;\nusing vc = V<char>;\nusing\
-    \ vs = V<std::string>;\nusing vb = V<bool>;\nusing wi = V<vi>;\nusing wu = V<vu>;\n\
-    using wd = V<vd>;\nusing wc = V<vc>;\nusing ws = V<vs>;\nusing wb = V<vb>;\ntemplate\
-    \ <class T, class U> inline V<U> ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n),\
+    \n\r\n#line 2 \"C++/core/mypair.hpp\"\n\n#line 2 \"C++/core/constance.hpp\"\n\n\
+    #line 4 \"C++/core/constance.hpp\"\n#ifndef TEMPLATE\nusing ll = long long;\n\
+    using ld = long double;\n#endif\ntemplate <class T> using L = std::numeric_limits<T>;\n\
+    constexpr int dx[] = {0, 0, 0, -1, 1, -1, -1, 1, 1};\nconstexpr int dy[] = {0,\
+    \ -1, 1, 0, 0, -1, 1, -1, 1};\nconstexpr int MOD = 0x3b800001;\nconstexpr int\
+    \ M0D = 1e9 + 7;\nconstexpr int INF = 1 << 30;\nconstexpr ll LINF = (1LL << 61)\
+    \ - 1;\nconstexpr ld DINF = L<ld>::infinity();\ntemplate <class T> constexpr T\
+    \ LIM = L<T>::max();\n#if __cplusplus >= 202100L\n#include <numbers>\nconstexpr\
+    \ ld PI = std::numbers::pi;\nconstexpr ld E = std::numbers::e;\n#else\n#include\
+    \ <cmath>\nconst ld PI = std::acos(-1);\nconst ld E = 2.718281828459045;\n#endif\n\
+    \n/**\n * @brief \u5B9A\u6570\n */\n#line 2 \"C++/core/myvector.hpp\"\n\n#line\
+    \ 4 \"C++/core/myvector.hpp\"\n\n#ifndef TEMPLATE\ntypedef long long ll;\ntypedef\
+    \ unsigned long long ul;\ntypedef long double ld;\n#endif\nnamespace vectors {\n\
+    template <class T> using V = std::vector<T>;\nusing vi = V<ll>;\nusing vu = V<ul>;\n\
+    using vd = V<ld>;\nusing vc = V<char>;\nusing vs = V<std::string>;\nusing vb =\
+    \ V<bool>;\nusing wi = V<vi>;\nusing wu = V<vu>;\nusing wd = V<vd>;\nusing wc\
+    \ = V<vc>;\nusing ws = V<vs>;\nusing wb = V<vb>;\ntemplate <class T, class U>\
+    \ inline V<U> ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n),\
     \ std::forward<U>(v));\n}\ntemplate <class T, class... Ts> inline decltype(auto)\
     \ ndiv(T&& n, Ts&&... v) noexcept {\n  return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n),\
     \ ndiv(std::forward<Ts>(v)...));\n}\ntemplate <class T> constexpr V<T>& operator++(V<T>&\
@@ -128,7 +129,7 @@ data:
     \ V<T> operator/(const V<T>& v, const U x) noexcept { V<T> res = v; res/=x; return\
     \ res; }\ntemplate <class T, class U> constexpr V<T> operator%(const V<T>& v,\
     \ const U x) noexcept { V<T> res = v; res%=x; return res; }\n} // vectors\n#line\
-    \ 10 \"C++/mypair.hpp\"\nnamespace pairs {\ntemplate <class T, class U> using\
+    \ 10 \"C++/core/mypair.hpp\"\nnamespace pairs {\ntemplate <class T, class U> using\
     \ P = std::pair<T, U>;\ntemplate <class T> using PP = P<T,T>;\nusing pi = PP<ll>;\n\
     using pd = PP<ld>;\nusing pc = PP<char>;\nusing ps = PP<std::string>;\ntemplate\
     \ <class T> constexpr PP<T> operator+(const PP<T>& a, const PP<T>& b) noexcept\
@@ -206,39 +207,40 @@ data:
     \ }\r\ntemplate <class T, class U> inline bool overflow_if_mul(const T a, const\
     \ U b){ return (LIM<T>/a)<b; }\r\ninline void fix(const short x){ std::cout <<\
     \ std::fixed << std::setprecision(x); }\r\ninline void alpha(){ std::cout << std::boolalpha;\
-    \ }\r\n\r\n#line 2 \"C++/io/input.hpp\"\n\n#line 7 \"C++/io/input.hpp\"\n#ifndef\
-    \ TEMPLATE\ntypedef unsigned long long ul;\ntypedef __int128_t i128;\nnamespace\
-    \ zia_qu {\ninline bool isdigit(const char c){ return std::isdigit(c); }\ninline\
-    \ bool isdigit(const std::string &s){ bool ok=1, neg=s.front()=='-'; for(const\
-    \ auto &el: s){ if(neg){ neg=0; continue; } ok&=isdigit(el); } return ok; }\n\
-    }\n#endif\nnamespace IO {\ntemplate <class T, class U> std::istream& operator>>(std::istream\
-    \ &is, pairs::P<T, U> &p){ is >> p.first >> p.second; return is; }\ntemplate <class\
-    \ T, size_t N> std::istream& operator>>(std::istream &is, std::array<T, N> &a){\
-    \ for(auto &el: a) is >> el; return is; }\ntemplate <class T> std::istream& operator>>(std::istream\
-    \ &is, vectors::V<T> &v){ for(auto &el: v) is >> el; return is; }\ntemplate <class\
-    \ T> std::istream& operator>>(std::istream &is, std::deque<T> &dq){ for(auto &el:\
-    \ dq) is >> el; return is; }\ntemplate <class T> inline bool in(T& x){ std::cin\
-    \ >> x; return 1; }\ntemplate <class Head, class... Tail> inline bool in(Head&\
-    \ head, Tail&... tail){ in(head); in(tail...); return 1; }\n\ninline i128 to_i128(const\
-    \ std::string &s) {\n    assert(zia_qu::isdigit(s));\n    bool neg=s.front()=='-';\n\
-    \    i128 ret = 0;\n    for(const auto &el: s) {\n        if(neg) {\n        \
-    \    neg=0;\n            continue;\n        }\n        ret = 10 * ret + el - '0';\n\
-    \    }\n    if(s.front()=='-') ret=-ret;\n    return ret;\n}\n\n#define INT(...)\
-    \ int __VA_ARGS__; in(__VA_ARGS__)\n#define LL(...) ll __VA_ARGS__; in(__VA_ARGS__)\n\
-    #define UL(...) ul __VA_ARGS__; in(__VA_ARGS__)\n#define LD(...) ld __VA_ARGS__;\
-    \ in(__VA_ARGS__)\n#define CHR(...) char __VA_ARGS__; in(__VA_ARGS__)\n#define\
-    \ STR(...) std::string __VA_ARGS__; in(__VA_ARGS__)\n#define VEC(type,name,size)\
-    \ vectors::V<type> name(size); in(name)\n#define WEC(type,name,h,w) vectors::V<vectors::V<type>>\
-    \ name(h,vectors::V<type>(w)); in(name)\n} // IO\n\n/**\n * @brief \u5165\u529B\
-    \n */\n#line 2 \"C++/io/output.hpp\"\n\n#line 8 \"C++/io/output.hpp\"\n#ifndef\
-    \ TEMPLATE\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n#endif\nnamespace\
-    \ IO {\nstd::ostream &operator<<(std::ostream &dest, const i128 &value) {\n  \
-    \  std::ostream::sentry s(dest);\n    if(s) {\n        u128 tmp = value < 0 ?\
-    \ -value : value;\n        char buffer[128];\n        char *d = std::end(buffer);\n\
-    \        do {\n            --d;\n            *d = \"0123456789\"[tmp % 10];\n\
-    \            tmp /= 10;\n        } while(tmp != 0);\n        if(value < 0) {\n\
-    \            --d;\n            *d = '-';\n        }\n        int len = std::end(buffer)\
-    \ - d;\n        if(dest.rdbuf() -> sputn(d, len) != len) {\n            dest.setstate(std::ios_base::badbit);\n\
+    \ }\r\n\r\n#line 2 \"C++/core/io/input.hpp\"\n\n#line 7 \"C++/core/io/input.hpp\"\
+    \n#ifndef TEMPLATE\ntypedef unsigned long long ul;\ntypedef __int128_t i128;\n\
+    namespace zia_qu {\ninline bool isdigit(const char c){ return std::isdigit(c);\
+    \ }\ninline bool isdigit(const std::string &s){ bool ok=1, neg=s.front()=='-';\
+    \ for(const auto &el: s){ if(neg){ neg=0; continue; } ok&=isdigit(el); } return\
+    \ ok; }\n}\n#endif\nnamespace IO {\ntemplate <class T, class U> std::istream&\
+    \ operator>>(std::istream &is, pairs::P<T, U> &p){ is >> p.first >> p.second;\
+    \ return is; }\ntemplate <class T, size_t N> std::istream& operator>>(std::istream\
+    \ &is, std::array<T, N> &a){ for(auto &el: a) is >> el; return is; }\ntemplate\
+    \ <class T> std::istream& operator>>(std::istream &is, vectors::V<T> &v){ for(auto\
+    \ &el: v) is >> el; return is; }\ntemplate <class T> std::istream& operator>>(std::istream\
+    \ &is, std::deque<T> &dq){ for(auto &el: dq) is >> el; return is; }\ntemplate\
+    \ <class T> inline bool in(T& x){ std::cin >> x; return 1; }\ntemplate <class\
+    \ Head, class... Tail> inline bool in(Head& head, Tail&... tail){ in(head); in(tail...);\
+    \ return 1; }\n\ninline i128 to_i128(const std::string &s) {\n    assert(zia_qu::isdigit(s));\n\
+    \    bool neg=s.front()=='-';\n    i128 ret = 0;\n    for(const auto &el: s) {\n\
+    \        if(neg) {\n            neg=0;\n            continue;\n        }\n   \
+    \     ret = 10 * ret + el - '0';\n    }\n    if(s.front()=='-') ret=-ret;\n  \
+    \  return ret;\n}\n\n#define INT(...) int __VA_ARGS__; in(__VA_ARGS__)\n#define\
+    \ LL(...) ll __VA_ARGS__; in(__VA_ARGS__)\n#define UL(...) ul __VA_ARGS__; in(__VA_ARGS__)\n\
+    #define LD(...) ld __VA_ARGS__; in(__VA_ARGS__)\n#define CHR(...) char __VA_ARGS__;\
+    \ in(__VA_ARGS__)\n#define STR(...) std::string __VA_ARGS__; in(__VA_ARGS__)\n\
+    #define VEC(type,name,size) vectors::V<type> name(size); in(name)\n#define WEC(type,name,h,w)\
+    \ vectors::V<vectors::V<type>> name(h,vectors::V<type>(w)); in(name)\n} // IO\n\
+    \n/**\n * @brief \u5165\u529B\n */\n#line 2 \"C++/core/io/output.hpp\"\n\n#line\
+    \ 8 \"C++/core/io/output.hpp\"\n#ifndef TEMPLATE\nusing i128 = __int128_t;\nusing\
+    \ u128 = __uint128_t;\n#endif\nnamespace IO {\nstd::ostream &operator<<(std::ostream\
+    \ &dest, const i128 &value) {\n    std::ostream::sentry s(dest);\n    if(s) {\n\
+    \        u128 tmp = value < 0 ? -value : value;\n        char buffer[128];\n \
+    \       char *d = std::end(buffer);\n        do {\n            --d;\n        \
+    \    *d = \"0123456789\"[tmp % 10];\n            tmp /= 10;\n        } while(tmp\
+    \ != 0);\n        if(value < 0) {\n            --d;\n            *d = '-';\n \
+    \       }\n        int len = std::end(buffer) - d;\n        if(dest.rdbuf() ->\
+    \ sputn(d, len) != len) {\n            dest.setstate(std::ios_base::badbit);\n\
     \        }\n    }\n    return dest;\n}\ntemplate <class T, class U> std::ostream&\
     \ operator<<(std::ostream &os, const pairs::P<T, U> &p){ os << p.first << ' '\
     \ << p.second; return os; }\ntemplate <class T, size_t N> std::ostream& operator<<(std::ostream\
@@ -268,7 +270,7 @@ data:
     \ Head& head, const Tail&... tail){ std::cout << head << '\\n'; vout<flush>(tail...);\
     \ }\n\n#define fin(...) do{ out(__VA_ARGS__); return; }while(false)\n} // IO\n\
     \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
-    #include <C++/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
+    #include <C++/core/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
     #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 83 \"C++/template.hpp\"\n\r\n\
     using namespace IO;\r\n\r\nnamespace zia_qu {\r\n#define elif else if\r\n#define\
     \ eid(el,v) size_t(&el-&v[0])\r\n#define bif(bit,tar) if(((bit)>>(tar))&1)\r\n\
@@ -556,12 +558,12 @@ data:
     \        out(st.query(l,r));\n    }\n}"
   dependsOn:
   - C++/template.hpp
-  - C++/timer.hpp
-  - C++/mypair.hpp
-  - C++/constance.hpp
-  - C++/myvector.hpp
-  - C++/io/input.hpp
-  - C++/io/output.hpp
+  - C++/core/timer.hpp
+  - C++/core/mypair.hpp
+  - C++/core/constance.hpp
+  - C++/core/myvector.hpp
+  - C++/core/io/input.hpp
+  - C++/core/io/output.hpp
   - C++/math/divisor.hpp
   - C++/math/primefactor.hpp
   - C++/math/primetable.hpp
@@ -572,7 +574,7 @@ data:
   isVerificationFile: true
   path: test/stable.test.cpp
   requiredBy: []
-  timestamp: '2024-03-03 06:51:22+09:00'
+  timestamp: '2024-03-09 13:04:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/stable.test.cpp

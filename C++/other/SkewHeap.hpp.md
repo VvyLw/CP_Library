@@ -16,8 +16,8 @@ data:
     document_title: SkewHeap
     links:
     - https://ei1333.github.io/library/structure/heap/skew-heap.hpp
-  bundledCode: "#line 2 \"C++/SkewHeap.hpp\"\n\n#pragma GCC diagnostic ignored \"\
-    -Wreorder\"\n\n#include <cassert>\n#include <algorithm>\ntemplate <bool is_min\
+  bundledCode: "#line 2 \"C++/other/SkewHeap.hpp\"\n\n#pragma GCC diagnostic ignored\
+    \ \"-Wreorder\"\n\n#include <cassert>\n#include <algorithm>\ntemplate <bool is_min\
     \ = true> struct SkewHeap {\n    struct Node {\n        long long key, lazy;\n\
     \        Node *l, *r;\n        int idx;\n        explicit Node(const long long\
     \ &key, const int idx): key(key), idx(idx), lazy(0), l(nullptr), r(nullptr){}\n\
@@ -61,17 +61,17 @@ data:
     \ * @see https://ei1333.github.io/library/structure/heap/skew-heap.hpp\n */"
   dependsOn: []
   isVerificationFile: false
-  path: C++/SkewHeap.hpp
+  path: C++/other/SkewHeap.hpp
   requiredBy:
   - C++/graph/mst/directed.hpp
-  timestamp: '2024-02-19 12:20:55+09:00'
+  timestamp: '2024-03-09 13:04:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/directed.test.cpp
-documentation_of: C++/SkewHeap.hpp
+documentation_of: C++/other/SkewHeap.hpp
 layout: document
 redirect_from:
-- /library/C++/SkewHeap.hpp
-- /library/C++/SkewHeap.hpp.html
+- /library/C++/other/SkewHeap.hpp
+- /library/C++/other/SkewHeap.hpp.html
 title: SkewHeap
 ---

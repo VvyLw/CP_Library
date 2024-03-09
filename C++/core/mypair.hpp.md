@@ -2,17 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: C++/constance.hpp
+    path: C++/core/constance.hpp
     title: "\u5B9A\u6570"
   - icon: ':heavy_check_mark:'
-    path: C++/myvector.hpp
-    title: C++/myvector.hpp
+    path: C++/core/myvector.hpp
+    title: C++/core/myvector.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: C++/io/input.hpp
+    path: C++/core/io/input.hpp
     title: "\u5165\u529B"
   - icon: ':heavy_check_mark:'
-    path: C++/io/output.hpp
+    path: C++/core/io/output.hpp
     title: "\u51FA\u529B"
   - icon: ':heavy_check_mark:'
     path: C++/math/primefactor.hpp
@@ -65,8 +65,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"C++/mypair.hpp\"\n\n#include <cassert>\n#include <utility>\n\
-    #include <tuple>\n#include <cmath>\n#include <numeric>\n#line 2 \"C++/constance.hpp\"\
+  bundledCode: "#line 2 \"C++/core/mypair.hpp\"\n\n#include <cassert>\n#include <utility>\n\
+    #include <tuple>\n#include <cmath>\n#include <numeric>\n#line 2 \"C++/core/constance.hpp\"\
     \n\n#include <limits>\n#ifndef TEMPLATE\nusing ll = long long;\nusing ld = long\
     \ double;\n#endif\ntemplate <class T> using L = std::numeric_limits<T>;\nconstexpr\
     \ int dx[] = {0, 0, 0, -1, 1, -1, -1, 1, 1};\nconstexpr int dy[] = {0, -1, 1,\
@@ -74,11 +74,11 @@ data:
     \ + 7;\nconstexpr int INF = 1 << 30;\nconstexpr ll LINF = (1LL << 61) - 1;\nconstexpr\
     \ ld DINF = L<ld>::infinity();\ntemplate <class T> constexpr T LIM = L<T>::max();\n\
     #if __cplusplus >= 202100L\n#include <numbers>\nconstexpr ld PI = std::numbers::pi;\n\
-    constexpr ld E = std::numbers::e;\n#else\n#line 23 \"C++/constance.hpp\"\nconst\
-    \ ld PI = std::acos(-1);\nconst ld E = 2.718281828459045;\n#endif\n\n/**\n * @brief\
-    \ \u5B9A\u6570\n */\n#line 2 \"C++/myvector.hpp\"\n\n#include <vector>\n\n#ifndef\
-    \ TEMPLATE\ntypedef long long ll;\ntypedef unsigned long long ul;\ntypedef long\
-    \ double ld;\n#endif\nnamespace vectors {\ntemplate <class T> using V = std::vector<T>;\n\
+    constexpr ld E = std::numbers::e;\n#else\n#line 23 \"C++/core/constance.hpp\"\n\
+    const ld PI = std::acos(-1);\nconst ld E = 2.718281828459045;\n#endif\n\n/**\n\
+    \ * @brief \u5B9A\u6570\n */\n#line 2 \"C++/core/myvector.hpp\"\n\n#include <vector>\n\
+    \n#ifndef TEMPLATE\ntypedef long long ll;\ntypedef unsigned long long ul;\ntypedef\
+    \ long double ld;\n#endif\nnamespace vectors {\ntemplate <class T> using V = std::vector<T>;\n\
     using vi = V<ll>;\nusing vu = V<ul>;\nusing vd = V<ld>;\nusing vc = V<char>;\n\
     using vs = V<std::string>;\nusing vb = V<bool>;\nusing wi = V<vi>;\nusing wu =\
     \ V<vu>;\nusing wd = V<vd>;\nusing wc = V<vc>;\nusing ws = V<vs>;\nusing wb =\
@@ -104,12 +104,12 @@ data:
     \ res; }\ntemplate <class T, class U> constexpr V<T> operator/(const V<T>& v,\
     \ const U x) noexcept { V<T> res = v; res/=x; return res; }\ntemplate <class T,\
     \ class U> constexpr V<T> operator%(const V<T>& v, const U x) noexcept { V<T>\
-    \ res = v; res%=x; return res; }\n} // vectors\n#line 10 \"C++/mypair.hpp\"\n\
-    namespace pairs {\ntemplate <class T, class U> using P = std::pair<T, U>;\ntemplate\
-    \ <class T> using PP = P<T,T>;\nusing pi = PP<ll>;\nusing pd = PP<ld>;\nusing\
-    \ pc = PP<char>;\nusing ps = PP<std::string>;\ntemplate <class T> constexpr PP<T>\
-    \ operator+(const PP<T>& a, const PP<T>& b) noexcept { return {a.first + b.first,\
-    \ a.second + b.second}; }\ntemplate <class T> constexpr PP<T> operator-(const\
+    \ res = v; res%=x; return res; }\n} // vectors\n#line 10 \"C++/core/mypair.hpp\"\
+    \nnamespace pairs {\ntemplate <class T, class U> using P = std::pair<T, U>;\n\
+    template <class T> using PP = P<T,T>;\nusing pi = PP<ll>;\nusing pd = PP<ld>;\n\
+    using pc = PP<char>;\nusing ps = PP<std::string>;\ntemplate <class T> constexpr\
+    \ PP<T> operator+(const PP<T>& a, const PP<T>& b) noexcept { return {a.first +\
+    \ b.first, a.second + b.second}; }\ntemplate <class T> constexpr PP<T> operator-(const\
     \ PP<T>& a, const PP<T>& b) noexcept { return {a.first - b.first, a.second - b.second};\
     \ }\ntemplate <class T> constexpr PP<T> operator-(const PP<T>& a) noexcept { return\
     \ {-a.first, -a.second}; }\ntemplate <class T, class U> constexpr PP<T> operator*(const\
@@ -172,9 +172,9 @@ data:
     \ res;\n    for(const auto &el: vp) res.emplace_back(el.second);\n    return res;\n\
     }\n} // pairs\n"
   code: "#pragma once\n\n#include <cassert>\n#include <utility>\n#include <tuple>\n\
-    #include <cmath>\n#include <numeric>\n#include \"C++/constance.hpp\"\n#include\
-    \ \"C++/myvector.hpp\"\nnamespace pairs {\ntemplate <class T, class U> using P\
-    \ = std::pair<T, U>;\ntemplate <class T> using PP = P<T,T>;\nusing pi = PP<ll>;\n\
+    #include <cmath>\n#include <numeric>\n#include \"C++/core/constance.hpp\"\n#include\
+    \ \"C++/core/myvector.hpp\"\nnamespace pairs {\ntemplate <class T, class U> using\
+    \ P = std::pair<T, U>;\ntemplate <class T> using PP = P<T,T>;\nusing pi = PP<ll>;\n\
     using pd = PP<ld>;\nusing pc = PP<char>;\nusing ps = PP<std::string>;\ntemplate\
     \ <class T> constexpr PP<T> operator+(const PP<T>& a, const PP<T>& b) noexcept\
     \ { return {a.first + b.first, a.second + b.second}; }\ntemplate <class T> constexpr\
@@ -240,16 +240,16 @@ data:
     \ res;\n    for(const auto &el: vp) res.emplace_back(el.second);\n    return res;\n\
     }\n} // pairs"
   dependsOn:
-  - C++/constance.hpp
-  - C++/myvector.hpp
+  - C++/core/constance.hpp
+  - C++/core/myvector.hpp
   isVerificationFile: false
-  path: C++/mypair.hpp
+  path: C++/core/mypair.hpp
   requiredBy:
   - C++/template.hpp
-  - C++/io/output.hpp
-  - C++/io/input.hpp
+  - C++/core/io/output.hpp
+  - C++/core/io/input.hpp
   - C++/math/primefactor.hpp
-  timestamp: '2024-02-19 13:17:33+09:00'
+  timestamp: '2024-03-09 13:04:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sr_sum.test.cpp
@@ -265,10 +265,10 @@ data:
   - test/parsum.test.cpp
   - test/m_add.test.cpp
   - test/s_rmq.test.cpp
-documentation_of: C++/mypair.hpp
+documentation_of: C++/core/mypair.hpp
 layout: document
 redirect_from:
-- /library/C++/mypair.hpp
-- /library/C++/mypair.hpp.html
-title: C++/mypair.hpp
+- /library/C++/core/mypair.hpp
+- /library/C++/core/mypair.hpp.html
+title: C++/core/mypair.hpp
 ---

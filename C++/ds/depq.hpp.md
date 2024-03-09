@@ -10,7 +10,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    document_title: "\u4E21\u7AEF\u512A\u5148\u5EA6\u4ED8\u304D\u30AD\u30E5\u30FC"
+    document_title: "Double-Ended Priority Queue(\u4E21\u7AEF\u512A\u5148\u5EA6\u4ED8\
+      \u304D\u30AD\u30E5\u30FC)"
     links:
     - https://natsugiri.hatenablog.com/entry/2016/10/10/035445
   bundledCode: "#line 2 \"C++/ds/depq.hpp\"\n\n#include <vector>\n#include <algorithm>\n\
@@ -46,8 +47,9 @@ data:
     \ up(down(0));\n        }\n        return res;\n    }\n    T get_min() const {\
     \ return d.size() < 2 ? d[0] : d[1]; }\n    T get_max() const { return d[0]; }\n\
     \    int size() const { return d.size(); }\n    bool empty() const { return d.empty();\
-    \ }\n};\n/**\n * @brief \u4E21\u7AEF\u512A\u5148\u5EA6\u4ED8\u304D\u30AD\u30E5\
-    \u30FC\n * @see https://natsugiri.hatenablog.com/entry/2016/10/10/035445\n */\n"
+    \ }\n};\n/**\n * @brief Double-Ended Priority Queue(\u4E21\u7AEF\u512A\u5148\u5EA6\
+    \u4ED8\u304D\u30AD\u30E5\u30FC)\n * @see https://natsugiri.hatenablog.com/entry/2016/10/10/035445\n\
+    \ */\n"
   code: "#pragma once\n\n#include <vector>\n#include <algorithm>\ntemplate <class\
     \ T> struct depq {\nprivate:\n    std::vector<T> d;\n    inline int parent(int\
     \ k) const { return ((k >> 1) - 1) & ~1; }\n    int down(int k) {\n\t    const\
@@ -80,14 +82,14 @@ data:
     \           d.pop_back();\n            up(down(0));\n        }\n        return\
     \ res;\n    }\n    T get_min() const { return d.size() < 2 ? d[0] : d[1]; }\n\
     \    T get_max() const { return d[0]; }\n    int size() const { return d.size();\
-    \ }\n    bool empty() const { return d.empty(); }\n};\n/**\n * @brief \u4E21\u7AEF\
-    \u512A\u5148\u5EA6\u4ED8\u304D\u30AD\u30E5\u30FC\n * @see https://natsugiri.hatenablog.com/entry/2016/10/10/035445\n\
-    \ */"
+    \ }\n    bool empty() const { return d.empty(); }\n};\n/**\n * @brief Double-Ended\
+    \ Priority Queue(\u4E21\u7AEF\u512A\u5148\u5EA6\u4ED8\u304D\u30AD\u30E5\u30FC\
+    )\n * @see https://natsugiri.hatenablog.com/entry/2016/10/10/035445\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/ds/depq.hpp
   requiredBy: []
-  timestamp: '2024-02-27 10:38:23+09:00'
+  timestamp: '2024-03-09 13:04:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/depq.test.cpp
@@ -96,5 +98,6 @@ layout: document
 redirect_from:
 - /library/C++/ds/depq.hpp
 - /library/C++/ds/depq.hpp.html
-title: "\u4E21\u7AEF\u512A\u5148\u5EA6\u4ED8\u304D\u30AD\u30E5\u30FC"
+title: "Double-Ended Priority Queue(\u4E21\u7AEF\u512A\u5148\u5EA6\u4ED8\u304D\u30AD\
+  \u30E5\u30FC)"
 ---

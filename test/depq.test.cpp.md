@@ -3,7 +3,8 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: C++/ds/depq.hpp
-    title: "\u4E21\u7AEF\u512A\u5148\u5EA6\u4ED8\u304D\u30AD\u30E5\u30FC"
+    title: "Double-Ended Priority Queue(\u4E21\u7AEF\u512A\u5148\u5EA6\u4ED8\u304D\
+      \u30AD\u30E5\u30FC)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -48,10 +49,10 @@ data:
     \ up(down(0));\n        }\n        return res;\n    }\n    T get_min() const {\
     \ return d.size() < 2 ? d[0] : d[1]; }\n    T get_max() const { return d[0]; }\n\
     \    int size() const { return d.size(); }\n    bool empty() const { return d.empty();\
-    \ }\n};\n/**\n * @brief \u4E21\u7AEF\u512A\u5148\u5EA6\u4ED8\u304D\u30AD\u30E5\
-    \u30FC\n * @see https://natsugiri.hatenablog.com/entry/2016/10/10/035445\n */\n\
-    #line 4 \"test/depq.test.cpp\"\nint main() {\n    int n, q;\n    std::cin >> n\
-    \ >> q;\n    std::vector<int> s(n);\n    for(auto &el: s) {\n        std::cin\
+    \ }\n};\n/**\n * @brief Double-Ended Priority Queue(\u4E21\u7AEF\u512A\u5148\u5EA6\
+    \u4ED8\u304D\u30AD\u30E5\u30FC)\n * @see https://natsugiri.hatenablog.com/entry/2016/10/10/035445\n\
+    \ */\n#line 4 \"test/depq.test.cpp\"\nint main() {\n    int n, q;\n    std::cin\
+    \ >> n >> q;\n    std::vector<int> s(n);\n    for(auto &el: s) {\n        std::cin\
     \ >> el;\n    }\n    depq<int> depq(s);\n    while(q--) {\n        int t;\n  \
     \      std::cin >> t;\n        if(t == 0) {\n            int x;\n            std::cin\
     \ >> x;\n            depq.push(x);\n        }\n        else if(t == 1) {\n   \
@@ -71,7 +72,7 @@ data:
   isVerificationFile: true
   path: test/depq.test.cpp
   requiredBy: []
-  timestamp: '2024-03-03 06:51:22+09:00'
+  timestamp: '2024-03-09 13:04:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/depq.test.cpp

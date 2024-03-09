@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/LCA.md
-    document_title: "\u6700\u5C0F\u5171\u901A\u7956\u5148"
+    document_title: "Lowest Common Ancestor(\u6700\u5C0F\u5171\u901A\u7956\u5148)"
     links:
     - https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html
   bundledCode: "#line 2 \"C++/graph/LCA.hpp\"\n\r\n#pragma GCC diagnostic ignored\
@@ -40,8 +40,8 @@ data:
     \ table[i][u];\r\n                v = table[i][v];\r\n            }\r\n      \
     \  }\r\n        return table[0][u];\r\n    }\r\n    int dist(const int u, const\
     \ int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }\r\n};\r\n/**\r\n *\
-    \ @brief \u6700\u5C0F\u5171\u901A\u7956\u5148\r\n * @docs docs/LCA.md\r\n * @see\
-    \ https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html\r\
+    \ @brief Lowest Common Ancestor(\u6700\u5C0F\u5171\u901A\u7956\u5148)\r\n * @docs\
+    \ docs/LCA.md\r\n * @see https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html\r\
     \n */\n"
   code: "#pragma once\r\n\r\n#pragma GCC diagnostic ignored \"-Wreorder\"\r\n\r\n\
     #include <vector>\r\ntemplate <class G> struct LowestCommonAncestor {\r\nprivate:\r\
@@ -68,14 +68,14 @@ data:
     \ table[i][v]) {\r\n                u = table[i][u];\r\n                v = table[i][v];\r\
     \n            }\r\n        }\r\n        return table[0][u];\r\n    }\r\n    int\
     \ dist(const int u, const int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)];\
-    \ }\r\n};\r\n/**\r\n * @brief \u6700\u5C0F\u5171\u901A\u7956\u5148\r\n * @docs\
-    \ docs/LCA.md\r\n * @see https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html\r\
+    \ }\r\n};\r\n/**\r\n * @brief Lowest Common Ancestor(\u6700\u5C0F\u5171\u901A\u7956\
+    \u5148)\r\n * @docs docs/LCA.md\r\n * @see https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html\r\
     \n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/graph/LCA.hpp
   requiredBy: []
-  timestamp: '2024-02-22 06:47:24+09:00'
+  timestamp: '2024-03-09 12:28:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lca.test.cpp
@@ -84,7 +84,7 @@ layout: document
 redirect_from:
 - /library/C++/graph/LCA.hpp
 - /library/C++/graph/LCA.hpp.html
-title: "\u6700\u5C0F\u5171\u901A\u7956\u5148"
+title: "Lowest Common Ancestor(\u6700\u5C0F\u5171\u901A\u7956\u5148)"
 ---
 queryのみverify  
 もしかしたら間違っている

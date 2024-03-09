@@ -1,29 +1,28 @@
 ---
 data:
   libraryCategories:
-  - name: C++
+  - name: C++/core
     pages:
     - icon: ':heavy_check_mark:'
-      path: C++/SkewHeap.hpp
-      title: SkewHeap
-    - icon: ':heavy_check_mark:'
-      path: C++/constance.hpp
+      path: C++/core/constance.hpp
       title: "\u5B9A\u6570"
     - icon: ':heavy_check_mark:'
-      path: C++/dp.hpp
-      title: DP(Knapsack, LCS, LIS)
+      path: C++/core/mypair.hpp
+      title: C++/core/mypair.hpp
     - icon: ':heavy_check_mark:'
-      path: C++/mypair.hpp
-      title: C++/mypair.hpp
+      path: C++/core/myvector.hpp
+      title: C++/core/myvector.hpp
     - icon: ':heavy_check_mark:'
-      path: C++/myvector.hpp
-      title: C++/myvector.hpp
-    - icon: ':heavy_check_mark:'
-      path: C++/template.hpp
-      title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
-    - icon: ':heavy_check_mark:'
-      path: C++/timer.hpp
+      path: C++/core/timer.hpp
       title: "\u30BF\u30A4\u30DE\u30FC"
+  - name: C++/core/io
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: C++/core/io/input.hpp
+      title: "\u5165\u529B"
+    - icon: ':heavy_check_mark:'
+      path: C++/core/io/output.hpp
+      title: "\u51FA\u529B"
   - name: C++/ds
     pages:
     - icon: ':heavy_check_mark:'
@@ -43,7 +42,8 @@ data:
       title: Wavelet Matrix
     - icon: ':heavy_check_mark:'
       path: C++/ds/depq.hpp
-      title: "\u4E21\u7AEF\u512A\u5148\u5EA6\u4ED8\u304D\u30AD\u30E5\u30FC"
+      title: "Double-Ended Priority Queue(\u4E21\u7AEF\u512A\u5148\u5EA6\u4ED8\u304D\
+        \u30AD\u30E5\u30FC)"
   - name: C++/ds/fwtree
     pages:
     - icon: ':heavy_check_mark:'
@@ -73,10 +73,11 @@ data:
       title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
     - icon: ':heavy_check_mark:'
       path: C++/graph/LCA.hpp
-      title: "\u6700\u5C0F\u5171\u901A\u7956\u5148"
+      title: "Lowest Common Ancestor(\u6700\u5C0F\u5171\u901A\u7956\u5148)"
     - icon: ':heavy_check_mark:'
       path: C++/graph/SCC.hpp
-      title: SCC
+      title: "Strongly Connected Components(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
+        )"
     - icon: ':heavy_check_mark:'
       path: C++/graph/ShortestPath.hpp
       title: "\u6700\u77ED\u8DEF"
@@ -100,14 +101,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/graph/mst/manhattan.hpp
       title: Manhattan MST
-  - name: C++/io
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: C++/io/input.hpp
-      title: "\u5165\u529B"
-    - icon: ':heavy_check_mark:'
-      path: C++/io/output.hpp
-      title: "\u51FA\u529B"
   - name: C++/math
     pages:
     - icon: ':heavy_check_mark:'
@@ -160,6 +153,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math/psum/psum2d.hpp
       title: "\u4E8C\u6B21\u5143\u7D2F\u7A4D\u548C"
+  - name: C++/other
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: C++/other/SkewHeap.hpp
+      title: SkewHeap
+    - icon: ':heavy_check_mark:'
+      path: C++/other/dp.hpp
+      title: DP(Knapsack, LCS, LIS)
   - name: C++/string
     pages:
     - icon: ':heavy_check_mark:'
@@ -177,6 +178,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/string/z-algo.hpp
       title: Z-Algorithm
+  - name: C++
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: C++/template.hpp
+      title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   - name: Java
     pages:
     - icon: ':warning:'

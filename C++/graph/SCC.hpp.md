@@ -13,7 +13,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    document_title: SCC
+    document_title: "Strongly Connected Components(\u5F37\u9023\u7D50\u6210\u5206\u5206\
+      \u89E3)"
     links:
     - https://ei1333.github.io/library/graph/connected-components/strongly-connected-components.hpp
   bundledCode: "#line 2 \"C++/graph/SCC.hpp\"\n\n#include <vector>\n#include <algorithm>\n\
@@ -35,8 +36,8 @@ data:
     for(int i = 0; i < n; ++i) {\n\t\t\tgroup[comp[i]].emplace_back(i);\n\t\t}\n\t\
     }\npublic:\n    SCC(const G &g): g(g){ build(); }\n\tint operator[](const int\
     \ i) const { return comp[i]; }\n\tstd::vector<std::vector<int>> groups() const\
-    \ { return group; }\n\tG DAG() const { return dag; }\n};\n\n/**\n * @brief SCC\n\
-    \ * @see https://ei1333.github.io/library/graph/connected-components/strongly-connected-components.hpp\n\
+    \ { return group; }\n\tG DAG() const { return dag; }\n};\n\n/**\n * @brief Strongly\
+    \ Connected Components(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @see https://ei1333.github.io/library/graph/connected-components/strongly-connected-components.hpp\n\
     \ */\n"
   code: "#pragma once\n\n#include <vector>\n#include <algorithm>\ntemplate <class\
     \ G> struct SCC {\nprivate:\n\tstd::vector<int> comp, order, used;\n\tstd::vector<std::vector<int>>\
@@ -57,13 +58,14 @@ data:
     \ < n; ++i) {\n\t\t\tgroup[comp[i]].emplace_back(i);\n\t\t}\n\t}\npublic:\n  \
     \  SCC(const G &g): g(g){ build(); }\n\tint operator[](const int i) const { return\
     \ comp[i]; }\n\tstd::vector<std::vector<int>> groups() const { return group; }\n\
-    \tG DAG() const { return dag; }\n};\n\n/**\n * @brief SCC\n * @see https://ei1333.github.io/library/graph/connected-components/strongly-connected-components.hpp\n\
+    \tG DAG() const { return dag; }\n};\n\n/**\n * @brief Strongly Connected Components(\u5F37\
+    \u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @see https://ei1333.github.io/library/graph/connected-components/strongly-connected-components.hpp\n\
     \ */"
   dependsOn: []
   isVerificationFile: false
   path: C++/graph/SCC.hpp
   requiredBy: []
-  timestamp: '2024-02-22 08:54:27+09:00'
+  timestamp: '2024-03-09 12:28:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/scc.test.cpp
@@ -73,5 +75,5 @@ layout: document
 redirect_from:
 - /library/C++/graph/SCC.hpp
 - /library/C++/graph/SCC.hpp.html
-title: SCC
+title: "Strongly Connected Components(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3)"
 ---

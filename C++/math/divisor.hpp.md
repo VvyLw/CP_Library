@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: C++/myvector.hpp
-    title: C++/myvector.hpp
+    path: C++/core/myvector.hpp
+    title: C++/core/myvector.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: C++/template.hpp
@@ -52,8 +52,8 @@ data:
     document_title: "\u7D04\u6570\u5217\u6319"
     links: []
   bundledCode: "#line 2 \"C++/math/divisor.hpp\"\n\n#include <algorithm>\n#line 2\
-    \ \"C++/myvector.hpp\"\n\n#include <vector>\n\n#ifndef TEMPLATE\ntypedef long\
-    \ long ll;\ntypedef unsigned long long ul;\ntypedef long double ld;\n#endif\n\
+    \ \"C++/core/myvector.hpp\"\n\n#include <vector>\n\n#ifndef TEMPLATE\ntypedef\
+    \ long long ll;\ntypedef unsigned long long ul;\ntypedef long double ld;\n#endif\n\
     namespace vectors {\ntemplate <class T> using V = std::vector<T>;\nusing vi =\
     \ V<ll>;\nusing vu = V<ul>;\nusing vd = V<ld>;\nusing vc = V<char>;\nusing vs\
     \ = V<std::string>;\nusing vb = V<bool>;\nusing wi = V<vi>;\nusing wu = V<vu>;\n\
@@ -86,19 +86,19 @@ data:
     \            if(i*i!=n) d.emplace_back(n/i);\n        }\n    }\n    std::sort(d.begin(),\
     \ d.end());\n    return d;\n}\n}\n\n/**\n * @brief \u7D04\u6570\u5217\u6319\n\
     \ */\n"
-  code: "#pragma once\n\n#include <algorithm>\n#include \"C++/myvector.hpp\"\nnamespace\
-    \ Heileden {\ntemplate <class T> inline vectors::V<T> div(const T n) {\n    vectors::V<T>\
-    \ d;\n    for(long long i = 1; i * i <= n; ++i) {\n        if(n%i==0) {\n    \
-    \        d.emplace_back(i);\n            if(i*i!=n) d.emplace_back(n/i);\n   \
-    \     }\n    }\n    std::sort(d.begin(), d.end());\n    return d;\n}\n}\n\n/**\n\
-    \ * @brief \u7D04\u6570\u5217\u6319\n */"
+  code: "#pragma once\n\n#include <algorithm>\n#include \"C++/core/myvector.hpp\"\n\
+    namespace Heileden {\ntemplate <class T> inline vectors::V<T> div(const T n) {\n\
+    \    vectors::V<T> d;\n    for(long long i = 1; i * i <= n; ++i) {\n        if(n%i==0)\
+    \ {\n            d.emplace_back(i);\n            if(i*i!=n) d.emplace_back(n/i);\n\
+    \        }\n    }\n    std::sort(d.begin(), d.end());\n    return d;\n}\n}\n\n\
+    /**\n * @brief \u7D04\u6570\u5217\u6319\n */"
   dependsOn:
-  - C++/myvector.hpp
+  - C++/core/myvector.hpp
   isVerificationFile: false
   path: C++/math/divisor.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2024-02-22 09:22:35+09:00'
+  timestamp: '2024-03-09 13:04:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sr_sum.test.cpp
