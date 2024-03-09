@@ -22,7 +22,7 @@ std::mt19937 Random() {
 	return engine;
 }
 
-#include "C++/timer.hpp"
+#include "C++/core/timer.hpp"
 
 #define overload4(_1,_2,_3,_4,name,...) name
 #define overload3(_1,_2,_3,name,...) name
@@ -60,7 +60,7 @@ using ul = unsigned long long;
 using i128 = __int128_t;
 using u128 = __uint128_t;
 
-#include "C++/mypair.hpp"
+#include "C++/core/mypair.hpp"
 
 using namespace vectors;
 using namespace pairs;
@@ -78,8 +78,8 @@ template <class T, class U> inline bool overflow_if_mul(const T a, const U b){ r
 inline void fix(const short x){ std::cout << std::fixed << std::setprecision(x); }
 inline void alpha(){ std::cout << std::boolalpha; }
 
-#include "C++/io/input.hpp"
-#include "C++/io/output.hpp"
+#include "C++/core/io/input.hpp"
+#include "C++/core/io/output.hpp"
 
 using namespace IO;
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <algorithm>
-#include "C++/myvector.hpp"
+#include "C++/core/myvector.hpp"
 namespace Heileden {
 template <class T> inline vectors::V<T> div(const T n) {
     vectors::V<T> d;

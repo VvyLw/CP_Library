@@ -5,8 +5,8 @@
 #include <tuple>
 #include <cmath>
 #include <numeric>
-#include "C++/constance.hpp"
-#include "C++/myvector.hpp"
+#include "C++/core/constance.hpp"
+#include "C++/core/myvector.hpp"
 namespace pairs {
 template <class T, class U> using P = std::pair<T, U>;
 template <class T> using PP = P<T,T>;

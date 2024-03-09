@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cassert>
 #include <deque>
-#include "C++/mypair.hpp"
+#include "C++/core/mypair.hpp"
 #ifndef TEMPLATE
 typedef unsigned long long ul;
 typedef __int128_t i128;

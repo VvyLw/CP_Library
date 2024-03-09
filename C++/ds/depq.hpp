@@ -97,6 +97,6 @@ public:
     bool empty() const { return d.empty(); }
 };
 /**
- * @brief 両端優先度付きキュー
+ * @brief Double-Ended Priority Queue(両端優先度付きキュー)
  * @see https://natsugiri.hatenablog.com/entry/2016/10/10/035445
  */

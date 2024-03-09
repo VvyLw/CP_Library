@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/longest_increasing_subsequence"
 #include <iostream>
-#include "C++/dp.hpp"
+#include "C++/other/dp.hpp"
 int main() {
     int n;
     std::cin >> n;

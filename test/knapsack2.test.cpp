@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_B"
 #include <iostream>
-#include "C++/dp.hpp"
+#include "C++/other/dp.hpp"
 int main() {
     int n, wg;
     std::cin >> n >> wg;

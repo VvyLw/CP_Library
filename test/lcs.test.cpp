@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_10_C"
 #include <iostream>
-#include "C++/dp.hpp"
+#include "C++/other/dp.hpp"
 int main() {
     int q;
     std::cin >> q;
