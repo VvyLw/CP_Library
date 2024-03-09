@@ -3263,6 +3263,39 @@ final class DP {
 		}
 		return Utility.max(dp);
 	}
+	static final long maxRectangle(final int[] a) {
+		final Stack<Integer> sk = new Stack<>();
+		final long[] h = new long[a.length + 1];
+		for(int i = 0; i < a.length; ++i) {
+			h[i] = a[i];
+		}
+		final int[] l = new int[h.length];
+		long res = 0;
+		for(int i = 0; i < h.length; i++) {
+			while(!sk.isEmpty() && h[sk.peek()] >= h[i]) {
+				res = max(res, (i - l[sk.peek()] - 1) * h[sk.peek()]);
+				sk.pop();
+			}
+			l[i] = sk.empty() ? -1 : sk.peek();
+			sk.add(i);
+		}
+		return res;
+	}
+	static final long maxRectangle(final long[] a) {
+		final Stack<Integer> sk = new Stack<>();
+		final long[] h = Arrays.copyOf(a, a.length + 1);
+		final int[] l = new int[h.length];
+		long res = 0;
+		for(int i = 0; i < h.length; i++) {
+			while(!sk.isEmpty() && h[sk.peek()] >= h[i]) {
+				res = max(res, (i - l[sk.peek()] - 1) * h[sk.peek()]);
+				sk.pop();
+			}
+			l[i] = sk.empty() ? -1 : sk.peek();
+			sk.add(i);
+		}
+		return res;
+	}
 	static final int lcs(final String s, final String t) {
 		final int n = s.length();
 		final int[] dp = new int[n + 1], ndp = new int[n + 1];

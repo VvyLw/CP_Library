@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
 
 import library.core.Utility;
 import library.ds.pair.IntPair;
@@ -190,6 +191,49 @@ public final class DP {
 			}
 		}
 		return Utility.max(dp);
+	}
+	/**
+	 * @param a
+	 * @return ヒストグラムの最大長方形の面積
+	 * @implNote O(N)
+	 */
+	public static final long maxRectangle(final int[] a) {
+		final Stack<Integer> sk = new Stack<>();
+		final long[] h = new long[a.length + 1];
+		for(int i = 0; i < a.length; ++i) {
+			h[i] = a[i];
+		}
+		final int[] l = new int[h.length];
+		long res = 0;
+		for(int i = 0; i < h.length; i++) {
+			while(!sk.isEmpty() && h[sk.peek()] >= h[i]) {
+				res = Math.max(res, (i - l[sk.peek()] - 1) * h[sk.peek()]);
+				sk.pop();
+			}
+			l[i] = sk.empty() ? -1 : sk.peek();
+			sk.add(i);
+		}
+		return res;
+	}
+	/**
+	 * @param a
+	 * @return ヒストグラムの最大長方形の面積
+	 * @implNote O(N)
+	 */
+	public static final long maxRectangle(final long[] a) {
+		final Stack<Integer> sk = new Stack<>();
+		final long[] h = Arrays.copyOf(a, a.length + 1);
+		final int[] l = new int[h.length];
+		long res = 0;
+		for(int i = 0; i < h.length; i++) {
+			while(!sk.isEmpty() && h[sk.peek()] >= h[i]) {
+				res = Math.max(res, (i - l[sk.peek()] - 1) * h[sk.peek()]);
+				sk.pop();
+			}
+			l[i] = sk.empty() ? -1 : sk.peek();
+			sk.add(i);
+		}
+		return res;
 	}
 	/**
 	 * Longest Common Subsequence
