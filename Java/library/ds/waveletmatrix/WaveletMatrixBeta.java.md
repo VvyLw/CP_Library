@@ -197,8 +197,8 @@ data:
     path: Java/library/ds/unionfind/WeightedUnionFind.java
     title: Java/library/ds/unionfind/WeightedUnionFind.java
   - icon: ':warning:'
-    path: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
-    title: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
+    path: Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
+    title: Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
   - icon: ':warning:'
     path: Java/library/ds/waveletmatrix/WaveletMatrix.java
     title: Java/library/ds/waveletmatrix/WaveletMatrix.java
@@ -468,8 +468,8 @@ data:
     path: Java/library/ds/unionfind/WeightedUnionFind.java
     title: Java/library/ds/unionfind/WeightedUnionFind.java
   - icon: ':warning:'
-    path: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
-    title: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
+    path: Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
+    title: Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
   - icon: ':warning:'
     path: Java/library/ds/waveletmatrix/WaveletMatrix.java
     title: Java/library/ds/waveletmatrix/WaveletMatrix.java
@@ -553,34 +553,35 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java\n"
   code: "package library.ds.waveletmatrix;\n\nimport library.core.Utility;\nimport\
-    \ library.ds.pair.IntPair;\n\n/**\n * @see WaveletMatrix\n */\nfinal class WaveletMatrixBeta\
-    \ {\n\tprivate final int log;\n\tprivate final SuccinctIndexableDictionary[] matrix;\n\
-    \tprivate final int[] mid;\n\tWaveletMatrixBeta(final long[] arr, final int log)\
-    \ {\n\t\tfinal int len = arr.length;\n\t\tthis.log = log;\n\t\tmatrix = new SuccinctIndexableDictionary[log];\n\
-    \t\tmid = new int[log];\n\t\tfinal long[] l = new long[len], r = new long[len];\n\
-    \t\tfor(int level = log; --level >= 0;) {\n\t\t\tmatrix[level] = new SuccinctIndexableDictionary(len\
-    \ + 1);\n\t\t\tint left = 0, right = 0;\n\t\t\tfor(int i = 0; i < len; ++i) {\n\
-    \t\t\t\tif(((arr[i] >> level) & 1) == 1) {\n\t\t\t\t\tmatrix[level].set(i);\n\t\
-    \t\t\t\tr[right++] = arr[i];\n\t\t\t\t} else {\n\t\t\t\t\tl[left++] = arr[i];\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t\tmid[level] = left;\n\t\t\tmatrix[level].build();\n\t\
-    \t\tfinal long[] tmp = new long[len];\n\t\t\tSystem.arraycopy(arr, 0, tmp, 0,\
-    \ len);\n\t\t\tSystem.arraycopy(l, 0, arr, 0, len);\n\t\t\tSystem.arraycopy(tmp,\
-    \ 0, l, 0, len);\n\t\t\tfor(int i = 0; i < right; ++i) {\n\t\t\t\tarr[left + i]\
-    \ = r[i];\n\t\t\t}\n\t\t}\n\t}\n\tprivate final IntPair succ(final boolean f,\
-    \ final int l, final int r, final int level){ return IntPair.of(matrix[level].rank(f,\
-    \ l) + mid[level] * (f ? 1 : 0), matrix[level].rank(f, r) + mid[level] * (f ?\
-    \ 1 : 0)); }\n\tfinal long access(int k) {\n\t\tlong ret = 0;\n\t\tfor(int level\
-    \ = log; --level >= 0;) {\n\t\t\tfinal boolean f = matrix[level].get(k);\n\t\t\
-    \tif(f) {\n\t\t\t\tret |= 1L << level;\n\t\t\t}\n\t\t\tk = matrix[level].rank(f,\
-    \ k) + mid[level] * (f ? 1 : 0);\n\t\t}\t\n\t\treturn ret;\n\t}\n\tfinal int rank(final\
-    \ long x, int r) {\n\t\tint l = 0;\n\t\tfor(int level = log; --level >= 0;) {\n\
-    \t\t\tfinal IntPair p = succ(((x >> level) & 1) == 1, l, r, level);\n\t\t\tl =\
-    \ p.first.intValue();\n\t\t\tr = p.second.intValue();\n\t\t}\n\t\treturn r - l;\n\
-    \t}\n\tfinal long kthMin(int l, int r, int k) {\n\t\tif(!Utility.scope(0, k, r\
-    \ - l - 1)) {\n\t\t\tthrow new IndexOutOfBoundsException();\n\t\t}\n\t\tlong ret\
-    \ = 0;\n\t\tfor(int level = log; --level >= 0;) {\n\t\t\tfinal int cnt = matrix[level].rank(false,\
-    \ r) - matrix[level].rank(false, l);\n\t\t\tfinal boolean f = cnt <= k;\n\t\t\t\
-    if(f) {\n\t\t\t\tret |= 1 << level;\n\t\t\t\tk -= cnt;\n\t\t\t}\n\t\t\tfinal IntPair\
+    \ library.ds.pair.IntPair;\n\n/**\n * @see WaveletMatrix\n */\npublic final class\
+    \ WaveletMatrixBeta {\n\tprivate final int log;\n\tprivate final SuccinctIndexableDictionary[]\
+    \ matrix;\n\tprivate final int[] mid;\n\tWaveletMatrixBeta(final long[] arr, final\
+    \ int log) {\n\t\tfinal int len = arr.length;\n\t\tthis.log = log;\n\t\tmatrix\
+    \ = new SuccinctIndexableDictionary[log];\n\t\tmid = new int[log];\n\t\tfinal\
+    \ long[] l = new long[len], r = new long[len];\n\t\tfor(int level = log; --level\
+    \ >= 0;) {\n\t\t\tmatrix[level] = new SuccinctIndexableDictionary(len + 1);\n\t\
+    \t\tint left = 0, right = 0;\n\t\t\tfor(int i = 0; i < len; ++i) {\n\t\t\t\tif(((arr[i]\
+    \ >> level) & 1) == 1) {\n\t\t\t\t\tmatrix[level].set(i);\n\t\t\t\t\tr[right++]\
+    \ = arr[i];\n\t\t\t\t} else {\n\t\t\t\t\tl[left++] = arr[i];\n\t\t\t\t}\n\t\t\t\
+    }\n\t\t\tmid[level] = left;\n\t\t\tmatrix[level].build();\n\t\t\tfinal long[]\
+    \ tmp = new long[len];\n\t\t\tSystem.arraycopy(arr, 0, tmp, 0, len);\n\t\t\tSystem.arraycopy(l,\
+    \ 0, arr, 0, len);\n\t\t\tSystem.arraycopy(tmp, 0, l, 0, len);\n\t\t\tfor(int\
+    \ i = 0; i < right; ++i) {\n\t\t\t\tarr[left + i] = r[i];\n\t\t\t}\n\t\t}\n\t\
+    }\n\tprivate final IntPair succ(final boolean f, final int l, final int r, final\
+    \ int level){ return IntPair.of(matrix[level].rank(f, l) + mid[level] * (f ? 1\
+    \ : 0), matrix[level].rank(f, r) + mid[level] * (f ? 1 : 0)); }\n\tfinal long\
+    \ access(int k) {\n\t\tlong ret = 0;\n\t\tfor(int level = log; --level >= 0;)\
+    \ {\n\t\t\tfinal boolean f = matrix[level].get(k);\n\t\t\tif(f) {\n\t\t\t\tret\
+    \ |= 1L << level;\n\t\t\t}\n\t\t\tk = matrix[level].rank(f, k) + mid[level] *\
+    \ (f ? 1 : 0);\n\t\t}\t\n\t\treturn ret;\n\t}\n\tfinal int rank(final long x,\
+    \ int r) {\n\t\tint l = 0;\n\t\tfor(int level = log; --level >= 0;) {\n\t\t\t\
+    final IntPair p = succ(((x >> level) & 1) == 1, l, r, level);\n\t\t\tl = p.first.intValue();\n\
+    \t\t\tr = p.second.intValue();\n\t\t}\n\t\treturn r - l;\n\t}\n\tfinal long kthMin(int\
+    \ l, int r, int k) {\n\t\tif(!Utility.scope(0, k, r - l - 1)) {\n\t\t\tthrow new\
+    \ IndexOutOfBoundsException();\n\t\t}\n\t\tlong ret = 0;\n\t\tfor(int level =\
+    \ log; --level >= 0;) {\n\t\t\tfinal int cnt = matrix[level].rank(false, r) -\
+    \ matrix[level].rank(false, l);\n\t\t\tfinal boolean f = cnt <= k;\n\t\t\tif(f)\
+    \ {\n\t\t\t\tret |= 1 << level;\n\t\t\t\tk -= cnt;\n\t\t\t}\n\t\t\tfinal IntPair\
     \ p = succ(f, l, r, level);\n\t\t\tl = p.first.intValue();\n\t\t\tr = p.second.intValue();\n\
     \t\t}\n\t\treturn ret;\n\t}\n\tfinal long kthMax(final int l, final int r, final\
     \ int k){ return kthMin(l, r, r - l - k - 1); }\n\tfinal int rangeFreq(int l,\
@@ -615,8 +616,8 @@ data:
   - Java/library/ds/lazysegmenttree/LazySegmentTree.java
   - Java/library/ds/lazysegmenttree/RAMX.java
   - Java/library/ds/lazysegmenttree/RUMX.java
+  - Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
-  - Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
   - Java/library/ds/unionfind/MergeUnionFind.java
   - Java/library/ds/unionfind/UnionFind.java
   - Java/library/ds/unionfind/UndoUnionFind.java
@@ -708,8 +709,8 @@ data:
   - Java/library/ds/lazysegmenttree/LazySegmentTree.java
   - Java/library/ds/lazysegmenttree/RAMX.java
   - Java/library/ds/lazysegmenttree/RUMX.java
+  - Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
-  - Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
   - Java/library/ds/unionfind/MergeUnionFind.java
   - Java/library/ds/unionfind/UnionFind.java
   - Java/library/ds/unionfind/UndoUnionFind.java
@@ -779,7 +780,7 @@ data:
   - Java/library/math/largeprime/LongPrime.java
   - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
-  timestamp: '2024-03-09 14:16:15+09:00'
+  timestamp: '2024-03-09 17:49:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java

@@ -406,8 +406,8 @@ data:
   - name: Java/library/ds/waveletmatrix
     pages:
     - icon: ':warning:'
-      path: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
-      title: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
+      path: Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
+      title: Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
     - icon: ':warning:'
       path: Java/library/ds/waveletmatrix/WaveletMatrix.java
       title: Java/library/ds/waveletmatrix/WaveletMatrix.java

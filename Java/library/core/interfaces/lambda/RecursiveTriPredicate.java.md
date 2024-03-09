@@ -194,8 +194,8 @@ data:
     path: Java/library/ds/unionfind/WeightedUnionFind.java
     title: Java/library/ds/unionfind/WeightedUnionFind.java
   - icon: ':warning:'
-    path: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
-    title: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
+    path: Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
+    title: Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
   - icon: ':warning:'
     path: Java/library/ds/waveletmatrix/WaveletMatrix.java
     title: Java/library/ds/waveletmatrix/WaveletMatrix.java
@@ -465,8 +465,8 @@ data:
     path: Java/library/ds/unionfind/WeightedUnionFind.java
     title: Java/library/ds/unionfind/WeightedUnionFind.java
   - icon: ':warning:'
-    path: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
-    title: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
+    path: Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
+    title: Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
   - icon: ':warning:'
     path: Java/library/ds/waveletmatrix/WaveletMatrix.java
     title: Java/library/ds/waveletmatrix/WaveletMatrix.java
@@ -577,9 +577,9 @@ data:
   - Java/library/ds/lazysegmenttree/LazySegmentTree.java
   - Java/library/ds/lazysegmenttree/RAMX.java
   - Java/library/ds/lazysegmenttree/RUMX.java
+  - Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
   - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
-  - Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
   - Java/library/ds/unionfind/MergeUnionFind.java
   - Java/library/ds/unionfind/UnionFind.java
   - Java/library/ds/unionfind/UndoUnionFind.java
@@ -670,9 +670,9 @@ data:
   - Java/library/ds/lazysegmenttree/LazySegmentTree.java
   - Java/library/ds/lazysegmenttree/RAMX.java
   - Java/library/ds/lazysegmenttree/RUMX.java
+  - Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
   - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
-  - Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
   - Java/library/ds/unionfind/MergeUnionFind.java
   - Java/library/ds/unionfind/UnionFind.java
   - Java/library/ds/unionfind/UndoUnionFind.java
@@ -741,7 +741,7 @@ data:
   - Java/library/math/largeprime/LongPrime.java
   - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
-  timestamp: '2024-03-09 14:16:15+09:00'
+  timestamp: '2024-03-09 17:49:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/interfaces/lambda/RecursiveTriPredicate.java

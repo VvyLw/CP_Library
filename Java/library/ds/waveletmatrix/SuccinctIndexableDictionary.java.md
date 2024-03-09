@@ -551,11 +551,11 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java\n"
+    RuntimeError: bundler is not specified: Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java\n"
   code: "package library.ds.waveletmatrix;\n\n/**\n * \u5B8C\u5099\u8F9E\u66F8\n *\
     \ @see <a href=\"https://ei1333.github.io/library/structure/wavelet/succinct-indexable-dictionary.hpp\"\
-    >\u53C2\u8003\u5143</a>\n */\nfinal class SuccinctIndexableDictionary {\n\tprivate\
-    \ final int blk;\n\tprivate final int[] bit, sum;\n\tSuccinctIndexableDictionary(final\
+    >\u53C2\u8003\u5143</a>\n */\npublic final class SuccinctIndexableDictionary {\n\
+    \tprivate final int blk;\n\tprivate final int[] bit, sum;\n\tSuccinctIndexableDictionary(final\
     \ int len) {\n\t\tblk = (len + 31) >> 5;\n\t\tbit = new int[blk];\n\t\tsum = new\
     \ int[blk];\n\t}\n\tfinal void set(final int k){ bit[k >> 5] |= 1 << (k & 31);\
     \ }\n\tfinal void build() {\n\t\tsum[0] = 0;\n\t\tfor(int i = 0; ++i < blk;) {\n\
@@ -656,7 +656,7 @@ data:
   - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
   isVerificationFile: false
-  path: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
+  path: Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
   requiredBy:
   - Java/yukicoder.java
   - Java/AOJ.java
@@ -748,13 +748,13 @@ data:
   - Java/library/math/largeprime/LongPrime.java
   - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
-  timestamp: '2024-03-09 14:16:15+09:00'
+  timestamp: '2024-03-09 17:49:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
+documentation_of: Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
 layout: document
 redirect_from:
-- /library/Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
-- /library/Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java.html
-title: Java/library/ds/waveletmatrix/SuccientIndexableDictionary.java
+- /library/Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
+- /library/Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java.html
+title: Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
 ---
