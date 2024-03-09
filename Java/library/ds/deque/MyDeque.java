@@ -1,6 +1,7 @@
 package library.ds.deque;
 
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -10,11 +11,11 @@ import java.util.NoSuchElementException;
  * @see <a href="https://github.com/viral8code/Primitive-Specialized-Library/blob/main/util/ArrayDeque/IntRingBuffer/IntRingBuffer.java">参考元</a>
  * @param <T> クラスを乗せる
  */
-public final class Deque<T> implements Iterable<T> {
+public final class MyDeque<T> implements Iterable<T> {
 	private int n, head, tail;
 	private Object[] buf;
-	public Deque(){ this(1 << 17); }
-	private Deque(final int n) {
+	public MyDeque(){ this(1 << 17); }
+	private MyDeque(final int n) {
 		this.n = n;
 		head = tail = 0;
 		buf = new Object[n];
@@ -24,7 +25,7 @@ public final class Deque<T> implements Iterable<T> {
 	 * new Deque<Integer>(Arrays.stream(a).boxed().toArray(Integer[]::new));
 	 * @param a クラスTの配列
 	 */
-	public Deque(final T[] a) {
+	public MyDeque(final T[] a) {
 		this(a.length);
 		Arrays.stream(a).forEach(i -> add(i));
 	}

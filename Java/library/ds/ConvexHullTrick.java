@@ -1,6 +1,6 @@
 package library.ds;
 
-import library.ds.deque.Deque;
+import library.ds.deque.MyDeque;
 import library.ds.pair.IntPair;
 
 /**
@@ -10,16 +10,16 @@ import library.ds.pair.IntPair;
  * @see <a href="https://ei1333.github.io/library/structure/convex-hull-trick/convex-hull-trick-add-monotone.hpp">参考元</a>
  */
 public final class ConvexHullTrick {
-	private final Deque<IntPair> h;
+	private final MyDeque<IntPair> h;
 	private final boolean isMin;
 	public ConvexHullTrick(final boolean isMin) {
 		this.isMin = isMin;
-		h = new Deque<>();
+		h = new MyDeque<>();
 	}
 	private final boolean isEmpty(){ return h.isEmpty(); }
 	public final void clear(){ h.clear(); }
 	public final int size(){ return h.size(); }
-	public final Deque<IntPair> get(){ return h; }
+	public final MyDeque<IntPair> get(){ return h; }
 	private final int sgn(final long x){ return x == 0 ? 0 : (x < 0 ? -1 : 1); }
 	private final boolean check(final IntPair a, final IntPair b, final IntPair c) {
 		if(b.second.longValue() == a.second.longValue() || c.second.longValue() == b.second.longValue()) {
