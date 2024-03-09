@@ -23,7 +23,7 @@ public:
     bool operator[](const int k) noexcept { return (bit[k >> 5] >> (k & 31)) & 1; }
 };
 
-template <class T, int log = 18> struct WMBeta {
+template <class T, int log> struct WMBeta {
 private:
     SIDict matrix[log];
     int mid[log];
