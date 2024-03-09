@@ -6,7 +6,7 @@ import library.ds.pair.IntPair;
 /**
  * @see WaveletMatrix
  */
-final class WaveletMatrixBeta {
+public final class WaveletMatrixBeta {
 	private final int log;
 	private final SuccinctIndexableDictionary[] matrix;
 	private final int[] mid;
