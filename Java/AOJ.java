@@ -450,7 +450,8 @@ final class IO implements Closeable, AutoCloseable {
 			}
 		}
 		final void print(final Object arg) {
-			if(arg instanceof final String s) {
+			if(arg instanceof String) {
+				final String s = (String) arg;
 				for(final char c: s.toCharArray()) {
 					write((byte) c);
 				}
