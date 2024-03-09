@@ -22,10 +22,13 @@ data:
     \n    int n, rank, fine;\r\n    const F f;\r\n    const T e;\r\n    std::vector<T>\
     \ dat;\r\npublic:\r\n    SegTree(const int n_, const F f_, const T& e_): f(f_),\
     \ e(e_), fine(n_) {\r\n        n=1,rank=0;\r\n        while(fine>n) n<<=1LL,rank++;\r\
-    \n        dat.assign(2*n,e_);\r\n    }\r\n    T operator[](int i) const { return\
-    \ dat[i+n]; }\r\n    void update(int i, const T& x) {\r\n        i+=n;\r\n   \
-    \     dat[i]=x;\r\n        while(i>>=1LL) dat[i]=f(dat[2*i],dat[2*i+1]);\r\n \
-    \   }\r\n    void add(int i, const T& x) {\r\n        i+=n;\r\n        dat[i]+=x;\r\
+    \n        dat.assign(2*n,e_);\r\n    }\r\n    SegTree(const std::vector<T> &v,\
+    \ const F f_, const T e_): f(f_), e(e_), fine(v.size()) {\r\n        n=1,rank=0;\r\
+    \n        while(fine>n) n<<=1LL,rank++;\r\n        dat.assign(2*n,e_);\r\n   \
+    \     for(size_t i=0; i<v.size(); ++i) update(i,v[i]);\r\n    }\r\n    T operator[](int\
+    \ i) const { return dat[i+n]; }\r\n    void update(int i, const T& x) {\r\n  \
+    \      i+=n;\r\n        dat[i]=x;\r\n        while(i>>=1LL) dat[i]=f(dat[2*i],dat[2*i+1]);\r\
+    \n    }\r\n    void add(int i, const T& x) {\r\n        i+=n;\r\n        dat[i]+=x;\r\
     \n        while(i>>=1LL) dat[i]=f(dat[2*i],dat[2*i+1]);\r\n    }\r\n    T query(int\
     \ a, int b) const {\r\n        T l=e,r=e;\r\n        for(a+=n, b+=n; a<b; a>>=1LL,b>>=1LL)\
     \ {\r\n            if(a&1) l=f(l,dat[a++]);\r\n            if(b&1) r=f(dat[--b],r);\r\
@@ -56,6 +59,9 @@ data:
     \n    const F f;\r\n    const T e;\r\n    std::vector<T> dat;\r\npublic:\r\n \
     \   SegTree(const int n_, const F f_, const T& e_): f(f_), e(e_), fine(n_) {\r\
     \n        n=1,rank=0;\r\n        while(fine>n) n<<=1LL,rank++;\r\n        dat.assign(2*n,e_);\r\
+    \n    }\r\n    SegTree(const std::vector<T> &v, const F f_, const T e_): f(f_),\
+    \ e(e_), fine(v.size()) {\r\n        n=1,rank=0;\r\n        while(fine>n) n<<=1LL,rank++;\r\
+    \n        dat.assign(2*n,e_);\r\n        for(size_t i=0; i<v.size(); ++i) update(i,v[i]);\r\
     \n    }\r\n    T operator[](int i) const { return dat[i+n]; }\r\n    void update(int\
     \ i, const T& x) {\r\n        i+=n;\r\n        dat[i]=x;\r\n        while(i>>=1LL)\
     \ dat[i]=f(dat[2*i],dat[2*i+1]);\r\n    }\r\n    void add(int i, const T& x) {\r\
@@ -88,7 +94,7 @@ data:
   isVerificationFile: false
   path: C++/ds/SegmentTree.hpp
   requiredBy: []
-  timestamp: '2024-02-27 10:38:23+09:00'
+  timestamp: '2024-03-09 16:51:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/segtree.test.cpp

@@ -522,6 +522,9 @@ data:
     \n    const F f;\r\n    const T e;\r\n    std::vector<T> dat;\r\npublic:\r\n \
     \   SegTree(const int n_, const F f_, const T& e_): f(f_), e(e_), fine(n_) {\r\
     \n        n=1,rank=0;\r\n        while(fine>n) n<<=1LL,rank++;\r\n        dat.assign(2*n,e_);\r\
+    \n    }\r\n    SegTree(const std::vector<T> &v, const F f_, const T e_): f(f_),\
+    \ e(e_), fine(v.size()) {\r\n        n=1,rank=0;\r\n        while(fine>n) n<<=1LL,rank++;\r\
+    \n        dat.assign(2*n,e_);\r\n        for(size_t i=0; i<v.size(); ++i) update(i,v[i]);\r\
     \n    }\r\n    T operator[](int i) const { return dat[i+n]; }\r\n    void update(int\
     \ i, const T& x) {\r\n        i+=n;\r\n        dat[i]=x;\r\n        while(i>>=1LL)\
     \ dat[i]=f(dat[2*i],dat[2*i+1]);\r\n    }\r\n    void add(int i, const T& x) {\r\
@@ -553,10 +556,9 @@ data:
     \ Lady_sANDy;\nusing namespace Heileden;\n\nint main() {\n\tVvyLw::wa_haya_exe();\n\
     \tnow(start);\n\t/*INT(t); while(t--)//*/\n\tVvyLw::solve();\n\tnow(stop);\n\t\
     time(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
-    \n\nvoid VvyLw::solve() {\n\tINT(n,q);\n\tSegTree<ll> rsq(n,[](ll a, ll b){ return\
-    \ a+b; },0);\n\trep(n) {\n\t\tINT(a);\n        rsq.update(i,a);\n\t}\n\twhile(q--)\
-    \ {\n\t\tINT(t,p,q);\n\t\tif(t) out(rsq.query(p,q));\n\t\telse rsq.add(p,q);\n\
-    \t}\n}\n"
+    \n\nvoid VvyLw::solve() {\n\tINT(n,q);\n\tVEC(ll,a,n);\n\tSegTree<ll> rsq(a,[](ll\
+    \ a, ll b){ return a+b; },0);\n\twhile(q--) {\n\t\tINT(t,p,q);\n\t\tif(t) out(rsq.query(p,q));\n\
+    \t\telse rsq.add(p,q);\n\t}\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
     /*#pragma GCC optimize(\"O3\")\n#pragma GCC optimize(\"unroll-loops\")//*/\n//#pragma\
     \ GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native\")\n#include\
@@ -564,10 +566,9 @@ data:
     using namespace Lady_sANDy;\nusing namespace Heileden;\n\nint main() {\n\tVvyLw::wa_haya_exe();\n\
     \tnow(start);\n\t/*INT(t); while(t--)//*/\n\tVvyLw::solve();\n\tnow(stop);\n\t\
     time(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
-    \n\nvoid VvyLw::solve() {\n\tINT(n,q);\n\tSegTree<ll> rsq(n,[](ll a, ll b){ return\
-    \ a+b; },0);\n\trep(n) {\n\t\tINT(a);\n        rsq.update(i,a);\n\t}\n\twhile(q--)\
-    \ {\n\t\tINT(t,p,q);\n\t\tif(t) out(rsq.query(p,q));\n\t\telse rsq.add(p,q);\n\
-    \t}\n}"
+    \n\nvoid VvyLw::solve() {\n\tINT(n,q);\n\tVEC(ll,a,n);\n\tSegTree<ll> rsq(a,[](ll\
+    \ a, ll b){ return a+b; },0);\n\twhile(q--) {\n\t\tINT(t,p,q);\n\t\tif(t) out(rsq.query(p,q));\n\
+    \t\telse rsq.add(p,q);\n\t}\n}"
   dependsOn:
   - C++/template.hpp
   - C++/core/timer.hpp
@@ -586,7 +587,7 @@ data:
   isVerificationFile: true
   path: test/segtree.test.cpp
   requiredBy: []
-  timestamp: '2024-03-09 13:04:52+09:00'
+  timestamp: '2024-03-09 16:51:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segtree.test.cpp
