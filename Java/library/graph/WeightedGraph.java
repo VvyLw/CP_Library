@@ -1,9 +1,12 @@
 package library.graph;
 
+import static java.lang.Math.*;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.function.IntUnaryOperator;
@@ -34,6 +37,28 @@ public final class WeightedGraph extends Graph {
 	 * @param undirected
 	 */
 	public WeightedGraph(final int n, final int indexed, final boolean undirected){ super(n, indexed, undirected); }
+	/**
+	 * グラフ化する
+	 * @param g
+	 * @param undirected
+	 * @return List<ArrayList<Edge>>をWeightedGraph化したもの
+	 */
+	public static final WeightedGraph of(final List<ArrayList<Edge>> g, final boolean undirected) {
+		int max = 0, min = Integer.MAX_VALUE;
+		for(int i = 0; i < g.size(); ++i) {
+			for(final Edge e: g.get(i)) {
+				max = max(e.src, e.to);
+				min = min(e.src, e.to);
+			}
+		}
+		final WeightedGraph gp = new WeightedGraph(max, min, undirected);
+		for(int i = 0; i < g.size(); ++i) {
+			for(final Edge e: g.get(i)) {
+				gp.addEdge(e.src, e.to, e.cost);
+			}
+		}
+		return gp;
+	}
 	/**
 	 * 辺を追加する
 	 * @param a

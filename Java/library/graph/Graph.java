@@ -1,9 +1,12 @@
 package library.graph;
 
+import static java.lang.Math.*;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 import java.util.stream.IntStream;
@@ -41,6 +44,29 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 		id = 0;
 		edge = new ArrayList<>();
 		IntStream.range(0, n).forEach(i -> add(new ArrayList<>()));
+	}
+	/**
+	 * グラフ化する
+	 * @param g
+	 * @param undirected
+	 * @return List<ArrayList<Edge>>をWeightedGraph化したもの
+	 * @implNote streamでGraphに操作を加えた後に再度グラフに直すときに使えるかも
+	 */
+	public static Graph of(final List<ArrayList<Edge>> g, final boolean undirected) {
+		int max = 0, min = Integer.MAX_VALUE;
+		for(int i = 0; i < g.size(); ++i) {
+			for(final Edge e: g.get(i)) {
+				max = max(e.src, e.to);
+				min = min(e.src, e.to);
+			}
+		}
+		final Graph gp = new Graph(max, min, undirected);
+		for(int i = 0; i < g.size(); ++i) {
+			for(final Edge e: g.get(i)) {
+				gp.addEdge(e.src, e.to);
+			}
+		}
+		return gp;
 	}
 	/**
 	 * 辺を追加する
