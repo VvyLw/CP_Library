@@ -1817,19 +1817,32 @@ data:
     \ {\n\t\t\tfor(int j = a[i]; j <= w; j++) {\n\t\t\t\tif(dp[j - a[i]] != Long.MIN_VALUE)\
     \ {\n\t\t\t\t\tif(dp[j - a[i]] + v[i] > dp[j]) {\n\t\t\t\t\t\tdp[j] = dp[j - a[i]]\
     \ + v[i];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn Utility.max(dp);\n\
-    \t}\n\tstatic final int lcs(final String s, final String t) {\n\t\tfinal int n\
-    \ = s.length();\n\t\tfinal int[] dp = new int[n + 1], ndp = new int[n + 1];\n\t\
-    \tfor(int i = 0; i < t.length(); ++i) {\n\t\t\tfor(int j = 0; j < n; ++j) {\n\t\
-    \t\t\tif(s.charAt(j) == t.charAt(i)) {\n\t\t\t\t\tndp[j + 1] = dp[j] + 1;\n\t\t\
-    \t\t} else {\n\t\t\t\t\tndp[j + 1] = max(ndp[j], dp[j + 1]);\n\t\t\t\t}\n\t\t\t\
-    }\n\t\t\tUtility.swap(dp, ndp);\n\t\t}\n\t\treturn dp[n];\n\t}\n\tstatic final\
-    \ int[] lis(final int[] a) {\n\t\tfinal int n = a.length;\n\t\tList<IntPair> dp\
-    \ = new ArrayList<IntPair>();\n\t\tfinal int[] p = new int[n];\n\t\tArrays.fill(p,\
-    \ -1);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int id = Utility.lowerBound(dp,\
-    \ IntPair.of(a[i], -i));\n\t\t\tif(id != 0) {\n\t\t\t\tp[i] = -dp.get(id - 1).second.intValue();\n\
-    \t\t\t}\n\t\t\tif(id == dp.size()) {\n\t\t\t\tdp.add(IntPair.of(a[i], -i));\n\t\
-    \t\t} else {\n\t\t\t\tdp.set(id, IntPair.of(a[i], -i));\n\t\t\t}\n\t\t}\n\t\t\
-    final List<Integer> res = new ArrayList<Integer>();\n\t\tfor(int i = -dp.get(dp.size()\
+    \t}\n\tstatic final long maxRectangle(final int[] a) {\n\t\tfinal Stack<Integer>\
+    \ sk = new Stack<>();\n\t\tfinal long[] h = new long[a.length + 1];\n\t\tfor(int\
+    \ i = 0; i < a.length; ++i) {\n\t\t\th[i] = a[i];\n\t\t}\n\t\tfinal int[] l =\
+    \ new int[h.length];\n\t\tlong res = 0;\n\t\tfor(int i = 0; i < h.length; i++)\
+    \ {\n\t\t\twhile(!sk.isEmpty() && h[sk.peek()] >= h[i]) {\n\t\t\t\tres = max(res,\
+    \ (i - l[sk.peek()] - 1) * h[sk.pop()]);\n\t\t\t}\n\t\t\tl[i] = sk.isEmpty() ?\
+    \ -1 : sk.peek();\n\t\t\tsk.add(i);\n\t\t}\n\t\treturn res;\n\t}\n\tstatic final\
+    \ long maxRectangle(final long[] a) {\n\t\tfinal Stack<Integer> sk = new Stack<>();\n\
+    \t\tfinal long[] h = Arrays.copyOf(a, a.length + 1);\n\t\tfinal int[] l = new\
+    \ int[h.length];\n\t\tlong res = 0;\n\t\tfor(int i = 0; i < h.length; i++) {\n\
+    \t\t\twhile(!sk.isEmpty() && h[sk.peek()] >= h[i]) {\n\t\t\t\tres = max(res, (i\
+    \ - l[sk.peek()] - 1) * h[sk.pop()]);\n\t\t\t}\n\t\t\tl[i] = sk.isEmpty() ? -1\
+    \ : sk.peek();\n\t\t\tsk.add(i);\n\t\t}\n\t\treturn res;\n\t}\n\tstatic final\
+    \ int lcs(final String s, final String t) {\n\t\tfinal int n = s.length();\n\t\
+    \tfinal int[] dp = new int[n + 1], ndp = new int[n + 1];\n\t\tfor(int i = 0; i\
+    \ < t.length(); ++i) {\n\t\t\tfor(int j = 0; j < n; ++j) {\n\t\t\t\tif(s.charAt(j)\
+    \ == t.charAt(i)) {\n\t\t\t\t\tndp[j + 1] = dp[j] + 1;\n\t\t\t\t} else {\n\t\t\
+    \t\t\tndp[j + 1] = max(ndp[j], dp[j + 1]);\n\t\t\t\t}\n\t\t\t}\n\t\t\tUtility.swap(dp,\
+    \ ndp);\n\t\t}\n\t\treturn dp[n];\n\t}\n\tstatic final int[] lis(final int[] a)\
+    \ {\n\t\tfinal int n = a.length;\n\t\tList<IntPair> dp = new ArrayList<IntPair>();\n\
+    \t\tfinal int[] p = new int[n];\n\t\tArrays.fill(p, -1);\n\t\tfor(int i = 0; i\
+    \ < n; ++i) {\n\t\t\tfinal int id = Utility.lowerBound(dp, IntPair.of(a[i], -i));\n\
+    \t\t\tif(id != 0) {\n\t\t\t\tp[i] = -dp.get(id - 1).second.intValue();\n\t\t\t\
+    }\n\t\t\tif(id == dp.size()) {\n\t\t\t\tdp.add(IntPair.of(a[i], -i));\n\t\t\t\
+    } else {\n\t\t\t\tdp.set(id, IntPair.of(a[i], -i));\n\t\t\t}\n\t\t}\n\t\tfinal\
+    \ List<Integer> res = new ArrayList<Integer>();\n\t\tfor(int i = -dp.get(dp.size()\
     \ - 1).second.intValue(); i != -1; i = p[i]) {\n\t\t\tres.add(i);\n\t\t}\n\t\t\
     Collections.reverse(res);\n\t\treturn res.stream().mapToInt(i -> i).toArray();\n\
     \t}\n\tstatic final int[] lis(final long[] a) {\n\t\tfinal int n = a.length;\n\
@@ -2687,7 +2700,7 @@ data:
   - Java/library/math/largeprime/LongPrime.java
   - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
-  timestamp: '2024-03-09 11:04:24+09:00'
+  timestamp: '2024-03-09 14:16:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

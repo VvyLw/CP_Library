@@ -609,6 +609,9 @@ data:
       path: test/matrix.test.cpp
       title: test/matrix.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/max_rect.test.cpp
+      title: test/max_rect.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/modprime.test.cpp
       title: test/modprime.test.cpp
     - icon: ':heavy_check_mark:'

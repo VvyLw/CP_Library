@@ -11,10 +11,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_G
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DPL_3_C
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_G
-  bundledCode: "#line 1 \"test/knapsack4.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_G\"\
+    - https://onlinejudge.u-aizu.ac.jp/problems/DPL_3_C
+  bundledCode: "#line 1 \"test/max_rect.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_3_C\"\
     \n#include <iostream>\n#line 2 \"C++/other/dp.hpp\"\n\n#include <vector>\n#include\
     \ <utility>\n#include <algorithm>\n#include <stack>\n#include <iterator>\n#include\
     \ <limits>\n#include <numeric>\n\ntemplate <class T> T knapsack01_v(const std::vector<int>\
@@ -99,29 +99,26 @@ data:
     \   }\n    }\n    for(int i = -dp.back().second; i != -1; i = p[i]) {\n      \
     \  res.emplace_back(i);\n    }\n    std::ranges::reverse(res);\n    return res;\n\
     }\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
-    \ */\n\n/**\n * @brief DP(Knapsack, LCS, LIS)\n */\n#line 4 \"test/knapsack4.test.cpp\"\
-    \nint main() {\n    int n, wg;\n    std::cin >> n >> wg;\n    std::vector<int>\
-    \ v(n), w(n), m(n);\n    for(int i = 0; i < n; ++i) {\n        std::cin >> v[i]\
-    \ >> w[i] >> m[i];\n    }\n    const auto res = knapsack_sup_v(w, v, m, wg);\n\
-    \    std::cout << *std::max_element(res.begin(), res.end()) << '\\n';\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_G\"\n#include\
-    \ <iostream>\n#include \"C++/other/dp.hpp\"\nint main() {\n    int n, wg;\n  \
-    \  std::cin >> n >> wg;\n    std::vector<int> v(n), w(n), m(n);\n    for(int i\
-    \ = 0; i < n; ++i) {\n        std::cin >> v[i] >> w[i] >> m[i];\n    }\n    const\
-    \ auto res = knapsack_sup_v(w, v, m, wg);\n    std::cout << *std::max_element(res.begin(),\
-    \ res.end()) << '\\n';\n}"
+    \ */\n\n/**\n * @brief DP(Knapsack, LCS, LIS)\n */\n#line 4 \"test/max_rect.test.cpp\"\
+    \nint main() {\n    int n;\n    std::cin >> n;\n    std::vector<int> a(n);\n \
+    \   for(auto &el: a) {\n        std::cin >> el;\n    }\n    std::cout << max_rectangle(a)\
+    \ << '\\n';\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_3_C\"\n#include\
+    \ <iostream>\n#include \"C++/other/dp.hpp\"\nint main() {\n    int n;\n    std::cin\
+    \ >> n;\n    std::vector<int> a(n);\n    for(auto &el: a) {\n        std::cin\
+    \ >> el;\n    }\n    std::cout << max_rectangle(a) << '\\n';\n}"
   dependsOn:
   - C++/other/dp.hpp
   isVerificationFile: true
-  path: test/knapsack4.test.cpp
+  path: test/max_rect.test.cpp
   requiredBy: []
   timestamp: '2024-03-09 14:14:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/knapsack4.test.cpp
+documentation_of: test/max_rect.test.cpp
 layout: document
 redirect_from:
-- /verify/test/knapsack4.test.cpp
-- /verify/test/knapsack4.test.cpp.html
-title: test/knapsack4.test.cpp
+- /verify/test/max_rect.test.cpp
+- /verify/test/max_rect.test.cpp.html
+title: test/max_rect.test.cpp
 ---

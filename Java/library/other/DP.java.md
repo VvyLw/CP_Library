@@ -553,17 +553,18 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/other/DP.java\n"
   code: "package library.other;\n\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
-    import java.util.Collections;\nimport java.util.List;\n\nimport library.core.Utility;\n\
-    import library.ds.pair.IntPair;\n\n/**\n * DP\u3092\u4F7F\u3063\u305F\u4FBF\u5229\
-    \u30E1\u30BD\u30C3\u30C9\u307E\u3068\u3081\n */\npublic final class DP {\n\t/**\n\
-    \t * 01\u30CA\u30C3\u30D7\u30B6\u30C3\u30AF\n\t * \u91CD\u3055a_i, \u4FA1\u5024\
-    v_i\u3067\u3042\u308B\u3088\u3046\u306An\u500B\u306E\u54C1\u7269\u304C\u3042\u308A\
-    \u3001\u91CD\u3055\u306E\u548C\u304Cw\u4EE5\u4E0B\u3068\u306A\u308B\u3088\u3046\
-    \u306B\u9078\u3076\u3068\u304D\u306E\u4FA1\u5024\u306E\u6700\u5927\u5024\u3092\
-    \u6C42\u3081\u308B\n\t * @param a\n\t * @param v\n\t * @param w\n\t * @return\
-    \ dp\u306E\u6700\u5927\u5024\n\t * @implNote O(NW)\n\t * @see <a href=\"https://ei1333.github.io/library/dp/knapsack-01.hpp\"\
-    >\u53C2\u8003\u5143</a>\n\t */\n\tpublic static final long knapsack01(final int[]\
-    \ a, final long[] v, final int w) {\n\t\tfinal int n = a.length;\n\t\tfinal long[]\
+    import java.util.Collections;\nimport java.util.List;\nimport java.util.Stack;\n\
+    \nimport library.core.Utility;\nimport library.ds.pair.IntPair;\n\n/**\n * DP\u3092\
+    \u4F7F\u3063\u305F\u4FBF\u5229\u30E1\u30BD\u30C3\u30C9\u307E\u3068\u3081\n */\n\
+    public final class DP {\n\t/**\n\t * 01\u30CA\u30C3\u30D7\u30B6\u30C3\u30AF\n\t\
+    \ * \u91CD\u3055a_i, \u4FA1\u5024v_i\u3067\u3042\u308B\u3088\u3046\u306An\u500B\
+    \u306E\u54C1\u7269\u304C\u3042\u308A\u3001\u91CD\u3055\u306E\u548C\u304Cw\u4EE5\
+    \u4E0B\u3068\u306A\u308B\u3088\u3046\u306B\u9078\u3076\u3068\u304D\u306E\u4FA1\
+    \u5024\u306E\u6700\u5927\u5024\u3092\u6C42\u3081\u308B\n\t * @param a\n\t * @param\
+    \ v\n\t * @param w\n\t * @return dp\u306E\u6700\u5927\u5024\n\t * @implNote O(NW)\n\
+    \t * @see <a href=\"https://ei1333.github.io/library/dp/knapsack-01.hpp\">\u53C2\
+    \u8003\u5143</a>\n\t */\n\tpublic static final long knapsack01(final int[] a,\
+    \ final long[] v, final int w) {\n\t\tfinal int n = a.length;\n\t\tfinal long[]\
     \ dp = new long[w + 1];\n\t\tArrays.fill(dp, Long.MIN_VALUE);\n\t\tdp[0] = 0;\n\
     \t\tfor(int i = 0; i < n; i++) {\n\t\t\tfor(int j = w; j >= a[i]; j--) {\n\t\t\
     \t\tif(dp[j - a[i]] != Long.MIN_VALUE) {\n\t\t\t\t\tif(dp[j - a[i]] + v[i] > dp[j])\
@@ -645,10 +646,29 @@ data:
     \ 0; i < n; i++) {\n\t\t\tfor(int j = a[i]; j <= w; j++) {\n\t\t\t\tif(dp[j -\
     \ a[i]] != Long.MIN_VALUE) {\n\t\t\t\t\tif(dp[j - a[i]] + v[i] > dp[j]) {\n\t\t\
     \t\t\t\tdp[j] = dp[j - a[i]] + v[i];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
-    \t\treturn Utility.max(dp);\n\t}\n\t/**\n\t * Longest Common Subsequence\n\t *\
-    \ @param s\n\t * @param t\n\t * @return \u6700\u9577\u5171\u901A\u90E8\u5206\u5217\
-    \u306E\u9577\u3055\n\t * @see <a href=\"https://maku.blog/p/a3jyhwd/\">\u53C2\u8003\
-    \u5143</a>\n\t */\n\tpublic static final int lcs(final String s, final String\
+    \t\treturn Utility.max(dp);\n\t}\n\t/**\n\t * @param a\n\t * @return \u30D2\u30B9\
+    \u30C8\u30B0\u30E9\u30E0\u306E\u6700\u5927\u9577\u65B9\u5F62\u306E\u9762\u7A4D\
+    \n\t * @implNote O(N)\n\t * @see <a href=\"https://ei1333.github.io/library/dp/largest-rectangle.hpp\"\
+    >\u53C2\u8003\u5143</a>\n\t */\n\tpublic static final long maxRectangle(final\
+    \ int[] a) {\n\t\tfinal Stack<Integer> sk = new Stack<>();\n\t\tfinal long[] h\
+    \ = new long[a.length + 1];\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\th[i]\
+    \ = a[i];\n\t\t}\n\t\tfinal int[] l = new int[h.length];\n\t\tlong res = 0;\n\t\
+    \tfor(int i = 0; i < h.length; i++) {\n\t\t\twhile(!sk.isEmpty() && h[sk.peek()]\
+    \ >= h[i]) {\n\t\t\t\tres = Math.max(res, (i - l[sk.peek()] - 1) * h[sk.pop()]);\n\
+    \t\t\t}\n\t\t\tl[i] = sk.isEmpty() ? -1 : sk.peek();\n\t\t\tsk.add(i);\n\t\t}\n\
+    \t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @return \u30D2\u30B9\u30C8\u30B0\
+    \u30E9\u30E0\u306E\u6700\u5927\u9577\u65B9\u5F62\u306E\u9762\u7A4D\n\t * @implNote\
+    \ O(N)\n\t * @see <a href=\"https://ei1333.github.io/library/dp/largest-rectangle.hpp\"\
+    >\u53C2\u8003\u5143</a>\n\t */\n\tpublic static final long maxRectangle(final\
+    \ long[] a) {\n\t\tfinal Stack<Integer> sk = new Stack<>();\n\t\tfinal long[]\
+    \ h = Arrays.copyOf(a, a.length + 1);\n\t\tfinal int[] l = new int[h.length];\n\
+    \t\tlong res = 0;\n\t\tfor(int i = 0; i < h.length; i++) {\n\t\t\twhile(!sk.isEmpty()\
+    \ && h[sk.peek()] >= h[i]) {\n\t\t\t\tres = Math.max(res, (i - l[sk.peek()] -\
+    \ 1) * h[sk.pop()]);\n\t\t\t}\n\t\t\tl[i] = sk.isEmpty() ? -1 : sk.peek();\n\t\
+    \t\tsk.add(i);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * Longest Common Subsequence\n\
+    \t * @param s\n\t * @param t\n\t * @return \u6700\u9577\u5171\u901A\u90E8\u5206\
+    \u5217\u306E\u9577\u3055\n\t * @see <a href=\"https://maku.blog/p/a3jyhwd/\">\u53C2\
+    \u8003\u5143</a>\n\t */\n\tpublic static final int lcs(final String s, final String\
     \ t) {\n\t\tfinal int n = s.length();\n\t\tfinal int[] dp = new int[n + 1], ndp\
     \ = new int[n + 1];\n\t\tfor(int i = 0; i < t.length(); ++i) {\n\t\t\tfor(int\
     \ j = 0; j < n; ++j) {\n\t\t\t\tif(s.charAt(j) == t.charAt(i)) {\n\t\t\t\t\tndp[j\
@@ -866,7 +886,7 @@ data:
   - Java/library/math/largeprime/LongPrime.java
   - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
-  timestamp: '2024-03-09 11:04:24+09:00'
+  timestamp: '2024-03-09 14:16:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/DP.java

@@ -16,14 +16,14 @@ data:
     - https://judge.yosupo.jp/problem/longest_increasing_subsequence
   bundledCode: "#line 1 \"test/lis.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/longest_increasing_subsequence\"\
     \n#include <iostream>\n#line 2 \"C++/other/dp.hpp\"\n\n#include <vector>\n#include\
-    \ <utility>\n#include <algorithm>\n#include <iterator>\n#include <limits>\n#include\
-    \ <numeric>\n\ntemplate <class T> T knapsack01_v(const std::vector<int> &a, const\
-    \ std::vector<T> &v, const int w) {\n    const int n = a.size();\n    std::vector\
-    \ dp(w + 1, std::numeric_limits<T>::min());\n    dp[0] = 0;\n    for(int i = 0;\
-    \ i < n; i++) {\n        for(int j = w; j >= a[i]; j--) {\n            if(dp[j\
-    \ - a[i]] != std::numeric_limits<T>::min()) {\n                if(dp[j - a[i]]\
-    \ + v[i] > dp[j]) {\n                    dp[j] = dp[j - a[i]] + v[i];\n      \
-    \          }\n            }\n        }\n    }\n    return *std::ranges::max_element(dp);\n\
+    \ <utility>\n#include <algorithm>\n#include <stack>\n#include <iterator>\n#include\
+    \ <limits>\n#include <numeric>\n\ntemplate <class T> T knapsack01_v(const std::vector<int>\
+    \ &a, const std::vector<T> &v, const int w) {\n    const int n = a.size();\n \
+    \   std::vector dp(w + 1, std::numeric_limits<T>::min());\n    dp[0] = 0;\n  \
+    \  for(int i = 0; i < n; i++) {\n        for(int j = w; j >= a[i]; j--) {\n  \
+    \          if(dp[j - a[i]] != std::numeric_limits<T>::min()) {\n             \
+    \   if(dp[j - a[i]] + v[i] > dp[j]) {\n                    dp[j] = dp[j - a[i]]\
+    \ + v[i];\n                }\n            }\n        }\n    }\n    return *std::ranges::max_element(dp);\n\
     }\n/**\n * @see https://ei1333.github.io/library/dp/knapsack-01.hpp\n */\n\ntemplate\
     \ <class T> int knapsack01_w(const std::vector<T> &a, const std::vector<int> &v,\
     \ const T &w) {\n    const int n = a.size();\n    const int s = std::accumulate(v.begin(),\
@@ -76,6 +76,13 @@ data:
     \ {\n                if(dp[j - a[i]] + v[i] > dp[j]) {\n                    dp[j]\
     \ = dp[j - a[i]] + v[i];\n                }\n            }\n        }\n    }\n\
     \    return *std::ranges::max_element(dp);\n}\n/**\n * @see https://ei1333.github.io/library/dp/knapsack.hpp\n\
+    \ */\n\ntemplate <class T> inline long long max_rectangle(std::vector<T> h) {\n\
+    \    h.resize(h.size() + 1);\n    std::stack<size_t> sk;\n    std::vector<int>\
+    \ l(h.size());\n    long long res = 0;\n    for(size_t i = 0; i < h.size(); i++)\
+    \ {\n        while(!sk.empty() && h[sk.top()] >= h[i]) {\n            res = std::max(res,\
+    \ (long long) (i - l[sk.top()] - 1) * h[sk.top()]);\n            sk.pop();\n \
+    \       }\n        l[i] = sk.empty() ? -1 : sk.top();\n        sk.emplace(i);\n\
+    \    }\n    return res;\n}\n/**\n * @see https://ei1333.github.io/library/dp/largest-rectangle.hpp\n\
     \ */\n\ninline int lcs(const std::string &s, const std::string &t) {\n    const\
     \ int n = s.size();\n    std::vector<int> dp(n + 1), ndp(n + 1);\n    for(size_t\
     \ i = 0; i < t.size(); ++i) {\n        for(int j = 0; j < n; ++j) {\n        \
@@ -108,7 +115,7 @@ data:
   isVerificationFile: true
   path: test/lis.test.cpp
   requiredBy: []
-  timestamp: '2024-03-09 13:04:52+09:00'
+  timestamp: '2024-03-09 14:14:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lis.test.cpp

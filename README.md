@@ -9,7 +9,7 @@
 [![VvyLw](https://img.shields.io/badge/yukicoder-VvyLw-1f1e33)](https://yukicoder.me/users/18182)
 [![VvyLw](https://img.shields.io/badge/CodinGame-VvyLw-yellow)](https://www.codingame.com/profile/119e2af9dda8c75e90fbd06b4bec45ec5990455)
   
-C++とJavaとで書いてあることは同じです。  
+Java: Rolling Hashだけない。  
 javadocは記述済なのでライブラリの説明はJavaを見ると良いです。  
 Python, Ruby, Rust, NimはUnionFindだけ置いてあります。  
 バグ等あればIssueを投げるなりDMするなりお願いします。  
