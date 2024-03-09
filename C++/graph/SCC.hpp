@@ -69,6 +69,6 @@ public:
 };
 
 /**
- * @brief SCC
+ * @brief Strongly Connected Components(強連結成分分解)
  * @see https://ei1333.github.io/library/graph/connected-components/strongly-connected-components.hpp
  */

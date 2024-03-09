@@ -67,7 +67,7 @@ public:
     int dist(const int u, const int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }
 };
 /**
- * @brief 最小共通祖先
+ * @brief Lowest Common Ancestor(最小共通祖先)
  * @docs docs/LCA.md
  * @see https://ei1333.github.io/luzhiled/snippets/tree/doubling-lowest-common-ancestor.html
  */
