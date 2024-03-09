@@ -1,7 +1,7 @@
 final class SegmentTree(T) {
 import std.algorithm: min;
 private:
-    int n = 1, rank = 0, fini;
+	int n = 1, rank = 0, fini;
 	alias F = T delegate(T, T);
 	alias G = bool delegate(T);
 	F f;
@@ -10,9 +10,9 @@ private:
 public:
 	this(const int fini, const F f, const T e) {
 		this.fini = fini;
-        this.f = f;
-        this.e = e;
-        while(fini > n) {
+		this.f = f;
+		this.e = e;
+		while(fini > n) {
 			n <<= 1;
 			rank++;
 		}
