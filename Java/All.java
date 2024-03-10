@@ -1988,6 +1988,22 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		edge = new ArrayList<>();
 		IntStream.range(0, n).forEach(i -> add(new ArrayList<>()));
 	}
+	static Graph of(final List<ArrayList<Edge>> g, final boolean undirected) {
+		int max = 0, min = Integer.MAX_VALUE;
+		for(int i = 0; i < g.size(); ++i) {
+			for(final Edge e: g.get(i)) {
+				max = max(e.src, e.to);
+				min = min(e.src, e.to);
+			}
+		}
+		final Graph gp = new Graph(max, min, undirected);
+		for(int i = 0; i < g.size(); ++i) {
+			for(final Edge e: g.get(i)) {
+				gp.addEdge(e.src, e.to);
+			}
+		}
+		return gp;
+	}
 	final void addEdge(int a, int b) {
 		a -= indexed;
 		b -= indexed;
@@ -2127,6 +2143,22 @@ final class MST {
 final class WeightedGraph extends Graph {
 	WeightedGraph(final int n, final boolean undirected){ super(n, undirected); }
 	WeightedGraph(final int n, final int indexed, final boolean undirected){ super(n, indexed, undirected); }
+	static final WeightedGraph of(final List<ArrayList<Edge>> g, final boolean undirected) {
+		int max = 0, min = Integer.MAX_VALUE;
+		for(int i = 0; i < g.size(); ++i) {
+			for(final Edge e: g.get(i)) {
+				max = max(e.src, e.to);
+				min = min(e.src, e.to);
+			}
+		}
+		final WeightedGraph gp = new WeightedGraph(max, min, undirected);
+		for(int i = 0; i < g.size(); ++i) {
+			for(final Edge e: g.get(i)) {
+				gp.addEdge(e.src, e.to, e.cost);
+			}
+		}
+		return gp;
+	}
 	final void addEdge(int a, int b, final long cost) {
 		a -= indexed;
 		b -= indexed;
@@ -5161,8 +5193,8 @@ final class WaveletMatrix {
 			final void set(final int k){ bit[k >> 5] |= 1 << (k & 31); }
 			final void build() {
 				sum[0] = 0;
-				for(int i = 0; ++i < blk;) {
-					sum[i] = sum[i - 1] + Integer.bitCount(bit[i - 1]);
+				for(int i = 0; i + 1 < blk; ++i) {
+					sum[i + 1] = sum[i] + Integer.bitCount(bit[i]);
 				}
 			}
 			final boolean get(final int k){ return ((bit[k >> 5] >> (k & 31)) & 1) == 1; }
