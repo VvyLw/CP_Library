@@ -95,7 +95,7 @@ proc kthMin(wmb: WMBeta, a: int, b: int, i: int): int {.inline} =
         let p = wmb.succ(f, l, r, level)
         l = p.first
         r = p.second
-    ret;
+    ret
 proc kthMax(wmb: WMBeta, l: int, r: int, k: int): int {.inline} = wmb.kthMin(l, r, r - l - k - 1)
 proc rangeFreq(wmb: WMBeta, a: int, b: int, upper: int): int {.inline} =
     var l, r, ret: int
