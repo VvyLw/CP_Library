@@ -9,9 +9,12 @@
 [![VvyLw](https://img.shields.io/badge/yukicoder-VvyLw-1f1e33)](https://yukicoder.me/users/18182)
 [![VvyLw](https://img.shields.io/badge/CodinGame-VvyLw-yellow)](https://www.codingame.com/profile/119e2af9dda8c75e90fbd06b4bec45ec5990455)
   
-Java: Rolling Hashだけない。  
 javadocは記述済なのでライブラリの説明はJavaを見ると良いです。  
-Python, Ruby, Rust, NimはUnionFindだけ置いてあります。  
+Java: Rolling Hashだけない。  
+D: UnionFind, セグ木, FenwickTree  
+Nim: UnionFind, Wavelet Matrix  
+Rust: UnionFind, Potential付きUnionFind  
+Python, Ruby: UnionFindのみ  
 バグ等あればIssueを投げるなりDMするなりお願いします。  
   
 [Luzhiled's Library](https://ei1333.github.io/library/)を基本的に参考にしています。
