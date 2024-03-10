@@ -53,7 +53,7 @@ data:
     \       let cnt = wmb.mat[level].rank(false, r) - wmb.mat[level].rank(false, l)\n\
     \        let f = cnt <= k\n        if f:\n            ret |= 1 << level\n    \
     \        k -= cnt\n        let p = wmb.succ(f, l, r, level)\n        l = p.first\n\
-    \        r = p.second\n    ret;\nproc kthMax(wmb: WMBeta, l: int, r: int, k: int):\
+    \        r = p.second\n    ret\nproc kthMax(wmb: WMBeta, l: int, r: int, k: int):\
     \ int {.inline} = wmb.kthMin(l, r, r - l - k - 1)\nproc rangeFreq(wmb: WMBeta,\
     \ a: int, b: int, upper: int): int {.inline} =\n    var l, r, ret: int\n    l\
     \ = a\n    r = b\n    ret = 0\n    for level in countdown(wmb.log - 1, 0):\n \
@@ -92,7 +92,7 @@ data:
   isVerificationFile: false
   path: Nim/WaveletMatrix.nim
   requiredBy: []
-  timestamp: '2024-03-10 20:41:56+09:00'
+  timestamp: '2024-03-10 21:06:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Nim/WaveletMatrix.nim
