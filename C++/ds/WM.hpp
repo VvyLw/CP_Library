@@ -14,8 +14,8 @@ public:
     void set(const int k){ bit[k >> 5] |= 1 << (k & 31); }
     void build() {
 		sum[0] = 0;
-		for(int i = 0; ++i < blk;) {
-			sum[i] = sum[i - 1] + __builtin_popcount(bit[i - 1]);
+		for(int i = 0; i + 1< blk; ++i) {
+			sum[i + 1] = sum[i] + __builtin_popcount(bit[i]);
 		}
 	}
     int rank(const int k) const { return (sum[k >> 5] + __builtin_popcount(bit[k >> 5] & ((1 << (k & 31)) - 1))); }

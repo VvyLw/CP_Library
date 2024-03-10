@@ -15,8 +15,8 @@ public final class SuccinctIndexableDictionary {
 	final void set(final int k){ bit[k >> 5] |= 1 << (k & 31); }
 	final void build() {
 		sum[0] = 0;
-		for(int i = 0; ++i < blk;) {
-			sum[i] = sum[i - 1] + Integer.bitCount(bit[i - 1]);
+		for(int i = 0; i + 1 < blk; ++i) {
+			sum[i + 1] = sum[i] + Integer.bitCount(bit[i]);
 		}
 	}
 	final boolean get(final int k){ return ((bit[k >> 5] >> (k & 31)) & 1) == 1; }
