@@ -495,6 +495,9 @@ data:
     - icon: ':warning:'
       path: Nim/UnionFind.nim
       title: Nim/UnionFind.nim
+    - icon: ':warning:'
+      path: Nim/WaveletMatrix.nim
+      title: Nim/WaveletMatrix.nim
   - name: Python
     pages:
     - icon: ':warning:'

@@ -558,11 +558,11 @@ data:
     \tprivate final int blk;\n\tprivate final int[] bit, sum;\n\tSuccinctIndexableDictionary(final\
     \ int len) {\n\t\tblk = (len + 31) >> 5;\n\t\tbit = new int[blk];\n\t\tsum = new\
     \ int[blk];\n\t}\n\tfinal void set(final int k){ bit[k >> 5] |= 1 << (k & 31);\
-    \ }\n\tfinal void build() {\n\t\tsum[0] = 0;\n\t\tfor(int i = 0; ++i < blk;) {\n\
-    \t\t\tsum[i] = sum[i - 1] + Integer.bitCount(bit[i - 1]);\n\t\t}\n\t}\n\tfinal\
-    \ boolean get(final int k){ return ((bit[k >> 5] >> (k & 31)) & 1) == 1; }\n\t\
-    final int rank(final int k){ return (sum[k >> 5] + Integer.bitCount(bit[k >> 5]\
-    \ & ((1 << (k & 31)) - 1))); }\n\tfinal int rank(final boolean val, final int\
+    \ }\n\tfinal void build() {\n\t\tsum[0] = 0;\n\t\tfor(int i = 0; i + 1 < blk;\
+    \ ++i) {\n\t\t\tsum[i + 1] = sum[i] + Integer.bitCount(bit[i]);\n\t\t}\n\t}\n\t\
+    final boolean get(final int k){ return ((bit[k >> 5] >> (k & 31)) & 1) == 1; }\n\
+    \tfinal int rank(final int k){ return (sum[k >> 5] + Integer.bitCount(bit[k >>\
+    \ 5] & ((1 << (k & 31)) - 1))); }\n\tfinal int rank(final boolean val, final int\
     \ k){ return val ? rank(k) : k - rank(k); }\n}"
   dependsOn:
   - Java/yukicoder.java
@@ -748,7 +748,7 @@ data:
   - Java/library/math/largeprime/LongPrime.java
   - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
-  timestamp: '2024-03-09 17:49:36+09:00'
+  timestamp: '2024-03-10 20:33:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
