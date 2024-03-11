@@ -557,18 +557,19 @@ data:
     import java.util.function.BiFunction;\n\n/**\n * 10^18\u3088\u308A\u5927\u304D\
     \u3044\u6574\u6570\u306B\u5BFE\u3057\u3066\u7D20\u6570\u5224\u5B9A\u3084\u7D20\
     \u56E0\u6570\u5206\u89E3\u3092\u3067\u304D\u308B\u30AF\u30E9\u30B9\n */\npublic\
-    \ final class BigPrime {\n\tprivate final int bsf(final long x){ return Long.numberOfTrailingZeros(x);\
-    \ }\n\tprivate final BigInteger gcd(BigInteger a, BigInteger b) {\n\t\ta = a.abs();\n\
-    \t\tb = b.abs();\n\t\tif(a.equals(BigInteger.ZERO)) {\n\t\t\treturn b;\n\t\t}\n\
-    \t\tif(b.equals(BigInteger.ZERO)) {\n\t\t\treturn a;\n\t\t}\n\t\tfinal int shift\
-    \ = bsf(a.or(b).longValue());\n\t\ta = a.shiftRight(bsf(a.longValue()));\n\t\t\
-    do {\n\t\t\tb = b.shiftRight(bsf(b.longValue()));\n\t\t\tif(a.compareTo(b) > 0)\
-    \ {\n\t\t\t\tfinal BigInteger tmp = b;\n\t\t\t\tb = a;\n\t\t\t\ta = tmp;\n\t\t\
-    \t}\n\t\t\tb = b.subtract(a);\n\t\t} while(b.compareTo(BigInteger.ZERO) > 0);\n\
-    \t\treturn a.shiftLeft(shift);\n\t}\n\t/**\n\t * Miller-Rabin\u6CD5\u306B\u3088\
-    \u308B\u7D20\u6570\u5224\u5B9A\n\t * @param n\n\t */\n\tpublic final boolean isPrime(final\
-    \ BigInteger n) {\n\t\tif(n.compareTo(BigInteger.ONE) <= 0) {\n\t\t\treturn false;\n\
-    \t\t}\n\t\tif(n.equals(BigInteger.TWO)) {\n\t\t\treturn true;\n\t\t}\n\t\tif(n.and(BigInteger.ONE).equals(BigInteger.valueOf(0)))\
+    \ final class BigPrime {\n\tprivate static final int bsf(final long x){ return\
+    \ Long.numberOfTrailingZeros(x); }\n\tprivate static final BigInteger gcd(BigInteger\
+    \ a, BigInteger b) {\n\t\ta = a.abs();\n\t\tb = b.abs();\n\t\tif(a.equals(BigInteger.ZERO))\
+    \ {\n\t\t\treturn b;\n\t\t}\n\t\tif(b.equals(BigInteger.ZERO)) {\n\t\t\treturn\
+    \ a;\n\t\t}\n\t\tfinal int shift = bsf(a.or(b).longValue());\n\t\ta = a.shiftRight(bsf(a.longValue()));\n\
+    \t\tdo {\n\t\t\tb = b.shiftRight(bsf(b.longValue()));\n\t\t\tif(a.compareTo(b)\
+    \ > 0) {\n\t\t\t\tfinal BigInteger tmp = b;\n\t\t\t\tb = a;\n\t\t\t\ta = tmp;\n\
+    \t\t\t}\n\t\t\tb = b.subtract(a);\n\t\t} while(b.compareTo(BigInteger.ZERO) >\
+    \ 0);\n\t\treturn a.shiftLeft(shift);\n\t}\n\t/**\n\t * Miller-Rabin\u6CD5\u306B\
+    \u3088\u308B\u7D20\u6570\u5224\u5B9A\n\t * @param n\n\t */\n\tpublic static final\
+    \ boolean isPrime(final BigInteger n) {\n\t\tif(n.compareTo(BigInteger.ONE) <=\
+    \ 0) {\n\t\t\treturn false;\n\t\t}\n\t\tif(n.equals(BigInteger.TWO)) {\n\t\t\t\
+    return true;\n\t\t}\n\t\tif(n.and(BigInteger.ONE).equals(BigInteger.valueOf(0)))\
     \ {\n\t\t\treturn false;\n\t\t}\n\t\tBigInteger d = n.subtract(BigInteger.ONE);\n\
     \t\twhile(d.and(BigInteger.ONE).equals(BigInteger.valueOf(0))) {\n\t\t\td = d.shiftRight(1);\n\
     \t\t}\n\t\tfinal long[] sample = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};\n\
@@ -578,18 +579,18 @@ data:
     \ && !y.equals(BigInteger.ONE) && !y.equals(n.subtract(BigInteger.ONE))) {\n\t\
     \t\t\ty = y.multiply(y).mod(n);\n\t\t\t\tt = t.shiftLeft(1);\n\t\t\t}\n\t\t\t\
     if(!y.equals(n.subtract(BigInteger.ONE)) && t.and(BigInteger.ONE).equals(BigInteger.ZERO))\
-    \ {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\tprivate final\
-    \ BigInteger find(final BigInteger n) {\n\t\tif(isPrime(n)) {\n\t\t\treturn n;\n\
-    \t\t}\n\t\tif(n.and(BigInteger.ONE).equals(BigInteger.ZERO)) {\n\t\t\treturn BigInteger.TWO;\n\
-    \t\t}\n\t\tint st = 0;\n\t\tfinal BiFunction<BigInteger, Integer, BigInteger>\
-    \ f = (x, y) -> { return x.multiply(x).add(BigInteger.valueOf(y)).mod(n); };\n\
-    \t\twhile(true) {\n\t\t\tst++;\n\t\t\tBigInteger x = BigInteger.valueOf(st), y\
-    \ = f.apply(x, st);\n\t\t\twhile(true) {\n\t\t\t\tfinal BigInteger p = gcd(y.subtract(x).add(n),\
+    \ {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\tprivate static\
+    \ final BigInteger find(final BigInteger n) {\n\t\tif(isPrime(n)) {\n\t\t\treturn\
+    \ n;\n\t\t}\n\t\tif(n.and(BigInteger.ONE).equals(BigInteger.ZERO)) {\n\t\t\treturn\
+    \ BigInteger.TWO;\n\t\t}\n\t\tint st = 0;\n\t\tfinal BiFunction<BigInteger, Integer,\
+    \ BigInteger> f = (x, y) -> { return x.multiply(x).add(BigInteger.valueOf(y)).mod(n);\
+    \ };\n\t\twhile(true) {\n\t\t\tst++;\n\t\t\tBigInteger x = BigInteger.valueOf(st),\
+    \ y = f.apply(x, st);\n\t\t\twhile(true) {\n\t\t\t\tfinal BigInteger p = gcd(y.subtract(x).add(n),\
     \ n);\n\t\t\t\tif(p.equals(BigInteger.ZERO) || p.equals(n)) {\n\t\t\t\t\tbreak;\n\
     \t\t\t\t}\n\t\t\t\tif(!p.equals(BigInteger.ONE)) {\n\t\t\t\t\treturn p;\n\t\t\t\
     \t}\n\t\t\t\tx = f.apply(x, st);\n\t\t\t\ty = f.apply(f.apply(y, st), st);\n\t\
     \t\t}\n\t\t}\n\t}\n\t/**\n\t * Pollard-Rho\u6CD5\u306B\u3088\u308B\u7D20\u56E0\
-    \u6570\u5206\u89E3\n\t * @param n\n\t */\n\tpublic final ArrayList<BigInteger>\
+    \u6570\u5206\u89E3\n\t * @param n\n\t */\n\tpublic static final ArrayList<BigInteger>\
     \ primeFactor(final BigInteger n) {\n\t\tif(n.equals(BigInteger.ONE)) {\n\t\t\t\
     return new ArrayList<>();\n\t\t}\n\t\tfinal BigInteger x = find(n);\n\t\tif(x.equals(n))\
     \ {\n\t\t\treturn new ArrayList<>(Arrays.asList(x));\n\t\t}\n\t\tfinal ArrayList<BigInteger>\
@@ -779,7 +780,7 @@ data:
   - Java/library/math/ModPrime.java
   - Java/library/math/largeprime/LongPrime.java
   - Java/CodeForces.java
-  timestamp: '2024-03-10 20:33:43+09:00'
+  timestamp: '2024-03-12 01:01:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/largeprime/BigPrime.java
