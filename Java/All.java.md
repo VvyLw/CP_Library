@@ -591,7 +591,7 @@ data:
     \ b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 ==\
     \ 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\
     \t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
-    \ static final long lcm(final long a, final long b){ return a * b / gcd(a, b);\
+    \ static final long lcm(final long a, final long b){ return a / gcd(a, b) * b;\
     \ }\n\tprotected static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1,\
     \ (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){\
     \ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static\
@@ -934,17 +934,16 @@ data:
     System.arraycopy(c, 0, b, 0, n);\n\t}\n\tprotected static final <F extends Comparable<?\
     \ super F>, S extends Comparable<? super S>> Pair<S, F>[] swap(final Pair<F, S>[]\
     \ p) {\n\t\t@SuppressWarnings(\"unchecked\")\n\t\tfinal Pair<S, F>[] q = new Pair[p.length];\n\
-    \t\tIntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());\n\t\treturn\
-    \ q;\n\t}\n\tprotected static final IntPair[] swap(final IntPair[] p) {\n\t\t\
-    final IntPair[] q = new IntPair[p.length];\n\t\tIntStream.range(0, p.length).forEach(i\
-    \ -> q[i] = p[i].swap());\n\t\treturn q;\n\t}\n\tprotected static final FloatPair[]\
-    \ swap(final FloatPair[] p) {\n\t\tfinal FloatPair[] q = new FloatPair[p.length];\n\
-    \t\tIntStream.range(0, p.length).forEach(i -> q[i] = p[i].swap());\n\t\treturn\
-    \ q;\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tprotected static final <F extends\
-    \ Comparable<? super F>, S extends Comparable<? super S>> F[] first(final Pair<F,\
-    \ S>[] p){ return (F[]) Arrays.stream(p).map(i -> i.first).toArray(); }\n\tprotected\
-    \ static final long[] first(final IntPair[] p){ return Arrays.stream(p).mapToLong(i\
-    \ -> i.first).toArray(); }\n\tprotected static final double[] first(final FloatPair[]\
+    \t\tArrays.setAll(q, i -> p[i].swap());\n\t\treturn q;\n\t}\n\tprotected static\
+    \ final IntPair[] swap(final IntPair[] p) {\n\t\tfinal IntPair[] q = new IntPair[p.length];\n\
+    \t\tArrays.setAll(q, i -> p[i].swap());\n\t\treturn q;\n\t}\n\tprotected static\
+    \ final FloatPair[] swap(final FloatPair[] p) {\n\t\tfinal FloatPair[] q = new\
+    \ FloatPair[p.length];\n\t\tArrays.setAll(q, i -> p[i].swap());\n\t\treturn q;\n\
+    \t}\n\t@SuppressWarnings(\"unchecked\")\n\tprotected static final <F extends Comparable<?\
+    \ super F>, S extends Comparable<? super S>> F[] first(final Pair<F, S>[] p){\
+    \ return (F[]) Arrays.stream(p).map(i -> i.first).toArray(); }\n\tprotected static\
+    \ final long[] first(final IntPair[] p){ return Arrays.stream(p).mapToLong(i ->\
+    \ i.first).toArray(); }\n\tprotected static final double[] first(final FloatPair[]\
     \ p){ return Arrays.stream(p).mapToDouble(i -> i.first).toArray(); }\n\t@SuppressWarnings(\"\
     unchecked\")\n\tprotected static final <F extends Comparable<? super F>, S extends\
     \ Comparable<? super S>> S[] second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i\
@@ -985,14 +984,13 @@ data:
     \t\tfor(final long i: a) {\n\t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\
     \treturn res;\n\t}\n\tprotected static final int[] corPress(final int[] a) {\n\
     \t\tfinal int[] res = new int[a.length];\n\t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final int[] corPress(final long[]\
-    \ a) {\n\t\tfinal int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres[i] = lowerBound(x, a[i]);\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final String runLenPress(final\
-    \ String s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder sb = new\
-    \ StringBuilder();\n\t\tfor(int l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\t\t\t\
-    for(; r < n && s.charAt(l) == s.charAt(r); ++r){}\n\t\t\tsb.append(s.charAt(l));\n\
+    \t\tArrays.setAll(res, i -> lowerBound(x, a[i]));\n\t\treturn res;\n\t}\n\tprotected\
+    \ static final int[] corPress(final long[] a) {\n\t\tfinal int[] res = new int[a.length];\n\
+    \t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tArrays.setAll(res,\
+    \ i -> lowerBound(x, a[i]));\n\t\treturn res;\n\t}\n\tprotected static final String\
+    \ runLenPress(final String s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder\
+    \ sb = new StringBuilder();\n\t\tfor(int l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\
+    \t\t\tfor(; r < n && s.charAt(l) == s.charAt(r); ++r){}\n\t\t\tsb.append(s.charAt(l));\n\
     \t\t\tsb.append(r - l);\n\t\t\tl = r;\n\t\t}\n\t\treturn sb.toString();\n\t}\n\
     \tprotected static final String runLenRev(final String s) {\n\t\tfinal int n =\
     \ s.length();\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfor(int\
@@ -1089,49 +1087,46 @@ data:
     \ char nc(){ return in.nc(); }\n\tfinal String ns(){ return in.ns(); }\n\tfinal\
     \ char[] nt(){ return in.nt(); }\n\tfinal BigInteger nb(){ return in.nb(); }\n\
     \tfinal IntPair pi(){ return in.pi(); }\n\tfinal FloatPair pf(){ return in.pf();\
-    \ }\n\tfinal int[] ni(final int n) {\n\t\tfinal int[] a = new int[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = ni());\n\t\treturn a;\n\t}\n\tfinal int[] ni(final int\
-    \ n, final IntUnaryOperator f){ return Arrays.stream(ni(n)).map(f).toArray();\
-    \ }\n\tfinal long[] nl(final int n) {\n\t\tfinal long[] a = new long[n];\n\t\t\
-    IntStream.range(0, n).forEach(i -> a[i] = nl());\n\t\treturn a;\n\t}\n\tfinal\
-    \ long[] nl(final int n, final LongUnaryOperator f){ return Arrays.stream(nl(n)).map(f).toArray();\
-    \ }\n\tfinal double[] nd(final int n) {\n\t\tfinal double[] a = new double[n];\n\
-    \t\tIntStream.range(0, n).forEach(i -> a[i] = nd());\n\t\treturn a;\n\t}\n\tfinal\
-    \ char[] nc(final int n) {\n\t\tfinal char[] a = new char[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal String[] ns(final\
-    \ int n) {\n\t\tfinal String[] a = new String[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = ns());\n\t\treturn a;\n\t}\n\tfinal char[][] nt(final int n) {\n\t\
-    \tfinal char[][] a = new char[n][];\n\t\tIntStream.range(0, n).forEach(i -> a[i]\
-    \ = nt());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final int n) {\n\t\tfinal\
-    \ BigInteger[] a = new BigInteger[n];\n\t\tIntStream.range(0, n).forEach(i ->\
-    \ a[i] = nb());\n\t\treturn a;\n\t}\n\tfinal IntPair[] pi(final int n) {\n\t\t\
-    final IntPair[] p = new IntPair[n];\n\t\tIntStream.range(0, n).forEach(i -> p[i]\
-    \ = pi());\n\t\treturn p;\n\t}\n\tfinal IntPair[] pi(final int n, final UnaryOperator<IntPair>\
-    \ f){ return Arrays.stream(pi(n)).map(f).toArray(IntPair[]::new); }\n\tfinal FloatPair[]\
-    \ pf(final int n) {\n\t\tfinal FloatPair[] p = new FloatPair[n];\n\t\tIntStream.range(0,\
-    \ n).forEach(i -> p[i] = pf());\n\t\treturn p;\n\t}\n\tfinal int[][] ni(final\
-    \ int h, final int w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final\
-    \ int h, final int w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = nl(w));\n\t\treturn a;\n\t}\n\tfinal double[][] nd(final\
-    \ int h, final int w) {\n\t\tfinal double[][] a = new double[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = nd(w));\n\t\treturn a;\n\t}\n\tfinal char[][] nc(final\
-    \ int h, final int w) {\n\t\tfinal char[][] a = new char[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = nc(w));\n\t\treturn a;\n\t}\n\tfinal String[][] ns(final\
-    \ int h, final int w) {\n\t\tfinal String[][] a = new String[h][w];\n\t\tIntStream.range(0,\
-    \ h).forEach(i -> a[i] = ns(w));\n\t\treturn a;\n\t}\n\tfinal BigInteger[][] nb(final\
-    \ int h, final int w) {\n\t\tfinal BigInteger[][] a = new BigInteger[h][w];\n\t\
-    \tIntStream.range(0, h).forEach(i -> a[i] = nb(w));\n\t\treturn a;\n\t}\n\tfinal\
-    \ String line(){ return in.line(); }\n\tfinal void print(final Object arg){ out.print(arg);\
-    \ }\n\tfinal void printf(final String fmt, final Object... args){ out.printf(fmt,\
-    \ args); }\n\tfinal void out(){ out.out(); }\n\tfinal void out(final Object head,\
-    \ final Object... tail){ out.out(head, tail); }\n\tfinal <F extends Comparable<?\
-    \ super F>, S extends Comparable<? super S>> void out(final Pair<F, S> p){ out.out(p);\
-    \ }\n\tfinal <E> void out(final Collection<E> a){ out.out(a); }\n\tfinal void\
-    \ out(final int[] head, final int[]...tail){ out.out(head, tail); }\n\tfinal void\
-    \ out(final long[] head, final long[]...tail){ out.out(head, tail); }\n\tfinal\
-    \ void out(final double[] head, final double[]...tail){ out.out(head, tail); }\n\
-    \tfinal void out(final boolean[] head, final boolean[]...tail){ out.out(head,\
+    \ }\n\tfinal int[] ni(final int n) {\n\t\tfinal int[] a = new int[n];\n\t\tArrays.setAll(a,\
+    \ i -> ni());\n\t\treturn a;\n\t}\n\tfinal int[] ni(final int n, final IntUnaryOperator\
+    \ f){ return Arrays.stream(ni(n)).map(f).toArray(); }\n\tfinal long[] nl(final\
+    \ int n) {\n\t\tfinal long[] a = new long[n];\n\t\tArrays.setAll(a, i -> nl());\n\
+    \t\treturn a;\n\t}\n\tfinal long[] nl(final int n, final LongUnaryOperator f){\
+    \ return Arrays.stream(nl(n)).map(f).toArray(); }\n\tfinal double[] nd(final int\
+    \ n) {\n\t\tfinal double[] a = new double[n];\n\t\tArrays.setAll(a, i -> nd());\n\
+    \t\treturn a;\n\t}\n\tfinal char[] nc(final int n) {\n\t\tfinal char[] a = new\
+    \ char[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nc());\n\t\treturn a;\n\
+    \t}\n\tfinal String[] ns(final int n) {\n\t\tfinal String[] a = new String[n];\n\
+    \t\tArrays.setAll(a, i -> ns());\n\t\treturn a;\n\t}\n\tfinal char[][] nt(final\
+    \ int n) {\n\t\tfinal char[][] a = new char[n][];\n\t\tArrays.setAll(a, i -> nt());\n\
+    \t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final int n) {\n\t\tfinal BigInteger[]\
+    \ a = new BigInteger[n];\n\t\tArrays.setAll(a, i -> nb());\n\t\treturn a;\n\t\
+    }\n\tfinal IntPair[] pi(final int n) {\n\t\tfinal IntPair[] a = new IntPair[n];\n\
+    \t\tArrays.setAll(a, i -> pi());\n\t\treturn a;\n\t}\n\tfinal IntPair[] pi(final\
+    \ int n, final UnaryOperator<IntPair> f){ return Arrays.stream(pi(n)).map(f).toArray(IntPair[]::new);\
+    \ }\n\tfinal FloatPair[] pf(final int n) {\n\t\tfinal FloatPair[] a = new FloatPair[n];\n\
+    \t\tArrays.setAll(a, i -> pf());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final\
+    \ int h, final int w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tArrays.setAll(a,\
+    \ i -> ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final int h, final int\
+    \ w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tArrays.setAll(a, i -> nl(w));\n\
+    \t\treturn a;\n\t}\n\tfinal double[][] nd(final int h, final int w) {\n\t\tfinal\
+    \ double[][] a = new double[h][w];\n\t\tArrays.setAll(a, i -> nd(w));\n\t\treturn\
+    \ a;\n\t}\n\tfinal char[][] nc(final int h, final int w) {\n\t\tfinal char[][]\
+    \ a = new char[h][w];\n\t\tArrays.setAll(a, i -> nc(w));\n\t\treturn a;\n\t}\n\
+    \tfinal String[][] ns(final int h, final int w) {\n\t\tfinal String[][] a = new\
+    \ String[h][w];\n\t\tArrays.setAll(a, i -> ns(w));\n\t\treturn a;\n\t}\n\tfinal\
+    \ BigInteger[][] nb(final int h, final int w) {\n\t\tfinal BigInteger[][] a =\
+    \ new BigInteger[h][w];\n\t\tArrays.setAll(a, i -> nb(w));\n\t\treturn a;\n\t\
+    }\n\tfinal String line(){ return in.line(); }\n\tfinal void print(final Object\
+    \ arg){ out.print(arg); }\n\tfinal void printf(final String fmt, final Object...\
+    \ args){ out.printf(fmt, args); }\n\tfinal void out(){ out.out(); }\n\tfinal void\
+    \ out(final Object head, final Object... tail){ out.out(head, tail); }\n\tfinal\
+    \ <F extends Comparable<? super F>, S extends Comparable<? super S>> void out(final\
+    \ Pair<F, S> p){ out.out(p); }\n\tfinal <E> void out(final Collection<E> a){ out.out(a);\
+    \ }\n\tfinal void out(final int[] head, final int[]...tail){ out.out(head, tail);\
+    \ }\n\tfinal void out(final long[] head, final long[]...tail){ out.out(head, tail);\
+    \ }\n\tfinal void out(final double[] head, final double[]...tail){ out.out(head,\
+    \ tail); }\n\tfinal void out(final boolean[] head, final boolean[]...tail){ out.out(head,\
     \ tail); }\n\tfinal void out(final char[] head, final char[]...tail){ out.out(head,\
     \ tail); }\n\tfinal void out(final Object[] head, final Object[]...tail){ out.out(head,\
     \ tail); }\n\tfinal <F extends Comparable<? super F>, S extends Comparable<? super\
@@ -1872,24 +1867,24 @@ data:
     \ final int h, w;\n\tprivate final long[][] mat;\n\tMatrix(final int n){ this(n,\
     \ n); }\n\tMatrix(final int h, final int w) {\n\t\tthis.h = h;\n\t\tthis.w = w;\n\
     \t\tmat = new long[h][w];\n\t}\n\tMatrix(final int[][] m) {\n\t\tthis(m.length,\
-    \ m[0].length);\n\t\tIntStream.range(0, h).forEach(i -> IntStream.range(0, w).forEach(j\
-    \ -> mat[i][j] = m[i][j]));\n\t}\n\tMatrix(final long[][] m) {\n\t\tthis(m.length,\
-    \ m[0].length);\n\t\tIntStream.range(0, h).forEach(i -> IntStream.range(0, w).forEach(j\
-    \ -> mat[i][j] = m[i][j]));\n\t}\n\tstatic final Matrix E(final int n) {\n\t\t\
-    final Matrix m = new Matrix(n);\n\t\tIntStream.range(0, n).forEach(i -> m.set(i,\
-    \ i, 1));\n\t\treturn m;\n\t}\n\tfinal long[] getH(final int i){ return mat[i];\
-    \ }\n\tfinal long[] getW(final int i){ return IntStream.range(0, h).mapToLong(j\
-    \ -> mat[j][i]).toArray(); }\n\tfinal long[][] get(){ return mat; }\n\tfinal long\
-    \ get(final int i, final int j){ return mat[i][j]; }\n\tfinal void set(final int\
-    \ i, final int j, final long x){ mat[i][j] = x; }\n\tfinal Matrix add(final Matrix\
-    \ m) {\n\t\tassert h == m.h && w == m.w;\n\t\tfinal Matrix mt = new Matrix(h,\
-    \ w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\
-    \t\t\tmt.set(i, j, mat[i][j] + m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\
-    \t}\n\tfinal Matrix add(final Matrix m, final long mod) {\n\t\tassert h == m.h\
+    \ m[0].length);\n\t\tIntStream.range(0, h).forEach(i -> Arrays.setAll(mat[i],\
+    \ j -> m[i][j]));\n\t}\n\tMatrix(final long[][] m) {\n\t\tthis(m.length, m[0].length);\n\
+    \t\tIntStream.range(0, h).forEach(i -> Arrays.setAll(mat[i], j -> m[i][j]));\n\
+    \t}\n\tstatic final Matrix E(final int n) {\n\t\tfinal Matrix m = new Matrix(n);\n\
+    \t\tIntStream.range(0, n).forEach(i -> m.set(i, i, 1));\n\t\treturn m;\n\t}\n\t\
+    final long[] getH(final int i){ return mat[i]; }\n\tfinal long[] getW(final int\
+    \ i){ return IntStream.range(0, h).mapToLong(j -> mat[j][i]).toArray(); }\n\t\
+    final long[][] get(){ return mat; }\n\tfinal long get(final int i, final int j){\
+    \ return mat[i][j]; }\n\tfinal void set(final int i, final int j, final long x){\
+    \ mat[i][j] = x; }\n\tfinal Matrix add(final Matrix m) {\n\t\tassert h == m.h\
     \ && w == m.w;\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int i = 0; i\
-    \ < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, Utility.mod(mat[i][j]\
-    \ + m.get(i, j), mod));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix sub(final\
-    \ Matrix m) {\n\t\tassert h == m.h && w == m.w;\n\t\tfinal Matrix mt = new Matrix(h,\
+    \ < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, mat[i][j]\
+    \ + m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix add(final\
+    \ Matrix m, final long mod) {\n\t\tassert h == m.h && w == m.w;\n\t\tfinal Matrix\
+    \ mt = new Matrix(h, w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j =\
+    \ 0; j < w; ++j) {\n\t\t\t\tmt.set(i, j, Utility.mod(mat[i][j] + m.get(i, j),\
+    \ mod));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\tfinal Matrix sub(final Matrix\
+    \ m) {\n\t\tassert h == m.h && w == m.w;\n\t\tfinal Matrix mt = new Matrix(h,\
     \ w);\n\t\tfor(int i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\
     \t\t\tmt.set(i, j, mat[i][j] - m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\
     \t}\n\tfinal Matrix sub(final Matrix m, final long mod) {\n\t\tassert h == m.h\
@@ -2714,7 +2709,7 @@ data:
   - Java/library/math/largeprime/LongPrime.java
   - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
-  timestamp: '2024-03-12 01:01:26+09:00'
+  timestamp: '2024-03-12 01:44:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

@@ -593,8 +593,8 @@ data:
     \ {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\
     \t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param\
     \ a\n\t * @param b\n\t * @return a\u3068b\u306E\u6700\u5C0F\u516C\u500D\u6570\n\
-    \t */\n\tpublic static final long lcm(final long a, final long b){ return a *\
-    \ b / gcd(a, b); }\n\t/**\n\t * e.g.) lcm(2, 3, 5) = 30\n\t * @param a int\u578B\
+    \t */\n\tpublic static final long lcm(final long a, final long b){ return a /\
+    \ gcd(a, b) * b; }\n\t/**\n\t * e.g.) lcm(2, 3, 5) = 30\n\t * @param a int\u578B\
     \u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return\
     \ a\u306E\u6700\u5C0F\u516C\u500D\u6570\n\t */\n\tpublic static final long lcm(final\
     \ int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x,\
@@ -1566,7 +1566,7 @@ data:
   - Java/library/math/largeprime/LongPrime.java
   - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
-  timestamp: '2024-03-12 01:01:26+09:00'
+  timestamp: '2024-03-12 01:44:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java
