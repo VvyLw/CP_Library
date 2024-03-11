@@ -2915,8 +2915,8 @@ final class PrimeCounter {
 
 // N <= 1e18;
 final class LongPrime {
-	private final int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
-	private final long gcd(long a, long b) {
+	private static final int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
+	private static final long gcd(long a, long b) {
 		a = abs(a);
 		b = abs(b);
 		if(a == 0) {
@@ -2938,7 +2938,7 @@ final class LongPrime {
 		} while(b > 0);
 		return a << shift;
 	}
-	final boolean isPrime(final long n) {
+	static final boolean isPrime(final long n) {
 		if(n <= 1) {
 			return false;
 		}
@@ -2969,7 +2969,7 @@ final class LongPrime {
 		}
 		return true;
 	}
-	final private long find(final long n) {
+	private static final long find(final long n) {
 		if(isPrime(n)) {
 			return n;
 		}
@@ -2994,7 +2994,7 @@ final class LongPrime {
 			}
 		}
 	}
-	final ArrayList<Long> primeFactor(final long n) {
+	static final ArrayList<Long> primeFactor(final long n) {
 		if(n == 1) return new ArrayList<>();
 		final long x = find(n);
 		if(x == n) return new ArrayList<>(Arrays.asList(x));
@@ -3006,8 +3006,8 @@ final class LongPrime {
 }
 // N > 1e18
 final class BigPrime {
-	private final int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
-	private final BigInteger gcd(BigInteger a, BigInteger b) {
+	private static final int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
+	private static final BigInteger gcd(BigInteger a, BigInteger b) {
 		a = a.abs();
 		b = b.abs();
 		if(a.equals(BigInteger.ZERO)) {
@@ -3029,7 +3029,7 @@ final class BigPrime {
 		} while(b.compareTo(BigInteger.ZERO) > 0);
 		return a.shiftLeft(shift);
 	}
-	final boolean isPrime(final BigInteger n) {
+	static final boolean isPrime(final BigInteger n) {
 		if(n.compareTo(BigInteger.ONE) <= 0) {
 			return false;
 		}
@@ -3060,7 +3060,7 @@ final class BigPrime {
 		}
 		return true;
 	}
-	private final BigInteger find(final BigInteger n) {
+	private static final BigInteger find(final BigInteger n) {
 		if(isPrime(n)) {
 			return n;
 		}
@@ -3085,7 +3085,7 @@ final class BigPrime {
 			}
 		}
 	}
-	final ArrayList<BigInteger> primeFactor(final BigInteger n) {
+	static final ArrayList<BigInteger> primeFactor(final BigInteger n) {
 		if(n.equals(BigInteger.ONE)) {
 			return new ArrayList<>();
 		}

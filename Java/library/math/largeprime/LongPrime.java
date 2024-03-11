@@ -10,8 +10,8 @@ import java.util.function.LongBinaryOperator;
  * 10^18以下の整数に対して高速に素数判定や素因数分解をできるクラス
  */
 public final class LongPrime {
-	private final int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
-	private final long gcd(long a, long b) {
+	private static final int bsf(final long x){ return Long.numberOfTrailingZeros(x); }
+	private static final long gcd(long a, long b) {
 		a = Math.abs(a);
 		b = Math.abs(b);
 		if(a == 0) {
@@ -37,7 +37,7 @@ public final class LongPrime {
 	 * Miller-Rabin法による素数判定
 	 * @param n
 	 */
-	public final boolean isPrime(final long n) {
+	public static final boolean isPrime(final long n) {
 		if(n <= 1) {
 			return false;
 		}
@@ -68,7 +68,7 @@ public final class LongPrime {
 		}
 		return true;
 	}
-	private final long find(final long n) {
+	private static final long find(final long n) {
 		if(isPrime(n)) {
 			return n;
 		}
@@ -97,7 +97,7 @@ public final class LongPrime {
 	 * Pollard-Rho法による素因数分解
 	 * @param n
 	 */
-	public final ArrayList<Long> primeFactor(final long n) {
+	public static final ArrayList<Long> primeFactor(final long n) {
 		if(n == 1) return new ArrayList<>();
 		final long x = find(n);
 		if(x == n) return new ArrayList<>(Arrays.asList(x));
