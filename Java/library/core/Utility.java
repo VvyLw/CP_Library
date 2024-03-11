@@ -112,7 +112,7 @@ public class Utility {
 	 * @param b
 	 * @return aとbの最小公倍数
 	 */
-	public static final long lcm(final long a, final long b){ return a * b / gcd(a, b); }
+	public static final long lcm(final long a, final long b){ return a / gcd(a, b) * b; }
 	/**
 	 * e.g.) lcm(2, 3, 5) = 30
 	 * @param a int型タプル あるいはint型配列

@@ -86,7 +86,7 @@ class Utility {
 		}
 		return res;
 	}
-	protected static final long lcm(final long a, final long b){ return a * b / gcd(a, b); }
+	protected static final long lcm(final long a, final long b){ return a / gcd(a, b) * b; }
 	protected static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }
 	protected static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }
 	protected static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }
