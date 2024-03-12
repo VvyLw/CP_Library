@@ -1667,7 +1667,7 @@ public class Utility {
 	 * 配列内の数値を個数を数え上げる
 	 * @param a
 	 */
-	protected static final Map<Integer, Integer> count(final int[] a) {
+	protected static final Map<Integer, Integer> counter(final int[] a) {
 		final Map<Integer, Integer> res = new HashMap<>();
 		for(final int i: a) {
 			res.merge(i, 1, (x, y) -> x + y);
@@ -1678,7 +1678,7 @@ public class Utility {
 	 * 配列内の数値を個数を数え上げる
 	 * @param a
 	 */
-	protected static final Map<Long, Integer> count(final long[] a) {
+	protected static final Map<Long, Integer> counter(final long[] a) {
 		final Map<Long, Integer> res = new HashMap<>();
 		for(final long i: a) {
 			res.merge(i, 1, (x, y) -> x + y);

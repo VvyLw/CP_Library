@@ -948,14 +948,14 @@ class Utility {
 		}
 		return ok;
 	}
-	protected static final Map<Integer, Integer> count(final int[] a) {
+	protected static final Map<Integer, Integer> counter(final int[] a) {
 		final Map<Integer, Integer> res = new HashMap<>();
 		for(final int i: a) {
 			res.merge(i, 1, (x, y) -> x + y);
 		}
 		return res;
 	}
-	protected static final Map<Long, Integer> count(final long[] a) {
+	protected static final Map<Long, Integer> counter(final long[] a) {
 		final Map<Long, Integer> res = new HashMap<>();
 		for(final long i: a) {
 			res.merge(i, 1, (x, y) -> x + y);
