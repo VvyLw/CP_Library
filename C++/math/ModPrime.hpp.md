@@ -61,8 +61,8 @@ data:
   timestamp: '2024-02-19 12:20:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/modprime.test.cpp
   - test/modprime2.test.cpp
+  - test/modprime.test.cpp
 documentation_of: C++/math/ModPrime.hpp
 layout: document
 redirect_from:

@@ -97,8 +97,8 @@ data:
   timestamp: '2024-03-09 16:51:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/segtree.test.cpp
   - test/segtree2.test.cpp
+  - test/segtree.test.cpp
 documentation_of: C++/ds/SegmentTree.hpp
 layout: document
 redirect_from:

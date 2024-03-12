@@ -81,25 +81,25 @@ data:
   isVerificationFile: false
   path: C++/math/kthrooti.hpp
   requiredBy:
-  - C++/template.hpp
   - C++/math/primecounter.hpp
+  - C++/template.hpp
   timestamp: '2024-02-19 12:20:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/sr_sum.test.cpp
-  - test/extgcd.test.cpp
-  - test/segtree.test.cpp
-  - test/stable.test.cpp
-  - test/aarray.test.cpp
   - test/kthrooti.test.cpp
-  - test/uf.test.cpp
-  - test/pcounter.test.cpp
-  - test/add.test.cpp
-  - test/add128.test.cpp
   - test/fwtree.test.cpp
-  - test/parsum.test.cpp
+  - test/pcounter.test.cpp
+  - test/add128.test.cpp
+  - test/extgcd.test.cpp
   - test/m_add.test.cpp
+  - test/uf.test.cpp
+  - test/parsum.test.cpp
+  - test/aarray.test.cpp
+  - test/add.test.cpp
+  - test/sr_sum.test.cpp
+  - test/segtree.test.cpp
   - test/s_rmq.test.cpp
+  - test/stable.test.cpp
 documentation_of: C++/math/kthrooti.hpp
 layout: document
 redirect_from:
