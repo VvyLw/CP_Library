@@ -36,8 +36,8 @@ data:
   timestamp: '2024-02-19 12:20:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/tetration.test.cpp
   - test/phi.test.cpp
+  - test/tetration.test.cpp
 documentation_of: C++/math/euler_phi.hpp
 layout: document
 redirect_from:

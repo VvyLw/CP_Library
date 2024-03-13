@@ -193,10 +193,10 @@ data:
   timestamp: '2024-03-01 10:48:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/dijkstra.test.cpp
-  - test/shortestpath.test.cpp
   - test/spfa.test.cpp
   - test/warshallfloyd.test.cpp
+  - test/dijkstra.test.cpp
+  - test/shortestpath.test.cpp
 documentation_of: C++/graph/WeightedGraph.hpp
 layout: document
 redirect_from:

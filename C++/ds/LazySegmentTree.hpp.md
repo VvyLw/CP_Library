@@ -261,11 +261,11 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lazysegtree.test.cpp
-  - test/lazysegtree2.test.cpp
-  - test/rangeaffine.test.cpp
   - test/lazysegtree5.test.cpp
+  - test/lazysegtree2.test.cpp
   - test/lazysegtree3.test.cpp
   - test/lazysegtree4.test.cpp
+  - test/rangeaffine.test.cpp
 documentation_of: C++/ds/LazySegmentTree.hpp
 layout: document
 redirect_from:

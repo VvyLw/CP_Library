@@ -141,33 +141,33 @@ data:
   isVerificationFile: false
   path: C++/core/myvector.hpp
   requiredBy:
-  - C++/core/io/input.hpp
-  - C++/core/io/output.hpp
+  - C++/template.hpp
   - C++/core/mypair.hpp
-  - C++/math/divisor.hpp
+  - C++/core/io/output.hpp
+  - C++/core/io/input.hpp
   - C++/math/primefactortable.hpp
-  - C++/math/primetable.hpp
   - C++/math/primecounter.hpp
+  - C++/math/primetable.hpp
   - C++/math/primefactor.hpp
   - C++/math/psum/psum.hpp
-  - C++/template.hpp
+  - C++/math/divisor.hpp
   timestamp: '2024-03-09 13:04:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/fwtree.test.cpp
-  - test/pcounter.test.cpp
-  - test/add128.test.cpp
-  - test/extgcd.test.cpp
-  - test/m_add.test.cpp
-  - test/uf.test.cpp
-  - test/parsum.test.cpp
-  - test/aarray.test.cpp
-  - test/add.test.cpp
   - test/sr_sum.test.cpp
+  - test/extgcd.test.cpp
   - test/segtree.test.cpp
-  - test/s_rmq.test.cpp
   - test/stable.test.cpp
+  - test/aarray.test.cpp
+  - test/uf.test.cpp
+  - test/pcounter.test.cpp
+  - test/add.test.cpp
+  - test/add128.test.cpp
+  - test/fwtree.test.cpp
   - test/add128_2.test.cpp
+  - test/parsum.test.cpp
+  - test/m_add.test.cpp
+  - test/s_rmq.test.cpp
 documentation_of: C++/core/myvector.hpp
 layout: document
 redirect_from:

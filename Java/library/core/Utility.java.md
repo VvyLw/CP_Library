@@ -1258,42 +1258,13 @@ data:
     \ <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L449\"\
     >Lady_sANDy::iot</a>\n\t */\n\tpublic static final IntStream iota(final int n,\
     \ final int init){ return IntStream.range(0 + init, n + init); }\n\t/**\n\t *\
-    \ @param a\n\t * @param b\n\t * @return \u914D\u5217\u3092merge\u3057\u305F\u3082\
-    \u306E\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/merge.html\"\
-    >std::merge</a>\n\t * @implNote std::merge\u3068\u9055\u3063\u3066a, b\u304Csort\u3055\
-    \u308C\u3066\u3044\u306A\u304F\u3066\u3082\u52D5\u304F\n\t */\n\tprotected static\
-    \ final int[] merge(final int[] a, final int[] b) {\n\t\tfinal int[] c = new int[a.length\
-    \ + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0, a.length);\n\t\tSystem.arraycopy(b,\
-    \ 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\t\treturn c;\n\t}\n\t/**\n\
-    \t * @param a\n\t * @param b\n\t * @return \u914D\u5217\u3092merge\u3057\u305F\
-    \u3082\u306E\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/merge.html\"\
-    >std::merge</a>\n\t * @implNote std::merge\u3068\u9055\u3063\u3066a, b\u304Csort\u3055\
-    \u308C\u3066\u3044\u306A\u304F\u3066\u3082\u52D5\u304F\n\t */\n\tprotected static\
-    \ final long[] merge(final long[] a, final long[] b) {\n\t\tfinal long[] c = new\
-    \ long[a.length + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0, a.length);\n\t\t\
-    System.arraycopy(b, 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\t\treturn\
-    \ c;\n\t}\n\t/**\n\t * @param a\n\t * @param b\n\t * @return \u914D\u5217\u3092\
-    merge\u3057\u305F\u3082\u306E\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/merge.html\"\
-    >std::merge</a>\n\t * @implNote std::merge\u3068\u9055\u3063\u3066a, b\u304Csort\u3055\
-    \u308C\u3066\u3044\u306A\u304F\u3066\u3082\u52D5\u304F\n\t */\n\tprotected static\
-    \ final double[] merge(final double[] a, final double[] b) {\n\t\tfinal double[]\
-    \ c = new double[a.length + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0, a.length);\n\
-    \t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\t\t\
-    return c;\n\t}\n\t/**\n\t * @param a\n\t * @param b\n\t * @return \u914D\u5217\
-    \u3092merge\u3057\u305F\u3082\u306E\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/merge.html\"\
-    >std::merge</a>\n\t * @implNote std::merge\u3068\u9055\u3063\u3066a, b\u304Csort\u3055\
-    \u308C\u3066\u3044\u306A\u304F\u3066\u3082\u52D5\u304F\n\t */\n\tprotected static\
-    \ final String[] merge(final String[] a, final String[] b) {\n\t\tfinal String[]\
-    \ c = new String[a.length + b.length];\n\t\tSystem.arraycopy(a, 0, c, 0, a.length);\n\
-    \t\tSystem.arraycopy(b, 0, c, a.length, b.length);\n\t\tArrays.sort(c);\n\t\t\
-    return c;\n\t}\n\t/**\n\t * \u3081\u3050\u308B\u5F0F\u4E8C\u5206\u63A2\u7D22\n\
-    \t * @param ok\n\t * @param ng\n\t * @param fn\n\t * @see #lowerBound\n\t * @see\
-    \ #upperBound\n\t */\n\tprotected static final int bins(int ok, int ng, final\
-    \ IntPredicate fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal int mid\
-    \ = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\
-    \telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\t/**\n\t *\
     \ \u3081\u3050\u308B\u5F0F\u4E8C\u5206\u63A2\u7D22\n\t * @param ok\n\t * @param\
-    \ ng\n\t * @param fn\n\t * @see <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L696\"\
+    \ ng\n\t * @param fn\n\t * @see #lowerBound\n\t * @see #upperBound\n\t */\n\t\
+    protected static final int bins(int ok, int ng, final IntPredicate fn) {\n\t\t\
+    while(Math.abs(ok - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid))\
+    \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
+    }\n\t\treturn ok;\n\t}\n\t/**\n\t * \u3081\u3050\u308B\u5F0F\u4E8C\u5206\u63A2\
+    \u7D22\n\t * @param ok\n\t * @param ng\n\t * @param fn\n\t * @see <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L696\"\
     >Heileden::bins</a>\n\t */\n\tprotected static final long bins(long ok, long ng,\
     \ final LongPredicate fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal long\
     \ mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\
@@ -1383,190 +1354,190 @@ data:
     \t\tans += (n - (xm + a - 1) / a) * ym;\n\t\tans += floorSum(ym, a, m, (a - xm\
     \ % a) % a);\n\t\treturn ans;\n\t}\n}"
   dependsOn:
+  - Java/yukicoder.java
   - Java/AOJ.java
-  - Java/library/ds/lazysegmenttree/RASM.java
-  - Java/library/ds/lazysegmenttree/RUMN.java
-  - Java/library/ds/lazysegmenttree/RUMX.java
-  - Java/library/ds/lazysegmenttree/RAMX.java
-  - Java/library/ds/lazysegmenttree/LazySegmentTree.java
-  - Java/library/ds/lazysegmenttree/RAMN.java
+  - Java/All.java
+  - Java/library/graph/Edge.java
+  - Java/library/graph/LowestCommonAncestor.java
+  - Java/library/graph/Graph.java
+  - Java/library/graph/SCC.java
+  - Java/library/graph/ShortestPath.java
+  - Java/library/graph/WeightedGraph.java
+  - Java/library/graph/MST.java
+  - Java/library/ds/DoubleEndedPriorityQueue.java
+  - Java/library/ds/SparseTable.java
   - Java/library/ds/lazysegmenttree/RUSM.java
-  - Java/library/ds/pair/IntPair.java
+  - Java/library/ds/lazysegmenttree/RUMN.java
+  - Java/library/ds/lazysegmenttree/RAMN.java
+  - Java/library/ds/lazysegmenttree/RASM.java
+  - Java/library/ds/lazysegmenttree/LazySegmentTree.java
+  - Java/library/ds/lazysegmenttree/RAMX.java
+  - Java/library/ds/lazysegmenttree/RUMX.java
+  - Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
+  - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
+  - Java/library/ds/waveletmatrix/WaveletMatrix.java
+  - Java/library/ds/unionfind/MergeUnionFind.java
+  - Java/library/ds/unionfind/UnionFind.java
+  - Java/library/ds/unionfind/UndoUnionFind.java
+  - Java/library/ds/unionfind/WeightedUnionFind.java
+  - Java/library/ds/fenwicktree/RangeBIT.java
+  - Java/library/ds/fenwicktree/FenwickTree.java
+  - Java/library/ds/SegmentTree.java
+  - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/pair/FloatPair.java
+  - Java/library/ds/pair/IntPair.java
   - Java/library/ds/pair/Zwei.java
   - Java/library/ds/pair/Pair.java
   - Java/library/ds/deque/MyDeque.java
   - Java/library/ds/deque/IntDeque.java
   - Java/library/ds/ConvexHullTrick.java
-  - Java/library/ds/SegmentTree.java
-  - Java/library/ds/SparseTable.java
-  - Java/library/ds/DualSegmentTree.java
-  - Java/library/ds/unionfind/WeightedUnionFind.java
-  - Java/library/ds/unionfind/UndoUnionFind.java
-  - Java/library/ds/unionfind/MergeUnionFind.java
-  - Java/library/ds/unionfind/UnionFind.java
   - Java/library/ds/AVLTree.java
-  - Java/library/ds/DoubleEndedPriorityQueue.java
-  - Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
-  - Java/library/ds/waveletmatrix/WaveletMatrix.java
-  - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/ds/fenwicktree/RangeBIT.java
-  - Java/library/ds/fenwicktree/FenwickTree.java
-  - Java/library/core/VvyLw.java
-  - Java/library/core/interfaces/DSU.java
-  - Java/library/core/interfaces/lambda/RecursiveLongUnaryOperator.java
-  - Java/library/core/interfaces/lambda/RecursiveDoubleUnaryOperator.java
-  - Java/library/core/interfaces/lambda/RecursiveDoubleBinaryOperator.java
-  - Java/library/core/interfaces/lambda/RecursiveDoublePredicate.java
-  - Java/library/core/interfaces/lambda/RecursiveBiConsumer.java
-  - Java/library/core/interfaces/lambda/RecursiveDoubleConsumer.java
-  - Java/library/core/interfaces/lambda/RecursiveLongPredicate.java
-  - Java/library/core/interfaces/lambda/RecursiveTriConsumer.java
-  - Java/library/core/interfaces/lambda/RecursiveIntFunction.java
-  - Java/library/core/interfaces/lambda/RecursiveLongFunction.java
-  - Java/library/core/interfaces/lambda/RecursiveLongConsumer.java
-  - Java/library/core/interfaces/lambda/TriConsumer.java
-  - Java/library/core/interfaces/lambda/RecursiveConsumer.java
-  - Java/library/core/interfaces/lambda/RecursiveIntConsumer.java
-  - Java/library/core/interfaces/lambda/RecursivePredicate.java
-  - Java/library/core/interfaces/lambda/RecursiveIntBinaryOperator.java
-  - Java/library/core/interfaces/lambda/RecursiveBiPredicate.java
-  - Java/library/core/interfaces/lambda/TriFunction.java
-  - Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
-  - Java/library/core/interfaces/lambda/RecursiveFunction.java
-  - Java/library/core/interfaces/lambda/QuadFunction.java
-  - Java/library/core/interfaces/lambda/RecursiveUnaryOperator.java
-  - Java/library/core/interfaces/lambda/RecursiveIntUnaryOperator.java
-  - Java/library/core/interfaces/lambda/RecursiveBinaryOperator.java
-  - Java/library/core/interfaces/lambda/RecursiveDoubleFunction.java
-  - Java/library/core/interfaces/lambda/RecursiveBiFunction.java
-  - Java/library/core/interfaces/lambda/RecursiveTriPredicate.java
-  - Java/library/core/interfaces/lambda/TriPredicate.java
-  - Java/library/core/interfaces/lambda/RecursiveIntPredicate.java
-  - Java/library/core/interfaces/lambda/RecursiveTriFunction.java
-  - Java/library/core/io/IO.java
-  - Java/library/core/io/MyScanner.java
-  - Java/library/core/io/MyPrinter.java
-  - Java/library/core/Main.java
-  - Java/library/math/PrimeFactor.java
-  - Java/library/math/Matrix.java
-  - Java/library/math/largeprime/LongPrime.java
-  - Java/library/math/largeprime/BigPrime.java
-  - Java/library/math/EulerPhiTable.java
-  - Java/library/math/ModPrime.java
-  - Java/library/math/prefixsum/PrefixSum2D.java
-  - Java/library/math/prefixsum/PrefixSum.java
-  - Java/library/math/PrimeCounter.java
-  - Java/library/math/PrimeTable.java
-  - Java/library/other/SuffixArray.java
-  - Java/library/other/InclusiveScan.java
-  - Java/library/other/SkewHeap.java
   - Java/library/other/Why.java
   - Java/library/other/DP.java
-  - Java/library/graph/LowestCommonAncestor.java
-  - Java/library/graph/Graph.java
-  - Java/library/graph/SCC.java
-  - Java/library/graph/Edge.java
-  - Java/library/graph/ShortestPath.java
-  - Java/library/graph/WeightedGraph.java
-  - Java/library/graph/MST.java
-  - Java/All.java
-  - Java/yukicoder.java
+  - Java/library/other/InclusiveScan.java
+  - Java/library/other/SkewHeap.java
+  - Java/library/other/SuffixArray.java
+  - Java/library/core/Main.java
+  - Java/library/core/io/MyScanner.java
+  - Java/library/core/io/MyPrinter.java
+  - Java/library/core/io/IO.java
+  - Java/library/core/VvyLw.java
+  - Java/library/core/interfaces/DSU.java
+  - Java/library/core/interfaces/lambda/RecursiveLongPredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveDoubleFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveUnaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveDoublePredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveIntUnaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveDoubleBinaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveLongConsumer.java
+  - Java/library/core/interfaces/lambda/TriPredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveIntFunction.java
+  - Java/library/core/interfaces/lambda/QuadFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveLongFunction.java
+  - Java/library/core/interfaces/lambda/RecursivePredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveBiPredicate.java
+  - Java/library/core/interfaces/lambda/TriFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveIntPredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveDoubleUnaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveBiFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveBinaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveIntBinaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveLongUnaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveTriFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveDoubleConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveIntConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveTriPredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/lambda/TriConsumer.java
+  - Java/library/math/PrimeCounter.java
+  - Java/library/math/Matrix.java
+  - Java/library/math/PrimeFactor.java
+  - Java/library/math/EulerPhiTable.java
+  - Java/library/math/PrimeTable.java
+  - Java/library/math/prefixsum/PrefixSum2D.java
+  - Java/library/math/prefixsum/PrefixSum.java
+  - Java/library/math/ModPrime.java
+  - Java/library/math/largeprime/LongPrime.java
+  - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
   isVerificationFile: false
   path: Java/library/core/Utility.java
   requiredBy:
+  - Java/yukicoder.java
   - Java/AOJ.java
-  - Java/library/ds/lazysegmenttree/RASM.java
-  - Java/library/ds/lazysegmenttree/RUMN.java
-  - Java/library/ds/lazysegmenttree/RUMX.java
-  - Java/library/ds/lazysegmenttree/RAMX.java
-  - Java/library/ds/lazysegmenttree/LazySegmentTree.java
-  - Java/library/ds/lazysegmenttree/RAMN.java
+  - Java/All.java
+  - Java/library/graph/Edge.java
+  - Java/library/graph/LowestCommonAncestor.java
+  - Java/library/graph/Graph.java
+  - Java/library/graph/SCC.java
+  - Java/library/graph/ShortestPath.java
+  - Java/library/graph/WeightedGraph.java
+  - Java/library/graph/MST.java
+  - Java/library/ds/DoubleEndedPriorityQueue.java
+  - Java/library/ds/SparseTable.java
   - Java/library/ds/lazysegmenttree/RUSM.java
-  - Java/library/ds/pair/IntPair.java
+  - Java/library/ds/lazysegmenttree/RUMN.java
+  - Java/library/ds/lazysegmenttree/RAMN.java
+  - Java/library/ds/lazysegmenttree/RASM.java
+  - Java/library/ds/lazysegmenttree/LazySegmentTree.java
+  - Java/library/ds/lazysegmenttree/RAMX.java
+  - Java/library/ds/lazysegmenttree/RUMX.java
+  - Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
+  - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
+  - Java/library/ds/waveletmatrix/WaveletMatrix.java
+  - Java/library/ds/unionfind/MergeUnionFind.java
+  - Java/library/ds/unionfind/UnionFind.java
+  - Java/library/ds/unionfind/UndoUnionFind.java
+  - Java/library/ds/unionfind/WeightedUnionFind.java
+  - Java/library/ds/fenwicktree/RangeBIT.java
+  - Java/library/ds/fenwicktree/FenwickTree.java
+  - Java/library/ds/SegmentTree.java
+  - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/pair/FloatPair.java
+  - Java/library/ds/pair/IntPair.java
   - Java/library/ds/pair/Zwei.java
   - Java/library/ds/pair/Pair.java
   - Java/library/ds/deque/MyDeque.java
   - Java/library/ds/deque/IntDeque.java
   - Java/library/ds/ConvexHullTrick.java
-  - Java/library/ds/SegmentTree.java
-  - Java/library/ds/SparseTable.java
-  - Java/library/ds/DualSegmentTree.java
-  - Java/library/ds/unionfind/WeightedUnionFind.java
-  - Java/library/ds/unionfind/UndoUnionFind.java
-  - Java/library/ds/unionfind/MergeUnionFind.java
-  - Java/library/ds/unionfind/UnionFind.java
   - Java/library/ds/AVLTree.java
-  - Java/library/ds/DoubleEndedPriorityQueue.java
-  - Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
-  - Java/library/ds/waveletmatrix/WaveletMatrix.java
-  - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/ds/fenwicktree/RangeBIT.java
-  - Java/library/ds/fenwicktree/FenwickTree.java
-  - Java/library/core/VvyLw.java
-  - Java/library/core/interfaces/DSU.java
-  - Java/library/core/interfaces/lambda/RecursiveLongUnaryOperator.java
-  - Java/library/core/interfaces/lambda/RecursiveDoubleUnaryOperator.java
-  - Java/library/core/interfaces/lambda/RecursiveDoubleBinaryOperator.java
-  - Java/library/core/interfaces/lambda/RecursiveDoublePredicate.java
-  - Java/library/core/interfaces/lambda/RecursiveBiConsumer.java
-  - Java/library/core/interfaces/lambda/RecursiveDoubleConsumer.java
-  - Java/library/core/interfaces/lambda/RecursiveLongPredicate.java
-  - Java/library/core/interfaces/lambda/RecursiveTriConsumer.java
-  - Java/library/core/interfaces/lambda/RecursiveIntFunction.java
-  - Java/library/core/interfaces/lambda/RecursiveLongFunction.java
-  - Java/library/core/interfaces/lambda/RecursiveLongConsumer.java
-  - Java/library/core/interfaces/lambda/TriConsumer.java
-  - Java/library/core/interfaces/lambda/RecursiveConsumer.java
-  - Java/library/core/interfaces/lambda/RecursiveIntConsumer.java
-  - Java/library/core/interfaces/lambda/RecursivePredicate.java
-  - Java/library/core/interfaces/lambda/RecursiveIntBinaryOperator.java
-  - Java/library/core/interfaces/lambda/RecursiveBiPredicate.java
-  - Java/library/core/interfaces/lambda/TriFunction.java
-  - Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
-  - Java/library/core/interfaces/lambda/RecursiveFunction.java
-  - Java/library/core/interfaces/lambda/QuadFunction.java
-  - Java/library/core/interfaces/lambda/RecursiveUnaryOperator.java
-  - Java/library/core/interfaces/lambda/RecursiveIntUnaryOperator.java
-  - Java/library/core/interfaces/lambda/RecursiveBinaryOperator.java
-  - Java/library/core/interfaces/lambda/RecursiveDoubleFunction.java
-  - Java/library/core/interfaces/lambda/RecursiveBiFunction.java
-  - Java/library/core/interfaces/lambda/RecursiveTriPredicate.java
-  - Java/library/core/interfaces/lambda/TriPredicate.java
-  - Java/library/core/interfaces/lambda/RecursiveIntPredicate.java
-  - Java/library/core/interfaces/lambda/RecursiveTriFunction.java
-  - Java/library/core/io/IO.java
-  - Java/library/core/io/MyScanner.java
-  - Java/library/core/io/MyPrinter.java
-  - Java/library/core/Main.java
-  - Java/library/math/PrimeFactor.java
-  - Java/library/math/Matrix.java
-  - Java/library/math/largeprime/LongPrime.java
-  - Java/library/math/largeprime/BigPrime.java
-  - Java/library/math/EulerPhiTable.java
-  - Java/library/math/ModPrime.java
-  - Java/library/math/prefixsum/PrefixSum2D.java
-  - Java/library/math/prefixsum/PrefixSum.java
-  - Java/library/math/PrimeCounter.java
-  - Java/library/math/PrimeTable.java
-  - Java/library/other/SuffixArray.java
-  - Java/library/other/InclusiveScan.java
-  - Java/library/other/SkewHeap.java
   - Java/library/other/Why.java
   - Java/library/other/DP.java
-  - Java/library/graph/LowestCommonAncestor.java
-  - Java/library/graph/Graph.java
-  - Java/library/graph/SCC.java
-  - Java/library/graph/Edge.java
-  - Java/library/graph/ShortestPath.java
-  - Java/library/graph/WeightedGraph.java
-  - Java/library/graph/MST.java
-  - Java/All.java
-  - Java/yukicoder.java
+  - Java/library/other/InclusiveScan.java
+  - Java/library/other/SkewHeap.java
+  - Java/library/other/SuffixArray.java
+  - Java/library/core/Main.java
+  - Java/library/core/io/MyScanner.java
+  - Java/library/core/io/MyPrinter.java
+  - Java/library/core/io/IO.java
+  - Java/library/core/VvyLw.java
+  - Java/library/core/interfaces/DSU.java
+  - Java/library/core/interfaces/lambda/RecursiveLongPredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveDoubleFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveUnaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveDoublePredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveIntUnaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveDoubleBinaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveLongConsumer.java
+  - Java/library/core/interfaces/lambda/TriPredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveIntFunction.java
+  - Java/library/core/interfaces/lambda/QuadFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveLongFunction.java
+  - Java/library/core/interfaces/lambda/RecursivePredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveBiPredicate.java
+  - Java/library/core/interfaces/lambda/TriFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveIntPredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveDoubleUnaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveBiFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveBinaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveIntBinaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveLongUnaryOperator.java
+  - Java/library/core/interfaces/lambda/RecursiveTriFunction.java
+  - Java/library/core/interfaces/lambda/RecursiveDoubleConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveIntConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveTriConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveTriPredicate.java
+  - Java/library/core/interfaces/lambda/RecursiveBiConsumer.java
+  - Java/library/core/interfaces/lambda/TriConsumer.java
+  - Java/library/math/PrimeCounter.java
+  - Java/library/math/Matrix.java
+  - Java/library/math/PrimeFactor.java
+  - Java/library/math/EulerPhiTable.java
+  - Java/library/math/PrimeTable.java
+  - Java/library/math/prefixsum/PrefixSum2D.java
+  - Java/library/math/prefixsum/PrefixSum.java
+  - Java/library/math/ModPrime.java
+  - Java/library/math/largeprime/LongPrime.java
+  - Java/library/math/largeprime/BigPrime.java
   - Java/CodeForces.java
-  timestamp: '2024-03-13 03:49:24+09:00'
+  timestamp: '2024-03-13 19:51:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

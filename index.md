@@ -161,6 +161,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/other/dp.hpp
       title: DP(Knapsack, LCS, LIS)
+    - icon: ':warning:'
+      path: C++/other/merge_sort.hpp
+      title: C++/other/merge_sort.hpp
   - name: C++/string
     pages:
     - icon: ':heavy_check_mark:'
