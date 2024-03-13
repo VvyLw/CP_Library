@@ -884,34 +884,6 @@ class Utility {
 	protected static final double[] second(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i -> i.second).toArray(); }
 	protected static final IntStream iota(final int n){ return IntStream.range(0, n); }
 	protected static final IntStream iota(final int n, final int init){ return IntStream.range(0 + init, n + init); }
-	protected static final int[] merge(final int[] a, final int[] b) {
-		final int[] c = new int[a.length + b.length];
-		System.arraycopy(a, 0, c, 0, a.length);
-		System.arraycopy(b, 0, c, a.length, b.length);
-		Arrays.sort(c);
-		return c;
-	}
-	protected static final long[] merge(final long[] a, final long[] b) {
-		final long[] c = new long[a.length + b.length];
-		System.arraycopy(a, 0, c, 0, a.length);
-		System.arraycopy(b, 0, c, a.length, b.length);
-		Arrays.sort(c);
-		return c;
-	}
-	protected static final double[] merge(final double[] a, final double[] b) {
-		final double[] c = new double[a.length + b.length];
-		System.arraycopy(a, 0, c, 0, a.length);
-		System.arraycopy(b, 0, c, a.length, b.length);
-		Arrays.sort(c);
-		return c;
-	}
-	protected static final String[] merge(final String[] a, final String[] b) {
-		final String[] c = new String[a.length + b.length];
-		System.arraycopy(a, 0, c, 0, a.length);
-		System.arraycopy(b, 0, c, a.length, b.length);
-		Arrays.sort(c);
-		return c;
-	}
 	protected static final int bins(int ok, int ng, final IntPredicate fn) {
 		while(abs(ok - ng) > 1) {
 			final int mid = (ok + ng) / 2;
