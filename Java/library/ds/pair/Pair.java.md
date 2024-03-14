@@ -761,7 +761,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-13 19:51:28+09:00'
+  timestamp: '2024-03-15 03:35:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/pair/Pair.java

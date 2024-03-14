@@ -959,11 +959,40 @@ data:
     \t}\n\tprotected static final Map<Long, Integer> counter(final long[] a) {\n\t\
     \tfinal Map<Long, Integer> res = new HashMap<>();\n\t\tfor(final long i: a) {\n\
     \t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
-    \ static final int[] corPress(final int[] a) {\n\t\tfinal int[] res = new int[a.length];\n\
-    \t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tArrays.setAll(res,\
-    \ i -> lowerBound(x, a[i]));\n\t\treturn res;\n\t}\n\tprotected static final int[]\
-    \ corPress(final long[] a) {\n\t\tfinal int[] res = new int[a.length];\n\t\tfinal\
-    \ long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tArrays.setAll(res,\
+    \ static final long innerProd(final IntPair... p){ return iota(p.length).mapToLong(i\
+    \ -> p[i].first.longValue() * p[i].second.longValue()).sum(); }\n\tprotected static\
+    \ final double innerProd(final FloatPair... p){ return iota(p.length).mapToDouble(i\
+    \ -> p[i].first.doubleValue() * p[i].second.doubleValue()).sum(); }\n\tprotected\
+    \ static final FloatPair intersection(final IntPair a, final long sec1, final\
+    \ IntPair b, final long sec2) {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.first.longValue()\
+    \ == 0 && b.first.longValue() == 0) {\n\t\t\treturn null;\n\t\t} else if(a.second.longValue()\
+    \ == 0) {\n\t\t\tm2 = -b.first.doubleValue() / b.second.longValue();\n\t\t\tb2\
+    \ = -sec2 / b.second.doubleValue();\n\t\t\tfinal double x = -sec1 / a.first.doubleValue(),\
+    \ y = b2 + m2 * x; \n\t\t\treturn FloatPair.of(x, y);\n\t\t} else if(b.second.longValue()\
+    \ == 0) {\n\t\t\tm1 = -a.first.doubleValue() / a.second.longValue();\n\t\t\tb1\
+    \ = -sec1 / a.second.doubleValue();\n\t\t\tfinal double x = -sec2 / b.first.doubleValue(),\
+    \ y = b1 + m1 * x;\n\t\t\treturn FloatPair.of(x, y);\n\t\t}\n\t\tm1 = -a.first.doubleValue()\
+    \ / a.second.longValue();\n\t\tm2 = -b.first.doubleValue() / b.second.longValue();\n\
+    \t\tb1 = -sec1 / a.second.doubleValue();\n\t\tb2 = -sec2 / b.second.doubleValue();\n\
+    \t\tassert m1 != m2;\n\t\tfinal double x = (b1 - b2) / (m2 - m1), y = m1 * x +\
+    \ b1;\n\t\treturn FloatPair.of(x, y);\n\t}\n\tprotected static final FloatPair\
+    \ intersection(final FloatPair a, final double sec1, final FloatPair b, final\
+    \ double sec2) {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.first.doubleValue() ==\
+    \ 0 && b.first.doubleValue() == 0) {\n\t\t\treturn null;\n\t\t} else if(a.second.doubleValue()\
+    \ == 0) {\n\t\t\tm2 = -b.first.doubleValue() / b.second.doubleValue();\n\t\t\t\
+    b2 = -sec2 / b.second.doubleValue();\n\t\t\tfinal double x = -sec1 / a.first.doubleValue(),\
+    \ y = b2 + m2 * x; \n\t\t\treturn FloatPair.of(x, y);\n\t\t} else if(b.second.doubleValue()\
+    \ == 0) {\n\t\t\tm1 = -a.first.doubleValue() / a.second.doubleValue();\n\t\t\t\
+    b1 = -sec1 / a.second.doubleValue();\n\t\t\tfinal double x = -sec2 / b.first.doubleValue(),\
+    \ y = b1 + m1 * x;\n\t\t\treturn FloatPair.of(x, y);\n\t\t}\n\t\tm1 = -a.first.doubleValue()\
+    \ / a.second.doubleValue();\n\t\tm2 = -b.first.doubleValue() / b.second.doubleValue();\n\
+    \t\tb1 = -sec1 / a.second.doubleValue();\n\t\tb2 = -sec2 / b.second.doubleValue();\n\
+    \t\tassert m1 != m2;\n\t\tfinal double x = (b1 - b2) / (m2 - m1), y = m1 * x +\
+    \ b1;\n\t\treturn FloatPair.of(x, y);\n\t}\n\tprotected static final int[] corPress(final\
+    \ int[] a) {\n\t\tfinal int[] res = new int[a.length];\n\t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
+    \t\tArrays.setAll(res, i -> lowerBound(x, a[i]));\n\t\treturn res;\n\t}\n\tprotected\
+    \ static final int[] corPress(final long[] a) {\n\t\tfinal int[] res = new int[a.length];\n\
+    \t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tArrays.setAll(res,\
     \ i -> lowerBound(x, a[i]));\n\t\treturn res;\n\t}\n\tprotected static final String\
     \ runLenPress(final String s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder\
     \ sb = new StringBuilder();\n\t\tfor(int l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\
@@ -1508,7 +1537,7 @@ data:
   - Java/library/graph/MST.java
   - Java/All.java
   - Java/CodeForces.java
-  timestamp: '2024-03-13 19:51:28+09:00'
+  timestamp: '2024-03-15 03:35:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java

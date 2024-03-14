@@ -607,20 +607,20 @@ data:
     \t\t\t}\n\t\t}\n\t\tfinal ArrayList<Integer> ord = new ArrayList<>();\n\t\twhile(!sk.isEmpty())\
     \ {\n\t\t\tfinal int tmp = sk.pop();\n\t\t\tord.add(tmp);\n\t\t\tfor(final Edge\
     \ ed: this.get(tmp)) {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ord.size() == n ? ord : new ArrayList<>();\n\
-    \t}\n\t/**\n\t * @return \u30B5\u30A4\u30AF\u30EB\n\t * if non-existence: \u7A7A\
-    \u914D\u5217\n\t * @implNote \u6709\u5411\u30B0\u30E9\u30D5\n\t */\n\tpublic final\
-    \ Edge[] cycleDetector() {\n\t\tfinal int[] used = new int[n];\n\t\tfinal Edge[]\
-    \ pre = new Edge[n];\n\t\tfinal ArrayList<Edge> cycle = new ArrayList<>();\n\t\
-    \tfinal RecursiveIntPredicate dfs = (rec, i) -> {\n\t\t\tused[i] = 1;\n\t\t\t\
-    for(final Edge e: get(i)) {\n\t\t\t\tif(used[e.to] == 0) {\n\t\t\t\t\tpre[e.to]\
-    \ = e;\n\t\t\t\t\tif(rec.test(rec, e.to)) {\n\t\t\t\t\t\treturn true;\n\t\t\t\t\
-    \t}\n\t\t\t\t} else if(used[e.to] == 1) {\n\t\t\t\t\tint now = i;\n\t\t\t\t\t\
-    while(now != e.to) {\n\t\t\t\t\t\tcycle.add(pre[now]);\n\t\t\t\t\t\tnow = pre[now].src;\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ord.size() == n ? ord : null;\n\t}\n\t/**\n\
+    \t * @return \u30B5\u30A4\u30AF\u30EB\n\t * if non-existence: \u7A7A\u914D\u5217\
+    \n\t * @implNote \u6709\u5411\u30B0\u30E9\u30D5\n\t */\n\tpublic final Edge[]\
+    \ cycleDetector() {\n\t\tfinal int[] used = new int[n];\n\t\tfinal Edge[] pre\
+    \ = new Edge[n];\n\t\tfinal ArrayList<Edge> cycle = new ArrayList<>();\n\t\tfinal\
+    \ RecursiveIntPredicate dfs = (rec, i) -> {\n\t\t\tused[i] = 1;\n\t\t\tfor(final\
+    \ Edge e: get(i)) {\n\t\t\t\tif(used[e.to] == 0) {\n\t\t\t\t\tpre[e.to] = e;\n\
+    \t\t\t\t\tif(rec.test(rec, e.to)) {\n\t\t\t\t\t\treturn true;\n\t\t\t\t\t}\n\t\
+    \t\t\t} else if(used[e.to] == 1) {\n\t\t\t\t\tint now = i;\n\t\t\t\t\twhile(now\
+    \ != e.to) {\n\t\t\t\t\t\tcycle.add(pre[now]);\n\t\t\t\t\t\tnow = pre[now].src;\n\
     \t\t\t\t\t}\n\t\t\t\t\tcycle.add(e);\n\t\t\t\t\treturn true;\n\t\t\t\t}\n\t\t\t\
     }\n\t\t\tused[i] = 2;\n\t\t\treturn false;\n\t\t};\n\t\tfor(int i = 0; i < n;\
     \ ++i) {\n\t\t\tif(used[i] == 0 && dfs.test(dfs, i)) {\n\t\t\t\tCollections.reverse(cycle);\n\
-    \t\t\t\treturn cycle.toArray(Edge[]::new);\n\t\t\t}\n\t\t}\n\t\treturn new Edge[]{};\n\
+    \t\t\t\treturn cycle.toArray(Edge[]::new);\n\t\t\t}\n\t\t}\n\t\treturn null;\n\
     \t}\n\t@Override\n\tpublic String toString() {\n\t\tfinal StringBuilder sb = new\
     \ StringBuilder();\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int m = get(i).size();\n\
     \t\t\tsb.append(i + \": [\");\n\t\t\tfor(int j = 0; j < m; ++j) {\n\t\t\t\tsb.append(get(i).get(j).to);\n\
@@ -811,7 +811,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-13 19:51:28+09:00'
+  timestamp: '2024-03-15 03:35:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/Graph.java

@@ -1284,24 +1284,61 @@ data:
     \ @param a\n\t */\n\tprotected static final Map<Long, Integer> counter(final long[]\
     \ a) {\n\t\tfinal Map<Long, Integer> res = new HashMap<>();\n\t\tfor(final long\
     \ i: a) {\n\t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\treturn res;\n\t\
-    }\n\t/**\n\t * \u5EA7\u6A19\u5727\u7E2E\n\t * @param a\n\t */\n\tprotected static\
-    \ final int[] corPress(final int[] a) {\n\t\tfinal int[] res = new int[a.length];\n\
-    \t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tArrays.setAll(res,\
-    \ i -> lowerBound(x, a[i]));\n\t\treturn res;\n\t}\n\t/**\n\t * \u5EA7\u6A19\u5727\
-    \u7E2E\n\t * @param a\n\t */\n\tprotected static final int[] corPress(final long[]\
-    \ a) {\n\t\tfinal int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
+    }\n\t/**\n\t * @param p\n\t * @return \u5185\u7A4D\n\t */\n\tprotected static\
+    \ final long innerProd(final IntPair... p){ return iota(p.length).mapToLong(i\
+    \ -> p[i].first.longValue() * p[i].second.longValue()).sum(); }\n\t/**\n\t * @param\
+    \ p\n\t * @return \u5185\u7A4D\n\t */\n\tprotected static final double innerProd(final\
+    \ FloatPair... p){ return iota(p.length).mapToDouble(i -> p[i].first.doubleValue()\
+    \ * p[i].second.doubleValue()).sum(); }\n\t/**\n\t * @param a\n\t * @param sec1\n\
+    \t * @param b\n\t * @param sec2\n\t * @return \u76F4\u7DDAa.first * x + a.second\
+    \ * y + sec1 = 0\u3068\u76F4\u7DDAb.first * x + b.second * y + sec2 = 0\u306E\u4EA4\
+    \u70B9\n\t */\n\tprotected static final FloatPair intersection(final IntPair a,\
+    \ final long sec1, final IntPair b, final long sec2) {\n\t\tdouble m1, m2, b1,\
+    \ b2;\n\t\tif(a.first.longValue() == 0 && b.first.longValue() == 0) {\n\t\t\t\
+    return null;\n\t\t} else if(a.second.longValue() == 0) {\n\t\t\tm2 = -b.first.doubleValue()\
+    \ / b.second.longValue();\n\t\t\tb2 = -sec2 / b.second.doubleValue();\n\t\t\t\
+    final double x = -sec1 / a.first.doubleValue(), y = b2 + m2 * x; \n\t\t\treturn\
+    \ FloatPair.of(x, y);\n\t\t} else if(b.second.longValue() == 0) {\n\t\t\tm1 =\
+    \ -a.first.doubleValue() / a.second.longValue();\n\t\t\tb1 = -sec1 / a.second.doubleValue();\n\
+    \t\t\tfinal double x = -sec2 / b.first.doubleValue(), y = b1 + m1 * x;\n\t\t\t\
+    return FloatPair.of(x, y);\n\t\t}\n\t\tm1 = -a.first.doubleValue() / a.second.longValue();\n\
+    \t\tm2 = -b.first.doubleValue() / b.second.longValue();\n\t\tb1 = -sec1 / a.second.doubleValue();\n\
+    \t\tb2 = -sec2 / b.second.doubleValue();\n\t\tassert m1 != m2;\n\t\tfinal double\
+    \ x = (b1 - b2) / (m2 - m1), y = m1 * x + b1;\n\t\treturn FloatPair.of(x, y);\n\
+    \t}\n\t/**\n\t * @param a\n\t * @param sec1\n\t * @param b\n\t * @param sec2\n\
+    \t * @return \u76F4\u7DDAa.first * x + a.second * y + sec1 = 0\u3068\u76F4\u7DDA\
+    b.first * x + b.second * y + sec2 = 0\u306E\u4EA4\u70B9\n\t */\n\tprotected static\
+    \ final FloatPair intersection(final FloatPair a, final double sec1, final FloatPair\
+    \ b, final double sec2) {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.first.doubleValue()\
+    \ == 0 && b.first.doubleValue() == 0) {\n\t\t\treturn null;\n\t\t} else if(a.second.doubleValue()\
+    \ == 0) {\n\t\t\tm2 = -b.first.doubleValue() / b.second.doubleValue();\n\t\t\t\
+    b2 = -sec2 / b.second.doubleValue();\n\t\t\tfinal double x = -sec1 / a.first.doubleValue(),\
+    \ y = b2 + m2 * x; \n\t\t\treturn FloatPair.of(x, y);\n\t\t} else if(b.second.doubleValue()\
+    \ == 0) {\n\t\t\tm1 = -a.first.doubleValue() / a.second.doubleValue();\n\t\t\t\
+    b1 = -sec1 / a.second.doubleValue();\n\t\t\tfinal double x = -sec2 / b.first.doubleValue(),\
+    \ y = b1 + m1 * x;\n\t\t\treturn FloatPair.of(x, y);\n\t\t}\n\t\tm1 = -a.first.doubleValue()\
+    \ / a.second.doubleValue();\n\t\tm2 = -b.first.doubleValue() / b.second.doubleValue();\n\
+    \t\tb1 = -sec1 / a.second.doubleValue();\n\t\tb2 = -sec2 / b.second.doubleValue();\n\
+    \t\tassert m1 != m2;\n\t\tfinal double x = (b1 - b2) / (m2 - m1), y = m1 * x +\
+    \ b1;\n\t\treturn FloatPair.of(x, y);\n\t}\n\t/**\n\t * \u5EA7\u6A19\u5727\u7E2E\
+    \n\t * @param a\n\t */\n\tprotected static final int[] corPress(final int[] a)\
+    \ {\n\t\tfinal int[] res = new int[a.length];\n\t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
     \t\tArrays.setAll(res, i -> lowerBound(x, a[i]));\n\t\treturn res;\n\t}\n\t/**\n\
-    \t * @param s\n\t * @return \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\n\
-    \t */\n\tprotected static final String runLenPress(final String s) {\n\t\tfinal\
-    \ int n = s.length();\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\t\
-    for(int l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\t\t\tfor(; r < n && s.charAt(l)\
-    \ == s.charAt(r); ++r){}\n\t\t\tsb.append(s.charAt(l));\n\t\t\tsb.append(r - l);\n\
-    \t\t\tl = r;\n\t\t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t * @param s\n\t\
-    \ * @return \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\u3057\u305F\u3082\
-    \u306E\u3092\u623B\u3059\n\t */\n\tprotected static final String runLenRev(final\
-    \ String s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder sb = new\
-    \ StringBuilder();\n\t\tfor(int l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\t\t\t\
-    for(; r < n && scope('0', s.charAt(r), '9'); ++r){}\n\t\t\tsb.append(String.valueOf(s.charAt(l)).repeat(Integer.parseInt(s.substring(l\
+    \t * \u5EA7\u6A19\u5727\u7E2E\n\t * @param a\n\t */\n\tprotected static final\
+    \ int[] corPress(final long[] a) {\n\t\tfinal int[] res = new int[a.length];\n\
+    \t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tArrays.setAll(res,\
+    \ i -> lowerBound(x, a[i]));\n\t\treturn res;\n\t}\n\t/**\n\t * @param s\n\t *\
+    \ @return \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\n\t */\n\tprotected\
+    \ static final String runLenPress(final String s) {\n\t\tfinal int n = s.length();\n\
+    \t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfor(int l = 0; l < n;)\
+    \ {\n\t\t\tint r = l + 1;\n\t\t\tfor(; r < n && s.charAt(l) == s.charAt(r); ++r){}\n\
+    \t\t\tsb.append(s.charAt(l));\n\t\t\tsb.append(r - l);\n\t\t\tl = r;\n\t\t}\n\t\
+    \treturn sb.toString();\n\t}\n\t/**\n\t * @param s\n\t * @return \u30E9\u30F3\u30EC\
+    \u30F3\u30B0\u30B9\u5727\u7E2E\u3057\u305F\u3082\u306E\u3092\u623B\u3059\n\t */\n\
+    \tprotected static final String runLenRev(final String s) {\n\t\tfinal int n =\
+    \ s.length();\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfor(int\
+    \ l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\t\t\tfor(; r < n && scope('0', s.charAt(r),\
+    \ '9'); ++r){}\n\t\t\tsb.append(String.valueOf(s.charAt(l)).repeat(Integer.parseInt(s.substring(l\
     \ + 1, r))));\n\t\t\tl = r;\n\t\t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t\
     \ * @param s\n\t * @see <a href=\"https://ei1333.github.io/library/string/z-algorithm.hpp\"\
     >Z-Algorithm</a>\n\t */\n\tprotected static final int[] zAlgorithm(final String\
@@ -1537,7 +1574,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-13 19:51:28+09:00'
+  timestamp: '2024-03-15 03:35:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

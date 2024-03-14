@@ -969,11 +969,40 @@ data:
     \t}\n\tprotected static final Map<Long, Integer> counter(final long[] a) {\n\t\
     \tfinal Map<Long, Integer> res = new HashMap<>();\n\t\tfor(final long i: a) {\n\
     \t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
-    \ static final int[] corPress(final int[] a) {\n\t\tfinal int[] res = new int[a.length];\n\
-    \t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tArrays.setAll(res,\
-    \ i -> lowerBound(x, a[i]));\n\t\treturn res;\n\t}\n\tprotected static final int[]\
-    \ corPress(final long[] a) {\n\t\tfinal int[] res = new int[a.length];\n\t\tfinal\
-    \ long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tArrays.setAll(res,\
+    \ static final long innerProd(final IntPair... p){ return iota(p.length).mapToLong(i\
+    \ -> p[i].first.longValue() * p[i].second.longValue()).sum(); }\n\tprotected static\
+    \ final double innerProd(final FloatPair... p){ return iota(p.length).mapToDouble(i\
+    \ -> p[i].first.doubleValue() * p[i].second.doubleValue()).sum(); }\n\tprotected\
+    \ static final FloatPair intersection(final IntPair a, final long sec1, final\
+    \ IntPair b, final long sec2) {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.first.longValue()\
+    \ == 0 && b.first.longValue() == 0) {\n\t\t\treturn null;\n\t\t} else if(a.second.longValue()\
+    \ == 0) {\n\t\t\tm2 = -b.first.doubleValue() / b.second.longValue();\n\t\t\tb2\
+    \ = -sec2 / b.second.doubleValue();\n\t\t\tfinal double x = -sec1 / a.first.doubleValue(),\
+    \ y = b2 + m2 * x; \n\t\t\treturn FloatPair.of(x, y);\n\t\t} else if(b.second.longValue()\
+    \ == 0) {\n\t\t\tm1 = -a.first.doubleValue() / a.second.longValue();\n\t\t\tb1\
+    \ = -sec1 / a.second.doubleValue();\n\t\t\tfinal double x = -sec2 / b.first.doubleValue(),\
+    \ y = b1 + m1 * x;\n\t\t\treturn FloatPair.of(x, y);\n\t\t}\n\t\tm1 = -a.first.doubleValue()\
+    \ / a.second.longValue();\n\t\tm2 = -b.first.doubleValue() / b.second.longValue();\n\
+    \t\tb1 = -sec1 / a.second.doubleValue();\n\t\tb2 = -sec2 / b.second.doubleValue();\n\
+    \t\tassert m1 != m2;\n\t\tfinal double x = (b1 - b2) / (m2 - m1), y = m1 * x +\
+    \ b1;\n\t\treturn FloatPair.of(x, y);\n\t}\n\tprotected static final FloatPair\
+    \ intersection(final FloatPair a, final double sec1, final FloatPair b, final\
+    \ double sec2) {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.first.doubleValue() ==\
+    \ 0 && b.first.doubleValue() == 0) {\n\t\t\treturn null;\n\t\t} else if(a.second.doubleValue()\
+    \ == 0) {\n\t\t\tm2 = -b.first.doubleValue() / b.second.doubleValue();\n\t\t\t\
+    b2 = -sec2 / b.second.doubleValue();\n\t\t\tfinal double x = -sec1 / a.first.doubleValue(),\
+    \ y = b2 + m2 * x; \n\t\t\treturn FloatPair.of(x, y);\n\t\t} else if(b.second.doubleValue()\
+    \ == 0) {\n\t\t\tm1 = -a.first.doubleValue() / a.second.doubleValue();\n\t\t\t\
+    b1 = -sec1 / a.second.doubleValue();\n\t\t\tfinal double x = -sec2 / b.first.doubleValue(),\
+    \ y = b1 + m1 * x;\n\t\t\treturn FloatPair.of(x, y);\n\t\t}\n\t\tm1 = -a.first.doubleValue()\
+    \ / a.second.doubleValue();\n\t\tm2 = -b.first.doubleValue() / b.second.doubleValue();\n\
+    \t\tb1 = -sec1 / a.second.doubleValue();\n\t\tb2 = -sec2 / b.second.doubleValue();\n\
+    \t\tassert m1 != m2;\n\t\tfinal double x = (b1 - b2) / (m2 - m1), y = m1 * x +\
+    \ b1;\n\t\treturn FloatPair.of(x, y);\n\t}\n\tprotected static final int[] corPress(final\
+    \ int[] a) {\n\t\tfinal int[] res = new int[a.length];\n\t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
+    \t\tArrays.setAll(res, i -> lowerBound(x, a[i]));\n\t\treturn res;\n\t}\n\tprotected\
+    \ static final int[] corPress(final long[] a) {\n\t\tfinal int[] res = new int[a.length];\n\
+    \t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tArrays.setAll(res,\
     \ i -> lowerBound(x, a[i]));\n\t\treturn res;\n\t}\n\tprotected static final String\
     \ runLenPress(final String s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder\
     \ sb = new StringBuilder();\n\t\tfor(int l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\
@@ -1306,7 +1335,7 @@ data:
     \ - second * sin(rad), first * sin(rad) + second * cos(rad));\n\t}\n\tfinal long\
     \ dot(final IntPair p){ return first * p.first + second * p.second; }\n\tfinal\
     \ long cross(final IntPair p){ return rotate().dot(p); }\n\tfinal long sqr(){\
-    \ return dot(this); }\n\tfinal double grad() { \n\t\ttry {\n\t\t\treturn 1.0 *\
+    \ return dot(this); }\n\tfinal double grad() {\n\t\ttry {\n\t\t\treturn 1.0 *\
     \ second / first;\n\t\t} catch(final ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
     \t\t}\n\t\tthrow new Error();\n\t}\n\tfinal double abs(){ return hypot(first,\
     \ second); }\n\tfinal long lcm(){ return Utility.lcm(first, second); }\n\tfinal\
@@ -1389,21 +1418,21 @@ data:
     \ ord = new ArrayList<>();\n\t\twhile(!sk.isEmpty()) {\n\t\t\tfinal int tmp =\
     \ sk.pop();\n\t\t\tord.add(tmp);\n\t\t\tfor(final Edge ed: this.get(tmp)) {\n\t\
     \t\t\tif(--deg[ed.to] == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\t\t\t\t}\n\t\t\t}\n\t\
-    \t}\n\t\treturn n == ord.size() ? ord : new ArrayList<>();\n\t}\n\tprotected final\
-    \ Edge[] cycleDetector() {\n\t\tfinal int[] used = new int[n];\n\t\tfinal Edge[]\
-    \ pre = new Edge[n];\n\t\tfinal ArrayList<Edge> cycle = new ArrayList<>();\n\t\
-    \tfinal RecursiveIntPredicate dfs = (rec, i) -> {\n\t\t\tused[i] = 1;\n\t\t\t\
-    for(final Edge e: get(i)) {\n\t\t\t\tif(used[e.to] == 0) {\n\t\t\t\t\tpre[e.to]\
-    \ = e;\n\t\t\t\t\tif(rec.test(rec, e.to)) {\n\t\t\t\t\t\treturn true;\n\t\t\t\t\
-    \t}\n\t\t\t\t} else if(used[e.to] == 1) {\n\t\t\t\t\tint now = i;\n\t\t\t\t\t\
-    while(now != e.to) {\n\t\t\t\t\t\tcycle.add(pre[now]);\n\t\t\t\t\t\tnow = pre[now].src;\n\
-    \t\t\t\t\t}\n\t\t\t\t\tcycle.add(e);\n\t\t\t\t\treturn true;\n\t\t\t\t}\n\t\t\t\
-    }\n\t\t\tused[i] = 2;\n\t\t\treturn false;\n\t\t};\n\t\tfor(int i = 0; i < n;\
-    \ ++i) {\n\t\t\tif(used[i] == 0 && dfs.test(dfs, i)) {\n\t\t\t\tCollections.reverse(cycle);\n\
-    \t\t\t\treturn cycle.toArray(Edge[]::new);\n\t\t\t}\n\t\t}\n\t\treturn new Edge[]{};\n\
-    \t}\n\t@Override\n\tpublic String toString() {\n\t\tfinal StringBuilder sb = new\
-    \ StringBuilder();\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int m = get(i).size();\n\
-    \t\t\tsb.append(i + \": [\");\n\t\t\tfor(int j = 0; j < m; ++j) {\n\t\t\t\tsb.append(get(i).get(j).to);\n\
+    \t}\n\t\treturn n == ord.size() ? ord : null;\n\t}\n\tprotected final Edge[] cycleDetector()\
+    \ {\n\t\tfinal int[] used = new int[n];\n\t\tfinal Edge[] pre = new Edge[n];\n\
+    \t\tfinal ArrayList<Edge> cycle = new ArrayList<>();\n\t\tfinal RecursiveIntPredicate\
+    \ dfs = (rec, i) -> {\n\t\t\tused[i] = 1;\n\t\t\tfor(final Edge e: get(i)) {\n\
+    \t\t\t\tif(used[e.to] == 0) {\n\t\t\t\t\tpre[e.to] = e;\n\t\t\t\t\tif(rec.test(rec,\
+    \ e.to)) {\n\t\t\t\t\t\treturn true;\n\t\t\t\t\t}\n\t\t\t\t} else if(used[e.to]\
+    \ == 1) {\n\t\t\t\t\tint now = i;\n\t\t\t\t\twhile(now != e.to) {\n\t\t\t\t\t\t\
+    cycle.add(pre[now]);\n\t\t\t\t\t\tnow = pre[now].src;\n\t\t\t\t\t}\n\t\t\t\t\t\
+    cycle.add(e);\n\t\t\t\t\treturn true;\n\t\t\t\t}\n\t\t\t}\n\t\t\tused[i] = 2;\n\
+    \t\t\treturn false;\n\t\t};\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(used[i]\
+    \ == 0 && dfs.test(dfs, i)) {\n\t\t\t\tCollections.reverse(cycle);\n\t\t\t\treturn\
+    \ cycle.toArray(Edge[]::new);\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\t@Override\n\
+    \tpublic String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
+    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int m = get(i).size();\n\t\t\tsb.append(i\
+    \ + \": [\");\n\t\t\tfor(int j = 0; j < m; ++j) {\n\t\t\t\tsb.append(get(i).get(j).to);\n\
     \t\t\t\tif(j + 1 < m) {\n\t\t\t\t\tsb.append(\", \");\n\t\t\t\t}\n\t\t\t}\n\t\t\
     \tsb.append(']');\n\t\t\tif(i + 1 < n) {\n\t\t\t\tsb.append('\\n');\n\t\t\t}\n\
     \t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nfinal class ShortestPath {\n\tprivate\
@@ -1449,8 +1478,8 @@ data:
     \ e: this.get(p)) {\n\t\t\t\tfinal long next = cost[p] + e.cost;\n\t\t\t\tif(next\
     \ >= cost[e.to]) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\tcost[e.to] = next;\n\
     \t\t\t\tif(!pend[e.to]) {\n\t\t\t\t\tif(++cnt[e.to] >= n) {\n\t\t\t\t\t\treturn\
-    \ new long[]{};\n\t\t\t\t\t}\n\t\t\t\t\tpend[e.to] = true;\n\t\t\t\t\tq.add(e.to);\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[][] floydWarshall()\
+    \ null;\n\t\t\t\t\t}\n\t\t\t\t\tpend[e.to] = true;\n\t\t\t\t\tq.add(e.to);\n\t\
+    \t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn cost;\n\t}\n\tfinal long[][] floydWarshall()\
     \ {\n\t\tfinal long[][] cost = new long[n][n];\n\t\tIntStream.range(0, n).forEach(i\
     \ -> Arrays.fill(cost[i], VvyLw.LINF));\n\t\tIntStream.range(0, n).forEach(i ->\
     \ cost[i][i] = 0);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final Edge j:\
@@ -2696,7 +2725,7 @@ data:
   - Java/library/graph/MST.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-13 19:51:28+09:00'
+  timestamp: '2024-03-15 03:35:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
