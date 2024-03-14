@@ -171,8 +171,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/wm3.test.cpp
-  - test/wm2.test.cpp
   - test/wm.test.cpp
+  - test/wm2.test.cpp
 documentation_of: C++/ds/WM.hpp
 layout: document
 redirect_from:
