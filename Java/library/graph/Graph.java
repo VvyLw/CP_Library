@@ -146,7 +146,7 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 				}
 			}
 		}
-		return ord.size() == n ? ord : new ArrayList<>();
+		return ord.size() == n ? ord : null;
 	}
 	/**
 	 * @return サイクル
@@ -184,7 +184,7 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 				return cycle.toArray(Edge[]::new);
 			}
 		}
-		return new Edge[]{};
+		return null;
 	}
 	@Override
 	public String toString() {

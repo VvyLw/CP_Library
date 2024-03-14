@@ -1630,6 +1630,76 @@ public class Utility {
 		return res;
 	}
 	/**
+	 * @param p
+	 * @return 内積
+	 */
+	protected static final long innerProd(final IntPair... p){ return iota(p.length).mapToLong(i -> p[i].first.longValue() * p[i].second.longValue()).sum(); }
+	/**
+	 * @param p
+	 * @return 内積
+	 */
+	protected static final double innerProd(final FloatPair... p){ return iota(p.length).mapToDouble(i -> p[i].first.doubleValue() * p[i].second.doubleValue()).sum(); }
+	/**
+	 * @param a
+	 * @param sec1
+	 * @param b
+	 * @param sec2
+	 * @return 直線a.first * x + a.second * y + sec1 = 0と直線b.first * x + b.second * y + sec2 = 0の交点
+	 */
+	protected static final FloatPair intersection(final IntPair a, final long sec1, final IntPair b, final long sec2) {
+		double m1, m2, b1, b2;
+		if(a.first.longValue() == 0 && b.first.longValue() == 0) {
+			return null;
+		} else if(a.second.longValue() == 0) {
+			m2 = -b.first.doubleValue() / b.second.longValue();
+			b2 = -sec2 / b.second.doubleValue();
+			final double x = -sec1 / a.first.doubleValue(), y = b2 + m2 * x; 
+			return FloatPair.of(x, y);
+		} else if(b.second.longValue() == 0) {
+			m1 = -a.first.doubleValue() / a.second.longValue();
+			b1 = -sec1 / a.second.doubleValue();
+			final double x = -sec2 / b.first.doubleValue(), y = b1 + m1 * x;
+			return FloatPair.of(x, y);
+		}
+		m1 = -a.first.doubleValue() / a.second.longValue();
+		m2 = -b.first.doubleValue() / b.second.longValue();
+		b1 = -sec1 / a.second.doubleValue();
+		b2 = -sec2 / b.second.doubleValue();
+		assert m1 != m2;
+		final double x = (b1 - b2) / (m2 - m1), y = m1 * x + b1;
+		return FloatPair.of(x, y);
+	}
+	/**
+	 * @param a
+	 * @param sec1
+	 * @param b
+	 * @param sec2
+	 * @return 直線a.first * x + a.second * y + sec1 = 0と直線b.first * x + b.second * y + sec2 = 0の交点
+	 */
+	protected static final FloatPair intersection(final FloatPair a, final double sec1, final FloatPair b, final double sec2) {
+		double m1, m2, b1, b2;
+		if(a.first.doubleValue() == 0 && b.first.doubleValue() == 0) {
+			return null;
+		} else if(a.second.doubleValue() == 0) {
+			m2 = -b.first.doubleValue() / b.second.doubleValue();
+			b2 = -sec2 / b.second.doubleValue();
+			final double x = -sec1 / a.first.doubleValue(), y = b2 + m2 * x; 
+			return FloatPair.of(x, y);
+		} else if(b.second.doubleValue() == 0) {
+			m1 = -a.first.doubleValue() / a.second.doubleValue();
+			b1 = -sec1 / a.second.doubleValue();
+			final double x = -sec2 / b.first.doubleValue(), y = b1 + m1 * x;
+			return FloatPair.of(x, y);
+		}
+		m1 = -a.first.doubleValue() / a.second.doubleValue();
+		m2 = -b.first.doubleValue() / b.second.doubleValue();
+		b1 = -sec1 / a.second.doubleValue();
+		b2 = -sec2 / b.second.doubleValue();
+		assert m1 != m2;
+		final double x = (b1 - b2) / (m2 - m1), y = m1 * x + b1;
+		return FloatPair.of(x, y);
+	}
+	/**
 	 * 座標圧縮
 	 * @param a
 	 */
