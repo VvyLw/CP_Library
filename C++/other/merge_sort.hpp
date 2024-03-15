@@ -29,3 +29,7 @@ template <class T> inline void merge_sort(std::vector<T> &v, const int l, const 
         merge(v, l, mid, r);
     }
 }
+
+/**
+ * @brief マージソート
+ */
