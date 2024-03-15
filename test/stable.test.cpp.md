@@ -232,7 +232,7 @@ data:
     #define VEC(type,name,size) vectors::V<type> name(size); in(name)\n#define WEC(type,name,h,w)\
     \ vectors::V<vectors::V<type>> name(h,vectors::V<type>(w)); in(name)\n} // IO\n\
     \n/**\n * @brief \u5165\u529B\n */\n#line 2 \"C++/core/io/output.hpp\"\n\n#line\
-    \ 8 \"C++/core/io/output.hpp\"\n#ifndef TEMPLATE\nusing i128 = __int128_t;\nusing\
+    \ 9 \"C++/core/io/output.hpp\"\n#ifndef TEMPLATE\nusing i128 = __int128_t;\nusing\
     \ u128 = __uint128_t;\n#endif\nnamespace IO {\nstd::ostream &operator<<(std::ostream\
     \ &dest, const i128 &value) {\n    std::ostream::sentry s(dest);\n    if(s) {\n\
     \        u128 tmp = value < 0 ? -value : value;\n        char buffer[128];\n \
@@ -242,11 +242,11 @@ data:
     \       }\n        int len = std::end(buffer) - d;\n        if(dest.rdbuf() ->\
     \ sputn(d, len) != len) {\n            dest.setstate(std::ios_base::badbit);\n\
     \        }\n    }\n    return dest;\n}\ntemplate <class T, class U> std::ostream&\
-    \ operator<<(std::ostream &os, const pairs::P<T, U> &p){ os << p.first << ' '\
+    \ operator<<(std::ostream &os, const std::pair<T, U> &p){ os << p.first << ' '\
     \ << p.second; return os; }\ntemplate <class T, size_t N> std::ostream& operator<<(std::ostream\
     \ &os, const std::array<T, N> &a){ if(a.size()){ os << a.front(); for(auto i=a.begin();\
     \ ++i!=a.end();){ os << ' ' << *i; } } return os; }\ntemplate <class T> std::ostream&\
-    \ operator<<(std::ostream &os, const vectors::V<T> &v){ if(v.size()){ os << v.front();\
+    \ operator<<(std::ostream &os, const std::vector<T> &v){ if(v.size()){ os << v.front();\
     \ for(auto i=v.begin(); ++i!=v.end();){ os << ' ' << *i; } } return os; }\ntemplate\
     \ <class K, class V> std::ostream& operator<<(std::ostream &os, const std::map<K,\
     \ V> &m){ if(m.size()){ os << m.begin()->first << ' ' << m.begin()->second; for(auto\
@@ -264,7 +264,7 @@ data:
     \ class Head, class... Tail> inline void out(const Head& head, const Tail&...\
     \ tail){ std::cout << head << ' '; out<flush>(tail...); }\ntemplate <bool flush=false,\
     \ class T> inline void vout(const T& v){ std::cout << v << '\\n'; if(flush) std::cout.flush();\
-    \ }\ntemplate <bool flush=false, class T> inline void vout(const vectors::V<T>&\
+    \ }\ntemplate <bool flush=false, class T> inline void vout(const std::vector<T>&\
     \ v){ for(const auto &el: v) std::cout << el << '\\n'; if(flush) std::cout.flush();\
     \ }\ntemplate <bool flush=false, class Head, class... Tail> inline void vout(const\
     \ Head& head, const Tail&... tail){ std::cout << head << '\\n'; vout<flush>(tail...);\
@@ -574,7 +574,7 @@ data:
   isVerificationFile: true
   path: test/stable.test.cpp
   requiredBy: []
-  timestamp: '2024-03-09 13:04:52+09:00'
+  timestamp: '2024-03-15 15:33:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/stable.test.cpp

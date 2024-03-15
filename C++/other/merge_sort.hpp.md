@@ -7,6 +7,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: "\u30DE\u30FC\u30B8\u30BD\u30FC\u30C8"
     links: []
   bundledCode: "#line 2 \"C++/other/merge_sort.hpp\"\n\n#include <vector>\n#include\
     \ <limits>\ntemplate <class T> inline void merge(std::vector<T>& v, const int\
@@ -19,7 +20,8 @@ data:
     \ r[j++];\n        }\n    }\n}\ntemplate <class T> inline void merge_sort(std::vector<T>\
     \ &v, const int l, const int r) {\n    if(l + 1 < r) {\n        const int mid\
     \ = (l + r) / 2;\n        merge_sort(v, l, mid);\n        merge_sort(v, mid, r);\n\
-    \        merge(v, l, mid, r);\n    }\n}\n"
+    \        merge(v, l, mid, r);\n    }\n}\n\n/**\n * @brief \u30DE\u30FC\u30B8\u30BD\
+    \u30FC\u30C8\n */\n"
   code: "#pragma once\n\n#include <vector>\n#include <limits>\ntemplate <class T>\
     \ inline void merge(std::vector<T>& v, const int left, const int mid, const int\
     \ right) {\n    const int n1 = mid - left, n2 = right - mid;\n    std::vector<T>\
@@ -31,12 +33,13 @@ data:
     \    }\n    }\n}\ntemplate <class T> inline void merge_sort(std::vector<T> &v,\
     \ const int l, const int r) {\n    if(l + 1 < r) {\n        const int mid = (l\
     \ + r) / 2;\n        merge_sort(v, l, mid);\n        merge_sort(v, mid, r);\n\
-    \        merge(v, l, mid, r);\n    }\n}"
+    \        merge(v, l, mid, r);\n    }\n}\n\n/**\n * @brief \u30DE\u30FC\u30B8\u30BD\
+    \u30FC\u30C8\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/other/merge_sort.hpp
   requiredBy: []
-  timestamp: '2024-03-13 20:08:20+09:00'
+  timestamp: '2024-03-15 14:31:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/other/merge_sort.hpp
@@ -44,5 +47,5 @@ layout: document
 redirect_from:
 - /library/C++/other/merge_sort.hpp
 - /library/C++/other/merge_sort.hpp.html
-title: C++/other/merge_sort.hpp
+title: "\u30DE\u30FC\u30B8\u30BD\u30FC\u30C8"
 ---

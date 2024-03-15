@@ -6,9 +6,6 @@ data:
     path: C++/core/io/input.hpp
     title: "\u5165\u529B"
   - icon: ':heavy_check_mark:'
-    path: C++/core/io/output.hpp
-    title: "\u51FA\u529B"
-  - icon: ':heavy_check_mark:'
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
   - icon: ':heavy_check_mark:'
@@ -88,7 +85,6 @@ data:
   path: C++/core/constance.hpp
   requiredBy:
   - C++/core/io/input.hpp
-  - C++/core/io/output.hpp
   - C++/core/mypair.hpp
   - C++/math/primefactor.hpp
   - C++/template.hpp

@@ -121,6 +121,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math/euler_phi.hpp
       title: Euler's Phi-function
+    - icon: ':warning:'
+      path: C++/math/intersect.hpp
+      title: "\u4EA4\u70B9"
     - icon: ':heavy_check_mark:'
       path: C++/math/inverse_num.hpp
       title: "\u8EE2\u5012\u6570"
@@ -163,7 +166,7 @@ data:
       title: DP(Knapsack, LCS, LIS)
     - icon: ':warning:'
       path: C++/other/merge_sort.hpp
-      title: C++/other/merge_sort.hpp
+      title: "\u30DE\u30FC\u30B8\u30BD\u30FC\u30C8"
   - name: C++/string
     pages:
     - icon: ':heavy_check_mark:'
