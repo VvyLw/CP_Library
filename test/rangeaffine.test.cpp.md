@@ -18,24 +18,25 @@ data:
     links:
     - https://judge.yosupo.jp/problem/range_affine_range_sum
   bundledCode: "#line 1 \"test/rangeaffine.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
-    \n#line 2 \"C++/math/Modint.hpp\"\n\n#include <iostream>\n#include <cassert>\n\
-    #include <vector>\n#include <utility>\n#include <type_traits>\n#include <numeric>\n\
-    #ifndef TEMPLATE\ntypedef long long ll;\ntypedef unsigned uint;\ntypedef unsigned\
-    \ long long ul;\n#endif\ntemplate <uint mod> struct Modint {\n    uint num = 0;\n\
-    \    constexpr Modint() noexcept {}\n    constexpr Modint(const Modint &x) noexcept\
-    \ : num(x.num){}\n    constexpr operator ll() const noexcept { return num; }\n\
-    \    constexpr static uint get_mod(){ return mod; }\n    constexpr Modint& operator+=(Modint\
-    \ x) noexcept { num += x.num; if(num >= mod) num -= mod; return *this; }\n   \
-    \ constexpr Modint& operator++() noexcept { if(num == mod - 1) num = 0; else num++;\
-    \ return *this; }\n    constexpr Modint operator++(int) noexcept { Modint ans(*this);\
-    \ operator++(); return ans; }\n    constexpr Modint operator-() const noexcept\
-    \ { return Modint(0) -= *this; }\n    constexpr Modint& operator-=(Modint x) noexcept\
-    \ { if(num < x.num) num += mod; num -= x.num; return *this; }\n    constexpr Modint&\
-    \ operator--() noexcept { if(num == 0) num = mod - 1; else num--; return *this;\
-    \ }\n    constexpr Modint operator--(int) noexcept { Modint ans(*this); operator--();\
-    \ return ans; }\n    constexpr Modint& operator*=(Modint x) noexcept { num = ul(num)\
-    \ * x.num % mod; return *this; }\n    constexpr Modint& operator/=(Modint x) noexcept\
-    \ { return operator*=(x.inv()); }\n    constexpr void operator%=(Modint x) noexcept\
+    \n#line 2 \"C++/math/Modint.hpp\"\n\n#pragma GCC diagnostic ignored \"-Wdeprecated-copy\"\
+    \n\n#include <iostream>\n#include <cassert>\n#include <vector>\n#include <utility>\n\
+    #include <type_traits>\n#include <numeric>\n#ifndef TEMPLATE\ntypedef long long\
+    \ ll;\ntypedef unsigned uint;\ntypedef unsigned long long ul;\n#endif\ntemplate\
+    \ <uint mod> struct Modint {\n    uint num = 0;\n    constexpr Modint() noexcept\
+    \ {}\n    constexpr Modint(const Modint &x) noexcept : num(x.num){}\n    constexpr\
+    \ operator ll() const noexcept { return num; }\n    constexpr static uint get_mod(){\
+    \ return mod; }\n    constexpr Modint& operator+=(Modint x) noexcept { num +=\
+    \ x.num; if(num >= mod) num -= mod; return *this; }\n    constexpr Modint& operator++()\
+    \ noexcept { if(num == mod - 1) num = 0; else num++; return *this; }\n    constexpr\
+    \ Modint operator++(int) noexcept { Modint ans(*this); operator++(); return ans;\
+    \ }\n    constexpr Modint operator-() const noexcept { return Modint(0) -= *this;\
+    \ }\n    constexpr Modint& operator-=(Modint x) noexcept { if(num < x.num) num\
+    \ += mod; num -= x.num; return *this; }\n    constexpr Modint& operator--() noexcept\
+    \ { if(num == 0) num = mod - 1; else num--; return *this; }\n    constexpr Modint\
+    \ operator--(int) noexcept { Modint ans(*this); operator--(); return ans; }\n\
+    \    constexpr Modint& operator*=(Modint x) noexcept { num = ul(num) * x.num %\
+    \ mod; return *this; }\n    constexpr Modint& operator/=(Modint x) noexcept {\
+    \ return operator*=(x.inv()); }\n    constexpr void operator%=(Modint x) noexcept\
     \ { void(0); }\n    template <class T> constexpr Modint(T x) noexcept {\n    \
     \    using U = typename std::conditional<sizeof(T)>= 4, T, int>::type;\n     \
     \   U y = x; y %= U(mod); if(y < 0) y += mod; num = uint(y);\n    }\n    template\
@@ -257,7 +258,7 @@ data:
   isVerificationFile: true
   path: test/rangeaffine.test.cpp
   requiredBy: []
-  timestamp: '2024-03-16 14:18:14+09:00'
+  timestamp: '2024-03-16 15:08:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/rangeaffine.test.cpp
