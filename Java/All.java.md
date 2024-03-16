@@ -1422,7 +1422,7 @@ data:
     \ ord = new ArrayList<>();\n\t\twhile(!sk.isEmpty()) {\n\t\t\tfinal int tmp =\
     \ sk.pop();\n\t\t\tord.add(tmp);\n\t\t\tfor(final Edge ed: this.get(tmp)) {\n\t\
     \t\t\tif(--deg[ed.to] == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\t\t\t\t}\n\t\t\t}\n\t\
-    \t}\n\t\treturn n == ord.size() ? ord : null;\n\t}\n\tprotected final Edge[] cycleDetector()\
+    \t}\n\t\treturn n == ord.size() ? ord : null;\n\t}\n\tprotected final int[] cycleDetector()\
     \ {\n\t\tfinal int[] used = new int[n];\n\t\tfinal Edge[] pre = new Edge[n];\n\
     \t\tfinal ArrayList<Edge> cycle = new ArrayList<>();\n\t\tfinal RecursiveIntPredicate\
     \ dfs = (rec, i) -> {\n\t\t\tused[i] = 1;\n\t\t\tfor(final Edge e: get(i)) {\n\
@@ -1433,10 +1433,10 @@ data:
     cycle.add(e);\n\t\t\t\t\treturn true;\n\t\t\t\t}\n\t\t\t}\n\t\t\tused[i] = 2;\n\
     \t\t\treturn false;\n\t\t};\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(used[i]\
     \ == 0 && dfs.test(dfs, i)) {\n\t\t\t\tCollections.reverse(cycle);\n\t\t\t\treturn\
-    \ cycle.toArray(Edge[]::new);\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\t@Override\n\
-    \tpublic String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
-    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int m = get(i).size();\n\t\t\tsb.append(i\
-    \ + \": [\");\n\t\t\tfor(int j = 0; j < m; ++j) {\n\t\t\t\tsb.append(get(i).get(j).to);\n\
+    \ cycle.stream().mapToInt(e -> e.to).toArray();\n\t\t\t}\n\t\t}\n\t\treturn null;\n\
+    \t}\n\t@Override\n\tpublic String toString() {\n\t\tfinal StringBuilder sb = new\
+    \ StringBuilder();\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int m = get(i).size();\n\
+    \t\t\tsb.append(i + \": [\");\n\t\t\tfor(int j = 0; j < m; ++j) {\n\t\t\t\tsb.append(get(i).get(j).to);\n\
     \t\t\t\tif(j + 1 < m) {\n\t\t\t\t\tsb.append(\", \");\n\t\t\t\t}\n\t\t\t}\n\t\t\
     \tsb.append(']');\n\t\t\tif(i + 1 < n) {\n\t\t\t\tsb.append('\\n');\n\t\t\t}\n\
     \t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nfinal class ShortestPath {\n\tprivate\
@@ -2729,7 +2729,7 @@ data:
   - Java/library/graph/MST.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-16 15:46:18+09:00'
+  timestamp: '2024-03-16 20:48:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
