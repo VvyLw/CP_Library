@@ -592,15 +592,20 @@ data:
     \ final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1)\
     \ {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\
     \t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param\
-    \ a\n\t * @param b\n\t * @return a\u3068b\u306E\u6700\u5C0F\u516C\u500D\u6570\n\
-    \t */\n\tpublic static final long lcm(final long a, final long b){ return a /\
-    \ gcd(a, b) * b; }\n\t/**\n\t * e.g.) lcm(2, 3, 5) = 30\n\t * @param a int\u578B\
-    \u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return\
-    \ a\u306E\u6700\u5C0F\u516C\u500D\u6570\n\t */\n\tpublic static final long lcm(final\
-    \ int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x,\
-    \ y)); }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\
-    \u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u516C\u500D\u6570\
-    \n\t */\n\tpublic static final long lcm(final long... a){ return Arrays.stream(a).reduce(1,\
+    \ a\n\t * @param m\n\t * @return a\u306E\u9006\u5143\u306Em\u3092\u6CD5\u3068\u3057\
+    \u305F\u5270\u4F59\n\t */\n\tprotected static final long inv(long a, final long\
+    \ m) {\n\t\tlong b = m, u = 1, v = 0;\n\t\twhile(b > 0) {\n\t\t\tfinal long t\
+    \ = a / b;\n\t\t\ta -= t * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\
+    \t\tu -= t * v;\n\t\t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\treturn\
+    \ mod(u, m);\n\t}\n\t/**\n\t * @param a\n\t * @param b\n\t * @return a\u3068b\u306E\
+    \u6700\u5C0F\u516C\u500D\u6570\n\t */\n\tpublic static final long lcm(final long\
+    \ a, final long b){ return a / gcd(a, b) * b; }\n\t/**\n\t * e.g.) lcm(2, 3, 5)\
+    \ = 30\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\
+    \u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u516C\u500D\u6570\n\t */\n\tpublic\
+    \ static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1,\
+    \ (x, y) -> lcm(x, y)); }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\
+    \u308B\u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u516C\
+    \u500D\u6570\n\t */\n\tpublic static final long lcm(final long... a){ return Arrays.stream(a).reduce(1,\
     \ (x, y) -> lcm(x, y)); }\n\t/**\n\t * @param a\n\t * @param b\n\t * @return a\u3068\
     b\u306E\u6700\u5927\u516C\u7D04\u6570\n\t */\n\tpublic static final long gcd(final\
     \ long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }\n\t/**\n\t * e.g.)\
@@ -1574,7 +1579,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-15 03:35:46+09:00'
+  timestamp: '2024-03-16 15:46:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

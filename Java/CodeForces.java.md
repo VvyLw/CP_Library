@@ -585,8 +585,12 @@ data:
     \ b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 ==\
     \ 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\
     \t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
-    \ static final long lcm(final long a, final long b){ return a / gcd(a, b) * b;\
-    \ }\n\tprotected static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1,\
+    \ static final long inv(long a, final long m) {\n\t\tlong b = m, u = 1, v = 0;\n\
+    \t\twhile(b > 0) {\n\t\t\tfinal long t = a / b;\n\t\t\ta -= t * b;\n\t\t\ta ^=\
+    \ b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\t\tu -= t * v;\n\t\t\tu ^= v;\n\t\t\tv\
+    \ ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\treturn mod(u, m);\n\t}\n\tprotected static\
+    \ final long lcm(final long a, final long b){ return a / gcd(a, b) * b; }\n\t\
+    protected static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1,\
     \ (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){\
     \ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static\
     \ final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a;\
@@ -1537,7 +1541,7 @@ data:
   - Java/library/graph/MST.java
   - Java/All.java
   - Java/yukicoder.java
-  timestamp: '2024-03-15 03:35:46+09:00'
+  timestamp: '2024-03-16 15:46:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java
