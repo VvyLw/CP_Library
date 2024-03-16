@@ -50,4 +50,4 @@ redirect_from:
 - /library/C++/other/merge_sort.hpp.html
 title: "\u30DE\u30FC\u30B8\u30BD\u30FC\u30C8"
 ---
-verified: https://atcoder.jp/contests/math-and-algorithm/submissions/51201111
+verified: [027 - Sorting](https://atcoder.jp/contests/math-and-algorithm/submissions/51201111)

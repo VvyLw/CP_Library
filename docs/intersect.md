@@ -1,1 +1,1 @@
-verified: https://atcoder.jp/contests/math-and-algorithm/submissions/51261855
+verified: [ABC145 D - Knight](https://atcoder.jp/contests/math-and-algorithm/submissions/51261855)

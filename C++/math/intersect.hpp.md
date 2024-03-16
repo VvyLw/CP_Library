@@ -53,4 +53,4 @@ redirect_from:
 - /library/C++/math/intersect.hpp.html
 title: "\u4EA4\u70B9"
 ---
-verified: https://atcoder.jp/contests/math-and-algorithm/submissions/51261855
+verified: [ABC145 D - Knight](https://atcoder.jp/contests/math-and-algorithm/submissions/51261855)

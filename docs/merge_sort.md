@@ -1,1 +1,1 @@
-verified: https://atcoder.jp/contests/math-and-algorithm/submissions/51201111
+verified: [027 - Sorting](https://atcoder.jp/contests/math-and-algorithm/submissions/51201111)
