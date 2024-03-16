@@ -2091,7 +2091,7 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		}
 		return n == ord.size() ? ord : null;
 	}
-	protected final Edge[] cycleDetector() {
+	protected final int[] cycleDetector() {
 		final int[] used = new int[n];
 		final Edge[] pre = new Edge[n];
 		final ArrayList<Edge> cycle = new ArrayList<>();
@@ -2119,7 +2119,7 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		for(int i = 0; i < n; ++i) {
 			if(used[i] == 0 && dfs.test(dfs, i)) {
 				Collections.reverse(cycle);
-				return cycle.toArray(Edge[]::new);
+				return cycle.stream().mapToInt(e -> e.to).toArray();
 			}
 		}
 		return null;

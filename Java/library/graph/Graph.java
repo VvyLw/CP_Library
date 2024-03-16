@@ -153,7 +153,7 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 	 * if non-existence: 空配列
 	 * @implNote 有向グラフ
 	 */
-	public final Edge[] cycleDetector() {
+	public final int[] cycleDetector() {
 		final int[] used = new int[n];
 		final Edge[] pre = new Edge[n];
 		final ArrayList<Edge> cycle = new ArrayList<>();
@@ -181,7 +181,7 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 		for(int i = 0; i < n; ++i) {
 			if(used[i] == 0 && dfs.test(dfs, i)) {
 				Collections.reverse(cycle);
-				return cycle.toArray(Edge[]::new);
+				return cycle.stream().mapToInt(e -> e.to).toArray();
 			}
 		}
 		return null;
