@@ -32,4 +32,5 @@ template <class T> inline std::pair<ld, ld> intersection(const std::pair<T, T> &
 
 /**
  * @brief 交点
+ * @docs docs/intersect.md
  */

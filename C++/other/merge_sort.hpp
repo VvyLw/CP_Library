@@ -32,4 +32,5 @@ template <class T> inline void merge_sort(std::vector<T> &v, const int l, const 
 
 /**
  * @brief マージソート
+ * @docs docs/merge_sort.md
  */

@@ -51,32 +51,33 @@ template <uint mod> struct Modint {
     }
 };
 using mint = Modint<998244353>;
-//using mint = Modint<1000000007>;
-using vm = std::vector<mint>;
-using wm = std::vector<vm>;
-using pm = std::pair<mint, mint>;
+using Mint = Modint<1000000007>;
 template <class T> inline T msum(const std::vector<T> &v){ return std::accumulate(v.begin(), v.end(), mint(0)); }
 template <class T> inline T msum(const std::vector<T> &v, ll a, ll b){ return std::accumulate(v.begin() + a, v.begin() + b, mint(0)); }
 template <class T> inline T mmul(const std::vector<T> &v){ return std::accumulate(v.begin(), v.end(), mint(1), [](T acc, T i){ return acc*i; }); }
 template <class T> inline T mmul(const std::vector<T> &v, ll a, ll b){ return std::accumulate(v.begin() + a, v.begin() + b, mint(1), [](T acc, T i){ return acc*i; }); }
-vm fac(1,1),inv(1,1);
-void reserve(ul a){
-    if(fac.size()>=a) return;
-    if(a<fac.size()*2) a=fac.size()*2;
-    if(a>=mint::get_mod()) a=mint::get_mod();
-    while(fac.size()<a) fac.emplace_back(fac.back()*mint(fac.size()));
-    inv.resize(fac.size());
-    inv.back()=fac.back().inv();
-    for(ll i=inv.size()-1; !inv[i-1]; i--) inv[i-1]=inv[i]*i;
-}
-mint fact(ll n){ if(n<0) return 0; reserve(n + 1); return fac[n]; }
-mint nPr(ll n,ll r){
-    if(r<0 || n<r) return 0;
-    if(n>>24){ mint ans=1; for(int i = 0; i < r; ++i) ans*=n--; return ans; }
-    reserve(n+1); return fac[n]*inv[n-r];
-}
-mint nCr(ll n,ll r){ if(r<0 || n<r) return 0; r=std::min(r,n-r); reserve(r+1); return nPr(n,r)*inv[r]; }
-mint nHr(ll n,ll r){ if(!n && !r) return 1; if(n<=0 || r<0) return 0; return nCr(n+r-1,r); }
+template <class mint> struct Comb {
+private:
+    std::vector<mint> fac{1},inv{1};
+    void reserve(ul a){
+        if(fac.size()>=a) return;
+        if(a<fac.size()*2) a=fac.size()*2;
+        if(a>=mint::get_mod()) a=mint::get_mod();
+        while(fac.size()<a) fac.emplace_back(fac.back()*mint(fac.size()));
+        inv.resize(fac.size());
+        inv.back()=fac.back().inv();
+        for(ll i=inv.size()-1; !inv[i-1]; i--) inv[i-1]=inv[i]*i;
+    }
+public:
+    mint fact(const ll n){ if(n<0) return 0; reserve(n + 1); return fac[n]; }
+    mint nPr(ll n, const ll r){
+        if(r<0 || n<r) return 0;
+        if(n>>24){ mint ans=1; for(int i = 0; i < r; ++i) ans*=n--; return ans; }
+        reserve(n+1); return fac[n]*inv[n-r];
+    }
+    mint nCr(const ll n, ll r){ if(r<0 || n<r) return 0; r=std::min(r,n-r); reserve(r+1); return nPr(n,r)*inv[r]; }
+    mint nHr(const ll n, const ll r){ if(!n && !r) return 1; if(n<=0 || r<0) return 0; return nCr(n+r-1,r); }
+};
 
 struct a_mint {
     int val;
@@ -146,13 +147,7 @@ struct a_mint {
         return is;
     }
 };
-using va = std::vector<a_mint>;
-using wa = std::vector<va>;
-using pa = std::pair<a_mint, a_mint>;
-#ifdef TEMPLATE
-#define MINT(...) mint __VA_ARGS__; in(__VA_ARGS__)
-#define AINT(...) a_mint __VA_ARGS__; in(__VA_ARGS__)
-#endif
+
 /**
  * @brief Modint
  * @docs docs/Modint.md
