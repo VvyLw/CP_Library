@@ -7,6 +7,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    _deprecated_at_docs: docs/merge_sort.md
     document_title: "\u30DE\u30FC\u30B8\u30BD\u30FC\u30C8"
     links: []
   bundledCode: "#line 2 \"C++/other/merge_sort.hpp\"\n\n#include <vector>\n#include\
@@ -21,7 +22,7 @@ data:
     \ &v, const int l, const int r) {\n    if(l + 1 < r) {\n        const int mid\
     \ = (l + r) / 2;\n        merge_sort(v, l, mid);\n        merge_sort(v, mid, r);\n\
     \        merge(v, l, mid, r);\n    }\n}\n\n/**\n * @brief \u30DE\u30FC\u30B8\u30BD\
-    \u30FC\u30C8\n */\n"
+    \u30FC\u30C8\n * @docs docs/merge_sort.md\n */\n"
   code: "#pragma once\n\n#include <vector>\n#include <limits>\ntemplate <class T>\
     \ inline void merge(std::vector<T>& v, const int left, const int mid, const int\
     \ right) {\n    const int n1 = mid - left, n2 = right - mid;\n    std::vector<T>\
@@ -34,12 +35,12 @@ data:
     \ const int l, const int r) {\n    if(l + 1 < r) {\n        const int mid = (l\
     \ + r) / 2;\n        merge_sort(v, l, mid);\n        merge_sort(v, mid, r);\n\
     \        merge(v, l, mid, r);\n    }\n}\n\n/**\n * @brief \u30DE\u30FC\u30B8\u30BD\
-    \u30FC\u30C8\n */"
+    \u30FC\u30C8\n * @docs docs/merge_sort.md\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/other/merge_sort.hpp
   requiredBy: []
-  timestamp: '2024-03-15 14:31:20+09:00'
+  timestamp: '2024-03-16 14:18:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/other/merge_sort.hpp
@@ -49,3 +50,4 @@ redirect_from:
 - /library/C++/other/merge_sort.hpp.html
 title: "\u30DE\u30FC\u30B8\u30BD\u30FC\u30C8"
 ---
+verified: https://atcoder.jp/contests/math-and-algorithm/submissions/51201111

@@ -1,0 +1,1 @@
+verified: https://atcoder.jp/contests/math-and-algorithm/submissions/51261855

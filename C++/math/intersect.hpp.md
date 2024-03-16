@@ -7,6 +7,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    _deprecated_at_docs: docs/intersect.md
     document_title: "\u4EA4\u70B9"
     links: []
   bundledCode: "#line 2 \"C++/math/intersect.hpp\"\n\n#include <cassert>\n#include\
@@ -23,7 +24,7 @@ data:
     \    m2 = (ld) -b.first / b.second;\n    b1 = (ld) -sec1 / a.second;\n    b2 =\
     \ (ld) -sec2 / b.second;\n    assert(m1 != m2);\n    const ld x = (b1 - b2) /\
     \ (m2 - m1), y = m1 * x + b1;\n    return {x, y};\n}\n\n/**\n * @brief \u4EA4\u70B9\
-    \n */\n"
+    \n * @docs docs/intersect.md\n */\n"
   code: "#pragma once\n\n#include <cassert>\n#include <utility>\n#include <limits>\n\
     #ifndef TEMPLATE\ntypedef long double ld;\n#endif\ntemplate <class T> inline std::pair<ld,\
     \ ld> intersection(const std::pair<T, T> &a, const T sec1, const std::pair<T,\
@@ -37,12 +38,12 @@ data:
     \ y};\n    }\n    m1 = (ld) -a.first / a.second;\n    m2 = (ld) -b.first / b.second;\n\
     \    b1 = (ld) -sec1 / a.second;\n    b2 = (ld) -sec2 / b.second;\n    assert(m1\
     \ != m2);\n    const ld x = (b1 - b2) / (m2 - m1), y = m1 * x + b1;\n    return\
-    \ {x, y};\n}\n\n/**\n * @brief \u4EA4\u70B9\n */"
+    \ {x, y};\n}\n\n/**\n * @brief \u4EA4\u70B9\n * @docs docs/intersect.md\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/math/intersect.hpp
   requiredBy: []
-  timestamp: '2024-03-15 15:34:04+09:00'
+  timestamp: '2024-03-16 14:18:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/math/intersect.hpp
@@ -52,3 +53,4 @@ redirect_from:
 - /library/C++/math/intersect.hpp.html
 title: "\u4EA4\u70B9"
 ---
+verified: https://atcoder.jp/contests/math-and-algorithm/submissions/51261855
