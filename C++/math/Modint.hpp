@@ -1,5 +1,7 @@
 #pragma once
 
+#pragma GCC diagnostic ignored "-Wdeprecated-copy"
+
 #include <iostream>
 #include <cassert>
 #include <vector>
