@@ -100,6 +100,21 @@ class Utility {
 		}
 		return res;
 	}
+	protected static final long inv(long a, final long m) {
+		long b = m, u = 1, v = 0;
+		while(b > 0) {
+			final long t = a / b;
+			a -= t * b;
+			a ^= b;
+			b ^= a;
+			a ^= b;
+			u -= t * v;
+			u ^= v;
+			v ^= u;
+			u ^= v;
+		}
+		return mod(u, m);
+	}
 	protected static final long lcm(final long a, final long b){ return a / gcd(a, b) * b; }
 	protected static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }
 	protected static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }
@@ -235,7 +250,7 @@ class Utility {
 		long res = 1;
 		for(int i = 1; i <= min(n - r, r); ++i) {
 			res *= tmp--;
-			res %= mod;
+			res = mod;
 			res /= i;
 			res %= mod;
 		}

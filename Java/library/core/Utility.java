@@ -109,6 +109,26 @@ public class Utility {
 	}
 	/**
 	 * @param a
+	 * @param m
+	 * @return aの逆元のmを法とした剰余
+	 */
+	protected static final long inv(long a, final long m) {
+		long b = m, u = 1, v = 0;
+		while(b > 0) {
+			final long t = a / b;
+			a -= t * b;
+			a ^= b;
+			b ^= a;
+			a ^= b;
+			u -= t * v;
+			u ^= v;
+			v ^= u;
+			u ^= v;
+		}
+		return mod(u, m);
+	}
+	/**
+	 * @param a
 	 * @param b
 	 * @return aとbの最小公倍数
 	 */
