@@ -39,6 +39,11 @@ public class Utility {
 	 */
 	protected static final long sqr(final long x){ return x * x; }
 	/**
+	 * @param x
+	 * @return xの立方数
+	 */
+	protected static final long cub(final long x){ return x * x * x; }
+	/**
 	 * nが負の時でも正の剰余を求める
 	 * 法がintの時, intで返す
 	 * @param n

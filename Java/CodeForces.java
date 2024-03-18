@@ -54,6 +54,7 @@ class Utility {
 	protected static final String yes(final boolean ok){ return ok ? "Yes" : "No"; }
 	protected static final String no(final boolean ok){ return yes(!ok); }
 	protected static final long sqr(final long x){ return x * x; }
+	protected static final long cub(final long x){ return x * x * x; }
 	protected static final int mod(long n, final int m) {
 		n %= m;
 		return (int) (n < 0 ? n + m : n);
