@@ -559,44 +559,46 @@ data:
     import java.util.Comparator;\nimport java.util.Formatter;\nimport java.util.HashMap;\n\
     import java.util.Iterator;\nimport java.util.List;\nimport java.util.Map;\nimport\
     \ java.util.NoSuchElementException;\nimport java.util.Objects;\nimport java.util.PriorityQueue;\n\
-    import java.util.Queue;\nimport java.util.Stack;\nimport java.util.TreeMap;\n\
-    import java.util.function.BiFunction;\nimport java.util.function.BiPredicate;\n\
+    import java.util.Queue;\nimport java.util.Random;\nimport java.util.Stack;\nimport\
+    \ java.util.TreeMap;\nimport java.util.function.BiFunction;\nimport java.util.function.BiPredicate;\n\
     import java.util.function.BinaryOperator;\nimport java.util.function.Consumer;\n\
     import java.util.function.DoublePredicate;\nimport java.util.function.IntPredicate;\n\
     import java.util.function.IntUnaryOperator;\nimport java.util.function.LongBinaryOperator;\n\
     import java.util.function.LongPredicate;\nimport java.util.function.LongUnaryOperator;\n\
     import java.util.function.Predicate;\nimport java.util.function.UnaryOperator;\n\
     import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\nfinal\
-    \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
-    \ VvyLw.MULTI ? VvyLw.io.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.io.close();\n\
-    \t}\n}\n\nfinal class VvyLw extends Utility {\n\tstatic final IO io = new IO(System.in,\
-    \ System.out, System.err, false);\n\tstatic final boolean MULTI = false;\n\tstatic\
-    \ final int INF = 1 << 30;\n\tstatic final long LINF = (1L << 61) - 1;\n\tstatic\
-    \ final double EPS = 1e-18;\n\tstatic final int MOD = 998244353;\n\tstatic final\
-    \ int M0D = (int) 1e9 + 7;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1,\
-    \ 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic\
-    \ final void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final\
-    \ String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static\
-    \ final String no(final boolean ok){ return yes(!ok); }\n\tprotected static final\
-    \ long sqr(final long x){ return x * x; }\n\tprotected static final int mod(long\
-    \ n, final int m) {\n\t\tn %= m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\
-    \tprotected static final long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn\
-    \ n < 0 ? n + m : n;\n\t}\n\tprotected static final long intCeil(final long a,\
-    \ final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final\
-    \ double intRound(final double a, final long b, final int c) {\n\t\tfinal long\
-    \ d = intPow(10, c);\n\t\treturn rint((a * d) / b) / d;\n\t}\n\tprotected static\
-    \ final long intPow(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\
-    \t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long intPow(long a, long\
-    \ b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 ==\
-    \ 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\
-    \t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
-    \ static final long inv(long a, final long m) {\n\t\tlong b = m, u = 1, v = 0;\n\
-    \t\twhile(b > 0) {\n\t\t\tfinal long t = a / b;\n\t\t\ta -= t * b;\n\t\t\ta ^=\
-    \ b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\t\tu -= t * v;\n\t\t\tu ^= v;\n\t\t\tv\
-    \ ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\treturn mod(u, m);\n\t}\n\tprotected static\
-    \ final long lcm(final long a, final long b){ return a / gcd(a, b) * b; }\n\t\
-    protected static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1,\
+    \ class Main {\n\tpublic static void main(final String[] args) {\n\t\tfinal long\
+    \ begin = System.currentTimeMillis(), end;\n\t\tIntStream.range(0, VvyLw.MULTI\
+    \ ? VvyLw.io.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tend = System.currentTimeMillis();\n\
+    \t\tVvyLw.io.dump(end - begin + \"ms\");\n\t\tVvyLw.io.close();\n\t}\n}\n\nfinal\
+    \ class VvyLw extends Utility {\n\tstatic final IO io = new IO(System.in, System.out,\
+    \ System.err, false);\n\tstatic final Random rd = new Random();\n\tstatic final\
+    \ boolean MULTI = false;\n\tstatic final int INF = 1 << 30;\n\tstatic final long\
+    \ LINF = (1L << 61) - 1;\n\tstatic final double EPS = 1e-18;\n\tstatic final int\
+    \ MOD = 998244353;\n\tstatic final int M0D = (int) 1e9 + 7;\n\tstatic final int[]\
+    \ dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1,\
+    \ 1, -1, 1, -1, 1};\n\tstatic final void solve() {\n\t\t\n\t}\n}\nclass Utility\
+    \ {\n\tprotected static final String yes(final boolean ok){ return ok ? \"Yes\"\
+    \ : \"No\"; }\n\tprotected static final String no(final boolean ok){ return yes(!ok);\
+    \ }\n\tprotected static final long sqr(final long x){ return x * x; }\n\tprotected\
+    \ static final int mod(long n, final int m) {\n\t\tn %= m;\n\t\treturn (int) (n\
+    \ < 0 ? n + m : n);\n\t}\n\tprotected static final long mod(long n, final long\
+    \ m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\tprotected static final\
+    \ long intCeil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b +\
+    \ 1; }\n\tprotected static final double intRound(final double a, final long b,\
+    \ final int c) {\n\t\tfinal long d = intPow(10, c);\n\t\treturn rint((a * d) /\
+    \ b) / d;\n\t}\n\tprotected static final long intPow(long a, int b) {\n\t\tlong\
+    \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
+    \t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ final long intPow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b\
+    \ > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\
+    \t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\tprotected static final long inv(long a, final long m) {\n\t\tlong\
+    \ b = m, u = 1, v = 0;\n\t\twhile(b > 0) {\n\t\t\tfinal long t = a / b;\n\t\t\t\
+    a -= t * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\t\tu -= t * v;\n\t\
+    \t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\treturn mod(u, m);\n\t}\n\
+    \tprotected static final long lcm(final long a, final long b){ return a / gcd(a,\
+    \ b) * b; }\n\tprotected static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1,\
     \ (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){\
     \ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static\
     \ final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a;\
@@ -978,8 +980,8 @@ data:
     \ final double innerProd(final FloatPair... p){ return iota(p.length).mapToDouble(i\
     \ -> p[i].first.doubleValue() * p[i].second.doubleValue()).sum(); }\n\tprotected\
     \ static final FloatPair intersection(final IntPair a, final long sec1, final\
-    \ IntPair b, final long sec2) {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.first.longValue()\
-    \ == 0 && b.first.longValue() == 0) {\n\t\t\treturn null;\n\t\t} else if(a.second.longValue()\
+    \ IntPair b, final long sec2) {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.second.longValue()\
+    \ == 0 && b.second.longValue() == 0) {\n\t\t\treturn null;\n\t\t} else if(a.second.longValue()\
     \ == 0) {\n\t\t\tm2 = -b.first.doubleValue() / b.second.longValue();\n\t\t\tb2\
     \ = -sec2 / b.second.doubleValue();\n\t\t\tfinal double x = -sec1 / a.first.doubleValue(),\
     \ y = b2 + m2 * x; \n\t\t\treturn FloatPair.of(x, y);\n\t\t} else if(b.second.longValue()\
@@ -991,8 +993,8 @@ data:
     \t\tassert m1 != m2;\n\t\tfinal double x = (b1 - b2) / (m2 - m1), y = m1 * x +\
     \ b1;\n\t\treturn FloatPair.of(x, y);\n\t}\n\tprotected static final FloatPair\
     \ intersection(final FloatPair a, final double sec1, final FloatPair b, final\
-    \ double sec2) {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.first.doubleValue() ==\
-    \ 0 && b.first.doubleValue() == 0) {\n\t\t\treturn null;\n\t\t} else if(a.second.doubleValue()\
+    \ double sec2) {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.second.doubleValue() ==\
+    \ 0 && b.second.doubleValue() == 0) {\n\t\t\treturn null;\n\t\t} else if(a.second.doubleValue()\
     \ == 0) {\n\t\t\tm2 = -b.first.doubleValue() / b.second.doubleValue();\n\t\t\t\
     b2 = -sec2 / b.second.doubleValue();\n\t\t\tfinal double x = -sec1 / a.first.doubleValue(),\
     \ y = b2 + m2 * x; \n\t\t\treturn FloatPair.of(x, y);\n\t\t} else if(b.second.doubleValue()\
@@ -2729,7 +2731,7 @@ data:
   - Java/library/graph/MST.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-18 14:00:40+09:00'
+  timestamp: '2024-03-18 21:54:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

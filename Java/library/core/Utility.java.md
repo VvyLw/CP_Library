@@ -1299,7 +1299,7 @@ data:
     \ * y + sec1 = 0\u3068\u76F4\u7DDAb.first * x + b.second * y + sec2 = 0\u306E\u4EA4\
     \u70B9\n\t */\n\tprotected static final FloatPair intersection(final IntPair a,\
     \ final long sec1, final IntPair b, final long sec2) {\n\t\tdouble m1, m2, b1,\
-    \ b2;\n\t\tif(a.first.longValue() == 0 && b.first.longValue() == 0) {\n\t\t\t\
+    \ b2;\n\t\tif(a.second.longValue() == 0 && b.second.longValue() == 0) {\n\t\t\t\
     return null;\n\t\t} else if(a.second.longValue() == 0) {\n\t\t\tm2 = -b.first.doubleValue()\
     \ / b.second.longValue();\n\t\t\tb2 = -sec2 / b.second.doubleValue();\n\t\t\t\
     final double x = -sec1 / a.first.doubleValue(), y = b2 + m2 * x; \n\t\t\treturn\
@@ -1314,8 +1314,8 @@ data:
     \t * @return \u76F4\u7DDAa.first * x + a.second * y + sec1 = 0\u3068\u76F4\u7DDA\
     b.first * x + b.second * y + sec2 = 0\u306E\u4EA4\u70B9\n\t */\n\tprotected static\
     \ final FloatPair intersection(final FloatPair a, final double sec1, final FloatPair\
-    \ b, final double sec2) {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.first.doubleValue()\
-    \ == 0 && b.first.doubleValue() == 0) {\n\t\t\treturn null;\n\t\t} else if(a.second.doubleValue()\
+    \ b, final double sec2) {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.second.doubleValue()\
+    \ == 0 && b.second.doubleValue() == 0) {\n\t\t\treturn null;\n\t\t} else if(a.second.doubleValue()\
     \ == 0) {\n\t\t\tm2 = -b.first.doubleValue() / b.second.doubleValue();\n\t\t\t\
     b2 = -sec2 / b.second.doubleValue();\n\t\t\tfinal double x = -sec1 / a.first.doubleValue(),\
     \ y = b2 + m2 * x; \n\t\t\treturn FloatPair.of(x, y);\n\t\t} else if(b.second.doubleValue()\
@@ -1579,7 +1579,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-18 14:00:40+09:00'
+  timestamp: '2024-03-18 21:54:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

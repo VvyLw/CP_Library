@@ -971,8 +971,8 @@ data:
     \ final double innerProd(final FloatPair... p){ return iota(p.length).mapToDouble(i\
     \ -> p[i].first.doubleValue() * p[i].second.doubleValue()).sum(); }\n\tprotected\
     \ static final FloatPair intersection(final IntPair a, final long sec1, final\
-    \ IntPair b, final long sec2) {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.first.longValue()\
-    \ == 0 && b.first.longValue() == 0) {\n\t\t\treturn null;\n\t\t} else if(a.second.longValue()\
+    \ IntPair b, final long sec2) {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.second.longValue()\
+    \ == 0 && b.second.longValue() == 0) {\n\t\t\treturn null;\n\t\t} else if(a.second.longValue()\
     \ == 0) {\n\t\t\tm2 = -b.first.doubleValue() / b.second.longValue();\n\t\t\tb2\
     \ = -sec2 / b.second.doubleValue();\n\t\t\tfinal double x = -sec1 / a.first.doubleValue(),\
     \ y = b2 + m2 * x; \n\t\t\treturn FloatPair.of(x, y);\n\t\t} else if(b.second.longValue()\
@@ -984,8 +984,8 @@ data:
     \t\tassert m1 != m2;\n\t\tfinal double x = (b1 - b2) / (m2 - m1), y = m1 * x +\
     \ b1;\n\t\treturn FloatPair.of(x, y);\n\t}\n\tprotected static final FloatPair\
     \ intersection(final FloatPair a, final double sec1, final FloatPair b, final\
-    \ double sec2) {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.first.doubleValue() ==\
-    \ 0 && b.first.doubleValue() == 0) {\n\t\t\treturn null;\n\t\t} else if(a.second.doubleValue()\
+    \ double sec2) {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.second.doubleValue() ==\
+    \ 0 && b.second.doubleValue() == 0) {\n\t\t\treturn null;\n\t\t} else if(a.second.doubleValue()\
     \ == 0) {\n\t\t\tm2 = -b.first.doubleValue() / b.second.doubleValue();\n\t\t\t\
     b2 = -sec2 / b.second.doubleValue();\n\t\t\tfinal double x = -sec1 / a.first.doubleValue(),\
     \ y = b2 + m2 * x; \n\t\t\treturn FloatPair.of(x, y);\n\t\t} else if(b.second.doubleValue()\
@@ -1544,7 +1544,7 @@ data:
   - Java/library/graph/MST.java
   - Java/All.java
   - Java/CodeForces.java
-  timestamp: '2024-03-18 14:00:40+09:00'
+  timestamp: '2024-03-18 21:54:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java
