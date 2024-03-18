@@ -11,7 +11,7 @@
   
 javadocは記述済なのでライブラリの説明はJavaを見ると良いです。  
 Java: Modint, Rolling Hashがない。  
-V: UnionFind, Graph(重みなしのみ), std::next_permutation, std::deque, std::pair, FenwickTree, Modint   
+V: UnionFind, Graph(重みなしのみ), std::next_permutation, std::deque, std::pair, FenwickTree, Modint(多分狂ってる)   
 D: UnionFind, セグ木, FenwickTree  
 Nim: UnionFind, Wavelet Matrix  
 Rust: UnionFind, Potential付きUnionFind  
