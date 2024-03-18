@@ -581,16 +581,17 @@ data:
     \ {\n\tprotected static final String yes(final boolean ok){ return ok ? \"Yes\"\
     \ : \"No\"; }\n\tprotected static final String no(final boolean ok){ return yes(!ok);\
     \ }\n\tprotected static final long sqr(final long x){ return x * x; }\n\tprotected\
-    \ static final int mod(long n, final int m) {\n\t\tn %= m;\n\t\treturn (int) (n\
-    \ < 0 ? n + m : n);\n\t}\n\tprotected static final long mod(long n, final long\
-    \ m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\tprotected static final\
-    \ long intCeil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b +\
-    \ 1; }\n\tprotected static final double intRound(final double a, final long b,\
-    \ final int c) {\n\t\tfinal long d = intPow(10, c);\n\t\treturn rint((a * d) /\
-    \ b) / d;\n\t}\n\tprotected static final long intPow(long a, int b) {\n\t\tlong\
-    \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
-    \t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final long intPow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b\
+    \ static final long cub(final long x){ return x * x * x; }\n\tprotected static\
+    \ final int mod(long n, final int m) {\n\t\tn %= m;\n\t\treturn (int) (n < 0 ?\
+    \ n + m : n);\n\t}\n\tprotected static final long mod(long n, final long m) {\n\
+    \t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\tprotected static final long\
+    \ intCeil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\
+    \tprotected static final double intRound(final double a, final long b, final int\
+    \ c) {\n\t\tfinal long d = intPow(10, c);\n\t\treturn rint((a * d) / b) / d;\n\
+    \t}\n\tprotected static final long intPow(long a, int b) {\n\t\tlong res = 1;\n\
+    \t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\t\
+    a *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
+    \ long intPow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b\
     \ > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\
     \t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
     \ res;\n\t}\n\tprotected static final long inv(long a, final long m) {\n\t\tlong\
@@ -2731,7 +2732,7 @@ data:
   - Java/library/graph/MST.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-18 21:54:31+09:00'
+  timestamp: '2024-03-18 23:24:49+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
