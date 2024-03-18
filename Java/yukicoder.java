@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Random;
 import java.util.function.DoublePredicate;
 import java.util.function.IntPredicate;
 import java.util.function.IntUnaryOperator;
@@ -26,13 +27,17 @@ import java.util.stream.IntStream;
 
 class Main {
 	public static void main(final String[] args) {
+		final long begin = System.currentTimeMillis(), end;
 		IntStream.range(0, VvyLw.MULTI ? VvyLw.io.ni() : 1).forEach(i -> VvyLw.solve());
+		end = System.currentTimeMillis();
+		VvyLw.io.dump(end - begin + "ms");
 		VvyLw.io.close();
 	}
 }
 
 final class VvyLw extends Utility {
 	static final IO io = new IO(System.in, System.out, System.err, false);
+	static final Random rd = new Random();
 	static final boolean MULTI = false;
 	static final int INF = 1 << 30;
 	static final long LINF = (1L << 61) - 1;

@@ -9,19 +9,24 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Formatter;
+import java.util.Random;
 import java.util.function.IntUnaryOperator;
 import java.util.function.LongUnaryOperator;
 import java.util.stream.IntStream;
 
 final class Main {
 	public static void main(final String[] args) {
+		final long begin = System.currentTimeMillis(), end;
 		IntStream.range(0, VvyLw.MULTI ? VvyLw.io.ni() : 1).forEach(i -> VvyLw.solve());
+		end = System.currentTimeMillis();
+		VvyLw.io.dump(end - begin + "ms");
 		VvyLw.io.close();
 	}
 }
 
 final class VvyLw extends Utility {
 	static final IO io = new IO(System.in, System.out, System.err, false);
+	static final Random rd = new Random();
 	static final boolean MULTI = false;
 	static final int INF = 1 << 30;
 	static final long LINF = (1L << 61) - 1;

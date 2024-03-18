@@ -1,5 +1,7 @@
 package library.core;
 
+import java.util.Random;
+
 import library.core.io.IO;
 
 /**
@@ -10,6 +12,10 @@ public final class VvyLw extends Utility {
 	 * 入出力
 	 */
 	public static final IO io = new IO(System.in, System.out, System.err, false);
+	/**
+	 * 乱数生成の時に使う
+	 */
+	static final Random rd = new Random();
 	/**
 	 * マルチテストケースの問題の時はfalseをtrueに変える
 	 */
