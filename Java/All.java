@@ -21,6 +21,7 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Random;
 import java.util.Stack;
 import java.util.TreeMap;
 import java.util.function.BiFunction;
@@ -40,13 +41,17 @@ import java.util.stream.IntStream;
 
 final class Main {
 	public static void main(final String[] args) {
+		final long begin = System.currentTimeMillis(), end;
 		IntStream.range(0, VvyLw.MULTI ? VvyLw.io.ni() : 1).forEach(i -> VvyLw.solve());
+		end = System.currentTimeMillis();
+		VvyLw.io.dump(end - begin + "ms");
 		VvyLw.io.close();
 	}
 }
 
 final class VvyLw extends Utility {
 	static final IO io = new IO(System.in, System.out, System.err, false);
+	static final Random rd = new Random();
 	static final boolean MULTI = false;
 	static final int INF = 1 << 30;
 	static final long LINF = (1L << 61) - 1;
@@ -953,7 +958,7 @@ class Utility {
 	protected static final double innerProd(final FloatPair... p){ return iota(p.length).mapToDouble(i -> p[i].first.doubleValue() * p[i].second.doubleValue()).sum(); }
 	protected static final FloatPair intersection(final IntPair a, final long sec1, final IntPair b, final long sec2) {
 		double m1, m2, b1, b2;
-		if(a.first.longValue() == 0 && b.first.longValue() == 0) {
+		if(a.second.longValue() == 0 && b.second.longValue() == 0) {
 			return null;
 		} else if(a.second.longValue() == 0) {
 			m2 = -b.first.doubleValue() / b.second.longValue();
@@ -976,7 +981,7 @@ class Utility {
 	}
 	protected static final FloatPair intersection(final FloatPair a, final double sec1, final FloatPair b, final double sec2) {
 		double m1, m2, b1, b2;
-		if(a.first.doubleValue() == 0 && b.first.doubleValue() == 0) {
+		if(a.second.doubleValue() == 0 && b.second.doubleValue() == 0) {
 			return null;
 		} else if(a.second.doubleValue() == 0) {
 			m2 = -b.first.doubleValue() / b.second.doubleValue();

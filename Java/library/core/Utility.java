@@ -1668,7 +1668,7 @@ public class Utility {
 	 */
 	protected static final FloatPair intersection(final IntPair a, final long sec1, final IntPair b, final long sec2) {
 		double m1, m2, b1, b2;
-		if(a.first.longValue() == 0 && b.first.longValue() == 0) {
+		if(a.second.longValue() == 0 && b.second.longValue() == 0) {
 			return null;
 		} else if(a.second.longValue() == 0) {
 			m2 = -b.first.doubleValue() / b.second.longValue();
@@ -1698,7 +1698,7 @@ public class Utility {
 	 */
 	protected static final FloatPair intersection(final FloatPair a, final double sec1, final FloatPair b, final double sec2) {
 		double m1, m2, b1, b2;
-		if(a.first.doubleValue() == 0 && b.first.doubleValue() == 0) {
+		if(a.second.doubleValue() == 0 && b.second.doubleValue() == 0) {
 			return null;
 		} else if(a.second.doubleValue() == 0) {
 			m2 = -b.first.doubleValue() / b.second.doubleValue();
