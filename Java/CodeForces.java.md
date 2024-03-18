@@ -557,24 +557,27 @@ data:
     import java.math.BigInteger;\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
     import java.util.Collection;\nimport java.util.Collections;\nimport java.util.Formatter;\n\
     import java.util.HashMap;\nimport java.util.List;\nimport java.util.Map;\nimport\
-    \ java.util.Objects;\nimport java.util.function.DoublePredicate;\nimport java.util.function.IntPredicate;\n\
-    import java.util.function.IntUnaryOperator;\nimport java.util.function.LongPredicate;\n\
-    import java.util.function.LongUnaryOperator;\nimport java.util.function.UnaryOperator;\n\
-    import java.util.stream.Collectors;\nimport java.util.stream.IntStream;\n\npublic\
-    \ final class Main {\n\tpublic static void main(final String[] args) {\n\t\tIntStream.range(0,\
-    \ VvyLw.MULTI ? VvyLw.io.ni() : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.io.close();\n\
-    \t}\n}\n\nfinal class VvyLw extends Utility {\n\tstatic final IO io = new IO(System.in,\
-    \ System.out, System.err, false);\n\tstatic final boolean MULTI = true;\n\tstatic\
-    \ final int INF = 1 << 30;\n\tstatic final long LINF = (1L << 61) - 1;\n\tstatic\
-    \ final double EPS = 1e-18;\n\tstatic final int MOD = 998244353;\n\tstatic final\
-    \ int M0D = (int) 1e9 + 7;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1,\
-    \ 1, 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic\
-    \ final void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final\
-    \ String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static\
-    \ final String no(final boolean ok){ return yes(!ok); }\n\tprotected static final\
-    \ long sqr(final long x){ return x * x; }\n\tprotected static final int mod(long\
-    \ n, final int m) {\n\t\tn %= m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\
-    \tprotected static final long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn\
+    \ java.util.Objects;\nimport java.util.Random;\nimport java.util.function.DoublePredicate;\n\
+    import java.util.function.IntPredicate;\nimport java.util.function.IntUnaryOperator;\n\
+    import java.util.function.LongPredicate;\nimport java.util.function.LongUnaryOperator;\n\
+    import java.util.function.UnaryOperator;\nimport java.util.stream.Collectors;\n\
+    import java.util.stream.IntStream;\n\npublic final class Main {\n\tpublic static\
+    \ void main(final String[] args) {\n\t\tfinal long begin = System.currentTimeMillis(),\
+    \ end;\n\t\tIntStream.range(0, VvyLw.MULTI ? VvyLw.io.ni() : 1).forEach(i -> VvyLw.solve());\n\
+    \t\tend = System.currentTimeMillis();\n\t\tVvyLw.io.dump(end - begin + \"ms\"\
+    );\n\t\tVvyLw.io.close();\n\t}\n}\n\nfinal class VvyLw extends Utility {\n\tstatic\
+    \ final IO io = new IO(System.in, System.out, System.err, false);\n\tstatic final\
+    \ Random rd = new Random();\n\tstatic final boolean MULTI = true;\n\tstatic final\
+    \ int INF = 1 << 30;\n\tstatic final long LINF = (1L << 61) - 1;\n\tstatic final\
+    \ double EPS = 1e-18;\n\tstatic final int MOD = 998244353;\n\tstatic final int\
+    \ M0D = (int) 1e9 + 7;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1,\
+    \ 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final\
+    \ void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String\
+    \ yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final\
+    \ String no(final boolean ok){ return yes(!ok); }\n\tprotected static final long\
+    \ sqr(final long x){ return x * x; }\n\tprotected static final int mod(long n,\
+    \ final int m) {\n\t\tn %= m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\t\
+    protected static final long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn\
     \ n < 0 ? n + m : n;\n\t}\n\tprotected static final long intCeil(final long a,\
     \ final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final\
     \ double intRound(final double a, final long b, final int c) {\n\t\tfinal long\
@@ -1541,7 +1544,7 @@ data:
   - Java/library/graph/MST.java
   - Java/All.java
   - Java/yukicoder.java
-  timestamp: '2024-03-16 20:48:15+09:00'
+  timestamp: '2024-03-18 14:00:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/CodeForces.java

@@ -554,9 +554,12 @@ data:
     RuntimeError: bundler is not specified: Java/library/core/Main.java\n"
   code: "package library.core;\n\nimport java.util.stream.IntStream;\n\n/**\n *  Main\u30AF\
     \u30E9\u30B9\u3002\n *  \u3053\u3053\u306B\u5909\u66F4\u306F\u52A0\u3048\u306A\
-    \u3044\u3002\n *  @author VvyLw\n */\nfinal class Main {\n\tpublic static void\
-    \ main(final String[] args) {\n\t\tIntStream.range(0, VvyLw.MULTI ? VvyLw.io.ni()\
-    \ : 1).forEach(i -> VvyLw.solve());\n\t\tVvyLw.io.close();\n\t}\n}"
+    \u3044\u3002\n *  \u5B9F\u884C\u6642\u9593\u3092\u30ED\u30FC\u30AB\u30EB\u3067\
+    \u8A08\u6E2C\u53EF\u80FD\n *  @author VvyLw\n */\nfinal class Main {\n\tpublic\
+    \ static void main(final String[] args) {\n\t\tfinal long begin = System.currentTimeMillis(),\
+    \ end;\n\t\tIntStream.range(0, VvyLw.MULTI ? VvyLw.io.ni() : 1).forEach(i -> VvyLw.solve());\n\
+    \t\tend = System.currentTimeMillis();\n\t\tVvyLw.io.dump(end - begin + \"ms\"\
+    );\n\t\tVvyLw.io.close();\n\t}\n}"
   dependsOn:
   - Java/AOJ.java
   - Java/library/ds/lazysegmenttree/RASM.java
@@ -741,7 +744,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-16 20:48:15+09:00'
+  timestamp: '2024-03-18 14:00:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Main.java
