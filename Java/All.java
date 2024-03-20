@@ -3593,7 +3593,10 @@ final class Matrix implements Cloneable {
 class InclusiveScan {
 	protected final int n;
 	protected long[] s;
-	protected InclusiveScan(final int n){ this.n = n; }
+	protected InclusiveScan(final int n) {
+		this.n = n;
+		s = new long[n + 1];
+	}
 	InclusiveScan(final int[] a, final LongBinaryOperator op) {
 		n = a.length;
 		s = Arrays.stream(a).asLongStream().toArray();
@@ -3607,11 +3610,9 @@ class InclusiveScan {
 	protected final long[] get(){ return s; }
 }
 final class PrefixSum extends InclusiveScan {
-	private long[] imos;
 	private boolean built;
 	PrefixSum(final int n) {
 		super(n);
-		imos = new long[n + 1];
 		built = false;
 	}
 	PrefixSum(final int[] a) {
@@ -3627,15 +3628,14 @@ final class PrefixSum extends InclusiveScan {
 		if(built) {
 			throw new UnsupportedOperationException("Prefix Sum has been built.");
 		}
-		imos[l] += x;
-		imos[r] -= x;
+		s[l] += x;
+		s[r] -= x;
 	}
-	final void add(final int l, final int r){ add(l, r, 1); }
 	final long[] build() {
 		assert !built;
-		Arrays.parallelPrefix(imos, Long::sum);
+		Arrays.parallelPrefix(s, Long::sum);
 		built = true;
-		return Arrays.copyOf(imos, n);
+		return Arrays.copyOf(s, n);
 	}
 }
 final class PrefixSum2D {

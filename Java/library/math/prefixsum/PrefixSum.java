@@ -11,7 +11,6 @@ import library.other.InclusiveScan;
  * @see InclusiveScan
  */
 public final class PrefixSum extends InclusiveScan {
-	private long[] imos;
 	private boolean built;
 	/**
 	 * コンストラクタ
@@ -20,7 +19,6 @@ public final class PrefixSum extends InclusiveScan {
 	 */
 	public PrefixSum(final int n) {
 		super(n);
-		imos = new long[n + 1];
 		built = false;
 	}
 	/**
@@ -55,23 +53,17 @@ public final class PrefixSum extends InclusiveScan {
 		if(built) {
 			throw new UnsupportedOperationException("Prefix Sum has been built.");
 		}
-		imos[l] += x;
-		imos[r] -= x;
+		s[l] += x;
+		s[r] -= x;
 	}
-	/**
-	 * 半開区間[l, r)に1を加算する
-	 * @param l
-	 * @param r
-	 */
-	public final void add(final int l, final int r){ add(l, r, 1); }
 	/**
 	 * 構築
 	 * @return 累積和
 	 */
 	public final long[] build() {
 		assert !built;
-		Arrays.parallelPrefix(imos, Long::sum);
+		Arrays.parallelPrefix(s, Long::sum);
 		built = true;
-		return Arrays.copyOf(imos, n);
+		return Arrays.copyOf(s, n);
 	}
 }
