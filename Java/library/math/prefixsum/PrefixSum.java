@@ -40,12 +40,11 @@ public final class PrefixSum extends InclusiveScan {
 		s = Utility.rotate(Arrays.copyOf(s, n + 1), -1);
 	}
 	/**
-	 * 主に累積和の差を求めるのに使う
 	 * @param l
 	 * @param r
-	 * @return 閉区間[l, r]におけるs[l]とs[r]との差
+	 * @return 閉区間[l, r]の和
 	 */
-	public final long query(final int l, final int r){ return s[r] - s[l]; }
+	public final long sum(final int l, final int r){ return s[r] - s[l]; }
 	/**
 	 * 半開区間[l, r)にxを加算する
 	 * @param l

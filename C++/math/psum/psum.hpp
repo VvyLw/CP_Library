@@ -14,7 +14,7 @@ public:
     psum(const int n): n(n), not_built(true), imos(n + 1){}
     vectors::vi get() const { return s; }
     // [l, r]
-    ll query(const int l, const int r) const { return s[r] - s[l]; }
+    ll sum(const int l, const int r) const { return s[r] - s[l]; }
     void add(const int l, const int r, const ll x = 1) {
 		assert(not_built);
 		imos[l] += x;

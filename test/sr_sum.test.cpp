@@ -23,6 +23,6 @@ void VvyLw::solve() {
     psum s(a);
     while(q--) {
         INT(l,r);
-        out(s.query(l,r));
+        out(s.sum(l,r));
     }
 }

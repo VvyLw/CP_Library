@@ -3622,7 +3622,7 @@ final class PrefixSum extends InclusiveScan {
 		super(a, Long::sum);
 		s = Utility.rotate(Arrays.copyOf(s, n + 1), -1);
 	}
-	final long query(final int l, final int r){ return s[r] - s[l]; }
+	final long sum(final int l, final int r){ return s[r] - s[l]; }
 	final void add(final int l, final int r, final long x) {
 		if(built) {
 			throw new UnsupportedOperationException("Prefix Sum has been built.");
