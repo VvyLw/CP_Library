@@ -1945,46 +1945,44 @@ data:
     d\", mat[i][j]));\n\t\t\t\tif(j + 1 == w) {\n\t\t\t\t\tsb.append(\"]\");\n\t\t\
     \t\t}\n\t\t\t}\n\t\t\tif(i + 1 != h) {\n\t\t\t\tsb.append(\"\\n\");\n\t\t\t}\n\
     \t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nclass InclusiveScan {\n\tprotected\
-    \ final int n;\n\tprotected long[] s;\n\tprotected InclusiveScan(final int n){\
-    \ this.n = n; }\n\tInclusiveScan(final int[] a, final LongBinaryOperator op) {\n\
-    \t\tn = a.length;\n\t\ts = Arrays.stream(a).asLongStream().toArray();\n\t\tArrays.parallelPrefix(s,\
-    \ op);\n\t}\n\tInclusiveScan(final long[] a, final LongBinaryOperator op) {\n\t\
-    \tn = a.length;\n\t\ts = a.clone();\n\t\tArrays.parallelPrefix(s, op);\n\t}\n\t\
-    protected final long[] get(){ return s; }\n}\nfinal class PrefixSum extends InclusiveScan\
-    \ {\n\tprivate long[] imos;\n\tprivate boolean built;\n\tPrefixSum(final int n)\
-    \ {\n\t\tsuper(n);\n\t\timos = new long[n + 1];\n\t\tbuilt = false;\n\t}\n\tPrefixSum(final\
-    \ int[] a) {\n\t\tsuper(a, Long::sum);\n\t\ts = Utility.rotate(Arrays.copyOf(s,\
-    \ n + 1), -1);\n\t}\n\tPrefixSum(final long[] a) {\n\t\tsuper(a, Long::sum);\n\
-    \t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), -1);\n\t}\n\tfinal long sum(final\
-    \ int l, final int r){ return s[r] - s[l]; }\n\tfinal void add(final int l, final\
-    \ int r, final long x) {\n\t\tif(built) {\n\t\t\tthrow new UnsupportedOperationException(\"\
-    Prefix Sum has been built.\");\n\t\t}\n\t\timos[l] += x;\n\t\timos[r] -= x;\n\t\
-    }\n\tfinal void add(final int l, final int r){ add(l, r, 1); }\n\tfinal long[]\
-    \ build() {\n\t\tassert !built;\n\t\tArrays.parallelPrefix(imos, Long::sum);\n\
-    \t\tbuilt = true;\n\t\treturn Arrays.copyOf(imos, n);\n\t}\n}\nfinal class PrefixSum2D\
-    \ {\n\tprivate final int h, w;\n\tprivate final long[][] data;\n\tprivate boolean\
-    \ built;\n\tPrefixSum2D(final int h, final int w) {\n\t\tthis.h = h + 3;\n\t\t\
-    this.w = w + 3;\n\t\tdata = new long[this.h][this.w];\n\t\tbuilt = false;\n\t\
-    }\n\tPrefixSum2D(final int[][] a) {\n\t\tthis(a.length, a[0].length);\n\t\tfor(int\
-    \ i = 0; i < a.length; ++i) {\n\t\t\tfor(int j = 0; j < a[i].length; ++j) {\n\t\
-    \t\t\tadd(i, j, a[i][j]);\n\t\t\t}\n\t\t}\n\t}\n\tPrefixSum2D(final long[][] a)\
-    \ {\n\t\tthis(a.length, a[0].length);\n\t\tfor(int i = 0; i < a.length; ++i) {\n\
-    \t\t\tfor(int j = 0; j < a[i].length; ++j) {\n\t\t\t\tadd(i, j, a[i][j]);\n\t\t\
-    \t}\n\t\t}\n\t}\n\tfinal void add(int i, int j, final long x) {\n\t\tif(built)\
-    \ {\n\t\t\tthrow new UnsupportedOperationException(\"Prefix Sum 2D has been built.\"\
-    );\n\t\t}\n\t\ti++;\n\t\tj++;\n\t\tif(i >= h || j >= w) {\n\t\t\treturn;\n\t\t\
-    }\n\t\tdata[i][j] += x;\n\t}\n\tfinal void add(final int i1, final int j1, final\
-    \ int i2, final int j2, final long x) {\n\t\tadd(i1, j1, x);\n\t\tadd(i1, j2,\
-    \ -x);\n\t\tadd(i2, j1, -x);\n\t\tadd(i2, j2, x);\n\t}\n\tfinal void build() {\n\
-    \t\tassert !built;\n\t\tfor(int i = 0; ++i < h;) {\n\t\t\tfor(int j = 0; ++j <\
-    \ w;) {\n\t\t\t\tdata[i][j] += data[i][j - 1] + data[i - 1][j] - data[i - 1][j\
-    \ - 1];\n\t\t\t}\n\t\t}\n\t\tbuilt = true;\n\t}\n\tfinal long get(final int i1,\
-    \ final int j1, final int i2, final int j2) {\n\t\tif(!built) {\n\t\t\tthrow new\
-    \ UnsupportedOperationException(\"Prefix Sum 2D hasn't been built.\");\n\t\t}\n\
-    \t\treturn data[i2][j2] - data[i1][j2] - data[i2][j1] + data[i1][j1];\n\t}\n\t\
-    final long get(final int i, final int j) {\n\t\tif(!built) {\n\t\t\tthrow new\
-    \ UnsupportedOperationException(\"Prefix Sum 2D hasn't been built.\");\n\t\t}\n\
-    \t\treturn data[i + 1][j + 1];\n\t}\n\t@Override\n\tpublic final String toString()\
+    \ final int n;\n\tprotected long[] s;\n\tprotected InclusiveScan(final int n)\
+    \ {\n\t\tthis.n = n;\n\t\ts = new long[n + 1];\n\t}\n\tInclusiveScan(final int[]\
+    \ a, final LongBinaryOperator op) {\n\t\tn = a.length;\n\t\ts = Arrays.stream(a).asLongStream().toArray();\n\
+    \t\tArrays.parallelPrefix(s, op);\n\t}\n\tInclusiveScan(final long[] a, final\
+    \ LongBinaryOperator op) {\n\t\tn = a.length;\n\t\ts = a.clone();\n\t\tArrays.parallelPrefix(s,\
+    \ op);\n\t}\n\tprotected final long[] get(){ return s; }\n}\nfinal class PrefixSum\
+    \ extends InclusiveScan {\n\tprivate boolean built;\n\tPrefixSum(final int n)\
+    \ {\n\t\tsuper(n);\n\t\tbuilt = false;\n\t}\n\tPrefixSum(final int[] a) {\n\t\t\
+    super(a, Long::sum);\n\t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), -1);\n\t\
+    }\n\tPrefixSum(final long[] a) {\n\t\tsuper(a, Long::sum);\n\t\ts = Utility.rotate(Arrays.copyOf(s,\
+    \ n + 1), -1);\n\t}\n\tfinal long sum(final int l, final int r){ return s[r] -\
+    \ s[l]; }\n\tfinal void add(final int l, final int r, final long x) {\n\t\tif(built)\
+    \ {\n\t\t\tthrow new UnsupportedOperationException(\"Prefix Sum has been built.\"\
+    );\n\t\t}\n\t\ts[l] += x;\n\t\ts[r] -= x;\n\t}\n\tfinal long[] build() {\n\t\t\
+    assert !built;\n\t\tArrays.parallelPrefix(s, Long::sum);\n\t\tbuilt = true;\n\t\
+    \treturn Arrays.copyOf(s, n);\n\t}\n}\nfinal class PrefixSum2D {\n\tprivate final\
+    \ int h, w;\n\tprivate final long[][] data;\n\tprivate boolean built;\n\tPrefixSum2D(final\
+    \ int h, final int w) {\n\t\tthis.h = h + 3;\n\t\tthis.w = w + 3;\n\t\tdata =\
+    \ new long[this.h][this.w];\n\t\tbuilt = false;\n\t}\n\tPrefixSum2D(final int[][]\
+    \ a) {\n\t\tthis(a.length, a[0].length);\n\t\tfor(int i = 0; i < a.length; ++i)\
+    \ {\n\t\t\tfor(int j = 0; j < a[i].length; ++j) {\n\t\t\t\tadd(i, j, a[i][j]);\n\
+    \t\t\t}\n\t\t}\n\t}\n\tPrefixSum2D(final long[][] a) {\n\t\tthis(a.length, a[0].length);\n\
+    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tfor(int j = 0; j < a[i].length;\
+    \ ++j) {\n\t\t\t\tadd(i, j, a[i][j]);\n\t\t\t}\n\t\t}\n\t}\n\tfinal void add(int\
+    \ i, int j, final long x) {\n\t\tif(built) {\n\t\t\tthrow new UnsupportedOperationException(\"\
+    Prefix Sum 2D has been built.\");\n\t\t}\n\t\ti++;\n\t\tj++;\n\t\tif(i >= h ||\
+    \ j >= w) {\n\t\t\treturn;\n\t\t}\n\t\tdata[i][j] += x;\n\t}\n\tfinal void add(final\
+    \ int i1, final int j1, final int i2, final int j2, final long x) {\n\t\tadd(i1,\
+    \ j1, x);\n\t\tadd(i1, j2, -x);\n\t\tadd(i2, j1, -x);\n\t\tadd(i2, j2, x);\n\t\
+    }\n\tfinal void build() {\n\t\tassert !built;\n\t\tfor(int i = 0; ++i < h;) {\n\
+    \t\t\tfor(int j = 0; ++j < w;) {\n\t\t\t\tdata[i][j] += data[i][j - 1] + data[i\
+    \ - 1][j] - data[i - 1][j - 1];\n\t\t\t}\n\t\t}\n\t\tbuilt = true;\n\t}\n\tfinal\
+    \ long get(final int i1, final int j1, final int i2, final int j2) {\n\t\tif(!built)\
+    \ {\n\t\t\tthrow new UnsupportedOperationException(\"Prefix Sum 2D hasn't been\
+    \ built.\");\n\t\t}\n\t\treturn data[i2][j2] - data[i1][j2] - data[i2][j1] + data[i1][j1];\n\
+    \t}\n\tfinal long get(final int i, final int j) {\n\t\tif(!built) {\n\t\t\tthrow\
+    \ new UnsupportedOperationException(\"Prefix Sum 2D hasn't been built.\");\n\t\
+    \t}\n\t\treturn data[i + 1][j + 1];\n\t}\n\t@Override\n\tpublic final String toString()\
     \ {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfor(int i = 0; i <\
     \ h - 3; ++i) {\n\t\t\tsb.append(get(i, 0));\n\t\t\tfor(int j = 0; ++j < w - 3;)\
     \ {\n\t\t\t\tsb.append(\" \" + get(i, j));\n\t\t\t}\n\t\t\tif(i + 1 < h) {\n\t\
@@ -2732,7 +2730,7 @@ data:
   - Java/library/graph/MST.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-20 19:23:46+09:00'
+  timestamp: '2024-03-20 21:30:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

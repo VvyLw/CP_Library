@@ -556,16 +556,17 @@ data:
     \n/**\n * C++\u306Estd::inclusive_scan\u306B\u76F8\u5F53\u3059\u308B\u30AF\u30E9\
     \u30B9\n * @see <a href=\"https://cpprefjp.github.io/reference/numeric/inclusive_scan.html\"\
     >std::inclusive_scan</a>\n */\npublic class InclusiveScan {\n\tprotected final\
-    \ int n;\n\tprotected long[] s;\n\tprotected InclusiveScan(final int n){ this.n\
-    \ = n; }\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param\
+    \ int n;\n\tprotected long[] s;\n\tprotected InclusiveScan(final int n) {\n\t\t\
+    this.n = n;\n\t\ts = new long[n + 1];\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\n\t * @param a\n\t * @param op \u4E8C\u9805\u6F14\u7B97\n\t\
+    \ */\n\tpublic InclusiveScan(final int[] a, final LongBinaryOperator op) {\n\t\
+    \tn = a.length;\n\t\ts = Arrays.stream(a).asLongStream().toArray();\n\t\tArrays.parallelPrefix(s,\
+    \ op);\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param\
     \ a\n\t * @param op \u4E8C\u9805\u6F14\u7B97\n\t */\n\tpublic InclusiveScan(final\
-    \ int[] a, final LongBinaryOperator op) {\n\t\tn = a.length;\n\t\ts = Arrays.stream(a).asLongStream().toArray();\n\
-    \t\tArrays.parallelPrefix(s, op);\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\
-    \u30AF\u30BF\n\t * @param a\n\t * @param op \u4E8C\u9805\u6F14\u7B97\n\t */\n\t\
-    public InclusiveScan(final long[] a, final LongBinaryOperator op) {\n\t\tn = a.length;\n\
-    \t\ts = a.clone();\n\t\tArrays.parallelPrefix(s, op);\n\t}\n\t/**\n\t * @return\
-    \ InclusiveScan\u3057\u305F\u5F8C\u306E\u914D\u5217\n\t */\n\tpublic final long[]\
-    \ get(){ return s; }\n}"
+    \ long[] a, final LongBinaryOperator op) {\n\t\tn = a.length;\n\t\ts = a.clone();\n\
+    \t\tArrays.parallelPrefix(s, op);\n\t}\n\t/**\n\t * @return InclusiveScan\u3057\
+    \u305F\u5F8C\u306E\u914D\u5217\n\t */\n\tpublic final long[] get(){ return s;\
+    \ }\n}"
   dependsOn:
   - Java/AOJ.java
   - Java/library/ds/lazysegmenttree/RASM.java
@@ -750,7 +751,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-20 19:23:46+09:00'
+  timestamp: '2024-03-20 21:30:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/InclusiveScan.java
