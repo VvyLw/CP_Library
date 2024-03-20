@@ -468,7 +468,7 @@ data:
     \    int n;\n    bool not_built;\n    vectors::vi s, imos;\npublic:\n    psum(const\
     \ vectors::vi& v): s{0} { std::partial_sum(v.begin(), v.end(), std::back_inserter(s));\
     \ }\n    psum(const int n): n(n), not_built(true), imos(n + 1){}\n    vectors::vi\
-    \ get() const { return s; }\n    // [l, r]\n    ll query(const int l, const int\
+    \ get() const { return s; }\n    // [l, r]\n    ll sum(const int l, const int\
     \ r) const { return s[r] - s[l]; }\n    void add(const int l, const int r, const\
     \ ll x = 1) {\n\t\tassert(not_built);\n\t\timos[l] += x;\n\t\timos[r] -= x;\n\t\
     }\n    vectors::vi build() {\n\t\tassert(not_built);\n        vectors::vi res;\n\
@@ -543,7 +543,7 @@ data:
   isVerificationFile: true
   path: test/add.test.cpp
   requiredBy: []
-  timestamp: '2024-03-15 15:33:57+09:00'
+  timestamp: '2024-03-20 19:23:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/add.test.cpp

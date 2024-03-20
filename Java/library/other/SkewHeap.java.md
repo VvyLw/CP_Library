@@ -761,7 +761,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-18 23:24:49+09:00'
+  timestamp: '2024-03-20 19:23:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/SkewHeap.java

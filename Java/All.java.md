@@ -1955,7 +1955,7 @@ data:
     \ {\n\t\tsuper(n);\n\t\timos = new long[n + 1];\n\t\tbuilt = false;\n\t}\n\tPrefixSum(final\
     \ int[] a) {\n\t\tsuper(a, Long::sum);\n\t\ts = Utility.rotate(Arrays.copyOf(s,\
     \ n + 1), -1);\n\t}\n\tPrefixSum(final long[] a) {\n\t\tsuper(a, Long::sum);\n\
-    \t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), -1);\n\t}\n\tfinal long query(final\
+    \t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), -1);\n\t}\n\tfinal long sum(final\
     \ int l, final int r){ return s[r] - s[l]; }\n\tfinal void add(final int l, final\
     \ int r, final long x) {\n\t\tif(built) {\n\t\t\tthrow new UnsupportedOperationException(\"\
     Prefix Sum has been built.\");\n\t\t}\n\t\timos[l] += x;\n\t\timos[r] -= x;\n\t\
@@ -2732,7 +2732,7 @@ data:
   - Java/library/graph/MST.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-18 23:24:49+09:00'
+  timestamp: '2024-03-20 19:23:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
