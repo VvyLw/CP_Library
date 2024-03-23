@@ -557,7 +557,8 @@ data:
     \u30BD\u30C3\u30C9\u3082\u3042\u308B\n */\npublic final class IntPair extends\
     \ Pair<Long, Long> {\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\
     \t * @param first\n\t * @param second\n\t */\n\tprivate IntPair(final long first,\
-    \ final long second){ super(first, second); }\n\t/**\n\t * IntPair\u3092\u5BA3\
+    \ final long second){ super(first, second); }\n\t/**\n\t * (1, 1)\n\t */\n\tpublic\
+    \ static final IntPair ONE = new IntPair(1, 1);\n\t/**\n\t * IntPair\u3092\u5BA3\
     \u8A00\u3059\u308B\u306E\u306B\u4F7F\u3046\n\t * new IntPair\u3068\u540C\u7B49\
     \n\t * @param a first\n\t * @param b second\n\t */\n\tpublic static final IntPair\
     \ of(final long a, final long b){ return new IntPair(a, b); }\n\t/**\n\t * @return\
@@ -786,7 +787,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-20 21:30:08+09:00'
+  timestamp: '2024-03-23 16:18:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/pair/IntPair.java

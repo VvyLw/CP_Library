@@ -1328,38 +1328,39 @@ data:
     \ Pair<F, S> p) {\n\t\tif(first.compareTo(p.first) == 0) {\n\t\t\treturn second.compareTo(p.second);\n\
     \t\t}\n\t\treturn first.compareTo(p.first);\n\t}\n}\nfinal class IntPair extends\
     \ Pair<Long, Long> {\n\tprivate IntPair(final long first, final long second){\
-    \ super(first, second); }\n\tstatic final IntPair of(final long a, final long\
-    \ b){ return new IntPair(a, b); }\n\t@Override\n\tfinal IntPair swap(){ return\
-    \ new IntPair(second, first); }\n\tfinal IntPair add(final IntPair p){ return\
-    \ new IntPair(first + p.first, second + p.second); }\n\tfinal IntPair sub(final\
-    \ IntPair p){ return new IntPair(first - p.first, second - p.second); }\n\tfinal\
-    \ IntPair mul(final IntPair p){ return new IntPair(first * p.first, second * p.second);\
-    \ }\n\tfinal IntPair div(final IntPair p){ return new IntPair(first / p.first,\
-    \ second / p.second); }\n\tfinal IntPair mod(final IntPair p){ return new IntPair(first\
-    \ % p.first, second % p.second); }\n\tfinal IntPair rotate(){ return new IntPair(-second,\
-    \ first); } \n\tfinal FloatPair rotate(final int ang) {\n\t\tfinal double rad\
-    \ = toRadians(Utility.mod(ang, 360));\n\t\treturn FloatPair.of(first * cos(rad)\
-    \ - second * sin(rad), first * sin(rad) + second * cos(rad));\n\t}\n\tfinal long\
-    \ dot(final IntPair p){ return first * p.first + second * p.second; }\n\tfinal\
-    \ long cross(final IntPair p){ return rotate().dot(p); }\n\tfinal long sqr(){\
-    \ return dot(this); }\n\tfinal double grad() {\n\t\ttry {\n\t\t\treturn 1.0 *\
-    \ second / first;\n\t\t} catch(final ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
-    \t\t}\n\t\tthrow new Error();\n\t}\n\tfinal double abs(){ return hypot(first,\
-    \ second); }\n\tfinal long lcm(){ return Utility.lcm(first, second); }\n\tfinal\
-    \ long gcd(){ return Utility.gcd(first, second); }\n\tfinal IntPair extgcd() {\n\
-    \t\tlong x = 1, y = 0, t1 = 0, t2 = 0, t3 = 1, a = first, b = second;\n\t\twhile(b\
-    \ > 0) {\n\t\t\tt1 = a / b;\n\t\t\ta -= t1 * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\
-    \t\t\ta ^= b;\n\t\t\tx -= t1 * t2;\n\t\t\tx ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^=\
-    \ t2;\n\t\t\ty -= t1 * t3;\n\t\t\ty ^= t3;\n\t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\
-    \t}\n\t\treturn new IntPair(x, y);\n\t}\n}\nfinal class FloatPair extends Pair<Double,\
-    \ Double> {\n\tprivate FloatPair(final double first, final double second){ super(first,\
-    \ second); }\n\tstatic final FloatPair of(final double a, final double b){ return\
-    \ new FloatPair(a, b); }\n\t@Override\n\tfinal FloatPair swap(){ return new FloatPair(second,\
-    \ first); }\n\tfinal FloatPair add(final FloatPair p){ return new FloatPair(first\
-    \ + p.first, second + p.second); }\n\tfinal FloatPair sub(final FloatPair p){\
-    \ return new FloatPair(first - p.first, second - p.second); }\n\tfinal FloatPair\
-    \ mul(final FloatPair p){ return new FloatPair(first * p.first, second * p.second);\
-    \ }\n\tfinal FloatPair div(final FloatPair p){ return new FloatPair(first / p.first,\
+    \ super(first, second); }\n\tstatic final IntPair ONE = new IntPair(1, 1);\n\t\
+    static final IntPair of(final long a, final long b){ return new IntPair(a, b);\
+    \ }\n\t@Override\n\tfinal IntPair swap(){ return new IntPair(second, first); }\n\
+    \tfinal IntPair add(final IntPair p){ return new IntPair(first + p.first, second\
+    \ + p.second); }\n\tfinal IntPair sub(final IntPair p){ return new IntPair(first\
+    \ - p.first, second - p.second); }\n\tfinal IntPair mul(final IntPair p){ return\
+    \ new IntPair(first * p.first, second * p.second); }\n\tfinal IntPair div(final\
+    \ IntPair p){ return new IntPair(first / p.first, second / p.second); }\n\tfinal\
+    \ IntPair mod(final IntPair p){ return new IntPair(first % p.first, second % p.second);\
+    \ }\n\tfinal IntPair rotate(){ return new IntPair(-second, first); } \n\tfinal\
+    \ FloatPair rotate(final int ang) {\n\t\tfinal double rad = toRadians(Utility.mod(ang,\
+    \ 360));\n\t\treturn FloatPair.of(first * cos(rad) - second * sin(rad), first\
+    \ * sin(rad) + second * cos(rad));\n\t}\n\tfinal long dot(final IntPair p){ return\
+    \ first * p.first + second * p.second; }\n\tfinal long cross(final IntPair p){\
+    \ return rotate().dot(p); }\n\tfinal long sqr(){ return dot(this); }\n\tfinal\
+    \ double grad() {\n\t\ttry {\n\t\t\treturn 1.0 * second / first;\n\t\t} catch(final\
+    \ ArithmeticException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow new Error();\n\
+    \t}\n\tfinal double abs(){ return hypot(first, second); }\n\tfinal long lcm(){\
+    \ return Utility.lcm(first, second); }\n\tfinal long gcd(){ return Utility.gcd(first,\
+    \ second); }\n\tfinal IntPair extgcd() {\n\t\tlong x = 1, y = 0, t1 = 0, t2 =\
+    \ 0, t3 = 1, a = first, b = second;\n\t\twhile(b > 0) {\n\t\t\tt1 = a / b;\n\t\
+    \t\ta -= t1 * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\t\tx -= t1 *\
+    \ t2;\n\t\t\tx ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^= t2;\n\t\t\ty -= t1 * t3;\n\t\
+    \t\ty ^= t3;\n\t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\t}\n\t\treturn new IntPair(x,\
+    \ y);\n\t}\n}\nfinal class FloatPair extends Pair<Double, Double> {\n\tprivate\
+    \ FloatPair(final double first, final double second){ super(first, second); }\n\
+    \tstatic final FloatPair of(final double a, final double b){ return new FloatPair(a,\
+    \ b); }\n\t@Override\n\tfinal FloatPair swap(){ return new FloatPair(second, first);\
+    \ }\n\tfinal FloatPair add(final FloatPair p){ return new FloatPair(first + p.first,\
+    \ second + p.second); }\n\tfinal FloatPair sub(final FloatPair p){ return new\
+    \ FloatPair(first - p.first, second - p.second); }\n\tfinal FloatPair mul(final\
+    \ FloatPair p){ return new FloatPair(first * p.first, second * p.second); }\n\t\
+    final FloatPair div(final FloatPair p){ return new FloatPair(first / p.first,\
     \ second / p.second); }\n\tfinal FloatPair rotate(){ return new FloatPair(-second,\
     \ first); } \n\tfinal FloatPair rotate(final int ang) {\n\t\tfinal double rad\
     \ = toRadians(Utility.mod(ang, 360));\n\t\treturn FloatPair.of(first * cos(rad)\
@@ -2730,7 +2731,7 @@ data:
   - Java/library/graph/MST.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-20 21:30:08+09:00'
+  timestamp: '2024-03-23 16:18:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
