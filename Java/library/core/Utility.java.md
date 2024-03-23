@@ -577,9 +577,12 @@ data:
     \t\tn %= m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\t/**\n\t * n\u304C\u8CA0\
     \u306E\u6642\u3067\u3082\u6B63\u306E\u5270\u4F59\u3092\u6C42\u3081\u308B\n\t *\
     \ @param n\n\t * @param m\n\t */\n\tpublic static final long mod(long n, final\
-    \ long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\t/**\n\t * a /\
-    \ b\u3092\u5C0F\u6570\u70B9\u4EE5\u4E0B\u5207\u308A\u4E0A\u3052\u3067\u6C42\u3081\
-    \u308B\n\t * @param a\n\t * @param b\n\t */\n\tprotected static final long intCeil(final\
+    \ long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\t/**\n\t * @param\
+    \ x\n\t * @param base\n\t * @return base\u3092\u5E95\u3068\u3059\u308Bx\u306E\u5BFE\
+    \u6570\n\t */\n\tprotected static final double log(final double x, final long\
+    \ base){ return Math.log(x) / Math.log(base); }\n\t/**\n\t * a / b\u3092\u5C0F\
+    \u6570\u70B9\u4EE5\u4E0B\u5207\u308A\u4E0A\u3052\u3067\u6C42\u3081\u308B\n\t *\
+    \ @param a\n\t * @param b\n\t */\n\tprotected static final long intCeil(final\
     \ long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\t/**\n\t * a\
     \ / b\u3092\u5C0F\u6570\u70B9c\u6841\u3067\u56DB\u6368\u4E94\u5165\u3057\u3066\
     \u6C42\u3081\u308B\n\t * @param a\n\t * @param b\n\t * @param c\n\t */\n\tprotected\
@@ -1582,7 +1585,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-23 18:52:26+09:00'
+  timestamp: '2024-03-23 19:16:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

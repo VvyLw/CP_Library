@@ -579,31 +579,32 @@ data:
     \ long x){ return x * x * x; }\n\tprotected static final int mod(long n, final\
     \ int m) {\n\t\tn %= m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\tprotected\
     \ static final long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0\
-    \ ? n + m : n;\n\t}\n\tprotected static final long intCeil(final long a, final\
-    \ long b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final double\
-    \ intRound(final double a, final long b, final int c) {\n\t\tfinal long d = intPow(10,\
-    \ c);\n\t\treturn rint((a * d) / b) / d;\n\t}\n\tprotected static final long intPow(long\
-    \ a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\
-    \t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static final long intPow(long a, long b, final long m) {\n\t\t\
-    long res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
-    \t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\
-    \tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long inv(long\
-    \ a, final long m) {\n\t\tlong b = m, u = 1, v = 0;\n\t\twhile(b > 0) {\n\t\t\t\
-    final long t = a / b;\n\t\t\ta -= t * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\t\
-    a ^= b;\n\t\t\tu -= t * v;\n\t\t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t\
-    }\n\t\treturn mod(u, m);\n\t}\n\tprotected static final long lcm(final long a,\
-    \ final long b){ return a / gcd(a, b) * b; }\n\tprotected static final long lcm(final\
-    \ int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x,\
-    \ y)); }\n\tprotected static final long lcm(final long... a){ return Arrays.stream(a).reduce(1,\
-    \ (x, y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final\
-    \ long b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
-    \ int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\
-    \tprotected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0,\
-    \ (x, y) -> gcd(x, y)); }\n\tprotected static final int min(final int... a){ return\
-    \ Arrays.stream(a).min().getAsInt(); }\n\tprotected static final long min(final\
-    \ long... a){ return Arrays.stream(a).min().getAsLong(); }\n\tprotected static\
-    \ final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
+    \ ? n + m : n;\n\t}\n\tprotected static final double log(final double x, final\
+    \ long base){ return Math.log(x) / Math.log(base); }\n\tprotected static final\
+    \ long intCeil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b +\
+    \ 1; }\n\tprotected static final double intRound(final double a, final long b,\
+    \ final int c) {\n\t\tfinal long d = intPow(10, c);\n\t\treturn rint((a * d) /\
+    \ b) / d;\n\t}\n\tprotected static final long intPow(long a, int b) {\n\t\tlong\
+    \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
+    \t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ final long intPow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b\
+    \ > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\
+    \t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\tprotected static final long inv(long a, final long m) {\n\t\tlong\
+    \ b = m, u = 1, v = 0;\n\t\twhile(b > 0) {\n\t\t\tfinal long t = a / b;\n\t\t\t\
+    a -= t * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\t\tu -= t * v;\n\t\
+    \t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\treturn mod(u, m);\n\t}\n\
+    \tprotected static final long lcm(final long a, final long b){ return a / gcd(a,\
+    \ b) * b; }\n\tprotected static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1,\
+    \ (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){\
+    \ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static\
+    \ final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a;\
+    \ }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
+    \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
+    \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
+    \ final int min(final int... a){ return Arrays.stream(a).min().getAsInt(); }\n\
+    \tprotected static final long min(final long... a){ return Arrays.stream(a).min().getAsLong();\
+    \ }\n\tprotected static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
     \ }\n\tprotected static final int max(final int... a){ return Arrays.stream(a).max().getAsInt();\
     \ }\n\tprotected static final long max(final long... a){ return Arrays.stream(a).max().getAsLong();\
     \ }\n\tprotected static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble();\
@@ -1546,7 +1547,7 @@ data:
   - Java/library/graph/MST.java
   - Java/All.java
   - Java/CodeForces.java
-  timestamp: '2024-03-23 18:52:26+09:00'
+  timestamp: '2024-03-23 19:16:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java
