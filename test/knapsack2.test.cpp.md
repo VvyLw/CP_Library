@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: C++/other/dp.hpp
-    title: DP(Knapsack, LCS, LIS)
+    title: "DP(Knapsack, LCS, LIS, \u6700\u5927\u9577\u65B9\u5F62)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -99,10 +99,11 @@ data:
     \   }\n    }\n    for(int i = -dp.back().second; i != -1; i = p[i]) {\n      \
     \  res.emplace_back(i);\n    }\n    std::ranges::reverse(res);\n    return res;\n\
     }\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
-    \ */\n\n/**\n * @brief DP(Knapsack, LCS, LIS)\n */\n#line 4 \"test/knapsack2.test.cpp\"\
-    \nint main() {\n    int n, wg;\n    std::cin >> n >> wg;\n    std::vector<int>\
-    \ v(n), w(n);\n    for(int i = 0; i < n; ++i) {\n        std::cin >> v[i] >> w[i];\n\
-    \    }\n    std::cout << knapsack01_v(w, v, wg) << '\\n';\n}\n"
+    \ */\n\n/**\n * @brief DP(Knapsack, LCS, LIS, \u6700\u5927\u9577\u65B9\u5F62)\n\
+    \ */\n#line 4 \"test/knapsack2.test.cpp\"\nint main() {\n    int n, wg;\n    std::cin\
+    \ >> n >> wg;\n    std::vector<int> v(n), w(n);\n    for(int i = 0; i < n; ++i)\
+    \ {\n        std::cin >> v[i] >> w[i];\n    }\n    std::cout << knapsack01_v(w,\
+    \ v, wg) << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_B\"\n#include\
     \ <iostream>\n#include \"C++/other/dp.hpp\"\nint main() {\n    int n, wg;\n  \
     \  std::cin >> n >> wg;\n    std::vector<int> v(n), w(n);\n    for(int i = 0;\
@@ -113,7 +114,7 @@ data:
   isVerificationFile: true
   path: test/knapsack2.test.cpp
   requiredBy: []
-  timestamp: '2024-03-09 14:14:38+09:00'
+  timestamp: '2024-03-23 20:54:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/knapsack2.test.cpp

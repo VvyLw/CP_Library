@@ -470,13 +470,14 @@ data:
     \ }\n    psum(const int n): n(n), not_built(true), s(n + 1){}\n    vectors::vi\
     \ get() const { return s; }\n    // [l, r]\n    ll sum(const int l, const int\
     \ r) const { return s[r] - s[l]; }\n    void add(const int l, const int r, const\
-    \ ll x) {\n\t\tassert(not_built);\n\t\ts[l] += x;\n\t\ts[r] -= x;\n\t}\n    vectors::vi\
-    \ build() {\n\t\tassert(not_built);\n        vectors::vi res;\n\t\tstd::partial_sum(s.cbegin(),\
-    \ s.cend(), std::back_inserter(res));\n\t\tnot_built = false;\n        res.resize(n);\n\
-    \t\treturn res;\n\t}\n};\n}\n\n/**\n * @brief \u7D2F\u7A4D\u548C\n */\n#line 2\
-    \ \"C++/math/kthrooti.hpp\"\n\n#line 4 \"C++/math/kthrooti.hpp\"\n#ifndef TEMPLATE\n\
-    typedef unsigned long long ul;\ntemplate <class T, class U> inline bool overflow_if_mul(const\
-    \ T a, const U b){ return (std::numeric_limits<T>::max()/a)<b; }\n#endif\nnamespace\
+    \ ll x) {\n        assert(not_built);\n        s[l] += x;\n        s[r] -= x;\n\
+    \    }\n    vectors::vi build() {\n        assert(not_built);\n        vectors::vi\
+    \ res;\n        std::partial_sum(s.cbegin(), s.cend(), std::back_inserter(res));\n\
+    \        not_built = false;\n        res.resize(n);\n        return res;\n   \
+    \ }\n};\n}\n\n/**\n * @brief \u7D2F\u7A4D\u548C\n */\n#line 2 \"C++/math/kthrooti.hpp\"\
+    \n\n#line 4 \"C++/math/kthrooti.hpp\"\n#ifndef TEMPLATE\ntypedef unsigned long\
+    \ long ul;\ntemplate <class T, class U> inline bool overflow_if_mul(const T a,\
+    \ const U b){ return (std::numeric_limits<T>::max()/a)<b; }\n#endif\nnamespace\
     \ Heileden {\ninline ul kthrooti(const ul n, const int k) {\n    if(k==1) {\n\t\
     \treturn n;\n\t}\n\tconst auto chk=[&](const unsigned x) {\n\t\tul mul=1;\n\t\t\
     for(int i = 0; i < k; ++i) {\n            if(overflow_if_mul(mul, x)) {\n    \
@@ -544,7 +545,7 @@ data:
   isVerificationFile: true
   path: test/sr_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-03-23 17:15:45+09:00'
+  timestamp: '2024-03-23 20:53:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sr_sum.test.cpp

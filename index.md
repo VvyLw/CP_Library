@@ -163,7 +163,7 @@ data:
       title: SkewHeap
     - icon: ':heavy_check_mark:'
       path: C++/other/dp.hpp
-      title: DP(Knapsack, LCS, LIS)
+      title: "DP(Knapsack, LCS, LIS, \u6700\u5927\u9577\u65B9\u5F62)"
     - icon: ':warning:'
       path: C++/other/merge_sort.hpp
       title: "\u30DE\u30FC\u30B8\u30BD\u30FC\u30C8"

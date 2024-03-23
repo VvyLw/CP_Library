@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: C++/other/dp.hpp
-    title: DP(Knapsack, LCS, LIS)
+    title: "DP(Knapsack, LCS, LIS, \u6700\u5927\u9577\u65B9\u5F62)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -99,11 +99,12 @@ data:
     \   }\n    }\n    for(int i = -dp.back().second; i != -1; i = p[i]) {\n      \
     \  res.emplace_back(i);\n    }\n    std::ranges::reverse(res);\n    return res;\n\
     }\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
-    \ */\n\n/**\n * @brief DP(Knapsack, LCS, LIS)\n */\n#line 4 \"test/lis.test.cpp\"\
-    \nint main() {\n    int n;\n    std::cin >> n;\n    std::vector<int> a(n), res;\n\
-    \    for(auto &el: a) {\n        std::cin >> el;\n    }\n    res = lis(a);\n \
-    \   std::cout << res.size() << '\\n';\n    for(size_t i = 0; i < res.size(); ++i)\
-    \ {\n        std::cout << res[i] << \" \\n\"[i + 1 == res.size()];\n    }\n}\n"
+    \ */\n\n/**\n * @brief DP(Knapsack, LCS, LIS, \u6700\u5927\u9577\u65B9\u5F62)\n\
+    \ */\n#line 4 \"test/lis.test.cpp\"\nint main() {\n    int n;\n    std::cin >>\
+    \ n;\n    std::vector<int> a(n), res;\n    for(auto &el: a) {\n        std::cin\
+    \ >> el;\n    }\n    res = lis(a);\n    std::cout << res.size() << '\\n';\n  \
+    \  for(size_t i = 0; i < res.size(); ++i) {\n        std::cout << res[i] << \"\
+    \ \\n\"[i + 1 == res.size()];\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/longest_increasing_subsequence\"\
     \n#include <iostream>\n#include \"C++/other/dp.hpp\"\nint main() {\n    int n;\n\
     \    std::cin >> n;\n    std::vector<int> a(n), res;\n    for(auto &el: a) {\n\
@@ -115,7 +116,7 @@ data:
   isVerificationFile: true
   path: test/lis.test.cpp
   requiredBy: []
-  timestamp: '2024-03-09 14:14:38+09:00'
+  timestamp: '2024-03-23 20:54:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lis.test.cpp
