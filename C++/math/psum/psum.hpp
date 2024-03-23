@@ -16,18 +16,18 @@ public:
     // [l, r]
     ll sum(const int l, const int r) const { return s[r] - s[l]; }
     void add(const int l, const int r, const ll x) {
-		assert(not_built);
-		s[l] += x;
-		s[r] -= x;
-	}
+        assert(not_built);
+        s[l] += x;
+        s[r] -= x;
+    }
     vectors::vi build() {
-		assert(not_built);
+        assert(not_built);
         vectors::vi res;
-		std::partial_sum(s.cbegin(), s.cend(), std::back_inserter(res));
-		not_built = false;
+        std::partial_sum(s.cbegin(), s.cend(), std::back_inserter(res));
+        not_built = false;
         res.resize(n);
-		return res;
-	}
+        return res;
+    }
 };
 }
 
