@@ -644,68 +644,69 @@ data:
     n /= i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tif(n > 1) {\n\t\t\tres -= res / n;\n\t\
     \t}\n\t\treturn res;\n\t}\n\tprotected static final long sigma(final long n){\
     \ return n * (n + 1) / 2; }\n\tprotected static final long sigma(final long a,\
-    \ final long b){ return sigma(b) - sigma(a - 1); } \n\tprotected static final\
-    \ long fact(int n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long fact(int n, final long\
-    \ mod) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t\tres\
-    \ %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long perm(final\
-    \ int n, final int r) {\n\t\tint m = n;\n\t\tlong res = 1;\n\t\twhile(m > n -\
-    \ r) {\n\t\t\tres *= m--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
-    \ long perm(final int n, final int r, final long mod) {\n\t\tint m = n;\n\t\t\
-    long res = 1;\n\t\twhile(m > n - r) {\n\t\t\tres *= m--;\n\t\t\tres %= mod; \n\
-    \t\t}\n\t\treturn res;\n\t}\n\tprotected static final long binom(final int n,\
-    \ final int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp\
-    \ = n;\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\
-    \tres *= tmp--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final long binom(final int n, final int r, final long mod) {\n\t\tif(r < 0 ||\
-    \ n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp = n;\n\t\tlong res = 1;\n\t\t\
-    for(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\tres *= tmp--;\n\t\t\tres = mod;\n\
-    \t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
-    \ final boolean isInt(final double n){ return n == (long) floor(n); }\n\tprotected\
-    \ static final boolean isSqr(final long n){ return isInt(sqrt(n)); }\n\tprotected\
-    \ static final boolean isPrime(final long n) {\n\t\tif(n == 1) {\n\t\t\treturn\
-    \ false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0)\
-    \ {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\tprotected\
-    \ static final boolean scope(final int l, final int x, final int r){ return l\
-    \ <= x && x <= r; }\n\tprotected static final boolean scope(final long l, final\
-    \ long x, final long r){ return l <= x && x <= r; }\n\tprotected static final\
-    \ boolean scope(final double l, final double x, final double r){ return l <= x\
-    \ && x <= r; }\n\tprotected static final int clamp(final int l, final int x, final\
-    \ int r){ return x < l ? l : x > r ? r : x; }\n\tprotected static final long clamp(final\
-    \ long l, final long x, final long r){ return x < l ? l : x > r ? r : x; }\n\t\
-    protected static final double clamp(final double l, final double x, final double\
-    \ r){ return x < l ? l : x > r ? r : x; }\n\tprotected static final boolean isBit(final\
-    \ long i, final long j){ return (i >> j & 1) == 1; }\n\tprotected static final\
-    \ boolean nextPerm(final int[] a) {\n\t\ttry {\n\t\t\tfinal int[] res = nextPermutation(a);\n\
-    \t\t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final\
+    \ final long b) {\n\t\tassert a <= b;\n\t\treturn sigma(b) - sigma(a - 1);\n\t\
+    }\n\tprotected static final long fact(int n) {\n\t\tlong res = 1;\n\t\twhile(n\
+    \ > 0) {\n\t\t\tres *= n--;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
+    \ long fact(int n, final long mod) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\
+    \t\tres *= n--;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ final long perm(final int n, final int r) {\n\t\tint m = n;\n\t\tlong res =\
+    \ 1;\n\t\twhile(m > n - r) {\n\t\t\tres *= m--;\n\t\t}\n\t\treturn res;\n\t}\n\
+    \tprotected static final long perm(final int n, final int r, final long mod) {\n\
+    \t\tint m = n;\n\t\tlong res = 1;\n\t\twhile(m > n - r) {\n\t\t\tres *= m--;\n\
+    \t\t\tres %= mod; \n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long\
+    \ binom(final int n, final int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\
+    \t\t}\n\t\tint tmp = n;\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= min(n - r,\
+    \ r); ++i) {\n\t\t\tres *= tmp--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t\
+    }\n\tprotected static final long binom(final int n, final int r, final long mod)\
+    \ {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp = n;\n\t\t\
+    long res = 1;\n\t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\tres *= tmp--;\n\
+    \t\t\tres = mod;\n\t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\tprotected static final boolean isInt(final double n){ return n == (long)\
+    \ floor(n); }\n\tprotected static final boolean isSqr(final long n){ return isInt(sqrt(n));\
+    \ }\n\tprotected static final boolean isPrime(final long n) {\n\t\tif(n == 1)\
+    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\t\
+    if(n % i == 0) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t\
+    }\n\tprotected static final boolean scope(final int l, final int x, final int\
+    \ r){ return l <= x && x <= r; }\n\tprotected static final boolean scope(final\
+    \ long l, final long x, final long r){ return l <= x && x <= r; }\n\tprotected\
+    \ static final boolean scope(final double l, final double x, final double r){\
+    \ return l <= x && x <= r; }\n\tprotected static final int clamp(final int l,\
+    \ final int x, final int r){ return x < l ? l : x > r ? r : x; }\n\tprotected\
+    \ static final long clamp(final long l, final long x, final long r){ return x\
+    \ < l ? l : x > r ? r : x; }\n\tprotected static final double clamp(final double\
+    \ l, final double x, final double r){ return x < l ? l : x > r ? r : x; }\n\t\
+    protected static final boolean isBit(final long i, final long j){ return (i >>\
+    \ j & 1) == 1; }\n\tprotected static final boolean nextPerm(final int[] a) {\n\
+    \t\ttry {\n\t\t\tfinal int[] res = nextPermutation(a);\n\t\t\tSystem.arraycopy(res,\
+    \ 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final NullPointerException\
+    \ e) {\n\t\t\tArrays.sort(a);\n\t\t\treturn false;\n\t\t}\n\t}\n\tprotected static\
+    \ final boolean nextPerm(final long[] a) {\n\t\ttry {\n\t\t\tfinal long[] res\
+    \ = nextPermutation(a);\n\t\t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\
+    \treturn true;\n\t\t} catch(final NullPointerException e) {\n\t\t\tArrays.sort(a);\n\
+    \t\t\treturn false;\n\t\t}\n\t}\n\tprotected static final boolean nextPerm(final\
+    \ double[] a) {\n\t\ttry {\n\t\t\tfinal double[] res = nextPermutation(a);\n\t\
+    \t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final\
     \ NullPointerException e) {\n\t\t\tArrays.sort(a);\n\t\t\treturn false;\n\t\t\
-    }\n\t}\n\tprotected static final boolean nextPerm(final long[] a) {\n\t\ttry {\n\
-    \t\t\tfinal long[] res = nextPermutation(a);\n\t\t\tSystem.arraycopy(res, 0, a,\
+    }\n\t}\n\tprotected static final boolean nextPerm(final char[] a) {\n\t\ttry {\n\
+    \t\t\tfinal char[] res = nextPermutation(a);\n\t\t\tSystem.arraycopy(res, 0, a,\
     \ 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final NullPointerException e)\
     \ {\n\t\t\tArrays.sort(a);\n\t\t\treturn false;\n\t\t}\n\t}\n\tprotected static\
-    \ final boolean nextPerm(final double[] a) {\n\t\ttry {\n\t\t\tfinal double[]\
-    \ res = nextPermutation(a);\n\t\t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\
-    \t\t\treturn true;\n\t\t} catch(final NullPointerException e) {\n\t\t\tArrays.sort(a);\n\
-    \t\t\treturn false;\n\t\t}\n\t}\n\tprotected static final boolean nextPerm(final\
-    \ char[] a) {\n\t\ttry {\n\t\t\tfinal char[] res = nextPermutation(a);\n\t\t\t\
+    \ final boolean prevPerm(final int[] a) {\n\t\ttry {\n\t\t\tfinal int[] res =\
+    \ prevPermutation(a);\n\t\t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\t\
+    return true;\n\t\t} catch(final NullPointerException e) {\n\t\t\tfinal int[] res\
+    \ = reverse(sorted(a));\n\t\t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\
+    \treturn false;\n\t\t}\n\t}\n\tprotected static final boolean prevPerm(final long[]\
+    \ a) {\n\t\ttry {\n\t\t\tfinal long[] res = prevPermutation(a);\n\t\t\tSystem.arraycopy(res,\
+    \ 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final NullPointerException\
+    \ e) {\n\t\t\tfinal long[] res = reverse(sorted(a));\n\t\t\tSystem.arraycopy(res,\
+    \ 0, a, 0, a.length);\n\t\t\treturn false;\n\t\t}\n\t}\n\tprotected static final\
+    \ boolean prevPerm(final double[] a) {\n\t\ttry {\n\t\t\tfinal double[] res =\
+    \ prevPermutation(a);\n\t\t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\t\
+    return true;\n\t\t} catch(final NullPointerException e) {\n\t\t\tfinal double[]\
+    \ res = reverse(sorted(a));\n\t\t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\
+    \t\t\treturn false;\n\t\t}\n\t}\n\tprotected static final boolean prevPerm(final\
+    \ char[] a) {\n\t\ttry {\n\t\t\tfinal char[] res = prevPermutation(a);\n\t\t\t\
     System.arraycopy(res, 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final\
-    \ NullPointerException e) {\n\t\t\tArrays.sort(a);\n\t\t\treturn false;\n\t\t\
-    }\n\t}\n\tprotected static final boolean prevPerm(final int[] a) {\n\t\ttry {\n\
-    \t\t\tfinal int[] res = prevPermutation(a);\n\t\t\tSystem.arraycopy(res, 0, a,\
-    \ 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final NullPointerException e)\
-    \ {\n\t\t\tfinal int[] res = reverse(sorted(a));\n\t\t\tSystem.arraycopy(res,\
-    \ 0, a, 0, a.length);\n\t\t\treturn false;\n\t\t}\n\t}\n\tprotected static final\
-    \ boolean prevPerm(final long[] a) {\n\t\ttry {\n\t\t\tfinal long[] res = prevPermutation(a);\n\
-    \t\t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final\
-    \ NullPointerException e) {\n\t\t\tfinal long[] res = reverse(sorted(a));\n\t\t\
-    \tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\treturn false;\n\t\t}\n\t}\n\
-    \tprotected static final boolean prevPerm(final double[] a) {\n\t\ttry {\n\t\t\
-    \tfinal double[] res = prevPermutation(a);\n\t\t\tSystem.arraycopy(res, 0, a,\
-    \ 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final NullPointerException e)\
-    \ {\n\t\t\tfinal double[] res = reverse(sorted(a));\n\t\t\tSystem.arraycopy(res,\
-    \ 0, a, 0, a.length);\n\t\t\treturn false;\n\t\t}\n\t}\n\tprotected static final\
-    \ boolean prevPerm(final char[] a) {\n\t\ttry {\n\t\t\tfinal char[] res = prevPermutation(a);\n\
-    \t\t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final\
     \ NullPointerException e) {\n\t\t\tfinal char[] res = reverse(sorted(a));\n\t\t\
     \tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\treturn false;\n\t\t}\n\t}\n\
     \tprivate static final int[] nextPermutation(final int[] a) {\n\t\tfor(int i =\
@@ -2731,7 +2732,7 @@ data:
   - Java/library/graph/MST.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-23 16:18:25+09:00'
+  timestamp: '2024-03-23 18:52:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

@@ -696,12 +696,13 @@ data:
     \t/**\n\t * @param n\n\t * @return 1\u304B\u3089n\u307E\u3067\u306E\u7DCF\u548C\
     \n\t */\n\tprotected static final long sigma(final long n){ return n * (n + 1)\
     \ / 2; }\n\t/**\n\t * @param a\n\t * @param b\n\t * @return a\u304B\u3089b\u307E\
-    \u3067\u306E\u7DCF\u548C\n\t */\n\tprotected static final long sigma(final long\
-    \ a, final long b){ return sigma(b) - sigma(a - 1); }\n\t/**\n\t * @param n \u6574\
-    \u6570\n\t * @return n\u306E\u968E\u4E57\n\t */\n\tprotected static final long\
-    \ fact(int n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t\
-    }\n\t\treturn res;\n\t}\n\t/**\n\t * @param n\n\t * @param mod\n\t * @return n\u306E\
-    \u968E\u4E57\u306Emod\u3092\u6CD5\u3068\u3059\u308B\u5270\u4F59\n\t */\n\tprotected\
+    \u3067\u306E\u7DCF\u548C\n\t * @implNote b\u306Fa\u4EE5\u4E0A\n\t */\n\tprotected\
+    \ static final long sigma(final long a, final long b) {\n\t\tassert a <= b;\n\t\
+    \treturn sigma(b) - sigma(a - 1);\n\t}\n\t/**\n\t * @param n \u6574\u6570\n\t\
+    \ * @return n\u306E\u968E\u4E57\n\t */\n\tprotected static final long fact(int\
+    \ n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t}\n\t\t\
+    return res;\n\t}\n\t/**\n\t * @param n\n\t * @param mod\n\t * @return n\u306E\u968E\
+    \u4E57\u306Emod\u3092\u6CD5\u3068\u3059\u308B\u5270\u4F59\n\t */\n\tprotected\
     \ static final long fact(int n, final long mod) {\n\t\tlong res = 1;\n\t\twhile(n\
     \ > 0) {\n\t\t\tres *= n--;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\t\
     /**\n\t * @param n\n\t * @param r\n\t * @return \u9806\u5217(nPr)\n\t */\n\tprotected\
@@ -1581,7 +1582,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-23 16:18:25+09:00'
+  timestamp: '2024-03-23 18:52:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java
