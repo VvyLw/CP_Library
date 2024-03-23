@@ -336,8 +336,12 @@ public class Utility {
 	 * @param a
 	 * @param b
 	 * @return aからbまでの総和
+	 * @implNote bはa以上
 	 */
-	protected static final long sigma(final long a, final long b){ return sigma(b) - sigma(a - 1); }
+	protected static final long sigma(final long a, final long b) {
+		assert a <= b;
+		return sigma(b) - sigma(a - 1);
+	}
 	/**
 	 * @param n 整数
 	 * @return nの階乗
