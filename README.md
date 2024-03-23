@@ -10,9 +10,9 @@
 [![VvyLw](https://img.shields.io/badge/CodinGame-VvyLw-yellow)](https://www.codingame.com/profile/119e2af9dda8c75e90fbd06b4bec45ec5990455)
   
 javadocは記述済なのでライブラリの説明はJavaを見ると良いです。  
-Java: Modint, Rolling Hashがない。  
+Java: Modint, Rolling Hashがない  
 V: UnionFind, Graph(重みなしのみ), std::next_permutation, std::deque, std::pair, FenwickTree, Modint(多分狂ってる)   
-D: UnionFind, セグ木, FenwickTree  
+D: UnionFind, セグ木, FenwickTree, 累積和  
 Nim: UnionFind, Wavelet Matrix  
 Rust: UnionFind, Potential付きUnionFind  
 Python, Ruby: UnionFindのみ  
