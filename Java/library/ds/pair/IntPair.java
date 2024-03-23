@@ -14,6 +14,10 @@ public final class IntPair extends Pair<Long, Long> {
 	 */
 	private IntPair(final long first, final long second){ super(first, second); }
 	/**
+	 * (1, 1)
+	 */
+	public static final IntPair ONE = new IntPair(1, 1);
+	/**
 	 * IntPairを宣言するのに使う
 	 * new IntPairと同等
 	 * @param a first
