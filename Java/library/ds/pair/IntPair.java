@@ -14,6 +14,10 @@ public final class IntPair extends Pair<Long, Long> {
 	 */
 	private IntPair(final long first, final long second){ super(first, second); }
 	/**
+	 * (0, 0)
+	 */
+	public static final IntPair ZERO = new IntPair(0, 0);
+	/**
 	 * (1, 1)
 	 */
 	public static final IntPair ONE = new IntPair(1, 1);

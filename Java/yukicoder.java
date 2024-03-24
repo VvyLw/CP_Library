@@ -1853,6 +1853,7 @@ class Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> imp
 }
 final class IntPair extends Pair<Long, Long> {
 	private IntPair(final long first, final long second){ super(first, second); }
+	static final IntPair ZERO = new IntPair(0, 0);
 	static final IntPair ONE = new IntPair(1, 1);
 	static final IntPair of(final long a, final long b){ return new IntPair(a, b); }
 	@Override
