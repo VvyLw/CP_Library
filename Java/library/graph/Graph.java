@@ -77,11 +77,12 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 		a -= indexed;
 		b -= indexed;
 		this.get(a).add(new Edge(a, b, id));
-		edge.add(new Edge(a, b, id++));
+		edge.add(new Edge(a, b, id));
 		if(undirected) {
-			this.get(b).add(new Edge(b, a, --id));
-			edge.add(new Edge(b, a, id++));
+			this.get(b).add(new Edge(b, a, id));
+			edge.add(new Edge(b, a, id));
 		}
+		id++;
 	}
 	/**
 	 * 辺をm個入力する

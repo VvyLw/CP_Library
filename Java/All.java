@@ -2047,17 +2047,18 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		}
 		return gp;
 	}
-	final void addEdge(int a, int b) {
+	protected final void addEdge(int a, int b) {
 		a -= indexed;
 		b -= indexed;
 		this.get(a).add(new Edge(a, b, id));
-		edge.add(new Edge(a, b, id++));
+		edge.add(new Edge(a, b, id));
 		if(undirected) {
-			this.get(b).add(new Edge(b, a, --id));
-			edge.add(new Edge(b, a, id++));
+			this.get(b).add(new Edge(b, a, id));
+			edge.add(new Edge(b, a, id));
 		}
+		id++;
 	}
-	void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni())); }
+	protected void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni())); }
 	protected final ArrayList<Edge> getEdge(){ return edge; }
 	protected final int[] allDist(final int v) {
 		final int[] d = new int[n];
@@ -2206,13 +2207,15 @@ final class WeightedGraph extends Graph {
 		a -= indexed;
 		b -= indexed;
 		this.get(a).add(new Edge(a, b, cost, id));
-		edge.add(new Edge(a, b, cost, id++));
+		edge.add(new Edge(a, b, cost, id));
 		if(undirected) {
-			this.get(b).add(new Edge(b, a, cost, --id));
-			edge.add(new Edge(b, a, cost, id++));
+			this.get(b).add(new Edge(b, a, cost, id));
+			edge.add(new Edge(b, a, cost, id));
 		}
+		id++;
 	}
-	final void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni(), VvyLw.io.nl())); }
+	@Override
+	protected final void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni(), VvyLw.io.nl())); }
 	final ShortestPath dijkstra(final int v) {
 		final long[] cost = new long[n];
 		final int[] src = new int[n];

@@ -69,11 +69,12 @@ public final class WeightedGraph extends Graph {
 		a -= indexed;
 		b -= indexed;
 		this.get(a).add(new Edge(a, b, cost, id));
-		edge.add(new Edge(a, b, cost, id++));
+		edge.add(new Edge(a, b, cost, id));
 		if(undirected) {
-			this.get(b).add(new Edge(b, a, cost, --id));
-			edge.add(new Edge(b, a, cost, id++));
+			this.get(b).add(new Edge(b, a, cost, id));
+			edge.add(new Edge(b, a, cost, id));
 		}
+		id++;
 	}
 	/**
 	 * 辺をm個入力する
