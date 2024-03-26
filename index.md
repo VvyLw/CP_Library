@@ -163,7 +163,7 @@ data:
       title: SkewHeap
     - icon: ':heavy_check_mark:'
       path: C++/other/dp.hpp
-      title: "DP(Knapsack, LCS, LIS, \u6700\u5927\u9577\u65B9\u5F62)"
+      title: "DP(Knapsack, LCS, LIS, \u6700\u5927\u9577\u65B9\u5F62, coin)"
     - icon: ':warning:'
       path: C++/other/merge_sort.hpp
       title: "\u30DE\u30FC\u30B8\u30BD\u30FC\u30C8"
@@ -524,6 +524,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/add128_2.test.cpp
       title: test/add128_2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/coin.test.cpp
+      title: test/coin.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/cycledetector.test.cpp
       title: test/cycledetector.test.cpp

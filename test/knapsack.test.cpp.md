@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: C++/other/dp.hpp
-    title: "DP(Knapsack, LCS, LIS, \u6700\u5927\u9577\u65B9\u5F62)"
+    title: "DP(Knapsack, LCS, LIS, \u6700\u5927\u9577\u65B9\u5F62, coin)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -76,8 +76,12 @@ data:
     \ {\n                if(dp[j - a[i]] + v[i] > dp[j]) {\n                    dp[j]\
     \ = dp[j - a[i]] + v[i];\n                }\n            }\n        }\n    }\n\
     \    return *std::ranges::max_element(dp);\n}\n/**\n * @see https://ei1333.github.io/library/dp/knapsack.hpp\n\
-    \ */\n\ntemplate <class T> inline long long max_rectangle(std::vector<T> h) {\n\
-    \    h.resize(h.size() + 1);\n    std::stack<size_t> sk;\n    std::vector<int>\
+    \ */\n\ninline int coin(const std::vector<int> &c, const int w) {\n    std::vector\
+    \ dp(w + 1, INT32_MAX);\n    dp[0] = 0;\n    for(const int g: c) {\n        for(int\
+    \ j = 0; j <= w; ++j) {\n            if(j + g <= w) {\n                dp[j +\
+    \ g] = std::min(dp[j + g], dp[j] + 1);\n            }\n        }\n    }\n    return\
+    \ dp[w] == INT32_MAX ? -1 : dp[w];\n}\n\ntemplate <class T> inline long long max_rectangle(std::vector<T>\
+    \ h) {\n    h.resize(h.size() + 1);\n    std::stack<size_t> sk;\n    std::vector<int>\
     \ l(h.size());\n    long long res = 0;\n    for(size_t i = 0; i < h.size(); i++)\
     \ {\n        while(!sk.empty() && h[sk.top()] >= h[i]) {\n            res = std::max(res,\
     \ (long long) (i - l[sk.top()] - 1) * h[sk.top()]);\n            sk.pop();\n \
@@ -99,10 +103,10 @@ data:
     \   }\n    }\n    for(int i = -dp.back().second; i != -1; i = p[i]) {\n      \
     \  res.emplace_back(i);\n    }\n    std::ranges::reverse(res);\n    return res;\n\
     }\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
-    \ */\n\n/**\n * @brief DP(Knapsack, LCS, LIS, \u6700\u5927\u9577\u65B9\u5F62)\n\
-    \ */\n#line 4 \"test/knapsack.test.cpp\"\nint main() {\n    int n, wg;\n    std::cin\
-    \ >> n >> wg;\n    std::vector<int> v(n), w(n);\n    for(int i = 0; i < n; ++i)\
-    \ {\n        std::cin >> v[i] >> w[i];\n    }\n    std::cout << knapsack01_w(w,\
+    \ */\n\n/**\n * @brief DP(Knapsack, LCS, LIS, \u6700\u5927\u9577\u65B9\u5F62,\
+    \ coin)\n */\n#line 4 \"test/knapsack.test.cpp\"\nint main() {\n    int n, wg;\n\
+    \    std::cin >> n >> wg;\n    std::vector<int> v(n), w(n);\n    for(int i = 0;\
+    \ i < n; ++i) {\n        std::cin >> v[i] >> w[i];\n    }\n    std::cout << knapsack01_w(w,\
     \ v, wg) << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_F\"\n#include\
     \ <iostream>\n#include \"C++/other/dp.hpp\"\nint main() {\n    int n, wg;\n  \
@@ -114,7 +118,7 @@ data:
   isVerificationFile: true
   path: test/knapsack.test.cpp
   requiredBy: []
-  timestamp: '2024-03-23 20:54:10+09:00'
+  timestamp: '2024-03-27 04:08:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/knapsack.test.cpp

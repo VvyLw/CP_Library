@@ -11,10 +11,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_C
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_A
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_C
-  bundledCode: "#line 1 \"test/knapsack5.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_C\"\
+    - https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_A
+  bundledCode: "#line 1 \"test/coin.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_A\"\
     \n#include <iostream>\n#line 2 \"C++/other/dp.hpp\"\n\n#include <vector>\n#include\
     \ <utility>\n#include <algorithm>\n#include <stack>\n#include <iterator>\n#include\
     \ <limits>\n#include <numeric>\n\ntemplate <class T> T knapsack01_v(const std::vector<int>\
@@ -104,27 +104,25 @@ data:
     \  res.emplace_back(i);\n    }\n    std::ranges::reverse(res);\n    return res;\n\
     }\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
     \ */\n\n/**\n * @brief DP(Knapsack, LCS, LIS, \u6700\u5927\u9577\u65B9\u5F62,\
-    \ coin)\n */\n#line 4 \"test/knapsack5.test.cpp\"\nint main() {\n    int n, wg;\n\
-    \    std::cin >> n >> wg;\n    std::vector<int> v(n), w(n);\n    for(int i = 0;\
-    \ i < n; ++i) {\n        std::cin >> v[i] >> w[i];\n    }\n    std::cout << knapsack(w,\
-    \ v, wg) << '\\n';\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_C\"\n#include\
-    \ <iostream>\n#include \"C++/other/dp.hpp\"\nint main() {\n    int n, wg;\n  \
-    \  std::cin >> n >> wg;\n    std::vector<int> v(n), w(n);\n    for(int i = 0;\
-    \ i < n; ++i) {\n        std::cin >> v[i] >> w[i];\n    }\n    std::cout << knapsack(w,\
-    \ v, wg) << '\\n';\n}"
+    \ coin)\n */\n#line 4 \"test/coin.test.cpp\"\nint main() {\n    int n, m;\n  \
+    \  std::cin >> n >> m;\n    std::vector<int> c(m);\n    for(auto &el: c) {\n \
+    \       std::cin >> el;\n    }\n    std::cout << coin(c, n) << '\\n';\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_A\"\n#include\
+    \ <iostream>\n#include \"C++/other/dp.hpp\"\nint main() {\n    int n, m;\n   \
+    \ std::cin >> n >> m;\n    std::vector<int> c(m);\n    for(auto &el: c) {\n  \
+    \      std::cin >> el;\n    }\n    std::cout << coin(c, n) << '\\n';\n}"
   dependsOn:
   - C++/other/dp.hpp
   isVerificationFile: true
-  path: test/knapsack5.test.cpp
+  path: test/coin.test.cpp
   requiredBy: []
   timestamp: '2024-03-27 04:08:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/knapsack5.test.cpp
+documentation_of: test/coin.test.cpp
 layout: document
 redirect_from:
-- /verify/test/knapsack5.test.cpp
-- /verify/test/knapsack5.test.cpp.html
-title: test/knapsack5.test.cpp
+- /verify/test/coin.test.cpp
+- /verify/test/coin.test.cpp.html
+title: test/coin.test.cpp
 ---
