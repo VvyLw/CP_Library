@@ -150,6 +150,19 @@ template <class T> T knapsack(const std::vector<int> &a, const std::vector<T> &v
  * @see https://ei1333.github.io/library/dp/knapsack.hpp
  */
 
+inline int coin(const std::vector<int> &c, const int w) {
+    std::vector dp(w + 1, INT32_MAX);
+    dp[0] = 0;
+    for(const int g: c) {
+        for(int j = 0; j <= w; ++j) {
+            if(j + g <= w) {
+                dp[j + g] = std::min(dp[j + g], dp[j] + 1);
+            }
+        }
+    }
+    return dp[w] == INT32_MAX ? -1 : dp[w];
+}
+
 template <class T> inline long long max_rectangle(std::vector<T> h) {
     h.resize(h.size() + 1);
     std::stack<size_t> sk;

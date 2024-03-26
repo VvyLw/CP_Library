@@ -3341,6 +3341,19 @@ final class DP {
 		}
 		return Utility.max(dp);
 	}
+	static final int coin(final int[] c, final int w) {
+		final int[] dp = new int[w + 1];
+		Arrays.fill(dp, Integer.MAX_VALUE);
+		dp[0] = 0;
+		for(final int g: c) {
+			for(int j = 0; j <= w; ++j) {
+				if(j + g <= w) {
+					dp[j + g] = Math.min(dp[j + g], dp[j] + 1);
+				}
+			}
+		}
+		return dp[w] == Integer.MAX_VALUE ? -1 : dp[w];
+	}
 	static final long maxRectangle(final int[] a) {
 		final Stack<Integer> sk = new Stack<>();
 		final long[] h = new long[a.length + 1];
