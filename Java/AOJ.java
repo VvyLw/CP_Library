@@ -16,10 +16,7 @@ import java.util.stream.IntStream;
 
 final class Main {
 	public static void main(final String[] args) {
-		final long begin = System.currentTimeMillis(), end;
 		IntStream.range(0, VvyLw.MULTI ? VvyLw.io.ni() : 1).forEach(i -> VvyLw.solve());
-		end = System.currentTimeMillis();
-		VvyLw.io.dump(end - begin + "ms");
 		VvyLw.io.close();
 	}
 }
