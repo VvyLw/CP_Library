@@ -227,5 +227,5 @@ template <class T> inline std::vector<int> lis(const std::vector<T> &v) {
  */
 
 /**
- * @brief DP(Knapsack, LCS, LIS, 最大長方形)
+ * @brief DP(Knapsack, LCS, LIS, 最大長方形, coin)
  */
