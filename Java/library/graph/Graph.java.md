@@ -583,50 +583,51 @@ data:
     return gp;\n\t}\n\t/**\n\t * \u8FBA\u3092\u8FFD\u52A0\u3059\u308B\n\t * @param\
     \ a\n\t * @param b\n\t */\n\tpublic final void addEdge(int a, int b) {\n\t\ta\
     \ -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(a, b, id));\n\t\
-    \tedge.add(new Edge(a, b, id++));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new\
-    \ Edge(b, a, --id));\n\t\t\tedge.add(new Edge(b, a, id++));\n\t\t}\n\t}\n\t/**\n\
-    \t * \u8FBA\u3092m\u500B\u5165\u529B\u3059\u308B\n\t * @param m \u8FBA\u306E\u500B\
-    \u6570\n\t */\n\tpublic void input(final int m){ IntStream.range(0, m).forEach(i\
-    \ -> addEdge(VvyLw.io.ni(), VvyLw.io.ni())); }\n\t/**\n\t * @return \u8FBA\u306E\
-    \u30EA\u30B9\u30C8\n\t */\n\tpublic final ArrayList<Edge> getEdge(){ return edge;\
-    \ }\n\t/**\n\t * BFS\u3092\u3057\u3066\u9802\u70B9v\u304B\u3089\u5404\u9802\u70B9\
-    \u306B\u5BFE\u3059\u308B\u8DDD\u96E2\u3092\u6C42\u3081\u308B\n\t * @param v\n\t\
-    \ */\n\tpublic final int[] allDist(final int v) {\n\t\tfinal int[] d = new int[n];\n\
-    \t\tArrays.fill(d, -1);\n\t\tfinal Queue<Integer> q = new ArrayDeque<>();\n\t\t\
-    d[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\
-    \t\t\tfor(final Edge el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\
-    \t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to] = d[tmp] + 1;\n\t\t\t\tq.add(el.to);\n\
-    \t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\t/**\n\t * @param u\n\t * @param v\n\t *\
-    \ @return \u9802\u70B9u\u3068\u9802\u70B9v\u3068\u306E\u8DDD\u96E2\n\t */\n\t\
-    public final int dist(final int u, final int v){ return allDist(u)[v]; }\n\t/**\n\
-    \t * \u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\n\t */\n\tpublic final\
-    \ ArrayList<Integer> topologicalSort() {\n\t\tfinal int[] deg = new int[n];\n\t\
-    \tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final Edge ed: this.get(i)) {\n\t\t\t\
-    \tdeg[ed.to]++;\n\t\t\t}\n\t\t}\n\t\tfinal Stack<Integer> sk = new Stack<>();\n\
-    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(deg[i] == 0) {\n\t\t\t\tsk.add(i);\n\
-    \t\t\t}\n\t\t}\n\t\tfinal ArrayList<Integer> ord = new ArrayList<>();\n\t\twhile(!sk.isEmpty())\
-    \ {\n\t\t\tfinal int tmp = sk.pop();\n\t\t\tord.add(tmp);\n\t\t\tfor(final Edge\
-    \ ed: this.get(tmp)) {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ord.size() == n ? ord : null;\n\t}\n\t/**\n\
-    \t * @return \u30B5\u30A4\u30AF\u30EB\n\t * if non-existence: \u7A7A\u914D\u5217\
-    \n\t * @implNote \u6709\u5411\u30B0\u30E9\u30D5\n\t */\n\tpublic final int[] cycleDetector()\
-    \ {\n\t\tfinal int[] used = new int[n];\n\t\tfinal Edge[] pre = new Edge[n];\n\
-    \t\tfinal ArrayList<Edge> cycle = new ArrayList<>();\n\t\tfinal RecursiveIntPredicate\
-    \ dfs = (rec, i) -> {\n\t\t\tused[i] = 1;\n\t\t\tfor(final Edge e: get(i)) {\n\
-    \t\t\t\tif(used[e.to] == 0) {\n\t\t\t\t\tpre[e.to] = e;\n\t\t\t\t\tif(rec.test(rec,\
-    \ e.to)) {\n\t\t\t\t\t\treturn true;\n\t\t\t\t\t}\n\t\t\t\t} else if(used[e.to]\
-    \ == 1) {\n\t\t\t\t\tint now = i;\n\t\t\t\t\twhile(now != e.to) {\n\t\t\t\t\t\t\
-    cycle.add(pre[now]);\n\t\t\t\t\t\tnow = pre[now].src;\n\t\t\t\t\t}\n\t\t\t\t\t\
-    cycle.add(e);\n\t\t\t\t\treturn true;\n\t\t\t\t}\n\t\t\t}\n\t\t\tused[i] = 2;\n\
-    \t\t\treturn false;\n\t\t};\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(used[i]\
-    \ == 0 && dfs.test(dfs, i)) {\n\t\t\t\tCollections.reverse(cycle);\n\t\t\t\treturn\
-    \ cycle.stream().mapToInt(e -> e.to).toArray();\n\t\t\t}\n\t\t}\n\t\treturn null;\n\
-    \t}\n\t@Override\n\tpublic String toString() {\n\t\tfinal StringBuilder sb = new\
-    \ StringBuilder();\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int m = get(i).size();\n\
-    \t\t\tsb.append(i + \": [\");\n\t\t\tfor(int j = 0; j < m; ++j) {\n\t\t\t\tsb.append(get(i).get(j).to);\n\
-    \t\t\t\tif(j + 1 < m) {\n\t\t\t\t\tsb.append(\", \");\n\t\t\t\t}\n\t\t\t}\n\t\t\
-    \tsb.append(']');\n\t\t\tif(i + 1 < n) {\n\t\t\t\tsb.append('\\n');\n\t\t\t}\n\
-    \t\t}\n\t\treturn sb.toString();\n\t}\n}"
+    \tedge.add(new Edge(a, b, id));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new\
+    \ Edge(b, a, id));\n\t\t\tedge.add(new Edge(b, a, id));\n\t\t}\n\t\tid++;\n\t\
+    }\n\t/**\n\t * \u8FBA\u3092m\u500B\u5165\u529B\u3059\u308B\n\t * @param m \u8FBA\
+    \u306E\u500B\u6570\n\t */\n\tpublic void input(final int m){ IntStream.range(0,\
+    \ m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni())); }\n\t/**\n\t * @return\
+    \ \u8FBA\u306E\u30EA\u30B9\u30C8\n\t */\n\tpublic final ArrayList<Edge> getEdge(){\
+    \ return edge; }\n\t/**\n\t * BFS\u3092\u3057\u3066\u9802\u70B9v\u304B\u3089\u5404\
+    \u9802\u70B9\u306B\u5BFE\u3059\u308B\u8DDD\u96E2\u3092\u6C42\u3081\u308B\n\t *\
+    \ @param v\n\t */\n\tpublic final int[] allDist(final int v) {\n\t\tfinal int[]\
+    \ d = new int[n];\n\t\tArrays.fill(d, -1);\n\t\tfinal Queue<Integer> q = new ArrayDeque<>();\n\
+    \t\td[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp =\
+    \ q.poll();\n\t\t\tfor(final Edge el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] !=\
+    \ -1) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to] = d[tmp] + 1;\n\t\t\t\
+    \tq.add(el.to);\n\t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\t/**\n\t * @param u\n\t\
+    \ * @param v\n\t * @return \u9802\u70B9u\u3068\u9802\u70B9v\u3068\u306E\u8DDD\u96E2\
+    \n\t */\n\tpublic final int dist(final int u, final int v){ return allDist(u)[v];\
+    \ }\n\t/**\n\t * \u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\n\t */\n\
+    \tpublic final ArrayList<Integer> topologicalSort() {\n\t\tfinal int[] deg = new\
+    \ int[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final Edge ed: this.get(i))\
+    \ {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t}\n\t\t}\n\t\tfinal Stack<Integer> sk = new\
+    \ Stack<>();\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(deg[i] == 0) {\n\t\t\t\
+    \tsk.add(i);\n\t\t\t}\n\t\t}\n\t\tfinal ArrayList<Integer> ord = new ArrayList<>();\n\
+    \t\twhile(!sk.isEmpty()) {\n\t\t\tfinal int tmp = sk.pop();\n\t\t\tord.add(tmp);\n\
+    \t\t\tfor(final Edge ed: this.get(tmp)) {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\
+    \t\t\t\tsk.add(ed.to);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ord.size() == n\
+    \ ? ord : null;\n\t}\n\t/**\n\t * @return \u30B5\u30A4\u30AF\u30EB\n\t * if non-existence:\
+    \ \u7A7A\u914D\u5217\n\t * @implNote \u6709\u5411\u30B0\u30E9\u30D5\n\t */\n\t\
+    public final int[] cycleDetector() {\n\t\tfinal int[] used = new int[n];\n\t\t\
+    final Edge[] pre = new Edge[n];\n\t\tfinal ArrayList<Edge> cycle = new ArrayList<>();\n\
+    \t\tfinal RecursiveIntPredicate dfs = (rec, i) -> {\n\t\t\tused[i] = 1;\n\t\t\t\
+    for(final Edge e: get(i)) {\n\t\t\t\tif(used[e.to] == 0) {\n\t\t\t\t\tpre[e.to]\
+    \ = e;\n\t\t\t\t\tif(rec.test(rec, e.to)) {\n\t\t\t\t\t\treturn true;\n\t\t\t\t\
+    \t}\n\t\t\t\t} else if(used[e.to] == 1) {\n\t\t\t\t\tint now = i;\n\t\t\t\t\t\
+    while(now != e.to) {\n\t\t\t\t\t\tcycle.add(pre[now]);\n\t\t\t\t\t\tnow = pre[now].src;\n\
+    \t\t\t\t\t}\n\t\t\t\t\tcycle.add(e);\n\t\t\t\t\treturn true;\n\t\t\t\t}\n\t\t\t\
+    }\n\t\t\tused[i] = 2;\n\t\t\treturn false;\n\t\t};\n\t\tfor(int i = 0; i < n;\
+    \ ++i) {\n\t\t\tif(used[i] == 0 && dfs.test(dfs, i)) {\n\t\t\t\tCollections.reverse(cycle);\n\
+    \t\t\t\treturn cycle.stream().mapToInt(e -> e.to).toArray();\n\t\t\t}\n\t\t}\n\
+    \t\treturn null;\n\t}\n\t@Override\n\tpublic String toString() {\n\t\tfinal StringBuilder\
+    \ sb = new StringBuilder();\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int\
+    \ m = get(i).size();\n\t\t\tsb.append(i + \": [\");\n\t\t\tfor(int j = 0; j <\
+    \ m; ++j) {\n\t\t\t\tsb.append(get(i).get(j).to);\n\t\t\t\tif(j + 1 < m) {\n\t\
+    \t\t\t\tsb.append(\", \");\n\t\t\t\t}\n\t\t\t}\n\t\t\tsb.append(']');\n\t\t\t\
+    if(i + 1 < n) {\n\t\t\t\tsb.append('\\n');\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\
+    \t}\n}"
   dependsOn:
   - Java/AOJ.java
   - Java/library/ds/lazysegmenttree/RASM.java
@@ -811,7 +812,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-24 14:48:36+09:00'
+  timestamp: '2024-03-26 13:49:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/Graph.java

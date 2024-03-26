@@ -578,11 +578,11 @@ data:
     }\n\t\treturn gp;\n\t}\n\t/**\n\t * \u8FBA\u3092\u8FFD\u52A0\u3059\u308B\n\t *\
     \ @param a\n\t * @param b\n\t * @param cost\n\t */\n\tpublic final void addEdge(int\
     \ a, int b, final long cost) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new\
-    \ Edge(a, b, cost, id));\n\t\tedge.add(new Edge(a, b, cost, id++));\n\t\tif(undirected)\
-    \ {\n\t\t\tthis.get(b).add(new Edge(b, a, cost, --id));\n\t\t\tedge.add(new Edge(b,\
-    \ a, cost, id++));\n\t\t}\n\t}\n\t/**\n\t * \u8FBA\u3092m\u500B\u5165\u529B\u3059\
-    \u308B\n\t * @param m\n\t */\n\t@Override\n\tpublic final void input(final int\
-    \ m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni(),\
+    \ Edge(a, b, cost, id));\n\t\tedge.add(new Edge(a, b, cost, id));\n\t\tif(undirected)\
+    \ {\n\t\t\tthis.get(b).add(new Edge(b, a, cost, id));\n\t\t\tedge.add(new Edge(b,\
+    \ a, cost, id));\n\t\t}\n\t\tid++;\n\t}\n\t/**\n\t * \u8FBA\u3092m\u500B\u5165\
+    \u529B\u3059\u308B\n\t * @param m\n\t */\n\t@Override\n\tpublic final void input(final\
+    \ int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni(),\
     \ VvyLw.io.nl())); }\n\t/**\n\t * Dijkstra\u6CD5\n\t * \u8CA0\u8FBA\u306E\u306A\
     \u3044\u30B0\u30E9\u30D5\u3067\u5358\u4E00\u59CB\u70B9\u5168\u70B9\u9593\u6700\
     \u77ED\u8DEF\u3092\u6C42\u3081\u308B\n\t * @param v\n\t */\n\tpublic final ShortestPath\
@@ -844,7 +844,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-24 14:48:36+09:00'
+  timestamp: '2024-03-26 13:49:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/WeightedGraph.java
