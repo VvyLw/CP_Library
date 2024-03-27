@@ -193,27 +193,6 @@ public final class DP {
 		return Utility.max(dp);
 	}
 	/**
-	 * コイン問題
-	 * 価値がc_iのコインがあり、できるだけコインを取らずにw円を払った時のコインの枚数を求める
-	 * @param c
-	 * @param w
-	 * @return dpの最小値
-	 * @implNote O(NW)
-	 */
-	public static final int coin(final int[] c, final int w) {
-		final int[] dp = new int[w + 1];
-		Arrays.fill(dp, Integer.MAX_VALUE);
-		dp[0] = 0;
-		for(final int g: c) {
-			for(int j = 0; j <= w; ++j) {
-				if(j + g <= w) {
-					dp[j + g] = Math.min(dp[j + g], dp[j] + 1);
-				}
-			}
-		}
-		return dp[w] == Integer.MAX_VALUE ? -1 : dp[w];
-	}
-	/**
 	 * @param a
 	 * @return ヒストグラムの最大長方形の面積
 	 * @implNote O(N)
