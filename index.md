@@ -525,9 +525,6 @@ data:
       path: test/add128_2.test.cpp
       title: test/add128_2.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/coin.test.cpp
-      title: test/coin.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/cycledetector.test.cpp
       title: test/cycledetector.test.cpp
     - icon: ':heavy_check_mark:'

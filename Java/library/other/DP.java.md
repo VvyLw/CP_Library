@@ -646,19 +646,9 @@ data:
     \ 0; i < n; i++) {\n\t\t\tfor(int j = a[i]; j <= w; j++) {\n\t\t\t\tif(dp[j -\
     \ a[i]] != Long.MIN_VALUE) {\n\t\t\t\t\tif(dp[j - a[i]] + v[i] > dp[j]) {\n\t\t\
     \t\t\t\tdp[j] = dp[j - a[i]] + v[i];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
-    \t\treturn Utility.max(dp);\n\t}\n\t/**\n\t * \u30B3\u30A4\u30F3\u554F\u984C\n\
-    \t * \u4FA1\u5024\u304Cc_i\u306E\u30B3\u30A4\u30F3\u304C\u3042\u308A\u3001\u3067\
-    \u304D\u308B\u3060\u3051\u30B3\u30A4\u30F3\u3092\u53D6\u3089\u305A\u306Bw\u5186\
-    \u3092\u6255\u3063\u305F\u6642\u306E\u30B3\u30A4\u30F3\u306E\u679A\u6570\u3092\
-    \u6C42\u3081\u308B\n\t * @param c\n\t * @param w\n\t * @return dp\u306E\u6700\u5C0F\
-    \u5024\n\t * @implNote O(NW)\n\t */\n\tpublic static final int coin(final int[]\
-    \ c, final int w) {\n\t\tfinal int[] dp = new int[w + 1];\n\t\tArrays.fill(dp,\
-    \ Integer.MAX_VALUE);\n\t\tdp[0] = 0;\n\t\tfor(final int g: c) {\n\t\t\tfor(int\
-    \ j = 0; j <= w; ++j) {\n\t\t\t\tif(j + g <= w) {\n\t\t\t\t\tdp[j + g] = Math.min(dp[j\
-    \ + g], dp[j] + 1);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn dp[w] == Integer.MAX_VALUE\
-    \ ? -1 : dp[w];\n\t}\n\t/**\n\t * @param a\n\t * @return \u30D2\u30B9\u30C8\u30B0\
-    \u30E9\u30E0\u306E\u6700\u5927\u9577\u65B9\u5F62\u306E\u9762\u7A4D\n\t * @implNote\
-    \ O(N)\n\t * @see <a href=\"https://ei1333.github.io/library/dp/largest-rectangle.hpp\"\
+    \t\treturn Utility.max(dp);\n\t}\n\t/**\n\t * @param a\n\t * @return \u30D2\u30B9\
+    \u30C8\u30B0\u30E9\u30E0\u306E\u6700\u5927\u9577\u65B9\u5F62\u306E\u9762\u7A4D\
+    \n\t * @implNote O(N)\n\t * @see <a href=\"https://ei1333.github.io/library/dp/largest-rectangle.hpp\"\
     >\u53C2\u8003\u5143</a>\n\t */\n\tpublic static final long maxRectangle(final\
     \ int[] a) {\n\t\tfinal Stack<Integer> sk = new Stack<>();\n\t\tfinal long[] h\
     \ = new long[a.length + 1];\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\th[i]\
@@ -896,7 +886,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-27 04:07:56+09:00'
+  timestamp: '2024-03-27 23:05:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/DP.java

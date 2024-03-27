@@ -76,12 +76,8 @@ data:
     \ {\n                if(dp[j - a[i]] + v[i] > dp[j]) {\n                    dp[j]\
     \ = dp[j - a[i]] + v[i];\n                }\n            }\n        }\n    }\n\
     \    return *std::ranges::max_element(dp);\n}\n/**\n * @see https://ei1333.github.io/library/dp/knapsack.hpp\n\
-    \ */\n\ninline int coin(const std::vector<int> &c, const int w) {\n    std::vector\
-    \ dp(w + 1, INT32_MAX);\n    dp[0] = 0;\n    for(const int g: c) {\n        for(int\
-    \ j = 0; j <= w; ++j) {\n            if(j + g <= w) {\n                dp[j +\
-    \ g] = std::min(dp[j + g], dp[j] + 1);\n            }\n        }\n    }\n    return\
-    \ dp[w] == INT32_MAX ? -1 : dp[w];\n}\n\ntemplate <class T> inline long long max_rectangle(std::vector<T>\
-    \ h) {\n    h.resize(h.size() + 1);\n    std::stack<size_t> sk;\n    std::vector<int>\
+    \ */\n\ntemplate <class T> inline long long max_rectangle(std::vector<T> h) {\n\
+    \    h.resize(h.size() + 1);\n    std::stack<size_t> sk;\n    std::vector<int>\
     \ l(h.size());\n    long long res = 0;\n    for(size_t i = 0; i < h.size(); i++)\
     \ {\n        while(!sk.empty() && h[sk.top()] >= h[i]) {\n            res = std::max(res,\
     \ (long long) (i - l[sk.top()] - 1) * h[sk.top()]);\n            sk.pop();\n \
@@ -120,7 +116,7 @@ data:
   isVerificationFile: true
   path: test/knapsack4.test.cpp
   requiredBy: []
-  timestamp: '2024-03-27 04:08:18+09:00'
+  timestamp: '2024-03-27 23:05:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/knapsack4.test.cpp

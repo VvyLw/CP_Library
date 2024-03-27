@@ -774,7 +774,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-27 04:07:56+09:00'
+  timestamp: '2024-03-27 23:05:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/SparseTable.java
