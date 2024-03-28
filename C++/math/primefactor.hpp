@@ -1,19 +1,24 @@
 #pragma once
 
-#include "C++/core/mypair.hpp"
+#include <vector>
+#include <utility>
 namespace Heileden {
-template <class T> inline vectors::V<pairs::PP<T>> prmfct(T n) {
-    vectors::V<pairs::PP<T>> res;
-    for(T i = 2; i * i <= n; ++i) {
-        if(n%i!=0) continue;
-        T tmp=0;
-        while(n%i==0) {
-            tmp++;
-            n/=i;
+template <class T> inline std::vector<std::pair<T, int>> prmfct(T n) {
+    std::vector<std::pair<T, int>> res;
+    for(int64_t i = 2; i * i <= n; ++i) {
+        if(n % i != 0) {
+            continue;
         }
-        res.emplace_back(i,tmp);
+        int tmp = 0;
+        while(n % i == 0) {
+            tmp++;
+            n /= i;
+        }
+        res.emplace_back(i, tmp);
     }
-    if(n!=1) res.emplace_back(n,1);
+    if(n != 1) {
+        res.emplace_back(n, 1);
+    }
     return res;
 }
 }

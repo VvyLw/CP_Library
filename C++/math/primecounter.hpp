@@ -13,7 +13,7 @@ template <class T> inline T cub(const T x){ return x*x*x; }
 struct p_count {
 private:
     ll sq;
-    std::vector<bool> prime;
+    std::vector<int> prime;
     std::vector<ll> prime_sum, primes;
     ll p2(const ll x, const ll y) {
         if(x < 4) {
