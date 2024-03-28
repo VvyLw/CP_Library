@@ -2,4 +2,3 @@ a.out
 *.class
 atcoder/
 .vscode/
-debug_print.hpp
