@@ -440,42 +440,46 @@ data:
     \ &v, ll a, ll b){ return std::accumulate(all(v,a,b),1.0L,[](ll acc,ll i){ return\
     \ acc*i; }); }\r\n} // Lady s&y\r\n\r\n#line 2 \"C++/math/divisor.hpp\"\n\n#line\
     \ 5 \"C++/math/divisor.hpp\"\nnamespace Heileden {\ntemplate <class T> inline\
-    \ vectors::V<T> div(const T n) {\n    vectors::V<T> d;\n    for(long long i =\
-    \ 1; i * i <= n; ++i) {\n        if(n%i==0) {\n            d.emplace_back(i);\n\
-    \            if(i*i!=n) d.emplace_back(n/i);\n        }\n    }\n    std::sort(d.begin(),\
-    \ d.end());\n    return d;\n}\n}\n\n/**\n * @brief \u7D04\u6570\u5217\u6319\n\
-    \ */\n#line 2 \"C++/math/primefactor.hpp\"\n\n#line 4 \"C++/math/primefactor.hpp\"\
-    \nnamespace Heileden {\ntemplate <class T> inline vectors::V<pairs::PP<T>> prmfct(T\
-    \ n) {\n    vectors::V<pairs::PP<T>> res;\n    for(T i = 2; i * i <= n; ++i) {\n\
-    \        if(n%i!=0) continue;\n        T tmp=0;\n        while(n%i==0) {\n   \
-    \         tmp++;\n            n/=i;\n        }\n        res.emplace_back(i,tmp);\n\
-    \    }\n    if(n!=1) res.emplace_back(n,1);\n    return res;\n}\n}\n\n/**\n *\
-    \ @brief \u7D20\u56E0\u6570\u5206\u89E3\n */\n#line 2 \"C++/math/primetable.hpp\"\
-    \n\n#line 4 \"C++/math/primetable.hpp\"\nnamespace Heileden {\nstruct p_table\
-    \ {\n    vectors::vb SoE;\n    p_table(const int n): SoE(n+1,1){\n        SoE[0]=SoE[1]=0;\n\
-    \        for(int64_t i = 2; i <= n; ++i) {\n            if(!SoE[i]) continue;\n\
-    \            for(int64_t j = i * i; j <= n; j += i) SoE[j] = 0;\n        }\n \
-    \   }\n    vectors::vi get() {\n        vectors::vi p;\n        for(size_t i =\
-    \ 2; i < SoE.size(); ++i) if(SoE[i]) p.emplace_back(i);\n        return p;\n \
-    \   }\n};\n}\n\n/**\n * @brief Sieve of Eratosthenes\n */\n#line 2 \"C++/math/primefactortable.hpp\"\
-    \n\n#line 6 \"C++/math/primefactortable.hpp\"\nnamespace Heileden {\nstruct p_fact\
-    \ {\n    vectors::vi spf;\n    p_fact(const int n): spf(n + 1){\n        std::iota(spf.begin(),\
-    \ spf.end(), 0);\n        for(int64_t i = 2; i * i <= n; ++i) {\n            if(spf[i]==i)\
-    \ {\n                for(int64_t j = i * i; j <= n; j += i) {\n              \
-    \      if(spf[j]==j) spf[j]=i;\n                }\n            }\n        }\n\
-    \    }\n    std::map<int,int> get(int n) {\n        std::map<int,int> m;\n   \
-    \     while(n!=1) {\n            m[spf[n]]++;\n            n/=spf[n];\n      \
-    \  }\n        return m;\n    }\n};\n}\n\n/**\n * @brief \u7D20\u56E0\u6570\u5206\
-    \u89E3\u30C6\u30FC\u30D6\u30EB\n */\n#line 2 \"C++/math/psum/psum.hpp\"\n\n#line\
-    \ 6 \"C++/math/psum/psum.hpp\"\nnamespace Heileden {\nstruct psum {\nprivate:\n\
-    \    int n;\n    bool not_built;\n    vectors::vi s;\npublic:\n    psum(const\
-    \ vectors::vi& v): s{0} { std::partial_sum(v.cbegin(), v.cend(), std::back_inserter(s));\
-    \ }\n    psum(const int n): n(n), not_built(true), s(n + 1){}\n    vectors::vi\
-    \ get() const { return s; }\n    // [l, r]\n    ll sum(const int l, const int\
-    \ r) const { return s[r] - s[l]; }\n    void add(const int l, const int r, const\
-    \ ll x) {\n        assert(not_built);\n        s[l] += x;\n        s[r] -= x;\n\
-    \    }\n    vectors::vi build() {\n        assert(not_built);\n        vectors::vi\
-    \ res;\n        std::partial_sum(s.cbegin(), s.cend(), std::back_inserter(res));\n\
+    \ std::vector<T> div(const T n) {\n    std::vector<T> d;\n    for(int64_t i =\
+    \ 1; i * i <= n; ++i) {\n        if(n % i == 0) {\n            d.emplace_back(i);\n\
+    \            if(i * i != n) {\n                d.emplace_back(n / i);\n      \
+    \      }\n        }\n    }\n    std::ranges::sort(d);\n    return d;\n}\n}\n\n\
+    /**\n * @brief \u7D04\u6570\u5217\u6319\n */\n#line 2 \"C++/math/primefactor.hpp\"\
+    \n\n#line 5 \"C++/math/primefactor.hpp\"\nnamespace Heileden {\ntemplate <class\
+    \ T> inline std::vector<std::pair<T, int>> prmfct(T n) {\n    std::vector<std::pair<T,\
+    \ int>> res;\n    for(int64_t i = 2; i * i <= n; ++i) {\n        if(n % i != 0)\
+    \ {\n            continue;\n        }\n        int tmp = 0;\n        while(n %\
+    \ i == 0) {\n            tmp++;\n            n /= i;\n        }\n        res.emplace_back(i,\
+    \ tmp);\n    }\n    if(n != 1) {\n        res.emplace_back(n, 1);\n    }\n   \
+    \ return res;\n}\n}\n\n/**\n * @brief \u7D20\u56E0\u6570\u5206\u89E3\n */\n#line\
+    \ 2 \"C++/math/primetable.hpp\"\n\n#line 4 \"C++/math/primetable.hpp\"\nnamespace\
+    \ Heileden {\nstruct p_table {\n    std::vector<int> SoE;\n    p_table(const int\
+    \ n): SoE(n + 1, 1) {\n        SoE[0] = SoE[1] = 0;\n        for(int64_t i = 2;\
+    \ i <= n; ++i) {\n            if(!SoE[i]) {\n                continue;\n     \
+    \       }\n            for(int64_t j = i * i; j <= n; j += i) {\n            \
+    \    SoE[j] = 0;\n            }\n        }\n    }\n    std::vector<int> get()\
+    \ {\n        std::vector<int> p;\n        for(size_t i = 2; i < SoE.size(); ++i)\
+    \ {\n            if(SoE[i]) {\n                p.emplace_back(i);\n          \
+    \  }\n        }\n        return p;\n    }\n};\n}\n\n/**\n * @brief Sieve of Eratosthenes\n\
+    \ */\n#line 2 \"C++/math/primefactortable.hpp\"\n\n#line 6 \"C++/math/primefactortable.hpp\"\
+    \nnamespace Heileden {\nstruct p_fact {\n    std::vector<int64_t> spf;\n    p_fact(const\
+    \ int n): spf(n + 1){\n        std::iota(spf.begin(), spf.end(), 0);\n       \
+    \ for(int64_t i = 2; i * i <= n; ++i) {\n            if(spf[i] == i) {\n     \
+    \           for(int64_t j = i * i; j <= n; j += i) {\n                    if(spf[j]==j)\
+    \ {\n                        spf[j]=i;\n                    }\n              \
+    \  }\n            }\n        }\n    }\n    std::map<int, int> get(int n) {\n \
+    \       std::map<int, int> m;\n        while(n != 1) {\n            m[spf[n]]++;\n\
+    \            n /= spf[n];\n        }\n        return m;\n    }\n};\n}\n\n/**\n\
+    \ * @brief \u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\u30EB\n */\n#line\
+    \ 2 \"C++/math/psum/psum.hpp\"\n\n#line 6 \"C++/math/psum/psum.hpp\"\nnamespace\
+    \ Heileden {\nstruct psum {\nprivate:\n    int n;\n    bool not_built;\n    vectors::vi\
+    \ s;\npublic:\n    psum(const vectors::vi& v): s{0} { std::partial_sum(v.cbegin(),\
+    \ v.cend(), std::back_inserter(s)); }\n    psum(const int n): n(n), not_built(true),\
+    \ s(n + 1){}\n    vectors::vi get() const { return s; }\n    // [l, r]\n    ll\
+    \ sum(const int l, const int r) const { return s[r] - s[l]; }\n    void add(const\
+    \ int l, const int r, const ll x) {\n        assert(not_built);\n        s[l]\
+    \ += x;\n        s[r] -= x;\n    }\n    vectors::vi build() {\n        assert(not_built);\n\
+    \        vectors::vi res;\n        std::partial_sum(s.cbegin(), s.cend(), std::back_inserter(res));\n\
     \        not_built = false;\n        res.resize(n);\n        return res;\n   \
     \ }\n};\n}\n\n/**\n * @brief \u7D2F\u7A4D\u548C\n */\n#line 2 \"C++/math/kthrooti.hpp\"\
     \n\n#line 4 \"C++/math/kthrooti.hpp\"\n#ifndef TEMPLATE\ntypedef unsigned long\
@@ -587,7 +591,7 @@ data:
   isVerificationFile: true
   path: test/segtree.test.cpp
   requiredBy: []
-  timestamp: '2024-03-23 20:53:59+09:00'
+  timestamp: '2024-03-29 03:01:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segtree.test.cpp

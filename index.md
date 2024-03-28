@@ -17,6 +17,9 @@ data:
       title: "\u30BF\u30A4\u30DE\u30FC"
   - name: C++/core/io
     pages:
+    - icon: ':warning:'
+      path: C++/core/io/debug_print.hpp
+      title: C++/core/io/debug_print.hpp
     - icon: ':heavy_check_mark:'
       path: C++/core/io/input.hpp
       title: "\u5165\u529B"
@@ -101,6 +104,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/graph/mst/manhattan.hpp
       title: Manhattan MST
+  - name: C++/io
+    pages:
+    - icon: ':warning:'
+      path: C++/io/debug_print.hpp
+      title: C++/io/debug_print.hpp
   - name: C++/math
     pages:
     - icon: ':heavy_check_mark:'

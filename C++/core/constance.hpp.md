@@ -9,9 +9,6 @@ data:
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
   - icon: ':heavy_check_mark:'
-    path: C++/math/primefactor.hpp
-    title: "\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':heavy_check_mark:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedVerifiedWith:
@@ -86,7 +83,6 @@ data:
   requiredBy:
   - C++/core/io/input.hpp
   - C++/core/mypair.hpp
-  - C++/math/primefactor.hpp
   - C++/template.hpp
   timestamp: '2024-03-09 13:04:52+09:00'
   verificationStatus: LIBRARY_ALL_AC

@@ -1,9 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: C++/core/myvector.hpp
-    title: C++/core/myvector.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: C++/math/primecounter.hpp
@@ -57,57 +54,32 @@ data:
   attributes:
     document_title: Sieve of Eratosthenes
     links: []
-  bundledCode: "#line 2 \"C++/math/primetable.hpp\"\n\n#line 2 \"C++/core/myvector.hpp\"\
-    \n\n#include <vector>\n\n#ifndef TEMPLATE\ntypedef long long ll;\ntypedef unsigned\
-    \ long long ul;\ntypedef long double ld;\n#endif\nnamespace vectors {\ntemplate\
-    \ <class T> using V = std::vector<T>;\nusing vi = V<ll>;\nusing vu = V<ul>;\n\
-    using vd = V<ld>;\nusing vc = V<char>;\nusing vs = V<std::string>;\nusing vb =\
-    \ V<bool>;\nusing wi = V<vi>;\nusing wu = V<vu>;\nusing wd = V<vd>;\nusing wc\
-    \ = V<vc>;\nusing ws = V<vs>;\nusing wb = V<vb>;\ntemplate <class T, class U>\
-    \ inline V<U> ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n),\
-    \ std::forward<U>(v));\n}\ntemplate <class T, class... Ts> inline decltype(auto)\
-    \ ndiv(T&& n, Ts&&... v) noexcept {\n  return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n),\
-    \ ndiv(std::forward<Ts>(v)...));\n}\ntemplate <class T> constexpr V<T>& operator++(V<T>&\
-    \ v) noexcept { for(auto &el: v) el++; return v; }\ntemplate <class T> constexpr\
-    \ V<T>& operator--(V<T>& v) noexcept { for(auto &el: v) el--; return v; }\ntemplate\
-    \ <class T, class U> constexpr V<T>& operator+=(V<T>& v, const U x) noexcept {\
-    \ for(auto &el: v) el+=x; return v; }\ntemplate <class T, class U> constexpr V<T>&\
-    \ operator-=(V<T>& v, const U x) noexcept { for(auto &el: v) el-=x; return v;\
-    \ }\ntemplate <class T, class U> constexpr V<T>& operator*=(V<T>& v, const U x)\
-    \ noexcept { for(auto &el: v) el*=x; return v; }\ntemplate <class T, class U>\
-    \ constexpr V<T>& operator/=(V<T>& v, const U x) noexcept { for(auto &el: v) el/=x;\
-    \ return v; }\ntemplate <class T, class U> constexpr V<T>& operator%=(V<T>& v,\
-    \ const U x) noexcept { for(auto &el: v) el%=x; return v; }\ntemplate <class T,\
-    \ class U> constexpr V<T> operator+(const V<T>& v, const U x) noexcept { V<T>\
-    \ res = v; res+=x; return res; }\ntemplate <class T, class U> constexpr V<T> operator-(const\
-    \ V<T>& v, const U x) noexcept { V<T> res = v; res-=x; return res; }\ntemplate\
-    \ <class T, class U> constexpr V<T> operator*(const V<T>& v, const U x) noexcept\
-    \ { V<T> res = v; res*=x; return res; }\ntemplate <class T, class U> constexpr\
-    \ V<T> operator/(const V<T>& v, const U x) noexcept { V<T> res = v; res/=x; return\
-    \ res; }\ntemplate <class T, class U> constexpr V<T> operator%(const V<T>& v,\
-    \ const U x) noexcept { V<T> res = v; res%=x; return res; }\n} // vectors\n#line\
-    \ 4 \"C++/math/primetable.hpp\"\nnamespace Heileden {\nstruct p_table {\n    vectors::vb\
-    \ SoE;\n    p_table(const int n): SoE(n+1,1){\n        SoE[0]=SoE[1]=0;\n    \
-    \    for(int64_t i = 2; i <= n; ++i) {\n            if(!SoE[i]) continue;\n  \
-    \          for(int64_t j = i * i; j <= n; j += i) SoE[j] = 0;\n        }\n   \
-    \ }\n    vectors::vi get() {\n        vectors::vi p;\n        for(size_t i = 2;\
-    \ i < SoE.size(); ++i) if(SoE[i]) p.emplace_back(i);\n        return p;\n    }\n\
-    };\n}\n\n/**\n * @brief Sieve of Eratosthenes\n */\n"
-  code: "#pragma once\n\n#include \"C++/core/myvector.hpp\"\nnamespace Heileden {\n\
-    struct p_table {\n    vectors::vb SoE;\n    p_table(const int n): SoE(n+1,1){\n\
-    \        SoE[0]=SoE[1]=0;\n        for(int64_t i = 2; i <= n; ++i) {\n       \
-    \     if(!SoE[i]) continue;\n            for(int64_t j = i * i; j <= n; j += i)\
-    \ SoE[j] = 0;\n        }\n    }\n    vectors::vi get() {\n        vectors::vi\
-    \ p;\n        for(size_t i = 2; i < SoE.size(); ++i) if(SoE[i]) p.emplace_back(i);\n\
-    \        return p;\n    }\n};\n}\n\n/**\n * @brief Sieve of Eratosthenes\n */"
-  dependsOn:
-  - C++/core/myvector.hpp
+  bundledCode: "#line 2 \"C++/math/primetable.hpp\"\n\n#include <vector>\nnamespace\
+    \ Heileden {\nstruct p_table {\n    std::vector<int> SoE;\n    p_table(const int\
+    \ n): SoE(n + 1, 1) {\n        SoE[0] = SoE[1] = 0;\n        for(int64_t i = 2;\
+    \ i <= n; ++i) {\n            if(!SoE[i]) {\n                continue;\n     \
+    \       }\n            for(int64_t j = i * i; j <= n; j += i) {\n            \
+    \    SoE[j] = 0;\n            }\n        }\n    }\n    std::vector<int> get()\
+    \ {\n        std::vector<int> p;\n        for(size_t i = 2; i < SoE.size(); ++i)\
+    \ {\n            if(SoE[i]) {\n                p.emplace_back(i);\n          \
+    \  }\n        }\n        return p;\n    }\n};\n}\n\n/**\n * @brief Sieve of Eratosthenes\n\
+    \ */\n"
+  code: "#pragma once\n\n#include <vector>\nnamespace Heileden {\nstruct p_table {\n\
+    \    std::vector<int> SoE;\n    p_table(const int n): SoE(n + 1, 1) {\n      \
+    \  SoE[0] = SoE[1] = 0;\n        for(int64_t i = 2; i <= n; ++i) {\n         \
+    \   if(!SoE[i]) {\n                continue;\n            }\n            for(int64_t\
+    \ j = i * i; j <= n; j += i) {\n                SoE[j] = 0;\n            }\n \
+    \       }\n    }\n    std::vector<int> get() {\n        std::vector<int> p;\n\
+    \        for(size_t i = 2; i < SoE.size(); ++i) {\n            if(SoE[i]) {\n\
+    \                p.emplace_back(i);\n            }\n        }\n        return\
+    \ p;\n    }\n};\n}\n\n/**\n * @brief Sieve of Eratosthenes\n */"
+  dependsOn: []
   isVerificationFile: false
   path: C++/math/primetable.hpp
   requiredBy:
   - C++/math/primecounter.hpp
   - C++/template.hpp
-  timestamp: '2024-03-09 13:04:52+09:00'
+  timestamp: '2024-03-29 03:01:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fwtree.test.cpp

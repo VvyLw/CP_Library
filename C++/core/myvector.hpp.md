@@ -9,21 +9,6 @@ data:
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
   - icon: ':heavy_check_mark:'
-    path: C++/math/divisor.hpp
-    title: "\u7D04\u6570\u5217\u6319"
-  - icon: ':heavy_check_mark:'
-    path: C++/math/primecounter.hpp
-    title: "\u7D20\u6570\u306E\u500B\u6570"
-  - icon: ':heavy_check_mark:'
-    path: C++/math/primefactor.hpp
-    title: "\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':heavy_check_mark:'
-    path: C++/math/primefactortable.hpp
-    title: "\u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
-    path: C++/math/primetable.hpp
-    title: Sieve of Eratosthenes
-  - icon: ':heavy_check_mark:'
     path: C++/math/psum/psum.hpp
     title: "\u7D2F\u7A4D\u548C"
   - icon: ':heavy_check_mark:'
@@ -54,9 +39,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/pcounter.test.cpp
-    title: test/pcounter.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/s_rmq.test.cpp
     title: test/s_rmq.test.cpp
@@ -140,18 +122,12 @@ data:
   requiredBy:
   - C++/core/io/input.hpp
   - C++/core/mypair.hpp
-  - C++/math/divisor.hpp
-  - C++/math/primefactortable.hpp
-  - C++/math/primetable.hpp
-  - C++/math/primecounter.hpp
-  - C++/math/primefactor.hpp
   - C++/math/psum/psum.hpp
   - C++/template.hpp
   timestamp: '2024-03-09 13:04:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fwtree.test.cpp
-  - test/pcounter.test.cpp
   - test/add128.test.cpp
   - test/extgcd.test.cpp
   - test/m_add.test.cpp
