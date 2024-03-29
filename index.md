@@ -104,11 +104,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/graph/mst/manhattan.hpp
       title: Manhattan MST
-  - name: C++/io
-    pages:
-    - icon: ':warning:'
-      path: C++/io/debug_print.hpp
-      title: C++/io/debug_print.hpp
   - name: C++/math
     pages:
     - icon: ':heavy_check_mark:'
