@@ -72,7 +72,8 @@ public:
                 cst[e] = next;
                 if(!pending[e]) {
                     if(++times[e] >= n) {
-                        return std::vector<long long>();
+                        cst.clear();
+                        return cst;
                     }
                     pending[e] = 1;
                     q.emplace(e);
