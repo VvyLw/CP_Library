@@ -121,21 +121,21 @@ data:
     \ &e : (*this)[p]) {\n                const long long next = cst[p] + e.cost;\n\
     \                if(next >= cst[e]) {\n                    continue;\n       \
     \         }\n                cst[e] = next;\n                if(!pending[e]) {\n\
-    \                    if(++times[e] >= n) {\n                        return std::vector<long\
-    \ long>();\n                    }\n                    pending[e] = 1;\n     \
-    \               q.emplace(e);\n                }\n            }\n        }\n\t\
-    \treturn cst;\n    }\n    std::vector<std::vector<long long>> warshall_floyd()\
-    \ {\n\t\tconst int n = this -> size();\n        const long long lim = (1LL <<\
-    \ 61) - 1;\n\t\tstd::vector cst(n, std::vector(n, lim));\n\t\tfor(int i = 0; i\
-    \ < n; ++i) {\n            cst[i][i] = 0;\n        }\n\t\tfor(int i = 0; i < n;\
-    \ ++i) {\n            for(const auto &j: (*this)[i]) {\n                cst[i][j]\
-    \ = j.cost;\n            }\n        }\n\t\tfor(int k = 0; k < n; ++k) {\n    \
-    \        for(int i = 0; i < n; ++i) {\n                for(int j = 0; j < n; ++j)\
-    \ {\n                    if(cst[i][k] == lim || cst[k][j] == lim) {\n        \
-    \                continue;\n                    }\n                    chmin(cst[i][j],\
-    \ cst[i][k] + cst[k][j]);\n                }\n            }\n        }\n\t\treturn\
-    \ cst;\n\t}\n};\n\n/**\n * @brief \u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\
-    \u30A4\u30D6\u30E9\u30EA\n */\n"
+    \                    if(++times[e] >= n) {\n                        cst.clear();\n\
+    \                        return cst;\n                    }\n                \
+    \    pending[e] = 1;\n                    q.emplace(e);\n                }\n \
+    \           }\n        }\n\t\treturn cst;\n    }\n    std::vector<std::vector<long\
+    \ long>> warshall_floyd() {\n\t\tconst int n = this -> size();\n        const\
+    \ long long lim = (1LL << 61) - 1;\n\t\tstd::vector cst(n, std::vector(n, lim));\n\
+    \t\tfor(int i = 0; i < n; ++i) {\n            cst[i][i] = 0;\n        }\n\t\t\
+    for(int i = 0; i < n; ++i) {\n            for(const auto &j: (*this)[i]) {\n \
+    \               cst[i][j] = j.cost;\n            }\n        }\n\t\tfor(int k =\
+    \ 0; k < n; ++k) {\n            for(int i = 0; i < n; ++i) {\n               \
+    \ for(int j = 0; j < n; ++j) {\n                    if(cst[i][k] == lim || cst[k][j]\
+    \ == lim) {\n                        continue;\n                    }\n      \
+    \              chmin(cst[i][j], cst[i][k] + cst[k][j]);\n                }\n \
+    \           }\n        }\n\t\treturn cst;\n\t}\n};\n\n/**\n * @brief \u91CD\u307F\
+    \u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA\n */\n"
   code: "#pragma once\n\n#include \"C++/graph/Graph.hpp\"\n#include \"C++/graph/ShortestPath.hpp\"\
     \ntemplate <bool undirected = true> struct w_graph: graph<undirected> {\nprivate:\n\
     \    using graph<undirected>::indexed;\n    using graph<undirected>::id;\n   \
@@ -168,21 +168,21 @@ data:
     \ &e : (*this)[p]) {\n                const long long next = cst[p] + e.cost;\n\
     \                if(next >= cst[e]) {\n                    continue;\n       \
     \         }\n                cst[e] = next;\n                if(!pending[e]) {\n\
-    \                    if(++times[e] >= n) {\n                        return std::vector<long\
-    \ long>();\n                    }\n                    pending[e] = 1;\n     \
-    \               q.emplace(e);\n                }\n            }\n        }\n\t\
-    \treturn cst;\n    }\n    std::vector<std::vector<long long>> warshall_floyd()\
-    \ {\n\t\tconst int n = this -> size();\n        const long long lim = (1LL <<\
-    \ 61) - 1;\n\t\tstd::vector cst(n, std::vector(n, lim));\n\t\tfor(int i = 0; i\
-    \ < n; ++i) {\n            cst[i][i] = 0;\n        }\n\t\tfor(int i = 0; i < n;\
-    \ ++i) {\n            for(const auto &j: (*this)[i]) {\n                cst[i][j]\
-    \ = j.cost;\n            }\n        }\n\t\tfor(int k = 0; k < n; ++k) {\n    \
-    \        for(int i = 0; i < n; ++i) {\n                for(int j = 0; j < n; ++j)\
-    \ {\n                    if(cst[i][k] == lim || cst[k][j] == lim) {\n        \
-    \                continue;\n                    }\n                    chmin(cst[i][j],\
-    \ cst[i][k] + cst[k][j]);\n                }\n            }\n        }\n\t\treturn\
-    \ cst;\n\t}\n};\n\n/**\n * @brief \u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\
-    \u30A4\u30D6\u30E9\u30EA\n */"
+    \                    if(++times[e] >= n) {\n                        cst.clear();\n\
+    \                        return cst;\n                    }\n                \
+    \    pending[e] = 1;\n                    q.emplace(e);\n                }\n \
+    \           }\n        }\n\t\treturn cst;\n    }\n    std::vector<std::vector<long\
+    \ long>> warshall_floyd() {\n\t\tconst int n = this -> size();\n        const\
+    \ long long lim = (1LL << 61) - 1;\n\t\tstd::vector cst(n, std::vector(n, lim));\n\
+    \t\tfor(int i = 0; i < n; ++i) {\n            cst[i][i] = 0;\n        }\n\t\t\
+    for(int i = 0; i < n; ++i) {\n            for(const auto &j: (*this)[i]) {\n \
+    \               cst[i][j] = j.cost;\n            }\n        }\n\t\tfor(int k =\
+    \ 0; k < n; ++k) {\n            for(int i = 0; i < n; ++i) {\n               \
+    \ for(int j = 0; j < n; ++j) {\n                    if(cst[i][k] == lim || cst[k][j]\
+    \ == lim) {\n                        continue;\n                    }\n      \
+    \              chmin(cst[i][j], cst[i][k] + cst[k][j]);\n                }\n \
+    \           }\n        }\n\t\treturn cst;\n\t}\n};\n\n/**\n * @brief \u91CD\u307F\
+    \u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA\n */"
   dependsOn:
   - C++/graph/Graph.hpp
   - C++/graph/edge.hpp
@@ -190,7 +190,7 @@ data:
   isVerificationFile: false
   path: C++/graph/WeightedGraph.hpp
   requiredBy: []
-  timestamp: '2024-03-01 10:48:53+09:00'
+  timestamp: '2024-04-02 18:45:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/dijkstra.test.cpp

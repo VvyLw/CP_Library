@@ -114,27 +114,28 @@ data:
     \ &e : (*this)[p]) {\n                const long long next = cst[p] + e.cost;\n\
     \                if(next >= cst[e]) {\n                    continue;\n       \
     \         }\n                cst[e] = next;\n                if(!pending[e]) {\n\
-    \                    if(++times[e] >= n) {\n                        return std::vector<long\
-    \ long>();\n                    }\n                    pending[e] = 1;\n     \
-    \               q.emplace(e);\n                }\n            }\n        }\n\t\
-    \treturn cst;\n    }\n    std::vector<std::vector<long long>> warshall_floyd()\
-    \ {\n\t\tconst int n = this -> size();\n        const long long lim = (1LL <<\
-    \ 61) - 1;\n\t\tstd::vector cst(n, std::vector(n, lim));\n\t\tfor(int i = 0; i\
-    \ < n; ++i) {\n            cst[i][i] = 0;\n        }\n\t\tfor(int i = 0; i < n;\
-    \ ++i) {\n            for(const auto &j: (*this)[i]) {\n                cst[i][j]\
-    \ = j.cost;\n            }\n        }\n\t\tfor(int k = 0; k < n; ++k) {\n    \
-    \        for(int i = 0; i < n; ++i) {\n                for(int j = 0; j < n; ++j)\
-    \ {\n                    if(cst[i][k] == lim || cst[k][j] == lim) {\n        \
-    \                continue;\n                    }\n                    chmin(cst[i][j],\
-    \ cst[i][k] + cst[k][j]);\n                }\n            }\n        }\n\t\treturn\
-    \ cst;\n\t}\n};\n\n/**\n * @brief \u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\
-    \u30A4\u30D6\u30E9\u30EA\n */\n#line 4 \"test/shortestpath.test.cpp\"\nint main()\
-    \ {\n    int n, m, s, t;\n    std::cin >> n >> m >> s >> t;\n    w_graph<false>\
-    \ g(n, 0);\n    g.input(m);\n    auto dj = g.dijkstra(s);\n    if(!dj.is_thru(t))\
-    \ {\n        std::cout << \"-1\\n\";\n        return 0;\n    }\n    const auto\
-    \ ed = dj.path(t);\n    std::cout << dj.get()[t] << ' ';\n    const int len =\
-    \ ed.size() - 1;\n    std::cout << len << '\\n';\n    for(int i = 0; i < len;\
-    \ ++i) {\n        std::cout << ed[i] << ' ' << ed[i + 1] << '\\n';\n    }\n}\n"
+    \                    if(++times[e] >= n) {\n                        cst.clear();\n\
+    \                        return cst;\n                    }\n                \
+    \    pending[e] = 1;\n                    q.emplace(e);\n                }\n \
+    \           }\n        }\n\t\treturn cst;\n    }\n    std::vector<std::vector<long\
+    \ long>> warshall_floyd() {\n\t\tconst int n = this -> size();\n        const\
+    \ long long lim = (1LL << 61) - 1;\n\t\tstd::vector cst(n, std::vector(n, lim));\n\
+    \t\tfor(int i = 0; i < n; ++i) {\n            cst[i][i] = 0;\n        }\n\t\t\
+    for(int i = 0; i < n; ++i) {\n            for(const auto &j: (*this)[i]) {\n \
+    \               cst[i][j] = j.cost;\n            }\n        }\n\t\tfor(int k =\
+    \ 0; k < n; ++k) {\n            for(int i = 0; i < n; ++i) {\n               \
+    \ for(int j = 0; j < n; ++j) {\n                    if(cst[i][k] == lim || cst[k][j]\
+    \ == lim) {\n                        continue;\n                    }\n      \
+    \              chmin(cst[i][j], cst[i][k] + cst[k][j]);\n                }\n \
+    \           }\n        }\n\t\treturn cst;\n\t}\n};\n\n/**\n * @brief \u91CD\u307F\
+    \u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA\n */\n#line 4 \"\
+    test/shortestpath.test.cpp\"\nint main() {\n    int n, m, s, t;\n    std::cin\
+    \ >> n >> m >> s >> t;\n    w_graph<false> g(n, 0);\n    g.input(m);\n    auto\
+    \ dj = g.dijkstra(s);\n    if(!dj.is_thru(t)) {\n        std::cout << \"-1\\n\"\
+    ;\n        return 0;\n    }\n    const auto ed = dj.path(t);\n    std::cout <<\
+    \ dj.get()[t] << ' ';\n    const int len = ed.size() - 1;\n    std::cout << len\
+    \ << '\\n';\n    for(int i = 0; i < len; ++i) {\n        std::cout << ed[i] <<\
+    \ ' ' << ed[i + 1] << '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n#include\
     \ <iostream>\n#include \"C++/graph/WeightedGraph.hpp\"\nint main() {\n    int\
     \ n, m, s, t;\n    std::cin >> n >> m >> s >> t;\n    w_graph<false> g(n, 0);\n\
@@ -151,7 +152,7 @@ data:
   isVerificationFile: true
   path: test/shortestpath.test.cpp
   requiredBy: []
-  timestamp: '2024-03-03 06:51:22+09:00'
+  timestamp: '2024-04-02 18:45:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/shortestpath.test.cpp
