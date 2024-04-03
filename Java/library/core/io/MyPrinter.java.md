@@ -571,80 +571,62 @@ data:
     \t\tbuf[pos++] = bt;\n\t\tif(pos == buf.length) {\n\t\t\tflush();\n\t\t}\n\t}\n\
     \tprivate final void newLine() {\n\t\twrite((byte) '\\n');\n\t\tif(autoFlush)\
     \ {\n\t\t\tflush();\n\t\t}\n\t}\n\t/**\n\t * {@link PrintWriter#print}\u3068\u4F7F\
-    \u3044\u65B9\u306F\u540C\u3058\n\t * @param arg\n\t * @see PrintWriter#print\n\
-    \t */\n\tpublic final void print(final Object arg) {\n\t\tif(arg instanceof final\
-    \ String s) {\n\t\t\tfor(final char c: s.toCharArray()) {\n\t\t\t\twrite((byte)\
-    \ c);\n\t\t\t}\n\t\t} else {\n\t\t\tprint(String.valueOf(arg));\n\t\t}\n\t\tif(autoFlush)\
-    \ {\n\t\t\tflush();\n\t\t}\n\t}\n\t/**\n\t * {@link PrintWriter#printf}\u3068\u4F7F\
-    \u3044\u65B9\u306F\u540C\u3058\n\t * @param fmt\n\t * @param args\n\t * @see PrintWriter#printf\n\
-    \t */\n\tpublic final void printf(final String fmt, final Object... args) {\n\t\
-    \tprint(new Formatter().format(fmt, args));\n\t\tif(autoFlush) {\n\t\t\tflush();\n\
-    \t\t}\n\t}\n\t/**\n\t * \u51FA\u529B\u3059\u308B\u305F\u3081\u306E\u30E1\u30BD\
-    \u30C3\u30C9\n\t * \u5F15\u6570\u306A\u3057\u3067\u6539\u884C\u3092\u51FA\u529B\
-    \u3059\u308B\n\t */\n\tpublic final void out(){ newLine(); }\n\t/**\n\t * out(a,\
-    \ b, c)\u3067, \"a b c\"\u306E\u5F62\u5F0F\u3067\u51FA\u529B\u3059\u308B\n\t *\
-    \ @param head\n\t * @param tail\n\t */\n\tpublic final void out(final Object head,\
-    \ final Object... tail) {\n\t\tprint(head);\n\t\tfor(final var el: tail) {\n\t\
-    \t\tprint(\" \" + el);\n\t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t * {@link Pair}\u3092\
-    \u51FA\u529B\u3059\u308B\n\t * \u30C7\u30D0\u30C3\u30B0\u6642\u306F{@link Pair#toString}\u3092\
-    \u63A8\u5968\n\t * @param <F> first\u306E\u578B\n\t * @param <S> second\u306E\u578B\
-    \n\t */\n\tpublic final <F extends Comparable<? super F>, S extends Comparable<?\
-    \ super S>> void out(final Pair<F, S> arg) {\n\t\tif(debug) {\n\t\t\tprint(arg.toString());\n\
-    \t\t} else {\n\t\t\tprint(arg.first + \" \" + arg.second);\n\t\t}\n\t\tnewLine();\n\
-    \t}\n\t/**\n\t * {@link Collection}\u3092\u51FA\u529B\u3059\u308B\n\t * @param\
-    \ args\n\t */\n\tpublic final <E> void out(final Collection<E> args) {\n\t\tif(debug)\
-    \ {\n\t\t\tprint(args.toString());\n\t\t} else {\n\t\t\tint i = 0;\n\t\t\tfor(final\
-    \ var el: args) {\n\t\t\t\tprint(el);\n\t\t\t\tif(++i != args.size()) {\n\t\t\t\
-    \t\tprint(\" \");\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\tprivate final\
-    \ void out(final int[] args) {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\
-    \t\t} else if(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0;\
-    \ ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\t\
-    newLine();\n\t}\n\t/**\n\t * int\u578B\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\
-    \u304D\u3067\u51FA\u529B\u3059\u308B\n\t * @param head\n\t * @param tail\n\t */\n\
-    \tpublic final void out(final int[] head, final int[]... tail) {\n\t\tout(head);\n\
-    \t\tfor(final int[] a: tail) {\n\t\t\tout(a);\n\t\t}\n\t}\n\tprivate final void\
-    \ out(final long[] args) {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\
-    \t\t} else if(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0;\
-    \ ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\t\
-    newLine();\n\t}\n\t/**\n\t * long\u578B\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\
-    \u304D\u3067\u51FA\u529B\u3059\u308B\n\t * @param head\n\t * @param tail\n\t */\n\
-    \tpublic final void out(final long[] head, final long[]... tail) {\n\t\tout(head);\n\
-    \t\tfor(final long[] a: tail) {\n\t\t\tout(a);\n\t\t}\n\t}\n\tprivate final void\
-    \ out(final double[] args) {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\
-    \t\t} else if(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0;\
-    \ ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\t\
-    newLine();\n\t}\n\t/**\n\t * double\u578B\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\
-    \u304D\u3067\u51FA\u529B\u3059\u308B\n\t * @param head\n\t * @param tail\n\t */\n\
-    \tpublic final void out(final double[] head, final double[]... tail) {\n\t\tout(head);\n\
-    \t\tfor(final double[] a: tail) {\n\t\t\tout(a);\n\t\t}\n\t}\n\tprivate final\
-    \ void out(final boolean[] args) {\n\t\tif(debug) {\n\t\t\tprint(Arrays.toString(args));\n\
-    \t\t} else if(args.length > 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0;\
-    \ ++i < args.length;) {\n\t\t\t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\t\
-    newLine();\n\t}\n\t/**\n\t * boolean\u578B\u306E\u914D\u5217\u3092\u7A7A\u767D\
-    \u304A\u304D\u3067\u51FA\u529B\u3059\u308B\n\t * @param head\n\t * @param tail\n\
-    \t */\n\tpublic final void out(final boolean[] head, final boolean[]... tail)\
-    \ {\n\t\tout(head);\n\t\tfor(final boolean[] a: tail) {\n\t\t\tout(a);\n\t\t}\n\
-    \t}\n\tprivate final void out(final char[] args) {\n\t\tif(args.length > 0) {\n\
-    \t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\tprint(\"\
-    \ \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t * char\u578B\u306E\
-    \u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\u3067\u51FA\u529B\u3059\u308B\n\t *\
-    \ @param head\n\t * @param tail\n\t */\n\tpublic final void out(final char[] head,\
-    \ final char[]... tail) {\n\t\tout(head);\n\t\tfor(final char[] a: tail) {\n\t\
-    \t\tout(a);\n\t\t}\n\t}\n\tprivate final void out(final Object[] args) {\n\t\t\
-    if(debug) {\n\t\t\tprint(Arrays.toString(args));\n\t\t} else if(args.length >\
-    \ 0) {\n\t\t\tprint(args[0]);\n\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\
-    \t\tprint(\" \" + args[i]);\n\t\t\t}\n\t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t *\
-    \ Object\u30AF\u30E9\u30B9\u306E\u914D\u5217\u3092\u7A7A\u767D\u304A\u304D\u3067\
-    \u51FA\u529B\u3059\u308B\n\t * @param head\n\t * @param tail\n\t */\n\tpublic\
-    \ final void out(final Object[] head, final Object[]... tail) {\n\t\tout(head);\n\
-    \t\tfor(final Object[] a: tail) {\n\t\t\tout(a);\n\t\t}\n\t}\n\t/**\n\t * \u51FA\
-    \u529B\u3092flush\u3059\u308B\n\t * @see PrintWriter#flush\n\t */\n\t@Override\n\
-    \tpublic final void flush() {\n\t\ttry {\n\t\t\tos.write(buf, 0, pos);\n\t\t\t\
-    pos = 0;\n\t\t} catch(final IOException e) {\n\t\t\te.printStackTrace();\n\t\t\
-    }\n\t}\n\t/**\n\t * OutputStream\u3092\u9589\u3058\u308B\n\t * @see PrintWriter#close\n\
-    \t */\n\t@Override\n\tpublic final void close() {\n\t\tif(os == null) {\n\t\t\t\
-    return;\n\t\t}\n\t\ttry {\n\t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(final\
-    \ IOException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n}"
+    \u3044\u65B9\u306F\u540C\u3058\n\t * \u8272\u3005\u51FA\u529B\u3057\u3066\u304F\
+    \u308C\u308B\n\t * @param arg\n\t * @see PrintWriter#print\n\t */\n\tpublic final\
+    \ void print(final Object arg) {\n\t\tif(arg instanceof final String s) {\n\t\t\
+    \tfor(final char c: s.toCharArray()) {\n\t\t\t\twrite((byte) c);\n\t\t\t}\n\t\t\
+    } else {\n\t\t\tfinal StringBuilder sb = new StringBuilder();\n\t\t\tif(arg instanceof\
+    \ final int[] a) {\n\t\t\t\tif(debug) {\n\t\t\t\t\tprint(Arrays.toString(a));\n\
+    \t\t\t\t\treturn;\n\t\t\t\t}\n\t\t\t\tif(a.length == 0) {\n\t\t\t\t\treturn;\n\
+    \t\t\t\t}\n\t\t\t\tsb.append(a[0]);\n\t\t\t\tfor(int i = 0; ++i < a.length;) {\n\
+    \t\t\t\t\tsb.append(\" \" + a[i]);\n\t\t\t\t}\n\t\t\t} else if(arg instanceof\
+    \ final long[] a) {\n\t\t\t\tif(debug) {\n\t\t\t\t\tprint(Arrays.toString(a));\n\
+    \t\t\t\t\treturn;\n\t\t\t\t}\n\t\t\t\tif(a.length == 0) {\n\t\t\t\t\treturn;\n\
+    \t\t\t\t}\n\t\t\t\tsb.append(a[0]);\n\t\t\t\tfor(int i = 0; ++i < a.length;) {\n\
+    \t\t\t\t\tsb.append(\" \" + a[i]);\n\t\t\t\t}\n\t\t\t} else if(arg instanceof\
+    \ final double[] a) {\n\t\t\t\tif(debug) {\n\t\t\t\t\tprint(Arrays.toString(a));\n\
+    \t\t\t\t\treturn;\n\t\t\t\t}\n\t\t\t\tif(a.length == 0) {\n\t\t\t\t\treturn;\n\
+    \t\t\t\t}\n\t\t\t\tsb.append(a[0]);\n\t\t\t\tfor(int i = 0; ++i < a.length;) {\n\
+    \t\t\t\t\tsb.append(\" \" + a[i]);\n\t\t\t\t}\n\t\t\t} else if(arg instanceof\
+    \ final boolean[] a) {\n\t\t\t\tif(debug) {\n\t\t\t\t\tprint(Arrays.toString(a));\n\
+    \t\t\t\t\treturn;\n\t\t\t\t}\n\t\t\t\tif(a.length == 0) {\n\t\t\t\t\treturn;\n\
+    \t\t\t\t}\n\t\t\t\tsb.append(a[0]);\n\t\t\t\tfor(int i = 0; ++i < a.length;) {\n\
+    \t\t\t\t\tsb.append(\" \" + a[i]);\n\t\t\t\t}\n\t\t\t} else if(arg instanceof\
+    \ final char[] a) {\n\t\t\t\tif(a.length == 0) {\n\t\t\t\t\treturn;\n\t\t\t\t\
+    }\n\t\t\t\tsb.append(a[0]);\n\t\t\t\tfor(int i = 0; ++i < a.length;) {\n\t\t\t\
+    \t\tsb.append(\" \" + a[i]);\n\t\t\t\t}\n\t\t\t} else if(arg instanceof final\
+    \ Object[] a) {\n\t\t\t\tif(debug) {\n\t\t\t\t\tprint(Arrays.toString(a));\n\t\
+    \t\t\t\treturn;\n\t\t\t\t}\n\t\t\t\tif(a.length == 0) {\n\t\t\t\t\treturn;\n\t\
+    \t\t\t}\n\t\t\t\tprint(a[0]);\n\t\t\t\tfor(int i = 0; ++i < a.length;) {\n\t\t\
+    \t\t\tprint(\"\\n\");\n\t\t\t\t\tprint(a[i]);\n\t\t\t\t}\n\t\t\t} else {\n\t\t\
+    \t\tif(arg instanceof final Pair<?, ?> p && !debug) {\n\t\t\t\t\tsb.append(p.first\
+    \ + \" \" + p.second);\n\t\t\t\t} else if(arg instanceof final Collection<?> c\
+    \ && !debug) {\n\t\t\t\t\tint i = 0;\n\t\t\t\t\tfor(final Object el: c) {\n\t\t\
+    \t\t\t\tsb.append(el);\n\t\t\t\t\t\tif(++i != c.size()) {\n\t\t\t\t\t\t\tsb.append('\
+    \ ');\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t} else if(debug || sb.isEmpty()) {\n\
+    \t\t\t\t\tprint(arg.toString());\n\t\t\t\t\treturn;\n\t\t\t\t}\n\t\t\t}\n\t\t\t\
+    print(sb.toString());\n\t\t}\n\t\tif(autoFlush) {\n\t\t\tflush();\n\t\t}\n\t}\n\
+    \t/**\n\t * {@link PrintWriter#printf}\u3068\u4F7F\u3044\u65B9\u306F\u540C\u3058\
+    \n\t * @param fmt\n\t * @param args\n\t * @see PrintWriter#printf\n\t */\n\tpublic\
+    \ final void printf(final String fmt, final Object... args) {\n\t\tprint(new Formatter().format(fmt,\
+    \ args));\n\t\tif(autoFlush) {\n\t\t\tflush();\n\t\t}\n\t}\n\t/**\n\t * \u51FA\
+    \u529B\u3059\u308B\u305F\u3081\u306E\u30E1\u30BD\u30C3\u30C9\n\t * \u5F15\u6570\
+    \u306A\u3057\u3067\u6539\u884C\u3092\u51FA\u529B\u3059\u308B\n\t */\n\tpublic\
+    \ final void out(){ newLine(); }\n\t/**\n\t * out(a, b, c)\u3067, \"a b c\"\u306E\
+    \u5F62\u5F0F\u3067\u51FA\u529B\u3059\u308B\n\t * @param head\n\t * @param tail\n\
+    \t */\n\tpublic final void out(final Object head, final Object... tail) {\n\t\t\
+    print(head);\n\t\tfor(final Object el: tail) {\n\t\t\tprint(\" \" + el);\n\t\t\
+    }\n\t\tnewLine();\n\t}\n\t/**\n\t * \u6539\u884C\u304A\u304D\u306B\u51FA\u529B\
+    \u3059\u308B\n\t * @param head\n\t * @param tail\n\t */\n\tpublic final void outl(final\
+    \ Object head, final Object... tail) {\n\t\tout(head);\n\t\tfor(final Object el:\
+    \ tail) {\n\t\t\tout(el);\n\t\t}\n\t}\n\t/**\n\t * \u51FA\u529B\u3092flush\u3059\
+    \u308B\n\t * @see PrintWriter#flush\n\t */\n\t@Override\n\tpublic final void flush()\
+    \ {\n\t\ttry {\n\t\t\tos.write(buf, 0, pos);\n\t\t\tpos = 0;\n\t\t} catch(final\
+    \ IOException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n\t/**\n\t * OutputStream\u3092\
+    \u9589\u3058\u308B\n\t * @see PrintWriter#close\n\t */\n\t@Override\n\tpublic\
+    \ final void close() {\n\t\tif(os == null) {\n\t\t\treturn;\n\t\t}\n\t\ttry {\n\
+    \t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(final IOException e) {\n\t\t\t\
+    e.printStackTrace();\n\t\t}\n\t}\n}"
   dependsOn:
   - Java/AOJ.java
   - Java/library/ds/lazysegmenttree/RASM.java
@@ -829,7 +811,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-27 23:05:37+09:00'
+  timestamp: '2024-04-04 01:09:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyPrinter.java

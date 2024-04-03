@@ -1147,46 +1147,19 @@ data:
     \ arg){ out.print(arg); }\n\tfinal void printf(final String fmt, final Object...\
     \ args){ out.printf(fmt, args); }\n\tfinal void out(){ out.out(); }\n\tfinal void\
     \ out(final Object head, final Object... tail){ out.out(head, tail); }\n\tfinal\
-    \ <F extends Comparable<? super F>, S extends Comparable<? super S>> void out(final\
-    \ Pair<F, S> p){ out.out(p); }\n\tfinal <E> void out(final Collection<E> a){ out.out(a);\
-    \ }\n\tfinal void out(final int[] head, final int[]...tail){ out.out(head, tail);\
-    \ }\n\tfinal void out(final long[] head, final long[]...tail){ out.out(head, tail);\
-    \ }\n\tfinal void out(final double[] head, final double[]...tail){ out.out(head,\
-    \ tail); }\n\tfinal void out(final boolean[] head, final boolean[]...tail){ out.out(head,\
-    \ tail); }\n\tfinal void out(final char[] head, final char[]...tail){ out.out(head,\
-    \ tail); }\n\tfinal void out(final Object[] head, final Object[]...tail){ out.out(head,\
-    \ tail); }\n\tfinal <F extends Comparable<? super F>, S extends Comparable<? super\
-    \ S>> void out(final Pair<F, S>[] args){ Arrays.stream(args).forEach(this::out);\
-    \ }\n\tfinal void out(final int[][] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> out(args[i])); }\n\tfinal void out(final long[][] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> out(args[i])); }\n\tfinal void out(final double[][]\
+    \ void out(final int[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i]));\
+    \ }\n\tfinal void out(final long[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> out(args[i])); }\n\tfinal void out(final double[][] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> out(args[i])); }\n\tfinal void out(final boolean[][]\
     \ args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }\n\tfinal\
-    \ void out(final boolean[][] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> out(args[i])); }\n\tfinal void out(final char[][] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> out(args[i])); }\n\tfinal void out(final Object[][]\
-    \ args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }\n\tfinal\
-    \ void outl(final Object head, final Object... tail) {\n\t\tout(head);\n\t\tArrays.stream(tail).forEach(this::out);\n\
-    \t}\n\tfinal void fin(final Object head, final Object... tail) {\n\t\tout(head,\
-    \ tail);\n\t\tif(!autoFlush) {\n\t\t\tout.flush();\n\t\t}\n\t\tSystem.exit(0);\n\
-    \t}\n\tfinal <F extends Comparable<? super F>, S extends Comparable<? super S>>\
-    \ void fin(final Pair<F, S> arg) {\n\t\tout(arg);\n\t\tif(!autoFlush) {\n\t\t\t\
-    out.flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal <E> void fin(final Collection<E>\
+    \ void out(final char[][] args){ IntStream.range(0, args.length).forEach(i ->\
+    \ out(args[i])); }\n\tfinal void out(final Object[][] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> out(args[i])); }\n\tfinal void outl(final Object head,\
+    \ final Object... tail){ out.outl(head, tail); }\n\tfinal void fin(final Object\
+    \ head, final Object... tail) {\n\t\tout(head, tail);\n\t\tif(!autoFlush) {\n\t\
+    \t\tout.flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void fin(final int[][]\
     \ args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tout.flush();\n\t\t}\n\t\
-    \tSystem.exit(0);\n\t}\n\tfinal void fin(final int[] args) {\n\t\tout(args);\n\
-    \t\tif(!autoFlush) {\n\t\t\tout.flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t\
-    final void fin(final long[] args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\
-    \tout.flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void fin(final double[]\
-    \ args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tout.flush();\n\t\t}\n\t\
-    \tSystem.exit(0);\n\t}\n\tfinal void fin(final boolean[] args) {\n\t\tout(args);\n\
-    \t\tif(!autoFlush) {\n\t\t\tout.flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t\
-    final void fin(final char[] args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\
-    \tout.flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void fin(final Object[]\
-    \ args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tout.flush();\n\t\t}\n\t\
-    \tSystem.exit(0);\n\t}\n\tfinal <F extends Comparable<? super F>, S extends Comparable<?\
-    \ super S>> void fin(final Pair<F, S>[] args) {\n\t\tout(args);\n\t\tif(!autoFlush)\
-    \ {\n\t\t\tout.flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void fin(final\
-    \ int[][] args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tout.flush();\n\t\
-    \t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void fin(final long[][] args) {\n\t\tout(args);\n\
+    \tSystem.exit(0);\n\t}\n\tfinal void fin(final long[][] args) {\n\t\tout(args);\n\
     \t\tif(!autoFlush) {\n\t\t\tout.flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t\
     final void fin(final double[][] args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\
     \t\t\tout.flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void fin(final boolean[][]\
@@ -1194,40 +1167,32 @@ data:
     \tSystem.exit(0);\n\t}\n\tfinal void fin(final char[][] args) {\n\t\tout(args);\n\
     \t\tif(!autoFlush) {\n\t\t\tout.flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t\
     final void fin(final Object[][] args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\
-    \t\t\tout.flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void ende(final Object\
-    \ head, final Object... tail) {\n\t\toutl(head, tail);\n\t\tif(!autoFlush) {\n\
-    \t\t\tout.flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void dump(final Object\
-    \ head, final Object... tail){ err.out(head, tail); }\n\tfinal void dump(final\
-    \ int[] head, final int[]...tail){ err.out(head, tail); }\n\tfinal void dump(final\
-    \ long[] head, final long[]...tail){ err.out(head, tail); }\n\tfinal void dump(final\
-    \ double[] head, final double[]...tail){ err.out(head, tail); }\n\tfinal void\
-    \ dump(final boolean[] head, final boolean[]...tail){ err.out(head, tail); }\n\
-    \tfinal void dump(final char[] head, final char[]...tail){ err.out(head, tail);\
-    \ }\n\tfinal void dump(final Object[] head, final Object[]...tail){ err.out(head,\
-    \ tail); }\n\tfinal <F extends Comparable<? super F>, S extends Comparable<? super\
-    \ S>> void dump(final Pair<F, S>[] args){ Arrays.stream(args).forEach(this::dump);\
-    \ }\n\tfinal void dump(final int[][] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> dump(args[i])); }\n\tfinal void dump(final long[][] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> dump(args[i])); }\n\tfinal void dump(final double[][]\
+    \t\t\tout.flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\tfinal void ende(final Object...\
+    \ args) {\n\t\toutl(args);\n\t\tif(!autoFlush) {\n\t\t\tout.flush();\n\t\t}\n\t\
+    \tSystem.exit(0);\n\t}\n\tfinal void dump(final Object head, final Object... tail){\
+    \ err.outl(head, tail); }\n\tfinal void dump(final int[][] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> dump(args[i])); }\n\tfinal void dump(final long[][]\
     \ args){ IntStream.range(0, args.length).forEach(i -> dump(args[i])); }\n\tfinal\
-    \ void dump(final boolean[][] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> dump(args[i])); }\n\tfinal void dump(final char[][] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> dump(args[i])); }\n\tfinal void dump(final Object[][]\
-    \ args){ IntStream.range(0, args.length).forEach(i -> dump(args[i])); }\n\t@Override\n\
-    \tpublic final void close() {\n\t\tout.flush();\n\t\tin.close();\n\t\tout.close();\n\
-    \t\terr.close();\n\t}\n\tprivate final class MyScanner implements Closeable, AutoCloseable\
-    \ {\n\t\tprivate int pos, lim;\n\t\tprivate final byte[] buf;\n\t\tprivate final\
-    \ InputStream is;\n\t\tprivate boolean check;\n\t\tMyScanner(final InputStream\
-    \ is) {\n\t\t\tthis.is = is;\n\t\t\tpos = lim = 0;\n\t\t\tbuf = new byte[1 <<\
-    \ 17];\n\t\t\tcheck = false;\n\t\t}\n\t\tprivate final boolean isPunct(final byte\
-    \ bt){ return !Utility.scope(33, bt, 126); }\n\t\tprivate final boolean isNum(final\
-    \ byte bt){ return Utility.scope('0', bt, '9'); }\n\t\tprivate final byte read()\
-    \ {\n\t\t\tif(pos == lim && lim != -1) {\n\t\t\t\ttry {\n\t\t\t\t\tlim = is.read(buf);\n\
-    \t\t\t\t\tpos = 0;\n\t\t\t\t} catch(final IOException e) {\n\t\t\t\t\te.printStackTrace();\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t\treturn buf[pos++];\n\t\t}\n\t\tprivate final byte next()\
-    \ {\n\t\t\tbyte bt;\n\t\t\tif(check) {\n\t\t\t\tcheck = false;\n\t\t\t\tbt = buf[pos\
-    \ - 1];\n\t\t\t\tif(!isPunct(bt)) {\n\t\t\t\t\treturn bt;\n\t\t\t\t}\n\t\t\t}\n\
-    \t\t\twhile(isPunct(bt = read())){}\n\t\t\treturn bt;\n\t\t}\n\t\tfinal int ni(){\
+    \ void dump(final double[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> dump(args[i])); }\n\tfinal void dump(final boolean[][] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> dump(args[i])); }\n\tfinal void dump(final char[][]\
+    \ args){ IntStream.range(0, args.length).forEach(i -> dump(args[i])); }\n\tfinal\
+    \ void dump(final Object[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> dump(args[i])); }\n\t@Override\n\tpublic final void close() {\n\t\tout.flush();\n\
+    \t\tin.close();\n\t\tout.close();\n\t\terr.close();\n\t}\n\tprivate final class\
+    \ MyScanner implements Closeable, AutoCloseable {\n\t\tprivate int pos, lim;\n\
+    \t\tprivate final byte[] buf;\n\t\tprivate final InputStream is;\n\t\tprivate\
+    \ boolean check;\n\t\tMyScanner(final InputStream is) {\n\t\t\tthis.is = is;\n\
+    \t\t\tpos = lim = 0;\n\t\t\tbuf = new byte[1 << 17];\n\t\t\tcheck = false;\n\t\
+    \t}\n\t\tprivate final boolean isPunct(final byte bt){ return !Utility.scope(33,\
+    \ bt, 126); }\n\t\tprivate final boolean isNum(final byte bt){ return Utility.scope('0',\
+    \ bt, '9'); }\n\t\tprivate final byte read() {\n\t\t\tif(pos == lim && lim !=\
+    \ -1) {\n\t\t\t\ttry {\n\t\t\t\t\tlim = is.read(buf);\n\t\t\t\t\tpos = 0;\n\t\t\
+    \t\t} catch(final IOException e) {\n\t\t\t\t\te.printStackTrace();\n\t\t\t\t}\n\
+    \t\t\t}\n\t\t\treturn buf[pos++];\n\t\t}\n\t\tprivate final byte next() {\n\t\t\
+    \tbyte bt;\n\t\t\tif(check) {\n\t\t\t\tcheck = false;\n\t\t\t\tbt = buf[pos -\
+    \ 1];\n\t\t\t\tif(!isPunct(bt)) {\n\t\t\t\t\treturn bt;\n\t\t\t\t}\n\t\t\t}\n\t\
+    \t\twhile(isPunct(bt = read())){}\n\t\t\treturn bt;\n\t\t}\n\t\tfinal int ni(){\
     \ return toIntExact(nl()); }\n\t\tfinal long nl() {\n\t\t\tbyte c = next();\n\t\
     \t\tfinal boolean neg = c == '-';\n\t\t\tif(neg) {\n\t\t\t\tc = next();\n\t\t\t\
     }\n\t\t\tassert isNum(c);\n\t\t\tlong res = c - '0';\n\t\t\twhile(isNum(c = read()))\
@@ -1261,52 +1226,45 @@ data:
     if(autoFlush) {\n\t\t\t\tflush();\n\t\t\t}\n\t\t}\n\t\tfinal void print(final\
     \ Object arg) {\n\t\t\tif(arg instanceof final String s) {\n\t\t\t\tfor(final\
     \ char c: s.toCharArray()) {\n\t\t\t\t\twrite((byte) c);\n\t\t\t\t}\n\t\t\t} else\
-    \ {\n\t\t\t\tprint(String.valueOf(arg));\n\t\t\t}\n\t\t\tif(autoFlush) {\n\t\t\
-    \t\tflush();\n\t\t\t}\n\t\t}\n\t\tfinal void printf(final String fmt, final Object...\
-    \ args) {\n\t\t\tprint(new Formatter().format(fmt, args));\n\t\t\tif(autoFlush)\
-    \ {\n\t\t\t\tflush();\n\t\t\t}\n\t\t}\n\t\tfinal void out(){ newLine(); }\n\t\t\
-    final void out(final Object head, final Object... tail) {\n\t\t\tprint(head);\n\
-    \t\t\tfor(final var el: tail) {\n\t\t\t\tprint(\" \" + el);\n\t\t\t}\n\t\t\tnewLine();\n\
-    \t\t}\n\t\tfinal <F extends Comparable<? super F>, S extends Comparable<? super\
-    \ S>> void out(final Pair<F, S> arg) {\n\t\t\tif(debug) {\n\t\t\t\tprint(arg.toString());\n\
-    \t\t\t} else {\n\t\t\t\tprint(arg.first + \" \" + arg.second);\n\t\t\t}\n\t\t\t\
-    newLine();\n\t\t}\n\t\tfinal <E> void out(final Collection<E> args) {\n\t\t\t\
-    if(debug) {\n\t\t\t\tprint(args.toString());\n\t\t\t} else {\n\t\t\t\tint i =\
-    \ 0;\n\t\t\t\tfor(final var el: args) {\n\t\t\t\t\tprint(el);\n\t\t\t\t\tif(++i\
-    \ != args.size()) {\n\t\t\t\t\t\tprint(\" \");\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\
-    }\n\t\t\tnewLine();\n\t\t}\n\t\tprivate final void out(final int[] args) {\n\t\
-    \t\tif(debug) {\n\t\t\t\tprint(Arrays.toString(args));\n\t\t\t} else if(args.length\
-    \ > 0) {\n\t\t\t\tprint(args[0]);\n\t\t\t\tfor(int i = 0; ++i < args.length;)\
-    \ {\n\t\t\t\t\tprint(\" \" + args[i]);\n\t\t\t\t}\n\t\t\t}\n\t\t\tnewLine();\n\
-    \t\t}\n\t\tfinal void out(final int[] head, final int[]... tail) {\n\t\t\tout(head);\n\
-    \t\t\tfor(final int[] a: tail) {\n\t\t\t\tout(a);\n\t\t\t}\n\t\t}\n\t\tprivate\
-    \ final void out(final long[] args) {\n\t\t\tif(debug) {\n\t\t\t\tprint(Arrays.toString(args));\n\
-    \t\t\t} else if(args.length > 0) {\n\t\t\t\tprint(args[0]);\n\t\t\t\tfor(int i\
-    \ = 0; ++i < args.length;) {\n\t\t\t\t\tprint(\" \" + args[i]);\n\t\t\t\t}\n\t\
-    \t\t}\n\t\t\tnewLine();\n\t\t}\n\t\tfinal void out(final long[] head, final long[]...\
-    \ tail) {\n\t\t\tout(head);\n\t\t\tfor(final long[] a: tail) {\n\t\t\t\tout(a);\n\
-    \t\t\t}\n\t\t}\n\t\tprivate final void out(final double[] args) {\n\t\t\tif(debug)\
-    \ {\n\t\t\t\tprint(Arrays.toString(args));\n\t\t\t} else if(args.length > 0) {\n\
-    \t\t\t\tprint(args[0]);\n\t\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\t\
-    \tprint(\" \" + args[i]);\n\t\t\t\t}\n\t\t\t}\n\t\t\tnewLine();\n\t\t}\n\t\tfinal\
-    \ void out(final double[] head, final double[]... tail) {\n\t\t\tout(head);\n\t\
-    \t\tfor(final double[] a: tail) {\n\t\t\t\tout(a);\n\t\t\t}\n\t\t}\n\t\tprivate\
-    \ final void out(final boolean[] args) {\n\t\t\tif(debug) {\n\t\t\t\tprint(Arrays.toString(args));\n\
-    \t\t\t} else if(args.length > 0) {\n\t\t\t\tprint(args[0]);\n\t\t\t\tfor(int i\
-    \ = 0; ++i < args.length;) {\n\t\t\t\t\tprint(\" \" + args[i]);\n\t\t\t\t}\n\t\
-    \t\t}\n\t\t\tnewLine();\n\t\t}\n\t\tfinal void out(final boolean[] head, final\
-    \ boolean[]... tail) {\n\t\t\tout(head);\n\t\t\tfor(final boolean[] a: tail) {\n\
-    \t\t\t\tout(a);\n\t\t\t}\n\t\t}\n\t\tprivate final void out(final char[] args)\
-    \ {\n\t\t\tif(args.length > 0) {\n\t\t\t\tprint(args[0]);\n\t\t\t\tfor(int i =\
-    \ 0; ++i < args.length;) {\n\t\t\t\t\tprint(\" \" + args[i]);\n\t\t\t\t}\n\t\t\
-    \t}\n\t\t\tnewLine();\n\t\t}\n\t\tfinal void out(final char[] head, final char[]...\
-    \ tail) {\n\t\t\tout(head);\n\t\t\tfor(final char[] a: tail) {\n\t\t\t\tout(a);\n\
-    \t\t\t}\n\t\t}\n\t\tprivate final void out(final Object[] args) {\n\t\t\tif(debug)\
-    \ {\n\t\t\t\tprint(Arrays.toString(args));\n\t\t\t} else if(args.length > 0) {\n\
-    \t\t\t\tprint(args[0]);\n\t\t\t\tfor(int i = 0; ++i < args.length;) {\n\t\t\t\t\
-    \tprint(\" \" + args[i]);\n\t\t\t\t}\n\t\t\t}\n\t\t\tnewLine();\n\t\t}\n\t\tfinal\
-    \ void out(final Object[] head, final Object[]... tail) {\n\t\t\tout(head);\n\t\
-    \t\tfor(final Object[] a: tail) {\n\t\t\t\tout(a);\n\t\t\t}\n\t\t}\n\t\t@Override\n\
+    \ {\n\t\t\t\tfinal StringBuilder sb = new StringBuilder();\n\t\t\t\tif(arg instanceof\
+    \ final int[] a) {\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(Arrays.toString(a));\n\
+    \t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\t\
+    return;\n\t\t\t\t\t}\n\t\t\t\t\tsb.append(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i\
+    \ < a.length;) {\n\t\t\t\t\t\tsb.append(\" \" + a[i]);\n\t\t\t\t\t}\n\t\t\t\t\
+    } else if(arg instanceof final long[] a) {\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\t\
+    print(Arrays.toString(a));\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tif(a.length\
+    \ == 0) {\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tsb.append(a[0]);\n\t\t\t\
+    \t\tfor(int i = 0; ++i < a.length;) {\n\t\t\t\t\t\tsb.append(\" \" + a[i]);\n\t\
+    \t\t\t\t}\n\t\t\t\t} else if(arg instanceof final double[] a) {\n\t\t\t\t\tif(debug)\
+    \ {\n\t\t\t\t\t\tprint(Arrays.toString(a));\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\
+    \t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tsb.append(a[0]);\n\
+    \t\t\t\t\tfor(int i = 0; ++i < a.length;) {\n\t\t\t\t\t\tsb.append(\" \" + a[i]);\n\
+    \t\t\t\t\t}\n\t\t\t\t} else if(arg instanceof final boolean[] a) {\n\t\t\t\t\t\
+    if(debug) {\n\t\t\t\t\t\tprint(Arrays.toString(a));\n\t\t\t\t\t\treturn;\n\t\t\
+    \t\t\t}\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\
+    \t\t\tsb.append(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i < a.length;) {\n\t\t\t\t\t\
+    \tsb.append(\" \" + a[i]);\n\t\t\t\t\t}\n\t\t\t\t} else if(arg instanceof final\
+    \ char[] a) {\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\treturn;\n\t\t\t\t\t\
+    }\n\t\t\t\t\tsb.append(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i < a.length;) {\n\t\
+    \t\t\t\t\tsb.append(\" \" + a[i]);\n\t\t\t\t\t}\n\t\t\t\t} else if(arg instanceof\
+    \ final Object[] a) {\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(Arrays.toString(a));\n\
+    \t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\t\
+    return;\n\t\t\t\t\t}\n\t\t\t\t\tprint(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i < a.length;)\
+    \ {\n\t\t\t\t\t\tprint(\"\\n\");\n\t\t\t\t\t\tprint(a[i]);\n\t\t\t\t\t}\n\t\t\t\
+    \t} else {\n\t\t\t\t\tif(arg instanceof final Pair<?, ?> p && !debug) {\n\t\t\t\
+    \t\t\tsb.append(p.first + \" \" + p.second);\n\t\t\t\t\t} else if(arg instanceof\
+    \ final Collection<?> c && !debug) {\n\t\t\t\t\t\tint i = 0;\n\t\t\t\t\t\tfor(final\
+    \ Object el: c) {\n\t\t\t\t\t\t\tsb.append(el);\n\t\t\t\t\t\t\tif(++i != c.size())\
+    \ {\n\t\t\t\t\t\t\t\tsb.append(' ');\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\
+    \t} else if(debug || sb.isEmpty()) {\n\t\t\t\t\t\tprint(arg.toString());\n\t\t\
+    \t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tprint(sb.toString());\n\t\t\t\
+    }\n\t\t\tif(autoFlush) {\n\t\t\t\tflush();\n\t\t\t}\n\t\t}\n\t\tfinal void printf(final\
+    \ String fmt, final Object... args){ print(new Formatter().format(fmt, args));\
+    \ }\n\t\tfinal void out(){ newLine(); }\n\t\tfinal void out(final Object head,\
+    \ final Object... tail) {\n\t\t\tprint(head);\n\t\t\tfor(final Object el: tail)\
+    \ {\n\t\t\t\tprint(\" \");\n\t\t\t\tprint(el);\n\t\t\t}\n\t\t\tnewLine();\n\t\t\
+    }\n\t\tfinal void outl(final Object head, final Object... tail) {\n\t\t\tout(head);\n\
+    \t\t\tfor(final Object el: tail) {\n\t\t\t\tout(el);\n\t\t\t}\n\t\t}\n\t\t@Override\n\
     \t\tpublic final void flush() {\n\t\t\ttry {\n\t\t\t\tos.write(buf, 0, pos);\n\
     \t\t\t\tpos = 0;\n\t\t\t} catch(final IOException e) {\n\t\t\t\te.printStackTrace();\n\
     \t\t\t}\n\t\t}\n\t\t@Override\n\t\tpublic final void close() {\n\t\t\tif(os ==\
@@ -2734,7 +2692,7 @@ data:
   - Java/library/graph/MST.java
   - Java/yukicoder.java
   - Java/CodeForces.java
-  timestamp: '2024-03-27 23:05:37+09:00'
+  timestamp: '2024-04-04 01:09:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
