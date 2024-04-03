@@ -48,6 +48,7 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	}
 	/**
 	 * {@link PrintWriter#print}と使い方は同じ
+	 * 色々出力してくれる
 	 * @param arg
 	 * @see PrintWriter#print
 	 */
@@ -57,7 +58,93 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 				write((byte) c);
 			}
 		} else {
-			print(String.valueOf(arg));
+			final StringBuilder sb = new StringBuilder();
+			if(arg instanceof final int[] a) {
+				if(debug) {
+					print(Arrays.toString(a));
+					return;
+				}
+				if(a.length == 0) {
+					return;
+				}
+				sb.append(a[0]);
+				for(int i = 0; ++i < a.length;) {
+					sb.append(" " + a[i]);
+				}
+			} else if(arg instanceof final long[] a) {
+				if(debug) {
+					print(Arrays.toString(a));
+					return;
+				}
+				if(a.length == 0) {
+					return;
+				}
+				sb.append(a[0]);
+				for(int i = 0; ++i < a.length;) {
+					sb.append(" " + a[i]);
+				}
+			} else if(arg instanceof final double[] a) {
+				if(debug) {
+					print(Arrays.toString(a));
+					return;
+				}
+				if(a.length == 0) {
+					return;
+				}
+				sb.append(a[0]);
+				for(int i = 0; ++i < a.length;) {
+					sb.append(" " + a[i]);
+				}
+			} else if(arg instanceof final boolean[] a) {
+				if(debug) {
+					print(Arrays.toString(a));
+					return;
+				}
+				if(a.length == 0) {
+					return;
+				}
+				sb.append(a[0]);
+				for(int i = 0; ++i < a.length;) {
+					sb.append(" " + a[i]);
+				}
+			} else if(arg instanceof final char[] a) {
+				if(a.length == 0) {
+					return;
+				}
+				sb.append(a[0]);
+				for(int i = 0; ++i < a.length;) {
+					sb.append(" " + a[i]);
+				}
+			} else if(arg instanceof final Object[] a) {
+				if(debug) {
+					print(Arrays.toString(a));
+					return;
+				}
+				if(a.length == 0) {
+					return;
+				}
+				print(a[0]);
+				for(int i = 0; ++i < a.length;) {
+					print("\n");
+					print(a[i]);
+				}
+			} else {
+				if(arg instanceof final Pair<?, ?> p && !debug) {
+					sb.append(p.first + " " + p.second);
+				} else if(arg instanceof final Collection<?> c && !debug) {
+					int i = 0;
+					for(final Object el: c) {
+						sb.append(el);
+						if(++i != c.size()) {
+							sb.append(' ');
+						}
+					}
+				} else if(debug || sb.isEmpty()) {
+					print(arg.toString());
+					return;
+				}
+			}
+			print(sb.toString());
 		}
 		if(autoFlush) {
 			flush();
@@ -87,171 +174,20 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 	 */
 	public final void out(final Object head, final Object... tail) {
 		print(head);
-		for(final var el: tail) {
+		for(final Object el: tail) {
 			print(" " + el);
 		}
 		newLine();
 	}
 	/**
-	 * {@link Pair}を出力する
-	 * デバッグ時は{@link Pair#toString}を推奨
-	 * @param <F> firstの型
-	 * @param <S> secondの型
-	 */
-	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> void out(final Pair<F, S> arg) {
-		if(debug) {
-			print(arg.toString());
-		} else {
-			print(arg.first + " " + arg.second);
-		}
-		newLine();
-	}
-	/**
-	 * {@link Collection}を出力する
-	 * @param args
-	 */
-	public final <E> void out(final Collection<E> args) {
-		if(debug) {
-			print(args.toString());
-		} else {
-			int i = 0;
-			for(final var el: args) {
-				print(el);
-				if(++i != args.size()) {
-					print(" ");
-				}
-			}
-		}
-		newLine();
-	}
-	private final void out(final int[] args) {
-		if(debug) {
-			print(Arrays.toString(args));
-		} else if(args.length > 0) {
-			print(args[0]);
-			for(int i = 0; ++i < args.length;) {
-				print(" " + args[i]);
-			}
-		}
-		newLine();
-	}
-	/**
-	 * int型の配列を空白おきで出力する
+	 * 改行おきに出力する
 	 * @param head
 	 * @param tail
 	 */
-	public final void out(final int[] head, final int[]... tail) {
+	public final void outl(final Object head, final Object... tail) {
 		out(head);
-		for(final int[] a: tail) {
-			out(a);
-		}
-	}
-	private final void out(final long[] args) {
-		if(debug) {
-			print(Arrays.toString(args));
-		} else if(args.length > 0) {
-			print(args[0]);
-			for(int i = 0; ++i < args.length;) {
-				print(" " + args[i]);
-			}
-		}
-		newLine();
-	}
-	/**
-	 * long型の配列を空白おきで出力する
-	 * @param head
-	 * @param tail
-	 */
-	public final void out(final long[] head, final long[]... tail) {
-		out(head);
-		for(final long[] a: tail) {
-			out(a);
-		}
-	}
-	private final void out(final double[] args) {
-		if(debug) {
-			print(Arrays.toString(args));
-		} else if(args.length > 0) {
-			print(args[0]);
-			for(int i = 0; ++i < args.length;) {
-				print(" " + args[i]);
-			}
-		}
-		newLine();
-	}
-	/**
-	 * double型の配列を空白おきで出力する
-	 * @param head
-	 * @param tail
-	 */
-	public final void out(final double[] head, final double[]... tail) {
-		out(head);
-		for(final double[] a: tail) {
-			out(a);
-		}
-	}
-	private final void out(final boolean[] args) {
-		if(debug) {
-			print(Arrays.toString(args));
-		} else if(args.length > 0) {
-			print(args[0]);
-			for(int i = 0; ++i < args.length;) {
-				print(" " + args[i]);
-			}
-		}
-		newLine();
-	}
-	/**
-	 * boolean型の配列を空白おきで出力する
-	 * @param head
-	 * @param tail
-	 */
-	public final void out(final boolean[] head, final boolean[]... tail) {
-		out(head);
-		for(final boolean[] a: tail) {
-			out(a);
-		}
-	}
-	private final void out(final char[] args) {
-		if(args.length > 0) {
-			print(args[0]);
-			for(int i = 0; ++i < args.length;) {
-				print(" " + args[i]);
-			}
-		}
-		newLine();
-	}
-	/**
-	 * char型の配列を空白おきで出力する
-	 * @param head
-	 * @param tail
-	 */
-	public final void out(final char[] head, final char[]... tail) {
-		out(head);
-		for(final char[] a: tail) {
-			out(a);
-		}
-	}
-	private final void out(final Object[] args) {
-		if(debug) {
-			print(Arrays.toString(args));
-		} else if(args.length > 0) {
-			print(args[0]);
-			for(int i = 0; ++i < args.length;) {
-				print(" " + args[i]);
-			}
-		}
-		newLine();
-	}
-	/**
-	 * Objectクラスの配列を空白おきで出力する
-	 * @param head
-	 * @param tail
-	 */
-	public final void out(final Object[] head, final Object[]... tail) {
-		out(head);
-		for(final Object[] a: tail) {
-			out(a);
+		for(final Object el: tail) {
+			out(el);
 		}
 	}
 	/**

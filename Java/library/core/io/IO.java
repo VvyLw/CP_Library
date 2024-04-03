@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.function.IntUnaryOperator;
 import java.util.function.LongUnaryOperator;
 import java.util.function.UnaryOperator;
@@ -13,7 +12,6 @@ import java.util.stream.IntStream;
 
 import library.ds.pair.FloatPair;
 import library.ds.pair.IntPair;
-import library.ds.pair.Pair;
 
 /**
  * 入出力をまとめたクラス
@@ -261,61 +259,6 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public final void out(final Object head, final Object... tail){ out.out(head, tail); }
 	/**
-	 * @param <F>
-	 * @param <S>
-	 * @param p
-	 * @see MyPrinter#out
-	 */
-	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> void out(final Pair<F, S> p){ out.out(p); }
-	/**
-	 * @param <E>
-	 * @see MyPrinter#out
-	 */
-	public final <E> void out(final Collection<E> a){ out.out(a); }
-	/**
-	 * @param head
-	 * @param tail
-	 * @see MyPrinter#out
-	 */
-	public final void out(final int[] head, final int[]...tail){ out.out(head, tail); }
-	/**
-	 * @param head
-	 * @param tail
-	 * @see MyPrinter#out
-	 */
-	public final void out(final long[] head, final long[]...tail){ out.out(head, tail); }
-	/**
-	 * @param head
-	 * @param tail
-	 * @see MyPrinter#out
-	 */
-	public final void out(final double[] head, final double[]...tail){ out.out(head, tail); }
-	/**
-	 * @param head
-	 * @param tail
-	 * @see MyPrinter#out
-	 */
-	public final void out(final boolean[] head, final boolean[]...tail){ out.out(head, tail); }
-	/**
-	 * @param head
-	 * @param tail
-	 * @see MyPrinter#out
-	 */
-	public final void out(final char[] head, final char[]...tail){ out.out(head, tail); }
-	/**
-	 * @param head
-	 * @param tail
-	 * @see MyPrinter#out
-	 */
-	public final void out(final Object[] head, final Object[]...tail){ out.out(head, tail); }
-	/**
-	 * Pairクラスの配列を出力する
-	 * @param <F>
-	 * @param <S>
-	 * @param args 
-	 */
-	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> void out(final Pair<F, S>[] args){ Arrays.stream(args).forEach(this::out); }
-	/**
 	 * int型二次元配列を出力する
 	 * @param args
 	 */
@@ -350,10 +293,7 @@ public final class IO implements Closeable, AutoCloseable {
 	 * @param head
 	 * @param tail
 	 */
-	public final void outl(final Object head, final Object... tail) {
-		out(head);
-		Arrays.stream(tail).forEach(this::out);
-	}
+	public final void outl(final Object head, final Object... tail){ out.outl(head, tail); }
 	/**
 	 * この出力を最後に処理を終了する
 	 * @param head
@@ -362,119 +302,6 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public final void fin(final Object head, final Object... tail) {
 		out(head, tail);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param <F> firstの型
-	 * @param <S> secondの型
-	 * @param arg
-	 * @see #out
-	 */
-	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> void fin(final Pair<F, S> arg) {
-		out(arg);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param <E>
-	 * @param args
-	 * @see #out
-	 */
-	public final <E> void fin(final Collection<E> args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #out
-	 */
-	public final void fin(final int[] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #out
-	 */
-	public final void fin(final long[] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #out
-	 */
-	public final void fin(final double[] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #out
-	 */
-	public final void fin(final boolean[] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #out
-	 */
-	public final void fin(final char[] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #out
-	 */
-	public final void fin(final Object[] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param <F>
-	 * @param <S>
-	 * @param args
-	 * @see #out
-	 */
-	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> void fin(final Pair<F, S>[] args) {
-		out(args);
 		if(!autoFlush) {
 			out.flush();
 		}
@@ -571,56 +398,7 @@ public final class IO implements Closeable, AutoCloseable {
 	 * @param tail
 	 * @see MyPrinter#out
 	 */
-	public final void dump(final Object head, final Object... tail){ err.out(head, tail); }
-	/**
-	 * デバッグ用
-	 * @param head
-	 * @param tail
-	 * @see MyPrinter#out
-	 */
-	public final void dump(final int[] head, final int[]...tail){ err.out(head, tail); }
-	/**
-	 * デバッグ用
-	 * @param head
-	 * @param tail
-	 * @see MyPrinter#out
-	 */
-	public final void dump(final long[] head, final long[]...tail){ err.out(head, tail); }
-	/**
-	 * デバッグ用
-	 * @param head
-	 * @param tail
-	 * @see MyPrinter#out
-	 */
-	public final void dump(final double[] head, final double[]...tail){ err.out(head, tail); }
-	/**
-	 * デバッグ用
-	 * @param head
-	 * @param tail
-	 * @see MyPrinter#out
-	 */
-	public final void dump(final boolean[] head, final boolean[]...tail){ err.out(head, tail); }
-	/**
-	 * デバッグ用
-	 * @param head
-	 * @param tail
-	 * @see MyPrinter#out
-	 */
-	public final void dump(final char[] head, final char[]...tail){ err.out(head, tail); }
-	/**
-	 * デバッグ用
-	 * @param head
-	 * @param tail
-	 * @see MyPrinter#out
-	 */
-	public final void dump(final Object[] head, final Object[]...tail){ err.out(head, tail); }
-	/**
-	 * デバッグ用
-	 * @param <F>
-	 * @param <S>
-	 * @param a
-	 */
-	public final <F extends Comparable<? super F>, S extends Comparable<? super S>> void dump(final Pair<F, S>[] args){ Arrays.stream(args).forEach(this::dump); }
+	public final void dump(final Object head, final Object... tail){ err.outl(head, tail); }
 	/**
 	 * デバッグ用
 	 * @param a

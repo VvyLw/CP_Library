@@ -181,74 +181,15 @@ final class IO implements Closeable, AutoCloseable {
 	final void printf(final String fmt, final Object... args){ out.printf(fmt, args); }
 	final void out(){ out.out(); }
 	final void out(final Object head, final Object... tail){ out.out(head, tail); }
-	final <E> void out(final Collection<E> a){ out.out(a); }
-	final void out(final int[] head, final int[]...tail){ out.out(head, tail); }
-	final void out(final long[] head, final long[]...tail){ out.out(head, tail); }
-	final void out(final double[] head, final double[]...tail){ out.out(head, tail); }
-	final void out(final boolean[] head, final boolean[]...tail){ out.out(head, tail); }
-	final void out(final char[] head, final char[]...tail){ out.out(head, tail); }
-	final void out(final Object[] head, final Object[]...tail){ out.out(head, tail); }
 	final void out(final int[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void out(final long[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void out(final double[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void out(final boolean[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void out(final char[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void out(final Object[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
-	final void outl(final Object head, final Object... tail) {
-		out(head);
-		Arrays.stream(tail).forEach(this::out);
-	}
+	final void outl(final Object head, final Object... tail){ out.outl(head, tail); }
 	final void fin(final Object head, final Object... tail) {
 		out(head, tail);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	final <E> void fin(final Collection<E> args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	final void fin(final int[] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	final void fin(final long[] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	final void fin(final double[] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	final void fin(final boolean[] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	final void fin(final char[] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	final void fin(final Object[] args) {
-		out(args);
 		if(!autoFlush) {
 			out.flush();
 		}
@@ -296,20 +237,14 @@ final class IO implements Closeable, AutoCloseable {
 		}
 		System.exit(0);
 	}
-	final void ende(final Object head, final Object... tail) {
-		outl(head, tail);
+	final void ende(final Object... args) {
+		outl(args);
 		if(!autoFlush) {
 			out.flush();
 		}
 		System.exit(0);
 	}
-	final void dump(final Object head, final Object... tail){ err.out(head, tail); }
-	final void dump(final int[] head, final int[]...tail){ err.out(head, tail); }
-	final void dump(final long[] head, final long[]...tail){ err.out(head, tail); }
-	final void dump(final double[] head, final double[]...tail){ err.out(head, tail); }
-	final void dump(final boolean[] head, final boolean[]...tail){ err.out(head, tail); }
-	final void dump(final char[] head, final char[]...tail){ err.out(head, tail); }
-	final void dump(final Object[] head, final Object[]...tail){ err.out(head, tail); }
+	final void dump(final Object head, final Object... tail){ err.outl(head, tail); }
 	final void dump(final int[][] args){ IntStream.range(0, args.length).forEach(i -> dump(args[i])); }
 	final void dump(final long[][] args){ IntStream.range(0, args.length).forEach(i -> dump(args[i])); }
 	final void dump(final double[][] args){ IntStream.range(0, args.length).forEach(i -> dump(args[i])); }
@@ -452,144 +387,122 @@ final class IO implements Closeable, AutoCloseable {
 			}
 		}
 		final void print(final Object arg) {
-			if(arg instanceof String) {
-				final String s = (String) arg;
+			if(arg instanceof final String s) {
 				for(final char c: s.toCharArray()) {
 					write((byte) c);
 				}
 			} else {
-				print(String.valueOf(arg));
+				final StringBuilder sb = new StringBuilder();
+				if(arg instanceof int[]) {
+					final int[] a = (int[]) arg;
+					if(debug) {
+						print(Arrays.toString(a));
+						return;
+					}
+					if(a.length == 0) {
+						return;
+					}
+					sb.append(a[0]);
+					for(int i = 0; ++i < a.length;) {
+						sb.append(" " + a[i]);
+					}
+				} else if(arg instanceof long[]) {
+					final long[] a = (long[]) arg;
+					if(debug) {
+						print(Arrays.toString(a));
+						return;
+					}
+					if(a.length == 0) {
+						return;
+					}
+					sb.append(a[0]);
+					for(int i = 0; ++i < a.length;) {
+						sb.append(" " + a[i]);
+					}
+				} else if(arg instanceof double[]) {
+					final double[] a = (double[]) arg;
+					if(debug) {
+						print(Arrays.toString(a));
+						return;
+					}
+					if(a.length == 0) {
+						return;
+					}
+					sb.append(a[0]);
+					for(int i = 0; ++i < a.length;) {
+						sb.append(" " + a[i]);
+					}
+				} else if(arg instanceof boolean[]) {
+					final boolean[] a = (boolean[]) arg;
+					if(debug) {
+						print(Arrays.toString(a));
+						return;
+					}
+					if(a.length == 0) {
+						return;
+					}
+					sb.append(a[0]);
+					for(int i = 0; ++i < a.length;) {
+						sb.append(" " + a[i]);
+					}
+				} else if(arg instanceof char[]) {
+					final char[] a = (char[]) arg;
+					if(a.length == 0) {
+						return;
+					}
+					sb.append(a[0]);
+					for(int i = 0; ++i < a.length;) {
+						sb.append(" " + a[i]);
+					}
+				} else if(arg instanceof Object[]) {
+					final Object[] a = (Object[]) arg;
+					if(debug) {
+						print(Arrays.toString(a));
+						return;
+					}
+					if(a.length == 0) {
+						return;
+					}
+					print(a[0]);
+					for(int i = 0; ++i < a.length;) {
+						print("\n");
+						print(a[i]);
+					}
+				} else {
+					if(arg instanceof Collection<?> && !debug) {
+						final Collection<?> c = (Collection<?>) arg;
+						int i = 0;
+						for(final Object el: c) {
+							sb.append(el);
+							if(++i != c.size()) {
+								sb.append(' ');
+							}
+						}
+					} else if(debug || sb.isEmpty()) {
+						print(arg.toString());
+						return;
+					}
+				}
+				print(sb.toString());
 			}
 			if(autoFlush) {
 				flush();
 			}
 		}
-		final void printf(final String fmt, final Object... args) {
-			print(new Formatter().format(fmt, args));
-			if(autoFlush) {
-				flush();
-			}
-		}
+		final void printf(final String fmt, final Object... args){ print(new Formatter().format(fmt, args)); }
 		final void out(){ newLine(); }
 		final void out(final Object head, final Object... tail) {
 			print(head);
-			for(final var el: tail) {
-				print(" " + el);
+			for(final Object el: tail) {
+				print(" ");
+				print(el);
 			}
 			newLine();
 		}
-		final <E> void out(final Collection<E> args) {
-			if(debug) {
-				print(args.toString());
-			} else {
-				int i = 0;
-				for(final var el: args) {
-					print(el);
-					if(++i != args.size()) {
-						print(" ");
-					}
-				}
-			}
-			newLine();
-		}
-		private final void out(final int[] args) {
-			if(debug) {
-				print(Arrays.toString(args));
-			} else if(args.length > 0) {
-				print(args[0]);
-				for(int i = 0; ++i < args.length;) {
-					print(" " + args[i]);
-				}
-			}
-			newLine();
-		}
-		final void out(final int[] head, final int[]... tail) {
+		final void outl(final Object head, final Object... tail) {
 			out(head);
-			for(final int[] a: tail) {
-				out(a);
-			}
-		}
-		private final void out(final long[] args) {
-			if(debug) {
-				print(Arrays.toString(args));
-			} else if(args.length > 0) {
-				print(args[0]);
-				for(int i = 0; ++i < args.length;) {
-					print(" " + args[i]);
-				}
-			}
-			newLine();
-		}
-		final void out(final long[] head, final long[]... tail) {
-			out(head);
-			for(final long[] a: tail) {
-				out(a);
-			}
-		}
-		private final void out(final double[] args) {
-			if(debug) {
-				print(Arrays.toString(args));
-			} else if(args.length > 0) {
-				print(args[0]);
-				for(int i = 0; ++i < args.length;) {
-					print(" " + args[i]);
-				}
-			}
-			newLine();
-		}
-		final void out(final double[] head, final double[]... tail) {
-			out(head);
-			for(final double[] a: tail) {
-				out(a);
-			}
-		}
-		private final void out(final boolean[] args) {
-			if(debug) {
-				print(Arrays.toString(args));
-			} else if(args.length > 0) {
-				print(args[0]);
-				for(int i = 0; ++i < args.length;) {
-					print(" " + args[i]);
-				}
-			}
-			newLine();
-		}
-		final void out(final boolean[] head, final boolean[]... tail) {
-			out(head);
-			for(final boolean[] a: tail) {
-				out(a);
-			}
-		}
-		private final void out(final char[] args) {
-			if(args.length > 0) {
-				print(args[0]);
-				for(int i = 0; ++i < args.length;) {
-					print(" " + args[i]);
-				}
-			}
-			newLine();
-		}
-		final void out(final char[] head, final char[]... tail) {
-			out(head);
-			for(final char[] a: tail) {
-				out(a);
-			}
-		}
-		private final void out(final Object[] args) {
-			if(debug) {
-				print(Arrays.toString(args));
-			} else if(args.length > 0) {
-				print(args[0]);
-				for(int i = 0; ++i < args.length;) {
-					print(" " + args[i]);
-				}
-			}
-			newLine();
-		}
-		final void out(final Object[] head, final Object[]... tail) {
-			out(head);
-			for(final Object[] a: tail) {
-				out(a);
+			for(final Object el: tail) {
+				out(el);
 			}
 		}
 		@Override
