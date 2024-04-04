@@ -468,8 +468,12 @@ final class IO implements Closeable, AutoCloseable {
 						print("\n");
 						print(a[i]);
 					}
+					return;
 				} else {
-					if(arg instanceof Collection<?> && !debug) {
+					if(debug) {
+						print(arg.toString());
+						return;
+					} else if(arg instanceof Collection<?>) {
 						final Collection<?> c = (Collection<?>) arg;
 						int i = 0;
 						for(final Object el: c) {
@@ -478,7 +482,7 @@ final class IO implements Closeable, AutoCloseable {
 								sb.append(' ');
 							}
 						}
-					} else if(debug || sb.isEmpty()) {
+					} else if(sb.isEmpty()) {
 						print(arg.toString());
 						return;
 					}

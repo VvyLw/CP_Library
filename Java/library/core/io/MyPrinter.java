@@ -128,10 +128,14 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 					print("\n");
 					print(a[i]);
 				}
+				return;
 			} else {
-				if(arg instanceof final Pair<?, ?> p && !debug) {
+				if(debug) {
+					print(arg.toString());
+					return;
+				} else if(arg instanceof final Pair<?, ?> p) {
 					sb.append(p.first + " " + p.second);
-				} else if(arg instanceof final Collection<?> c && !debug) {
+				} else if(arg instanceof final Collection<?> c) {
 					int i = 0;
 					for(final Object el: c) {
 						sb.append(el);
@@ -139,7 +143,7 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 							sb.append(' ');
 						}
 					}
-				} else if(debug || sb.isEmpty()) {
+				} else if(sb.isEmpty()) {
 					print(arg.toString());
 					return;
 				}

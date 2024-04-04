@@ -47,36 +47,7 @@ final class VvyLw extends Utility {
 	static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};
 	static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};
 	static final void solve() {
-		final int n = io.ni();
-		final var s = io.ns();
-		int ans = n;
-		for(final var d: div(n)) {
-			final var m = new HashMap<String, Integer>();
-			final int now = (int) d;
-			for(int i = 0; i < n; i += now) {
-				m.merge(s.substring(i, min(n, i + now)), 1, Integer::sum);
-			}
-			if(m.size() == 2) {
-				String a = "", b = "";
-				for(final var t: m.keySet()) {
-					if(a.isEmpty()) {
-						a = t;
-					} else {
-						b = t;
-					}
-				}
-				//io.dump(a, b);
-				assert a.length() == b.length();
-				final char[] f = a.toCharArray(), g = b.toCharArray();
-				if(iota(a.length()).filter(i -> f[i] != g[i]).count() == 1 && m.values().stream().anyMatch(i -> i == 1)) {
-					ans = min(ans, now);
-				}
-			}
-			if(m.size() == 1) {
-				ans = min(ans, now);
-			}
-		}
-		io.out(ans);
+		
 	}
 }
 class Utility {
@@ -1660,10 +1631,14 @@ final class IO implements Closeable, AutoCloseable {
 						print("\n");
 						print(a[i]);
 					}
+					return;
 				} else {
-					if(arg instanceof final Pair<?, ?> p && !debug) {
+					if(debug) {
+						print(arg.toString());
+						return;
+					} else if(arg instanceof final Pair<?, ?> p) {
 						sb.append(p.first + " " + p.second);
-					} else if(arg instanceof final Collection<?> c && !debug) {
+					} else if(arg instanceof final Collection<?> c) {
 						int i = 0;
 						for(final Object el: c) {
 							sb.append(el);
@@ -1671,7 +1646,7 @@ final class IO implements Closeable, AutoCloseable {
 								sb.append(' ');
 							}
 						}
-					} else if(debug || sb.isEmpty()) {
+					} else if(sb.isEmpty()) {
 						print(arg.toString());
 						return;
 					}
