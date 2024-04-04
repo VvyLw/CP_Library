@@ -5,8 +5,8 @@ data:
     path: Java/All.java
     title: Java/All.java
   - icon: ':warning:'
-    path: Java/CodeForces.java
-    title: Java/CodeForces.java
+    path: Java/Codeforces.java
+    title: Java/Codeforces.java
   - icon: ':warning:'
     path: Java/library/core/Main.java
     title: Java/library/core/Main.java
@@ -276,8 +276,8 @@ data:
     path: Java/All.java
     title: Java/All.java
   - icon: ':warning:'
-    path: Java/CodeForces.java
-    title: Java/CodeForces.java
+    path: Java/Codeforces.java
+    title: Java/Codeforces.java
   - icon: ':warning:'
     path: Java/library/core/Main.java
     title: Java/library/core/Main.java
@@ -740,11 +740,12 @@ data:
     \t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\t\
     return;\n\t\t\t\t\t}\n\t\t\t\t\tprint(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i < a.length;)\
     \ {\n\t\t\t\t\t\tprint(\"\\n\");\n\t\t\t\t\t\tprint(a[i]);\n\t\t\t\t\t}\n\t\t\t\
-    \t} else {\n\t\t\t\t\tif(arg instanceof Collection<?> && !debug) {\n\t\t\t\t\t\
-    \tfinal Collection<?> c = (Collection<?>) arg;\n\t\t\t\t\t\tint i = 0;\n\t\t\t\
-    \t\t\tfor(final Object el: c) {\n\t\t\t\t\t\t\tsb.append(el);\n\t\t\t\t\t\t\t\
-    if(++i != c.size()) {\n\t\t\t\t\t\t\t\tsb.append(' ');\n\t\t\t\t\t\t\t}\n\t\t\t\
-    \t\t\t}\n\t\t\t\t\t} else if(debug || sb.isEmpty()) {\n\t\t\t\t\t\tprint(arg.toString());\n\
+    \t\treturn;\n\t\t\t\t} else {\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(arg.toString());\n\
+    \t\t\t\t\t\treturn;\n\t\t\t\t\t} else if(arg instanceof Collection<?>) {\n\t\t\
+    \t\t\t\tfinal Collection<?> c = (Collection<?>) arg;\n\t\t\t\t\t\tint i = 0;\n\
+    \t\t\t\t\t\tfor(final Object el: c) {\n\t\t\t\t\t\t\tsb.append(el);\n\t\t\t\t\t\
+    \t\tif(++i != c.size()) {\n\t\t\t\t\t\t\t\tsb.append(' ');\n\t\t\t\t\t\t\t}\n\t\
+    \t\t\t\t\t}\n\t\t\t\t\t} else if(sb.isEmpty()) {\n\t\t\t\t\t\tprint(arg.toString());\n\
     \t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tprint(sb.toString());\n\t\
     \t\t}\n\t\t\tif(autoFlush) {\n\t\t\t\tflush();\n\t\t\t}\n\t\t}\n\t\tfinal void\
     \ printf(final String fmt, final Object... args){ print(new Formatter().format(fmt,\
@@ -849,7 +850,7 @@ data:
   - Java/library/graph/MST.java
   - Java/All.java
   - Java/yukicoder.java
-  - Java/CodeForces.java
+  - Java/Codeforces.java
   isVerificationFile: false
   path: Java/AOJ.java
   requiredBy:
@@ -942,8 +943,8 @@ data:
   - Java/library/graph/MST.java
   - Java/All.java
   - Java/yukicoder.java
-  - Java/CodeForces.java
-  timestamp: '2024-04-04 01:09:52+09:00'
+  - Java/Codeforces.java
+  timestamp: '2024-04-04 17:59:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java

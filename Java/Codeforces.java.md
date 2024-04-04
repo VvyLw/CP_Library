@@ -551,7 +551,7 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/CodeForces.java\n"
+    RuntimeError: bundler is not specified: Java/Codeforces.java\n"
   code: "import static java.lang.Math.*;\n\nimport java.io.Closeable;\nimport java.io.Flushable;\n\
     import java.io.IOException;\nimport java.io.InputStream;\nimport java.io.OutputStream;\n\
     import java.math.BigInteger;\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
@@ -572,51 +572,39 @@ data:
     \ double EPS = 1e-18;\n\tstatic final int MOD = 998244353;\n\tstatic final int\
     \ M0D = (int) 1e9 + 7;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1,\
     \ 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final\
-    \ void solve() {\n\t\tfinal int n = io.ni();\n\t\tfinal var s = io.ns();\n\t\t\
-    int ans = n;\n\t\tfor(final var d: div(n)) {\n\t\t\tfinal var m = new HashMap<String,\
-    \ Integer>();\n\t\t\tfinal int now = (int) d;\n\t\t\tfor(int i = 0; i < n; i +=\
-    \ now) {\n\t\t\t\tm.merge(s.substring(i, min(n, i + now)), 1, Integer::sum);\n\
-    \t\t\t}\n\t\t\tif(m.size() == 2) {\n\t\t\t\tString a = \"\", b = \"\";\n\t\t\t\
-    \tfor(final var t: m.keySet()) {\n\t\t\t\t\tif(a.isEmpty()) {\n\t\t\t\t\t\ta =\
-    \ t;\n\t\t\t\t\t} else {\n\t\t\t\t\t\tb = t;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t\
-    //io.dump(a, b);\n\t\t\t\tassert a.length() == b.length();\n\t\t\t\tfinal char[]\
-    \ f = a.toCharArray(), g = b.toCharArray();\n\t\t\t\tif(iota(a.length()).filter(i\
-    \ -> f[i] != g[i]).count() == 1 && m.values().stream().anyMatch(i -> i == 1))\
-    \ {\n\t\t\t\t\tans = min(ans, now);\n\t\t\t\t}\n\t\t\t}\n\t\t\tif(m.size() ==\
-    \ 1) {\n\t\t\t\tans = min(ans, now);\n\t\t\t}\n\t\t}\n\t\tio.out(ans);\n\t}\n\
-    }\nclass Utility {\n\tprotected static final String yes(final boolean ok){ return\
-    \ ok ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean ok){\
-    \ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
-    \ x * x; }\n\tprotected static final long cub(final long x){ return x * x * x;\
-    \ }\n\tprotected static final int mod(long n, final int m) {\n\t\tn %= m;\n\t\t\
-    return (int) (n < 0 ? n + m : n);\n\t}\n\tprotected static final long mod(long\
-    \ n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\tprotected\
-    \ static final double log(final double x, final long base){ return Math.log(x)\
-    \ / Math.log(base); }\n\tprotected static final long intCeil(final long a, final\
-    \ long b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\tprotected static final double\
-    \ intRound(final double a, final long b, final int c) {\n\t\tfinal long d = intPow(10,\
-    \ c);\n\t\treturn rint((a * d) / b) / d;\n\t}\n\tprotected static final long intPow(long\
-    \ a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\
-    \t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static final long intPow(long a, long b, final long m) {\n\t\t\
-    long res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
-    \t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\
-    \tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final long inv(long\
-    \ a, final long m) {\n\t\tlong b = m, u = 1, v = 0;\n\t\twhile(b > 0) {\n\t\t\t\
-    final long t = a / b;\n\t\t\ta -= t * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\t\
-    a ^= b;\n\t\t\tu -= t * v;\n\t\t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t\
-    }\n\t\treturn mod(u, m);\n\t}\n\tprotected static final long lcm(final long a,\
-    \ final long b){ return a / gcd(a, b) * b; }\n\tprotected static final long lcm(final\
-    \ int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x,\
-    \ y)); }\n\tprotected static final long lcm(final long... a){ return Arrays.stream(a).reduce(1,\
-    \ (x, y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final\
-    \ long b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
-    \ int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\
-    \tprotected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0,\
-    \ (x, y) -> gcd(x, y)); }\n\tprotected static final int min(final int... a){ return\
-    \ Arrays.stream(a).min().getAsInt(); }\n\tprotected static final long min(final\
-    \ long... a){ return Arrays.stream(a).min().getAsLong(); }\n\tprotected static\
-    \ final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
+    \ void solve() {\n\t\t\n\t}\n}\nclass Utility {\n\tprotected static final String\
+    \ yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\tprotected static final\
+    \ String no(final boolean ok){ return yes(!ok); }\n\tprotected static final long\
+    \ sqr(final long x){ return x * x; }\n\tprotected static final long cub(final\
+    \ long x){ return x * x * x; }\n\tprotected static final int mod(long n, final\
+    \ int m) {\n\t\tn %= m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\tprotected\
+    \ static final long mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0\
+    \ ? n + m : n;\n\t}\n\tprotected static final double log(final double x, final\
+    \ long base){ return Math.log(x) / Math.log(base); }\n\tprotected static final\
+    \ long intCeil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b +\
+    \ 1; }\n\tprotected static final double intRound(final double a, final long b,\
+    \ final int c) {\n\t\tfinal long d = intPow(10, c);\n\t\treturn rint((a * d) /\
+    \ b) / d;\n\t}\n\tprotected static final long intPow(long a, int b) {\n\t\tlong\
+    \ res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\
+    \t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static\
+    \ final long intPow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b\
+    \ > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\
+    \t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\tprotected static final long inv(long a, final long m) {\n\t\tlong\
+    \ b = m, u = 1, v = 0;\n\t\twhile(b > 0) {\n\t\t\tfinal long t = a / b;\n\t\t\t\
+    a -= t * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\t\tu -= t * v;\n\t\
+    \t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\treturn mod(u, m);\n\t}\n\
+    \tprotected static final long lcm(final long a, final long b){ return a / gcd(a,\
+    \ b) * b; }\n\tprotected static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1,\
+    \ (x, y) -> lcm(x, y)); }\n\tprotected static final long lcm(final long... a){\
+    \ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }\n\tprotected static\
+    \ final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a;\
+    \ }\n\tprotected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
+    \ (x, y) -> (int) gcd(x, y)); }\n\tprotected static final long gcd(final long...\
+    \ a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }\n\tprotected static\
+    \ final int min(final int... a){ return Arrays.stream(a).min().getAsInt(); }\n\
+    \tprotected static final long min(final long... a){ return Arrays.stream(a).min().getAsLong();\
+    \ }\n\tprotected static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
     \ }\n\tprotected static final int max(final int... a){ return Arrays.stream(a).max().getAsInt();\
     \ }\n\tprotected static final long max(final long... a){ return Arrays.stream(a).max().getAsLong();\
     \ }\n\tprotected static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble();\
@@ -1252,31 +1240,32 @@ data:
     \t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\t\
     return;\n\t\t\t\t\t}\n\t\t\t\t\tprint(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i < a.length;)\
     \ {\n\t\t\t\t\t\tprint(\"\\n\");\n\t\t\t\t\t\tprint(a[i]);\n\t\t\t\t\t}\n\t\t\t\
-    \t} else {\n\t\t\t\t\tif(arg instanceof final Pair<?, ?> p && !debug) {\n\t\t\t\
-    \t\t\tsb.append(p.first + \" \" + p.second);\n\t\t\t\t\t} else if(arg instanceof\
-    \ final Collection<?> c && !debug) {\n\t\t\t\t\t\tint i = 0;\n\t\t\t\t\t\tfor(final\
-    \ Object el: c) {\n\t\t\t\t\t\t\tsb.append(el);\n\t\t\t\t\t\t\tif(++i != c.size())\
-    \ {\n\t\t\t\t\t\t\t\tsb.append(' ');\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\
-    \t} else if(debug || sb.isEmpty()) {\n\t\t\t\t\t\tprint(arg.toString());\n\t\t\
-    \t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tprint(sb.toString());\n\t\t\t\
-    }\n\t\t\tif(autoFlush) {\n\t\t\t\tflush();\n\t\t\t}\n\t\t}\n\t\tfinal void printf(final\
-    \ String fmt, final Object... args){ print(new Formatter().format(fmt, args));\
-    \ }\n\t\tfinal void out(){ newLine(); }\n\t\tfinal void out(final Object head,\
-    \ final Object... tail) {\n\t\t\tprint(head);\n\t\t\tfor(final Object el: tail)\
-    \ {\n\t\t\t\tprint(\" \");\n\t\t\t\tprint(el);\n\t\t\t}\n\t\t\tnewLine();\n\t\t\
-    }\n\t\tfinal void outl(final Object head, final Object... tail) {\n\t\t\tout(head);\n\
-    \t\t\tfor(final Object el: tail) {\n\t\t\t\tout(el);\n\t\t\t}\n\t\t}\n\t\t@Override\n\
-    \t\tpublic final void flush() {\n\t\t\ttry {\n\t\t\t\tos.write(buf, 0, pos);\n\
-    \t\t\t\tpos = 0;\n\t\t\t} catch(final IOException e) {\n\t\t\t\te.printStackTrace();\n\
-    \t\t\t}\n\t\t}\n\t\t@Override\n\t\tpublic final void close() {\n\t\t\tif(os ==\
-    \ null) {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\ttry {\n\t\t\t\tos.close();\n\t\t\t\t\
-    os = null;\n\t\t\t} catch(final IOException e) {\n\t\t\t\te.printStackTrace();\n\
-    \t\t\t}\n\t\t}\n\t}\n}\n\nclass Pair<F extends Comparable<? super F>, S extends\
-    \ Comparable<? super S>> implements Comparable<Pair<F, S>>, Cloneable {\n\tpublic\
-    \ F first;\n\tpublic S second;\n\tprotected Pair(final F first, final S second)\
-    \ {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\tstatic final <F\
-    \ extends Comparable<? super F>, S extends Comparable<? super S>> Pair<F, S> of(final\
-    \ F a, final S b){ return new Pair<>(a, b); }\n\tPair<S, F> swap(){ return Pair.of(second,\
+    \t\treturn;\n\t\t\t\t} else {\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(arg.toString());\n\
+    \t\t\t\t\t\treturn;\n\t\t\t\t\t} else if(arg instanceof final Pair<?, ?> p) {\n\
+    \t\t\t\t\t\tsb.append(p.first + \" \" + p.second);\n\t\t\t\t\t} else if(arg instanceof\
+    \ final Collection<?> c) {\n\t\t\t\t\t\tint i = 0;\n\t\t\t\t\t\tfor(final Object\
+    \ el: c) {\n\t\t\t\t\t\t\tsb.append(el);\n\t\t\t\t\t\t\tif(++i != c.size()) {\n\
+    \t\t\t\t\t\t\t\tsb.append(' ');\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t} else\
+    \ if(sb.isEmpty()) {\n\t\t\t\t\t\tprint(arg.toString());\n\t\t\t\t\t\treturn;\n\
+    \t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tprint(sb.toString());\n\t\t\t}\n\t\t\tif(autoFlush)\
+    \ {\n\t\t\t\tflush();\n\t\t\t}\n\t\t}\n\t\tfinal void printf(final String fmt,\
+    \ final Object... args){ print(new Formatter().format(fmt, args)); }\n\t\tfinal\
+    \ void out(){ newLine(); }\n\t\tfinal void out(final Object head, final Object...\
+    \ tail) {\n\t\t\tprint(head);\n\t\t\tfor(final Object el: tail) {\n\t\t\t\tprint(\"\
+    \ \");\n\t\t\t\tprint(el);\n\t\t\t}\n\t\t\tnewLine();\n\t\t}\n\t\tfinal void outl(final\
+    \ Object head, final Object... tail) {\n\t\t\tout(head);\n\t\t\tfor(final Object\
+    \ el: tail) {\n\t\t\t\tout(el);\n\t\t\t}\n\t\t}\n\t\t@Override\n\t\tpublic final\
+    \ void flush() {\n\t\t\ttry {\n\t\t\t\tos.write(buf, 0, pos);\n\t\t\t\tpos = 0;\n\
+    \t\t\t} catch(final IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\
+    \t}\n\t\t@Override\n\t\tpublic final void close() {\n\t\t\tif(os == null) {\n\t\
+    \t\t\treturn;\n\t\t\t}\n\t\t\ttry {\n\t\t\t\tos.close();\n\t\t\t\tos = null;\n\
+    \t\t\t} catch(final IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\
+    \t}\n\t}\n}\n\nclass Pair<F extends Comparable<? super F>, S extends Comparable<?\
+    \ super S>> implements Comparable<Pair<F, S>>, Cloneable {\n\tpublic F first;\n\
+    \tpublic S second;\n\tprotected Pair(final F first, final S second) {\n\t\tthis.first\
+    \ = first;\n\t\tthis.second = second;\n\t}\n\tstatic final <F extends Comparable<?\
+    \ super F>, S extends Comparable<? super S>> Pair<F, S> of(final F a, final S\
+    \ b){ return new Pair<>(a, b); }\n\tPair<S, F> swap(){ return Pair.of(second,\
     \ first); }\n\t@Override\n\tpublic final boolean equals(final Object o) {\n\t\t\
     if(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() !=\
     \ o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?,\
@@ -1425,7 +1414,7 @@ data:
   - Java/All.java
   - Java/yukicoder.java
   isVerificationFile: false
-  path: Java/CodeForces.java
+  path: Java/Codeforces.java
   requiredBy:
   - Java/AOJ.java
   - Java/library/ds/lazysegmenttree/RASM.java
@@ -1517,13 +1506,13 @@ data:
   - Java/library/graph/MST.java
   - Java/All.java
   - Java/yukicoder.java
-  timestamp: '2024-04-04 01:09:52+09:00'
+  timestamp: '2024-04-04 17:59:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/CodeForces.java
+documentation_of: Java/Codeforces.java
 layout: document
 redirect_from:
-- /library/Java/CodeForces.java
-- /library/Java/CodeForces.java.html
-title: Java/CodeForces.java
+- /library/Java/Codeforces.java
+- /library/Java/Codeforces.java.html
+title: Java/Codeforces.java
 ---

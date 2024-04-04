@@ -8,8 +8,8 @@ data:
     path: Java/All.java
     title: Java/All.java
   - icon: ':warning:'
-    path: Java/CodeForces.java
-    title: Java/CodeForces.java
+    path: Java/Codeforces.java
+    title: Java/Codeforces.java
   - icon: ':warning:'
     path: Java/library/core/Utility.java
     title: Java/library/core/Utility.java
@@ -279,8 +279,8 @@ data:
     path: Java/All.java
     title: Java/All.java
   - icon: ':warning:'
-    path: Java/CodeForces.java
-    title: Java/CodeForces.java
+    path: Java/Codeforces.java
+    title: Java/Codeforces.java
   - icon: ':warning:'
     path: Java/library/core/Utility.java
     title: Java/library/core/Utility.java
@@ -650,7 +650,7 @@ data:
   - Java/library/graph/MST.java
   - Java/All.java
   - Java/yukicoder.java
-  - Java/CodeForces.java
+  - Java/Codeforces.java
   isVerificationFile: false
   path: Java/library/core/Main.java
   requiredBy:
@@ -743,8 +743,8 @@ data:
   - Java/library/graph/MST.java
   - Java/All.java
   - Java/yukicoder.java
-  - Java/CodeForces.java
-  timestamp: '2024-04-04 01:09:52+09:00'
+  - Java/Codeforces.java
+  timestamp: '2024-04-04 17:59:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Main.java
