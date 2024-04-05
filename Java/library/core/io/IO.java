@@ -19,7 +19,6 @@ import library.ds.pair.IntPair;
 public final class IO implements Closeable, AutoCloseable {
 	private final MyScanner in;
 	private final MyPrinter out, err;
-	private final boolean autoFlush;
 	/**
 	 * コンストラクタ
 	 * @param in 標準入力
@@ -29,7 +28,7 @@ public final class IO implements Closeable, AutoCloseable {
 	 */
 	public IO(final InputStream in, final OutputStream out, final OutputStream err, final boolean autoFlush) {
 		this.in = new MyScanner(in);
-		this.out = new MyPrinter(out, this.autoFlush = autoFlush);
+		this.out = new MyPrinter(out, autoFlush);
 		this.err = new MyPrinter(err, true);
 	}
 	/**
@@ -294,104 +293,6 @@ public final class IO implements Closeable, AutoCloseable {
 	 * @param tail
 	 */
 	public final void outl(final Object head, final Object... tail){ out.outl(head, tail); }
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param head
-	 * @param tail
-	 * @see #out
-	 */
-	public final void fin(final Object head, final Object... tail) {
-		out(head, tail);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #out
-	 */
-	public final void fin(final int[][] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #out
-	 */
-	public final void fin(final long[][] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #out
-	 */
-	public final void fin(final double[][] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #out
-	 */
-	public final void fin(final boolean[][] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #out
-	 */
-	public final void fin(final char[][] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param args
-	 * @see #out
-	 */
-	public final void fin(final Object[][] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	/**
-	 * この出力を最後に処理を終了する
-	 * @param head
-	 * @param tail
-	 * @see #outl
-	 */
-	public final void ende(final Object head, final Object... tail ) {
-		outl(head, tail);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
 	/**
 	 * デバッグ用
 	 * @param head
