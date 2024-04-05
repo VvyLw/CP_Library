@@ -8,8 +8,8 @@ data:
     path: Java/All.java
     title: Java/All.java
   - icon: ':warning:'
-    path: Java/Codeforces.java
-    title: Java/Codeforces.java
+    path: Java/CodeForces.java
+    title: Java/CodeForces.java
   - icon: ':warning:'
     path: Java/library/core/Main.java
     title: Java/library/core/Main.java
@@ -279,8 +279,8 @@ data:
     path: Java/All.java
     title: Java/All.java
   - icon: ':warning:'
-    path: Java/Codeforces.java
-    title: Java/Codeforces.java
+    path: Java/CodeForces.java
+    title: Java/CodeForces.java
   - icon: ':warning:'
     path: Java/library/core/Main.java
     title: Java/library/core/Main.java
@@ -647,7 +647,7 @@ data:
   - Java/library/graph/MST.java
   - Java/All.java
   - Java/yukicoder.java
-  - Java/Codeforces.java
+  - Java/CodeForces.java
   isVerificationFile: false
   path: Java/library/core/interfaces/lambda/RecursiveLongUnaryOperator.java
   requiredBy:
@@ -740,8 +740,8 @@ data:
   - Java/library/graph/MST.java
   - Java/All.java
   - Java/yukicoder.java
-  - Java/Codeforces.java
-  timestamp: '2024-04-04 17:59:28+09:00'
+  - Java/CodeForces.java
+  timestamp: '2024-04-05 14:51:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/interfaces/lambda/RecursiveLongUnaryOperator.java

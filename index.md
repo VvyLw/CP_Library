@@ -201,8 +201,8 @@ data:
       path: Java/All.java
       title: Java/All.java
     - icon: ':warning:'
-      path: Java/Codeforces.java
-      title: Java/Codeforces.java
+      path: Java/CodeForces.java
+      title: Java/CodeForces.java
     - icon: ':warning:'
       path: Java/yukicoder.java
       title: Java/yukicoder.java

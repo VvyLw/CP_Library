@@ -8,8 +8,8 @@ data:
     path: Java/All.java
     title: Java/All.java
   - icon: ':warning:'
-    path: Java/Codeforces.java
-    title: Java/Codeforces.java
+    path: Java/CodeForces.java
+    title: Java/CodeForces.java
   - icon: ':warning:'
     path: Java/library/core/Main.java
     title: Java/library/core/Main.java
@@ -279,8 +279,8 @@ data:
     path: Java/All.java
     title: Java/All.java
   - icon: ':warning:'
-    path: Java/Codeforces.java
-    title: Java/Codeforces.java
+    path: Java/CodeForces.java
+    title: Java/CodeForces.java
   - icon: ':warning:'
     path: Java/library/core/Main.java
     title: Java/library/core/Main.java
@@ -559,29 +559,29 @@ data:
     \nimport library.ds.pair.FloatPair;\nimport library.ds.pair.IntPair;\n\n/**\n\
     \ * \u5165\u51FA\u529B\u3092\u307E\u3068\u3081\u305F\u30AF\u30E9\u30B9\n */\n\
     public final class IO implements Closeable, AutoCloseable {\n\tprivate final MyScanner\
-    \ in;\n\tprivate final MyPrinter out, err;\n\tprivate final boolean autoFlush;\n\
-    \t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param in \u6A19\u6E96\
-    \u5165\u529B\n\t * @param out \u6A19\u6E96\u51FA\u529B\n\t * @param err \u6A19\
-    \u6E96\u30A8\u30E9\u30FC\u51FA\u529B\n\t * @param autoFlush flush\u306E\u81EA\u52D5\
-    \u5316\n\t */\n\tpublic IO(final InputStream in, final OutputStream out, final\
-    \ OutputStream err, final boolean autoFlush) {\n\t\tthis.in = new MyScanner(in);\n\
-    \t\tthis.out = new MyPrinter(out, this.autoFlush = autoFlush);\n\t\tthis.err =\
-    \ new MyPrinter(err, true);\n\t}\n\t/**\n\t * @see MyScanner#ni\n\t */\n\tpublic\
-    \ final int ni(){ return in.ni(); }\n\t/**\n\t * @see MyScanner#nl\n\t */\n\t\
-    public final long nl(){ return in.nl(); }\n\t/**\n\t * @see MyScanner#nd\n\t */\n\
-    \tpublic final double nd(){ return in.nd(); }\n\t/**\n\t * @see MyScanner#nc\n\
-    \t */\n\tpublic final char nc(){ return in.nc(); }\n\t/**\n\t * @see MyScanner#ns\n\
-    \t */\n\tpublic final String ns(){ return in.ns(); }\n\t/**\n\t * @see MyScanner#nt\n\
-    \t */\n\tpublic final char[] nt(){ return in.nt(); }\n\t/**\n\t * @see MyScanner#nb\n\
-    \t */\n\tpublic final BigInteger nb(){ return in.nb(); }\n\t/**\n\t * @see MyScanner#pi\n\
-    \t */\n\tpublic final IntPair pi(){ return in.pi(); }\n\t/**\n\t * @see MyScanner#pf\n\
-    \t */\n\tpublic final FloatPair pf(){ return in.pf(); }\n\t/**\n\t * \u5927\u304D\
-    \u3055n\u306Eint\u578B\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param\
-    \ n \u914D\u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic final int[] ni(final\
-    \ int n) {\n\t\tfinal int[] a = new int[n];\n\t\tArrays.setAll(a, i -> ni());\n\
-    \t\treturn a;\n\t}\n\t/**\n\t * @param n\n\t * @param f\n\t * @return int\u578B\
-    \u914D\u5217\u306Bf\u3092\u65BD\u3057\u305F\u3082\u306E\n\t */\n\tpublic final\
-    \ int[] ni(final int n, final IntUnaryOperator f){ return Arrays.stream(ni(n)).map(f).toArray();\
+    \ in;\n\tprivate final MyPrinter out, err;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\n\t * @param in \u6A19\u6E96\u5165\u529B\n\t * @param out \u6A19\
+    \u6E96\u51FA\u529B\n\t * @param err \u6A19\u6E96\u30A8\u30E9\u30FC\u51FA\u529B\
+    \n\t * @param autoFlush flush\u306E\u81EA\u52D5\u5316\n\t */\n\tpublic IO(final\
+    \ InputStream in, final OutputStream out, final OutputStream err, final boolean\
+    \ autoFlush) {\n\t\tthis.in = new MyScanner(in);\n\t\tthis.out = new MyPrinter(out,\
+    \ autoFlush);\n\t\tthis.err = new MyPrinter(err, true);\n\t}\n\t/**\n\t * @see\
+    \ MyScanner#ni\n\t */\n\tpublic final int ni(){ return in.ni(); }\n\t/**\n\t *\
+    \ @see MyScanner#nl\n\t */\n\tpublic final long nl(){ return in.nl(); }\n\t/**\n\
+    \t * @see MyScanner#nd\n\t */\n\tpublic final double nd(){ return in.nd(); }\n\
+    \t/**\n\t * @see MyScanner#nc\n\t */\n\tpublic final char nc(){ return in.nc();\
+    \ }\n\t/**\n\t * @see MyScanner#ns\n\t */\n\tpublic final String ns(){ return\
+    \ in.ns(); }\n\t/**\n\t * @see MyScanner#nt\n\t */\n\tpublic final char[] nt(){\
+    \ return in.nt(); }\n\t/**\n\t * @see MyScanner#nb\n\t */\n\tpublic final BigInteger\
+    \ nb(){ return in.nb(); }\n\t/**\n\t * @see MyScanner#pi\n\t */\n\tpublic final\
+    \ IntPair pi(){ return in.pi(); }\n\t/**\n\t * @see MyScanner#pf\n\t */\n\tpublic\
+    \ final FloatPair pf(){ return in.pf(); }\n\t/**\n\t * \u5927\u304D\u3055n\u306E\
+    int\u578B\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n \u914D\u5217\
+    \u306E\u5927\u304D\u3055\n\t */\n\tpublic final int[] ni(final int n) {\n\t\t\
+    final int[] a = new int[n];\n\t\tArrays.setAll(a, i -> ni());\n\t\treturn a;\n\
+    \t}\n\t/**\n\t * @param n\n\t * @param f\n\t * @return int\u578B\u914D\u5217\u306B\
+    f\u3092\u65BD\u3057\u305F\u3082\u306E\n\t */\n\tpublic final int[] ni(final int\
+    \ n, final IntUnaryOperator f){ return Arrays.stream(ni(n)).map(f).toArray();\
     \ }\n\t/**\n\t * \u5927\u304D\u3055n\u306Elong\u578B\u914D\u5217\u3092\u5165\u529B\
     \u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic\
     \ final long[] nl(final int n) {\n\t\tfinal long[] a = new long[n];\n\t\tArrays.setAll(a,\
@@ -666,54 +666,24 @@ data:
     \ }\n\t/**\n\t * outl(a, b, c)\u3067, \"a\\nb\\nc\\n\"\u306E\u5F62\u5F0F\u3067\
     \u51FA\u529B\u3055\u308C\u308B\n\t * @param head\n\t * @param tail\n\t */\n\t\
     public final void outl(final Object head, final Object... tail){ out.outl(head,\
-    \ tail); }\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\
-    \u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param head\n\t * @param tail\n\t *\
-    \ @see #out\n\t */\n\tpublic final void fin(final Object head, final Object...\
-    \ tail) {\n\t\tout(head, tail);\n\t\tif(!autoFlush) {\n\t\t\tout.flush();\n\t\t\
-    }\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\
-    \u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see\
-    \ #out\n\t */\n\tpublic final void fin(final int[][] args) {\n\t\tout(args);\n\
-    \t\tif(!autoFlush) {\n\t\t\tout.flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t\
-    /**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\
-    \u4E86\u3059\u308B\n\t * @param args\n\t * @see #out\n\t */\n\tpublic final void\
-    \ fin(final long[][] args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tout.flush();\n\
-    \t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\
-    \u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param args\n\t *\
-    \ @see #out\n\t */\n\tpublic final void fin(final double[][] args) {\n\t\tout(args);\n\
-    \t\tif(!autoFlush) {\n\t\t\tout.flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t\
-    /**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\
-    \u4E86\u3059\u308B\n\t * @param args\n\t * @see #out\n\t */\n\tpublic final void\
-    \ fin(final boolean[][] args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\t\
-    out.flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\
-    \u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t * @param\
-    \ args\n\t * @see #out\n\t */\n\tpublic final void fin(final char[][] args) {\n\
-    \t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\tout.flush();\n\t\t}\n\t\tSystem.exit(0);\n\
-    \t}\n\t/**\n\t * \u3053\u306E\u51FA\u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\
-    \u7D42\u4E86\u3059\u308B\n\t * @param args\n\t * @see #out\n\t */\n\tpublic final\
-    \ void fin(final Object[][] args) {\n\t\tout(args);\n\t\tif(!autoFlush) {\n\t\t\
-    \tout.flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u3053\u306E\u51FA\
-    \u529B\u3092\u6700\u5F8C\u306B\u51E6\u7406\u3092\u7D42\u4E86\u3059\u308B\n\t *\
-    \ @param head\n\t * @param tail\n\t * @see #outl\n\t */\n\tpublic final void ende(final\
-    \ Object head, final Object... tail ) {\n\t\toutl(head, tail);\n\t\tif(!autoFlush)\
-    \ {\n\t\t\tout.flush();\n\t\t}\n\t\tSystem.exit(0);\n\t}\n\t/**\n\t * \u30C7\u30D0\
-    \u30C3\u30B0\u7528\n\t * @param head\n\t * @param tail\n\t * @see MyPrinter#out\n\
-    \t */\n\tpublic final void dump(final Object head, final Object... tail){ err.outl(head,\
-    \ tail); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param a\n\t */\n\
-    \tpublic final void dump(final int[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ tail); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param head\n\t *\
+    \ @param tail\n\t * @see MyPrinter#out\n\t */\n\tpublic final void dump(final\
+    \ Object head, final Object... tail){ err.outl(head, tail); }\n\t/**\n\t * \u30C7\
+    \u30D0\u30C3\u30B0\u7528\n\t * @param a\n\t */\n\tpublic final void dump(final\
+    \ int[][] args){ IntStream.range(0, args.length).forEach(i -> dump(args[i]));\
+    \ }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param a\n\t */\n\tpublic\
+    \ final void dump(final long[][] args){ IntStream.range(0, args.length).forEach(i\
     \ -> dump(args[i])); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param\
-    \ a\n\t */\n\tpublic final void dump(final long[][] args){ IntStream.range(0,\
+    \ a\n\t */\n\tpublic final void dump(final double[][] args){ IntStream.range(0,\
     \ args.length).forEach(i -> dump(args[i])); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\
-    \u7528\n\t * @param a\n\t */\n\tpublic final void dump(final double[][] args){\
+    \u7528\n\t * @param a\n\t */\n\tpublic final void dump(final boolean[][] args){\
     \ IntStream.range(0, args.length).forEach(i -> dump(args[i])); }\n\t/**\n\t *\
     \ \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param a\n\t */\n\tpublic final void dump(final\
-    \ boolean[][] args){ IntStream.range(0, args.length).forEach(i -> dump(args[i]));\
+    \ char[][] args){ IntStream.range(0, args.length).forEach(i -> dump(args[i]));\
     \ }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param a\n\t */\n\tpublic\
-    \ final void dump(final char[][] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> dump(args[i])); }\n\t/**\n\t * \u30C7\u30D0\u30C3\u30B0\u7528\n\t * @param\
-    \ a\n\t */\n\tpublic final void dump(final Object[][] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> dump(args[i])); }\n\t@Override\n\tpublic final void\
-    \ close() {\n\t\tout.flush();\n\t\tin.close();\n\t\tout.close();\n\t\terr.close();\n\
-    \t}\n}"
+    \ final void dump(final Object[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> dump(args[i])); }\n\t@Override\n\tpublic final void close() {\n\t\tout.flush();\n\
+    \t\tin.close();\n\t\tout.close();\n\t\terr.close();\n\t}\n}"
   dependsOn:
   - Java/AOJ.java
   - Java/library/ds/lazysegmenttree/RASM.java
@@ -804,7 +774,7 @@ data:
   - Java/library/graph/MST.java
   - Java/All.java
   - Java/yukicoder.java
-  - Java/Codeforces.java
+  - Java/CodeForces.java
   isVerificationFile: false
   path: Java/library/core/io/IO.java
   requiredBy:
@@ -897,8 +867,8 @@ data:
   - Java/library/graph/MST.java
   - Java/All.java
   - Java/yukicoder.java
-  - Java/Codeforces.java
-  timestamp: '2024-04-04 17:59:28+09:00'
+  - Java/CodeForces.java
+  timestamp: '2024-04-05 14:51:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/IO.java

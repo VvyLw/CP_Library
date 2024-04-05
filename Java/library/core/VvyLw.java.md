@@ -8,8 +8,8 @@ data:
     path: Java/All.java
     title: Java/All.java
   - icon: ':warning:'
-    path: Java/Codeforces.java
-    title: Java/Codeforces.java
+    path: Java/CodeForces.java
+    title: Java/CodeForces.java
   - icon: ':warning:'
     path: Java/library/core/Main.java
     title: Java/library/core/Main.java
@@ -279,8 +279,8 @@ data:
     path: Java/All.java
     title: Java/All.java
   - icon: ':warning:'
-    path: Java/Codeforces.java
-    title: Java/Codeforces.java
+    path: Java/CodeForces.java
+    title: Java/CodeForces.java
   - icon: ':warning:'
     path: Java/library/core/Main.java
     title: Java/library/core/Main.java
@@ -568,7 +568,9 @@ data:
     \ 1, 0, 0, -1, -1, 1, 1};\n\t/**\n\t * \u30B0\u30EA\u30C3\u30C9\u64CD\u4F5C\u306E\
     \u6642\u306B\u4FBF\u5229\n\t */\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1,\
     \ 1, -1, 1};\n\t/**\n\t * \u3053\u3053\u306B\u30B3\u30FC\u30C9\u3092\u66F8\u304D\
-    \u8FBC\u3080\n\t */\n\tstatic final void solve() {\n\t\t\n\t}\n}"
+    \u8FBC\u3080\n\t * @param Huitloxopetl (unused argument)\n\t * @return\n\t */\n\
+    \tstatic final Object solve(final int Huitloxopetl) {\n\t\treturn null;\n\t}\n\
+    }"
   dependsOn:
   - Java/AOJ.java
   - Java/library/ds/lazysegmenttree/RASM.java
@@ -659,7 +661,7 @@ data:
   - Java/library/graph/MST.java
   - Java/All.java
   - Java/yukicoder.java
-  - Java/Codeforces.java
+  - Java/CodeForces.java
   isVerificationFile: false
   path: Java/library/core/VvyLw.java
   requiredBy:
@@ -752,8 +754,8 @@ data:
   - Java/library/graph/MST.java
   - Java/All.java
   - Java/yukicoder.java
-  - Java/Codeforces.java
-  timestamp: '2024-04-04 17:59:28+09:00'
+  - Java/CodeForces.java
+  timestamp: '2024-04-05 14:51:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/VvyLw.java
