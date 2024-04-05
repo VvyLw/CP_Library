@@ -1,5 +1,6 @@
 package library.core;
 
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 /**
@@ -11,7 +12,7 @@ import java.util.stream.IntStream;
 final class Main {
 	public static void main(final String[] args) {
 		final long begin = System.currentTimeMillis(), end;
-		IntStream.range(0, VvyLw.MULTI ? VvyLw.io.ni() : 1).forEach(i -> VvyLw.solve());
+		IntStream.range(0, VvyLw.MULTI ? VvyLw.io.ni() : 1).mapToObj(VvyLw::solve).filter(Objects::nonNull).forEach(VvyLw.io::out);
 		end = System.currentTimeMillis();
 		VvyLw.io.dump(end - begin + "ms");
 		VvyLw.io.close();

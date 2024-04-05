@@ -35,8 +35,10 @@ public final class VvyLw extends Utility {
 	static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};
 	/**
 	 * ここにコードを書き込む
+	 * @param Huitloxopetl (unused argument)
+	 * @return
 	 */
-	static final void solve() {
-		
+	static final Object solve(final int Huitloxopetl) {
+		return null;
 	}
 }
