@@ -28,7 +28,7 @@ import java.util.stream.IntStream;
 class Main {
 	public static void main(final String[] args) {
 		final long begin = System.currentTimeMillis(), end;
-		IntStream.range(0, VvyLw.MULTI ? VvyLw.io.ni() : 1).forEach(i -> VvyLw.solve());
+		IntStream.range(0, VvyLw.MULTI ? VvyLw.io.ni() : 1).mapToObj(VvyLw::solve).filter(Objects::nonNull).forEach(VvyLw.io::out);
 		end = System.currentTimeMillis();
 		VvyLw.io.dump(end - begin + "ms");
 		VvyLw.io.close();
@@ -46,8 +46,9 @@ final class VvyLw extends Utility {
 	static final int M0D = (int) 1e9 + 7;
 	static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};
 	static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};
-	static final void solve() {
+	static final Object solve(final int Huitloxopetl) {
 		
+		return null;
 	}
 }
 class Utility {
@@ -1250,10 +1251,9 @@ interface RecursiveDoublePredicate {
 final class IO implements Closeable, AutoCloseable {
 	private final MyScanner in;
 	private final MyPrinter out, err;
-	private final boolean autoFlush;
 	IO(final InputStream in, final OutputStream out, final OutputStream err, final boolean autoFlush) {
 		this.in = new MyScanner(in);
-		this.out = new MyPrinter(out, this.autoFlush = autoFlush);
+		this.out = new MyPrinter(out, autoFlush);
 		this.err = new MyPrinter(err, true);
 	}
 	final int ni(){ return in.ni(); }
@@ -1355,62 +1355,6 @@ final class IO implements Closeable, AutoCloseable {
 	final void out(final char[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void out(final Object[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void outl(final Object head, final Object... tail){ out.outl(head, tail); }
-	final void fin(final Object head, final Object... tail) {
-		out(head, tail);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	final void fin(final int[][] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	final void fin(final long[][] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	final void fin(final double[][] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	final void fin(final boolean[][] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	final void fin(final char[][] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	final void fin(final Object[][] args) {
-		out(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
-	final void ende(final Object... args) {
-		outl(args);
-		if(!autoFlush) {
-			out.flush();
-		}
-		System.exit(0);
-	}
 	final void dump(final Object head, final Object... tail){ err.outl(head, tail); }
 	final void dump(final int[][] args){ IntStream.range(0, args.length).forEach(i -> dump(args[i])); }
 	final void dump(final long[][] args){ IntStream.range(0, args.length).forEach(i -> dump(args[i])); }
