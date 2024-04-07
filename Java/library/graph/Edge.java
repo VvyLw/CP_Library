@@ -46,5 +46,5 @@ public final class Edge {
 	@Override
 	public final int hashCode(){ return Objects.hash(src, to, cost, id); }
 	@Override
-	public final String toString(){ return String.valueOf(to); }
+	public final String toString(){ return "(" + src + ", " + to + ", " + cost + ")"; }
 }
