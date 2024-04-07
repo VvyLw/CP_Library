@@ -1,5 +1,3 @@
-package codeforces;
-
 import static java.lang.Math.*;
 
 import java.io.Closeable;
@@ -1357,13 +1355,14 @@ final class IO implements Closeable, AutoCloseable {
 	final void out(final char[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void out(final Object[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }
 	final void outl(final Object head, final Object... tail){ out.outl(head, tail); }
-	final void dump(final Object head, final Object... tail){ err.outl(head, tail); }
+	final void dump(final Object head, final Object... tail){ err.out(head, tail); }
 	final void dump(final int[][] args){ IntStream.range(0, args.length).forEach(i -> dump(args[i])); }
 	final void dump(final long[][] args){ IntStream.range(0, args.length).forEach(i -> dump(args[i])); }
 	final void dump(final double[][] args){ IntStream.range(0, args.length).forEach(i -> dump(args[i])); }
 	final void dump(final boolean[][] args){ IntStream.range(0, args.length).forEach(i -> dump(args[i])); }
 	final void dump(final char[][] args){ IntStream.range(0, args.length).forEach(i -> dump(args[i])); }
 	final void dump(final Object[][] args){ IntStream.range(0, args.length).forEach(i -> dump(args[i])); }
+	final void dumpl(final Object head, final Object... tail){ err.outl(head, tail); }
 	@Override
 	public final void close() {
 		out.flush();

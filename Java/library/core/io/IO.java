@@ -299,7 +299,7 @@ public final class IO implements Closeable, AutoCloseable {
 	 * @param tail
 	 * @see MyPrinter#out
 	 */
-	public final void dump(final Object head, final Object... tail){ err.outl(head, tail); }
+	public final void dump(final Object head, final Object... tail){ err.out(head, tail); }
 	/**
 	 * デバッグ用
 	 * @param a
@@ -330,6 +330,13 @@ public final class IO implements Closeable, AutoCloseable {
 	 * @param a
 	 */
 	public final void dump(final Object[][] args){ IntStream.range(0, args.length).forEach(i -> dump(args[i])); }
+	/**
+	 * デバッグ用
+	 * @param head
+	 * @param tail
+	 * @see MyPrinter#outl
+	 */
+	public final void dumpl(final Object head, final Object... tail){ err.outl(head, tail); }
 	@Override
 	public final void close() {
 		out.flush();
