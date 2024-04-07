@@ -566,7 +566,8 @@ data:
     \ {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Edge e = (Edge) o;\n\t\treturn src\
     \ == e.src && to == e.to && cost == e.cost;\n\t}\n\t@Override\n\tpublic final\
     \ int hashCode(){ return Objects.hash(src, to, cost, id); }\n\t@Override\n\tpublic\
-    \ final String toString(){ return String.valueOf(to); }\n}"
+    \ final String toString(){ return \"(\" + src + \", \" + to + \", \" + cost +\
+    \ \")\"; }\n}"
   dependsOn:
   - Java/CodeForces.java
   - Java/yukicoder.java
@@ -751,7 +752,7 @@ data:
   - Java/library/graph/Graph.java
   - Java/library/graph/LowestCommonAncestor.java
   - Java/AOJ.java
-  timestamp: '2024-04-07 22:43:37+09:00'
+  timestamp: '2024-04-08 07:24:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/Edge.java

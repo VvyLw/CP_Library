@@ -741,7 +741,7 @@ data:
   - Java/library/graph/Graph.java
   - Java/library/graph/LowestCommonAncestor.java
   - Java/AOJ.java
-  timestamp: '2024-04-07 22:43:37+09:00'
+  timestamp: '2024-04-08 07:24:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/interfaces/lambda/RecursiveLongUnaryOperator.java

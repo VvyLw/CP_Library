@@ -1343,31 +1343,37 @@ data:
     \ != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Edge e = (Edge) o;\n\
     \t\treturn src == e.src && to == e.to && cost == e.cost;\n\t}\n\t@Override\n\t\
     public final int hashCode(){ return Objects.hash(src, to, cost, id); }\n\t@Override\n\
-    \tpublic final String toString(){ return String.valueOf(to); }\n}\nclass Graph\
-    \ extends ArrayList<ArrayList<Edge>> {\n\tprotected final boolean undirected;\n\
-    \tprotected final int n, indexed;\n\tprotected int id;\n\tprotected final ArrayList<Edge>\
-    \ edge;\n\tGraph(final int n, final boolean undirected){ this(n, 1, undirected);\
-    \ }\n\tGraph(final int n, final int indexed, final boolean undirected) {\n\t\t\
-    this.n = n;\n\t\tthis.indexed = indexed;\n\t\tthis.undirected = undirected;\n\t\
-    \tid = 0;\n\t\tedge = new ArrayList<>();\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> add(new ArrayList<>()));\n\t}\n\tstatic Graph of(final List<ArrayList<Edge>>\
-    \ g, final boolean undirected) {\n\t\tint max = 0, min = Integer.MAX_VALUE;\n\t\
-    \tfor(int i = 0; i < g.size(); ++i) {\n\t\t\tfor(final Edge e: g.get(i)) {\n\t\
-    \t\t\tmax = max(e.src, e.to);\n\t\t\t\tmin = min(e.src, e.to);\n\t\t\t}\n\t\t\
-    }\n\t\tfinal Graph gp = new Graph(max, min, undirected);\n\t\tfor(int i = 0; i\
-    \ < g.size(); ++i) {\n\t\t\tfor(final Edge e: g.get(i)) {\n\t\t\t\tgp.addEdge(e.src,\
-    \ e.to);\n\t\t\t}\n\t\t}\n\t\treturn gp;\n\t}\n\tprotected final void addEdge(int\
-    \ a, int b) {\n\t\ta -= indexed;\n\t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(a,\
-    \ b, id));\n\t\tedge.add(new Edge(a, b, id));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new\
-    \ Edge(b, a, id));\n\t\t\tedge.add(new Edge(b, a, id));\n\t\t}\n\t\tid++;\n\t\
-    }\n\tprotected void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(),\
+    \tpublic final String toString(){ return \"(\" + src + \", \" + to + \", \" +\
+    \ cost + \")\"; }\n}\nclass Graph extends ArrayList<ArrayList<Edge>> {\n\tprotected\
+    \ final boolean undirected;\n\tprotected final int n, indexed;\n\tprotected int\
+    \ id;\n\tprotected final ArrayList<Edge> edge;\n\tGraph(final int n, final boolean\
+    \ undirected){ this(n, 1, undirected); }\n\tGraph(final int n, final int indexed,\
+    \ final boolean undirected) {\n\t\tthis.n = n;\n\t\tthis.indexed = indexed;\n\t\
+    \tthis.undirected = undirected;\n\t\tid = 0;\n\t\tedge = new ArrayList<>();\n\t\
+    \tIntStream.range(0, n).forEach(i -> add(new ArrayList<>()));\n\t}\n\tstatic Graph\
+    \ of(final List<ArrayList<Edge>> g, final boolean undirected) {\n\t\tint max =\
+    \ 0, min = Integer.MAX_VALUE;\n\t\tfor(int i = 0; i < g.size(); ++i) {\n\t\t\t\
+    for(final Edge e: g.get(i)) {\n\t\t\t\tmax = max(e.src, e.to);\n\t\t\t\tmin =\
+    \ min(e.src, e.to);\n\t\t\t}\n\t\t}\n\t\tfinal Graph gp = new Graph(max, min,\
+    \ undirected);\n\t\tfor(int i = 0; i < g.size(); ++i) {\n\t\t\tfor(final Edge\
+    \ e: g.get(i)) {\n\t\t\t\tgp.addEdge(e.src, e.to);\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ gp;\n\t}\n\tprotected final void addEdge(int a, int b) {\n\t\ta -= indexed;\n\
+    \t\tb -= indexed;\n\t\tthis.get(a).add(new Edge(a, b, id));\n\t\tedge.add(new\
+    \ Edge(a, b, id));\n\t\tif(undirected) {\n\t\t\tthis.get(b).add(new Edge(b, a,\
+    \ id));\n\t\t\tedge.add(new Edge(b, a, id));\n\t\t}\n\t\tid++;\n\t}\n\tprotected\
+    \ void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(),\
     \ VvyLw.io.ni())); }\n\tprotected final ArrayList<Edge> getEdge(){ return edge;\
-    \ }\n\tprotected final int[] allDist(final int v) {\n\t\tfinal int[] d = new int[n];\n\
-    \t\tArrays.fill(d, -1);\n\t\tfinal Queue<Integer> q = new ArrayDeque<>();\n\t\t\
-    d[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\
-    \t\t\tfor(final Edge el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\
-    \t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to] = d[tmp] + 1;\n\t\t\t\tq.add(el.to);\n\
-    \t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\tprotected final int dist(final int u, final\
+    \ }\n\tprotected final String output() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
+    \t\tfor(int i = 0, j; i < n;) {\n\t\t\tj = 0;\n\t\t\tfor(final var ed: get(i))\
+    \ {\n\t\t\t\tsb.append(ed.to);\n\t\t\t\tif(++j < get(i).size()) {\n\t\t\t\t\t\
+    sb.append(' ');\n\t\t\t\t}\n\t\t\t}\n\t\t\tif(++i < n) {\n\t\t\t\tsb.append('\\\
+    n');\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\t}\n\tprotected final int[]\
+    \ allDist(final int v) {\n\t\tfinal int[] d = new int[n];\n\t\tArrays.fill(d,\
+    \ -1);\n\t\tfinal Queue<Integer> q = new ArrayDeque<>();\n\t\td[v] = 0;\n\t\t\
+    q.add(v);\n\t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\t\t\t\
+    for(final Edge el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\t\t\
+    continue;\n\t\t\t\t}\n\t\t\t\td[el.to] = d[tmp] + 1;\n\t\t\t\tq.add(el.to);\n\t\
+    \t\t}\n\t\t}\n\t\treturn d;\n\t}\n\tprotected final int dist(final int u, final\
     \ int v){ return allDist(u)[v]; }\n\tprotected final ArrayList<Integer> topologicalSort()\
     \ {\n\t\tfinal int[] deg = new int[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\
     \tfor(final Edge ed: this.get(i)) {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t}\n\t\t}\n\t\
@@ -2681,7 +2687,7 @@ data:
   - Java/library/graph/Graph.java
   - Java/library/graph/LowestCommonAncestor.java
   - Java/AOJ.java
-  timestamp: '2024-04-07 22:43:37+09:00'
+  timestamp: '2024-04-08 07:24:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
