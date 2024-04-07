@@ -145,14 +145,14 @@ data:
   timestamp: '2024-02-29 08:49:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/spfa.test.cpp
+  - test/cycledetector.test.cpp
+  - test/dijkstra.test.cpp
   - test/dag_check.test.cpp
   - test/lca.test.cpp
-  - test/cycledetector.test.cpp
-  - test/scc2.test.cpp
-  - test/dijkstra.test.cpp
-  - test/shortestpath.test.cpp
-  - test/spfa.test.cpp
   - test/scc.test.cpp
+  - test/scc2.test.cpp
+  - test/shortestpath.test.cpp
   - test/warshallfloyd.test.cpp
 documentation_of: C++/graph/Graph.hpp
 layout: document
