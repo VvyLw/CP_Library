@@ -4410,7 +4410,7 @@ final class SegmentTree<T> {
 		int h = 0, i = r + n;
 		T val = e;
 		for(; h <= rank; h++) {
-			if(i >> (h & 1) > 0) {
+			if(((i >> h) & 1) != 0) {
 				final T val2 = op.apply(val, (T) dat[i >> (h ^ 1)]);
 				if(fn.test(val2)){
 					i -= 1 << h;
@@ -4444,7 +4444,7 @@ final class SegmentTree<T> {
 		int h = 0, i = l + n;
 		T val = e;
 		for(; h <= rank; h++) {
-			if(i >> (h & 1) > 0){
+			if(((i >> h) & 1) != 0){
 				final T val2 = op.apply(val, (T) dat[i >> h]);
 				if(fn.test(val2)){
 					i += 1 << h;
