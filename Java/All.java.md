@@ -2234,7 +2234,7 @@ data:
     unchecked\")\n\tfinal T all(){ return (T) dat[1]; }\n\t@SuppressWarnings(\"unchecked\"\
     )\n\tfinal int findLeft(final int r, final Predicate<T> fn) {\n\t\tif(r == 0)\
     \ {\n\t\t\treturn 0;\n\t\t}\n\t\tint h = 0, i = r + n;\n\t\tT val = e;\n\t\tfor(;\
-    \ h <= rank; h++) {\n\t\t\tif(i >> (h & 1) > 0) {\n\t\t\t\tfinal T val2 = op.apply(val,\
+    \ h <= rank; h++) {\n\t\t\tif(((i >> h) & 1) != 0) {\n\t\t\t\tfinal T val2 = op.apply(val,\
     \ (T) dat[i >> (h ^ 1)]);\n\t\t\t\tif(fn.test(val2)){\n\t\t\t\t\ti -= 1 << h;\n\
     \t\t\t\t\tif(i == n) {\n\t\t\t\t\t\treturn 0;\n\t\t\t\t\t}\n\t\t\t\t\tval = val2;\n\
     \t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(;\
@@ -2243,8 +2243,8 @@ data:
     \ 0;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t}\n\t\t}\n\t\treturn i - n;\n\t}\n\
     \t@SuppressWarnings(\"unchecked\")\n\tfinal int findRight(final int l, final Predicate<T>\
     \ fn) {\n\t\tif(l == fini) {\n\t\t\treturn fini;\n\t\t}\n\t\tint h = 0, i = l\
-    \ + n;\n\t\tT val = e;\n\t\tfor(; h <= rank; h++) {\n\t\t\tif(i >> (h & 1) > 0){\n\
-    \t\t\t\tfinal T val2 = op.apply(val, (T) dat[i >> h]);\n\t\t\t\tif(fn.test(val2)){\n\
+    \ + n;\n\t\tT val = e;\n\t\tfor(; h <= rank; h++) {\n\t\t\tif(((i >> h) & 1) !=\
+    \ 0){\n\t\t\t\tfinal T val2 = op.apply(val, (T) dat[i >> h]);\n\t\t\t\tif(fn.test(val2)){\n\
     \t\t\t\t\ti += 1 << h;\n\t\t\t\t\tif(i == n * 2) {\n\t\t\t\t\t\treturn fini;\n\
     \t\t\t\t\t}\n\t\t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\
     \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\tfinal T val2 = op.apply(val,\
@@ -2687,7 +2687,7 @@ data:
   - Java/library/graph/Graph.java
   - Java/library/graph/LowestCommonAncestor.java
   - Java/AOJ.java
-  timestamp: '2024-04-08 07:24:26+09:00'
+  timestamp: '2024-04-08 11:45:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
