@@ -814,7 +814,7 @@ data:
   - Java/library/graph/Graph.java
   - Java/library/graph/LowestCommonAncestor.java
   - Java/AOJ.java
-  timestamp: '2024-04-08 11:45:08+09:00'
+  timestamp: '2024-04-08 13:49:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/SuffixArray.java

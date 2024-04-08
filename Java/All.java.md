@@ -1363,40 +1363,38 @@ data:
     \ id));\n\t\t\tedge.add(new Edge(b, a, id));\n\t\t}\n\t\tid++;\n\t}\n\tprotected\
     \ void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(),\
     \ VvyLw.io.ni())); }\n\tprotected final ArrayList<Edge> getEdge(){ return edge;\
-    \ }\n\tprotected final String output() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
-    \t\tfor(int i = 0, j; i < n;) {\n\t\t\tj = 0;\n\t\t\tfor(final var ed: get(i))\
-    \ {\n\t\t\t\tsb.append(ed.to);\n\t\t\t\tif(++j < get(i).size()) {\n\t\t\t\t\t\
-    sb.append(' ');\n\t\t\t\t}\n\t\t\t}\n\t\t\tif(++i < n) {\n\t\t\t\tsb.append('\\\
-    n');\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\t}\n\tprotected final int[]\
-    \ allDist(final int v) {\n\t\tfinal int[] d = new int[n];\n\t\tArrays.fill(d,\
-    \ -1);\n\t\tfinal Queue<Integer> q = new ArrayDeque<>();\n\t\td[v] = 0;\n\t\t\
-    q.add(v);\n\t\twhile(!q.isEmpty()) {\n\t\t\tfinal int tmp = q.poll();\n\t\t\t\
-    for(final Edge el: this.get(tmp)) {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\t\t\
-    continue;\n\t\t\t\t}\n\t\t\t\td[el.to] = d[tmp] + 1;\n\t\t\t\tq.add(el.to);\n\t\
-    \t\t}\n\t\t}\n\t\treturn d;\n\t}\n\tprotected final int dist(final int u, final\
-    \ int v){ return allDist(u)[v]; }\n\tprotected final ArrayList<Integer> topologicalSort()\
-    \ {\n\t\tfinal int[] deg = new int[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\
-    \tfor(final Edge ed: this.get(i)) {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t}\n\t\t}\n\t\
-    \tfinal Stack<Integer> sk = new Stack<>();\n\t\tfor(int i = 0; i < n; ++i) {\n\
-    \t\t\tif(deg[i] == 0) {\n\t\t\t\tsk.add(i);\n\t\t\t}\n\t\t}\n\t\tfinal ArrayList<Integer>\
-    \ ord = new ArrayList<>();\n\t\twhile(!sk.isEmpty()) {\n\t\t\tfinal int tmp =\
-    \ sk.pop();\n\t\t\tord.add(tmp);\n\t\t\tfor(final Edge ed: this.get(tmp)) {\n\t\
-    \t\t\tif(--deg[ed.to] == 0) {\n\t\t\t\t\tsk.add(ed.to);\n\t\t\t\t}\n\t\t\t}\n\t\
-    \t}\n\t\treturn n == ord.size() ? ord : null;\n\t}\n\tprotected final int[] cycleDetector()\
-    \ {\n\t\tfinal int[] used = new int[n];\n\t\tfinal Edge[] pre = new Edge[n];\n\
-    \t\tfinal ArrayList<Edge> cycle = new ArrayList<>();\n\t\tfinal RecursiveIntPredicate\
-    \ dfs = (rec, i) -> {\n\t\t\tused[i] = 1;\n\t\t\tfor(final Edge e: get(i)) {\n\
-    \t\t\t\tif(used[e.to] == 0) {\n\t\t\t\t\tpre[e.to] = e;\n\t\t\t\t\tif(rec.test(rec,\
-    \ e.to)) {\n\t\t\t\t\t\treturn true;\n\t\t\t\t\t}\n\t\t\t\t} else if(used[e.to]\
-    \ == 1) {\n\t\t\t\t\tint now = i;\n\t\t\t\t\twhile(now != e.to) {\n\t\t\t\t\t\t\
-    cycle.add(pre[now]);\n\t\t\t\t\t\tnow = pre[now].src;\n\t\t\t\t\t}\n\t\t\t\t\t\
-    cycle.add(e);\n\t\t\t\t\treturn true;\n\t\t\t\t}\n\t\t\t}\n\t\t\tused[i] = 2;\n\
-    \t\t\treturn false;\n\t\t};\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(used[i]\
-    \ == 0 && dfs.test(dfs, i)) {\n\t\t\t\tCollections.reverse(cycle);\n\t\t\t\treturn\
-    \ cycle.stream().mapToInt(e -> e.to).toArray();\n\t\t\t}\n\t\t}\n\t\treturn null;\n\
-    \t}\n\t@Override\n\tpublic String toString() {\n\t\tfinal StringBuilder sb = new\
-    \ StringBuilder();\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int m = get(i).size();\n\
-    \t\t\tsb.append(i + \": [\");\n\t\t\tfor(int j = 0; j < m; ++j) {\n\t\t\t\tsb.append(get(i).get(j).to);\n\
+    \ }\n\t@Override\n\tpublic final int[][] toArray() {\n\t\tfinal int[][] res =\
+    \ new int[n][];\n\t\tIntStream.range(0, n).forEach(i -> res[i] = get(i).stream().mapToInt(e\
+    \ -> e.to).toArray());\n\t\treturn res;\n\t}\n\tprotected final int[] allDist(final\
+    \ int v) {\n\t\tfinal int[] d = new int[n];\n\t\tArrays.fill(d, -1);\n\t\tfinal\
+    \ Queue<Integer> q = new ArrayDeque<>();\n\t\td[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty())\
+    \ {\n\t\t\tfinal int tmp = q.poll();\n\t\t\tfor(final Edge el: this.get(tmp))\
+    \ {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to]\
+    \ = d[tmp] + 1;\n\t\t\t\tq.add(el.to);\n\t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\t\
+    protected final int dist(final int u, final int v){ return allDist(u)[v]; }\n\t\
+    protected final ArrayList<Integer> topologicalSort() {\n\t\tfinal int[] deg =\
+    \ new int[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfor(final Edge ed: this.get(i))\
+    \ {\n\t\t\t\tdeg[ed.to]++;\n\t\t\t}\n\t\t}\n\t\tfinal Stack<Integer> sk = new\
+    \ Stack<>();\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(deg[i] == 0) {\n\t\t\t\
+    \tsk.add(i);\n\t\t\t}\n\t\t}\n\t\tfinal ArrayList<Integer> ord = new ArrayList<>();\n\
+    \t\twhile(!sk.isEmpty()) {\n\t\t\tfinal int tmp = sk.pop();\n\t\t\tord.add(tmp);\n\
+    \t\t\tfor(final Edge ed: this.get(tmp)) {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\
+    \t\t\t\tsk.add(ed.to);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn n == ord.size()\
+    \ ? ord : null;\n\t}\n\tprotected final int[] cycleDetector() {\n\t\tfinal int[]\
+    \ used = new int[n];\n\t\tfinal Edge[] pre = new Edge[n];\n\t\tfinal ArrayList<Edge>\
+    \ cycle = new ArrayList<>();\n\t\tfinal RecursiveIntPredicate dfs = (rec, i) ->\
+    \ {\n\t\t\tused[i] = 1;\n\t\t\tfor(final Edge e: get(i)) {\n\t\t\t\tif(used[e.to]\
+    \ == 0) {\n\t\t\t\t\tpre[e.to] = e;\n\t\t\t\t\tif(rec.test(rec, e.to)) {\n\t\t\
+    \t\t\t\treturn true;\n\t\t\t\t\t}\n\t\t\t\t} else if(used[e.to] == 1) {\n\t\t\t\
+    \t\tint now = i;\n\t\t\t\t\twhile(now != e.to) {\n\t\t\t\t\t\tcycle.add(pre[now]);\n\
+    \t\t\t\t\t\tnow = pre[now].src;\n\t\t\t\t\t}\n\t\t\t\t\tcycle.add(e);\n\t\t\t\t\
+    \treturn true;\n\t\t\t\t}\n\t\t\t}\n\t\t\tused[i] = 2;\n\t\t\treturn false;\n\t\
+    \t};\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(used[i] == 0 && dfs.test(dfs,\
+    \ i)) {\n\t\t\t\tCollections.reverse(cycle);\n\t\t\t\treturn cycle.stream().mapToInt(e\
+    \ -> e.to).toArray();\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\t@Override\n\t\
+    public String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
+    \t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int m = get(i).size();\n\t\t\tsb.append(i\
+    \ + \": [\");\n\t\t\tfor(int j = 0; j < m; ++j) {\n\t\t\t\tsb.append(get(i).get(j).to);\n\
     \t\t\t\tif(j + 1 < m) {\n\t\t\t\t\tsb.append(\", \");\n\t\t\t\t}\n\t\t\t}\n\t\t\
     \tsb.append(']');\n\t\t\tif(i + 1 < n) {\n\t\t\t\tsb.append('\\n');\n\t\t\t}\n\
     \t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nfinal class ShortestPath {\n\tprivate\
@@ -2687,7 +2685,7 @@ data:
   - Java/library/graph/Graph.java
   - Java/library/graph/LowestCommonAncestor.java
   - Java/AOJ.java
-  timestamp: '2024-04-08 11:45:08+09:00'
+  timestamp: '2024-04-08 13:49:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
