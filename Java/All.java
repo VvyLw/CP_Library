@@ -1893,21 +1893,11 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 	}
 	protected void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni())); }
 	protected final ArrayList<Edge> getEdge(){ return edge; }
-	protected final String output() {
-		final StringBuilder sb = new StringBuilder();
-		for(int i = 0, j; i < n;) {
-			j = 0;
-			for(final var ed: get(i)) {
-				sb.append(ed.to);
-				if(++j < get(i).size()) {
-					sb.append(' ');
-				}
-			}
-			if(++i < n) {
-				sb.append('\n');
-			}
-		}
-		return sb.toString();
+	@Override
+	public final int[][] toArray() {
+		final int[][] res = new int[n][];
+		IntStream.range(0, n).forEach(i -> res[i] = get(i).stream().mapToInt(e -> e.to).toArray());
+		return res;
 	}
 	protected final int[] allDist(final int v) {
 		final int[] d = new int[n];

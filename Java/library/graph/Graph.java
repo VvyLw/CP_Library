@@ -93,21 +93,11 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 	 * @return 辺のリスト
 	 */
 	public final ArrayList<Edge> getEdge(){ return edge; }
-	public final String output() {
-		final StringBuilder sb = new StringBuilder();
-		for(int i = 0, j; i < n;) {
-			j = 0;
-			for(final var ed: get(i)) {
-				sb.append(ed.to);
-				if(++j < get(i).size()) {
-					sb.append(' ');
-				}
-			}
-			if(++i < n) {
-				sb.append('\n');
-			}
-		}
-		return sb.toString();
+	@Override
+	public final int[][] toArray() {
+		final int[][] res = new int[n][];
+		IntStream.range(0, n).forEach(i -> res[i] = get(i).stream().mapToInt(e -> e.to).toArray());
+		return res;
 	}
 	/**
 	 * BFSをして頂点vから各頂点に対する距離を求める
