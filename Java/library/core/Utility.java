@@ -81,7 +81,7 @@ public class Utility {
 	 * @param c
 	 */
 	protected static final double intRound(final double a, final long b, final int c) {
-		final long d = intPow(10, c);
+		final long d = powi(10, c);
 		return Math.rint((a * d) / b) / d;
 	}
 	/**
@@ -89,7 +89,7 @@ public class Utility {
 	 * @param b
 	 * @return aのb乗
 	 */
-	protected static final long intPow(long a, int b) {
+	protected static final long powi(long a, int b) {
 		long res = 1;
 		while(b > 0) {
 			if(b % 2 == 1) {
@@ -105,7 +105,7 @@ public class Utility {
 	 * @param b
 	 * @return aのb乗のmを法とした剰余
 	 */
-	protected static final long intPow(long a, long b, final long m) {
+	protected static final long modPow(long a, long b, final long m) {
 		long res = 1;
 		while(b > 0) {
 			if(b % 2 == 1) {
@@ -1908,14 +1908,14 @@ public class Utility {
 			return a % m;
 		}
 		if(b == 2) {
-			return intPow(a, a, m);
+			return modPow(a, a, m);
 		}
 		final long phi = eulerPhi(m);
 		long tmp = tetration(a, b - 1, phi);
 		if(tmp == 0) {
 			tmp += phi;
 		}
-		return intPow(a, tmp, m);
+		return modPow(a, tmp, m);
 	}
 	/**
 	 * @param n

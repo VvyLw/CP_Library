@@ -67,10 +67,10 @@ class Utility {
 	protected static final double log(final double x, final long base){ return Math.log(x) / Math.log(base); }
 	protected static final long intCeil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }
 	protected static final double intRound(final double a, final long b, final int c) {
-		final long d = intPow(10, c);
+		final long d = powi(10, c);
 		return rint((a * d) / b) / d;
 	}
-	protected static final long intPow(long a, int b) {
+	protected static final long powi(long a, int b) {
 		long res = 1;
 		while(b > 0) {
 			if(b % 2 == 1) {
@@ -81,7 +81,7 @@ class Utility {
 		}
 		return res;
 	}
-	protected static final long intPow(long a, long b, final long m) {
+	protected static final long modPow(long a, long b, final long m) {
 		long res = 1;
 		while(b > 0) {
 			if(b % 2 == 1) {
@@ -1128,14 +1128,14 @@ class Utility {
 			return a % m;
 		}
 		if(b == 2) {
-			return intPow(a, a, m);
+			return modPow(a, a, m);
 		}
 		final long phi = eulerPhi(m);
 		long tmp = tetration(a, b - 1, phi);
 		if(tmp == 0) {
 			tmp += phi;
 		}
-		return intPow(a, tmp, m);
+		return modPow(a, tmp, m);
 	}
 	protected static final long floorSum(final long n, final long m, long a, long b) {
 		long ans = 0;
