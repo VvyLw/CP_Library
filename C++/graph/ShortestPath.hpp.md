@@ -52,9 +52,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/spfa.test.cpp
-  - test/dijkstra.test.cpp
-  - test/shortestpath.test.cpp
   - test/warshallfloyd.test.cpp
+  - test/shortestpath.test.cpp
+  - test/dijkstra.test.cpp
 documentation_of: C++/graph/ShortestPath.hpp
 layout: document
 redirect_from:
