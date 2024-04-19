@@ -2685,7 +2685,7 @@ data:
   - Java/library/core/Main.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-04-18 15:51:55+09:00'
+  timestamp: '2024-04-20 00:07:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

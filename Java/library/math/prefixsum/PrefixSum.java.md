@@ -554,27 +554,26 @@ data:
     RuntimeError: bundler is not specified: Java/library/math/prefixsum/PrefixSum.java\n"
   code: "package library.math.prefixsum;\n\nimport java.util.Arrays;\n\nimport library.core.Utility;\n\
     import library.other.InclusiveScan;\n\n/**\n * \u7D2F\u7A4D\u548C\u30AF\u30E9\u30B9\
-    \n * C++\u306Estd::partial_sum\u306E\u3088\u3046\u306A\u5074\u9762\u3068imos\u6CD5\
-    \u306B\u3088\u308B\u7D2F\u7A4D\u548C\u306E\u4E21\u65B9\u304C\u53EF\u80FD\n * @see\
-    \ InclusiveScan\n */\npublic final class PrefixSum extends InclusiveScan {\n\t\
-    private boolean built;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\
-    \n\t * imos\u6CD5\u3092\u4F7F\u3063\u305F\u7D2F\u7A4D\u548C\u306F\u3053\u3063\u3061\
-    \n\t * @param n\n\t */\n\tpublic PrefixSum(final int n) {\n\t\tsuper(n);\n\t\t\
-    built = false;\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t\
-    \ * @param a\n\t */\n\tpublic PrefixSum(final int[] a) {\n\t\tsuper(a, Long::sum);\n\
-    \t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), -1);\n\t}\n\t/**\n\t * \u30B3\u30F3\
-    \u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a\n\t */\n\tpublic PrefixSum(final\
-    \ long[] a) {\n\t\tsuper(a, Long::sum);\n\t\ts = Utility.rotate(Arrays.copyOf(s,\
-    \ n + 1), -1);\n\t}\n\t/**\n\t * @param l\n\t * @param r\n\t * @return \u9589\u533A\
-    \u9593[l, r]\u306E\u548C\n\t */\n\tpublic final long sum(final int l, final int\
-    \ r){ return s[r] - s[l]; }\n\t/**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306B\
-    x\u3092\u52A0\u7B97\u3059\u308B\n\t * @param l\n\t * @param r\n\t * @param x\n\
-    \t */\n\tpublic final void add(final int l, final int r, final long x) {\n\t\t\
-    if(built) {\n\t\t\tthrow new UnsupportedOperationException(\"Prefix Sum has been\
-    \ built.\");\n\t\t}\n\t\ts[l] += x;\n\t\ts[r] -= x;\n\t}\n\t/**\n\t * \u69CB\u7BC9\
-    \n\t * @return \u7D2F\u7A4D\u548C\n\t */\n\tpublic final long[] build() {\n\t\t\
-    assert !built;\n\t\tArrays.parallelPrefix(s, Long::sum);\n\t\tbuilt = true;\n\t\
-    \treturn Arrays.copyOf(s, n);\n\t}\n}"
+    \n * C++\u306Estd::partial_sum\u3068imos\u6CD5\u306B\u3088\u308B\u7D2F\u7A4D\u548C\
+    \u306E\u4E21\u65B9\u304C\u53EF\u80FD\n * @see InclusiveScan\n */\npublic final\
+    \ class PrefixSum extends InclusiveScan {\n\tprivate boolean built;\n\t/**\n\t\
+    \ * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * imos\u6CD5\u3092\u4F7F\u3063\
+    \u305F\u7D2F\u7A4D\u548C\u306F\u3053\u3063\u3061\n\t * @param n\n\t */\n\tpublic\
+    \ PrefixSum(final int n) {\n\t\tsuper(n);\n\t\tbuilt = false;\n\t}\n\t/**\n\t\
+    \ * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a\n\t */\n\tpublic\
+    \ PrefixSum(final int[] a) {\n\t\tsuper(a, Long::sum);\n\t\ts = Utility.rotate(Arrays.copyOf(s,\
+    \ n + 1), -1);\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t\
+    \ * @param a\n\t */\n\tpublic PrefixSum(final long[] a) {\n\t\tsuper(a, Long::sum);\n\
+    \t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), -1);\n\t}\n\t/**\n\t * @param\
+    \ l\n\t * @param r\n\t * @return \u9589\u533A\u9593[l, r]\u306E\u548C\n\t */\n\
+    \tpublic final long sum(final int l, final int r){ return s[r] - s[l]; }\n\t/**\n\
+    \t * \u534A\u958B\u533A\u9593[l, r)\u306Bx\u3092\u52A0\u7B97\u3059\u308B\n\t *\
+    \ @param l\n\t * @param r\n\t * @param x\n\t */\n\tpublic final void add(final\
+    \ int l, final int r, final long x) {\n\t\tif(built) {\n\t\t\tthrow new UnsupportedOperationException(\"\
+    Prefix Sum has been built.\");\n\t\t}\n\t\ts[l] += x;\n\t\ts[r] -= x;\n\t}\n\t\
+    /**\n\t * \u69CB\u7BC9\n\t * @return \u7D2F\u7A4D\u548C\n\t */\n\tpublic final\
+    \ long[] build() {\n\t\tassert !built;\n\t\tArrays.parallelPrefix(s, Long::sum);\n\
+    \t\tbuilt = true;\n\t\treturn Arrays.copyOf(s, n);\n\t}\n}"
   dependsOn:
   - Java/CodeForces.java
   - Java/library/graph/LowestCommonAncestor.java
@@ -759,7 +758,7 @@ data:
   - Java/yukicoder.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-04-18 15:51:55+09:00'
+  timestamp: '2024-04-20 00:07:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/prefixsum/PrefixSum.java
