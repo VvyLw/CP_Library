@@ -7,7 +7,7 @@ import library.other.InclusiveScan;
 
 /**
  * 累積和クラス
- * C++のstd::partial_sumのような側面とimos法による累積和の両方が可能
+ * C++のstd::partial_sumとimos法による累積和の両方が可能
  * @see InclusiveScan
  */
 public final class PrefixSum extends InclusiveScan {
