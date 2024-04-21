@@ -1,6 +1,6 @@
 module ds
 
-import math { radians, cos, sin, hypot }
+import math{radians,cos,sin,hypot}
 
 pub struct Pair[T,U] {
 	first T
@@ -13,10 +13,10 @@ pub fn mp[T,U](p T, q U) Pair[T,U] {
 		second: q
 	}
 }
-fn (p Pair[T,U])+(q Pair[T,U]) Pair[T,U] { return Pair[T,U]{p.first+p.second,q.first+q.second} }
-fn (p Pair[T,U])-(q Pair[T,U]) Pair[T,U] { return Pair[T,U]{p.first-p.second,q.first-q.second} }
-fn (p Pair[T,U])*(q Pair[T,U]) Pair[T,U] { return Pair[T,U]{p.first*p.second,q.first*q.second} }
-fn (p Pair[T,U])/(q Pair[T,U]) Pair[T,U] { return Pair[T,U]{p.first/p.second,q.first/q.second} }
+fn (p Pair[T,U])+(q Pair[T,U]) Pair[T,U] { return Pair[T,U]{p.first+q.first,p.second+q.second} }
+fn (p Pair[T,U])-(q Pair[T,U]) Pair[T,U] { return Pair[T,U]{p.first-q.first,p.second-q.second} }
+fn (p Pair[T,U])*(q Pair[T,U]) Pair[T,U] { return Pair[T,U]{p.first*q.first,p.second*q.second} }
+fn (p Pair[T,U])/(q Pair[T,U]) Pair[T,U] { return Pair[T,U]{p.first/q.first,p.second/q.second} }
 fn (p Pair[T,U])==(q Pair[T,U]) bool { return p.first==q.first && p.second==q.second }
 fn (p Pair[T,U])<(q Pair[T,U]) bool { if p.first==q.first{ return p.second<q.second } return p.first<q.first }
 pub fn (p Pair[T,T]) rotate(ang int) Pair[f64, f64] {

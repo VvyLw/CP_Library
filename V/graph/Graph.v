@@ -1,7 +1,7 @@
 module graph
 
-import os { input }
-import datatypes { Queue, Stack }
+import os{input}
+import datatypes{Queue,Stack}
 
 pub struct Graph {
 	undirected bool

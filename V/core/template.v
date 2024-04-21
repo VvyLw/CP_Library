@@ -1,7 +1,7 @@
 module core
 
-import os { input }
-import math { min, max }
+import os{input}
+import math{min,max}
 import math.big
 import arrays as ar
 import regex as re

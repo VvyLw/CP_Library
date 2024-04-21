@@ -1,6 +1,6 @@
 module mathe
 
-import math { floor, sqrt }
+import math{floor,sqrt}
 
 pub fn is_int(n f64) bool { return n==floor(n) }
 pub fn is_sqr(n i64) bool { return is_int(sqrt(n)) }
