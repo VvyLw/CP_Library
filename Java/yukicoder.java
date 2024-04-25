@@ -1573,7 +1573,7 @@ final class IO implements Closeable, AutoCloseable {
 					}
 					print(a[0]);
 					for(int i = 0; ++i < a.length;) {
-						print("\n");
+						print(" ");
 						print(a[i]);
 					}
 					return;
@@ -1586,11 +1586,12 @@ final class IO implements Closeable, AutoCloseable {
 					} else if(arg instanceof final Collection<?> c) {
 						int i = 0;
 						for(final Object el: c) {
-							sb.append(el);
+							print(el);
 							if(++i != c.size()) {
-								sb.append(' ');
+								print(" ");
 							}
 						}
+						return;
 					} else if(sb.isEmpty()) {
 						print(arg.toString());
 						return;
@@ -1612,10 +1613,29 @@ final class IO implements Closeable, AutoCloseable {
 			}
 			newLine();
 		}
+		private final void p(final Object obj) {
+			if(obj instanceof int[] a) {
+				Arrays.stream(a).forEach(this::out);
+			} else if(obj instanceof long[] a) {
+				Arrays.stream(a).forEach(this::out);
+			} else if(obj instanceof double[] a) {
+				Arrays.stream(a).forEach(this::out);
+			} else if(obj instanceof boolean[] a) {
+				IntStream.range(0, a.length).mapToObj(i -> a[i]).forEach(this::out);
+			} else if(obj instanceof char[] a) {
+				IntStream.range(0, a.length).mapToObj(i -> a[i]).forEach(this::out);
+			} else if(obj instanceof Object[] a) {
+				Arrays.stream(a).forEach(this::out);
+			} else if(obj instanceof Collection<?> a) {
+				a.stream().forEach(this::out);
+			} else {
+				out(obj);
+			}
+		}
 		final void outl(final Object head, final Object... tail) {
-			out(head);
+			p(head);
 			for(final Object el: tail) {
-				out(el);
+				p(el);
 			}
 		}
 		@Override
