@@ -1613,15 +1613,22 @@ final class IO implements Closeable, AutoCloseable {
 			newLine();
 		}
 		private final void p(final Object obj) {
-			switch(obj) {
-				case int[] a: Arrays.stream(a).forEach(this::out); break;
-				case long[] a: Arrays.stream(a).forEach(this::out); break;
-				case double[] a: Arrays.stream(a).forEach(this::out); break;
-				case boolean[] a: IntStream.range(0, a.length).mapToObj(i -> a[i]).forEach(this::out); break;
-				case char[] a: IntStream.range(0, a.length).mapToObj(i -> a[i]).forEach(this::out); break;
-				case Object[] a: Arrays.stream(a).forEach(this::out); break;
-				case Collection<?> a: a.stream().forEach(this::out); break;
-				default: out(obj);
+			if(obj instanceof int[] a) {
+				Arrays.stream(a).forEach(this::out);
+			} else if(obj instanceof long[] a) {
+				Arrays.stream(a).forEach(this::out);
+			} else if(obj instanceof double[] a) {
+				Arrays.stream(a).forEach(this::out);
+			} else if(obj instanceof boolean[] a) {
+				IntStream.range(0, a.length).mapToObj(i -> a[i]).forEach(this::out);
+			} else if(obj instanceof char[] a) {
+				IntStream.range(0, a.length).mapToObj(i -> a[i]).forEach(this::out);
+			} else if(obj instanceof Object[] a) {
+				Arrays.stream(a).forEach(this::out);
+			} else if(obj instanceof Collection<?> a) {
+				a.stream().forEach(this::out);
+			} else {
+				out(obj);
 			}
 		}
 		final void outl(final Object head, final Object... tail) {
