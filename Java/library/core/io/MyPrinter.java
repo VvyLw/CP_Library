@@ -113,9 +113,8 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 				if(a.length == 0) {
 					return;
 				}
-				sb.append(a[0]);
-				for(int i = 0; ++i < a.length;) {
-					sb.append(" " + a[i]);
+				for(int i = 0; i < a.length; ++i) {
+					sb.append(a[i]);
 				}
 			} else if(arg instanceof final Object[] a) {
 				if(debug) {
