@@ -742,18 +742,17 @@ data:
     final void out(final Object head, final Object... tail) {\n\t\t\tprint(head);\n\
     \t\t\tfor(final Object el: tail) {\n\t\t\t\tprint(\" \");\n\t\t\t\tprint(el);\n\
     \t\t\t}\n\t\t\tnewLine();\n\t\t}\n\t\tprivate final void p(final Object obj) {\n\
-    \t\t\tif(obj instanceof int[] a) {\n\t\t\t\tArrays.stream(a).forEach(this::out);\n\
-    \t\t\t} else if(obj instanceof long[] a) {\n\t\t\t\tArrays.stream(a).forEach(this::out);\n\
-    \t\t\t} else if(obj instanceof double[] a) {\n\t\t\t\tArrays.stream(a).forEach(this::out);\n\
-    \t\t\t} else if(obj instanceof boolean[] a) {\n\t\t\t\tIntStream.range(0, a.length).mapToObj(i\
-    \ -> a[i]).forEach(this::out);\n\t\t\t} else if(obj instanceof char[] a) {\n\t\
-    \t\t\tIntStream.range(0, a.length).mapToObj(i -> a[i]).forEach(this::out);\n\t\
-    \t\t} else if(obj instanceof Object[] a) {\n\t\t\t\tArrays.stream(a).forEach(this::out);\n\
-    \t\t\t} else if(obj instanceof Collection<?> a) {\n\t\t\t\ta.stream().forEach(this::out);\n\
-    \t\t\t} else {\n\t\t\t\tout(obj);\n\t\t\t}\n\t\t}\n\t\tfinal void outl(final Object\
-    \ head, final Object... tail) {\n\t\t\tp(head);\n\t\t\tfor(final Object el: tail)\
-    \ {\n\t\t\t\tp(el);\n\t\t\t}\n\t\t}\n\t\t@Override\n\t\tpublic final void flush()\
-    \ {\n\t\t\ttry {\n\t\t\t\tos.write(buf, 0, pos);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final\
+    \t\t\tswitch(obj) {\n\t\t\t\tcase int[] a: Arrays.stream(a).forEach(this::out);\
+    \ break;\n\t\t\t\tcase long[] a: Arrays.stream(a).forEach(this::out); break;\n\
+    \t\t\t\tcase double[] a: Arrays.stream(a).forEach(this::out); break;\n\t\t\t\t\
+    case boolean[] a: IntStream.range(0, a.length).mapToObj(i -> a[i]).forEach(this::out);\
+    \ break;\n\t\t\t\tcase char[] a: IntStream.range(0, a.length).mapToObj(i -> a[i]).forEach(this::out);\
+    \ break;\n\t\t\t\tcase Object[] a: Arrays.stream(a).forEach(this::out); break;\n\
+    \t\t\t\tcase Collection<?> a: a.stream().forEach(this::out); break;\n\t\t\t\t\
+    default: out(obj);\n\t\t\t}\n\t\t}\n\t\tfinal void outl(final Object head, final\
+    \ Object... tail) {\n\t\t\tp(head);\n\t\t\tfor(final Object el: tail) {\n\t\t\t\
+    \tp(el);\n\t\t\t}\n\t\t}\n\t\t@Override\n\t\tpublic final void flush() {\n\t\t\
+    \ttry {\n\t\t\t\tos.write(buf, 0, pos);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final\
     \ IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t\t@Override\n\
     \t\tpublic final void close() {\n\t\t\tif(os == null) {\n\t\t\t\treturn;\n\t\t\
     \t}\n\t\t\ttry {\n\t\t\t\tos.close();\n\t\t\t\tos = null;\n\t\t\t} catch(final\
@@ -942,7 +941,7 @@ data:
   - Java/library/core/Main.java
   - Java/yukicoder.java
   - Java/All.java
-  timestamp: '2024-04-25 16:58:59+09:00'
+  timestamp: '2024-04-25 17:23:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java

@@ -555,13 +555,13 @@ data:
   code: "package library.core.io;\n\nimport java.io.Closeable;\nimport java.io.Flushable;\n\
     import java.io.IOException;\nimport java.io.OutputStream;\nimport java.io.PrintWriter;\n\
     import java.util.Arrays;\nimport java.util.Collection;\nimport java.util.Formatter;\n\
-    import java.util.function.Consumer;\nimport java.util.stream.IntStream;\n\nimport\
-    \ library.ds.pair.Pair;\n\n/**\n * \u51FA\u529B\u30AF\u30E9\u30B9\n * PrintWriter\u3088\
-    \u308A\u901F\u3044\n */\npublic final class MyPrinter implements Closeable, Flushable,\
-    \ AutoCloseable {\n\tprivate OutputStream os;\n\tprivate final boolean autoFlush;\n\
-    \tprivate final byte[] buf;\n\tprivate int pos;\n\tprivate final boolean debug;\n\
-    \t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param os \u6A19\u6E96\
-    \u51FA\u529B(System.out)\u304B\u6A19\u6E96\u30A8\u30E9\u30FC\u51FA\u529B(System.err)\u304B\
+    import java.util.stream.IntStream;\n\nimport library.ds.pair.Pair;\n\n/**\n *\
+    \ \u51FA\u529B\u30AF\u30E9\u30B9\n * PrintWriter\u3088\u308A\u901F\u3044\n */\n\
+    public final class MyPrinter implements Closeable, Flushable, AutoCloseable {\n\
+    \tprivate OutputStream os;\n\tprivate final boolean autoFlush;\n\tprivate final\
+    \ byte[] buf;\n\tprivate int pos;\n\tprivate final boolean debug;\n\t/**\n\t *\
+    \ \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param os \u6A19\u6E96\u51FA\
+    \u529B(System.out)\u304B\u6A19\u6E96\u30A8\u30E9\u30FC\u51FA\u529B(System.err)\u304B\
     \u5165\u308C\u308B\n\t * \u6A19\u6E96\u30A8\u30E9\u30FC\u51FA\u529B\u306E\u6642\
     \u3001\u4E00\u90E8\u51FA\u529B\u304CtoString\u3055\u308C\u3066\u8868\u793A\u3055\
     \u308C\u308B\u3002\n\t * @param autoFlush \u30A4\u30F3\u30BF\u30E9\u30AF\u30C6\
@@ -617,27 +617,25 @@ data:
     \ b, c)\u3067, \"a b c\"\u306E\u5F62\u5F0F\u3067\u51FA\u529B\u3059\u308B\n\t *\
     \ @param head\n\t * @param tail\n\t */\n\tpublic final void out(final Object head,\
     \ final Object... tail) {\n\t\tprint(head);\n\t\tfor(final Object el: tail) {\n\
-    \t\t\tprint(\" \" + el);\n\t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t * \u6539\u884C\
-    \u304A\u304D\u306B\u51FA\u529B\u3059\u308B\n\t * @param head\n\t * @param tail\n\
-    \t */\n\tpublic final void outl(final Object head, final Object... tail) {\n\t\
-    \tfinal Consumer<Object> p = obj -> {\n\t\t\tif(obj instanceof int[] a) {\n\t\t\
-    \t\tArrays.stream(a).forEach(this::out);\n\t\t\t} else if(obj instanceof long[]\
-    \ a) {\n\t\t\t\tArrays.stream(a).forEach(this::out);\n\t\t\t} else if(obj instanceof\
-    \ double[] a) {\n\t\t\t\tArrays.stream(a).forEach(this::out);\n\t\t\t} else if(obj\
-    \ instanceof boolean[] a) {\n\t\t\t\tIntStream.range(0, a.length).mapToObj(i ->\
-    \ a[i]).forEach(this::out);\n\t\t\t} else if(obj instanceof char[] a) {\n\t\t\t\
-    \tIntStream.range(0, a.length).mapToObj(i -> a[i]).forEach(this::out);\n\t\t\t\
-    } else if(obj instanceof Object[] a) {\n\t\t\t\tArrays.stream(a).forEach(this::out);\n\
-    \t\t\t} else if(obj instanceof Collection<?> a) {\n\t\t\t\ta.stream().forEach(this::out);\n\
-    \t\t\t} else {\n\t\t\t\tout(obj);\n\t\t\t}\n\t\t};\n\t\tp.accept(head);\n\t\t\
-    for(final Object el: tail) {\n\t\t\tp.accept(el);\n\t\t}\n\t}\n\t/**\n\t * \u51FA\
-    \u529B\u3092flush\u3059\u308B\n\t * @see PrintWriter#flush\n\t */\n\t@Override\n\
-    \tpublic final void flush() {\n\t\ttry {\n\t\t\tos.write(buf, 0, pos);\n\t\t\t\
-    pos = 0;\n\t\t} catch(final IOException e) {\n\t\t\te.printStackTrace();\n\t\t\
-    }\n\t}\n\t/**\n\t * OutputStream\u3092\u9589\u3058\u308B\n\t * @see PrintWriter#close\n\
-    \t */\n\t@Override\n\tpublic final void close() {\n\t\tif(os == null) {\n\t\t\t\
-    return;\n\t\t}\n\t\ttry {\n\t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(final\
-    \ IOException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n}"
+    \t\t\tprint(\" \" + el);\n\t\t}\n\t\tnewLine();\n\t}\n\tprivate final void p(final\
+    \ Object obj) {\n\t\tswitch(obj) {\n\t\t\tcase int[] a: Arrays.stream(a).forEach(this::out);\
+    \ break;\n\t\t\tcase long[] a: Arrays.stream(a).forEach(this::out); break;\n\t\
+    \t\tcase double[] a: Arrays.stream(a).forEach(this::out); break;\n\t\t\tcase boolean[]\
+    \ a: IntStream.range(0, a.length).mapToObj(i -> a[i]).forEach(this::out); break;\n\
+    \t\t\tcase char[] a: IntStream.range(0, a.length).mapToObj(i -> a[i]).forEach(this::out);\
+    \ break;\n\t\t\tcase Object[] a: Arrays.stream(a).forEach(this::out); break;\n\
+    \t\t\tcase Collection<?> a: a.stream().forEach(this::out); break;\n\t\t\tdefault:\
+    \ out(obj);\n\t\t}\n\t}\n\t/**\n\t * \u6539\u884C\u304A\u304D\u306B\u51FA\u529B\
+    \u3059\u308B\n\t * @param head\n\t * @param tail\n\t */\n\tpublic final void outl(final\
+    \ Object head, final Object... tail) {\n\t\tp(head);\n\t\tfor(final Object el:\
+    \ tail) {\n\t\t\tp(el);\n\t\t}\n\t}\n\t/**\n\t * \u51FA\u529B\u3092flush\u3059\
+    \u308B\n\t * @see PrintWriter#flush\n\t */\n\t@Override\n\tpublic final void flush()\
+    \ {\n\t\ttry {\n\t\t\tos.write(buf, 0, pos);\n\t\t\tpos = 0;\n\t\t} catch(final\
+    \ IOException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n\t/**\n\t * OutputStream\u3092\
+    \u9589\u3058\u308B\n\t * @see PrintWriter#close\n\t */\n\t@Override\n\tpublic\
+    \ final void close() {\n\t\tif(os == null) {\n\t\t\treturn;\n\t\t}\n\t\ttry {\n\
+    \t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(final IOException e) {\n\t\t\t\
+    e.printStackTrace();\n\t\t}\n\t}\n}"
   dependsOn:
   - Java/CodeForces.java
   - Java/library/graph/LowestCommonAncestor.java
@@ -822,7 +820,7 @@ data:
   - Java/yukicoder.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-04-25 16:58:59+09:00'
+  timestamp: '2024-04-25 17:23:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyPrinter.java
