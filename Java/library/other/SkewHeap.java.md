@@ -761,7 +761,7 @@ data:
   - Java/yukicoder.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-04-25 15:23:18+09:00'
+  timestamp: '2024-04-25 16:58:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/SkewHeap.java

@@ -719,15 +719,15 @@ data:
     \t\t\t\t\t}\n\t\t\t\t} else if(arg instanceof boolean[]) {\n\t\t\t\t\tfinal boolean[]\
     \ a = (boolean[]) arg;\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(Arrays.toString(a));\n\
     \t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\t\
-    return;\n\t\t\t\t\t}\n\t\t\t\t\tsb.append(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i\
-    \ < a.length;) {\n\t\t\t\t\t\tsb.append(\" \" + a[i]);\n\t\t\t\t\t}\n\t\t\t\t\
-    } else if(arg instanceof char[]) {\n\t\t\t\t\tfinal char[] a = (char[]) arg;\n\
-    \t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tsb.append(a[0]);\n\
-    \t\t\t\t\tfor(int i = 0; ++i < a.length;) {\n\t\t\t\t\t\tsb.append(\" \" + a[i]);\n\
-    \t\t\t\t\t}\n\t\t\t\t} else if(arg instanceof Object[]) {\n\t\t\t\t\tfinal Object[]\
-    \ a = (Object[]) arg;\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(Arrays.toString(a));\n\
-    \t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\t\
-    return;\n\t\t\t\t\t}\n\t\t\t\t\tprint(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i < a.length;)\
+    return;\n\t\t\t\t\t}\n\t\t\t\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\t\t\t\
+    \tsb.append(a[i]);\n\t\t\t\t\t}\n\t\t\t\t} else if(arg instanceof char[]) {\n\t\
+    \t\t\t\tfinal char[] a = (char[]) arg;\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\
+    \t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tsb.append(a[0]);\n\t\t\t\t\tfor(int i = 0;\
+    \ ++i < a.length;) {\n\t\t\t\t\t\tsb.append(\" \" + a[i]);\n\t\t\t\t\t}\n\t\t\t\
+    \t} else if(arg instanceof Object[]) {\n\t\t\t\t\tfinal Object[] a = (Object[])\
+    \ arg;\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(Arrays.toString(a));\n\t\t\t\t\
+    \t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\treturn;\n\
+    \t\t\t\t\t}\n\t\t\t\t\tprint(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i < a.length;)\
     \ {\n\t\t\t\t\t\tprint(\" \");\n\t\t\t\t\t\tprint(a[i]);\n\t\t\t\t\t}\n\t\t\t\t\
     \treturn;\n\t\t\t\t} else {\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(arg.toString());\n\
     \t\t\t\t\t\treturn;\n\t\t\t\t\t} else if(arg instanceof Collection<?>) {\n\t\t\
@@ -942,7 +942,7 @@ data:
   - Java/library/core/Main.java
   - Java/yukicoder.java
   - Java/All.java
-  timestamp: '2024-04-25 15:23:18+09:00'
+  timestamp: '2024-04-25 16:58:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java

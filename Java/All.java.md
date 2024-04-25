@@ -1233,15 +1233,15 @@ data:
     \t\t\tsb.append(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i < a.length;) {\n\t\t\t\t\t\
     \tsb.append(\" \" + a[i]);\n\t\t\t\t\t}\n\t\t\t\t} else if(arg instanceof final\
     \ char[] a) {\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\treturn;\n\t\t\t\t\t\
-    }\n\t\t\t\t\tsb.append(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i < a.length;) {\n\t\
-    \t\t\t\t\tsb.append(\" \" + a[i]);\n\t\t\t\t\t}\n\t\t\t\t} else if(arg instanceof\
-    \ final Object[] a) {\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(Arrays.toString(a));\n\
-    \t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\t\
-    return;\n\t\t\t\t\t}\n\t\t\t\t\tprint(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i < a.length;)\
-    \ {\n\t\t\t\t\t\tprint(\" \");\n\t\t\t\t\t\tprint(a[i]);\n\t\t\t\t\t}\n\t\t\t\t\
-    \treturn;\n\t\t\t\t} else {\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(arg.toString());\n\
-    \t\t\t\t\t\treturn;\n\t\t\t\t\t} else if(arg instanceof final Pair<?, ?> p) {\n\
-    \t\t\t\t\t\tsb.append(p.first + \" \" + p.second);\n\t\t\t\t\t} else if(arg instanceof\
+    }\n\t\t\t\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\t\t\t\tsb.append(a[i]);\n\
+    \t\t\t\t\t}\n\t\t\t\t} else if(arg instanceof final Object[] a) {\n\t\t\t\t\t\
+    if(debug) {\n\t\t\t\t\t\tprint(Arrays.toString(a));\n\t\t\t\t\t\treturn;\n\t\t\
+    \t\t\t}\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\
+    \t\t\tprint(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i < a.length;) {\n\t\t\t\t\t\t\
+    print(\" \");\n\t\t\t\t\t\tprint(a[i]);\n\t\t\t\t\t}\n\t\t\t\t\treturn;\n\t\t\t\
+    \t} else {\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(arg.toString());\n\t\t\t\t\
+    \t\treturn;\n\t\t\t\t\t} else if(arg instanceof final Pair<?, ?> p) {\n\t\t\t\t\
+    \t\tsb.append(p.first + \" \" + p.second);\n\t\t\t\t\t} else if(arg instanceof\
     \ final Collection<?> c) {\n\t\t\t\t\t\tint i = 0;\n\t\t\t\t\t\tfor(final Object\
     \ el: c) {\n\t\t\t\t\t\t\tprint(el);\n\t\t\t\t\t\t\tif(++i != c.size()) {\n\t\t\
     \t\t\t\t\t\tprint(\" \");\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\treturn;\n\
@@ -2695,7 +2695,7 @@ data:
   - Java/library/core/Main.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-04-25 15:23:18+09:00'
+  timestamp: '2024-04-25 16:58:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
