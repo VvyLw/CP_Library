@@ -1252,38 +1252,40 @@ data:
     \ }\n\t\tfinal void out(){ newLine(); }\n\t\tfinal void out(final Object head,\
     \ final Object... tail) {\n\t\t\tprint(head);\n\t\t\tfor(final Object el: tail)\
     \ {\n\t\t\t\tprint(\" \");\n\t\t\t\tprint(el);\n\t\t\t}\n\t\t\tnewLine();\n\t\t\
-    }\n\t\tprivate final void p(final Object obj) {\n\t\t\tswitch(obj) {\n\t\t\t\t\
-    case int[] a: Arrays.stream(a).forEach(this::out); break;\n\t\t\t\tcase long[]\
-    \ a: Arrays.stream(a).forEach(this::out); break;\n\t\t\t\tcase double[] a: Arrays.stream(a).forEach(this::out);\
-    \ break;\n\t\t\t\tcase boolean[] a: IntStream.range(0, a.length).mapToObj(i ->\
-    \ a[i]).forEach(this::out); break;\n\t\t\t\tcase char[] a: IntStream.range(0,\
-    \ a.length).mapToObj(i -> a[i]).forEach(this::out); break;\n\t\t\t\tcase Object[]\
-    \ a: Arrays.stream(a).forEach(this::out); break;\n\t\t\t\tcase Collection<?> a:\
-    \ a.stream().forEach(this::out); break;\n\t\t\t\tdefault: out(obj);\n\t\t\t}\n\
-    \t\t}\n\t\tfinal void outl(final Object head, final Object... tail) {\n\t\t\t\
-    p(head);\n\t\t\tfor(final Object el: tail) {\n\t\t\t\tp(el);\n\t\t\t}\n\t\t}\n\
-    \t\t@Override\n\t\tpublic final void flush() {\n\t\t\ttry {\n\t\t\t\tos.write(buf,\
-    \ 0, pos);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final IOException e) {\n\t\t\t\te.printStackTrace();\n\
-    \t\t\t}\n\t\t}\n\t\t@Override\n\t\tpublic final void close() {\n\t\t\tif(os ==\
-    \ null) {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\ttry {\n\t\t\t\tos.close();\n\t\t\t\t\
-    os = null;\n\t\t\t} catch(final IOException e) {\n\t\t\t\te.printStackTrace();\n\
-    \t\t\t}\n\t\t}\n\t}\n}\n\nclass Pair<F extends Comparable<? super F>, S extends\
-    \ Comparable<? super S>> implements Comparable<Pair<F, S>>, Cloneable {\n\tpublic\
-    \ F first;\n\tpublic S second;\n\tprotected Pair(final F first, final S second)\
-    \ {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\tstatic final <F\
-    \ extends Comparable<? super F>, S extends Comparable<? super S>> Pair<F, S> of(final\
-    \ F a, final S b){ return new Pair<>(a, b); }\n\tPair<S, F> swap(){ return Pair.of(second,\
-    \ first); }\n\t@Override\n\tpublic final boolean equals(final Object o) {\n\t\t\
-    if(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() !=\
-    \ o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?,\
-    \ ?>) o;\n\t\treturn first.equals(p.first) && second.equals(p.second);\n\t}\n\t\
-    @Override\n\tpublic final int hashCode(){ return Objects.hash(first, second);\
-    \ }\n\t@Override\n\tpublic final String toString(){ return \"(\" + first + \"\
-    , \" + second + \")\"; }\n\t@SuppressWarnings(\"unchecked\")\n\t@Override\n\t\
-    public final Pair<F, S> clone() {\n\t\ttry {\n\t\t\treturn (Pair<F, S>) super.clone();\n\
-    \t\t} catch(final CloneNotSupportedException e){\n\t\t\te.printStackTrace();\n\
-    \t\t}\n\t\tthrow new Error();\n\t}\n\t@Override\n\tpublic final int compareTo(final\
-    \ Pair<F, S> p) {\n\t\tif(first.compareTo(p.first) == 0) {\n\t\t\treturn second.compareTo(p.second);\n\
+    }\n\t\tprivate final void p(final Object obj) {\n\t\t\tif(obj instanceof int[]\
+    \ a) {\n\t\t\t\tArrays.stream(a).forEach(this::out);\n\t\t\t} else if(obj instanceof\
+    \ long[] a) {\n\t\t\t\tArrays.stream(a).forEach(this::out);\n\t\t\t} else if(obj\
+    \ instanceof double[] a) {\n\t\t\t\tArrays.stream(a).forEach(this::out);\n\t\t\
+    \t} else if(obj instanceof boolean[] a) {\n\t\t\t\tIntStream.range(0, a.length).mapToObj(i\
+    \ -> a[i]).forEach(this::out);\n\t\t\t} else if(obj instanceof char[] a) {\n\t\
+    \t\t\tIntStream.range(0, a.length).mapToObj(i -> a[i]).forEach(this::out);\n\t\
+    \t\t} else if(obj instanceof Object[] a) {\n\t\t\t\tArrays.stream(a).forEach(this::out);\n\
+    \t\t\t} else if(obj instanceof Collection<?> a) {\n\t\t\t\ta.stream().forEach(this::out);\n\
+    \t\t\t} else {\n\t\t\t\tout(obj);\n\t\t\t}\n\t\t}\n\t\tfinal void outl(final Object\
+    \ head, final Object... tail) {\n\t\t\tp(head);\n\t\t\tfor(final Object el: tail)\
+    \ {\n\t\t\t\tp(el);\n\t\t\t}\n\t\t}\n\t\t@Override\n\t\tpublic final void flush()\
+    \ {\n\t\t\ttry {\n\t\t\t\tos.write(buf, 0, pos);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final\
+    \ IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t\t@Override\n\
+    \t\tpublic final void close() {\n\t\t\tif(os == null) {\n\t\t\t\treturn;\n\t\t\
+    \t}\n\t\t\ttry {\n\t\t\t\tos.close();\n\t\t\t\tos = null;\n\t\t\t} catch(final\
+    \ IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t}\n}\n\nclass\
+    \ Pair<F extends Comparable<? super F>, S extends Comparable<? super S>> implements\
+    \ Comparable<Pair<F, S>>, Cloneable {\n\tpublic F first;\n\tpublic S second;\n\
+    \tprotected Pair(final F first, final S second) {\n\t\tthis.first = first;\n\t\
+    \tthis.second = second;\n\t}\n\tstatic final <F extends Comparable<? super F>,\
+    \ S extends Comparable<? super S>> Pair<F, S> of(final F a, final S b){ return\
+    \ new Pair<>(a, b); }\n\tPair<S, F> swap(){ return Pair.of(second, first); }\n\
+    \t@Override\n\tpublic final boolean equals(final Object o) {\n\t\tif(this == o)\
+    \ {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass())\
+    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Pair<?, ?> p = (Pair<?, ?>) o;\n\t\t\
+    return first.equals(p.first) && second.equals(p.second);\n\t}\n\t@Override\n\t\
+    public final int hashCode(){ return Objects.hash(first, second); }\n\t@Override\n\
+    \tpublic final String toString(){ return \"(\" + first + \", \" + second + \"\
+    )\"; }\n\t@SuppressWarnings(\"unchecked\")\n\t@Override\n\tpublic final Pair<F,\
+    \ S> clone() {\n\t\ttry {\n\t\t\treturn (Pair<F, S>) super.clone();\n\t\t} catch(final\
+    \ CloneNotSupportedException e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow\
+    \ new Error();\n\t}\n\t@Override\n\tpublic final int compareTo(final Pair<F, S>\
+    \ p) {\n\t\tif(first.compareTo(p.first) == 0) {\n\t\t\treturn second.compareTo(p.second);\n\
     \t\t}\n\t\treturn first.compareTo(p.first);\n\t}\n}\nfinal class IntPair extends\
     \ Pair<Long, Long> {\n\tprivate IntPair(final long first, final long second){\
     \ super(first, second); }\n\tstatic final IntPair ZERO = new IntPair(0, 0);\n\t\
@@ -2693,7 +2695,7 @@ data:
   - Java/library/core/Main.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-04-25 17:23:00+09:00'
+  timestamp: '2024-04-25 18:18:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java
