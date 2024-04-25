@@ -728,27 +728,36 @@ data:
     \ a = (Object[]) arg;\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(Arrays.toString(a));\n\
     \t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\t\
     return;\n\t\t\t\t\t}\n\t\t\t\t\tprint(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i < a.length;)\
-    \ {\n\t\t\t\t\t\tprint(\"\\n\");\n\t\t\t\t\t\tprint(a[i]);\n\t\t\t\t\t}\n\t\t\t\
-    \t\treturn;\n\t\t\t\t} else {\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(arg.toString());\n\
+    \ {\n\t\t\t\t\t\tprint(\" \");\n\t\t\t\t\t\tprint(a[i]);\n\t\t\t\t\t}\n\t\t\t\t\
+    \treturn;\n\t\t\t\t} else {\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(arg.toString());\n\
     \t\t\t\t\t\treturn;\n\t\t\t\t\t} else if(arg instanceof Collection<?>) {\n\t\t\
     \t\t\t\tfinal Collection<?> c = (Collection<?>) arg;\n\t\t\t\t\t\tint i = 0;\n\
-    \t\t\t\t\t\tfor(final Object el: c) {\n\t\t\t\t\t\t\tsb.append(el);\n\t\t\t\t\t\
-    \t\tif(++i != c.size()) {\n\t\t\t\t\t\t\t\tsb.append(' ');\n\t\t\t\t\t\t\t}\n\t\
-    \t\t\t\t\t}\n\t\t\t\t\t} else if(sb.isEmpty()) {\n\t\t\t\t\t\tprint(arg.toString());\n\
-    \t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tprint(sb.toString());\n\t\
-    \t\t}\n\t\t\tif(autoFlush) {\n\t\t\t\tflush();\n\t\t\t}\n\t\t}\n\t\tfinal void\
-    \ printf(final String fmt, final Object... args){ print(new Formatter().format(fmt,\
-    \ args)); }\n\t\tfinal void out(){ newLine(); }\n\t\tfinal void out(final Object\
-    \ head, final Object... tail) {\n\t\t\tprint(head);\n\t\t\tfor(final Object el:\
-    \ tail) {\n\t\t\t\tprint(\" \");\n\t\t\t\tprint(el);\n\t\t\t}\n\t\t\tnewLine();\n\
-    \t\t}\n\t\tfinal void outl(final Object head, final Object... tail) {\n\t\t\t\
-    out(head);\n\t\t\tfor(final Object el: tail) {\n\t\t\t\tout(el);\n\t\t\t}\n\t\t\
-    }\n\t\t@Override\n\t\tpublic final void flush() {\n\t\t\ttry {\n\t\t\t\tos.write(buf,\
-    \ 0, pos);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final IOException e) {\n\t\t\t\te.printStackTrace();\n\
-    \t\t\t}\n\t\t}\n\t\t@Override\n\t\tpublic final void close() {\n\t\t\tif(os ==\
-    \ null) {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\ttry {\n\t\t\t\tos.close();\n\t\t\t\t\
-    os = null;\n\t\t\t} catch(final IOException e) {\n\t\t\t\te.printStackTrace();\n\
-    \t\t\t}\n\t\t}\n\t}\n}"
+    \t\t\t\t\t\tfor(final Object el: c) {\n\t\t\t\t\t\t\tprint(el);\n\t\t\t\t\t\t\t\
+    if(++i != c.size()) {\n\t\t\t\t\t\t\t\tprint(\" \");\n\t\t\t\t\t\t\t}\n\t\t\t\t\
+    \t\t}\n\t\t\t\t\t\treturn;\n\t\t\t\t\t} else if(sb.isEmpty()) {\n\t\t\t\t\t\t\
+    print(arg.toString());\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t\
+    print(sb.toString());\n\t\t\t}\n\t\t\tif(autoFlush) {\n\t\t\t\tflush();\n\t\t\t\
+    }\n\t\t}\n\t\tfinal void printf(final String fmt, final Object... args){ print(new\
+    \ Formatter().format(fmt, args)); }\n\t\tfinal void out(){ newLine(); }\n\t\t\
+    final void out(final Object head, final Object... tail) {\n\t\t\tprint(head);\n\
+    \t\t\tfor(final Object el: tail) {\n\t\t\t\tprint(\" \");\n\t\t\t\tprint(el);\n\
+    \t\t\t}\n\t\t\tnewLine();\n\t\t}\n\t\tprivate final void p(final Object obj) {\n\
+    \t\t\tif(obj instanceof int[] a) {\n\t\t\t\tArrays.stream(a).forEach(this::out);\n\
+    \t\t\t} else if(obj instanceof long[] a) {\n\t\t\t\tArrays.stream(a).forEach(this::out);\n\
+    \t\t\t} else if(obj instanceof double[] a) {\n\t\t\t\tArrays.stream(a).forEach(this::out);\n\
+    \t\t\t} else if(obj instanceof boolean[] a) {\n\t\t\t\tIntStream.range(0, a.length).mapToObj(i\
+    \ -> a[i]).forEach(this::out);\n\t\t\t} else if(obj instanceof char[] a) {\n\t\
+    \t\t\tIntStream.range(0, a.length).mapToObj(i -> a[i]).forEach(this::out);\n\t\
+    \t\t} else if(obj instanceof Object[] a) {\n\t\t\t\tArrays.stream(a).forEach(this::out);\n\
+    \t\t\t} else if(obj instanceof Collection<?> a) {\n\t\t\t\ta.stream().forEach(this::out);\n\
+    \t\t\t} else {\n\t\t\t\tout(obj);\n\t\t\t}\n\t\t}\n\t\tfinal void outl(final Object\
+    \ head, final Object... tail) {\n\t\t\tp(head);\n\t\t\tfor(final Object el: tail)\
+    \ {\n\t\t\t\tp(el);\n\t\t\t}\n\t\t}\n\t\t@Override\n\t\tpublic final void flush()\
+    \ {\n\t\t\ttry {\n\t\t\t\tos.write(buf, 0, pos);\n\t\t\t\tpos = 0;\n\t\t\t} catch(final\
+    \ IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t\t@Override\n\
+    \t\tpublic final void close() {\n\t\t\tif(os == null) {\n\t\t\t\treturn;\n\t\t\
+    \t}\n\t\t\ttry {\n\t\t\t\tos.close();\n\t\t\t\tos = null;\n\t\t\t} catch(final\
+    \ IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t}\n}"
   dependsOn:
   - Java/CodeForces.java
   - Java/library/graph/LowestCommonAncestor.java
@@ -933,7 +942,7 @@ data:
   - Java/library/core/Main.java
   - Java/yukicoder.java
   - Java/All.java
-  timestamp: '2024-04-20 00:07:06+09:00'
+  timestamp: '2024-04-25 15:23:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/AOJ.java
