@@ -617,7 +617,10 @@ data:
     \ b, c)\u3067, \"a b c\"\u306E\u5F62\u5F0F\u3067\u51FA\u529B\u3059\u308B\n\t *\
     \ @param head\n\t * @param tail\n\t */\n\tpublic final void out(final Object head,\
     \ final Object... tail) {\n\t\tprint(head);\n\t\tfor(final Object el: tail) {\n\
-    \t\t\tprint(\" \" + el);\n\t\t}\n\t\tnewLine();\n\t}\n\tprivate final void p(final\
+    \t\t\tprint(\" \" + el);\n\t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t * switch\u6587\
+    \u306E\u66F8\u304D\u65B9\u306F\u73FE\u72B6yukicoder\u3067\u3057\u304B\u52D5\u304B\
+    \u306A\u3044\u306E\u3067\u3001\u4ED6\u306E\u30B5\u30A4\u30C8\u3067\u306Finstanceof\u3067\
+    \u66F8\u3044\u3066\u3042\u308B\n\t * @param obj\n\t */\n\tprivate final void p(final\
     \ Object obj) {\n\t\tswitch(obj) {\n\t\t\tcase int[] a: Arrays.stream(a).forEach(this::out);\
     \ break;\n\t\t\tcase long[] a: Arrays.stream(a).forEach(this::out); break;\n\t\
     \t\tcase double[] a: Arrays.stream(a).forEach(this::out); break;\n\t\t\tcase boolean[]\
@@ -820,7 +823,7 @@ data:
   - Java/yukicoder.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-04-25 18:18:36+09:00'
+  timestamp: '2024-04-26 13:24:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyPrinter.java
