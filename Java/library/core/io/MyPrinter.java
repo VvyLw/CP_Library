@@ -184,6 +184,10 @@ public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
 		}
 		newLine();
 	}
+	/**
+	 * switch文の書き方は現状yukicoderでしか動かないので、他のサイトではinstanceofで書いてある
+	 * @param obj
+	 */
 	private final void p(final Object obj) {
 		switch(obj) {
 			case int[] a: Arrays.stream(a).forEach(this::out); break;
