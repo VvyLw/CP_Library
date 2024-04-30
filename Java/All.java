@@ -910,6 +910,9 @@ class Utility {
 	protected static final double[] second(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i -> i.second).toArray(); }
 	protected static final IntStream iota(final int n){ return IntStream.range(0, n); }
 	protected static final IntStream iota(final int n, final int init){ return IntStream.range(0 + init, n + init); }
+	protected static final Integer[] boxed(final int[] a){ return Arrays.stream(a).boxed().toArray(Integer[]::new); }
+	protected static final Long[] boxed(final long[] a){ return Arrays.stream(a).boxed().toArray(Long[]::new); }
+	protected static final Double[] boxed(final double[] a){ return Arrays.stream(a).boxed().toArray(Double[]::new); }
 	protected static final int bins(int ok, int ng, final IntPredicate fn) {
 		while(abs(ok - ng) > 1) {
 			final int mid = (ok + ng) / 2;

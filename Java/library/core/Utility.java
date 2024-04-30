@@ -1585,6 +1585,21 @@ public class Utility {
 	 */
 	public static final IntStream iota(final int n, final int init){ return IntStream.range(0 + init, n + init); }
 	/**
+	 * @param a
+	 * @return int[] -> Integer[]
+	 */
+	protected static final Integer[] boxed(final int[] a){ return Arrays.stream(a).boxed().toArray(Integer[]::new); }
+	/**
+	 * @param a
+	 * @return long[] -> Long[]
+	 */
+	protected static final Long[] boxed(final long[] a){ return Arrays.stream(a).boxed().toArray(Long[]::new); }
+	/**
+	 * @param a
+	 * @return double[] -> Double[]
+	 */
+	protected static final Double[] boxed(final double[] a){ return Arrays.stream(a).boxed().toArray(Double[]::new); }
+	/**
 	 * めぐる式二分探索
 	 * @param ok
 	 * @param ng
