@@ -1,5 +1,7 @@
 package library.ds;
 
+import java.util.stream.IntStream;
+
 /**
  * AVL木
  * TreeSetだが、O(log n)で任意のインデックスの要素にアクセスできる
@@ -135,13 +137,14 @@ public final class AVLTree<T extends Comparable<? super T>> {
 	 * @return AVL木のサイズ
 	 */
 	public final int size(){ return root.size; }
+	@SuppressWarnings("unchecked")
+	public final T[] toArray(){ return (T[]) IntStream.range(0, root.size).mapToObj(this::get).toArray(); }
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(get(0));
 		for(int i = 0; ++i < root.size;) {
-			sb.append(" ");
-			sb.append(get(i));
+			sb.append(", " + get(i));
 		}
 		return "[" + sb.toString() + "]";
 	}

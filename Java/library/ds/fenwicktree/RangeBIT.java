@@ -1,5 +1,7 @@
 package library.ds.fenwicktree;
 
+import java.util.stream.IntStream;
+
 /**
  * Range Add Range Sum
  * 区間加算, 区間和
@@ -63,13 +65,14 @@ public final class RangeBIT {
 		r--;
 		return a.sum(r) * r + b.sum(r) - a.sum(l) * l - b.sum(l);
 	}
+	public final long[] toArray(){ return IntStream.range(0, n).mapToLong(this::get).toArray(); }
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(get(0));
 		for(int i = 0; ++i < n;) {
-			sb.append(" " + get(i));
+			sb.append(", " + get(i));
 		}
-		return sb.toString();
+		return "[" + sb.toString() + "]";
 	}
 }

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.function.BiFunction;
 import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
+import java.util.stream.IntStream;
 
 /**
  * 遅延セグ木
@@ -284,13 +285,15 @@ public class LazySegmentTree<T, U extends Comparable<? super U>> {
 	 * 要素をリセットする
 	 */
 	public final void clear(){ Arrays.fill(data, e); }
+	@SuppressWarnings("unchecked")
+	public final T[] toArray(){ return (T[]) IntStream.range(0, n).mapToObj(this::get).toArray(); }
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(get(0));
 		for(int i = 0; ++i < n;) {
-			sb.append(" " + get(i));
+			sb.append(", " + get(i));
 		}
-		return sb.toString();
+		return "[" + sb.toString() + "]";
 	}
 }

@@ -1,6 +1,7 @@
 package library.ds.deque;
 
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.NoSuchElementException;
 
 /**
@@ -26,7 +27,7 @@ public final class IntDeque {
 	 */
 	public IntDeque(final int[] a) {
 		this(a.length);
-		Arrays.stream(a).forEach(i -> add(i));
+		Arrays.stream(a).forEach(this::add);
 	}
 	/**
 	 * コンストラクタ
@@ -34,7 +35,7 @@ public final class IntDeque {
 	 */
 	public IntDeque(final long[] a) {
 		this(a.length);
-		Arrays.stream(a).forEach(i -> add(i));
+		Arrays.stream(a).forEach(this::add);
 	}
 	private final int next(final int index) {
 		final int next = index + 1;
@@ -192,7 +193,11 @@ public final class IntDeque {
 	/**
 	 * @return 配列化したDeque
 	 */
-	public final long[] toArray(){ return Arrays.copyOf(buf, size()); }
+	public final long[] toArray() {
+		final long[] array = new long[size()];
+		arraycopy(0, array, 0, size());
+		return array;
+	}
 	@Override
 	public final String toString(){ return Arrays.toString(toArray()); }
 }

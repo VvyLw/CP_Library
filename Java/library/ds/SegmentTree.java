@@ -162,6 +162,8 @@ public final class SegmentTree<T> {
 		}
 		return Math.min(i - n, fini);
 	}
+	@SuppressWarnings("unchecked")
+	public final T[] toArray(){ return (T[]) IntStream.range(0, fini).mapToObj(i -> get(i)).toArray(); }
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
@@ -169,6 +171,6 @@ public final class SegmentTree<T> {
 		for(int i = 0; ++i < fini;) {
 			sb.append(" " + get(i));
 		}
-		return sb.toString();
+		return "[" + sb.toString() + "]";
 	}
 }

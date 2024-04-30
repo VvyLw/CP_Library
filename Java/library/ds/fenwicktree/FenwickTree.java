@@ -115,13 +115,14 @@ public final class FenwickTree {
 		}
 		return x;
 	}
+	public final long[] toArray(){ return IntStream.rangeClosed(0, n).mapToLong(this::sum).toArray(); }
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(sum(0));
 		for(int i = 0; ++i < n - 2;) {
-			sb.append(" " + sum(i));
+			sb.append(", " + sum(i));
 		}
-		return sb.toString();
+		return "[" + sb.toString() + "]";
 	}
 }
