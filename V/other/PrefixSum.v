@@ -10,4 +10,4 @@ pub fn asum(a []i64) Asum {
 	return Asum{ acc: s }
 }
 fn (a Asum) str() string { return '${a.acc}' }
-pub fn (a Asum) query(l int, r int) i64 { return a.acc[r]-a.acc[l] }
+pub fn (a Asum) sum(l int, r int) i64 { return a.acc[r]-a.acc[l] }
