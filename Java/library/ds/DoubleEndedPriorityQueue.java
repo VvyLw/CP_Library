@@ -1,7 +1,9 @@
 package library.ds;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 /**
  * DoubleEndedPriorityQueue
@@ -14,8 +16,8 @@ public final class DoubleEndedPriorityQueue<T extends Number> {
 	 * コンストラクタ
 	 * @param d
 	 */
-	public DoubleEndedPriorityQueue(final ArrayList<T> d) {
-		this.d = d;
+	public DoubleEndedPriorityQueue(final T[] d) {
+		this.d = (ArrayList<T>) Arrays.stream(d).collect(Collectors.toList());
 		makeHeap();
 	}
 	private final void makeHeap() {
