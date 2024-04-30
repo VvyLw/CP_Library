@@ -169,7 +169,7 @@ public final class SegmentTree<T> {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(get(0));
 		for(int i = 0; ++i < fini;) {
-			sb.append(" " + get(i));
+			sb.append(", " + get(i));
 		}
 		return "[" + sb.toString() + "]";
 	}
