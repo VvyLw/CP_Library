@@ -99,21 +99,20 @@ public final class SegmentTree<T> {
 		for(; h <= rank; h++) {
 			if(((i >> h) & 1) != 0) {
 				final T val2 = op.apply(val, (T) dat[i >> (h ^ 1)]);
-				if(fn.test(val2)){
+				if(fn.test(val2)) {
 					i -= 1 << h;
 					if(i == n) {
 						return 0;
 					}
 					val = val2;
-				}
-				else {
+				} else {
 					break;
 				}
 			}
 		}
 		for(; h-- > 0;) {
 			final T val2 = op.apply(val, (T) dat[(i >> h) - 1]);
-			if(fn.test(val2)){
+			if(fn.test(val2)) {
 				i -= 1 << h;
 				if(i == n) {
 					return 0;
@@ -138,14 +137,13 @@ public final class SegmentTree<T> {
 		for(; h <= rank; h++) {
 			if(((i >> h) & 1) != 0) {
 				final T val2 = op.apply(val, (T) dat[i >> h]);
-				if(fn.test(val2)){
+				if(fn.test(val2)) {
 					i += 1 << h;
 					if(i == n * 2) {
 						return fini;
 					}
 					val = val2;
-				}
-				else {
+				} else {
 					break;
 				}
 			}

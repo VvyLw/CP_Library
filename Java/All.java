@@ -3773,18 +3773,18 @@ final class SuffixArray extends ArrayList<Integer> {
 	}
 }
 
-final class Deque<T> implements Iterable<T> {
+final class MyDeque<T> implements Iterable<T> {
 	private int n, head, tail;
 	private Object[] buf;
-	Deque(){ this(1 << 17); }
-	private Deque(final int n) {
+	MyDeque(){ this(1 << 17); }
+	private MyDeque(final int n) {
 		this.n = n;
 		head = tail = 0;
 		buf = new Object[n];
 	}
-	Deque(final T[] a) {
+	MyDeque(final T[] a) {
 		this(a.length);
-		Arrays.stream(a).forEach(i -> add(i));
+		Arrays.stream(a).forEach(this::add);
 	}
 	private final int next(final int index) {
 		final int next = index + 1;
@@ -3931,11 +3931,11 @@ final class IntDeque {
 	}
 	IntDeque(final int[] a) {
 		this(a.length);
-		Arrays.stream(a).forEach(i -> add(i));
+		Arrays.stream(a).forEach(this::add);
 	}
 	IntDeque(final long[] a) {
 		this(a.length);
-		Arrays.stream(a).forEach(i -> add(i));
+		Arrays.stream(a).forEach(this::add);
 	}
 	private final int next(final int index) {
 		final int next = index + 1;
@@ -3974,10 +3974,10 @@ final class IntDeque {
 		return size < 0 ? size + n : size;
 	}
 	final void addFirst(final long x) {
-		head = prev(head);
-		if(head == tail) {
+		if(prev(head) == tail) {
 			extend();
 		}
+		head = prev(head);
 		buf[head] = x;
 	}
 	final void addLast(final long x) {
@@ -4029,7 +4029,11 @@ final class IntDeque {
 		buf[j] = num;
 	}
 	final void clear(){ head = tail = 0; }
-	final long[] toArray(){ return Arrays.copyOf(buf, size()); }
+	final long[] toArray() {
+		final long[] array = new long[size()];
+		arraycopy(0, array, 0, size());
+		return array;
+	}
 	@Override
 	public final String toString(){ return Arrays.toString(toArray()); }
 }
@@ -4142,13 +4146,14 @@ final class AVLTree<T extends Comparable<? super T>> {
 	final T get(final int k){ return find(root, k).val; }
 	final int count(final T val){ return cnt(root, val); }
 	final int size(){ return root.size; }
+	@SuppressWarnings("unchecked")
+	final T[] toArray(){ return (T[]) IntStream.range(0, root.size).mapToObj(this::get).toArray(); }
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(get(0));
 		for(int i = 0; ++i < root.size;) {
-			sb.append(" ");
-			sb.append(get(i));
+			sb.append(", " + get(i));
 		}
 		return "[" + sb.toString() + "]";
 	}
@@ -4156,8 +4161,8 @@ final class AVLTree<T extends Comparable<? super T>> {
 
 final class DoubleEndedPriorityQueue<T extends Number> {
 	private final ArrayList<T> d;
-	DoubleEndedPriorityQueue(final ArrayList<T> d) {
-		this.d = d;
+	DoubleEndedPriorityQueue(final T[] d) {
+		this.d = (ArrayList<T>) Arrays.stream(d).collect(Collectors.toList());
 		makeHeap();
 	}
 	private final void makeHeap() {
@@ -4315,14 +4320,15 @@ final class FenwickTree {
 		}
 		return x;
 	}
+	public final long[] toArray(){ return IntStream.rangeClosed(0, n).mapToLong(this::sum).toArray(); }
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(sum(0));
 		for(int i = 0; ++i < n - 2;) {
-			sb.append(" " + sum(i));
+			sb.append(", " + sum(i));
 		}
-		return sb.toString();
+		return "[" + sb.toString() + "]";
 	}
 }
 final class RangeBIT {
@@ -4357,14 +4363,15 @@ final class RangeBIT {
 		r--;
 		return a.sum(r) * r + b.sum(r) - a.sum(l) * l - b.sum(l);
 	}
+	public final long[] toArray(){ return IntStream.range(0, n).mapToLong(this::get).toArray(); }
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(get(0));
 		for(int i = 0; ++i < n;) {
-			sb.append(" " + get(i));
+			sb.append(", " + get(i));
 		}
-		return sb.toString();
+		return "[" + sb.toString() + "]";
 	}
 }
 
@@ -4424,21 +4431,20 @@ final class SegmentTree<T> {
 		for(; h <= rank; h++) {
 			if(((i >> h) & 1) != 0) {
 				final T val2 = op.apply(val, (T) dat[i >> (h ^ 1)]);
-				if(fn.test(val2)){
+				if(fn.test(val2)) {
 					i -= 1 << h;
 					if(i == n) {
 						return 0;
 					}
 					val = val2;
-				}
-				else {
+				} else {
 					break;
 				}
 			}
 		}
 		for(; h-- > 0;) {
 			final T val2 = op.apply(val, (T) dat[(i >> h) - 1]);
-			if(fn.test(val2)){
+			if(fn.test(val2)) {
 				i -= 1 << h;
 				if(i == n) {
 					return 0;
@@ -4458,14 +4464,13 @@ final class SegmentTree<T> {
 		for(; h <= rank; h++) {
 			if(((i >> h) & 1) != 0){
 				final T val2 = op.apply(val, (T) dat[i >> h]);
-				if(fn.test(val2)){
+				if(fn.test(val2)) {
 					i += 1 << h;
 					if(i == n * 2) {
 						return fini;
 					}
 					val = val2;
-				}
-				else {
+				} else {
 					break;
 				}
 			}
@@ -4482,14 +4487,16 @@ final class SegmentTree<T> {
 		}
 		return min(i - n, fini);
 	}
+	@SuppressWarnings("unchecked")
+	final T[] toArray(){ return (T[]) IntStream.range(0, fini).mapToObj(this::get).toArray(); }
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(get(0));
 		for(int i = 0; ++i < fini;) {
-			sb.append(" " + get(i));
+			sb.append(", " + get(i));
 		}
-		return sb.toString();
+		return "[" + sb.toString() + "]";
 	}
 }
 
@@ -4703,14 +4710,16 @@ class LazySegmentTree<T, U extends Comparable<? super U>> {
 		return -1;
 	}
 	final void clear(){ Arrays.fill(data, e); }
+	@SuppressWarnings("unchecked")
+	public final T[] toArray(){ return (T[]) IntStream.range(0, n).mapToObj(this::get).toArray(); }
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(get(0));
 		for(int i = 0; ++i < n;) {
-			sb.append(" " + get(i));
+			sb.append(", " + get(i));
 		}
-		return sb.toString();
+		return "[" + sb.toString() + "]";
 	}
 }
 final class Zwei<T> implements Cloneable {
@@ -4863,14 +4872,16 @@ final class DualSegmentTree<T> {
 		thrust(k += sz);
 		return (T) lazy[k];
 	}
+	@SuppressWarnings("unchecked")
+	public final T[] toArray(){ return (T[]) IntStream.range(0, n).mapToObj(this::get).toArray(); }
 	@Override
 	public final String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(get(0));
 		for(int i = 0; ++i < n;) {
-			sb.append(" " + get(i));
+			sb.append(", " + get(i));
 		}
-		return sb.toString();
+		return "[" + sb.toString() + "]";
 	}
 }
 
