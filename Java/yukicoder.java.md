@@ -953,25 +953,28 @@ data:
     \ -> i.second).toArray(); }\n\tprotected static final IntStream iota(final int\
     \ n){ return IntStream.range(0, n); }\n\tprotected static final IntStream iota(final\
     \ int n, final int init){ return IntStream.range(0 + init, n + init); }\n\tprotected\
-    \ static final int bins(int ok, int ng, final IntPredicate fn) {\n\t\twhile(abs(ok\
-    \ - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\
-    \t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\
-    \treturn ok;\n\t}\n\tprotected static final long bins(long ok, long ng, final\
-    \ LongPredicate fn) {\n\t\twhile(abs(ok - ng) > 1) {\n\t\t\tfinal long mid = (ok\
-    \ + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse\
-    \ {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static\
-    \ final double bins(double ok, double ng, final DoublePredicate fn) {\n\t\twhile(abs(ok\
-    \ - ng) > VvyLw.EPS) {\n\t\t\tfinal double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid))\
-    \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
-    }\n\t\treturn ok;\n\t}\n\tprotected static final Map<Integer, Integer> counter(final\
-    \ int[] a) {\n\t\tfinal Map<Integer, Integer> res = new HashMap<>();\n\t\tfor(final\
-    \ int i: a) {\n\t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static final Map<Long, Integer> counter(final long[] a) {\n\t\
-    \tfinal Map<Long, Integer> res = new HashMap<>();\n\t\tfor(final long i: a) {\n\
-    \t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
-    \ static final long innerProd(final IntPair... p){ return iota(p.length).mapToLong(i\
-    \ -> p[i].first.longValue() * p[i].second.longValue()).sum(); }\n\tprotected static\
-    \ final double innerProd(final FloatPair... p){ return iota(p.length).mapToDouble(i\
+    \ static final Integer[] boxed(final int[] a){ return Arrays.stream(a).boxed().toArray(Integer[]::new);\
+    \ }\n\tprotected static final Long[] boxed(final long[] a){ return Arrays.stream(a).boxed().toArray(Long[]::new);\
+    \ }\n\tprotected static final Double[] boxed(final double[] a){ return Arrays.stream(a).boxed().toArray(Double[]::new);\
+    \ }\n\tprotected static final int bins(int ok, int ng, final IntPredicate fn)\
+    \ {\n\t\twhile(abs(ok - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\
+    \tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\
+    \t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final long bins(long ok,\
+    \ long ng, final LongPredicate fn) {\n\t\twhile(abs(ok - ng) > 1) {\n\t\t\tfinal\
+    \ long mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\
+    \t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\t\
+    protected static final double bins(double ok, double ng, final DoublePredicate\
+    \ fn) {\n\t\twhile(abs(ok - ng) > VvyLw.EPS) {\n\t\t\tfinal double mid = (ok +\
+    \ ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\
+    \t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final\
+    \ Map<Integer, Integer> counter(final int[] a) {\n\t\tfinal Map<Integer, Integer>\
+    \ res = new HashMap<>();\n\t\tfor(final int i: a) {\n\t\t\tres.merge(i, 1, (x,\
+    \ y) -> x + y);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final Map<Long,\
+    \ Integer> counter(final long[] a) {\n\t\tfinal Map<Long, Integer> res = new HashMap<>();\n\
+    \t\tfor(final long i: a) {\n\t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\
+    \treturn res;\n\t}\n\tprotected static final long innerProd(final IntPair... p){\
+    \ return iota(p.length).mapToLong(i -> p[i].first.longValue() * p[i].second.longValue()).sum();\
+    \ }\n\tprotected static final double innerProd(final FloatPair... p){ return iota(p.length).mapToDouble(i\
     \ -> p[i].first.doubleValue() * p[i].second.doubleValue()).sum(); }\n\tprotected\
     \ static final FloatPair intersection(final IntPair a, final long sec1, final\
     \ IntPair b, final long sec2) {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.second.longValue()\
@@ -1502,7 +1505,7 @@ data:
   - Java/library/core/Main.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-04-26 13:24:03+09:00'
+  timestamp: '2024-04-30 20:12:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder.java

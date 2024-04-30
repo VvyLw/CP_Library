@@ -1269,13 +1269,20 @@ data:
     \ <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L449\"\
     >Lady_sANDy::iot</a>\n\t */\n\tpublic static final IntStream iota(final int n,\
     \ final int init){ return IntStream.range(0 + init, n + init); }\n\t/**\n\t *\
-    \ \u3081\u3050\u308B\u5F0F\u4E8C\u5206\u63A2\u7D22\n\t * @param ok\n\t * @param\
-    \ ng\n\t * @param fn\n\t * @see #lowerBound\n\t * @see #upperBound\n\t */\n\t\
-    protected static final int bins(int ok, int ng, final IntPredicate fn) {\n\t\t\
-    while(Math.abs(ok - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid))\
-    \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
-    }\n\t\treturn ok;\n\t}\n\t/**\n\t * \u3081\u3050\u308B\u5F0F\u4E8C\u5206\u63A2\
-    \u7D22\n\t * @param ok\n\t * @param ng\n\t * @param fn\n\t * @see <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L696\"\
+    \ @param a\n\t * @return int[] -> Integer[]\n\t */\n\tprotected static final Integer[]\
+    \ boxed(final int[] a){ return Arrays.stream(a).boxed().toArray(Integer[]::new);\
+    \ }\n\t/**\n\t * @param a\n\t * @return long[] -> Long[]\n\t */\n\tprotected static\
+    \ final Long[] boxed(final long[] a){ return Arrays.stream(a).boxed().toArray(Long[]::new);\
+    \ }\n\t/**\n\t * @param a\n\t * @return double[] -> Double[]\n\t */\n\tprotected\
+    \ static final Double[] boxed(final double[] a){ return Arrays.stream(a).boxed().toArray(Double[]::new);\
+    \ }\n\t/**\n\t * \u3081\u3050\u308B\u5F0F\u4E8C\u5206\u63A2\u7D22\n\t * @param\
+    \ ok\n\t * @param ng\n\t * @param fn\n\t * @see #lowerBound\n\t * @see #upperBound\n\
+    \t */\n\tprotected static final int bins(int ok, int ng, final IntPredicate fn)\
+    \ {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\
+    \t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng\
+    \ = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\t/**\n\t * \u3081\u3050\u308B\u5F0F\
+    \u4E8C\u5206\u63A2\u7D22\n\t * @param ok\n\t * @param ng\n\t * @param fn\n\t *\
+    \ @see <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L696\"\
     >Heileden::bins</a>\n\t */\n\tprotected static final long bins(long ok, long ng,\
     \ final LongPredicate fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal long\
     \ mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\
@@ -1585,7 +1592,7 @@ data:
   - Java/yukicoder.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-04-26 13:24:03+09:00'
+  timestamp: '2024-04-30 20:12:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

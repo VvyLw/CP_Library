@@ -587,28 +587,29 @@ data:
     )\n\tpublic final int findLeft(final int r, final Predicate<T> fn) {\n\t\tif(r\
     \ == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint h = 0, i = r + n;\n\t\tT val = e;\n\
     \t\tfor(; h <= rank; h++) {\n\t\t\tif(((i >> h) & 1) != 0) {\n\t\t\t\tfinal T\
-    \ val2 = op.apply(val, (T) dat[i >> (h ^ 1)]);\n\t\t\t\tif(fn.test(val2)){\n\t\
+    \ val2 = op.apply(val, (T) dat[i >> (h ^ 1)]);\n\t\t\t\tif(fn.test(val2)) {\n\t\
     \t\t\t\ti -= 1 << h;\n\t\t\t\t\tif(i == n) {\n\t\t\t\t\t\treturn 0;\n\t\t\t\t\t\
-    }\n\t\t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\t\
-    }\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\tfinal T val2 = op.apply(val, (T)\
-    \ dat[(i >> h) - 1]);\n\t\t\tif(fn.test(val2)){\n\t\t\t\ti -= 1 << h;\n\t\t\t\t\
-    if(i == n) {\n\t\t\t\t\treturn 0;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t}\n\t\
-    \t}\n\t\treturn i - n;\n\t}\n\t/**\n\t * \u7279\u5B9A\u306E\u6761\u4EF6\u3092\u6E80\
+    }\n\t\t\t\t\tval = val2;\n\t\t\t\t} else {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\
+    }\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\tfinal T val2 = op.apply(val, (T) dat[(i\
+    \ >> h) - 1]);\n\t\t\tif(fn.test(val2)) {\n\t\t\t\ti -= 1 << h;\n\t\t\t\tif(i\
+    \ == n) {\n\t\t\t\t\treturn 0;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t}\n\t\t\
+    }\n\t\treturn i - n;\n\t}\n\t/**\n\t * \u7279\u5B9A\u306E\u6761\u4EF6\u3092\u6E80\
     \u305F\u3059\u6700\u3082\u53F3\u306E\u4F4D\u7F6E\u3092\u63A2\u3059\n\t * @param\
     \ l\n\t * @param fn\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic final\
     \ int findRight(final int l, final Predicate<T> fn) {\n\t\tif(l == fini) {\n\t\
     \t\treturn fini;\n\t\t}\n\t\tint h = 0, i = l + n;\n\t\tT val = e;\n\t\tfor(;\
     \ h <= rank; h++) {\n\t\t\tif(((i >> h) & 1) != 0) {\n\t\t\t\tfinal T val2 = op.apply(val,\
-    \ (T) dat[i >> h]);\n\t\t\t\tif(fn.test(val2)){\n\t\t\t\t\ti += 1 << h;\n\t\t\t\
-    \t\tif(i == n * 2) {\n\t\t\t\t\t\treturn fini;\n\t\t\t\t\t}\n\t\t\t\t\tval = val2;\n\
-    \t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(;\
+    \ (T) dat[i >> h]);\n\t\t\t\tif(fn.test(val2)) {\n\t\t\t\t\ti += 1 << h;\n\t\t\
+    \t\t\tif(i == n * 2) {\n\t\t\t\t\t\treturn fini;\n\t\t\t\t\t}\n\t\t\t\t\tval =\
+    \ val2;\n\t\t\t\t} else {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(;\
     \ h-- > 0;) {\n\t\t\tfinal T val2 = op.apply(val, (T) dat[i>>h]);\n\t\t\tif(fn.test(val2))\
     \ {\n\t\t\t\ti += 1 << h;\n\t\t\t\tif(i == n * 2) {\n\t\t\t\t\treturn fini;\n\t\
     \t\t\t}\n\t\t\t\tval = val2;\n\t\t\t}\n\t\t}\n\t\treturn Math.min(i - n, fini);\n\
-    \t}\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
-    \ sb = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i <\
-    \ fini;) {\n\t\t\tsb.append(\" \" + get(i));\n\t\t}\n\t\treturn sb.toString();\n\
-    \t}\n}"
+    \t}\n\t@SuppressWarnings(\"unchecked\")\n\tpublic final T[] toArray(){ return\
+    \ (T[]) IntStream.range(0, fini).mapToObj(i -> get(i)).toArray(); }\n\t@Override\n\
+    \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
+    \t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < fini;) {\n\t\t\tsb.append(\"\
+    , \" + get(i));\n\t\t}\n\t\treturn \"[\" + sb.toString() + \"]\";\n\t}\n}"
   dependsOn:
   - Java/CodeForces.java
   - Java/library/graph/LowestCommonAncestor.java
@@ -793,7 +794,7 @@ data:
   - Java/yukicoder.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-04-26 13:24:03+09:00'
+  timestamp: '2024-04-30 20:12:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/SegmentTree.java

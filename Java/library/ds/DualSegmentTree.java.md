@@ -553,7 +553,8 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/ds/DualSegmentTree.java\n"
   code: "package library.ds;\n\nimport java.util.Arrays;\nimport java.util.function.BinaryOperator;\n\
-    \n/**\n * \u53CC\u5BFE\u30BB\u30B0\u6728\n * @param <T>\n * @see <a href=\"https://ei1333.github.io/library/structure/segment-tree/dual-segment-tree.hpp\"\
+    import java.util.stream.IntStream;\n\n/**\n * \u53CC\u5BFE\u30BB\u30B0\u6728\n\
+    \ * @param <T>\n * @see <a href=\"https://ei1333.github.io/library/structure/segment-tree/dual-segment-tree.hpp\"\
     >\u53C2\u8003\u5143</a>\n */\npublic final class DualSegmentTree<T> {\n\tprivate\
     \ final int n;\n\tprivate int sz, h;\n\tprivate final Object[] lazy;\n\tprivate\
     \ final T id;\n\tprivate final BinaryOperator<T> ap;\n\t@SuppressWarnings(\"unchecked\"\
@@ -576,9 +577,11 @@ data:
     \ lazy[r], x);\n\t\t\t}\n\t\t}\n\t}\n\t/**\n\t * @param k\n\t * @return k\u756A\
     \u76EE\u306E\u8981\u7D20\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic\
     \ final T get(int k) {\n\t\tthrust(k += sz);\n\t\treturn (T) lazy[k];\n\t}\n\t\
-    @Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder sb = new\
-    \ StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\t\
-    \t\tsb.append(\" \" + get(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
+    @SuppressWarnings(\"unchecked\")\n\tpublic final T[] toArray(){ return (T[]) IntStream.range(0,\
+    \ n).mapToObj(this::get).toArray(); }\n\t@Override\n\tpublic final String toString()\
+    \ {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tsb.append(get(0));\n\
+    \t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\", \" + get(i));\n\t\t}\n\t\t\
+    return \"[\" + sb.toString() + \"]\";\n\t}\n}"
   dependsOn:
   - Java/CodeForces.java
   - Java/library/graph/LowestCommonAncestor.java
@@ -763,7 +766,7 @@ data:
   - Java/yukicoder.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-04-26 13:24:03+09:00'
+  timestamp: '2024-04-30 20:12:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/DualSegmentTree.java

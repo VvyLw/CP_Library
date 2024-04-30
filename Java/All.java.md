@@ -964,25 +964,28 @@ data:
     \ -> i.second).toArray(); }\n\tprotected static final IntStream iota(final int\
     \ n){ return IntStream.range(0, n); }\n\tprotected static final IntStream iota(final\
     \ int n, final int init){ return IntStream.range(0 + init, n + init); }\n\tprotected\
-    \ static final int bins(int ok, int ng, final IntPredicate fn) {\n\t\twhile(abs(ok\
-    \ - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\
-    \t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\
-    \treturn ok;\n\t}\n\tprotected static final long bins(long ok, long ng, final\
-    \ LongPredicate fn) {\n\t\twhile(abs(ok - ng) > 1) {\n\t\t\tfinal long mid = (ok\
-    \ + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse\
-    \ {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static\
-    \ final double bins(double ok, double ng, final DoublePredicate fn) {\n\t\twhile(abs(ok\
-    \ - ng) > VvyLw.EPS) {\n\t\t\tfinal double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid))\
-    \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
-    }\n\t\treturn ok;\n\t}\n\tprotected static final Map<Integer, Integer> counter(final\
-    \ int[] a) {\n\t\tfinal Map<Integer, Integer> res = new HashMap<>();\n\t\tfor(final\
-    \ int i: a) {\n\t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprotected static final Map<Long, Integer> counter(final long[] a) {\n\t\
-    \tfinal Map<Long, Integer> res = new HashMap<>();\n\t\tfor(final long i: a) {\n\
-    \t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected\
-    \ static final long innerProd(final IntPair... p){ return iota(p.length).mapToLong(i\
-    \ -> p[i].first.longValue() * p[i].second.longValue()).sum(); }\n\tprotected static\
-    \ final double innerProd(final FloatPair... p){ return iota(p.length).mapToDouble(i\
+    \ static final Integer[] boxed(final int[] a){ return Arrays.stream(a).boxed().toArray(Integer[]::new);\
+    \ }\n\tprotected static final Long[] boxed(final long[] a){ return Arrays.stream(a).boxed().toArray(Long[]::new);\
+    \ }\n\tprotected static final Double[] boxed(final double[] a){ return Arrays.stream(a).boxed().toArray(Double[]::new);\
+    \ }\n\tprotected static final int bins(int ok, int ng, final IntPredicate fn)\
+    \ {\n\t\twhile(abs(ok - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\
+    \tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\
+    \t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final long bins(long ok,\
+    \ long ng, final LongPredicate fn) {\n\t\twhile(abs(ok - ng) > 1) {\n\t\t\tfinal\
+    \ long mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\
+    \t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\t\
+    protected static final double bins(double ok, double ng, final DoublePredicate\
+    \ fn) {\n\t\twhile(abs(ok - ng) > VvyLw.EPS) {\n\t\t\tfinal double mid = (ok +\
+    \ ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\
+    \t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\tprotected static final\
+    \ Map<Integer, Integer> counter(final int[] a) {\n\t\tfinal Map<Integer, Integer>\
+    \ res = new HashMap<>();\n\t\tfor(final int i: a) {\n\t\t\tres.merge(i, 1, (x,\
+    \ y) -> x + y);\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final Map<Long,\
+    \ Integer> counter(final long[] a) {\n\t\tfinal Map<Long, Integer> res = new HashMap<>();\n\
+    \t\tfor(final long i: a) {\n\t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\
+    \treturn res;\n\t}\n\tprotected static final long innerProd(final IntPair... p){\
+    \ return iota(p.length).mapToLong(i -> p[i].first.longValue() * p[i].second.longValue()).sum();\
+    \ }\n\tprotected static final double innerProd(final FloatPair... p){ return iota(p.length).mapToDouble(i\
     \ -> p[i].first.doubleValue() * p[i].second.doubleValue()).sum(); }\n\tprotected\
     \ static final FloatPair intersection(final IntPair a, final long sec1, final\
     \ IntPair b, final long sec2) {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.second.longValue()\
@@ -2019,19 +2022,19 @@ data:
     \ + \":[\" + this.get(i) + \"]\");\n\t\t\tfor(int j = this.get(i); j < vs.length();\
     \ ++j) {\n\t\t\t\tsb.append(\" \" + vs.charAt(j));\n\t\t\t}\n\t\t\tif(i + 1 !=\
     \ this.size()) {\n\t\t\t\tsb.append(\"\\n\");\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\
-    \t}\n}\n\nfinal class Deque<T> implements Iterable<T> {\n\tprivate int n, head,\
-    \ tail;\n\tprivate Object[] buf;\n\tDeque(){ this(1 << 17); }\n\tprivate Deque(final\
+    \t}\n}\n\nfinal class MyDeque<T> implements Iterable<T> {\n\tprivate int n, head,\
+    \ tail;\n\tprivate Object[] buf;\n\tMyDeque(){ this(1 << 17); }\n\tprivate MyDeque(final\
     \ int n) {\n\t\tthis.n = n;\n\t\thead = tail = 0;\n\t\tbuf = new Object[n];\n\t\
-    }\n\tDeque(final T[] a) {\n\t\tthis(a.length);\n\t\tArrays.stream(a).forEach(i\
-    \ -> add(i));\n\t}\n\tprivate final int next(final int index) {\n\t\tfinal int\
-    \ next = index + 1;\n\t\treturn next == n ? 0 : next;\n\t}\n\tprivate final int\
-    \ prev(final int index) {\n\t\tfinal int prev = index - 1;\n\t\treturn prev ==\
-    \ -1 ? n - 1 : prev;\n\t}\n\tprivate final int index(final int i) {\n\t\tfinal\
-    \ int size = size();\n\t\tassert i < size;\n\t\tfinal int id = head + i;\n\t\t\
-    return n <= id ? id - n : id;\n\t}\n\tprivate final void arraycopy(final int fromId,\
-    \ final T[] a, final int from, final int len) {\n\t\tassert fromId + len <= size();\n\
-    \t\tfinal int h = index(fromId);\n\t\tif(h + len < n) {\n\t\t\tSystem.arraycopy(buf,\
-    \ h, a, from, len);\n\t\t} else {\n\t\t\tfinal int back = n - h;\n\t\t\tSystem.arraycopy(buf,\
+    }\n\tMyDeque(final T[] a) {\n\t\tthis(a.length);\n\t\tArrays.stream(a).forEach(this::add);\n\
+    \t}\n\tprivate final int next(final int index) {\n\t\tfinal int next = index +\
+    \ 1;\n\t\treturn next == n ? 0 : next;\n\t}\n\tprivate final int prev(final int\
+    \ index) {\n\t\tfinal int prev = index - 1;\n\t\treturn prev == -1 ? n - 1 : prev;\n\
+    \t}\n\tprivate final int index(final int i) {\n\t\tfinal int size = size();\n\t\
+    \tassert i < size;\n\t\tfinal int id = head + i;\n\t\treturn n <= id ? id - n\
+    \ : id;\n\t}\n\tprivate final void arraycopy(final int fromId, final T[] a, final\
+    \ int from, final int len) {\n\t\tassert fromId + len <= size();\n\t\tfinal int\
+    \ h = index(fromId);\n\t\tif(h + len < n) {\n\t\t\tSystem.arraycopy(buf, h, a,\
+    \ from, len);\n\t\t} else {\n\t\t\tfinal int back = n - h;\n\t\t\tSystem.arraycopy(buf,\
     \ h, a, from, back);\n\t\t\tSystem.arraycopy(buf, 0, a, from + back, len - back);\n\
     \t\t}\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tprivate final void extend()\
     \ {\n\t\tfinal Object[] tmp = new Object[n << 1];\n\t\tarraycopy(0, (T[]) tmp,\
@@ -2073,24 +2076,24 @@ data:
     \ + 1) % n;\n\t\t\trem++;\n\t\t}\n\t}\n}\nfinal class IntDeque {\n\tprivate int\
     \ n, head, tail;\n\tprivate long[] buf;\n\tIntDeque(){ this(1 << 17); }\n\tprivate\
     \ IntDeque(final int n) {\n\t\tthis.n = n;\n\t\thead = tail = 0;\n\t\tbuf = new\
-    \ long[n];\n\t}\n\tIntDeque(final int[] a) {\n\t\tthis(a.length);\n\t\tArrays.stream(a).forEach(i\
-    \ -> add(i));\n\t}\n\tIntDeque(final long[] a) {\n\t\tthis(a.length);\n\t\tArrays.stream(a).forEach(i\
-    \ -> add(i));\n\t}\n\tprivate final int next(final int index) {\n\t\tfinal int\
-    \ next = index + 1;\n\t\treturn next == n ? 0 : next;\n\t}\n\tprivate final int\
-    \ prev(final int index) {\n\t\tfinal int prev = index - 1;\n\t\treturn prev ==\
-    \ -1 ? n - 1 : prev;\n\t}\n\tprivate final int index(final int i) {\n\t\tfinal\
-    \ int size = size();\n\t\tassert i < size;\n\t\tfinal int id = head + i;\n\t\t\
-    return n <= id ? id - n : id;\n\t}\n\tprivate final void arraycopy(final int fromId,\
-    \ final long[] a, final int from, final int len) {\n\t\tassert fromId + len <=\
-    \ size();\n\t\tfinal int h = index(fromId);\n\t\tif(h + len < n) {\n\t\t\tSystem.arraycopy(buf,\
-    \ h, a, from, len);\n\t\t} else {\n\t\t\tfinal int back = n - h;\n\t\t\tSystem.arraycopy(buf,\
+    \ long[n];\n\t}\n\tIntDeque(final int[] a) {\n\t\tthis(a.length);\n\t\tArrays.stream(a).forEach(this::add);\n\
+    \t}\n\tIntDeque(final long[] a) {\n\t\tthis(a.length);\n\t\tArrays.stream(a).forEach(this::add);\n\
+    \t}\n\tprivate final int next(final int index) {\n\t\tfinal int next = index +\
+    \ 1;\n\t\treturn next == n ? 0 : next;\n\t}\n\tprivate final int prev(final int\
+    \ index) {\n\t\tfinal int prev = index - 1;\n\t\treturn prev == -1 ? n - 1 : prev;\n\
+    \t}\n\tprivate final int index(final int i) {\n\t\tfinal int size = size();\n\t\
+    \tassert i < size;\n\t\tfinal int id = head + i;\n\t\treturn n <= id ? id - n\
+    \ : id;\n\t}\n\tprivate final void arraycopy(final int fromId, final long[] a,\
+    \ final int from, final int len) {\n\t\tassert fromId + len <= size();\n\t\tfinal\
+    \ int h = index(fromId);\n\t\tif(h + len < n) {\n\t\t\tSystem.arraycopy(buf, h,\
+    \ a, from, len);\n\t\t} else {\n\t\t\tfinal int back = n - h;\n\t\t\tSystem.arraycopy(buf,\
     \ h, a, from, back);\n\t\t\tSystem.arraycopy(buf, 0, a, from + back, len - back);\n\
     \t\t}\n\t}\n\tprivate final void extend() {\n\t\tfinal long[] tmp = new long[n\
     \ << 1];\n\t\tarraycopy(0, tmp, 0, size());\n\t\tbuf = tmp;\n\t\tn = buf.length;\n\
     \t}\n\tfinal boolean isEmpty(){ return size() == 0; }\n\tfinal int size() {\n\t\
     \tfinal int size = tail - head;\n\t\treturn size < 0 ? size + n : size;\n\t}\n\
-    \tfinal void addFirst(final long x) {\n\t\thead = prev(head);\n\t\tif(head ==\
-    \ tail) {\n\t\t\textend();\n\t\t}\n\t\tbuf[head] = x;\n\t}\n\tfinal void addLast(final\
+    \tfinal void addFirst(final long x) {\n\t\tif(prev(head) == tail) {\n\t\t\textend();\n\
+    \t\t}\n\t\thead = prev(head);\n\t\tbuf[head] = x;\n\t}\n\tfinal void addLast(final\
     \ long x) {\n\t\tif(next(tail) == head) {\n\t\t\textend();\n\t\t}\n\t\tbuf[tail]\
     \ = x;\n\t\ttail = next(tail);\n\t}\n\tfinal void removeFirst() {\n\t\tif(head\
     \ == tail) {\n\t\t\tthrow new NoSuchElementException(\"Deque is empty\");\n\t\t\
@@ -2108,8 +2111,9 @@ data:
     \ long peek(){ return peekFirst(); }\n\tfinal void swap(final int a, final int\
     \ b) {\n\t\tfinal int i = index(a);\n\t\tfinal int j = index(b);\n\t\tfinal long\
     \ num = buf[i];\n\t\tbuf[i] = buf[j];\n\t\tbuf[j] = num;\n\t}\n\tfinal void clear(){\
-    \ head = tail = 0; }\n\tfinal long[] toArray(){ return Arrays.copyOf(buf, size());\
-    \ }\n\t@Override\n\tpublic final String toString(){ return Arrays.toString(toArray());\
+    \ head = tail = 0; }\n\tfinal long[] toArray() {\n\t\tfinal long[] array = new\
+    \ long[size()];\n\t\tarraycopy(0, array, 0, size());\n\t\treturn array;\n\t}\n\
+    \t@Override\n\tpublic final String toString(){ return Arrays.toString(toArray());\
     \ }\n}\n\nfinal class AVLTree<T extends Comparable<? super T>> {\n\tstatic final\
     \ class Node<T extends Comparable<? super T>> {\n\t\tT val;\n\t\t@SuppressWarnings(\"\
     unchecked\")\n\t\tNode<T>[] ch = new Node[2];\n\t\tint dep, size;\n\t\tNode(final\
@@ -2151,33 +2155,34 @@ data:
     \ cnt(root, val), val); }\n\tfinal void remove(final int k){ root = erase(root,\
     \ k); }\n\tfinal T get(final int k){ return find(root, k).val; }\n\tfinal int\
     \ count(final T val){ return cnt(root, val); }\n\tfinal int size(){ return root.size;\
-    \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
-    \ sb = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i <\
-    \ root.size;) {\n\t\t\tsb.append(\" \");\n\t\t\tsb.append(get(i));\n\t\t}\n\t\t\
-    return \"[\" + sb.toString() + \"]\";\n\t}\n}\n\nfinal class DoubleEndedPriorityQueue<T\
+    \ }\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T[] toArray(){ return (T[]) IntStream.range(0,\
+    \ root.size).mapToObj(this::get).toArray(); }\n\t@Override\n\tpublic final String\
+    \ toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tsb.append(get(0));\n\
+    \t\tfor(int i = 0; ++i < root.size;) {\n\t\t\tsb.append(\", \" + get(i));\n\t\t\
+    }\n\t\treturn \"[\" + sb.toString() + \"]\";\n\t}\n}\n\nfinal class DoubleEndedPriorityQueue<T\
     \ extends Number> {\n\tprivate final ArrayList<T> d;\n\tDoubleEndedPriorityQueue(final\
-    \ ArrayList<T> d) {\n\t\tthis.d = d;\n\t\tmakeHeap();\n\t}\n\tprivate final void\
-    \ makeHeap() {\n\t\tfor(int i = d.size(); i-- > 0;) {\n\t\t\tif (i % 2 == 1 &&\
-    \ d.get(i - 1).longValue() < d.get(i).longValue()) {\n\t\t\t\tCollections.swap(d,\
-    \ i - 1, i);\n\t\t\t}\n\t\t\tup(down(i), i);\n\t\t}\n\t}\n\tprivate final int\
-    \ down(int k) {\n\t\tfinal int n = d.size();\n\t\tif(k % 2 == 1) {\n\t\t\twhile(2\
-    \ * k + 1 < n) {\n\t\t\t\tint c = 2 * k + 3;\n\t\t\t\tif(n <= c || d.get(c - 2).longValue()\
-    \ < d.get(c).longValue()) {\n\t\t\t\t\t c -= 2;\n\t\t\t\t}\n\t\t\t\tif(c < n &&\
-    \ d.get(c).longValue() < d.get(k).longValue()) {\n\t\t\t\t\tCollections.swap(d,\
+    \ T[] d) {\n\t\tthis.d = (ArrayList<T>) Arrays.stream(d).collect(Collectors.toList());\n\
+    \t\tmakeHeap();\n\t}\n\tprivate final void makeHeap() {\n\t\tfor(int i = d.size();\
+    \ i-- > 0;) {\n\t\t\tif (i % 2 == 1 && d.get(i - 1).longValue() < d.get(i).longValue())\
+    \ {\n\t\t\t\tCollections.swap(d, i - 1, i);\n\t\t\t}\n\t\t\tup(down(i), i);\n\t\
+    \t}\n\t}\n\tprivate final int down(int k) {\n\t\tfinal int n = d.size();\n\t\t\
+    if(k % 2 == 1) {\n\t\t\twhile(2 * k + 1 < n) {\n\t\t\t\tint c = 2 * k + 3;\n\t\
+    \t\t\tif(n <= c || d.get(c - 2).longValue() < d.get(c).longValue()) {\n\t\t\t\t\
+    \t c -= 2;\n\t\t\t\t}\n\t\t\t\tif(c < n && d.get(c).longValue() < d.get(k).longValue())\
+    \ {\n\t\t\t\t\tCollections.swap(d, k, c);\n\t\t\t\t\tk = c;\n\t\t\t\t}\n\t\t\t\
+    \telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t} else {\n\t\t\twhile(2 *\
+    \ k + 2 < n) {\n\t\t\t\tint c = 2 * k + 4;\n\t\t\t\tif(n <= c || d.get(c).longValue()\
+    \ < d.get(c - 2).longValue()) {\n\t\t\t\t\tc -= 2;\n\t\t\t\t}\n\t\t\t\tif(c <\
+    \ n && d.get(k).longValue() < d.get(c).longValue()) {\n\t\t\t\t\tCollections.swap(d,\
     \ k, c);\n\t\t\t\t\tk = c;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\
-    \t}\n\t\t\t}\n\t\t} else {\n\t\t\twhile(2 * k + 2 < n) {\n\t\t\t\tint c = 2 *\
-    \ k + 4;\n\t\t\t\tif(n <= c || d.get(c).longValue() < d.get(c - 2).longValue())\
-    \ {\n\t\t\t\t\tc -= 2;\n\t\t\t\t}\n\t\t\t\tif(c < n && d.get(k).longValue() <\
-    \ d.get(c).longValue()) {\n\t\t\t\t\tCollections.swap(d, k, c);\n\t\t\t\t\tk =\
-    \ c;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
-    \t\treturn k;\n\t}\n\tprivate final int up(int k, final int root) {\n\t\tif((k\
-    \ | 1) < d.size() && d.get(k & ~1).longValue() < d.get(k | 1).longValue()) {\n\
-    \t\t\tCollections.swap(d, k & ~1, k | 1);\n\t\t\tk ^= 1;\n\t\t}\n\t\tint p;\n\t\
-    \twhile(root < k && d.get(p = parent(k)).longValue() < d.get(k).longValue()) {\n\
-    \t\t\tCollections.swap(d, p, k);\n\t\t\tk = p;\n\t\t}\n\t\twhile(root < k && d.get(k).longValue()\
-    \ < d.get(p = parent(k) | 1).longValue()) {\n\t\t\tCollections.swap(d, p, k);\n\
-    \t\t\tk = p;\n\t\t}\n\t\treturn k;\n\t}\n\tprivate final int parent(final int\
-    \ k){ return ((k >> 1) - 1) & ~1; }\n\tprivate final void popBack(final ArrayList<T>\
+    \t}\n\t\t\t}\n\t\t}\n\t\treturn k;\n\t}\n\tprivate final int up(int k, final int\
+    \ root) {\n\t\tif((k | 1) < d.size() && d.get(k & ~1).longValue() < d.get(k |\
+    \ 1).longValue()) {\n\t\t\tCollections.swap(d, k & ~1, k | 1);\n\t\t\tk ^= 1;\n\
+    \t\t}\n\t\tint p;\n\t\twhile(root < k && d.get(p = parent(k)).longValue() < d.get(k).longValue())\
+    \ {\n\t\t\tCollections.swap(d, p, k);\n\t\t\tk = p;\n\t\t}\n\t\twhile(root < k\
+    \ && d.get(k).longValue() < d.get(p = parent(k) | 1).longValue()) {\n\t\t\tCollections.swap(d,\
+    \ p, k);\n\t\t\tk = p;\n\t\t}\n\t\treturn k;\n\t}\n\tprivate final int parent(final\
+    \ int k){ return ((k >> 1) - 1) & ~1; }\n\tprivate final void popBack(final ArrayList<T>\
     \ d){ d.remove(d.size() - 1); } \n\tfinal void push(final T x) {\n\t\tfinal int\
     \ k = d.size();\n\t\td.add(x);\n\t\tup(k, 1);\n\t}\n\tfinal T popMin() {\n\t\t\
     final T res = getMin();\n\t\tif(d.size() < 3) {\n\t\t\tpopBack(d); \n\t\t} else\
@@ -2207,78 +2212,83 @@ data:
     \ int upperBound(long w) {\n\t\tif(w < 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x\
     \ = 0;\n\t\tfor(int k = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1\
     \ && data[x + k] <= w) {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\
-    \t\t}\n\t\treturn x;\n\t}\n\t@Override\n\tpublic final String toString() {\n\t\
-    \tfinal StringBuilder sb = new StringBuilder();\n\t\tsb.append(sum(0));\n\t\t\
-    for(int i = 0; ++i < n - 2;) {\n\t\t\tsb.append(\" \" + sum(i));\n\t\t}\n\t\t\
-    return sb.toString();\n\t}\n}\nfinal class RangeBIT {\n\tprivate final int n;\n\
-    \tprivate final FenwickTree a, b;\n\tRangeBIT(final int n) {\n\t\tthis.n = n;\n\
-    \t\ta = new FenwickTree(n + 1);\n\t\tb = new FenwickTree(n + 1);\n\t}\n\tRangeBIT(final\
-    \ int[] arr) {\n\t\tthis(arr.length);\n\t\tfor(int i = 0; i < arr.length; ++i)\
-    \ {\n\t\t\tadd(i, i, arr[i]);\n\t\t}\n\t}\n\tRangeBIT(final long[] arr) {\n\t\t\
-    this(arr.length);\n\t\tfor(int i = 0; i < arr.length; ++i) {\n\t\t\tadd(i, i,\
-    \ arr[i]);\n\t\t}\n\t}\n\tfinal void add(final int l, final int r, final long\
-    \ x) {\n\t\ta.add(l, x);\n\t\ta.add(r, -x);\n\t\tb.add(l, x * (1 - l));\n\t\t\
-    b.add(r, x * (r - 1));\n\t}\n\tfinal long get(final int i){ return sum(i, i +\
-    \ 1); }\n\tfinal long sum(int l, int r) {\n\t\tl--;\n\t\tr--;\n\t\treturn a.sum(r)\
-    \ * r + b.sum(r) - a.sum(l) * l - b.sum(l);\n\t}\n\t@Override\n\tpublic final\
-    \ String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\t\
-    sb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\" \" + get(i));\n\
-    \t\t}\n\t\treturn sb.toString();\n\t}\n}\n\nfinal class SegmentTree<T> {\n\tprivate\
-    \ int n = 1, rank = 0;\n\tprivate final int fini;\n\tprivate final BinaryOperator<T>\
-    \ op;\n\tprivate final T e;\n\tprivate final Object[] dat;\n\tSegmentTree(final\
-    \ int fini, final BinaryOperator<T> op, final T e) {\n\t\tthis.fini = fini;\n\t\
-    \tthis.op = op;\n\t\tthis.e = e;\n\t\twhile(this.fini > n) {\n\t\t\tn <<= 1;\n\
-    \t\t\trank++;\n\t\t}\n\t\tdat = new Object[2 * n];\n\t\tArrays.fill(dat, e);\n\
-    \t}\n\tSegmentTree(final T[] a, final BinaryOperator<T> op, final T e) {\n\t\t\
-    this(a.length, op, e);\n\t\tIntStream.range(0, a.length).forEach(i -> update(i,\
-    \ a[i]));\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tfinal void update(int i,\
-    \ final T x) {\n\t\ti += n;\n\t\tdat[i] = x;\n\t\tdo {\n\t\t\ti >>= 1;\n\t\t\t\
-    dat[i] = op.apply((T) dat[2 * i], (T) dat[2 * i + 1]);\n\t\t} while(i > 0);\n\t\
-    }\n\tfinal T get(final int i){ return query(i, i + 1); }\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tfinal T query(int a, int b) {\n\t\tT l = e, r = e;\n\t\tfor(a\
-    \ += n, b += n; a < b; a >>= 1, b >>= 1) {\n\t\t\tif(a % 2 == 1) {\n\t\t\t\tl\
-    \ = op.apply(l, (T) dat[a++]);\n\t\t\t}\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tr = op.apply((T)\
-    \ dat[--b], r);\n\t\t\t}\n\t\t}\n\t\treturn op.apply(l, r);\n\t}\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tfinal T all(){ return (T) dat[1]; }\n\t@SuppressWarnings(\"unchecked\"\
-    )\n\tfinal int findLeft(final int r, final Predicate<T> fn) {\n\t\tif(r == 0)\
-    \ {\n\t\t\treturn 0;\n\t\t}\n\t\tint h = 0, i = r + n;\n\t\tT val = e;\n\t\tfor(;\
-    \ h <= rank; h++) {\n\t\t\tif(((i >> h) & 1) != 0) {\n\t\t\t\tfinal T val2 = op.apply(val,\
-    \ (T) dat[i >> (h ^ 1)]);\n\t\t\t\tif(fn.test(val2)){\n\t\t\t\t\ti -= 1 << h;\n\
+    \t\t}\n\t\treturn x;\n\t}\n\tpublic final long[] toArray(){ return IntStream.rangeClosed(0,\
+    \ n).mapToLong(this::sum).toArray(); }\n\t@Override\n\tpublic final String toString()\
+    \ {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tsb.append(sum(0));\n\
+    \t\tfor(int i = 0; ++i < n - 2;) {\n\t\t\tsb.append(\", \" + sum(i));\n\t\t}\n\
+    \t\treturn \"[\" + sb.toString() + \"]\";\n\t}\n}\nfinal class RangeBIT {\n\t\
+    private final int n;\n\tprivate final FenwickTree a, b;\n\tRangeBIT(final int\
+    \ n) {\n\t\tthis.n = n;\n\t\ta = new FenwickTree(n + 1);\n\t\tb = new FenwickTree(n\
+    \ + 1);\n\t}\n\tRangeBIT(final int[] arr) {\n\t\tthis(arr.length);\n\t\tfor(int\
+    \ i = 0; i < arr.length; ++i) {\n\t\t\tadd(i, i, arr[i]);\n\t\t}\n\t}\n\tRangeBIT(final\
+    \ long[] arr) {\n\t\tthis(arr.length);\n\t\tfor(int i = 0; i < arr.length; ++i)\
+    \ {\n\t\t\tadd(i, i, arr[i]);\n\t\t}\n\t}\n\tfinal void add(final int l, final\
+    \ int r, final long x) {\n\t\ta.add(l, x);\n\t\ta.add(r, -x);\n\t\tb.add(l, x\
+    \ * (1 - l));\n\t\tb.add(r, x * (r - 1));\n\t}\n\tfinal long get(final int i){\
+    \ return sum(i, i + 1); }\n\tfinal long sum(int l, int r) {\n\t\tl--;\n\t\tr--;\n\
+    \t\treturn a.sum(r) * r + b.sum(r) - a.sum(l) * l - b.sum(l);\n\t}\n\tpublic final\
+    \ long[] toArray(){ return IntStream.range(0, n).mapToLong(this::get).toArray();\
+    \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
+    \ sb = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i <\
+    \ n;) {\n\t\t\tsb.append(\", \" + get(i));\n\t\t}\n\t\treturn \"[\" + sb.toString()\
+    \ + \"]\";\n\t}\n}\n\nfinal class SegmentTree<T> {\n\tprivate int n = 1, rank\
+    \ = 0;\n\tprivate final int fini;\n\tprivate final BinaryOperator<T> op;\n\tprivate\
+    \ final T e;\n\tprivate final Object[] dat;\n\tSegmentTree(final int fini, final\
+    \ BinaryOperator<T> op, final T e) {\n\t\tthis.fini = fini;\n\t\tthis.op = op;\n\
+    \t\tthis.e = e;\n\t\twhile(this.fini > n) {\n\t\t\tn <<= 1;\n\t\t\trank++;\n\t\
+    \t}\n\t\tdat = new Object[2 * n];\n\t\tArrays.fill(dat, e);\n\t}\n\tSegmentTree(final\
+    \ T[] a, final BinaryOperator<T> op, final T e) {\n\t\tthis(a.length, op, e);\n\
+    \t\tIntStream.range(0, a.length).forEach(i -> update(i, a[i]));\n\t}\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tfinal void update(int i, final T x) {\n\t\ti += n;\n\t\tdat[i]\
+    \ = x;\n\t\tdo {\n\t\t\ti >>= 1;\n\t\t\tdat[i] = op.apply((T) dat[2 * i], (T)\
+    \ dat[2 * i + 1]);\n\t\t} while(i > 0);\n\t}\n\tfinal T get(final int i){ return\
+    \ query(i, i + 1); }\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T query(int\
+    \ a, int b) {\n\t\tT l = e, r = e;\n\t\tfor(a += n, b += n; a < b; a >>= 1, b\
+    \ >>= 1) {\n\t\t\tif(a % 2 == 1) {\n\t\t\t\tl = op.apply(l, (T) dat[a++]);\n\t\
+    \t\t}\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tr = op.apply((T) dat[--b], r);\n\t\t\t\
+    }\n\t\t}\n\t\treturn op.apply(l, r);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\
+    \tfinal T all(){ return (T) dat[1]; }\n\t@SuppressWarnings(\"unchecked\")\n\t\
+    final int findLeft(final int r, final Predicate<T> fn) {\n\t\tif(r == 0) {\n\t\
+    \t\treturn 0;\n\t\t}\n\t\tint h = 0, i = r + n;\n\t\tT val = e;\n\t\tfor(; h <=\
+    \ rank; h++) {\n\t\t\tif(((i >> h) & 1) != 0) {\n\t\t\t\tfinal T val2 = op.apply(val,\
+    \ (T) dat[i >> (h ^ 1)]);\n\t\t\t\tif(fn.test(val2)) {\n\t\t\t\t\ti -= 1 << h;\n\
     \t\t\t\t\tif(i == n) {\n\t\t\t\t\t\treturn 0;\n\t\t\t\t\t}\n\t\t\t\t\tval = val2;\n\
-    \t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(;\
-    \ h-- > 0;) {\n\t\t\tfinal T val2 = op.apply(val, (T) dat[(i >> h) - 1]);\n\t\t\
-    \tif(fn.test(val2)){\n\t\t\t\ti -= 1 << h;\n\t\t\t\tif(i == n) {\n\t\t\t\t\treturn\
-    \ 0;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t}\n\t\t}\n\t\treturn i - n;\n\t}\n\
-    \t@SuppressWarnings(\"unchecked\")\n\tfinal int findRight(final int l, final Predicate<T>\
-    \ fn) {\n\t\tif(l == fini) {\n\t\t\treturn fini;\n\t\t}\n\t\tint h = 0, i = l\
-    \ + n;\n\t\tT val = e;\n\t\tfor(; h <= rank; h++) {\n\t\t\tif(((i >> h) & 1) !=\
-    \ 0){\n\t\t\t\tfinal T val2 = op.apply(val, (T) dat[i >> h]);\n\t\t\t\tif(fn.test(val2)){\n\
-    \t\t\t\t\ti += 1 << h;\n\t\t\t\t\tif(i == n * 2) {\n\t\t\t\t\t\treturn fini;\n\
-    \t\t\t\t\t}\n\t\t\t\t\tval = val2;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tbreak;\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\tfinal T val2 = op.apply(val,\
-    \ (T) dat[i >> h]);\n\t\t\tif(fn.test(val2)) {\n\t\t\t\ti += 1 << h;\n\t\t\t\t\
-    if(i == n * 2) {\n\t\t\t\t\treturn fini;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\
-    \t}\n\t\t}\n\t\treturn min(i - n, fini);\n\t}\n\t@Override\n\tpublic final String\
-    \ toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tsb.append(get(0));\n\
-    \t\tfor(int i = 0; ++i < fini;) {\n\t\t\tsb.append(\" \" + get(i));\n\t\t}\n\t\
-    \treturn sb.toString();\n\t}\n}\n\nclass LazySegmentTree<T, U extends Comparable<?\
-    \ super U>> {\n\tprivate final int n;\n\tprivate int sz, h;\n\tprivate final Object[]\
-    \ data, lazy;\n\tprivate final BinaryOperator<T> f;\n\tprivate final BiFunction<T,\
-    \ U, T> map;\n\tprivate final BinaryOperator<U> comp;\n\tprivate final T e;\n\t\
-    private final U id;\n\t@SuppressWarnings(\"unchecked\")\n\tprivate final void\
-    \ update(final int k){ data[k] = f.apply((T) data[2 * k], (T) data[2 * k + 1]);\
-    \ }\n\t@SuppressWarnings(\"unchecked\")\n\tprivate final void allApply(final int\
-    \ k, final U x) {\n\t\tdata[k] = map.apply((T) data[k], x);\n\t\tif(k < sz) {\n\
-    \t\t\tlazy[k] = comp.apply((U) lazy[k], x);\n\t\t}\n\t}\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tprivate final void propagate(final int k) {\n\t\tif(!lazy[k].equals(id))\
-    \ {\n\t\t\tallApply(2 * k, (U) lazy[k]);\n\t\t\tallApply(2 * k + 1, (U) lazy[k]);\n\
-    \t\t\tlazy[k] = id;\n\t\t}\n\t}\n\tLazySegmentTree(final int n, final BinaryOperator<T>\
-    \ f, final BiFunction<T, U, T> map, final BinaryOperator<U> comp, final T e, final\
-    \ U id) {\n\t\tthis.n = n;\n\t\tthis.f = f;\n\t\tthis.map = map;\n\t\tthis.comp\
-    \ = comp;\n\t\tthis.e = e;\n\t\tthis.id = id;\n\t\tsz = 1;\n\t\th = 0;\n\t\twhile(sz\
-    \ < n) {\n\t\t\tsz <<= 1;\n\t\t\th++;\n\t\t}\n\t\tdata = new Object[2 * sz];\n\
-    \t\tArrays.fill(data, e);\n\t\tlazy = new Object[2 * sz];\n\t\tArrays.fill(lazy,\
-    \ id);\n\t}\n\tLazySegmentTree(final T[] a, final BinaryOperator<T> f, final BiFunction<T,\
+    \t\t\t\t} else {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(; h-- >\
+    \ 0;) {\n\t\t\tfinal T val2 = op.apply(val, (T) dat[(i >> h) - 1]);\n\t\t\tif(fn.test(val2))\
+    \ {\n\t\t\t\ti -= 1 << h;\n\t\t\t\tif(i == n) {\n\t\t\t\t\treturn 0;\n\t\t\t\t\
+    }\n\t\t\t\tval = val2;\n\t\t\t}\n\t\t}\n\t\treturn i - n;\n\t}\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tfinal int findRight(final int l, final Predicate<T> fn) {\n\t\t\
+    if(l == fini) {\n\t\t\treturn fini;\n\t\t}\n\t\tint h = 0, i = l + n;\n\t\tT val\
+    \ = e;\n\t\tfor(; h <= rank; h++) {\n\t\t\tif(((i >> h) & 1) != 0){\n\t\t\t\t\
+    final T val2 = op.apply(val, (T) dat[i >> h]);\n\t\t\t\tif(fn.test(val2)) {\n\t\
+    \t\t\t\ti += 1 << h;\n\t\t\t\t\tif(i == n * 2) {\n\t\t\t\t\t\treturn fini;\n\t\
+    \t\t\t\t}\n\t\t\t\t\tval = val2;\n\t\t\t\t} else {\n\t\t\t\t\tbreak;\n\t\t\t\t\
+    }\n\t\t\t}\n\t\t}\n\t\tfor(; h-- > 0;) {\n\t\t\tfinal T val2 = op.apply(val, (T)\
+    \ dat[i >> h]);\n\t\t\tif(fn.test(val2)) {\n\t\t\t\ti += 1 << h;\n\t\t\t\tif(i\
+    \ == n * 2) {\n\t\t\t\t\treturn fini;\n\t\t\t\t}\n\t\t\t\tval = val2;\n\t\t\t\
+    }\n\t\t}\n\t\treturn min(i - n, fini);\n\t}\n\t@SuppressWarnings(\"unchecked\"\
+    )\n\tfinal T[] toArray(){ return (T[]) IntStream.range(0, fini).mapToObj(this::get).toArray();\
+    \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
+    \ sb = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i <\
+    \ fini;) {\n\t\t\tsb.append(\", \" + get(i));\n\t\t}\n\t\treturn \"[\" + sb.toString()\
+    \ + \"]\";\n\t}\n}\n\nclass LazySegmentTree<T, U extends Comparable<? super U>>\
+    \ {\n\tprivate final int n;\n\tprivate int sz, h;\n\tprivate final Object[] data,\
+    \ lazy;\n\tprivate final BinaryOperator<T> f;\n\tprivate final BiFunction<T, U,\
+    \ T> map;\n\tprivate final BinaryOperator<U> comp;\n\tprivate final T e;\n\tprivate\
+    \ final U id;\n\t@SuppressWarnings(\"unchecked\")\n\tprivate final void update(final\
+    \ int k){ data[k] = f.apply((T) data[2 * k], (T) data[2 * k + 1]); }\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tprivate final void allApply(final int k, final U x) {\n\t\tdata[k]\
+    \ = map.apply((T) data[k], x);\n\t\tif(k < sz) {\n\t\t\tlazy[k] = comp.apply((U)\
+    \ lazy[k], x);\n\t\t}\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tprivate final\
+    \ void propagate(final int k) {\n\t\tif(!lazy[k].equals(id)) {\n\t\t\tallApply(2\
+    \ * k, (U) lazy[k]);\n\t\t\tallApply(2 * k + 1, (U) lazy[k]);\n\t\t\tlazy[k] =\
+    \ id;\n\t\t}\n\t}\n\tLazySegmentTree(final int n, final BinaryOperator<T> f, final\
+    \ BiFunction<T, U, T> map, final BinaryOperator<U> comp, final T e, final U id)\
+    \ {\n\t\tthis.n = n;\n\t\tthis.f = f;\n\t\tthis.map = map;\n\t\tthis.comp = comp;\n\
+    \t\tthis.e = e;\n\t\tthis.id = id;\n\t\tsz = 1;\n\t\th = 0;\n\t\twhile(sz < n)\
+    \ {\n\t\t\tsz <<= 1;\n\t\t\th++;\n\t\t}\n\t\tdata = new Object[2 * sz];\n\t\t\
+    Arrays.fill(data, e);\n\t\tlazy = new Object[2 * sz];\n\t\tArrays.fill(lazy, id);\n\
+    \t}\n\tLazySegmentTree(final T[] a, final BinaryOperator<T> f, final BiFunction<T,\
     \ U, T> map, final BinaryOperator<U> comp, final T e, final U id) {\n\t\tthis(a.length,\
     \ f, map, comp, e, id);\n\t\tbuild(a);\n\t}\n\tfinal void build(final T[] a) {\n\
     \t\tassert n == a.length;\n\t\tfor(int k = 0; k < n; ++k) {\n\t\t\tdata[k + sz]\
@@ -2327,18 +2337,20 @@ data:
     \ {\n\t\t\t\t\t\tsum = nxt;\n\t\t\t\t\t\tr--;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t\
     return r - sz;\n\t\t\t}\n\t\t\tsum = f.apply((T) data[r], sum);\n\t\t} while((r\
     \ & -r) != r);\n\t\treturn -1;\n\t}\n\tfinal void clear(){ Arrays.fill(data, e);\
-    \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
-    \ sb = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i <\
-    \ n;) {\n\t\t\tsb.append(\" \" + get(i));\n\t\t}\n\t\treturn sb.toString();\n\t\
-    }\n}\nfinal class Zwei<T> implements Cloneable {\n\tpublic T first, second;\n\t\
-    private Zwei(final T first, final T second) {\n\t\tthis.first = first;\n\t\tthis.second\
-    \ = second;\n\t}\n\tstatic final <T> Zwei<T> of(final T f, final T s){ return\
-    \ new Zwei<>(f, s); }\n\t@Override\n\tpublic final boolean equals(final Object\
-    \ o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass()\
-    \ != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Zwei<?> z = (Zwei<?>)\
-    \ o;\n\t\treturn first.equals(z.first) && second.equals(z.second);\n\t}\n\t@Override\n\
-    \tpublic final int hashCode(){ return Objects.hash(first, second); }\n\t@Override\n\
-    \tpublic final String toString(){ return String.valueOf(first); }\n\t@SuppressWarnings(\"\
+    \ }\n\t@SuppressWarnings(\"unchecked\")\n\tpublic final T[] toArray(){ return\
+    \ (T[]) IntStream.range(0, n).mapToObj(this::get).toArray(); }\n\t@Override\n\t\
+    public final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
+    \t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\", \"\
+    \ + get(i));\n\t\t}\n\t\treturn \"[\" + sb.toString() + \"]\";\n\t}\n}\nfinal\
+    \ class Zwei<T> implements Cloneable {\n\tpublic T first, second;\n\tprivate Zwei(final\
+    \ T first, final T second) {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\
+    \t}\n\tstatic final <T> Zwei<T> of(final T f, final T s){ return new Zwei<>(f,\
+    \ s); }\n\t@Override\n\tpublic final boolean equals(final Object o) {\n\t\tif(this\
+    \ == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass())\
+    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Zwei<?> z = (Zwei<?>) o;\n\t\treturn\
+    \ first.equals(z.first) && second.equals(z.second);\n\t}\n\t@Override\n\tpublic\
+    \ final int hashCode(){ return Objects.hash(first, second); }\n\t@Override\n\t\
+    public final String toString(){ return String.valueOf(first); }\n\t@SuppressWarnings(\"\
     unchecked\")\n\t@Override\n\tpublic final Zwei<T> clone() {\n\t\ttry {\n\t\t\t\
     return (Zwei<T>) super.clone();\n\t\t} catch(final CloneNotSupportedException\
     \ e){\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow new Error();\n\t}\n}\nfinal\
@@ -2403,24 +2415,26 @@ data:
     \ = ap.apply((T) lazy[l], x);\n\t\t\t\tl++;\n\t\t\t}\n\t\t\tif(r % 2 == 1) {\n\
     \t\t\t\tr--;\n\t\t\t\tlazy[r] = ap.apply((T) lazy[r], x);\n\t\t\t}\n\t\t}\n\t\
     }\n\t@SuppressWarnings(\"unchecked\")\n\tfinal T get(int k) {\n\t\tthrust(k +=\
-    \ sz);\n\t\treturn (T) lazy[k];\n\t}\n\t@Override\n\tpublic final String toString()\
-    \ {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tsb.append(get(0));\n\
-    \t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\" \" + get(i));\n\t\t}\n\t\t\
-    return sb.toString();\n\t}\n}\n\nfinal class SparseTable {\n\tprivate final long[][]\
-    \ st;\n\tprivate final int[] lookup;\n\tprivate final LongBinaryOperator op;\n\
-    \tSparseTable(final int[] a, final LongBinaryOperator op) {\n\t\tthis.op = op;\n\
-    \t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\t\tst =\
-    \ new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\t\t\tst[0][i]\
-    \ = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\tfor(int j = 0; j + (1\
-    \ << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i - 1][j], st[i\
-    \ - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length +\
-    \ 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
-    \ >> 1] + 1;\n\t\t}\n\t}\n\tSparseTable(final long[] a, final LongBinaryOperator\
-    \ op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\
-    \t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length;\
-    \ i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\
-    \tfor(int j = 0; j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i\
-    \ - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
+    \ sz);\n\t\treturn (T) lazy[k];\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\tpublic\
+    \ final T[] toArray(){ return (T[]) IntStream.range(0, n).mapToObj(this::get).toArray();\
+    \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
+    \ sb = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i <\
+    \ n;) {\n\t\t\tsb.append(\", \" + get(i));\n\t\t}\n\t\treturn \"[\" + sb.toString()\
+    \ + \"]\";\n\t}\n}\n\nfinal class SparseTable {\n\tprivate final long[][] st;\n\
+    \tprivate final int[] lookup;\n\tprivate final LongBinaryOperator op;\n\tSparseTable(final\
+    \ int[] a, final LongBinaryOperator op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\
+    \t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 <<\
+    \ b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\
+    \t\tfor(int i = 1; i < b; i++) {\n\t\t\tfor(int j = 0; j + (1 << i) <= (1 << b);\
+    \ j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i - 1][j], st[i - 1][j + (1 <<\
+    \ (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length + 1];\n\t\tfor(int\
+    \ i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i >> 1] + 1;\n\t\t\
+    }\n\t}\n\tSparseTable(final long[] a, final LongBinaryOperator op) {\n\t\tthis.op\
+    \ = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\
+    \t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\t\t\t\
+    st[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\tfor(int j = 0;\
+    \ j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i - 1][j],\
+    \ st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
     \ + 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
     \ >> 1] + 1;\n\t\t}\n\t}\n\tfinal long query(final int l, final int r) {\n\t\t\
     final int b = lookup[r - l];\n\t\treturn op.applyAsLong(st[b][l], st[b][r - (1\
@@ -2695,7 +2709,7 @@ data:
   - Java/library/core/Main.java
   - Java/yukicoder.java
   - Java/AOJ.java
-  timestamp: '2024-04-26 13:24:03+09:00'
+  timestamp: '2024-04-30 20:12:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/All.java

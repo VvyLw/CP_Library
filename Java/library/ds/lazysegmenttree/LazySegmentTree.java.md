@@ -554,7 +554,8 @@ data:
     RuntimeError: bundler is not specified: Java/library/ds/lazysegmenttree/LazySegmentTree.java\n"
   code: "package library.ds.lazysegmenttree;\n\nimport java.util.Arrays;\nimport java.util.function.BiFunction;\n\
     import java.util.function.BinaryOperator;\nimport java.util.function.Predicate;\n\
-    \n/**\n * \u9045\u5EF6\u30BB\u30B0\u6728\n * @see <a href=\"https://ei1333.github.io/library/structure/segment-tree/lazy-segment-tree.hpp\"\
+    import java.util.stream.IntStream;\n\n/**\n * \u9045\u5EF6\u30BB\u30B0\u6728\n\
+    \ * @see <a href=\"https://ei1333.github.io/library/structure/segment-tree/lazy-segment-tree.hpp\"\
     >\u53C2\u8003\u5143</a>\n */\npublic class LazySegmentTree<T, U extends Comparable<?\
     \ super U>> {\n\tprivate final int n;\n\tprivate int sz, h;\n\tprivate final Object[]\
     \ data, lazy;\n\tprivate final BinaryOperator<T> f;\n\tprivate final BiFunction<T,\
@@ -643,10 +644,12 @@ data:
     \ nxt;\n\t\t\t\t\t\tr--;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn r - sz;\n\t\t\
     \t}\n\t\t\tsum = f.apply((T) data[r], sum);\n\t\t} while((r & -r) != r);\n\t\t\
     return -1;\n\t}\n\t/**\n\t * \u8981\u7D20\u3092\u30EA\u30BB\u30C3\u30C8\u3059\u308B\
-    \n\t */\n\tpublic final void clear(){ Arrays.fill(data, e); }\n\t@Override\n\t\
-    public final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
-    \t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\" \"\
-    \ + get(i));\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
+    \n\t */\n\tpublic final void clear(){ Arrays.fill(data, e); }\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tpublic final T[] toArray(){ return (T[]) IntStream.range(0, n).mapToObj(this::get).toArray();\
+    \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
+    \ sb = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i <\
+    \ n;) {\n\t\t\tsb.append(\", \" + get(i));\n\t\t}\n\t\treturn \"[\" + sb.toString()\
+    \ + \"]\";\n\t}\n}"
   dependsOn:
   - Java/CodeForces.java
   - Java/library/graph/LowestCommonAncestor.java
@@ -831,7 +834,7 @@ data:
   - Java/yukicoder.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-04-26 13:24:03+09:00'
+  timestamp: '2024-04-30 20:12:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/lazysegmenttree/LazySegmentTree.java

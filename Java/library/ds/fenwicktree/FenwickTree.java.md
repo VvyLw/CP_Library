@@ -590,10 +590,11 @@ data:
     \ w) {\n\t\tif(w < 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k\
     \ = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <= w)\
     \ {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\
-    \t}\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
+    \t}\n\tpublic final long[] toArray(){ return IntStream.rangeClosed(0, n).mapToLong(this::sum).toArray();\
+    \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
     \ sb = new StringBuilder();\n\t\tsb.append(sum(0));\n\t\tfor(int i = 0; ++i <\
-    \ n - 2;) {\n\t\t\tsb.append(\" \" + sum(i));\n\t\t}\n\t\treturn sb.toString();\n\
-    \t}\n}"
+    \ n - 2;) {\n\t\t\tsb.append(\", \" + sum(i));\n\t\t}\n\t\treturn \"[\" + sb.toString()\
+    \ + \"]\";\n\t}\n}"
   dependsOn:
   - Java/CodeForces.java
   - Java/library/graph/LowestCommonAncestor.java
@@ -778,7 +779,7 @@ data:
   - Java/yukicoder.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-04-26 13:24:03+09:00'
+  timestamp: '2024-04-30 20:12:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/fenwicktree/FenwickTree.java

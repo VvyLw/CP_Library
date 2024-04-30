@@ -552,29 +552,31 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/ds/fenwicktree/RangeBIT.java\n"
-  code: "package library.ds.fenwicktree;\n\n/**\n * Range Add Range Sum\n * \u533A\
-    \u9593\u52A0\u7B97, \u533A\u9593\u548C\n */\npublic final class RangeBIT {\n\t\
-    private final int n;\n\tprivate final FenwickTree a, b;\n\t/**\n\t * \u30B3\u30F3\
-    \u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param n \u30B5\u30A4\u30BA\n\t */\n\tpublic\
-    \ RangeBIT(final int n) {\n\t\tthis.n = n;\n\t\ta = new FenwickTree(n + 1);\n\t\
-    \tb = new FenwickTree(n + 1);\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\
-    \u30AF\u30BF\n\t * @param arr\n\t */\n\tpublic RangeBIT(final int[] arr) {\n\t\
-    \tthis(arr.length);\n\t\tfor(int i = 0; i < arr.length; ++i) {\n\t\t\tadd(i, i,\
-    \ arr[i]);\n\t\t}\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\
-    \n\t * @param arr\n\t */\n\tpublic RangeBIT(final long[] arr) {\n\t\tthis(arr.length);\n\
-    \t\tfor(int i = 0; i < arr.length; ++i) {\n\t\t\tadd(i, i, arr[i]);\n\t\t}\n\t\
-    }\n\t/**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306B\u8981\u7D20\u3092\u52A0\u7B97\
-    \n\t * @param l\n\t * @param r\n\t * @param x\n\t */\n\tpublic final void add(final\
-    \ int l, final int r, final long x) {\n\t\ta.add(l, x);\n\t\ta.add(r, -x);\n\t\
-    \tb.add(l, x * (1 - l));\n\t\tb.add(r, x * (r - 1));\n\t}\n\t/**\n\t * @param\
-    \ i\n\t * @return i\u756A\u76EE\u306E\u8981\u7D20\n\t */\n\tpublic final long\
-    \ get(final int i){ return sum(i, i + 1); }\n\t/**\n\t * @param l\n\t * @param\
-    \ r\n\t * @return \u534A\u958B\u533A\u9593[l, r)\u306E\u548C\n\t */\n\tpublic\
-    \ final long sum(int l, int r) {\n\t\tl--;\n\t\tr--;\n\t\treturn a.sum(r) * r\
-    \ + b.sum(r) - a.sum(l) * l - b.sum(l);\n\t}\n\t@Override\n\tpublic final String\
-    \ toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tsb.append(get(0));\n\
-    \t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\" \" + get(i));\n\t\t}\n\t\t\
-    return sb.toString();\n\t}\n}"
+  code: "package library.ds.fenwicktree;\n\nimport java.util.stream.IntStream;\n\n\
+    /**\n * Range Add Range Sum\n * \u533A\u9593\u52A0\u7B97, \u533A\u9593\u548C\n\
+    \ */\npublic final class RangeBIT {\n\tprivate final int n;\n\tprivate final FenwickTree\
+    \ a, b;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param n\
+    \ \u30B5\u30A4\u30BA\n\t */\n\tpublic RangeBIT(final int n) {\n\t\tthis.n = n;\n\
+    \t\ta = new FenwickTree(n + 1);\n\t\tb = new FenwickTree(n + 1);\n\t}\n\t/**\n\
+    \t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param arr\n\t */\n\tpublic\
+    \ RangeBIT(final int[] arr) {\n\t\tthis(arr.length);\n\t\tfor(int i = 0; i < arr.length;\
+    \ ++i) {\n\t\t\tadd(i, i, arr[i]);\n\t\t}\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\
+    \u30C8\u30E9\u30AF\u30BF\n\t * @param arr\n\t */\n\tpublic RangeBIT(final long[]\
+    \ arr) {\n\t\tthis(arr.length);\n\t\tfor(int i = 0; i < arr.length; ++i) {\n\t\
+    \t\tadd(i, i, arr[i]);\n\t\t}\n\t}\n\t/**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306B\
+    \u8981\u7D20\u3092\u52A0\u7B97\n\t * @param l\n\t * @param r\n\t * @param x\n\t\
+    \ */\n\tpublic final void add(final int l, final int r, final long x) {\n\t\t\
+    a.add(l, x);\n\t\ta.add(r, -x);\n\t\tb.add(l, x * (1 - l));\n\t\tb.add(r, x *\
+    \ (r - 1));\n\t}\n\t/**\n\t * @param i\n\t * @return i\u756A\u76EE\u306E\u8981\
+    \u7D20\n\t */\n\tpublic final long get(final int i){ return sum(i, i + 1); }\n\
+    \t/**\n\t * @param l\n\t * @param r\n\t * @return \u534A\u958B\u533A\u9593[l,\
+    \ r)\u306E\u548C\n\t */\n\tpublic final long sum(int l, int r) {\n\t\tl--;\n\t\
+    \tr--;\n\t\treturn a.sum(r) * r + b.sum(r) - a.sum(l) * l - b.sum(l);\n\t}\n\t\
+    public final long[] toArray(){ return IntStream.range(0, n).mapToLong(this::get).toArray();\
+    \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
+    \ sb = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i <\
+    \ n;) {\n\t\t\tsb.append(\", \" + get(i));\n\t\t}\n\t\treturn \"[\" + sb.toString()\
+    \ + \"]\";\n\t}\n}"
   dependsOn:
   - Java/CodeForces.java
   - Java/library/graph/LowestCommonAncestor.java
@@ -759,7 +761,7 @@ data:
   - Java/yukicoder.java
   - Java/All.java
   - Java/AOJ.java
-  timestamp: '2024-04-26 13:24:03+09:00'
+  timestamp: '2024-04-30 20:12:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/fenwicktree/RangeBIT.java
