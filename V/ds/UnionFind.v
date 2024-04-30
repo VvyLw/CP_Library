@@ -29,7 +29,7 @@ pub fn (mut uf UnionFind) groups() [][]int {
 	n:=uf.par.len
 	mut res:=[][]int{len:n,init:[]int{}}
 	for i in 0..n { res[uf.root(i)]<<i }
-	return res.filter(it.len!=0)
+	return res.filter(it.len>0)
 }
 pub fn is_bipartite(mut uf UnionFind) bool {
 	assert uf.par.len%2==0
