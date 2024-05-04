@@ -32,6 +32,7 @@ public:
             add(a, b);
         }
     }
+    std::vector<edge> get_edge() const { return edges; }
     std::vector<int> all_dist(const int v) {
         std::vector<int> d(this -> size(), -1);
         std::queue<int> q;

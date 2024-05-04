@@ -9,6 +9,7 @@ private:
     using graph<undirected>::edges;
 public:
     w_graph(const int n, const int indexed_ = 1): graph<undirected>(n, indexed_){}
+    using graph<undirected>::get_edge;
     using graph<undirected>::all_dist;
     using graph<undirected>::dist;
     using graph<undirected>::t_sort;
