@@ -42,23 +42,23 @@ data:
     \ a, --id);\r\n            edges.emplace_back(b, a, id++);\r\n        }\r\n  \
     \  }\r\n    void input(const int m) {\r\n        for(int i = 0; i < m; ++i) {\r\
     \n            int a, b;\r\n            std::cin >> a >> b;\r\n            add(a,\
-    \ b);\r\n        }\r\n    }\r\n    std::vector<int> all_dist(const int v) {\r\n\
-    \        std::vector<int> d(this -> size(), -1);\r\n        std::queue<int> q;\r\
-    \n        d[v] = 0;\r\n        q.emplace(v);\r\n        while(q.size()) {\r\n\
-    \            const int tmp = q.front();\r\n            q.pop();\r\n          \
-    \  for(const auto &el: (*this)[tmp]) {\r\n                if(d[el] != -1) {\r\n\
-    \                    continue;\r\n                }\r\n                d[el] =\
-    \ d[tmp] + 1;\r\n                q.emplace(el);\r\n            }\r\n        }\r\
-    \n        return d;\r\n    }\r\n    int dist(const int u, const int v) const {\
-    \ return all_dist(u)[v]; }\r\n    std::vector<int> t_sort() {\r\n        const\
-    \ int n = this -> size();\r\n\t\tstd::vector<int> deg(n);\r\n\t\tfor(int i = 0;\
-    \ i < n; ++i) {\r\n\t\t\tfor(const auto ed: (*this)[i]) {\r\n\t\t\t\tdeg[ed]++;\r\
-    \n\t\t\t}\r\n\t\t}\r\n\t\tstd::stack<int> sk;\r\n\t\tfor(int i = 0; i < n; ++i)\
-    \ {\r\n\t\t\tif(deg[i] == 0) {\r\n\t\t\t\tsk.emplace(i);\r\n\t\t\t}\r\n\t\t}\r\
-    \n\t\tstd::vector<int> ord;\r\n\t\twhile(sk.size()) {\r\n\t\t\tconst auto tmp\
-    \ = sk.top();\r\n            sk.pop();\r\n\t\t\tord.emplace_back(tmp);\r\n\t\t\
-    \tfor(const auto ed: (*this)[tmp]) {\r\n\t\t\t\tif(--deg[ed] == 0) {\r\n\t\t\t\
-    \t\tsk.emplace(ed);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn ord.size()\
+    \ b);\r\n        }\r\n    }\r\n    std::vector<edge> get_edge() const { return\
+    \ edges; }\r\n    std::vector<int> all_dist(const int v) {\r\n        std::vector<int>\
+    \ d(this -> size(), -1);\r\n        std::queue<int> q;\r\n        d[v] = 0;\r\n\
+    \        q.emplace(v);\r\n        while(q.size()) {\r\n            const int tmp\
+    \ = q.front();\r\n            q.pop();\r\n            for(const auto &el: (*this)[tmp])\
+    \ {\r\n                if(d[el] != -1) {\r\n                    continue;\r\n\
+    \                }\r\n                d[el] = d[tmp] + 1;\r\n                q.emplace(el);\r\
+    \n            }\r\n        }\r\n        return d;\r\n    }\r\n    int dist(const\
+    \ int u, const int v) const { return all_dist(u)[v]; }\r\n    std::vector<int>\
+    \ t_sort() {\r\n        const int n = this -> size();\r\n\t\tstd::vector<int>\
+    \ deg(n);\r\n\t\tfor(int i = 0; i < n; ++i) {\r\n\t\t\tfor(const auto ed: (*this)[i])\
+    \ {\r\n\t\t\t\tdeg[ed]++;\r\n\t\t\t}\r\n\t\t}\r\n\t\tstd::stack<int> sk;\r\n\t\
+    \tfor(int i = 0; i < n; ++i) {\r\n\t\t\tif(deg[i] == 0) {\r\n\t\t\t\tsk.emplace(i);\r\
+    \n\t\t\t}\r\n\t\t}\r\n\t\tstd::vector<int> ord;\r\n\t\twhile(sk.size()) {\r\n\t\
+    \t\tconst auto tmp = sk.top();\r\n            sk.pop();\r\n\t\t\tord.emplace_back(tmp);\r\
+    \n\t\t\tfor(const auto ed: (*this)[tmp]) {\r\n\t\t\t\tif(--deg[ed] == 0) {\r\n\
+    \t\t\t\t\tsk.emplace(ed);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn ord.size()\
     \ == size() ? ord : std::vector<int>{};\r\n\t}\r\n    std::vector<edge> cycle()\
     \ {\r\n        const int n = size();\r\n        std::vector<int> used(n);\r\n\
     \        std::vector<edge> pre(n), cycle;\r\n        const auto dfs = [&](const\
@@ -86,18 +86,19 @@ data:
     \ntemplate <bool undirected = true> struct w_graph: graph<undirected> {\nprivate:\n\
     \    using graph<undirected>::indexed;\n    using graph<undirected>::id;\n   \
     \ using graph<undirected>::edges;\npublic:\n    w_graph(const int n, const int\
-    \ indexed_ = 1): graph<undirected>(n, indexed_){}\n    using graph<undirected>::all_dist;\n\
-    \    using graph<undirected>::dist;\n    using graph<undirected>::t_sort;\n  \
-    \  using graph<undirected>::cycle;\n    void add(int a, int b, const long long\
-    \ cost) {\n        a -= indexed, b -= indexed;\n        (*this)[a].emplace_back(a,\
-    \ b, id, cost);\n        edges.emplace_back(a, b, id++, cost);\n        if(undirected)\
-    \ {\n            (*this)[b].emplace_back(b, a, --id, cost);\n            edges.emplace_back(b,\
-    \ a, id++, cost);\n        }\n    }\n    void input(const int m) {\n        for(int\
-    \ i = 0; i < m; ++i) {\n            int a, b;\n            long long c;\n    \
-    \        std::cin >> a >> b >> c;\n            add(a, b, c);\n        }\n    }\n\
-    \    ShortestPath dijkstra(const int v) {\n        std::vector<long long> cst(this\
-    \ -> size(), (1LL << 61) - 1);\n        std::vector<int> src(this -> size(), -1);\n\
-    \        std::priority_queue<std::pair<long long, int>, std::vector<std::pair<long\
+    \ indexed_ = 1): graph<undirected>(n, indexed_){}\n    using graph<undirected>::get_edge;\n\
+    \    using graph<undirected>::all_dist;\n    using graph<undirected>::dist;\n\
+    \    using graph<undirected>::t_sort;\n    using graph<undirected>::cycle;\n \
+    \   void add(int a, int b, const long long cost) {\n        a -= indexed, b -=\
+    \ indexed;\n        (*this)[a].emplace_back(a, b, id, cost);\n        edges.emplace_back(a,\
+    \ b, id++, cost);\n        if(undirected) {\n            (*this)[b].emplace_back(b,\
+    \ a, --id, cost);\n            edges.emplace_back(b, a, id++, cost);\n       \
+    \ }\n    }\n    void input(const int m) {\n        for(int i = 0; i < m; ++i)\
+    \ {\n            int a, b;\n            long long c;\n            std::cin >>\
+    \ a >> b >> c;\n            add(a, b, c);\n        }\n    }\n    ShortestPath\
+    \ dijkstra(const int v) {\n        std::vector<long long> cst(this -> size(),\
+    \ (1LL << 61) - 1);\n        std::vector<int> src(this -> size(), -1);\n     \
+    \   std::priority_queue<std::pair<long long, int>, std::vector<std::pair<long\
     \ long, int>>, std::greater<std::pair<long long, int>>> dj;\n        cst[v] =\
     \ 0;\n        dj.emplace(cst[v], v);\n        while(dj.size()) {\n           \
     \ const auto tmp = dj.top();\n            dj.pop();\n            if(cst[tmp.second]\
@@ -149,7 +150,7 @@ data:
   isVerificationFile: true
   path: test/dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2024-04-02 18:45:24+09:00'
+  timestamp: '2024-05-04 22:54:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/dijkstra.test.cpp

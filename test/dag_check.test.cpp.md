@@ -35,23 +35,23 @@ data:
     \ a, --id);\r\n            edges.emplace_back(b, a, id++);\r\n        }\r\n  \
     \  }\r\n    void input(const int m) {\r\n        for(int i = 0; i < m; ++i) {\r\
     \n            int a, b;\r\n            std::cin >> a >> b;\r\n            add(a,\
-    \ b);\r\n        }\r\n    }\r\n    std::vector<int> all_dist(const int v) {\r\n\
-    \        std::vector<int> d(this -> size(), -1);\r\n        std::queue<int> q;\r\
-    \n        d[v] = 0;\r\n        q.emplace(v);\r\n        while(q.size()) {\r\n\
-    \            const int tmp = q.front();\r\n            q.pop();\r\n          \
-    \  for(const auto &el: (*this)[tmp]) {\r\n                if(d[el] != -1) {\r\n\
-    \                    continue;\r\n                }\r\n                d[el] =\
-    \ d[tmp] + 1;\r\n                q.emplace(el);\r\n            }\r\n        }\r\
-    \n        return d;\r\n    }\r\n    int dist(const int u, const int v) const {\
-    \ return all_dist(u)[v]; }\r\n    std::vector<int> t_sort() {\r\n        const\
-    \ int n = this -> size();\r\n\t\tstd::vector<int> deg(n);\r\n\t\tfor(int i = 0;\
-    \ i < n; ++i) {\r\n\t\t\tfor(const auto ed: (*this)[i]) {\r\n\t\t\t\tdeg[ed]++;\r\
-    \n\t\t\t}\r\n\t\t}\r\n\t\tstd::stack<int> sk;\r\n\t\tfor(int i = 0; i < n; ++i)\
-    \ {\r\n\t\t\tif(deg[i] == 0) {\r\n\t\t\t\tsk.emplace(i);\r\n\t\t\t}\r\n\t\t}\r\
-    \n\t\tstd::vector<int> ord;\r\n\t\twhile(sk.size()) {\r\n\t\t\tconst auto tmp\
-    \ = sk.top();\r\n            sk.pop();\r\n\t\t\tord.emplace_back(tmp);\r\n\t\t\
-    \tfor(const auto ed: (*this)[tmp]) {\r\n\t\t\t\tif(--deg[ed] == 0) {\r\n\t\t\t\
-    \t\tsk.emplace(ed);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn ord.size()\
+    \ b);\r\n        }\r\n    }\r\n    std::vector<edge> get_edge() const { return\
+    \ edges; }\r\n    std::vector<int> all_dist(const int v) {\r\n        std::vector<int>\
+    \ d(this -> size(), -1);\r\n        std::queue<int> q;\r\n        d[v] = 0;\r\n\
+    \        q.emplace(v);\r\n        while(q.size()) {\r\n            const int tmp\
+    \ = q.front();\r\n            q.pop();\r\n            for(const auto &el: (*this)[tmp])\
+    \ {\r\n                if(d[el] != -1) {\r\n                    continue;\r\n\
+    \                }\r\n                d[el] = d[tmp] + 1;\r\n                q.emplace(el);\r\
+    \n            }\r\n        }\r\n        return d;\r\n    }\r\n    int dist(const\
+    \ int u, const int v) const { return all_dist(u)[v]; }\r\n    std::vector<int>\
+    \ t_sort() {\r\n        const int n = this -> size();\r\n\t\tstd::vector<int>\
+    \ deg(n);\r\n\t\tfor(int i = 0; i < n; ++i) {\r\n\t\t\tfor(const auto ed: (*this)[i])\
+    \ {\r\n\t\t\t\tdeg[ed]++;\r\n\t\t\t}\r\n\t\t}\r\n\t\tstd::stack<int> sk;\r\n\t\
+    \tfor(int i = 0; i < n; ++i) {\r\n\t\t\tif(deg[i] == 0) {\r\n\t\t\t\tsk.emplace(i);\r\
+    \n\t\t\t}\r\n\t\t}\r\n\t\tstd::vector<int> ord;\r\n\t\twhile(sk.size()) {\r\n\t\
+    \t\tconst auto tmp = sk.top();\r\n            sk.pop();\r\n\t\t\tord.emplace_back(tmp);\r\
+    \n\t\t\tfor(const auto ed: (*this)[tmp]) {\r\n\t\t\t\tif(--deg[ed] == 0) {\r\n\
+    \t\t\t\t\tsk.emplace(ed);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn ord.size()\
     \ == size() ? ord : std::vector<int>{};\r\n\t}\r\n    std::vector<edge> cycle()\
     \ {\r\n        const int n = size();\r\n        std::vector<int> used(n);\r\n\
     \        std::vector<edge> pre(n), cycle;\r\n        const auto dfs = [&](const\
@@ -79,7 +79,7 @@ data:
   isVerificationFile: true
   path: test/dag_check.test.cpp
   requiredBy: []
-  timestamp: '2024-03-03 06:51:22+09:00'
+  timestamp: '2024-05-04 22:54:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/dag_check.test.cpp
