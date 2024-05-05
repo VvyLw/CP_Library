@@ -5,26 +5,28 @@ import datatypes{Queue,Stack}
 
 pub struct Graph {
 	undirected bool
+	idx int
 mut:
 	g [][]int
 }
 fn (gr Graph) str() string { return '${gr.g}' }
-pub fn graph(n int, gp G_Param) Graph {
+pub fn graph(n int, idx int, undirected bool) Graph {
 	return Graph {
 		g: [][]int{len:n}
-		undirected: gp.dir
+		idx: idx
+		undirected: undirected
 	}
 }
-pub fn (mut gr Graph) add(a int, b int, gp G_Param) {
-	x:=a-gp.idx
-	y:=b-gp.idx
+pub fn (mut gr Graph) add(a int, b int) {
+	x:=a-gr.idx
+	y:=b-gr.idx
 	gr.g[x]<<y
-	if gp.dir{ gr.g[y]<<x }
+	if gr.undirected { gr.g[y]<<x }
 }
-pub fn (mut gr Graph) ing(m int, gp G_Param) {
+pub fn (mut gr Graph) ing(m int) {
 	for _ in 0..m {
 		l:=input('').split(' ').map(it.int())
-		gr.add(l[0],l[1],gp)
+		gr.add(l[0],l[1])
 	}
 }
 pub fn (gr Graph) all_dist(v int) ![]int {
@@ -69,9 +71,4 @@ pub fn (gr Graph) t_sort() ![]int {
 		}
 	}
 	return if ord.len==n {ord} else {[]int{}}
-}
-@[params]
-struct G_Param {
-	idx int=1
-	dir bool=true
 }
