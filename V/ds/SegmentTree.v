@@ -1,6 +1,7 @@
 module ds
 
 import math{min}
+import strings{new_builder}
 
 pub struct SegmentTree[T] {
 	fini int
