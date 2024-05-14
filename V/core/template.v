@@ -66,10 +66,24 @@ pub fn unq[T](a []T) []T {
 	}
 	return res
 }
-pub fn bs[T](a []T, x T) !int { return ar.binary_search(a,x)! }
-pub fn a_find[T](a []T, filt F1[T]) ?T { return ar.find_first(a,filt) }
-pub fn a_filter[T](a []T, filt F2[T]) []T { return ar.filter_indexed(a,filt) }
-pub fn len(s string) int { return s.split('').len }
+pub fn bs[T](a []T, b T) bool {
+	_:=ar.binary_search(a,b) or { return false }
+	return true
+}
+pub fn lb[T](a []T, b T) int { return bins(a.len, -1, fn(x int) bool { return a[x]>=b }) }
+pub fn ub[T](a []T, b T) int { return bins(a.len, -1, fn(x int) bool { return a[x]>b }) }
+pub fn bins[T](ok T, ng T, pred fn(T) bool) T {
+	mut a,mut b:=ok,ng
+	for abs(a-b)>1 {
+		mid:=(a+b)/2
+		if pred(mid) {
+			a=mid
+		} else {
+			b=mid
+		}
+	}
+	return a
+}
 pub fn scope(a i64, x i64, b i64) bool { return a<=x && x<=b }
 pub fn to_ten(s string, base int) !i64 { return s.parse_int(base,64)! }
 pub fn rgxmt(s string, pat string) !bool { r:=re.regex_opt(pat)! return r.matches_string(s) }
