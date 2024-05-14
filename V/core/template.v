@@ -70,19 +70,29 @@ pub fn bs[T](a []T, b T) bool {
 	_:=ar.binary_search(a,b) or { return false }
 	return true
 }
-pub fn lb[T](a []T, b T) int { return bins(a.len, -1, fn(x int) bool { return a[x]>=b }) }
-pub fn ub[T](a []T, b T) int { return bins(a.len, -1, fn(x int) bool { return a[x]>b }) }
-pub fn bins[T](ok T, ng T, pred fn(T) bool) T {
-	mut a,mut b:=ok,ng
-	for abs(a-b)>1 {
-		mid:=(a+b)/2
-		if pred(mid) {
-			a=mid
+pub fn lb[T](a []T, b T) int {
+	mut ok,mut ng:=a.len,-1
+	for math.abs(ok-ng)>1 {
+		mid:=(ok+ng)/2
+		if a[mid]>=b {
+			ok=mid
 		} else {
-			b=mid
+			ng=mid
 		}
 	}
-	return a
+	return ok
+}
+pub fn ub[T](a []T, b T) int {
+	mut ok,mut ng:=a.len,-1
+	for math.abs(ok-ng)>1 {
+		mid:=(ok+ng)/2
+		if a[mid]>b {
+			ok=mid
+		} else {
+			ng=mid
+		}
+	}
+	return ok
 }
 pub fn scope(a i64, x i64, b i64) bool { return a<=x && x<=b }
 pub fn to_ten(s string, base int) !i64 { return s.parse_int(base,64)! }
