@@ -6,7 +6,7 @@ pub struct FenwickTree {
 mut:
 	data []i64
 }
-pub fn new_bit(n int) FenwickTree {
+pub fn FenwickTree.new(n int) FenwickTree {
 	return FenwickTree{
 		n: n+2
 		data: []i64{len:n+3}

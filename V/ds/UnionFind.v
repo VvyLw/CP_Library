@@ -4,7 +4,7 @@ pub struct UnionFind {
 mut:
 	par []int
 }
-pub fn new_uf(n int) UnionFind {
+pub fn UnionFind.new(n int) UnionFind {
 	return UnionFind{
 		par: []int{len:n,init:-1}
 	}

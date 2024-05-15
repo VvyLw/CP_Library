@@ -7,7 +7,7 @@ mut:
 	tail int
 	buf []T
 }
-pub fn new_dq[T](n int) Deque[T] {
+pub fn Deque.new[T](n int) Deque[T] {
 	return Deque[T] {
 		len: n
 		head: 0

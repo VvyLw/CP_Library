@@ -10,7 +10,7 @@ mut:
 	g [][]int
 }
 fn (gr Graph) str() string { return '${gr.g}' }
-pub fn graph(n int, idx int, undirected bool) Graph {
+pub fn Graph.new(n int, idx int, undirected bool) Graph {
 	return Graph {
 		g: [][]int{len:n}
 		idx: idx

@@ -21,7 +21,7 @@ fn (seg SegmentTree[T]) str() string {
 	sb.write_string("]")
 	return sb.str()
 }
-pub fn new_segtree[T](fini int, op fn(T,T) T, e T) SegmentTree[T] {
+pub fn SegmentTree.new[T](fini int, op fn(T,T) T, e T) SegmentTree[T] {
 	mut m:=1
 	mut rk:=0
 	for fini>m {
@@ -37,8 +37,8 @@ pub fn new_segtree[T](fini int, op fn(T,T) T, e T) SegmentTree[T] {
 		dat: []T{len:2*m, init:e}
 	}
 }
-pub fn new_segtree_from_array[T](a []T, op fn(T,T) T, e T) SegmentTree[T] {
-	mut seg:=new_segtree(a.len,op,e)
+pub fn SegmentTree.new_a[T](a []T, op fn(T,T) T, e T) SegmentTree[T] {
+	mut seg:=SegmentTree.new(a.len,op,e)
 	for i,el in a {
 		seg.update(i,el)
 	}

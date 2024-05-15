@@ -5,7 +5,7 @@ mut:
 	par []int
 	weight []i64
 }
-pub fn new_uf_pot(n int) WeightedUnionFind {
+pub fn WeightedUnionFind.new(n int) WeightedUnionFind {
 	return WeightedUnionFind {
 		par: []int{len:n,init:-1}
 		weight: []i64{len:n}
