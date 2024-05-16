@@ -84,7 +84,7 @@ pub fn inv_num[T](a []T) i64 {
 	for i in 0..n {
 		id[b[i]]=i
 	}
-	mut fw:=new_bit(n)
+	mut fw:=FenwickTree.new(n)
 	mut res:=i64(0)
 	for i in 0..n {
 		res+=i-fw.sum(id[a[i]])
