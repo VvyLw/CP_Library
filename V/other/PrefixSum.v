@@ -4,7 +4,7 @@ pub struct Asum {
 mut:
 	acc []i64
 }
-pub fn asum(a []i64) Asum {
+pub fn psum[T](a []T) Asum {
 	mut s:=[i64(0)]
 	for i,el in a { s<<s[i]+el }
 	return Asum{ acc: s }
