@@ -1,7 +1,7 @@
 module core
 
 import os{input}
-import math{min,max}
+import math as ma{min,max}
 import math.big
 import arrays as ar
 import regex as re
@@ -46,8 +46,8 @@ pub fn chmin[T, U](mut a T, b U) bool { jdg:=a>b a=min(a,b) return jdg }
 pub fn chmax[T, U](mut a T, b U) bool { jdg:=a<b a=max(a,b) return jdg }
 pub fn symin(a ...i64) i64 { mut res:=max_i64 for el in a { res=min(res,el) } return res }
 pub fn symax(a ...i64) i64 { mut res:=min_i64 for el in a { res=max(res,el) } return res }
-pub fn sygcd(a []i64) i64 { mut g:=i64(0) for el in a { g=math.gcd(g,el) } return g }
-pub fn sylcm(a []i64) i64 { mut l:=i64(1) for el in a { l=math.lcm(l,el) } return l }
+pub fn sygcd(a []i64) i64 { mut g:=i64(0) for el in a { g=ma.gcd(g,el) } return g }
+pub fn sylcm(a []i64) i64 { mut l:=i64(1) for el in a { l=ma.lcm(l,el) } return l }
 pub fn mod(n i64, m i64) i64 { k:=n%m return if k<0 { k+m } else { k } }
 pub fn large(n i64) big.Integer { return big.integer_from_i64(n) }
 pub fn stol(s string) !big.Integer { return big.integer_from_string(s)! }
