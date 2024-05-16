@@ -12,10 +12,17 @@ pub fn FenwickTree.new(n int) FenwickTree {
 		data: []i64{len:n+3}
 	}
 }
+pub fn FenwickTree.new_a[T](a []T) FenwickTree {
+	mut bit:=FenwickTree.new(a.len)
+	for i,e in a {
+		bit.add(i,i64(e))
+	}
+	return bit
+}
 fn (bit FenwickTree) str() string {
-	mut a:=[]i64{len:bit.n}
-	for i in 0..bit.n {
-		a[i]=bit.get(i)
+	mut a:=[]i64{len:bit.n-2}
+	for i in 0..bit.n-2 {
+		a[i]=bit.sum(i)
 	}
 	return '$a'
 }
