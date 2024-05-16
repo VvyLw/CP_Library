@@ -21,7 +21,7 @@ pub fn si() string { return input('') }
 pub fn ni() int { return si().int() }
 pub fn di() f64 { return si().f64() }
 pub fn bi() i64 { return si().i64() }
-pub fn li() []string { return si().split('') }
+pub fn li() []string { return sa(si()) }
 pub fn lsi() []string { return si().split(' ') }
 pub fn lni() []int { return lsi().map(it.int()) }
 pub fn ldi() []f64 { return lsi().map(it.f64()) }
@@ -40,6 +40,7 @@ pub fn yes(ok bool) string { return yn(ok, "Yes", "No") }
 pub fn no(ok bool) string { return yes(!ok) }
 pub fn toc(n i64) string { return u8(n).ascii_str() }
 pub fn ord(s string) int { return s[0] }
+pub fn sa(s string) []string { return s.split('') }
 pub fn chmin[T, U](mut a T, b U) bool { jdg:=a>b a=min(a,b) return jdg }
 pub fn chmax[T, U](mut a T, b U) bool { jdg:=a<b a=max(a,b) return jdg }
 pub fn symin(a ...i64) i64 { mut res:=max_i64 for el in a { res=min(res,el) } return res }
