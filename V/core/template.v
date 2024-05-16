@@ -41,6 +41,7 @@ pub fn no(ok bool) string { return yes(!ok) }
 pub fn toc(n i64) string { return u8(n).ascii_str() }
 pub fn ord(s string) int { return s[0] }
 pub fn sa(s string) []string { return s.split('') }
+pub fn sas(s []string) string { return s.join('') }
 pub fn chmin[T, U](mut a T, b U) bool { jdg:=a>b a=min(a,b) return jdg }
 pub fn chmax[T, U](mut a T, b U) bool { jdg:=a<b a=max(a,b) return jdg }
 pub fn symin(a ...i64) i64 { mut res:=max_i64 for el in a { res=min(res,el) } return res }
