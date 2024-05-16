@@ -51,14 +51,14 @@ pub fn binom(n i64, r i64) i64 {
 	}
 	return res
 }
-pub fn radix_convert(n i64, radix i8) []int {
+pub fn radix_convert(n i64, radix u8) []u8 {
 	if n==0 {
-		return [0]
+		return [u8(0)]
 	}
 	mut m:=n
-	mut res:=[]int{}
+	mut res:=[]u8{}
 	for m>0 {
-		res<<int(m%radix)
+		res<<u8(m%radix)
 		m/=radix
 	}
 	return res.reverse()
