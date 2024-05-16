@@ -1,6 +1,7 @@
 module graph
 
 import os{input}
+import strings{new_builder}
 import datatypes{Queue,Stack}
 
 pub struct Graph {
@@ -9,7 +10,17 @@ pub struct Graph {
 mut:
 	g [][]int
 }
-fn (gr Graph) str() string { return '${gr.g}' }
+fn (gr Graph) str() string {
+	mut sb:=new_builder(0)
+	n:=gr.g.len
+	for i in 0..n {
+		sb.write_string("$i: ${gr.g[i]}")
+		if i+1<n {
+			sb.write_string("\n")
+		}
+	}
+	return sb.str()
+}
 pub fn Graph.new(n int, idx int, undirected bool) Graph {
 	return Graph {
 		g: [][]int{len:n}
