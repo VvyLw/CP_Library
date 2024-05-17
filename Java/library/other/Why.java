@@ -12,7 +12,7 @@ import library.ds.unionfind.UnionFind;
 import library.graph.Edge;
 
 /**
- * coreパッケージ以外の外部クラス(Pairを除くを使うメソッドが置いてある
+ * coreパッケージ以外の外部クラス(Pairを除くを使うメソッドが置いてある)
  */
 public final class Why {
 	/**
