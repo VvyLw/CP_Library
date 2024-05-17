@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: Java/AOJ.java
-    title: Java/AOJ.java
+    path: Java/aoj/Main.java
+    title: Java/aoj/Main.java
   - icon: ':warning:'
-    path: Java/CodeForces.java
-    title: Java/CodeForces.java
+    path: Java/codeforces/Main.java
+    title: Java/codeforces/Main.java
   - icon: ':warning:'
     path: Java/library/core/Main.java
     title: Java/library/core/Main.java
@@ -269,15 +269,15 @@ data:
     path: Java/library/other/Why.java
     title: Java/library/other/Why.java
   - icon: ':warning:'
-    path: Java/yukicoder.java
-    title: Java/yukicoder.java
+    path: Java/yukicoder/yukicoder.java
+    title: Java/yukicoder/yukicoder.java
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: Java/AOJ.java
-    title: Java/AOJ.java
+    path: Java/aoj/Main.java
+    title: Java/aoj/Main.java
   - icon: ':warning:'
-    path: Java/CodeForces.java
-    title: Java/CodeForces.java
+    path: Java/codeforces/Main.java
+    title: Java/codeforces/Main.java
   - icon: ':warning:'
     path: Java/library/core/Main.java
     title: Java/library/core/Main.java
@@ -540,8 +540,8 @@ data:
     path: Java/library/other/Why.java
     title: Java/library/other/Why.java
   - icon: ':warning:'
-    path: Java/yukicoder.java
-    title: Java/yukicoder.java
+    path: Java/yukicoder/yukicoder.java
+    title: Java/yukicoder/yukicoder.java
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: java
@@ -551,16 +551,16 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/All.java\n"
-  code: "import static java.lang.Math.*;\n\nimport java.io.Closeable;\nimport java.io.Flushable;\n\
-    import java.io.IOException;\nimport java.io.InputStream;\nimport java.io.OutputStream;\n\
-    import java.math.BigInteger;\nimport java.util.ArrayDeque;\nimport java.util.ArrayList;\n\
-    import java.util.Arrays;\nimport java.util.Collection;\nimport java.util.Collections;\n\
-    import java.util.Comparator;\nimport java.util.Formatter;\nimport java.util.HashMap;\n\
-    import java.util.Iterator;\nimport java.util.List;\nimport java.util.Map;\nimport\
-    \ java.util.NoSuchElementException;\nimport java.util.Objects;\nimport java.util.PriorityQueue;\n\
-    import java.util.Queue;\nimport java.util.Random;\nimport java.util.Stack;\nimport\
-    \ java.util.TreeMap;\nimport java.util.function.BiFunction;\nimport java.util.function.BiPredicate;\n\
+    RuntimeError: bundler is not specified: Java/Main.java\n"
+  code: "import static java.lang.Math.*;\n\nimport java.io.Flushable;\nimport java.io.IOException;\n\
+    import java.io.InputStream;\nimport java.io.OutputStream;\nimport java.math.BigInteger;\n\
+    import java.util.ArrayDeque;\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
+    import java.util.Collection;\nimport java.util.Collections;\nimport java.util.Comparator;\n\
+    import java.util.Formatter;\nimport java.util.HashMap;\nimport java.util.Iterator;\n\
+    import java.util.List;\nimport java.util.Map;\nimport java.util.NoSuchElementException;\n\
+    import java.util.Objects;\nimport java.util.PriorityQueue;\nimport java.util.Queue;\n\
+    import java.util.Random;\nimport java.util.Stack;\nimport java.util.TreeMap;\n\
+    import java.util.function.BiFunction;\nimport java.util.function.BiPredicate;\n\
     import java.util.function.BinaryOperator;\nimport java.util.function.Consumer;\n\
     import java.util.function.DoublePredicate;\nimport java.util.function.IntPredicate;\n\
     import java.util.function.IntUnaryOperator;\nimport java.util.function.LongBinaryOperator;\n\
@@ -1107,78 +1107,77 @@ data:
     \ RecursiveIntPredicate rec, final int n);\n}\ninterface RecursiveLongPredicate\
     \ {\n\tboolean test(final RecursiveLongPredicate rec, final long n);\n}\ninterface\
     \ RecursiveDoublePredicate {\n\tboolean test(final RecursiveDoublePredicate rec,\
-    \ final double n);\n}\n\nfinal class IO implements Closeable, AutoCloseable {\n\
-    \tprivate final MyScanner in;\n\tprivate final MyPrinter out, err;\n\tIO(final\
-    \ InputStream in, final OutputStream out, final OutputStream err, final boolean\
-    \ autoFlush) {\n\t\tthis.in = new MyScanner(in);\n\t\tthis.out = new MyPrinter(out,\
-    \ autoFlush);\n\t\tthis.err = new MyPrinter(err, true);\n\t}\n\tfinal int ni(){\
-    \ return in.ni(); }\n\tfinal long nl(){ return in.nl(); }\n\tfinal double nd(){\
-    \ return in.nd(); }\n\tfinal char nc(){ return in.nc(); }\n\tfinal String ns(){\
-    \ return in.ns(); }\n\tfinal char[] nt(){ return in.nt(); }\n\tfinal BigInteger\
-    \ nb(){ return in.nb(); }\n\tfinal IntPair pi(){ return in.pi(); }\n\tfinal FloatPair\
-    \ pf(){ return in.pf(); }\n\tfinal int[] ni(final int n) {\n\t\tfinal int[] a\
-    \ = new int[n];\n\t\tArrays.setAll(a, i -> ni());\n\t\treturn a;\n\t}\n\tfinal\
-    \ int[] ni(final int n, final IntUnaryOperator f){ return Arrays.stream(ni(n)).map(f).toArray();\
-    \ }\n\tfinal long[] nl(final int n) {\n\t\tfinal long[] a = new long[n];\n\t\t\
-    Arrays.setAll(a, i -> nl());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int\
-    \ n, final LongUnaryOperator f){ return Arrays.stream(nl(n)).map(f).toArray();\
-    \ }\n\tfinal double[] nd(final int n) {\n\t\tfinal double[] a = new double[n];\n\
-    \t\tArrays.setAll(a, i -> nd());\n\t\treturn a;\n\t}\n\tfinal char[] nc(final\
-    \ int n) {\n\t\tfinal char[] a = new char[n];\n\t\tIntStream.range(0, n).forEach(i\
-    \ -> a[i] = nc());\n\t\treturn a;\n\t}\n\tfinal String[] ns(final int n) {\n\t\
-    \tfinal String[] a = new String[n];\n\t\tArrays.setAll(a, i -> ns());\n\t\treturn\
-    \ a;\n\t}\n\tfinal char[][] nt(final int n) {\n\t\tfinal char[][] a = new char[n][];\n\
-    \t\tArrays.setAll(a, i -> nt());\n\t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final\
-    \ int n) {\n\t\tfinal BigInteger[] a = new BigInteger[n];\n\t\tArrays.setAll(a,\
-    \ i -> nb());\n\t\treturn a;\n\t}\n\tfinal IntPair[] pi(final int n) {\n\t\tfinal\
-    \ IntPair[] a = new IntPair[n];\n\t\tArrays.setAll(a, i -> pi());\n\t\treturn\
-    \ a;\n\t}\n\tfinal IntPair[] pi(final int n, final UnaryOperator<IntPair> f){\
-    \ return Arrays.stream(pi(n)).map(f).toArray(IntPair[]::new); }\n\tfinal FloatPair[]\
-    \ pf(final int n) {\n\t\tfinal FloatPair[] a = new FloatPair[n];\n\t\tArrays.setAll(a,\
-    \ i -> pf());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final int h, final int w)\
-    \ {\n\t\tfinal int[][] a = new int[h][w];\n\t\tArrays.setAll(a, i -> ni(w));\n\
-    \t\treturn a;\n\t}\n\tfinal long[][] nl(final int h, final int w) {\n\t\tfinal\
-    \ long[][] a = new long[h][w];\n\t\tArrays.setAll(a, i -> nl(w));\n\t\treturn\
-    \ a;\n\t}\n\tfinal double[][] nd(final int h, final int w) {\n\t\tfinal double[][]\
-    \ a = new double[h][w];\n\t\tArrays.setAll(a, i -> nd(w));\n\t\treturn a;\n\t\
-    }\n\tfinal char[][] nc(final int h, final int w) {\n\t\tfinal char[][] a = new\
-    \ char[h][w];\n\t\tArrays.setAll(a, i -> nc(w));\n\t\treturn a;\n\t}\n\tfinal\
-    \ String[][] ns(final int h, final int w) {\n\t\tfinal String[][] a = new String[h][w];\n\
-    \t\tArrays.setAll(a, i -> ns(w));\n\t\treturn a;\n\t}\n\tfinal BigInteger[][]\
-    \ nb(final int h, final int w) {\n\t\tfinal BigInteger[][] a = new BigInteger[h][w];\n\
-    \t\tArrays.setAll(a, i -> nb(w));\n\t\treturn a;\n\t}\n\tfinal String line(){\
-    \ return in.line(); }\n\tfinal void print(final Object arg){ out.print(arg); }\n\
-    \tfinal void printf(final String fmt, final Object... args){ out.printf(fmt, args);\
-    \ }\n\tfinal void out(){ out.out(); }\n\tfinal void out(final Object head, final\
-    \ Object... tail){ out.out(head, tail); }\n\tfinal void out(final int[][] args){\
-    \ IntStream.range(0, args.length).forEach(i -> out(args[i])); }\n\tfinal void\
-    \ out(final long[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i]));\
-    \ }\n\tfinal void out(final double[][] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> out(args[i])); }\n\tfinal void out(final boolean[][] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> out(args[i])); }\n\tfinal void out(final char[][]\
+    \ final double n);\n}\n\nfinal class IO implements AutoCloseable {\n\tprivate\
+    \ final MyScanner in;\n\tprivate final MyPrinter out, err;\n\tIO(final InputStream\
+    \ in, final OutputStream out, final OutputStream err, final boolean autoFlush)\
+    \ {\n\t\tthis.in = new MyScanner(in);\n\t\tthis.out = new MyPrinter(out, autoFlush);\n\
+    \t\tthis.err = new MyPrinter(err, true);\n\t}\n\tfinal int ni(){ return in.ni();\
+    \ }\n\tfinal long nl(){ return in.nl(); }\n\tfinal double nd(){ return in.nd();\
+    \ }\n\tfinal char nc(){ return in.nc(); }\n\tfinal String ns(){ return in.ns();\
+    \ }\n\tfinal char[] nt(){ return in.nt(); }\n\tfinal BigInteger nb(){ return in.nb();\
+    \ }\n\tfinal IntPair pi(){ return in.pi(); }\n\tfinal FloatPair pf(){ return in.pf();\
+    \ }\n\tfinal int[] ni(final int n) {\n\t\tfinal int[] a = new int[n];\n\t\tArrays.setAll(a,\
+    \ i -> ni());\n\t\treturn a;\n\t}\n\tfinal int[] ni(final int n, final IntUnaryOperator\
+    \ f){ return Arrays.stream(ni(n)).map(f).toArray(); }\n\tfinal long[] nl(final\
+    \ int n) {\n\t\tfinal long[] a = new long[n];\n\t\tArrays.setAll(a, i -> nl());\n\
+    \t\treturn a;\n\t}\n\tfinal long[] nl(final int n, final LongUnaryOperator f){\
+    \ return Arrays.stream(nl(n)).map(f).toArray(); }\n\tfinal double[] nd(final int\
+    \ n) {\n\t\tfinal double[] a = new double[n];\n\t\tArrays.setAll(a, i -> nd());\n\
+    \t\treturn a;\n\t}\n\tfinal char[] nc(final int n) {\n\t\tfinal char[] a = new\
+    \ char[n];\n\t\tIntStream.range(0, n).forEach(i -> a[i] = nc());\n\t\treturn a;\n\
+    \t}\n\tfinal String[] ns(final int n) {\n\t\tfinal String[] a = new String[n];\n\
+    \t\tArrays.setAll(a, i -> ns());\n\t\treturn a;\n\t}\n\tfinal char[][] nt(final\
+    \ int n) {\n\t\tfinal char[][] a = new char[n][];\n\t\tArrays.setAll(a, i -> nt());\n\
+    \t\treturn a;\n\t}\n\tfinal BigInteger[] nb(final int n) {\n\t\tfinal BigInteger[]\
+    \ a = new BigInteger[n];\n\t\tArrays.setAll(a, i -> nb());\n\t\treturn a;\n\t\
+    }\n\tfinal IntPair[] pi(final int n) {\n\t\tfinal IntPair[] a = new IntPair[n];\n\
+    \t\tArrays.setAll(a, i -> pi());\n\t\treturn a;\n\t}\n\tfinal IntPair[] pi(final\
+    \ int n, final UnaryOperator<IntPair> f){ return Arrays.stream(pi(n)).map(f).toArray(IntPair[]::new);\
+    \ }\n\tfinal FloatPair[] pf(final int n) {\n\t\tfinal FloatPair[] a = new FloatPair[n];\n\
+    \t\tArrays.setAll(a, i -> pf());\n\t\treturn a;\n\t}\n\tfinal int[][] ni(final\
+    \ int h, final int w) {\n\t\tfinal int[][] a = new int[h][w];\n\t\tArrays.setAll(a,\
+    \ i -> ni(w));\n\t\treturn a;\n\t}\n\tfinal long[][] nl(final int h, final int\
+    \ w) {\n\t\tfinal long[][] a = new long[h][w];\n\t\tArrays.setAll(a, i -> nl(w));\n\
+    \t\treturn a;\n\t}\n\tfinal double[][] nd(final int h, final int w) {\n\t\tfinal\
+    \ double[][] a = new double[h][w];\n\t\tArrays.setAll(a, i -> nd(w));\n\t\treturn\
+    \ a;\n\t}\n\tfinal char[][] nc(final int h, final int w) {\n\t\tfinal char[][]\
+    \ a = new char[h][w];\n\t\tArrays.setAll(a, i -> nc(w));\n\t\treturn a;\n\t}\n\
+    \tfinal String[][] ns(final int h, final int w) {\n\t\tfinal String[][] a = new\
+    \ String[h][w];\n\t\tArrays.setAll(a, i -> ns(w));\n\t\treturn a;\n\t}\n\tfinal\
+    \ BigInteger[][] nb(final int h, final int w) {\n\t\tfinal BigInteger[][] a =\
+    \ new BigInteger[h][w];\n\t\tArrays.setAll(a, i -> nb(w));\n\t\treturn a;\n\t\
+    }\n\tfinal String line(){ return in.line(); }\n\tfinal void print(final Object\
+    \ arg){ out.print(arg); }\n\tfinal void printf(final String fmt, final Object...\
+    \ args){ out.printf(fmt, args); }\n\tfinal void out(){ out.out(); }\n\tfinal void\
+    \ out(final Object head, final Object... tail){ out.out(head, tail); }\n\tfinal\
+    \ void out(final int[][] args){ IntStream.range(0, args.length).forEach(i -> out(args[i]));\
+    \ }\n\tfinal void out(final long[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> out(args[i])); }\n\tfinal void out(final double[][] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> out(args[i])); }\n\tfinal void out(final boolean[][]\
     \ args){ IntStream.range(0, args.length).forEach(i -> out(args[i])); }\n\tfinal\
-    \ void out(final Object[][] args){ IntStream.range(0, args.length).forEach(i ->\
-    \ out(args[i])); }\n\tfinal void outl(final Object head, final Object... tail){\
-    \ out.outl(head, tail); }\n\tfinal void dump(final Object head, final Object...\
-    \ tail){ err.out(head, tail); }\n\tfinal void dump(final int[][] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> dump(args[i])); }\n\tfinal void dump(final long[][]\
+    \ void out(final char[][] args){ IntStream.range(0, args.length).forEach(i ->\
+    \ out(args[i])); }\n\tfinal void out(final Object[][] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> out(args[i])); }\n\tfinal void outl(final Object head,\
+    \ final Object... tail){ out.outl(head, tail); }\n\tfinal void dump(final Object\
+    \ head, final Object... tail){ err.out(head, tail); }\n\tfinal void dump(final\
+    \ int[][] args){ IntStream.range(0, args.length).forEach(i -> dump(args[i]));\
+    \ }\n\tfinal void dump(final long[][] args){ IntStream.range(0, args.length).forEach(i\
+    \ -> dump(args[i])); }\n\tfinal void dump(final double[][] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> dump(args[i])); }\n\tfinal void dump(final boolean[][]\
     \ args){ IntStream.range(0, args.length).forEach(i -> dump(args[i])); }\n\tfinal\
-    \ void dump(final double[][] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> dump(args[i])); }\n\tfinal void dump(final boolean[][] args){ IntStream.range(0,\
-    \ args.length).forEach(i -> dump(args[i])); }\n\tfinal void dump(final char[][]\
-    \ args){ IntStream.range(0, args.length).forEach(i -> dump(args[i])); }\n\tfinal\
-    \ void dump(final Object[][] args){ IntStream.range(0, args.length).forEach(i\
-    \ -> dump(args[i])); }\n\tfinal void dumpl(final Object head, final Object...\
-    \ tail){ err.outl(head, tail); }\n\t@Override\n\tpublic final void close() {\n\
-    \t\tout.flush();\n\t\tin.close();\n\t\tout.close();\n\t\terr.close();\n\t}\n\t\
-    private final class MyScanner implements Closeable, AutoCloseable {\n\t\tprivate\
-    \ int pos, lim;\n\t\tprivate final byte[] buf;\n\t\tprivate final InputStream\
-    \ is;\n\t\tprivate boolean check;\n\t\tMyScanner(final InputStream is) {\n\t\t\
-    \tthis.is = is;\n\t\t\tpos = lim = 0;\n\t\t\tbuf = new byte[1 << 17];\n\t\t\t\
-    check = false;\n\t\t}\n\t\tprivate final boolean isPunct(final byte bt){ return\
-    \ !Utility.scope(33, bt, 126); }\n\t\tprivate final boolean isNum(final byte bt){\
-    \ return Utility.scope('0', bt, '9'); }\n\t\tprivate final byte read() {\n\t\t\
-    \tif(pos == lim && lim != -1) {\n\t\t\t\ttry {\n\t\t\t\t\tlim = is.read(buf);\n\
+    \ void dump(final char[][] args){ IntStream.range(0, args.length).forEach(i ->\
+    \ dump(args[i])); }\n\tfinal void dump(final Object[][] args){ IntStream.range(0,\
+    \ args.length).forEach(i -> dump(args[i])); }\n\tfinal void dumpl(final Object\
+    \ head, final Object... tail){ err.outl(head, tail); }\n\t@Override\n\tpublic\
+    \ final void close() {\n\t\tout.flush();\n\t\tin.close();\n\t\tout.close();\n\t\
+    \terr.close();\n\t}\n\tprivate final class MyScanner implements AutoCloseable\
+    \ {\n\t\tprivate int pos, lim;\n\t\tprivate final byte[] buf;\n\t\tprivate final\
+    \ InputStream is;\n\t\tprivate boolean check;\n\t\tMyScanner(final InputStream\
+    \ is) {\n\t\t\tthis.is = is;\n\t\t\tpos = lim = 0;\n\t\t\tbuf = new byte[1 <<\
+    \ 17];\n\t\t\tcheck = false;\n\t\t}\n\t\tprivate final boolean isPunct(final byte\
+    \ bt){ return !Utility.scope(33, bt, 126); }\n\t\tprivate final boolean isNum(final\
+    \ byte bt){ return Utility.scope('0', bt, '9'); }\n\t\tprivate final byte read()\
+    \ {\n\t\t\tif(pos == lim && lim != -1) {\n\t\t\t\ttry {\n\t\t\t\t\tlim = is.read(buf);\n\
     \t\t\t\t\tpos = 0;\n\t\t\t\t} catch(final IOException e) {\n\t\t\t\t\te.printStackTrace();\n\
     \t\t\t\t}\n\t\t\t}\n\t\t\treturn buf[pos++];\n\t\t}\n\t\tprivate final byte next()\
     \ {\n\t\t\tbyte bt;\n\t\t\tif(check) {\n\t\t\t\tcheck = false;\n\t\t\t\tbt = buf[pos\
@@ -1206,45 +1205,44 @@ data:
     \ c);\n\t\t\t}\n\t\t\treturn sb.toString();\n\t\t}\n\t\t@Override\n\t\tpublic\
     \ final void close() {\n\t\t\ttry {\n\t\t\t\tis.close();\n\t\t\t} catch(final\
     \ IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t}\n\tprivate\
-    \ final class MyPrinter implements Closeable, Flushable, AutoCloseable {\n\t\t\
-    private OutputStream os;\n\t\tprivate final boolean autoFlush;\n\t\tprivate final\
-    \ byte[] buf;\n\t\tprivate int pos;\n\t\tprivate final boolean debug;\n\t\tMyPrinter(final\
-    \ OutputStream os, final boolean autoFlush){\n\t\t\tthis.os = os;\n\t\t\tthis.autoFlush\
-    \ = autoFlush;\n\t\t\tbuf = new byte[1 << 17];\n\t\t\tpos = 0;\n\t\t\tdebug =\
-    \ os == System.err;\n\t\t}\n\t\tprivate final void write(final byte bt) {\n\t\t\
-    \tbuf[pos++] = bt;\n\t\t\tif(pos == buf.length) {\n\t\t\t\tflush();\n\t\t\t}\n\
-    \t\t}\n\t\tprivate final void newLine() {\n\t\t\twrite((byte) '\\n');\n\t\t\t\
-    if(autoFlush) {\n\t\t\t\tflush();\n\t\t\t}\n\t\t}\n\t\tfinal void print(final\
-    \ Object arg) {\n\t\t\tif(arg instanceof final String s) {\n\t\t\t\tfor(final\
-    \ char c: s.toCharArray()) {\n\t\t\t\t\twrite((byte) c);\n\t\t\t\t}\n\t\t\t} else\
-    \ {\n\t\t\t\tfinal StringBuilder sb = new StringBuilder();\n\t\t\t\tif(arg instanceof\
-    \ final int[] a) {\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(Arrays.toString(a));\n\
+    \ final class MyPrinter implements Flushable, AutoCloseable {\n\t\tprivate OutputStream\
+    \ os;\n\t\tprivate final boolean autoFlush;\n\t\tprivate final byte[] buf;\n\t\
+    \tprivate int pos;\n\t\tprivate final boolean debug;\n\t\tMyPrinter(final OutputStream\
+    \ os, final boolean autoFlush){\n\t\t\tthis.os = os;\n\t\t\tthis.autoFlush = autoFlush;\n\
+    \t\t\tbuf = new byte[1 << 17];\n\t\t\tpos = 0;\n\t\t\tdebug = os == System.err;\n\
+    \t\t}\n\t\tprivate final void write(final byte bt) {\n\t\t\tbuf[pos++] = bt;\n\
+    \t\t\tif(pos == buf.length) {\n\t\t\t\tflush();\n\t\t\t}\n\t\t}\n\t\tprivate final\
+    \ void newLine() {\n\t\t\twrite((byte) '\\n');\n\t\t\tif(autoFlush) {\n\t\t\t\t\
+    flush();\n\t\t\t}\n\t\t}\n\t\tfinal void print(final Object arg) {\n\t\t\tif(arg\
+    \ instanceof final String s) {\n\t\t\t\tfor(final char c: s.toCharArray()) {\n\
+    \t\t\t\t\twrite((byte) c);\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\tfinal StringBuilder\
+    \ sb = new StringBuilder();\n\t\t\t\tif(arg instanceof final int[] a) {\n\t\t\t\
+    \t\tif(debug) {\n\t\t\t\t\t\tprint(Arrays.toString(a));\n\t\t\t\t\t\treturn;\n\
+    \t\t\t\t\t}\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\
+    \t\t\t\t\tsb.append(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i < a.length;) {\n\t\t\t\
+    \t\t\tsb.append(\" \" + a[i]);\n\t\t\t\t\t}\n\t\t\t\t} else if(arg instanceof\
+    \ final long[] a) {\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(Arrays.toString(a));\n\
     \t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\t\
     return;\n\t\t\t\t\t}\n\t\t\t\t\tsb.append(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i\
     \ < a.length;) {\n\t\t\t\t\t\tsb.append(\" \" + a[i]);\n\t\t\t\t\t}\n\t\t\t\t\
-    } else if(arg instanceof final long[] a) {\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\t\
-    print(Arrays.toString(a));\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tif(a.length\
+    } else if(arg instanceof final double[] a) {\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\
+    \tprint(Arrays.toString(a));\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tif(a.length\
     \ == 0) {\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tsb.append(a[0]);\n\t\t\t\
     \t\tfor(int i = 0; ++i < a.length;) {\n\t\t\t\t\t\tsb.append(\" \" + a[i]);\n\t\
-    \t\t\t\t}\n\t\t\t\t} else if(arg instanceof final double[] a) {\n\t\t\t\t\tif(debug)\
+    \t\t\t\t}\n\t\t\t\t} else if(arg instanceof final boolean[] a) {\n\t\t\t\t\tif(debug)\
     \ {\n\t\t\t\t\t\tprint(Arrays.toString(a));\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\
     \t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tsb.append(a[0]);\n\
     \t\t\t\t\tfor(int i = 0; ++i < a.length;) {\n\t\t\t\t\t\tsb.append(\" \" + a[i]);\n\
-    \t\t\t\t\t}\n\t\t\t\t} else if(arg instanceof final boolean[] a) {\n\t\t\t\t\t\
-    if(debug) {\n\t\t\t\t\t\tprint(Arrays.toString(a));\n\t\t\t\t\t\treturn;\n\t\t\
-    \t\t\t}\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\
-    \t\t\tsb.append(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i < a.length;) {\n\t\t\t\t\t\
-    \tsb.append(\" \" + a[i]);\n\t\t\t\t\t}\n\t\t\t\t} else if(arg instanceof final\
-    \ char[] a) {\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\treturn;\n\t\t\t\t\t\
-    }\n\t\t\t\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\t\t\t\tsb.append(a[i]);\n\
-    \t\t\t\t\t}\n\t\t\t\t} else if(arg instanceof final Object[] a) {\n\t\t\t\t\t\
-    if(debug) {\n\t\t\t\t\t\tprint(Arrays.toString(a));\n\t\t\t\t\t\treturn;\n\t\t\
-    \t\t\t}\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\
-    \t\t\tprint(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i < a.length;) {\n\t\t\t\t\t\t\
-    print(\" \");\n\t\t\t\t\t\tprint(a[i]);\n\t\t\t\t\t}\n\t\t\t\t\treturn;\n\t\t\t\
-    \t} else {\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(arg.toString());\n\t\t\t\t\
-    \t\treturn;\n\t\t\t\t\t} else if(arg instanceof final Pair<?, ?> p) {\n\t\t\t\t\
-    \t\tsb.append(p.first + \" \" + p.second);\n\t\t\t\t\t} else if(arg instanceof\
+    \t\t\t\t\t}\n\t\t\t\t} else if(arg instanceof final char[] a) {\n\t\t\t\t\tif(a.length\
+    \ == 0) {\n\t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tfor(int i = 0; i < a.length;\
+    \ ++i) {\n\t\t\t\t\t\tsb.append(a[i]);\n\t\t\t\t\t}\n\t\t\t\t} else if(arg instanceof\
+    \ final Object[] a) {\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(Arrays.toString(a));\n\
+    \t\t\t\t\t\treturn;\n\t\t\t\t\t}\n\t\t\t\t\tif(a.length == 0) {\n\t\t\t\t\t\t\
+    return;\n\t\t\t\t\t}\n\t\t\t\t\tprint(a[0]);\n\t\t\t\t\tfor(int i = 0; ++i < a.length;)\
+    \ {\n\t\t\t\t\t\tprint(\" \");\n\t\t\t\t\t\tprint(a[i]);\n\t\t\t\t\t}\n\t\t\t\t\
+    \treturn;\n\t\t\t\t} else {\n\t\t\t\t\tif(debug) {\n\t\t\t\t\t\tprint(arg.toString());\n\
+    \t\t\t\t\t\treturn;\n\t\t\t\t\t} else if(arg instanceof final Pair<?, ?> p) {\n\
+    \t\t\t\t\t\tsb.append(p.first + \" \" + p.second);\n\t\t\t\t\t} else if(arg instanceof\
     \ final Collection<?> c) {\n\t\t\t\t\t\tint i = 0;\n\t\t\t\t\t\tfor(final Object\
     \ el: c) {\n\t\t\t\t\t\t\tprint(el);\n\t\t\t\t\t\t\tif(++i != c.size()) {\n\t\t\
     \t\t\t\t\t\tprint(\" \");\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\treturn;\n\
@@ -2613,11 +2611,11 @@ data:
   - Java/library/core/interfaces/lambda/RecursiveIntFunction.java
   - Java/library/core/interfaces/DSU.java
   - Java/library/core/Main.java
-  - Java/CodeForces.java
-  - Java/yukicoder.java
-  - Java/AOJ.java
+  - Java/aoj/Main.java
+  - Java/yukicoder/yukicoder.java
+  - Java/codeforces/Main.java
   isVerificationFile: false
-  path: Java/All.java
+  path: Java/Main.java
   requiredBy:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -2706,16 +2704,16 @@ data:
   - Java/library/core/interfaces/lambda/RecursiveIntFunction.java
   - Java/library/core/interfaces/DSU.java
   - Java/library/core/Main.java
-  - Java/CodeForces.java
-  - Java/yukicoder.java
-  - Java/AOJ.java
-  timestamp: '2024-04-30 20:12:14+09:00'
+  - Java/aoj/Main.java
+  - Java/yukicoder/yukicoder.java
+  - Java/codeforces/Main.java
+  timestamp: '2024-05-17 17:05:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/All.java
+documentation_of: Java/Main.java
 layout: document
 redirect_from:
-- /library/Java/All.java
-- /library/Java/All.java.html
-title: Java/All.java
+- /library/Java/Main.java
+- /library/Java/Main.java.html
+title: Java/Main.java
 ---

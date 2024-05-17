@@ -195,17 +195,18 @@ data:
   - name: Java
     pages:
     - icon: ':warning:'
-      path: Java/AOJ.java
-      title: Java/AOJ.java
+      path: Java/Main.java
+      title: Java/Main.java
+  - name: Java/aoj
+    pages:
     - icon: ':warning:'
-      path: Java/All.java
-      title: Java/All.java
+      path: Java/aoj/Main.java
+      title: Java/aoj/Main.java
+  - name: Java/codeforces
+    pages:
     - icon: ':warning:'
-      path: Java/CodeForces.java
-      title: Java/CodeForces.java
-    - icon: ':warning:'
-      path: Java/yukicoder.java
-      title: Java/yukicoder.java
+      path: Java/codeforces/Main.java
+      title: Java/codeforces/Main.java
   - name: Java/library/core
     pages:
     - icon: ':warning:'
@@ -499,6 +500,11 @@ data:
     - icon: ':warning:'
       path: Java/library/other/Why.java
       title: Java/library/other/Why.java
+  - name: Java/yukicoder
+    pages:
+    - icon: ':warning:'
+      path: Java/yukicoder/yukicoder.java
+      title: Java/yukicoder/yukicoder.java
   - name: Nim
     pages:
     - icon: ':warning:'

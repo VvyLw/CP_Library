@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: Java/All.java
-    title: Java/All.java
+    path: Java/Main.java
+    title: Java/Main.java
   - icon: ':warning:'
-    path: Java/CodeForces.java
-    title: Java/CodeForces.java
+    path: Java/codeforces/Main.java
+    title: Java/codeforces/Main.java
   - icon: ':warning:'
     path: Java/library/core/Main.java
     title: Java/library/core/Main.java
@@ -269,15 +269,15 @@ data:
     path: Java/library/other/Why.java
     title: Java/library/other/Why.java
   - icon: ':warning:'
-    path: Java/yukicoder.java
-    title: Java/yukicoder.java
+    path: Java/yukicoder/yukicoder.java
+    title: Java/yukicoder/yukicoder.java
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: Java/All.java
-    title: Java/All.java
+    path: Java/Main.java
+    title: Java/Main.java
   - icon: ':warning:'
-    path: Java/CodeForces.java
-    title: Java/CodeForces.java
+    path: Java/codeforces/Main.java
+    title: Java/codeforces/Main.java
   - icon: ':warning:'
     path: Java/library/core/Main.java
     title: Java/library/core/Main.java
@@ -540,8 +540,8 @@ data:
     path: Java/library/other/Why.java
     title: Java/library/other/Why.java
   - icon: ':warning:'
-    path: Java/yukicoder.java
-    title: Java/yukicoder.java
+    path: Java/yukicoder/yukicoder.java
+    title: Java/yukicoder/yukicoder.java
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: java
@@ -551,8 +551,8 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/AOJ.java\n"
-  code: "import static java.lang.Math.*;\n\nimport java.io.Closeable;\nimport java.io.Flushable;\n\
+    RuntimeError: bundler is not specified: Java/aoj/Main.java\n"
+  code: "package aoj;\n\nimport static java.lang.Math.*;\n\nimport java.io.Flushable;\n\
     import java.io.IOException;\nimport java.io.InputStream;\nimport java.io.OutputStream;\n\
     import java.math.BigInteger;\nimport java.util.Arrays;\nimport java.util.Collection;\n\
     import java.util.Formatter;\nimport java.util.Objects;\nimport java.util.Random;\n\
@@ -600,9 +600,9 @@ data:
     \ return l <= x && x <= r; }\n\tpublic static final IntStream iota(final int n){\
     \ return IntStream.range(0, n); }\n\tpublic static final IntStream iota(final\
     \ int n, final int init){ return IntStream.range(0 + init, n + init); }\n}\n\n\
-    final class IO implements Closeable, AutoCloseable {\n\tprivate final MyScanner\
-    \ in;\n\tprivate final MyPrinter out, err;\n\tIO(final InputStream in, final OutputStream\
-    \ out, final OutputStream err, final boolean autoFlush) {\n\t\tthis.in = new MyScanner(in);\n\
+    final class IO implements AutoCloseable {\n\tprivate final MyScanner in;\n\tprivate\
+    \ final MyPrinter out, err;\n\tIO(final InputStream in, final OutputStream out,\
+    \ final OutputStream err, final boolean autoFlush) {\n\t\tthis.in = new MyScanner(in);\n\
     \t\tthis.out = new MyPrinter(out, autoFlush);\n\t\tthis.err = new MyPrinter(err,\
     \ true);\n\t}\n\tfinal int ni(){ return in.ni(); }\n\tfinal long nl(){ return\
     \ in.nl(); }\n\tfinal double nd(){ return in.nd(); }\n\tfinal char nc(){ return\
@@ -657,19 +657,19 @@ data:
     \ -> dump(args[i])); }\n\tfinal void dumpl(final Object head, final Object...\
     \ tail){ err.outl(head, tail); }\n\t@Override\n\tpublic final void close() {\n\
     \t\tout.flush();\n\t\tin.close();\n\t\tout.close();\n\t\terr.close();\n\t}\n\t\
-    private final class MyScanner implements Closeable, AutoCloseable {\n\t\tprivate\
-    \ int pos, lim;\n\t\tprivate final byte[] buf;\n\t\tprivate final InputStream\
-    \ is;\n\t\tprivate boolean check;\n\t\tMyScanner(final InputStream is) {\n\t\t\
-    \tthis.is = is;\n\t\t\tpos = lim = 0;\n\t\t\tbuf = new byte[1 << 17];\n\t\t\t\
-    check = false;\n\t\t}\n\t\tprivate final boolean isPunct(final byte bt){ return\
-    \ !Utility.scope(33, bt, 126); }\n\t\tprivate final boolean isNum(final byte bt){\
-    \ return Utility.scope('0', bt, '9'); }\n\t\tprivate final byte read() {\n\t\t\
-    \tif(pos == lim && lim != -1) {\n\t\t\t\ttry {\n\t\t\t\t\tlim = is.read(buf);\n\
-    \t\t\t\t\tpos = 0;\n\t\t\t\t} catch(final IOException e) {\n\t\t\t\t\te.printStackTrace();\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t\treturn buf[pos++];\n\t\t}\n\t\tprivate final byte next()\
-    \ {\n\t\t\tbyte bt;\n\t\t\tif(check) {\n\t\t\t\tcheck = false;\n\t\t\t\tbt = buf[pos\
-    \ - 1];\n\t\t\t\tif(!isPunct(bt)) {\n\t\t\t\t\treturn bt;\n\t\t\t\t}\n\t\t\t}\n\
-    \t\t\twhile(isPunct(bt = read())){}\n\t\t\treturn bt;\n\t\t}\n\t\tfinal int ni(){\
+    private final class MyScanner implements AutoCloseable {\n\t\tprivate int pos,\
+    \ lim;\n\t\tprivate final byte[] buf;\n\t\tprivate final InputStream is;\n\t\t\
+    private boolean check;\n\t\tMyScanner(final InputStream is) {\n\t\t\tthis.is =\
+    \ is;\n\t\t\tpos = lim = 0;\n\t\t\tbuf = new byte[1 << 17];\n\t\t\tcheck = false;\n\
+    \t\t}\n\t\tprivate final boolean isPunct(final byte bt){ return !Utility.scope(33,\
+    \ bt, 126); }\n\t\tprivate final boolean isNum(final byte bt){ return Utility.scope('0',\
+    \ bt, '9'); }\n\t\tprivate final byte read() {\n\t\t\tif(pos == lim && lim !=\
+    \ -1) {\n\t\t\t\ttry {\n\t\t\t\t\tlim = is.read(buf);\n\t\t\t\t\tpos = 0;\n\t\t\
+    \t\t} catch(final IOException e) {\n\t\t\t\t\te.printStackTrace();\n\t\t\t\t}\n\
+    \t\t\t}\n\t\t\treturn buf[pos++];\n\t\t}\n\t\tprivate final byte next() {\n\t\t\
+    \tbyte bt;\n\t\t\tif(check) {\n\t\t\t\tcheck = false;\n\t\t\t\tbt = buf[pos -\
+    \ 1];\n\t\t\t\tif(!isPunct(bt)) {\n\t\t\t\t\treturn bt;\n\t\t\t\t}\n\t\t\t}\n\t\
+    \t\twhile(isPunct(bt = read())){}\n\t\t\treturn bt;\n\t\t}\n\t\tfinal int ni(){\
     \ return toIntExact(nl()); }\n\t\tfinal long nl() {\n\t\t\tbyte c = next();\n\t\
     \t\tfinal boolean neg = c == '-';\n\t\t\tif(neg) {\n\t\t\t\tc = next();\n\t\t\t\
     }\n\t\t\tassert isNum(c);\n\t\t\tlong res = c - '0';\n\t\t\twhile(isNum(c = read()))\
@@ -691,13 +691,13 @@ data:
     \t\treturn sb.toString();\n\t\t}\n\t\t@Override\n\t\tpublic final void close()\
     \ {\n\t\t\ttry {\n\t\t\t\tis.close();\n\t\t\t} catch(final IOException e) {\n\t\
     \t\t\te.printStackTrace();\n\t\t\t}\n\t\t}\n\t}\n\tprivate final class MyPrinter\
-    \ implements Closeable, Flushable, AutoCloseable {\n\t\tprivate OutputStream os;\n\
-    \t\tprivate final boolean autoFlush;\n\t\tprivate final byte[] buf;\n\t\tprivate\
-    \ int pos;\n\t\tprivate final boolean debug;\n\t\tMyPrinter(final OutputStream\
-    \ os, final boolean autoFlush){\n\t\t\tthis.os = os;\n\t\t\tthis.autoFlush = autoFlush;\n\
-    \t\t\tbuf = new byte[1 << 17];\n\t\t\tpos = 0;\n\t\t\tdebug = os == System.err;\n\
-    \t\t}\n\t\tprivate final void write(final byte bt) {\n\t\t\tbuf[pos++] = bt;\n\
-    \t\t\tif(pos == buf.length) {\n\t\t\t\tflush();\n\t\t\t}\n\t\t}\n\t\tprivate final\
+    \ implements Flushable, AutoCloseable {\n\t\tprivate OutputStream os;\n\t\tprivate\
+    \ final boolean autoFlush;\n\t\tprivate final byte[] buf;\n\t\tprivate int pos;\n\
+    \t\tprivate final boolean debug;\n\t\tMyPrinter(final OutputStream os, final boolean\
+    \ autoFlush){\n\t\t\tthis.os = os;\n\t\t\tthis.autoFlush = autoFlush;\n\t\t\t\
+    buf = new byte[1 << 17];\n\t\t\tpos = 0;\n\t\t\tdebug = os == System.err;\n\t\t\
+    }\n\t\tprivate final void write(final byte bt) {\n\t\t\tbuf[pos++] = bt;\n\t\t\
+    \tif(pos == buf.length) {\n\t\t\t\tflush();\n\t\t\t}\n\t\t}\n\t\tprivate final\
     \ void newLine() {\n\t\t\twrite((byte) '\\n');\n\t\t\tif(autoFlush) {\n\t\t\t\t\
     flush();\n\t\t\t}\n\t\t}\n\t\tfinal void print(final Object arg) {\n\t\t\tif(arg\
     \ instanceof final String s) {\n\t\t\t\tfor(final char c: s.toCharArray()) {\n\
@@ -846,11 +846,11 @@ data:
   - Java/library/core/interfaces/lambda/RecursiveIntFunction.java
   - Java/library/core/interfaces/DSU.java
   - Java/library/core/Main.java
-  - Java/All.java
-  - Java/CodeForces.java
-  - Java/yukicoder.java
+  - Java/yukicoder/yukicoder.java
+  - Java/Main.java
+  - Java/codeforces/Main.java
   isVerificationFile: false
-  path: Java/AOJ.java
+  path: Java/aoj/Main.java
   requiredBy:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -939,16 +939,16 @@ data:
   - Java/library/core/interfaces/lambda/RecursiveIntFunction.java
   - Java/library/core/interfaces/DSU.java
   - Java/library/core/Main.java
-  - Java/All.java
-  - Java/CodeForces.java
-  - Java/yukicoder.java
-  timestamp: '2024-04-30 20:12:14+09:00'
+  - Java/yukicoder/yukicoder.java
+  - Java/Main.java
+  - Java/codeforces/Main.java
+  timestamp: '2024-05-17 17:05:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/AOJ.java
+documentation_of: Java/aoj/Main.java
 layout: document
 redirect_from:
-- /library/Java/AOJ.java
-- /library/Java/AOJ.java.html
-title: Java/AOJ.java
+- /library/Java/aoj/Main.java
+- /library/Java/aoj/Main.java.html
+title: Java/aoj/Main.java
 ---

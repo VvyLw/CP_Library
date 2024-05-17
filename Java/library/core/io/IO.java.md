@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: Java/AOJ.java
-    title: Java/AOJ.java
+    path: Java/Main.java
+    title: Java/Main.java
   - icon: ':warning:'
-    path: Java/All.java
-    title: Java/All.java
+    path: Java/aoj/Main.java
+    title: Java/aoj/Main.java
   - icon: ':warning:'
-    path: Java/CodeForces.java
-    title: Java/CodeForces.java
+    path: Java/codeforces/Main.java
+    title: Java/codeforces/Main.java
   - icon: ':warning:'
     path: Java/library/core/Main.java
     title: Java/library/core/Main.java
@@ -269,18 +269,18 @@ data:
     path: Java/library/other/Why.java
     title: Java/library/other/Why.java
   - icon: ':warning:'
-    path: Java/yukicoder.java
-    title: Java/yukicoder.java
+    path: Java/yukicoder/yukicoder.java
+    title: Java/yukicoder/yukicoder.java
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: Java/AOJ.java
-    title: Java/AOJ.java
+    path: Java/Main.java
+    title: Java/Main.java
   - icon: ':warning:'
-    path: Java/All.java
-    title: Java/All.java
+    path: Java/aoj/Main.java
+    title: Java/aoj/Main.java
   - icon: ':warning:'
-    path: Java/CodeForces.java
-    title: Java/CodeForces.java
+    path: Java/codeforces/Main.java
+    title: Java/codeforces/Main.java
   - icon: ':warning:'
     path: Java/library/core/Main.java
     title: Java/library/core/Main.java
@@ -540,8 +540,8 @@ data:
     path: Java/library/other/Why.java
     title: Java/library/other/Why.java
   - icon: ':warning:'
-    path: Java/yukicoder.java
-    title: Java/yukicoder.java
+    path: Java/yukicoder/yukicoder.java
+    title: Java/yukicoder/yukicoder.java
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: java
@@ -552,36 +552,35 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/core/io/IO.java\n"
-  code: "package library.core.io;\n\nimport java.io.Closeable;\nimport java.io.InputStream;\n\
-    import java.io.OutputStream;\nimport java.math.BigInteger;\nimport java.util.Arrays;\n\
-    import java.util.function.IntUnaryOperator;\nimport java.util.function.LongUnaryOperator;\n\
-    import java.util.function.UnaryOperator;\nimport java.util.stream.IntStream;\n\
-    \nimport library.ds.pair.FloatPair;\nimport library.ds.pair.IntPair;\n\n/**\n\
-    \ * \u5165\u51FA\u529B\u3092\u307E\u3068\u3081\u305F\u30AF\u30E9\u30B9\n */\n\
-    public final class IO implements Closeable, AutoCloseable {\n\tprivate final MyScanner\
-    \ in;\n\tprivate final MyPrinter out, err;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\
-    \u30E9\u30AF\u30BF\n\t * @param in \u6A19\u6E96\u5165\u529B\n\t * @param out \u6A19\
-    \u6E96\u51FA\u529B\n\t * @param err \u6A19\u6E96\u30A8\u30E9\u30FC\u51FA\u529B\
-    \n\t * @param autoFlush flush\u306E\u81EA\u52D5\u5316\n\t */\n\tpublic IO(final\
-    \ InputStream in, final OutputStream out, final OutputStream err, final boolean\
-    \ autoFlush) {\n\t\tthis.in = new MyScanner(in);\n\t\tthis.out = new MyPrinter(out,\
-    \ autoFlush);\n\t\tthis.err = new MyPrinter(err, true);\n\t}\n\t/**\n\t * @see\
-    \ MyScanner#ni\n\t */\n\tpublic final int ni(){ return in.ni(); }\n\t/**\n\t *\
-    \ @see MyScanner#nl\n\t */\n\tpublic final long nl(){ return in.nl(); }\n\t/**\n\
-    \t * @see MyScanner#nd\n\t */\n\tpublic final double nd(){ return in.nd(); }\n\
-    \t/**\n\t * @see MyScanner#nc\n\t */\n\tpublic final char nc(){ return in.nc();\
-    \ }\n\t/**\n\t * @see MyScanner#ns\n\t */\n\tpublic final String ns(){ return\
-    \ in.ns(); }\n\t/**\n\t * @see MyScanner#nt\n\t */\n\tpublic final char[] nt(){\
-    \ return in.nt(); }\n\t/**\n\t * @see MyScanner#nb\n\t */\n\tpublic final BigInteger\
-    \ nb(){ return in.nb(); }\n\t/**\n\t * @see MyScanner#pi\n\t */\n\tpublic final\
-    \ IntPair pi(){ return in.pi(); }\n\t/**\n\t * @see MyScanner#pf\n\t */\n\tpublic\
-    \ final FloatPair pf(){ return in.pf(); }\n\t/**\n\t * \u5927\u304D\u3055n\u306E\
-    int\u578B\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param n \u914D\u5217\
-    \u306E\u5927\u304D\u3055\n\t */\n\tpublic final int[] ni(final int n) {\n\t\t\
-    final int[] a = new int[n];\n\t\tArrays.setAll(a, i -> ni());\n\t\treturn a;\n\
-    \t}\n\t/**\n\t * @param n\n\t * @param f\n\t * @return int\u578B\u914D\u5217\u306B\
-    f\u3092\u65BD\u3057\u305F\u3082\u306E\n\t */\n\tpublic final int[] ni(final int\
-    \ n, final IntUnaryOperator f){ return Arrays.stream(ni(n)).map(f).toArray();\
+  code: "package library.core.io;\n\nimport java.io.InputStream;\nimport java.io.OutputStream;\n\
+    import java.math.BigInteger;\nimport java.util.Arrays;\nimport java.util.function.IntUnaryOperator;\n\
+    import java.util.function.LongUnaryOperator;\nimport java.util.function.UnaryOperator;\n\
+    import java.util.stream.IntStream;\n\nimport library.ds.pair.FloatPair;\nimport\
+    \ library.ds.pair.IntPair;\n\n/**\n * \u5165\u51FA\u529B\u3092\u307E\u3068\u3081\
+    \u305F\u30AF\u30E9\u30B9\n */\npublic final class IO implements AutoCloseable\
+    \ {\n\tprivate final MyScanner in;\n\tprivate final MyPrinter out, err;\n\t/**\n\
+    \t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param in \u6A19\u6E96\u5165\
+    \u529B\n\t * @param out \u6A19\u6E96\u51FA\u529B\n\t * @param err \u6A19\u6E96\
+    \u30A8\u30E9\u30FC\u51FA\u529B\n\t * @param autoFlush flush\u306E\u81EA\u52D5\u5316\
+    \n\t */\n\tpublic IO(final InputStream in, final OutputStream out, final OutputStream\
+    \ err, final boolean autoFlush) {\n\t\tthis.in = new MyScanner(in);\n\t\tthis.out\
+    \ = new MyPrinter(out, autoFlush);\n\t\tthis.err = new MyPrinter(err, true);\n\
+    \t}\n\t/**\n\t * @see MyScanner#ni\n\t */\n\tpublic final int ni(){ return in.ni();\
+    \ }\n\t/**\n\t * @see MyScanner#nl\n\t */\n\tpublic final long nl(){ return in.nl();\
+    \ }\n\t/**\n\t * @see MyScanner#nd\n\t */\n\tpublic final double nd(){ return\
+    \ in.nd(); }\n\t/**\n\t * @see MyScanner#nc\n\t */\n\tpublic final char nc(){\
+    \ return in.nc(); }\n\t/**\n\t * @see MyScanner#ns\n\t */\n\tpublic final String\
+    \ ns(){ return in.ns(); }\n\t/**\n\t * @see MyScanner#nt\n\t */\n\tpublic final\
+    \ char[] nt(){ return in.nt(); }\n\t/**\n\t * @see MyScanner#nb\n\t */\n\tpublic\
+    \ final BigInteger nb(){ return in.nb(); }\n\t/**\n\t * @see MyScanner#pi\n\t\
+    \ */\n\tpublic final IntPair pi(){ return in.pi(); }\n\t/**\n\t * @see MyScanner#pf\n\
+    \t */\n\tpublic final FloatPair pf(){ return in.pf(); }\n\t/**\n\t * \u5927\u304D\
+    \u3055n\u306Eint\u578B\u914D\u5217\u3092\u5165\u529B\u3059\u308B\n\t * @param\
+    \ n \u914D\u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic final int[] ni(final\
+    \ int n) {\n\t\tfinal int[] a = new int[n];\n\t\tArrays.setAll(a, i -> ni());\n\
+    \t\treturn a;\n\t}\n\t/**\n\t * @param n\n\t * @param f\n\t * @return int\u578B\
+    \u914D\u5217\u306Bf\u3092\u65BD\u3057\u305F\u3082\u306E\n\t */\n\tpublic final\
+    \ int[] ni(final int n, final IntUnaryOperator f){ return Arrays.stream(ni(n)).map(f).toArray();\
     \ }\n\t/**\n\t * \u5927\u304D\u3055n\u306Elong\u578B\u914D\u5217\u3092\u5165\u529B\
     \u3059\u308B\n\t * @param n \u914D\u5217\u306E\u5927\u304D\u3055\n\t */\n\tpublic\
     \ final long[] nl(final int n) {\n\t\tfinal long[] a = new long[n];\n\t\tArrays.setAll(a,\
@@ -774,10 +773,10 @@ data:
   - Java/library/core/interfaces/lambda/RecursiveIntFunction.java
   - Java/library/core/interfaces/DSU.java
   - Java/library/core/Main.java
-  - Java/All.java
-  - Java/CodeForces.java
-  - Java/yukicoder.java
-  - Java/AOJ.java
+  - Java/aoj/Main.java
+  - Java/yukicoder/yukicoder.java
+  - Java/Main.java
+  - Java/codeforces/Main.java
   isVerificationFile: false
   path: Java/library/core/io/IO.java
   requiredBy:
@@ -867,11 +866,11 @@ data:
   - Java/library/core/interfaces/lambda/RecursiveIntFunction.java
   - Java/library/core/interfaces/DSU.java
   - Java/library/core/Main.java
-  - Java/All.java
-  - Java/CodeForces.java
-  - Java/yukicoder.java
-  - Java/AOJ.java
-  timestamp: '2024-04-30 20:12:14+09:00'
+  - Java/aoj/Main.java
+  - Java/yukicoder/yukicoder.java
+  - Java/Main.java
+  - Java/codeforces/Main.java
+  timestamp: '2024-05-17 17:05:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/IO.java

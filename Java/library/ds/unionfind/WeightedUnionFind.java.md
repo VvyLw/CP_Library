@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: Java/AOJ.java
-    title: Java/AOJ.java
+    path: Java/Main.java
+    title: Java/Main.java
   - icon: ':warning:'
-    path: Java/All.java
-    title: Java/All.java
+    path: Java/aoj/Main.java
+    title: Java/aoj/Main.java
   - icon: ':warning:'
-    path: Java/CodeForces.java
-    title: Java/CodeForces.java
+    path: Java/codeforces/Main.java
+    title: Java/codeforces/Main.java
   - icon: ':warning:'
     path: Java/library/core/Main.java
     title: Java/library/core/Main.java
@@ -269,18 +269,18 @@ data:
     path: Java/library/other/Why.java
     title: Java/library/other/Why.java
   - icon: ':warning:'
-    path: Java/yukicoder.java
-    title: Java/yukicoder.java
+    path: Java/yukicoder/yukicoder.java
+    title: Java/yukicoder/yukicoder.java
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: Java/AOJ.java
-    title: Java/AOJ.java
+    path: Java/Main.java
+    title: Java/Main.java
   - icon: ':warning:'
-    path: Java/All.java
-    title: Java/All.java
+    path: Java/aoj/Main.java
+    title: Java/aoj/Main.java
   - icon: ':warning:'
-    path: Java/CodeForces.java
-    title: Java/CodeForces.java
+    path: Java/codeforces/Main.java
+    title: Java/codeforces/Main.java
   - icon: ':warning:'
     path: Java/library/core/Main.java
     title: Java/library/core/Main.java
@@ -540,8 +540,8 @@ data:
     path: Java/library/other/Why.java
     title: Java/library/other/Why.java
   - icon: ':warning:'
-    path: Java/yukicoder.java
-    title: Java/yukicoder.java
+    path: Java/yukicoder/yukicoder.java
+    title: Java/yukicoder/yukicoder.java
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: java
@@ -671,10 +671,10 @@ data:
   - Java/library/core/interfaces/lambda/RecursiveIntFunction.java
   - Java/library/core/interfaces/DSU.java
   - Java/library/core/Main.java
-  - Java/All.java
-  - Java/CodeForces.java
-  - Java/yukicoder.java
-  - Java/AOJ.java
+  - Java/aoj/Main.java
+  - Java/yukicoder/yukicoder.java
+  - Java/Main.java
+  - Java/codeforces/Main.java
   isVerificationFile: false
   path: Java/library/ds/unionfind/WeightedUnionFind.java
   requiredBy:
@@ -764,11 +764,11 @@ data:
   - Java/library/core/interfaces/lambda/RecursiveIntFunction.java
   - Java/library/core/interfaces/DSU.java
   - Java/library/core/Main.java
-  - Java/All.java
-  - Java/CodeForces.java
-  - Java/yukicoder.java
-  - Java/AOJ.java
-  timestamp: '2024-04-30 20:12:14+09:00'
+  - Java/aoj/Main.java
+  - Java/yukicoder/yukicoder.java
+  - Java/Main.java
+  - Java/codeforces/Main.java
+  timestamp: '2024-05-17 17:05:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/unionfind/WeightedUnionFind.java

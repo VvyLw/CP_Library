@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: Java/AOJ.java
-    title: Java/AOJ.java
+    path: Java/Main.java
+    title: Java/Main.java
   - icon: ':warning:'
-    path: Java/All.java
-    title: Java/All.java
+    path: Java/aoj/Main.java
+    title: Java/aoj/Main.java
   - icon: ':warning:'
-    path: Java/CodeForces.java
-    title: Java/CodeForces.java
+    path: Java/codeforces/Main.java
+    title: Java/codeforces/Main.java
   - icon: ':warning:'
     path: Java/library/core/Main.java
     title: Java/library/core/Main.java
@@ -269,18 +269,18 @@ data:
     path: Java/library/other/Why.java
     title: Java/library/other/Why.java
   - icon: ':warning:'
-    path: Java/yukicoder.java
-    title: Java/yukicoder.java
+    path: Java/yukicoder/yukicoder.java
+    title: Java/yukicoder/yukicoder.java
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: Java/AOJ.java
-    title: Java/AOJ.java
+    path: Java/Main.java
+    title: Java/Main.java
   - icon: ':warning:'
-    path: Java/All.java
-    title: Java/All.java
+    path: Java/aoj/Main.java
+    title: Java/aoj/Main.java
   - icon: ':warning:'
-    path: Java/CodeForces.java
-    title: Java/CodeForces.java
+    path: Java/codeforces/Main.java
+    title: Java/codeforces/Main.java
   - icon: ':warning:'
     path: Java/library/core/Main.java
     title: Java/library/core/Main.java
@@ -540,8 +540,8 @@ data:
     path: Java/library/other/Why.java
     title: Java/library/other/Why.java
   - icon: ':warning:'
-    path: Java/yukicoder.java
-    title: Java/yukicoder.java
+    path: Java/yukicoder/yukicoder.java
+    title: Java/yukicoder/yukicoder.java
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: java
@@ -552,15 +552,14 @@ data:
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/core/io/MyPrinter.java\n"
-  code: "package library.core.io;\n\nimport java.io.Closeable;\nimport java.io.Flushable;\n\
-    import java.io.IOException;\nimport java.io.OutputStream;\nimport java.io.PrintWriter;\n\
-    import java.util.Arrays;\nimport java.util.Collection;\nimport java.util.Formatter;\n\
-    import java.util.stream.IntStream;\n\nimport library.ds.pair.Pair;\n\n/**\n *\
-    \ \u51FA\u529B\u30AF\u30E9\u30B9\n * PrintWriter\u3088\u308A\u901F\u3044\n */\n\
-    public final class MyPrinter implements Closeable, Flushable, AutoCloseable {\n\
-    \tprivate OutputStream os;\n\tprivate final boolean autoFlush;\n\tprivate final\
-    \ byte[] buf;\n\tprivate int pos;\n\tprivate final boolean debug;\n\t/**\n\t *\
-    \ \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param os \u6A19\u6E96\u51FA\
+  code: "package library.core.io;\n\nimport java.io.Flushable;\nimport java.io.IOException;\n\
+    import java.io.OutputStream;\nimport java.io.PrintWriter;\nimport java.util.Arrays;\n\
+    import java.util.Collection;\nimport java.util.Formatter;\nimport java.util.stream.IntStream;\n\
+    \nimport library.ds.pair.Pair;\n\n/**\n * \u51FA\u529B\u30AF\u30E9\u30B9\n * PrintWriter\u3088\
+    \u308A\u901F\u3044\n */\npublic final class MyPrinter implements Flushable, AutoCloseable\
+    \ {\n\tprivate OutputStream os;\n\tprivate final boolean autoFlush;\n\tprivate\
+    \ final byte[] buf;\n\tprivate int pos;\n\tprivate final boolean debug;\n\t/**\n\
+    \t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param os \u6A19\u6E96\u51FA\
     \u529B(System.out)\u304B\u6A19\u6E96\u30A8\u30E9\u30FC\u51FA\u529B(System.err)\u304B\
     \u5165\u308C\u308B\n\t * \u6A19\u6E96\u30A8\u30E9\u30FC\u51FA\u529B\u306E\u6642\
     \u3001\u4E00\u90E8\u51FA\u529B\u304CtoString\u3055\u308C\u3066\u8868\u793A\u3055\
@@ -726,10 +725,10 @@ data:
   - Java/library/core/interfaces/lambda/RecursiveIntFunction.java
   - Java/library/core/interfaces/DSU.java
   - Java/library/core/Main.java
-  - Java/All.java
-  - Java/CodeForces.java
-  - Java/yukicoder.java
-  - Java/AOJ.java
+  - Java/aoj/Main.java
+  - Java/yukicoder/yukicoder.java
+  - Java/Main.java
+  - Java/codeforces/Main.java
   isVerificationFile: false
   path: Java/library/core/io/MyPrinter.java
   requiredBy:
@@ -819,11 +818,11 @@ data:
   - Java/library/core/interfaces/lambda/RecursiveIntFunction.java
   - Java/library/core/interfaces/DSU.java
   - Java/library/core/Main.java
-  - Java/All.java
-  - Java/CodeForces.java
-  - Java/yukicoder.java
-  - Java/AOJ.java
-  timestamp: '2024-04-30 20:12:14+09:00'
+  - Java/aoj/Main.java
+  - Java/yukicoder/yukicoder.java
+  - Java/Main.java
+  - Java/codeforces/Main.java
+  timestamp: '2024-05-17 17:05:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyPrinter.java
