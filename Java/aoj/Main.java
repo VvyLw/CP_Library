@@ -1,6 +1,7 @@
+package aoj;
+
 import static java.lang.Math.*;
 
-import java.io.Closeable;
 import java.io.Flushable;
 import java.io.IOException;
 import java.io.InputStream;
@@ -95,7 +96,7 @@ class Utility {
 	public static final IntStream iota(final int n, final int init){ return IntStream.range(0 + init, n + init); }
 }
 
-final class IO implements Closeable, AutoCloseable {
+final class IO implements AutoCloseable {
 	private final MyScanner in;
 	private final MyPrinter out, err;
 	IO(final InputStream in, final OutputStream out, final OutputStream err, final boolean autoFlush) {
@@ -204,7 +205,7 @@ final class IO implements Closeable, AutoCloseable {
 		out.close();
 		err.close();
 	}
-	private final class MyScanner implements Closeable, AutoCloseable {
+	private final class MyScanner implements AutoCloseable {
 		private int pos, lim;
 		private final byte[] buf;
 		private final InputStream is;
@@ -307,7 +308,7 @@ final class IO implements Closeable, AutoCloseable {
 			}
 		}
 	}
-	private final class MyPrinter implements Closeable, Flushable, AutoCloseable {
+	private final class MyPrinter implements Flushable, AutoCloseable {
 		private OutputStream os;
 		private final boolean autoFlush;
 		private final byte[] buf;

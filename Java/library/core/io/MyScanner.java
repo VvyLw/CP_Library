@@ -2,7 +2,6 @@ package library.core.io;
 
 import static java.lang.Math.*;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
@@ -15,7 +14,7 @@ import library.ds.pair.IntPair;
  * 入力クラス
  * Scannerより速い
  */
-public final class MyScanner implements Closeable, AutoCloseable {
+public final class MyScanner implements AutoCloseable {
 	private int pos, lim;
 	private final byte[] buf;
 	private final InputStream is;

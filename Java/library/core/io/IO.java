@@ -1,6 +1,5 @@
 package library.core.io;
 
-import java.io.Closeable;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigInteger;
@@ -16,7 +15,7 @@ import library.ds.pair.IntPair;
 /**
  * 入出力をまとめたクラス
  */
-public final class IO implements Closeable, AutoCloseable {
+public final class IO implements AutoCloseable {
 	private final MyScanner in;
 	private final MyPrinter out, err;
 	/**

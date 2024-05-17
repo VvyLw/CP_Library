@@ -1,6 +1,5 @@
 package library.core.io;
 
-import java.io.Closeable;
 import java.io.Flushable;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -16,7 +15,7 @@ import library.ds.pair.Pair;
  * 出力クラス
  * PrintWriterより速い
  */
-public final class MyPrinter implements Closeable, Flushable, AutoCloseable {
+public final class MyPrinter implements Flushable, AutoCloseable {
 	private OutputStream os;
 	private final boolean autoFlush;
 	private final byte[] buf;
