@@ -558,7 +558,7 @@ data:
     \ library.ds.unionfind.UnionFind;\nimport library.graph.Edge;\n\n/**\n * core\u30D1\
     \u30C3\u30B1\u30FC\u30B8\u4EE5\u5916\u306E\u5916\u90E8\u30AF\u30E9\u30B9(Pair\u3092\
     \u9664\u304F\u3092\u4F7F\u3046\u30E1\u30BD\u30C3\u30C9\u304C\u7F6E\u3044\u3066\
-    \u3042\u308B\n */\npublic final class Why {\n\t/**\n\t * @param uf\n\t * @return\
+    \u3042\u308B)\n */\npublic final class Why {\n\t/**\n\t * @param uf\n\t * @return\
     \ \u4E8C\u5206\u30B0\u30E9\u30D5\u304B\u3069\u3046\u304B\n\t * @implNote {@link\
     \ UnionFind}\u304C\u5FC5\u8981\n\t */\n\tpublic static final boolean isBipartite(final\
     \ UnionFind uf) {\n\t\tassert uf.size() % 2 == 0;\n\t\tfinal int n = uf.size()\
@@ -793,7 +793,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-05-17 17:05:53+09:00'
+  timestamp: '2024-05-18 01:23:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/Why.java
