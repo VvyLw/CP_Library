@@ -11,6 +11,7 @@ pub fn WeightedUnionFind.new(n int) WeightedUnionFind {
 		weight: []i64{len:n}
 	}
 }
+fn (mut uf WeightedUnionFind) str() string { return '${uf.groups()}'}
 pub fn (mut uf WeightedUnionFind) root(i int) int {
 	if uf.par[i]<0 {
 		return i

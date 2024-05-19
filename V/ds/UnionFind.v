@@ -9,6 +9,7 @@ pub fn UnionFind.new(n int) UnionFind {
 		par: []int{len:n,init:-1}
 	}
 }
+fn (mut uf UnionFind) str() string { return '${uf.groups()}'}
 pub fn (mut uf UnionFind) root(i int) int { 
 	if uf.par[i]<0{ return i }
 	uf.par[i]=uf.root(uf.par[i])
