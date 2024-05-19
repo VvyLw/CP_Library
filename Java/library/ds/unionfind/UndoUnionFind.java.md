@@ -553,7 +553,7 @@ data:
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/ds/unionfind/UndoUnionFind.java\n"
   code: "package library.ds.unionfind;\n\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
-    import java.util.Stack;\nimport java.util.stream.IntStream;\n\nimport library.core.interfaces.DSU;\n\
+    import java.util.Stack;\nimport java.util.stream.IntStream;\nimport library.core.interfaces.DSU;\n\
     import library.ds.pair.Pair;\n\n/**\n * Undo\u53EF\u80FD\u306AUnionFind\n * [\u6CE8\
     \u610F] verify\u3057\u3066\u3044\u306A\u3044\n * @see <a href=\"https://ei1333.github.io/library/structure/union-find/union-find-undo.hpp\"\
     >\u53C2\u8003\u5143</a>\n */\npublic final class UndoUnionFind implements DSU\
@@ -580,7 +580,8 @@ data:
     \u3092\u4FDD\u5B58\u3059\u308B\n\t */\n\tpublic final void snapshot() {\n\t\t\
     while(!his.empty()) {\n\t\t\this.pop();\n\t\t}\n\t}\n\t/**\n\t * UnionFind\u3092\
     \u30ED\u30FC\u30EB\u30D0\u30C3\u30AF\u3059\u308B\n\t */\n\tpublic final void rollback()\
-    \ {\n\t\twhile(!his.empty()) {\n\t\t\tundo();\n\t\t}\n\t}\n}"
+    \ {\n\t\twhile(!his.empty()) {\n\t\t\tundo();\n\t\t}\n\t}\n\t@Override\n\tpublic\
+    \ final String toString(){ return groups().toString(); }\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -765,7 +766,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-05-18 01:23:36+09:00'
+  timestamp: '2024-05-20 07:20:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/unionfind/UndoUnionFind.java
