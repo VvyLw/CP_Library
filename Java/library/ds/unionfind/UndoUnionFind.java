@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
 import java.util.stream.IntStream;
-
 import library.core.interfaces.DSU;
 import library.ds.pair.Pair;
 
@@ -86,4 +85,6 @@ public final class UndoUnionFind implements DSU {
 			undo();
 		}
 	}
+	@Override
+	public final String toString(){ return groups().toString(); }
 }

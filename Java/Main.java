@@ -2552,6 +2552,8 @@ class UnionFind implements DSU {
 		res.removeIf(ArrayList::isEmpty);
 		return res;
 	}
+	@Override
+	public final String toString(){ return groups().toString(); }
 }
 
 abstract class MergeUnionFind<T> extends UnionFind {
@@ -2633,6 +2635,8 @@ final class WeightedUnionFind implements DSU {
 	// deprecated
 	@Override
 	public final boolean unite(final int i, final int j){ return unite(i, j, 0) > 0; }
+	@Override
+	public final String toString(){ return groups().toString(); }
 }
 
 final class UndoUnionFind implements DSU {
@@ -2696,6 +2700,8 @@ final class UndoUnionFind implements DSU {
 			undo();
 		}
 	}
+	@Override
+	public final String toString(){ return groups().toString(); }
 }
 
 final class PrimeTable {

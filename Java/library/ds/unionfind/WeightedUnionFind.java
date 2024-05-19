@@ -88,4 +88,6 @@ public final class WeightedUnionFind implements DSU {
 		res.removeIf(ArrayList::isEmpty);
 		return res;
 	}
+	@Override
+	public final String toString(){ return groups().toString(); }
 }
