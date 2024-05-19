@@ -15,5 +15,7 @@ fn main() {
 	//t=ni()
 	for t-->0 { solve()! }
 	tm.stop()
-	eprintln(tm.elapsed())
+	$if debug {
+		eprintln(tm.elapsed())
+	}
 }

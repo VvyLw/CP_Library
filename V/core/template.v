@@ -33,8 +33,6 @@ pub fn t5[T](ls []T) (T,T,T,T,T) { return ls[0],ls[1],ls[2],ls[3],ls[4] }
 pub fn t6[T](ls []T) (T,T,T,T,T,T) { return ls[0],ls[1],ls[2],ls[3],ls[4],ls[5] }
 pub fn aro[T](a []T) string { return a.map(it.str()).join(' ') }
 pub fn flush[T](arg T) { println(arg) os.flush() }
-pub fn fin[T](arg T) { println(arg) exit(0) }
-pub fn dbg[T](arg T) { eprintln('-----------${arg}-----------') }
 pub fn yn(ok bool, yes string, no string) string { return if ok{yes} else{no} }
 pub fn yes(ok bool) string { return yn(ok, "Yes", "No") }
 pub fn no(ok bool) string { return yes(!ok) }
