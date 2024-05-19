@@ -26,7 +26,7 @@ fn (dq Deque[T]) str() string {
 	mut sb:=new_builder(0)
 	sb.write_string('[${dq.get(0)}')
 	for i in 1..dq.size() {
-		sb.write_string(' ${dq.get(i)}')
+		sb.write_string(', ${dq.get(i)}')
 	}
 	sb.write_string(']')
 	return sb.str()
