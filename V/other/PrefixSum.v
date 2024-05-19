@@ -10,4 +10,5 @@ pub fn psum[T](a []T) Asum {
 	return Asum{ acc: s }
 }
 fn (a Asum) str() string { return '${a.acc}' }
+pub fn (a Asum) get() []i64 { return a.acc }
 pub fn (a Asum) sum(l int, r int) i64 { return a.acc[r]-a.acc[l] }

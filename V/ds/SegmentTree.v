@@ -1,7 +1,6 @@
 module ds
 
 import math{min}
-import strings{new_builder}
 
 pub struct SegmentTree[T] {
 	fini int
@@ -11,15 +10,6 @@ mut:
 	n int
 	rank int
 	dat []T
-}
-fn (seg SegmentTree[T]) str() string {
-	mut sb:=new_builder(0)
-	sb.write_string("[${seg.get(0)}")
-	for i in 1..seg.fini {
-		sb.write_string(", ${seg.get(i)}")
-	}
-	sb.write_string("]")
-	return sb.str()
 }
 pub fn SegmentTree.new[T](fini int, op fn(T,T) T, e T) SegmentTree[T] {
 	mut m:=1
@@ -43,6 +33,14 @@ pub fn SegmentTree.new_a[T](a []T, op fn(T,T) T, e T) SegmentTree[T] {
 		seg.update(i,el)
 	}
 	return seg
+}
+fn (seg SegmentTree) str() string { return '${seg.array()}' }
+pub fn (seg SegmentTree[T]) array() []T {
+	mut a:=[]T{len:seg.fini}
+	for i in 0..n {
+		a[i]=seg.get(i)
+	}
+	return a
 }
 pub fn (mut seg SegmentTree[T]) update(id int, x T) {
 	mut i:=id+seg.n
