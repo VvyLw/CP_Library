@@ -31,6 +31,7 @@ pub fn t3[T](ls []T) (T,T,T) { return ls[0],ls[1],ls[2] }
 pub fn t4[T](ls []T) (T,T,T,T) { return ls[0],ls[1],ls[2],ls[3] }
 pub fn t5[T](ls []T) (T,T,T,T,T) { return ls[0],ls[1],ls[2],ls[3],ls[4] }
 pub fn t6[T](ls []T) (T,T,T,T,T,T) { return ls[0],ls[1],ls[2],ls[3],ls[4],ls[5] }
+pub fn t7[T](ls []T) (T,T,T,T,T,T,T) { return ls[0],ls[1],ls[2],ls[3],ls[4],ls[5],ls[6] }
 pub fn aro[T](a []T) string { return a.map(it.str()).join(' ') }
 pub fn flush[T](arg T) { println(arg) os.flush() }
 pub fn yn(ok bool, yes string, no string) string { return if ok{yes} else{no} }
