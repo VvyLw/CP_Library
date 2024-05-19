@@ -7,15 +7,30 @@ mut:
 	tail int
 	buf []T
 }
-pub fn Deque.new[T](n int) Deque[T] {
+pub fn Deque.new[T]() Deque[T] {
 	return Deque[T] {
-		len: n
+		len: 1<<17
 		head: 0
 		tail: 0
-		buf: []T{len:n}
+		buf: []T{len:1<<17}
 	}
 }
-fn (dq Deque[T]) str() string { return '${dq.buf[0..dq.size()]}' }
+pub fn Deque.new_a[T](a []T) Deque[T] {
+	mut dq:=Deque.new(a.len)
+	for e in a {
+		dq.push_back(e)
+	}
+	return dq
+}
+fn (dq Deque[T]) str() string {
+	mut sb:=new_builder(0)
+	sb.write_string('[${dq.get(0)}')
+	for i in 1..dq.size() {
+		sb.write_string(' ${dq.get(i)}')
+	}
+	sb.write_string(']')
+	return sb.str()
+}
 fn (dq Deque[T]) next(i int) int {
 	next:=i+1
 	return if next==dq.len { 0 } else { next }
