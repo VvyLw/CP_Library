@@ -19,12 +19,13 @@ pub fn FenwickTree.new_a[T](a []T) FenwickTree {
 	}
 	return bit
 }
-fn (bit FenwickTree) str() string {
+fn (bit FenwickTree) str() string { return '${bit.array()}' }
+fn (bit FenwickTree) array() []i64 {
 	mut a:=[]i64{len:bit.n-2}
 	for i in 0..bit.n-2 {
 		a[i]=bit.sum(i)
 	}
-	return '$a'
+	return a
 }
 pub fn (bit FenwickTree) sum(k int) i64 {
 	if k<0 {

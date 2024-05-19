@@ -22,14 +22,14 @@ pub fn Deque.new_a[T](a []T) Deque[T] {
 	}
 	return dq
 }
-fn (dq Deque[T]) str() string {
-	mut sb:=new_builder(0)
-	sb.write_string('[${dq.get(0)}')
-	for i in 1..dq.size() {
-		sb.write_string(', ${dq.get(i)}')
+fn (dq Deque[T]) str() string { return '${dq.array()}' }
+pub fn (dq Deque[T]) array() []T {
+	n:=dq.size()
+	mut a:=[]T{len:n}
+	for i in 0..n {
+		a[i]=dq.get(i)
 	}
-	sb.write_string(']')
-	return sb.str()
+	return a
 }
 fn (dq Deque[T]) next(i int) int {
 	next:=i+1
