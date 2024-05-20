@@ -4,7 +4,7 @@ pub struct SoE {
 mut:
 	siege []bool
 }
-fn (pt SoE) str() string { return '${pt.siege}' }
+fn (pt SoE) str() string { return '${pt.get()}' }
 pub fn p_table(n int) SoE {
 	mut tmp:=[]bool{len:n+1,init:true}
 	tmp[0]=false

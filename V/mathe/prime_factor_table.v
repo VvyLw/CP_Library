@@ -4,7 +4,6 @@ pub struct SPF {
 mut:
 	spf []int
 }
-fn (pf SPF) str() string { return '${pf.spf}' }
 pub fn p_fact(n int) SPF {
 	mut tmp:=[]int{len:n+1,init:index}
 	for i:=2; i*i<=n; i++ {
