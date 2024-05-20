@@ -15,6 +15,7 @@ pub fn p_table(n int) SoE {
 	}
 	return SoE{ siege: tmp }
 }
+pub fn (pt SoE) table() []bool { return pt.siege }
 pub fn (pt SoE) get() []int {
 	mut res:=[]int{}
 	for i in 2..pt.siege.len {
