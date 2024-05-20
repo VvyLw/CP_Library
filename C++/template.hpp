@@ -362,7 +362,7 @@ template <class T=ll> inline T binom(T n, const T r, const T mod=0) {
 	return res;
 }
 inline bool is_prime(const ul n) {
-	if(n == 1) {
+	if(n <= 1) {
 		return 0;
 	}
 	if(n <= 3) {
