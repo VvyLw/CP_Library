@@ -515,11 +515,14 @@ data:
     \ <class T=ll> inline T binom(T n, const T r, const T mod=0) {\r\n\tif(r < 0 ||\
     \ n < r) return 0;\r\n\tT res = 1;\r\n\trep(i,1,r) {\r\n\t\tres*=n--;\r\n\t\t\
     if(mod) res%=mod;\r\n\t\tres/=i;\r\n\t\tif(mod) res%=mod;\r\n\t}\r\n\treturn res;\r\
-    \n}\r\ninline bool is_prime(const ul n) {\r\n\tif(n==1) return 0;\r\n\tsqrp(i,2,n)\
-    \ if(n%i==0) return 0;\r\n\treturn 1;\r\n}\r\ninline bool is_int(const ld n){\
-    \ return n == std::floor(n); }\r\ninline bool is_sqr(const ll n){ return is_int(std::sqrt(n));\
-    \ }\r\n} // Heileden\r\n\r\n/**\r\n * @brief \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\
-    \r\n * @docs docs/template.md\r\n */\n#line 6 \"test/add.test.cpp\"\nusing namespace\
+    \n}\r\ninline bool is_prime(const ul n) {\r\n\tif(n <= 1) {\r\n\t\treturn 0;\r\
+    \n\t}\r\n\tif(n <= 3) {\r\n\t\treturn 1;\r\n\t}\r\n\tif(n % 2 ==0 || n % 3 ==\
+    \ 0) {\r\n\t\treturn 0;\r\n\t}\r\n\tfor(int64_t i = 5; i * i <= n; i += 6) {\r\
+    \n\t\tif(n % i == 0 || n % (i + 2) == 0) {\r\n\t\t\treturn 0;\r\n\t\t}\r\n\t}\r\
+    \n\treturn 1;\r\n}\r\ninline bool is_int(const ld n){ return n == std::floor(n);\
+    \ }\r\ninline bool is_sqr(const ll n){ return is_int(std::sqrt(n)); }\r\n} //\
+    \ Heileden\r\n\r\n/**\r\n * @brief \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\r\n *\
+    \ @docs docs/template.md\r\n */\n#line 6 \"test/add.test.cpp\"\nusing namespace\
     \ zia_qu;\nusing namespace Lady_sANDy;\nusing namespace Heileden;\nint main()\
     \ {\n  \tVvyLw::wa_haya_exe();\n  \tnow(start);\n  \t/*INT(t); while(t--)//*/\n\
     \  \tVvyLw::solve();\n  \tnow(stop);\n  \ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
@@ -549,7 +552,7 @@ data:
   isVerificationFile: true
   path: test/add.test.cpp
   requiredBy: []
-  timestamp: '2024-05-18 02:06:40+09:00'
+  timestamp: '2024-05-21 05:30:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/add.test.cpp

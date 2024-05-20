@@ -518,20 +518,23 @@ data:
     \ <class T=ll> inline T binom(T n, const T r, const T mod=0) {\r\n\tif(r < 0 ||\
     \ n < r) return 0;\r\n\tT res = 1;\r\n\trep(i,1,r) {\r\n\t\tres*=n--;\r\n\t\t\
     if(mod) res%=mod;\r\n\t\tres/=i;\r\n\t\tif(mod) res%=mod;\r\n\t}\r\n\treturn res;\r\
-    \n}\r\ninline bool is_prime(const ul n) {\r\n\tif(n==1) return 0;\r\n\tsqrp(i,2,n)\
-    \ if(n%i==0) return 0;\r\n\treturn 1;\r\n}\r\ninline bool is_int(const ld n){\
-    \ return n == std::floor(n); }\r\ninline bool is_sqr(const ll n){ return is_int(std::sqrt(n));\
-    \ }\r\n} // Heileden\r\n\r\n/**\r\n * @brief \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\
-    \r\n * @docs docs/template.md\r\n */\n#line 2 \"C++/ds/SparseTable.hpp\"\n\r\n\
-    #line 5 \"C++/ds/SparseTable.hpp\"\ntemplate <class T> struct SparseTable {\r\n\
-    private:\r\n    using F = std::function<T(T,T)>;\r\n    std::vector<std::vector<T>>\
-    \ st;\r\n    std::vector<T> lookup;\r\n    F f;\r\npublic:\r\n    SparseTable(const\
-    \ std::vector<T> &v, const F &f_) : f(f_) {\r\n        int b = 0;\r\n        while((1\
-    \ << b) <= v.size()) ++b;\r\n        st.assign(b, std::vector<T>(1 << b));\r\n\
-    \        for(size_t i = 0; i < v.size(); i++) {\r\n            st[0][i] = v[i];\r\
-    \n        }\r\n        for(int i = 1; i < b; i++) {\r\n            for(int j =\
-    \ 0; j + (1 << i) <= (1 << b); j++) {\r\n                st[i][j] = f(st[i - 1][j],\
-    \ st[i - 1][j + (1 << (i - 1))]);\r\n            }\r\n        }\r\n        lookup.resize(v.size()\
+    \n}\r\ninline bool is_prime(const ul n) {\r\n\tif(n <= 1) {\r\n\t\treturn 0;\r\
+    \n\t}\r\n\tif(n <= 3) {\r\n\t\treturn 1;\r\n\t}\r\n\tif(n % 2 ==0 || n % 3 ==\
+    \ 0) {\r\n\t\treturn 0;\r\n\t}\r\n\tfor(int64_t i = 5; i * i <= n; i += 6) {\r\
+    \n\t\tif(n % i == 0 || n % (i + 2) == 0) {\r\n\t\t\treturn 0;\r\n\t\t}\r\n\t}\r\
+    \n\treturn 1;\r\n}\r\ninline bool is_int(const ld n){ return n == std::floor(n);\
+    \ }\r\ninline bool is_sqr(const ll n){ return is_int(std::sqrt(n)); }\r\n} //\
+    \ Heileden\r\n\r\n/**\r\n * @brief \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\r\n *\
+    \ @docs docs/template.md\r\n */\n#line 2 \"C++/ds/SparseTable.hpp\"\n\r\n#line\
+    \ 5 \"C++/ds/SparseTable.hpp\"\ntemplate <class T> struct SparseTable {\r\nprivate:\r\
+    \n    using F = std::function<T(T,T)>;\r\n    std::vector<std::vector<T>> st;\r\
+    \n    std::vector<T> lookup;\r\n    F f;\r\npublic:\r\n    SparseTable(const std::vector<T>\
+    \ &v, const F &f_) : f(f_) {\r\n        int b = 0;\r\n        while((1 << b) <=\
+    \ v.size()) ++b;\r\n        st.assign(b, std::vector<T>(1 << b));\r\n        for(size_t\
+    \ i = 0; i < v.size(); i++) {\r\n            st[0][i] = v[i];\r\n        }\r\n\
+    \        for(int i = 1; i < b; i++) {\r\n            for(int j = 0; j + (1 <<\
+    \ i) <= (1 << b); j++) {\r\n                st[i][j] = f(st[i - 1][j], st[i -\
+    \ 1][j + (1 << (i - 1))]);\r\n            }\r\n        }\r\n        lookup.resize(v.size()\
     \ + 1);\r\n        for(int i = 2; i < lookup.size(); i++) {\r\n            lookup[i]\
     \ = lookup[i >> 1] + 1;\r\n        }\r\n    }\r\n    inline T query(const T l,\
     \ const T r) {\r\n        int b = lookup[r - l];\r\n        return f(st[b][l],\
@@ -580,7 +583,7 @@ data:
   isVerificationFile: true
   path: test/stable.test.cpp
   requiredBy: []
-  timestamp: '2024-05-18 02:06:40+09:00'
+  timestamp: '2024-05-21 05:30:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/stable.test.cpp
