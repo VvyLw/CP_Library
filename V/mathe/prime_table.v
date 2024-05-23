@@ -11,7 +11,7 @@ pub fn p_table(n int) SoE {
 	tmp[1]=false
 	for i in 2..n+1 {
 		if !tmp[i] { continue }
-		for j:=i*i; j<=n; j+=i { tmp[j]=false }
+		for j:=i64(i)*i; j<=n; j+=i { tmp[j]=false }
 	}
 	return SoE{ siege: tmp }
 }
