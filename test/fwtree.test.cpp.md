@@ -73,14 +73,15 @@ data:
     \ }\n[[maybe_unused]] void time(const Timer &t1, const Timer &t2){ void(0); }\n\
     #endif\n\n/**\n * @brief \u30BF\u30A4\u30DE\u30FC\n */\n#line 26 \"C++/template.hpp\"\
     \n\r\n#define overload4(_1,_2,_3,_4,name,...) name\r\n#define overload3(_1,_2,_3,name,...)\
-    \ name\r\n#define rep1(n) for(const auto i: std::views::iota(0, (n)))\r\n#define\
-    \ rep2(i,n) for(const auto i: std::views::iota(0, (n)))\r\n#define rep3(i,a,b)\
-    \ for(const auto i: std::views::iota((a), (b) + 1))\r\n#define rep4(i,a,b,c) for(ll\
-    \ i=(a); i<=(b); i+=(c))\r\n#define rep(...) overload4(__VA_ARGS__,rep4,rep3,rep2,rep1)(__VA_ARGS__)\r\
-    \n#define rvp1(n) for(const auto i: std::views::iota(0, (n)) | std::views::reverse)\r\
-    \n#define rvp2(i,n) for(const auto i: std::views::iota(0, (n)) | std::views::reverse)\r\
-    \n#define rvp3(i,a,b) for(const auto i: std::views::iota((a), (b) + 1) | std::views::reverse)\r\
-    \n#define rvp4(i,a,b,c) for(ll i=(a); i>=(b); i-=(c))\r\n#define rvp(...) overload4(__VA_ARGS__,rvp4,rvp3,rvp2,rvp1)(__VA_ARGS__)\r\
+    \ name\r\n#define rep1(n) for(const auto i: std::views::iota(0) | std::views::take(n))\r\
+    \n#define rep2(i,n) for(const auto i: std::views::iota(0) | std::views::take(n))\r\
+    \n#define rep3(i,a,b) for(const auto i: std::views::iota((a), (b) + 1))\r\n#define\
+    \ rep4(i,a,b,c) for(ll i=(a); i<=(b); i+=(c))\r\n#define rep(...) overload4(__VA_ARGS__,rep4,rep3,rep2,rep1)(__VA_ARGS__)\r\
+    \n#define rvp1(n) for(const auto i: std::views::iota(0) | std::views::take(n)\
+    \ | std::views::reverse)\r\n#define rvp2(i,n) for(const auto i: std::views::iota(0)\
+    \ | std::views::take(n) | std::views::reverse)\r\n#define rvp3(i,a,b) for(const\
+    \ auto i: std::views::iota((a), (b) + 1) | std::views::reverse)\r\n#define rvp4(i,a,b,c)\
+    \ for(ll i=(a); i>=(b); i-=(c))\r\n#define rvp(...) overload4(__VA_ARGS__,rvp4,rvp3,rvp2,rvp1)(__VA_ARGS__)\r\
     \n#define all1(v) v.begin(),v.end()\r\n#define all2(v,a) v.begin(),v.begin()+a\r\
     \n#define all3(v,a,b) v.begin()+a,v.begin()+b\r\n#define all(...) overload3(__VA_ARGS__,all3,all2,all1)(__VA_ARGS__)\r\
     \n#define rall1(v) v.rbegin(),v.rend()\r\n#define rall2(v,a) v.rbegin(),v.rbegin()+a\r\
@@ -585,7 +586,7 @@ data:
   isVerificationFile: true
   path: test/fwtree.test.cpp
   requiredBy: []
-  timestamp: '2024-05-21 05:30:59+09:00'
+  timestamp: '2024-05-27 22:36:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fwtree.test.cpp
