@@ -51,6 +51,11 @@ pub fn mod(n i64, m i64) i64 { k:=n%m return if k<0 { k+m } else { k } }
 pub fn large(n i64) big.Integer { return big.integer_from_i64(n) }
 pub fn stol(s string) !big.Integer { return big.integer_from_string(s)! }
 pub fn iota(n int, dlt int) []int { return []int{len: n, init: index+dlt} }
+pub fn is_sorted[T](a []T) bool {
+	mut b:=a.clone()
+	b.sort()
+	return a==b
+}
 pub fn unq[T](a []T) []T {
 	mut res := []T{cap: a.len / 10}
 	mut j := -1
