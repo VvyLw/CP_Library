@@ -26,13 +26,13 @@ std::mt19937 Random() {
 
 #define overload4(_1,_2,_3,_4,name,...) name
 #define overload3(_1,_2,_3,name,...) name
-#define rep1(n) for(const auto i: std::views::iota(0, (n)))
-#define rep2(i,n) for(const auto i: std::views::iota(0, (n)))
+#define rep1(n) for(const auto i: std::views::iota(0) | std::views::take(n))
+#define rep2(i,n) for(const auto i: std::views::iota(0) | std::views::take(n))
 #define rep3(i,a,b) for(const auto i: std::views::iota((a), (b) + 1))
 #define rep4(i,a,b,c) for(ll i=(a); i<=(b); i+=(c))
 #define rep(...) overload4(__VA_ARGS__,rep4,rep3,rep2,rep1)(__VA_ARGS__)
-#define rvp1(n) for(const auto i: std::views::iota(0, (n)) | std::views::reverse)
-#define rvp2(i,n) for(const auto i: std::views::iota(0, (n)) | std::views::reverse)
+#define rvp1(n) for(const auto i: std::views::iota(0) | std::views::take(n) | std::views::reverse)
+#define rvp2(i,n) for(const auto i: std::views::iota(0) | std::views::take(n) | std::views::reverse)
 #define rvp3(i,a,b) for(const auto i: std::views::iota((a), (b) + 1) | std::views::reverse)
 #define rvp4(i,a,b,c) for(ll i=(a); i>=(b); i-=(c))
 #define rvp(...) overload4(__VA_ARGS__,rvp4,rvp3,rvp2,rvp1)(__VA_ARGS__)
