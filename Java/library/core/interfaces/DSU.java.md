@@ -555,19 +555,25 @@ data:
   code: "package library.core.interfaces;\n\nimport java.util.ArrayList;\n\n/**\n\
     \ * UnionFind\u306E\u30D9\u30FC\u30B9\u3068\u306A\u308B\u30A4\u30F3\u30BF\u30FC\
     \u30D5\u30A7\u30FC\u30B9\n * Disjoint Set Union\n */\npublic interface DSU {\n\
-    \t/**\n\t * @param i\n\t * @return i\u306E\u6839\n\t */\n\tpublic int root(final\
-    \ int i);\n\t/**\n\t * @param i\n\t * @return i\u3092\u542B\u3080\u9023\u7D50\u6210\
-    \u5206\u306E\u30B5\u30A4\u30BA\n\t */\n\tpublic int size(final int i);\n\t/**\n\
-    \t * @return UnionFind\u306E\u30B5\u30A4\u30BA\n\t */\n\tpublic int size();\n\t\
-    /**\n\t * @param i\n\t * @param j\n\t * @return i\u3068j\u304C\u540C\u3058\u9023\
-    \u7D50\u6210\u5206\u306B\u6240\u5C5E\u3057\u3066\u3044\u308B\u304B\n\t */\n\t\
-    public default boolean same(final int i, final int j){ return root(i) == root(j);\
-    \ }\n\t/**\n\t * @param i\n\t * @param j\n\t * @return \u672A\u30DE\u30FC\u30B8\
-    \u3067true, \u30DE\u30FC\u30B8\u6E08\u3067false\n\t */\n\tpublic boolean unite(int\
-    \ i, int j);\n\t/**\n\t * @see <a href=\"https://atcoder.github.io/ac-library/production/document_ja/dsu.html\"\
+    \t/**\n\t * \u9802\u70B9i\u306E\u6839\u3092\u8FD4\u3059\n\t * @param i\n\t * @return\
+    \ i\u306E\u6839\n\t */\n\tpublic int root(final int i);\n\t/**\n\t * \u9802\u70B9\
+    i\u3092\u542B\u3080\u9023\u7D50\u6210\u5206\u306E\u30B5\u30A4\u30BA\n\t * @param\
+    \ i\n\t * @return i\u3092\u542B\u3080\u9023\u7D50\u6210\u5206\u306E\u30B5\u30A4\
+    \u30BA\n\t */\n\tpublic int size(final int i);\n\t/**\n\t * UnionFind\u306E\u5927\
+    \u304D\u3055\u3092\u8FD4\u3059\n\t * @return UnionFind\u306E\u30B5\u30A4\u30BA\
+    \n\t */\n\tpublic int size();\n\t/**\n\t * \u4E8C\u9802\u70B9\u304C\u540C\u3058\
+    \u9023\u7D50\u6210\u5206\u306B\u6240\u5C5E\u3057\u3066\u3044\u308B\u304B\u3092\
+    \u8FD4\u3059\n\t * @param i\n\t * @param j\n\t * @return i\u3068j\u304C\u540C\u3058\
+    \u9023\u7D50\u6210\u5206\u306B\u6240\u5C5E\u3057\u3066\u3044\u308B\u304B\n\t */\n\
+    \tpublic default boolean same(final int i, final int j){ return root(i) == root(j);\
+    \ }\n\t/**\n\t * \u4E8C\u9802\u70B9\u3092\u30DE\u30FC\u30B8\u3059\u308B\n\t *\
+    \ @param i\n\t * @param j\n\t * @return \u672A\u30DE\u30FC\u30B8\u3067true, \u30DE\
+    \u30FC\u30B8\u6E08\u3067false\n\t */\n\tpublic boolean unite(int i, int j);\n\t\
+    /**\n\t * \u30B0\u30E9\u30D5\u3092\u9023\u7D50\u6210\u5206\u306B\u5206\u3051\u3001\
+    \u305D\u306E\u60C5\u5831\u3092\u8FD4\u3059\n\t * @see <a href=\"https://atcoder.github.io/ac-library/production/document_ja/dsu.html\"\
     >atcoder::dsu::groups</a>\n\t * @return \u30B0\u30E9\u30D5\u3092\u9023\u7D50\u6210\
-    \u5206\u306B\u5206\u3051\u3001\u305D\u306E\u60C5\u5831\u3092\u8FD4\u3059\n\t */\n\
-    \tpublic ArrayList<ArrayList<Integer>> groups();\n}"
+    \u5206\u306B\u5206\u3051\u305F\u6642\u306E\u72B6\u614B\n\t */\n\tpublic ArrayList<ArrayList<Integer>>\
+    \ groups();\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -752,7 +758,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-11 02:58:11+09:00'
+  timestamp: '2024-06-11 03:10:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/interfaces/DSU.java
