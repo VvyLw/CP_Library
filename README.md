@@ -9,7 +9,7 @@
 [![VvyLw](https://img.shields.io/badge/yukicoder-VvyLw-1f1e33)](https://yukicoder.me/users/18182)
 [![VvyLw](https://img.shields.io/badge/CodinGame-VvyLw-yellow)](https://www.codingame.com/profile/119e2af9dda8c75e90fbd06b4bec45ec5990455)
   
-javadocは記述済なのでライブラリの説明はJavaを見ると良いです。[Document(Java)](https://VvyLw.github.io/CP_Library/docs/doc/index.html)  
+javadocは記述済なのでライブラリの説明はJavaを見ると良いです。[Document(Java)](https://vvyLw.github.io/doc/index.html)  
 Java: Modint, Rolling Hashがない  
 V: UnionFind, Potential付きUnionFind, Graph(重みなしのみ), std::next_permutation, std::deque, std::pair, FenwickTree, SegmentTree, Modint(多分狂ってる)   
 D: UnionFind, セグ木, FenwickTree, 累積和  
