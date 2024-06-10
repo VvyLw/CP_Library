@@ -69,6 +69,7 @@ public final class DualSegmentTree<T> {
 		}
 	}
 	/**
+	 * DualSegmentTree[k]を返す
 	 * @param k
 	 * @return k番目の要素
 	 */
@@ -77,6 +78,10 @@ public final class DualSegmentTree<T> {
 		thrust(k += sz);
 		return (T) lazy[k];
 	}
+	/**
+	 * DualSegmentTreeを配列に変換したもの
+	 * @return DualSegmentTreeの配列
+	 */
 	@SuppressWarnings("unchecked")
 	public final T[] toArray(){ return (T[]) IntStream.range(0, n).mapToObj(this::get).toArray(); }
 	@Override

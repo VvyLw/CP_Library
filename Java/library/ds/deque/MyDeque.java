@@ -67,6 +67,7 @@ public final class MyDeque<T> implements Iterable<T> {
 	 */
 	public final boolean isEmpty(){ return size() == 0; }
 	/**
+	 * Dequeの大きさを返す
 	 * @return Dequeの大きさ
 	 */
 	public final int size() {
@@ -147,27 +148,31 @@ public final class MyDeque<T> implements Iterable<T> {
 	 */
 	public final T peekLast(){ return get(n - 1); }
 	/**
-	 * ランダムアクセス
+	 * Deque[i]を返す
 	 * @param i インデックス
 	 * @return Dequeのi番目に格納されている要素
+	 * @implNote ランダムアクセス
 	 */
 	@SuppressWarnings("unchecked")
 	public final T get(final int i){ return (T) buf[index(i)]; }
 	/**
-	 * i番目に要素を代入する
+	 * i番目に要素xを代入する
 	 * @param i インデックス
 	 * @param x 要素
 	 */
 	public final void set(final int i, final T x){ buf[index(i)] = x; }
 	/**
+	 * Dequeの末尾に要素を追加する
 	 * @see #addLast
 	 */
 	public final void add(final T x){ addLast(x); }
 	/**
+	 * Dequeの先頭の要素を削除する
 	 * @see #pollFirst
 	 */
 	public final T poll(){ return pollFirst(); }
 	/**
+	 * Dequeの先頭の要素を返す
 	 * @see #peekFirst
 	 */
 	public final T peek(){ return peekFirst(); }
@@ -188,6 +193,7 @@ public final class MyDeque<T> implements Iterable<T> {
 	 */
 	public final void clear(){ head = tail = 0; }
 	/**
+	 * Dequeを配列に変換したものを返す
 	 * @return 配列化したDeque
 	 */
 	@SuppressWarnings("unchecked")
@@ -206,9 +212,6 @@ public final class MyDeque<T> implements Iterable<T> {
 	 */
 	@Override
 	public final Iterator<T> iterator(){ return new DequeIterator(); }
-	/**
-	 * イテレータの中身
-	 */
 	private class DequeIterator implements Iterator<T> {
 		private int now = head;
 		private int rem = size();

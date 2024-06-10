@@ -90,6 +90,7 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 	 */
 	public void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni())); }
 	/**
+	 * 辺のリストを返す
 	 * @return 辺のリスト
 	 */
 	public final ArrayList<Edge> getEdge(){ return edge; }
@@ -122,6 +123,7 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 		return d;
 	}
 	/**
+	 * 頂点uと頂点vとの距離
 	 * @param u
 	 * @param v
 	 * @return 頂点uと頂点vとの距離
@@ -156,6 +158,7 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 		return ord.size() == n ? ord : null;
 	}
 	/**
+	 * サイクル検出
 	 * @return サイクル
 	 * if non-existence: 空配列
 	 * @implNote 有向グラフ

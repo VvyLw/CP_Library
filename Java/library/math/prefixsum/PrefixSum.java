@@ -38,6 +38,7 @@ public final class PrefixSum extends InclusiveScan {
 		s = Utility.rotate(Arrays.copyOf(s, n + 1), -1);
 	}
 	/**
+	 * 閉区間[l, r]の和を求める
 	 * @param l
 	 * @param r
 	 * @return 閉区間[l, r]の和

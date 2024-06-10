@@ -69,10 +69,12 @@ public final class IntDeque {
 		n = buf.length;
 	}
 	/**
+	 * Dequeが空かどうか判定する
 	 * @return Dequeが空かどうか
 	 */
 	public final boolean isEmpty(){ return size() == 0; }
 	/**
+	 * Dequeの大きさを返す
 	 * @return Dequeのサイズ
 	 */
 	public final int size() {
@@ -80,7 +82,7 @@ public final class IntDeque {
 		return size < 0 ? size + n : size;
 	}
 	/**
-	 * Dequeの先頭に要素を追加
+	 * Dequeの先頭に要素を追加する
 	 * @param x
 	 */
 	public final void addFirst(final long x) {
@@ -91,7 +93,7 @@ public final class IntDeque {
 		buf[head] = x;
 	}
 	/**
-	 * Dequeの末尾に要素を追加
+	 * Dequeの末尾に要素を追加する
 	 * @param x
 	 */
 	public final void addLast(final long x) {
@@ -102,7 +104,7 @@ public final class IntDeque {
 		tail = next(tail);
 	}
 	/**
-	 * Dequeの先頭の要素を削除
+	 * Dequeの先頭の要素を削除する
 	 */
 	public final void removeFirst() {
 		if(head == tail) {
@@ -111,7 +113,7 @@ public final class IntDeque {
 		head = next(head);
 	}
 	/**
-	 * Dequeの末尾の要素を削除
+	 * Dequeの末尾の要素を削除する
 	 */
 	public final void removeLast() {
 		if(head == tail) {
@@ -120,7 +122,7 @@ public final class IntDeque {
 		tail = prev(tail);
 	}
 	/**
-	 * Dequeの先頭の要素を削除
+	 * Dequeの先頭の要素を削除する
 	 * @return 削除した要素
 	 */
 	public final long pollFirst() {
@@ -132,7 +134,7 @@ public final class IntDeque {
 		return ans;
 	}
 	/**
-	 * Dequeの末尾の要素を削除
+	 * Dequeの末尾の要素を削除する
 	 * @return 削除した要素
 	 */
 	public final long pollLast() {
@@ -143,34 +145,40 @@ public final class IntDeque {
 		return buf[tail];
 	}
 	/**
+	 * Dequeの先頭の要素を返す
 	 * @return Dequeの先頭の要素
 	 */
 	public final long peekFirst(){ return get(0); }
 	/**
+	 * Dequeの末尾の要素を返す
 	 * @return Dequeの末尾の要素
 	 */
 	public final long peekLast(){ return get(n - 1); }
 	/**
-	 * ランダムアクセス
+	 * Deque[i]を返す
 	 * @param i インデックス
 	 * @return Dequeのi番目に格納されている要素
+	 * @implNote ランダムアクセス
 	 */
 	public final long get(final int i){ return buf[index(i)]; }
 	/**
-	 * i番目に要素を代入する
+	 * i番目に要素xを代入する
 	 * @param i インデックス
 	 * @param x 要素
 	 */
 	public final void set(final int i, final long x){ buf[index(i)] = x; }
 	/**
+	 * Dequeの末尾に要素を追加する
 	 * @see #addLast
 	 */
 	public final void add(final long x){ addLast(x); }
 	/**
+	 * Dequeの先頭の要素を削除する
 	 * @see #pollFirst
 	 */
 	public final long poll(){ return pollFirst(); }
 	/**
+	 * Dequeの先頭の要素を返す
 	 * @see #peekFirst
 	 */
 	public final long peek(){ return peekFirst(); }
@@ -191,6 +199,7 @@ public final class IntDeque {
 	 */
 	public final void clear(){ head = tail = 0; }
 	/**
+	 * Dequeを配列に変換したものを返す
 	 * @return 配列化したDeque
 	 */
 	public final long[] toArray() {

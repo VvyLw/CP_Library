@@ -11,6 +11,7 @@ public final class SparseTable {
 	private final int[] lookup;
 	private final LongBinaryOperator op;
 	/**
+	 * コンストラクタ
 	 * @param a 配列
 	 * @param op 二項演算
 	 */
@@ -35,6 +36,7 @@ public final class SparseTable {
 		}
 	}
 	/**
+	 * コンストラクタ
 	 * @param a 配列
 	 * @param op 二項演算
 	 */
@@ -59,9 +61,10 @@ public final class SparseTable {
 		}
 	}
 	/**
+	 * 半開区間[l, r)についての二項演算結果を返す
 	 * @param l
 	 * @param r
-	 * @return 半開区間[l, r)の演算結果
+	 * @return 半開区間[l, r)について二項演算した結果
 	 */
 	public final long query(final int l, final int r) {
 		final int b = lookup[r - l];

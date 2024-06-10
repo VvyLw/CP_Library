@@ -2,3 +2,4 @@ a.out
 *.class
 atcoder/
 .vscode/
+package-info.java

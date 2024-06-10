@@ -32,6 +32,7 @@ public final class WeightedUnionFind implements DSU {
 		return par[i] = r;
 	}
 	/**
+	 * iの根の重みを返す
 	 * @param i
 	 * @return iの根の重み
 	 */
@@ -40,6 +41,7 @@ public final class WeightedUnionFind implements DSU {
 		return weight[i];
 	}
 	/**
+	 * 二頂点の根の重みの差を返す
 	 * @param x
 	 * @param y
 	 * @return 重みの差

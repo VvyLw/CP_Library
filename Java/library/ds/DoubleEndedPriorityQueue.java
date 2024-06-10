@@ -119,14 +119,17 @@ public final class DoubleEndedPriorityQueue<T extends Number> {
 		return res;
 	}
 	/**
+	 * 最小値を返す
 	 * @return 最小値
 	 */
 	public final T getMin(){ return d.size() < 2 ? d.get(0) : d.get(1); }
 	/**
+	 * 最大値を返す
 	 * @return 最大値
 	 */
 	public final T getMax(){ return d.get(0); }
 	/**
+	 * PriorityQueueの大きさを返す
 	 * @return PriorityQueueのサイズ
 	 */
 	public final int size(){ return d.size(); }

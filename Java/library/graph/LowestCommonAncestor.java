@@ -53,7 +53,6 @@ public final class LowestCommonAncestor {
 	 * 頂点uと頂点vとの最小共通祖先を求める
 	 * @param u
 	 * @param v
-	 * @return
 	 */
 	public final int query(int u, int v) {
 		if(dep[u] > dep[v]) {
@@ -74,6 +73,7 @@ public final class LowestCommonAncestor {
 		return table[0][u];
 	}
 	/**
+	 * 頂点uからk個親に遡った頂点を返す
 	 * @param u
 	 * @param k
 	 * @return 頂点uからk個親に遡った頂点
@@ -90,6 +90,7 @@ public final class LowestCommonAncestor {
 		return u;
 	}
 	/**
+	 * 頂点uと頂点vとのパスの辺の本数を返す
 	 * @param u
 	 * @param v
 	 * @return 頂点uと頂点vとのパスの辺の本数

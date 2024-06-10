@@ -14,7 +14,7 @@ public final class ModPrime {
 	 * @param mod 素数
 	 * @param sz 取りうる値の最大値
 	 */
-	ModPrime(final int mod, final int sz) {
+	public ModPrime(final int mod, final int sz) {
 		this.mod = mod;
 		len = Math.min(sz + 1, mod);
 		f = new long[len];
@@ -43,11 +43,12 @@ public final class ModPrime {
 		}
 	}
 	/**
+	 * nCkを返す
 	 * @param n
 	 * @param k
 	 * @return 二項係数
 	 */
-	final long C(final int n, final int k) {
+	public final long C(final int n, final int k) {
 		if(k < 0 || n < k) {
 			return 0;
 		}
@@ -55,11 +56,12 @@ public final class ModPrime {
 		return (a * bc) % mod;
 	}
 	/**
+	 * nPkを返す
 	 * @param n
 	 * @param k
 	 * @return 順列
 	 */
-	final long P(final int n, final int k) {
+	public final long P(final int n, final int k) {
 		if (k < 0 || n < k) {
 			return 0;
 		}
@@ -67,19 +69,21 @@ public final class ModPrime {
 		return (a * b) % mod;
 	}
 	/**
+	 * nHkを返す
 	 * @param n
 	 * @param k
 	 * @return 重複順列
 	 */
-	final long H(final int n, final int k) {
+	public final long H(final int n, final int k) {
 		if (n == 0 && k == 0) {
 			return 1;
 		}
 		return C(n + k - 1, k);
 	}
 	/**
+	 * n!を返す
 	 * @param n
 	 * @return 階乗 mod P
 	 */
-	final long fact(final int n){ return f[n]; }
+	public final long fact(final int n){ return f[n]; }
 }

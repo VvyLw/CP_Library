@@ -57,11 +57,13 @@ public final class SegmentTree<T> {
 		} while(i > 0);
 	}
 	/**
+	 * SegmentTree[i]を返す
 	 * @param i
 	 * @return i番目の要素
 	 */
 	public final T get(final int i){ return query(i, i + 1); }
 	/**
+	 * 半開区間[l, r)に対しての二項演算結果を返す
 	 * @param a
 	 * @param b
 	 * @return 半開区間[l, r)に対して二項演算した結果
@@ -80,6 +82,7 @@ public final class SegmentTree<T> {
 		return op.apply(l, r);
 	}
 	/**
+	 * 全体の二項演算結果を返す
 	 * @return 全体を二項演算した結果
 	 */
 	@SuppressWarnings("unchecked")
@@ -160,6 +163,10 @@ public final class SegmentTree<T> {
 		}
 		return Math.min(i - n, fini);
 	}
+	/**
+	 * SegmentTreeを配列に変換したものを返す
+	 * @return SegmentTreeの配列
+	 */
 	@SuppressWarnings("unchecked")
 	public final T[] toArray(){ return (T[]) IntStream.range(0, fini).mapToObj(i -> get(i)).toArray(); }
 	@Override

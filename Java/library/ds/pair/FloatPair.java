@@ -12,8 +12,15 @@ public final class FloatPair extends Pair<Double, Double> {
 	 * @param second
 	 */
 	private FloatPair(final double first, final double second){ super(first, second); }
+	/**
+	 * FloatPairを宣言するのに使う
+	 * new FloatPairと同等
+	 * @param a
+	 * @param b
+	 */
 	public static final FloatPair of(final double a, final double b){ return new FloatPair(a, b); }
 	/**
+	 * 元のFloatPairをswapしたものを返す
 	 * @return firstとsecondを入れ替えたFloatPair
 	 */
 	@Override
@@ -52,20 +59,24 @@ public final class FloatPair extends Pair<Double, Double> {
 		return FloatPair.of(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));
 	}
 	/**
+	 * ドット積を返す
 	 * @param p
 	 * @return ドット積
 	 */
 	public final double dot(final FloatPair p){ return first * p.first + second * p.second; }
 	/**
+	 * クロス積を返す
 	 * @param p
 	 * @return クロス積
 	 */
 	public final double cross(final FloatPair p){ return rotate().dot(p); }
 	/**
+	 * 距離を返す
 	 * @return FloatPairを座標と見て距離
 	 */
 	public final double sqr(){ return dot(this); }
 	/**
+	 * second / firstを返す
 	 * @return FloatPairの勾配
 	 */
 	public final double grad() { 
@@ -77,6 +88,7 @@ public final class FloatPair extends Pair<Double, Double> {
 		throw new Error();
 	}
 	/**
+	 * ユークリッドノルムを返す
 	 * @return FloatPairのユークリッドノルム
 	 */
 	public final double abs(){ return Math.hypot(first, second); }

@@ -137,6 +137,7 @@ public final class SuffixArray extends ArrayList<Integer> {
 		return si >= sn && ti < tn;
 	}
 	/**
+	 * t <= s[i, N)となる最小のiを返す
 	 * @param t
 	 * @return t <= s[i, N)となる最小のi
 	 */
@@ -176,6 +177,7 @@ public final class SuffixArray extends ArrayList<Integer> {
 		return Pair.of(low, ok);
 	}
 	/**
+	 * 部分文字列S[i,N)とS[j,N)との最長共通接頭辞を返す
 	 * @return S[i,N)とS[j,N)との最長共通接頭辞
 	 */
 	public final int[] lcpArray() {

@@ -34,11 +34,13 @@ public class Utility {
 	 */
 	protected static final String no(final boolean ok){ return yes(!ok); }
 	/**
+	 * 平方数を求める
 	 * @param x
 	 * @return xの平方数
 	 */
 	protected static final long sqr(final long x){ return x * x; }
 	/**
+	 * 立方数を求める
 	 * @param x
 	 * @return xの立方数
 	 */
@@ -63,6 +65,7 @@ public class Utility {
 		return n < 0 ? n + m : n;
 	}
 	/**
+	 * baseを底とするxの定数を求める
 	 * @param x
 	 * @param base
 	 * @return baseを底とするxの対数
@@ -85,6 +88,7 @@ public class Utility {
 		return Math.rint((a * d) / b) / d;
 	}
 	/**
+	 * aのb乗を求める
 	 * @param a
 	 * @param b
 	 * @return aのb乗
@@ -101,8 +105,10 @@ public class Utility {
 		return res;
 	}
 	/**
+	 * aのb乗(mod m)を求める
 	 * @param a
 	 * @param b
+	 * @param m
 	 * @return aのb乗のmを法とした剰余
 	 */
 	protected static final long modPow(long a, long b, final long m) {
@@ -119,6 +125,7 @@ public class Utility {
 		return res;
 	}
 	/**
+	 * inv a(mod m)を求める
 	 * @param a
 	 * @param m
 	 * @return aの逆元のmを法とした剰余
@@ -139,116 +146,137 @@ public class Utility {
 		return mod(u, m);
 	}
 	/**
+	 * aとbの最小公倍数を求める
 	 * @param a
 	 * @param b
 	 * @return aとbの最小公倍数
 	 */
 	public static final long lcm(final long a, final long b){ return a / gcd(a, b) * b; }
 	/**
+	 * 与えられたタプルの最小公倍数を求める
 	 * e.g.) lcm(2, 3, 5) = 30
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの最小公倍数
 	 */
 	public static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }
 	/**
+	 * 与えられたタプルの最小公倍数を求める
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの最小公倍数
 	 */
 	public static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }
 	/**
+	 * aとbの最大公約数を求める
 	 * @param a
 	 * @param b
 	 * @return aとbの最大公約数
 	 */
 	public static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }
 	/**
+	 * 与えられたタプルの最大公約数を求める
 	 * e.g.) gcd(12, 15, 24) = 3
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの最大公約数
 	 */
 	public static final int gcd(final int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }
 	/**
-	 * e.g.) gcd(12, 15, 24) = 3
+	 * 与えられたタプルの最大公約数を求める
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの最大公約数
 	 */
 	public static final long gcd(final long... a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }
 	/**
+	 * 与えられたタプルの最小値を求める
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの最小値
 	 */
 	public static final int min(final int... a){ return Arrays.stream(a).min().getAsInt(); }
 	/**
+	 * 与えられたタプルの最小値を求める
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの最小値
 	 */
 	public static final long min(final long... a){ return Arrays.stream(a).min().getAsLong(); }
 	/**
+	 * 与えられたタプルの最小値を求める
 	 * @param a double型タプル あるいはdouble型配列
 	 * @return aの最小値
 	 */
 	public static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble(); }
 	/**
+	 * 与えられたタプルの最大値を求める
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの最大値
 	 */
 	public static final int max(final int... a){ return Arrays.stream(a).max().getAsInt(); }
 	/**
+	 * 与えられたタプルの最大値を求める
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの最大値
 	 */
 	public static final long max(final long... a){ return Arrays.stream(a).max().getAsLong(); }
 	/**
+	 * 与えられたタプルの最大値を求める
 	 * @param a double型タプル あるいはdouble型配列
 	 * @return aの最大値
 	 */
 	public static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble(); }
 	/**
+	 * 与えられたタプルの総和を求める
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの総和
 	 */
 	public static final long sum(final int... a){ return Arrays.stream(a).asLongStream().sum(); }
 	/**
+	 * 与えられたタプルの総和を求める
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの総和
 	 */
 	public static final long sum(final long... a){ return Arrays.stream(a).sum(); }
 	/**
+	 * 与えられたタプルの総和を求める
 	 * @param a double型タプル あるいはdouble型配列
 	 * @return aの総和
 	 */
 	public static final double sum(final double... a){ return Arrays.stream(a).sum(); }
 	/**
+	 * 与えられたタプルの総積を求める
 	 * @param a int型タプル あるいはint型配列
-	 * @return aの総乗
+	 * @return aの総積
 	 */
 	protected static final long prod(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> x * y); }
 	/**
+	 * 与えられたタプルの総積を求める
 	 * @param a long型タプル あるいはlong型配列
-	 * @return aの総乗
+	 * @return aの総積
 	 */
 	protected static final long prod(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y); }
 	/**
+	 * 与えられたタプルの総積を求める
 	 * @param a double型タプル あるいはdouble型配列
-	 * @return aの総乗
+	 * @return aの総積
 	 */
 	protected static final double prod(final double... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y); }
 	/**
+	 * 与えられたタプルの平均値を求める
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの平均値
 	 */
 	protected static final double ave(final int... a){ return Arrays.stream(a).average().getAsDouble(); }
 	/**
+	 * 与えられたタプルの平均値を求める
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの平均値
 	 */
 	protected static final double ave(final long... a){ return Arrays.stream(a).average().getAsDouble(); }
 	/**
+	 * 与えられたタプルの平均値を求める
 	 * @param a double型タプル あるいはdouble型配列
 	 * @return aの平均値
 	 */
 	protected static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble(); }
 	/**
+	 * ソート済配列の中央値を求める
 	 * @param a ソート済のint型配列
 	 * @return 中央値
 	 */
@@ -258,6 +286,7 @@ public class Utility {
 		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;
 	}
 	/**
+	 * ソート済配列の中央値を求める
 	 * @param a ソート済のlong型配列
 	 * @return 中央値
 	 */
@@ -267,6 +296,7 @@ public class Utility {
 		return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;
 	}
 	/**
+	 * ソート済配列の中央値を求める
 	 * @param a ソート済のdouble型配列
 	 * @return 中央値
 	 */
@@ -278,6 +308,7 @@ public class Utility {
 	/**
 	 * nの約数を列挙
 	 * @param n 整数
+	 * @return nの約数の配列
 	 */
 	protected static final long[] div(final long n) {
 		final ArrayList<Long> d = new ArrayList<>();
@@ -295,6 +326,7 @@ public class Utility {
 	 * nを素因数分解
 	 * e.g.) primeFactor(24) = [(2, 3), (3, 1)]
 	 * @param n 整数
+	 * @return nの素因数分解結果
 	 */
 	protected static final IntPair[] primeFactor(long n) {
 		final ArrayList<IntPair> pf = new ArrayList<>();
@@ -315,6 +347,7 @@ public class Utility {
 		return pf.toArray(IntPair[]::new);
 	}
 	/**
+	 * オイラーのΦ関数
 	 * @param n 整数
 	 * @return 1からnまでの整数のうちnと互いに素なものの個数
 	 */
@@ -334,11 +367,13 @@ public class Utility {
 		return res;
 	}
 	/**
+	 * 1からnまでの総和を求める
 	 * @param n
 	 * @return 1からnまでの総和
 	 */
 	protected static final long sigma(final long n){ return n * (n + 1) / 2; }
 	/**
+	 * aからbまでの総和を求める
 	 * @param a
 	 * @param b
 	 * @return aからbまでの総和
@@ -349,6 +384,7 @@ public class Utility {
 		return sigma(b) - sigma(a - 1);
 	}
 	/**
+	 * n!を求める
 	 * @param n 整数
 	 * @return nの階乗
 	 */
@@ -360,6 +396,7 @@ public class Utility {
 		return res;
 	}
 	/**
+	 * modを法としたn!を求める
 	 * @param n
 	 * @param mod
 	 * @return nの階乗のmodを法とする剰余
@@ -373,6 +410,7 @@ public class Utility {
 		return res;
 	}
 	/**
+	 * nPrを求める
 	 * @param n
 	 * @param r
 	 * @return 順列(nPr)
@@ -386,6 +424,7 @@ public class Utility {
 		return res;
 	}
 	/**
+	 * modを法としたnPrを求める
 	 * @param n
 	 * @param r
 	 * @param mod
@@ -401,6 +440,7 @@ public class Utility {
 		return res;
 	}
 	/**
+	 * nCrを求める
 	 * @param n
 	 * @param r
 	 * @return 二項係数(nCr)
@@ -418,6 +458,7 @@ public class Utility {
 		return res;
 	}
 	/**
+	 * modを法とするnCrを求める
 	 * @param n
 	 * @param r
 	 * @param mod
@@ -440,16 +481,19 @@ public class Utility {
 	/**
 	 * nが整数かどうか判定
 	 * @param n
+	 * @return nが整数ならtrue, 整数でないならfalse
 	 */
 	protected static final boolean isInt(final double n){ return n == (long) Math.floor(n); }
 	/**
 	 * nが平方数かどうか判定
 	 * @param n
+	 * @return nが平方数ならtrue, 平方数でないならfalse
 	 */
 	protected static final boolean isSqr(final long n){ return isInt(Math.sqrt(n)); }
 	/**
 	 * nが素数かどうか判定
 	 * @param n
+	 * @return nが素数ならtrue, 1か合成数ならfalse
 	 */
 	protected static final boolean isPrime(final long n) {
 		if(n == 1) {
@@ -463,6 +507,7 @@ public class Utility {
 		return true;
 	}
 	/**
+	 * xが閉区間[l, r]の中に収まるか判定する
 	 * @param l
 	 * @param x
 	 * @param r
@@ -470,6 +515,7 @@ public class Utility {
 	 */
 	public static final boolean scope(final int l, final int x, final int r){ return l <= x && x <= r; }
 	/**
+	 * xが閉区間[l, r]の中に収まるか判定する
 	 * @param l
 	 * @param x
 	 * @param r
@@ -477,6 +523,7 @@ public class Utility {
 	 */
 	public static final boolean scope(final long l, final long x, final long r){ return l <= x && x <= r; }
 	/**
+	 * xが閉区間[l, r]の中に収まるか判定する
 	 * @param l
 	 * @param x
 	 * @param r
@@ -484,6 +531,7 @@ public class Utility {
 	 */
 	public static final boolean scope(final double l, final double x, final double r){ return l <= x && x <= r; }
 	/**
+	 * C++のstd::clampのようなメソッド
 	 * @param l
 	 * @param x
 	 * @param r
@@ -492,6 +540,7 @@ public class Utility {
 	 */
 	protected static final int clamp(final int l, final int x, final int r){ return x < l ? l : x > r ? r : x; }
 	/**
+	 * C++のstd::clampのようなメソッド
 	 * @param l
 	 * @param x
 	 * @param r
@@ -500,6 +549,7 @@ public class Utility {
 	 */
 	protected static final long clamp(final long l, final long x, final long r){ return x < l ? l : x > r ? r : x; }
 	/**
+	 * C++のstd::clampのようなメソッド
 	 * @param l
 	 * @param x
 	 * @param r
@@ -514,6 +564,7 @@ public class Utility {
 	 */
 	protected static final boolean isBit(final long i, final long j){ return (i >> j & 1) == 1; }
 	/**
+	 * C++のstd::next_permutationに相当するメソッド
 	 * @param a
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/next_permutation.html">std::next_permutation</a>
 	 */
@@ -528,6 +579,7 @@ public class Utility {
 		}
 	}
 	/**
+	 * C++のstd::next_permutationに相当するメソッド
 	 * @param a
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/next_permutation.html">std::next_permutation</a>
 	 */
@@ -542,6 +594,7 @@ public class Utility {
 		}
 	}
 	/**
+	 * C++のstd::next_permutationに相当するメソッド
 	 * @param a
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/next_permutation.html">std::next_permutation</a>
 	 */
@@ -556,6 +609,7 @@ public class Utility {
 		}
 	}
 	/**
+	 * C++のstd::next_permutationに相当するメソッド
 	 * @param a
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/next_permutation.html">std::next_permutation</a>
 	 */
@@ -570,6 +624,7 @@ public class Utility {
 		}
 	}
 	/**
+	 * C++のstd::prev_permutationに相当するメソッド
 	 * @param a
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/prev_permutation.html">std::prev_permutation</a>
 	 */
@@ -585,6 +640,7 @@ public class Utility {
 		}
 	}
 	/**
+	 * C++のstd::prev_permutationに相当するメソッド
 	 * @param a
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/prev_permutation.html">std::prev_permutation</a>
 	 */
@@ -600,6 +656,7 @@ public class Utility {
 		}
 	}
 	/**
+	 * C++のstd::prev_permutationに相当するメソッド
 	 * @param a
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/prev_permutation.html">std::prev_permutation</a>
 	 */
@@ -615,6 +672,7 @@ public class Utility {
 		}
 	}
 	/**
+	 * C++のstd::prev_permutationに相当するメソッド
 	 * @param a
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/prev_permutation.html">std::prev_permutation</a>
 	 */
@@ -870,6 +928,7 @@ public class Utility {
 	 * 存在しない場合, -1を返す
 	 * @param a
 	 * @param x
+	 * @see <a href="https://cpprefjp.github.io/reference/string/basic_string/find.html">std::basic_string::find</a>
 	 */
 	protected static final int find(final Object[] a, final Object x) {
 		for(int i = 0; i < a.length; ++i) {
@@ -954,26 +1013,34 @@ public class Utility {
 	 * @param a
 	 * @param x
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/binary_search.html">std::binary_search</a>
+	 * @return ソート済配列の中に要素が含まれていればtrue
 	 */
 	public static final boolean binarySearch(final int[] a, final int x){ return Arrays.binarySearch(a, x) >= 0; }
 	/**
+	 * C++のstd::binarySearchに相当するメソッド
 	 * @param a
 	 * @param x
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/binary_search.html">std::binary_search</a>
+	 * @return ソート済配列の中に要素が含まれていればtrue
 	 */
 	public static final boolean binarySearch(final long[] a, final long x){ return Arrays.binarySearch(a, x) >= 0; }
 	/**
+	 * C++のstd::binarySearchに相当するメソッド
 	 * @param <T>
 	 * @param a
 	 * @param x
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/binary_search.html">std::binary_search</a>@return
+	 * @return ソート済配列の中に要素が含まれていればtrue
 	 */
 	public static final <T extends Comparable<? super T>> boolean binarySearch(final T[] a, final T x){ return Arrays.binarySearch(a, x) >= 0; }
 	/**
+	 * C++のstd::binarySearchに相当するメソッド
+	 * 遅い
 	 * @param <T>
 	 * @param a
 	 * @param x
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/binary_search.html">std::binary_search</a>
+	 * @return ソート済リストの中に要素が含まれていればtrue
 	 */
 	public static final <T extends Comparable<? super T>> boolean binarySearch(final List<T> a, final T x){ return Collections.binarySearch(a, x, null) >= 0; }
 	/**
@@ -985,6 +1052,7 @@ public class Utility {
 	 */
 	public static final int lowerBound(final int[] a, final int x){ return bins(a.length, -1, (IntPredicate) y -> a[y] >= x); }
 	/**
+	 * C++のstd::lower_boundに相当するメソッド
 	 * @param a
 	 * @param x
 	 * @return その値以上の要素が初めて現れるインデックス(イテレータではない)
@@ -992,6 +1060,7 @@ public class Utility {
 	 */
 	public static final int lowerBound(final long[] a, final long x){ return bins(a.length, -1, (IntPredicate) y -> a[y] >= x); }
 	/**
+	 * C++のstd::lower_boundに相当するメソッド
 	 * @param <T>
 	 * @param a
 	 * @param x
@@ -1000,6 +1069,8 @@ public class Utility {
 	 */
 	public static final <T extends Comparable<? super T>> int lowerBound(final T[] a, final T x){ return lowerBound(Arrays.asList(a), x); }
 	/**
+	 * C++のstd::lower_boundに相当するメソッド
+	 * 遅い
 	 * @param <T>
 	 * @param a
 	 * @param x
@@ -1016,6 +1087,7 @@ public class Utility {
 	 */
 	public static final int upperBound(final int[] a, final int x){ return bins(a.length, -1, (IntPredicate) y -> a[y] > x); }
 	/**
+	 * C++のstd::upper_boundに相当するメソッド
 	 * @param a
 	 * @param x
 	 * @return その値より大きい要素が初めて現れるインデックス(イテレータではない)
@@ -1023,6 +1095,7 @@ public class Utility {
 	 */
 	public static final int upperBound(final long[] a, final long x){ return bins(a.length, -1, (IntPredicate) y -> a[y] > x); }
 	/**
+	 * C++のstd::upper_boundに相当するメソッド
 	 * @param a
 	 * @param x
 	 * @return その値より大きい要素が初めて現れるインデックス(イテレータではない)
@@ -1030,6 +1103,8 @@ public class Utility {
 	 */
 	public static final <T extends Comparable<? super T>> int upperBound(final T[] a, final T x){ return upperBound(Arrays.asList(a), x); }
 	/**
+	 * C++のstd::upper_boundに相当するメソッド
+	 * 遅い
 	 * @param a
 	 * @param x
 	 * @return その値より大きい要素が初めて現れるインデックス(イテレータではない)
@@ -1037,73 +1112,93 @@ public class Utility {
 	 */
 	public static final <T extends Comparable<? super T>> int upperBound(final List<T> a, final T x){ return ~Collections.binarySearch(a, x, (p, q) -> p.compareTo(q) > 0 ? 1 : -1); }
 	/**
+	 * Pythonのsortedに相当するメソッド
 	 * @param s
 	 * @return 昇順にソートした文字列
 	 */
 	public static final String sorted(final String s){ return s.chars().sorted().mapToObj(Character::toString).collect(Collectors.joining()); }
 	/**
+	 * Pythonのsortedに相当するメソッド
 	 * @param a
 	 * @return 昇順にソートしたint型配列
 	 */
 	public static final int[] sorted(final int[] a){ return Arrays.stream(a).sorted().toArray(); }
 	/**
+	 * Pythonのsortedに相当するメソッド
 	 * @param a
 	 * @return 昇順にソートしたlong型配列
 	 */
 	public static final long[] sorted(final long[] a){ return Arrays.stream(a).sorted().toArray(); }
 	/**
+	 * Pythonのsortedに相当するメソッド
 	 * @param a
 	 * @return 昇順にソートしたdouble型配列
 	 */
 	public static final double[] sorted(final double[] a){ return Arrays.stream(a).sorted().toArray(); }
 	/**
+	 * Pythonのsortedに相当するメソッド
 	 * @param a
 	 * @return 昇順にソートしたchar型配列
 	 */
 	public static final char[] sorted(final char[] a){ return sorted(new String(a)).toCharArray(); }
 	/**
+	 * Pythonのsortedに相当するメソッド
 	 * @param <T> Comparableなクラス
 	 * @param a
 	 * @return 昇順にソートした総称型配列
 	 */
 	public static final <T extends Comparable<? super T>> T[] sorted(final T[] a){ return Arrays.stream(a).sorted().toArray(n -> Arrays.copyOf(a, n)); }
 	/**
+	 * C++のstd::is_sortedに相当するメソッド
 	 * @param s
 	 * @return 文字列がソートされているかどうか
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/is_sorted.html">std::is_sorted</a>
 	 */
 	protected static final boolean isSorted(final String s){ return s.equals(sorted(s)); }
 	/**
+	 * C++のstd::is_sortedに相当するメソッド
 	 * @param a
 	 * @return 配列がソートされているかどうか
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/is_sorted.html">std::is_sorted</a>
 	 */
 	protected static final boolean isSorted(final int[] a){ return Arrays.equals(a, sorted(a)); }
 	/**
+	 * C++のstd::is_sortedに相当するメソッド
 	 * @param a
 	 * @return 配列がソートされているかどうか
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/is_sorted.html">std::is_sorted</a>
 	 */
 	protected static final boolean isSorted(final long[] a){ return Arrays.equals(a, sorted(a)); }
 	/**
+	 * C++のstd::is_sortedに相当するメソッド
 	 * @param a
 	 * @return 配列がソートされているかどうか
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/is_sorted.html">std::is_sorted</a>
 	 */
 	protected static final boolean isSorted(final double[] a){ return Arrays.equals(a, sorted(a)); }
 	/**
+	 * C++のstd::is_sortedに相当するメソッド
 	 * @param a
 	 * @return 配列がソートされているかどうか
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/is_sorted.html">std::is_sorted</a>
 	 */
 	protected static final boolean isSorted(final char[] a){ return Arrays.equals(a, sorted(a)); }
 	/**
+	 * C++のstd::is_sortedに相当するメソッド
 	 * @param <T> {@link Comparable}なクラス
 	 * @param a
 	 * @return 配列がソートされているかどうか
+	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/is_sorted.html">std::is_sorted</a>
 	 */
 	protected static final <T extends Comparable<? super T>> boolean isSorted(final T[] a){ return Arrays.equals(a, sorted(a)); }
 	/**
+	 * 文字列を逆順に並び替える
 	 * @param s
 	 * @return 逆順に並び替えた文字列
 	 */
 	protected static final String reverse(final String s){ return new StringBuilder(s).reverse().toString(); }
 	/**
+	 * 配列を逆順に並び替える
 	 * @param a
 	 * @return 逆順に並び替えたint型配列
 	 */
@@ -1117,6 +1212,7 @@ public class Utility {
 		return b;
 	}
 	/**
+	 * 配列を逆順に並び替える
 	 * @param a
 	 * @return 逆順に並び替えたlong型配列
 	 */
@@ -1130,6 +1226,7 @@ public class Utility {
 		return b;
 	}
 	/**
+	 * 配列を逆順に並び替える
 	 * @param a
 	 * @return 逆順に並び替えたdouble型配列
 	 */
@@ -1143,6 +1240,7 @@ public class Utility {
 		return b;
 	}
 	/**
+	 * 配列を逆順に並び替える
 	 * @param a
 	 * @return 逆順に並び替えたchar型配列
 	 */
@@ -1156,6 +1254,7 @@ public class Utility {
 		return b;
 	}
 	/**
+	 * 配列を逆順に並び替える
 	 * @param a
 	 * @return 逆順に並び替えたObjectクラスの配列
 	 */
@@ -1182,6 +1281,7 @@ public class Utility {
 		return res;
 	}
 	/**
+	 * C++のstd::rotateに相当するメソッド
 	 * @param a
 	 * @param id 正の数の時、前にある値は後ろに移動し、負の数の時、後ろにある値は前に移動する
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
@@ -1194,6 +1294,7 @@ public class Utility {
 		return res;
 	}
 	/**
+	 * C++のstd::rotateに相当するメソッド
 	 * @param a
 	 * @param id 正の数の時、前にある値は後ろに移動し、負の数の時、後ろにある値は前に移動する
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
@@ -1206,6 +1307,7 @@ public class Utility {
 		return res;
 	}
 	/**
+	 * C++のstd::rotateに相当するメソッド
 	 * @param a
 	 * @param id 正の数の時、前にある値は後ろに移動し、負の数の時、後ろにある値は前に移動する
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
@@ -1218,6 +1320,7 @@ public class Utility {
 		return res;
 	}
 	/**
+	 * C++のstd::rotateに相当するメソッド
 	 * @param a
 	 * @param id 正の数の時、前にある値は後ろに移動し、負の数の時、後ろにある値は前に移動する
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
@@ -1230,6 +1333,7 @@ public class Utility {
 		return res;
 	}
 	/**
+	 * C++のstd::rotateに相当するメソッド
 	 * @param a
 	 * @param id 正の数の時、前にある値は後ろに移動し、負の数の時、後ろにある値は前に移動する
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
@@ -1242,6 +1346,7 @@ public class Utility {
 		return res;
 	}
 	/**
+	 * C++のstd::rotateに相当するメソッド
 	 * @param s
 	 * @param id 正の数の時、前にある値は後ろに移動し、負の数の時、後ろにある値は前に移動する
 	 * @see <a href="https://cpprefjp.github.io/reference/algorithm/rotate.html">std::rotate</a>
@@ -1252,6 +1357,7 @@ public class Utility {
 		return t.stream().map(String::valueOf).collect(Collectors.joining());
 	}
 	/**
+	 * 二次元配列を右回転させる
 	 * @param a
 	 * @return 二次元配列を右回転させたもの
 	 */
@@ -1265,6 +1371,7 @@ public class Utility {
 		return b;
 	}
 	/**
+	 * 二次元配列を右回転させる
 	 * @param a
 	 * @return 二次元配列を右回転させたもの
 	 */
@@ -1278,6 +1385,7 @@ public class Utility {
 		return b;
 	}
 	/**
+	 * 二次元配列を右回転させる
 	 * @param a
 	 * @return 二次元配列を右回転させたもの
 	 */
@@ -1291,6 +1399,7 @@ public class Utility {
 		return b;
 	}
 	/**
+	 * 二次元配列を右回転させる
 	 * @param a
 	 * @return 二次元配列を右回転させたもの
 	 */
@@ -1304,6 +1413,7 @@ public class Utility {
 		return b;
 	}
 	/**
+	 * 二次元配列を左回転させる
 	 * @param a
 	 * @return 二次元配列を左回転させたもの
 	 */
@@ -1316,6 +1426,7 @@ public class Utility {
 		return b;
 	}
 	/**
+	 * 二次元配列を左回転させる
 	 * @param a
 	 * @return 二次元配列を左回転させたもの
 	 */
@@ -1328,6 +1439,7 @@ public class Utility {
 		return b;
 	}
 	/**
+	 * 二次元配列を左回転させる
 	 * @param a
 	 * @return 二次元配列を左回転させたもの
 	 */
@@ -1340,6 +1452,7 @@ public class Utility {
 		return b;
 	}
 	/**
+	 * 二次元配列を左回転させる
 	 * @param a
 	 * @return 二次元配列を左回転させたもの
 	 */
@@ -1502,6 +1615,7 @@ public class Utility {
 		System.arraycopy(c, 0, b, 0, n);
 	}
 	/**
+	 * Pairの配列に対して各要素をswapさせる
 	 * @param <F>
 	 * @param <S>
 	 * @param p
@@ -1514,6 +1628,7 @@ public class Utility {
 		return q;
 	}
 	/**
+	 * IntPairの配列に対して各要素をswapさせる
 	 * @param p
 	 * @return IntPair配列の各IntPairに対して{@link IntPair#swap}をした配列
 	 */
@@ -1523,6 +1638,7 @@ public class Utility {
 		return q;
 	}
 	/**
+	 * FloatPairの配列に対して各要素をswapさせる
 	 * @param p
 	 * @return FloatPair配列の各FloatPairに対して{@link FloatPair#swap}をした配列
 	 */
@@ -1532,6 +1648,7 @@ public class Utility {
 		return q;
 	}
 	/**
+	 * Pairの配列に対して各要素のfirstのみの配列を返す
 	 * @param <F>
 	 * @param <S>
 	 * @param p
@@ -1540,16 +1657,19 @@ public class Utility {
 	@SuppressWarnings("unchecked")
 	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> F[] first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i -> i.first).toArray(); }
 	/**
+	 * IntPairの配列に対して各要素のfirstのみの配列を返す
 	 * @param p
 	 * @return IntPairクラスの配列に対してfirstのみの要素を取り出した配列
 	 */
 	protected static final long[] first(final IntPair[] p){ return Arrays.stream(p).mapToLong(i -> i.first).toArray(); }
 	/**
+	 * FloatPairの配列に対して各要素のfirstのみの配列を返す
 	 * @param p
 	 * @return FloatPairクラスの配列に対してfirstのみの要素を取り出した配列
 	 */
 	protected static final double[] first(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i -> i.first).toArray(); }
 	/**
+	 * Pairの配列に対して各要素のsecondのみの配列を返す
 	 * @param <F>
 	 * @param <S>
 	 * @param p
@@ -1558,18 +1678,20 @@ public class Utility {
 	@SuppressWarnings("unchecked")
 	protected static final <F extends Comparable<? super F>, S extends Comparable<? super S>> S[] second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i -> i.second).toArray(); }
 	/**
+	 * IntPairの配列に対して各要素のsecondのみの配列を返す
 	 * @param p
 	 * @return IntPairクラスの配列に対してsecondのみの要素を取り出した配列
 	 */
 	protected static final long[] second(final IntPair[] p){ return Arrays.stream(p).mapToLong(i -> i.second).toArray(); }
 	/**
+	 * FloatPairの配列に対して各要素のsecondのみの配列を返す
 	 * @param p
 	 * @return FloatPairクラスの配列に対してsecondのみの要素を取り出した配列
 	 */
 	protected static final double[] second(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i -> i.second).toArray(); }
 	/**
 	 * C++のstd::iotaに相当するメソッド
-	 * IntStreamで止めてあるため、配列化するにはtoArray()する必要がある
+	 * IntStreamを返すため、配列化するにはtoArray()する必要がある
 	 * @param n
 	 * @return [0, 1, 2, ..., n - 1]のIntStream
 	 * @see <a href="https://cpprefjp.github.io/reference/numeric/iota.html">std::iota</a>
@@ -1577,6 +1699,8 @@ public class Utility {
 	 */
 	public static final IntStream iota(final int n){ return IntStream.range(0, n); }
 	/**
+	 * C++のstd::iotaに相当するメソッド
+	 * IntStreamを返すため、配列化するにはtoArray()する必要がある
 	 * @param n
 	 * @param init
 	 * @return [init, init + 1, init + 2, ..., init + n - 1]
@@ -1585,25 +1709,28 @@ public class Utility {
 	 */
 	public static final IntStream iota(final int n, final int init){ return IntStream.range(0 + init, n + init); }
 	/**
+	 * int型配列をボクシングしてIntegerクラスの配列に変換する
 	 * @param a
 	 * @return int[] -> Integer[]
 	 */
 	protected static final Integer[] boxed(final int[] a){ return Arrays.stream(a).boxed().toArray(Integer[]::new); }
 	/**
+	 * long型配列をボクシングしてLongクラスの配列に変換する
 	 * @param a
 	 * @return long[] -> Long[]
 	 */
 	protected static final Long[] boxed(final long[] a){ return Arrays.stream(a).boxed().toArray(Long[]::new); }
 	/**
+	 * double型配列をボクシングしてDoubleクラスの配列に変換する
 	 * @param a
 	 * @return double[] -> Double[]
 	 */
 	protected static final Double[] boxed(final double[] a){ return Arrays.stream(a).boxed().toArray(Double[]::new); }
 	/**
 	 * めぐる式二分探索
-	 * @param ok
-	 * @param ng
-	 * @param fn
+	 * @param ok 答えになる可能性がある臨界値
+	 * @param ng 答えになる可能性がない臨界値
+	 * @param fn 条件
 	 * @see #lowerBound
 	 * @see #upperBound
 	 */
@@ -1621,9 +1748,9 @@ public class Utility {
 	}
 	/**
 	 * めぐる式二分探索
-	 * @param ok
-	 * @param ng
-	 * @param fn
+	 * @param ok 答えになる可能性がある臨界値
+	 * @param ng 答えになる可能性がない臨界値
+	 * @param fn 条件
 	 * @see <a href="https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L696">Heileden::bins</a>
 	 */
 	protected static final long bins(long ok, long ng, final LongPredicate fn) {
@@ -1640,9 +1767,9 @@ public class Utility {
 	}
 	/**
 	 * めぐる式二分探索
-	 * @param ok
-	 * @param ng
-	 * @param fn
+	 * @param ok 答えになる可能性がある臨界値
+	 * @param ng 答えになる可能性がない臨界値
+	 * @param fn 条件
 	 * @see <a href="https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L696">Heileden::bins</a>
 	 */
 	protected static final double bins(double ok, double ng, final DoublePredicate fn) {
@@ -1680,16 +1807,22 @@ public class Utility {
 		return res;
 	}
 	/**
+	 * C++のstd::inner_productに相当するメソッド
 	 * @param p
 	 * @return 内積
+	 * @see <a href="https://cpprefjp.github.io/reference/numeric/inner_product.html">std::inner_product</a>
 	 */
 	protected static final long innerProd(final IntPair... p){ return iota(p.length).mapToLong(i -> p[i].first.longValue() * p[i].second.longValue()).sum(); }
 	/**
+	 * C++のstd::inner_productに相当するメソッド
 	 * @param p
 	 * @return 内積
+	 * @see <a href="https://cpprefjp.github.io/reference/numeric/inner_product.html">std::inner_product</a>
 	 */
 	protected static final double innerProd(final FloatPair... p){ return iota(p.length).mapToDouble(i -> p[i].first.doubleValue() * p[i].second.doubleValue()).sum(); }
 	/**
+	 * 直線a.first * x + a.second * y + sec1 = 0と直線b.first * x + b.second * y + sec2 = 0の交点を求める
+	 * 連立一次方程式を解くのにも使える
 	 * @param a
 	 * @param sec1
 	 * @param b
@@ -1720,6 +1853,8 @@ public class Utility {
 		return FloatPair.of(x, y);
 	}
 	/**
+	 * 直線a.first * x + a.second * y + sec1 = 0と直線b.first * x + b.second * y + sec2 = 0の交点を求める
+	 * 連立一次方程式を解くのにも使える
 	 * @param a
 	 * @param sec1
 	 * @param b
@@ -1770,6 +1905,7 @@ public class Utility {
 		return res;
 	}
 	/**
+	 * ランレングス圧縮
 	 * @param s
 	 * @return ランレングス圧縮
 	 */
@@ -1786,6 +1922,7 @@ public class Utility {
 		return sb.toString();
 	}
 	/**
+	 * ランレングス圧縮した文字列の復元
 	 * @param s
 	 * @return ランレングス圧縮したものを戻す
 	 */
@@ -1801,6 +1938,7 @@ public class Utility {
 		return sb.toString();
 	}
 	/**
+	 * Z-Algorithm
 	 * @param s
 	 * @see <a href="https://ei1333.github.io/library/string/z-algorithm.hpp">Z-Algorithm</a>
 	 */
@@ -1825,6 +1963,7 @@ public class Utility {
 		return pre;
 	}
 	/**
+	 * Manacher Algorithm
 	 * @param s_
 	 * @param calcEven
 	 * @see <a href="https://ei1333.github.io/library/string/manacher.hpp">Manacher</a>
@@ -1875,6 +2014,7 @@ public class Utility {
 		return rad;
 	}
 	/**
+	 * nのk乗根を求める
 	 * @param n
 	 * @param k
 	 * @return nのk乗根
@@ -1933,6 +2073,7 @@ public class Utility {
 		return modPow(a, tmp, m);
 	}
 	/**
+	 * ∑_{i=0}^{n−1} floor((a*i+b)/m)を求める
 	 * @param n
 	 * @param m
 	 * @param a

@@ -71,6 +71,7 @@ public final class PrimeCounter {
 		return phi(m, a - 1) - phi(m / ps.get((int) (a - 1)), a - 1);
 	}
 	/**
+	 * n以下の素数の個数を返す
 	 * @param n
 	 * @return n以下の素数の個数
 	 */

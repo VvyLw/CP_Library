@@ -34,6 +34,7 @@ public final class FenwickTree {
 		IntStream.range(0, a.length).forEach(i -> add(i, a[i]));
 	}
 	/**
+	 * 閉区間[0, k]の和を返す
 	 * @param k
 	 * @return 閉区間[0, k]の和
 	 */
@@ -48,12 +49,14 @@ public final class FenwickTree {
 		return ret;
 	}
 	/**
+	 * 閉区間[l, r]の和
 	 * @param l
 	 * @param r
 	 * @return 閉区間[l, r]の和
 	 */
 	public final long sum(final int l, final int r){ return sum(r) - sum(l - 1); }
 	/**
+	 * FenwickTree[k]を返す
 	 * @param k
 	 * @return k番目の要素
 	 */
@@ -80,6 +83,7 @@ public final class FenwickTree {
 	}
 	private final int lg(final int n){ return 31 - Integer.numberOfLeadingZeros(n); }
 	/**
+	 * 閉区間[0, k]の区間和がw以上となるような最小のk
 	 * @implNote 要素は全て非負
 	 * @param w
 	 * @return [0, k]の区間和がw以上となるような最小のk
@@ -98,6 +102,7 @@ public final class FenwickTree {
 		return x;
 	}
 	/**
+	 * 閉区間[0, k]の区間和がwよりも大きくなるような最小のk
 	 * @implNote 要素は全て非負
 	 * @param w
 	 * @return [0, k]の区間和がwよりも大きくなるような最小のk
@@ -115,6 +120,10 @@ public final class FenwickTree {
 		}
 		return x;
 	}
+	/**
+	 * FenwickTreeの累積和を返す
+	 * @return FenwickTreeの累積和
+	 */
 	public final long[] toArray(){ return IntStream.rangeClosed(0, n).mapToLong(this::sum).toArray(); }
 	@Override
 	public final String toString() {

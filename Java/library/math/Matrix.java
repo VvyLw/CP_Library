@@ -46,7 +46,6 @@ public final class Matrix implements Cloneable {
 	/**
 	 * 単位行列
 	 * @param n
-	 * @return
 	 */
 	public static final Matrix E(final int n) {
 		final Matrix m = new Matrix(n);
@@ -54,20 +53,24 @@ public final class Matrix implements Cloneable {
 		return m;
 	}
 	/**
+	 * i行目の要素全てを返す
 	 * @param i
 	 * @return i行目の要素全て
 	 */
 	public final long[] getH(final int i){ return mat[i]; }
 	/**
+	 * i列目の要素全てを返す
 	 * @param i
 	 * @return i列目の要素全て
 	 */
 	public final long[] getW(final int i){ return IntStream.range(0, h).mapToLong(j -> mat[j][i]).toArray(); }
 	/**
+	 * 行列そのものを返す
 	 * @return 行列
 	 */
 	public final long[][] get(){ return mat; }
 	/**
+	 * Matrix[i][j]を返す
 	 * @param i
 	 * @param j
 	 * @return 行列のi行j列目の要素

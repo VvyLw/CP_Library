@@ -36,10 +36,12 @@ public final class PrimeTable {
 		}
 	}
 	/**
+	 * n以下の素数判定の結果をリストアップした配列を返す
 	 * @return n以下の素数判定の結果をリストアップした配列
 	 */
 	public final boolean[] table(){ return sieve; }
 	/**
+	 * n以下の素数をリストアップした配列を返す
 	 * @return n以下の素数をリストアップした配列
 	 */
 	public final int[] get(){ return p; }

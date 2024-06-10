@@ -19,6 +19,14 @@ public final class Zwei<T> implements Cloneable {
 		this.first = first;
 		this.second = second;
 	}
+	/**
+	 * Zweiクラス宣言で使う
+	 * new Zweiと同等
+	 * @param <T>
+	 * @param f
+	 * @param s
+	 * @return
+	 */
 	public static final <T> Zwei<T> of(final T f, final T s){ return new Zwei<>(f, s); }
 	@Override
 	public final boolean equals(final Object o) {

@@ -124,19 +124,26 @@ public final class AVLTree<T extends Comparable<? super T>> {
 	 */
 	public final void remove(final int k){ root = erase(root, k); }
 	/**
+	 * AVLTree[k]を返す
 	 * @param k
 	 * @return k番目の要素
 	 */
 	public final T get(final int k){ return find(root, k).val; }
 	/**
+	 * AVLTreeに含むvalの個数を返す
 	 * @param val
 	 * @return valの個数
 	 */
 	public final int count(final T val){ return cnt(root, val); }
 	/**
+	 * AVL木の大きさを返す
 	 * @return AVL木のサイズ
 	 */
 	public final int size(){ return root.size; }
+	/**
+	 * AVLTreeを配列に変換したものを返す
+	 * @return AVLTreeの配列
+	 */
 	@SuppressWarnings("unchecked")
 	public final T[] toArray(){ return (T[]) IntStream.range(0, root.size).mapToObj(this::get).toArray(); }
 	@Override

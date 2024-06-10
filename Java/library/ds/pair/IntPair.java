@@ -29,6 +29,7 @@ public final class IntPair extends Pair<Long, Long> {
 	 */
 	public static final IntPair of(final long a, final long b){ return new IntPair(a, b); }
 	/**
+	 * 元のIntPairをswapしたものを返す
 	 * @return firstとsecondを入れ替えたIntPair
 	 */
 	@Override
@@ -72,20 +73,24 @@ public final class IntPair extends Pair<Long, Long> {
 		return FloatPair.of(first * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));
 	}
 	/**
+	 * ドット積を返す
 	 * @param p
 	 * @return ドット積
 	 */
 	public final long dot(final IntPair p){ return first * p.first + second * p.second; }
 	/**
+	 * クロス積を返す
 	 * @param p
 	 * @return クロス積
 	 */
 	public final long cross(final IntPair p){ return rotate().dot(p); }
 	/**
+	 * 距離を返す
 	 * @return IntPairを座標と見て距離
 	 */
 	public final long sqr(){ return dot(this); }
 	/**
+	 * second / firstを返す
 	 * @return IntPairの勾配
 	 */
 	public final double grad() { 
@@ -97,14 +102,17 @@ public final class IntPair extends Pair<Long, Long> {
 		throw new Error();
 	}
 	/**
+	 * ユークリッドノルムを返す
 	 * @return IntPairのユークリッドノルム
 	 */
 	public final double abs(){ return Math.hypot(first, second); }
 	/**
+	 * 最小公倍数を返す
 	 * @return IntPairの最小公倍数
 	 */
 	public final long lcm(){ return Utility.lcm(first, second); }
 	/**
+	 * 最大公約数を返す
 	 * @return IntPairの最大公約数
 	 */
 	public final long gcd(){ return Utility.gcd(first, second); }

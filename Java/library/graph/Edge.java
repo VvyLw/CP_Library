@@ -10,8 +10,8 @@ public final class Edge {
 	public long cost;
 	/**
 	 * コンストラクタ
-	 * @param src
-	 * @param to
+	 * @param src 出発点
+	 * @param to 行先
 	 * @param id
 	 */
 	public Edge(final int src, final int to, final int id) {
@@ -21,9 +21,9 @@ public final class Edge {
 	}
 	/**
 	 * コンストラクタ
-	 * @param src
-	 * @param to
-	 * @param cost
+	 * @param src 出発点
+	 * @param to 行先
+	 * @param cost 費用
 	 * @param id
 	 */
 	public Edge(final int src, final int to, final long cost, final int id) {

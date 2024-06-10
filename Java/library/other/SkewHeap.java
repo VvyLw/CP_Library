@@ -23,6 +23,10 @@ public final class SkewHeap {
 		}
 	}
 	private final boolean isMin;
+	/**
+	 * コンストラクタ
+	 * @param isMin
+	 */
 	public SkewHeap(final boolean isMin){ this.isMin = isMin; }
 	private final Node alloc(final long key, final int idx){ return new Node(key, idx); }
 	private final Node propagate(final Node t) {

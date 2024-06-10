@@ -51,11 +51,13 @@ public final class RangeBIT {
 		b.add(r, x * (r - 1));
 	}
 	/**
+	 * RangeBIT[i]を返す
 	 * @param i
 	 * @return i番目の要素
 	 */
 	public final long get(final int i){ return sum(i, i + 1); }
 	/**
+	 * 半開区間[l, r)の和を返す
 	 * @param l
 	 * @param r
 	 * @return 半開区間[l, r)の和
@@ -65,6 +67,10 @@ public final class RangeBIT {
 		r--;
 		return a.sum(r) * r + b.sum(r) - a.sum(l) * l - b.sum(l);
 	}
+	/**
+	 * RangeBITを配列に変換したものを返す
+	 * @return RangeBITの配列
+	 */
 	public final long[] toArray(){ return IntStream.range(0, n).mapToLong(this::get).toArray(); }
 	@Override
 	public final String toString() {

@@ -10,6 +10,11 @@ import java.util.function.LongBinaryOperator;
 public class InclusiveScan {
 	protected final int n;
 	protected long[] s;
+	/**
+	 * コンストラクタ
+	 * PrefixSumの方で使う
+	 * @param n
+	 */
 	protected InclusiveScan(final int n) {
 		this.n = n;
 		s = new long[n + 1];
@@ -35,7 +40,7 @@ public class InclusiveScan {
 		Arrays.parallelPrefix(s, op);
 	}
 	/**
-	 * @return InclusiveScanした後の配列
+	 * @return 二項演算した後の配列
 	 */
 	public final long[] get(){ return s; }
 }

@@ -44,7 +44,7 @@ public final class PrefixSum2D {
 		}
 	}
 	/**
-	 * (i, j)にxを加算
+	 * (i, j)番目にxを加算
 	 * @param i
 	 * @param j
 	 * @param x
@@ -61,7 +61,7 @@ public final class PrefixSum2D {
 		data[i][j] += x;
 	}
 	/**
-	 * [i1, i2), [j1, j2)にxを加算
+	 * 半開区間[i1, i2), [j1, j2)にxを加算
 	 * @param i1
 	 * @param j1
 	 * @param i2
@@ -87,6 +87,7 @@ public final class PrefixSum2D {
 		built = true;
 	}
 	/**
+	 * 半開区間[i1, i2), [j1, j2)の矩形和
 	 * @param i1
 	 * @param j1
 	 * @param i2
@@ -100,6 +101,7 @@ public final class PrefixSum2D {
 		return data[i2][j2] - data[i1][j2] - data[i2][j1] + data[i1][j1];
 	}
 	/**
+	 * PrefixSum2D[i][j]の要素を返す
 	 * @param i
 	 * @param j
 	 * @return (i, j)の要素

@@ -60,6 +60,7 @@ public final class SCC {
 	 */
 	public final void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni())); }
 	/**
+	 * 頂点iの強連結成分の頂点番号を返す
 	 * @param i
 	 * @return 頂点iの強連結成分の頂点番号
 	 */
@@ -149,6 +150,7 @@ public final class SCC {
 		notBuilt = false;
 	}
 	/**
+	 * 各強連結成分についてそれに属する頂点を返す
 	 * @return 各強連結成分についてそれに属する頂点
 	 */
 	public final int[][] groups() {

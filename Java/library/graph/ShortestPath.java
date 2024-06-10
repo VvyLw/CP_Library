@@ -20,6 +20,7 @@ public final class ShortestPath {
 		this.src = src;
 	}
 	/**
+	 * 経路があるかどうか判定する
 	 * @param i
 	 * @return 経路があるか
 	 */
@@ -37,6 +38,7 @@ public final class ShortestPath {
 		return res.stream().mapToInt(k -> k).toArray();
 	}
 	/**
+	 * 全点間の最短コストを返す
 	 * @return 全点間の最短コスト
 	 */
 	public final long[] get(){ return cost; }

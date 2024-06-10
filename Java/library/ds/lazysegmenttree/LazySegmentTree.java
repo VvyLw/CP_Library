@@ -105,6 +105,7 @@ public class LazySegmentTree<T, U extends Comparable<? super U>> {
 		}
 	}
 	/**
+	 * LazySegmentTree[k]を返す
 	 * @param k
 	 * @return k番目の要素
 	 */
@@ -117,6 +118,7 @@ public class LazySegmentTree<T, U extends Comparable<? super U>> {
 		return (T) data[k];
 	}
 	/**
+	 * 半開区間[l, r)についての二項演算結果を返す
 	 * @param l
 	 * @param r
 	 * @return 半開区間[l, r)について二項演算した結果
@@ -148,6 +150,7 @@ public class LazySegmentTree<T, U extends Comparable<? super U>> {
 		return f.apply(l2, r2);
 	}
 	/**
+	 * 全体の二項演算結果を返す
 	 * @return 全体を二項演算した結果
 	 */
 	@SuppressWarnings("unchecked")
@@ -209,6 +212,7 @@ public class LazySegmentTree<T, U extends Comparable<? super U>> {
 		}
 	}
 	/**
+	 * 半開区間[l, x)がfnを満たす最初の要素位置xを返す
 	 * @param l
 	 * @param fn
 	 * @return 半開区間[l, x)がfnを満たす最初の要素位置x
@@ -245,6 +249,7 @@ public class LazySegmentTree<T, U extends Comparable<? super U>> {
 		return n;
 	}
 	/**
+	 * 半開区間[x, r)がfnを満たす最後の要素位置xを返す
 	 * @param r
 	 * @param fn
 	 * @return 半開区間[x, r)がfnを満たす最後の要素位置x
@@ -285,6 +290,10 @@ public class LazySegmentTree<T, U extends Comparable<? super U>> {
 	 * 要素をリセットする
 	 */
 	public final void clear(){ Arrays.fill(data, e); }
+	/**
+	 * LazySegmentTreeを配列に変換したものを返す
+	 * @return LazySegmentTreeの配列
+	 */
 	@SuppressWarnings("unchecked")
 	public final T[] toArray(){ return (T[]) IntStream.range(0, n).mapToObj(this::get).toArray(); }
 	@Override

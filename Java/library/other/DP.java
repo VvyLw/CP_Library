@@ -193,6 +193,7 @@ public final class DP {
 		return Utility.max(dp);
 	}
 	/**
+	 * ヒストグラムの最大長方形の面積を返す
 	 * @param a
 	 * @return ヒストグラムの最大長方形の面積
 	 * @implNote O(N)
@@ -216,6 +217,7 @@ public final class DP {
 		return res;
 	}
 	/**
+	 * ヒストグラムの最大長方形の面積を返す
 	 * @param a
 	 * @return ヒストグラムの最大長方形の面積
 	 * @implNote O(N)
@@ -258,8 +260,9 @@ public final class DP {
 		return dp[n];
 	}
 	/**
+	 * 最長増加部分列(Longest Increasing Subsequence)
 	 * @param a
-	 * @return 最長増加部分列(Longest Increasing Subsequence)
+	 * @return 最長増加部分列
 	 * @see <a href="https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp">参考元</a>
 	 * @implNote Java21より前のVerの場合、getLastをget(dp.size() - 1)に変える
 	 */
@@ -287,8 +290,9 @@ public final class DP {
 		return res.stream().mapToInt(i -> i).toArray();
 	}
 	/**
+	 * 最長増加部分列(Longest Increasing Subsequence)
 	 * @param a
-	 * @return 最長増加部分列(Longest Increasing Subsequence)
+	 * @return 最長増加部分列
 	 * @see <a href="https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp">参考元</a>
 	 * @implNote Java21より前のVerの場合、getLastをget(dp.size() - 1)に変える
 	 */

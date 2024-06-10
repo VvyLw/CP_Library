@@ -9,6 +9,10 @@ import library.core.Utility;
  */
 public final class PrimeFactor {
 	private final int[] spf;
+	/**
+	 * コンストラクタ
+	 * @param n
+	 */
 	public PrimeFactor(final int n) {
 		spf = Utility.iota(n + 1).toArray();
 		for(int i = 2; i * i <= n; ++i) {
@@ -23,6 +27,7 @@ public final class PrimeFactor {
 		}
 	}
 	/**
+	 * nを素因数分解した結果を返す
 	 * @param n 整数
 	 * @return nを素因数分解する
 	 */

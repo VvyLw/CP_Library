@@ -16,6 +16,7 @@ import library.graph.Edge;
  */
 public final class Why {
 	/**
+	 * 与えられたグラフが二分グラフかどうか判定する
 	 * @param uf
 	 * @return 二分グラフかどうか
 	 * @implNote {@link UnionFind}が必要
@@ -30,6 +31,7 @@ public final class Why {
 		return ok;
 	}
 	/**
+	 * 転倒数を求める
 	 * @param a
 	 * @return 転倒数
 	 * @implNote {@link FenwickTree}が必要
@@ -49,6 +51,7 @@ public final class Why {
 		return res;
 	}
 	/**
+	 * 転倒数を求める
 	 * @param a
 	 * @return 転倒数
 	 * @implNote {@link FenwickTree}が必要
