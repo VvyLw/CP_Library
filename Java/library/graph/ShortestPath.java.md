@@ -557,13 +557,15 @@ data:
     public final class ShortestPath {\n\tprivate final long[] cost;\n\tprivate final\
     \ int[] src;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param\
     \ cost\n\t * @param src\n\t */\n\tpublic ShortestPath(final long[] cost, final\
-    \ int[] src) {\n\t\tthis.cost = cost;\n\t\tthis.src = src;\n\t}\n\t/**\n\t * @param\
-    \ i\n\t * @return \u7D4C\u8DEF\u304C\u3042\u308B\u304B\n\t */\n\tpublic final\
-    \ boolean isThru(final int i){ return src[i] != -1; }\n\t/**\n\t * \u7D4C\u8DEF\
-    \u5FA9\u5143\n\t * @param i\n\t */\n\tpublic final int[] path(int i) {\n\t\tfinal\
-    \ List<Integer> res = new ArrayList<>();\n\t\tfor(; i != -1; i = src[i]) {\n\t\
-    \t\tres.add(i);\n\t\t}\n\t\tCollections.reverse(res);\n\t\treturn res.stream().mapToInt(k\
-    \ -> k).toArray();\n\t}\n\t/**\n\t * @return \u5168\u70B9\u9593\u306E\u6700\u77ED\
+    \ int[] src) {\n\t\tthis.cost = cost;\n\t\tthis.src = src;\n\t}\n\t/**\n\t * \u7D4C\
+    \u8DEF\u304C\u3042\u308B\u304B\u3069\u3046\u304B\u5224\u5B9A\u3059\u308B\n\t *\
+    \ @param i\n\t * @return \u7D4C\u8DEF\u304C\u3042\u308B\u304B\n\t */\n\tpublic\
+    \ final boolean isThru(final int i){ return src[i] != -1; }\n\t/**\n\t * \u7D4C\
+    \u8DEF\u5FA9\u5143\n\t * @param i\n\t */\n\tpublic final int[] path(int i) {\n\
+    \t\tfinal List<Integer> res = new ArrayList<>();\n\t\tfor(; i != -1; i = src[i])\
+    \ {\n\t\t\tres.add(i);\n\t\t}\n\t\tCollections.reverse(res);\n\t\treturn res.stream().mapToInt(k\
+    \ -> k).toArray();\n\t}\n\t/**\n\t * \u5168\u70B9\u9593\u306E\u6700\u77ED\u30B3\
+    \u30B9\u30C8\u3092\u8FD4\u3059\n\t * @return \u5168\u70B9\u9593\u306E\u6700\u77ED\
     \u30B3\u30B9\u30C8\n\t */\n\tpublic final long[] get(){ return cost; }\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
@@ -749,7 +751,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/ShortestPath.java

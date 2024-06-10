@@ -572,20 +572,22 @@ data:
     if(table[k][i] == -1) {\n\t\t\t\t\ttable[k + 1][i] = -1;\n\t\t\t\t} else {\n\t\
     \t\t\t\ttable[k + 1][i] = table[k][table[k][i]];\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\
     }\n\t/**\n\t * \u9802\u70B9u\u3068\u9802\u70B9v\u3068\u306E\u6700\u5C0F\u5171\u901A\
-    \u7956\u5148\u3092\u6C42\u3081\u308B\n\t * @param u\n\t * @param v\n\t * @return\n\
-    \t */\n\tpublic final int query(int u, int v) {\n\t\tif(dep[u] > dep[v]) {\n\t\
-    \t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\tv = climb(v, dep[v] - dep[u]);\n\
+    \u7956\u5148\u3092\u6C42\u3081\u308B\n\t * @param u\n\t * @param v\n\t */\n\t\
+    public final int query(int u, int v) {\n\t\tif(dep[u] > dep[v]) {\n\t\t\tu ^=\
+    \ v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\tv = climb(v, dep[v] - dep[u]);\n\
     \t\tif(u == v) {\n\t\t\treturn u;\n\t\t}\n\t\tfor(int i = log; --i >= 0;) {\n\t\
     \t\tif(table[i][u] != table[i][v]) {\n\t\t\t\tu = table[i][u];\n\t\t\t\tv = table[i][v];\n\
-    \t\t\t}\n\t\t}\n\t\treturn table[0][u];\n\t}\n\t/**\n\t * @param u\n\t * @param\
-    \ k\n\t * @return \u9802\u70B9u\u304B\u3089k\u500B\u89AA\u306B\u9061\u3063\u305F\
-    \u9802\u70B9\n\t */\n\tpublic final int climb(int u, final int k) {\n\t\tif(dep[u]\
-    \ < k) {\n\t\t\treturn -1;\n\t\t}\n\t\tfor(int i = log; --i >= 0;) {\n\t\t\tif(((k\
-    \ >> i) % 2) == 1) {\n\t\t\t\tu = table[i][u];\n\t\t\t}\n\t\t}\n\t\treturn u;\n\
-    \t}\n\t/**\n\t * @param u\n\t * @param v\n\t * @return \u9802\u70B9u\u3068\u9802\
-    \u70B9v\u3068\u306E\u30D1\u30B9\u306E\u8FBA\u306E\u672C\u6570\n\t */\n\tpublic\
-    \ final int dist(final int u, final int v){ return sum[u] + sum[v] - 2 * sum[query(u,\
-    \ v)]; }\n}"
+    \t\t\t}\n\t\t}\n\t\treturn table[0][u];\n\t}\n\t/**\n\t * \u9802\u70B9u\u304B\u3089\
+    k\u500B\u89AA\u306B\u9061\u3063\u305F\u9802\u70B9\u3092\u8FD4\u3059\n\t * @param\
+    \ u\n\t * @param k\n\t * @return \u9802\u70B9u\u304B\u3089k\u500B\u89AA\u306B\u9061\
+    \u3063\u305F\u9802\u70B9\n\t */\n\tpublic final int climb(int u, final int k)\
+    \ {\n\t\tif(dep[u] < k) {\n\t\t\treturn -1;\n\t\t}\n\t\tfor(int i = log; --i >=\
+    \ 0;) {\n\t\t\tif(((k >> i) % 2) == 1) {\n\t\t\t\tu = table[i][u];\n\t\t\t}\n\t\
+    \t}\n\t\treturn u;\n\t}\n\t/**\n\t * \u9802\u70B9u\u3068\u9802\u70B9v\u3068\u306E\
+    \u30D1\u30B9\u306E\u8FBA\u306E\u672C\u6570\u3092\u8FD4\u3059\n\t * @param u\n\t\
+    \ * @param v\n\t * @return \u9802\u70B9u\u3068\u9802\u70B9v\u3068\u306E\u30D1\u30B9\
+    \u306E\u8FBA\u306E\u672C\u6570\n\t */\n\tpublic final int dist(final int u, final\
+    \ int v){ return sum[u] + sum[v] - 2 * sum[query(u, v)]; }\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -770,7 +772,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/LowestCommonAncestor.java

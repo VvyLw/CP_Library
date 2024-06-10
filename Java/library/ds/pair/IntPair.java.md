@@ -563,6 +563,7 @@ data:
     \u5BA3\u8A00\u3059\u308B\u306E\u306B\u4F7F\u3046\n\t * new IntPair\u3068\u540C\
     \u7B49\n\t * @param a first\n\t * @param b second\n\t */\n\tpublic static final\
     \ IntPair of(final long a, final long b){ return new IntPair(a, b); }\n\t/**\n\
+    \t * \u5143\u306EIntPair\u3092swap\u3057\u305F\u3082\u306E\u3092\u8FD4\u3059\n\
     \t * @return first\u3068second\u3092\u5165\u308C\u66FF\u3048\u305FIntPair\n\t\
     \ */\n\t@Override\n\tpublic final IntPair swap(){ return new IntPair(second, first);\
     \ }\n\t/**\n\t * Pair\u540C\u58EB\u3092\u52A0\u7B97\u3059\u308B\n\t * @param p\n\
@@ -584,27 +585,31 @@ data:
     \t */\n\tpublic final FloatPair rotate(final int ang) {\n\t\tfinal double rad\
     \ = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn FloatPair.of(first * Math.cos(rad)\
     \ - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));\n\
-    \t}\n\t/**\n\t * @param p\n\t * @return \u30C9\u30C3\u30C8\u7A4D\n\t */\n\tpublic\
-    \ final long dot(final IntPair p){ return first * p.first + second * p.second;\
-    \ }\n\t/**\n\t * @param p\n\t * @return \u30AF\u30ED\u30B9\u7A4D\n\t */\n\tpublic\
-    \ final long cross(final IntPair p){ return rotate().dot(p); }\n\t/**\n\t * @return\
-    \ IntPair\u3092\u5EA7\u6A19\u3068\u898B\u3066\u8DDD\u96E2\n\t */\n\tpublic final\
-    \ long sqr(){ return dot(this); }\n\t/**\n\t * @return IntPair\u306E\u52FE\u914D\
-    \n\t */\n\tpublic final double grad() { \n\t\ttry {\n\t\t\treturn 1.0 * second\
-    \ / first;\n\t\t} catch(final ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
-    \t\t}\n\t\tthrow new Error();\n\t}\n\t/**\n\t * @return IntPair\u306E\u30E6\u30FC\
+    \t}\n\t/**\n\t * \u30C9\u30C3\u30C8\u7A4D\u3092\u8FD4\u3059\n\t * @param p\n\t\
+    \ * @return \u30C9\u30C3\u30C8\u7A4D\n\t */\n\tpublic final long dot(final IntPair\
+    \ p){ return first * p.first + second * p.second; }\n\t/**\n\t * \u30AF\u30ED\u30B9\
+    \u7A4D\u3092\u8FD4\u3059\n\t * @param p\n\t * @return \u30AF\u30ED\u30B9\u7A4D\
+    \n\t */\n\tpublic final long cross(final IntPair p){ return rotate().dot(p); }\n\
+    \t/**\n\t * \u8DDD\u96E2\u3092\u8FD4\u3059\n\t * @return IntPair\u3092\u5EA7\u6A19\
+    \u3068\u898B\u3066\u8DDD\u96E2\n\t */\n\tpublic final long sqr(){ return dot(this);\
+    \ }\n\t/**\n\t * second / first\u3092\u8FD4\u3059\n\t * @return IntPair\u306E\u52FE\
+    \u914D\n\t */\n\tpublic final double grad() { \n\t\ttry {\n\t\t\treturn 1.0 *\
+    \ second / first;\n\t\t} catch(final ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
+    \t\t}\n\t\tthrow new Error();\n\t}\n\t/**\n\t * \u30E6\u30FC\u30AF\u30EA\u30C3\
+    \u30C9\u30CE\u30EB\u30E0\u3092\u8FD4\u3059\n\t * @return IntPair\u306E\u30E6\u30FC\
     \u30AF\u30EA\u30C3\u30C9\u30CE\u30EB\u30E0\n\t */\n\tpublic final double abs(){\
-    \ return Math.hypot(first, second); }\n\t/**\n\t * @return IntPair\u306E\u6700\
-    \u5C0F\u516C\u500D\u6570\n\t */\n\tpublic final long lcm(){ return Utility.lcm(first,\
-    \ second); }\n\t/**\n\t * @return IntPair\u306E\u6700\u5927\u516C\u7D04\u6570\n\
-    \t */\n\tpublic final long gcd(){ return Utility.gcd(first, second); }\n\t/**\n\
-    \t * \u62E1\u5F35\u30E6\u30FC\u30AF\u30EA\u30C3\u30C9\u306E\u4E92\u9664\u6CD5\n\
-    \t */\n\tpublic final IntPair extgcd() {\n\t\tlong x = 1, y = 0, t1 = 0, t2 =\
-    \ 0, t3 = 1, a = first, b = second;\n\t\twhile(b > 0) {\n\t\t\tt1 = a / b;\n\t\
-    \t\ta -= t1 * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\t\tx -= t1 *\
-    \ t2;\n\t\t\tx ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^= t2;\n\t\t\ty -= t1 * t3;\n\t\
-    \t\ty ^= t3;\n\t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\t}\n\t\treturn new IntPair(x,\
-    \ y);\n\t}\n}"
+    \ return Math.hypot(first, second); }\n\t/**\n\t * \u6700\u5C0F\u516C\u500D\u6570\
+    \u3092\u8FD4\u3059\n\t * @return IntPair\u306E\u6700\u5C0F\u516C\u500D\u6570\n\
+    \t */\n\tpublic final long lcm(){ return Utility.lcm(first, second); }\n\t/**\n\
+    \t * \u6700\u5927\u516C\u7D04\u6570\u3092\u8FD4\u3059\n\t * @return IntPair\u306E\
+    \u6700\u5927\u516C\u7D04\u6570\n\t */\n\tpublic final long gcd(){ return Utility.gcd(first,\
+    \ second); }\n\t/**\n\t * \u62E1\u5F35\u30E6\u30FC\u30AF\u30EA\u30C3\u30C9\u306E\
+    \u4E92\u9664\u6CD5\n\t */\n\tpublic final IntPair extgcd() {\n\t\tlong x = 1,\
+    \ y = 0, t1 = 0, t2 = 0, t3 = 1, a = first, b = second;\n\t\twhile(b > 0) {\n\t\
+    \t\tt1 = a / b;\n\t\t\ta -= t1 * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^=\
+    \ b;\n\t\t\tx -= t1 * t2;\n\t\t\tx ^= t2;\n\t\t\tt2 ^= x;\n\t\t\tx ^= t2;\n\t\t\
+    \ty -= t1 * t3;\n\t\t\ty ^= t3;\n\t\t\tt3 ^= y;\n\t\t\ty ^= t3;\n\t\t}\n\t\treturn\
+    \ new IntPair(x, y);\n\t}\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -789,7 +794,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/pair/IntPair.java

@@ -554,9 +554,10 @@ data:
     RuntimeError: bundler is not specified: Java/library/graph/MST.java\n"
   code: "package library.graph;\n\nimport java.util.ArrayList;\n\n/**\n * \u6700\u5C0F\
     \u5168\u57DF\u6728\u30AF\u30E9\u30B9\n */\npublic final class MST {\n\tpublic\
-    \ final ArrayList<Edge> tree;\n\tpublic final long cost;\n\tMST(final ArrayList<Edge>\
-    \ tree, final long cost) {\n\t\tthis.tree = tree;\n\t\tthis.cost = cost;\n\t}\n\
-    }"
+    \ final ArrayList<Edge> tree;\n\tpublic final long cost;\n\t/**\n\t * \u30B3\u30F3\
+    \u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param tree\n\t * @param cost\n\t */\n\t\
+    MST(final ArrayList<Edge> tree, final long cost) {\n\t\tthis.tree = tree;\n\t\t\
+    this.cost = cost;\n\t}\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -741,7 +742,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/MST.java

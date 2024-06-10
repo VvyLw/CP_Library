@@ -556,17 +556,18 @@ data:
     \n/**\n * C++\u306Estd::inclusive_scan\u306B\u76F8\u5F53\u3059\u308B\u30AF\u30E9\
     \u30B9\n * @see <a href=\"https://cpprefjp.github.io/reference/numeric/inclusive_scan.html\"\
     >std::inclusive_scan</a>\n */\npublic class InclusiveScan {\n\tprotected final\
-    \ int n;\n\tprotected long[] s;\n\tprotected InclusiveScan(final int n) {\n\t\t\
-    this.n = n;\n\t\ts = new long[n + 1];\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\
-    \u30E9\u30AF\u30BF\n\t * @param a\n\t * @param op \u4E8C\u9805\u6F14\u7B97\n\t\
-    \ */\n\tpublic InclusiveScan(final int[] a, final LongBinaryOperator op) {\n\t\
-    \tn = a.length;\n\t\ts = Arrays.stream(a).asLongStream().toArray();\n\t\tArrays.parallelPrefix(s,\
-    \ op);\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param\
+    \ int n;\n\tprotected long[] s;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\
+    \u30BF\n\t * PrefixSum\u306E\u65B9\u3067\u4F7F\u3046\n\t * @param n\n\t */\n\t\
+    protected InclusiveScan(final int n) {\n\t\tthis.n = n;\n\t\ts = new long[n +\
+    \ 1];\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param\
     \ a\n\t * @param op \u4E8C\u9805\u6F14\u7B97\n\t */\n\tpublic InclusiveScan(final\
-    \ long[] a, final LongBinaryOperator op) {\n\t\tn = a.length;\n\t\ts = a.clone();\n\
-    \t\tArrays.parallelPrefix(s, op);\n\t}\n\t/**\n\t * @return InclusiveScan\u3057\
-    \u305F\u5F8C\u306E\u914D\u5217\n\t */\n\tpublic final long[] get(){ return s;\
-    \ }\n}"
+    \ int[] a, final LongBinaryOperator op) {\n\t\tn = a.length;\n\t\ts = Arrays.stream(a).asLongStream().toArray();\n\
+    \t\tArrays.parallelPrefix(s, op);\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\
+    \u30AF\u30BF\n\t * @param a\n\t * @param op \u4E8C\u9805\u6F14\u7B97\n\t */\n\t\
+    public InclusiveScan(final long[] a, final LongBinaryOperator op) {\n\t\tn = a.length;\n\
+    \t\ts = a.clone();\n\t\tArrays.parallelPrefix(s, op);\n\t}\n\t/**\n\t * @return\
+    \ \u4E8C\u9805\u6F14\u7B97\u3057\u305F\u5F8C\u306E\u914D\u5217\n\t */\n\tpublic\
+    \ final long[] get(){ return s; }\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -751,7 +752,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/InclusiveScan.java

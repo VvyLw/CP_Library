@@ -555,14 +555,16 @@ data:
   code: "package library.ds.lazysegmenttree;\n\nimport library.ds.pair.Zwei;\n\n/**\n\
     \ * Range Update Range Sum\n * \u533A\u9593\u66F4\u65B0, \u533A\u9593\u548C\n\
     \ */\npublic final class RUSM extends LazySegmentTree<Zwei<Long>, Long> {\n\t\
-    private final int n;\n\tprivate final Zwei<Long>[] b;\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tpublic RUSM(final int[] a) {\n\t\tsuper(a.length, (x, y) -> Zwei.of(x.first.longValue()\
+    private final int n;\n\tprivate final Zwei<Long>[] b;\n\t/**\n\t * \u30B3\u30F3\
+    \u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a\n\t */\n\t@SuppressWarnings(\"unchecked\"\
+    )\n\tpublic RUSM(final int[] a) {\n\t\tsuper(a.length, (x, y) -> Zwei.of(x.first.longValue()\
     \ + y.first.longValue(), x.second.longValue() + y.second.longValue()), (x, y)\
     \ -> Zwei.of(x.second.longValue() * y.longValue(), x.second.longValue()), (x,\
     \ y) -> y, Zwei.of(0L, 0L), Long.valueOf(Long.MIN_VALUE));\n\t\tn = a.length;\n\
     \t\tb = new Zwei[n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tb[i] = Zwei.of((long)\
-    \ a[i], 1L);\n\t\t}\n\t\tbuild(b);\n\t}\n\t@SuppressWarnings(\"unchecked\")\n\t\
-    public RUSM(final long[] a) {\n\t\tsuper(a.length, (x, y) -> Zwei.of(x.first.longValue()\
+    \ a[i], 1L);\n\t\t}\n\t\tbuild(b);\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\
+    \u30AF\u30BF\n\t * @param a\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic\
+    \ RUSM(final long[] a) {\n\t\tsuper(a.length, (x, y) -> Zwei.of(x.first.longValue()\
     \ + y.first.longValue(), x.second.longValue() + y.second.longValue()), (x, y)\
     \ -> Zwei.of(x.second.longValue() * y.longValue(), x.second.longValue()), (x,\
     \ y) -> y, Zwei.of(0L, 0L), Long.valueOf(Long.MIN_VALUE));\n\t\tn = a.length;\n\
@@ -752,7 +754,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/lazysegmenttree/RUSM.java

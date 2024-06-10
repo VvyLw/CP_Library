@@ -558,9 +558,11 @@ data:
     \u5024\u306E\u307F\u306B\u306A\u3063\u3066\u3044\u308B\n * @see Pair\n * @see\
     \ RASM\n * @see RUSM\n * @param <T>\n */\npublic final class Zwei<T> implements\
     \ Cloneable {\n\tpublic T first, second;\n\tprivate Zwei(final T first, final\
-    \ T second) {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\tpublic\
-    \ static final <T> Zwei<T> of(final T f, final T s){ return new Zwei<>(f, s);\
-    \ }\n\t@Override\n\tpublic final boolean equals(final Object o) {\n\t\tif(this\
+    \ T second) {\n\t\tthis.first = first;\n\t\tthis.second = second;\n\t}\n\t/**\n\
+    \t * Zwei\u30AF\u30E9\u30B9\u5BA3\u8A00\u3067\u4F7F\u3046\n\t * new Zwei\u3068\
+    \u540C\u7B49\n\t * @param <T>\n\t * @param f\n\t * @param s\n\t * @return\n\t\
+    \ */\n\tpublic static final <T> Zwei<T> of(final T f, final T s){ return new Zwei<>(f,\
+    \ s); }\n\t@Override\n\tpublic final boolean equals(final Object o) {\n\t\tif(this\
     \ == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass())\
     \ {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Zwei<?> z = (Zwei<?>) o;\n\t\treturn\
     \ first.equals(z.first) && second.equals(z.second);\n\t}\n\t@Override\n\tpublic\
@@ -753,7 +755,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/pair/Zwei.java

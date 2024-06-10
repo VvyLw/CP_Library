@@ -558,26 +558,28 @@ data:
     \ library.ds.unionfind.UnionFind;\nimport library.graph.Edge;\n\n/**\n * core\u30D1\
     \u30C3\u30B1\u30FC\u30B8\u4EE5\u5916\u306E\u5916\u90E8\u30AF\u30E9\u30B9(Pair\u3092\
     \u9664\u304F\u3092\u4F7F\u3046\u30E1\u30BD\u30C3\u30C9\u304C\u7F6E\u3044\u3066\
-    \u3042\u308B)\n */\npublic final class Why {\n\t/**\n\t * @param uf\n\t * @return\
-    \ \u4E8C\u5206\u30B0\u30E9\u30D5\u304B\u3069\u3046\u304B\n\t * @implNote {@link\
-    \ UnionFind}\u304C\u5FC5\u8981\n\t */\n\tpublic static final boolean isBipartite(final\
-    \ UnionFind uf) {\n\t\tassert uf.size() % 2 == 0;\n\t\tfinal int n = uf.size()\
-    \ / 2;\n\t\tboolean ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &=\
-    \ !uf.same(i, i + n);\n\t\t}\n\t\treturn ok;\n\t}\n\t/**\n\t * @param a\n\t *\
-    \ @return \u8EE2\u5012\u6570\n\t * @implNote {@link FenwickTree}\u304C\u5FC5\u8981\
-    \n\t */\n\tpublic static final long invNum(final int[] a) {\n\t\tfinal int[] b\
-    \ = Utility.sorted(a);\n\t\tfinal Map<Integer, Integer> id = new HashMap<>();\n\
+    \u3042\u308B)\n */\npublic final class Why {\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\
+    \u305F\u30B0\u30E9\u30D5\u304C\u4E8C\u5206\u30B0\u30E9\u30D5\u304B\u3069\u3046\
+    \u304B\u5224\u5B9A\u3059\u308B\n\t * @param uf\n\t * @return \u4E8C\u5206\u30B0\
+    \u30E9\u30D5\u304B\u3069\u3046\u304B\n\t * @implNote {@link UnionFind}\u304C\u5FC5\
+    \u8981\n\t */\n\tpublic static final boolean isBipartite(final UnionFind uf) {\n\
+    \t\tassert uf.size() % 2 == 0;\n\t\tfinal int n = uf.size() / 2;\n\t\tboolean\
+    \ ok = true;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tok &= !uf.same(i, i + n);\n\
+    \t\t}\n\t\treturn ok;\n\t}\n\t/**\n\t * \u8EE2\u5012\u6570\u3092\u6C42\u3081\u308B\
+    \n\t * @param a\n\t * @return \u8EE2\u5012\u6570\n\t * @implNote {@link FenwickTree}\u304C\
+    \u5FC5\u8981\n\t */\n\tpublic static final long invNum(final int[] a) {\n\t\t\
+    final int[] b = Utility.sorted(a);\n\t\tfinal Map<Integer, Integer> id = new HashMap<>();\n\
     \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
     \ FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int\
     \ i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\t\
-    bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\
-    \t * @return \u8EE2\u5012\u6570\n\t * @implNote {@link FenwickTree}\u304C\u5FC5\
-    \u8981\n\t */\n\tpublic static final long invNum(final long[] a) {\n\t\tfinal\
-    \ long[] b = Utility.sorted(a);\n\t\tfinal Map<Long, Integer> id = new HashMap<>();\n\
-    \t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal\
-    \ FenwickTree bit = new FenwickTree(a.length);\n\t\tlong res = 0;\n\t\tfor(int\
-    \ i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\t\t\t\
-    bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @deprecated\
+    bit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * \u8EE2\u5012\
+    \u6570\u3092\u6C42\u3081\u308B\n\t * @param a\n\t * @return \u8EE2\u5012\u6570\
+    \n\t * @implNote {@link FenwickTree}\u304C\u5FC5\u8981\n\t */\n\tpublic static\
+    \ final long invNum(final long[] a) {\n\t\tfinal long[] b = Utility.sorted(a);\n\
+    \t\tfinal Map<Long, Integer> id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length;\
+    \ ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\
+    \t\tlong res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
+    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @deprecated\
     \ verified\u3057\u3066\u3044\u306A\u3044\n\t * \u9045\u3044\n\t * @param x\n\t\
     \ * @param y\n\t * @return manhattan MST\n\t */\n\tpublic static final ArrayList<Edge>\
     \ manhattan(int[] x, int[] y) {\n\t\tassert x.length == y.length;\n\t\tfinal int\
@@ -793,7 +795,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/Why.java

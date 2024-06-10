@@ -558,13 +558,15 @@ data:
     \u984C\u3067\u4E8C\u5206\u63A2\u7D22\u3092\u6C42\u3081\u3089\u308C\u305F\u5834\
     \u5408\u306F\u3053\u3061\u3089\n * @see RangeBIT\n */\npublic final class RASM\
     \ extends LazySegmentTree<Zwei<Long>, Long> {\n\tprivate final int n;\n\tprivate\
-    \ final Zwei<Long>[] b;\n\t@SuppressWarnings(\"unchecked\")\n\tpublic RASM(final\
+    \ final Zwei<Long>[] b;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\
+    \n\t * @param a\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic RASM(final\
     \ int[] a) {\n\t\tsuper(a.length, (x, y) -> Zwei.of(x.first.longValue() + y.first.longValue(),\
     \ x.second.longValue() + y.second.longValue()), (x, y) -> Zwei.of(x.first.longValue()\
     \ + x.second.longValue() * y.longValue(), x.second.longValue()), Long::sum, Zwei.of(0L,\
     \ 0L), Long.valueOf(0));\n\t\tn = a.length;\n\t\tb = new Zwei[n];\n\t\tfor(int\
     \ i = 0; i < n; ++i) {\n\t\t\tb[i] = Zwei.of((long) a[i], 1L);\n\t\t}\n\t\tbuild(b);\n\
-    \t}\n\t@SuppressWarnings(\"unchecked\")\n\tpublic RASM(final long[] a) {\n\t\t\
+    \t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a\n\t\
+    \ */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic RASM(final long[] a) {\n\t\t\
     super(a.length, (x, y) -> Zwei.of(x.first.longValue() + y.first.longValue(), x.second.longValue()\
     \ + y.second.longValue()), (x, y) -> Zwei.of(x.first.longValue() + x.second.longValue()\
     \ * y.longValue(), x.second.longValue()), Long::sum, Zwei.of(0L, 0L), Long.valueOf(0));\n\
@@ -754,7 +756,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/lazysegmenttree/RASM.java

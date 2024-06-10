@@ -577,9 +577,10 @@ data:
     \ 2));\n\t\t\tlong ans = pi(m) - (long) (sx + a - 2) * (sx - a + 1) / 2;\n\t\t\
     \tfor(long i = a; i < sx; ++i) {\n\t\t\t\tans += pi(m / ps.get((int) i));\n\t\t\
     \t}\n\t\t\treturn ans;\n\t\t}\n\t\treturn phi(m, a - 1) - phi(m / ps.get((int)\
-    \ (a - 1)), a - 1);\n\t}\n\t/**\n\t * @param n\n\t * @return n\u4EE5\u4E0B\u306E\
-    \u7D20\u6570\u306E\u500B\u6570\n\t */\n\tpublic final long pi(final long n) {\n\
-    \t\tif(n <= sq) {\n\t\t\treturn psum[(int) n];\n\t\t}\n\t\tfinal long m = kthRooti(n,\
+    \ (a - 1)), a - 1);\n\t}\n\t/**\n\t * n\u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u500B\
+    \u6570\u3092\u8FD4\u3059\n\t * @param n\n\t * @return n\u4EE5\u4E0B\u306E\u7D20\
+    \u6570\u306E\u500B\u6570\n\t */\n\tpublic final long pi(final long n) {\n\t\t\
+    if(n <= sq) {\n\t\t\treturn psum[(int) n];\n\t\t}\n\t\tfinal long m = kthRooti(n,\
     \ 3);\n\t\tfinal long a = pi(m);\n\t\treturn phi(n, a) + a - 1 - p2(n, m);\n\t\
     }\n}"
   dependsOn:
@@ -766,7 +767,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/PrimeCounter.java

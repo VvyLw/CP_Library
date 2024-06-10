@@ -646,19 +646,22 @@ data:
     \ 0; i < n; i++) {\n\t\t\tfor(int j = a[i]; j <= w; j++) {\n\t\t\t\tif(dp[j -\
     \ a[i]] != Long.MIN_VALUE) {\n\t\t\t\t\tif(dp[j - a[i]] + v[i] > dp[j]) {\n\t\t\
     \t\t\t\tdp[j] = dp[j - a[i]] + v[i];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
-    \t\treturn Utility.max(dp);\n\t}\n\t/**\n\t * @param a\n\t * @return \u30D2\u30B9\
-    \u30C8\u30B0\u30E9\u30E0\u306E\u6700\u5927\u9577\u65B9\u5F62\u306E\u9762\u7A4D\
-    \n\t * @implNote O(N)\n\t * @see <a href=\"https://ei1333.github.io/library/dp/largest-rectangle.hpp\"\
-    >\u53C2\u8003\u5143</a>\n\t */\n\tpublic static final long maxRectangle(final\
-    \ int[] a) {\n\t\tfinal Stack<Integer> sk = new Stack<>();\n\t\tfinal long[] h\
-    \ = new long[a.length + 1];\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\th[i]\
-    \ = a[i];\n\t\t}\n\t\tfinal int[] l = new int[h.length];\n\t\tlong res = 0;\n\t\
-    \tfor(int i = 0; i < h.length; i++) {\n\t\t\twhile(!sk.isEmpty() && h[sk.peek()]\
-    \ >= h[i]) {\n\t\t\t\tres = Math.max(res, (i - l[sk.peek()] - 1) * h[sk.pop()]);\n\
-    \t\t\t}\n\t\t\tl[i] = sk.isEmpty() ? -1 : sk.peek();\n\t\t\tsk.add(i);\n\t\t}\n\
-    \t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @return \u30D2\u30B9\u30C8\u30B0\
-    \u30E9\u30E0\u306E\u6700\u5927\u9577\u65B9\u5F62\u306E\u9762\u7A4D\n\t * @implNote\
-    \ O(N)\n\t * @see <a href=\"https://ei1333.github.io/library/dp/largest-rectangle.hpp\"\
+    \t\treturn Utility.max(dp);\n\t}\n\t/**\n\t * \u30D2\u30B9\u30C8\u30B0\u30E9\u30E0\
+    \u306E\u6700\u5927\u9577\u65B9\u5F62\u306E\u9762\u7A4D\u3092\u8FD4\u3059\n\t *\
+    \ @param a\n\t * @return \u30D2\u30B9\u30C8\u30B0\u30E9\u30E0\u306E\u6700\u5927\
+    \u9577\u65B9\u5F62\u306E\u9762\u7A4D\n\t * @implNote O(N)\n\t * @see <a href=\"\
+    https://ei1333.github.io/library/dp/largest-rectangle.hpp\">\u53C2\u8003\u5143\
+    </a>\n\t */\n\tpublic static final long maxRectangle(final int[] a) {\n\t\tfinal\
+    \ Stack<Integer> sk = new Stack<>();\n\t\tfinal long[] h = new long[a.length +\
+    \ 1];\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\th[i] = a[i];\n\t\t}\n\t\t\
+    final int[] l = new int[h.length];\n\t\tlong res = 0;\n\t\tfor(int i = 0; i <\
+    \ h.length; i++) {\n\t\t\twhile(!sk.isEmpty() && h[sk.peek()] >= h[i]) {\n\t\t\
+    \t\tres = Math.max(res, (i - l[sk.peek()] - 1) * h[sk.pop()]);\n\t\t\t}\n\t\t\t\
+    l[i] = sk.isEmpty() ? -1 : sk.peek();\n\t\t\tsk.add(i);\n\t\t}\n\t\treturn res;\n\
+    \t}\n\t/**\n\t * \u30D2\u30B9\u30C8\u30B0\u30E9\u30E0\u306E\u6700\u5927\u9577\u65B9\
+    \u5F62\u306E\u9762\u7A4D\u3092\u8FD4\u3059\n\t * @param a\n\t * @return \u30D2\
+    \u30B9\u30C8\u30B0\u30E9\u30E0\u306E\u6700\u5927\u9577\u65B9\u5F62\u306E\u9762\
+    \u7A4D\n\t * @implNote O(N)\n\t * @see <a href=\"https://ei1333.github.io/library/dp/largest-rectangle.hpp\"\
     >\u53C2\u8003\u5143</a>\n\t */\n\tpublic static final long maxRectangle(final\
     \ long[] a) {\n\t\tfinal Stack<Integer> sk = new Stack<>();\n\t\tfinal long[]\
     \ h = Arrays.copyOf(a, a.length + 1);\n\t\tfinal int[] l = new int[h.length];\n\
@@ -674,8 +677,9 @@ data:
     \ j = 0; j < n; ++j) {\n\t\t\t\tif(s.charAt(j) == t.charAt(i)) {\n\t\t\t\t\tndp[j\
     \ + 1] = dp[j] + 1;\n\t\t\t\t} else {\n\t\t\t\t\tndp[j + 1] = Math.max(ndp[j],\
     \ dp[j + 1]);\n\t\t\t\t}\n\t\t\t}\n\t\t\tUtility.swap(dp, ndp);\n\t\t}\n\t\treturn\
-    \ dp[n];\n\t}\n\t/**\n\t * @param a\n\t * @return \u6700\u9577\u5897\u52A0\u90E8\
-    \u5206\u5217(Longest Increasing Subsequence)\n\t * @see <a href=\"https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\"\
+    \ dp[n];\n\t}\n\t/**\n\t * \u6700\u9577\u5897\u52A0\u90E8\u5206\u5217(Longest\
+    \ Increasing Subsequence)\n\t * @param a\n\t * @return \u6700\u9577\u5897\u52A0\
+    \u90E8\u5206\u5217\n\t * @see <a href=\"https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\"\
     >\u53C2\u8003\u5143</a>\n\t * @implNote Java21\u3088\u308A\u524D\u306EVer\u306E\
     \u5834\u5408\u3001getLast\u3092get(dp.size() - 1)\u306B\u5909\u3048\u308B\n\t\
     \ */\n\tpublic static final int[] lis(final int[] a) {\n\t\tfinal int n = a.length;\n\
@@ -687,12 +691,12 @@ data:
     \ IntPair.of(a[i], -i));\n\t\t\t}\n\t\t}\n\t\tfinal List<Integer> res = new ArrayList<Integer>();\n\
     \t\tfor(int i = -dp.getLast().second.intValue(); i != -1; i = p[i]) {\n\t\t\t\
     res.add(i);\n\t\t}\n\t\tCollections.reverse(res);\n\t\treturn res.stream().mapToInt(i\
-    \ -> i).toArray();\n\t}\n\t/**\n\t * @param a\n\t * @return \u6700\u9577\u5897\
-    \u52A0\u90E8\u5206\u5217(Longest Increasing Subsequence)\n\t * @see <a href=\"\
-    https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\">\u53C2\
-    \u8003\u5143</a>\n\t * @implNote Java21\u3088\u308A\u524D\u306EVer\u306E\u5834\
-    \u5408\u3001getLast\u3092get(dp.size() - 1)\u306B\u5909\u3048\u308B\n\t */\n\t\
-    public static final int[] lis(final long[] a) {\n\t\tfinal int n = a.length;\n\
+    \ -> i).toArray();\n\t}\n\t/**\n\t * \u6700\u9577\u5897\u52A0\u90E8\u5206\u5217\
+    (Longest Increasing Subsequence)\n\t * @param a\n\t * @return \u6700\u9577\u5897\
+    \u52A0\u90E8\u5206\u5217\n\t * @see <a href=\"https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\"\
+    >\u53C2\u8003\u5143</a>\n\t * @implNote Java21\u3088\u308A\u524D\u306EVer\u306E\
+    \u5834\u5408\u3001getLast\u3092get(dp.size() - 1)\u306B\u5909\u3048\u308B\n\t\
+    \ */\n\tpublic static final int[] lis(final long[] a) {\n\t\tfinal int n = a.length;\n\
     \t\tList<IntPair> dp = new ArrayList<IntPair>();\n\t\tfinal int[] p = new int[n];\n\
     \t\tArrays.fill(p, -1);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int id\
     \ = Utility.lowerBound(dp, IntPair.of(a[i], -i));\n\t\t\tif(id != 0) {\n\t\t\t\
@@ -886,7 +890,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/DP.java

@@ -564,12 +564,13 @@ data:
     \ PrefixSum(final int[] a) {\n\t\tsuper(a, Long::sum);\n\t\ts = Utility.rotate(Arrays.copyOf(s,\
     \ n + 1), -1);\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t\
     \ * @param a\n\t */\n\tpublic PrefixSum(final long[] a) {\n\t\tsuper(a, Long::sum);\n\
-    \t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), -1);\n\t}\n\t/**\n\t * @param\
-    \ l\n\t * @param r\n\t * @return \u9589\u533A\u9593[l, r]\u306E\u548C\n\t */\n\
-    \tpublic final long sum(final int l, final int r){ return s[r] - s[l]; }\n\t/**\n\
-    \t * \u534A\u958B\u533A\u9593[l, r)\u306Bx\u3092\u52A0\u7B97\u3059\u308B\n\t *\
-    \ @param l\n\t * @param r\n\t * @param x\n\t */\n\tpublic final void add(final\
-    \ int l, final int r, final long x) {\n\t\tif(built) {\n\t\t\tthrow new UnsupportedOperationException(\"\
+    \t\ts = Utility.rotate(Arrays.copyOf(s, n + 1), -1);\n\t}\n\t/**\n\t * \u9589\u533A\
+    \u9593[l, r]\u306E\u548C\u3092\u6C42\u3081\u308B\n\t * @param l\n\t * @param r\n\
+    \t * @return \u9589\u533A\u9593[l, r]\u306E\u548C\n\t */\n\tpublic final long\
+    \ sum(final int l, final int r){ return s[r] - s[l]; }\n\t/**\n\t * \u534A\u958B\
+    \u533A\u9593[l, r)\u306Bx\u3092\u52A0\u7B97\u3059\u308B\n\t * @param l\n\t * @param\
+    \ r\n\t * @param x\n\t */\n\tpublic final void add(final int l, final int r, final\
+    \ long x) {\n\t\tif(built) {\n\t\t\tthrow new UnsupportedOperationException(\"\
     Prefix Sum has been built.\");\n\t\t}\n\t\ts[l] += x;\n\t\ts[r] -= x;\n\t}\n\t\
     /**\n\t * \u69CB\u7BC9\n\t * @return \u7D2F\u7A4D\u548C\n\t */\n\tpublic final\
     \ long[] build() {\n\t\tassert !built;\n\t\tArrays.parallelPrefix(s, Long::sum);\n\
@@ -758,7 +759,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/prefixsum/PrefixSum.java

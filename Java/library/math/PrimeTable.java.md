@@ -565,11 +565,15 @@ data:
     \tsieve[(int) j] = false;\n\t\t\t}\n\t\t}\n\t\tfinal int size = (int) IntStream.rangeClosed(0,\
     \ n).filter(i -> sieve[i]).count();\n\t\tint j = 0;\n\t\tp = new int[size];\n\t\
     \tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(sieve[i]) {\n\t\t\t\tp[j++] = i; \n\t\
-    \t\t}\n\t\t}\n\t}\n\t/**\n\t * @return n\u4EE5\u4E0B\u306E\u7D20\u6570\u5224\u5B9A\
-    \u306E\u7D50\u679C\u3092\u30EA\u30B9\u30C8\u30A2\u30C3\u30D7\u3057\u305F\u914D\
-    \u5217\n\t */\n\tpublic final boolean[] table(){ return sieve; }\n\t/**\n\t *\
-    \ @return n\u4EE5\u4E0B\u306E\u7D20\u6570\u3092\u30EA\u30B9\u30C8\u30A2\u30C3\u30D7\
-    \u3057\u305F\u914D\u5217\n\t */\n\tpublic final int[] get(){ return p; }\n}"
+    \t\t}\n\t\t}\n\t}\n\t/**\n\t * n\u4EE5\u4E0B\u306E\u7D20\u6570\u5224\u5B9A\u306E\
+    \u7D50\u679C\u3092\u30EA\u30B9\u30C8\u30A2\u30C3\u30D7\u3057\u305F\u914D\u5217\
+    \u3092\u8FD4\u3059\n\t * @return n\u4EE5\u4E0B\u306E\u7D20\u6570\u5224\u5B9A\u306E\
+    \u7D50\u679C\u3092\u30EA\u30B9\u30C8\u30A2\u30C3\u30D7\u3057\u305F\u914D\u5217\
+    \n\t */\n\tpublic final boolean[] table(){ return sieve; }\n\t/**\n\t * n\u4EE5\
+    \u4E0B\u306E\u7D20\u6570\u3092\u30EA\u30B9\u30C8\u30A2\u30C3\u30D7\u3057\u305F\
+    \u914D\u5217\u3092\u8FD4\u3059\n\t * @return n\u4EE5\u4E0B\u306E\u7D20\u6570\u3092\
+    \u30EA\u30B9\u30C8\u30A2\u30C3\u30D7\u3057\u305F\u914D\u5217\n\t */\n\tpublic\
+    \ final int[] get(){ return p; }\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -754,7 +758,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/PrimeTable.java

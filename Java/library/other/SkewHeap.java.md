@@ -561,7 +561,8 @@ data:
     \ class Node {\n\t\tpublic long key, lazy;\n\t\tNode l, r;\n\t\tpublic final int\
     \ idx;\n\t\tNode(final long key, final int idx) {\n\t\t\tthis.key = key;\n\t\t\
     \tthis.idx = idx;\n\t\t\tlazy = 0;\n\t\t\tl = null;\n\t\t\tr = null;\n\t\t}\n\t\
-    }\n\tprivate final boolean isMin;\n\tpublic SkewHeap(final boolean isMin){ this.isMin\
+    }\n\tprivate final boolean isMin;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\
+    \u30BF\n\t * @param isMin\n\t */\n\tpublic SkewHeap(final boolean isMin){ this.isMin\
     \ = isMin; }\n\tprivate final Node alloc(final long key, final int idx){ return\
     \ new Node(key, idx); }\n\tprivate final Node propagate(final Node t) {\n\t\t\
     if(t != null && t.lazy != 0) {\n\t\t\tif(t.l != null) {\n\t\t\t\tt.l.lazy += t.lazy;\n\
@@ -761,7 +762,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/SkewHeap.java

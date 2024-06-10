@@ -556,21 +556,30 @@ data:
     \n/**\n * \u3053\u3053\u3067\u306FUtility\u30AF\u30E9\u30B9\u306E\u30E1\u30BD\u30C3\
     \u30C9\u3092\u30AF\u30E9\u30B9\u5BA3\u8A00\u306A\u3057\u3067\u4F7F\u3048\u308B\
     \n */\npublic final class VvyLw extends Utility {\n\t/**\n\t * \u5165\u51FA\u529B\
-    \n\t */\n\tpublic static final IO io = new IO(System.in, System.out, System.err,\
-    \ false);\n\t/**\n\t * \u4E71\u6570\u751F\u6210\u306E\u6642\u306B\u4F7F\u3046\n\
-    \t */\n\tstatic final Random rd = new Random();\n\t/**\n\t * \u30DE\u30EB\u30C1\
-    \u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u306E\u554F\u984C\u306E\u6642\u306Ffalse\u3092\
-    true\u306B\u5909\u3048\u308B\n\t */\n\tstatic final boolean MULTI = false;\n\t\
-    static final double EPS = 1e-18;\n\tpublic static final int INF = 1 << 30;\n\t\
-    public static final long LINF = (1L << 61) - 1;\n\tstatic final int MOD = 998244353;\n\
-    \tstatic final int M0D = (int) 1e9 + 7;\n\t/**\n\t * \u30B0\u30EA\u30C3\u30C9\u64CD\
-    \u4F5C\u306E\u6642\u306B\u4FBF\u5229\n\t */\n\tstatic final int[] dx = {0, -1,\
-    \ 1, 0, 0, -1, -1, 1, 1};\n\t/**\n\t * \u30B0\u30EA\u30C3\u30C9\u64CD\u4F5C\u306E\
-    \u6642\u306B\u4FBF\u5229\n\t */\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1,\
-    \ 1, -1, 1};\n\t/**\n\t * \u3053\u3053\u306B\u30B3\u30FC\u30C9\u3092\u66F8\u304D\
-    \u8FBC\u3080\n\t * @param Huitloxopetl (unused argument)\n\t * @return\n\t */\n\
-    \tstatic final Object solve(final int Huitloxopetl) {\n\t\treturn null;\n\t}\n\
-    }"
+    \u30A4\u30F3\u30B9\u30BF\u30F3\u30B9\n\t */\n\tpublic static final IO io = new\
+    \ IO(System.in, System.out, System.err, false);\n\t/**\n\t * \u4E71\u6570\u751F\
+    \u6210\u306E\u6642\u306B\u4F7F\u3046\n\t */\n\tpublic static final Random rd =\
+    \ new Random();\n\t/**\n\t * \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\
+    \u306E\u554F\u984C\u306E\u6642\u306Ffalse\u3092true\u306B\u5909\u3048\u308B\n\t\
+    \ */\n\tpublic static final boolean MULTI = false;\n\t/**\n\t * epsilon\n\t *\
+    \ \u6D6E\u52D5\u5C0F\u6570\u70B9\u306E\u8AA4\u5DEE\u3092\u6291\u3048\u308B\u6642\
+    \u306B\u4F7F\u3046\u6975\u5C0F\u306E\u5B9A\u6570\n\t */\n\tpublic static final\
+    \ double EPS = 1e-18;\n\t/**\n\t * int\u578B\u306E\u6975\u3081\u3066\u5927\u304D\
+    \u3044\u6570\u5024(1073741824 [0x40000000])\n\t */\n\tpublic static final int\
+    \ INF = 1 << 30;\n\t/**\n\t * long\u578B\u306E\u6975\u3081\u3066\u5927\u304D\u3044\
+    \u6570\u5024(2305843009213693951 [0x1fffffffffffffff])\n\t */\n\tpublic static\
+    \ final long LINF = (1L << 61) - 1;\n\t/**\n\t * \u3088\u304F\u3042\u308B\u5270\
+    \u4F59\u305D\u306E1(998244353 [0x3b800001])\n\t */\n\tpublic static final int\
+    \ MOD = 998244353;\n\t/**\n\t * \u3088\u304F\u3042\u308B\u5270\u4F59\u305D\u306E\
+    2(1000000007 [0x3b9aca07])\n\t */\n\tpublic static final int M0D = (int) 1e9 +\
+    \ 7;\n\t/**\n\t * \u30B0\u30EA\u30C3\u30C9\u64CD\u4F5C\u306E\u6642\u306B\u4FBF\
+    \u5229\n\t */\n\tpublic static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\
+    \t/**\n\t * \u30B0\u30EA\u30C3\u30C9\u64CD\u4F5C\u306E\u6642\u306B\u4FBF\u5229\
+    \n\t */\n\tpublic static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\t\
+    /**\n\t * \u3053\u3053\u306B\u30B3\u30FC\u30C9\u3092\u66F8\u304D\u8FBC\u3080\n\
+    \t * @param Huitloxopetl (unused argument)\n\t * @return \u4EFB\u610F\n\t */\n\
+    \tpublic static final Object solve(final int Huitloxopetl) {\n\t\treturn null;\n\
+    \t}\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -755,7 +764,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/VvyLw.java

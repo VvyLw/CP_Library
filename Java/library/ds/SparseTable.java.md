@@ -555,41 +555,44 @@ data:
   code: "package library.ds;\n\nimport java.util.function.LongBinaryOperator;\nimport\
     \ java.util.function.LongPredicate;\n\n/**\n * SparseTable\n */\npublic final\
     \ class SparseTable {\n\tprivate final long[][] st;\n\tprivate final int[] lookup;\n\
-    \tprivate final LongBinaryOperator op;\n\t/**\n\t * @param a \u914D\u5217\n\t\
-    \ * @param op \u4E8C\u9805\u6F14\u7B97\n\t */\n\tpublic SparseTable(final int[]\
-    \ a, final LongBinaryOperator op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1\
-    \ << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 << b];\n\t\t\
-    for(int i = 0; i < a.length; i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\t\tfor(int\
-    \ i = 1; i < b; i++) {\n\t\t\tfor(int j = 0; j + (1 << i) <= (1 << b); j++) {\n\
-    \t\t\t\tst[i][j] = op.applyAsLong(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\
-    \t\t\t}\n\t\t}\n\t\tlookup = new int[a.length + 1];\n\t\tfor(int i = 2; i < lookup.length;\
-    \ i++) {\n\t\t\tlookup[i] = lookup[i >> 1] + 1;\n\t\t}\n\t}\n\t/**\n\t * @param\
-    \ a \u914D\u5217\n\t * @param op \u4E8C\u9805\u6F14\u7B97\n\t */\n\tpublic SparseTable(final\
-    \ long[] a, final LongBinaryOperator op) {\n\t\tthis.op = op;\n\t\tint b = 0;\n\
-    \t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\t\tst = new long[b][1 <<\
-    \ b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\t\t\tst[0][i] = a[i];\n\t\t}\n\
-    \t\tfor(int i = 1; i < b; i++) {\n\t\t\tfor(int j = 0; j + (1 << i) <= (1 << b);\
-    \ j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i - 1][j], st[i - 1][j + (1 <<\
-    \ (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length + 1];\n\t\tfor(int\
-    \ i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i >> 1] + 1;\n\t\t\
-    }\n\t}\n\t/**\n\t * @param l\n\t * @param r\n\t * @return \u534A\u958B\u533A\u9593\
-    [l, r)\u306E\u6F14\u7B97\u7D50\u679C\n\t */\n\tpublic final long query(final int\
-    \ l, final int r) {\n\t\tfinal int b = lookup[r - l];\n\t\treturn op.applyAsLong(st[b][l],\
-    \ st[b][r - (1 << b)]);\n\t}\n\t/**\n\t * \u7279\u5B9A\u306E\u6761\u4EF6\u3092\
-    \u6E80\u305F\u3059\u6700\u3082\u5DE6\u306E\u4F4D\u7F6E\u3092\u4E8C\u5206\u63A2\
+    \tprivate final LongBinaryOperator op;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\
+    \u30AF\u30BF\n\t * @param a \u914D\u5217\n\t * @param op \u4E8C\u9805\u6F14\u7B97\
+    \n\t */\n\tpublic SparseTable(final int[] a, final LongBinaryOperator op) {\n\t\
+    \tthis.op = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\
+    \t\t}\n\t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\
+    \t\t\tst[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\tfor(int\
+    \ j = 0; j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i\
+    \ - 1][j], st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
+    \ + 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
+    \ >> 1] + 1;\n\t\t}\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\
+    \n\t * @param a \u914D\u5217\n\t * @param op \u4E8C\u9805\u6F14\u7B97\n\t */\n\
+    \tpublic SparseTable(final long[] a, final LongBinaryOperator op) {\n\t\tthis.op\
+    \ = op;\n\t\tint b = 0;\n\t\twhile((1 << b) <= a.length) {\n\t\t\t++b;\n\t\t}\n\
+    \t\tst = new long[b][1 << b];\n\t\tfor(int i = 0; i < a.length; i++) {\n\t\t\t\
+    st[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 1; i < b; i++) {\n\t\t\tfor(int j = 0;\
+    \ j + (1 << i) <= (1 << b); j++) {\n\t\t\t\tst[i][j] = op.applyAsLong(st[i - 1][j],\
+    \ st[i - 1][j + (1 << (i - 1))]);\n\t\t\t}\n\t\t}\n\t\tlookup = new int[a.length\
+    \ + 1];\n\t\tfor(int i = 2; i < lookup.length; i++) {\n\t\t\tlookup[i] = lookup[i\
+    \ >> 1] + 1;\n\t\t}\n\t}\n\t/**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306B\u3064\
+    \u3044\u3066\u306E\u4E8C\u9805\u6F14\u7B97\u7D50\u679C\u3092\u8FD4\u3059\n\t *\
+    \ @param l\n\t * @param r\n\t * @return \u534A\u958B\u533A\u9593[l, r)\u306B\u3064\
+    \u3044\u3066\u4E8C\u9805\u6F14\u7B97\u3057\u305F\u7D50\u679C\n\t */\n\tpublic\
+    \ final long query(final int l, final int r) {\n\t\tfinal int b = lookup[r - l];\n\
+    \t\treturn op.applyAsLong(st[b][l], st[b][r - (1 << b)]);\n\t}\n\t/**\n\t * \u7279\
+    \u5B9A\u306E\u6761\u4EF6\u3092\u6E80\u305F\u3059\u6700\u3082\u5DE6\u306E\u4F4D\
+    \u7F6E\u3092\u4E8C\u5206\u63A2\u7D22\u3067\u63A2\u3059\n\t * @param x\n\t * @param\
+    \ fn\n\t */\n\tpublic final int minLeft(final int x, final LongPredicate fn) {\n\
+    \t\tif(x == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint ok = x, ng = -1;\n\t\twhile(Math.abs(ok\
+    \ - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(mid,\
+    \ x) - 1)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\
+    \t}\n\t\t}\n\t\treturn ok;\n\t}\n\t/**\n\t * \u7279\u5B9A\u306E\u6761\u4EF6\u3092\
+    \u6E80\u305F\u3059\u6700\u3082\u53F3\u306E\u4F4D\u7F6E\u3092\u4E8C\u5206\u63A2\
     \u7D22\u3067\u63A2\u3059\n\t * @param x\n\t * @param fn\n\t */\n\tpublic final\
-    \ int minLeft(final int x, final LongPredicate fn) {\n\t\tif(x == 0) {\n\t\t\t\
-    return 0;\n\t\t}\n\t\tint ok = x, ng = -1;\n\t\twhile(Math.abs(ok - ng) > 1) {\n\
-    \t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(mid, x) - 1)) {\n\
-    \t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\
-    \treturn ok;\n\t}\n\t/**\n\t * \u7279\u5B9A\u306E\u6761\u4EF6\u3092\u6E80\u305F\
-    \u3059\u6700\u3082\u53F3\u306E\u4F4D\u7F6E\u3092\u4E8C\u5206\u63A2\u7D22\u3067\
-    \u63A2\u3059\n\t * @param x\n\t * @param fn\n\t */\n\tpublic final int maxRight(final\
-    \ int x, final LongPredicate fn) {\n\t\tif(x == lookup.length - 1) {\n\t\t\treturn\
-    \ lookup.length - 1;\n\t\t}\n\t\tint ok = x, ng = lookup.length;\n\t\twhile(Math.abs(ok\
-    \ - ng) > 1) {\n\t\t\tint mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(x, mid)))\
-    \ {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t\
-    }\n\t\treturn ok;\n\t}\n}"
+    \ int maxRight(final int x, final LongPredicate fn) {\n\t\tif(x == lookup.length\
+    \ - 1) {\n\t\t\treturn lookup.length - 1;\n\t\t}\n\t\tint ok = x, ng = lookup.length;\n\
+    \t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tint mid = (ok + ng) / 2;\n\t\t\tif(fn.test(query(x,\
+    \ mid))) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t\
+    }\n\t\t}\n\t\treturn ok;\n\t}\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -774,7 +777,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/SparseTable.java

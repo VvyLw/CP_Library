@@ -567,21 +567,24 @@ data:
     \n\t * @param m\n\t */\n\tpublic Matrix(final long[][] m) {\n\t\tthis(m.length,\
     \ m[0].length);\n\t\tIntStream.range(0, h).forEach(i -> Arrays.setAll(mat[i],\
     \ j -> m[i][j]));\n\t}\n\t/**\n\t * \u5358\u4F4D\u884C\u5217\n\t * @param n\n\t\
-    \ * @return\n\t */\n\tpublic static final Matrix E(final int n) {\n\t\tfinal Matrix\
-    \ m = new Matrix(n);\n\t\tIntStream.range(0, n).forEach(i -> m.set(i, i, 1));\n\
-    \t\treturn m;\n\t}\n\t/**\n\t * @param i\n\t * @return i\u884C\u76EE\u306E\u8981\
-    \u7D20\u5168\u3066\n\t */\n\tpublic final long[] getH(final int i){ return mat[i];\
-    \ }\n\t/**\n\t * @param i\n\t * @return i\u5217\u76EE\u306E\u8981\u7D20\u5168\u3066\
-    \n\t */\n\tpublic final long[] getW(final int i){ return IntStream.range(0, h).mapToLong(j\
-    \ -> mat[j][i]).toArray(); }\n\t/**\n\t * @return \u884C\u5217\n\t */\n\tpublic\
-    \ final long[][] get(){ return mat; }\n\t/**\n\t * @param i\n\t * @param j\n\t\
-    \ * @return \u884C\u5217\u306Ei\u884Cj\u5217\u76EE\u306E\u8981\u7D20\n\t */\n\t\
-    public final long get(final int i, final int j){ return mat[i][j]; }\n\t/**\n\t\
-    \ * i\u884Cj\u5217\u76EE\u306B\u8981\u7D20\u3092\u8A2D\u5B9A\u3059\u308B\n\t *\
-    \ @param i\n\t * @param j\n\t * @param x\n\t */\n\tpublic final void set(final\
-    \ int i, final int j, final long x){ mat[i][j] = x; }\n\t/**\n\t * \u52A0\u7B97\
-    \n\t * @param m\n\t */\n\tpublic final Matrix add(final Matrix m) {\n\t\tassert\
-    \ h == m.h && w == m.w;\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int\
+    \ */\n\tpublic static final Matrix E(final int n) {\n\t\tfinal Matrix m = new\
+    \ Matrix(n);\n\t\tIntStream.range(0, n).forEach(i -> m.set(i, i, 1));\n\t\treturn\
+    \ m;\n\t}\n\t/**\n\t * i\u884C\u76EE\u306E\u8981\u7D20\u5168\u3066\u3092\u8FD4\
+    \u3059\n\t * @param i\n\t * @return i\u884C\u76EE\u306E\u8981\u7D20\u5168\u3066\
+    \n\t */\n\tpublic final long[] getH(final int i){ return mat[i]; }\n\t/**\n\t\
+    \ * i\u5217\u76EE\u306E\u8981\u7D20\u5168\u3066\u3092\u8FD4\u3059\n\t * @param\
+    \ i\n\t * @return i\u5217\u76EE\u306E\u8981\u7D20\u5168\u3066\n\t */\n\tpublic\
+    \ final long[] getW(final int i){ return IntStream.range(0, h).mapToLong(j ->\
+    \ mat[j][i]).toArray(); }\n\t/**\n\t * \u884C\u5217\u305D\u306E\u3082\u306E\u3092\
+    \u8FD4\u3059\n\t * @return \u884C\u5217\n\t */\n\tpublic final long[][] get(){\
+    \ return mat; }\n\t/**\n\t * Matrix[i][j]\u3092\u8FD4\u3059\n\t * @param i\n\t\
+    \ * @param j\n\t * @return \u884C\u5217\u306Ei\u884Cj\u5217\u76EE\u306E\u8981\u7D20\
+    \n\t */\n\tpublic final long get(final int i, final int j){ return mat[i][j];\
+    \ }\n\t/**\n\t * i\u884Cj\u5217\u76EE\u306B\u8981\u7D20\u3092\u8A2D\u5B9A\u3059\
+    \u308B\n\t * @param i\n\t * @param j\n\t * @param x\n\t */\n\tpublic final void\
+    \ set(final int i, final int j, final long x){ mat[i][j] = x; }\n\t/**\n\t * \u52A0\
+    \u7B97\n\t * @param m\n\t */\n\tpublic final Matrix add(final Matrix m) {\n\t\t\
+    assert h == m.h && w == m.w;\n\t\tfinal Matrix mt = new Matrix(h, w);\n\t\tfor(int\
     \ i = 0; i < h; ++i) {\n\t\t\tfor(int j = 0; j < w; ++j) {\n\t\t\t\tmt.set(i,\
     \ j, mat[i][j] + m.get(i, j));\n\t\t\t}\n\t\t}\n\t\treturn mt;\n\t}\n\t/**\n\t\
     \ * \u4EFB\u610Fmod\u52A0\u7B97\n\t * @param m\n\t * @param mod\n\t */\n\tpublic\
@@ -817,7 +820,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/Matrix.java

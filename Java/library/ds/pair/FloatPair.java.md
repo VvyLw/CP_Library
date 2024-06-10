@@ -558,37 +558,43 @@ data:
     \ final class FloatPair extends Pair<Double, Double> {\n\t/**\n\t * \u30B3\u30F3\
     \u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param first\n\t * @param second\n\t */\n\
     \tprivate FloatPair(final double first, final double second){ super(first, second);\
-    \ }\n\tpublic static final FloatPair of(final double a, final double b){ return\
-    \ new FloatPair(a, b); }\n\t/**\n\t * @return first\u3068second\u3092\u5165\u308C\
-    \u66FF\u3048\u305FFloatPair\n\t */\n\t@Override\n\tpublic final FloatPair swap(){\
-    \ return new FloatPair(second, first); }\n\t/**\n\t * FloatPair\u540C\u58EB\u3092\
-    \u52A0\u7B97\u3059\u308B\n\t * @param p\n\t */\n\tpublic final FloatPair add(final\
-    \ FloatPair p){ return new FloatPair(first + p.first, second + p.second); }\n\t\
-    /**\n\t * FloatPair\u540C\u58EB\u3092\u6E1B\u7B97\u3059\u308B\n\t * @param p\n\
-    \t */\n\tpublic final FloatPair sub(final FloatPair p){ return new FloatPair(first\
-    \ - p.first, second - p.second); }\n\t/**\n\t * FloatPair\u540C\u58EB\u3092\u4E57\
-    \u7B97\u3059\u308B\n\t * @param p\n\t */\n\tpublic final FloatPair mul(final FloatPair\
-    \ p){ return new FloatPair(first * p.first, second * p.second); }\n\t/**\n\t *\
-    \ FloatPair\u540C\u58EB\u3092\u9664\u7B97\u3059\u308B\n\t * @param p\n\t */\n\t\
-    public final FloatPair div(final FloatPair p){ return new FloatPair(first / p.first,\
-    \ second / p.second); }\n\t/**\n\t * FloatPair\u3092\u5EA7\u6A19\u3068\u898B\u3066\
-    90\u5EA6\u56DE\u8EE2\u3055\u305B\u308B\n\t * rotate(90)\u3088\u308A\u7CBE\u78BA\
-    \n\t */\n\tpublic final FloatPair rotate(){ return new FloatPair(-second, first);\
-    \ }\n\t/**\n\t * FloatPair\u3092\u5EA7\u6A19\u3068\u898B\u3066ang\u5EA6\u56DE\u8EE2\
-    \u3055\u305B\u308B\n\t * @param ang\n\t */\n\tpublic final FloatPair rotate(final\
-    \ int ang) {\n\t\tfinal double rad = Math.toRadians(Utility.mod(ang, 360));\n\t\
-    \treturn FloatPair.of(first * Math.cos(rad) - second * Math.sin(rad), first *\
-    \ Math.sin(rad) + second * Math.cos(rad));\n\t}\n\t/**\n\t * @param p\n\t * @return\
-    \ \u30C9\u30C3\u30C8\u7A4D\n\t */\n\tpublic final double dot(final FloatPair p){\
-    \ return first * p.first + second * p.second; }\n\t/**\n\t * @param p\n\t * @return\
-    \ \u30AF\u30ED\u30B9\u7A4D\n\t */\n\tpublic final double cross(final FloatPair\
-    \ p){ return rotate().dot(p); }\n\t/**\n\t * @return FloatPair\u3092\u5EA7\u6A19\
-    \u3068\u898B\u3066\u8DDD\u96E2\n\t */\n\tpublic final double sqr(){ return dot(this);\
-    \ }\n\t/**\n\t * @return FloatPair\u306E\u52FE\u914D\n\t */\n\tpublic final double\
-    \ grad() { \n\t\ttry {\n\t\t\treturn second / first;\n\t\t} catch(final ArithmeticException\
-    \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\tthrow new Error();\n\t}\n\t/**\n\
-    \t * @return FloatPair\u306E\u30E6\u30FC\u30AF\u30EA\u30C3\u30C9\u30CE\u30EB\u30E0\
-    \n\t */\n\tpublic final double abs(){ return Math.hypot(first, second); }\n}"
+    \ }\n\t/**\n\t * FloatPair\u3092\u5BA3\u8A00\u3059\u308B\u306E\u306B\u4F7F\u3046\
+    \n\t * new FloatPair\u3068\u540C\u7B49\n\t * @param a\n\t * @param b\n\t */\n\t\
+    public static final FloatPair of(final double a, final double b){ return new FloatPair(a,\
+    \ b); }\n\t/**\n\t * \u5143\u306EFloatPair\u3092swap\u3057\u305F\u3082\u306E\u3092\
+    \u8FD4\u3059\n\t * @return first\u3068second\u3092\u5165\u308C\u66FF\u3048\u305F\
+    FloatPair\n\t */\n\t@Override\n\tpublic final FloatPair swap(){ return new FloatPair(second,\
+    \ first); }\n\t/**\n\t * FloatPair\u540C\u58EB\u3092\u52A0\u7B97\u3059\u308B\n\
+    \t * @param p\n\t */\n\tpublic final FloatPair add(final FloatPair p){ return\
+    \ new FloatPair(first + p.first, second + p.second); }\n\t/**\n\t * FloatPair\u540C\
+    \u58EB\u3092\u6E1B\u7B97\u3059\u308B\n\t * @param p\n\t */\n\tpublic final FloatPair\
+    \ sub(final FloatPair p){ return new FloatPair(first - p.first, second - p.second);\
+    \ }\n\t/**\n\t * FloatPair\u540C\u58EB\u3092\u4E57\u7B97\u3059\u308B\n\t * @param\
+    \ p\n\t */\n\tpublic final FloatPair mul(final FloatPair p){ return new FloatPair(first\
+    \ * p.first, second * p.second); }\n\t/**\n\t * FloatPair\u540C\u58EB\u3092\u9664\
+    \u7B97\u3059\u308B\n\t * @param p\n\t */\n\tpublic final FloatPair div(final FloatPair\
+    \ p){ return new FloatPair(first / p.first, second / p.second); }\n\t/**\n\t *\
+    \ FloatPair\u3092\u5EA7\u6A19\u3068\u898B\u306690\u5EA6\u56DE\u8EE2\u3055\u305B\
+    \u308B\n\t * rotate(90)\u3088\u308A\u7CBE\u78BA\n\t */\n\tpublic final FloatPair\
+    \ rotate(){ return new FloatPair(-second, first); }\n\t/**\n\t * FloatPair\u3092\
+    \u5EA7\u6A19\u3068\u898B\u3066ang\u5EA6\u56DE\u8EE2\u3055\u305B\u308B\n\t * @param\
+    \ ang\n\t */\n\tpublic final FloatPair rotate(final int ang) {\n\t\tfinal double\
+    \ rad = Math.toRadians(Utility.mod(ang, 360));\n\t\treturn FloatPair.of(first\
+    \ * Math.cos(rad) - second * Math.sin(rad), first * Math.sin(rad) + second * Math.cos(rad));\n\
+    \t}\n\t/**\n\t * \u30C9\u30C3\u30C8\u7A4D\u3092\u8FD4\u3059\n\t * @param p\n\t\
+    \ * @return \u30C9\u30C3\u30C8\u7A4D\n\t */\n\tpublic final double dot(final FloatPair\
+    \ p){ return first * p.first + second * p.second; }\n\t/**\n\t * \u30AF\u30ED\u30B9\
+    \u7A4D\u3092\u8FD4\u3059\n\t * @param p\n\t * @return \u30AF\u30ED\u30B9\u7A4D\
+    \n\t */\n\tpublic final double cross(final FloatPair p){ return rotate().dot(p);\
+    \ }\n\t/**\n\t * \u8DDD\u96E2\u3092\u8FD4\u3059\n\t * @return FloatPair\u3092\u5EA7\
+    \u6A19\u3068\u898B\u3066\u8DDD\u96E2\n\t */\n\tpublic final double sqr(){ return\
+    \ dot(this); }\n\t/**\n\t * second / first\u3092\u8FD4\u3059\n\t * @return FloatPair\u306E\
+    \u52FE\u914D\n\t */\n\tpublic final double grad() { \n\t\ttry {\n\t\t\treturn\
+    \ second / first;\n\t\t} catch(final ArithmeticException e) {\n\t\t\te.printStackTrace();\n\
+    \t\t}\n\t\tthrow new Error();\n\t}\n\t/**\n\t * \u30E6\u30FC\u30AF\u30EA\u30C3\
+    \u30C9\u30CE\u30EB\u30E0\u3092\u8FD4\u3059\n\t * @return FloatPair\u306E\u30E6\
+    \u30FC\u30AF\u30EA\u30C3\u30C9\u30CE\u30EB\u30E0\n\t */\n\tpublic final double\
+    \ abs(){ return Math.hypot(first, second); }\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -773,7 +779,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/pair/FloatPair.java

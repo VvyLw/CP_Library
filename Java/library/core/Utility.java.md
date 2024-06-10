@@ -567,237 +567,295 @@ data:
     \ String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\t/**\n\t * {@link\
     \ #yes}\u306E\u9006\n\t * @param ok boolean\n\t * @return ok\u304Ctrue\u306A\u3089\
     \"No\" false\u306A\u3089\"Yes\"\n\t */\n\tprotected static final String no(final\
-    \ boolean ok){ return yes(!ok); }\n\t/**\n\t * @param x\n\t * @return x\u306E\u5E73\
-    \u65B9\u6570\n\t */\n\tprotected static final long sqr(final long x){ return x\
-    \ * x; }\n\t/**\n\t * @param x\n\t * @return x\u306E\u7ACB\u65B9\u6570\n\t */\n\
-    \tprotected static final long cub(final long x){ return x * x * x; }\n\t/**\n\t\
-    \ * n\u304C\u8CA0\u306E\u6642\u3067\u3082\u6B63\u306E\u5270\u4F59\u3092\u6C42\u3081\
-    \u308B\n\t * \u6CD5\u304Cint\u306E\u6642, int\u3067\u8FD4\u3059\n\t * @param n\n\
-    \t * @param m\n\t */\n\tprotected static final int mod(long n, final int m) {\n\
-    \t\tn %= m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\t/**\n\t * n\u304C\u8CA0\
-    \u306E\u6642\u3067\u3082\u6B63\u306E\u5270\u4F59\u3092\u6C42\u3081\u308B\n\t *\
-    \ @param n\n\t * @param m\n\t */\n\tpublic static final long mod(long n, final\
-    \ long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\t/**\n\t * @param\
-    \ x\n\t * @param base\n\t * @return base\u3092\u5E95\u3068\u3059\u308Bx\u306E\u5BFE\
-    \u6570\n\t */\n\tprotected static final double log(final double x, final long\
-    \ base){ return Math.log(x) / Math.log(base); }\n\t/**\n\t * a / b\u3092\u5C0F\
-    \u6570\u70B9\u4EE5\u4E0B\u5207\u308A\u4E0A\u3052\u3067\u6C42\u3081\u308B\n\t *\
-    \ @param a\n\t * @param b\n\t */\n\tprotected static final long intCeil(final\
-    \ long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\t/**\n\t * a\
-    \ / b\u3092\u5C0F\u6570\u70B9c\u6841\u3067\u56DB\u6368\u4E94\u5165\u3057\u3066\
-    \u6C42\u3081\u308B\n\t * @param a\n\t * @param b\n\t * @param c\n\t */\n\tprotected\
-    \ static final double intRound(final double a, final long b, final int c) {\n\t\
-    \tfinal long d = powi(10, c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\t\
-    /**\n\t * @param a\n\t * @param b\n\t * @return a\u306Eb\u4E57\n\t */\n\tprotected\
-    \ static final long powi(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0)\
-    \ {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\t\
-    b >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @param b\n\t\
-    \ * @return a\u306Eb\u4E57\u306Em\u3092\u6CD5\u3068\u3057\u305F\u5270\u4F59\n\t\
-    \ */\n\tprotected static final long modPow(long a, long b, final long m) {\n\t\
-    \tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\
-    \t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\
-    \tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @param m\n\
-    \t * @return a\u306E\u9006\u5143\u306Em\u3092\u6CD5\u3068\u3057\u305F\u5270\u4F59\
-    \n\t */\n\tprotected static final long inv(long a, final long m) {\n\t\tlong b\
-    \ = m, u = 1, v = 0;\n\t\twhile(b > 0) {\n\t\t\tfinal long t = a / b;\n\t\t\t\
-    a -= t * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\t\tu -= t * v;\n\t\
-    \t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\treturn mod(u, m);\n\t}\n\
-    \t/**\n\t * @param a\n\t * @param b\n\t * @return a\u3068b\u306E\u6700\u5C0F\u516C\
-    \u500D\u6570\n\t */\n\tpublic static final long lcm(final long a, final long b){\
-    \ return a / gcd(a, b) * b; }\n\t/**\n\t * e.g.) lcm(2, 3, 5) = 30\n\t * @param\
-    \ a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\u5217\n\
-    \t * @return a\u306E\u6700\u5C0F\u516C\u500D\u6570\n\t */\n\tpublic static final\
-    \ long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x,\
-    \ y) -> lcm(x, y)); }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\
+    \ boolean ok){ return yes(!ok); }\n\t/**\n\t * \u5E73\u65B9\u6570\u3092\u6C42\u3081\
+    \u308B\n\t * @param x\n\t * @return x\u306E\u5E73\u65B9\u6570\n\t */\n\tprotected\
+    \ static final long sqr(final long x){ return x * x; }\n\t/**\n\t * \u7ACB\u65B9\
+    \u6570\u3092\u6C42\u3081\u308B\n\t * @param x\n\t * @return x\u306E\u7ACB\u65B9\
+    \u6570\n\t */\n\tprotected static final long cub(final long x){ return x * x *\
+    \ x; }\n\t/**\n\t * n\u304C\u8CA0\u306E\u6642\u3067\u3082\u6B63\u306E\u5270\u4F59\
+    \u3092\u6C42\u3081\u308B\n\t * \u6CD5\u304Cint\u306E\u6642, int\u3067\u8FD4\u3059\
+    \n\t * @param n\n\t * @param m\n\t */\n\tprotected static final int mod(long n,\
+    \ final int m) {\n\t\tn %= m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\t\
+    /**\n\t * n\u304C\u8CA0\u306E\u6642\u3067\u3082\u6B63\u306E\u5270\u4F59\u3092\u6C42\
+    \u3081\u308B\n\t * @param n\n\t * @param m\n\t */\n\tpublic static final long\
+    \ mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t\
+    }\n\t/**\n\t * base\u3092\u5E95\u3068\u3059\u308Bx\u306E\u5B9A\u6570\u3092\u6C42\
+    \u3081\u308B\n\t * @param x\n\t * @param base\n\t * @return base\u3092\u5E95\u3068\
+    \u3059\u308Bx\u306E\u5BFE\u6570\n\t */\n\tprotected static final double log(final\
+    \ double x, final long base){ return Math.log(x) / Math.log(base); }\n\t/**\n\t\
+    \ * a / b\u3092\u5C0F\u6570\u70B9\u4EE5\u4E0B\u5207\u308A\u4E0A\u3052\u3067\u6C42\
+    \u3081\u308B\n\t * @param a\n\t * @param b\n\t */\n\tprotected static final long\
+    \ intCeil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\
+    \t/**\n\t * a / b\u3092\u5C0F\u6570\u70B9c\u6841\u3067\u56DB\u6368\u4E94\u5165\
+    \u3057\u3066\u6C42\u3081\u308B\n\t * @param a\n\t * @param b\n\t * @param c\n\t\
+    \ */\n\tprotected static final double intRound(final double a, final long b, final\
+    \ int c) {\n\t\tfinal long d = powi(10, c);\n\t\treturn Math.rint((a * d) / b)\
+    \ / d;\n\t}\n\t/**\n\t * a\u306Eb\u4E57\u3092\u6C42\u3081\u308B\n\t * @param a\n\
+    \t * @param b\n\t * @return a\u306Eb\u4E57\n\t */\n\tprotected static final long\
+    \ powi(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2\
+    \ == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\
+    \treturn res;\n\t}\n\t/**\n\t * a\u306Eb\u4E57(mod m)\u3092\u6C42\u3081\u308B\n\
+    \t * @param a\n\t * @param b\n\t * @param m\n\t * @return a\u306Eb\u4E57\u306E\
+    m\u3092\u6CD5\u3068\u3057\u305F\u5270\u4F59\n\t */\n\tprotected static final long\
+    \ modPow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0)\
+    \ {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\
+    \t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\t/**\n\t * inv a(mod m)\u3092\u6C42\u3081\u308B\n\t * @param a\n\
+    \t * @param m\n\t * @return a\u306E\u9006\u5143\u306Em\u3092\u6CD5\u3068\u3057\
+    \u305F\u5270\u4F59\n\t */\n\tprotected static final long inv(long a, final long\
+    \ m) {\n\t\tlong b = m, u = 1, v = 0;\n\t\twhile(b > 0) {\n\t\t\tfinal long t\
+    \ = a / b;\n\t\t\ta -= t * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\
+    \t\tu -= t * v;\n\t\t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\treturn\
+    \ mod(u, m);\n\t}\n\t/**\n\t * a\u3068b\u306E\u6700\u5C0F\u516C\u500D\u6570\u3092\
+    \u6C42\u3081\u308B\n\t * @param a\n\t * @param b\n\t * @return a\u3068b\u306E\u6700\
+    \u5C0F\u516C\u500D\u6570\n\t */\n\tpublic static final long lcm(final long a,\
+    \ final long b){ return a / gcd(a, b) * b; }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\
+    \u305F\u30BF\u30D7\u30EB\u306E\u6700\u5C0F\u516C\u500D\u6570\u3092\u6C42\u3081\
+    \u308B\n\t * e.g.) lcm(2, 3, 5) = 30\n\t * @param a int\u578B\u30BF\u30D7\u30EB\
+    \ \u3042\u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\
+    \u516C\u500D\u6570\n\t */\n\tpublic static final long lcm(final int... a){ return\
+    \ Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }\n\t/**\n\t\
+    \ * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5C0F\u516C\u500D\
+    \u6570\u3092\u6C42\u3081\u308B\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\
     \u308B\u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u516C\
     \u500D\u6570\n\t */\n\tpublic static final long lcm(final long... a){ return Arrays.stream(a).reduce(1,\
-    \ (x, y) -> lcm(x, y)); }\n\t/**\n\t * @param a\n\t * @param b\n\t * @return a\u3068\
-    b\u306E\u6700\u5927\u516C\u7D04\u6570\n\t */\n\tpublic static final long gcd(final\
-    \ long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }\n\t/**\n\t * e.g.)\
-    \ gcd(12, 15, 24) = 3\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\
-    \u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u516C\u7D04\u6570\
-    \n\t */\n\tpublic static final int gcd(final int... a){ return Arrays.stream(a).reduce(0,\
-    \ (x, y) -> (int) gcd(x, y)); }\n\t/**\n\t * e.g.) gcd(12, 15, 24) = 3\n\t * @param\
-    \ a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Flong\u578B\u914D\u5217\
-    \n\t * @return a\u306E\u6700\u5927\u516C\u7D04\u6570\n\t */\n\tpublic static final\
-    \ long gcd(final long... a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x,\
-    \ y)); }\n\t/**\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    int\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tpublic\
-    \ static final int min(final int... a){ return Arrays.stream(a).min().getAsInt();\
-    \ }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    long\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tpublic\
-    \ static final long min(final long... a){ return Arrays.stream(a).min().getAsLong();\
-    \ }\n\t/**\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    double\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tpublic\
-    \ static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
-    \ }\n\t/**\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    int\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\n\t */\n\tpublic\
-    \ static final int max(final int... a){ return Arrays.stream(a).max().getAsInt();\
-    \ }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    long\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\n\t */\n\tpublic\
-    \ static final long max(final long... a){ return Arrays.stream(a).max().getAsLong();\
-    \ }\n\t/**\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    double\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\n\t */\n\tpublic\
-    \ static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble();\
-    \ }\n\t/**\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    int\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\tpublic static\
-    \ final long sum(final int... a){ return Arrays.stream(a).asLongStream().sum();\
-    \ }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    long\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\tpublic static\
-    \ final long sum(final long... a){ return Arrays.stream(a).sum(); }\n\t/**\n\t\
-    \ * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fdouble\u578B\
-    \u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\tpublic static final double\
-    \ sum(final double... a){ return Arrays.stream(a).sum(); }\n\t/**\n\t * @param\
-    \ a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\u5217\n\
-    \t * @return a\u306E\u7DCF\u4E57\n\t */\n\tprotected static final long prod(final\
-    \ int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> x * y);\
-    \ }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    long\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u4E57\n\t */\n\tprotected static\
-    \ final long prod(final long... a){ return Arrays.stream(a).reduce(1, (x, y) ->\
-    \ x * y); }\n\t/**\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\
-    \u306Fdouble\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u4E57\n\t */\n\tprotected\
-    \ static final double prod(final double... a){ return Arrays.stream(a).reduce(1,\
-    \ (x, y) -> x * y); }\n\t/**\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\
-    \u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u5E73\u5747\u5024\
-    \n\t */\n\tprotected static final double ave(final int... a){ return Arrays.stream(a).average().getAsDouble();\
-    \ }\n\t/**\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    long\u578B\u914D\u5217\n\t * @return a\u306E\u5E73\u5747\u5024\n\t */\n\tprotected\
-    \ static final double ave(final long... a){ return Arrays.stream(a).average().getAsDouble();\
-    \ }\n\t/**\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306F\
-    double\u578B\u914D\u5217\n\t * @return a\u306E\u5E73\u5747\u5024\n\t */\n\tprotected\
-    \ static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble();\
-    \ }\n\t/**\n\t * @param a \u30BD\u30FC\u30C8\u6E08\u306Eint\u578B\u914D\u5217\n\
-    \t * @return \u4E2D\u592E\u5024\n\t */\n\tprotected static final double median(final\
-    \ int[] a) {\n\t\tassert isSorted(a);\n\t\tfinal int m = a.length / 2;\n\t\treturn\
-    \ a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;\n\t}\n\t/**\n\t * @param\
-    \ a \u30BD\u30FC\u30C8\u6E08\u306Elong\u578B\u914D\u5217\n\t * @return \u4E2D\u592E\
-    \u5024\n\t */\n\tprotected static final double median(final long[] a) {\n\t\t\
-    assert isSorted(a);\n\t\tfinal int m = a.length / 2;\n\t\treturn a.length % 2\
-    \ != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;\n\t}\n\t/**\n\t * @param a \u30BD\u30FC\
-    \u30C8\u6E08\u306Edouble\u578B\u914D\u5217\n\t * @return \u4E2D\u592E\u5024\n\t\
-    \ */\n\tprotected static final double median(final double[] a) {\n\t\tassert isSorted(a);\n\
-    \t\tfinal int m = a.length / 2;\n\t\treturn a.length % 2 != 0 ? a[m] : (a[m -\
-    \ 1] + a[m]) / 2;\n\t}\n\t/**\n\t * n\u306E\u7D04\u6570\u3092\u5217\u6319\n\t\
-    \ * @param n \u6574\u6570\n\t */\n\tprotected static final long[] div(final long\
-    \ n) {\n\t\tfinal ArrayList<Long> d = new ArrayList<>();\n\t\tfor(long i = 1;\
-    \ i * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i\
-    \ * i != n) {\n\t\t\t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ d.stream().mapToLong(i -> i).sorted().toArray();\n\t}\n\t/**\n\t * n\u3092\u7D20\
-    \u56E0\u6570\u5206\u89E3\n\t * e.g.) primeFactor(24) = [(2, 3), (3, 1)]\n\t *\
-    \ @param n \u6574\u6570\n\t */\n\tprotected static final IntPair[] primeFactor(long\
-    \ n) {\n\t\tfinal ArrayList<IntPair> pf = new ArrayList<>();\n\t\tfor(long i =\
-    \ 2; i * i <= n; ++i) {\n\t\t\tif(n % i != 0) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\
-    \t\tint cnt = 0;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /= i;\n\
-    \t\t\t}\n\t\t\tpf.add(IntPair.of(i, cnt));\n\t\t}\n\t\tif(n != 1) {\n\t\t\tpf.add(IntPair.of(n,\
-    \ 1));\n\t\t}\n\t\treturn pf.toArray(IntPair[]::new);\n\t}\n\t/**\n\t * @param\
+    \ (x, y) -> lcm(x, y)); }\n\t/**\n\t * a\u3068b\u306E\u6700\u5927\u516C\u7D04\u6570\
+    \u3092\u6C42\u3081\u308B\n\t * @param a\n\t * @param b\n\t * @return a\u3068b\u306E\
+    \u6700\u5927\u516C\u7D04\u6570\n\t */\n\tpublic static final long gcd(final long\
+    \ a, final long b){ return b > 0 ? gcd(b, a % b) : a; }\n\t/**\n\t * \u4E0E\u3048\
+    \u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5927\u516C\u7D04\u6570\u3092\
+    \u6C42\u3081\u308B\n\t * e.g.) gcd(12, 15, 24) = 3\n\t * @param a int\u578B\u30BF\
+    \u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\
+    \u6700\u5927\u516C\u7D04\u6570\n\t */\n\tpublic static final int gcd(final int...\
+    \ a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\t/**\n\
+    \t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5927\u516C\u7D04\
+    \u6570\u3092\u6C42\u3081\u308B\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\
+    \u308B\u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u516C\
+    \u7D04\u6570\n\t */\n\tpublic static final long gcd(final long... a){ return Arrays.stream(a).reduce(0,\
+    \ (x, y) -> gcd(x, y)); }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\
+    \u30EB\u306E\u6700\u5C0F\u5024\u3092\u6C42\u3081\u308B\n\t * @param a int\u578B\
+    \u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return\
+    \ a\u306E\u6700\u5C0F\u5024\n\t */\n\tpublic static final int min(final int...\
+    \ a){ return Arrays.stream(a).min().getAsInt(); }\n\t/**\n\t * \u4E0E\u3048\u3089\
+    \u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5C0F\u5024\u3092\u6C42\u3081\u308B\
+    \n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Flong\u578B\
+    \u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tpublic static final\
+    \ long min(final long... a){ return Arrays.stream(a).min().getAsLong(); }\n\t\
+    /**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5C0F\u5024\
+    \u3092\u6C42\u3081\u308B\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\
+    \u3044\u306Fdouble\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\
+    \t */\n\tpublic static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
+    \ }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5927\
+    \u5024\u3092\u6C42\u3081\u308B\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\
+    \u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\
+    \n\t */\n\tpublic static final int max(final int... a){ return Arrays.stream(a).max().getAsInt();\
+    \ }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5927\
+    \u5024\u3092\u6C42\u3081\u308B\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\
+    \u308B\u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\
+    \n\t */\n\tpublic static final long max(final long... a){ return Arrays.stream(a).max().getAsLong();\
+    \ }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5927\
+    \u5024\u3092\u6C42\u3081\u308B\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\
+    \u308B\u3044\u306Fdouble\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\
+    \n\t */\n\tpublic static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble();\
+    \ }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u7DCF\u548C\
+    \u3092\u6C42\u3081\u308B\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\
+    \u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\t\
+    public static final long sum(final int... a){ return Arrays.stream(a).asLongStream().sum();\
+    \ }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u7DCF\u548C\
+    \u3092\u6C42\u3081\u308B\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\
+    \u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\t\
+    public static final long sum(final long... a){ return Arrays.stream(a).sum();\
+    \ }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u7DCF\u548C\
+    \u3092\u6C42\u3081\u308B\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\
+    \u3044\u306Fdouble\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\
+    \tpublic static final double sum(final double... a){ return Arrays.stream(a).sum();\
+    \ }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u7DCF\u7A4D\
+    \u3092\u6C42\u3081\u308B\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\
+    \u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u7A4D\n\t */\n\t\
+    protected static final long prod(final int... a){ return Arrays.stream(a).asLongStream().reduce(1,\
+    \ (x, y) -> x * y); }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\
+    \u306E\u7DCF\u7A4D\u3092\u6C42\u3081\u308B\n\t * @param a long\u578B\u30BF\u30D7\
+    \u30EB \u3042\u308B\u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\
+    \u7A4D\n\t */\n\tprotected static final long prod(final long... a){ return Arrays.stream(a).reduce(1,\
+    \ (x, y) -> x * y); }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\
+    \u306E\u7DCF\u7A4D\u3092\u6C42\u3081\u308B\n\t * @param a double\u578B\u30BF\u30D7\
+    \u30EB \u3042\u308B\u3044\u306Fdouble\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\
+    \u7A4D\n\t */\n\tprotected static final double prod(final double... a){ return\
+    \ Arrays.stream(a).reduce(1, (x, y) -> x * y); }\n\t/**\n\t * \u4E0E\u3048\u3089\
+    \u308C\u305F\u30BF\u30D7\u30EB\u306E\u5E73\u5747\u5024\u3092\u6C42\u3081\u308B\
+    \n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\
+    \u5217\n\t * @return a\u306E\u5E73\u5747\u5024\n\t */\n\tprotected static final\
+    \ double ave(final int... a){ return Arrays.stream(a).average().getAsDouble();\
+    \ }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u5E73\u5747\
+    \u5024\u3092\u6C42\u3081\u308B\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\
+    \u308B\u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u5E73\u5747\u5024\
+    \n\t */\n\tprotected static final double ave(final long... a){ return Arrays.stream(a).average().getAsDouble();\
+    \ }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u5E73\u5747\
+    \u5024\u3092\u6C42\u3081\u308B\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\
+    \u308B\u3044\u306Fdouble\u578B\u914D\u5217\n\t * @return a\u306E\u5E73\u5747\u5024\
+    \n\t */\n\tprotected static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble();\
+    \ }\n\t/**\n\t * \u30BD\u30FC\u30C8\u6E08\u914D\u5217\u306E\u4E2D\u592E\u5024\u3092\
+    \u6C42\u3081\u308B\n\t * @param a \u30BD\u30FC\u30C8\u6E08\u306Eint\u578B\u914D\
+    \u5217\n\t * @return \u4E2D\u592E\u5024\n\t */\n\tprotected static final double\
+    \ median(final int[] a) {\n\t\tassert isSorted(a);\n\t\tfinal int m = a.length\
+    \ / 2;\n\t\treturn a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;\n\t}\n\t\
+    /**\n\t * \u30BD\u30FC\u30C8\u6E08\u914D\u5217\u306E\u4E2D\u592E\u5024\u3092\u6C42\
+    \u3081\u308B\n\t * @param a \u30BD\u30FC\u30C8\u6E08\u306Elong\u578B\u914D\u5217\
+    \n\t * @return \u4E2D\u592E\u5024\n\t */\n\tprotected static final double median(final\
+    \ long[] a) {\n\t\tassert isSorted(a);\n\t\tfinal int m = a.length / 2;\n\t\t\
+    return a.length % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2.0;\n\t}\n\t/**\n\t * \u30BD\
+    \u30FC\u30C8\u6E08\u914D\u5217\u306E\u4E2D\u592E\u5024\u3092\u6C42\u3081\u308B\
+    \n\t * @param a \u30BD\u30FC\u30C8\u6E08\u306Edouble\u578B\u914D\u5217\n\t * @return\
+    \ \u4E2D\u592E\u5024\n\t */\n\tprotected static final double median(final double[]\
+    \ a) {\n\t\tassert isSorted(a);\n\t\tfinal int m = a.length / 2;\n\t\treturn a.length\
+    \ % 2 != 0 ? a[m] : (a[m - 1] + a[m]) / 2;\n\t}\n\t/**\n\t * n\u306E\u7D04\u6570\
+    \u3092\u5217\u6319\n\t * @param n \u6574\u6570\n\t * @return n\u306E\u7D04\u6570\
+    \u306E\u914D\u5217\n\t */\n\tprotected static final long[] div(final long n) {\n\
+    \t\tfinal ArrayList<Long> d = new ArrayList<>();\n\t\tfor(long i = 1; i * i <=\
+    \ n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\td.add(i);\n\t\t\t\tif(i * i != n)\
+    \ {\n\t\t\t\t\td.add(n / i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn d.stream().mapToLong(i\
+    \ -> i).sorted().toArray();\n\t}\n\t/**\n\t * n\u3092\u7D20\u56E0\u6570\u5206\u89E3\
+    \n\t * e.g.) primeFactor(24) = [(2, 3), (3, 1)]\n\t * @param n \u6574\u6570\n\t\
+    \ * @return n\u306E\u7D20\u56E0\u6570\u5206\u89E3\u7D50\u679C\n\t */\n\tprotected\
+    \ static final IntPair[] primeFactor(long n) {\n\t\tfinal ArrayList<IntPair> pf\
+    \ = new ArrayList<>();\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i\
+    \ != 0) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tint cnt = 0;\n\t\t\twhile(n % i ==\
+    \ 0) {\n\t\t\t\tcnt++;\n\t\t\t\tn /= i;\n\t\t\t}\n\t\t\tpf.add(IntPair.of(i, cnt));\n\
+    \t\t}\n\t\tif(n != 1) {\n\t\t\tpf.add(IntPair.of(n, 1));\n\t\t}\n\t\treturn pf.toArray(IntPair[]::new);\n\
+    \t}\n\t/**\n\t * \u30AA\u30A4\u30E9\u30FC\u306E\u03A6\u95A2\u6570\n\t * @param\
     \ n \u6574\u6570\n\t * @return 1\u304B\u3089n\u307E\u3067\u306E\u6574\u6570\u306E\
     \u3046\u3061n\u3068\u4E92\u3044\u306B\u7D20\u306A\u3082\u306E\u306E\u500B\u6570\
     \n\t */\n\tprotected static final long eulerPhi(long n) {\n\t\tlong res = n;\n\
     \t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\tres -=\
     \ res / i;\n\t\t\t\twhile(n % i == 0) {\n\t\t\t\t\tn /= i;\n\t\t\t\t}\n\t\t\t\
     }\n\t\t}\n\t\tif(n > 1) {\n\t\t\tres -= res / n;\n\t\t}\n\t\treturn res;\n\t}\n\
-    \t/**\n\t * @param n\n\t * @return 1\u304B\u3089n\u307E\u3067\u306E\u7DCF\u548C\
-    \n\t */\n\tprotected static final long sigma(final long n){ return n * (n + 1)\
-    \ / 2; }\n\t/**\n\t * @param a\n\t * @param b\n\t * @return a\u304B\u3089b\u307E\
-    \u3067\u306E\u7DCF\u548C\n\t * @implNote b\u306Fa\u4EE5\u4E0A\n\t */\n\tprotected\
-    \ static final long sigma(final long a, final long b) {\n\t\tassert a <= b;\n\t\
-    \treturn sigma(b) - sigma(a - 1);\n\t}\n\t/**\n\t * @param n \u6574\u6570\n\t\
-    \ * @return n\u306E\u968E\u4E57\n\t */\n\tprotected static final long fact(int\
-    \ n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\t\t}\n\t\t\
-    return res;\n\t}\n\t/**\n\t * @param n\n\t * @param mod\n\t * @return n\u306E\u968E\
+    \t/**\n\t * 1\u304B\u3089n\u307E\u3067\u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B\
+    \n\t * @param n\n\t * @return 1\u304B\u3089n\u307E\u3067\u306E\u7DCF\u548C\n\t\
+    \ */\n\tprotected static final long sigma(final long n){ return n * (n + 1) /\
+    \ 2; }\n\t/**\n\t * a\u304B\u3089b\u307E\u3067\u306E\u7DCF\u548C\u3092\u6C42\u3081\
+    \u308B\n\t * @param a\n\t * @param b\n\t * @return a\u304B\u3089b\u307E\u3067\u306E\
+    \u7DCF\u548C\n\t * @implNote b\u306Fa\u4EE5\u4E0A\n\t */\n\tprotected static final\
+    \ long sigma(final long a, final long b) {\n\t\tassert a <= b;\n\t\treturn sigma(b)\
+    \ - sigma(a - 1);\n\t}\n\t/**\n\t * n!\u3092\u6C42\u3081\u308B\n\t * @param n\
+    \ \u6574\u6570\n\t * @return n\u306E\u968E\u4E57\n\t */\n\tprotected static final\
+    \ long fact(int n) {\n\t\tlong res = 1;\n\t\twhile(n > 0) {\n\t\t\tres *= n--;\n\
+    \t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * mod\u3092\u6CD5\u3068\u3057\u305Fn!\u3092\
+    \u6C42\u3081\u308B\n\t * @param n\n\t * @param mod\n\t * @return n\u306E\u968E\
     \u4E57\u306Emod\u3092\u6CD5\u3068\u3059\u308B\u5270\u4F59\n\t */\n\tprotected\
     \ static final long fact(int n, final long mod) {\n\t\tlong res = 1;\n\t\twhile(n\
     \ > 0) {\n\t\t\tres *= n--;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\t\
-    /**\n\t * @param n\n\t * @param r\n\t * @return \u9806\u5217(nPr)\n\t */\n\tprotected\
-    \ static final long perm(final int n, final int r) {\n\t\tint m = n;\n\t\tlong\
-    \ res = 1;\n\t\twhile(m > n - r) {\n\t\t\tres *= m--;\n\t\t}\n\t\treturn res;\n\
-    \t}\n\t/**\n\t * @param n\n\t * @param r\n\t * @param mod\n\t * @return \u9806\
-    \u5217\u306Emod\u3092\u6CD5\u3068\u3059\u308B\u5270\u4F59\n\t */\n\tprotected\
-    \ static final long perm(final int n, final int r, final long mod) {\n\t\tint\
-    \ m = n;\n\t\tlong res = 1;\n\t\twhile(m > n - r) {\n\t\t\tres *= m--;\n\t\t\t\
-    res %= mod; \n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @param n\n\t * @param r\n\
-    \t * @return \u4E8C\u9805\u4FC2\u6570(nCr)\n\t */\n\tprotected static final long\
-    \ binom(final int n, final int r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\
-    \t\t}\n\t\tint tmp = n;\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= min(n - r,\
-    \ r); ++i) {\n\t\t\tres *= tmp--;\n\t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t\
-    }\n\t/**\n\t * @param n\n\t * @param r\n\t * @param mod\n\t * @return \u4E8C\u9805\
-    \u4FC2\u6570\u306Emod\u3092\u6CD5\u3068\u3059\u308B\u5270\u4F59\n\t */\n\tprotected\
-    \ static final long binom(final int n, final int r, final long mod) {\n\t\tif(r\
-    \ < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp = n;\n\t\tlong res = 1;\n\
-    \t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\tres *= tmp--;\n\t\t\tres\
-    \ %= mod;\n\t\t\tres /= i;\n\t\t\tres %= mod;\n\t\t}\n\t\treturn res;\n\t}\n\t\
-    /**\n\t * n\u304C\u6574\u6570\u304B\u3069\u3046\u304B\u5224\u5B9A\n\t * @param\
-    \ n\n\t */\n\tprotected static final boolean isInt(final double n){ return n ==\
-    \ (long) Math.floor(n); }\n\t/**\n\t * n\u304C\u5E73\u65B9\u6570\u304B\u3069\u3046\
-    \u304B\u5224\u5B9A\n\t * @param n\n\t */\n\tprotected static final boolean isSqr(final\
+    /**\n\t * nPr\u3092\u6C42\u3081\u308B\n\t * @param n\n\t * @param r\n\t * @return\
+    \ \u9806\u5217(nPr)\n\t */\n\tprotected static final long perm(final int n, final\
+    \ int r) {\n\t\tint m = n;\n\t\tlong res = 1;\n\t\twhile(m > n - r) {\n\t\t\t\
+    res *= m--;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * mod\u3092\u6CD5\u3068\u3057\
+    \u305FnPr\u3092\u6C42\u3081\u308B\n\t * @param n\n\t * @param r\n\t * @param mod\n\
+    \t * @return \u9806\u5217\u306Emod\u3092\u6CD5\u3068\u3059\u308B\u5270\u4F59\n\
+    \t */\n\tprotected static final long perm(final int n, final int r, final long\
+    \ mod) {\n\t\tint m = n;\n\t\tlong res = 1;\n\t\twhile(m > n - r) {\n\t\t\tres\
+    \ *= m--;\n\t\t\tres %= mod; \n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * nCr\u3092\
+    \u6C42\u3081\u308B\n\t * @param n\n\t * @param r\n\t * @return \u4E8C\u9805\u4FC2\
+    \u6570(nCr)\n\t */\n\tprotected static final long binom(final int n, final int\
+    \ r) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\tint tmp = n;\n\t\
+    \tlong res = 1;\n\t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\t\t\tres *= tmp--;\n\
+    \t\t\tres /= i;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * mod\u3092\u6CD5\u3068\
+    \u3059\u308BnCr\u3092\u6C42\u3081\u308B\n\t * @param n\n\t * @param r\n\t * @param\
+    \ mod\n\t * @return \u4E8C\u9805\u4FC2\u6570\u306Emod\u3092\u6CD5\u3068\u3059\u308B\
+    \u5270\u4F59\n\t */\n\tprotected static final long binom(final int n, final int\
+    \ r, final long mod) {\n\t\tif(r < 0 || n < r) {\n\t\t\treturn 0;\n\t\t}\n\t\t\
+    int tmp = n;\n\t\tlong res = 1;\n\t\tfor(int i = 1; i <= min(n - r, r); ++i) {\n\
+    \t\t\tres *= tmp--;\n\t\t\tres %= mod;\n\t\t\tres /= i;\n\t\t\tres %= mod;\n\t\
+    \t}\n\t\treturn res;\n\t}\n\t/**\n\t * n\u304C\u6574\u6570\u304B\u3069\u3046\u304B\
+    \u5224\u5B9A\n\t * @param n\n\t * @return n\u304C\u6574\u6570\u306A\u3089true,\
+    \ \u6574\u6570\u3067\u306A\u3044\u306A\u3089false\n\t */\n\tprotected static final\
+    \ boolean isInt(final double n){ return n == (long) Math.floor(n); }\n\t/**\n\t\
+    \ * n\u304C\u5E73\u65B9\u6570\u304B\u3069\u3046\u304B\u5224\u5B9A\n\t * @param\
+    \ n\n\t * @return n\u304C\u5E73\u65B9\u6570\u306A\u3089true, \u5E73\u65B9\u6570\
+    \u3067\u306A\u3044\u306A\u3089false\n\t */\n\tprotected static final boolean isSqr(final\
     \ long n){ return isInt(Math.sqrt(n)); }\n\t/**\n\t * n\u304C\u7D20\u6570\u304B\
-    \u3069\u3046\u304B\u5224\u5B9A\n\t * @param n\n\t */\n\tprotected static final\
-    \ boolean isPrime(final long n) {\n\t\tif(n == 1) {\n\t\t\treturn false;\n\t\t\
-    }\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0) {\n\t\t\t\treturn\
-    \ false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\t/**\n\t * @param l\n\t * @param\
-    \ x\n\t * @param r\n\t * @return l <= x <= r\n\t */\n\tpublic static final boolean\
-    \ scope(final int l, final int x, final int r){ return l <= x && x <= r; }\n\t\
-    /**\n\t * @param l\n\t * @param x\n\t * @param r\n\t * @return l <= x <= r\n\t\
-    \ */\n\tpublic static final boolean scope(final long l, final long x, final long\
-    \ r){ return l <= x && x <= r; }\n\t/**\n\t * @param l\n\t * @param x\n\t * @param\
-    \ r\n\t * @return l <= x <= r\n\t */\n\tpublic static final boolean scope(final\
-    \ double l, final double x, final double r){ return l <= x && x <= r; }\n\t/**\n\
-    \t * @param l\n\t * @param x\n\t * @param r\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
-    >std::clamp</a>\n\t * @implNote AtCoder\u306EJava\u306E\u30A2\u30C3\u30D7\u30C7\
-    \u30FC\u30C8\u304C\u5165\u3063\u305F\u3089\u6D88\u3059\n\t */\n\tprotected static\
-    \ final int clamp(final int l, final int x, final int r){ return x < l ? l : x\
-    \ > r ? r : x; }\n\t/**\n\t * @param l\n\t * @param x\n\t * @param r\n\t * @see\
+    \u3069\u3046\u304B\u5224\u5B9A\n\t * @param n\n\t * @return n\u304C\u7D20\u6570\
+    \u306A\u3089true, 1\u304B\u5408\u6210\u6570\u306A\u3089false\n\t */\n\tprotected\
+    \ static final boolean isPrime(final long n) {\n\t\tif(n == 1) {\n\t\t\treturn\
+    \ false;\n\t\t}\n\t\tfor(long i = 2; i * i <= n; ++i) {\n\t\t\tif(n % i == 0)\
+    \ {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t}\n\t/**\n\t *\
+    \ x\u304C\u9589\u533A\u9593[l, r]\u306E\u4E2D\u306B\u53CE\u307E\u308B\u304B\u5224\
+    \u5B9A\u3059\u308B\n\t * @param l\n\t * @param x\n\t * @param r\n\t * @return\
+    \ l <= x <= r\n\t */\n\tpublic static final boolean scope(final int l, final int\
+    \ x, final int r){ return l <= x && x <= r; }\n\t/**\n\t * x\u304C\u9589\u533A\
+    \u9593[l, r]\u306E\u4E2D\u306B\u53CE\u307E\u308B\u304B\u5224\u5B9A\u3059\u308B\
+    \n\t * @param l\n\t * @param x\n\t * @param r\n\t * @return l <= x <= r\n\t */\n\
+    \tpublic static final boolean scope(final long l, final long x, final long r){\
+    \ return l <= x && x <= r; }\n\t/**\n\t * x\u304C\u9589\u533A\u9593[l, r]\u306E\
+    \u4E2D\u306B\u53CE\u307E\u308B\u304B\u5224\u5B9A\u3059\u308B\n\t * @param l\n\t\
+    \ * @param x\n\t * @param r\n\t * @return l <= x <= r\n\t */\n\tpublic static\
+    \ final boolean scope(final double l, final double x, final double r){ return\
+    \ l <= x && x <= r; }\n\t/**\n\t * C++\u306Estd::clamp\u306E\u3088\u3046\u306A\
+    \u30E1\u30BD\u30C3\u30C9\n\t * @param l\n\t * @param x\n\t * @param r\n\t * @see\
     \ <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\">std::clamp</a>\n\
     \t * @implNote AtCoder\u306EJava\u306E\u30A2\u30C3\u30D7\u30C7\u30FC\u30C8\u304C\
-    \u5165\u3063\u305F\u3089\u6D88\u3059\n\t */\n\tprotected static final long clamp(final\
-    \ long l, final long x, final long r){ return x < l ? l : x > r ? r : x; }\n\t\
-    /**\n\t * @param l\n\t * @param x\n\t * @param r\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
+    \u5165\u3063\u305F\u3089\u6D88\u3059\n\t */\n\tprotected static final int clamp(final\
+    \ int l, final int x, final int r){ return x < l ? l : x > r ? r : x; }\n\t/**\n\
+    \t * C++\u306Estd::clamp\u306E\u3088\u3046\u306A\u30E1\u30BD\u30C3\u30C9\n\t *\
+    \ @param l\n\t * @param x\n\t * @param r\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
     >std::clamp</a>\n\t * @implNote AtCoder\u306EJava\u306E\u30A2\u30C3\u30D7\u30C7\
     \u30FC\u30C8\u304C\u5165\u3063\u305F\u3089\u6D88\u3059\n\t */\n\tprotected static\
-    \ final double clamp(final double l, final double x, final double r){ return x\
-    \ < l ? l : x > r ? r : x; }\n\t/**\n\t * bit\u5168\u63A2\u7D22\u306A\u3069\u3067\
-    \u4F7F\u3046(i >> j\u304C\u5947\u6570\u304B\u3069\u3046\u304B)\n\t * @param i\
-    \ bit\n\t * @param j target\n\t */\n\tprotected static final boolean isBit(final\
-    \ long i, final long j){ return (i >> j & 1) == 1; }\n\t/**\n\t * @param a\n\t\
-    \ * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/next_permutation.html\"\
-    >std::next_permutation</a>\n\t */\n\tprotected static final boolean nextPerm(final\
-    \ int[] a) {\n\t\ttry {\n\t\t\tfinal int[] res = nextPermutation(a);\n\t\t\tSystem.arraycopy(res,\
-    \ 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final NullPointerException\
-    \ e) {\n\t\t\tArrays.sort(a);\n\t\t\treturn false;\n\t\t}\n\t}\n\t/**\n\t * @param\
-    \ a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/next_permutation.html\"\
+    \ final long clamp(final long l, final long x, final long r){ return x < l ? l\
+    \ : x > r ? r : x; }\n\t/**\n\t * C++\u306Estd::clamp\u306E\u3088\u3046\u306A\u30E1\
+    \u30BD\u30C3\u30C9\n\t * @param l\n\t * @param x\n\t * @param r\n\t * @see <a\
+    \ href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\">std::clamp</a>\n\
+    \t * @implNote AtCoder\u306EJava\u306E\u30A2\u30C3\u30D7\u30C7\u30FC\u30C8\u304C\
+    \u5165\u3063\u305F\u3089\u6D88\u3059\n\t */\n\tprotected static final double clamp(final\
+    \ double l, final double x, final double r){ return x < l ? l : x > r ? r : x;\
+    \ }\n\t/**\n\t * bit\u5168\u63A2\u7D22\u306A\u3069\u3067\u4F7F\u3046(i >> j\u304C\
+    \u5947\u6570\u304B\u3069\u3046\u304B)\n\t * @param i bit\n\t * @param j target\n\
+    \t */\n\tprotected static final boolean isBit(final long i, final long j){ return\
+    \ (i >> j & 1) == 1; }\n\t/**\n\t * C++\u306Estd::next_permutation\u306B\u76F8\
+    \u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t * @see <a href=\"\
+    https://cpprefjp.github.io/reference/algorithm/next_permutation.html\">std::next_permutation</a>\n\
+    \t */\n\tprotected static final boolean nextPerm(final int[] a) {\n\t\ttry {\n\
+    \t\t\tfinal int[] res = nextPermutation(a);\n\t\t\tSystem.arraycopy(res, 0, a,\
+    \ 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final NullPointerException e)\
+    \ {\n\t\t\tArrays.sort(a);\n\t\t\treturn false;\n\t\t}\n\t}\n\t/**\n\t * C++\u306E\
+    std::next_permutation\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t\
+    \ * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/next_permutation.html\"\
     >std::next_permutation</a>\n\t */\n\tprotected static final boolean nextPerm(final\
     \ long[] a) {\n\t\ttry {\n\t\t\tfinal long[] res = nextPermutation(a);\n\t\t\t\
     System.arraycopy(res, 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final\
     \ NullPointerException e) {\n\t\t\tArrays.sort(a);\n\t\t\treturn false;\n\t\t\
-    }\n\t}\n\t/**\n\t * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/next_permutation.html\"\
+    }\n\t}\n\t/**\n\t * C++\u306Estd::next_permutation\u306B\u76F8\u5F53\u3059\u308B\
+    \u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/next_permutation.html\"\
     >std::next_permutation</a>\n\t */\n\tprotected static final boolean nextPerm(final\
     \ double[] a) {\n\t\ttry {\n\t\t\tfinal double[] res = nextPermutation(a);\n\t\
     \t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final\
     \ NullPointerException e) {\n\t\t\tArrays.sort(a);\n\t\t\treturn false;\n\t\t\
-    }\n\t}\n\t/**\n\t * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/next_permutation.html\"\
+    }\n\t}\n\t/**\n\t * C++\u306Estd::next_permutation\u306B\u76F8\u5F53\u3059\u308B\
+    \u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/next_permutation.html\"\
     >std::next_permutation</a>\n\t */\n\tprotected static final boolean nextPerm(final\
     \ char[] a) {\n\t\ttry {\n\t\t\tfinal char[] res = nextPermutation(a);\n\t\t\t\
     System.arraycopy(res, 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final\
     \ NullPointerException e) {\n\t\t\tArrays.sort(a);\n\t\t\treturn false;\n\t\t\
-    }\n\t}\n\t/**\n\t * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/prev_permutation.html\"\
+    }\n\t}\n\t/**\n\t * C++\u306Estd::prev_permutation\u306B\u76F8\u5F53\u3059\u308B\
+    \u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/prev_permutation.html\"\
     >std::prev_permutation</a>\n\t */\n\tprotected static final boolean prevPerm(final\
     \ int[] a) {\n\t\ttry {\n\t\t\tfinal int[] res = prevPermutation(a);\n\t\t\tSystem.arraycopy(res,\
     \ 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final NullPointerException\
     \ e) {\n\t\t\tfinal int[] res = reverse(sorted(a));\n\t\t\tSystem.arraycopy(res,\
-    \ 0, a, 0, a.length);\n\t\t\treturn false;\n\t\t}\n\t}\n\t/**\n\t * @param a\n\
-    \t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/prev_permutation.html\"\
+    \ 0, a, 0, a.length);\n\t\t\treturn false;\n\t\t}\n\t}\n\t/**\n\t * C++\u306E\
+    std::prev_permutation\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t\
+    \ * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/prev_permutation.html\"\
     >std::prev_permutation</a>\n\t */\n\tprotected static final boolean prevPerm(final\
     \ long[] a) {\n\t\ttry {\n\t\t\tfinal long[] res = prevPermutation(a);\n\t\t\t\
     System.arraycopy(res, 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final\
     \ NullPointerException e) {\n\t\t\tfinal long[] res = reverse(sorted(a));\n\t\t\
     \tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\treturn false;\n\t\t}\n\t}\n\
-    \t/**\n\t * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/prev_permutation.html\"\
+    \t/**\n\t * C++\u306Estd::prev_permutation\u306B\u76F8\u5F53\u3059\u308B\u30E1\
+    \u30BD\u30C3\u30C9\n\t * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/prev_permutation.html\"\
     >std::prev_permutation</a>\n\t */\n\tprotected static final boolean prevPerm(final\
     \ double[] a) {\n\t\ttry {\n\t\t\tfinal double[] res = prevPermutation(a);\n\t\
     \t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final\
     \ NullPointerException e) {\n\t\t\tfinal double[] res = reverse(sorted(a));\n\t\
     \t\tSystem.arraycopy(res, 0, a, 0, a.length);\n\t\t\treturn false;\n\t\t}\n\t\
-    }\n\t/**\n\t * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/prev_permutation.html\"\
+    }\n\t/**\n\t * C++\u306Estd::prev_permutation\u306B\u76F8\u5F53\u3059\u308B\u30E1\
+    \u30BD\u30C3\u30C9\n\t * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/prev_permutation.html\"\
     >std::prev_permutation</a>\n\t */\n\tprotected static final boolean prevPerm(final\
     \ char[] a) {\n\t\ttry {\n\t\t\tfinal char[] res = prevPermutation(a);\n\t\t\t\
     System.arraycopy(res, 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final\
@@ -899,23 +957,24 @@ data:
     \ c) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t * \u914D\
     \u5217a\u306E\u4E2D\u306Bx\u304C\u3042\u308C\u3070\u4F55\u756A\u76EE\u306B\u3042\
     \u308B\u304B\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\
-    \n\t * @param a\n\t * @param x\n\t */\n\tprotected static final int find(final\
-    \ Object[] a, final Object x) {\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\
-    \tif(a[i].equals(x)) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t\
-    }\n\t/**\n\t * \u914D\u5217a\u306E\u4E2D\u306Bx\u304C\u3042\u308C\u3070\u5F8C\u308D\
-    \u304B\u3089\u4F55\u756A\u76EE\u306B\u3042\u308B\u304B\n\t * \u5B58\u5728\u3057\
-    \u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\n\t * @param a\n\t * @param x\n\
-    \t */\n\tprotected static final int findRev(final int[] a, final int x) {\n\t\t\
-    for(int i = a.length; --i >= 0;) {\n\t\t\tif(a[i] == x) {\n\t\t\t\treturn i;\n\
-    \t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t * \u914D\u5217a\u306E\u4E2D\u306B\
-    x\u304C\u3042\u308C\u3070\u5F8C\u308D\u304B\u3089\u4F55\u756A\u76EE\u306B\u3042\
-    \u308B\u304B\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\
-    \n\t * @param a\n\t * @param x\n\t */\n\tprotected static final int findRev(final\
-    \ long[] a, final long x) {\n\t\tfor(int i = a.length; --i >= 0;) {\n\t\t\tif(a[i]\
-    \ == x) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t *\
-    \ \u914D\u5217a\u306E\u4E2D\u306Bx\u304C\u3042\u308C\u3070\u5F8C\u308D\u304B\u3089\
-    \u4F55\u756A\u76EE\u306B\u3042\u308B\u304B\n\t * \u5B58\u5728\u3057\u306A\u3044\
-    \u5834\u5408, -1\u3092\u8FD4\u3059\n\t * @param a\n\t * @param x\n\t */\n\tprotected\
+    \n\t * @param a\n\t * @param x\n\t * @see <a href=\"https://cpprefjp.github.io/reference/string/basic_string/find.html\"\
+    >std::basic_string::find</a>\n\t */\n\tprotected static final int find(final Object[]\
+    \ a, final Object x) {\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tif(a[i].equals(x))\
+    \ {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t * \u914D\
+    \u5217a\u306E\u4E2D\u306Bx\u304C\u3042\u308C\u3070\u5F8C\u308D\u304B\u3089\u4F55\
+    \u756A\u76EE\u306B\u3042\u308B\u304B\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\
+    \u5408, -1\u3092\u8FD4\u3059\n\t * @param a\n\t * @param x\n\t */\n\tprotected\
+    \ static final int findRev(final int[] a, final int x) {\n\t\tfor(int i = a.length;\
+    \ --i >= 0;) {\n\t\t\tif(a[i] == x) {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\t\
+    return -1;\n\t}\n\t/**\n\t * \u914D\u5217a\u306E\u4E2D\u306Bx\u304C\u3042\u308C\
+    \u3070\u5F8C\u308D\u304B\u3089\u4F55\u756A\u76EE\u306B\u3042\u308B\u304B\n\t *\
+    \ \u5B58\u5728\u3057\u306A\u3044\u5834\u5408, -1\u3092\u8FD4\u3059\n\t * @param\
+    \ a\n\t * @param x\n\t */\n\tprotected static final int findRev(final long[] a,\
+    \ final long x) {\n\t\tfor(int i = a.length; --i >= 0;) {\n\t\t\tif(a[i] == x)\
+    \ {\n\t\t\t\treturn i;\n\t\t\t}\n\t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t * \u914D\
+    \u5217a\u306E\u4E2D\u306Bx\u304C\u3042\u308C\u3070\u5F8C\u308D\u304B\u3089\u4F55\
+    \u756A\u76EE\u306B\u3042\u308B\u304B\n\t * \u5B58\u5728\u3057\u306A\u3044\u5834\
+    \u5408, -1\u3092\u8FD4\u3059\n\t * @param a\n\t * @param x\n\t */\n\tprotected\
     \ static final int findRev(final double[] a, final double x) {\n\t\tfor(int i\
     \ = a.length; --i >= 0;) {\n\t\t\tif(a[i] == x) {\n\t\t\t\treturn i;\n\t\t\t}\n\
     \t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t * \u914D\u5217s\u306E\u4E2D\u306Bc\u304C\
@@ -932,41 +991,55 @@ data:
     \t}\n\t\t}\n\t\treturn -1;\n\t}\n\t/**\n\t * C++\u306Estd::binarySearch\u306B\u76F8\
     \u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t * @param x\n\t *\
     \ @see <a href=\"https://cpprefjp.github.io/reference/algorithm/binary_search.html\"\
-    >std::binary_search</a>\n\t */\n\tpublic static final boolean binarySearch(final\
-    \ int[] a, final int x){ return Arrays.binarySearch(a, x) >= 0; }\n\t/**\n\t *\
-    \ @param a\n\t * @param x\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/binary_search.html\"\
-    >std::binary_search</a>\n\t */\n\tpublic static final boolean binarySearch(final\
-    \ long[] a, final long x){ return Arrays.binarySearch(a, x) >= 0; }\n\t/**\n\t\
-    \ * @param <T>\n\t * @param a\n\t * @param x\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/binary_search.html\"\
-    >std::binary_search</a>@return\n\t */\n\tpublic static final <T extends Comparable<?\
-    \ super T>> boolean binarySearch(final T[] a, final T x){ return Arrays.binarySearch(a,\
-    \ x) >= 0; }\n\t/**\n\t * @param <T>\n\t * @param a\n\t * @param x\n\t * @see\
-    \ <a href=\"https://cpprefjp.github.io/reference/algorithm/binary_search.html\"\
-    >std::binary_search</a>\n\t */\n\tpublic static final <T extends Comparable<?\
-    \ super T>> boolean binarySearch(final List<T> a, final T x){ return Collections.binarySearch(a,\
-    \ x, null) >= 0; }\n\t/**\n\t * C++\u306Estd::lower_bound\u306B\u76F8\u5F53\u3059\
-    \u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t * @param x\n\t * @return \u305D\
-    \u306E\u5024\u4EE5\u4E0A\u306E\u8981\u7D20\u304C\u521D\u3081\u3066\u73FE\u308C\
-    \u308B\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9(\u30A4\u30C6\u30EC\u30FC\u30BF\u3067\
-    \u306F\u306A\u3044)\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/lower_bound.html\"\
+    >std::binary_search</a>\n\t * @return \u30BD\u30FC\u30C8\u6E08\u914D\u5217\u306E\
+    \u4E2D\u306B\u8981\u7D20\u304C\u542B\u307E\u308C\u3066\u3044\u308C\u3070true\n\
+    \t */\n\tpublic static final boolean binarySearch(final int[] a, final int x){\
+    \ return Arrays.binarySearch(a, x) >= 0; }\n\t/**\n\t * C++\u306Estd::binarySearch\u306B\
+    \u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t * @param x\n\
+    \t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/binary_search.html\"\
+    >std::binary_search</a>\n\t * @return \u30BD\u30FC\u30C8\u6E08\u914D\u5217\u306E\
+    \u4E2D\u306B\u8981\u7D20\u304C\u542B\u307E\u308C\u3066\u3044\u308C\u3070true\n\
+    \t */\n\tpublic static final boolean binarySearch(final long[] a, final long x){\
+    \ return Arrays.binarySearch(a, x) >= 0; }\n\t/**\n\t * C++\u306Estd::binarySearch\u306B\
+    \u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param <T>\n\t * @param\
+    \ a\n\t * @param x\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/binary_search.html\"\
+    >std::binary_search</a>@return\n\t * @return \u30BD\u30FC\u30C8\u6E08\u914D\u5217\
+    \u306E\u4E2D\u306B\u8981\u7D20\u304C\u542B\u307E\u308C\u3066\u3044\u308C\u3070\
+    true\n\t */\n\tpublic static final <T extends Comparable<? super T>> boolean binarySearch(final\
+    \ T[] a, final T x){ return Arrays.binarySearch(a, x) >= 0; }\n\t/**\n\t * C++\u306E\
+    std::binarySearch\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t *\
+    \ \u9045\u3044\n\t * @param <T>\n\t * @param a\n\t * @param x\n\t * @see <a href=\"\
+    https://cpprefjp.github.io/reference/algorithm/binary_search.html\">std::binary_search</a>\n\
+    \t * @return \u30BD\u30FC\u30C8\u6E08\u30EA\u30B9\u30C8\u306E\u4E2D\u306B\u8981\
+    \u7D20\u304C\u542B\u307E\u308C\u3066\u3044\u308C\u3070true\n\t */\n\tpublic static\
+    \ final <T extends Comparable<? super T>> boolean binarySearch(final List<T> a,\
+    \ final T x){ return Collections.binarySearch(a, x, null) >= 0; }\n\t/**\n\t *\
+    \ C++\u306Estd::lower_bound\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\
+    \n\t * @param a\n\t * @param x\n\t * @return \u305D\u306E\u5024\u4EE5\u4E0A\u306E\
+    \u8981\u7D20\u304C\u521D\u3081\u3066\u73FE\u308C\u308B\u30A4\u30F3\u30C7\u30C3\
+    \u30AF\u30B9(\u30A4\u30C6\u30EC\u30FC\u30BF\u3067\u306F\u306A\u3044)\n\t * @see\
+    \ <a href=\"https://cpprefjp.github.io/reference/algorithm/lower_bound.html\"\
     >std::lower_bound</a>\n\t */\n\tpublic static final int lowerBound(final int[]\
     \ a, final int x){ return bins(a.length, -1, (IntPredicate) y -> a[y] >= x); }\n\
-    \t/**\n\t * @param a\n\t * @param x\n\t * @return \u305D\u306E\u5024\u4EE5\u4E0A\
-    \u306E\u8981\u7D20\u304C\u521D\u3081\u3066\u73FE\u308C\u308B\u30A4\u30F3\u30C7\
-    \u30C3\u30AF\u30B9(\u30A4\u30C6\u30EC\u30FC\u30BF\u3067\u306F\u306A\u3044)\n\t\
-    \ * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/lower_bound.html\"\
+    \t/**\n\t * C++\u306Estd::lower_bound\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\
+    \u30C3\u30C9\n\t * @param a\n\t * @param x\n\t * @return \u305D\u306E\u5024\u4EE5\
+    \u4E0A\u306E\u8981\u7D20\u304C\u521D\u3081\u3066\u73FE\u308C\u308B\u30A4\u30F3\
+    \u30C7\u30C3\u30AF\u30B9(\u30A4\u30C6\u30EC\u30FC\u30BF\u3067\u306F\u306A\u3044\
+    )\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/lower_bound.html\"\
     >std::lower_bound</a>\n\t */\n\tpublic static final int lowerBound(final long[]\
     \ a, final long x){ return bins(a.length, -1, (IntPredicate) y -> a[y] >= x);\
-    \ }\n\t/**\n\t * @param <T>\n\t * @param a\n\t * @param x\n\t * @return \u305D\
-    \u306E\u5024\u4EE5\u4E0A\u306E\u8981\u7D20\u304C\u521D\u3081\u3066\u73FE\u308C\
-    \u308B\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9(\u30A4\u30C6\u30EC\u30FC\u30BF\u3067\
-    \u306F\u306A\u3044)\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/lower_bound.html\"\
+    \ }\n\t/**\n\t * C++\u306Estd::lower_bound\u306B\u76F8\u5F53\u3059\u308B\u30E1\
+    \u30BD\u30C3\u30C9\n\t * @param <T>\n\t * @param a\n\t * @param x\n\t * @return\
+    \ \u305D\u306E\u5024\u4EE5\u4E0A\u306E\u8981\u7D20\u304C\u521D\u3081\u3066\u73FE\
+    \u308C\u308B\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9(\u30A4\u30C6\u30EC\u30FC\u30BF\
+    \u3067\u306F\u306A\u3044)\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/lower_bound.html\"\
     >std::lower_bound</a>\n\t */\n\tpublic static final <T extends Comparable<? super\
     \ T>> int lowerBound(final T[] a, final T x){ return lowerBound(Arrays.asList(a),\
-    \ x); }\n\t/**\n\t * @param <T>\n\t * @param a\n\t * @param x\n\t * @return \u305D\
-    \u306E\u5024\u4EE5\u4E0A\u306E\u8981\u7D20\u304C\u521D\u3081\u3066\u73FE\u308C\
-    \u308B\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9(\u30A4\u30C6\u30EC\u30FC\u30BF\u3067\
-    \u306F\u306A\u3044)\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/lower_bound.html\"\
+    \ x); }\n\t/**\n\t * C++\u306Estd::lower_bound\u306B\u76F8\u5F53\u3059\u308B\u30E1\
+    \u30BD\u30C3\u30C9\n\t * \u9045\u3044\n\t * @param <T>\n\t * @param a\n\t * @param\
+    \ x\n\t * @return \u305D\u306E\u5024\u4EE5\u4E0A\u306E\u8981\u7D20\u304C\u521D\
+    \u3081\u3066\u73FE\u308C\u308B\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9(\u30A4\u30C6\
+    \u30EC\u30FC\u30BF\u3067\u306F\u306A\u3044)\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/lower_bound.html\"\
     >std::lower_bound</a>\n\t */\n\tpublic static final <T extends Comparable<? super\
     \ T>> int lowerBound(final List<T> a, final T x){ return ~Collections.binarySearch(a,\
     \ x, (p, q) -> p.compareTo(q) >= 0 ? 1 : -1); }\n\t/**\n\t * C++\u306Estd::upper_bound\u306B\
@@ -976,82 +1049,109 @@ data:
     \u30C6\u30EC\u30FC\u30BF\u3067\u306F\u306A\u3044)\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/upper_bound.html\"\
     >std::upper_bound</a>\n\t */\n\tpublic static final int upperBound(final int[]\
     \ a, final int x){ return bins(a.length, -1, (IntPredicate) y -> a[y] > x); }\n\
-    \t/**\n\t * @param a\n\t * @param x\n\t * @return \u305D\u306E\u5024\u3088\u308A\
-    \u5927\u304D\u3044\u8981\u7D20\u304C\u521D\u3081\u3066\u73FE\u308C\u308B\u30A4\
-    \u30F3\u30C7\u30C3\u30AF\u30B9(\u30A4\u30C6\u30EC\u30FC\u30BF\u3067\u306F\u306A\
-    \u3044)\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/upper_bound.html\"\
+    \t/**\n\t * C++\u306Estd::upper_bound\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\
+    \u30C3\u30C9\n\t * @param a\n\t * @param x\n\t * @return \u305D\u306E\u5024\u3088\
+    \u308A\u5927\u304D\u3044\u8981\u7D20\u304C\u521D\u3081\u3066\u73FE\u308C\u308B\
+    \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9(\u30A4\u30C6\u30EC\u30FC\u30BF\u3067\u306F\
+    \u306A\u3044)\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/upper_bound.html\"\
     >std::upper_bound</a>\n\t */\n\tpublic static final int upperBound(final long[]\
     \ a, final long x){ return bins(a.length, -1, (IntPredicate) y -> a[y] > x); }\n\
-    \t/**\n\t * @param a\n\t * @param x\n\t * @return \u305D\u306E\u5024\u3088\u308A\
-    \u5927\u304D\u3044\u8981\u7D20\u304C\u521D\u3081\u3066\u73FE\u308C\u308B\u30A4\
-    \u30F3\u30C7\u30C3\u30AF\u30B9(\u30A4\u30C6\u30EC\u30FC\u30BF\u3067\u306F\u306A\
-    \u3044)\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/upper_bound.html\"\
-    >std::upper_bound</a>\n\t */\n\tpublic static final <T extends Comparable<? super\
-    \ T>> int upperBound(final T[] a, final T x){ return upperBound(Arrays.asList(a),\
-    \ x); }\n\t/**\n\t * @param a\n\t * @param x\n\t * @return \u305D\u306E\u5024\u3088\
+    \t/**\n\t * C++\u306Estd::upper_bound\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\
+    \u30C3\u30C9\n\t * @param a\n\t * @param x\n\t * @return \u305D\u306E\u5024\u3088\
     \u308A\u5927\u304D\u3044\u8981\u7D20\u304C\u521D\u3081\u3066\u73FE\u308C\u308B\
     \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9(\u30A4\u30C6\u30EC\u30FC\u30BF\u3067\u306F\
     \u306A\u3044)\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/upper_bound.html\"\
     >std::upper_bound</a>\n\t */\n\tpublic static final <T extends Comparable<? super\
+    \ T>> int upperBound(final T[] a, final T x){ return upperBound(Arrays.asList(a),\
+    \ x); }\n\t/**\n\t * C++\u306Estd::upper_bound\u306B\u76F8\u5F53\u3059\u308B\u30E1\
+    \u30BD\u30C3\u30C9\n\t * \u9045\u3044\n\t * @param a\n\t * @param x\n\t * @return\
+    \ \u305D\u306E\u5024\u3088\u308A\u5927\u304D\u3044\u8981\u7D20\u304C\u521D\u3081\
+    \u3066\u73FE\u308C\u308B\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9(\u30A4\u30C6\u30EC\
+    \u30FC\u30BF\u3067\u306F\u306A\u3044)\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/upper_bound.html\"\
+    >std::upper_bound</a>\n\t */\n\tpublic static final <T extends Comparable<? super\
     \ T>> int upperBound(final List<T> a, final T x){ return ~Collections.binarySearch(a,\
-    \ x, (p, q) -> p.compareTo(q) > 0 ? 1 : -1); }\n\t/**\n\t * @param s\n\t * @return\
+    \ x, (p, q) -> p.compareTo(q) > 0 ? 1 : -1); }\n\t/**\n\t * Python\u306Esorted\u306B\
+    \u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param s\n\t * @return\
     \ \u6607\u9806\u306B\u30BD\u30FC\u30C8\u3057\u305F\u6587\u5B57\u5217\n\t */\n\t\
     public static final String sorted(final String s){ return s.chars().sorted().mapToObj(Character::toString).collect(Collectors.joining());\
-    \ }\n\t/**\n\t * @param a\n\t * @return \u6607\u9806\u306B\u30BD\u30FC\u30C8\u3057\
+    \ }\n\t/**\n\t * Python\u306Esorted\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\
+    \u30C9\n\t * @param a\n\t * @return \u6607\u9806\u306B\u30BD\u30FC\u30C8\u3057\
     \u305Fint\u578B\u914D\u5217\n\t */\n\tpublic static final int[] sorted(final int[]\
-    \ a){ return Arrays.stream(a).sorted().toArray(); }\n\t/**\n\t * @param a\n\t\
+    \ a){ return Arrays.stream(a).sorted().toArray(); }\n\t/**\n\t * Python\u306E\
+    sorted\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t\
     \ * @return \u6607\u9806\u306B\u30BD\u30FC\u30C8\u3057\u305Flong\u578B\u914D\u5217\
     \n\t */\n\tpublic static final long[] sorted(final long[] a){ return Arrays.stream(a).sorted().toArray();\
-    \ }\n\t/**\n\t * @param a\n\t * @return \u6607\u9806\u306B\u30BD\u30FC\u30C8\u3057\
+    \ }\n\t/**\n\t * Python\u306Esorted\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\
+    \u30C9\n\t * @param a\n\t * @return \u6607\u9806\u306B\u30BD\u30FC\u30C8\u3057\
     \u305Fdouble\u578B\u914D\u5217\n\t */\n\tpublic static final double[] sorted(final\
-    \ double[] a){ return Arrays.stream(a).sorted().toArray(); }\n\t/**\n\t * @param\
-    \ a\n\t * @return \u6607\u9806\u306B\u30BD\u30FC\u30C8\u3057\u305Fchar\u578B\u914D\
-    \u5217\n\t */\n\tpublic static final char[] sorted(final char[] a){ return sorted(new\
-    \ String(a)).toCharArray(); }\n\t/**\n\t * @param <T> Comparable\u306A\u30AF\u30E9\
+    \ double[] a){ return Arrays.stream(a).sorted().toArray(); }\n\t/**\n\t * Python\u306E\
+    sorted\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t\
+    \ * @return \u6607\u9806\u306B\u30BD\u30FC\u30C8\u3057\u305Fchar\u578B\u914D\u5217\
+    \n\t */\n\tpublic static final char[] sorted(final char[] a){ return sorted(new\
+    \ String(a)).toCharArray(); }\n\t/**\n\t * Python\u306Esorted\u306B\u76F8\u5F53\
+    \u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param <T> Comparable\u306A\u30AF\u30E9\
     \u30B9\n\t * @param a\n\t * @return \u6607\u9806\u306B\u30BD\u30FC\u30C8\u3057\
     \u305F\u7DCF\u79F0\u578B\u914D\u5217\n\t */\n\tpublic static final <T extends\
     \ Comparable<? super T>> T[] sorted(final T[] a){ return Arrays.stream(a).sorted().toArray(n\
-    \ -> Arrays.copyOf(a, n)); }\n\t/**\n\t * @param s\n\t * @return \u6587\u5B57\u5217\
-    \u304C\u30BD\u30FC\u30C8\u3055\u308C\u3066\u3044\u308B\u304B\u3069\u3046\u304B\
-    \n\t */\n\tprotected static final boolean isSorted(final String s){ return s.equals(sorted(s));\
-    \ }\n\t/**\n\t * @param a\n\t * @return \u914D\u5217\u304C\u30BD\u30FC\u30C8\u3055\
-    \u308C\u3066\u3044\u308B\u304B\u3069\u3046\u304B\n\t */\n\tprotected static final\
-    \ boolean isSorted(final int[] a){ return Arrays.equals(a, sorted(a)); }\n\t/**\n\
-    \t * @param a\n\t * @return \u914D\u5217\u304C\u30BD\u30FC\u30C8\u3055\u308C\u3066\
-    \u3044\u308B\u304B\u3069\u3046\u304B\n\t */\n\tprotected static final boolean\
-    \ isSorted(final long[] a){ return Arrays.equals(a, sorted(a)); }\n\t/**\n\t *\
-    \ @param a\n\t * @return \u914D\u5217\u304C\u30BD\u30FC\u30C8\u3055\u308C\u3066\
-    \u3044\u308B\u304B\u3069\u3046\u304B\n\t */\n\tprotected static final boolean\
-    \ isSorted(final double[] a){ return Arrays.equals(a, sorted(a)); }\n\t/**\n\t\
-    \ * @param a\n\t * @return \u914D\u5217\u304C\u30BD\u30FC\u30C8\u3055\u308C\u3066\
-    \u3044\u308B\u304B\u3069\u3046\u304B\n\t */\n\tprotected static final boolean\
-    \ isSorted(final char[] a){ return Arrays.equals(a, sorted(a)); }\n\t/**\n\t *\
-    \ @param <T> {@link Comparable}\u306A\u30AF\u30E9\u30B9\n\t * @param a\n\t * @return\
+    \ -> Arrays.copyOf(a, n)); }\n\t/**\n\t * C++\u306Estd::is_sorted\u306B\u76F8\u5F53\
+    \u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param s\n\t * @return \u6587\u5B57\
+    \u5217\u304C\u30BD\u30FC\u30C8\u3055\u308C\u3066\u3044\u308B\u304B\u3069\u3046\
+    \u304B\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/is_sorted.html\"\
+    >std::is_sorted</a>\n\t */\n\tprotected static final boolean isSorted(final String\
+    \ s){ return s.equals(sorted(s)); }\n\t/**\n\t * C++\u306Estd::is_sorted\u306B\
+    \u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t * @return\
     \ \u914D\u5217\u304C\u30BD\u30FC\u30C8\u3055\u308C\u3066\u3044\u308B\u304B\u3069\
-    \u3046\u304B\n\t */\n\tprotected static final <T extends Comparable<? super T>>\
-    \ boolean isSorted(final T[] a){ return Arrays.equals(a, sorted(a)); }\n\t/**\n\
-    \t * @param s\n\t * @return \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305F\u6587\
-    \u5B57\u5217\n\t */\n\tprotected static final String reverse(final String s){\
-    \ return new StringBuilder(s).reverse().toString(); }\n\t/**\n\t * @param a\n\t\
-    \ * @return \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305Fint\u578B\u914D\u5217\
-    \n\t */\n\tprotected static final int[] reverse(final int[] a) {\n\t\tfinal int\
-    \ n = a.length;\n\t\tfinal int[] b = new int[n];\n\t\tfor(int i = 0; i <= n /\
-    \ 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\
-    \treturn b;\n\t}\n\t/**\n\t * @param a\n\t * @return \u9006\u9806\u306B\u4E26\u3073\
-    \u66FF\u3048\u305Flong\u578B\u914D\u5217\n\t */\n\tprotected static final long[]\
-    \ reverse(final long[] a) {\n\t\tfinal int n = a.length;\n\t\tfinal long[] b =\
-    \ new long[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 -\
-    \ i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\t/**\n\t * @param\
-    \ a\n\t * @return \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305Fdouble\u578B\
-    \u914D\u5217\n\t */\n\tprotected static final double[] reverse(final double[]\
-    \ a) {\n\t\tfinal int n = a.length;\n\t\tfinal double[] b = new double[n];\n\t\
-    \tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1\
-    \ - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\t/**\n\t * @param a\n\t * @return\
-    \ \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305Fchar\u578B\u914D\u5217\n\t */\n\
-    \tprotected static final char[] reverse(final char[] a) {\n\t\tfinal int n = a.length;\n\
+    \u3046\u304B\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/is_sorted.html\"\
+    >std::is_sorted</a>\n\t */\n\tprotected static final boolean isSorted(final int[]\
+    \ a){ return Arrays.equals(a, sorted(a)); }\n\t/**\n\t * C++\u306Estd::is_sorted\u306B\
+    \u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t * @return\
+    \ \u914D\u5217\u304C\u30BD\u30FC\u30C8\u3055\u308C\u3066\u3044\u308B\u304B\u3069\
+    \u3046\u304B\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/is_sorted.html\"\
+    >std::is_sorted</a>\n\t */\n\tprotected static final boolean isSorted(final long[]\
+    \ a){ return Arrays.equals(a, sorted(a)); }\n\t/**\n\t * C++\u306Estd::is_sorted\u306B\
+    \u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t * @return\
+    \ \u914D\u5217\u304C\u30BD\u30FC\u30C8\u3055\u308C\u3066\u3044\u308B\u304B\u3069\
+    \u3046\u304B\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/is_sorted.html\"\
+    >std::is_sorted</a>\n\t */\n\tprotected static final boolean isSorted(final double[]\
+    \ a){ return Arrays.equals(a, sorted(a)); }\n\t/**\n\t * C++\u306Estd::is_sorted\u306B\
+    \u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t * @return\
+    \ \u914D\u5217\u304C\u30BD\u30FC\u30C8\u3055\u308C\u3066\u3044\u308B\u304B\u3069\
+    \u3046\u304B\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/is_sorted.html\"\
+    >std::is_sorted</a>\n\t */\n\tprotected static final boolean isSorted(final char[]\
+    \ a){ return Arrays.equals(a, sorted(a)); }\n\t/**\n\t * C++\u306Estd::is_sorted\u306B\
+    \u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param <T> {@link Comparable}\u306A\
+    \u30AF\u30E9\u30B9\n\t * @param a\n\t * @return \u914D\u5217\u304C\u30BD\u30FC\
+    \u30C8\u3055\u308C\u3066\u3044\u308B\u304B\u3069\u3046\u304B\n\t * @see <a href=\"\
+    https://cpprefjp.github.io/reference/algorithm/is_sorted.html\">std::is_sorted</a>\n\
+    \t */\n\tprotected static final <T extends Comparable<? super T>> boolean isSorted(final\
+    \ T[] a){ return Arrays.equals(a, sorted(a)); }\n\t/**\n\t * \u6587\u5B57\u5217\
+    \u3092\u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u308B\n\t * @param s\n\t * @return\
+    \ \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305F\u6587\u5B57\u5217\n\t */\n\t\
+    protected static final String reverse(final String s){ return new StringBuilder(s).reverse().toString();\
+    \ }\n\t/**\n\t * \u914D\u5217\u3092\u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u308B\
+    \n\t * @param a\n\t * @return \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305F\
+    int\u578B\u914D\u5217\n\t */\n\tprotected static final int[] reverse(final int[]\
+    \ a) {\n\t\tfinal int n = a.length;\n\t\tfinal int[] b = new int[n];\n\t\tfor(int\
+    \ i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] =\
+    \ a[i];\n\t\t}\n\t\treturn b;\n\t}\n\t/**\n\t * \u914D\u5217\u3092\u9006\u9806\
+    \u306B\u4E26\u3073\u66FF\u3048\u308B\n\t * @param a\n\t * @return \u9006\u9806\
+    \u306B\u4E26\u3073\u66FF\u3048\u305Flong\u578B\u914D\u5217\n\t */\n\tprotected\
+    \ static final long[] reverse(final long[] a) {\n\t\tfinal int n = a.length;\n\
+    \t\tfinal long[] b = new long[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\
+    \tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\
+    \t/**\n\t * \u914D\u5217\u3092\u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u308B\
+    \n\t * @param a\n\t * @return \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305F\
+    double\u578B\u914D\u5217\n\t */\n\tprotected static final double[] reverse(final\
+    \ double[] a) {\n\t\tfinal int n = a.length;\n\t\tfinal double[] b = new double[n];\n\
+    \t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n - 1 - i];\n\t\t\tb[n -\
+    \ 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\t/**\n\t * \u914D\u5217\u3092\u9006\
+    \u9806\u306B\u4E26\u3073\u66FF\u3048\u308B\n\t * @param a\n\t * @return \u9006\
+    \u9806\u306B\u4E26\u3073\u66FF\u3048\u305Fchar\u578B\u914D\u5217\n\t */\n\tprotected\
+    \ static final char[] reverse(final char[] a) {\n\t\tfinal int n = a.length;\n\
     \t\tfinal char[] b = new char[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\
     \tb[i] = a[n - 1 - i];\n\t\t\tb[n - 1 - i] = a[i];\n\t\t}\n\t\treturn b;\n\t}\n\
-    \t/**\n\t * @param a\n\t * @return \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305F\
+    \t/**\n\t * \u914D\u5217\u3092\u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u308B\
+    \n\t * @param a\n\t * @return \u9006\u9806\u306B\u4E26\u3073\u66FF\u3048\u305F\
     Object\u30AF\u30E9\u30B9\u306E\u914D\u5217\n\t */\n\tprotected static final Object[]\
     \ reverse(final Object[] a) {\n\t\tfinal int n = a.length;\n\t\tfinal Object[]\
     \ b = new Object[n];\n\t\tfor(int i = 0; i <= n / 2; ++i) {\n\t\t\tb[i] = a[n\
@@ -1064,16 +1164,18 @@ data:
     >std::rotate</a>\n\t */\n\tpublic static final int[] rotate(final int[] a, final\
     \ int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\tfinal int[]\
     \ res = new int[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a,\
-    \ 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @param\
-    \ id \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\u3042\u308B\u5024\u306F\u5F8C\
+    \ 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t/**\n\t * C++\u306Estd::rotate\u306B\
+    \u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t * @param id\
+    \ \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\u3042\u308B\u5024\u306F\u5F8C\
     \u308D\u306B\u79FB\u52D5\u3057\u3001\u8CA0\u306E\u6570\u306E\u6642\u3001\u5F8C\
     \u308D\u306B\u3042\u308B\u5024\u306F\u524D\u306B\u79FB\u52D5\u3059\u308B\n\t *\
     \ @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
     >std::rotate</a>\n\t */\n\tpublic static final long[] rotate(final long[] a, final\
     \ int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\tfinal long[]\
     \ res = new long[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a,\
-    \ 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @param\
-    \ id \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\u3042\u308B\u5024\u306F\u5F8C\
+    \ 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t/**\n\t * C++\u306Estd::rotate\u306B\
+    \u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t * @param id\
+    \ \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\u3042\u308B\u5024\u306F\u5F8C\
     \u308D\u306B\u79FB\u52D5\u3057\u3001\u8CA0\u306E\u6570\u306E\u6642\u3001\u5F8C\
     \u308D\u306B\u3042\u308B\u5024\u306F\u524D\u306B\u79FB\u52D5\u3059\u308B\n\t *\
     \ @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
@@ -1081,15 +1183,17 @@ data:
     \ a, final int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\t\
     final double[] res = new double[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\
     \t\tSystem.arraycopy(a, 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t/**\n\t *\
-    \ @param a\n\t * @param id \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\u3042\
-    \u308B\u5024\u306F\u5F8C\u308D\u306B\u79FB\u52D5\u3057\u3001\u8CA0\u306E\u6570\
-    \u306E\u6642\u3001\u5F8C\u308D\u306B\u3042\u308B\u5024\u306F\u524D\u306B\u79FB\
-    \u52D5\u3059\u308B\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
+    \ C++\u306Estd::rotate\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\
+    \t * @param a\n\t * @param id \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\
+    \u3042\u308B\u5024\u306F\u5F8C\u308D\u306B\u79FB\u52D5\u3057\u3001\u8CA0\u306E\
+    \u6570\u306E\u6642\u3001\u5F8C\u308D\u306B\u3042\u308B\u5024\u306F\u524D\u306B\
+    \u79FB\u52D5\u3059\u308B\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
     >std::rotate</a>\n\t */\n\tpublic static final char[] rotate(final char[] a, final\
     \ int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\tfinal char[]\
     \ res = new char[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\t\tSystem.arraycopy(a,\
-    \ 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t/**\n\t * @param a\n\t * @param\
-    \ id \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\u3042\u308B\u5024\u306F\u5F8C\
+    \ 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t/**\n\t * C++\u306Estd::rotate\u306B\
+    \u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t * @param id\
+    \ \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\u3042\u308B\u5024\u306F\u5F8C\
     \u308D\u306B\u79FB\u52D5\u3057\u3001\u8CA0\u306E\u6570\u306E\u6642\u3001\u5F8C\
     \u308D\u306B\u3042\u308B\u5024\u306F\u524D\u306B\u79FB\u52D5\u3059\u308B\n\t *\
     \ @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
@@ -1097,7 +1201,8 @@ data:
     \ a, final int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\t\
     final boolean[] res = new boolean[n];\n\t\tSystem.arraycopy(a, k, res, 0, n -\
     \ k);\n\t\tSystem.arraycopy(a, 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t/**\n\
-    \t * @param a\n\t * @param id \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\
+    \t * C++\u306Estd::rotate\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\
+    \n\t * @param a\n\t * @param id \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\
     \u3042\u308B\u5024\u306F\u5F8C\u308D\u306B\u79FB\u52D5\u3057\u3001\u8CA0\u306E\
     \u6570\u306E\u6642\u3001\u5F8C\u308D\u306B\u3042\u308B\u5024\u306F\u524D\u306B\
     \u79FB\u52D5\u3059\u308B\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
@@ -1105,51 +1210,60 @@ data:
     \ a, final int id) {\n\t\tfinal int n = a.length, k = (int) mod(id, n);\n\t\t\
     final Object[] res = new Object[n];\n\t\tSystem.arraycopy(a, k, res, 0, n - k);\n\
     \t\tSystem.arraycopy(a, 0, res, n - k, k);\n\t\treturn res;\n\t}\n\t/**\n\t *\
-    \ @param s\n\t * @param id \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\u3042\
-    \u308B\u5024\u306F\u5F8C\u308D\u306B\u79FB\u52D5\u3057\u3001\u8CA0\u306E\u6570\
-    \u306E\u6642\u3001\u5F8C\u308D\u306B\u3042\u308B\u5024\u306F\u524D\u306B\u79FB\
-    \u52D5\u3059\u308B\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
+    \ C++\u306Estd::rotate\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\
+    \t * @param s\n\t * @param id \u6B63\u306E\u6570\u306E\u6642\u3001\u524D\u306B\
+    \u3042\u308B\u5024\u306F\u5F8C\u308D\u306B\u79FB\u52D5\u3057\u3001\u8CA0\u306E\
+    \u6570\u306E\u6642\u3001\u5F8C\u308D\u306B\u3042\u308B\u5024\u306F\u524D\u306B\
+    \u79FB\u52D5\u3059\u308B\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/rotate.html\"\
     >std::rotate</a>\n\t */\n\tpublic static final String rotate(final String s, final\
     \ int id) {\n\t\tfinal List<Character> t = s.chars().mapToObj(i -> (char) i).collect(Collectors.toList());\n\
     \t\tCollections.rotate(t, -id);\n\t\treturn t.stream().map(String::valueOf).collect(Collectors.joining());\n\
-    \t}\n\t/**\n\t * @param a\n\t * @return \u4E8C\u6B21\u5143\u914D\u5217\u3092\u53F3\
+    \t}\n\t/**\n\t * \u4E8C\u6B21\u5143\u914D\u5217\u3092\u53F3\u56DE\u8EE2\u3055\u305B\
+    \u308B\n\t * @param a\n\t * @return \u4E8C\u6B21\u5143\u914D\u5217\u3092\u53F3\
     \u56DE\u8EE2\u3055\u305B\u305F\u3082\u306E\n\t */\n\tprotected static final int[][]\
     \ rotateR(final int[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\t\
     \tfinal int[][] b = new int[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\
     \t\t\tArrays.setAll(b[i], j -> a[j][i]);\n\t\t});\n\t\tIntStream.range(0, w).forEach(i\
-    \ -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\t/**\n\t * @param a\n\t * @return\
+    \ -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\t/**\n\t * \u4E8C\u6B21\u5143\
+    \u914D\u5217\u3092\u53F3\u56DE\u8EE2\u3055\u305B\u308B\n\t * @param a\n\t * @return\
     \ \u4E8C\u6B21\u5143\u914D\u5217\u3092\u53F3\u56DE\u8EE2\u3055\u305B\u305F\u3082\
     \u306E\n\t */\n\tprotected static final long[][] rotateR(final long[][] a) {\n\
     \t\tfinal int h = a.length, w = a[0].length;\n\t\tfinal long[][] b = new long[w][h];\n\
     \t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tArrays.setAll(b[i], j -> a[j][i]);\n\
     \t\t});\n\t\tIntStream.range(0, w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn\
-    \ b;\n\t}\n\t/**\n\t * @param a\n\t * @return \u4E8C\u6B21\u5143\u914D\u5217\u3092\
+    \ b;\n\t}\n\t/**\n\t * \u4E8C\u6B21\u5143\u914D\u5217\u3092\u53F3\u56DE\u8EE2\u3055\
+    \u305B\u308B\n\t * @param a\n\t * @return \u4E8C\u6B21\u5143\u914D\u5217\u3092\
     \u53F3\u56DE\u8EE2\u3055\u305B\u305F\u3082\u306E\n\t */\n\tprotected static final\
     \ double[][] rotateR(final double[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\
     \t\tfinal double[][] b = new double[w][h];\n\t\tIntStream.range(0, h).forEach(i\
     \ -> {\n\t\t\tArrays.setAll(b[i], j -> a[j][i]);\n\t\t});\n\t\tIntStream.range(0,\
-    \ w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\t/**\n\t * @param\
+    \ w).forEach(i -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\t/**\n\t * \u4E8C\
+    \u6B21\u5143\u914D\u5217\u3092\u53F3\u56DE\u8EE2\u3055\u305B\u308B\n\t * @param\
     \ a\n\t * @return \u4E8C\u6B21\u5143\u914D\u5217\u3092\u53F3\u56DE\u8EE2\u3055\
     \u305B\u305F\u3082\u306E\n\t */\n\tprotected static final char[][] rotateR(final\
     \ char[][] a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\t\tfinal char[][]\
     \ b = new char[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tIntStream.range(0,\
     \ w).forEach(j -> b[j][i] = a[i][j]);\n\t\t});\n\t\tIntStream.range(0, w).forEach(i\
-    \ -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\t/**\n\t * @param a\n\t * @return\
+    \ -> b[i] = reverse(b[i]));\n\t\treturn b;\n\t}\n\t/**\n\t * \u4E8C\u6B21\u5143\
+    \u914D\u5217\u3092\u5DE6\u56DE\u8EE2\u3055\u305B\u308B\n\t * @param a\n\t * @return\
     \ \u4E8C\u6B21\u5143\u914D\u5217\u3092\u5DE6\u56DE\u8EE2\u3055\u305B\u305F\u3082\
     \u306E\n\t */\n\tprotected static final int[][] rotateL(final int[][] a) {\n\t\
     \tfinal int h = a.length, w = a[0].length;\n\t\tfinal int[][] b = new int[w][h];\n\
     \t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tArrays.setAll(b[i], j -> a[j][w\
-    \ - i - 1]);\n\t\t});\n\t\treturn b;\n\t}\n\t/**\n\t * @param a\n\t * @return\
+    \ - i - 1]);\n\t\t});\n\t\treturn b;\n\t}\n\t/**\n\t * \u4E8C\u6B21\u5143\u914D\
+    \u5217\u3092\u5DE6\u56DE\u8EE2\u3055\u305B\u308B\n\t * @param a\n\t * @return\
     \ \u4E8C\u6B21\u5143\u914D\u5217\u3092\u5DE6\u56DE\u8EE2\u3055\u305B\u305F\u3082\
     \u306E\n\t */\n\tprotected static final long[][] rotateL(final long[][] a) {\n\
     \t\tfinal int h = a.length, w = a[0].length;\n\t\tfinal long[][] b = new long[w][h];\n\
     \t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tArrays.setAll(b[i], j -> a[j][w\
-    \ - i - 1]);\n\t\t});\n\t\treturn b;\n\t}\n\t/**\n\t * @param a\n\t * @return\
+    \ - i - 1]);\n\t\t});\n\t\treturn b;\n\t}\n\t/**\n\t * \u4E8C\u6B21\u5143\u914D\
+    \u5217\u3092\u5DE6\u56DE\u8EE2\u3055\u305B\u308B\n\t * @param a\n\t * @return\
     \ \u4E8C\u6B21\u5143\u914D\u5217\u3092\u5DE6\u56DE\u8EE2\u3055\u305B\u305F\u3082\
     \u306E\n\t */\n\tprotected static final double[][] rotateL(final double[][] a)\
     \ {\n\t\tfinal int h = a.length, w = a[0].length;\n\t\tfinal double[][] b = new\
     \ double[w][h];\n\t\tIntStream.range(0, h).forEach(i -> {\n\t\t\tArrays.setAll(b[i],\
-    \ j -> a[j][w - i - 1]);\n\t\t});\n\t\treturn b;\n\t}\n\t/**\n\t * @param a\n\t\
+    \ j -> a[j][w - i - 1]);\n\t\t});\n\t\treturn b;\n\t}\n\t/**\n\t * \u4E8C\u6B21\
+    \u5143\u914D\u5217\u3092\u5DE6\u56DE\u8EE2\u3055\u305B\u308B\n\t * @param a\n\t\
     \ * @return \u4E8C\u6B21\u5143\u914D\u5217\u3092\u5DE6\u56DE\u8EE2\u3055\u305B\
     \u305F\u3082\u306E\n\t */\n\tprotected static final char[][] rotateL(final char[][]\
     \ a) {\n\t\tfinal int h = a.length, w = a[0].length;\n\t\tfinal char[][] b = new\
@@ -1215,80 +1329,107 @@ data:
     >std::vector::swap</a>\n\t */\n\tpublic static final void swap(final Object[]\
     \ a, final Object[] b) {\n\t\tassert a.length == b.length;\n\t\tfinal int n =\
     \ a.length;\n\t\tfinal Object[] c = a.clone();\n\t\tSystem.arraycopy(b, 0, a,\
-    \ 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t}\n\t/**\n\t * @param <F>\n\t\
-    \ * @param <S>\n\t * @param p\n\t * @return Pair\u914D\u5217\u306E\u5404Pair\u306B\
-    \u5BFE\u3057\u3066{@link Pair#swap}\u3092\u3057\u305F\u914D\u5217\n\t */\n\tpublic\
-    \ static final <F extends Comparable<? super F>, S extends Comparable<? super\
-    \ S>> Pair<S, F>[] swap(final Pair<F, S>[] p) {\n\t\t@SuppressWarnings(\"unchecked\"\
-    )\n\t\tfinal Pair<S, F>[] q = new Pair[p.length];\n\t\tArrays.setAll(q, i -> p[i].swap());\n\
-    \t\treturn q;\n\t}\n\t/**\n\t * @param p\n\t * @return IntPair\u914D\u5217\u306E\
-    \u5404IntPair\u306B\u5BFE\u3057\u3066{@link IntPair#swap}\u3092\u3057\u305F\u914D\
-    \u5217\n\t */\n\tpublic static final IntPair[] swap(final IntPair[] p) {\n\t\t\
-    final IntPair[] q = new IntPair[p.length];\n\t\tArrays.setAll(q, i -> p[i].swap());\n\
-    \t\treturn q;\n\t}\n\t/**\n\t * @param p\n\t * @return FloatPair\u914D\u5217\u306E\
-    \u5404FloatPair\u306B\u5BFE\u3057\u3066{@link FloatPair#swap}\u3092\u3057\u305F\
-    \u914D\u5217\n\t */\n\tpublic static final FloatPair[] swap(final FloatPair[]\
-    \ p) {\n\t\tfinal FloatPair[] q = new FloatPair[p.length];\n\t\tArrays.setAll(q,\
-    \ i -> p[i].swap());\n\t\treturn q;\n\t}\n\t/**\n\t * @param <F>\n\t * @param\
-    \ <S>\n\t * @param p\n\t * @return Pair\u30AF\u30E9\u30B9\u306E\u914D\u5217\u306B\
+    \ 0, n);\n\t\tSystem.arraycopy(c, 0, b, 0, n);\n\t}\n\t/**\n\t * Pair\u306E\u914D\
+    \u5217\u306B\u5BFE\u3057\u3066\u5404\u8981\u7D20\u3092swap\u3055\u305B\u308B\n\
+    \t * @param <F>\n\t * @param <S>\n\t * @param p\n\t * @return Pair\u914D\u5217\
+    \u306E\u5404Pair\u306B\u5BFE\u3057\u3066{@link Pair#swap}\u3092\u3057\u305F\u914D\
+    \u5217\n\t */\n\tpublic static final <F extends Comparable<? super F>, S extends\
+    \ Comparable<? super S>> Pair<S, F>[] swap(final Pair<F, S>[] p) {\n\t\t@SuppressWarnings(\"\
+    unchecked\")\n\t\tfinal Pair<S, F>[] q = new Pair[p.length];\n\t\tArrays.setAll(q,\
+    \ i -> p[i].swap());\n\t\treturn q;\n\t}\n\t/**\n\t * IntPair\u306E\u914D\u5217\
+    \u306B\u5BFE\u3057\u3066\u5404\u8981\u7D20\u3092swap\u3055\u305B\u308B\n\t * @param\
+    \ p\n\t * @return IntPair\u914D\u5217\u306E\u5404IntPair\u306B\u5BFE\u3057\u3066\
+    {@link IntPair#swap}\u3092\u3057\u305F\u914D\u5217\n\t */\n\tpublic static final\
+    \ IntPair[] swap(final IntPair[] p) {\n\t\tfinal IntPair[] q = new IntPair[p.length];\n\
+    \t\tArrays.setAll(q, i -> p[i].swap());\n\t\treturn q;\n\t}\n\t/**\n\t * FloatPair\u306E\
+    \u914D\u5217\u306B\u5BFE\u3057\u3066\u5404\u8981\u7D20\u3092swap\u3055\u305B\u308B\
+    \n\t * @param p\n\t * @return FloatPair\u914D\u5217\u306E\u5404FloatPair\u306B\
+    \u5BFE\u3057\u3066{@link FloatPair#swap}\u3092\u3057\u305F\u914D\u5217\n\t */\n\
+    \tpublic static final FloatPair[] swap(final FloatPair[] p) {\n\t\tfinal FloatPair[]\
+    \ q = new FloatPair[p.length];\n\t\tArrays.setAll(q, i -> p[i].swap());\n\t\t\
+    return q;\n\t}\n\t/**\n\t * Pair\u306E\u914D\u5217\u306B\u5BFE\u3057\u3066\u5404\
+    \u8981\u7D20\u306Efirst\u306E\u307F\u306E\u914D\u5217\u3092\u8FD4\u3059\n\t *\
+    \ @param <F>\n\t * @param <S>\n\t * @param p\n\t * @return Pair\u30AF\u30E9\u30B9\
+    \u306E\u914D\u5217\u306B\u5BFE\u3057\u3066first\u306E\u307F\u306E\u8981\u7D20\u3092\
+    \u53D6\u308A\u51FA\u3057\u305F\u914D\u5217\n\t */\n\t@SuppressWarnings(\"unchecked\"\
+    )\n\tprotected static final <F extends Comparable<? super F>, S extends Comparable<?\
+    \ super S>> F[] first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i\
+    \ -> i.first).toArray(); }\n\t/**\n\t * IntPair\u306E\u914D\u5217\u306B\u5BFE\u3057\
+    \u3066\u5404\u8981\u7D20\u306Efirst\u306E\u307F\u306E\u914D\u5217\u3092\u8FD4\u3059\
+    \n\t * @param p\n\t * @return IntPair\u30AF\u30E9\u30B9\u306E\u914D\u5217\u306B\
     \u5BFE\u3057\u3066first\u306E\u307F\u306E\u8981\u7D20\u3092\u53D6\u308A\u51FA\u3057\
-    \u305F\u914D\u5217\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tprotected static\
-    \ final <F extends Comparable<? super F>, S extends Comparable<? super S>> F[]\
-    \ first(final Pair<F, S>[] p){ return (F[]) Arrays.stream(p).map(i -> i.first).toArray();\
-    \ }\n\t/**\n\t * @param p\n\t * @return IntPair\u30AF\u30E9\u30B9\u306E\u914D\u5217\
-    \u306B\u5BFE\u3057\u3066first\u306E\u307F\u306E\u8981\u7D20\u3092\u53D6\u308A\u51FA\
-    \u3057\u305F\u914D\u5217\n\t */\n\tprotected static final long[] first(final IntPair[]\
+    \u305F\u914D\u5217\n\t */\n\tprotected static final long[] first(final IntPair[]\
     \ p){ return Arrays.stream(p).mapToLong(i -> i.first).toArray(); }\n\t/**\n\t\
-    \ * @param p\n\t * @return FloatPair\u30AF\u30E9\u30B9\u306E\u914D\u5217\u306B\
-    \u5BFE\u3057\u3066first\u306E\u307F\u306E\u8981\u7D20\u3092\u53D6\u308A\u51FA\u3057\
-    \u305F\u914D\u5217\n\t */\n\tprotected static final double[] first(final FloatPair[]\
-    \ p){ return Arrays.stream(p).mapToDouble(i -> i.first).toArray(); }\n\t/**\n\t\
-    \ * @param <F>\n\t * @param <S>\n\t * @param p\n\t * @return Pair\u30AF\u30E9\u30B9\
-    \u306E\u914D\u5217\u306B\u5BFE\u3057\u3066second\u306E\u307F\u306E\u8981\u7D20\
-    \u3092\u53D6\u308A\u51FA\u3057\u305F\u914D\u5217\n\t */\n\t@SuppressWarnings(\"\
+    \ * FloatPair\u306E\u914D\u5217\u306B\u5BFE\u3057\u3066\u5404\u8981\u7D20\u306E\
+    first\u306E\u307F\u306E\u914D\u5217\u3092\u8FD4\u3059\n\t * @param p\n\t * @return\
+    \ FloatPair\u30AF\u30E9\u30B9\u306E\u914D\u5217\u306B\u5BFE\u3057\u3066first\u306E\
+    \u307F\u306E\u8981\u7D20\u3092\u53D6\u308A\u51FA\u3057\u305F\u914D\u5217\n\t */\n\
+    \tprotected static final double[] first(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i\
+    \ -> i.first).toArray(); }\n\t/**\n\t * Pair\u306E\u914D\u5217\u306B\u5BFE\u3057\
+    \u3066\u5404\u8981\u7D20\u306Esecond\u306E\u307F\u306E\u914D\u5217\u3092\u8FD4\
+    \u3059\n\t * @param <F>\n\t * @param <S>\n\t * @param p\n\t * @return Pair\u30AF\
+    \u30E9\u30B9\u306E\u914D\u5217\u306B\u5BFE\u3057\u3066second\u306E\u307F\u306E\
+    \u8981\u7D20\u3092\u53D6\u308A\u51FA\u3057\u305F\u914D\u5217\n\t */\n\t@SuppressWarnings(\"\
     unchecked\")\n\tprotected static final <F extends Comparable<? super F>, S extends\
     \ Comparable<? super S>> S[] second(final Pair<F, S>[] p){ return (S[]) Arrays.stream(p).map(i\
-    \ -> i.second).toArray(); }\n\t/**\n\t * @param p\n\t * @return IntPair\u30AF\u30E9\
-    \u30B9\u306E\u914D\u5217\u306B\u5BFE\u3057\u3066second\u306E\u307F\u306E\u8981\
-    \u7D20\u3092\u53D6\u308A\u51FA\u3057\u305F\u914D\u5217\n\t */\n\tprotected static\
-    \ final long[] second(final IntPair[] p){ return Arrays.stream(p).mapToLong(i\
-    \ -> i.second).toArray(); }\n\t/**\n\t * @param p\n\t * @return FloatPair\u30AF\
-    \u30E9\u30B9\u306E\u914D\u5217\u306B\u5BFE\u3057\u3066second\u306E\u307F\u306E\
-    \u8981\u7D20\u3092\u53D6\u308A\u51FA\u3057\u305F\u914D\u5217\n\t */\n\tprotected\
-    \ static final double[] second(final FloatPair[] p){ return Arrays.stream(p).mapToDouble(i\
-    \ -> i.second).toArray(); }\n\t/**\n\t * C++\u306Estd::iota\u306B\u76F8\u5F53\u3059\
-    \u308B\u30E1\u30BD\u30C3\u30C9\n\t * IntStream\u3067\u6B62\u3081\u3066\u3042\u308B\
-    \u305F\u3081\u3001\u914D\u5217\u5316\u3059\u308B\u306B\u306FtoArray()\u3059\u308B\
-    \u5FC5\u8981\u304C\u3042\u308B\n\t * @param n\n\t * @return [0, 1, 2, ..., n -\
-    \ 1]\u306EIntStream\n\t * @see <a href=\"https://cpprefjp.github.io/reference/numeric/iota.html\"\
+    \ -> i.second).toArray(); }\n\t/**\n\t * IntPair\u306E\u914D\u5217\u306B\u5BFE\
+    \u3057\u3066\u5404\u8981\u7D20\u306Esecond\u306E\u307F\u306E\u914D\u5217\u3092\
+    \u8FD4\u3059\n\t * @param p\n\t * @return IntPair\u30AF\u30E9\u30B9\u306E\u914D\
+    \u5217\u306B\u5BFE\u3057\u3066second\u306E\u307F\u306E\u8981\u7D20\u3092\u53D6\
+    \u308A\u51FA\u3057\u305F\u914D\u5217\n\t */\n\tprotected static final long[] second(final\
+    \ IntPair[] p){ return Arrays.stream(p).mapToLong(i -> i.second).toArray(); }\n\
+    \t/**\n\t * FloatPair\u306E\u914D\u5217\u306B\u5BFE\u3057\u3066\u5404\u8981\u7D20\
+    \u306Esecond\u306E\u307F\u306E\u914D\u5217\u3092\u8FD4\u3059\n\t * @param p\n\t\
+    \ * @return FloatPair\u30AF\u30E9\u30B9\u306E\u914D\u5217\u306B\u5BFE\u3057\u3066\
+    second\u306E\u307F\u306E\u8981\u7D20\u3092\u53D6\u308A\u51FA\u3057\u305F\u914D\
+    \u5217\n\t */\n\tprotected static final double[] second(final FloatPair[] p){\
+    \ return Arrays.stream(p).mapToDouble(i -> i.second).toArray(); }\n\t/**\n\t *\
+    \ C++\u306Estd::iota\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t\
+    \ * IntStream\u3092\u8FD4\u3059\u305F\u3081\u3001\u914D\u5217\u5316\u3059\u308B\
+    \u306B\u306FtoArray()\u3059\u308B\u5FC5\u8981\u304C\u3042\u308B\n\t * @param n\n\
+    \t * @return [0, 1, 2, ..., n - 1]\u306EIntStream\n\t * @see <a href=\"https://cpprefjp.github.io/reference/numeric/iota.html\"\
     >std::iota</a>\n\t * @see <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L449\"\
     >Lady_sANDy::iot</a>\n\t */\n\tpublic static final IntStream iota(final int n){\
-    \ return IntStream.range(0, n); }\n\t/**\n\t * @param n\n\t * @param init\n\t\
-    \ * @return [init, init + 1, init + 2, ..., init + n - 1]\n\t * @see <a href=\"\
-    https://cpprefjp.github.io/reference/numeric/iota.html\">std::iota</a>\n\t * @see\
-    \ <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L449\"\
+    \ return IntStream.range(0, n); }\n\t/**\n\t * C++\u306Estd::iota\u306B\u76F8\u5F53\
+    \u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * IntStream\u3092\u8FD4\u3059\u305F\u3081\
+    \u3001\u914D\u5217\u5316\u3059\u308B\u306B\u306FtoArray()\u3059\u308B\u5FC5\u8981\
+    \u304C\u3042\u308B\n\t * @param n\n\t * @param init\n\t * @return [init, init\
+    \ + 1, init + 2, ..., init + n - 1]\n\t * @see <a href=\"https://cpprefjp.github.io/reference/numeric/iota.html\"\
+    >std::iota</a>\n\t * @see <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L449\"\
     >Lady_sANDy::iot</a>\n\t */\n\tpublic static final IntStream iota(final int n,\
     \ final int init){ return IntStream.range(0 + init, n + init); }\n\t/**\n\t *\
-    \ @param a\n\t * @return int[] -> Integer[]\n\t */\n\tprotected static final Integer[]\
-    \ boxed(final int[] a){ return Arrays.stream(a).boxed().toArray(Integer[]::new);\
-    \ }\n\t/**\n\t * @param a\n\t * @return long[] -> Long[]\n\t */\n\tprotected static\
-    \ final Long[] boxed(final long[] a){ return Arrays.stream(a).boxed().toArray(Long[]::new);\
-    \ }\n\t/**\n\t * @param a\n\t * @return double[] -> Double[]\n\t */\n\tprotected\
-    \ static final Double[] boxed(final double[] a){ return Arrays.stream(a).boxed().toArray(Double[]::new);\
-    \ }\n\t/**\n\t * \u3081\u3050\u308B\u5F0F\u4E8C\u5206\u63A2\u7D22\n\t * @param\
-    \ ok\n\t * @param ng\n\t * @param fn\n\t * @see #lowerBound\n\t * @see #upperBound\n\
-    \t */\n\tprotected static final int bins(int ok, int ng, final IntPredicate fn)\
-    \ {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\
-    \t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\telse {\n\t\t\t\tng\
-    \ = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\t/**\n\t * \u3081\u3050\u308B\u5F0F\
-    \u4E8C\u5206\u63A2\u7D22\n\t * @param ok\n\t * @param ng\n\t * @param fn\n\t *\
-    \ @see <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L696\"\
+    \ int\u578B\u914D\u5217\u3092\u30DC\u30AF\u30B7\u30F3\u30B0\u3057\u3066Integer\u30AF\
+    \u30E9\u30B9\u306E\u914D\u5217\u306B\u5909\u63DB\u3059\u308B\n\t * @param a\n\t\
+    \ * @return int[] -> Integer[]\n\t */\n\tprotected static final Integer[] boxed(final\
+    \ int[] a){ return Arrays.stream(a).boxed().toArray(Integer[]::new); }\n\t/**\n\
+    \t * long\u578B\u914D\u5217\u3092\u30DC\u30AF\u30B7\u30F3\u30B0\u3057\u3066Long\u30AF\
+    \u30E9\u30B9\u306E\u914D\u5217\u306B\u5909\u63DB\u3059\u308B\n\t * @param a\n\t\
+    \ * @return long[] -> Long[]\n\t */\n\tprotected static final Long[] boxed(final\
+    \ long[] a){ return Arrays.stream(a).boxed().toArray(Long[]::new); }\n\t/**\n\t\
+    \ * double\u578B\u914D\u5217\u3092\u30DC\u30AF\u30B7\u30F3\u30B0\u3057\u3066Double\u30AF\
+    \u30E9\u30B9\u306E\u914D\u5217\u306B\u5909\u63DB\u3059\u308B\n\t * @param a\n\t\
+    \ * @return double[] -> Double[]\n\t */\n\tprotected static final Double[] boxed(final\
+    \ double[] a){ return Arrays.stream(a).boxed().toArray(Double[]::new); }\n\t/**\n\
+    \t * \u3081\u3050\u308B\u5F0F\u4E8C\u5206\u63A2\u7D22\n\t * @param ok \u7B54\u3048\
+    \u306B\u306A\u308B\u53EF\u80FD\u6027\u304C\u3042\u308B\u81E8\u754C\u5024\n\t *\
+    \ @param ng \u7B54\u3048\u306B\u306A\u308B\u53EF\u80FD\u6027\u304C\u306A\u3044\
+    \u81E8\u754C\u5024\n\t * @param fn \u6761\u4EF6\n\t * @see #lowerBound\n\t * @see\
+    \ #upperBound\n\t */\n\tprotected static final int bins(int ok, int ng, final\
+    \ IntPredicate fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal int mid\
+    \ = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\t\t\
+    \telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\t/**\n\t *\
+    \ \u3081\u3050\u308B\u5F0F\u4E8C\u5206\u63A2\u7D22\n\t * @param ok \u7B54\u3048\
+    \u306B\u306A\u308B\u53EF\u80FD\u6027\u304C\u3042\u308B\u81E8\u754C\u5024\n\t *\
+    \ @param ng \u7B54\u3048\u306B\u306A\u308B\u53EF\u80FD\u6027\u304C\u306A\u3044\
+    \u81E8\u754C\u5024\n\t * @param fn \u6761\u4EF6\n\t * @see <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L696\"\
     >Heileden::bins</a>\n\t */\n\tprotected static final long bins(long ok, long ng,\
     \ final LongPredicate fn) {\n\t\twhile(Math.abs(ok - ng) > 1) {\n\t\t\tfinal long\
     \ mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok = mid;\n\t\t\t}\n\
     \t\t\telse {\n\t\t\t\tng = mid;\n\t\t\t}\n\t\t}\n\t\treturn ok;\n\t}\n\t/**\n\t\
-    \ * \u3081\u3050\u308B\u5F0F\u4E8C\u5206\u63A2\u7D22\n\t * @param ok\n\t * @param\
-    \ ng\n\t * @param fn\n\t * @see <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L696\"\
+    \ * \u3081\u3050\u308B\u5F0F\u4E8C\u5206\u63A2\u7D22\n\t * @param ok \u7B54\u3048\
+    \u306B\u306A\u308B\u53EF\u80FD\u6027\u304C\u3042\u308B\u81E8\u754C\u5024\n\t *\
+    \ @param ng \u7B54\u3048\u306B\u306A\u308B\u53EF\u80FD\u6027\u304C\u306A\u3044\
+    \u81E8\u754C\u5024\n\t * @param fn \u6761\u4EF6\n\t * @see <a href=\"https://github.com/VvyLw/CP_Library/blob/main/C%2B%2B/template.hpp#L696\"\
     >Heileden::bins</a>\n\t */\n\tprotected static final double bins(double ok, double\
     \ ng, final DoublePredicate fn) {\n\t\twhile(Math.abs(ok - ng) > VvyLw.EPS) {\n\
     \t\t\tfinal double mid = (ok + ng) / 2;\n\t\t\tif(fn.test(mid)) {\n\t\t\t\tok\
@@ -1302,71 +1443,83 @@ data:
     \ @param a\n\t */\n\tprotected static final Map<Long, Integer> counter(final long[]\
     \ a) {\n\t\tfinal Map<Long, Integer> res = new HashMap<>();\n\t\tfor(final long\
     \ i: a) {\n\t\t\tres.merge(i, 1, (x, y) -> x + y);\n\t\t}\n\t\treturn res;\n\t\
-    }\n\t/**\n\t * @param p\n\t * @return \u5185\u7A4D\n\t */\n\tprotected static\
-    \ final long innerProd(final IntPair... p){ return iota(p.length).mapToLong(i\
-    \ -> p[i].first.longValue() * p[i].second.longValue()).sum(); }\n\t/**\n\t * @param\
-    \ p\n\t * @return \u5185\u7A4D\n\t */\n\tprotected static final double innerProd(final\
+    }\n\t/**\n\t * C++\u306Estd::inner_product\u306B\u76F8\u5F53\u3059\u308B\u30E1\
+    \u30BD\u30C3\u30C9\n\t * @param p\n\t * @return \u5185\u7A4D\n\t * @see <a href=\"\
+    https://cpprefjp.github.io/reference/numeric/inner_product.html\">std::inner_product</a>\n\
+    \t */\n\tprotected static final long innerProd(final IntPair... p){ return iota(p.length).mapToLong(i\
+    \ -> p[i].first.longValue() * p[i].second.longValue()).sum(); }\n\t/**\n\t * C++\u306E\
+    std::inner_product\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t *\
+    \ @param p\n\t * @return \u5185\u7A4D\n\t * @see <a href=\"https://cpprefjp.github.io/reference/numeric/inner_product.html\"\
+    >std::inner_product</a>\n\t */\n\tprotected static final double innerProd(final\
     \ FloatPair... p){ return iota(p.length).mapToDouble(i -> p[i].first.doubleValue()\
-    \ * p[i].second.doubleValue()).sum(); }\n\t/**\n\t * @param a\n\t * @param sec1\n\
-    \t * @param b\n\t * @param sec2\n\t * @return \u76F4\u7DDAa.first * x + a.second\
-    \ * y + sec1 = 0\u3068\u76F4\u7DDAb.first * x + b.second * y + sec2 = 0\u306E\u4EA4\
-    \u70B9\n\t */\n\tprotected static final FloatPair intersection(final IntPair a,\
-    \ final long sec1, final IntPair b, final long sec2) {\n\t\tdouble m1, m2, b1,\
-    \ b2;\n\t\tif(a.second.longValue() == 0 && b.second.longValue() == 0) {\n\t\t\t\
-    return null;\n\t\t} else if(a.second.longValue() == 0) {\n\t\t\tm2 = -b.first.doubleValue()\
-    \ / b.second.longValue();\n\t\t\tb2 = -sec2 / b.second.doubleValue();\n\t\t\t\
-    final double x = -sec1 / a.first.doubleValue(), y = b2 + m2 * x; \n\t\t\treturn\
-    \ FloatPair.of(x, y);\n\t\t} else if(b.second.longValue() == 0) {\n\t\t\tm1 =\
-    \ -a.first.doubleValue() / a.second.longValue();\n\t\t\tb1 = -sec1 / a.second.doubleValue();\n\
+    \ * p[i].second.doubleValue()).sum(); }\n\t/**\n\t * \u76F4\u7DDAa.first * x +\
+    \ a.second * y + sec1 = 0\u3068\u76F4\u7DDAb.first * x + b.second * y + sec2 =\
+    \ 0\u306E\u4EA4\u70B9\u3092\u6C42\u3081\u308B\n\t * \u9023\u7ACB\u4E00\u6B21\u65B9\
+    \u7A0B\u5F0F\u3092\u89E3\u304F\u306E\u306B\u3082\u4F7F\u3048\u308B\n\t * @param\
+    \ a\n\t * @param sec1\n\t * @param b\n\t * @param sec2\n\t * @return \u76F4\u7DDA\
+    a.first * x + a.second * y + sec1 = 0\u3068\u76F4\u7DDAb.first * x + b.second\
+    \ * y + sec2 = 0\u306E\u4EA4\u70B9\n\t */\n\tprotected static final FloatPair\
+    \ intersection(final IntPair a, final long sec1, final IntPair b, final long sec2)\
+    \ {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.second.longValue() == 0 && b.second.longValue()\
+    \ == 0) {\n\t\t\treturn null;\n\t\t} else if(a.second.longValue() == 0) {\n\t\t\
+    \tm2 = -b.first.doubleValue() / b.second.longValue();\n\t\t\tb2 = -sec2 / b.second.doubleValue();\n\
+    \t\t\tfinal double x = -sec1 / a.first.doubleValue(), y = b2 + m2 * x; \n\t\t\t\
+    return FloatPair.of(x, y);\n\t\t} else if(b.second.longValue() == 0) {\n\t\t\t\
+    m1 = -a.first.doubleValue() / a.second.longValue();\n\t\t\tb1 = -sec1 / a.second.doubleValue();\n\
     \t\t\tfinal double x = -sec2 / b.first.doubleValue(), y = b1 + m1 * x;\n\t\t\t\
     return FloatPair.of(x, y);\n\t\t}\n\t\tm1 = -a.first.doubleValue() / a.second.longValue();\n\
     \t\tm2 = -b.first.doubleValue() / b.second.longValue();\n\t\tb1 = -sec1 / a.second.doubleValue();\n\
     \t\tb2 = -sec2 / b.second.doubleValue();\n\t\tassert m1 != m2;\n\t\tfinal double\
     \ x = (b1 - b2) / (m2 - m1), y = m1 * x + b1;\n\t\treturn FloatPair.of(x, y);\n\
-    \t}\n\t/**\n\t * @param a\n\t * @param sec1\n\t * @param b\n\t * @param sec2\n\
-    \t * @return \u76F4\u7DDAa.first * x + a.second * y + sec1 = 0\u3068\u76F4\u7DDA\
-    b.first * x + b.second * y + sec2 = 0\u306E\u4EA4\u70B9\n\t */\n\tprotected static\
-    \ final FloatPair intersection(final FloatPair a, final double sec1, final FloatPair\
-    \ b, final double sec2) {\n\t\tdouble m1, m2, b1, b2;\n\t\tif(a.second.doubleValue()\
-    \ == 0 && b.second.doubleValue() == 0) {\n\t\t\treturn null;\n\t\t} else if(a.second.doubleValue()\
-    \ == 0) {\n\t\t\tm2 = -b.first.doubleValue() / b.second.doubleValue();\n\t\t\t\
-    b2 = -sec2 / b.second.doubleValue();\n\t\t\tfinal double x = -sec1 / a.first.doubleValue(),\
-    \ y = b2 + m2 * x; \n\t\t\treturn FloatPair.of(x, y);\n\t\t} else if(b.second.doubleValue()\
-    \ == 0) {\n\t\t\tm1 = -a.first.doubleValue() / a.second.doubleValue();\n\t\t\t\
-    b1 = -sec1 / a.second.doubleValue();\n\t\t\tfinal double x = -sec2 / b.first.doubleValue(),\
-    \ y = b1 + m1 * x;\n\t\t\treturn FloatPair.of(x, y);\n\t\t}\n\t\tm1 = -a.first.doubleValue()\
-    \ / a.second.doubleValue();\n\t\tm2 = -b.first.doubleValue() / b.second.doubleValue();\n\
-    \t\tb1 = -sec1 / a.second.doubleValue();\n\t\tb2 = -sec2 / b.second.doubleValue();\n\
-    \t\tassert m1 != m2;\n\t\tfinal double x = (b1 - b2) / (m2 - m1), y = m1 * x +\
-    \ b1;\n\t\treturn FloatPair.of(x, y);\n\t}\n\t/**\n\t * \u5EA7\u6A19\u5727\u7E2E\
-    \n\t * @param a\n\t */\n\tprotected static final int[] corPress(final int[] a)\
-    \ {\n\t\tfinal int[] res = new int[a.length];\n\t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
+    \t}\n\t/**\n\t * \u76F4\u7DDAa.first * x + a.second * y + sec1 = 0\u3068\u76F4\
+    \u7DDAb.first * x + b.second * y + sec2 = 0\u306E\u4EA4\u70B9\u3092\u6C42\u3081\
+    \u308B\n\t * \u9023\u7ACB\u4E00\u6B21\u65B9\u7A0B\u5F0F\u3092\u89E3\u304F\u306E\
+    \u306B\u3082\u4F7F\u3048\u308B\n\t * @param a\n\t * @param sec1\n\t * @param b\n\
+    \t * @param sec2\n\t * @return \u76F4\u7DDAa.first * x + a.second * y + sec1 =\
+    \ 0\u3068\u76F4\u7DDAb.first * x + b.second * y + sec2 = 0\u306E\u4EA4\u70B9\n\
+    \t */\n\tprotected static final FloatPair intersection(final FloatPair a, final\
+    \ double sec1, final FloatPair b, final double sec2) {\n\t\tdouble m1, m2, b1,\
+    \ b2;\n\t\tif(a.second.doubleValue() == 0 && b.second.doubleValue() == 0) {\n\t\
+    \t\treturn null;\n\t\t} else if(a.second.doubleValue() == 0) {\n\t\t\tm2 = -b.first.doubleValue()\
+    \ / b.second.doubleValue();\n\t\t\tb2 = -sec2 / b.second.doubleValue();\n\t\t\t\
+    final double x = -sec1 / a.first.doubleValue(), y = b2 + m2 * x; \n\t\t\treturn\
+    \ FloatPair.of(x, y);\n\t\t} else if(b.second.doubleValue() == 0) {\n\t\t\tm1\
+    \ = -a.first.doubleValue() / a.second.doubleValue();\n\t\t\tb1 = -sec1 / a.second.doubleValue();\n\
+    \t\t\tfinal double x = -sec2 / b.first.doubleValue(), y = b1 + m1 * x;\n\t\t\t\
+    return FloatPair.of(x, y);\n\t\t}\n\t\tm1 = -a.first.doubleValue() / a.second.doubleValue();\n\
+    \t\tm2 = -b.first.doubleValue() / b.second.doubleValue();\n\t\tb1 = -sec1 / a.second.doubleValue();\n\
+    \t\tb2 = -sec2 / b.second.doubleValue();\n\t\tassert m1 != m2;\n\t\tfinal double\
+    \ x = (b1 - b2) / (m2 - m1), y = m1 * x + b1;\n\t\treturn FloatPair.of(x, y);\n\
+    \t}\n\t/**\n\t * \u5EA7\u6A19\u5727\u7E2E\n\t * @param a\n\t */\n\tprotected static\
+    \ final int[] corPress(final int[] a) {\n\t\tfinal int[] res = new int[a.length];\n\
+    \t\tfinal int[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tArrays.setAll(res,\
+    \ i -> lowerBound(x, a[i]));\n\t\treturn res;\n\t}\n\t/**\n\t * \u5EA7\u6A19\u5727\
+    \u7E2E\n\t * @param a\n\t */\n\tprotected static final int[] corPress(final long[]\
+    \ a) {\n\t\tfinal int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
     \t\tArrays.setAll(res, i -> lowerBound(x, a[i]));\n\t\treturn res;\n\t}\n\t/**\n\
-    \t * \u5EA7\u6A19\u5727\u7E2E\n\t * @param a\n\t */\n\tprotected static final\
-    \ int[] corPress(final long[] a) {\n\t\tfinal int[] res = new int[a.length];\n\
-    \t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tArrays.setAll(res,\
-    \ i -> lowerBound(x, a[i]));\n\t\treturn res;\n\t}\n\t/**\n\t * @param s\n\t *\
-    \ @return \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\n\t */\n\tprotected\
-    \ static final String runLenPress(final String s) {\n\t\tfinal int n = s.length();\n\
-    \t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfor(int l = 0; l < n;)\
-    \ {\n\t\t\tint r = l + 1;\n\t\t\tfor(; r < n && s.charAt(l) == s.charAt(r); ++r){}\n\
+    \t * \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\n\t * @param s\n\t * @return\
+    \ \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\n\t */\n\tprotected static\
+    \ final String runLenPress(final String s) {\n\t\tfinal int n = s.length();\n\t\
+    \tfinal StringBuilder sb = new StringBuilder();\n\t\tfor(int l = 0; l < n;) {\n\
+    \t\t\tint r = l + 1;\n\t\t\tfor(; r < n && s.charAt(l) == s.charAt(r); ++r){}\n\
     \t\t\tsb.append(s.charAt(l));\n\t\t\tsb.append(r - l);\n\t\t\tl = r;\n\t\t}\n\t\
-    \treturn sb.toString();\n\t}\n\t/**\n\t * @param s\n\t * @return \u30E9\u30F3\u30EC\
-    \u30F3\u30B0\u30B9\u5727\u7E2E\u3057\u305F\u3082\u306E\u3092\u623B\u3059\n\t */\n\
-    \tprotected static final String runLenRev(final String s) {\n\t\tfinal int n =\
-    \ s.length();\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfor(int\
-    \ l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\t\t\tfor(; r < n && scope('0', s.charAt(r),\
-    \ '9'); ++r){}\n\t\t\tsb.append(String.valueOf(s.charAt(l)).repeat(Integer.parseInt(s.substring(l\
+    \treturn sb.toString();\n\t}\n\t/**\n\t * \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\
+    \u5727\u7E2E\u3057\u305F\u6587\u5B57\u5217\u306E\u5FA9\u5143\n\t * @param s\n\t\
+    \ * @return \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\u3057\u305F\u3082\
+    \u306E\u3092\u623B\u3059\n\t */\n\tprotected static final String runLenRev(final\
+    \ String s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder sb = new\
+    \ StringBuilder();\n\t\tfor(int l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\t\t\t\
+    for(; r < n && scope('0', s.charAt(r), '9'); ++r){}\n\t\t\tsb.append(String.valueOf(s.charAt(l)).repeat(Integer.parseInt(s.substring(l\
     \ + 1, r))));\n\t\t\tl = r;\n\t\t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t\
-    \ * @param s\n\t * @see <a href=\"https://ei1333.github.io/library/string/z-algorithm.hpp\"\
+    \ * Z-Algorithm\n\t * @param s\n\t * @see <a href=\"https://ei1333.github.io/library/string/z-algorithm.hpp\"\
     >Z-Algorithm</a>\n\t */\n\tprotected static final int[] zAlgorithm(final String\
     \ s) {\n\t\tfinal int n = s.length();\n\t\tint j = 0;\n\t\tfinal int[] pre = new\
     \ int[n];\n\t\tfor(int i = 0; ++i < n;) {\n\t\t\tif(i + pre[i - j] < j + pre[j])\
     \ {\n\t\t\t\tpre[i] = pre[i - j];\n\t\t\t}\n\t\t\telse {\n\t\t\t\tint k = Math.max(0,\
     \ j + pre[j] - i);\n\t\t\t\twhile(i + k < n && s.charAt(k) == s.charAt(i + k))\
     \ {\n\t\t\t\t\t++k;\n\t\t\t\t}\n\t\t\t\tpre[i] = k;\n\t\t\t\tj = i;\n\t\t\t}\n\
-    \t\t}\n\t\tpre[0] = n;\n\t\treturn pre;\n\t}\n\t/**\n\t * @param s_\n\t * @param\
-    \ calcEven\n\t * @see <a href=\"https://ei1333.github.io/library/string/manacher.hpp\"\
+    \t\t}\n\t\tpre[0] = n;\n\t\treturn pre;\n\t}\n\t/**\n\t * Manacher Algorithm\n\
+    \t * @param s_\n\t * @param calcEven\n\t * @see <a href=\"https://ei1333.github.io/library/string/manacher.hpp\"\
     >Manacher</a>\n\t */\n\tprotected static final int[] manacher(final String s_,\
     \ final boolean calcEven) {\n\t\tint n = s_.length();\n\t\tfinal char[] s;\n\t\
     \tif(calcEven) {\n\t\t\ts = new char[2 * n - 1];\n\t\t\tIntStream.range(0, n).forEach(i\
@@ -1382,25 +1535,26 @@ data:
     \t++k;\n\t\t\t}\n\t\t\ti += k;\n\t\t\tj -= k;\n\t\t}\n\t\tif(calcEven) {\n\t\t\
     \tfor(int i = 0; i < n; ++i) {\n\t\t\t\tif(((i ^ rad[i]) & 1) == 0) {\n\t\t\t\t\
     \trad[i]--;\n\t\t\t\t}\n\t\t\t}\n\t\t} else {\n\t\t\tfor(int x: rad) {\n\t\t\t\
-    \tx = 2 * x - 1;\n\t\t\t}\n\t\t}\n\t\treturn rad;\n\t}\n\t/**\n\t * @param n\n\
-    \t * @param k\n\t * @return n\u306Ek\u4E57\u6839\n\t */\n\tpublic static final\
-    \ long kthRoot(final long n, final int k) {\n\t\tif(k == 1) {\n\t\t\treturn n;\n\
-    \t\t}\n\t\tfinal LongPredicate chk = x -> {\n\t\t\tlong mul = 1;\n\t\t\tfor(int\
-    \ j = 0; j < k; ++j) {\n\t\t\t\ttry {\n\t\t\t\t\tmul = Math.multiplyExact(mul,\
-    \ x);\n\t\t\t\t} catch(final ArithmeticException e) {\n\t\t\t\t\treturn false;\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t\treturn mul <= n;\n\t\t};\n\t\tlong ret = 0;\n\t\tfor(int\
-    \ i = 32; --i >= 0;) {\n\t\t\tif(chk.test(ret | (1L << i))) {\n\t\t\t\tret |=\
-    \ 1L << i;\n\t\t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\t/** \n\t * a\u2191\u2191b\u306F\
-    a^a^a^...^a(a\u306Fb\u500B\u3042\u308B)\u3092\u8868\u3059\n\t * @param a\n\t *\
-    \ @param b\n\t * @param m\n\t * @return a\u2191\u2191b(mod m)\n\t */\n\tprotected\
-    \ static final long tetration(final long a, final long b, final long m) {\n\t\t\
-    if(m == 1) {\n\t\t\treturn 0;\n\t\t}\n\t\tif(a == 0) {\n\t\t\treturn (b & 1) ==\
-    \ 0 ? 1 : 0;\n\t\t}\n\t\tif(b == 0) {\n\t\t\treturn 1;\n\t\t}\n\t\tif(b == 1)\
-    \ {\n\t\t\treturn a % m;\n\t\t}\n\t\tif(b == 2) {\n\t\t\treturn modPow(a, a, m);\n\
-    \t\t}\n\t\tfinal long phi = eulerPhi(m);\n\t\tlong tmp = tetration(a, b - 1, phi);\n\
-    \t\tif(tmp == 0) {\n\t\t\ttmp += phi;\n\t\t}\n\t\treturn modPow(a, tmp, m);\n\t\
-    }\n\t/**\n\t * @param n\n\t * @param m\n\t * @param a\n\t * @param b\n\t * @see\
-    \ <a href=\"https://atcoder.github.io/ac-library/production/document_ja/math.html\"\
+    \tx = 2 * x - 1;\n\t\t\t}\n\t\t}\n\t\treturn rad;\n\t}\n\t/**\n\t * n\u306Ek\u4E57\
+    \u6839\u3092\u6C42\u3081\u308B\n\t * @param n\n\t * @param k\n\t * @return n\u306E\
+    k\u4E57\u6839\n\t */\n\tpublic static final long kthRoot(final long n, final int\
+    \ k) {\n\t\tif(k == 1) {\n\t\t\treturn n;\n\t\t}\n\t\tfinal LongPredicate chk\
+    \ = x -> {\n\t\t\tlong mul = 1;\n\t\t\tfor(int j = 0; j < k; ++j) {\n\t\t\t\t\
+    try {\n\t\t\t\t\tmul = Math.multiplyExact(mul, x);\n\t\t\t\t} catch(final ArithmeticException\
+    \ e) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn mul <= n;\n\t\
+    \t};\n\t\tlong ret = 0;\n\t\tfor(int i = 32; --i >= 0;) {\n\t\t\tif(chk.test(ret\
+    \ | (1L << i))) {\n\t\t\t\tret |= 1L << i;\n\t\t\t}\n\t\t}\n\t\treturn ret;\n\t\
+    }\n\t/** \n\t * a\u2191\u2191b\u306Fa^a^a^...^a(a\u306Fb\u500B\u3042\u308B)\u3092\
+    \u8868\u3059\n\t * @param a\n\t * @param b\n\t * @param m\n\t * @return a\u2191\
+    \u2191b(mod m)\n\t */\n\tprotected static final long tetration(final long a, final\
+    \ long b, final long m) {\n\t\tif(m == 1) {\n\t\t\treturn 0;\n\t\t}\n\t\tif(a\
+    \ == 0) {\n\t\t\treturn (b & 1) == 0 ? 1 : 0;\n\t\t}\n\t\tif(b == 0) {\n\t\t\t\
+    return 1;\n\t\t}\n\t\tif(b == 1) {\n\t\t\treturn a % m;\n\t\t}\n\t\tif(b == 2)\
+    \ {\n\t\t\treturn modPow(a, a, m);\n\t\t}\n\t\tfinal long phi = eulerPhi(m);\n\
+    \t\tlong tmp = tetration(a, b - 1, phi);\n\t\tif(tmp == 0) {\n\t\t\ttmp += phi;\n\
+    \t\t}\n\t\treturn modPow(a, tmp, m);\n\t}\n\t/**\n\t * \u2211_{i=0}^{n\u22121}\
+    \ floor((a*i+b)/m)\u3092\u6C42\u3081\u308B\n\t * @param n\n\t * @param m\n\t *\
+    \ @param a\n\t * @param b\n\t * @see <a href=\"https://atcoder.github.io/ac-library/production/document_ja/math.html\"\
     >atcoder::math::floor_sum</a>\n\t */\n\tprotected static final long floorSum(final\
     \ long n, final long m, long a, long b) {\n\t\tlong ans = 0;\n\t\tif(a >= m) {\n\
     \t\t\tans += (n - 1) * n * (a / m) / 2;\n\t\t\ta %= m;\n\t\t}\n\t\tif(b >= m)\
@@ -1592,7 +1746,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

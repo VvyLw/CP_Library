@@ -559,26 +559,28 @@ data:
     \ */\npublic final class ModPrime {\n\tprivate final int len, mod;\n\tprivate\
     \ final long[] f, rf;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\
     \t * @param mod \u7D20\u6570\n\t * @param sz \u53D6\u308A\u3046\u308B\u5024\u306E\
-    \u6700\u5927\u5024\n\t */\n\tModPrime(final int mod, final int sz) {\n\t\tthis.mod\
-    \ = mod;\n\t\tlen = Math.min(sz + 1, mod);\n\t\tf = new long[len];\n\t\trf = new\
-    \ long[len];\n\t\tinit();\n\t}\n\tprivate final long inv(long x) {\n\t\tlong res\
-    \ = 1, k = mod - 2;\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\t\tres =\
-    \ (res * x) % mod;\n\t\t\t}\n\t\t\tx = (x * x) % mod;\n\t\t\tk >>= 1;\n\t\t}\n\
-    \t\treturn res;\n\t}\n\tprivate final void init() {\n\t\tf[0] = 1;\n\t\tfor(int\
-    \ i = 0; ++i < len;) {\n\t\t\tf[i] = (f[i - 1] * i) % mod;\n\t\t}\n\t\trf[len\
-    \ - 1] = inv(f[len - 1]);\n\t\tfor(int i = len; --i > 0;) {\n\t\t\trf[i - 1] =\
-    \ (rf[i] * i) % mod;\n\t\t}\n\t}\n\t/**\n\t * @param n\n\t * @param k\n\t * @return\
-    \ \u4E8C\u9805\u4FC2\u6570\n\t */\n\tfinal long C(final int n, final int k) {\n\
-    \t\tif(k < 0 || n < k) {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal long a = f[n], b =\
-    \ rf[n - k], c = rf[k], bc = (b * c) % mod;\n\t\treturn (a * bc) % mod;\n\t}\n\
-    \t/**\n\t * @param n\n\t * @param k\n\t * @return \u9806\u5217\n\t */\n\tfinal\
+    \u6700\u5927\u5024\n\t */\n\tpublic ModPrime(final int mod, final int sz) {\n\t\
+    \tthis.mod = mod;\n\t\tlen = Math.min(sz + 1, mod);\n\t\tf = new long[len];\n\t\
+    \trf = new long[len];\n\t\tinit();\n\t}\n\tprivate final long inv(long x) {\n\t\
+    \tlong res = 1, k = mod - 2;\n\t\twhile(k > 0) {\n\t\t\tif(k % 2 == 1) {\n\t\t\
+    \t\tres = (res * x) % mod;\n\t\t\t}\n\t\t\tx = (x * x) % mod;\n\t\t\tk >>= 1;\n\
+    \t\t}\n\t\treturn res;\n\t}\n\tprivate final void init() {\n\t\tf[0] = 1;\n\t\t\
+    for(int i = 0; ++i < len;) {\n\t\t\tf[i] = (f[i - 1] * i) % mod;\n\t\t}\n\t\t\
+    rf[len - 1] = inv(f[len - 1]);\n\t\tfor(int i = len; --i > 0;) {\n\t\t\trf[i -\
+    \ 1] = (rf[i] * i) % mod;\n\t\t}\n\t}\n\t/**\n\t * nCk\u3092\u8FD4\u3059\n\t *\
+    \ @param n\n\t * @param k\n\t * @return \u4E8C\u9805\u4FC2\u6570\n\t */\n\tpublic\
+    \ final long C(final int n, final int k) {\n\t\tif(k < 0 || n < k) {\n\t\t\treturn\
+    \ 0;\n\t\t}\n\t\tfinal long a = f[n], b = rf[n - k], c = rf[k], bc = (b * c) %\
+    \ mod;\n\t\treturn (a * bc) % mod;\n\t}\n\t/**\n\t * nPk\u3092\u8FD4\u3059\n\t\
+    \ * @param n\n\t * @param k\n\t * @return \u9806\u5217\n\t */\n\tpublic final\
     \ long P(final int n, final int k) {\n\t\tif (k < 0 || n < k) {\n\t\t\treturn\
     \ 0;\n\t\t}\n\t\tfinal long a = f[n], b = rf[n - k];\n\t\treturn (a * b) % mod;\n\
-    \t}\n\t/**\n\t * @param n\n\t * @param k\n\t * @return \u91CD\u8907\u9806\u5217\
-    \n\t */\n\tfinal long H(final int n, final int k) {\n\t\tif (n == 0 && k == 0)\
-    \ {\n\t\t\treturn 1;\n\t\t}\n\t\treturn C(n + k - 1, k);\n\t}\n\t/**\n\t * @param\
-    \ n\n\t * @return \u968E\u4E57 mod P\n\t */\n\tfinal long fact(final int n){ return\
-    \ f[n]; }\n}"
+    \t}\n\t/**\n\t * nHk\u3092\u8FD4\u3059\n\t * @param n\n\t * @param k\n\t * @return\
+    \ \u91CD\u8907\u9806\u5217\n\t */\n\tpublic final long H(final int n, final int\
+    \ k) {\n\t\tif (n == 0 && k == 0) {\n\t\t\treturn 1;\n\t\t}\n\t\treturn C(n +\
+    \ k - 1, k);\n\t}\n\t/**\n\t * n!\u3092\u8FD4\u3059\n\t * @param n\n\t * @return\
+    \ \u968E\u4E57 mod P\n\t */\n\tpublic final long fact(final int n){ return f[n];\
+    \ }\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -763,7 +765,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/ModPrime.java

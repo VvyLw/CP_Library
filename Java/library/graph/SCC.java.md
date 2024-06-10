@@ -571,44 +571,48 @@ data:
     \t\trangeCheck(to);\n\t\tedge.add(new Edge(from, to, m++));\n\t\tstart[from +\
     \ 1]++;\n\t}\n\t/**\n\t * \u8FBA\u3092m\u500B\u5165\u529B\u3059\u308B\n\t * @param\
     \ m\n\t */\n\tpublic final void input(final int m){ IntStream.range(0, m).forEach(i\
-    \ -> addEdge(VvyLw.io.ni(), VvyLw.io.ni())); }\n\t/**\n\t * @param i\n\t * @return\
-    \ \u9802\u70B9i\u306E\u5F37\u9023\u7D50\u6210\u5206\u306E\u9802\u70B9\u756A\u53F7\
-    \n\t */\n\tpublic final int id(final int i) {\n\t\tif(notBuilt) {\n\t\t\tthrow\
-    \ new UnsupportedOperationException(\"Graph hasn't been built.\");\n\t\t}\n\t\t\
-    rangeCheck(i);\n\t\treturn ids[i];\n\t}\n\t/**\n\t * \u69CB\u7BC9\n\t */\n\tpublic\
-    \ final void build() {\n\t\tfor(int i = 1; i <= n; i++) {\n\t\t\tstart[i] += start[i\
-    \ - 1];\n\t\t}\n\t\tfinal Edge[] ed = new Edge[m];\n\t\tfinal int[] count = new\
-    \ int[n + 1];\n\t\tSystem.arraycopy(start, 0, count, 0, n + 1);\n\t\tfor(final\
-    \ Edge e: edge) {\n\t\t\ted[count[e.src]++] = e;\n\t\t}\n\t\tint nowOrd = 0, groupNum\
-    \ = 0, k = 0, ptr = 0;\n\t\tfinal int[] par = new int[n], vis = new int[n], low\
-    \ = new int[n], ord = new int[n];\n\t\tArrays.fill(ord, -1);\n\t\tfinal long[]\
-    \ stack = new long[n];\n\t\tfor(int i = 0; i < n; i++) {\n\t\t\tif(ord[i] >= 0)\
-    \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tpar[i] = -1;\n\t\t\tstack[ptr++] = 0L <<\
-    \ 32 | i;\n\t\t\twhile(ptr > 0) {\n\t\t\t\tlong p = stack[--ptr];\n\t\t\t\tint\
-    \ u = (int) (p & 0xffff_ffffl);\n\t\t\t\tint j = (int) (p >>> 32);\n\t\t\t\tif(j\
-    \ == 0) {\n\t\t\t\t\tlow[u] = ord[u] = nowOrd++;\n\t\t\t\t\tvis[k++] = u;\n\t\t\
-    \t\t}\n\t\t\t\tif(start[u] + j < count[u]) {\n\t\t\t\t\tint to = ed[start[u] +\
-    \ j].to;\n\t\t\t\t\tstack[ptr++] += 1l << 32;\n\t\t\t\t\tif(ord[to] == -1) {\n\
-    \t\t\t\t\t\tstack[ptr++] = 0l << 32 | to;\n\t\t\t\t\t\tpar[to] = u;\n\t\t\t\t\t\
-    } else {\n\t\t\t\t\t\tlow[u] = min(low[u], ord[to]);\n\t\t\t\t\t}\n\t\t\t\t} else\
-    \ {\n\t\t\t\t\twhile(j --> 0) {\n\t\t\t\t\t\tfinal int to = ed[start[u] + j].to;\n\
-    \t\t\t\t\t\tif(par[to] == u) {\n\t\t\t\t\t\t\tlow[u] = min(low[u], low[to]);\n\
-    \t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tif(low[u] == ord[u]) {\n\t\t\t\t\t\twhile(true)\
-    \ {\n\t\t\t\t\t\t\tfinal int v = vis[--k];\n\t\t\t\t\t\t\tord[v] = n;\n\t\t\t\t\
-    \t\t\tids[v] = groupNum;\n\t\t\t\t\t\t\tif(v == u) {\n\t\t\t\t\t\t\t\tbreak;\n\
-    \t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\tgroupNum++;\n\t\t\t\t\t}\n\t\t\t\t\
-    }\n\t\t\t}\n\t\t}\n\t\tfor(int i = 0; i < n; i++) {\n\t\t\tids[i] = groupNum -\
-    \ 1 - ids[i];\n\t\t}        \n\t\tfinal int[] counts = new int[groupNum];\n\t\t\
-    for(final int x: ids) {\n\t\t\tcounts[x]++;\n\t\t}\n\t\tgroups = new int[groupNum][];\n\
-    \t\tfor(int i = 0; i < groupNum; i++) {\n\t\t\tgroups[i] = new int[counts[i]];\n\
-    \t\t}\n\t\tfor(int i = 0; i < n; i++) {\n\t\t\tint cmp = ids[i];\n\t\t\tgroups[cmp][--counts[cmp]]\
-    \ = i;\n\t\t}\n\t\tnotBuilt = false;\n\t}\n\t/**\n\t * @return \u5404\u5F37\u9023\
-    \u7D50\u6210\u5206\u306B\u3064\u3044\u3066\u305D\u308C\u306B\u5C5E\u3059\u308B\
-    \u9802\u70B9\n\t */\n\tpublic final int[][] groups() {\n\t\tif(notBuilt) {\n\t\
-    \t\tthrow new UnsupportedOperationException(\"Graph hasn't been built.\");\n\t\
-    \t}\n\t\treturn groups;\n\t}\n\tprivate final void rangeCheck(final int i) {\n\
-    \t\tif(!Utility.scope(0, i, n - 1)) {\n\t\t\tthrow new IndexOutOfBoundsException(String.format(\"\
-    Index %d out of bounds for length %d\", i, n));\n\t\t}\n\t}\n}"
+    \ -> addEdge(VvyLw.io.ni(), VvyLw.io.ni())); }\n\t/**\n\t * \u9802\u70B9i\u306E\
+    \u5F37\u9023\u7D50\u6210\u5206\u306E\u9802\u70B9\u756A\u53F7\u3092\u8FD4\u3059\
+    \n\t * @param i\n\t * @return \u9802\u70B9i\u306E\u5F37\u9023\u7D50\u6210\u5206\
+    \u306E\u9802\u70B9\u756A\u53F7\n\t */\n\tpublic final int id(final int i) {\n\t\
+    \tif(notBuilt) {\n\t\t\tthrow new UnsupportedOperationException(\"Graph hasn't\
+    \ been built.\");\n\t\t}\n\t\trangeCheck(i);\n\t\treturn ids[i];\n\t}\n\t/**\n\
+    \t * \u69CB\u7BC9\n\t */\n\tpublic final void build() {\n\t\tfor(int i = 1; i\
+    \ <= n; i++) {\n\t\t\tstart[i] += start[i - 1];\n\t\t}\n\t\tfinal Edge[] ed =\
+    \ new Edge[m];\n\t\tfinal int[] count = new int[n + 1];\n\t\tSystem.arraycopy(start,\
+    \ 0, count, 0, n + 1);\n\t\tfor(final Edge e: edge) {\n\t\t\ted[count[e.src]++]\
+    \ = e;\n\t\t}\n\t\tint nowOrd = 0, groupNum = 0, k = 0, ptr = 0;\n\t\tfinal int[]\
+    \ par = new int[n], vis = new int[n], low = new int[n], ord = new int[n];\n\t\t\
+    Arrays.fill(ord, -1);\n\t\tfinal long[] stack = new long[n];\n\t\tfor(int i =\
+    \ 0; i < n; i++) {\n\t\t\tif(ord[i] >= 0) {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\t\
+    par[i] = -1;\n\t\t\tstack[ptr++] = 0L << 32 | i;\n\t\t\twhile(ptr > 0) {\n\t\t\
+    \t\tlong p = stack[--ptr];\n\t\t\t\tint u = (int) (p & 0xffff_ffffl);\n\t\t\t\t\
+    int j = (int) (p >>> 32);\n\t\t\t\tif(j == 0) {\n\t\t\t\t\tlow[u] = ord[u] = nowOrd++;\n\
+    \t\t\t\t\tvis[k++] = u;\n\t\t\t\t}\n\t\t\t\tif(start[u] + j < count[u]) {\n\t\t\
+    \t\t\tint to = ed[start[u] + j].to;\n\t\t\t\t\tstack[ptr++] += 1l << 32;\n\t\t\
+    \t\t\tif(ord[to] == -1) {\n\t\t\t\t\t\tstack[ptr++] = 0l << 32 | to;\n\t\t\t\t\
+    \t\tpar[to] = u;\n\t\t\t\t\t} else {\n\t\t\t\t\t\tlow[u] = min(low[u], ord[to]);\n\
+    \t\t\t\t\t}\n\t\t\t\t} else {\n\t\t\t\t\twhile(j --> 0) {\n\t\t\t\t\t\tfinal int\
+    \ to = ed[start[u] + j].to;\n\t\t\t\t\t\tif(par[to] == u) {\n\t\t\t\t\t\t\tlow[u]\
+    \ = min(low[u], low[to]);\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tif(low[u] ==\
+    \ ord[u]) {\n\t\t\t\t\t\twhile(true) {\n\t\t\t\t\t\t\tfinal int v = vis[--k];\n\
+    \t\t\t\t\t\t\tord[v] = n;\n\t\t\t\t\t\t\tids[v] = groupNum;\n\t\t\t\t\t\t\tif(v\
+    \ == u) {\n\t\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\
+    groupNum++;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor(int i = 0; i < n;\
+    \ i++) {\n\t\t\tids[i] = groupNum - 1 - ids[i];\n\t\t}        \n\t\tfinal int[]\
+    \ counts = new int[groupNum];\n\t\tfor(final int x: ids) {\n\t\t\tcounts[x]++;\n\
+    \t\t}\n\t\tgroups = new int[groupNum][];\n\t\tfor(int i = 0; i < groupNum; i++)\
+    \ {\n\t\t\tgroups[i] = new int[counts[i]];\n\t\t}\n\t\tfor(int i = 0; i < n; i++)\
+    \ {\n\t\t\tint cmp = ids[i];\n\t\t\tgroups[cmp][--counts[cmp]] = i;\n\t\t}\n\t\
+    \tnotBuilt = false;\n\t}\n\t/**\n\t * \u5404\u5F37\u9023\u7D50\u6210\u5206\u306B\
+    \u3064\u3044\u3066\u305D\u308C\u306B\u5C5E\u3059\u308B\u9802\u70B9\u3092\u8FD4\
+    \u3059\n\t * @return \u5404\u5F37\u9023\u7D50\u6210\u5206\u306B\u3064\u3044\u3066\
+    \u305D\u308C\u306B\u5C5E\u3059\u308B\u9802\u70B9\n\t */\n\tpublic final int[][]\
+    \ groups() {\n\t\tif(notBuilt) {\n\t\t\tthrow new UnsupportedOperationException(\"\
+    Graph hasn't been built.\");\n\t\t}\n\t\treturn groups;\n\t}\n\tprivate final\
+    \ void rangeCheck(final int i) {\n\t\tif(!Utility.scope(0, i, n - 1)) {\n\t\t\t\
+    throw new IndexOutOfBoundsException(String.format(\"Index %d out of bounds for\
+    \ length %d\", i, n));\n\t\t}\n\t}\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -793,7 +797,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/SCC.java

@@ -555,9 +555,11 @@ data:
   code: "package library.ds.lazysegmenttree;\n\nimport java.util.Arrays;\n\n/**\n\
     \ * Range Update Range Max\n * \u533A\u9593\u66F4\u65B0, \u533A\u9593\u6700\u5927\
     \u5024\n */\npublic final class RUMX extends LazySegmentTree<Long, Long> {\n\t\
+    /**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a\n\t */\n\t\
     public RUMX(final int[] a){ super(Arrays.stream(a).asLongStream().boxed().toArray(Long[]::new),\
     \ Long::max, (x, y) -> y, (x, y) -> y, Long.valueOf(Long.MIN_VALUE), Long.valueOf(Long.MIN_VALUE));\
-    \ }\n\tpublic RUMX(final long[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new),\
+    \ }\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a\n\t\
+    \ */\n\tpublic RUMX(final long[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new),\
     \ Long::max, (x, y) -> y, (x, y) -> y, Long.valueOf(Long.MIN_VALUE), Long.valueOf(Long.MIN_VALUE));\
     \ }\n}"
   dependsOn:
@@ -744,7 +746,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/lazysegmenttree/RUMX.java

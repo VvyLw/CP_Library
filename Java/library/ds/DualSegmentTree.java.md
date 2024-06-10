@@ -574,14 +574,16 @@ data:
     \tthrust(b += sz - 1);\n\t\tfor(int l = a, r = b + 1; l < r; l >>= 1, r >>= 1)\
     \ {\n\t\t\tif(l % 2 == 1) {\n\t\t\t\tlazy[l] = ap.apply((T) lazy[l], x);\n\t\t\
     \t\tl++;\n\t\t\t}\n\t\t\tif(r % 2 == 1) {\n\t\t\t\tr--;\n\t\t\t\tlazy[r] = ap.apply((T)\
-    \ lazy[r], x);\n\t\t\t}\n\t\t}\n\t}\n\t/**\n\t * @param k\n\t * @return k\u756A\
-    \u76EE\u306E\u8981\u7D20\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic\
-    \ final T get(int k) {\n\t\tthrust(k += sz);\n\t\treturn (T) lazy[k];\n\t}\n\t\
-    @SuppressWarnings(\"unchecked\")\n\tpublic final T[] toArray(){ return (T[]) IntStream.range(0,\
-    \ n).mapToObj(this::get).toArray(); }\n\t@Override\n\tpublic final String toString()\
-    \ {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tsb.append(get(0));\n\
-    \t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\", \" + get(i));\n\t\t}\n\t\t\
-    return \"[\" + sb.toString() + \"]\";\n\t}\n}"
+    \ lazy[r], x);\n\t\t\t}\n\t\t}\n\t}\n\t/**\n\t * DualSegmentTree[k]\u3092\u8FD4\
+    \u3059\n\t * @param k\n\t * @return k\u756A\u76EE\u306E\u8981\u7D20\n\t */\n\t\
+    @SuppressWarnings(\"unchecked\")\n\tpublic final T get(int k) {\n\t\tthrust(k\
+    \ += sz);\n\t\treturn (T) lazy[k];\n\t}\n\t/**\n\t * DualSegmentTree\u3092\u914D\
+    \u5217\u306B\u5909\u63DB\u3057\u305F\u3082\u306E\n\t * @return DualSegmentTree\u306E\
+    \u914D\u5217\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic final T[] toArray(){\
+    \ return (T[]) IntStream.range(0, n).mapToObj(this::get).toArray(); }\n\t@Override\n\
+    \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
+    \t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\", \"\
+    \ + get(i));\n\t\t}\n\t\treturn \"[\" + sb.toString() + \"]\";\n\t}\n}"
   dependsOn:
   - Java/library/ds/AVLTree.java
   - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
@@ -766,7 +768,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/DualSegmentTree.java

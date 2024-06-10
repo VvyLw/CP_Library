@@ -591,13 +591,15 @@ data:
     \ * @return \u524A\u9664\u3057\u305F\u6700\u5927\u5024\n\t */\n\tpublic final\
     \ T popMax() {\n\t\tfinal T res = getMax();\n\t\tif(d.size() < 2) { \n\t\t\tpopBack(d);\n\
     \t\t} else {\n\t\t\tCollections.swap(d, 0, d.size() - 1);\n\t\t\tpopBack(d);\n\
-    \t\t\tup(down(0), 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @return \u6700\
-    \u5C0F\u5024\n\t */\n\tpublic final T getMin(){ return d.size() < 2 ? d.get(0)\
-    \ : d.get(1); }\n\t/**\n\t * @return \u6700\u5927\u5024\n\t */\n\tpublic final\
-    \ T getMax(){ return d.get(0); }\n\t/**\n\t * @return PriorityQueue\u306E\u30B5\
-    \u30A4\u30BA\n\t */\n\tpublic final int size(){ return d.size(); }\n\t/**\n\t\
-    \ * PriorityQueue\u304C\u7A7A\u304B\u3069\u3046\u304B\u5224\u5B9A\u3059\u308B\n\
-    \t */\n\tpublic final boolean isEmpty(){ return d.isEmpty(); }\n}"
+    \t\t\tup(down(0), 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * \u6700\u5C0F\u5024\
+    \u3092\u8FD4\u3059\n\t * @return \u6700\u5C0F\u5024\n\t */\n\tpublic final T getMin(){\
+    \ return d.size() < 2 ? d.get(0) : d.get(1); }\n\t/**\n\t * \u6700\u5927\u5024\
+    \u3092\u8FD4\u3059\n\t * @return \u6700\u5927\u5024\n\t */\n\tpublic final T getMax(){\
+    \ return d.get(0); }\n\t/**\n\t * PriorityQueue\u306E\u5927\u304D\u3055\u3092\u8FD4\
+    \u3059\n\t * @return PriorityQueue\u306E\u30B5\u30A4\u30BA\n\t */\n\tpublic final\
+    \ int size(){ return d.size(); }\n\t/**\n\t * PriorityQueue\u304C\u7A7A\u304B\u3069\
+    \u3046\u304B\u5224\u5B9A\u3059\u308B\n\t */\n\tpublic final boolean isEmpty(){\
+    \ return d.isEmpty(); }\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -782,7 +784,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/DoubleEndedPriorityQueue.java

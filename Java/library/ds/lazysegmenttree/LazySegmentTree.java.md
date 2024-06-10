@@ -588,68 +588,76 @@ data:
     \u306E\u8981\u7D20\u3092x\u306B\u66F4\u65B0\u3059\u308B\n\t * @param k\n\t * @param\
     \ x\n\t */\n\tpublic final void set(int k, final T x) {\n\t\tk += sz;\n\t\tfor(int\
     \ i = h; i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\t\t}\n\t\tdata[k] = x;\n\t\t\
-    for(int i = 0; ++i <= h;) {\n\t\t\tupdate(k >> i);\n\t\t}\n\t}\n\t/**\n\t * @param\
-    \ k\n\t * @return k\u756A\u76EE\u306E\u8981\u7D20\n\t */\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tpublic final T get(int k) {\n\t\tk += sz;\n\t\tfor(int i = h;\
-    \ i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\t\t}\n\t\treturn (T) data[k];\n\t\
-    }\n\t/**\n\t * @param l\n\t * @param r\n\t * @return \u534A\u958B\u533A\u9593\
-    [l, r)\u306B\u3064\u3044\u3066\u4E8C\u9805\u6F14\u7B97\u3057\u305F\u7D50\u679C\
-    \n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic final T query(int l, int\
-    \ r) {\n\t\tif(l >= r) {\n\t\t\treturn e;\n\t\t}\n\t\tl += sz;\n\t\tr += sz;\n\
-    \t\tfor(int i = h; i > 0; i--) {\n\t\t\tif(((l >> i) << i) != l) {\n\t\t\t\tpropagate(l\
-    \ >> i);\n\t\t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\t\t\tpropagate((r - 1)\
-    \ >> i);\n\t\t\t}\n\t\t}\n\t\tT l2 = e, r2 = e;\n\t\tfor(; l < r; l >>= 1, r >>=\
-    \ 1) {\n\t\t\tif(l % 2 == 1) {\n\t\t\t\tl2 = f.apply(l2, (T) data[l++]);\n\t\t\
-    \t}\n\t\t\tif(r % 2 == 1) {\n\t\t\t\tr2 = f.apply((T) data[--r], r2);\n\t\t\t\
-    }\n\t\t}\n\t\treturn f.apply(l2, r2);\n\t}\n\t/**\n\t * @return \u5168\u4F53\u3092\
-    \u4E8C\u9805\u6F14\u7B97\u3057\u305F\u7D50\u679C\n\t */\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tpublic final T all(){ return (T) data[1]; }\n\t/**\n\t * k\u756A\
-    \u76EE\u306E\u8981\u7D20\u306B\u4F5C\u7528\u7D20x\u3092\u9069\u7528\u3059\u308B\
-    \n\t * @param k\n\t * @param x\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\t\
-    public final void apply(int k, final U x) {\n\t\tk += sz;\n\t\tfor(int i = h;\
-    \ i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\t\t}\n\t\tdata[k] = map.apply((T)\
-    \ data[k], x);\n\t\tfor(int i = 0; ++i <= h;) {\n\t\t\tupdate(k >> i);\n\t\t}\n\
-    \t}\n\t/**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306B\u3064\u3044\u3066\u4F5C\u7528\
-    \u7D20x\u3092\u9069\u7528\u3059\u308B\n\t * @param l\n\t * @param r\n\t * @param\
-    \ x\n\t */\n\tpublic final void apply(int l, int r, final U x) {\n\t\tif(l >=\
-    \ r) {\n\t\t\treturn;\n\t\t}\n\t\tl += sz;\n\t\tr += sz;\n\t\tfor(int i = h; i\
-    \ > 0; i--) {\n\t\t\tif(((l >> i) << i) != l) {\n\t\t\t\tpropagate(l >> i);\n\t\
-    \t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\t\t\tpropagate((r - 1) >> i);\n\t\t\
-    \t}\n\t\t}\n\t\tint l2 = l, r2 = r;\n\t\tfor(; l < r; l >>= 1, r >>= 1) {\n\t\t\
-    \tif(l % 2 == 1) {\n\t\t\t\tallApply(l++, x);\n\t\t\t}\n\t\t\tif(r % 2 == 1) {\n\
-    \t\t\t\tallApply(--r, x);\n\t\t\t}\n\t\t}\n\t\tl = l2;\n\t\tr = r2;\n\t\tfor(int\
-    \ i = 0; ++i <= h;) {\n\t\t\tif(((l >> i) << i) != l) {\n\t\t\t\tupdate(l >> i);\n\
-    \t\t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\t\t\tupdate((r - 1) >> i);\n\t\t\
-    \t}\n\t\t}\n\t}\n\t/**\n\t * @param l\n\t * @param fn\n\t * @return \u534A\u958B\
-    \u533A\u9593[l, x)\u304Cfn\u3092\u6E80\u305F\u3059\u6700\u521D\u306E\u8981\u7D20\
-    \u4F4D\u7F6Ex\n\t * if non-existence: n\n\t */\n\t@SuppressWarnings(\"unchecked\"\
-    )\n\tpublic final int findFirst(int l, final Predicate<T> fn) {\n\t\tif(l >= n)\
-    \ {\n\t\t\treturn n;\n\t\t}\n\t\tl += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\
-    \t\tpropagate(l >> i);\n\t\t}\n\t\tT sum = e;\n\t\tdo {\n\t\t\twhile((l & 1) ==\
-    \ 0) {\n\t\t\t\tl >>= 1;\n\t\t\t}\n\t\t\tif(fn.test(f.apply(sum, (T) data[l])))\
-    \ {\n\t\t\t\twhile(l < sz) {\n\t\t\t\t\tpropagate(l);\n\t\t\t\t\tl <<= 1;\n\t\t\
-    \t\t\tfinal T nxt = f.apply(sum, (T) data[l]);\n\t\t\t\t\tif(!fn.test(nxt)) {\n\
-    \t\t\t\t\t\tsum = nxt;\n\t\t\t\t\t\tl++;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn\
-    \ l + 1 - sz;\n\t\t\t}\n\t\t\tsum = f.apply(sum, (T) data[l++]);\n\t\t} while((l\
-    \ & -l) != l);\n\t\treturn n;\n\t}\n\t/**\n\t * @param r\n\t * @param fn\n\t *\
-    \ @return \u534A\u958B\u533A\u9593[x, r)\u304Cfn\u3092\u6E80\u305F\u3059\u6700\
-    \u5F8C\u306E\u8981\u7D20\u4F4D\u7F6Ex\n\t * if non-existence: \u22121\n\t */\n\
-    \t@SuppressWarnings(\"unchecked\")\n\tpublic final int findLast(int r, final Predicate<T>\
-    \ fn) {\n\t\tif(r <= 0) {\n\t\t\treturn -1;\n\t\t}\n\t\tr += sz;\n\t\tfor(int\
-    \ i = h; i > 0; i--) {\n\t\t\tpropagate((r - 1) >> i);\n\t\t}\n\t\tT sum = e;\n\
-    \t\tdo {\n\t\t\tr--;\n\t\t\twhile(r > 1 && r % 2 == 1) {\n\t\t\t\tr >>= 1;\n\t\
-    \t\t}\n\t\t\tif(fn.test(f.apply((T) data[r], sum))) {\n\t\t\t\twhile(r < sz) {\n\
-    \t\t\t\t\tpropagate(r);\n\t\t\t\t\tr = (r << 1) + 1;\n\t\t\t\t\tfinal T nxt =\
-    \ f.apply((T) data[r], sum);\n\t\t\t\t\tif(!fn.test(nxt)) {\n\t\t\t\t\t\tsum =\
-    \ nxt;\n\t\t\t\t\t\tr--;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn r - sz;\n\t\t\
-    \t}\n\t\t\tsum = f.apply((T) data[r], sum);\n\t\t} while((r & -r) != r);\n\t\t\
-    return -1;\n\t}\n\t/**\n\t * \u8981\u7D20\u3092\u30EA\u30BB\u30C3\u30C8\u3059\u308B\
-    \n\t */\n\tpublic final void clear(){ Arrays.fill(data, e); }\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tpublic final T[] toArray(){ return (T[]) IntStream.range(0, n).mapToObj(this::get).toArray();\
-    \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
-    \ sb = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i <\
-    \ n;) {\n\t\t\tsb.append(\", \" + get(i));\n\t\t}\n\t\treturn \"[\" + sb.toString()\
-    \ + \"]\";\n\t}\n}"
+    for(int i = 0; ++i <= h;) {\n\t\t\tupdate(k >> i);\n\t\t}\n\t}\n\t/**\n\t * LazySegmentTree[k]\u3092\
+    \u8FD4\u3059\n\t * @param k\n\t * @return k\u756A\u76EE\u306E\u8981\u7D20\n\t\
+    \ */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic final T get(int k) {\n\t\t\
+    k += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(k >> i);\n\t\t}\n\t\
+    \treturn (T) data[k];\n\t}\n\t/**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306B\u3064\
+    \u3044\u3066\u306E\u4E8C\u9805\u6F14\u7B97\u7D50\u679C\u3092\u8FD4\u3059\n\t *\
+    \ @param l\n\t * @param r\n\t * @return \u534A\u958B\u533A\u9593[l, r)\u306B\u3064\
+    \u3044\u3066\u4E8C\u9805\u6F14\u7B97\u3057\u305F\u7D50\u679C\n\t */\n\t@SuppressWarnings(\"\
+    unchecked\")\n\tpublic final T query(int l, int r) {\n\t\tif(l >= r) {\n\t\t\t\
+    return e;\n\t\t}\n\t\tl += sz;\n\t\tr += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\
+    \t\t\tif(((l >> i) << i) != l) {\n\t\t\t\tpropagate(l >> i);\n\t\t\t}\n\t\t\t\
+    if(((r >> i) << i) != r) {\n\t\t\t\tpropagate((r - 1) >> i);\n\t\t\t}\n\t\t}\n\
+    \t\tT l2 = e, r2 = e;\n\t\tfor(; l < r; l >>= 1, r >>= 1) {\n\t\t\tif(l % 2 ==\
+    \ 1) {\n\t\t\t\tl2 = f.apply(l2, (T) data[l++]);\n\t\t\t}\n\t\t\tif(r % 2 == 1)\
+    \ {\n\t\t\t\tr2 = f.apply((T) data[--r], r2);\n\t\t\t}\n\t\t}\n\t\treturn f.apply(l2,\
+    \ r2);\n\t}\n\t/**\n\t * \u5168\u4F53\u306E\u4E8C\u9805\u6F14\u7B97\u7D50\u679C\
+    \u3092\u8FD4\u3059\n\t * @return \u5168\u4F53\u3092\u4E8C\u9805\u6F14\u7B97\u3057\
+    \u305F\u7D50\u679C\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic final\
+    \ T all(){ return (T) data[1]; }\n\t/**\n\t * k\u756A\u76EE\u306E\u8981\u7D20\u306B\
+    \u4F5C\u7528\u7D20x\u3092\u9069\u7528\u3059\u308B\n\t * @param k\n\t * @param\
+    \ x\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic final void apply(int\
+    \ k, final U x) {\n\t\tk += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(k\
+    \ >> i);\n\t\t}\n\t\tdata[k] = map.apply((T) data[k], x);\n\t\tfor(int i = 0;\
+    \ ++i <= h;) {\n\t\t\tupdate(k >> i);\n\t\t}\n\t}\n\t/**\n\t * \u534A\u958B\u533A\
+    \u9593[l, r)\u306B\u3064\u3044\u3066\u4F5C\u7528\u7D20x\u3092\u9069\u7528\u3059\
+    \u308B\n\t * @param l\n\t * @param r\n\t * @param x\n\t */\n\tpublic final void\
+    \ apply(int l, int r, final U x) {\n\t\tif(l >= r) {\n\t\t\treturn;\n\t\t}\n\t\
+    \tl += sz;\n\t\tr += sz;\n\t\tfor(int i = h; i > 0; i--) {\n\t\t\tif(((l >> i)\
+    \ << i) != l) {\n\t\t\t\tpropagate(l >> i);\n\t\t\t}\n\t\t\tif(((r >> i) << i)\
+    \ != r) {\n\t\t\t\tpropagate((r - 1) >> i);\n\t\t\t}\n\t\t}\n\t\tint l2 = l, r2\
+    \ = r;\n\t\tfor(; l < r; l >>= 1, r >>= 1) {\n\t\t\tif(l % 2 == 1) {\n\t\t\t\t\
+    allApply(l++, x);\n\t\t\t}\n\t\t\tif(r % 2 == 1) {\n\t\t\t\tallApply(--r, x);\n\
+    \t\t\t}\n\t\t}\n\t\tl = l2;\n\t\tr = r2;\n\t\tfor(int i = 0; ++i <= h;) {\n\t\t\
+    \tif(((l >> i) << i) != l) {\n\t\t\t\tupdate(l >> i);\n\t\t\t}\n\t\t\tif(((r >>\
+    \ i) << i) != r) {\n\t\t\t\tupdate((r - 1) >> i);\n\t\t\t}\n\t\t}\n\t}\n\t/**\n\
+    \t * \u534A\u958B\u533A\u9593[l, x)\u304Cfn\u3092\u6E80\u305F\u3059\u6700\u521D\
+    \u306E\u8981\u7D20\u4F4D\u7F6Ex\u3092\u8FD4\u3059\n\t * @param l\n\t * @param\
+    \ fn\n\t * @return \u534A\u958B\u533A\u9593[l, x)\u304Cfn\u3092\u6E80\u305F\u3059\
+    \u6700\u521D\u306E\u8981\u7D20\u4F4D\u7F6Ex\n\t * if non-existence: n\n\t */\n\
+    \t@SuppressWarnings(\"unchecked\")\n\tpublic final int findFirst(int l, final\
+    \ Predicate<T> fn) {\n\t\tif(l >= n) {\n\t\t\treturn n;\n\t\t}\n\t\tl += sz;\n\
+    \t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate(l >> i);\n\t\t}\n\t\tT sum =\
+    \ e;\n\t\tdo {\n\t\t\twhile((l & 1) == 0) {\n\t\t\t\tl >>= 1;\n\t\t\t}\n\t\t\t\
+    if(fn.test(f.apply(sum, (T) data[l]))) {\n\t\t\t\twhile(l < sz) {\n\t\t\t\t\t\
+    propagate(l);\n\t\t\t\t\tl <<= 1;\n\t\t\t\t\tfinal T nxt = f.apply(sum, (T) data[l]);\n\
+    \t\t\t\t\tif(!fn.test(nxt)) {\n\t\t\t\t\t\tsum = nxt;\n\t\t\t\t\t\tl++;\n\t\t\t\
+    \t\t}\n\t\t\t\t}\n\t\t\t\treturn l + 1 - sz;\n\t\t\t}\n\t\t\tsum = f.apply(sum,\
+    \ (T) data[l++]);\n\t\t} while((l & -l) != l);\n\t\treturn n;\n\t}\n\t/**\n\t\
+    \ * \u534A\u958B\u533A\u9593[x, r)\u304Cfn\u3092\u6E80\u305F\u3059\u6700\u5F8C\
+    \u306E\u8981\u7D20\u4F4D\u7F6Ex\u3092\u8FD4\u3059\n\t * @param r\n\t * @param\
+    \ fn\n\t * @return \u534A\u958B\u533A\u9593[x, r)\u304Cfn\u3092\u6E80\u305F\u3059\
+    \u6700\u5F8C\u306E\u8981\u7D20\u4F4D\u7F6Ex\n\t * if non-existence: \u22121\n\t\
+    \ */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic final int findLast(int r, final\
+    \ Predicate<T> fn) {\n\t\tif(r <= 0) {\n\t\t\treturn -1;\n\t\t}\n\t\tr += sz;\n\
+    \t\tfor(int i = h; i > 0; i--) {\n\t\t\tpropagate((r - 1) >> i);\n\t\t}\n\t\t\
+    T sum = e;\n\t\tdo {\n\t\t\tr--;\n\t\t\twhile(r > 1 && r % 2 == 1) {\n\t\t\t\t\
+    r >>= 1;\n\t\t\t}\n\t\t\tif(fn.test(f.apply((T) data[r], sum))) {\n\t\t\t\twhile(r\
+    \ < sz) {\n\t\t\t\t\tpropagate(r);\n\t\t\t\t\tr = (r << 1) + 1;\n\t\t\t\t\tfinal\
+    \ T nxt = f.apply((T) data[r], sum);\n\t\t\t\t\tif(!fn.test(nxt)) {\n\t\t\t\t\t\
+    \tsum = nxt;\n\t\t\t\t\t\tr--;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn r - sz;\n\
+    \t\t\t}\n\t\t\tsum = f.apply((T) data[r], sum);\n\t\t} while((r & -r) != r);\n\
+    \t\treturn -1;\n\t}\n\t/**\n\t * \u8981\u7D20\u3092\u30EA\u30BB\u30C3\u30C8\u3059\
+    \u308B\n\t */\n\tpublic final void clear(){ Arrays.fill(data, e); }\n\t/**\n\t\
+    \ * LazySegmentTree\u3092\u914D\u5217\u306B\u5909\u63DB\u3057\u305F\u3082\u306E\
+    \u3092\u8FD4\u3059\n\t * @return LazySegmentTree\u306E\u914D\u5217\n\t */\n\t\
+    @SuppressWarnings(\"unchecked\")\n\tpublic final T[] toArray(){ return (T[]) IntStream.range(0,\
+    \ n).mapToObj(this::get).toArray(); }\n\t@Override\n\tpublic final String toString()\
+    \ {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tsb.append(get(0));\n\
+    \t\tfor(int i = 0; ++i < n;) {\n\t\t\tsb.append(\", \" + get(i));\n\t\t}\n\t\t\
+    return \"[\" + sb.toString() + \"]\";\n\t}\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -834,7 +842,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/lazysegmenttree/LazySegmentTree.java

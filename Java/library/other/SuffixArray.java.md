@@ -601,8 +601,9 @@ data:
     final int sn = vs.length(), tn = t.length();\n\t\twhile(si < sn && ti < tn) {\n\
     \t\t\tif(vs.charAt(si) < t.charAt(ti)) {\n\t\t\t\treturn true;\n\t\t\t}\n\t\t\t\
     if(vs.charAt(si) > t.charAt(ti)) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t\t++si;\n\
-    \t\t\t++ti;\n\t\t}\n\t\treturn si >= sn && ti < tn;\n\t}\n\t/**\n\t * @param t\n\
-    \t * @return t <= s[i, N)\u3068\u306A\u308B\u6700\u5C0F\u306Ei\n\t */\n\tpublic\
+    \t\t\t++ti;\n\t\t}\n\t\treturn si >= sn && ti < tn;\n\t}\n\t/**\n\t * t <= s[i,\
+    \ N)\u3068\u306A\u308B\u6700\u5C0F\u306Ei\u3092\u8FD4\u3059\n\t * @param t\n\t\
+    \ * @return t <= s[i, N)\u3068\u306A\u308B\u6700\u5C0F\u306Ei\n\t */\n\tpublic\
     \ final int lowerBound(final String t) {\n\t\tint ok = this.size(), ng = 0;\n\t\
     \twhile(ok - ng > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(ltSubstr(t,\
     \ this.get(mid), 0)) {\n\t\t\t\tng = mid;\n\t\t\t} else {\n\t\t\t\tok = mid;\n\
@@ -615,21 +616,22 @@ data:
     \t\twhile(ok - ng > 1) {\n\t\t\tfinal int mid = (ok + ng) / 2;\n\t\t\tif(ltSubstr(u,\
     \ this.get(mid), 0)) {\n\t\t\t\tng = mid;\n\t\t\t} else {\n\t\t\t\tok = mid;\n\
     \t\t\t}\n\t\t}\n\t\tfinal int end = this.size() - 1;\n\t\tthis.add(end, this.get(end)\
-    \ - 1);\n\t\treturn Pair.of(low, ok);\n\t}\n\t/**\n\t * @return S[i,N)\u3068S[j,N)\u3068\
-    \u306E\u6700\u9577\u5171\u901A\u63A5\u982D\u8F9E\n\t */\n\tpublic final int[]\
-    \ lcpArray() {\n\t\tfinal int n = this.size() - 1;\n\t\tint[] lcp = new int[n\
-    \ + 1], rank = new int[n + 1];\n\t\tfor(int i = 0; i <= n; ++i) {\n\t\t\trank[this.get(i)]\
-    \ = i;\n\t\t}\n\t\tint h = 0;\n\t\tfor(int i = 0; i <= n; ++i) {\n\t\t\tif(rank[i]\
-    \ < n) {\n\t\t\t\tfinal int j = this.get(rank[i] + 1);\n\t\t\t\tfor(; j + h <\
-    \ n && i + h < n; ++h) {\n\t\t\t\t\tif(vs.charAt(j + h) != vs.charAt(i + h)) {\n\
-    \t\t\t\t\t\tbreak;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tlcp[rank[i] + 1] = h;\n\t\t\
-    \t\tif(h > 0) {\n\t\t\t\t\th--;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn lcp;\n\t\
-    }\n\t@Override\n\tpublic final String toString() { \n\t\tStringBuilder sb = new\
-    \ StringBuilder();\n\t\tfor(int i = 0; i < this.size(); ++i) {\n\t\t\tsb.append(i\
-    \ + \":[\" + this.get(i) + \"]\");\n\t\t\tfor(int j = this.get(i); j < vs.length();\
-    \ ++j) {\n\t\t\t\tsb.append(\" \" + vs.charAt(j));\n\t\t\t}\n\t\t\tif(i + 1 !=\
-    \ this.size()) {\n\t\t\t\tsb.append(\"\\n\");\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\
-    \t}\n}"
+    \ - 1);\n\t\treturn Pair.of(low, ok);\n\t}\n\t/**\n\t * \u90E8\u5206\u6587\u5B57\
+    \u5217S[i,N)\u3068S[j,N)\u3068\u306E\u6700\u9577\u5171\u901A\u63A5\u982D\u8F9E\
+    \u3092\u8FD4\u3059\n\t * @return S[i,N)\u3068S[j,N)\u3068\u306E\u6700\u9577\u5171\
+    \u901A\u63A5\u982D\u8F9E\n\t */\n\tpublic final int[] lcpArray() {\n\t\tfinal\
+    \ int n = this.size() - 1;\n\t\tint[] lcp = new int[n + 1], rank = new int[n +\
+    \ 1];\n\t\tfor(int i = 0; i <= n; ++i) {\n\t\t\trank[this.get(i)] = i;\n\t\t}\n\
+    \t\tint h = 0;\n\t\tfor(int i = 0; i <= n; ++i) {\n\t\t\tif(rank[i] < n) {\n\t\
+    \t\t\tfinal int j = this.get(rank[i] + 1);\n\t\t\t\tfor(; j + h < n && i + h <\
+    \ n; ++h) {\n\t\t\t\t\tif(vs.charAt(j + h) != vs.charAt(i + h)) {\n\t\t\t\t\t\t\
+    break;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tlcp[rank[i] + 1] = h;\n\t\t\t\tif(h >\
+    \ 0) {\n\t\t\t\t\th--;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn lcp;\n\t}\n\t@Override\n\
+    \tpublic final String toString() { \n\t\tStringBuilder sb = new StringBuilder();\n\
+    \t\tfor(int i = 0; i < this.size(); ++i) {\n\t\t\tsb.append(i + \":[\" + this.get(i)\
+    \ + \"]\");\n\t\t\tfor(int j = this.get(i); j < vs.length(); ++j) {\n\t\t\t\t\
+    sb.append(\" \" + vs.charAt(j));\n\t\t\t}\n\t\t\tif(i + 1 != this.size()) {\n\t\
+    \t\t\tsb.append(\"\\n\");\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\t}\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -814,7 +816,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/SuffixArray.java

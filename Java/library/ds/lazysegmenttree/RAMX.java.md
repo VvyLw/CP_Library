@@ -555,9 +555,11 @@ data:
   code: "package library.ds.lazysegmenttree;\n\nimport java.util.Arrays;\n\n/**\n\
     \ * Range Add Range Max\n * \u533A\u9593\u52A0\u7B97, \u533A\u9593\u6700\u5927\
     \u5024\n */\npublic final class RAMX extends LazySegmentTree<Long, Long> {\n\t\
+    /**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a\n\t */\n\t\
     public RAMX(final int[] a){ super(Arrays.stream(a).asLongStream().boxed().toArray(Long[]::new),\
     \ Long::max, Long::sum, Long::sum, Long.valueOf(Long.MIN_VALUE), Long.valueOf(0));\
-    \ }\n\tpublic RAMX(final long[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new),\
+    \ }\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a\n\t\
+    \ */\n\tpublic RAMX(final long[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new),\
     \ Long::max, Long::sum, Long::sum, Long.valueOf(Long.MIN_VALUE), Long.valueOf(0));\
     \ }\n}"
   dependsOn:
@@ -744,7 +746,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/lazysegmenttree/RAMX.java

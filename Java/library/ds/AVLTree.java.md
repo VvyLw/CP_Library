@@ -597,17 +597,21 @@ data:
     \u3092\u8FFD\u52A0\u3059\u308B\n\t * @param val\n\t */\n\tpublic final void add(final\
     \ T val){ root = insert(root, cnt(root, val), val); }\n\t/**\n\t * k\u756A\u76EE\
     \u306E\u8981\u7D20\u3092\u524A\u9664\u3059\u308B\n\t * @param k\n\t */\n\tpublic\
-    \ final void remove(final int k){ root = erase(root, k); }\n\t/**\n\t * @param\
-    \ k\n\t * @return k\u756A\u76EE\u306E\u8981\u7D20\n\t */\n\tpublic final T get(final\
-    \ int k){ return find(root, k).val; }\n\t/**\n\t * @param val\n\t * @return val\u306E\
-    \u500B\u6570\n\t */\n\tpublic final int count(final T val){ return cnt(root, val);\
-    \ }\n\t/**\n\t * @return AVL\u6728\u306E\u30B5\u30A4\u30BA\n\t */\n\tpublic final\
-    \ int size(){ return root.size; }\n\t@SuppressWarnings(\"unchecked\")\n\tpublic\
-    \ final T[] toArray(){ return (T[]) IntStream.range(0, root.size).mapToObj(this::get).toArray();\
-    \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
-    \ sb = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i <\
-    \ root.size;) {\n\t\t\tsb.append(\", \" + get(i));\n\t\t}\n\t\treturn \"[\" +\
-    \ sb.toString() + \"]\";\n\t}\n}"
+    \ final void remove(final int k){ root = erase(root, k); }\n\t/**\n\t * AVLTree[k]\u3092\
+    \u8FD4\u3059\n\t * @param k\n\t * @return k\u756A\u76EE\u306E\u8981\u7D20\n\t\
+    \ */\n\tpublic final T get(final int k){ return find(root, k).val; }\n\t/**\n\t\
+    \ * AVLTree\u306B\u542B\u3080val\u306E\u500B\u6570\u3092\u8FD4\u3059\n\t * @param\
+    \ val\n\t * @return val\u306E\u500B\u6570\n\t */\n\tpublic final int count(final\
+    \ T val){ return cnt(root, val); }\n\t/**\n\t * AVL\u6728\u306E\u5927\u304D\u3055\
+    \u3092\u8FD4\u3059\n\t * @return AVL\u6728\u306E\u30B5\u30A4\u30BA\n\t */\n\t\
+    public final int size(){ return root.size; }\n\t/**\n\t * AVLTree\u3092\u914D\u5217\
+    \u306B\u5909\u63DB\u3057\u305F\u3082\u306E\u3092\u8FD4\u3059\n\t * @return AVLTree\u306E\
+    \u914D\u5217\n\t */\n\t@SuppressWarnings(\"unchecked\")\n\tpublic final T[] toArray(){\
+    \ return (T[]) IntStream.range(0, root.size).mapToObj(this::get).toArray(); }\n\
+    \t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder sb =\
+    \ new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i < root.size;)\
+    \ {\n\t\t\tsb.append(\", \" + get(i));\n\t\t}\n\t\treturn \"[\" + sb.toString()\
+    \ + \"]\";\n\t}\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
@@ -792,7 +796,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/AVLTree.java

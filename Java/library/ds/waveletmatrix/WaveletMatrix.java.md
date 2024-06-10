@@ -569,43 +569,57 @@ data:
     \ log) {\n\t\tys = Arrays.stream(arr).sorted().distinct().toArray();\n\t\tfinal\
     \ long[] t = new long[arr.length];\n\t\tArrays.setAll(t, i -> index(arr[i]));\n\
     \t\tmat = new WaveletMatrixBeta(t, log);\n\t}\n\tprivate final int index(final\
-    \ long x){ return Utility.lowerBound(ys, x); }\n\t/**\n\t * @param k\n\t * @return\
-    \ k\u756A\u76EE\u306E\u8981\u7D20\n\t */\n\tpublic final long get(final int k){\
-    \ return ys[(int) mat.access(k)]; }\n\t/**\n\t * @param r\n\t * @param x\n\t *\
-    \ @return \u534A\u958B\u533A\u9593[0, r)\u306B\u542B\u307E\u308C\u308Bx\u306E\u500B\
-    \u6570\n\t */\n\tpublic final int rank(final int r, final long x) {\n\t\tfinal\
-    \ int pos = index(x);\n\t\tif(pos == ys.length || ys[pos] != x) {\n\t\t\treturn\
-    \ 0;\n\t\t}\n\t\treturn mat.rank(pos, r);\n\t}\n\t/**\n\t * @param l\n\t * @param\
-    \ r\n\t * @param x\n\t * @return \u534A\u958B\u533A\u9593[l, r)\u306B\u542B\u307E\
-    \u308C\u308Bx\u306E\u500B\u6570\n\t */\n\tpublic final int rank(final int l, final\
-    \ int r, final long x){ return rank(r, x) - rank(l, x); }\n\t/**\n\t * @param\
-    \ l\n\t * @param r\n\t * @param k\n\t * @return \u534A\u958B\u533A\u9593[l, r)\u306B\
-    \u542B\u307E\u308C\u308B\u8981\u7D20\u306E\u3046\u3061k\u756A\u76EE\u306B\u5C0F\
-    \u3055\u3044\u8981\u7D20\n\t */\n\tpublic final long kthMin(final int l, final\
-    \ int r, final int k){ return ys[(int) mat.kthMin(l, r, k)]; }\n\t/**\n\t * @param\
-    \ l\n\t * @param r\n\t * @param k\n\t * @return \u534A\u958B\u533A\u9593[l, r)\u306B\
-    \u542B\u307E\u308C\u308B\u8981\u7D20\u306E\u3046\u3061k\u756A\u76EE\u306B\u5927\
-    \u304D\u3044\u8981\u7D20\n\t */\n\tpublic final long kthMax(final int l, final\
-    \ int r, final int k){ return ys[(int) mat.kthMax(l, r, k)]; }\n\t/**\n\t * @param\
-    \ l\n\t * @param r\n\t * @param upper\n\t * @return \u534A\u958B\u533A\u9593[l,\
-    \ r)\u306B\u542B\u307E\u308C\u308B\u8981\u7D20\u306E\u3046\u3061[0, upper)\u3067\
-    \u3042\u308B\u8981\u7D20\u6570\n\t */\n\tpublic final int rangeFreq(final int\
-    \ l, final int r, final long upper){ return mat.rangeFreq(l, r, index(upper));\
-    \ }\n\t/**\n\t * @param l\n\t * @param r\n\t * @param lower\n\t * @param upper\n\
-    \t * @return \u534A\u958B\u533A\u9593[l, r)\u306B\u542B\u307E\u308C\u308B\u8981\
-    \u7D20\u306E\u3046\u3061[lower, upper)\u3067\u3042\u308B\u8981\u7D20\u6570\n\t\
-    \ */\n\tpublic final int rangeFreq(final int l, final int r, final long lower,\
-    \ final long upper){ return mat.rangeFreq(l, r, index(lower), index(upper)); }\n\
-    \t/**\n\t * @param l\n\t * @param r\n\t * @param upper\n\t * @return \u534A\u958B\
-    \u533A\u9593[l, r)\u306B\u542B\u307E\u308C\u308B\u8981\u7D20\u306E\u3046\u3061\
-    upper\u306E\u6B21\u306B\u5C0F\u3055\u3044\u8981\u7D20\n\t */\n\tpublic final long\
-    \ prev(final int l, final int r, final long upper) {\n\t\tfinal long ret = mat.prev(l,\
-    \ r, index(upper));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n\t/**\n\t\
-    \ * @param l\n\t * @param r\n\t * @param lower\n\t * @return \u534A\u958B\u533A\
-    \u9593[l, r)\u306B\u542B\u307E\u308C\u308B\u8981\u7D20\u306E\u3046\u3061lower\u306E\
-    \u6B21\u306B\u5927\u304D\u3044\u8981\u7D20\n\t */\n\tpublic final long next(final\
-    \ int l, final int r, final long lower) {\n\t\tfinal long ret = mat.next(l, r,\
-    \ index(lower));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\t}\n}"
+    \ long x){ return Utility.lowerBound(ys, x); }\n\t/**\n\t * WaveletMatrix[k]\u3092\
+    \u8FD4\u3059\n\t * @param k\n\t * @return k\u756A\u76EE\u306E\u8981\u7D20\n\t\
+    \ */\n\tpublic final long get(final int k){ return ys[(int) mat.access(k)]; }\n\
+    \t/**\n\t * \u534A\u958B\u533A\u9593[0, r)\u306B\u542B\u307E\u308C\u308Bx\u306E\
+    \u500B\u6570\u3092\u8FD4\u3059\n\t * @param r\n\t * @param x\n\t * @return \u534A\
+    \u958B\u533A\u9593[0, r)\u306B\u542B\u307E\u308C\u308Bx\u306E\u500B\u6570\n\t\
+    \ */\n\tpublic final int rank(final int r, final long x) {\n\t\tfinal int pos\
+    \ = index(x);\n\t\tif(pos == ys.length || ys[pos] != x) {\n\t\t\treturn 0;\n\t\
+    \t}\n\t\treturn mat.rank(pos, r);\n\t}\n\t/**\n\t * \u534A\u958B\u533A\u9593[l,\
+    \ r)\u306B\u542B\u307E\u308C\u308Bx\u306E\u500B\u6570\u3092\u8FD4\u3059\n\t *\
+    \ @param l\n\t * @param r\n\t * @param x\n\t * @return \u534A\u958B\u533A\u9593\
+    [l, r)\u306B\u542B\u307E\u308C\u308Bx\u306E\u500B\u6570\n\t */\n\tpublic final\
+    \ int rank(final int l, final int r, final long x){ return rank(r, x) - rank(l,\
+    \ x); }\n\t/**\n\t * @param l\n\t * @param r\n\t * @param k\n\t * @return \u534A\
+    \u958B\u533A\u9593[l, r)\u306B\u542B\u307E\u308C\u308B\u8981\u7D20\u306E\u3046\
+    \u3061k\u756A\u76EE\u306B\u5C0F\u3055\u3044\u8981\u7D20\n\t */\n\tpublic final\
+    \ long kthMin(final int l, final int r, final int k){ return ys[(int) mat.kthMin(l,\
+    \ r, k)]; }\n\t/**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306B\u542B\u307E\u308C\
+    \u308B\u8981\u7D20\u306E\u3046\u3061k\u756A\u76EE\u306B\u5927\u304D\u3044\u8981\
+    \u7D20\u3092\u8FD4\u3059\n\t * @param l\n\t * @param r\n\t * @param k\n\t * @return\
+    \ \u534A\u958B\u533A\u9593[l, r)\u306B\u542B\u307E\u308C\u308B\u8981\u7D20\u306E\
+    \u3046\u3061k\u756A\u76EE\u306B\u5927\u304D\u3044\u8981\u7D20\n\t */\n\tpublic\
+    \ final long kthMax(final int l, final int r, final int k){ return ys[(int) mat.kthMax(l,\
+    \ r, k)]; }\n\t/**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306B\u542B\u307E\u308C\
+    \u308B\u8981\u7D20\u306E\u3046\u3061[0, upper)\u3067\u3042\u308B\u8981\u7D20\u6570\
+    \u3092\u8FD4\u3059\n\t * @param l\n\t * @param r\n\t * @param upper\n\t * @return\
+    \ \u534A\u958B\u533A\u9593[l, r)\u306B\u542B\u307E\u308C\u308B\u8981\u7D20\u306E\
+    \u3046\u3061[0, upper)\u3067\u3042\u308B\u8981\u7D20\u6570\n\t */\n\tpublic final\
+    \ int rangeFreq(final int l, final int r, final long upper){ return mat.rangeFreq(l,\
+    \ r, index(upper)); }\n\t/**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306B\u542B\u307E\
+    \u308C\u308B\u8981\u7D20\u306E\u3046\u3061[lower, upper)\u3067\u3042\u308B\u8981\
+    \u7D20\u6570\u3092\u8FD4\u3059\n\t * @param l\n\t * @param r\n\t * @param lower\n\
+    \t * @param upper\n\t * @return \u534A\u958B\u533A\u9593[l, r)\u306B\u542B\u307E\
+    \u308C\u308B\u8981\u7D20\u306E\u3046\u3061[lower, upper)\u3067\u3042\u308B\u8981\
+    \u7D20\u6570\n\t */\n\tpublic final int rangeFreq(final int l, final int r, final\
+    \ long lower, final long upper){ return mat.rangeFreq(l, r, index(lower), index(upper));\
+    \ }\n\t/**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306B\u542B\u307E\u308C\u308B\u8981\
+    \u7D20\u306E\u3046\u3061upper\u306E\u6B21\u306B\u5C0F\u3055\u3044\u8981\u7D20\u3092\
+    \u8FD4\u3059\n\t * @param l\n\t * @param r\n\t * @param upper\n\t * @return \u534A\
+    \u958B\u533A\u9593[l, r)\u306B\u542B\u307E\u308C\u308B\u8981\u7D20\u306E\u3046\
+    \u3061upper\u306E\u6B21\u306B\u5C0F\u3055\u3044\u8981\u7D20\n\t */\n\tpublic final\
+    \ long prev(final int l, final int r, final long upper) {\n\t\tfinal long ret\
+    \ = mat.prev(l, r, index(upper));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\
+    \t}\n\t/**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306B\u542B\u307E\u308C\u308B\u8981\
+    \u7D20\u306E\u3046\u3061lower\u306E\u6B21\u306B\u5927\u304D\u3044\u8981\u7D20\u3092\
+    \u8FD4\u3059\n\t * @param l\n\t * @param r\n\t * @param lower\n\t * @return \u534A\
+    \u958B\u533A\u9593[l, r)\u306B\u542B\u307E\u308C\u308B\u8981\u7D20\u306E\u3046\
+    \u3061lower\u306E\u6B21\u306B\u5927\u304D\u3044\u8981\u7D20\n\t */\n\tpublic final\
+    \ long next(final int l, final int r, final long lower) {\n\t\tfinal long ret\
+    \ = mat.next(l, r, index(lower));\n\t\treturn ret == -1 ? -1 : ys[(int) ret];\n\
+    \t}\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -790,7 +804,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/waveletmatrix/WaveletMatrix.java

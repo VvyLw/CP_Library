@@ -567,12 +567,15 @@ data:
     \u8981\u7D20\u3092\u52A0\u7B97\n\t * @param l\n\t * @param r\n\t * @param x\n\t\
     \ */\n\tpublic final void add(final int l, final int r, final long x) {\n\t\t\
     a.add(l, x);\n\t\ta.add(r, -x);\n\t\tb.add(l, x * (1 - l));\n\t\tb.add(r, x *\
-    \ (r - 1));\n\t}\n\t/**\n\t * @param i\n\t * @return i\u756A\u76EE\u306E\u8981\
-    \u7D20\n\t */\n\tpublic final long get(final int i){ return sum(i, i + 1); }\n\
-    \t/**\n\t * @param l\n\t * @param r\n\t * @return \u534A\u958B\u533A\u9593[l,\
-    \ r)\u306E\u548C\n\t */\n\tpublic final long sum(int l, int r) {\n\t\tl--;\n\t\
-    \tr--;\n\t\treturn a.sum(r) * r + b.sum(r) - a.sum(l) * l - b.sum(l);\n\t}\n\t\
-    public final long[] toArray(){ return IntStream.range(0, n).mapToLong(this::get).toArray();\
+    \ (r - 1));\n\t}\n\t/**\n\t * RangeBIT[i]\u3092\u8FD4\u3059\n\t * @param i\n\t\
+    \ * @return i\u756A\u76EE\u306E\u8981\u7D20\n\t */\n\tpublic final long get(final\
+    \ int i){ return sum(i, i + 1); }\n\t/**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306E\
+    \u548C\u3092\u8FD4\u3059\n\t * @param l\n\t * @param r\n\t * @return \u534A\u958B\
+    \u533A\u9593[l, r)\u306E\u548C\n\t */\n\tpublic final long sum(int l, int r) {\n\
+    \t\tl--;\n\t\tr--;\n\t\treturn a.sum(r) * r + b.sum(r) - a.sum(l) * l - b.sum(l);\n\
+    \t}\n\t/**\n\t * RangeBIT\u3092\u914D\u5217\u306B\u5909\u63DB\u3057\u305F\u3082\
+    \u306E\u3092\u8FD4\u3059\n\t * @return RangeBIT\u306E\u914D\u5217\n\t */\n\tpublic\
+    \ final long[] toArray(){ return IntStream.range(0, n).mapToLong(this::get).toArray();\
     \ }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder\
     \ sb = new StringBuilder();\n\t\tsb.append(get(0));\n\t\tfor(int i = 0; ++i <\
     \ n;) {\n\t\t\tsb.append(\", \" + get(i));\n\t\t}\n\t\treturn \"[\" + sb.toString()\
@@ -761,7 +764,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/fenwicktree/RangeBIT.java

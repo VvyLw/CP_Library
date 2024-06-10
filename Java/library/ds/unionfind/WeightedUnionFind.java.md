@@ -563,13 +563,15 @@ data:
     weight = new long[n];\n\t\tArrays.fill(par, -1);\n\t}\n\t@Override\n\tpublic final\
     \ int root(final int i) {\n\t\tif(par[i] < 0) {\n\t\t\treturn i;\n\t\t}\n\t\t\
     final int r = root(par[i]);\n\t\tweight[i] += weight[par[i]];\n\t\treturn par[i]\
-    \ = r;\n\t}\n\t/**\n\t * @param i\n\t * @return i\u306E\u6839\u306E\u91CD\u307F\
-    \n\t */\n\tpublic final long get(final int i) {\n\t\troot(i);\n\t\treturn weight[i];\n\
-    \t}\n\t/**\n\t * @param x\n\t * @param y\n\t * @return \u91CD\u307F\u306E\u5DEE\
-    \n\t */\n\tpublic final long diff(final int x, final int y){ return get(y) - get(x);\
-    \ }\n\t/**\n\t * x\u3068y\u3092\u30DE\u30FC\u30B8\u3059\u308B\n\t * @param x\n\
-    \t * @param y\n\t * @param w\n\t * @return \u672A\u30DE\u30FC\u30B8\u306A\u3089\
-    1, \u30DE\u30FC\u30B8\u6E08\u3067\u91CD\u307F\u304C0\u306A\u30890, \u91CD\u307F\
+    \ = r;\n\t}\n\t/**\n\t * i\u306E\u6839\u306E\u91CD\u307F\u3092\u8FD4\u3059\n\t\
+    \ * @param i\n\t * @return i\u306E\u6839\u306E\u91CD\u307F\n\t */\n\tpublic final\
+    \ long get(final int i) {\n\t\troot(i);\n\t\treturn weight[i];\n\t}\n\t/**\n\t\
+    \ * \u4E8C\u9802\u70B9\u306E\u6839\u306E\u91CD\u307F\u306E\u5DEE\u3092\u8FD4\u3059\
+    \n\t * @param x\n\t * @param y\n\t * @return \u91CD\u307F\u306E\u5DEE\n\t */\n\
+    \tpublic final long diff(final int x, final int y){ return get(y) - get(x); }\n\
+    \t/**\n\t * x\u3068y\u3092\u30DE\u30FC\u30B8\u3059\u308B\n\t * @param x\n\t *\
+    \ @param y\n\t * @param w\n\t * @return \u672A\u30DE\u30FC\u30B8\u306A\u30891,\
+    \ \u30DE\u30FC\u30B8\u6E08\u3067\u91CD\u307F\u304C0\u306A\u30890, \u91CD\u307F\
     \u304C\u3042\u308C\u3070-1\n\t */\n\tpublic final int unite(int x, int y, long\
     \ w) {\n\t\tw += diff(y, x);\n\t\tx = root(x);\n\t\ty = root(y);\n\t\tif(x ==\
     \ y) {\n\t\t\treturn w == 0 ? 0 : -1;\n\t\t}\n\t\tif(par[x] > par[y]) {\n\t\t\t\
@@ -769,7 +771,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/unionfind/WeightedUnionFind.java

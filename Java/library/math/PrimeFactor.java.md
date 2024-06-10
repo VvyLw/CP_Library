@@ -556,15 +556,16 @@ data:
     \n/**\n * n\u4EE5\u4E0B\u306E\u6574\u6570\u306B\u5BFE\u3057\u3066\u7D20\u56E0\u6570\
     \u5206\u89E3\u53EF\u80FD\u306A\u30C6\u30FC\u30D6\u30EB\u3092\u4F5C\u6210\u3059\
     \u308B\u30AF\u30E9\u30B9\n */\npublic final class PrimeFactor {\n\tprivate final\
-    \ int[] spf;\n\tpublic PrimeFactor(final int n) {\n\t\tspf = Utility.iota(n +\
-    \ 1).toArray();\n\t\tfor(int i = 2; i * i <= n; ++i) {\n\t\t\tif(spf[i] != i)\
-    \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\
-    \t\t\tif(spf[j] == j) {\n\t\t\t\t\tspf[j] = i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\
-    }\n\t/**\n\t * @param n \u6574\u6570\n\t * @return n\u3092\u7D20\u56E0\u6570\u5206\
-    \u89E3\u3059\u308B\n\t */\n\tpublic final TreeMap<Integer, Integer> get(int n)\
-    \ {\n\t\tfinal TreeMap<Integer, Integer> m = new TreeMap<>();\n\t\twhile(n !=\
-    \ 1) {\n\t\t\tm.merge(spf[n], 1, (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\t\t\
-    }\n\t\treturn m;\n\t}\n}\n"
+    \ int[] spf;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param\
+    \ n\n\t */\n\tpublic PrimeFactor(final int n) {\n\t\tspf = Utility.iota(n + 1).toArray();\n\
+    \t\tfor(int i = 2; i * i <= n; ++i) {\n\t\t\tif(spf[i] != i) {\n\t\t\t\tcontinue;\n\
+    \t\t\t}\n\t\t\tfor(int j = i * i; j <= n; j += i) {\n\t\t\t\tif(spf[j] == j) {\n\
+    \t\t\t\t\tspf[j] = i;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\t/**\n\t * n\u3092\u7D20\
+    \u56E0\u6570\u5206\u89E3\u3057\u305F\u7D50\u679C\u3092\u8FD4\u3059\n\t * @param\
+    \ n \u6574\u6570\n\t * @return n\u3092\u7D20\u56E0\u6570\u5206\u89E3\u3059\u308B\
+    \n\t */\n\tpublic final TreeMap<Integer, Integer> get(int n) {\n\t\tfinal TreeMap<Integer,\
+    \ Integer> m = new TreeMap<>();\n\t\twhile(n != 1) {\n\t\t\tm.merge(spf[n], 1,\
+    \ (a, b) -> (a + b));\n\t\t\tn /= spf[n];\n\t\t}\n\t\treturn m;\n\t}\n}\n"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -749,7 +750,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/PrimeFactor.java

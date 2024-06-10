@@ -555,12 +555,13 @@ data:
   code: "package library.graph;\n\nimport java.util.Objects;\n\n/**\n * \u8FBA\u3092\
     \u8868\u3059\u30AF\u30E9\u30B9\n */\npublic final class Edge {\n\tpublic int src,\
     \ to, id;\n\tpublic long cost;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\
-    \u30BF\n\t * @param src\n\t * @param to\n\t * @param id\n\t */\n\tpublic Edge(final\
-    \ int src, final int to, final int id) {\n\t\tthis.src = src;\n\t\tthis.to = to;\n\
-    \t\tthis.id = id;\n\t}\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\
-    \n\t * @param src\n\t * @param to\n\t * @param cost\n\t * @param id\n\t */\n\t\
-    public Edge(final int src, final int to, final long cost, final int id) {\n\t\t\
-    this.src = src;\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t\tthis.id = id;\n\
+    \u30BF\n\t * @param src \u51FA\u767A\u70B9\n\t * @param to \u884C\u5148\n\t *\
+    \ @param id\n\t */\n\tpublic Edge(final int src, final int to, final int id) {\n\
+    \t\tthis.src = src;\n\t\tthis.to = to;\n\t\tthis.id = id;\n\t}\n\t/**\n\t * \u30B3\
+    \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param src \u51FA\u767A\u70B9\n\t *\
+    \ @param to \u884C\u5148\n\t * @param cost \u8CBB\u7528\n\t * @param id\n\t */\n\
+    \tpublic Edge(final int src, final int to, final long cost, final int id) {\n\t\
+    \tthis.src = src;\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t\tthis.id = id;\n\
     \t}\n\t@Override\n\tpublic final boolean equals(final Object o) {\n\t\tif(this\
     \ == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass())\
     \ {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Edge e = (Edge) o;\n\t\treturn src\
@@ -752,7 +753,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/Edge.java

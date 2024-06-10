@@ -566,32 +566,34 @@ data:
     \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a\n\t */\n\tpublic PrefixSum2D(final\
     \ long[][] a) {\n\t\tthis(a.length, a[0].length);\n\t\tfor(int i = 0; i < a.length;\
     \ ++i) {\n\t\t\tfor(int j = 0; j < a[i].length; ++j) {\n\t\t\t\tadd(i, j, a[i][j]);\n\
-    \t\t\t}\n\t\t}\n\t}\n\t/**\n\t * (i, j)\u306Bx\u3092\u52A0\u7B97\n\t * @param\
-    \ i\n\t * @param j\n\t * @param x\n\t */\n\tpublic final void add(int i, int j,\
-    \ final long x) {\n\t\tif(built) {\n\t\t\tthrow new UnsupportedOperationException(\"\
+    \t\t\t}\n\t\t}\n\t}\n\t/**\n\t * (i, j)\u756A\u76EE\u306Bx\u3092\u52A0\u7B97\n\
+    \t * @param i\n\t * @param j\n\t * @param x\n\t */\n\tpublic final void add(int\
+    \ i, int j, final long x) {\n\t\tif(built) {\n\t\t\tthrow new UnsupportedOperationException(\"\
     Prefix Sum 2D has been built.\");\n\t\t}\n\t\ti++;\n\t\tj++;\n\t\tif(i >= h ||\
-    \ j >= w) {\n\t\t\treturn;\n\t\t}\n\t\tdata[i][j] += x;\n\t}\n\t/**\n\t * [i1,\
-    \ i2), [j1, j2)\u306Bx\u3092\u52A0\u7B97\n\t * @param i1\n\t * @param j1\n\t *\
-    \ @param i2\n\t * @param j2\n\t * @param x\n\t */\n\tpublic final void add(final\
-    \ int i1, final int j1, final int i2, final int j2, final long x) {\n\t\tadd(i1,\
-    \ j1, x);\n\t\tadd(i1, j2, -x);\n\t\tadd(i2, j1, -x);\n\t\tadd(i2, j2, x);\n\t\
-    }\n\t/**\n\t * \u69CB\u7BC9\n\t */\n\tpublic final void build() {\n\t\tassert\
-    \ !built;\n\t\tfor(int i = 1; i < h; ++i) {\n\t\t\tfor(int j = 1; j < w; ++j)\
-    \ {\n\t\t\t\tdata[i][j] += data[i][j - 1] + data[i - 1][j] - data[i - 1][j - 1];\n\
-    \t\t\t}\n\t\t}\n\t\tbuilt = true;\n\t}\n\t/**\n\t * @param i1\n\t * @param j1\n\
-    \t * @param i2\n\t * @param j2\n\t * @return [i1, i2), [j1, j2)\u306E\u77E9\u5F62\
-    \u548C\n\t */\n\tpublic final long get(final int i1, final int j1, final int i2,\
-    \ final int j2) {\n\t\tif(!built) {\n\t\t\tthrow new UnsupportedOperationException(\"\
+    \ j >= w) {\n\t\t\treturn;\n\t\t}\n\t\tdata[i][j] += x;\n\t}\n\t/**\n\t * \u534A\
+    \u958B\u533A\u9593[i1, i2), [j1, j2)\u306Bx\u3092\u52A0\u7B97\n\t * @param i1\n\
+    \t * @param j1\n\t * @param i2\n\t * @param j2\n\t * @param x\n\t */\n\tpublic\
+    \ final void add(final int i1, final int j1, final int i2, final int j2, final\
+    \ long x) {\n\t\tadd(i1, j1, x);\n\t\tadd(i1, j2, -x);\n\t\tadd(i2, j1, -x);\n\
+    \t\tadd(i2, j2, x);\n\t}\n\t/**\n\t * \u69CB\u7BC9\n\t */\n\tpublic final void\
+    \ build() {\n\t\tassert !built;\n\t\tfor(int i = 1; i < h; ++i) {\n\t\t\tfor(int\
+    \ j = 1; j < w; ++j) {\n\t\t\t\tdata[i][j] += data[i][j - 1] + data[i - 1][j]\
+    \ - data[i - 1][j - 1];\n\t\t\t}\n\t\t}\n\t\tbuilt = true;\n\t}\n\t/**\n\t * \u534A\
+    \u958B\u533A\u9593[i1, i2), [j1, j2)\u306E\u77E9\u5F62\u548C\n\t * @param i1\n\
+    \t * @param j1\n\t * @param i2\n\t * @param j2\n\t * @return [i1, i2), [j1, j2)\u306E\
+    \u77E9\u5F62\u548C\n\t */\n\tpublic final long get(final int i1, final int j1,\
+    \ final int i2, final int j2) {\n\t\tif(!built) {\n\t\t\tthrow new UnsupportedOperationException(\"\
     Prefix Sum 2D hasn't been built.\");\n\t\t}\n\t\treturn data[i2][j2] - data[i1][j2]\
-    \ - data[i2][j1] + data[i1][j1];\n\t}\n\t/**\n\t * @param i\n\t * @param j\n\t\
-    \ * @return (i, j)\u306E\u8981\u7D20\n\t */\n\tpublic final long get(final int\
-    \ i, final int j) {\n\t\tif(!built) {\n\t\t\tthrow new UnsupportedOperationException(\"\
-    Prefix Sum 2D hasn't been built.\");\n\t\t}\n\t\treturn data[i + 1][j + 1];\n\t\
-    }\n\t@Override\n\tpublic final String toString() {\n\t\tfinal StringBuilder sb\
-    \ = new StringBuilder();\n\t\tfor(int i = 0; i < h - 3; ++i) {\n\t\t\tsb.append(get(i,\
-    \ 0));\n\t\t\tfor(int j = 0; ++j < w - 3;) {\n\t\t\t\tsb.append(\" \" + get(i,\
-    \ j));\n\t\t\t}\n\t\t\tif(i + 1 < h) {\n\t\t\t\tsb.append('\\n');\n\t\t\t}\n\t\
-    \t}\n\t\treturn sb.toString();\n\t}\n}"
+    \ - data[i2][j1] + data[i1][j1];\n\t}\n\t/**\n\t * PrefixSum2D[i][j]\u306E\u8981\
+    \u7D20\u3092\u8FD4\u3059\n\t * @param i\n\t * @param j\n\t * @return (i, j)\u306E\
+    \u8981\u7D20\n\t */\n\tpublic final long get(final int i, final int j) {\n\t\t\
+    if(!built) {\n\t\t\tthrow new UnsupportedOperationException(\"Prefix Sum 2D hasn't\
+    \ been built.\");\n\t\t}\n\t\treturn data[i + 1][j + 1];\n\t}\n\t@Override\n\t\
+    public final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
+    \t\tfor(int i = 0; i < h - 3; ++i) {\n\t\t\tsb.append(get(i, 0));\n\t\t\tfor(int\
+    \ j = 0; ++j < w - 3;) {\n\t\t\t\tsb.append(\" \" + get(i, j));\n\t\t\t}\n\t\t\
+    \tif(i + 1 < h) {\n\t\t\t\tsb.append('\\n');\n\t\t\t}\n\t\t}\n\t\treturn sb.toString();\n\
+    \t}\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -776,7 +778,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-06-10 16:52:40+09:00'
+  timestamp: '2024-06-11 02:58:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/prefixsum/PrefixSum2D.java
