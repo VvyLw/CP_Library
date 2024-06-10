@@ -564,7 +564,7 @@ data:
     \u5165\u308C\u308B\n\t * \u6A19\u6E96\u30A8\u30E9\u30FC\u51FA\u529B\u306E\u6642\
     \u3001\u4E00\u90E8\u51FA\u529B\u304CtoString\u3055\u308C\u3066\u8868\u793A\u3055\
     \u308C\u308B\u3002\n\t * @param autoFlush \u30A4\u30F3\u30BF\u30E9\u30AF\u30C6\
-    \u30A3\u30D6\u554F\u984C\u306E\u6642\u306Ftrue\u306B\u3059\u308B\n\t */\n\tpublic\
+    \u30A3\u30D6\u554F\u984C\u306E\u6642\u306Ftrue\u306B\u3059\u308B\n\t */\n\tprotected\
     \ MyPrinter(final OutputStream os, final boolean autoFlush){\n\t\tthis.os = os;\n\
     \t\tthis.autoFlush = autoFlush;\n\t\tbuf = new byte[1 << 17];\n\t\tpos = 0;\n\t\
     \tdebug = os == System.err;\n\t}\n\tprivate final void write(final byte bt) {\n\
@@ -572,11 +572,11 @@ data:
     \tprivate final void newLine() {\n\t\twrite((byte) '\\n');\n\t\tif(autoFlush)\
     \ {\n\t\t\tflush();\n\t\t}\n\t}\n\t/**\n\t * {@link PrintWriter#print}\u3068\u4F7F\
     \u3044\u65B9\u306F\u540C\u3058\n\t * \u8272\u3005\u51FA\u529B\u3057\u3066\u304F\
-    \u308C\u308B\n\t * @param arg\n\t * @see PrintWriter#print\n\t */\n\tpublic final\
-    \ void print(final Object arg) {\n\t\tif(arg instanceof final String s) {\n\t\t\
-    \tfor(final char c: s.toCharArray()) {\n\t\t\t\twrite((byte) c);\n\t\t\t}\n\t\t\
-    } else {\n\t\t\tfinal StringBuilder sb = new StringBuilder();\n\t\t\tif(arg instanceof\
-    \ final int[] a) {\n\t\t\t\tif(debug) {\n\t\t\t\t\tprint(Arrays.toString(a));\n\
+    \u308C\u308B\n\t * @param arg\n\t * @see PrintWriter#print\n\t */\n\tprotected\
+    \ final void print(final Object arg) {\n\t\tif(arg instanceof final String s)\
+    \ {\n\t\t\tfor(final char c: s.toCharArray()) {\n\t\t\t\twrite((byte) c);\n\t\t\
+    \t}\n\t\t} else {\n\t\t\tfinal StringBuilder sb = new StringBuilder();\n\t\t\t\
+    if(arg instanceof final int[] a) {\n\t\t\t\tif(debug) {\n\t\t\t\t\tprint(Arrays.toString(a));\n\
     \t\t\t\t\treturn;\n\t\t\t\t}\n\t\t\t\tif(a.length == 0) {\n\t\t\t\t\treturn;\n\
     \t\t\t\t}\n\t\t\t\tsb.append(a[0]);\n\t\t\t\tfor(int i = 0; ++i < a.length;) {\n\
     \t\t\t\t\tsb.append(\" \" + a[i]);\n\t\t\t\t}\n\t\t\t} else if(arg instanceof\
@@ -608,15 +608,15 @@ data:
     \t\t}\n\t\t\t}\n\t\t\tprint(sb.toString());\n\t\t}\n\t\tif(autoFlush) {\n\t\t\t\
     flush();\n\t\t}\n\t}\n\t/**\n\t * {@link PrintWriter#printf}\u3068\u4F7F\u3044\
     \u65B9\u306F\u540C\u3058\n\t * @param fmt\n\t * @param args\n\t * @see PrintWriter#printf\n\
-    \t */\n\tpublic final void printf(final String fmt, final Object... args) {\n\t\
-    \tprint(new Formatter().format(fmt, args));\n\t\tif(autoFlush) {\n\t\t\tflush();\n\
+    \t */\n\tprotected final void printf(final String fmt, final Object... args) {\n\
+    \t\tprint(new Formatter().format(fmt, args));\n\t\tif(autoFlush) {\n\t\t\tflush();\n\
     \t\t}\n\t}\n\t/**\n\t * \u51FA\u529B\u3059\u308B\u305F\u3081\u306E\u30E1\u30BD\
     \u30C3\u30C9\n\t * \u5F15\u6570\u306A\u3057\u3067\u6539\u884C\u3092\u51FA\u529B\
-    \u3059\u308B\n\t */\n\tpublic final void out(){ newLine(); }\n\t/**\n\t * out(a,\
+    \u3059\u308B\n\t */\n\tprotected final void out(){ newLine(); }\n\t/**\n\t * out(a,\
     \ b, c)\u3067, \"a b c\"\u306E\u5F62\u5F0F\u3067\u51FA\u529B\u3059\u308B\n\t *\
-    \ @param head\n\t * @param tail\n\t */\n\tpublic final void out(final Object head,\
-    \ final Object... tail) {\n\t\tprint(head);\n\t\tfor(final Object el: tail) {\n\
-    \t\t\tprint(\" \" + el);\n\t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t * switch\u6587\
+    \ @param head\n\t * @param tail\n\t */\n\tprotected final void out(final Object\
+    \ head, final Object... tail) {\n\t\tprint(head);\n\t\tfor(final Object el: tail)\
+    \ {\n\t\t\tprint(\" \" + el);\n\t\t}\n\t\tnewLine();\n\t}\n\t/**\n\t * switch\u6587\
     \u306E\u66F8\u304D\u65B9\u306F\u73FE\u72B6yukicoder\u3067\u3057\u304B\u52D5\u304B\
     \u306A\u3044\u306E\u3067\u3001\u4ED6\u306E\u30B5\u30A4\u30C8\u3067\u306Finstanceof\u3067\
     \u66F8\u3044\u3066\u3042\u308B\n\t * @param obj\n\t */\n\tprivate final void p(final\
@@ -628,16 +628,16 @@ data:
     \ break;\n\t\t\tcase Object[] a: Arrays.stream(a).forEach(this::out); break;\n\
     \t\t\tcase Collection<?> a: a.stream().forEach(this::out); break;\n\t\t\tdefault:\
     \ out(obj);\n\t\t}\n\t}\n\t/**\n\t * \u6539\u884C\u304A\u304D\u306B\u51FA\u529B\
-    \u3059\u308B\n\t * @param head\n\t * @param tail\n\t */\n\tpublic final void outl(final\
-    \ Object head, final Object... tail) {\n\t\tp(head);\n\t\tfor(final Object el:\
-    \ tail) {\n\t\t\tp(el);\n\t\t}\n\t}\n\t/**\n\t * \u51FA\u529B\u3092flush\u3059\
-    \u308B\n\t * @see PrintWriter#flush\n\t */\n\t@Override\n\tpublic final void flush()\
-    \ {\n\t\ttry {\n\t\t\tos.write(buf, 0, pos);\n\t\t\tpos = 0;\n\t\t} catch(final\
-    \ IOException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n\t/**\n\t * OutputStream\u3092\
-    \u9589\u3058\u308B\n\t * @see PrintWriter#close\n\t */\n\t@Override\n\tpublic\
-    \ final void close() {\n\t\tif(os == null) {\n\t\t\treturn;\n\t\t}\n\t\ttry {\n\
-    \t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(final IOException e) {\n\t\t\t\
-    e.printStackTrace();\n\t\t}\n\t}\n}"
+    \u3059\u308B\n\t * @param head\n\t * @param tail\n\t */\n\tprotected final void\
+    \ outl(final Object head, final Object... tail) {\n\t\tp(head);\n\t\tfor(final\
+    \ Object el: tail) {\n\t\t\tp(el);\n\t\t}\n\t}\n\t/**\n\t * \u51FA\u529B\u3092\
+    flush\u3059\u308B\n\t * @see PrintWriter#flush\n\t */\n\t@Override\n\tpublic final\
+    \ void flush() {\n\t\ttry {\n\t\t\tos.write(buf, 0, pos);\n\t\t\tpos = 0;\n\t\t\
+    } catch(final IOException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n\t/**\n\
+    \t * OutputStream\u3092\u9589\u3058\u308B\n\t * @see PrintWriter#close\n\t */\n\
+    \t@Override\n\tpublic final void close() {\n\t\tif(os == null) {\n\t\t\treturn;\n\
+    \t\t}\n\t\ttry {\n\t\t\tos.close();\n\t\t\tos = null;\n\t\t} catch(final IOException\
+    \ e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n}"
   dependsOn:
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/AVLTree.java
@@ -822,7 +822,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-05-20 07:20:00+09:00'
+  timestamp: '2024-06-10 16:52:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyPrinter.java

@@ -559,7 +559,7 @@ data:
     \ final class MyScanner implements AutoCloseable {\n\tprivate int pos, lim;\n\t\
     private final byte[] buf;\n\tprivate final InputStream is;\n\tprivate boolean\
     \ check;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param\
-    \ is \u6A19\u6E96\u5165\u529B(System.in)\u3092\u5165\u308C\u308B\n\t */\n\tpublic\
+    \ is \u6A19\u6E96\u5165\u529B(System.in)\u3092\u5165\u308C\u308B\n\t */\n\tprotected\
     \ MyScanner(final InputStream is) {\n\t\tthis.is = is;\n\t\tpos = lim = 0;\n\t\
     \tbuf = new byte[1 << 17];\n\t\tcheck = false;\n\t}\n\tprivate final boolean isPunct(final\
     \ byte bt){ return !Utility.scope(33, bt, 126); }\n\tprivate final boolean isNum(final\
@@ -570,35 +570,36 @@ data:
     \tbyte bt;\n\t\tif(check) {\n\t\t\tcheck = false;\n\t\t\tbt = buf[pos - 1];\n\t\
     \t\tif(!isPunct(bt)) {\n\t\t\t\treturn bt;\n\t\t\t}\n\t\t}\n\t\twhile(isPunct(bt\
     \ = read())){}\n\t\treturn bt;\n\t}\n\t/**\n\t * nextInt\n\t * int\u578B\u3092\
-    \u5165\u529B\u3059\u308B\n\t */\n\tpublic final int ni(){ return toIntExact(nl());\
+    \u5165\u529B\u3059\u308B\n\t */\n\tprotected final int ni(){ return toIntExact(nl());\
     \ }\n\t/**\n\t * nextLong\n\t * long\u578B\u3092\u5165\u529B\u3059\u308B\n\t */\n\
-    \tpublic final long nl() {\n\t\tbyte c = next();\n\t\tfinal boolean neg = c ==\
-    \ '-';\n\t\tif(neg) {\n\t\t\tc = next();\n\t\t}\n\t\tassert isNum(c);\n\t\tlong\
-    \ res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\tres = 10 * res + c - '0';\n\
-    \t\t}\n\t\tcheck = !isNum(c);\n\t\treturn neg ? -res : res;\n\t}\n\t/**\n\t *\
-    \ nextDouble\n\t * double\u578B\u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic\
-    \ final double nd() {\n\t\tbyte c = next();\n\t\tfinal boolean neg = c == '-';\n\
-    \t\tif(neg) {\n\t\t\tc = next();\n\t\t}\n\t\tassert isNum(c);\n\t\tdouble res\
-    \ = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\tres = 10 * res + c - '0';\n\
-    \t\t}\n\t\tif(c != '.') {\n\t\t\tcheck = true;\n\t\t\treturn res;\n\t\t}\n\t\t\
-    int i;\n\t\tfor(i = 0; isNum(c = read()); ++i) {\n\t\t\tres = res * 10 + c - '0';\n\
-    \t\t}\n\t\tres /= pow(10, i);\n\t\tcheck = true;\n\t\treturn neg ? -res : res;\n\
-    \t}\n\t/**\n\t * nextChar(Scanner\u306B\u306F\u306A\u3044)\n\t * char\u578B\u3092\
-    \u5165\u529B\u3059\u308B\n\t */\n\tpublic final char nc(){ return (char) next();\
-    \ }\n\t/**\n\t * nextString(Scanner\u3067\u4E91\u3046next)\n\t * \u6587\u5B57\u5217\
-    \u3092\u5165\u529B\u3059\u308B\n\t */\n\tpublic final String ns() {\n\t\tfinal\
-    \ StringBuilder sb = new StringBuilder();\n\t\tbyte c = next();\n\t\twhile(!isPunct(c))\
-    \ {\n\t\t\tsb.append((char) c);\n\t\t\tc = read();\n\t\t}\n\t\treturn sb.toString();\n\
-    \t}\n\t/**\n\t * \u53D7\u3051\u53D6\u3063\u305F\u6587\u5B57\u5217\u3092toCharArray\u306B\
-    \u3057\u3066\u8FD4\u3059\n\t */\n\tpublic final char[] nt(){ return ns().toCharArray();\
-    \ }\n\t/**\n\t * nextBigInteger\n\t * \u591A\u500D\u9577\u6574\u6570\u3092\u5165\
-    \u529B\u3059\u308B\n\t */\n\tpublic final BigInteger nb(){ return new BigInteger(ns());\
+    \tprotected final long nl() {\n\t\tbyte c = next();\n\t\tfinal boolean neg = c\
+    \ == '-';\n\t\tif(neg) {\n\t\t\tc = next();\n\t\t}\n\t\tassert isNum(c);\n\t\t\
+    long res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\tres = 10 * res + c\
+    \ - '0';\n\t\t}\n\t\tcheck = !isNum(c);\n\t\treturn neg ? -res : res;\n\t}\n\t\
+    /**\n\t * nextDouble\n\t * double\u578B\u3092\u5165\u529B\u3059\u308B\n\t */\n\
+    \tprotected final double nd() {\n\t\tbyte c = next();\n\t\tfinal boolean neg =\
+    \ c == '-';\n\t\tif(neg) {\n\t\t\tc = next();\n\t\t}\n\t\tassert isNum(c);\n\t\
+    \tdouble res = c - '0';\n\t\twhile(isNum(c = read())) {\n\t\t\tres = 10 * res\
+    \ + c - '0';\n\t\t}\n\t\tif(c != '.') {\n\t\t\tcheck = true;\n\t\t\treturn res;\n\
+    \t\t}\n\t\tint i;\n\t\tfor(i = 0; isNum(c = read()); ++i) {\n\t\t\tres = res *\
+    \ 10 + c - '0';\n\t\t}\n\t\tres /= pow(10, i);\n\t\tcheck = true;\n\t\treturn\
+    \ neg ? -res : res;\n\t}\n\t/**\n\t * nextChar(Scanner\u306B\u306F\u306A\u3044\
+    )\n\t * char\u578B\u3092\u5165\u529B\u3059\u308B\n\t */\n\tprotected final char\
+    \ nc(){ return (char) next(); }\n\t/**\n\t * nextString(Scanner\u3067\u4E91\u3046\
+    next)\n\t * \u6587\u5B57\u5217\u3092\u5165\u529B\u3059\u308B\n\t */\n\tprotected\
+    \ final String ns() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\t\
+    byte c = next();\n\t\twhile(!isPunct(c)) {\n\t\t\tsb.append((char) c);\n\t\t\t\
+    c = read();\n\t\t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t * \u53D7\u3051\u53D6\
+    \u3063\u305F\u6587\u5B57\u5217\u3092toCharArray\u306B\u3057\u3066\u8FD4\u3059\n\
+    \t */\n\tprotected final char[] nt(){ return ns().toCharArray(); }\n\t/**\n\t\
+    \ * nextBigInteger\n\t * \u591A\u500D\u9577\u6574\u6570\u3092\u5165\u529B\u3059\
+    \u308B\n\t */\n\tprotected final BigInteger nb(){ return new BigInteger(ns());\
     \ }\n\t/**\n\t * IntPair\u578B\u3092\u5165\u529B\u3059\u308B\n\t * @see IntPair\n\
-    \t */\n\tpublic final IntPair pi(){ return IntPair.of(nl(), nl()); }\n\t/**\n\t\
-    \ * FloatPair\u578B\u3092\u5165\u529B\u3059\u308B\n\t * @see FloatPair\n\t */\n\
-    \tpublic final FloatPair pf(){ return FloatPair.of(nd(), nd()); }\n\t/**\n\t *\
-    \ [maybe_unused]\n\t * \u4E00\u884C\u5168\u90E8\u3092\u5165\u529B\u3059\u308B\n\
-    \t */\n\tpublic final String line() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
+    \t */\n\tprotected final IntPair pi(){ return IntPair.of(nl(), nl()); }\n\t/**\n\
+    \t * FloatPair\u578B\u3092\u5165\u529B\u3059\u308B\n\t * @see FloatPair\n\t */\n\
+    \tprotected final FloatPair pf(){ return FloatPair.of(nd(), nd()); }\n\t/**\n\t\
+    \ * [maybe_unused]\n\t * \u4E00\u884C\u5168\u90E8\u3092\u5165\u529B\u3059\u308B\
+    \n\t */\n\tprotected final String line() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
     \t\tbyte c;\n\t\twhile((c = read()) != '\\n') {\n\t\t\tsb.append((char) c);\n\t\
     \t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t * InputStream\u3092\u9589\u3058\
     \u308B\n\t */\n\t@Override\n\tpublic final void close() {\n\t\ttry {\n\t\t\tis.close();\n\
@@ -787,7 +788,7 @@ data:
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-05-20 07:20:00+09:00'
+  timestamp: '2024-06-10 16:52:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/MyScanner.java

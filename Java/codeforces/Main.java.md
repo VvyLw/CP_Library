@@ -1505,7 +1505,7 @@ data:
   - Java/aoj/Main.java
   - Java/yukicoder/yukicoder.java
   - Java/Main.java
-  timestamp: '2024-05-20 07:20:00+09:00'
+  timestamp: '2024-06-10 16:52:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/codeforces/Main.java
