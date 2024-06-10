@@ -23,7 +23,7 @@ public final class MyScanner implements AutoCloseable {
 	 * コンストラクタ
 	 * @param is 標準入力(System.in)を入れる
 	 */
-	public MyScanner(final InputStream is) {
+	protected MyScanner(final InputStream is) {
 		this.is = is;
 		pos = lim = 0;
 		buf = new byte[1 << 17];
@@ -58,12 +58,12 @@ public final class MyScanner implements AutoCloseable {
 	 * nextInt
 	 * int型を入力する
 	 */
-	public final int ni(){ return toIntExact(nl()); }
+	protected final int ni(){ return toIntExact(nl()); }
 	/**
 	 * nextLong
 	 * long型を入力する
 	 */
-	public final long nl() {
+	protected final long nl() {
 		byte c = next();
 		final boolean neg = c == '-';
 		if(neg) {
@@ -81,7 +81,7 @@ public final class MyScanner implements AutoCloseable {
 	 * nextDouble
 	 * double型を入力する
 	 */
-	public final double nd() {
+	protected final double nd() {
 		byte c = next();
 		final boolean neg = c == '-';
 		if(neg) {
@@ -108,12 +108,12 @@ public final class MyScanner implements AutoCloseable {
 	 * nextChar(Scannerにはない)
 	 * char型を入力する
 	 */
-	public final char nc(){ return (char) next(); }
+	protected final char nc(){ return (char) next(); }
 	/**
 	 * nextString(Scannerで云うnext)
 	 * 文字列を入力する
 	 */
-	public final String ns() {
+	protected final String ns() {
 		final StringBuilder sb = new StringBuilder();
 		byte c = next();
 		while(!isPunct(c)) {
@@ -125,27 +125,27 @@ public final class MyScanner implements AutoCloseable {
 	/**
 	 * 受け取った文字列をtoCharArrayにして返す
 	 */
-	public final char[] nt(){ return ns().toCharArray(); }
+	protected final char[] nt(){ return ns().toCharArray(); }
 	/**
 	 * nextBigInteger
 	 * 多倍長整数を入力する
 	 */
-	public final BigInteger nb(){ return new BigInteger(ns()); }
+	protected final BigInteger nb(){ return new BigInteger(ns()); }
 	/**
 	 * IntPair型を入力する
 	 * @see IntPair
 	 */
-	public final IntPair pi(){ return IntPair.of(nl(), nl()); }
+	protected final IntPair pi(){ return IntPair.of(nl(), nl()); }
 	/**
 	 * FloatPair型を入力する
 	 * @see FloatPair
 	 */
-	public final FloatPair pf(){ return FloatPair.of(nd(), nd()); }
+	protected final FloatPair pf(){ return FloatPair.of(nd(), nd()); }
 	/**
 	 * [maybe_unused]
 	 * 一行全部を入力する
 	 */
-	public final String line() {
+	protected final String line() {
 		final StringBuilder sb = new StringBuilder();
 		byte c;
 		while((c = read()) != '\n') {

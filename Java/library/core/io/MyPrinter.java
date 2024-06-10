@@ -27,7 +27,7 @@ public final class MyPrinter implements Flushable, AutoCloseable {
 	 * 標準エラー出力の時、一部出力がtoStringされて表示される。
 	 * @param autoFlush インタラクティブ問題の時はtrueにする
 	 */
-	public MyPrinter(final OutputStream os, final boolean autoFlush){
+	protected MyPrinter(final OutputStream os, final boolean autoFlush){
 		this.os = os;
 		this.autoFlush = autoFlush;
 		buf = new byte[1 << 17];
@@ -52,7 +52,7 @@ public final class MyPrinter implements Flushable, AutoCloseable {
 	 * @param arg
 	 * @see PrintWriter#print
 	 */
-	public final void print(final Object arg) {
+	protected final void print(final Object arg) {
 		if(arg instanceof final String s) {
 			for(final char c: s.toCharArray()) {
 				write((byte) c);
@@ -160,7 +160,7 @@ public final class MyPrinter implements Flushable, AutoCloseable {
 	 * @param args
 	 * @see PrintWriter#printf
 	 */
-	public final void printf(final String fmt, final Object... args) {
+	protected final void printf(final String fmt, final Object... args) {
 		print(new Formatter().format(fmt, args));
 		if(autoFlush) {
 			flush();
@@ -170,13 +170,13 @@ public final class MyPrinter implements Flushable, AutoCloseable {
 	 * 出力するためのメソッド
 	 * 引数なしで改行を出力する
 	 */
-	public final void out(){ newLine(); }
+	protected final void out(){ newLine(); }
 	/**
 	 * out(a, b, c)で, "a b c"の形式で出力する
 	 * @param head
 	 * @param tail
 	 */
-	public final void out(final Object head, final Object... tail) {
+	protected final void out(final Object head, final Object... tail) {
 		print(head);
 		for(final Object el: tail) {
 			print(" " + el);
@@ -204,7 +204,7 @@ public final class MyPrinter implements Flushable, AutoCloseable {
 	 * @param head
 	 * @param tail
 	 */
-	public final void outl(final Object head, final Object... tail) {
+	protected final void outl(final Object head, final Object... tail) {
 		p(head);
 		for(final Object el: tail) {
 			p(el);
