@@ -49,24 +49,24 @@ data:
     document_title: "\u30BF\u30A4\u30DE\u30FC"
     links: []
   bundledCode: "#line 2 \"C++/core/timer.hpp\"\n\n#include <ostream>\n#include <chrono>\n\
-    using Timer = std::chrono::system_clock::time_point;\n[[maybe_unused]] Timer start,\
-    \ stop;\n#if local\nvoid now(Timer &t){ t = std::chrono::system_clock::now();\
-    \ }\nvoid time(const Timer &t1, const Timer &t2){ std::cerr << std::chrono::duration_cast<std::chrono::milliseconds>(t2\
-    \ - t1).count() << \"ms\\n\"; }\n#else\n[[maybe_unused]] void now(Timer &t){ void(0);\
-    \ }\n[[maybe_unused]] void time(const Timer &t1, const Timer &t2){ void(0); }\n\
-    #endif\n\n/**\n * @brief \u30BF\u30A4\u30DE\u30FC\n */\n"
+    using Timer = std::chrono::system_clock::time_point;\nTimer start, stop;\n#if\
+    \ local\nvoid now(Timer &t){ t = std::chrono::system_clock::now(); }\nvoid time(const\
+    \ Timer &t1, const Timer &t2){ std::cerr << std::chrono::duration_cast<std::chrono::milliseconds>(t2\
+    \ - t1).count() << \"ms\\n\"; }\n#else\nvoid now(Timer &t){ void(0); }\nvoid time(const\
+    \ Timer &t1, const Timer &t2){ void(0); }\n#endif\n\n/**\n * @brief \u30BF\u30A4\
+    \u30DE\u30FC\n */\n"
   code: "#pragma once\n\n#include <ostream>\n#include <chrono>\nusing Timer = std::chrono::system_clock::time_point;\n\
-    [[maybe_unused]] Timer start, stop;\n#if local\nvoid now(Timer &t){ t = std::chrono::system_clock::now();\
+    Timer start, stop;\n#if local\nvoid now(Timer &t){ t = std::chrono::system_clock::now();\
     \ }\nvoid time(const Timer &t1, const Timer &t2){ std::cerr << std::chrono::duration_cast<std::chrono::milliseconds>(t2\
-    \ - t1).count() << \"ms\\n\"; }\n#else\n[[maybe_unused]] void now(Timer &t){ void(0);\
-    \ }\n[[maybe_unused]] void time(const Timer &t1, const Timer &t2){ void(0); }\n\
-    #endif\n\n/**\n * @brief \u30BF\u30A4\u30DE\u30FC\n */"
+    \ - t1).count() << \"ms\\n\"; }\n#else\nvoid now(Timer &t){ void(0); }\nvoid time(const\
+    \ Timer &t1, const Timer &t2){ void(0); }\n#endif\n\n/**\n * @brief \u30BF\u30A4\
+    \u30DE\u30FC\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/core/timer.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2024-03-09 13:04:52+09:00'
+  timestamp: '2024-06-16 14:19:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/segtree.test.cpp
