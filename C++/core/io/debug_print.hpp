@@ -4,6 +4,7 @@
 #define DEBUG_PRINT_HPP
 
 #define INCLUDED(n) ((defined _GLIBCXX_##n) || (defined _LIBCPP_##n))
+#pragma GCC diagnostic ignored "-Wexpansion-to-defined"
 
 #if __cplusplus < 201703L
 #  warning Please use C++17 (or later version).
