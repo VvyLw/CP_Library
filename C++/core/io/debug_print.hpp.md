@@ -10,13 +10,14 @@ data:
     links: []
   bundledCode: "#line 1 \"C++/core/io/debug_print.hpp\"\n/* last update: 2022-08-03\
     \ */\n\n#ifndef DEBUG_PRINT_HPP\n#define DEBUG_PRINT_HPP\n\n#define INCLUDED(n)\
-    \ ((defined _GLIBCXX_##n) || (defined _LIBCPP_##n))\n\n#if __cplusplus < 201703L\n\
-    #  warning Please use C++17 (or later version).\n#endif\n#include <algorithm>\n\
-    #include <cctype>\n#include <iostream>\n#include <iterator>\n#include <string_view>\n\
-    #include <type_traits>\n\nnamespace debug_print {\n  std::ostream& os = std::cerr;\n\
-    \n  template <class Tp> auto has_cbegin(int)     -> decltype(std::cbegin(std::declval<Tp>()),\
-    \ std::true_type {});\n  template <class Tp> auto has_cbegin(...)     -> std::false_type;\n\
-    \  template <class Tp> auto has_value_type(int) -> decltype(std::declval<typename\
+    \ ((defined _GLIBCXX_##n) || (defined _LIBCPP_##n))\n#pragma GCC diagnostic ignored\
+    \ \"-Wexpansion-to-defined\"\n\n#if __cplusplus < 201703L\n#  warning Please use\
+    \ C++17 (or later version).\n#endif\n#include <algorithm>\n#include <cctype>\n\
+    #include <iostream>\n#include <iterator>\n#include <string_view>\n#include <type_traits>\n\
+    \nnamespace debug_print {\n  std::ostream& os = std::cerr;\n\n  template <class\
+    \ Tp> auto has_cbegin(int)     -> decltype(std::cbegin(std::declval<Tp>()), std::true_type\
+    \ {});\n  template <class Tp> auto has_cbegin(...)     -> std::false_type;\n \
+    \ template <class Tp> auto has_value_type(int) -> decltype(std::declval<typename\
     \ Tp::value_type>(), std::true_type {});\n  template <class Tp> auto has_value_type(...)\
     \ -> std::false_type;\n\n  template <class Tp>[[maybe_unused]] constexpr bool\
     \ is_iterable_container_v = decltype(has_cbegin<Tp>(int {}))::value;\n  template\
@@ -123,11 +124,12 @@ data:
     \ dump(...) debug_print::multi_print(#__VA_ARGS__, __VA_ARGS__)\n\n#endif  //\
     \ DEBUG_PRINT_HPP\n"
   code: "/* last update: 2022-08-03 */\n\n#ifndef DEBUG_PRINT_HPP\n#define DEBUG_PRINT_HPP\n\
-    \n#define INCLUDED(n) ((defined _GLIBCXX_##n) || (defined _LIBCPP_##n))\n\n#if\
-    \ __cplusplus < 201703L\n#  warning Please use C++17 (or later version).\n#endif\n\
-    #include <algorithm>\n#include <cctype>\n#include <iostream>\n#include <iterator>\n\
-    #include <string_view>\n#include <type_traits>\n\nnamespace debug_print {\n  std::ostream&\
-    \ os = std::cerr;\n\n  template <class Tp> auto has_cbegin(int)     -> decltype(std::cbegin(std::declval<Tp>()),\
+    \n#define INCLUDED(n) ((defined _GLIBCXX_##n) || (defined _LIBCPP_##n))\n#pragma\
+    \ GCC diagnostic ignored \"-Wexpansion-to-defined\"\n\n#if __cplusplus < 201703L\n\
+    #  warning Please use C++17 (or later version).\n#endif\n#include <algorithm>\n\
+    #include <cctype>\n#include <iostream>\n#include <iterator>\n#include <string_view>\n\
+    #include <type_traits>\n\nnamespace debug_print {\n  std::ostream& os = std::cerr;\n\
+    \n  template <class Tp> auto has_cbegin(int)     -> decltype(std::cbegin(std::declval<Tp>()),\
     \ std::true_type {});\n  template <class Tp> auto has_cbegin(...)     -> std::false_type;\n\
     \  template <class Tp> auto has_value_type(int) -> decltype(std::declval<typename\
     \ Tp::value_type>(), std::true_type {});\n  template <class Tp> auto has_value_type(...)\
@@ -239,7 +241,7 @@ data:
   isVerificationFile: false
   path: C++/core/io/debug_print.hpp
   requiredBy: []
-  timestamp: '2024-03-29 03:01:20+09:00'
+  timestamp: '2024-06-24 22:23:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/core/io/debug_print.hpp

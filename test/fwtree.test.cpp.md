@@ -72,11 +72,11 @@ data:
     \ - t1).count() << \"ms\\n\"; }\n#else\nvoid now(Timer &t){ void(0); }\nvoid time(const\
     \ Timer &t1, const Timer &t2){ void(0); }\n#endif\n\n/**\n * @brief \u30BF\u30A4\
     \u30DE\u30FC\n */\n#line 26 \"C++/template.hpp\"\n\r\n#define overload4(_1,_2,_3,_4,name,...)\
-    \ name\r\n#define overload3(_1,_2,_3,name,...) name\r\n#define rep1(n) for(const\
-    \ auto i: std::views::iota(0) | std::views::take(n))\r\n#define rep2(i,n) for(const\
-    \ auto i: std::views::iota(0) | std::views::take(n))\r\n#define rep3(i,a,b) for(const\
-    \ auto i: std::views::iota((a), (b) + 1))\r\n#define rep4(i,a,b,c) for(ll i=(a);\
-    \ i<=(b); i+=(c))\r\n#define rep(...) overload4(__VA_ARGS__,rep4,rep3,rep2,rep1)(__VA_ARGS__)\r\
+    \ name\r\n#define overload3(_1,_2,_3,name,...) name\r\n#define rep1(n) for([[maybe_unused]]\
+    \ const auto i: std::views::iota(0) | std::views::take(n))\r\n#define rep2(i,n)\
+    \ for(const auto i: std::views::iota(0) | std::views::take(n))\r\n#define rep3(i,a,b)\
+    \ for(const auto i: std::views::iota((a), (b) + 1))\r\n#define rep4(i,a,b,c) for(ll\
+    \ i=(a); i<=(b); i+=(c))\r\n#define rep(...) overload4(__VA_ARGS__,rep4,rep3,rep2,rep1)(__VA_ARGS__)\r\
     \n#define rvp1(n) for(const auto i: std::views::iota(0) | std::views::take(n)\
     \ | std::views::reverse)\r\n#define rvp2(i,n) for(const auto i: std::views::iota(0)\
     \ | std::views::take(n) | std::views::reverse)\r\n#define rvp3(i,a,b) for(const\
@@ -586,7 +586,7 @@ data:
   isVerificationFile: true
   path: test/fwtree.test.cpp
   requiredBy: []
-  timestamp: '2024-06-16 14:19:50+09:00'
+  timestamp: '2024-06-24 22:21:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fwtree.test.cpp
