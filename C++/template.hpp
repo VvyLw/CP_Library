@@ -26,7 +26,7 @@ std::mt19937 Random() {
 
 #define overload4(_1,_2,_3,_4,name,...) name
 #define overload3(_1,_2,_3,name,...) name
-#define rep1(n) for(const auto i: std::views::iota(0) | std::views::take(n))
+#define rep1(n) for([[maybe_unused]] const auto i: std::views::iota(0) | std::views::take(n))
 #define rep2(i,n) for(const auto i: std::views::iota(0) | std::views::take(n))
 #define rep3(i,a,b) for(const auto i: std::views::iota((a), (b) + 1))
 #define rep4(i,a,b,c) for(ll i=(a); i<=(b); i+=(c))
