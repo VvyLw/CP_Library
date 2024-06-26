@@ -38,6 +38,9 @@ data:
       path: C++/ds/SegmentTree.hpp
       title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
     - icon: ':heavy_check_mark:'
+      path: C++/ds/SegmentTreeBeats.hpp
+      title: C++/ds/SegmentTreeBeats.hpp
+    - icon: ':heavy_check_mark:'
       path: C++/ds/SparseTable.hpp
       title: Sparse Table
     - icon: ':heavy_check_mark:'
@@ -677,6 +680,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/segtree2.test.cpp
       title: test/segtree2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/segtreebeats.test.cpp
+      title: test/segtreebeats.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/shortestpath.test.cpp
       title: test/shortestpath.test.cpp
