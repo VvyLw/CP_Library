@@ -252,3 +252,8 @@ public:
     int64_t max(const int l, const int r) noexcept{ return inner_fold<2>(l, r); }
     int64_t sum(const int l, const int r) noexcept { return inner_fold<3>(l, r); }
 };
+
+/**
+ * @brief SegmentTreeBeats!
+ * @see https://nyaannyaan.github.io/library/segment-tree/segment-tree-beats.hpp
+ */
