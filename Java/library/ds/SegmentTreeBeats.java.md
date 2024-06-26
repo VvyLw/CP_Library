@@ -74,6 +74,9 @@ data:
     path: Java/library/core/interfaces/lambda/RecursiveIntUnaryOperator.java
     title: Java/library/core/interfaces/lambda/RecursiveIntUnaryOperator.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
+    title: Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/lambda/RecursiveLongConsumer.java
     title: Java/library/core/interfaces/lambda/RecursiveLongConsumer.java
   - icon: ':warning:'
@@ -133,9 +136,6 @@ data:
   - icon: ':warning:'
     path: Java/library/ds/SegmentTree.java
     title: Java/library/ds/SegmentTree.java
-  - icon: ':warning:'
-    path: Java/library/ds/SegmentTreeBeats.java
-    title: Java/library/ds/SegmentTreeBeats.java
   - icon: ':warning:'
     path: Java/library/ds/SparseTable.java
     title: Java/library/ds/SparseTable.java
@@ -348,6 +348,9 @@ data:
     path: Java/library/core/interfaces/lambda/RecursiveIntUnaryOperator.java
     title: Java/library/core/interfaces/lambda/RecursiveIntUnaryOperator.java
   - icon: ':warning:'
+    path: Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
+    title: Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
+  - icon: ':warning:'
     path: Java/library/core/interfaces/lambda/RecursiveLongConsumer.java
     title: Java/library/core/interfaces/lambda/RecursiveLongConsumer.java
   - icon: ':warning:'
@@ -407,9 +410,6 @@ data:
   - icon: ':warning:'
     path: Java/library/ds/SegmentTree.java
     title: Java/library/ds/SegmentTree.java
-  - icon: ':warning:'
-    path: Java/library/ds/SegmentTreeBeats.java
-    title: Java/library/ds/SegmentTreeBeats.java
   - icon: ':warning:'
     path: Java/library/ds/SparseTable.java
     title: Java/library/ds/SparseTable.java
@@ -557,12 +557,109 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java\n"
-  code: "package library.core.interfaces.lambda;\n\nimport java.util.function.LongBinaryOperator;\n\
-    \n/**\n * \u518D\u5E30\u30E9\u30E0\u30C0\u304C\u66F8\u3051\u308BLongBinaryOperator\u30A4\
-    \u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\n * @see LongBinaryOperator\n */\n\
-    public interface RecursiveLongBinaryOperator {\n\tpublic long apply(final RecursiveLongBinaryOperator\
-    \ rec, final long a, final long b);\n}"
+    RuntimeError: bundler is not specified: Java/library/ds/SegmentTreeBeats.java\n"
+  code: "package library.ds;\n\n/**\n * SegmentTreeBeats!\n * @see <a href=\"https://nyaannyaan.github.io/library/segment-tree/segment-tree-beats.hpp\"\
+    >\u53C2\u8003\u5143</a>\n */\npublic class SegmentTreeBeats {\n\tprivate final\
+    \ long INF = (1L << 61) - 1;\n\tprivate final class Node {\n\t\tlong sum = 0,\
+    \ g1 = 0, l1 = 0, g2 = -INF, gc = 1, l2 = INF, lc = 1, add = 0;\n\t}\n\tprivate\
+    \ final Node[] a;\n\tprivate int n, log;\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\n\t * @param n\n\t */\n\tpublic SegmentTreeBeats(final int\
+    \ n){ this(new int[n]); }\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\
+    \n\t * @param a\n\t */\n\tpublic SegmentTreeBeats(final int[] a) {\n\t\tfinal\
+    \ int m = a.length;\n\t\tn = 1;\n\t\tlog = 0;\n\t\twhile(n < m) {\n\t\t\tlog++;\n\
+    \t\t\tn <<= 1;\n\t\t}\n\t\tthis.a = new Node[2 * n];\n\t\tfor(int i = 0; i < 2\
+    \ * n; ++i) {\n\t\t\tthis.a[i] = new Node();\n\t\t}\n\t\tfor(int i = 0; i < m;\
+    \ ++i) {\n\t\t\tthis.a[i + n].sum = this.a[i + n].g1 = this.a[i + n].l1 = a[i];\n\
+    \t\t}\n\t\tfor(int i = n; --i >= 0;) {\n\t\t\tupdate(i);\n\t\t}\n\t}\n\t/**\n\t\
+    \ * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a\n\t */\n\tpublic\
+    \ SegmentTreeBeats(final long[] a) {\n\t\tfinal int m = a.length;\n\t\tn = 1;\n\
+    \t\tlog = 0;\n\t\twhile(n < m) {\n\t\t\tlog++;\n\t\t\tn <<= 1;\n\t\t}\n\t\tthis.a\
+    \ = new Node[2 * n];\n\t\tfor(int i = 0; i < 2 * n; ++i) {\n\t\t\tthis.a[i] =\
+    \ new Node();\n\t\t}\n\t\tfor(int i = 0; i < m; ++i) {\n\t\t\tthis.a[i + n].sum\
+    \ = this.a[i + n].g1 = this.a[i + n].l1 = a[i];\n\t\t}\n\t\tfor(int i = n; --i\
+    \ >= 0;) {\n\t\t\tupdate(i);\n\t\t}\n\t}\n\t/**\n\t * \u534A\u958B\u533A\u9593\
+    [l, r)\u306E\u8981\u7D20\u3092z\u3068\u3059\u308B\u3068, z = min(x, z)\u3092\u3059\
+    \u308B\n\t * @param l\n\t * @param r\n\t * @param x\n\t */\n\tpublic final void\
+    \ chmin(final int l, final int r, final long x){ innerApply(1, l, r, x); }\n\t\
+    /**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306E\u8981\u7D20\u3092z\u3068\u3059\u308B\
+    \u3068, z = max(x, z)\u3092\u3059\u308B\n\t * @param l\n\t * @param r\n\t * @param\
+    \ x\n\t */\n\tpublic final void chmax(final int l, final int r, final long x){\
+    \ innerApply(2, l, r, x); }\n\t/**\n\t * \u534A\u958B\u533A\u9593[l, r)\u306E\u8981\
+    \u7D20\u3092z\u3068\u3059\u308B\u3068, z += x\u3092\u3059\u308B\n\t * @param l\n\
+    \t * @param r\n\t * @param x\n\t */\n\tpublic final void add(final int l, final\
+    \ int r, final long x){ innerApply(3, l, r, x); }\n\t/**\n\t * \u534A\u958B\u533A\
+    \u9593[l, r)\u306E\u8981\u7D20\u3092z\u3068\u3059\u308B\u3068, z = x\u3092\u3059\
+    \u308B\n\t * @param l\n\t * @param r\n\t * @param x\n\t */\n\tpublic final void\
+    \ update(final int l, final int r, final long x){ innerApply(4, l, r, x); }\n\t\
+    /**\n\t * \u534A\u958B\u533A\u9593[l, r)\u3067\u306E\u6700\u5C0F\u5024\u3092\u6C42\
+    \u3081\u308B\n\t * @param l\n\t * @param r\n\t * @return min(a[l], a[l+1], ...,\
+    \ a[r - 1])\n\t */\n\tpublic final long min(final int l, final int r){ return\
+    \ innerFold(1, l, r); }\n\t/**\n\t * \u534A\u958B\u533A\u9593[l, r)\u3067\u306E\
+    \u6700\u5927\u5024\u3092\u6C42\u3081\u308B\n\t * @param l\n\t * @param r\n\t *\
+    \ @return max(a[l], a[l+1], ..., a[r - 1])\n\t */\n\tpublic final long max(final\
+    \ int l, final int r){ return innerFold(2, l, r); }\n\t/**\n\t * \u534A\u958B\u533A\
+    \u9593[l, r)\u3067\u306E\u7DCF\u548C\u3092\u6C42\u3081\u308B\n\t * @param l\n\t\
+    \ * @param r\n\t * @return sum(a[l], a[l+1], ..., a[r - 1])\n\t */\n\tpublic final\
+    \ long sum(final int l, final int r){ return innerFold(3, l, r); }\n\tprivate\
+    \ final void update(final int k) {\n\t\tfinal Node p = a[k], l = a[k * 2 + 0],\
+    \ r = a[k * 2 + 1];\n\t\tp.sum = l.sum + r.sum;\n\t\tif(l.g1 == r.g1) {\n\t\t\t\
+    p.g1 = l.g1;\n\t\t\tp.g2 = Math.max(l.g2, r.g2);\n\t\t\tp.gc = l.gc + r.gc;\n\t\
+    \t} else {\n\t\t\tfinal boolean f = l.g1 > r.g1;\n\t\t\tp.g1 = f ? l.g1 : r.g1;\n\
+    \t\t\tp.gc = f ? l.gc : r.gc;\n\t\t\tp.g2 = Math.max(f ? r.g1 : l.g1, f ? l.g2\
+    \ : r.g2);\n\t\t}\n\t\tif(l.l1 == r.l1) {\n\t\t\tp.l1 = l.l1;\n\t\t\tp.l2 = Math.min(l.l2,\
+    \ r.l2);\n\t\t\tp.lc = l.lc + r.lc;\n\t\t} else {\n\t\t\tfinal boolean f = l.l1\
+    \ < r.l1;\n\t\t\tp.l1 = f ? l.l1 : r.l1;\n\t\t\tp.lc = f ? l.lc : r.lc;\n\t\t\t\
+    p.l2 = Math.min(f ? r.l1 : l.l1, f ? l.l2 : r.l2);\n\t\t}\n\t}\n\tprivate final\
+    \ void pushAdd(final int k, final long x) {\n\t\tfinal Node p = a[k];\n\t\tp.sum\
+    \ += x << (log + Integer.numberOfLeadingZeros(k) - 31);\n\t\tp.g1 += x;\n\t\t\
+    p.l1 += x;\n\t\tif(p.g2 != -INF) {\n\t\t\tp.g2 += x;\n\t\t}\n\t\tif(p.l2 != INF)\
+    \ {\n\t\t\tp.l2 += x;\n\t\t}\n\t\tp.add += x;\n\t}\n\tprivate final void pushMin(final\
+    \ int k, final long x) {\n\t\tfinal Node p = a[k];\n\t\tp.sum += (x - p.g1) *\
+    \ p.gc;\n\t\tif(p.l1 == p.g1) {\n\t\t\tp.l1 = x;\n\t\t}\n\t\tif(p.l2 == p.g1)\
+    \ {\n\t\t\tp.l2 = x;\n\t\t}\n\t\tp.g1 = x;\n\t}\n\tprivate final void pushMax(final\
+    \ int k, final long x) {\n\t\tfinal Node p = a[k];\n\t\tp.sum += (x - p.l1) *\
+    \ p.lc;\n\t\tif(p.g1 == p.l1) {\n\t\t\tp.g1 = x;\n\t\t}\n\t\tif(p.g2 == p.l1)\
+    \ {\n\t\t\tp.g2 = x;\n\t\t}\n\t\tp.l1 = x;\n\t}\n\tprivate final void push(final\
+    \ int k) {\n\t\tfinal Node p = a[k];\n\t\tif(p.add != 0) {\n\t\t\tpushAdd(k *\
+    \ 2 + 0, p.add);\n\t\t\tpushAdd(k * 2 + 1, p.add);\n\t\t\tp.add = 0;\n\t\t}\n\t\
+    \tif(p.g1 < a[k * 2 + 0].g1) {\n\t\t\tpushMin(k * 2 + 0, p.g1);\n\t\t}\n\t\tif(p.l1\
+    \ > a[k * 2 + 0].l1) {\n\t\t\tpushMax(k * 2 + 0, p.l1);\n\t\t}\n\t\tif(p.g1 <\
+    \ a[k * 2 + 1].g1) {\n\t\t\tpushMin(k * 2 + 1, p.g1);\n\t\t}\n\t\tif(p.l1 > a[k\
+    \ * 2 + 1].l1) {\n\t\t\tpushMax(k * 2 + 1, p.l1);\n\t\t}\n\t}\n\tprivate final\
+    \ void subtreeChmin(final int k, final long x) {\n\t\tif(a[k].g1 <= x) {\n\t\t\
+    \treturn;\n\t\t}\n\t\tif(a[k].g2 < x) {\n\t\t\tpushMin(k, x);\n\t\t\treturn;\n\
+    \t\t}\n\t\tpush(k);\n\t\tsubtreeChmin(k * 2 + 0, x);\n\t\tsubtreeChmin(k * 2 +\
+    \ 1, x);\n\t\tupdate(k);\n\t}\n\tprivate final void subtreeChmax(final int k,\
+    \ final long x) {\n\t\tif(x <= a[k].l1) {\n\t\t\treturn;\n\t\t}\n\t\tif(x < a[k].l2)\
+    \ {\n\t\t\tpushMax(k, x);\n\t\t\treturn;\n\t\t}\n\t\tpush(k);\n\t\tsubtreeChmax(k\
+    \ * 2 + 0, x);\n\t\tsubtreeChmax(k * 2 + 1, x);\n\t\tupdate(k);\n\t}\n\tprivate\
+    \ final void applyBeta(final int cmd, final int k, final long x) {\n\t\tif(cmd\
+    \ == 1) {\n\t\t\tsubtreeChmin(k, x);\n\t\t}\n\t\tif(cmd == 2) {\n\t\t\tsubtreeChmax(k,\
+    \ x);\n\t\t}\n\t\tif(cmd == 3) {\n\t\t\tpushAdd(k, x);\n\t\t}\n\t\tif(cmd == 4)\
+    \ {\n\t\t\tsubtreeChmin(k, x);\n\t\t\tsubtreeChmax(k, x);\n\t\t}\n\t}\n\tprivate\
+    \ final void innerApply(final int cmd, int l, int r, final long x) {\n\t\tif(l\
+    \ == r) {\n\t\t\treturn;\n\t\t}\n\t\tl += n;\n\t\tr += n;\n\t\tfor(int i = log;\
+    \ i >= 1; i--) {\n\t\t\tif(((l >> i) << i) != l) {\n\t\t\t\tpush(l >> i);\n\t\t\
+    \t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\t\t\tpush((r - 1) >> i);\n\t\t\t}\n\t\
+    \t}\n\t\t{\n\t\t\tint l2 = l, r2 = r;\n\t\t\twhile(l < r) {\n\t\t\t\tif(l % 2\
+    \ == 1) {\n\t\t\t\t\tapplyBeta(cmd, l++, x);\n\t\t\t\t}\n\t\t\t\tif(r % 2 == 1)\
+    \ {\n\t\t\t\t\tapplyBeta(cmd, --r, x);\n\t\t\t\t}\n\t\t\t\tl >>= 1;\n\t\t\t\t\
+    r >>= 1;\n\t\t\t}\n\t\t\tl = l2;\n\t\t\tr = r2;\n\t\t}\n\t\tfor(int i = 1; i <=\
+    \ log; ++i) {\n\t\t\tif(((l >> i) << i) != l) {\n\t\t\t\tupdate(l >> i);\n\t\t\
+    \t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\t\t\tupdate((r - 1) >> i);\n\t\t\t}\n\
+    \t\t}\n\t}\n\tprivate final long op(final int cmd, final long a, final Node b){\
+    \ return cmd == 1 ? Math.min(a, b.l1) : cmd == 2 ? Math.max(a, b.g1) : a + b.sum;\
+    \ }\n\tprivate final long e(final int cmd){ return cmd == 1 ? INF : cmd == 2 ?\
+    \ -INF : 0; }\n\tprivate final long innerFold(final int cmd, int l, int r) {\n\
+    \t\tif(l == r) {\n\t\t\treturn e(cmd);\n\t\t}\n\t\tl += n;\n\t\tr += n;\n\t\t\
+    for(int i = log; i >= 1; i--) {\n\t\t\tif(((l >> i) << i) != l) {\n\t\t\t\tpush(l\
+    \ >> i);\n\t\t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\t\t\tpush((r - 1) >> i);\n\
+    \t\t\t}\n\t\t}\n\t\tlong lx = e(cmd), rx = e(cmd);\n\t\twhile(l < r) {\n\t\t\t\
+    if(l % 2 == 1) {\n\t\t\t\tlx = op(cmd, lx, a[l++]);\n\t\t\t}\n\t\t\tif(r % 2 ==\
+    \ 1) {\n\t\t\t\trx = op(cmd, rx, a[--r]);\n\t\t\t}\n\t\t\tl >>= 1;\n\t\t\tr >>=\
+    \ 1;\n\t\t}\n\t\tif(cmd == 1) {\n\t\t\tlx = Math.min(lx, rx);\n\t\t}\n\t\tif(cmd\
+    \ == 2) {\n\t\t\tlx = Math.max(lx, rx);\n\t\t}\n\t\tif(cmd == 3) {\n\t\t\tlx +=\
+    \ rx;\n\t\t}\n\t\treturn lx;\n\t}\n}"
   dependsOn:
   - Java/yukicoder/yukicoder.java
   - Java/aoj/Main.java
@@ -583,7 +680,6 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
   - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/ds/SegmentTreeBeats.java
   - Java/library/ds/fenwicktree/RangeBIT.java
   - Java/library/ds/fenwicktree/FenwickTree.java
   - Java/library/ds/SegmentTree.java
@@ -622,6 +718,7 @@ data:
   - Java/library/core/interfaces/lambda/RecursiveIntBinaryOperator.java
   - Java/library/core/interfaces/lambda/RecursiveIntPredicate.java
   - Java/library/core/interfaces/lambda/RecursiveDoubleConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
   - Java/library/core/interfaces/lambda/RecursiveIntUnaryOperator.java
   - Java/library/core/interfaces/lambda/RecursiveBinaryOperator.java
   - Java/library/core/interfaces/lambda/RecursiveConsumer.java
@@ -656,7 +753,7 @@ data:
   - Java/library/graph/SCC.java
   - Java/Main.java
   isVerificationFile: false
-  path: Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
+  path: Java/library/ds/SegmentTreeBeats.java
   requiredBy:
   - Java/yukicoder/yukicoder.java
   - Java/aoj/Main.java
@@ -677,7 +774,6 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
   - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
-  - Java/library/ds/SegmentTreeBeats.java
   - Java/library/ds/fenwicktree/RangeBIT.java
   - Java/library/ds/fenwicktree/FenwickTree.java
   - Java/library/ds/SegmentTree.java
@@ -716,6 +812,7 @@ data:
   - Java/library/core/interfaces/lambda/RecursiveIntBinaryOperator.java
   - Java/library/core/interfaces/lambda/RecursiveIntPredicate.java
   - Java/library/core/interfaces/lambda/RecursiveDoubleConsumer.java
+  - Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
   - Java/library/core/interfaces/lambda/RecursiveIntUnaryOperator.java
   - Java/library/core/interfaces/lambda/RecursiveBinaryOperator.java
   - Java/library/core/interfaces/lambda/RecursiveConsumer.java
@@ -752,10 +849,10 @@ data:
   timestamp: '2024-06-26 20:04:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
+documentation_of: Java/library/ds/SegmentTreeBeats.java
 layout: document
 redirect_from:
-- /library/Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
-- /library/Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java.html
-title: Java/library/core/interfaces/lambda/RecursiveLongBinaryOperator.java
+- /library/Java/library/ds/SegmentTreeBeats.java
+- /library/Java/library/ds/SegmentTreeBeats.java.html
+title: Java/library/ds/SegmentTreeBeats.java
 ---

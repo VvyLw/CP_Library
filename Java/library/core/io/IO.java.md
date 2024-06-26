@@ -134,6 +134,9 @@ data:
     path: Java/library/ds/SegmentTree.java
     title: Java/library/ds/SegmentTree.java
   - icon: ':warning:'
+    path: Java/library/ds/SegmentTreeBeats.java
+    title: Java/library/ds/SegmentTreeBeats.java
+  - icon: ':warning:'
     path: Java/library/ds/SparseTable.java
     title: Java/library/ds/SparseTable.java
   - icon: ':warning:'
@@ -404,6 +407,9 @@ data:
   - icon: ':warning:'
     path: Java/library/ds/SegmentTree.java
     title: Java/library/ds/SegmentTree.java
+  - icon: ':warning:'
+    path: Java/library/ds/SegmentTreeBeats.java
+    title: Java/library/ds/SegmentTreeBeats.java
   - icon: ':warning:'
     path: Java/library/ds/SparseTable.java
     title: Java/library/ds/SparseTable.java
@@ -706,6 +712,7 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
   - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
+  - Java/library/ds/SegmentTreeBeats.java
   - Java/library/ds/fenwicktree/RangeBIT.java
   - Java/library/ds/fenwicktree/FenwickTree.java
   - Java/library/ds/SegmentTree.java
@@ -799,6 +806,7 @@ data:
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
   - Java/library/ds/waveletmatrix/SuccinctIndexableDictionary.java
   - Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
+  - Java/library/ds/SegmentTreeBeats.java
   - Java/library/ds/fenwicktree/RangeBIT.java
   - Java/library/ds/fenwicktree/FenwickTree.java
   - Java/library/ds/SegmentTree.java
@@ -870,7 +878,7 @@ data:
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/SCC.java
   - Java/Main.java
-  timestamp: '2024-06-11 03:10:18+09:00'
+  timestamp: '2024-06-26 20:04:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/io/IO.java

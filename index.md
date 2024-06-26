@@ -347,6 +347,9 @@ data:
       path: Java/library/ds/SegmentTree.java
       title: Java/library/ds/SegmentTree.java
     - icon: ':warning:'
+      path: Java/library/ds/SegmentTreeBeats.java
+      title: Java/library/ds/SegmentTreeBeats.java
+    - icon: ':warning:'
       path: Java/library/ds/SparseTable.java
       title: Java/library/ds/SparseTable.java
   - name: Java/library/ds/deque
