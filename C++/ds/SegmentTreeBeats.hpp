@@ -13,9 +13,7 @@ private:
     int n, log;
 private:
     void update(const int k) {
-        Node& p = v[k];
-        Node& l = v[k * 2 + 0];
-        Node& r = v[k * 2 + 1];
+        Node& p = v[k], l = v[k * 2 + 0], r = v[k * 2 + 1];
         p.sum = l.sum + r.sum;
         if(l.g1 == r.g1) {
             p.g1 = l.g1;
@@ -149,11 +147,11 @@ private:
         }
         {
             int l2 = l, r2 = r;
-            while (l < r) {
-                if (l & 1) {
+            while(l < r) {
+                if(l & 1) {
                     _apply<cmd>(l++, x);
                 }
-                if (r & 1) {
+                if(r & 1) {
                     _apply<cmd>(--r, x);
                 }
                 l >>= 1;
@@ -180,7 +178,6 @@ private:
         }
         return 0;
     }
-
     template <int cmd> inline void op(int64_t& a, const Node& b) {
         if constexpr (cmd == 1) {
             a = min(a, b.l1);
