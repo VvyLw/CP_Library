@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: C++/ds/SegmentTreeBeats.hpp
-    title: C++/ds/SegmentTreeBeats.hpp
+    title: SegmentTreeBeats!
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -107,9 +107,10 @@ data:
     \ r, x); }\n    int64_t min(const int l, const int r) noexcept { return inner_fold<1>(l,\
     \ r); }\n    int64_t max(const int l, const int r) noexcept{ return inner_fold<2>(l,\
     \ r); }\n    int64_t sum(const int l, const int r) noexcept { return inner_fold<3>(l,\
-    \ r); }\n};\n#line 4 \"test/segtreebeats.test.cpp\"\n\nint main() {\n    int n,\
-    \ q;\n    std::cin >> n >> q;\n    std::vector<int64_t> a(n);\n    for(auto &e:\
-    \ a) {\n        std::cin >> e;\n    }\n    SegmentTreeBeats seg(a);\n    while(q--)\
+    \ r); }\n};\n\n/**\n * @brief SegmentTreeBeats!\n * @see https://nyaannyaan.github.io/library/segment-tree/segment-tree-beats.hpp\n\
+    \ */\n#line 4 \"test/segtreebeats.test.cpp\"\n\nint main() {\n    int n, q;\n\
+    \    std::cin >> n >> q;\n    std::vector<int64_t> a(n);\n    for(auto &e: a)\
+    \ {\n        std::cin >> e;\n    }\n    SegmentTreeBeats seg(a);\n    while(q--)\
     \ {\n        int t, l, r;\n        std::cin >> t >> l >> r;\n        if(t == 0)\
     \ {\n            int64_t b;\n            std::cin >> b;\n            seg.chmin(l,\
     \ r, b);\n        } else if(t == 1) {\n            int64_t b;\n            std::cin\
@@ -133,7 +134,7 @@ data:
   isVerificationFile: true
   path: test/segtreebeats.test.cpp
   requiredBy: []
-  timestamp: '2024-06-26 14:52:43+09:00'
+  timestamp: '2024-06-26 14:59:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segtreebeats.test.cpp

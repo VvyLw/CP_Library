@@ -10,7 +10,9 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
+    document_title: SegmentTreeBeats!
+    links:
+    - https://nyaannyaan.github.io/library/segment-tree/segment-tree-beats.hpp
   bundledCode: "#line 2 \"C++/ds/SegmentTreeBeats.hpp\"\n\n#include <vector>\n#include\
     \ <algorithm>\n\ntemplate <class T> struct SegmentTreeBeats {\nprivate:\n    static\
     \ constexpr int64_t INF = (1LL << 61) - 1;\n    struct Node {\n        int64_t\
@@ -103,7 +105,8 @@ data:
     \ r, x); }\n    int64_t min(const int l, const int r) noexcept { return inner_fold<1>(l,\
     \ r); }\n    int64_t max(const int l, const int r) noexcept{ return inner_fold<2>(l,\
     \ r); }\n    int64_t sum(const int l, const int r) noexcept { return inner_fold<3>(l,\
-    \ r); }\n};\n"
+    \ r); }\n};\n\n/**\n * @brief SegmentTreeBeats!\n * @see https://nyaannyaan.github.io/library/segment-tree/segment-tree-beats.hpp\n\
+    \ */\n"
   code: "#pragma once\n\n#include <vector>\n#include <algorithm>\n\ntemplate <class\
     \ T> struct SegmentTreeBeats {\nprivate:\n    static constexpr int64_t INF = (1LL\
     \ << 61) - 1;\n    struct Node {\n        int64_t sum = 0, g1 = 0, l1 = 0, g2\
@@ -196,12 +199,13 @@ data:
     \ r, x); }\n    int64_t min(const int l, const int r) noexcept { return inner_fold<1>(l,\
     \ r); }\n    int64_t max(const int l, const int r) noexcept{ return inner_fold<2>(l,\
     \ r); }\n    int64_t sum(const int l, const int r) noexcept { return inner_fold<3>(l,\
-    \ r); }\n};"
+    \ r); }\n};\n\n/**\n * @brief SegmentTreeBeats!\n * @see https://nyaannyaan.github.io/library/segment-tree/segment-tree-beats.hpp\n\
+    \ */"
   dependsOn: []
   isVerificationFile: false
   path: C++/ds/SegmentTreeBeats.hpp
   requiredBy: []
-  timestamp: '2024-06-26 14:52:34+09:00'
+  timestamp: '2024-06-26 14:59:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/segtreebeats.test.cpp
@@ -210,5 +214,5 @@ layout: document
 redirect_from:
 - /library/C++/ds/SegmentTreeBeats.hpp
 - /library/C++/ds/SegmentTreeBeats.hpp.html
-title: C++/ds/SegmentTreeBeats.hpp
+title: SegmentTreeBeats!
 ---
