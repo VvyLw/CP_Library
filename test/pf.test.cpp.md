@@ -50,17 +50,16 @@ data:
     \   if(x == n) {\r\n        return {x};\r\n    }\r\n    std::vector<uint64_t>\
     \ le = rho(x);\r\n    const std::vector<uint64_t> ri = rho(n / x);\r\n    le.insert(le.end(),\
     \ ri.begin(), ri.end());\r\n    std::sort(le.begin(), le.end());\r\n    return\
-    \ le;\r\n}\r\n/**\r\n * @brief Pollard's Rho\r\n * @docs docs/Pollards_rho.md\r\
-    \n */\n#line 5 \"test/pf.test.cpp\"\nint main() {\n    std::cin.tie(nullptr) ->\
-    \ sync_with_stdio(false);\n    int q;\n    std::cin >> q;\n    std::unordered_map<int64_t,\
-    \ std::vector<uint64_t>> m;\n    const auto solve = [&]{\n        int64_t n;\n\
-    \        std::cin >> n;\n        if(!m.contains(n)) {\n            const auto\
-    \ p = rho(n);\n            m.try_emplace(n, p);\n        }\n        const auto\
-    \ ans = m[n];\n        std::cout << ans.size();\n        if(ans.size()) {\n  \
-    \          std::cout << ' ' << ans.front();\n            for(size_t i = 0; ++i\
-    \ < ans.size();) {\n                std::cout << ' ' << ans[i];\n            }\n\
-    \        }\n        std::cout << '\\n';\n    };\n    while(q--) {\n        solve();\n\
-    \    }\n}\n"
+    \ le;\r\n}\r\n/**\r\n * @brief Pollard's Rho\r\n */\n#line 5 \"test/pf.test.cpp\"\
+    \nint main() {\n    std::cin.tie(nullptr) -> sync_with_stdio(false);\n    int\
+    \ q;\n    std::cin >> q;\n    std::unordered_map<int64_t, std::vector<uint64_t>>\
+    \ m;\n    const auto solve = [&]{\n        int64_t n;\n        std::cin >> n;\n\
+    \        if(!m.contains(n)) {\n            const auto p = rho(n);\n          \
+    \  m.try_emplace(n, p);\n        }\n        const auto ans = m[n];\n        std::cout\
+    \ << ans.size();\n        if(ans.size()) {\n            std::cout << ' ' << ans.front();\n\
+    \            for(size_t i = 0; ++i < ans.size();) {\n                std::cout\
+    \ << ' ' << ans[i];\n            }\n        }\n        std::cout << '\\n';\n \
+    \   };\n    while(q--) {\n        solve();\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\n#include <iostream>\n\
     #include <unordered_map>\n#include \"C++/math/Pollards_rho.hpp\"\nint main() {\n\
     \    std::cin.tie(nullptr) -> sync_with_stdio(false);\n    int q;\n    std::cin\
@@ -77,7 +76,7 @@ data:
   isVerificationFile: true
   path: test/pf.test.cpp
   requiredBy: []
-  timestamp: '2024-06-27 16:02:11+09:00'
+  timestamp: '2024-06-27 16:06:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/pf.test.cpp

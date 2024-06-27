@@ -10,7 +10,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/Pollards_rho.md
     document_title: Pollard's Rho
     links: []
   bundledCode: "#line 2 \"C++/math/Pollards_rho.hpp\"\n\r\n#include <vector>\r\n#include\
@@ -48,8 +47,7 @@ data:
     \   if(x == n) {\r\n        return {x};\r\n    }\r\n    std::vector<uint64_t>\
     \ le = rho(x);\r\n    const std::vector<uint64_t> ri = rho(n / x);\r\n    le.insert(le.end(),\
     \ ri.begin(), ri.end());\r\n    std::sort(le.begin(), le.end());\r\n    return\
-    \ le;\r\n}\r\n/**\r\n * @brief Pollard's Rho\r\n * @docs docs/Pollards_rho.md\r\
-    \n */\n"
+    \ le;\r\n}\r\n/**\r\n * @brief Pollard's Rho\r\n */\n"
   code: "#pragma once\r\n\r\n#include <vector>\r\n#include <algorithm>\r\n#ifndef\
     \ TEMPLATE\r\ntypedef __uint128_t u128;\r\n#endif\r\nbool miller(const uint64_t\
     \ n);\r\nnamespace internal {\r\nuint bsf(const uint64_t n){ return __builtin_ctzll(n);\
@@ -84,13 +82,12 @@ data:
     \n    const uint64_t x = internal::find(n);\r\n    if(x == n) {\r\n        return\
     \ {x};\r\n    }\r\n    std::vector<uint64_t> le = rho(x);\r\n    const std::vector<uint64_t>\
     \ ri = rho(n / x);\r\n    le.insert(le.end(), ri.begin(), ri.end());\r\n    std::sort(le.begin(),\
-    \ le.end());\r\n    return le;\r\n}\r\n/**\r\n * @brief Pollard's Rho\r\n * @docs\
-    \ docs/Pollards_rho.md\r\n */"
+    \ le.end());\r\n    return le;\r\n}\r\n/**\r\n * @brief Pollard's Rho\r\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/math/Pollards_rho.hpp
   requiredBy: []
-  timestamp: '2024-06-27 16:02:11+09:00'
+  timestamp: '2024-06-27 16:06:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/pf.test.cpp
@@ -101,5 +98,3 @@ redirect_from:
 - /library/C++/math/Pollards_rho.hpp.html
 title: Pollard's Rho
 ---
-たまにオーバーフローで死ぬ  
-後で修正予定
