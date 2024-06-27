@@ -106,6 +106,5 @@ pub fn pollard_rho__(n u64) []u64 {
 	mut l:=pollard_rho__(x)
 	r:=pollard_rho__(n/x)
 	l<<r
-	l.sort()
 	return l
 }

@@ -3,7 +3,6 @@ package library.math.largeprime;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.function.LongBinaryOperator;
 
 /**
@@ -36,6 +35,7 @@ public final class LongPrime {
 	/**
 	 * Miller-Rabin法による素数判定
 	 * @param n
+	 * @return 素数かどうか
 	 */
 	public static final boolean isPrime(final long n) {
 		if(n <= 1) {
@@ -96,6 +96,8 @@ public final class LongPrime {
 	/**
 	 * Pollard-Rho法による素因数分解
 	 * @param n
+	 * @return 素因数分解した結果
+	 * @implNote 結果はソートされていないので任意にソートすること
 	 */
 	public static final ArrayList<Long> primeFactor(final long n) {
 		if(n == 1) return new ArrayList<>();
@@ -103,7 +105,6 @@ public final class LongPrime {
 		if(x == n) return new ArrayList<>(Arrays.asList(x));
 		final ArrayList<Long> l = primeFactor(x), r = primeFactor(n / x);
 		l.addAll(r);
-		Collections.sort(l);
 		return l;
 	}
 }

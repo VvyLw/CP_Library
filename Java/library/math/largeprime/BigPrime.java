@@ -3,7 +3,6 @@ package library.math.largeprime;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.function.BiFunction;
 
 /**
@@ -36,6 +35,7 @@ public final class BigPrime {
 	/**
 	 * Miller-Rabin法による素数判定
 	 * @param n
+	 * @return 素数かどうか
 	 */
 	public static final boolean isPrime(final BigInteger n) {
 		if(n.compareTo(BigInteger.ONE) <= 0) {
@@ -96,6 +96,7 @@ public final class BigPrime {
 	/**
 	 * Pollard-Rho法による素因数分解
 	 * @param n
+	 * @implNote 結果はソートされていないので任意にソートすること
 	 */
 	public static final ArrayList<BigInteger> primeFactor(final BigInteger n) {
 		if(n.equals(BigInteger.ONE)) {
@@ -107,7 +108,6 @@ public final class BigPrime {
 		}
 		final ArrayList<BigInteger> l = primeFactor(x), r = primeFactor(n.divide(x));
 		l.addAll(r);
-		Collections.sort(l);
 		return l;
 	}
 }

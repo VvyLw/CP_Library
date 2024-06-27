@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include <algorithm>
 #ifndef TEMPLATE
 typedef __uint128_t u128;
 #endif
@@ -104,9 +103,9 @@ std::vector<uint64_t> rho(const uint64_t n) {
     std::vector<uint64_t> le = rho(x);
     const std::vector<uint64_t> ri = rho(n / x);
     le.insert(le.end(), ri.begin(), ri.end());
-    std::sort(le.begin(), le.end());
     return le;
 }
 /**
  * @brief Pollard's Rho
+ * @docs docs/pollard_rho.md
  */

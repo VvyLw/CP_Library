@@ -94,7 +94,6 @@ pub fn pollard_rho(n u64) ![]u64 {
 	mut l:=pollard_rho(x)!
 	r:=pollard_rho(n/x)!
 	l<<r
-	l.sort()
 	return l
 }
 

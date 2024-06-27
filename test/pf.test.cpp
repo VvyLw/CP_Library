@@ -1,7 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/factorize"
 #include <iostream>
+#include <algorithm>
 #include <unordered_map>
-#include "C++/math/Pollards_rho.hpp"
+#include "C++/math/pollard_rho.hpp"
 int main() {
     std::cin.tie(nullptr) -> sync_with_stdio(false);
     int q;
@@ -11,7 +12,8 @@ int main() {
         int64_t n;
         std::cin >> n;
         if(!m.contains(n)) {
-            const auto p = rho(n);
+            auto p = rho(n);
+            std::ranges::sort(p);
             m.try_emplace(n, p);
         }
         const auto ans = m[n];
