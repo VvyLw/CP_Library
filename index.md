@@ -19,7 +19,7 @@ data:
     pages:
     - icon: ':warning:'
       path: C++/core/io/debug_print.hpp
-      title: C++/core/io/debug_print.hpp
+      title: "\u30C7\u30D0\u30C3\u30AC\u30FC"
     - icon: ':heavy_check_mark:'
       path: C++/core/io/input.hpp
       title: "\u5165\u529B"

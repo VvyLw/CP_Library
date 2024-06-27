@@ -7,6 +7,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: "\u30C7\u30D0\u30C3\u30AC\u30FC"
     links: []
   bundledCode: "#line 1 \"C++/core/io/debug_print.hpp\"\n/* last update: 2022-08-03\
     \ */\n\n#ifndef DEBUG_PRINT_HPP\n#define DEBUG_PRINT_HPP\n\n#define INCLUDED(n)\
@@ -122,7 +123,7 @@ data:
     \      names.remove_prefix(next_varname_begins_at);\n\n      multi_print(names,\
     \ args...);\n    }\n  }\n}  // namespace debug_print\n\n#undef INCLUDED\n\n#define\
     \ dump(...) debug_print::multi_print(#__VA_ARGS__, __VA_ARGS__)\n\n#endif  //\
-    \ DEBUG_PRINT_HPP\n"
+    \ DEBUG_PRINT_HPP\n\n/**\n * @brief \u30C7\u30D0\u30C3\u30AC\u30FC\n */\n"
   code: "/* last update: 2022-08-03 */\n\n#ifndef DEBUG_PRINT_HPP\n#define DEBUG_PRINT_HPP\n\
     \n#define INCLUDED(n) ((defined _GLIBCXX_##n) || (defined _LIBCPP_##n))\n#pragma\
     \ GCC diagnostic ignored \"-Wexpansion-to-defined\"\n\n#if __cplusplus < 201703L\n\
@@ -236,12 +237,12 @@ data:
     \      names.remove_prefix(next_varname_begins_at);\n\n      multi_print(names,\
     \ args...);\n    }\n  }\n}  // namespace debug_print\n\n#undef INCLUDED\n\n#define\
     \ dump(...) debug_print::multi_print(#__VA_ARGS__, __VA_ARGS__)\n\n#endif  //\
-    \ DEBUG_PRINT_HPP"
+    \ DEBUG_PRINT_HPP\n\n/**\n * @brief \u30C7\u30D0\u30C3\u30AC\u30FC\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/core/io/debug_print.hpp
   requiredBy: []
-  timestamp: '2024-06-24 22:23:03+09:00'
+  timestamp: '2024-06-27 21:44:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/core/io/debug_print.hpp
@@ -249,5 +250,5 @@ layout: document
 redirect_from:
 - /library/C++/core/io/debug_print.hpp
 - /library/C++/core/io/debug_print.hpp.html
-title: C++/core/io/debug_print.hpp
+title: "\u30C7\u30D0\u30C3\u30AC\u30FC"
 ---
