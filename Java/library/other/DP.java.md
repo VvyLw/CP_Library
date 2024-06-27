@@ -567,7 +567,7 @@ data:
     \u306E\u54C1\u7269\u304C\u3042\u308A\u3001\u91CD\u3055\u306E\u548C\u304Cw\u4EE5\
     \u4E0B\u3068\u306A\u308B\u3088\u3046\u306B\u9078\u3076\u3068\u304D\u306E\u4FA1\
     \u5024\u306E\u6700\u5927\u5024\u3092\u6C42\u3081\u308B\n\t * @param a\n\t * @param\
-    \ v\n\t * @param w\n\t * @return dp\u306E\u6700\u5927\u5024\n\t * @implNote O(NW)\n\
+    \ v\n\t * @param w\n\t * @return dp\u306E\u6700\u5927\u5024\n\t * @apiNote O(NW)\n\
     \t * @see <a href=\"https://ei1333.github.io/library/dp/knapsack-01.hpp\">\u53C2\
     \u8003\u5143</a>\n\t */\n\tpublic static final long knapsack01(final int[] a,\
     \ final long[] v, final int w) {\n\t\tfinal int n = a.length;\n\t\tfinal long[]\
@@ -581,7 +581,7 @@ data:
     \u304Cw\u4EE5\u4E0B\u3068\u306A\u308B\u3088\u3046\u306B\u9078\u3076\u3068\u304D\
     \u306E\u4FA1\u5024\u306E\u6700\u5927\u5024\u3092\u6C42\u3081\u308B\n\t * @param\
     \ a\n\t * @param v\n\t * @param w\n\t * @return dp\u306E\u6700\u5927\u5024\n\t\
-    \ * @implNote O(N sum(v))\n\t * @see <a href=\"https://ei1333.github.io/library/dp/knapsack-01-2.hpp\"\
+    \ * @apiNote O(N sum(v))\n\t * @see <a href=\"https://ei1333.github.io/library/dp/knapsack-01-2.hpp\"\
     >\u53C2\u8003\u5143</a>\n\t */\n\tpublic static final int knapsack01(final long[]\
     \ a, final int[] v, final long w) {\n\t\tfinal int n = a.length;\n\t\tfinal int\
     \ s = (int) Utility.sum(v);\n\t\tfinal long[] dp = new long[s + 1];\n\t\tArrays.fill(dp,\
@@ -612,7 +612,7 @@ data:
     \u306E\u548C\u304Cw\u4EE5\u4E0B\u3068\u306A\u308B\u3088\u3046\u306B\u9078\u3076\
     \u3068\u304D\u306E\u4FA1\u5024\u306E\u6700\u5927\u5024\u3092\u6C42\u3081\u308B\
     \n\t * @param a\n\t * @param v\n\t * @param m\n\t * @param w\n\t * @return dp\u306E\
-    \u6700\u5927\u5024\n\t * @implNote O(NW)\n\t * @see <a href=\"https://ei1333.github.io/library/dp/knapsack-limitations.hpp\"\
+    \u6700\u5927\u5024\n\t * @apiNote O(NW)\n\t * @see <a href=\"https://ei1333.github.io/library/dp/knapsack-limitations.hpp\"\
     >\u53C2\u8003\u5143</a>\n\t */\n\tpublic static final long knapsack(final int[]\
     \ a, final long[] v, final int[] m, final int w){ return Utility.max(knapsack(a,\
     \ v, m, w, false)); }\n\t/**\n\t * \u500B\u6570\u5236\u9650\u3064\u304D\u30CA\u30C3\
@@ -622,7 +622,7 @@ data:
     \u3067\u304D\u308B\n\t * \u91CD\u3055\u306E\u548C\u304Cw\u4EE5\u4E0B\u3068\u306A\
     \u308B\u3088\u3046\u306B\u9078\u3076\u3068\u304D\u306E\u4FA1\u5024\u306E\u6700\
     \u5927\u5024\u3092\u6C42\u3081\u308B\n\t * @param a\n\t * @param v\n\t * @param\
-    \ m\n\t * @param w\n\t * @return dp\u306E\u6700\u5927\u5024\n\t * @implNote O((N\
+    \ m\n\t * @param w\n\t * @return dp\u306E\u6700\u5927\u5024\n\t * @apiNote O((N\
     \ max(v))^2)\n\t * @see <a href=\"https://ei1333.github.io/library/dp/knapsack-limitations-2.hpp\"\
     >\u53C2\u8003\u5143</a>\n\t */\n\tpublic static final long knapsack(final long[]\
     \ a, final int[] v, final long[] m, final long w) {\n\t\tfinal int n = a.length;\n\
@@ -644,8 +644,8 @@ data:
     \u54C1\u7269\u304C\u3042\u308A\u3001\u91CD\u3055\u306E\u548C\u304Cw\u4EE5\u4E0B\
     \u3068\u306A\u308B\u3088\u3046\u306B\u9078\u3076\u3068\u304D\u306E\u4FA1\u5024\
     \u306E\u6700\u5927\u5024\u3092\u6C42\u3081\u308B\n\t * @param a\n\t * @param v\n\
-    \t * @param w\n\t * @return dp\u306E\u6700\u5927\u5024\n\t * @implNote O(NW)\n\
-    \t * @see <a href=\"https://ei1333.github.io/library/dp/knapsack.hpp\">\u53C2\u8003\
+    \t * @param w\n\t * @return dp\u306E\u6700\u5927\u5024\n\t * @apiNote O(NW)\n\t\
+    \ * @see <a href=\"https://ei1333.github.io/library/dp/knapsack.hpp\">\u53C2\u8003\
     \u5143</a>\n\t */\n\tpublic static final long knapsack(final int[] a, final long[]\
     \ v, final int w) {\n\t\tfinal int n = a.length;\n\t\tfinal long[] dp = new long[w\
     \ + 1];\n\t\tArrays.fill(dp, Long.MIN_VALUE);\n\t\tdp[0] = 0;\n\t\tfor(int i =\
@@ -655,7 +655,7 @@ data:
     \t\treturn Utility.max(dp);\n\t}\n\t/**\n\t * \u30D2\u30B9\u30C8\u30B0\u30E9\u30E0\
     \u306E\u6700\u5927\u9577\u65B9\u5F62\u306E\u9762\u7A4D\u3092\u8FD4\u3059\n\t *\
     \ @param a\n\t * @return \u30D2\u30B9\u30C8\u30B0\u30E9\u30E0\u306E\u6700\u5927\
-    \u9577\u65B9\u5F62\u306E\u9762\u7A4D\n\t * @implNote O(N)\n\t * @see <a href=\"\
+    \u9577\u65B9\u5F62\u306E\u9762\u7A4D\n\t * @apiNote O(N)\n\t * @see <a href=\"\
     https://ei1333.github.io/library/dp/largest-rectangle.hpp\">\u53C2\u8003\u5143\
     </a>\n\t */\n\tpublic static final long maxRectangle(final int[] a) {\n\t\tfinal\
     \ Stack<Integer> sk = new Stack<>();\n\t\tfinal long[] h = new long[a.length +\
@@ -667,7 +667,7 @@ data:
     \t}\n\t/**\n\t * \u30D2\u30B9\u30C8\u30B0\u30E9\u30E0\u306E\u6700\u5927\u9577\u65B9\
     \u5F62\u306E\u9762\u7A4D\u3092\u8FD4\u3059\n\t * @param a\n\t * @return \u30D2\
     \u30B9\u30C8\u30B0\u30E9\u30E0\u306E\u6700\u5927\u9577\u65B9\u5F62\u306E\u9762\
-    \u7A4D\n\t * @implNote O(N)\n\t * @see <a href=\"https://ei1333.github.io/library/dp/largest-rectangle.hpp\"\
+    \u7A4D\n\t * @apiNote O(N)\n\t * @see <a href=\"https://ei1333.github.io/library/dp/largest-rectangle.hpp\"\
     >\u53C2\u8003\u5143</a>\n\t */\n\tpublic static final long maxRectangle(final\
     \ long[] a) {\n\t\tfinal Stack<Integer> sk = new Stack<>();\n\t\tfinal long[]\
     \ h = Arrays.copyOf(a, a.length + 1);\n\t\tfinal int[] l = new int[h.length];\n\
@@ -686,7 +686,7 @@ data:
     \ dp[n];\n\t}\n\t/**\n\t * \u6700\u9577\u5897\u52A0\u90E8\u5206\u5217(Longest\
     \ Increasing Subsequence)\n\t * @param a\n\t * @return \u6700\u9577\u5897\u52A0\
     \u90E8\u5206\u5217\n\t * @see <a href=\"https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\"\
-    >\u53C2\u8003\u5143</a>\n\t * @implNote Java21\u3088\u308A\u524D\u306EVer\u306E\
+    >\u53C2\u8003\u5143</a>\n\t * @apiNote Java21\u3088\u308A\u524D\u306EVer\u306E\
     \u5834\u5408\u3001getLast\u3092get(dp.size() - 1)\u306B\u5909\u3048\u308B\n\t\
     \ */\n\tpublic static final int[] lis(final int[] a) {\n\t\tfinal int n = a.length;\n\
     \t\tList<IntPair> dp = new ArrayList<IntPair>();\n\t\tfinal int[] p = new int[n];\n\
@@ -700,7 +700,7 @@ data:
     \ -> i).toArray();\n\t}\n\t/**\n\t * \u6700\u9577\u5897\u52A0\u90E8\u5206\u5217\
     (Longest Increasing Subsequence)\n\t * @param a\n\t * @return \u6700\u9577\u5897\
     \u52A0\u90E8\u5206\u5217\n\t * @see <a href=\"https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\"\
-    >\u53C2\u8003\u5143</a>\n\t * @implNote Java21\u3088\u308A\u524D\u306EVer\u306E\
+    >\u53C2\u8003\u5143</a>\n\t * @apiNote Java21\u3088\u308A\u524D\u306EVer\u306E\
     \u5834\u5408\u3001getLast\u3092get(dp.size() - 1)\u306B\u5909\u3048\u308B\n\t\
     \ */\n\tpublic static final int[] lis(final long[] a) {\n\t\tfinal int n = a.length;\n\
     \t\tList<IntPair> dp = new ArrayList<IntPair>();\n\t\tfinal int[] p = new int[n];\n\
@@ -898,7 +898,7 @@ data:
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/SCC.java
   - Java/Main.java
-  timestamp: '2024-06-27 16:36:12+09:00'
+  timestamp: '2024-06-27 16:55:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/DP.java

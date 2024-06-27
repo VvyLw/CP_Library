@@ -577,7 +577,7 @@ data:
     \ = undirected;\n\t\tid = 0;\n\t\tedge = new ArrayList<>();\n\t\tIntStream.range(0,\
     \ n).forEach(i -> add(new ArrayList<>()));\n\t}\n\t/**\n\t * \u30B0\u30E9\u30D5\
     \u5316\u3059\u308B\n\t * @param g\n\t * @param undirected\n\t * @return List<ArrayList<Edge>>\u3092\
-    WeightedGraph\u5316\u3057\u305F\u3082\u306E\n\t * @implNote stream\u3067Graph\u306B\
+    WeightedGraph\u5316\u3057\u305F\u3082\u306E\n\t * @apiNote stream\u3067Graph\u306B\
     \u64CD\u4F5C\u3092\u52A0\u3048\u305F\u5F8C\u306B\u518D\u5EA6\u30B0\u30E9\u30D5\
     \u306B\u76F4\u3059\u3068\u304D\u306B\u4F7F\u3048\u308B\u304B\u3082\n\t */\n\t\
     public static Graph of(final List<ArrayList<Edge>> g, final boolean undirected)\
@@ -619,7 +619,7 @@ data:
     \t\t\tfor(final Edge ed: this.get(tmp)) {\n\t\t\t\tif(--deg[ed.to] == 0) {\n\t\
     \t\t\t\tsk.add(ed.to);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ord.size() == n\
     \ ? ord : null;\n\t}\n\t/**\n\t * \u30B5\u30A4\u30AF\u30EB\u691C\u51FA\n\t * @return\
-    \ \u30B5\u30A4\u30AF\u30EB\n\t * if non-existence: \u7A7A\u914D\u5217\n\t * @implNote\
+    \ \u30B5\u30A4\u30AF\u30EB\n\t * if non-existence: \u7A7A\u914D\u5217\n\t * @apiNote\
     \ \u6709\u5411\u30B0\u30E9\u30D5\n\t */\n\tpublic final int[] cycleDetector()\
     \ {\n\t\tfinal int[] used = new int[n];\n\t\tfinal Edge[] pre = new Edge[n];\n\
     \t\tfinal ArrayList<Edge> cycle = new ArrayList<>();\n\t\tfinal RecursiveIntPredicate\
@@ -824,7 +824,7 @@ data:
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/SCC.java
   - Java/Main.java
-  timestamp: '2024-06-27 16:36:12+09:00'
+  timestamp: '2024-06-27 16:55:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/Graph.java

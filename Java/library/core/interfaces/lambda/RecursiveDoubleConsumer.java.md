@@ -749,7 +749,7 @@ data:
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/SCC.java
   - Java/Main.java
-  timestamp: '2024-06-27 16:36:12+09:00'
+  timestamp: '2024-06-27 16:55:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/interfaces/lambda/RecursiveDoubleConsumer.java

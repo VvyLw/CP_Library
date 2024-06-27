@@ -740,7 +740,7 @@ data:
     \ */\n\tprotected static final long sigma(final long n){ return n * (n + 1) /\
     \ 2; }\n\t/**\n\t * a\u304B\u3089b\u307E\u3067\u306E\u7DCF\u548C\u3092\u6C42\u3081\
     \u308B\n\t * @param a\n\t * @param b\n\t * @return a\u304B\u3089b\u307E\u3067\u306E\
-    \u7DCF\u548C\n\t * @implNote b\u306Fa\u4EE5\u4E0A\n\t */\n\tprotected static final\
+    \u7DCF\u548C\n\t * @apiNote b\u306Fa\u4EE5\u4E0A\n\t */\n\tprotected static final\
     \ long sigma(final long a, final long b) {\n\t\tassert a <= b;\n\t\treturn sigma(b)\
     \ - sigma(a - 1);\n\t}\n\t/**\n\t * n!\u3092\u6C42\u3081\u308B\n\t * @param n\
     \ \u6574\u6570\n\t * @return n\u306E\u968E\u4E57\n\t */\n\tprotected static final\
@@ -797,30 +797,29 @@ data:
     \ l <= x && x <= r; }\n\t/**\n\t * C++\u306Estd::clamp\u306E\u3088\u3046\u306A\
     \u30E1\u30BD\u30C3\u30C9\n\t * @param l\n\t * @param x\n\t * @param r\n\t * @see\
     \ <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\">std::clamp</a>\n\
-    \t * @implNote AtCoder\u306EJava\u306E\u30A2\u30C3\u30D7\u30C7\u30FC\u30C8\u304C\
-    \u5165\u3063\u305F\u3089\u6D88\u3059\n\t */\n\tprotected static final int clamp(final\
+    \t * @ AtCoder\u306EJava\u306E\u30A2\u30C3\u30D7\u30C7\u30FC\u30C8\u304C\u5165\
+    \u3063\u305F\u3089\u6D88\u3059\n\t */\n\tprotected static final int clamp(final\
     \ int l, final int x, final int r){ return x < l ? l : x > r ? r : x; }\n\t/**\n\
     \t * C++\u306Estd::clamp\u306E\u3088\u3046\u306A\u30E1\u30BD\u30C3\u30C9\n\t *\
     \ @param l\n\t * @param x\n\t * @param r\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\"\
-    >std::clamp</a>\n\t * @implNote AtCoder\u306EJava\u306E\u30A2\u30C3\u30D7\u30C7\
-    \u30FC\u30C8\u304C\u5165\u3063\u305F\u3089\u6D88\u3059\n\t */\n\tprotected static\
-    \ final long clamp(final long l, final long x, final long r){ return x < l ? l\
-    \ : x > r ? r : x; }\n\t/**\n\t * C++\u306Estd::clamp\u306E\u3088\u3046\u306A\u30E1\
-    \u30BD\u30C3\u30C9\n\t * @param l\n\t * @param x\n\t * @param r\n\t * @see <a\
-    \ href=\"https://cpprefjp.github.io/reference/algorithm/clamp.html\">std::clamp</a>\n\
-    \t * @implNote AtCoder\u306EJava\u306E\u30A2\u30C3\u30D7\u30C7\u30FC\u30C8\u304C\
-    \u5165\u3063\u305F\u3089\u6D88\u3059\n\t */\n\tprotected static final double clamp(final\
-    \ double l, final double x, final double r){ return x < l ? l : x > r ? r : x;\
-    \ }\n\t/**\n\t * bit\u5168\u63A2\u7D22\u306A\u3069\u3067\u4F7F\u3046(i >> j\u304C\
-    \u5947\u6570\u304B\u3069\u3046\u304B)\n\t * @param i bit\n\t * @param j target\n\
-    \t */\n\tprotected static final boolean isBit(final long i, final long j){ return\
-    \ (i >> j & 1) == 1; }\n\t/**\n\t * C++\u306Estd::next_permutation\u306B\u76F8\
-    \u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t * @see <a href=\"\
-    https://cpprefjp.github.io/reference/algorithm/next_permutation.html\">std::next_permutation</a>\n\
-    \t */\n\tprotected static final boolean nextPerm(final int[] a) {\n\t\ttry {\n\
-    \t\t\tfinal int[] res = nextPermutation(a);\n\t\t\tSystem.arraycopy(res, 0, a,\
-    \ 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final NullPointerException e)\
-    \ {\n\t\t\tArrays.sort(a);\n\t\t\treturn false;\n\t\t}\n\t}\n\t/**\n\t * C++\u306E\
+    >std::clamp</a>\n\t * @ AtCoder\u306EJava\u306E\u30A2\u30C3\u30D7\u30C7\u30FC\u30C8\
+    \u304C\u5165\u3063\u305F\u3089\u6D88\u3059\n\t */\n\tprotected static final long\
+    \ clamp(final long l, final long x, final long r){ return x < l ? l : x > r ?\
+    \ r : x; }\n\t/**\n\t * C++\u306Estd::clamp\u306E\u3088\u3046\u306A\u30E1\u30BD\
+    \u30C3\u30C9\n\t * @param l\n\t * @param x\n\t * @param r\n\t * @see <a href=\"\
+    https://cpprefjp.github.io/reference/algorithm/clamp.html\">std::clamp</a>\n\t\
+    \ * @ AtCoder\u306EJava\u306E\u30A2\u30C3\u30D7\u30C7\u30FC\u30C8\u304C\u5165\u3063\
+    \u305F\u3089\u6D88\u3059\n\t */\n\tprotected static final double clamp(final double\
+    \ l, final double x, final double r){ return x < l ? l : x > r ? r : x; }\n\t\
+    /**\n\t * bit\u5168\u63A2\u7D22\u306A\u3069\u3067\u4F7F\u3046(i >> j\u304C\u5947\
+    \u6570\u304B\u3069\u3046\u304B)\n\t * @param i bit\n\t * @param j target\n\t */\n\
+    \tprotected static final boolean isBit(final long i, final long j){ return (i\
+    \ >> j & 1) == 1; }\n\t/**\n\t * C++\u306Estd::next_permutation\u306B\u76F8\u5F53\
+    \u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/next_permutation.html\"\
+    >std::next_permutation</a>\n\t */\n\tprotected static final boolean nextPerm(final\
+    \ int[] a) {\n\t\ttry {\n\t\t\tfinal int[] res = nextPermutation(a);\n\t\t\tSystem.arraycopy(res,\
+    \ 0, a, 0, a.length);\n\t\t\treturn true;\n\t\t} catch(final NullPointerException\
+    \ e) {\n\t\t\tArrays.sort(a);\n\t\t\treturn false;\n\t\t}\n\t}\n\t/**\n\t * C++\u306E\
     std::next_permutation\u306B\u76F8\u5F53\u3059\u308B\u30E1\u30BD\u30C3\u30C9\n\t\
     \ * @param a\n\t * @see <a href=\"https://cpprefjp.github.io/reference/algorithm/next_permutation.html\"\
     >std::next_permutation</a>\n\t */\n\tprotected static final boolean nextPerm(final\
@@ -1754,7 +1753,7 @@ data:
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/SCC.java
   - Java/Main.java
-  timestamp: '2024-06-27 16:36:12+09:00'
+  timestamp: '2024-06-27 16:55:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

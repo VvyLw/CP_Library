@@ -586,27 +586,27 @@ data:
     \ int l, final int r, final long x) {\n\t\tadd(l, x);\n\t\tadd(r + 1, -x);\n\t\
     }\n\tprivate final int lg(final int n){ return 31 - Integer.numberOfLeadingZeros(n);\
     \ }\n\t/**\n\t * \u9589\u533A\u9593[0, k]\u306E\u533A\u9593\u548C\u304Cw\u4EE5\
-    \u4E0A\u3068\u306A\u308B\u3088\u3046\u306A\u6700\u5C0F\u306Ek\n\t * @implNote\
-    \ \u8981\u7D20\u306F\u5168\u3066\u975E\u8CA0\n\t * @param w\n\t * @return [0,\
-    \ k]\u306E\u533A\u9593\u548C\u304Cw\u4EE5\u4E0A\u3068\u306A\u308B\u3088\u3046\u306A\
-    \u6700\u5C0F\u306Ek\n\t */\n\tpublic final int lowerBound(long w) {\n\t\tif(w\
-    \ <= 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n);\
-    \ k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] < w) {\n\t\t\t\tw\
-    \ -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\t/**\n\
-    \t * \u9589\u533A\u9593[0, k]\u306E\u533A\u9593\u548C\u304Cw\u3088\u308A\u3082\
-    \u5927\u304D\u304F\u306A\u308B\u3088\u3046\u306A\u6700\u5C0F\u306Ek\n\t * @implNote\
-    \ \u8981\u7D20\u306F\u5168\u3066\u975E\u8CA0\n\t * @param w\n\t * @return [0,\
-    \ k]\u306E\u533A\u9593\u548C\u304Cw\u3088\u308A\u3082\u5927\u304D\u304F\u306A\u308B\
-    \u3088\u3046\u306A\u6700\u5C0F\u306Ek\n\t */\n\tpublic final int upperBound(long\
-    \ w) {\n\t\tif(w < 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k\
-    \ = 1 << lg(n); k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <= w)\
-    \ {\n\t\t\t\tw -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\
-    \t}\n\t/**\n\t * FenwickTree\u306E\u7D2F\u7A4D\u548C\u3092\u8FD4\u3059\n\t * @return\
-    \ FenwickTree\u306E\u7D2F\u7A4D\u548C\n\t */\n\tpublic final long[] toArray(){\
-    \ return IntStream.rangeClosed(0, n).mapToLong(this::sum).toArray(); }\n\t@Override\n\
-    \tpublic final String toString() {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\
-    \t\tsb.append(sum(0));\n\t\tfor(int i = 0; ++i < n - 2;) {\n\t\t\tsb.append(\"\
-    , \" + sum(i));\n\t\t}\n\t\treturn \"[\" + sb.toString() + \"]\";\n\t}\n}"
+    \u4E0A\u3068\u306A\u308B\u3088\u3046\u306A\u6700\u5C0F\u306Ek\n\t * @apiNote \u8981\
+    \u7D20\u306F\u5168\u3066\u975E\u8CA0\n\t * @param w\n\t * @return [0, k]\u306E\
+    \u533A\u9593\u548C\u304Cw\u4EE5\u4E0A\u3068\u306A\u308B\u3088\u3046\u306A\u6700\
+    \u5C0F\u306Ek\n\t */\n\tpublic final int lowerBound(long w) {\n\t\tif(w <= 0)\
+    \ {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n); k > 0;\
+    \ k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] < w) {\n\t\t\t\tw -= data[x\
+    \ + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\t/**\n\t * \u9589\
+    \u533A\u9593[0, k]\u306E\u533A\u9593\u548C\u304Cw\u3088\u308A\u3082\u5927\u304D\
+    \u304F\u306A\u308B\u3088\u3046\u306A\u6700\u5C0F\u306Ek\n\t * @apiNote \u8981\u7D20\
+    \u306F\u5168\u3066\u975E\u8CA0\n\t * @param w\n\t * @return [0, k]\u306E\u533A\
+    \u9593\u548C\u304Cw\u3088\u308A\u3082\u5927\u304D\u304F\u306A\u308B\u3088\u3046\
+    \u306A\u6700\u5C0F\u306Ek\n\t */\n\tpublic final int upperBound(long w) {\n\t\t\
+    if(w < 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tint x = 0;\n\t\tfor(int k = 1 << lg(n);\
+    \ k > 0; k >>= 1) {\n\t\t\tif(x + k <= n - 1 && data[x + k] <= w) {\n\t\t\t\t\
+    w -= data[x + k];\n\t\t\t\tx += k;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\t/**\n\
+    \t * FenwickTree\u306E\u7D2F\u7A4D\u548C\u3092\u8FD4\u3059\n\t * @return FenwickTree\u306E\
+    \u7D2F\u7A4D\u548C\n\t */\n\tpublic final long[] toArray(){ return IntStream.rangeClosed(0,\
+    \ n).mapToLong(this::sum).toArray(); }\n\t@Override\n\tpublic final String toString()\
+    \ {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tsb.append(sum(0));\n\
+    \t\tfor(int i = 0; ++i < n - 2;) {\n\t\t\tsb.append(\", \" + sum(i));\n\t\t}\n\
+    \t\treturn \"[\" + sb.toString() + \"]\";\n\t}\n}"
   dependsOn:
   - Java/yukicoder/yukicoder.java
   - Java/aoj/Main.java
@@ -793,7 +793,7 @@ data:
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/SCC.java
   - Java/Main.java
-  timestamp: '2024-06-27 16:36:12+09:00'
+  timestamp: '2024-06-27 16:55:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/fenwicktree/FenwickTree.java

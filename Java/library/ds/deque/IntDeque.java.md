@@ -615,7 +615,7 @@ data:
     \n\t */\n\tpublic final long peekLast(){ return get(n - 1); }\n\t/**\n\t * Deque[i]\u3092\
     \u8FD4\u3059\n\t * @param i \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n\t * @return\
     \ Deque\u306Ei\u756A\u76EE\u306B\u683C\u7D0D\u3055\u308C\u3066\u3044\u308B\u8981\
-    \u7D20\n\t * @implNote \u30E9\u30F3\u30C0\u30E0\u30A2\u30AF\u30BB\u30B9\n\t */\n\
+    \u7D20\n\t * @apiNote \u30E9\u30F3\u30C0\u30E0\u30A2\u30AF\u30BB\u30B9\n\t */\n\
     \tpublic final long get(final int i){ return buf[index(i)]; }\n\t/**\n\t * i\u756A\
     \u76EE\u306B\u8981\u7D20x\u3092\u4EE3\u5165\u3059\u308B\n\t * @param i \u30A4\u30F3\
     \u30C7\u30C3\u30AF\u30B9\n\t * @param x \u8981\u7D20\n\t */\n\tpublic final void\
@@ -824,7 +824,7 @@ data:
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/SCC.java
   - Java/Main.java
-  timestamp: '2024-06-27 16:36:12+09:00'
+  timestamp: '2024-06-27 16:55:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/deque/IntDeque.java

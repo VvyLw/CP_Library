@@ -596,7 +596,7 @@ data:
     \t\t\t\t}\n\t\t\t\tif(!p.equals(BigInteger.ONE)) {\n\t\t\t\t\treturn p;\n\t\t\t\
     \t}\n\t\t\t\tx = f.apply(x, st);\n\t\t\t\ty = f.apply(f.apply(y, st), st);\n\t\
     \t\t}\n\t\t}\n\t}\n\t/**\n\t * Pollard-Rho\u6CD5\u306B\u3088\u308B\u7D20\u56E0\
-    \u6570\u5206\u89E3\n\t * @param n\n\t * @implNote \u7D50\u679C\u306F\u30BD\u30FC\
+    \u6570\u5206\u89E3\n\t * @param n\n\t * @apiNote \u7D50\u679C\u306F\u30BD\u30FC\
     \u30C8\u3055\u308C\u3066\u3044\u306A\u3044\u306E\u3067\u4EFB\u610F\u306B\u30BD\
     \u30FC\u30C8\u3059\u308B\u3053\u3068\n\t */\n\tpublic static final ArrayList<BigInteger>\
     \ primeFactor(final BigInteger n) {\n\t\tif(n.equals(BigInteger.ONE)) {\n\t\t\t\
@@ -790,7 +790,7 @@ data:
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/SCC.java
   - Java/Main.java
-  timestamp: '2024-06-27 16:36:12+09:00'
+  timestamp: '2024-06-27 16:55:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/largeprime/BigPrime.java
