@@ -119,9 +119,6 @@ data:
       path: C++/math/Modint.hpp
       title: Modint
     - icon: ':heavy_check_mark:'
-      path: C++/math/Pollards_rho.hpp
-      title: Pollard's Rho
-    - icon: ':heavy_check_mark:'
       path: C++/math/divisor.hpp
       title: "\u7D04\u6570\u5217\u6319"
     - icon: ':heavy_check_mark:'
@@ -139,6 +136,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math/phitable.hpp
       title: Euler's Phi-function(table)
+    - icon: ':heavy_check_mark:'
+      path: C++/math/pollard_rho.hpp
+      title: Pollard's Rho
     - icon: ':heavy_check_mark:'
       path: C++/math/primecounter.hpp
       title: "\u7D20\u6570\u306E\u500B\u6570"
