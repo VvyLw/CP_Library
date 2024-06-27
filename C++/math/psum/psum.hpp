@@ -1,28 +1,28 @@
 #pragma once
 
 #include <cassert>
+#include <vector>
 #include <numeric>
-#include "C++/core/myvector.hpp"
 namespace Heileden {
-struct psum {
+template <class T = int64_t> struct psum {
 private:
     int n;
     bool not_built;
-    vectors::vi s;
+    std::vector<int64_t> s;
 public:
-    psum(const vectors::vi& v): s{0} { std::partial_sum(v.cbegin(), v.cend(), std::back_inserter(s)); }
+    psum(const std::vector<T> &v): s{0} { std::partial_sum(v.cbegin(), v.cend(), std::back_inserter(s)); }
     psum(const int n): n(n), not_built(true), s(n + 1){}
-    vectors::vi get() const { return s; }
+    constexpr inline std::vector<int64_t> get() const noexcept { return s; }
     // [l, r]
-    ll sum(const int l, const int r) const { return s[r] - s[l]; }
-    void add(const int l, const int r, const ll x) {
+    constexpr inline int64_t sum(const int l, const int r) const noexcept  { return s[r] - s[l]; }
+    constexpr inline void add(const int l, const int r, const int64_t x) noexcept {
         assert(not_built);
         s[l] += x;
         s[r] -= x;
     }
-    vectors::vi build() {
+    constexpr inline std::vector<int64_t> build() noexcept {
         assert(not_built);
-        vectors::vi res;
+        std::vector<int64_t> res;
         std::partial_sum(s.cbegin(), s.cend(), std::back_inserter(res));
         not_built = false;
         res.resize(n);
