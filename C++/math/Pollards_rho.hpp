@@ -109,5 +109,4 @@ std::vector<uint64_t> rho(const uint64_t n) {
 }
 /**
  * @brief Pollard's Rho
- * @docs docs/Pollards_rho.md
  */
