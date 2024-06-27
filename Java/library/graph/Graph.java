@@ -50,7 +50,7 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 	 * @param g
 	 * @param undirected
 	 * @return List<ArrayList<Edge>>をWeightedGraph化したもの
-	 * @implNote streamでGraphに操作を加えた後に再度グラフに直すときに使えるかも
+	 * @apiNote streamでGraphに操作を加えた後に再度グラフに直すときに使えるかも
 	 */
 	public static Graph of(final List<ArrayList<Edge>> g, final boolean undirected) {
 		int max = 0, min = Integer.MAX_VALUE;
@@ -161,7 +161,7 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 	 * サイクル検出
 	 * @return サイクル
 	 * if non-existence: 空配列
-	 * @implNote 有向グラフ
+	 * @apiNote 有向グラフ
 	 */
 	public final int[] cycleDetector() {
 		final int[] used = new int[n];

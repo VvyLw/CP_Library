@@ -19,7 +19,7 @@ public final class Why {
 	 * 与えられたグラフが二分グラフかどうか判定する
 	 * @param uf
 	 * @return 二分グラフかどうか
-	 * @implNote {@link UnionFind}が必要
+	 * @apiNote {@link UnionFind}が必要
 	 */
 	public static final boolean isBipartite(final UnionFind uf) {
 		assert uf.size() % 2 == 0;
@@ -34,7 +34,7 @@ public final class Why {
 	 * 転倒数を求める
 	 * @param a
 	 * @return 転倒数
-	 * @implNote {@link FenwickTree}が必要
+	 * @apiNote {@link FenwickTree}が必要
 	 */
 	public static final long invNum(final int[] a) {
 		final int[] b = Utility.sorted(a);
@@ -54,7 +54,7 @@ public final class Why {
 	 * 転倒数を求める
 	 * @param a
 	 * @return 転倒数
-	 * @implNote {@link FenwickTree}が必要
+	 * @apiNote {@link FenwickTree}が必要
 	 */
 	public static final long invNum(final long[] a) {
 		final long[] b = Utility.sorted(a);

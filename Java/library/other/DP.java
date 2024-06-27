@@ -20,7 +20,7 @@ public final class DP {
 	 * @param v
 	 * @param w
 	 * @return dpの最大値
-	 * @implNote O(NW)
+	 * @apiNote O(NW)
 	 * @see <a href="https://ei1333.github.io/library/dp/knapsack-01.hpp">参考元</a>
 	 */
 	public static final long knapsack01(final int[] a, final long[] v, final int w) {
@@ -46,7 +46,7 @@ public final class DP {
 	 * @param v
 	 * @param w
 	 * @return dpの最大値
-	 * @implNote O(N sum(v))
+	 * @apiNote O(N sum(v))
 	 * @see <a href="https://ei1333.github.io/library/dp/knapsack-01-2.hpp">参考元</a>
 	 */
 	public static final int knapsack01(final long[] a, final int[] v, final long w) {
@@ -114,7 +114,7 @@ public final class DP {
 	 * @param m
 	 * @param w
 	 * @return dpの最大値
-	 * @implNote O(NW)
+	 * @apiNote O(NW)
 	 * @see <a href="https://ei1333.github.io/library/dp/knapsack-limitations.hpp">参考元</a>
 	 */
 	public static final long knapsack(final int[] a, final long[] v, final int[] m, final int w){ return Utility.max(knapsack(a, v, m, w, false)); }
@@ -127,7 +127,7 @@ public final class DP {
 	 * @param m
 	 * @param w
 	 * @return dpの最大値
-	 * @implNote O((N max(v))^2)
+	 * @apiNote O((N max(v))^2)
 	 * @see <a href="https://ei1333.github.io/library/dp/knapsack-limitations-2.hpp">参考元</a>
 	 */
 	public static final long knapsack(final long[] a, final int[] v, final long[] m, final long w) {
@@ -173,7 +173,7 @@ public final class DP {
 	 * @param v
 	 * @param w
 	 * @return dpの最大値
-	 * @implNote O(NW)
+	 * @apiNote O(NW)
 	 * @see <a href="https://ei1333.github.io/library/dp/knapsack.hpp">参考元</a>
 	 */
 	public static final long knapsack(final int[] a, final long[] v, final int w) {
@@ -196,7 +196,7 @@ public final class DP {
 	 * ヒストグラムの最大長方形の面積を返す
 	 * @param a
 	 * @return ヒストグラムの最大長方形の面積
-	 * @implNote O(N)
+	 * @apiNote O(N)
 	 * @see <a href="https://ei1333.github.io/library/dp/largest-rectangle.hpp">参考元</a>
 	 */
 	public static final long maxRectangle(final int[] a) {
@@ -220,7 +220,7 @@ public final class DP {
 	 * ヒストグラムの最大長方形の面積を返す
 	 * @param a
 	 * @return ヒストグラムの最大長方形の面積
-	 * @implNote O(N)
+	 * @apiNote O(N)
 	 * @see <a href="https://ei1333.github.io/library/dp/largest-rectangle.hpp">参考元</a>
 	 */
 	public static final long maxRectangle(final long[] a) {
@@ -264,7 +264,7 @@ public final class DP {
 	 * @param a
 	 * @return 最長増加部分列
 	 * @see <a href="https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp">参考元</a>
-	 * @implNote Java21より前のVerの場合、getLastをget(dp.size() - 1)に変える
+	 * @apiNote Java21より前のVerの場合、getLastをget(dp.size() - 1)に変える
 	 */
 	public static final int[] lis(final int[] a) {
 		final int n = a.length;
@@ -294,7 +294,7 @@ public final class DP {
 	 * @param a
 	 * @return 最長増加部分列
 	 * @see <a href="https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp">参考元</a>
-	 * @implNote Java21より前のVerの場合、getLastをget(dp.size() - 1)に変える
+	 * @apiNote Java21より前のVerの場合、getLastをget(dp.size() - 1)に変える
 	 */
 	public static final int[] lis(final long[] a) {
 		final int n = a.length;

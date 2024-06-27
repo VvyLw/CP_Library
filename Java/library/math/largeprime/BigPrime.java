@@ -96,7 +96,7 @@ public final class BigPrime {
 	/**
 	 * Pollard-Rho法による素因数分解
 	 * @param n
-	 * @implNote 結果はソートされていないので任意にソートすること
+	 * @apiNote 結果はソートされていないので任意にソートすること
 	 */
 	public static final ArrayList<BigInteger> primeFactor(final BigInteger n) {
 		if(n.equals(BigInteger.ONE)) {

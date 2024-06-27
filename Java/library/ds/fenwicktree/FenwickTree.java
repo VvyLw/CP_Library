@@ -84,7 +84,7 @@ public final class FenwickTree {
 	private final int lg(final int n){ return 31 - Integer.numberOfLeadingZeros(n); }
 	/**
 	 * 閉区間[0, k]の区間和がw以上となるような最小のk
-	 * @implNote 要素は全て非負
+	 * @apiNote 要素は全て非負
 	 * @param w
 	 * @return [0, k]の区間和がw以上となるような最小のk
 	 */
@@ -103,7 +103,7 @@ public final class FenwickTree {
 	}
 	/**
 	 * 閉区間[0, k]の区間和がwよりも大きくなるような最小のk
-	 * @implNote 要素は全て非負
+	 * @apiNote 要素は全て非負
 	 * @param w
 	 * @return [0, k]の区間和がwよりも大きくなるような最小のk
 	 */

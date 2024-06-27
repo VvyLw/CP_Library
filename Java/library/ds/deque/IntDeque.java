@@ -158,7 +158,7 @@ public final class IntDeque {
 	 * Deque[i]を返す
 	 * @param i インデックス
 	 * @return Dequeのi番目に格納されている要素
-	 * @implNote ランダムアクセス
+	 * @apiNote ランダムアクセス
 	 */
 	public final long get(final int i){ return buf[index(i)]; }
 	/**

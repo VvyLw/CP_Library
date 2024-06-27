@@ -97,7 +97,7 @@ public final class LongPrime {
 	 * Pollard-Rho法による素因数分解
 	 * @param n
 	 * @return 素因数分解した結果
-	 * @implNote 結果はソートされていないので任意にソートすること
+	 * @apiNote 結果はソートされていないので任意にソートすること
 	 */
 	public static final ArrayList<Long> primeFactor(final long n) {
 		if(n == 1) return new ArrayList<>();

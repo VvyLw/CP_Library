@@ -151,7 +151,7 @@ public final class MyDeque<T> implements Iterable<T> {
 	 * Deque[i]を返す
 	 * @param i インデックス
 	 * @return Dequeのi番目に格納されている要素
-	 * @implNote ランダムアクセス
+	 * @apiNote ランダムアクセス
 	 */
 	@SuppressWarnings("unchecked")
 	public final T get(final int i){ return (T) buf[index(i)]; }
