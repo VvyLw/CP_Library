@@ -299,3 +299,7 @@ namespace debug_print {
 #define dump(...) debug_print::multi_print(#__VA_ARGS__, __VA_ARGS__)
 
 #endif  // DEBUG_PRINT_HPP
+
+/**
+ * @brief デバッガー
+ */
