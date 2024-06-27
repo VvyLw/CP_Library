@@ -9,9 +9,6 @@ data:
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
   - icon: ':heavy_check_mark:'
-    path: C++/math/psum/psum.hpp
-    title: "\u7D2F\u7A4D\u548C"
-  - icon: ':heavy_check_mark:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedVerifiedWith:
@@ -123,7 +120,6 @@ data:
   - C++/template.hpp
   - C++/core/io/input.hpp
   - C++/core/mypair.hpp
-  - C++/math/psum/psum.hpp
   timestamp: '2024-03-09 13:04:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

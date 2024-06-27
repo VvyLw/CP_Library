@@ -1,9 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: C++/core/myvector.hpp
-    title: C++/core/myvector.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: C++/template.hpp
@@ -52,63 +49,38 @@ data:
     document_title: "\u7D2F\u7A4D\u548C"
     links: []
   bundledCode: "#line 2 \"C++/math/psum/psum.hpp\"\n\n#include <cassert>\n#include\
-    \ <numeric>\n#line 2 \"C++/core/myvector.hpp\"\n\n#include <vector>\n\n#ifndef\
-    \ TEMPLATE\ntypedef long long ll;\ntypedef unsigned long long ul;\ntypedef long\
-    \ double ld;\n#endif\nnamespace vectors {\ntemplate <class T> using V = std::vector<T>;\n\
-    using vi = V<ll>;\nusing vu = V<ul>;\nusing vd = V<ld>;\nusing vc = V<char>;\n\
-    using vs = V<std::string>;\nusing vb = V<bool>;\nusing wi = V<vi>;\nusing wu =\
-    \ V<vu>;\nusing wd = V<vd>;\nusing wc = V<vc>;\nusing ws = V<vs>;\nusing wb =\
-    \ V<vb>;\ntemplate <class T, class U> inline V<U> ndiv(T&& n, U&& v) noexcept\
-    \ {\n  return V<U>(std::forward<T>(n), std::forward<U>(v));\n}\ntemplate <class\
-    \ T, class... Ts> inline decltype(auto) ndiv(T&& n, Ts&&... v) noexcept {\n  return\
-    \ V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n), ndiv(std::forward<Ts>(v)...));\n\
-    }\ntemplate <class T> constexpr V<T>& operator++(V<T>& v) noexcept { for(auto\
-    \ &el: v) el++; return v; }\ntemplate <class T> constexpr V<T>& operator--(V<T>&\
-    \ v) noexcept { for(auto &el: v) el--; return v; }\ntemplate <class T, class U>\
-    \ constexpr V<T>& operator+=(V<T>& v, const U x) noexcept { for(auto &el: v) el+=x;\
-    \ return v; }\ntemplate <class T, class U> constexpr V<T>& operator-=(V<T>& v,\
-    \ const U x) noexcept { for(auto &el: v) el-=x; return v; }\ntemplate <class T,\
-    \ class U> constexpr V<T>& operator*=(V<T>& v, const U x) noexcept { for(auto\
-    \ &el: v) el*=x; return v; }\ntemplate <class T, class U> constexpr V<T>& operator/=(V<T>&\
-    \ v, const U x) noexcept { for(auto &el: v) el/=x; return v; }\ntemplate <class\
-    \ T, class U> constexpr V<T>& operator%=(V<T>& v, const U x) noexcept { for(auto\
-    \ &el: v) el%=x; return v; }\ntemplate <class T, class U> constexpr V<T> operator+(const\
-    \ V<T>& v, const U x) noexcept { V<T> res = v; res+=x; return res; }\ntemplate\
-    \ <class T, class U> constexpr V<T> operator-(const V<T>& v, const U x) noexcept\
-    \ { V<T> res = v; res-=x; return res; }\ntemplate <class T, class U> constexpr\
-    \ V<T> operator*(const V<T>& v, const U x) noexcept { V<T> res = v; res*=x; return\
-    \ res; }\ntemplate <class T, class U> constexpr V<T> operator/(const V<T>& v,\
-    \ const U x) noexcept { V<T> res = v; res/=x; return res; }\ntemplate <class T,\
-    \ class U> constexpr V<T> operator%(const V<T>& v, const U x) noexcept { V<T>\
-    \ res = v; res%=x; return res; }\n} // vectors\n#line 6 \"C++/math/psum/psum.hpp\"\
-    \nnamespace Heileden {\nstruct psum {\nprivate:\n    int n;\n    bool not_built;\n\
-    \    vectors::vi s;\npublic:\n    psum(const vectors::vi& v): s{0} { std::partial_sum(v.cbegin(),\
+    \ <vector>\n#include <numeric>\nnamespace Heileden {\ntemplate <class T = int64_t>\
+    \ struct psum {\nprivate:\n    int n;\n    bool not_built;\n    std::vector<int64_t>\
+    \ s;\npublic:\n    psum(const std::vector<T> &v): s{0} { std::partial_sum(v.cbegin(),\
     \ v.cend(), std::back_inserter(s)); }\n    psum(const int n): n(n), not_built(true),\
-    \ s(n + 1){}\n    vectors::vi get() const { return s; }\n    // [l, r]\n    ll\
-    \ sum(const int l, const int r) const { return s[r] - s[l]; }\n    void add(const\
-    \ int l, const int r, const ll x) {\n        assert(not_built);\n        s[l]\
-    \ += x;\n        s[r] -= x;\n    }\n    vectors::vi build() {\n        assert(not_built);\n\
-    \        vectors::vi res;\n        std::partial_sum(s.cbegin(), s.cend(), std::back_inserter(res));\n\
+    \ s(n + 1){}\n    constexpr inline std::vector<int64_t> get() const noexcept {\
+    \ return s; }\n    // [l, r]\n    constexpr inline int64_t sum(const int l, const\
+    \ int r) const noexcept  { return s[r] - s[l]; }\n    constexpr inline void add(const\
+    \ int l, const int r, const int64_t x) noexcept {\n        assert(not_built);\n\
+    \        s[l] += x;\n        s[r] -= x;\n    }\n    constexpr inline std::vector<int64_t>\
+    \ build() noexcept {\n        assert(not_built);\n        std::vector<int64_t>\
+    \ res;\n        std::partial_sum(s.cbegin(), s.cend(), std::back_inserter(res));\n\
     \        not_built = false;\n        res.resize(n);\n        return res;\n   \
     \ }\n};\n}\n\n/**\n * @brief \u7D2F\u7A4D\u548C\n */\n"
-  code: "#pragma once\n\n#include <cassert>\n#include <numeric>\n#include \"C++/core/myvector.hpp\"\
-    \nnamespace Heileden {\nstruct psum {\nprivate:\n    int n;\n    bool not_built;\n\
-    \    vectors::vi s;\npublic:\n    psum(const vectors::vi& v): s{0} { std::partial_sum(v.cbegin(),\
-    \ v.cend(), std::back_inserter(s)); }\n    psum(const int n): n(n), not_built(true),\
-    \ s(n + 1){}\n    vectors::vi get() const { return s; }\n    // [l, r]\n    ll\
-    \ sum(const int l, const int r) const { return s[r] - s[l]; }\n    void add(const\
-    \ int l, const int r, const ll x) {\n        assert(not_built);\n        s[l]\
-    \ += x;\n        s[r] -= x;\n    }\n    vectors::vi build() {\n        assert(not_built);\n\
-    \        vectors::vi res;\n        std::partial_sum(s.cbegin(), s.cend(), std::back_inserter(res));\n\
-    \        not_built = false;\n        res.resize(n);\n        return res;\n   \
-    \ }\n};\n}\n\n/**\n * @brief \u7D2F\u7A4D\u548C\n */"
-  dependsOn:
-  - C++/core/myvector.hpp
+  code: "#pragma once\n\n#include <cassert>\n#include <vector>\n#include <numeric>\n\
+    namespace Heileden {\ntemplate <class T = int64_t> struct psum {\nprivate:\n \
+    \   int n;\n    bool not_built;\n    std::vector<int64_t> s;\npublic:\n    psum(const\
+    \ std::vector<T> &v): s{0} { std::partial_sum(v.cbegin(), v.cend(), std::back_inserter(s));\
+    \ }\n    psum(const int n): n(n), not_built(true), s(n + 1){}\n    constexpr inline\
+    \ std::vector<int64_t> get() const noexcept { return s; }\n    // [l, r]\n   \
+    \ constexpr inline int64_t sum(const int l, const int r) const noexcept  { return\
+    \ s[r] - s[l]; }\n    constexpr inline void add(const int l, const int r, const\
+    \ int64_t x) noexcept {\n        assert(not_built);\n        s[l] += x;\n    \
+    \    s[r] -= x;\n    }\n    constexpr inline std::vector<int64_t> build() noexcept\
+    \ {\n        assert(not_built);\n        std::vector<int64_t> res;\n        std::partial_sum(s.cbegin(),\
+    \ s.cend(), std::back_inserter(res));\n        not_built = false;\n        res.resize(n);\n\
+    \        return res;\n    }\n};\n}\n\n/**\n * @brief \u7D2F\u7A4D\u548C\n */"
+  dependsOn: []
   isVerificationFile: false
   path: C++/math/psum/psum.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2024-03-23 20:53:59+09:00'
+  timestamp: '2024-06-27 19:11:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/extgcd.test.cpp
