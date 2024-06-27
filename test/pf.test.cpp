@@ -1,26 +1,25 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/factorize"
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include "C++/math/Pollards_rho.hpp"
 int main() {
     std::cin.tie(nullptr) -> sync_with_stdio(false);
     int q;
     std::cin >> q;
-    std::map<ll, std::vector<ll>> m;
+    std::unordered_map<int64_t, std::vector<uint64_t>> m;
     const auto solve = [&]{
-        ll n;
+        int64_t n;
         std::cin >> n;
-        if(m.find(n) == m.end()) {
-            auto p = rho(n);
-            std::sort(p.begin(), p.end());
+        if(!m.contains(n)) {
+            const auto p = rho(n);
             m.try_emplace(n, p);
         }
         const auto ans = m[n];
         std::cout << ans.size();
         if(ans.size()) {
             std::cout << ' ' << ans.front();
-            for(auto i = ans.begin(); ++i != ans.end();) {
-                std::cout << ' ' << *i;
+            for(size_t i = 0; ++i < ans.size();) {
+                std::cout << ' ' << ans[i];
             }
         }
         std::cout << '\n';

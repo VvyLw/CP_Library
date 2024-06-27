@@ -1,12 +1,11 @@
 module mathe
 
-import math as ma
 import math.bits{trailing_zeros_64}
 import math.unsigned{uint128_from_64}
 
 fn bsf__(n u64) u32 { return u32(trailing_zeros_64(n)) }
 fn b_gcd__(x u64, y u64) u64 {
-	mut a,mut b:=ma.abs(x),ma.abs(y)
+	mut a,mut b:=x,y
 	if a==0 {
 		return b
 	}
@@ -54,7 +53,7 @@ fn g__(n u64) u64 {
 	return 0
 }
 fn mod_pow(a u64, b u64, mod u64) u64 {
-	mut r:=u64(1)%mod
+	mut r:=u64(1)
     mut x,mut y:=uint128_from_64(a)%uint128_from_64(mod),b
     for y>0 {
         if y%2==1 {

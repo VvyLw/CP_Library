@@ -1,12 +1,11 @@
 module mathe
 
-import math as ma
 import math.big{integer_from_u32,integer_from_u64}
 import math.bits{trailing_zeros_64}
 
 fn bsf(n u64) u32 { return u32(trailing_zeros_64(n)) }
 fn b_gcd(x u64, y u64) u64 {
-	mut a,mut b:=ma.abs(x),ma.abs(y)
+	mut a,mut b:=x,y
 	if a==0 {
 		return b
 	}

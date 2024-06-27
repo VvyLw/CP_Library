@@ -2,79 +2,109 @@
 
 #include <vector>
 #include <algorithm>
-#include <numeric>
-#include <functional>
-typedef long long ll;
-typedef unsigned long long ul;
-typedef __int128_t i128;
-ll gcd(const ll _a, const ll _b) {
-    ul a = std::abs(_a), b = std::abs(_b);
-    if(a == 0) return b;
-    if(b == 0) return a;
-    const int shift = __builtin_ctzll(a | b);
-    a >>= __builtin_ctzll(a);
+#ifndef TEMPLATE
+typedef __uint128_t u128;
+#endif
+bool miller(const uint64_t n);
+namespace internal {
+uint bsf(const uint64_t n){ return __builtin_ctzll(n); }
+uint64_t gcd(uint64_t a, uint64_t b) {
+    if(a == 0) {
+        return b;
+    }
+    if(b == 0) {
+        return a;
+    }
+    const uint shift = internal::bsf(a | b);
+    a >>= internal::bsf(a);
     do {
-        b >>= __builtin_ctzll(b);
-        if(a > b) std::swap(a, b);
+        b >>= internal::bsf(b);
+        if(a > b) {
+            std::swap(a, b);
+        }
         b -= a;
-    } while(b);
+    } while(b > 0);
     return a << shift;
 }
-template <class T, class U> T pow_mod(T x, U n, T md) {
-    T r = 1 % md;
-    x %= md;
-    while(n) {
-        if(n & 1) r = (r * x) % md;
-        x = (x * x) % md;
-        n >>= 1;
+uint64_t mod_pow(const uint64_t a, uint64_t b, const uint64_t mod) {
+    uint64_t r = 1;
+    u128 x = a % mod;
+    while(b > 0) {
+        if(b & 1) {
+            r = (u128(r) * x) % mod;
+        }
+        x = (u128(x) * x) % mod;
+        b >>= 1;
     }
     return r;
 }
-bool is_prime(const ll n) {
-    if(n <= 1) return false;
-    if(n == 2) return true;
-    if(n % 2 == 0) return false;
-    ll d = n - 1;
-    while(d % 2 == 0) d /= 2;
-    for(const ll a : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37}) {
-        if(n <= a) break;
-        ll t = d;
-        ll y = pow_mod<i128>(a, t, n);
-        while (t != n - 1 && y != 1 && y != n - 1) {
-            y = i128(y) * y % n;
-            t <<= 1;
-        }
-        if (y != n - 1 && t % 2 == 0) {
-            return false;
-        }
+uint64_t find(const uint64_t n) {
+    if(miller(n)) {
+        return n;
     }
-    return true;
-}
-ll find(const ll n) {
-    if(is_prime(n)) return n;
-    if(n % 2 == 0) return 2;
+    if(n % 2 == 0) {
+        return 2;
+    }
     int st = 0;
-    const std::function<ll(ll)> f = [&](const ll x){ return (i128(x) * x + st) % n; };
+    const auto f = [&](const uint64_t x) -> uint64_t { return (u128(x) * x + st) % n; };
     while(true) {
         st++;
-        ll x = st, y = f(x);
-        while (true) {
-            ll p = gcd((y - x + n), n);
-            if(p == 0 || p == n) break;
-            if(p != 1) return p;
+        uint64_t x = st, y = f(x);
+        while(true) {
+            const uint64_t p = gcd(y - x + n, n);
+            if(p == 0 || p == n) {
+                break;
+            }
+            if(p != 1) {
+                return p;
+            }
             x = f(x);
             y = f(f(y));
         }
     }
 }
-
-std::vector<ll> rho(const ll n) {
-    if(n == 1) return {};
-    const ll x = find(n);
-    if(x == n) return {x};
-    std::vector<ll> le = rho(x);
-    const std::vector<ll> ri = rho(n / x);
+}
+bool miller(const uint64_t n) {
+    if(n <= 1) {
+        return false;
+    }
+    if(n == 2) {
+        return true;
+    }
+    if(n % 2 == 0) {
+        return false;
+    }
+    uint64_t d = n - 1;
+    while(d % 2 == 0) {
+        d /= 2;
+    }
+    for(const uint a: {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37}) {
+        if(n <= a) {
+            break;
+        }
+        uint64_t t = d, y = internal::mod_pow(a, t, n);
+        while(t != n - 1 && y != 1 && y != n - 1) {
+            y = internal::mod_pow(y, 2, n);
+            t <<= 1;
+        }
+        if(y != n - 1 && t % 2 == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+std::vector<uint64_t> rho(const uint64_t n) {
+    if(n == 1) {
+        return {};
+    }
+    const uint64_t x = internal::find(n);
+    if(x == n) {
+        return {x};
+    }
+    std::vector<uint64_t> le = rho(x);
+    const std::vector<uint64_t> ri = rho(n / x);
     le.insert(le.end(), ri.begin(), ri.end());
+    std::sort(le.begin(), le.end());
     return le;
 }
 /**
