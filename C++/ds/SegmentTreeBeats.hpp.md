@@ -14,10 +14,10 @@ data:
     links:
     - https://nyaannyaan.github.io/library/segment-tree/segment-tree-beats.hpp
   bundledCode: "#line 2 \"C++/ds/SegmentTreeBeats.hpp\"\n\n#include <vector>\n#include\
-    \ <algorithm>\n\ntemplate <class T> struct SegmentTreeBeats {\nprivate:\n    static\
-    \ constexpr int64_t INF = (1LL << 61) - 1;\n    struct Node {\n        int64_t\
-    \ sum = 0, g1 = 0, l1 = 0, g2 = -INF, gc = 1, l2 = INF, lc = 1, add = 0;\n   \
-    \ };\n    std::vector<Node> v;\n    int n, log;\nprivate:\n    void update(const\
+    \ <algorithm>\n\ntemplate <class T = long long> struct SegmentTreeBeats {\nprivate:\n\
+    \    static constexpr int64_t INF = (1LL << 61) - 1;\n    struct Node {\n    \
+    \    int64_t sum = 0, g1 = 0, l1 = 0, g2 = -INF, gc = 1, l2 = INF, lc = 1, add\
+    \ = 0;\n    };\n    std::vector<Node> v;\n    int n, log;\n    void update(const\
     \ int k) {\n        Node& p = v[k], l = v[k * 2 + 0], r = v[k * 2 + 1];\n    \
     \    p.sum = l.sum + r.sum;\n        if(l.g1 == r.g1) {\n            p.g1 = l.g1;\n\
     \            p.g2 = std::max(l.g2, r.g2);\n            p.gc = l.gc + r.gc;\n \
@@ -91,7 +91,7 @@ data:
     \ (cmd == 1) {\n            lx = std::min(lx, rx);\n        }\n        if constexpr\
     \ (cmd == 2) {\n            lx = std::max(lx, rx);\n        }\n        if constexpr\
     \ (cmd == 3) {\n            lx += rx;\n        }\n        return lx;\n    }\n\
-    public:\n    SegmentTreeBeats(const int n): SegmentTreeBeats(std::vector<int64_t>(n)){}\n\
+    public:\n    SegmentTreeBeats(const int n): SegmentTreeBeats(std::vector<T>(n)){}\n\
     \    SegmentTreeBeats(const std::vector<T> &a) {\n        const int m = a.size();\n\
     \        n = 1, log = 0;\n        while(n < m) {\n            log++;\n       \
     \     n <<= 1;\n        }\n        v.resize(2 * n);\n        for(int i = 0; i\
@@ -108,12 +108,12 @@ data:
     \ r); }\n};\n\n/**\n * @brief SegmentTreeBeats!\n * @see https://nyaannyaan.github.io/library/segment-tree/segment-tree-beats.hpp\n\
     \ */\n"
   code: "#pragma once\n\n#include <vector>\n#include <algorithm>\n\ntemplate <class\
-    \ T> struct SegmentTreeBeats {\nprivate:\n    static constexpr int64_t INF = (1LL\
-    \ << 61) - 1;\n    struct Node {\n        int64_t sum = 0, g1 = 0, l1 = 0, g2\
-    \ = -INF, gc = 1, l2 = INF, lc = 1, add = 0;\n    };\n    std::vector<Node> v;\n\
-    \    int n, log;\nprivate:\n    void update(const int k) {\n        Node& p =\
-    \ v[k], l = v[k * 2 + 0], r = v[k * 2 + 1];\n        p.sum = l.sum + r.sum;\n\
-    \        if(l.g1 == r.g1) {\n            p.g1 = l.g1;\n            p.g2 = std::max(l.g2,\
+    \ T = long long> struct SegmentTreeBeats {\nprivate:\n    static constexpr int64_t\
+    \ INF = (1LL << 61) - 1;\n    struct Node {\n        int64_t sum = 0, g1 = 0,\
+    \ l1 = 0, g2 = -INF, gc = 1, l2 = INF, lc = 1, add = 0;\n    };\n    std::vector<Node>\
+    \ v;\n    int n, log;\n    void update(const int k) {\n        Node& p = v[k],\
+    \ l = v[k * 2 + 0], r = v[k * 2 + 1];\n        p.sum = l.sum + r.sum;\n      \
+    \  if(l.g1 == r.g1) {\n            p.g1 = l.g1;\n            p.g2 = std::max(l.g2,\
     \ r.g2);\n            p.gc = l.gc + r.gc;\n        } else {\n            const\
     \ bool f = l.g1 > r.g1;\n            p.g1 = f ? l.g1 : r.g1;\n            p.gc\
     \ = f ? l.gc : r.gc;\n            p.g2 = std::max(f ? r.g1 : l.g1, f ? l.g2 :\
@@ -184,7 +184,7 @@ data:
     \  if constexpr (cmd == 1) {\n            lx = std::min(lx, rx);\n        }\n\
     \        if constexpr (cmd == 2) {\n            lx = std::max(lx, rx);\n     \
     \   }\n        if constexpr (cmd == 3) {\n            lx += rx;\n        }\n \
-    \       return lx;\n    }\npublic:\n    SegmentTreeBeats(const int n): SegmentTreeBeats(std::vector<int64_t>(n)){}\n\
+    \       return lx;\n    }\npublic:\n    SegmentTreeBeats(const int n): SegmentTreeBeats(std::vector<T>(n)){}\n\
     \    SegmentTreeBeats(const std::vector<T> &a) {\n        const int m = a.size();\n\
     \        n = 1, log = 0;\n        while(n < m) {\n            log++;\n       \
     \     n <<= 1;\n        }\n        v.resize(2 * n);\n        for(int i = 0; i\
@@ -204,7 +204,7 @@ data:
   isVerificationFile: false
   path: C++/ds/SegmentTreeBeats.hpp
   requiredBy: []
-  timestamp: '2024-06-26 20:04:13+09:00'
+  timestamp: '2024-06-30 03:11:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/segtreebeats.test.cpp
