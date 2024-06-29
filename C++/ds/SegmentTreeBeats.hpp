@@ -3,7 +3,7 @@
 #include <vector>
 #include <algorithm>
 
-template <class T> struct SegmentTreeBeats {
+template <class T = long long> struct SegmentTreeBeats {
 private:
     static constexpr int64_t INF = (1LL << 61) - 1;
     struct Node {
@@ -11,7 +11,6 @@ private:
     };
     std::vector<Node> v;
     int n, log;
-private:
     void update(const int k) {
         Node& p = v[k], l = v[k * 2 + 0], r = v[k * 2 + 1];
         p.sum = l.sum + r.sum;
@@ -225,7 +224,7 @@ private:
         return lx;
     }
 public:
-    SegmentTreeBeats(const int n): SegmentTreeBeats(std::vector<int64_t>(n)){}
+    SegmentTreeBeats(const int n): SegmentTreeBeats(std::vector<T>(n)){}
     SegmentTreeBeats(const std::vector<T> &a) {
         const int m = a.size();
         n = 1, log = 0;
