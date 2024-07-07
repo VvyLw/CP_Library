@@ -3,7 +3,7 @@
 #include "C++/graph/Graph.hpp"
 #include "C++/graph/ShortestPath.hpp"
 template <bool undirected = true> struct w_graph: graph<undirected> {
-private:
+protected:
     using graph<undirected>::indexed;
     using graph<undirected>::id;
     using graph<undirected>::edges;
