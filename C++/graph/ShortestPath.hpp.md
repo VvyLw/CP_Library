@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/graph/WeightedGraph.hpp
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
+  - icon: ':heavy_check_mark:'
+    path: C++/graph/diameter.hpp
+    title: C++/graph/diameter.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/dijkstra.test.cpp
@@ -15,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/spfa.test.cpp
     title: test/spfa.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/tree_diameter.test.cpp
+    title: test/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/warshallfloyd.test.cpp
     title: test/warshallfloyd.test.cpp
@@ -48,12 +54,14 @@ data:
   path: C++/graph/ShortestPath.hpp
   requiredBy:
   - C++/graph/WeightedGraph.hpp
+  - C++/graph/diameter.hpp
   timestamp: '2024-02-29 11:41:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/spfa.test.cpp
   - test/shortestpath.test.cpp
   - test/dijkstra.test.cpp
+  - test/tree_diameter.test.cpp
   - test/warshallfloyd.test.cpp
 documentation_of: C++/graph/ShortestPath.hpp
 layout: document

@@ -83,7 +83,7 @@ data:
     \            res.emplace_back(i);\n        }\n        std::ranges::reverse(res);\n\
     \        return res;\n    }\n    std::vector<long long> get() const { return cost;\
     \ }\n};\n\n/**\n * @brief \u6700\u77ED\u8DEF\n */\n#line 5 \"C++/graph/WeightedGraph.hpp\"\
-    \ntemplate <bool undirected = true> struct w_graph: graph<undirected> {\nprivate:\n\
+    \ntemplate <bool undirected = true> struct w_graph: graph<undirected> {\nprotected:\n\
     \    using graph<undirected>::indexed;\n    using graph<undirected>::id;\n   \
     \ using graph<undirected>::edges;\npublic:\n    w_graph(const int n, const int\
     \ indexed_ = 1): graph<undirected>(n, indexed_){}\n    using graph<undirected>::get_edge;\n\
@@ -150,7 +150,7 @@ data:
   isVerificationFile: true
   path: test/dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2024-05-04 22:54:16+09:00'
+  timestamp: '2024-07-07 10:30:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/dijkstra.test.cpp

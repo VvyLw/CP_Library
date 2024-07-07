@@ -10,7 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/graph/edge.hpp
     title: Edge
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: C++/graph/diameter.hpp
+    title: C++/graph/diameter.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/dijkstra.test.cpp
@@ -21,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/spfa.test.cpp
     title: test/spfa.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/tree_diameter.test.cpp
+    title: test/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/warshallfloyd.test.cpp
     title: test/warshallfloyd.test.cpp
@@ -90,7 +96,7 @@ data:
     \            res.emplace_back(i);\n        }\n        std::ranges::reverse(res);\n\
     \        return res;\n    }\n    std::vector<long long> get() const { return cost;\
     \ }\n};\n\n/**\n * @brief \u6700\u77ED\u8DEF\n */\n#line 5 \"C++/graph/WeightedGraph.hpp\"\
-    \ntemplate <bool undirected = true> struct w_graph: graph<undirected> {\nprivate:\n\
+    \ntemplate <bool undirected = true> struct w_graph: graph<undirected> {\nprotected:\n\
     \    using graph<undirected>::indexed;\n    using graph<undirected>::id;\n   \
     \ using graph<undirected>::edges;\npublic:\n    w_graph(const int n, const int\
     \ indexed_ = 1): graph<undirected>(n, indexed_){}\n    using graph<undirected>::get_edge;\n\
@@ -138,7 +144,7 @@ data:
     \           }\n        }\n\t\treturn cst;\n\t}\n};\n\n/**\n * @brief \u91CD\u307F\
     \u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA\n */\n"
   code: "#pragma once\n\n#include \"C++/graph/Graph.hpp\"\n#include \"C++/graph/ShortestPath.hpp\"\
-    \ntemplate <bool undirected = true> struct w_graph: graph<undirected> {\nprivate:\n\
+    \ntemplate <bool undirected = true> struct w_graph: graph<undirected> {\nprotected:\n\
     \    using graph<undirected>::indexed;\n    using graph<undirected>::id;\n   \
     \ using graph<undirected>::edges;\npublic:\n    w_graph(const int n, const int\
     \ indexed_ = 1): graph<undirected>(n, indexed_){}\n    using graph<undirected>::get_edge;\n\
@@ -191,13 +197,15 @@ data:
   - C++/graph/ShortestPath.hpp
   isVerificationFile: false
   path: C++/graph/WeightedGraph.hpp
-  requiredBy: []
-  timestamp: '2024-05-04 22:54:16+09:00'
+  requiredBy:
+  - C++/graph/diameter.hpp
+  timestamp: '2024-07-07 10:30:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/spfa.test.cpp
   - test/shortestpath.test.cpp
   - test/dijkstra.test.cpp
+  - test/tree_diameter.test.cpp
   - test/warshallfloyd.test.cpp
 documentation_of: C++/graph/WeightedGraph.hpp
 layout: document

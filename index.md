@@ -91,6 +91,9 @@ data:
       path: C++/graph/WeightedGraph.hpp
       title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
     - icon: ':heavy_check_mark:'
+      path: C++/graph/diameter.hpp
+      title: C++/graph/diameter.hpp
+    - icon: ':heavy_check_mark:'
       path: C++/graph/edge.hpp
       title: Edge
   - name: C++/graph/mst
@@ -701,6 +704,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/tetration.test.cpp
       title: test/tetration.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/tree_diameter.test.cpp
+      title: test/tree_diameter.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/uf.test.cpp
       title: test/uf.test.cpp

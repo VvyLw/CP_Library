@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/graph/WeightedGraph.hpp
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
+  - icon: ':heavy_check_mark:'
+    path: C++/graph/diameter.hpp
+    title: C++/graph/diameter.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/cycledetector.test.cpp
@@ -33,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/spfa.test.cpp
     title: test/spfa.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/tree_diameter.test.cpp
+    title: test/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/warshallfloyd.test.cpp
     title: test/warshallfloyd.test.cpp
@@ -143,6 +149,7 @@ data:
   path: C++/graph/Graph.hpp
   requiredBy:
   - C++/graph/WeightedGraph.hpp
+  - C++/graph/diameter.hpp
   timestamp: '2024-05-04 22:54:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -154,6 +161,7 @@ data:
   - test/cycledetector.test.cpp
   - test/dag_check.test.cpp
   - test/lca.test.cpp
+  - test/tree_diameter.test.cpp
   - test/warshallfloyd.test.cpp
 documentation_of: C++/graph/Graph.hpp
 layout: document
