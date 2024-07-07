@@ -568,144 +568,145 @@ data:
     import java.util.Collections;\nimport java.util.HashMap;\nimport java.util.List;\n\
     import java.util.Map;\nimport java.util.function.DoublePredicate;\nimport java.util.function.IntPredicate;\n\
     import java.util.function.LongPredicate;\nimport java.util.stream.Collectors;\n\
-    import java.util.stream.IntStream;\n\nimport library.ds.pair.FloatPair;\nimport\
-    \ library.ds.pair.IntPair;\nimport library.ds.pair.Pair;\n\n/**\n * \u4FBF\u5229\
-    \u306A\u30E1\u30BD\u30C3\u30C9\u96C6\n * Pair\u30AF\u30E9\u30B9\u4EE5\u5916\u306E\
-    \u5916\u90E8\u30AF\u30E9\u30B9\u4E0D\u4F7F\u7528\n */\npublic class Utility {\n\
-    \t/**\n\t * \u53E4\u306EYESNO\u30D1\u30BF\u30FC\u30F3\u3084yesno\u30D1\u30BF\u30FC\
-    \u30F3\u306E\u6642\u306F{@link String#toUpperCase}\u3084{@link String#toLowerCase}\u3092\
-    \u4F7F\u3046\u3068\u826F\u3044\n\t * @param ok boolean\n\t * @return ok\u304C\
-    true\u306A\u3089\"Yes\" false\u306A\u3089\"No\"\n\t */\n\tprotected static final\
-    \ String yes(final boolean ok){ return ok ? \"Yes\" : \"No\"; }\n\t/**\n\t * {@link\
-    \ #yes}\u306E\u9006\n\t * @param ok boolean\n\t * @return ok\u304Ctrue\u306A\u3089\
-    \"No\" false\u306A\u3089\"Yes\"\n\t */\n\tprotected static final String no(final\
-    \ boolean ok){ return yes(!ok); }\n\t/**\n\t * \u5E73\u65B9\u6570\u3092\u6C42\u3081\
-    \u308B\n\t * @param x\n\t * @return x\u306E\u5E73\u65B9\u6570\n\t */\n\tprotected\
-    \ static final long sqr(final long x){ return x * x; }\n\t/**\n\t * \u7ACB\u65B9\
-    \u6570\u3092\u6C42\u3081\u308B\n\t * @param x\n\t * @return x\u306E\u7ACB\u65B9\
-    \u6570\n\t */\n\tprotected static final long cub(final long x){ return x * x *\
-    \ x; }\n\t/**\n\t * n\u304C\u8CA0\u306E\u6642\u3067\u3082\u6B63\u306E\u5270\u4F59\
-    \u3092\u6C42\u3081\u308B\n\t * \u6CD5\u304Cint\u306E\u6642, int\u3067\u8FD4\u3059\
-    \n\t * @param n\n\t * @param m\n\t */\n\tprotected static final int mod(long n,\
-    \ final int m) {\n\t\tn %= m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\t\
-    /**\n\t * n\u304C\u8CA0\u306E\u6642\u3067\u3082\u6B63\u306E\u5270\u4F59\u3092\u6C42\
-    \u3081\u308B\n\t * @param n\n\t * @param m\n\t */\n\tpublic static final long\
-    \ mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t\
-    }\n\t/**\n\t * base\u3092\u5E95\u3068\u3059\u308Bx\u306E\u5B9A\u6570\u3092\u6C42\
-    \u3081\u308B\n\t * @param x\n\t * @param base\n\t * @return base\u3092\u5E95\u3068\
-    \u3059\u308Bx\u306E\u5BFE\u6570\n\t */\n\tprotected static final double log(final\
-    \ double x, final long base){ return Math.log(x) / Math.log(base); }\n\t/**\n\t\
-    \ * a / b\u3092\u5C0F\u6570\u70B9\u4EE5\u4E0B\u5207\u308A\u4E0A\u3052\u3067\u6C42\
-    \u3081\u308B\n\t * @param a\n\t * @param b\n\t */\n\tprotected static final long\
-    \ intCeil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\
-    \t/**\n\t * a / b\u3092\u5C0F\u6570\u70B9c\u6841\u3067\u56DB\u6368\u4E94\u5165\
-    \u3057\u3066\u6C42\u3081\u308B\n\t * @param a\n\t * @param b\n\t * @param c\n\t\
-    \ */\n\tprotected static final double intRound(final double a, final long b, final\
-    \ int c) {\n\t\tfinal long d = powi(10, c);\n\t\treturn Math.rint((a * d) / b)\
-    \ / d;\n\t}\n\t/**\n\t * a\u306Eb\u4E57\u3092\u6C42\u3081\u308B\n\t * @param a\n\
-    \t * @param b\n\t * @return a\u306Eb\u4E57\n\t */\n\tprotected static final long\
-    \ powi(long a, int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2\
-    \ == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\
-    \treturn res;\n\t}\n\t/**\n\t * a\u306Eb\u4E57(mod m)\u3092\u6C42\u3081\u308B\n\
-    \t * @param a\n\t * @param b\n\t * @param m\n\t * @return a\u306Eb\u4E57\u306E\
-    m\u3092\u6CD5\u3068\u3057\u305F\u5270\u4F59\n\t */\n\tprotected static final long\
-    \ modPow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0)\
-    \ {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\
-    \t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\t/**\n\t * inv a(mod m)\u3092\u6C42\u3081\u308B\n\t * @param a\n\
-    \t * @param m\n\t * @return a\u306E\u9006\u5143\u306Em\u3092\u6CD5\u3068\u3057\
-    \u305F\u5270\u4F59\n\t */\n\tprotected static final long inv(long a, final long\
-    \ m) {\n\t\tlong b = m, u = 1, v = 0;\n\t\twhile(b > 0) {\n\t\t\tfinal long t\
-    \ = a / b;\n\t\t\ta -= t * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\
-    \t\tu -= t * v;\n\t\t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\treturn\
-    \ mod(u, m);\n\t}\n\t/**\n\t * a\u3068b\u306E\u6700\u5C0F\u516C\u500D\u6570\u3092\
-    \u6C42\u3081\u308B\n\t * @param a\n\t * @param b\n\t * @return a\u3068b\u306E\u6700\
-    \u5C0F\u516C\u500D\u6570\n\t */\n\tpublic static final long lcm(final long a,\
-    \ final long b){ return a / gcd(a, b) * b; }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\
-    \u305F\u30BF\u30D7\u30EB\u306E\u6700\u5C0F\u516C\u500D\u6570\u3092\u6C42\u3081\
-    \u308B\n\t * e.g.) lcm(2, 3, 5) = 30\n\t * @param a int\u578B\u30BF\u30D7\u30EB\
-    \ \u3042\u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\
-    \u516C\u500D\u6570\n\t */\n\tpublic static final long lcm(final int... a){ return\
-    \ Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }\n\t/**\n\t\
-    \ * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5C0F\u516C\u500D\
-    \u6570\u3092\u6C42\u3081\u308B\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\
-    \u308B\u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u516C\
-    \u500D\u6570\n\t */\n\tpublic static final long lcm(final long... a){ return Arrays.stream(a).reduce(1,\
-    \ (x, y) -> lcm(x, y)); }\n\t/**\n\t * a\u3068b\u306E\u6700\u5927\u516C\u7D04\u6570\
-    \u3092\u6C42\u3081\u308B\n\t * @param a\n\t * @param b\n\t * @return a\u3068b\u306E\
-    \u6700\u5927\u516C\u7D04\u6570\n\t */\n\tpublic static final long gcd(final long\
-    \ a, final long b){ return b > 0 ? gcd(b, a % b) : a; }\n\t/**\n\t * \u4E0E\u3048\
-    \u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5927\u516C\u7D04\u6570\u3092\
-    \u6C42\u3081\u308B\n\t * e.g.) gcd(12, 15, 24) = 3\n\t * @param a int\u578B\u30BF\
-    \u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\
-    \u6700\u5927\u516C\u7D04\u6570\n\t */\n\tpublic static final int gcd(final int...\
-    \ a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\t/**\n\
-    \t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5927\u516C\u7D04\
+    import java.util.stream.DoubleStream;\nimport java.util.stream.IntStream;\nimport\
+    \ java.util.stream.LongStream;\n\nimport library.ds.pair.FloatPair;\nimport library.ds.pair.IntPair;\n\
+    import library.ds.pair.Pair;\n\n/**\n * \u4FBF\u5229\u306A\u30E1\u30BD\u30C3\u30C9\
+    \u96C6\n * Pair\u30AF\u30E9\u30B9\u4EE5\u5916\u306E\u5916\u90E8\u30AF\u30E9\u30B9\
+    \u4E0D\u4F7F\u7528\n */\npublic class Utility {\n\t/**\n\t * \u53E4\u306EYESNO\u30D1\
+    \u30BF\u30FC\u30F3\u3084yesno\u30D1\u30BF\u30FC\u30F3\u306E\u6642\u306F{@link\
+    \ String#toUpperCase}\u3084{@link String#toLowerCase}\u3092\u4F7F\u3046\u3068\u826F\
+    \u3044\n\t * @param ok boolean\n\t * @return ok\u304Ctrue\u306A\u3089\"Yes\" false\u306A\
+    \u3089\"No\"\n\t */\n\tprotected static final String yes(final boolean ok){ return\
+    \ ok ? \"Yes\" : \"No\"; }\n\t/**\n\t * {@link #yes}\u306E\u9006\n\t * @param\
+    \ ok boolean\n\t * @return ok\u304Ctrue\u306A\u3089\"No\" false\u306A\u3089\"\
+    Yes\"\n\t */\n\tprotected static final String no(final boolean ok){ return yes(!ok);\
+    \ }\n\t/**\n\t * \u5E73\u65B9\u6570\u3092\u6C42\u3081\u308B\n\t * @param x\n\t\
+    \ * @return x\u306E\u5E73\u65B9\u6570\n\t */\n\tprotected static final long sqr(final\
+    \ long x){ return x * x; }\n\t/**\n\t * \u7ACB\u65B9\u6570\u3092\u6C42\u3081\u308B\
+    \n\t * @param x\n\t * @return x\u306E\u7ACB\u65B9\u6570\n\t */\n\tprotected static\
+    \ final long cub(final long x){ return x * x * x; }\n\t/**\n\t * n\u304C\u8CA0\
+    \u306E\u6642\u3067\u3082\u6B63\u306E\u5270\u4F59\u3092\u6C42\u3081\u308B\n\t *\
+    \ \u6CD5\u304Cint\u306E\u6642, int\u3067\u8FD4\u3059\n\t * @param n\n\t * @param\
+    \ m\n\t */\n\tprotected static final int mod(long n, final int m) {\n\t\tn %=\
+    \ m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\t/**\n\t * n\u304C\u8CA0\u306E\
+    \u6642\u3067\u3082\u6B63\u306E\u5270\u4F59\u3092\u6C42\u3081\u308B\n\t * @param\
+    \ n\n\t * @param m\n\t */\n\tpublic static final long mod(long n, final long m)\
+    \ {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t}\n\t/**\n\t * base\u3092\u5E95\
+    \u3068\u3059\u308Bx\u306E\u5B9A\u6570\u3092\u6C42\u3081\u308B\n\t * @param x\n\
+    \t * @param base\n\t * @return base\u3092\u5E95\u3068\u3059\u308Bx\u306E\u5BFE\
+    \u6570\n\t */\n\tprotected static final double log(final double x, final long\
+    \ base){ return Math.log(x) / Math.log(base); }\n\t/**\n\t * a / b\u3092\u5C0F\
+    \u6570\u70B9\u4EE5\u4E0B\u5207\u308A\u4E0A\u3052\u3067\u6C42\u3081\u308B\n\t *\
+    \ @param a\n\t * @param b\n\t */\n\tprotected static final long intCeil(final\
+    \ long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }\n\t/**\n\t * a\
+    \ / b\u3092\u5C0F\u6570\u70B9c\u6841\u3067\u56DB\u6368\u4E94\u5165\u3057\u3066\
+    \u6C42\u3081\u308B\n\t * @param a\n\t * @param b\n\t * @param c\n\t */\n\tprotected\
+    \ static final double intRound(final double a, final long b, final int c) {\n\t\
+    \tfinal long d = powi(10, c);\n\t\treturn Math.rint((a * d) / b) / d;\n\t}\n\t\
+    /**\n\t * a\u306Eb\u4E57\u3092\u6C42\u3081\u308B\n\t * @param a\n\t * @param b\n\
+    \t * @return a\u306Eb\u4E57\n\t */\n\tprotected static final long powi(long a,\
+    \ int b) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\
+    \t\tres *= a;\n\t\t\t}\n\t\t\ta *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\t/**\n\t * a\u306Eb\u4E57(mod m)\u3092\u6C42\u3081\u308B\n\t * @param a\n\
+    \t * @param b\n\t * @param m\n\t * @return a\u306Eb\u4E57\u306Em\u3092\u6CD5\u3068\
+    \u3057\u305F\u5270\u4F59\n\t */\n\tprotected static final long modPow(long a,\
+    \ long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b > 0) {\n\t\t\tif(b %\
+    \ 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\t\t\t}\n\t\t\ta *=\
+    \ a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\
+    \t * inv a(mod m)\u3092\u6C42\u3081\u308B\n\t * @param a\n\t * @param m\n\t *\
+    \ @return a\u306E\u9006\u5143\u306Em\u3092\u6CD5\u3068\u3057\u305F\u5270\u4F59\
+    \n\t */\n\tprotected static final long inv(long a, final long m) {\n\t\tlong b\
+    \ = m, u = 1, v = 0;\n\t\twhile(b > 0) {\n\t\t\tfinal long t = a / b;\n\t\t\t\
+    a -= t * b;\n\t\t\ta ^= b;\n\t\t\tb ^= a;\n\t\t\ta ^= b;\n\t\t\tu -= t * v;\n\t\
+    \t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t}\n\t\treturn mod(u, m);\n\t}\n\
+    \t/**\n\t * a\u3068b\u306E\u6700\u5C0F\u516C\u500D\u6570\u3092\u6C42\u3081\u308B\
+    \n\t * @param a\n\t * @param b\n\t * @return a\u3068b\u306E\u6700\u5C0F\u516C\u500D\
+    \u6570\n\t */\n\tpublic static final long lcm(final long a, final long b){ return\
+    \ a / gcd(a, b) * b; }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\
+    \u30EB\u306E\u6700\u5C0F\u516C\u500D\u6570\u3092\u6C42\u3081\u308B\n\t * e.g.)\
+    \ lcm(2, 3, 5) = 30\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\
+    \u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u516C\u500D\u6570\
+    \n\t */\n\tpublic static final long lcm(final int... a){ return IntStream.of(a).asLongStream().reduce(1,\
+    \ (x, y) -> lcm(x, y)); }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\
+    \u30EB\u306E\u6700\u5C0F\u516C\u500D\u6570\u3092\u6C42\u3081\u308B\n\t * @param\
+    \ a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Flong\u578B\u914D\u5217\
+    \n\t * @return a\u306E\u6700\u5C0F\u516C\u500D\u6570\n\t */\n\tpublic static final\
+    \ long lcm(final long... a){ return LongStream.of(a).reduce(1, (x, y) -> lcm(x,\
+    \ y)); }\n\t/**\n\t * a\u3068b\u306E\u6700\u5927\u516C\u7D04\u6570\u3092\u6C42\
+    \u3081\u308B\n\t * @param a\n\t * @param b\n\t * @return a\u3068b\u306E\u6700\u5927\
+    \u516C\u7D04\u6570\n\t */\n\tpublic static final long gcd(final long a, final\
+    \ long b){ return b > 0 ? gcd(b, a % b) : a; }\n\t/**\n\t * \u4E0E\u3048\u3089\
+    \u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5927\u516C\u7D04\u6570\u3092\u6C42\
+    \u3081\u308B\n\t * e.g.) gcd(12, 15, 24) = 3\n\t * @param a int\u578B\u30BF\u30D7\
+    \u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u6700\
+    \u5927\u516C\u7D04\u6570\n\t */\n\tpublic static final int gcd(final int... a){\
+    \ return IntStream.of(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\t/**\n\t *\
+    \ \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5927\u516C\u7D04\
     \u6570\u3092\u6C42\u3081\u308B\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\
     \u308B\u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u516C\
-    \u7D04\u6570\n\t */\n\tpublic static final long gcd(final long... a){ return Arrays.stream(a).reduce(0,\
+    \u7D04\u6570\n\t */\n\tpublic static final long gcd(final long... a){ return LongStream.of(a).reduce(0,\
     \ (x, y) -> gcd(x, y)); }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\
     \u30EB\u306E\u6700\u5C0F\u5024\u3092\u6C42\u3081\u308B\n\t * @param a int\u578B\
     \u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return\
     \ a\u306E\u6700\u5C0F\u5024\n\t */\n\tpublic static final int min(final int...\
-    \ a){ return Arrays.stream(a).min().getAsInt(); }\n\t/**\n\t * \u4E0E\u3048\u3089\
+    \ a){ return IntStream.of(a).min().getAsInt(); }\n\t/**\n\t * \u4E0E\u3048\u3089\
     \u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5C0F\u5024\u3092\u6C42\u3081\u308B\
     \n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Flong\u578B\
     \u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\t */\n\tpublic static final\
-    \ long min(final long... a){ return Arrays.stream(a).min().getAsLong(); }\n\t\
+    \ long min(final long... a){ return LongStream.of(a).min().getAsLong(); }\n\t\
     /**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5C0F\u5024\
     \u3092\u6C42\u3081\u308B\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\
     \u3044\u306Fdouble\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5C0F\u5024\n\
-    \t */\n\tpublic static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
+    \t */\n\tpublic static final double min(final double... a){ return DoubleStream.of(a).min().getAsDouble();\
     \ }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5927\
     \u5024\u3092\u6C42\u3081\u308B\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\
     \u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\
-    \n\t */\n\tpublic static final int max(final int... a){ return Arrays.stream(a).max().getAsInt();\
+    \n\t */\n\tpublic static final int max(final int... a){ return IntStream.of(a).max().getAsInt();\
     \ }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5927\
     \u5024\u3092\u6C42\u3081\u308B\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\
     \u308B\u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\
-    \n\t */\n\tpublic static final long max(final long... a){ return Arrays.stream(a).max().getAsLong();\
+    \n\t */\n\tpublic static final long max(final long... a){ return LongStream.of(a).max().getAsLong();\
     \ }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5927\
     \u5024\u3092\u6C42\u3081\u308B\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\
     \u308B\u3044\u306Fdouble\u578B\u914D\u5217\n\t * @return a\u306E\u6700\u5927\u5024\
-    \n\t */\n\tpublic static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble();\
+    \n\t */\n\tpublic static final double max(final double... a){ return DoubleStream.of(a).max().getAsDouble();\
     \ }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u7DCF\u548C\
     \u3092\u6C42\u3081\u308B\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\
     \u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\t\
-    public static final long sum(final int... a){ return Arrays.stream(a).asLongStream().sum();\
+    public static final long sum(final int... a){ return IntStream.of(a).asLongStream().sum();\
     \ }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u7DCF\u548C\
     \u3092\u6C42\u3081\u308B\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\u308B\
     \u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\t\
-    public static final long sum(final long... a){ return Arrays.stream(a).sum();\
+    public static final long sum(final long... a){ return LongStream.of(a).sum();\
     \ }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u7DCF\u548C\
     \u3092\u6C42\u3081\u308B\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\u308B\
     \u3044\u306Fdouble\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u548C\n\t */\n\
-    \tpublic static final double sum(final double... a){ return Arrays.stream(a).sum();\
+    \tpublic static final double sum(final double... a){ return DoubleStream.of(a).sum();\
     \ }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u7DCF\u7A4D\
     \u3092\u6C42\u3081\u308B\n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\
     \u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\u7A4D\n\t */\n\t\
-    protected static final long prod(final int... a){ return Arrays.stream(a).asLongStream().reduce(1,\
+    protected static final long prod(final int... a){ return IntStream.of(a).asLongStream().reduce(1,\
     \ (x, y) -> x * y); }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\
     \u306E\u7DCF\u7A4D\u3092\u6C42\u3081\u308B\n\t * @param a long\u578B\u30BF\u30D7\
     \u30EB \u3042\u308B\u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\
-    \u7A4D\n\t */\n\tprotected static final long prod(final long... a){ return Arrays.stream(a).reduce(1,\
+    \u7A4D\n\t */\n\tprotected static final long prod(final long... a){ return LongStream.of(a).reduce(1,\
     \ (x, y) -> x * y); }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\
     \u306E\u7DCF\u7A4D\u3092\u6C42\u3081\u308B\n\t * @param a double\u578B\u30BF\u30D7\
     \u30EB \u3042\u308B\u3044\u306Fdouble\u578B\u914D\u5217\n\t * @return a\u306E\u7DCF\
     \u7A4D\n\t */\n\tprotected static final double prod(final double... a){ return\
-    \ Arrays.stream(a).reduce(1, (x, y) -> x * y); }\n\t/**\n\t * \u4E0E\u3048\u3089\
+    \ DoubleStream.of(a).reduce(1, (x, y) -> x * y); }\n\t/**\n\t * \u4E0E\u3048\u3089\
     \u308C\u305F\u30BF\u30D7\u30EB\u306E\u5E73\u5747\u5024\u3092\u6C42\u3081\u308B\
     \n\t * @param a int\u578B\u30BF\u30D7\u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\
     \u5217\n\t * @return a\u306E\u5E73\u5747\u5024\n\t */\n\tprotected static final\
-    \ double ave(final int... a){ return Arrays.stream(a).average().getAsDouble();\
+    \ double ave(final int... a){ return IntStream.of(a).average().getAsDouble();\
     \ }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u5E73\u5747\
     \u5024\u3092\u6C42\u3081\u308B\n\t * @param a long\u578B\u30BF\u30D7\u30EB \u3042\
     \u308B\u3044\u306Flong\u578B\u914D\u5217\n\t * @return a\u306E\u5E73\u5747\u5024\
-    \n\t */\n\tprotected static final double ave(final long... a){ return Arrays.stream(a).average().getAsDouble();\
+    \n\t */\n\tprotected static final double ave(final long... a){ return LongStream.of(a).average().getAsDouble();\
     \ }\n\t/**\n\t * \u4E0E\u3048\u3089\u308C\u305F\u30BF\u30D7\u30EB\u306E\u5E73\u5747\
     \u5024\u3092\u6C42\u3081\u308B\n\t * @param a double\u578B\u30BF\u30D7\u30EB \u3042\
     \u308B\u3044\u306Fdouble\u578B\u914D\u5217\n\t * @return a\u306E\u5E73\u5747\u5024\
-    \n\t */\n\tprotected static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble();\
+    \n\t */\n\tprotected static final double ave(final double... a){ return DoubleStream.of(a).average().getAsDouble();\
     \ }\n\t/**\n\t * \u30BD\u30FC\u30C8\u6E08\u914D\u5217\u306E\u4E2D\u592E\u5024\u3092\
     \u6C42\u3081\u308B\n\t * @param a \u30BD\u30FC\u30C8\u6E08\u306Eint\u578B\u914D\
     \u5217\n\t * @return \u4E2D\u592E\u5024\n\t */\n\tprotected static final double\
@@ -1761,7 +1762,7 @@ data:
   - Java/library/graph/SCC.java
   - Java/library/graph/Diameter.java
   - Java/Main.java
-  timestamp: '2024-07-07 11:12:30+09:00'
+  timestamp: '2024-07-07 12:27:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

@@ -766,7 +766,7 @@ data:
   - Java/library/graph/SCC.java
   - Java/library/graph/Diameter.java
   - Java/Main.java
-  timestamp: '2024-07-07 11:12:30+09:00'
+  timestamp: '2024-07-07 12:27:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/PrimeFactor.java

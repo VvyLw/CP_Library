@@ -573,7 +573,8 @@ data:
     import java.util.function.IntPredicate;\nimport java.util.function.IntUnaryOperator;\n\
     import java.util.function.LongPredicate;\nimport java.util.function.LongUnaryOperator;\n\
     import java.util.function.UnaryOperator;\nimport java.util.stream.Collectors;\n\
-    import java.util.stream.IntStream;\n\nclass Main {\n\tpublic static void main(final\
+    import java.util.stream.DoubleStream;\nimport java.util.stream.IntStream;\nimport\
+    \ java.util.stream.LongStream;\n\nclass Main {\n\tpublic static void main(final\
     \ String[] args) {\n\t\tfinal long begin = System.currentTimeMillis(), end;\n\t\
     \tIntStream.range(0, VvyLw.MULTI ? VvyLw.io.ni() : 1).mapToObj(VvyLw::solve).filter(Objects::nonNull).forEach(VvyLw.io::out);\n\
     \t\tend = System.currentTimeMillis();\n\t\tVvyLw.io.dump(end - begin + \"ms\"\
@@ -608,29 +609,29 @@ data:
     a ^= b;\n\t\t\tu -= t * v;\n\t\t\tu ^= v;\n\t\t\tv ^= u;\n\t\t\tu ^= v;\n\t\t\
     }\n\t\treturn mod(u, m);\n\t}\n\tprotected static final long lcm(final long a,\
     \ final long b){ return a / gcd(a, b) * b; }\n\tprotected static final long lcm(final\
-    \ int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x,\
-    \ y)); }\n\tprotected static final long lcm(final long... a){ return Arrays.stream(a).reduce(1,\
+    \ int... a){ return IntStream.of(a).asLongStream().reduce(1, (x, y) -> lcm(x,\
+    \ y)); }\n\tprotected static final long lcm(final long... a){ return LongStream.of(a).reduce(1,\
     \ (x, y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final\
     \ long b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
-    \ int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\
-    \tprotected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0,\
+    \ int... a){ return IntStream.of(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\t\
+    protected static final long gcd(final long... a){ return LongStream.of(a).reduce(0,\
     \ (x, y) -> gcd(x, y)); }\n\tprotected static final int min(final int... a){ return\
-    \ Arrays.stream(a).min().getAsInt(); }\n\tprotected static final long min(final\
-    \ long... a){ return Arrays.stream(a).min().getAsLong(); }\n\tprotected static\
-    \ final double min(final double... a){ return Arrays.stream(a).min().getAsDouble();\
-    \ }\n\tprotected static final int max(final int... a){ return Arrays.stream(a).max().getAsInt();\
-    \ }\n\tprotected static final long max(final long... a){ return Arrays.stream(a).max().getAsLong();\
-    \ }\n\tprotected static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble();\
-    \ }\n\tprotected static final long sum(final int... a){ return Arrays.stream(a).asLongStream().sum();\
-    \ }\n\tprotected static final long sum(final long... a){ return Arrays.stream(a).sum();\
-    \ }\n\tprotected static final double sum(final double... a){ return Arrays.stream(a).sum();\
-    \ }\n\tprotected static final long prod(final int... a){ return Arrays.stream(a).asLongStream().reduce(1,\
+    \ IntStream.of(a).min().getAsInt(); }\n\tprotected static final long min(final\
+    \ long... a){ return LongStream.of(a).min().getAsLong(); }\n\tprotected static\
+    \ final double min(final double... a){ return DoubleStream.of(a).min().getAsDouble();\
+    \ }\n\tprotected static final int max(final int... a){ return IntStream.of(a).max().getAsInt();\
+    \ }\n\tprotected static final long max(final long... a){ return LongStream.of(a).max().getAsLong();\
+    \ }\n\tprotected static final double max(final double... a){ return DoubleStream.of(a).max().getAsDouble();\
+    \ }\n\tprotected static final long sum(final int... a){ return IntStream.of(a).asLongStream().sum();\
+    \ }\n\tprotected static final long sum(final long... a){ return LongStream.of(a).sum();\
+    \ }\n\tprotected static final double sum(final double... a){ return DoubleStream.of(a).sum();\
+    \ }\n\tprotected static final long prod(final int... a){ return IntStream.of(a).asLongStream().reduce(1,\
     \ (x, y) -> x * y); }\n\tprotected static final long prod(final long... a){ return\
-    \ Arrays.stream(a).reduce(1, (x, y) -> x * y); }\n\tprotected static final double\
-    \ prod(final double... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y);\
-    \ }\n\tprotected static final double ave(final int... a){ return Arrays.stream(a).average().getAsDouble();\
-    \ }\n\tprotected static final double ave(final long... a){ return Arrays.stream(a).average().getAsDouble();\
-    \ }\n\tprotected static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble();\
+    \ LongStream.of(a).reduce(1, (x, y) -> x * y); }\n\tprotected static final double\
+    \ prod(final double... a){ return DoubleStream.of(a).reduce(1, (x, y) -> x * y);\
+    \ }\n\tprotected static final double ave(final int... a){ return IntStream.of(a).average().getAsDouble();\
+    \ }\n\tprotected static final double ave(final long... a){ return LongStream.of(a).average().getAsDouble();\
+    \ }\n\tprotected static final double ave(final double... a){ return DoubleStream.of(a).average().getAsDouble();\
     \ }\n\tprotected static final double median(final int[] a) {\n\t\tassert isSorted(a);\n\
     \t\tfinal int m = a.length / 2;\n\t\treturn a.length % 2 != 0 ? a[m] : (a[m -\
     \ 1] + a[m]) / 2.0;\n\t}\n\tprotected static final double median(final long[]\
@@ -1520,7 +1521,7 @@ data:
   - Java/library/graph/SCC.java
   - Java/library/graph/Diameter.java
   - Java/Main.java
-  timestamp: '2024-07-07 11:12:30+09:00'
+  timestamp: '2024-07-07 12:27:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder/yukicoder.java
