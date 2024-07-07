@@ -158,6 +158,9 @@ data:
     path: Java/library/ds/lazysegmenttree/LazySegmentTree.java
     title: Java/library/ds/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
+    path: Java/library/ds/lazysegmenttree/RAMN.java
+    title: Java/library/ds/lazysegmenttree/RAMN.java
+  - icon: ':warning:'
     path: Java/library/ds/lazysegmenttree/RAMX.java
     title: Java/library/ds/lazysegmenttree/RAMX.java
   - icon: ':warning:'
@@ -205,9 +208,6 @@ data:
   - icon: ':warning:'
     path: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
     title: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
-  - icon: ':warning:'
-    path: Java/library/graph/Diameter.java
-    title: Java/library/graph/Diameter.java
   - icon: ':warning:'
     path: Java/library/graph/Edge.java
     title: Java/library/graph/Edge.java
@@ -435,6 +435,9 @@ data:
     path: Java/library/ds/lazysegmenttree/LazySegmentTree.java
     title: Java/library/ds/lazysegmenttree/LazySegmentTree.java
   - icon: ':warning:'
+    path: Java/library/ds/lazysegmenttree/RAMN.java
+    title: Java/library/ds/lazysegmenttree/RAMN.java
+  - icon: ':warning:'
     path: Java/library/ds/lazysegmenttree/RAMX.java
     title: Java/library/ds/lazysegmenttree/RAMX.java
   - icon: ':warning:'
@@ -482,9 +485,6 @@ data:
   - icon: ':warning:'
     path: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
     title: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
-  - icon: ':warning:'
-    path: Java/library/graph/Diameter.java
-    title: Java/library/graph/Diameter.java
   - icon: ':warning:'
     path: Java/library/graph/Edge.java
     title: Java/library/graph/Edge.java
@@ -563,17 +563,40 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/library/ds/lazysegmenttree/RAMN.java\n"
-  code: "package library.ds.lazysegmenttree;\n\nimport java.util.Arrays;\n\n/**\n\
-    \ * Range Add Range Min\n * \u533A\u9593\u52A0\u7B97, \u533A\u9593\u6700\u5C0F\
-    \u5024\n */\npublic final class RAMN extends LazySegmentTree<Long, Long> {\n\t\
-    /**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a\n\t */\n\t\
-    public RAMN(final int[] a){ super(Arrays.stream(a).asLongStream().boxed().toArray(Long[]::new),\
-    \ Long::min, Long::sum, Long::sum, Long.valueOf(Long.MAX_VALUE), Long.valueOf(0));\
-    \ }\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param a\n\t\
-    \ */\n\tpublic RAMN(final long[] a){ super(Arrays.stream(a).boxed().toArray(Long[]::new),\
-    \ Long::min, Long::sum, Long::sum, Long.valueOf(Long.MAX_VALUE), Long.valueOf(0));\
-    \ }\n}"
+    RuntimeError: bundler is not specified: Java/library/graph/Diameter.java\n"
+  code: "package library.graph;\n\nimport static java.lang.Math.*;\n\nimport java.util.ArrayList;\n\
+    import java.util.Arrays;\nimport java.util.List;\n\nimport library.ds.pair.IntPair;\n\
+    \n/**\n * \u6728\u306E\u76F4\u5F84\n * @see <a href=\"https://ei1333.github.io/library/graph/tree/tree-diameter.hpp\"\
+    >\u53C2\u8003\u5143</a>\n */\npublic final class Diameter extends WeightedGraph\
+    \ {\n\tprivate final int[] to;\n\tprivate final ArrayList<Edge> path;\n\tprivate\
+    \ final IntPair dfs(final int i, final int par) {\n\t\tIntPair ret = IntPair.of(0,\
+    \ i);\n\t\tfor(final Edge e: this.get(i)) {\n\t\t\tif(e.to == par) {\n\t\t\t\t\
+    continue;\n\t\t\t}\n\t\t\tfinal IntPair cost = dfs(e.to, i);\n\t\t\tcost.first\
+    \ += e.cost;\n\t\t\tif(ret.compareTo(cost) < 0) {\n\t\t\t\tret = cost;\n\t\t\t\
+    \tto[i] = e.to;\n\t\t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\t/**\n\t * \u30B3\u30F3\
+    \u30B9\u30C8\u30E9\u30AF\u30BF(1-indexed)\n\t * @param n\n\t * @param undirected\n\
+    \t */\n\tpublic Diameter(final int n, final boolean undirected){ this(n, 1, undirected);\
+    \ }\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * @param n\n\t\
+    \ * @param id\n\t * @param undirected\n\t */\n\tpublic Diameter(final int n, final\
+    \ int id, final boolean undirected){\n\t\tsuper(n, id, undirected);\n\t\tto =\
+    \ new int[n];\n\t\tArrays.fill(to, -1);\n\t\tpath = new ArrayList<>();\n\t}\n\t\
+    /**\n\t * @param g\n\t * @param undirected\n\t * @return List<ArrayList<Edge>>\u3092\
+    Diameter\u5316\u3057\u305F\u3082\u306E\n\t */\n\tpublic static final Diameter\
+    \ of(final List<ArrayList<Edge>> g, final boolean undirected) {\n\t\tint max =\
+    \ 0, min = Integer.MAX_VALUE;\n\t\tfor(int i = 0; i < g.size(); ++i) {\n\t\t\t\
+    for(final Edge e: g.get(i)) {\n\t\t\t\tmax = max(e.src, e.to);\n\t\t\t\tmin =\
+    \ min(e.src, e.to);\n\t\t\t}\n\t\t}\n\t\tfinal Diameter gp = new Diameter(max,\
+    \ min, undirected);\n\t\tfor(int i = 0; i < g.size(); ++i) {\n\t\t\tfor(final\
+    \ Edge e: g.get(i)) {\n\t\t\t\tgp.addEdge(e.src, e.to, e.cost);\n\t\t\t}\n\t\t\
+    }\n\t\treturn gp;\n\t}\n\t/**\n\t * path(\u76F4\u5F84\u3092\u69CB\u6210\u3059\u308B\
+    \u8FBA)\u3092\u69CB\u7BC9\u3059\u308B\n\t * @return \u6728\u306E\u76F4\u5F84\n\
+    \t */\n\tpublic final long build() {\n\t\tfinal IntPair p = dfs(0, -1);\n\t\t\
+    final IntPair q = dfs(p.second.intValue(), -1);\n\t\tint now = p.second.intValue();\n\
+    \t\twhile(now != q.second) {\n\t\t\tfor(final Edge e: this.get(now)) {\n\t\t\t\
+    \tif(to[now] == e.to) {\n\t\t\t\t\tpath.add(e);\n\t\t\t\t}\n\t\t\t}\n\t\t\tnow\
+    \ = to[now];\n\t\t}\n\t\treturn q.first;\n\t}\n\t/**\n\t * path\u3092\u8FD4\u3059\
+    \n\t * @return \u76F4\u5F84\u3092\u69CB\u6210\u3059\u308B\u8FBA\n\t */\n\tpublic\
+    \ final Edge[] getPath(){ return path.toArray(Edge[]::new); }\n}"
   dependsOn:
   - Java/yukicoder/yukicoder.java
   - Java/aoj/Main.java
@@ -588,6 +611,7 @@ data:
   - Java/library/ds/lazysegmenttree/RAMX.java
   - Java/library/ds/lazysegmenttree/LazySegmentTree.java
   - Java/library/ds/lazysegmenttree/RUMN.java
+  - Java/library/ds/lazysegmenttree/RAMN.java
   - Java/library/ds/lazysegmenttree/RASM.java
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
@@ -665,10 +689,9 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/SCC.java
-  - Java/library/graph/Diameter.java
   - Java/Main.java
   isVerificationFile: false
-  path: Java/library/ds/lazysegmenttree/RAMN.java
+  path: Java/library/graph/Diameter.java
   requiredBy:
   - Java/yukicoder/yukicoder.java
   - Java/aoj/Main.java
@@ -683,6 +706,7 @@ data:
   - Java/library/ds/lazysegmenttree/RAMX.java
   - Java/library/ds/lazysegmenttree/LazySegmentTree.java
   - Java/library/ds/lazysegmenttree/RUMN.java
+  - Java/library/ds/lazysegmenttree/RAMN.java
   - Java/library/ds/lazysegmenttree/RASM.java
   - Java/library/ds/DualSegmentTree.java
   - Java/library/ds/waveletmatrix/WaveletMatrix.java
@@ -760,15 +784,14 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/SCC.java
-  - Java/library/graph/Diameter.java
   - Java/Main.java
   timestamp: '2024-07-07 11:12:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/library/ds/lazysegmenttree/RAMN.java
+documentation_of: Java/library/graph/Diameter.java
 layout: document
 redirect_from:
-- /library/Java/library/ds/lazysegmenttree/RAMN.java
-- /library/Java/library/ds/lazysegmenttree/RAMN.java.html
-title: Java/library/ds/lazysegmenttree/RAMN.java
+- /library/Java/library/graph/Diameter.java
+- /library/Java/library/graph/Diameter.java.html
+title: Java/library/graph/Diameter.java
 ---

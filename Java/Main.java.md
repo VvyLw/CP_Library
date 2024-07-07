@@ -206,6 +206,9 @@ data:
     path: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
     title: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
   - icon: ':warning:'
+    path: Java/library/graph/Diameter.java
+    title: Java/library/graph/Diameter.java
+  - icon: ':warning:'
     path: Java/library/graph/Edge.java
     title: Java/library/graph/Edge.java
   - icon: ':warning:'
@@ -479,6 +482,9 @@ data:
   - icon: ':warning:'
     path: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
     title: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
+  - icon: ':warning:'
+    path: Java/library/graph/Diameter.java
+    title: Java/library/graph/Diameter.java
   - icon: ':warning:'
     path: Java/library/graph/Edge.java
     title: Java/library/graph/Edge.java
@@ -2624,6 +2630,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/SCC.java
+  - Java/library/graph/Diameter.java
   isVerificationFile: false
   path: Java/Main.java
   requiredBy:
@@ -2718,7 +2725,8 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/SCC.java
-  timestamp: '2024-06-27 16:55:39+09:00'
+  - Java/library/graph/Diameter.java
+  timestamp: '2024-07-07 11:12:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/Main.java

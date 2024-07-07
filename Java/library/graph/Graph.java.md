@@ -209,6 +209,9 @@ data:
     path: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
     title: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
   - icon: ':warning:'
+    path: Java/library/graph/Diameter.java
+    title: Java/library/graph/Diameter.java
+  - icon: ':warning:'
     path: Java/library/graph/Edge.java
     title: Java/library/graph/Edge.java
   - icon: ':warning:'
@@ -483,6 +486,9 @@ data:
     path: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
     title: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
   - icon: ':warning:'
+    path: Java/library/graph/Diameter.java
+    title: Java/library/graph/Diameter.java
+  - icon: ':warning:'
     path: Java/library/graph/Edge.java
     title: Java/library/graph/Edge.java
   - icon: ':warning:'
@@ -594,20 +600,20 @@ data:
     }\n\t/**\n\t * \u8FBA\u3092m\u500B\u5165\u529B\u3059\u308B\n\t * @param m \u8FBA\
     \u306E\u500B\u6570\n\t */\n\tpublic void input(final int m){ IntStream.range(0,\
     \ m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni())); }\n\t/**\n\t * \u8FBA\
-    \u306E\u30EA\u30B9\u30C8\u3092\u8FD4\u3059\n\t * @return \u8FBA\u306E\u30EA\u30B9\
-    \u30C8\n\t */\n\tpublic final ArrayList<Edge> getEdge(){ return edge; }\n\t@Override\n\
-    \tpublic final int[][] toArray() {\n\t\tfinal int[][] res = new int[n][];\n\t\t\
-    IntStream.range(0, n).forEach(i -> res[i] = get(i).stream().mapToInt(e -> e.to).toArray());\n\
-    \t\treturn res;\n\t}\n\t/**\n\t * BFS\u3092\u3057\u3066\u9802\u70B9v\u304B\u3089\
-    \u5404\u9802\u70B9\u306B\u5BFE\u3059\u308B\u8DDD\u96E2\u3092\u6C42\u3081\u308B\
-    \n\t * @param v\n\t */\n\tpublic final int[] allDist(final int v) {\n\t\tfinal\
-    \ int[] d = new int[n];\n\t\tArrays.fill(d, -1);\n\t\tfinal Queue<Integer> q =\
-    \ new ArrayDeque<>();\n\t\td[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty()) {\n\
-    \t\t\tfinal int tmp = q.poll();\n\t\t\tfor(final Edge el: this.get(tmp)) {\n\t\
-    \t\t\tif(d[el.to] != -1) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to] =\
-    \ d[tmp] + 1;\n\t\t\t\tq.add(el.to);\n\t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\t/**\n\
-    \t * \u9802\u70B9u\u3068\u9802\u70B9v\u3068\u306E\u8DDD\u96E2\n\t * @param u\n\
-    \t * @param v\n\t * @return \u9802\u70B9u\u3068\u9802\u70B9v\u3068\u306E\u8DDD\
+    \u306E\u914D\u5217\u3092\u8FD4\u3059\n\t * @return \u8FBA\u306E\u914D\u5217\n\t\
+    \ */\n\tpublic final Edge[] getEdge(){ return edge.toArray(Edge[]::new); }\n\t\
+    @Override\n\tpublic final int[][] toArray() {\n\t\tfinal int[][] res = new int[n][];\n\
+    \t\tIntStream.range(0, n).forEach(i -> res[i] = get(i).stream().mapToInt(e ->\
+    \ e.to).toArray());\n\t\treturn res;\n\t}\n\t/**\n\t * BFS\u3092\u3057\u3066\u9802\
+    \u70B9v\u304B\u3089\u5404\u9802\u70B9\u306B\u5BFE\u3059\u308B\u8DDD\u96E2\u3092\
+    \u6C42\u3081\u308B\n\t * @param v\n\t */\n\tpublic final int[] allDist(final int\
+    \ v) {\n\t\tfinal int[] d = new int[n];\n\t\tArrays.fill(d, -1);\n\t\tfinal Queue<Integer>\
+    \ q = new ArrayDeque<>();\n\t\td[v] = 0;\n\t\tq.add(v);\n\t\twhile(!q.isEmpty())\
+    \ {\n\t\t\tfinal int tmp = q.poll();\n\t\t\tfor(final Edge el: this.get(tmp))\
+    \ {\n\t\t\t\tif(d[el.to] != -1) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\td[el.to]\
+    \ = d[tmp] + 1;\n\t\t\t\tq.add(el.to);\n\t\t\t}\n\t\t}\n\t\treturn d;\n\t}\n\t\
+    /**\n\t * \u9802\u70B9u\u3068\u9802\u70B9v\u3068\u306E\u8DDD\u96E2\n\t * @param\
+    \ u\n\t * @param v\n\t * @return \u9802\u70B9u\u3068\u9802\u70B9v\u3068\u306E\u8DDD\
     \u96E2\n\t */\n\tpublic final int dist(final int u, final int v){ return allDist(u)[v];\
     \ }\n\t/**\n\t * \u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\n\t */\n\
     \tpublic final ArrayList<Integer> topologicalSort() {\n\t\tfinal int[] deg = new\
@@ -729,6 +735,7 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/SCC.java
+  - Java/library/graph/Diameter.java
   - Java/Main.java
   isVerificationFile: false
   path: Java/library/graph/Graph.java
@@ -823,8 +830,9 @@ data:
   - Java/library/graph/MST.java
   - Java/library/graph/WeightedGraph.java
   - Java/library/graph/SCC.java
+  - Java/library/graph/Diameter.java
   - Java/Main.java
-  timestamp: '2024-06-27 16:55:39+09:00'
+  timestamp: '2024-07-07 11:12:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/Graph.java

@@ -10,7 +10,7 @@ data:
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
   - icon: ':heavy_check_mark:'
     path: C++/graph/diameter.hpp
-    title: C++/graph/diameter.hpp
+    title: "\u6728\u306E\u76F4\u5F84"
   - icon: ':heavy_check_mark:'
     path: C++/graph/mst/MST.hpp
     title: "\u6700\u5C0F\u5168\u57DF\u6728"

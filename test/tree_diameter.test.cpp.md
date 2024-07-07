@@ -12,7 +12,7 @@ data:
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
   - icon: ':heavy_check_mark:'
     path: C++/graph/diameter.hpp
-    title: C++/graph/diameter.hpp
+    title: "\u6728\u306E\u76F4\u5F84"
   - icon: ':heavy_check_mark:'
     path: C++/graph/edge.hpp
     title: Edge
@@ -153,11 +153,12 @@ data:
     \ {\n                if(to[now] == e) {\n                    path.emplace_back(e);\n\
     \                }\n            }\n            now = to[now];\n        }\n   \
     \     return q.first;\n    }\n    std::vector<edge> get_path() const { return\
-    \ path; }\n};\n#line 4 \"test/tree_diameter.test.cpp\"\nint main() {\n    int\
-    \ n;\n    std::cin >> n;\n    diameter g(n, 0);\n    g.input(n - 1);\n    std::cout\
-    \ << g.build() << ' ';\n    const auto p = g.get_path();\n    std::cout << p.size()\
-    \ + 1 << '\\n';\n\tstd::cout << p[0].src << ' ';\n\tfor(size_t i = 0; i < p.size();\
-    \ ++i) {\n\t\tstd::cout << p[i] << \" \\n\"[i + 1 == p.size()];\n\t}\n}\n"
+    \ path; }\n};\n\n/**\n * @brief \u6728\u306E\u76F4\u5F84\n * @see https://ei1333.github.io/library/graph/tree/tree-diameter.hpp\n\
+    \ */\n#line 4 \"test/tree_diameter.test.cpp\"\nint main() {\n    int n;\n    std::cin\
+    \ >> n;\n    diameter g(n, 0);\n    g.input(n - 1);\n    std::cout << g.build()\
+    \ << ' ';\n    const auto p = g.get_path();\n    std::cout << p.size() + 1 <<\
+    \ '\\n';\n\tstd::cout << p[0].src << ' ';\n\tfor(size_t i = 0; i < p.size(); ++i)\
+    \ {\n\t\tstd::cout << p[i] << \" \\n\"[i + 1 == p.size()];\n\t}\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_diameter\"\n#include\
     \ <iostream>\n#include \"C++/graph/diameter.hpp\"\nint main() {\n    int n;\n\
     \    std::cin >> n;\n    diameter g(n, 0);\n    g.input(n - 1);\n    std::cout\
@@ -173,7 +174,7 @@ data:
   isVerificationFile: true
   path: test/tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2024-07-07 10:30:18+09:00'
+  timestamp: '2024-07-07 10:55:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/tree_diameter.test.cpp

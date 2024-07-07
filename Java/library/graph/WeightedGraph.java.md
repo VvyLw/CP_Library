@@ -209,6 +209,9 @@ data:
     path: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
     title: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
   - icon: ':warning:'
+    path: Java/library/graph/Diameter.java
+    title: Java/library/graph/Diameter.java
+  - icon: ':warning:'
     path: Java/library/graph/Edge.java
     title: Java/library/graph/Edge.java
   - icon: ':warning:'
@@ -483,6 +486,9 @@ data:
     path: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
     title: Java/library/ds/waveletmatrix/WaveletMatrixBeta.java
   - icon: ':warning:'
+    path: Java/library/graph/Diameter.java
+    title: Java/library/graph/Diameter.java
+  - icon: ':warning:'
     path: Java/library/graph/Edge.java
     title: Java/library/graph/Edge.java
   - icon: ':warning:'
@@ -565,16 +571,16 @@ data:
     import java.util.stream.IntStream;\n\nimport library.core.VvyLw;\nimport library.ds.pair.IntPair;\n\
     import library.ds.unionfind.UnionFind;\nimport library.other.SkewHeap;\n\n/**\n\
     \ * \u91CD\u307F\u3064\u304D\u30B0\u30E9\u30D5\u30AF\u30E9\u30B9\n */\npublic\
-    \ final class WeightedGraph extends Graph {\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\
-    \u30E9\u30AF\u30BF\n\t * \u30B0\u30E9\u30D5\u30AF\u30E9\u30B9\u304B\u3089\u7D99\
-    \u627F\n\t * @param n\n\t * @param undirected\n\t */\n\tpublic WeightedGraph(final\
-    \ int n, final boolean undirected){ super(n, 1, undirected); }\n\t/**\n\t * \u30B3\
+    \ class WeightedGraph extends Graph {\n\t/**\n\t * \u30B3\u30F3\u30B9\u30C8\u30E9\
+    \u30AF\u30BF\n\t * \u30B0\u30E9\u30D5\u30AF\u30E9\u30B9\u304B\u3089\u7D99\u627F\
+    \n\t * @param n\n\t * @param undirected\n\t */\n\tpublic WeightedGraph(final int\
+    \ n, final boolean undirected){ super(n, 1, undirected); }\n\t/**\n\t * \u30B3\
     \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t * \u30B0\u30E9\u30D5\u30AF\u30E9\u30B9\
     \u304B\u3089\u7D99\u627F\n\t * @param n\n\t * @param indexed\n\t * @param undirected\n\
     \t */\n\tpublic WeightedGraph(final int n, final int indexed, final boolean undirected){\
     \ super(n, indexed, undirected); }\n\t/**\n\t * \u30B0\u30E9\u30D5\u5316\u3059\
     \u308B\n\t * @param g\n\t * @param undirected\n\t * @return List<ArrayList<Edge>>\u3092\
-    WeightedGraph\u5316\u3057\u305F\u3082\u306E\n\t */\n\tpublic static final WeightedGraph\
+    WeightedGraph\u5316\u3057\u305F\u3082\u306E\n\t */\n\tpublic static WeightedGraph\
     \ of(final List<ArrayList<Edge>> g, final boolean undirected) {\n\t\tint max =\
     \ 0, min = Integer.MAX_VALUE;\n\t\tfor(int i = 0; i < g.size(); ++i) {\n\t\t\t\
     for(final Edge e: g.get(i)) {\n\t\t\t\tmax = max(e.src, e.to);\n\t\t\t\tmin =\
@@ -757,6 +763,7 @@ data:
   - Java/library/graph/Graph.java
   - Java/library/graph/MST.java
   - Java/library/graph/SCC.java
+  - Java/library/graph/Diameter.java
   - Java/Main.java
   isVerificationFile: false
   path: Java/library/graph/WeightedGraph.java
@@ -851,8 +858,9 @@ data:
   - Java/library/graph/Graph.java
   - Java/library/graph/MST.java
   - Java/library/graph/SCC.java
+  - Java/library/graph/Diameter.java
   - Java/Main.java
-  timestamp: '2024-06-27 16:55:39+09:00'
+  timestamp: '2024-07-07 11:12:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/graph/WeightedGraph.java

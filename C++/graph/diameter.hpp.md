@@ -22,7 +22,9 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
+    document_title: "\u6728\u306E\u76F4\u5F84"
+    links:
+    - https://ei1333.github.io/library/graph/tree/tree-diameter.hpp
   bundledCode: "#line 2 \"C++/graph/diameter.hpp\"\n\n#line 2 \"C++/graph/WeightedGraph.hpp\"\
     \n\n#line 2 \"C++/graph/Graph.hpp\"\n\r\n#include <iostream>\r\n#include <vector>\r\
     \n#include <algorithm>\r\n#include <queue>\r\n#include <stack>\r\n#ifndef TEMPLATE\r\
@@ -148,7 +150,8 @@ data:
     \ {\n                if(to[now] == e) {\n                    path.emplace_back(e);\n\
     \                }\n            }\n            now = to[now];\n        }\n   \
     \     return q.first;\n    }\n    std::vector<edge> get_path() const { return\
-    \ path; }\n};\n"
+    \ path; }\n};\n\n/**\n * @brief \u6728\u306E\u76F4\u5F84\n * @see https://ei1333.github.io/library/graph/tree/tree-diameter.hpp\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"C++/graph/WeightedGraph.hpp\"\n#ifndef TEMPLATE\n\
     template <class T, class U> inline bool chmax(T& a, const U& b){ if(a<b){ a=b;\
     \ return 1; } return 0; }\n#endif\ntemplate <bool undirected=true> struct diameter:\
@@ -168,7 +171,8 @@ data:
     \ auto &e: (*this)[now]) {\n                if(to[now] == e) {\n             \
     \       path.emplace_back(e);\n                }\n            }\n            now\
     \ = to[now];\n        }\n        return q.first;\n    }\n    std::vector<edge>\
-    \ get_path() const { return path; }\n};"
+    \ get_path() const { return path; }\n};\n\n/**\n * @brief \u6728\u306E\u76F4\u5F84\
+    \n * @see https://ei1333.github.io/library/graph/tree/tree-diameter.hpp\n */"
   dependsOn:
   - C++/graph/WeightedGraph.hpp
   - C++/graph/Graph.hpp
@@ -177,7 +181,7 @@ data:
   isVerificationFile: false
   path: C++/graph/diameter.hpp
   requiredBy: []
-  timestamp: '2024-07-07 10:30:05+09:00'
+  timestamp: '2024-07-07 10:55:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/tree_diameter.test.cpp
@@ -186,5 +190,5 @@ layout: document
 redirect_from:
 - /library/C++/graph/diameter.hpp
 - /library/C++/graph/diameter.hpp.html
-title: C++/graph/diameter.hpp
+title: "\u6728\u306E\u76F4\u5F84"
 ---

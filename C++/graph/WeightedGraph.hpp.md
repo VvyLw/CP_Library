@@ -13,7 +13,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: C++/graph/diameter.hpp
-    title: C++/graph/diameter.hpp
+    title: "\u6728\u306E\u76F4\u5F84"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/dijkstra.test.cpp
