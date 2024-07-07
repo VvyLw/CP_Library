@@ -145,15 +145,15 @@ data:
     \          auto cost = dfs(e, i);\n            cost.first += e.cost;\n       \
     \     if(chmax(ret, cost)) {\n                to[i] = e;\n            }\n    \
     \    }\n        return ret;\n    }\npublic:\n    diameter(const int n, const int\
-    \ id = 1): w_graph<undirected>(n, id){}\n    using w_graph<undirected>::add;\n\
+    \ id = 1): w_graph<undirected>(n, id), to(n, -1){}\n    using w_graph<undirected>::add;\n\
     \    using w_graph<undirected>::input;\n    using w_graph<undirected>::get_edge;\
-    \    \n    int64_t build() {\n        to.assign(this->size(), -1);\n        auto\
-    \ p = dfs(0, -1);\n        auto q = dfs(p.second, -1);\n        int now = p.second;\n\
-    \        while(now != q.second) {\n            for(const auto &e: (*this)[now])\
-    \ {\n                if(to[now] == e) {\n                    path.emplace_back(e);\n\
-    \                }\n            }\n            now = to[now];\n        }\n   \
-    \     return q.first;\n    }\n    std::vector<edge> get_path() const { return\
-    \ path; }\n};\n\n/**\n * @brief \u6728\u306E\u76F4\u5F84\n * @see https://ei1333.github.io/library/graph/tree/tree-diameter.hpp\n\
+    \    \n    int64_t build() {\n        const auto p = dfs(0, -1);\n        const\
+    \ auto q = dfs(p.second, -1);\n        int now = p.second;\n        while(now\
+    \ != q.second) {\n            for(const auto &e: (*this)[now]) {\n           \
+    \     if(to[now] == e) {\n                    path.emplace_back(e);\n        \
+    \        }\n            }\n            now = to[now];\n        }\n        return\
+    \ q.first;\n    }\n    std::vector<edge> get_path() const { return path; }\n};\n\
+    \n/**\n * @brief \u6728\u306E\u76F4\u5F84\n * @see https://ei1333.github.io/library/graph/tree/tree-diameter.hpp\n\
     \ */\n#line 4 \"test/tree_diameter.test.cpp\"\nint main() {\n    int n;\n    std::cin\
     \ >> n;\n    diameter g(n, 0);\n    g.input(n - 1);\n    std::cout << g.build()\
     \ << ' ';\n    const auto p = g.get_path();\n    std::cout << p.size() + 1 <<\
@@ -174,7 +174,7 @@ data:
   isVerificationFile: true
   path: test/tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2024-07-07 10:55:56+09:00'
+  timestamp: '2024-07-07 13:10:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/tree_diameter.test.cpp

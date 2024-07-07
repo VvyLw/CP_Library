@@ -142,15 +142,15 @@ data:
     \          auto cost = dfs(e, i);\n            cost.first += e.cost;\n       \
     \     if(chmax(ret, cost)) {\n                to[i] = e;\n            }\n    \
     \    }\n        return ret;\n    }\npublic:\n    diameter(const int n, const int\
-    \ id = 1): w_graph<undirected>(n, id){}\n    using w_graph<undirected>::add;\n\
+    \ id = 1): w_graph<undirected>(n, id), to(n, -1){}\n    using w_graph<undirected>::add;\n\
     \    using w_graph<undirected>::input;\n    using w_graph<undirected>::get_edge;\
-    \    \n    int64_t build() {\n        to.assign(this->size(), -1);\n        auto\
-    \ p = dfs(0, -1);\n        auto q = dfs(p.second, -1);\n        int now = p.second;\n\
-    \        while(now != q.second) {\n            for(const auto &e: (*this)[now])\
-    \ {\n                if(to[now] == e) {\n                    path.emplace_back(e);\n\
-    \                }\n            }\n            now = to[now];\n        }\n   \
-    \     return q.first;\n    }\n    std::vector<edge> get_path() const { return\
-    \ path; }\n};\n\n/**\n * @brief \u6728\u306E\u76F4\u5F84\n * @see https://ei1333.github.io/library/graph/tree/tree-diameter.hpp\n\
+    \    \n    int64_t build() {\n        const auto p = dfs(0, -1);\n        const\
+    \ auto q = dfs(p.second, -1);\n        int now = p.second;\n        while(now\
+    \ != q.second) {\n            for(const auto &e: (*this)[now]) {\n           \
+    \     if(to[now] == e) {\n                    path.emplace_back(e);\n        \
+    \        }\n            }\n            now = to[now];\n        }\n        return\
+    \ q.first;\n    }\n    std::vector<edge> get_path() const { return path; }\n};\n\
+    \n/**\n * @brief \u6728\u306E\u76F4\u5F84\n * @see https://ei1333.github.io/library/graph/tree/tree-diameter.hpp\n\
     \ */\n"
   code: "#pragma once\n\n#include \"C++/graph/WeightedGraph.hpp\"\n#ifndef TEMPLATE\n\
     template <class T, class U> inline bool chmax(T& a, const U& b){ if(a<b){ a=b;\
@@ -163,11 +163,11 @@ data:
     \          continue;\n            }\n            auto cost = dfs(e, i);\n    \
     \        cost.first += e.cost;\n            if(chmax(ret, cost)) {\n         \
     \       to[i] = e;\n            }\n        }\n        return ret;\n    }\npublic:\n\
-    \    diameter(const int n, const int id = 1): w_graph<undirected>(n, id){}\n \
-    \   using w_graph<undirected>::add;\n    using w_graph<undirected>::input;\n \
-    \   using w_graph<undirected>::get_edge;    \n    int64_t build() {\n        to.assign(this->size(),\
-    \ -1);\n        auto p = dfs(0, -1);\n        auto q = dfs(p.second, -1);\n  \
-    \      int now = p.second;\n        while(now != q.second) {\n            for(const\
+    \    diameter(const int n, const int id = 1): w_graph<undirected>(n, id), to(n,\
+    \ -1){}\n    using w_graph<undirected>::add;\n    using w_graph<undirected>::input;\n\
+    \    using w_graph<undirected>::get_edge;    \n    int64_t build() {\n       \
+    \ const auto p = dfs(0, -1);\n        const auto q = dfs(p.second, -1);\n    \
+    \    int now = p.second;\n        while(now != q.second) {\n            for(const\
     \ auto &e: (*this)[now]) {\n                if(to[now] == e) {\n             \
     \       path.emplace_back(e);\n                }\n            }\n            now\
     \ = to[now];\n        }\n        return q.first;\n    }\n    std::vector<edge>\
@@ -181,7 +181,7 @@ data:
   isVerificationFile: false
   path: C++/graph/diameter.hpp
   requiredBy: []
-  timestamp: '2024-07-07 10:55:56+09:00'
+  timestamp: '2024-07-07 13:10:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/tree_diameter.test.cpp
