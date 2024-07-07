@@ -10,7 +10,9 @@ import java.util.function.DoublePredicate;
 import java.util.function.IntPredicate;
 import java.util.function.LongPredicate;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 import library.ds.pair.FloatPair;
 import library.ds.pair.IntPair;
@@ -158,13 +160,13 @@ public class Utility {
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの最小公倍数
 	 */
-	public static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }
+	public static final long lcm(final int... a){ return IntStream.of(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }
 	/**
 	 * 与えられたタプルの最小公倍数を求める
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの最小公倍数
 	 */
-	public static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }
+	public static final long lcm(final long... a){ return LongStream.of(a).reduce(1, (x, y) -> lcm(x, y)); }
 	/**
 	 * aとbの最大公約数を求める
 	 * @param a
@@ -178,103 +180,103 @@ public class Utility {
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの最大公約数
 	 */
-	public static final int gcd(final int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }
+	public static final int gcd(final int... a){ return IntStream.of(a).reduce(0, (x, y) -> (int) gcd(x, y)); }
 	/**
 	 * 与えられたタプルの最大公約数を求める
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの最大公約数
 	 */
-	public static final long gcd(final long... a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }
+	public static final long gcd(final long... a){ return LongStream.of(a).reduce(0, (x, y) -> gcd(x, y)); }
 	/**
 	 * 与えられたタプルの最小値を求める
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの最小値
 	 */
-	public static final int min(final int... a){ return Arrays.stream(a).min().getAsInt(); }
+	public static final int min(final int... a){ return IntStream.of(a).min().getAsInt(); }
 	/**
 	 * 与えられたタプルの最小値を求める
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの最小値
 	 */
-	public static final long min(final long... a){ return Arrays.stream(a).min().getAsLong(); }
+	public static final long min(final long... a){ return LongStream.of(a).min().getAsLong(); }
 	/**
 	 * 与えられたタプルの最小値を求める
 	 * @param a double型タプル あるいはdouble型配列
 	 * @return aの最小値
 	 */
-	public static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble(); }
+	public static final double min(final double... a){ return DoubleStream.of(a).min().getAsDouble(); }
 	/**
 	 * 与えられたタプルの最大値を求める
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの最大値
 	 */
-	public static final int max(final int... a){ return Arrays.stream(a).max().getAsInt(); }
+	public static final int max(final int... a){ return IntStream.of(a).max().getAsInt(); }
 	/**
 	 * 与えられたタプルの最大値を求める
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの最大値
 	 */
-	public static final long max(final long... a){ return Arrays.stream(a).max().getAsLong(); }
+	public static final long max(final long... a){ return LongStream.of(a).max().getAsLong(); }
 	/**
 	 * 与えられたタプルの最大値を求める
 	 * @param a double型タプル あるいはdouble型配列
 	 * @return aの最大値
 	 */
-	public static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble(); }
+	public static final double max(final double... a){ return DoubleStream.of(a).max().getAsDouble(); }
 	/**
 	 * 与えられたタプルの総和を求める
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの総和
 	 */
-	public static final long sum(final int... a){ return Arrays.stream(a).asLongStream().sum(); }
+	public static final long sum(final int... a){ return IntStream.of(a).asLongStream().sum(); }
 	/**
 	 * 与えられたタプルの総和を求める
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの総和
 	 */
-	public static final long sum(final long... a){ return Arrays.stream(a).sum(); }
+	public static final long sum(final long... a){ return LongStream.of(a).sum(); }
 	/**
 	 * 与えられたタプルの総和を求める
 	 * @param a double型タプル あるいはdouble型配列
 	 * @return aの総和
 	 */
-	public static final double sum(final double... a){ return Arrays.stream(a).sum(); }
+	public static final double sum(final double... a){ return DoubleStream.of(a).sum(); }
 	/**
 	 * 与えられたタプルの総積を求める
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの総積
 	 */
-	protected static final long prod(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> x * y); }
+	protected static final long prod(final int... a){ return IntStream.of(a).asLongStream().reduce(1, (x, y) -> x * y); }
 	/**
 	 * 与えられたタプルの総積を求める
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの総積
 	 */
-	protected static final long prod(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y); }
+	protected static final long prod(final long... a){ return LongStream.of(a).reduce(1, (x, y) -> x * y); }
 	/**
 	 * 与えられたタプルの総積を求める
 	 * @param a double型タプル あるいはdouble型配列
 	 * @return aの総積
 	 */
-	protected static final double prod(final double... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y); }
+	protected static final double prod(final double... a){ return DoubleStream.of(a).reduce(1, (x, y) -> x * y); }
 	/**
 	 * 与えられたタプルの平均値を求める
 	 * @param a int型タプル あるいはint型配列
 	 * @return aの平均値
 	 */
-	protected static final double ave(final int... a){ return Arrays.stream(a).average().getAsDouble(); }
+	protected static final double ave(final int... a){ return IntStream.of(a).average().getAsDouble(); }
 	/**
 	 * 与えられたタプルの平均値を求める
 	 * @param a long型タプル あるいはlong型配列
 	 * @return aの平均値
 	 */
-	protected static final double ave(final long... a){ return Arrays.stream(a).average().getAsDouble(); }
+	protected static final double ave(final long... a){ return LongStream.of(a).average().getAsDouble(); }
 	/**
 	 * 与えられたタプルの平均値を求める
 	 * @param a double型タプル あるいはdouble型配列
 	 * @return aの平均値
 	 */
-	protected static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble(); }
+	protected static final double ave(final double... a){ return DoubleStream.of(a).average().getAsDouble(); }
 	/**
 	 * ソート済配列の中央値を求める
 	 * @param a ソート済のint型配列

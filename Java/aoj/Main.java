@@ -14,7 +14,9 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.function.IntUnaryOperator;
 import java.util.function.LongUnaryOperator;
+import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 final class Main {
 	public static void main(final String[] args) {
@@ -80,15 +82,15 @@ class Utility {
 		}
 		return res;
 	}
-	protected static final int min(final int... a){ return Arrays.stream(a).min().getAsInt(); }
-	protected static final long min(final long... a){ return Arrays.stream(a).min().getAsLong(); }
-	protected static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble(); }
-	protected static final int max(final int... a){ return Arrays.stream(a).max().getAsInt(); }
-	protected static final long max(final long... a){ return Arrays.stream(a).max().getAsLong(); }
-	protected static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble(); }
-	protected static final long sum(final int... a){ return Arrays.stream(a).asLongStream().sum(); }
-	protected static final long sum(final long... a){ return Arrays.stream(a).sum(); }
-	protected static final double sum(final double... a){ return Arrays.stream(a).sum(); }
+	protected static final int min(final int... a){ return IntStream.of(a).min().getAsInt(); }
+	protected static final long min(final long... a){ return LongStream.of(a).min().getAsLong(); }
+	protected static final double min(final double... a){ return DoubleStream.of(a).min().getAsDouble(); }
+	protected static final int max(final int... a){ return IntStream.of(a).max().getAsInt(); }
+	protected static final long max(final long... a){ return LongStream.of(a).max().getAsLong(); }
+	protected static final double max(final double... a){ return DoubleStream.of(a).max().getAsDouble(); }
+	protected static final long sum(final int... a){ return IntStream.of(a).asLongStream().sum(); }
+	protected static final long sum(final long... a){ return LongStream.of(a).sum(); }
+	protected static final double sum(final double... a){ return DoubleStream.of(a).sum(); }
 	protected static final boolean scope(final int l, final int x, final int r){ return l <= x && x <= r; }
 	protected static final boolean scope(final long l, final long x, final long r){ return l <= x && x <= r; }
 	protected static final boolean scope(final double l, final double x, final double r){ return l <= x && x <= r; }

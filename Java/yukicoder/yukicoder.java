@@ -24,7 +24,9 @@ import java.util.function.LongPredicate;
 import java.util.function.LongUnaryOperator;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 class Main {
 	public static void main(final String[] args) {
@@ -111,26 +113,26 @@ class Utility {
 		return mod(u, m);
 	}
 	protected static final long lcm(final long a, final long b){ return a / gcd(a, b) * b; }
-	protected static final long lcm(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }
-	protected static final long lcm(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> lcm(x, y)); }
+	protected static final long lcm(final int... a){ return IntStream.of(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }
+	protected static final long lcm(final long... a){ return LongStream.of(a).reduce(1, (x, y) -> lcm(x, y)); }
 	protected static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }
-	protected static final int gcd(final int... a){ return Arrays.stream(a).reduce(0, (x, y) -> (int) gcd(x, y)); }
-	protected static final long gcd(final long... a){ return Arrays.stream(a).reduce(0, (x, y) -> gcd(x, y)); }
-	protected static final int min(final int... a){ return Arrays.stream(a).min().getAsInt(); }
-	protected static final long min(final long... a){ return Arrays.stream(a).min().getAsLong(); }
-	protected static final double min(final double... a){ return Arrays.stream(a).min().getAsDouble(); }
-	protected static final int max(final int... a){ return Arrays.stream(a).max().getAsInt(); }
-	protected static final long max(final long... a){ return Arrays.stream(a).max().getAsLong(); }
-	protected static final double max(final double... a){ return Arrays.stream(a).max().getAsDouble(); }
-	protected static final long sum(final int... a){ return Arrays.stream(a).asLongStream().sum(); }
-	protected static final long sum(final long... a){ return Arrays.stream(a).sum(); }
-	protected static final double sum(final double... a){ return Arrays.stream(a).sum(); }
-	protected static final long prod(final int... a){ return Arrays.stream(a).asLongStream().reduce(1, (x, y) -> x * y); }
-	protected static final long prod(final long... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y); }
-	protected static final double prod(final double... a){ return Arrays.stream(a).reduce(1, (x, y) -> x * y); }
-	protected static final double ave(final int... a){ return Arrays.stream(a).average().getAsDouble(); }
-	protected static final double ave(final long... a){ return Arrays.stream(a).average().getAsDouble(); }
-	protected static final double ave(final double... a){ return Arrays.stream(a).average().getAsDouble(); }
+	protected static final int gcd(final int... a){ return IntStream.of(a).reduce(0, (x, y) -> (int) gcd(x, y)); }
+	protected static final long gcd(final long... a){ return LongStream.of(a).reduce(0, (x, y) -> gcd(x, y)); }
+	protected static final int min(final int... a){ return IntStream.of(a).min().getAsInt(); }
+	protected static final long min(final long... a){ return LongStream.of(a).min().getAsLong(); }
+	protected static final double min(final double... a){ return DoubleStream.of(a).min().getAsDouble(); }
+	protected static final int max(final int... a){ return IntStream.of(a).max().getAsInt(); }
+	protected static final long max(final long... a){ return LongStream.of(a).max().getAsLong(); }
+	protected static final double max(final double... a){ return DoubleStream.of(a).max().getAsDouble(); }
+	protected static final long sum(final int... a){ return IntStream.of(a).asLongStream().sum(); }
+	protected static final long sum(final long... a){ return LongStream.of(a).sum(); }
+	protected static final double sum(final double... a){ return DoubleStream.of(a).sum(); }
+	protected static final long prod(final int... a){ return IntStream.of(a).asLongStream().reduce(1, (x, y) -> x * y); }
+	protected static final long prod(final long... a){ return LongStream.of(a).reduce(1, (x, y) -> x * y); }
+	protected static final double prod(final double... a){ return DoubleStream.of(a).reduce(1, (x, y) -> x * y); }
+	protected static final double ave(final int... a){ return IntStream.of(a).average().getAsDouble(); }
+	protected static final double ave(final long... a){ return LongStream.of(a).average().getAsDouble(); }
+	protected static final double ave(final double... a){ return DoubleStream.of(a).average().getAsDouble(); }
 	protected static final double median(final int[] a) {
 		assert isSorted(a);
 		final int m = a.length / 2;
