@@ -26,14 +26,13 @@ private:
         return ret;
     }
 public:
-    diameter(const int n, const int id = 1): w_graph<undirected>(n, id){}
+    diameter(const int n, const int id = 1): w_graph<undirected>(n, id), to(n, -1){}
     using w_graph<undirected>::add;
     using w_graph<undirected>::input;
     using w_graph<undirected>::get_edge;    
     int64_t build() {
-        to.assign(this->size(), -1);
-        auto p = dfs(0, -1);
-        auto q = dfs(p.second, -1);
+        const auto p = dfs(0, -1);
+        const auto q = dfs(p.second, -1);
         int now = p.second;
         while(now != q.second) {
             for(const auto &e: (*this)[now]) {
