@@ -47,3 +47,8 @@ public:
     }
     std::vector<edge> get_path() const { return path; }
 };
+
+/**
+ * @brief 木の直径
+ * @see https://ei1333.github.io/library/graph/tree/tree-diameter.hpp
+ */
