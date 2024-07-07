@@ -90,10 +90,10 @@ public class Graph extends ArrayList<ArrayList<Edge>> {
 	 */
 	public void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni())); }
 	/**
-	 * 辺のリストを返す
-	 * @return 辺のリスト
+	 * 辺の配列を返す
+	 * @return 辺の配列
 	 */
-	public final ArrayList<Edge> getEdge(){ return edge; }
+	public final Edge[] getEdge(){ return edge.toArray(Edge[]::new); }
 	@Override
 	public final int[][] toArray() {
 		final int[][] res = new int[n][];

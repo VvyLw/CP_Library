@@ -21,7 +21,7 @@ import library.other.SkewHeap;
 /**
  * 重みつきグラフクラス
  */
-public final class WeightedGraph extends Graph {
+public class WeightedGraph extends Graph {
 	/**
 	 * コンストラクタ
 	 * グラフクラスから継承
@@ -43,7 +43,7 @@ public final class WeightedGraph extends Graph {
 	 * @param undirected
 	 * @return List<ArrayList<Edge>>をWeightedGraph化したもの
 	 */
-	public static final WeightedGraph of(final List<ArrayList<Edge>> g, final boolean undirected) {
+	public static WeightedGraph of(final List<ArrayList<Edge>> g, final boolean undirected) {
 		int max = 0, min = Integer.MAX_VALUE;
 		for(int i = 0; i < g.size(); ++i) {
 			for(final Edge e: g.get(i)) {
