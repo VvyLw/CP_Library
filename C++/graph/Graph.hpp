@@ -51,7 +51,7 @@ public:
         }
         return d;
     }
-    int dist(const int u, const int v) const { return all_dist(u)[v]; }
+    int dist(const int u, const int v){ return all_dist(u)[v]; }
     std::vector<int> t_sort() {
         const int n = this -> size();
 		std::vector<int> deg(n);
