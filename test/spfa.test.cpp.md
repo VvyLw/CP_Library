@@ -50,13 +50,13 @@ data:
     \ {\r\n                if(d[el] != -1) {\r\n                    continue;\r\n\
     \                }\r\n                d[el] = d[tmp] + 1;\r\n                q.emplace(el);\r\
     \n            }\r\n        }\r\n        return d;\r\n    }\r\n    int dist(const\
-    \ int u, const int v) const { return all_dist(u)[v]; }\r\n    std::vector<int>\
-    \ t_sort() {\r\n        const int n = this -> size();\r\n\t\tstd::vector<int>\
-    \ deg(n);\r\n\t\tfor(int i = 0; i < n; ++i) {\r\n\t\t\tfor(const auto ed: (*this)[i])\
-    \ {\r\n\t\t\t\tdeg[ed]++;\r\n\t\t\t}\r\n\t\t}\r\n\t\tstd::stack<int> sk;\r\n\t\
-    \tfor(int i = 0; i < n; ++i) {\r\n\t\t\tif(deg[i] == 0) {\r\n\t\t\t\tsk.emplace(i);\r\
-    \n\t\t\t}\r\n\t\t}\r\n\t\tstd::vector<int> ord;\r\n\t\twhile(sk.size()) {\r\n\t\
-    \t\tconst auto tmp = sk.top();\r\n            sk.pop();\r\n\t\t\tord.emplace_back(tmp);\r\
+    \ int u, const int v){ return all_dist(u)[v]; }\r\n    std::vector<int> t_sort()\
+    \ {\r\n        const int n = this -> size();\r\n\t\tstd::vector<int> deg(n);\r\
+    \n\t\tfor(int i = 0; i < n; ++i) {\r\n\t\t\tfor(const auto ed: (*this)[i]) {\r\
+    \n\t\t\t\tdeg[ed]++;\r\n\t\t\t}\r\n\t\t}\r\n\t\tstd::stack<int> sk;\r\n\t\tfor(int\
+    \ i = 0; i < n; ++i) {\r\n\t\t\tif(deg[i] == 0) {\r\n\t\t\t\tsk.emplace(i);\r\n\
+    \t\t\t}\r\n\t\t}\r\n\t\tstd::vector<int> ord;\r\n\t\twhile(sk.size()) {\r\n\t\t\
+    \tconst auto tmp = sk.top();\r\n            sk.pop();\r\n\t\t\tord.emplace_back(tmp);\r\
     \n\t\t\tfor(const auto ed: (*this)[tmp]) {\r\n\t\t\t\tif(--deg[ed] == 0) {\r\n\
     \t\t\t\t\tsk.emplace(ed);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn ord.size()\
     \ == size() ? ord : std::vector<int>{};\r\n\t}\r\n    std::vector<edge> cycle()\
@@ -152,7 +152,7 @@ data:
   isVerificationFile: true
   path: test/spfa.test.cpp
   requiredBy: []
-  timestamp: '2024-07-07 10:30:05+09:00'
+  timestamp: '2024-07-08 16:24:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/spfa.test.cpp
