@@ -51,7 +51,7 @@ public final class SCC {
 		to -= indexed;
 		rangeCheck(from);
 		rangeCheck(to);
-		edge.add(new Edge(from, to, m++));
+		edge.add(new Edge(from, to, 1, m++));
 		start[from + 1]++;
 	}
 	/**

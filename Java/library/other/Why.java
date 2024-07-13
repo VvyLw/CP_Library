@@ -92,7 +92,7 @@ public final class Why {
 						if(x[i] - x[j] < y[i] - y[j]) {
 							break;
 						}
-						res.add(new Edge(i, j, Math.abs(x[i] - x[j]) + Math.abs(y[i] - y[j])));
+						res.add(new Edge(i, j, Math.abs(x[i] - x[j]) + Math.abs(y[i] - y[j]), -1));
 						it.remove();
 					}
 					idx.put(-y[i], i);

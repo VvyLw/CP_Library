@@ -1,12 +1,12 @@
 package library.other;
 
-import library.graph.WeightedGraph;
+import library.graph.Graph;
 
 /**
  * なんですかこれは
  * 最小有向全域木を求める際に使うクラス
  * 中身はよくわかっていない
- * @see WeightedGraph#directed
+ * @see Graph#directed
  * @see <a href="https://ei1333.github.io/library/structure/heap/skew-heap.hpp">窃盗先</a>
  */
 public final class SkewHeap {

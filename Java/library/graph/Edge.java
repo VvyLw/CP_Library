@@ -12,17 +12,6 @@ public final class Edge {
 	 * コンストラクタ
 	 * @param src 出発点
 	 * @param to 行先
-	 * @param id
-	 */
-	public Edge(final int src, final int to, final int id) {
-		this.src = src;
-		this.to = to;
-		this.id = id;
-	}
-	/**
-	 * コンストラクタ
-	 * @param src 出発点
-	 * @param to 行先
 	 * @param cost 費用
 	 * @param id
 	 */

@@ -1878,6 +1878,8 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 	protected final int n, indexed;
 	protected int id;
 	protected final ArrayList<Edge> edge;
+	private final int[] to;
+	private final ArrayList<Edge> path;
 	Graph(final int n, final boolean undirected){ this(n, 1, undirected); }
 	Graph(final int n, final int indexed, final boolean undirected) {
 		this.n = n;
@@ -1886,6 +1888,9 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		id = 0;
 		edge = new ArrayList<>();
 		IntStream.range(0, n).forEach(i -> add(new ArrayList<>()));
+		to = new int[n];
+		Arrays.fill(to, -1);
+		path = new ArrayList<>();
 	}
 	static Graph of(final List<ArrayList<Edge>> g, final boolean undirected) {
 		int max = 0, min = Integer.MAX_VALUE;
@@ -1999,6 +2004,36 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		}
 		return null;
 	}
+	private final IntPair dfs(final int i, final int par) {
+		IntPair ret = IntPair.of(0, i);
+		for(final Edge e: get(i)) {
+			if(e.to == par) {
+				continue;
+			}
+			final IntPair cost = dfs(e.to, i);
+			cost.first += e.cost;
+			if(ret.compareTo(cost) < 0) {
+				ret = cost;
+				to[i] = e.to;
+			}
+		}
+		return ret;
+	}
+	protected final long diameter() {
+		final IntPair p = dfs(0, -1);
+		final IntPair q = dfs(p.second.intValue(), -1);
+		int now = p.second.intValue();
+		while(now != q.second) {
+			for(final Edge e: get(now)) {
+				if(to[now] == e.to) {
+					path.add(e);
+				}
+			}
+			now = to[now];
+		}
+		return q.first;
+	}
+	protected final Edge[] getPath(){ return path.toArray(Edge[]::new); }
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
@@ -2437,64 +2472,6 @@ final class SCC {
 			throw new IndexOutOfBoundsException(String.format("Index %d out of bounds for length %d", i, n));
 		}
 	}
-}
-
-final class Diameter extends WeightedGraph {
-	private final int[] to;
-	private final ArrayList<Edge> path;
-	private final IntPair dfs(final int i, final int par) {
-		IntPair ret = IntPair.of(0, i);
-		for(final Edge e: this.get(i)) {
-			if(e.to == par) {
-				continue;
-			}
-			final IntPair cost = dfs(e.to, i);
-			cost.first += e.cost;
-			if(ret.compareTo(cost) < 0) {
-				ret = cost;
-				to[i] = e.to;
-			}
-		}
-		return ret;
-	}
-	Diameter(final int n, final boolean undirected){ this(n, 1, undirected); }
-	Diameter(final int n, final int id, final boolean undirected){
-		super(n, id, undirected);
-		to = new int[n];
-		Arrays.fill(to, -1);
-		path = new ArrayList<>();
-	}
-	static final Diameter of(final List<ArrayList<Edge>> g, final boolean undirected) {
-		int max = 0, min = Integer.MAX_VALUE;
-		for(int i = 0; i < g.size(); ++i) {
-			for(final Edge e: g.get(i)) {
-				max = max(e.src, e.to);
-				min = min(e.src, e.to);
-			}
-		}
-		final Diameter gp = new Diameter(max, min, undirected);
-		for(int i = 0; i < g.size(); ++i) {
-			for(final Edge e: g.get(i)) {
-				gp.addEdge(e.src, e.to, e.cost);
-			}
-		}
-		return gp;
-	}
-	final long build() {
-		final IntPair p = dfs(0, -1);
-		final IntPair q = dfs(p.second.intValue(), -1);
-		int now = p.second.intValue();
-		while(now != q.second) {
-			for(final Edge e: this.get(now)) {
-				if(to[now] == e.to) {
-					path.add(e);
-				}
-			}
-			now = to[now];
-		}
-		return q.first;
-	}
-	final Edge[] getPath(){ return path.toArray(Edge[]::new); }
 }
 
 final class LowestCommonAncestor {
