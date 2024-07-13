@@ -94,8 +94,8 @@ data:
   - test/inv_num.test.cpp
   - test/fwtree3.test.cpp
   - test/fwtree.test.cpp
-  - test/parsum.test.cpp
   - test/fwtree2.test.cpp
+  - test/parsum.test.cpp
 documentation_of: C++/ds/fwtree/FenwickTree.hpp
 layout: document
 redirect_from:

@@ -436,9 +436,6 @@ data:
   - name: Java/library/graph
     pages:
     - icon: ':warning:'
-      path: Java/library/graph/Diameter.java
-      title: Java/library/graph/Diameter.java
-    - icon: ':warning:'
       path: Java/library/graph/Edge.java
       title: Java/library/graph/Edge.java
     - icon: ':warning:'

@@ -202,11 +202,11 @@ data:
   timestamp: '2024-07-08 16:24:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/spfa.test.cpp
-  - test/shortestpath.test.cpp
   - test/dijkstra.test.cpp
-  - test/tree_diameter.test.cpp
   - test/warshallfloyd.test.cpp
+  - test/spfa.test.cpp
+  - test/tree_diameter.test.cpp
+  - test/shortestpath.test.cpp
 documentation_of: C++/graph/WeightedGraph.hpp
 layout: document
 redirect_from:
