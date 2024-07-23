@@ -272,8 +272,8 @@ data:
     path: Java/library/other/Why.java
     title: Java/library/other/Why.java
   - icon: ':warning:'
-    path: Java/yukicoder/yukicoder.java
-    title: Java/yukicoder/yukicoder.java
+    path: Java/yukicoder/Main.java
+    title: Java/yukicoder/Main.java
   _extendedRequiredBy:
   - icon: ':warning:'
     path: Java/Main.java
@@ -546,8 +546,8 @@ data:
     path: Java/library/other/Why.java
     title: Java/library/other/Why.java
   - icon: ':warning:'
-    path: Java/yukicoder/yukicoder.java
-    title: Java/yukicoder/yukicoder.java
+    path: Java/yukicoder/Main.java
+    title: Java/yukicoder/Main.java
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: java
@@ -629,7 +629,7 @@ data:
     \ y)); }\n\t/**\n\t * a\u3068b\u306E\u6700\u5927\u516C\u7D04\u6570\u3092\u6C42\
     \u3081\u308B\n\t * @param a\n\t * @param b\n\t * @return a\u3068b\u306E\u6700\u5927\
     \u516C\u7D04\u6570\n\t */\n\tpublic static final long gcd(final long a, final\
-    \ long b){ return b > 0 ? gcd(b, a % b) : a; }\n\t/**\n\t * \u4E0E\u3048\u3089\
+    \ long b){ return b == 0 ? a : gcd(b, a % b); }\n\t/**\n\t * \u4E0E\u3048\u3089\
     \u308C\u305F\u30BF\u30D7\u30EB\u306E\u6700\u5927\u516C\u7D04\u6570\u3092\u6C42\
     \u3081\u308B\n\t * e.g.) gcd(12, 15, 24) = 3\n\t * @param a int\u578B\u30BF\u30D7\
     \u30EB \u3042\u308B\u3044\u306Fint\u578B\u914D\u5217\n\t * @return a\u306E\u6700\
@@ -1570,7 +1570,7 @@ data:
     \ % a) % a);\n\t\treturn ans;\n\t}\n}"
   dependsOn:
   - Java/codeforces/Main.java
-  - Java/yukicoder/yukicoder.java
+  - Java/yukicoder/Main.java
   - Java/Main.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/InclusiveScan.java
@@ -1664,7 +1664,7 @@ data:
   path: Java/library/core/Utility.java
   requiredBy:
   - Java/codeforces/Main.java
-  - Java/yukicoder/yukicoder.java
+  - Java/yukicoder/Main.java
   - Java/Main.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/InclusiveScan.java
@@ -1754,7 +1754,7 @@ data:
   - Java/library/graph/Graph.java
   - Java/library/graph/Edge.java
   - Java/aoj/Main.java
-  timestamp: '2024-07-13 13:36:14+09:00'
+  timestamp: '2024-07-23 16:51:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java

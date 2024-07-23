@@ -272,8 +272,8 @@ data:
     path: Java/library/other/Why.java
     title: Java/library/other/Why.java
   - icon: ':warning:'
-    path: Java/yukicoder/yukicoder.java
-    title: Java/yukicoder/yukicoder.java
+    path: Java/yukicoder/Main.java
+    title: Java/yukicoder/Main.java
   _extendedRequiredBy:
   - icon: ':warning:'
     path: Java/Main.java
@@ -546,8 +546,8 @@ data:
     path: Java/library/other/Why.java
     title: Java/library/other/Why.java
   - icon: ':warning:'
-    path: Java/yukicoder/yukicoder.java
-    title: Java/yukicoder/yukicoder.java
+    path: Java/yukicoder/Main.java
+    title: Java/yukicoder/Main.java
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: java
@@ -582,7 +582,7 @@ data:
     \ final int[] get(){ return p; }\n}"
   dependsOn:
   - Java/codeforces/Main.java
-  - Java/yukicoder/yukicoder.java
+  - Java/yukicoder/Main.java
   - Java/Main.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/InclusiveScan.java
@@ -676,7 +676,7 @@ data:
   path: Java/library/math/PrimeTable.java
   requiredBy:
   - Java/codeforces/Main.java
-  - Java/yukicoder/yukicoder.java
+  - Java/yukicoder/Main.java
   - Java/Main.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/InclusiveScan.java
@@ -766,7 +766,7 @@ data:
   - Java/library/graph/Graph.java
   - Java/library/graph/Edge.java
   - Java/aoj/Main.java
-  timestamp: '2024-07-13 13:36:14+09:00'
+  timestamp: '2024-07-23 16:51:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/PrimeTable.java

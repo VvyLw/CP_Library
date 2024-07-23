@@ -512,8 +512,8 @@ data:
   - name: Java/yukicoder
     pages:
     - icon: ':warning:'
-      path: Java/yukicoder/yukicoder.java
-      title: Java/yukicoder/yukicoder.java
+      path: Java/yukicoder/Main.java
+      title: Java/yukicoder/Main.java
   - name: Nim
     pages:
     - icon: ':warning:'

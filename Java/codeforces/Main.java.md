@@ -272,8 +272,8 @@ data:
     path: Java/library/other/Why.java
     title: Java/library/other/Why.java
   - icon: ':warning:'
-    path: Java/yukicoder/yukicoder.java
-    title: Java/yukicoder/yukicoder.java
+    path: Java/yukicoder/Main.java
+    title: Java/yukicoder/Main.java
   _extendedRequiredBy:
   - icon: ':warning:'
     path: Java/Main.java
@@ -546,8 +546,8 @@ data:
     path: Java/library/other/Why.java
     title: Java/library/other/Why.java
   - icon: ':warning:'
-    path: Java/yukicoder/yukicoder.java
-    title: Java/yukicoder/yukicoder.java
+    path: Java/yukicoder/Main.java
+    title: Java/yukicoder/Main.java
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: java
@@ -606,9 +606,9 @@ data:
     \ int... a){ return IntStream.of(a).asLongStream().reduce(1, (x, y) -> lcm(x,\
     \ y)); }\n\tprotected static final long lcm(final long... a){ return LongStream.of(a).reduce(1,\
     \ (x, y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final\
-    \ long b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
-    \ int... a){ return IntStream.of(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\t\
-    protected static final long gcd(final long... a){ return LongStream.of(a).reduce(0,\
+    \ long b){ return b == 0 ? a : gcd(b, a % b); }\n\tprotected static final int\
+    \ gcd(final int... a){ return IntStream.of(a).reduce(0, (x, y) -> (int) gcd(x,\
+    \ y)); }\n\tprotected static final long gcd(final long... a){ return LongStream.of(a).reduce(0,\
     \ (x, y) -> gcd(x, y)); }\n\tprotected static final int min(final int... a){ return\
     \ IntStream.of(a).min().getAsInt(); }\n\tprotected static final long min(final\
     \ long... a){ return LongStream.of(a).min().getAsLong(); }\n\tprotected static\
@@ -1329,7 +1329,7 @@ data:
     \t\t}\n\t\tthrow new Error();\n\t}\n\tfinal double abs(){ return hypot(first,\
     \ second); }\n}"
   dependsOn:
-  - Java/yukicoder/yukicoder.java
+  - Java/yukicoder/Main.java
   - Java/Main.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/InclusiveScan.java
@@ -1423,7 +1423,7 @@ data:
   isVerificationFile: false
   path: Java/codeforces/Main.java
   requiredBy:
-  - Java/yukicoder/yukicoder.java
+  - Java/yukicoder/Main.java
   - Java/Main.java
   - Java/library/other/SuffixArray.java
   - Java/library/other/InclusiveScan.java
@@ -1514,7 +1514,7 @@ data:
   - Java/library/graph/Graph.java
   - Java/library/graph/Edge.java
   - Java/aoj/Main.java
-  timestamp: '2024-07-13 13:36:14+09:00'
+  timestamp: '2024-07-23 16:51:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/codeforces/Main.java

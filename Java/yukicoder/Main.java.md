@@ -557,7 +557,7 @@ data:
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/home/runner/.local/lib/python3.10/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
-    RuntimeError: bundler is not specified: Java/yukicoder/yukicoder.java\n"
+    RuntimeError: bundler is not specified: Java/yukicoder/Main.java\n"
   code: "package yukicoder;\n\nimport static java.lang.Math.*;\n\nimport java.io.Flushable;\n\
     import java.io.IOException;\nimport java.io.InputStream;\nimport java.io.OutputStream;\n\
     import java.math.BigInteger;\nimport java.util.ArrayList;\nimport java.util.Arrays;\n\
@@ -606,9 +606,9 @@ data:
     \ int... a){ return IntStream.of(a).asLongStream().reduce(1, (x, y) -> lcm(x,\
     \ y)); }\n\tprotected static final long lcm(final long... a){ return LongStream.of(a).reduce(1,\
     \ (x, y) -> lcm(x, y)); }\n\tprotected static final long gcd(final long a, final\
-    \ long b){ return b > 0 ? gcd(b, a % b) : a; }\n\tprotected static final int gcd(final\
-    \ int... a){ return IntStream.of(a).reduce(0, (x, y) -> (int) gcd(x, y)); }\n\t\
-    protected static final long gcd(final long... a){ return LongStream.of(a).reduce(0,\
+    \ long b){ return b == 0 ? a : gcd(b, mod(a, b)); }\n\tprotected static final\
+    \ int gcd(final int... a){ return IntStream.of(a).reduce(0, (x, y) -> (int) gcd(x,\
+    \ y)); }\n\tprotected static final long gcd(final long... a){ return LongStream.of(a).reduce(0,\
     \ (x, y) -> gcd(x, y)); }\n\tprotected static final int min(final int... a){ return\
     \ IntStream.of(a).min().getAsInt(); }\n\tprotected static final long min(final\
     \ long... a){ return LongStream.of(a).min().getAsLong(); }\n\tprotected static\
@@ -1420,7 +1420,7 @@ data:
   - Java/library/graph/Edge.java
   - Java/aoj/Main.java
   isVerificationFile: false
-  path: Java/yukicoder/yukicoder.java
+  path: Java/yukicoder/Main.java
   requiredBy:
   - Java/codeforces/Main.java
   - Java/Main.java
@@ -1513,13 +1513,13 @@ data:
   - Java/library/graph/Graph.java
   - Java/library/graph/Edge.java
   - Java/aoj/Main.java
-  timestamp: '2024-07-13 13:36:14+09:00'
+  timestamp: '2024-07-23 16:51:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Java/yukicoder/yukicoder.java
+documentation_of: Java/yukicoder/Main.java
 layout: document
 redirect_from:
-- /library/Java/yukicoder/yukicoder.java
-- /library/Java/yukicoder/yukicoder.java.html
-title: Java/yukicoder/yukicoder.java
+- /library/Java/yukicoder/Main.java
+- /library/Java/yukicoder/Main.java.html
+title: Java/yukicoder/Main.java
 ---
