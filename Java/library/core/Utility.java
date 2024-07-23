@@ -173,7 +173,7 @@ public class Utility {
 	 * @param b
 	 * @return aとbの最大公約数
 	 */
-	public static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }
+	public static final long gcd(final long a, final long b){ return b == 0 ? a : gcd(b, a % b); }
 	/**
 	 * 与えられたタプルの最大公約数を求める
 	 * e.g.) gcd(12, 15, 24) = 3

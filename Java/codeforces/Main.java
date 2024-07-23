@@ -115,7 +115,7 @@ class Utility {
 	protected static final long lcm(final long a, final long b){ return a / gcd(a, b) * b; }
 	protected static final long lcm(final int... a){ return IntStream.of(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }
 	protected static final long lcm(final long... a){ return LongStream.of(a).reduce(1, (x, y) -> lcm(x, y)); }
-	protected static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }
+	protected static final long gcd(final long a, final long b){ return b == 0 ? a : gcd(b, a % b); }
 	protected static final int gcd(final int... a){ return IntStream.of(a).reduce(0, (x, y) -> (int) gcd(x, y)); }
 	protected static final long gcd(final long... a){ return LongStream.of(a).reduce(0, (x, y) -> gcd(x, y)); }
 	protected static final int min(final int... a){ return IntStream.of(a).min().getAsInt(); }

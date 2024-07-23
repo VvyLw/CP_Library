@@ -127,7 +127,7 @@ class Utility {
 	protected static final long lcm(final long a, final long b){ return a / gcd(a, b) * b; }
 	protected static final long lcm(final int... a){ return IntStream.of(a).asLongStream().reduce(1, (x, y) -> lcm(x, y)); }
 	protected static final long lcm(final long... a){ return LongStream.of(a).reduce(1, (x, y) -> lcm(x, y)); }
-	protected static final long gcd(final long a, final long b){ return b > 0 ? gcd(b, a % b) : a; }
+	protected static final long gcd(final long a, final long b){ return b == 0 ? a : gcd(b, a % b); }
 	protected static final int gcd(final int... a){ return IntStream.of(a).reduce(0, (x, y) -> (int) gcd(x, y)); }
 	protected static final long gcd(final long... a){ return LongStream.of(a).reduce(0, (x, y) -> gcd(x, y)); }
 	protected static final int min(final int... a){ return IntStream.of(a).min().getAsInt(); }
@@ -1873,18 +1873,106 @@ final class Edge {
 	@Override
 	public final String toString(){ return "(" + src + ", " + to + ", " + cost + ")"; }
 }
+final class ShortestPath {
+	private final long[] cost;
+	private final int[] src;
+	ShortestPath(final long[] cost, final int[] src) {
+		this.cost = cost;
+		this.src = src;
+	}
+	final boolean isThru(final int i){ return src[i] != -1; }
+	final int[] path(int i) {
+		final List<Integer> res = new ArrayList<>();
+		for(; i != -1; i = src[i]) {
+			res.add(i);
+		}
+		Collections.reverse(res);
+		return res.stream().mapToInt(k -> k).toArray();
+	}
+	final long[] get(){ return cost; }
+}
+final class MST {
+	public final ArrayList<Edge> tree;
+	public final long cost;
+	MST(final ArrayList<Edge> tree, final long cost) {
+		this.tree = tree;
+		this.cost = cost;
+	}
+}
+final class SkewHeap {
+	static final class Node {
+		long key, lazy;
+		Node l, r;
+		final int idx;
+		Node(final long key, final int idx) {
+			this.key = key;
+			this.idx = idx;
+			lazy = 0;
+			l = null;
+			r = null;
+		}
+	}
+	private final boolean isMin;
+	SkewHeap(final boolean isMin){ this.isMin = isMin; }
+	private final Node alloc(final long key, final int idx){ return new Node(key, idx); }
+	private final Node propagate(final Node t) {
+		if(t != null && t.lazy != 0) {
+			if(t.l != null) {
+				t.l.lazy += t.lazy;
+			}
+			if(t.r != null) {
+				t.r.lazy += t.lazy;
+			}
+			t.key += t.lazy;
+			t.lazy = 0;
+		}
+		return t;
+	}
+	final Node meld(Node x, Node y) {
+		propagate(x);
+		propagate(y);
+		if(x == null || y == null) {
+			return x != null ? x : y;
+		}
+		if((x.key < y.key) ^ isMin) {
+			final Node tmp = x;
+			x = y;
+			y = tmp;
+		}
+		x.r = meld(y, x.r);
+		final Node tmp = x.l;
+		x.l = x.r;
+		x.r = tmp;
+		return x;
+	}
+	final Node push(final Node t, final long key, final int idx){ return meld(t, alloc(key, idx)); }
+	final Node pop(final Node t) {
+		if(t == null) {
+			throw new NullPointerException();
+		}
+		return meld(t.l, t.r);
+	}
+	final Node add(final Node t, final long lazy) {
+		if(t != null) {
+			t.lazy += lazy;
+			propagate(t);
+		}
+		return t;
+	}
+}
+
 class Graph extends ArrayList<ArrayList<Edge>> {
-	protected final boolean undirected;
-	protected final int n, indexed;
-	protected int id;
-	protected final ArrayList<Edge> edge;
+	private final boolean undirected, weighted;
+	private final int n, indexed;
+	private int id;
+	private final ArrayList<Edge> edge;
 	private final int[] to;
 	private final ArrayList<Edge> path;
-	Graph(final int n, final boolean undirected){ this(n, 1, undirected); }
-	Graph(final int n, final int indexed, final boolean undirected) {
+	Graph(final int n, final int indexed, final boolean undirected, final boolean weighted) {
 		this.n = n;
 		this.indexed = indexed;
 		this.undirected = undirected;
+		this.weighted = weighted;
 		id = 0;
 		edge = new ArrayList<>();
 		IntStream.range(0, n).forEach(i -> add(new ArrayList<>()));
@@ -1892,7 +1980,7 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		Arrays.fill(to, -1);
 		path = new ArrayList<>();
 	}
-	static Graph of(final List<ArrayList<Edge>> g, final boolean undirected) {
+	static Graph of(final List<ArrayList<Edge>> g, final boolean undirected, final boolean weighted) {
 		int max = 0, min = Integer.MAX_VALUE;
 		for(int i = 0; i < g.size(); ++i) {
 			for(final Edge e: g.get(i)) {
@@ -1900,34 +1988,47 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 				min = min(e.src, e.to);
 			}
 		}
-		final Graph gp = new Graph(max, min, undirected);
+		final Graph gp = new Graph(max, min, undirected, weighted);
 		for(int i = 0; i < g.size(); ++i) {
 			for(final Edge e: g.get(i)) {
-				gp.addEdge(e.src, e.to);
+				if(weighted) {
+					gp.addEdge(e.src, e.to, e.cost);
+				} else {
+					gp.addEdge(e.src, e.to);
+				}
 			}
 		}
 		return gp;
 	}
-	protected final void addEdge(int a, int b) {
+	final void addEdge(int a, int b){ addEdge(a, b, 1); }
+	final void addEdge(int a, int b, final long cost) {
 		a -= indexed;
 		b -= indexed;
-		this.get(a).add(new Edge(a, b, id));
-		edge.add(new Edge(a, b, id));
+		this.get(a).add(new Edge(a, b, cost, id));
+		edge.add(new Edge(a, b, cost, id));
 		if(undirected) {
-			this.get(b).add(new Edge(b, a, id));
-			edge.add(new Edge(b, a, id));
+			this.get(b).add(new Edge(b, a, cost, id));
+			edge.add(new Edge(b, a, cost, id));
 		}
 		id++;
 	}
-	protected void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni())); }
-	protected final Edge[] getEdge(){ return edge.toArray(Edge[]::new); }
+	final void input(final int m) {
+		IntStream.range(0, m).forEach(i -> {
+			if(weighted) {
+				addEdge(VvyLw.io.ni(), VvyLw.io.ni(), VvyLw.io.nl());
+			} else {
+				addEdge(VvyLw.io.ni(), VvyLw.io.ni());
+			}
+		});
+	}
+	final Edge[] getEdge(){ return edge.toArray(Edge[]::new); }
 	@Override
 	public final int[][] toArray() {
 		final int[][] res = new int[n][];
 		IntStream.range(0, n).forEach(i -> res[i] = get(i).stream().mapToInt(e -> e.to).toArray());
 		return res;
 	}
-	protected final int[] allDist(final int v) {
+	final int[] allDist(final int v) {
 		final int[] d = new int[n];
 		Arrays.fill(d, -1);
 		final Queue<Integer> q = new ArrayDeque<>();
@@ -1945,8 +2046,8 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		}
 		return d;
 	}
-	protected final int dist(final int u, final int v){ return allDist(u)[v]; }
-	protected final ArrayList<Integer> topologicalSort() {
+	final int dist(final int u, final int v){ return allDist(u)[v]; }
+	final ArrayList<Integer> topologicalSort() {
 		final int[] deg = new int[n];
 		for(int i = 0; i < n; ++i) {
 			for(final Edge ed: this.get(i)) {
@@ -1971,7 +2072,7 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		}
 		return n == ord.size() ? ord : null;
 	}
-	protected final int[] cycleDetector() {
+	final int[] cycleDetector() {
 		final int[] used = new int[n];
 		final Edge[] pre = new Edge[n];
 		final ArrayList<Edge> cycle = new ArrayList<>();
@@ -2019,7 +2120,7 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		}
 		return ret;
 	}
-	protected final long diameter() {
+	final long diameter() {
 		final IntPair p = dfs(0, -1);
 		final IntPair q = dfs(p.second.intValue(), -1);
 		int now = p.second.intValue();
@@ -2033,86 +2134,7 @@ class Graph extends ArrayList<ArrayList<Edge>> {
 		}
 		return q.first;
 	}
-	protected final Edge[] getPath(){ return path.toArray(Edge[]::new); }
-	@Override
-	public String toString() {
-		final StringBuilder sb = new StringBuilder();
-		for(int i = 0; i < n; ++i) {
-			final int m = get(i).size();
-			sb.append(i + ": [");
-			for(int j = 0; j < m; ++j) {
-				sb.append(get(i).get(j).to);
-				if(j + 1 < m) {
-					sb.append(", ");
-				}
-			}
-			sb.append(']');
-			if(i + 1 < n) {
-				sb.append('\n');
-			}
-		}
-		return sb.toString();
-	}
-}
-
-final class ShortestPath {
-	private final long[] cost;
-	private final int[] src;
-	ShortestPath(final long[] cost, final int[] src) {
-		this.cost = cost;
-		this.src = src;
-	}
-	final boolean isThru(final int i){ return src[i] != -1; }
-	final int[] path(int i) {
-		final List<Integer> res = new ArrayList<>();
-		for(; i != -1; i = src[i]) {
-			res.add(i);
-		}
-		Collections.reverse(res);
-		return res.stream().mapToInt(k -> k).toArray();
-	}
-	final long[] get(){ return cost; }
-}
-final class MST {
-	public final ArrayList<Edge> tree;
-	public final long cost;
-	MST(final ArrayList<Edge> tree, final long cost) {
-		this.tree = tree;
-		this.cost = cost;
-	}
-}
-class WeightedGraph extends Graph {
-	WeightedGraph(final int n, final boolean undirected){ super(n, undirected); }
-	WeightedGraph(final int n, final int indexed, final boolean undirected){ super(n, indexed, undirected); }
-	static WeightedGraph of(final List<ArrayList<Edge>> g, final boolean undirected) {
-		int max = 0, min = Integer.MAX_VALUE;
-		for(int i = 0; i < g.size(); ++i) {
-			for(final Edge e: g.get(i)) {
-				max = max(e.src, e.to);
-				min = min(e.src, e.to);
-			}
-		}
-		final WeightedGraph gp = new WeightedGraph(max, min, undirected);
-		for(int i = 0; i < g.size(); ++i) {
-			for(final Edge e: g.get(i)) {
-				gp.addEdge(e.src, e.to, e.cost);
-			}
-		}
-		return gp;
-	}
-	final void addEdge(int a, int b, final long cost) {
-		a -= indexed;
-		b -= indexed;
-		this.get(a).add(new Edge(a, b, cost, id));
-		edge.add(new Edge(a, b, cost, id));
-		if(undirected) {
-			this.get(b).add(new Edge(b, a, cost, id));
-			edge.add(new Edge(b, a, cost, id));
-		}
-		id++;
-	}
-	@Override
-	protected final void input(final int m){ IntStream.range(0, m).forEach(i -> addEdge(VvyLw.io.ni(), VvyLw.io.ni(), VvyLw.io.nl())); }
+	final Edge[] getPath(){ return path.toArray(Edge[]::new); }
 	final ShortestPath dijkstra(final int v) {
 		final long[] cost = new long[n];
 		final int[] src = new int[n];
@@ -2272,13 +2294,17 @@ class WeightedGraph extends Graph {
 		return new MST(e, cost);
 	}
 	@Override
-	public final String toString() {
+	public String toString() {
 		final StringBuilder sb = new StringBuilder();
 		for(int i = 0; i < n; ++i) {
 			final int m = get(i).size();
 			sb.append(i + ": [");
 			for(int j = 0; j < m; ++j) {
-				sb.append("(to: " + get(i).get(j).to + ", cost: " + get(i).get(j).cost + ')');
+				if(weighted) {
+					sb.append("(to: " + get(i).get(j).to + ", cost: " + get(i).get(j).cost + ')');
+				} else {
+					sb.append(get(i).get(j).to);
+				}
 				if(j + 1 < m) {
 					sb.append(", ");
 				}
@@ -2289,67 +2315,6 @@ class WeightedGraph extends Graph {
 			}
 		}
 		return sb.toString();
-	}
-}
-final class SkewHeap {
-	static final class Node {
-		long key, lazy;
-		Node l, r;
-		final int idx;
-		Node(final long key, final int idx) {
-			this.key = key;
-			this.idx = idx;
-			lazy = 0;
-			l = null;
-			r = null;
-		}
-	}
-	private final boolean isMin;
-	SkewHeap(final boolean isMin){ this.isMin = isMin; }
-	private final Node alloc(final long key, final int idx){ return new Node(key, idx); }
-	private final Node propagate(final Node t) {
-		if(t != null && t.lazy != 0) {
-			if(t.l != null) {
-				t.l.lazy += t.lazy;
-			}
-			if(t.r != null) {
-				t.r.lazy += t.lazy;
-			}
-			t.key += t.lazy;
-			t.lazy = 0;
-		}
-		return t;
-	}
-	final Node meld(Node x, Node y) {
-		propagate(x);
-		propagate(y);
-		if(x == null || y == null) {
-			return x != null ? x : y;
-		}
-		if((x.key < y.key) ^ isMin) {
-			final Node tmp = x;
-			x = y;
-			y = tmp;
-		}
-		x.r = meld(y, x.r);
-		final Node tmp = x.l;
-		x.l = x.r;
-		x.r = tmp;
-		return x;
-	}
-	final Node push(final Node t, final long key, final int idx){ return meld(t, alloc(key, idx)); }
-	final Node pop(final Node t) {
-		if(t == null) {
-			throw new NullPointerException();
-		}
-		return meld(t.l, t.r);
-	}
-	final Node add(final Node t, final long lazy) {
-		if(t != null) {
-			t.lazy += lazy;
-			propagate(t);
-		}
-		return t;
 	}
 }
 
