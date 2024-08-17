@@ -222,15 +222,15 @@ data:
   timestamp: '2024-03-27 23:05:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/knapsack.test.cpp
-  - test/lis.test.cpp
-  - test/lis2.test.cpp
-  - test/knapsack3.test.cpp
-  - test/knapsack4.test.cpp
-  - test/knapsack5.test.cpp
   - test/knapsack2.test.cpp
+  - test/knapsack4.test.cpp
+  - test/lis.test.cpp
   - test/max_rect.test.cpp
+  - test/knapsack.test.cpp
+  - test/lis2.test.cpp
+  - test/knapsack5.test.cpp
   - test/lcs.test.cpp
+  - test/knapsack3.test.cpp
 documentation_of: C++/other/dp.hpp
 layout: document
 redirect_from:

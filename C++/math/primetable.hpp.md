@@ -82,19 +82,19 @@ data:
   timestamp: '2024-03-29 03:01:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/add.test.cpp
-  - test/s_rmq.test.cpp
-  - test/aarray.test.cpp
-  - test/segtree.test.cpp
-  - test/sr_sum.test.cpp
-  - test/extgcd.test.cpp
-  - test/fwtree.test.cpp
-  - test/uf.test.cpp
-  - test/add128.test.cpp
-  - test/pcounter.test.cpp
   - test/stable.test.cpp
-  - test/m_add.test.cpp
+  - test/pcounter.test.cpp
+  - test/s_rmq.test.cpp
+  - test/fwtree.test.cpp
+  - test/sr_sum.test.cpp
+  - test/add.test.cpp
+  - test/uf.test.cpp
+  - test/aarray.test.cpp
+  - test/add128.test.cpp
   - test/parsum.test.cpp
+  - test/extgcd.test.cpp
+  - test/m_add.test.cpp
+  - test/segtree.test.cpp
 documentation_of: C++/math/primetable.hpp
 layout: document
 redirect_from:

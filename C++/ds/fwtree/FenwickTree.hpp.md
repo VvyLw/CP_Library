@@ -86,16 +86,16 @@ data:
   isVerificationFile: false
   path: C++/ds/fwtree/FenwickTree.hpp
   requiredBy:
-  - C++/ds/fwtree/RangeBIT.hpp
   - C++/math/inverse_num.hpp
+  - C++/ds/fwtree/RangeBIT.hpp
   timestamp: '2024-02-27 10:38:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/fwtree.test.cpp
   - test/inv_num.test.cpp
   - test/fwtree3.test.cpp
-  - test/fwtree.test.cpp
-  - test/fwtree2.test.cpp
   - test/parsum.test.cpp
+  - test/fwtree2.test.cpp
 documentation_of: C++/ds/fwtree/FenwickTree.hpp
 layout: document
 redirect_from:

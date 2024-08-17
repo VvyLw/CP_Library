@@ -170,6 +170,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/other/SkewHeap.hpp
       title: SkewHeap
+    - icon: ':warning:'
+      path: C++/other/doubling.hpp
+      title: doubling
     - icon: ':heavy_check_mark:'
       path: C++/other/dp.hpp
       title: "DP(Knapsack, LCS, LIS, \u6700\u5927\u9577\u65B9\u5F62, coin)"
