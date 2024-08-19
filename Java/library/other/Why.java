@@ -71,6 +71,25 @@ public final class Why {
 		return res;
 	}
 	/**
+	 * ダブリングの前計算を行う
+	 * @param a
+	 * @param k
+	 * @return ダブリング
+	 */
+	public static final int[][] doubling(final int[] a, final long k) {
+		final int z = (int) Math.ceil(Utility.log(k, 2)), n = a.length;
+		final int[][] dbl = new int[z][n];
+		for(int i = 0; i < n; ++i) {
+			dbl[0][i] = a[i];
+		}
+		for(int i = 0; ++i < z;) {
+			for(int j = 0; j < n; ++j) {
+				dbl[i][j] = dbl[i - 1][dbl[i - 1][j]];
+			}
+		}
+		return dbl;
+	}
+	/**
 	 * @deprecated verifiedしていない
 	 * 遅い
 	 * @param x

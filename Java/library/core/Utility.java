@@ -72,7 +72,7 @@ public class Utility {
 	 * @param base
 	 * @return baseを底とするxの対数
 	 */
-	protected static final double log(final double x, final long base){ return Math.log(x) / Math.log(base); }
+	public static final double log(final double x, final long base){ return Math.log(x) / Math.log(base); }
 	/**
 	 * a / bを小数点以下切り上げで求める
 	 * @param a
