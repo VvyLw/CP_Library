@@ -585,15 +585,38 @@ data:
     \t\tfinal Map<Long, Integer> id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length;\
     \ ++i) {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\
     \t\tlong res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
-    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @deprecated\
-    \ verified\u3057\u3066\u3044\u306A\u3044\n\t * \u9045\u3044\n\t * @param x\n\t\
-    \ * @param y\n\t * @return manhattan MST\n\t */\n\tpublic static final ArrayList<Edge>\
-    \ manhattan(int[] x, int[] y) {\n\t\tassert x.length == y.length;\n\t\tfinal int\
-    \ n = x.length;\n\t\tfinal var res = new ArrayList<Edge>();\n\t\tfor(int s = 0;\
-    \ s < 2; ++s) {\n\t\t\tfor(int t = 0; t < 2; ++t) {\n\t\t\t\tfinal var id = IntStream.range(0,\
-    \ n).boxed().sorted((i, j) -> Integer.compare(x[i] + y[i], x[j] + y[j])).mapToInt(i\
-    \ -> i).toArray();\n\t\t\t\tfinal var idx = new TreeMap<Integer, Integer>();\n\
-    \t\t\t\tfor(final var i: id) {\n\t\t\t\t\tfinal var it = idx.tailMap(y[i]).entrySet().iterator();\n\
+    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * \u30C0\
+    \u30D6\u30EA\u30F3\u30B0\u306E\u524D\u8A08\u7B97\u3092\u884C\u3046\n\t * @param\
+    \ a\n\t * @param k\n\t * @return \u30C0\u30D6\u30EA\u30F3\u30B0\n\t */\n\tpublic\
+    \ static final int[][] doubling(final int[] a, final long k) {\n\t\tfinal int\
+    \ z = (int) Math.ceil(Utility.log(k, 2)), n = a.length;\n\t\tfinal int[][] dbl\
+    \ = new int[z][n];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tdbl[0][i] = a[i];\n\
+    \t\t}\n\t\tfor(int i = 0; ++i < z;) {\n\t\t\tfor(int j = 0; j < n; ++j) {\n\t\t\
+    \t\tdbl[i][j] = dbl[i - 1][dbl[i - 1][j]];\n\t\t\t}\n\t\t}\n\t\treturn dbl;\n\t\
+    }\n\t/**\n\t * @deprecated verified\u3057\u3066\u3044\u306A\u3044\n\t * \u9045\
+    \u3044\n\t * @param x\n\t * @param y\n\t * @return manhattan MST\n\t */\n\tpublic\
+    \ static final ArrayList<Edge> manhattan(int[] x, int[] y) {\n\t\tassert x.length\
+    \ == y.length;\n\t\tfinal int n = x.length;\n\t\tfinal var res = new ArrayList<Edge>();\n\
+    \t\tfor(int s = 0; s < 2; ++s) {\n\t\t\tfor(int t = 0; t < 2; ++t) {\n\t\t\t\t\
+    final var id = IntStream.range(0, n).boxed().sorted((i, j) -> Integer.compare(x[i]\
+    \ + y[i], x[j] + y[j])).mapToInt(i -> i).toArray();\n\t\t\t\tfinal var idx = new\
+    \ TreeMap<Integer, Integer>();\n\t\t\t\tfor(final var i: id) {\n\t\t\t\t\tfinal\
+    \ var it = idx.tailMap(y[i]).entrySet().iterator();\n\t\t\t\t\twhile(it.hasNext())\
+    \ {\n\t\t\t\t\t\tfinal int j = it.next().getValue();\n\t\t\t\t\t\tif(x[i] - x[j]\
+    \ < y[i] - y[j]) {\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tres.add(new\
+    \ Edge(i, j, Math.abs(x[i] - x[j]) + Math.abs(y[i] - y[j]), -1));\n\t\t\t\t\t\t\
+    it.remove();\n\t\t\t\t\t}\n\t\t\t\t\tidx.put(-y[i], i);\n\t\t\t\t}\n\t\t\t\tfinal\
+    \ var tmp = y.clone();\n\t\t\t\tSystem.arraycopy(x, 0, y, 0, n);\n\t\t\t\tSystem.arraycopy(tmp,\
+    \ 0, x, 0, n);\n\t\t\t}\n\t\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\tx[i] = -x[i];\n\
+    \t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n\t/**\n\t * @deprecated verified\u3057\u3066\
+    \u3044\u306A\u3044\n\t * \u9045\u3044\n\t * @param x\n\t * @param y\n\t * @return\
+    \ manhattan MST\n\t */\n\tpublic static final ArrayList<Edge> manhattan(long[]\
+    \ x, long[] y) {\n\t\tassert x.length == y.length;\n\t\tfinal int n = x.length;\n\
+    \t\tfinal var res = new ArrayList<Edge>();\n\t\tfor(int s = 0; s < 2; ++s) {\n\
+    \t\t\tfor(int t = 0; t < 2; ++t) {\n\t\t\t\tfinal var id = IntStream.range(0,\
+    \ n).boxed().sorted((i, j) -> Long.compare(x[i] + y[i], x[j] + y[j])).mapToInt(i\
+    \ -> i).toArray();\n\t\t\t\tfinal var idx = new TreeMap<Long, Integer>();\n\t\t\
+    \t\tfor(final var i: id) {\n\t\t\t\t\tfinal var it = idx.tailMap(y[i]).entrySet().iterator();\n\
     \t\t\t\t\twhile(it.hasNext()) {\n\t\t\t\t\t\tfinal int j = it.next().getValue();\n\
     \t\t\t\t\t\tif(x[i] - x[j] < y[i] - y[j]) {\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t\
     }\n\t\t\t\t\t\tres.add(new Edge(i, j, Math.abs(x[i] - x[j]) + Math.abs(y[i] -\
@@ -601,22 +624,7 @@ data:
     \ i);\n\t\t\t\t}\n\t\t\t\tfinal var tmp = y.clone();\n\t\t\t\tSystem.arraycopy(x,\
     \ 0, y, 0, n);\n\t\t\t\tSystem.arraycopy(tmp, 0, x, 0, n);\n\t\t\t}\n\t\t\tfor(int\
     \ i = 0; i < n; ++i) {\n\t\t\t\tx[i] = -x[i];\n\t\t\t}\n\t\t}\n\t\treturn res;\n\
-    \t}\n\t/**\n\t * @deprecated verified\u3057\u3066\u3044\u306A\u3044\n\t * \u9045\
-    \u3044\n\t * @param x\n\t * @param y\n\t * @return manhattan MST\n\t */\n\tpublic\
-    \ static final ArrayList<Edge> manhattan(long[] x, long[] y) {\n\t\tassert x.length\
-    \ == y.length;\n\t\tfinal int n = x.length;\n\t\tfinal var res = new ArrayList<Edge>();\n\
-    \t\tfor(int s = 0; s < 2; ++s) {\n\t\t\tfor(int t = 0; t < 2; ++t) {\n\t\t\t\t\
-    final var id = IntStream.range(0, n).boxed().sorted((i, j) -> Long.compare(x[i]\
-    \ + y[i], x[j] + y[j])).mapToInt(i -> i).toArray();\n\t\t\t\tfinal var idx = new\
-    \ TreeMap<Long, Integer>();\n\t\t\t\tfor(final var i: id) {\n\t\t\t\t\tfinal var\
-    \ it = idx.tailMap(y[i]).entrySet().iterator();\n\t\t\t\t\twhile(it.hasNext())\
-    \ {\n\t\t\t\t\t\tfinal int j = it.next().getValue();\n\t\t\t\t\t\tif(x[i] - x[j]\
-    \ < y[i] - y[j]) {\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tres.add(new\
-    \ Edge(i, j, Math.abs(x[i] - x[j]) + Math.abs(y[i] - y[j]), -1));\n\t\t\t\t\t\t\
-    it.remove();\n\t\t\t\t\t}\n\t\t\t\t\tidx.put(-y[i], i);\n\t\t\t\t}\n\t\t\t\tfinal\
-    \ var tmp = y.clone();\n\t\t\t\tSystem.arraycopy(x, 0, y, 0, n);\n\t\t\t\tSystem.arraycopy(tmp,\
-    \ 0, x, 0, n);\n\t\t\t}\n\t\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\tx[i] = -x[i];\n\
-    \t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n}"
+    \t}\n}"
   dependsOn:
   - Java/yukicoder/Main.java
   - Java/Main.java
@@ -803,7 +811,7 @@ data:
   - Java/library/ds/fenwicktree/RangeBIT.java
   - Java/library/ds/fenwicktree/FenwickTree.java
   - Java/codeforces/Main.java
-  timestamp: '2024-07-23 16:51:16+09:00'
+  timestamp: '2024-08-19 22:41:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/other/Why.java

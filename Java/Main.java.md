@@ -1351,21 +1351,26 @@ data:
     \ Map<Long, Integer> id = new HashMap<>();\n\t\tfor(int i = 0; i < a.length; ++i)\
     \ {\n\t\t\tid.put(b[i], i);\n\t\t}\n\t\tfinal FenwickTree bit = new FenwickTree(a.length);\n\
     \t\tlong res = 0;\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\tres += i - bit.sum(id.get(a[i]));\n\
-    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n}\n\nfinal class\
-    \ Edge {\n\tpublic int src, to, id;\n\tpublic long cost;\n\tEdge(final int src,\
-    \ final int to, final int id) {\n\t\tthis.src = src;\n\t\tthis.to = to;\n\t\t\
-    this.id = id;\n\t}\n\tEdge(final int src, final int to, final long cost, final\
-    \ int id) {\n\t\tthis.src = src;\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t\
-    \tthis.id = id;\n\t}\n\t@Override\n\tpublic final boolean equals(final Object\
-    \ o) {\n\t\tif(this == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass()\
-    \ != o.getClass()) {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Edge e = (Edge) o;\n\
-    \t\treturn src == e.src && to == e.to && cost == e.cost;\n\t}\n\t@Override\n\t\
-    public final int hashCode(){ return Objects.hash(src, to, cost, id); }\n\t@Override\n\
-    \tpublic final String toString(){ return \"(\" + src + \", \" + to + \", \" +\
-    \ cost + \")\"; }\n}\nfinal class ShortestPath {\n\tprivate final long[] cost;\n\
-    \tprivate final int[] src;\n\tShortestPath(final long[] cost, final int[] src)\
-    \ {\n\t\tthis.cost = cost;\n\t\tthis.src = src;\n\t}\n\tfinal boolean isThru(final\
-    \ int i){ return src[i] != -1; }\n\tfinal int[] path(int i) {\n\t\tfinal List<Integer>\
+    \t\t\tbit.add(id.get(a[i]), 1);\n\t\t}\n\t\treturn res;\n\t}\n\tstatic final int[][]\
+    \ doubling(final int[] a, final long k) {\n\t\tfinal int z = (int) Math.ceil(Utility.log(k,\
+    \ 2)), n = a.length;\n\t\tfinal int[][] dbl = new int[z][n];\n\t\tfor(int i =\
+    \ 0; i < n; ++i) {\n\t\t\tdbl[0][i] = a[i];\n\t\t}\n\t\tfor(int i = 0; ++i < z;)\
+    \ {\n\t\t\tfor(int j = 0; j < n; ++j) {\n\t\t\t\tdbl[i][j] = dbl[i - 1][dbl[i\
+    \ - 1][j]];\n\t\t\t}\n\t\t}\n\t\treturn dbl;\n\t}\n}\n\nfinal class Edge {\n\t\
+    public int src, to, id;\n\tpublic long cost;\n\tEdge(final int src, final int\
+    \ to, final int id) {\n\t\tthis.src = src;\n\t\tthis.to = to;\n\t\tthis.id = id;\n\
+    \t}\n\tEdge(final int src, final int to, final long cost, final int id) {\n\t\t\
+    this.src = src;\n\t\tthis.to = to;\n\t\tthis.cost = cost;\n\t\tthis.id = id;\n\
+    \t}\n\t@Override\n\tpublic final boolean equals(final Object o) {\n\t\tif(this\
+    \ == o) {\n\t\t\treturn true;\n\t\t}\n\t\tif(o == null || getClass() != o.getClass())\
+    \ {\n\t\t\treturn false;\n\t\t}\n\t\tfinal Edge e = (Edge) o;\n\t\treturn src\
+    \ == e.src && to == e.to && cost == e.cost;\n\t}\n\t@Override\n\tpublic final\
+    \ int hashCode(){ return Objects.hash(src, to, cost, id); }\n\t@Override\n\tpublic\
+    \ final String toString(){ return \"(\" + src + \", \" + to + \", \" + cost +\
+    \ \")\"; }\n}\nfinal class ShortestPath {\n\tprivate final long[] cost;\n\tprivate\
+    \ final int[] src;\n\tShortestPath(final long[] cost, final int[] src) {\n\t\t\
+    this.cost = cost;\n\t\tthis.src = src;\n\t}\n\tfinal boolean isThru(final int\
+    \ i){ return src[i] != -1; }\n\tfinal int[] path(int i) {\n\t\tfinal List<Integer>\
     \ res = new ArrayList<>();\n\t\tfor(; i != -1; i = src[i]) {\n\t\t\tres.add(i);\n\
     \t\t}\n\t\tCollections.reverse(res);\n\t\treturn res.stream().mapToInt(k -> k).toArray();\n\
     \t}\n\tfinal long[] get(){ return cost; }\n}\nfinal class MST {\n\tpublic final\
@@ -2794,7 +2799,7 @@ data:
   - Java/library/ds/fenwicktree/RangeBIT.java
   - Java/library/ds/fenwicktree/FenwickTree.java
   - Java/codeforces/Main.java
-  timestamp: '2024-07-23 16:51:16+09:00'
+  timestamp: '2024-08-19 22:41:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/Main.java

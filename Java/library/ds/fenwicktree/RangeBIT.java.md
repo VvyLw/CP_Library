@@ -772,7 +772,7 @@ data:
   - Java/library/ds/unionfind/UndoUnionFind.java
   - Java/library/ds/fenwicktree/FenwickTree.java
   - Java/codeforces/Main.java
-  timestamp: '2024-07-23 16:51:16+09:00'
+  timestamp: '2024-08-19 22:41:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/ds/fenwicktree/RangeBIT.java
