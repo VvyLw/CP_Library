@@ -80,7 +80,6 @@ class Utility {
 		return n < 0 ? n + m : n;
 	}
 	protected static final double log(final double x, final long base){ return Math.log(x) / Math.log(base); }
-	protected static final long intCeil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }
 	protected static final double intRound(final double a, final long b, final int c) {
 		final long d = powi(10, c);
 		return rint((a * d) / b) / d;

@@ -74,12 +74,6 @@ public class Utility {
 	 */
 	public static final double log(final double x, final long base){ return Math.log(x) / Math.log(base); }
 	/**
-	 * a / bを小数点以下切り上げで求める
-	 * @param a
-	 * @param b
-	 */
-	protected static final long intCeil(final long a, final long b){ return a == 0 ? 0 : (a - 1) / b + 1; }
-	/**
 	 * a / bを小数点c桁で四捨五入して求める
 	 * @param a
 	 * @param b
