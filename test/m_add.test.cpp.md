@@ -221,7 +221,7 @@ data:
     \ &is, std::deque<T> &dq){ for(auto &el: dq) is >> el; return is; }\ntemplate\
     \ <class T> inline bool in(T& x){ std::cin >> x; return 1; }\ntemplate <class\
     \ Head, class... Tail> inline bool in(Head& head, Tail&... tail){ in(head); in(tail...);\
-    \ return 1; }\n\ninline i128 to_i128(const std::string &s) {\n    assert(zia_qu::isdigit(s));\n\
+    \ return 1; }\n\ninline i128 to_i128(const std::string &s) noexcept {\n    assert(zia_qu::isdigit(s));\n\
     \    bool neg=s.front()=='-';\n    i128 ret = 0;\n    for(const auto &el: s) {\n\
     \        if(neg) {\n            neg=0;\n            continue;\n        }\n   \
     \     ret = 10 * ret + el - '0';\n    }\n    if(s.front()=='-') ret=-ret;\n  \
@@ -233,11 +233,11 @@ data:
     \ vectors::V<vectors::V<type>> name(h,vectors::V<type>(w)); in(name)\n} // IO\n\
     \n/**\n * @brief \u5165\u529B\n */\n#line 2 \"C++/core/io/output.hpp\"\n\n#line\
     \ 9 \"C++/core/io/output.hpp\"\n#ifndef TEMPLATE\nusing i128 = __int128_t;\nusing\
-    \ u128 = __uint128_t;\n#endif\nnamespace IO {\nstd::ostream &operator<<(std::ostream\
-    \ &dest, const i128 &value) {\n    std::ostream::sentry s(dest);\n    if(s) {\n\
-    \        u128 tmp = value < 0 ? -value : value;\n        char buffer[128];\n \
-    \       char *d = std::end(buffer);\n        do {\n            --d;\n        \
-    \    *d = \"0123456789\"[tmp % 10];\n            tmp /= 10;\n        } while(tmp\
+    \ u128 = __uint128_t;\n#endif\nnamespace IO {\ninline std::ostream &operator<<(std::ostream\
+    \ &dest, const i128 &value) noexcept {\n    std::ostream::sentry s(dest);\n  \
+    \  if(s) {\n        u128 tmp = value < 0 ? -value : value;\n        char buffer[128];\n\
+    \        char *d = std::end(buffer);\n        do {\n            --d;\n       \
+    \     *d = \"0123456789\"[tmp % 10];\n            tmp /= 10;\n        } while(tmp\
     \ != 0);\n        if(value < 0) {\n            --d;\n            *d = '-';\n \
     \       }\n        int len = std::end(buffer) - d;\n        if(dest.rdbuf() ->\
     \ sputn(d, len) != len) {\n            dest.setstate(std::ios_base::badbit);\n\
@@ -555,7 +555,7 @@ data:
   isVerificationFile: true
   path: test/m_add.test.cpp
   requiredBy: []
-  timestamp: '2024-06-27 19:11:42+09:00'
+  timestamp: '2024-08-31 20:28:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/m_add.test.cpp

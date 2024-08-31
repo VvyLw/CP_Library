@@ -55,48 +55,48 @@ data:
   bundledCode: "#line 2 \"C++/core/io/output.hpp\"\n\n#include <iostream>\n#include\
     \ <vector>\n#include <utility>\n#include <map>\n#include <set>\n#include <deque>\n\
     #ifndef TEMPLATE\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n#endif\n\
-    namespace IO {\nstd::ostream &operator<<(std::ostream &dest, const i128 &value)\
-    \ {\n    std::ostream::sentry s(dest);\n    if(s) {\n        u128 tmp = value\
-    \ < 0 ? -value : value;\n        char buffer[128];\n        char *d = std::end(buffer);\n\
-    \        do {\n            --d;\n            *d = \"0123456789\"[tmp % 10];\n\
-    \            tmp /= 10;\n        } while(tmp != 0);\n        if(value < 0) {\n\
-    \            --d;\n            *d = '-';\n        }\n        int len = std::end(buffer)\
-    \ - d;\n        if(dest.rdbuf() -> sputn(d, len) != len) {\n            dest.setstate(std::ios_base::badbit);\n\
-    \        }\n    }\n    return dest;\n}\ntemplate <class T, class U> std::ostream&\
-    \ operator<<(std::ostream &os, const std::pair<T, U> &p){ os << p.first << ' '\
-    \ << p.second; return os; }\ntemplate <class T, size_t N> std::ostream& operator<<(std::ostream\
-    \ &os, const std::array<T, N> &a){ if(a.size()){ os << a.front(); for(auto i=a.begin();\
-    \ ++i!=a.end();){ os << ' ' << *i; } } return os; }\ntemplate <class T> std::ostream&\
-    \ operator<<(std::ostream &os, const std::vector<T> &v){ if(v.size()){ os << v.front();\
-    \ for(auto i=v.begin(); ++i!=v.end();){ os << ' ' << *i; } } return os; }\ntemplate\
-    \ <class K, class V> std::ostream& operator<<(std::ostream &os, const std::map<K,\
-    \ V> &m){ if(m.size()){ os << m.begin()->first << ' ' << m.begin()->second; for(auto\
-    \ i=m.begin(); ++i!=m.end();){ os << '\\n' << i->first << ' ' << i->second; }\
-    \ } return os; }\ntemplate <class T> std::ostream& operator<<(std::ostream &os,\
-    \ const std::set<T> &st){ if(st.size()){ os << *st.begin(); for(auto i=st.begin();\
-    \ ++i!=st.end();){ os << ' ' << *i; } } return os; }\ntemplate <class T> std::ostream&\
-    \ operator<<(std::ostream &os, const std::multiset<T> &ms){ if(ms.size()){ os\
-    \ << *ms.begin(); for(auto i=ms.begin(); ++i!=ms.end();){ os << ' ' << *i; } }\
-    \ return os; }\ntemplate <class T> std::ostream& operator<<(std::ostream &os,\
-    \ const std::deque<T> &dq){ if(dq.size()){ os << dq.front(); for(auto i=dq.begin();\
-    \ ++i!=dq.end();){ os << ' ' << *i; } } return os; }\ninline void out(){ std::cout\
-    \ << '\\n'; }\ntemplate <bool flush=false, class T> inline void out(const T& x){\
-    \ std::cout << x << '\\n'; if(flush) std::cout.flush(); }\ntemplate <bool flush=false,\
-    \ class Head, class... Tail> inline void out(const Head& head, const Tail&...\
-    \ tail){ std::cout << head << ' '; out<flush>(tail...); }\ntemplate <bool flush=false,\
-    \ class T> inline void vout(const T& v){ std::cout << v << '\\n'; if(flush) std::cout.flush();\
-    \ }\ntemplate <bool flush=false, class T> inline void vout(const std::vector<T>&\
-    \ v){ for(const auto &el: v) std::cout << el << '\\n'; if(flush) std::cout.flush();\
-    \ }\ntemplate <bool flush=false, class Head, class... Tail> inline void vout(const\
-    \ Head& head, const Tail&... tail){ std::cout << head << '\\n'; vout<flush>(tail...);\
-    \ }\n\n#define fin(...) do{ out(__VA_ARGS__); return; }while(false)\n} // IO\n\
-    \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
+    namespace IO {\ninline std::ostream &operator<<(std::ostream &dest, const i128\
+    \ &value) noexcept {\n    std::ostream::sentry s(dest);\n    if(s) {\n       \
+    \ u128 tmp = value < 0 ? -value : value;\n        char buffer[128];\n        char\
+    \ *d = std::end(buffer);\n        do {\n            --d;\n            *d = \"\
+    0123456789\"[tmp % 10];\n            tmp /= 10;\n        } while(tmp != 0);\n\
+    \        if(value < 0) {\n            --d;\n            *d = '-';\n        }\n\
+    \        int len = std::end(buffer) - d;\n        if(dest.rdbuf() -> sputn(d,\
+    \ len) != len) {\n            dest.setstate(std::ios_base::badbit);\n        }\n\
+    \    }\n    return dest;\n}\ntemplate <class T, class U> std::ostream& operator<<(std::ostream\
+    \ &os, const std::pair<T, U> &p){ os << p.first << ' ' << p.second; return os;\
+    \ }\ntemplate <class T, size_t N> std::ostream& operator<<(std::ostream &os, const\
+    \ std::array<T, N> &a){ if(a.size()){ os << a.front(); for(auto i=a.begin(); ++i!=a.end();){\
+    \ os << ' ' << *i; } } return os; }\ntemplate <class T> std::ostream& operator<<(std::ostream\
+    \ &os, const std::vector<T> &v){ if(v.size()){ os << v.front(); for(auto i=v.begin();\
+    \ ++i!=v.end();){ os << ' ' << *i; } } return os; }\ntemplate <class K, class\
+    \ V> std::ostream& operator<<(std::ostream &os, const std::map<K, V> &m){ if(m.size()){\
+    \ os << m.begin()->first << ' ' << m.begin()->second; for(auto i=m.begin(); ++i!=m.end();){\
+    \ os << '\\n' << i->first << ' ' << i->second; } } return os; }\ntemplate <class\
+    \ T> std::ostream& operator<<(std::ostream &os, const std::set<T> &st){ if(st.size()){\
+    \ os << *st.begin(); for(auto i=st.begin(); ++i!=st.end();){ os << ' ' << *i;\
+    \ } } return os; }\ntemplate <class T> std::ostream& operator<<(std::ostream &os,\
+    \ const std::multiset<T> &ms){ if(ms.size()){ os << *ms.begin(); for(auto i=ms.begin();\
+    \ ++i!=ms.end();){ os << ' ' << *i; } } return os; }\ntemplate <class T> std::ostream&\
+    \ operator<<(std::ostream &os, const std::deque<T> &dq){ if(dq.size()){ os <<\
+    \ dq.front(); for(auto i=dq.begin(); ++i!=dq.end();){ os << ' ' << *i; } } return\
+    \ os; }\ninline void out(){ std::cout << '\\n'; }\ntemplate <bool flush=false,\
+    \ class T> inline void out(const T& x){ std::cout << x << '\\n'; if(flush) std::cout.flush();\
+    \ }\ntemplate <bool flush=false, class Head, class... Tail> inline void out(const\
+    \ Head& head, const Tail&... tail){ std::cout << head << ' '; out<flush>(tail...);\
+    \ }\ntemplate <bool flush=false, class T> inline void vout(const T& v){ std::cout\
+    \ << v << '\\n'; if(flush) std::cout.flush(); }\ntemplate <bool flush=false, class\
+    \ T> inline void vout(const std::vector<T>& v){ for(const auto &el: v) std::cout\
+    \ << el << '\\n'; if(flush) std::cout.flush(); }\ntemplate <bool flush=false,\
+    \ class Head, class... Tail> inline void vout(const Head& head, const Tail&...\
+    \ tail){ std::cout << head << '\\n'; vout<flush>(tail...); }\n\n#define fin(...)\
+    \ do{ out(__VA_ARGS__); return; }while(false)\n} // IO\n\n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
     #include <C++/core/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
     #endif\n\n/**\n * @brief \u51FA\u529B\n */\n"
   code: "#pragma once\n\n#include <iostream>\n#include <vector>\n#include <utility>\n\
     #include <map>\n#include <set>\n#include <deque>\n#ifndef TEMPLATE\nusing i128\
-    \ = __int128_t;\nusing u128 = __uint128_t;\n#endif\nnamespace IO {\nstd::ostream\
-    \ &operator<<(std::ostream &dest, const i128 &value) {\n    std::ostream::sentry\
+    \ = __int128_t;\nusing u128 = __uint128_t;\n#endif\nnamespace IO {\ninline std::ostream\
+    \ &operator<<(std::ostream &dest, const i128 &value) noexcept {\n    std::ostream::sentry\
     \ s(dest);\n    if(s) {\n        u128 tmp = value < 0 ? -value : value;\n    \
     \    char buffer[128];\n        char *d = std::end(buffer);\n        do {\n  \
     \          --d;\n            *d = \"0123456789\"[tmp % 10];\n            tmp /=\
@@ -139,7 +139,7 @@ data:
   path: C++/core/io/output.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2024-03-15 15:33:57+09:00'
+  timestamp: '2024-08-31 20:28:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/stable.test.cpp

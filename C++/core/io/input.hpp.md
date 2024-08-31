@@ -180,7 +180,7 @@ data:
     \ dq) is >> el; return is; }\ntemplate <class T> inline bool in(T& x){ std::cin\
     \ >> x; return 1; }\ntemplate <class Head, class... Tail> inline bool in(Head&\
     \ head, Tail&... tail){ in(head); in(tail...); return 1; }\n\ninline i128 to_i128(const\
-    \ std::string &s) {\n    assert(zia_qu::isdigit(s));\n    bool neg=s.front()=='-';\n\
+    \ std::string &s) noexcept {\n    assert(zia_qu::isdigit(s));\n    bool neg=s.front()=='-';\n\
     \    i128 ret = 0;\n    for(const auto &el: s) {\n        if(neg) {\n        \
     \    neg=0;\n            continue;\n        }\n        ret = 10 * ret + el - '0';\n\
     \    }\n    if(s.front()=='-') ret=-ret;\n    return ret;\n}\n\n#define INT(...)\
@@ -206,7 +206,7 @@ data:
     \ dq) is >> el; return is; }\ntemplate <class T> inline bool in(T& x){ std::cin\
     \ >> x; return 1; }\ntemplate <class Head, class... Tail> inline bool in(Head&\
     \ head, Tail&... tail){ in(head); in(tail...); return 1; }\n\ninline i128 to_i128(const\
-    \ std::string &s) {\n    assert(zia_qu::isdigit(s));\n    bool neg=s.front()=='-';\n\
+    \ std::string &s) noexcept {\n    assert(zia_qu::isdigit(s));\n    bool neg=s.front()=='-';\n\
     \    i128 ret = 0;\n    for(const auto &el: s) {\n        if(neg) {\n        \
     \    neg=0;\n            continue;\n        }\n        ret = 10 * ret + el - '0';\n\
     \    }\n    if(s.front()=='-') ret=-ret;\n    return ret;\n}\n\n#define INT(...)\
@@ -225,7 +225,7 @@ data:
   path: C++/core/io/input.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2024-03-09 13:04:52+09:00'
+  timestamp: '2024-08-31 20:28:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/stable.test.cpp
