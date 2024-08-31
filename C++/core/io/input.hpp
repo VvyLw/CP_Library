@@ -20,7 +20,7 @@ template <class T> std::istream& operator>>(std::istream &is, std::deque<T> &dq)
 template <class T> inline bool in(T& x){ std::cin >> x; return 1; }
 template <class Head, class... Tail> inline bool in(Head& head, Tail&... tail){ in(head); in(tail...); return 1; }
 
-inline i128 to_i128(const std::string &s) {
+inline i128 to_i128(const std::string &s) noexcept {
     assert(zia_qu::isdigit(s));
     bool neg=s.front()=='-';
     i128 ret = 0;

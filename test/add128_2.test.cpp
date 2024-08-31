@@ -2,17 +2,17 @@
 #include "C++/core/io/input.hpp"
 #include "C++/core/io/output.hpp"
 using namespace IO;
+inline i128 solve() noexcept {
+    std::string s, t;
+    std::cin >> s >> t;
+    const i128 a = to_i128(s), b = to_i128(t);
+    return a + b;
+}
 int main() {
     std::cin.tie(nullptr) -> sync_with_stdio(false);
-    const auto solve = [&] {
-        std::string s, t;
-        std::cin >> s >> t;
-        const i128 a = to_i128(s), b = to_i128(t);
-        std::cout << (a + b) << '\n';
-    };
-    int t = 1;
+    int t;
     std::cin >> t;
     while(t--) {
-        solve();
+        std::cout << solve() << '\n';
     }
 }

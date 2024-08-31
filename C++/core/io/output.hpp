@@ -11,7 +11,7 @@ using i128 = __int128_t;
 using u128 = __uint128_t;
 #endif
 namespace IO {
-std::ostream &operator<<(std::ostream &dest, const i128 &value) {
+inline std::ostream &operator<<(std::ostream &dest, const i128 &value) noexcept {
     std::ostream::sentry s(dest);
     if(s) {
         u128 tmp = value < 0 ? -value : value;
