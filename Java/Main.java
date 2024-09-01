@@ -1026,10 +1026,10 @@ class Utility {
 	protected static final IntPair[] runLenPress(final int[] a) {
 		final List<IntPair> ret = new ArrayList<>();
 		for(final int e: a) {
-			if(ret.isEmpty() || ret.getLast().first.intValue() != e) {
+			if(ret.isEmpty() || ret.get(ret.size() - 1).first.intValue() != e) {
 				ret.add(IntPair.of(e, 1));
 			} else {
-				ret.getLast().second++;
+				ret.get(ret.size() - 1).second++;
 			}
 		}
 		return ret.toArray(IntPair[]::new);
@@ -1037,10 +1037,10 @@ class Utility {
 	protected static final IntPair[] runLenPress(final long[] a) {
 		final List<IntPair> ret = new ArrayList<>();
 		for(final long e: a) {
-			if(ret.isEmpty() || ret.getLast().first.longValue() != e) {
+			if(ret.isEmpty() || ret.get(ret.size() - 1).first.intValue() != e) {
 				ret.add(IntPair.of(e, 1));
 			} else {
-				ret.getLast().second++;
+				ret.get(ret.size() - 1).second++;
 			}
 		}
 		return ret.toArray(IntPair[]::new);
@@ -1049,10 +1049,10 @@ class Utility {
 	protected static final Pair<Character, Integer>[] runLenPress(final String s) {
 		final List<Pair<Character, Integer>> ret = new ArrayList<>();
 		for(final char c: s.toCharArray()) {
-			if(ret.isEmpty() || ret.getLast().first != c) {
+			if(ret.isEmpty() || ret.get(ret.size()).first != c) {
 				ret.add(Pair.of(c, 1));
 			} else {
-				ret.getLast().second++;
+				ret.get(ret.size()).second++;
 			}
 		}
 		return ret.toArray(Pair[]::new);
