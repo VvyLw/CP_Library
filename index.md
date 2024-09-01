@@ -177,8 +177,8 @@ data:
       path: C++/other/dp.hpp
       title: "DP(Knapsack, LCS, LIS, \u6700\u5927\u9577\u65B9\u5F62, coin)"
     - icon: ':warning:'
-      path: C++/other/is_for_range.hpp
-      title: C++/other/is_for_range.hpp
+      path: C++/other/is_iterable.hpp
+      title: C++/other/is_iterable.hpp
     - icon: ':warning:'
       path: C++/other/merge_sort.hpp
       title: "\u30DE\u30FC\u30B8\u30BD\u30FC\u30C8"
