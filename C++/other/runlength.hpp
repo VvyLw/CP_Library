@@ -3,7 +3,7 @@
 #include <vector>
 #include <type_traits>
 #include <ranges>
-template <class T> constexpr inline auto rle(const T& a) noexcept {
+template <class T> requires std::ranges::random_access_range<T> constexpr inline auto rle(const T& a) noexcept {
 	std::vector<std::pair<std::decay_t<decltype(a.front())>, int>> ret;
 	for(const auto &e: a) {
 		if(ret.empty() || ret.back().first != e) {
