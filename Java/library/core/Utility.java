@@ -1902,34 +1902,79 @@ public class Utility {
 	}
 	/**
 	 * ランレングス圧縮
+	 * @param a
+	 * @return ランレングス圧縮
+	 */
+	protected static final IntPair[] runLenPress(final int[] a) {
+		final List<IntPair> ret = new ArrayList<>();
+		for(final int e: a) {
+			if(ret.isEmpty() || ret.getLast().first.intValue() != e) {
+				ret.add(IntPair.of(e, 1));
+			} else {
+				ret.getLast().second++;
+			}
+		}
+		return ret.toArray(IntPair[]::new);
+	}
+	/**
+	 * ランレングス圧縮
+	 * @param a
+	 * @return ランレングス圧縮
+	 */
+	protected static final IntPair[] runLenPress(final long[] a) {
+		final List<IntPair> ret = new ArrayList<>();
+		for(final long e: a) {
+			if(ret.isEmpty() || ret.getLast().first.longValue() != e) {
+				ret.add(IntPair.of(e, 1));
+			} else {
+				ret.getLast().second++;
+			}
+		}
+		return ret.toArray(IntPair[]::new);
+	}
+	/**
+	 * ランレングス圧縮
 	 * @param s
 	 * @return ランレングス圧縮
 	 */
-	protected static final String runLenPress(final String s) {
-		final int n = s.length();
-		final StringBuilder sb = new StringBuilder();
-		for(int l = 0; l < n;) {
-			int r = l + 1;
-			for(; r < n && s.charAt(l) == s.charAt(r); ++r){}
-			sb.append(s.charAt(l));
-			sb.append(r - l);
-			l = r;
+	@SuppressWarnings("unchecked")
+	protected static final Pair<Character, Integer>[] runLenPress(final String s) {
+		final List<Pair<Character, Integer>> ret = new ArrayList<>();
+		for(final char c: s.toCharArray()) {
+			if(ret.isEmpty() || ret.getLast().first != c) {
+				ret.add(Pair.of(c, 1));
+			} else {
+				ret.getLast().second++;
+			}
 		}
-		return sb.toString();
+		return ret.toArray(Pair[]::new);
+	}
+	/**
+	 * ランレングス圧縮したint型配列の復元
+	 * @param a
+	 * @return ランレングス圧縮したものを戻す
+	 * @apiNote 必ずlong型の配列で返す
+	 */
+	protected static final long[] runLenRev(final IntPair[] a) {
+		final List<Long> ret = new ArrayList<>();
+		for(final IntPair e: a) {
+			for(int i = 0; i < e.second.intValue(); ++i) {
+				ret.add(e.first.longValue());
+			}
+		}
+		return ret.stream().mapToLong(e -> e).toArray();
 	}
 	/**
 	 * ランレングス圧縮した文字列の復元
-	 * @param s
+	 * @param a
 	 * @return ランレングス圧縮したものを戻す
 	 */
-	protected static final String runLenRev(final String s) {
-		final int n = s.length();
+	protected static final String runLenRev(final Pair<Character, Integer>[] a) {
 		final StringBuilder sb = new StringBuilder();
-		for(int l = 0; l < n;) {
-			int r = l + 1;
-			for(; r < n && scope('0', s.charAt(r), '9'); ++r){}
-			sb.append(String.valueOf(s.charAt(l)).repeat(Integer.parseInt(s.substring(l + 1, r))));
-			l = r;
+		for(final Pair<Character, Integer> p: a) {
+			for(int i = 0; i < p.second.intValue(); ++i) {
+				sb.append(p.first.charValue());
+			}
 		}
 		return sb.toString();
 	}
