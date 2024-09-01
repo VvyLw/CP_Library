@@ -4,6 +4,6 @@
 #include <concepts>
 
 template <class T> concept is_iterable = requires(const T &a) {
-    { std::begin(a) } -> std::input_iterator;
-    { std::end(a) } -> std::same_as<decltype(std::begin(a))>;
+    { std::begin(a) } -> std::same_as<typename std::remove_reference<decltype(std::begin(a))>::type>;
+    { std::end(a) } -> std::same_as<typename std::remove_reference<decltype(std::end(a))>::type>;
 };
