@@ -179,6 +179,9 @@ data:
     - icon: ':warning:'
       path: C++/other/merge_sort.hpp
       title: "\u30DE\u30FC\u30B8\u30BD\u30FC\u30C8"
+    - icon: ':warning:'
+      path: C++/other/runlength.hpp
+      title: "\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E"
   - name: C++/string
     pages:
     - icon: ':heavy_check_mark:'
@@ -190,9 +193,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/string/manacher.hpp
       title: Manacher
-    - icon: ':warning:'
-      path: C++/string/runlength.hpp
-      title: "\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E"
     - icon: ':heavy_check_mark:'
       path: C++/string/z-algo.hpp
       title: Z-Algorithm

@@ -1499,29 +1499,49 @@ data:
     \u7E2E\n\t * @param a\n\t */\n\tprotected static final int[] corPress(final long[]\
     \ a) {\n\t\tfinal int[] res = new int[a.length];\n\t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\
     \t\tArrays.setAll(res, i -> lowerBound(x, a[i]));\n\t\treturn res;\n\t}\n\t/**\n\
-    \t * \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\n\t * @param s\n\t * @return\
+    \t * \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\n\t * @param a\n\t * @return\
     \ \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\n\t */\n\tprotected static\
-    \ final String runLenPress(final String s) {\n\t\tfinal int n = s.length();\n\t\
-    \tfinal StringBuilder sb = new StringBuilder();\n\t\tfor(int l = 0; l < n;) {\n\
-    \t\t\tint r = l + 1;\n\t\t\tfor(; r < n && s.charAt(l) == s.charAt(r); ++r){}\n\
-    \t\t\tsb.append(s.charAt(l));\n\t\t\tsb.append(r - l);\n\t\t\tl = r;\n\t\t}\n\t\
-    \treturn sb.toString();\n\t}\n\t/**\n\t * \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\
-    \u5727\u7E2E\u3057\u305F\u6587\u5B57\u5217\u306E\u5FA9\u5143\n\t * @param s\n\t\
-    \ * @return \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\u3057\u305F\u3082\
-    \u306E\u3092\u623B\u3059\n\t */\n\tprotected static final String runLenRev(final\
-    \ String s) {\n\t\tfinal int n = s.length();\n\t\tfinal StringBuilder sb = new\
-    \ StringBuilder();\n\t\tfor(int l = 0; l < n;) {\n\t\t\tint r = l + 1;\n\t\t\t\
-    for(; r < n && scope('0', s.charAt(r), '9'); ++r){}\n\t\t\tsb.append(String.valueOf(s.charAt(l)).repeat(Integer.parseInt(s.substring(l\
-    \ + 1, r))));\n\t\t\tl = r;\n\t\t}\n\t\treturn sb.toString();\n\t}\n\t/**\n\t\
-    \ * Z-Algorithm\n\t * @param s\n\t * @see <a href=\"https://ei1333.github.io/library/string/z-algorithm.hpp\"\
-    >Z-Algorithm</a>\n\t */\n\tprotected static final int[] zAlgorithm(final String\
-    \ s) {\n\t\tfinal int n = s.length();\n\t\tint j = 0;\n\t\tfinal int[] pre = new\
-    \ int[n];\n\t\tfor(int i = 0; ++i < n;) {\n\t\t\tif(i + pre[i - j] < j + pre[j])\
-    \ {\n\t\t\t\tpre[i] = pre[i - j];\n\t\t\t}\n\t\t\telse {\n\t\t\t\tint k = Math.max(0,\
-    \ j + pre[j] - i);\n\t\t\t\twhile(i + k < n && s.charAt(k) == s.charAt(i + k))\
-    \ {\n\t\t\t\t\t++k;\n\t\t\t\t}\n\t\t\t\tpre[i] = k;\n\t\t\t\tj = i;\n\t\t\t}\n\
-    \t\t}\n\t\tpre[0] = n;\n\t\treturn pre;\n\t}\n\t/**\n\t * Manacher Algorithm\n\
-    \t * @param s_\n\t * @param calcEven\n\t * @see <a href=\"https://ei1333.github.io/library/string/manacher.hpp\"\
+    \ final IntPair[] runLenPress(final int[] a) {\n\t\tfinal List<IntPair> ret =\
+    \ new ArrayList<>();\n\t\tfor(final int e: a) {\n\t\t\tif(ret.isEmpty() || ret.getLast().first.intValue()\
+    \ != e) {\n\t\t\t\tret.add(IntPair.of(e, 1));\n\t\t\t} else {\n\t\t\t\tret.getLast().second++;\n\
+    \t\t\t}\n\t\t}\n\t\treturn ret.toArray(IntPair[]::new);\n\t}\n\t/**\n\t * \u30E9\
+    \u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\n\t * @param a\n\t * @return \u30E9\
+    \u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\n\t */\n\tprotected static final IntPair[]\
+    \ runLenPress(final long[] a) {\n\t\tfinal List<IntPair> ret = new ArrayList<>();\n\
+    \t\tfor(final long e: a) {\n\t\t\tif(ret.isEmpty() || ret.getLast().first.longValue()\
+    \ != e) {\n\t\t\t\tret.add(IntPair.of(e, 1));\n\t\t\t} else {\n\t\t\t\tret.getLast().second++;\n\
+    \t\t\t}\n\t\t}\n\t\treturn ret.toArray(IntPair[]::new);\n\t}\n\t/**\n\t * \u30E9\
+    \u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\n\t * @param s\n\t * @return \u30E9\
+    \u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\n\t */\n\t@SuppressWarnings(\"unchecked\"\
+    )\n\tprotected static final Pair<Character, Integer>[] runLenPress(final String\
+    \ s) {\n\t\tfinal List<Pair<Character, Integer>> ret = new ArrayList<>();\n\t\t\
+    for(final char c: s.toCharArray()) {\n\t\t\tif(ret.isEmpty() || ret.getLast().first\
+    \ != c) {\n\t\t\t\tret.add(Pair.of(c, 1));\n\t\t\t} else {\n\t\t\t\tret.getLast().second++;\n\
+    \t\t\t}\n\t\t}\n\t\treturn ret.toArray(Pair[]::new);\n\t}\n\t/**\n\t * \u30E9\u30F3\
+    \u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\u3057\u305Fint\u578B\u914D\u5217\u306E\u5FA9\
+    \u5143\n\t * @param a\n\t * @return \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\
+    \u7E2E\u3057\u305F\u3082\u306E\u3092\u623B\u3059\n\t * @apiNote \u5FC5\u305Along\u578B\
+    \u306E\u914D\u5217\u3067\u8FD4\u3059\n\t */\n\tprotected static final long[] runLenRev(final\
+    \ IntPair[] a) {\n\t\tfinal List<Long> ret = new ArrayList<>();\n\t\tfor(final\
+    \ IntPair e: a) {\n\t\t\tfor(int i = 0; i < e.second.intValue(); ++i) {\n\t\t\t\
+    \tret.add(e.first.longValue());\n\t\t\t}\n\t\t}\n\t\treturn ret.stream().mapToLong(e\
+    \ -> e).toArray();\n\t}\n\t/**\n\t * \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\
+    \u7E2E\u3057\u305F\u6587\u5B57\u5217\u306E\u5FA9\u5143\n\t * @param a\n\t * @return\
+    \ \u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\u3057\u305F\u3082\u306E\u3092\
+    \u623B\u3059\n\t */\n\tprotected static final String runLenRev(final Pair<Character,\
+    \ Integer>[] a) {\n\t\tfinal StringBuilder sb = new StringBuilder();\n\t\tfor(final\
+    \ Pair<Character, Integer> p: a) {\n\t\t\tfor(int i = 0; i < p.second.intValue();\
+    \ ++i) {\n\t\t\t\tsb.append(p.first.charValue());\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ sb.toString();\n\t}\n\t/**\n\t * Z-Algorithm\n\t * @param s\n\t * @see <a href=\"\
+    https://ei1333.github.io/library/string/z-algorithm.hpp\">Z-Algorithm</a>\n\t\
+    \ */\n\tprotected static final int[] zAlgorithm(final String s) {\n\t\tfinal int\
+    \ n = s.length();\n\t\tint j = 0;\n\t\tfinal int[] pre = new int[n];\n\t\tfor(int\
+    \ i = 0; ++i < n;) {\n\t\t\tif(i + pre[i - j] < j + pre[j]) {\n\t\t\t\tpre[i]\
+    \ = pre[i - j];\n\t\t\t}\n\t\t\telse {\n\t\t\t\tint k = Math.max(0, j + pre[j]\
+    \ - i);\n\t\t\t\twhile(i + k < n && s.charAt(k) == s.charAt(i + k)) {\n\t\t\t\t\
+    \t++k;\n\t\t\t\t}\n\t\t\t\tpre[i] = k;\n\t\t\t\tj = i;\n\t\t\t}\n\t\t}\n\t\tpre[0]\
+    \ = n;\n\t\treturn pre;\n\t}\n\t/**\n\t * Manacher Algorithm\n\t * @param s_\n\
+    \t * @param calcEven\n\t * @see <a href=\"https://ei1333.github.io/library/string/manacher.hpp\"\
     >Manacher</a>\n\t */\n\tprotected static final int[] manacher(final String s_,\
     \ final boolean calcEven) {\n\t\tint n = s_.length();\n\t\tfinal char[] s;\n\t\
     \tif(calcEven) {\n\t\t\ts = new char[2 * n - 1];\n\t\t\tIntStream.range(0, n).forEach(i\
@@ -1750,7 +1770,7 @@ data:
   - Java/library/ds/fenwicktree/RangeBIT.java
   - Java/library/ds/fenwicktree/FenwickTree.java
   - Java/codeforces/Main.java
-  timestamp: '2024-08-20 17:54:01+09:00'
+  timestamp: '2024-09-02 04:45:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/Utility.java
