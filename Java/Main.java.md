@@ -1025,17 +1025,18 @@ data:
     \t\tfinal long[] x = Arrays.stream(a).sorted().distinct().toArray();\n\t\tArrays.setAll(res,\
     \ i -> lowerBound(x, a[i]));\n\t\treturn res;\n\t}\n\tprotected static final IntPair[]\
     \ runLenPress(final int[] a) {\n\t\tfinal List<IntPair> ret = new ArrayList<>();\n\
-    \t\tfor(final int e: a) {\n\t\t\tif(ret.isEmpty() || ret.getLast().first.intValue()\
-    \ != e) {\n\t\t\t\tret.add(IntPair.of(e, 1));\n\t\t\t} else {\n\t\t\t\tret.getLast().second++;\n\
-    \t\t\t}\n\t\t}\n\t\treturn ret.toArray(IntPair[]::new);\n\t}\n\tprotected static\
-    \ final IntPair[] runLenPress(final long[] a) {\n\t\tfinal List<IntPair> ret =\
-    \ new ArrayList<>();\n\t\tfor(final long e: a) {\n\t\t\tif(ret.isEmpty() || ret.getLast().first.longValue()\
-    \ != e) {\n\t\t\t\tret.add(IntPair.of(e, 1));\n\t\t\t} else {\n\t\t\t\tret.getLast().second++;\n\
-    \t\t\t}\n\t\t}\n\t\treturn ret.toArray(IntPair[]::new);\n\t}\n\t@SuppressWarnings(\"\
-    unchecked\")\n\tprotected static final Pair<Character, Integer>[] runLenPress(final\
-    \ String s) {\n\t\tfinal List<Pair<Character, Integer>> ret = new ArrayList<>();\n\
-    \t\tfor(final char c: s.toCharArray()) {\n\t\t\tif(ret.isEmpty() || ret.getLast().first\
-    \ != c) {\n\t\t\t\tret.add(Pair.of(c, 1));\n\t\t\t} else {\n\t\t\t\tret.getLast().second++;\n\
+    \t\tfor(final int e: a) {\n\t\t\tif(ret.isEmpty() || ret.get(ret.size() - 1).first.intValue()\
+    \ != e) {\n\t\t\t\tret.add(IntPair.of(e, 1));\n\t\t\t} else {\n\t\t\t\tret.get(ret.size()\
+    \ - 1).second++;\n\t\t\t}\n\t\t}\n\t\treturn ret.toArray(IntPair[]::new);\n\t\
+    }\n\tprotected static final IntPair[] runLenPress(final long[] a) {\n\t\tfinal\
+    \ List<IntPair> ret = new ArrayList<>();\n\t\tfor(final long e: a) {\n\t\t\tif(ret.isEmpty()\
+    \ || ret.get(ret.size() - 1).first.intValue() != e) {\n\t\t\t\tret.add(IntPair.of(e,\
+    \ 1));\n\t\t\t} else {\n\t\t\t\tret.get(ret.size() - 1).second++;\n\t\t\t}\n\t\
+    \t}\n\t\treturn ret.toArray(IntPair[]::new);\n\t}\n\t@SuppressWarnings(\"unchecked\"\
+    )\n\tprotected static final Pair<Character, Integer>[] runLenPress(final String\
+    \ s) {\n\t\tfinal List<Pair<Character, Integer>> ret = new ArrayList<>();\n\t\t\
+    for(final char c: s.toCharArray()) {\n\t\t\tif(ret.isEmpty() || ret.get(ret.size()).first\
+    \ != c) {\n\t\t\t\tret.add(Pair.of(c, 1));\n\t\t\t} else {\n\t\t\t\tret.get(ret.size()).second++;\n\
     \t\t\t}\n\t\t}\n\t\treturn ret.toArray(Pair[]::new);\n\t}\n\tprotected static\
     \ final long[] runLenRev(final IntPair[] a) {\n\t\tfinal List<Long> ret = new\
     \ ArrayList<>();\n\t\tfor(final IntPair e: a) {\n\t\t\tfor(int i = 0; i < e.second.intValue();\
@@ -2809,7 +2810,7 @@ data:
   - Java/library/ds/fenwicktree/RangeBIT.java
   - Java/library/ds/fenwicktree/FenwickTree.java
   - Java/codeforces/Main.java
-  timestamp: '2024-09-02 04:45:14+09:00'
+  timestamp: '2024-09-02 05:10:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/Main.java
