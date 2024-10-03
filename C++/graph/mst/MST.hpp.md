@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/edge.hpp
     title: Edge
   _extendedRequiredBy:
@@ -42,14 +42,14 @@ data:
   isVerificationFile: false
   path: C++/graph/mst/MST.hpp
   requiredBy:
-  - C++/graph/mst/manhattan.hpp
   - C++/graph/mst/kruskal.hpp
+  - C++/graph/mst/manhattan.hpp
   - C++/graph/mst/directed.hpp
   timestamp: '2024-02-19 13:17:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/directed.test.cpp
   - test/manhattan.test.cpp
+  - test/directed.test.cpp
 documentation_of: C++/graph/mst/MST.hpp
 layout: document
 redirect_from:

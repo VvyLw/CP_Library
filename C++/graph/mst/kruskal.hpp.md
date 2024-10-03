@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/ds/uf/UnionFind.hpp
     title: UnionFind
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/edge.hpp
     title: Edge
   - icon: ':heavy_check_mark:'

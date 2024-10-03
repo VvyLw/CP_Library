@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/Graph.hpp
     title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/ShortestPath.hpp
     title: "\u6700\u77ED\u8DEF"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/WeightedGraph.hpp
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/edge.hpp
     title: Edge
   _extendedRequiredBy: []
@@ -109,7 +109,7 @@ data:
     \   dj.emplace(cst[el], el);\n                }\n            }\n        }\n  \
     \      return {cst, src};\n    }\n    std::vector<long long> spfa(const int v)\
     \ {\n        const int n = this -> size();\n        std::vector<long long> cst(n,\
-    \ INT64_MAX);\n        std::vector<int> pending(n), times(n);\n        std::queue<int>\
+    \ (1LL << 61) - 1);\n        std::vector<int> pending(n), times(n);\n        std::queue<int>\
     \ q;\n        q.emplace(v);\n        pending[v] = 1;\n        ++times[v];\n  \
     \      cst[v] = 0;\n        while(!q.empty()) {\n            const int p = q.front();\n\
     \            q.pop();\n            pending[p] = 0;\n            for(const auto\
@@ -181,7 +181,7 @@ data:
   isVerificationFile: false
   path: C++/graph/diameter.hpp
   requiredBy: []
-  timestamp: '2024-07-08 16:24:06+09:00'
+  timestamp: '2024-10-03 19:03:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/tree_diameter.test.cpp
