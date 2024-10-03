@@ -54,7 +54,7 @@ public:
     }
     std::vector<long long> spfa(const int v) {
         const int n = this -> size();
-        std::vector<long long> cst(n, INT64_MAX);
+        std::vector<long long> cst(n, (1LL << 61) - 1);
         std::vector<int> pending(n), times(n);
         std::queue<int> q;
         q.emplace(v);
