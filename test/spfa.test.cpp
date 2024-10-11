@@ -1,5 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B"
 #include "C++/graph/WeightedGraph.hpp"
+constexpr auto LIM = (1LL << 61) - 1;
 int main() {
     int v, e, r;
     std::cin >> v >> e >> r;
@@ -11,7 +12,7 @@ int main() {
         std::exit(0);
     }
     for(const auto &el: res) {
-        if(el == INT64_MAX) {
+        if(el == LIM) {
             std::cout << "INF\n";
         }
         else {
