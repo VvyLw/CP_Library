@@ -53,6 +53,7 @@
 "test/segtree2.test.cpp": "2024-03-09 16:51:27 +0900",
 "test/segtreebeats.test.cpp": "2024-06-30 03:11:53 +0900",
 "test/shortestpath.test.cpp": "2024-10-03 19:03:34 +0900",
+"test/spfa.test.cpp": "2024-10-11 22:12:19 +0900",
 "test/sr_sum.test.cpp": "2024-08-31 20:28:31 +0900",
 "test/stable.test.cpp": "2024-08-31 20:28:31 +0900",
 "test/tetration.test.cpp": "2024-03-03 06:51:22 +0900",
