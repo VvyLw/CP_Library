@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/Graph.hpp
     title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/ShortestPath.hpp
     title: "\u6700\u77ED\u8DEF"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/WeightedGraph.hpp
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
   - icon: ':heavy_check_mark:'
     path: C++/graph/diameter.hpp
     title: "\u6728\u306E\u76F4\u5F84"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/edge.hpp
     title: Edge
   _extendedRequiredBy: []

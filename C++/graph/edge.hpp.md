@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/Graph.hpp
     title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/WeightedGraph.hpp
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
   - icon: ':heavy_check_mark:'
@@ -51,7 +51,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/shortestpath.test.cpp
     title: test/shortestpath.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/spfa.test.cpp
     title: test/spfa.test.cpp
   - icon: ':heavy_check_mark:'
@@ -60,9 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/warshallfloyd.test.cpp
     title: test/warshallfloyd.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Edge
     links: []
@@ -79,28 +79,28 @@ data:
   isVerificationFile: false
   path: C++/graph/edge.hpp
   requiredBy:
+  - C++/graph/Graph.hpp
   - C++/graph/WeightedGraph.hpp
   - C++/graph/diameter.hpp
-  - C++/graph/mst/kruskal.hpp
-  - C++/graph/mst/manhattan.hpp
   - C++/graph/mst/directed.hpp
+  - C++/graph/mst/manhattan.hpp
+  - C++/graph/mst/kruskal.hpp
   - C++/graph/mst/MST.hpp
-  - C++/graph/Graph.hpp
   timestamp: '2024-02-19 12:47:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/dag_check.test.cpp
-  - test/cycledetector.test.cpp
   - test/spfa.test.cpp
-  - test/scc2.test.cpp
-  - test/scc.test.cpp
-  - test/warshallfloyd.test.cpp
-  - test/tree_diameter.test.cpp
-  - test/dijkstra.test.cpp
   - test/manhattan.test.cpp
-  - test/directed.test.cpp
+  - test/tree_diameter.test.cpp
+  - test/cycledetector.test.cpp
+  - test/dijkstra.test.cpp
+  - test/warshallfloyd.test.cpp
   - test/lca.test.cpp
+  - test/directed.test.cpp
+  - test/scc2.test.cpp
   - test/shortestpath.test.cpp
+  - test/scc.test.cpp
 documentation_of: C++/graph/edge.hpp
 layout: document
 redirect_from:

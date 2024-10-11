@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/Graph.hpp
     title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/ShortestPath.hpp
     title: "\u6700\u77ED\u8DEF"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/WeightedGraph.hpp
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/edge.hpp
     title: Edge
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B
@@ -130,20 +130,21 @@ data:
     \              chmin(cst[i][j], cst[i][k] + cst[k][j]);\n                }\n \
     \           }\n        }\n\t\treturn cst;\n\t}\n};\n\n/**\n * @brief \u91CD\u307F\
     \u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA\n */\n#line 3 \"\
-    test/spfa.test.cpp\"\nint main() {\n    int v, e, r;\n    std::cin >> v >> e >>\
-    \ r;\n    w_graph<false> g(v, 0);\n    g.input(e);\n    const auto res = g.spfa(r);\n\
-    \    if(res.empty()) {\n        std::cout << \"NEGATIVE CYCLE\\n\";\n        std::exit(0);\n\
-    \    }\n    for(const auto &el: res) {\n        if(el == INT64_MAX) {\n      \
-    \      std::cout << \"INF\\n\";\n        }\n        else {\n            std::cout\
-    \ << el << '\\n';\n        }\n    }\n}\n"
+    test/spfa.test.cpp\"\nconstexpr auto LIM = (1LL << 61) - 1;\nint main() {\n  \
+    \  int v, e, r;\n    std::cin >> v >> e >> r;\n    w_graph<false> g(v, 0);\n \
+    \   g.input(e);\n    const auto res = g.spfa(r);\n    if(res.empty()) {\n    \
+    \    std::cout << \"NEGATIVE CYCLE\\n\";\n        std::exit(0);\n    }\n    for(const\
+    \ auto &el: res) {\n        if(el == LIM) {\n            std::cout << \"INF\\\
+    n\";\n        }\n        else {\n            std::cout << el << '\\n';\n     \
+    \   }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B\"\
-    \n#include \"C++/graph/WeightedGraph.hpp\"\nint main() {\n    int v, e, r;\n \
-    \   std::cin >> v >> e >> r;\n    w_graph<false> g(v, 0);\n    g.input(e);\n \
-    \   const auto res = g.spfa(r);\n    if(res.empty()) {\n        std::cout << \"\
-    NEGATIVE CYCLE\\n\";\n        std::exit(0);\n    }\n    for(const auto &el: res)\
-    \ {\n        if(el == INT64_MAX) {\n            std::cout << \"INF\\n\";\n   \
-    \     }\n        else {\n            std::cout << el << '\\n';\n        }\n  \
-    \  }\n}"
+    \n#include \"C++/graph/WeightedGraph.hpp\"\nconstexpr auto LIM = (1LL << 61) -\
+    \ 1;\nint main() {\n    int v, e, r;\n    std::cin >> v >> e >> r;\n    w_graph<false>\
+    \ g(v, 0);\n    g.input(e);\n    const auto res = g.spfa(r);\n    if(res.empty())\
+    \ {\n        std::cout << \"NEGATIVE CYCLE\\n\";\n        std::exit(0);\n    }\n\
+    \    for(const auto &el: res) {\n        if(el == LIM) {\n            std::cout\
+    \ << \"INF\\n\";\n        }\n        else {\n            std::cout << el << '\\\
+    n';\n        }\n    }\n}"
   dependsOn:
   - C++/graph/WeightedGraph.hpp
   - C++/graph/Graph.hpp
@@ -152,8 +153,8 @@ data:
   isVerificationFile: true
   path: test/spfa.test.cpp
   requiredBy: []
-  timestamp: '2024-10-03 19:03:34+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-11 22:12:19+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/spfa.test.cpp
 layout: document

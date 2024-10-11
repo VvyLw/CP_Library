@@ -822,17 +822,17 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/segtree.test.cpp
-  - test/sr_sum.test.cpp
-  - test/add.test.cpp
-  - test/parsum.test.cpp
-  - test/m_add.test.cpp
-  - test/stable.test.cpp
   - test/add128.test.cpp
-  - test/s_rmq.test.cpp
-  - test/fwtree.test.cpp
+  - test/m_add.test.cpp
   - test/aarray.test.cpp
+  - test/parsum.test.cpp
   - test/extgcd.test.cpp
+  - test/fwtree.test.cpp
+  - test/add.test.cpp
+  - test/s_rmq.test.cpp
   - test/uf.test.cpp
+  - test/stable.test.cpp
+  - test/sr_sum.test.cpp
 documentation_of: C++/template.hpp
 layout: document
 redirect_from:
