@@ -13,9 +13,9 @@ data:
     _deprecated_at_docs: docs/pollard_rho.md
     document_title: Pollard's Rho
     links: []
-  bundledCode: "#line 2 \"C++/math/pollard_rho.hpp\"\n\r\n#include <vector>\r\n#ifndef\
-    \ TEMPLATE\r\ntypedef __uint128_t u128;\r\n#endif\r\nbool miller(const uint64_t\
-    \ n);\r\nnamespace internal {\r\nuint bsf(const uint64_t n){ return __builtin_ctzll(n);\
+  bundledCode: "#line 2 \"C++/math/pollard_rho.hpp\"\n\r\n#include <vector>\r\nbool\
+    \ miller(const uint64_t n);\r\nnamespace internal {\r\n#ifndef TEMPLATE\r\ntypedef\
+    \ __uint128_t u128;\r\n#endif\r\nuint bsf(const uint64_t n){ return __builtin_ctzll(n);\
     \ }\r\nuint64_t gcd(uint64_t a, uint64_t b) {\r\n    if(a == 0) {\r\n        return\
     \ b;\r\n    }\r\n    if(b == 0) {\r\n        return a;\r\n    }\r\n    const uint\
     \ shift = internal::bsf(a | b);\r\n    a >>= internal::bsf(a);\r\n    do {\r\n\
@@ -49,9 +49,9 @@ data:
     \ ri = rho(n / x);\r\n    le.insert(le.end(), ri.begin(), ri.end());\r\n    return\
     \ le;\r\n}\r\n/**\r\n * @brief Pollard's Rho\r\n * @docs docs/pollard_rho.md\r\
     \n */\n"
-  code: "#pragma once\r\n\r\n#include <vector>\r\n#ifndef TEMPLATE\r\ntypedef __uint128_t\
-    \ u128;\r\n#endif\r\nbool miller(const uint64_t n);\r\nnamespace internal {\r\n\
-    uint bsf(const uint64_t n){ return __builtin_ctzll(n); }\r\nuint64_t gcd(uint64_t\
+  code: "#pragma once\r\n\r\n#include <vector>\r\nbool miller(const uint64_t n);\r\
+    \nnamespace internal {\r\n#ifndef TEMPLATE\r\ntypedef __uint128_t u128;\r\n#endif\r\
+    \nuint bsf(const uint64_t n){ return __builtin_ctzll(n); }\r\nuint64_t gcd(uint64_t\
     \ a, uint64_t b) {\r\n    if(a == 0) {\r\n        return b;\r\n    }\r\n    if(b\
     \ == 0) {\r\n        return a;\r\n    }\r\n    const uint shift = internal::bsf(a\
     \ | b);\r\n    a >>= internal::bsf(a);\r\n    do {\r\n        b >>= internal::bsf(b);\r\
@@ -88,7 +88,7 @@ data:
   isVerificationFile: false
   path: C++/math/pollard_rho.hpp
   requiredBy: []
-  timestamp: '2024-06-27 16:36:12+09:00'
+  timestamp: '2024-10-14 21:58:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/pf.test.cpp

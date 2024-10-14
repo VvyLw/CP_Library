@@ -16,9 +16,9 @@ data:
     - https://judge.yosupo.jp/problem/factorize
   bundledCode: "#line 1 \"test/pf.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\
     \n#include <iostream>\n#include <algorithm>\n#include <unordered_map>\n#line 2\
-    \ \"C++/math/pollard_rho.hpp\"\n\r\n#include <vector>\r\n#ifndef TEMPLATE\r\n\
-    typedef __uint128_t u128;\r\n#endif\r\nbool miller(const uint64_t n);\r\nnamespace\
-    \ internal {\r\nuint bsf(const uint64_t n){ return __builtin_ctzll(n); }\r\nuint64_t\
+    \ \"C++/math/pollard_rho.hpp\"\n\r\n#include <vector>\r\nbool miller(const uint64_t\
+    \ n);\r\nnamespace internal {\r\n#ifndef TEMPLATE\r\ntypedef __uint128_t u128;\r\
+    \n#endif\r\nuint bsf(const uint64_t n){ return __builtin_ctzll(n); }\r\nuint64_t\
     \ gcd(uint64_t a, uint64_t b) {\r\n    if(a == 0) {\r\n        return b;\r\n \
     \   }\r\n    if(b == 0) {\r\n        return a;\r\n    }\r\n    const uint shift\
     \ = internal::bsf(a | b);\r\n    a >>= internal::bsf(a);\r\n    do {\r\n     \
@@ -77,7 +77,7 @@ data:
   isVerificationFile: true
   path: test/pf.test.cpp
   requiredBy: []
-  timestamp: '2024-06-27 16:36:12+09:00'
+  timestamp: '2024-10-14 21:58:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/pf.test.cpp
