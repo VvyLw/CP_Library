@@ -1,11 +1,11 @@
 #pragma once
 
 #include <vector>
+bool miller(const uint64_t n);
+namespace internal {
 #ifndef TEMPLATE
 typedef __uint128_t u128;
 #endif
-bool miller(const uint64_t n);
-namespace internal {
 uint bsf(const uint64_t n){ return __builtin_ctzll(n); }
 uint64_t gcd(uint64_t a, uint64_t b) {
     if(a == 0) {
