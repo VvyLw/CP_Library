@@ -1,13 +1,13 @@
 #pragma once
 
 #include <vector>
-bool miller(const uint64_t n);
+constexpr inline bool miller(const uint64_t n) noexcept;
 namespace internal {
 #ifndef TEMPLATE
 typedef __uint128_t u128;
 #endif
-uint bsf(const uint64_t n){ return __builtin_ctzll(n); }
-uint64_t gcd(uint64_t a, uint64_t b) {
+constexpr inline uint bsf(const uint64_t n) noexcept { return __builtin_ctzll(n); }
+constexpr inline uint64_t gcd(uint64_t a, uint64_t b) noexcept {
     if(a == 0) {
         return b;
     }
@@ -25,7 +25,7 @@ uint64_t gcd(uint64_t a, uint64_t b) {
     } while(b > 0);
     return a << shift;
 }
-uint64_t mod_pow(const uint64_t a, uint64_t b, const uint64_t mod) {
+constexpr inline uint64_t mod_pow(const uint64_t a, uint64_t b, const uint64_t mod) noexcept {
     uint64_t r = 1;
     u128 x = a % mod;
     while(b > 0) {
@@ -37,7 +37,7 @@ uint64_t mod_pow(const uint64_t a, uint64_t b, const uint64_t mod) {
     }
     return r;
 }
-uint64_t find(const uint64_t n) {
+constexpr inline uint64_t find(const uint64_t n) noexcept {
     if(miller(n)) {
         return n;
     }
@@ -63,7 +63,7 @@ uint64_t find(const uint64_t n) {
     }
 }
 }
-bool miller(const uint64_t n) {
+constexpr inline bool miller(const uint64_t n) noexcept {
     if(n <= 1) {
         return false;
     }
@@ -92,7 +92,7 @@ bool miller(const uint64_t n) {
     }
     return true;
 }
-std::vector<uint64_t> rho(const uint64_t n) {
+inline std::vector<uint64_t> rho(const uint64_t n) noexcept {
     if(n == 1) {
         return {};
     }
