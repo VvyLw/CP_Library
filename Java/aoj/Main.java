@@ -14,9 +14,7 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.function.IntUnaryOperator;
 import java.util.function.LongUnaryOperator;
-import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
-import java.util.stream.LongStream;
 
 final class Main {
 	public static void main(final String[] args) {
@@ -25,7 +23,7 @@ final class Main {
 	}
 }
 
-final class VvyLw extends Utility {
+final class VvyLw {
 	static final IO io = new IO(System.in, System.out, System.err, false);
 	static final Random rd = new Random();
 	static final boolean MULTI = false;
@@ -40,61 +38,6 @@ final class VvyLw extends Utility {
 		
 		return null;
 	}
-}
-class Utility {
-	protected static final String yes(final boolean ok){ return ok ? "Yes" : "No"; }
-	protected static final String no(final boolean ok){ return yes(!ok); }
-	protected static final long sqr(final long x){ return x * x; }
-	protected static final int mod(long n, final int m) {
-		n %= m;
-		return (int) (n < 0 ? n + m : n);
-	}
-	protected static final long mod(long n, final long m) {
-		n %= m;
-		return n < 0 ? n + m : n;
-	}
-	protected static final double intRound(final double a, final long b, final int c) {
-		final long d = powi(10, c);
-		return rint((a * d) / b) / d;
-	}
-	protected static final long powi(long a, int b) {
-		long res = 1;
-		while(b > 0) {
-			if(b % 2 == 1) {
-				res *= a;
-			}
-			a *= a;
-			b >>= 1;
-		}
-		return res;
-	}
-	protected static final long modPow(long a, long b, final long m) {
-		long res = 1;
-		while(b > 0) {
-			if(b % 2 == 1) {
-				res *= a;
-				res = mod(res, m);
-			}
-			a *= a;
-			a = mod(a, m);
-			b >>= 1;
-		}
-		return res;
-	}
-	protected static final int min(final int... a){ return IntStream.of(a).min().getAsInt(); }
-	protected static final long min(final long... a){ return LongStream.of(a).min().getAsLong(); }
-	protected static final double min(final double... a){ return DoubleStream.of(a).min().getAsDouble(); }
-	protected static final int max(final int... a){ return IntStream.of(a).max().getAsInt(); }
-	protected static final long max(final long... a){ return LongStream.of(a).max().getAsLong(); }
-	protected static final double max(final double... a){ return DoubleStream.of(a).max().getAsDouble(); }
-	protected static final long sum(final int... a){ return IntStream.of(a).asLongStream().sum(); }
-	protected static final long sum(final long... a){ return LongStream.of(a).sum(); }
-	protected static final double sum(final double... a){ return DoubleStream.of(a).sum(); }
-	protected static final boolean scope(final int l, final int x, final int r){ return l <= x && x <= r; }
-	protected static final boolean scope(final long l, final long x, final long r){ return l <= x && x <= r; }
-	protected static final boolean scope(final double l, final double x, final double r){ return l <= x && x <= r; }
-	public static final IntStream iota(final int n){ return IntStream.range(0, n); }
-	public static final IntStream iota(final int n, final int init){ return IntStream.range(0 + init, n + init); }
 }
 
 final class IO implements AutoCloseable {
@@ -217,8 +160,9 @@ final class IO implements AutoCloseable {
 			buf = new byte[1 << 17];
 			check = false;
 		}
-		private final boolean isPunct(final byte bt){ return !Utility.scope(33, bt, 126); }
-		private final boolean isNum(final byte bt){ return Utility.scope('0', bt, '9'); }
+		private final boolean scope(final int l, final int x, final int r){ return l <= x && x <= r; }
+		private final boolean isPunct(final byte bt){ return !scope(33, bt, 126); }
+		private final boolean isNum(final byte bt){ return scope('0', bt, '9'); }
 		private final byte read() {
 			if(pos == lim && lim != -1) {
 				try {
