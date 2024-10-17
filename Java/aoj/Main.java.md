@@ -563,60 +563,30 @@ data:
     import java.math.BigInteger;\nimport java.util.Arrays;\nimport java.util.Collection;\n\
     import java.util.Formatter;\nimport java.util.Objects;\nimport java.util.Random;\n\
     import java.util.function.IntUnaryOperator;\nimport java.util.function.LongUnaryOperator;\n\
-    import java.util.stream.DoubleStream;\nimport java.util.stream.IntStream;\nimport\
-    \ java.util.stream.LongStream;\n\nfinal class Main {\n\tpublic static void main(final\
-    \ String[] args) {\n\t\tIntStream.range(0, VvyLw.MULTI ? VvyLw.io.ni() : 1).mapToObj(VvyLw::solve).filter(Objects::nonNull).forEach(VvyLw.io::out);\n\
-    \t\tVvyLw.io.close();\n\t}\n}\n\nfinal class VvyLw extends Utility {\n\tstatic\
-    \ final IO io = new IO(System.in, System.out, System.err, false);\n\tstatic final\
-    \ Random rd = new Random();\n\tstatic final boolean MULTI = false;\n\tstatic final\
-    \ int INF = 1 << 30;\n\tstatic final long LINF = (1L << 61) - 1;\n\tstatic final\
-    \ double EPS = 1e-18;\n\tstatic final int MOD = 998244353;\n\tstatic final int\
-    \ M0D = (int) 1e9 + 7;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1,\
-    \ 1};\n\tstatic final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final\
-    \ Object solve(final int Huitloxopetl) {\n\t\t\n\t\treturn null;\n\t}\n}\nclass\
-    \ Utility {\n\tprotected static final String yes(final boolean ok){ return ok\
-    \ ? \"Yes\" : \"No\"; }\n\tprotected static final String no(final boolean ok){\
-    \ return yes(!ok); }\n\tprotected static final long sqr(final long x){ return\
-    \ x * x; }\n\tprotected static final int mod(long n, final int m) {\n\t\tn %=\
-    \ m;\n\t\treturn (int) (n < 0 ? n + m : n);\n\t}\n\tprotected static final long\
-    \ mod(long n, final long m) {\n\t\tn %= m;\n\t\treturn n < 0 ? n + m : n;\n\t\
-    }\n\tprotected static final double intRound(final double a, final long b, final\
-    \ int c) {\n\t\tfinal long d = powi(10, c);\n\t\treturn rint((a * d) / b) / d;\n\
-    \t}\n\tprotected static final long powi(long a, int b) {\n\t\tlong res = 1;\n\t\
-    \twhile(b > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t}\n\t\t\ta\
-    \ *= a;\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tprotected static final\
-    \ long modPow(long a, long b, final long m) {\n\t\tlong res = 1;\n\t\twhile(b\
-    \ > 0) {\n\t\t\tif(b % 2 == 1) {\n\t\t\t\tres *= a;\n\t\t\t\tres = mod(res, m);\n\
-    \t\t\t}\n\t\t\ta *= a;\n\t\t\ta = mod(a, m);\n\t\t\tb >>= 1;\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\tprotected static final int min(final int... a){ return IntStream.of(a).min().getAsInt();\
-    \ }\n\tprotected static final long min(final long... a){ return LongStream.of(a).min().getAsLong();\
-    \ }\n\tprotected static final double min(final double... a){ return DoubleStream.of(a).min().getAsDouble();\
-    \ }\n\tprotected static final int max(final int... a){ return IntStream.of(a).max().getAsInt();\
-    \ }\n\tprotected static final long max(final long... a){ return LongStream.of(a).max().getAsLong();\
-    \ }\n\tprotected static final double max(final double... a){ return DoubleStream.of(a).max().getAsDouble();\
-    \ }\n\tprotected static final long sum(final int... a){ return IntStream.of(a).asLongStream().sum();\
-    \ }\n\tprotected static final long sum(final long... a){ return LongStream.of(a).sum();\
-    \ }\n\tprotected static final double sum(final double... a){ return DoubleStream.of(a).sum();\
-    \ }\n\tprotected static final boolean scope(final int l, final int x, final int\
-    \ r){ return l <= x && x <= r; }\n\tprotected static final boolean scope(final\
-    \ long l, final long x, final long r){ return l <= x && x <= r; }\n\tprotected\
-    \ static final boolean scope(final double l, final double x, final double r){\
-    \ return l <= x && x <= r; }\n\tpublic static final IntStream iota(final int n){\
-    \ return IntStream.range(0, n); }\n\tpublic static final IntStream iota(final\
-    \ int n, final int init){ return IntStream.range(0 + init, n + init); }\n}\n\n\
-    final class IO implements AutoCloseable {\n\tprivate final MyScanner in;\n\tprivate\
-    \ final MyPrinter out, err;\n\tIO(final InputStream in, final OutputStream out,\
-    \ final OutputStream err, final boolean autoFlush) {\n\t\tthis.in = new MyScanner(in);\n\
-    \t\tthis.out = new MyPrinter(out, autoFlush);\n\t\tthis.err = new MyPrinter(err,\
-    \ true);\n\t}\n\tfinal int ni(){ return in.ni(); }\n\tfinal long nl(){ return\
-    \ in.nl(); }\n\tfinal double nd(){ return in.nd(); }\n\tfinal char nc(){ return\
-    \ in.nc(); }\n\tfinal String ns(){ return in.ns(); }\n\tfinal char[] nt(){ return\
-    \ in.nt(); }\n\tfinal BigInteger nb(){ return in.nb(); }\n\tfinal int[] ni(final\
-    \ int n) {\n\t\tfinal int[] a = new int[n];\n\t\tArrays.setAll(a, i -> ni());\n\
-    \t\treturn a;\n\t}\n\tfinal int[] ni(final int n, final IntUnaryOperator f){ return\
-    \ Arrays.stream(ni(n)).map(f).toArray(); }\n\tfinal long[] nl(final int n) {\n\
-    \t\tfinal long[] a = new long[n];\n\t\tArrays.setAll(a, i -> nl());\n\t\treturn\
-    \ a;\n\t}\n\tfinal long[] nl(final int n, final LongUnaryOperator f){ return Arrays.stream(nl(n)).map(f).toArray();\
+    import java.util.stream.IntStream;\n\nfinal class Main {\n\tpublic static void\
+    \ main(final String[] args) {\n\t\tIntStream.range(0, VvyLw.MULTI ? VvyLw.io.ni()\
+    \ : 1).mapToObj(VvyLw::solve).filter(Objects::nonNull).forEach(VvyLw.io::out);\n\
+    \t\tVvyLw.io.close();\n\t}\n}\n\nfinal class VvyLw {\n\tstatic final IO io = new\
+    \ IO(System.in, System.out, System.err, false);\n\tstatic final Random rd = new\
+    \ Random();\n\tstatic final boolean MULTI = false;\n\tstatic final int INF = 1\
+    \ << 30;\n\tstatic final long LINF = (1L << 61) - 1;\n\tstatic final double EPS\
+    \ = 1e-18;\n\tstatic final int MOD = 998244353;\n\tstatic final int M0D = (int)\
+    \ 1e9 + 7;\n\tstatic final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};\n\tstatic\
+    \ final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};\n\tstatic final Object solve(final\
+    \ int Huitloxopetl) {\n\t\t\n\t\treturn null;\n\t}\n}\n\nfinal class IO implements\
+    \ AutoCloseable {\n\tprivate final MyScanner in;\n\tprivate final MyPrinter out,\
+    \ err;\n\tIO(final InputStream in, final OutputStream out, final OutputStream\
+    \ err, final boolean autoFlush) {\n\t\tthis.in = new MyScanner(in);\n\t\tthis.out\
+    \ = new MyPrinter(out, autoFlush);\n\t\tthis.err = new MyPrinter(err, true);\n\
+    \t}\n\tfinal int ni(){ return in.ni(); }\n\tfinal long nl(){ return in.nl(); }\n\
+    \tfinal double nd(){ return in.nd(); }\n\tfinal char nc(){ return in.nc(); }\n\
+    \tfinal String ns(){ return in.ns(); }\n\tfinal char[] nt(){ return in.nt(); }\n\
+    \tfinal BigInteger nb(){ return in.nb(); }\n\tfinal int[] ni(final int n) {\n\t\
+    \tfinal int[] a = new int[n];\n\t\tArrays.setAll(a, i -> ni());\n\t\treturn a;\n\
+    \t}\n\tfinal int[] ni(final int n, final IntUnaryOperator f){ return Arrays.stream(ni(n)).map(f).toArray();\
+    \ }\n\tfinal long[] nl(final int n) {\n\t\tfinal long[] a = new long[n];\n\t\t\
+    Arrays.setAll(a, i -> nl());\n\t\treturn a;\n\t}\n\tfinal long[] nl(final int\
+    \ n, final LongUnaryOperator f){ return Arrays.stream(nl(n)).map(f).toArray();\
     \ }\n\tfinal double[] nd(final int n) {\n\t\tfinal double[] a = new double[n];\n\
     \t\tArrays.setAll(a, i -> nd());\n\t\treturn a;\n\t}\n\tfinal char[] nc(final\
     \ int n) {\n\t\tfinal char[] a = new char[n];\n\t\tIntStream.range(0, n).forEach(i\
@@ -665,15 +635,16 @@ data:
     \ lim;\n\t\tprivate final byte[] buf;\n\t\tprivate final InputStream is;\n\t\t\
     private boolean check;\n\t\tMyScanner(final InputStream is) {\n\t\t\tthis.is =\
     \ is;\n\t\t\tpos = lim = 0;\n\t\t\tbuf = new byte[1 << 17];\n\t\t\tcheck = false;\n\
-    \t\t}\n\t\tprivate final boolean isPunct(final byte bt){ return !Utility.scope(33,\
-    \ bt, 126); }\n\t\tprivate final boolean isNum(final byte bt){ return Utility.scope('0',\
-    \ bt, '9'); }\n\t\tprivate final byte read() {\n\t\t\tif(pos == lim && lim !=\
-    \ -1) {\n\t\t\t\ttry {\n\t\t\t\t\tlim = is.read(buf);\n\t\t\t\t\tpos = 0;\n\t\t\
-    \t\t} catch(final IOException e) {\n\t\t\t\t\te.printStackTrace();\n\t\t\t\t}\n\
-    \t\t\t}\n\t\t\treturn buf[pos++];\n\t\t}\n\t\tprivate final byte next() {\n\t\t\
-    \tbyte bt;\n\t\t\tif(check) {\n\t\t\t\tcheck = false;\n\t\t\t\tbt = buf[pos -\
-    \ 1];\n\t\t\t\tif(!isPunct(bt)) {\n\t\t\t\t\treturn bt;\n\t\t\t\t}\n\t\t\t}\n\t\
-    \t\twhile(isPunct(bt = read())){}\n\t\t\treturn bt;\n\t\t}\n\t\tfinal int ni(){\
+    \t\t}\n\t\tprivate final boolean scope(final int l, final int x, final int r){\
+    \ return l <= x && x <= r; }\n\t\tprivate final boolean isPunct(final byte bt){\
+    \ return !scope(33, bt, 126); }\n\t\tprivate final boolean isNum(final byte bt){\
+    \ return scope('0', bt, '9'); }\n\t\tprivate final byte read() {\n\t\t\tif(pos\
+    \ == lim && lim != -1) {\n\t\t\t\ttry {\n\t\t\t\t\tlim = is.read(buf);\n\t\t\t\
+    \t\tpos = 0;\n\t\t\t\t} catch(final IOException e) {\n\t\t\t\t\te.printStackTrace();\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t\treturn buf[pos++];\n\t\t}\n\t\tprivate final byte next()\
+    \ {\n\t\t\tbyte bt;\n\t\t\tif(check) {\n\t\t\t\tcheck = false;\n\t\t\t\tbt = buf[pos\
+    \ - 1];\n\t\t\t\tif(!isPunct(bt)) {\n\t\t\t\t\treturn bt;\n\t\t\t\t}\n\t\t\t}\n\
+    \t\t\twhile(isPunct(bt = read())){}\n\t\t\treturn bt;\n\t\t}\n\t\tfinal int ni(){\
     \ return toIntExact(nl()); }\n\t\tfinal long nl() {\n\t\t\tbyte c = next();\n\t\
     \t\tfinal boolean neg = c == '-';\n\t\t\tif(neg) {\n\t\t\t\tc = next();\n\t\t\t\
     }\n\t\t\tassert isNum(c);\n\t\t\tlong res = c - '0';\n\t\t\twhile(isNum(c = read()))\
@@ -948,7 +919,7 @@ data:
   - Java/library/core/Main.java
   - Java/library/core/VvyLw.java
   - Java/library/core/Utility.java
-  timestamp: '2024-09-02 05:10:51+09:00'
+  timestamp: '2024-10-17 12:58:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/aoj/Main.java

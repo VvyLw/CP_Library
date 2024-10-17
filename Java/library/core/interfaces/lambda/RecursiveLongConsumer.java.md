@@ -749,7 +749,7 @@ data:
   - Java/library/core/Main.java
   - Java/library/core/VvyLw.java
   - Java/library/core/Utility.java
-  timestamp: '2024-09-02 05:10:51+09:00'
+  timestamp: '2024-10-17 12:58:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/core/interfaces/lambda/RecursiveLongConsumer.java
