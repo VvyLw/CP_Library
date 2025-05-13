@@ -42,9 +42,9 @@ data:
   isVerificationFile: false
   path: C++/graph/mst/MST.hpp
   requiredBy:
-  - C++/graph/mst/kruskal.hpp
   - C++/graph/mst/directed.hpp
   - C++/graph/mst/manhattan.hpp
+  - C++/graph/mst/kruskal.hpp
   timestamp: '2024-02-19 13:17:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

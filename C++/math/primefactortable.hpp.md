@@ -78,17 +78,17 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/add128.test.cpp
-  - test/parsum.test.cpp
-  - test/uf.test.cpp
-  - test/fwtree.test.cpp
-  - test/add.test.cpp
-  - test/s_rmq.test.cpp
-  - test/stable.test.cpp
-  - test/aarray.test.cpp
-  - test/sr_sum.test.cpp
   - test/m_add.test.cpp
   - test/segtree.test.cpp
+  - test/aarray.test.cpp
+  - test/uf.test.cpp
+  - test/s_rmq.test.cpp
   - test/extgcd.test.cpp
+  - test/add.test.cpp
+  - test/stable.test.cpp
+  - test/parsum.test.cpp
+  - test/sr_sum.test.cpp
+  - test/fwtree.test.cpp
 documentation_of: C++/math/primefactortable.hpp
 layout: document
 redirect_from:
