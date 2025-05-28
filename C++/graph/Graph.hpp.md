@@ -153,16 +153,16 @@ data:
   timestamp: '2024-07-08 16:24:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/spfa.test.cpp
   - test/tree_diameter.test.cpp
   - test/dijkstra.test.cpp
-  - test/warshallfloyd.test.cpp
   - test/cycledetector.test.cpp
-  - test/spfa.test.cpp
-  - test/dag_check.test.cpp
-  - test/scc2.test.cpp
-  - test/lca.test.cpp
   - test/shortestpath.test.cpp
+  - test/warshallfloyd.test.cpp
   - test/scc.test.cpp
+  - test/lca.test.cpp
+  - test/scc2.test.cpp
+  - test/dag_check.test.cpp
 documentation_of: C++/graph/Graph.hpp
 layout: document
 redirect_from:
