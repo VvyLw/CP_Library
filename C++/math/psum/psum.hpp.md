@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/sr_sum.test.cpp
+    title: test/sr_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u7D2F\u7A4D\u548C"
     links: []
@@ -41,8 +44,9 @@ data:
   path: C++/math/psum/psum.hpp
   requiredBy: []
   timestamp: '2025-06-06 22:43:06+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/sr_sum.test.cpp
 documentation_of: C++/math/psum/psum.hpp
 layout: document
 redirect_from:

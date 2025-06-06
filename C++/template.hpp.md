@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/alias.hpp
     title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/io/input.hpp
     title: "\u5165\u529B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/io/output.hpp
     title: "\u51FA\u529B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/myvector.hpp
     title: C++/core/myvector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/timer.hpp
     title: "\u30BF\u30A4\u30DE\u30FC"
   _extendedRequiredBy: []
@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -57,9 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/template.md
     document_title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
@@ -653,7 +653,7 @@ data:
   path: C++/template.hpp
   requiredBy: []
   timestamp: '2025-06-07 07:29:34+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aarray.test.cpp
   - test/m_add.test.cpp
