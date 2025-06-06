@@ -54,6 +54,7 @@
 "test/segtreebeats.test.cpp": "2025-06-06 22:43:22 +0900",
 "test/shortestpath.test.cpp": "2025-06-06 22:43:22 +0900",
 "test/spfa.test.cpp": "2025-06-06 22:43:22 +0900",
+"test/sr_sum.test.cpp": "2025-06-07 07:46:07 +0900",
 "test/stable.test.cpp": "2025-06-07 07:29:34 +0900",
 "test/tetration.test.cpp": "2025-06-06 22:43:22 +0900",
 "test/tree_diameter.test.cpp": "2025-06-06 22:43:22 +0900",
