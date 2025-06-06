@@ -17,16 +17,17 @@ data:
   bundledCode: "#line 1 \"test/knapsack2.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_B\"\
     \n#include <iostream>\n#line 2 \"C++/other/dp.hpp\"\n\n#include <vector>\n#include\
     \ <utility>\n#include <algorithm>\n#include <stack>\n#include <iterator>\n#include\
-    \ <limits>\n#include <numeric>\n\ntemplate <class T> T knapsack01_v(const std::vector<int>\
-    \ &a, const std::vector<T> &v, const int w) {\n    const int n = a.size();\n \
-    \   std::vector dp(w + 1, std::numeric_limits<T>::min());\n    dp[0] = 0;\n  \
-    \  for(int i = 0; i < n; i++) {\n        for(int j = w; j >= a[i]; j--) {\n  \
-    \          if(dp[j - a[i]] != std::numeric_limits<T>::min()) {\n             \
-    \   if(dp[j - a[i]] + v[i] > dp[j]) {\n                    dp[j] = dp[j - a[i]]\
-    \ + v[i];\n                }\n            }\n        }\n    }\n    return *std::ranges::max_element(dp);\n\
-    }\n/**\n * @see https://ei1333.github.io/library/dp/knapsack-01.hpp\n */\n\ntemplate\
-    \ <class T> int knapsack01_w(const std::vector<T> &a, const std::vector<int> &v,\
-    \ const T &w) {\n    const int n = a.size();\n    const int s = std::accumulate(v.begin(),\
+    \ <limits>\n#include <numeric>\n#include <ranges>\n\nnamespace man {\ntemplate\
+    \ <class T> constexpr inline T knapsack01_v(const std::vector<int> &a, const std::vector<T>\
+    \ &v, const int w) noexcept {\n    const int n = std::ssize(a);\n    std::vector\
+    \ dp(w + 1, std::numeric_limits<T>::min());\n    dp[0] = 0;\n    for(const auto\
+    \ i: std::views::iota(0, n)) {\n        for(const auto j: std::views::iota(a[i],\
+    \ w + 1) | std::views::reverse) {\n            if(dp[j - a[i]] != std::numeric_limits<T>::min())\
+    \ {\n                if(dp[j - a[i]] + v[i] > dp[j]) {\n                    dp[j]\
+    \ = dp[j - a[i]] + v[i];\n                }\n            }\n        }\n    }\n\
+    \    return *std::ranges::max_element(dp);\n}\n/**\n * @see https://ei1333.github.io/library/dp/knapsack-01.hpp\n\
+    \ */\n\ntemplate <class T> int knapsack01_w(const std::vector<T> &a, const std::vector<int>\
+    \ &v, const T &w) {\n    const int n = a.size();\n    const int s = std::accumulate(v.begin(),\
     \ v.end(), 0);\n    std::vector dp(s + 1, w + 1);\n    dp[0] = 0;\n    for(int\
     \ i = 0; i < n; i++) {\n        for(int j = s; j >= v[i]; j--) {\n           \
     \ dp[j] = std::min(dp[j], dp[j - v[i]] + a[i]);\n        }\n    }\n    int res\
@@ -99,22 +100,22 @@ data:
     \   }\n    }\n    for(int i = -dp.back().second; i != -1; i = p[i]) {\n      \
     \  res.emplace_back(i);\n    }\n    std::ranges::reverse(res);\n    return res;\n\
     }\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
-    \ */\n\n/**\n * @brief DP(Knapsack, LCS, LIS, \u6700\u5927\u9577\u65B9\u5F62,\
-    \ coin)\n */\n#line 4 \"test/knapsack2.test.cpp\"\nint main() {\n    int n, wg;\n\
+    \ */\n}\n\n/**\n * @brief DP(Knapsack, LCS, LIS, \u6700\u5927\u9577\u65B9\u5F62\
+    , coin)\n */\n#line 4 \"test/knapsack2.test.cpp\"\nint main() {\n    int n, wg;\n\
     \    std::cin >> n >> wg;\n    std::vector<int> v(n), w(n);\n    for(int i = 0;\
-    \ i < n; ++i) {\n        std::cin >> v[i] >> w[i];\n    }\n    std::cout << knapsack01_v(w,\
+    \ i < n; ++i) {\n        std::cin >> v[i] >> w[i];\n    }\n    std::cout << man::knapsack01_v(w,\
     \ v, wg) << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_B\"\n#include\
     \ <iostream>\n#include \"C++/other/dp.hpp\"\nint main() {\n    int n, wg;\n  \
     \  std::cin >> n >> wg;\n    std::vector<int> v(n), w(n);\n    for(int i = 0;\
-    \ i < n; ++i) {\n        std::cin >> v[i] >> w[i];\n    }\n    std::cout << knapsack01_v(w,\
+    \ i < n; ++i) {\n        std::cin >> v[i] >> w[i];\n    }\n    std::cout << man::knapsack01_v(w,\
     \ v, wg) << '\\n';\n}"
   dependsOn:
   - C++/other/dp.hpp
   isVerificationFile: true
   path: test/knapsack2.test.cpp
   requiredBy: []
-  timestamp: '2024-03-27 23:05:37+09:00'
+  timestamp: '2025-06-06 22:43:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/knapsack2.test.cpp

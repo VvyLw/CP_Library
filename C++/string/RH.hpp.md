@@ -3,71 +3,80 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/rh.test.cpp
     title: test/rh.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Rolling Hash
     links:
     - https://github.com/tatyam-prime/kyopro_library/blob/master/RollingHash.cpp
-  bundledCode: "#line 2 \"C++/string/RH.hpp\"\n\n#include <vector>\n#include <chrono>\n\
-    #ifndef TEMPLATE\ntypedef long long ll;\ntypedef unsigned long long ul;\ntypedef\
-    \ __uint128_t u128;\nconstexpr ul LINF = (1LL << 61) - 1;\n#endif\nconst ul base\
-    \ = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count()\
-    \ % LINF;\ntemplate <ul mod> struct RollingHash {\nprivate:\n    std::vector<ul>\
-    \ hashed, power;\n    static constexpr ul mask(const ll a){ return (1ULL << a)\
-    \ - 1; }\n    inline ul mul(const ul a, const ul b) const {\n        u128 ans\
-    \ = u128(a) * b;\n        ans = (ans >> 61) + (ans & mod);\n        if(ans >=\
-    \ mod) ans -= mod;\n        return ans;\n    }\npublic:\n    RollingHash(const\
-    \ std::string &s) {\n        const ll n = s.size();\n        hashed.resize(n +\
-    \ 1);\n        power.resize(n + 1);\n        power[0] = 1;\n        for(ll i =\
-    \ 0; i < n; ++i) {\n            power[i + 1] = mul(power[i], base);\n        \
-    \    hashed[i + 1] = mul(hashed[i], base) + s[i];\n            if(hashed[i + 1]\
-    \ >= mod) hashed[i + 1] -= mod;\n        }\n    }\n    ul get(const ll l, const\
-    \ ll r) const {\n        ul ret = hashed[r] + mod - mul(hashed[l], power[r - l]);\n\
-    \        if(ret >= mod) ret -= mod;\n        return ret;\n    }\n    ul connect(const\
-    \ ul h1, const ul h2, const ll h2len) const {\n        ul ret = mul(h1, power[h2len])\
-    \ + h2;\n        if(ret >= mod) ret -= mod;\n        return ret;\n    }\n    ll\
-    \ LCP(const RollingHash &b, ll l1, ll r1, ll l2, ll r2) {\n        ll low = -1,\
-    \ high = std::min(r1 - l1, r2 - l2) + 1;\n        while(high - low > 1) {\n  \
-    \          const ll mid = (low + high) / 2;\n            if(get(l1, l1 + mid)\
-    \ == b.get(l2, l2 + mid)) low = mid;\n            else high = mid;\n        }\n\
-    \        return low;\n    }\n};\nusing RH = RollingHash<LINF>;\n\n/**\n * @brief\
-    \ Rolling Hash\n * @see https://github.com/tatyam-prime/kyopro_library/blob/master/RollingHash.cpp\n\
+  bundledCode: "#line 2 \"C++/string/RH.hpp\"\n\n#ifndef ROLLING_HASH\n#define ROLLING_HASH\n\
+    #endif\n\n#include <vector>\n#include <chrono>\n#include <ranges>\nnamespace man\
+    \ {\nconst uint64_t base = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count()\
+    \ % ((1LL << 61) - 1);\ntemplate <uint64_t mod> struct RollingHash {\nprivate:\n\
+    \    std::vector<uint64_t> hashed, power;\n    static constexpr inline uint64_t\
+    \ mask(const int64_t a) noexcept { return (1ULL << a) - 1; }\n    constexpr inline\
+    \ uint64_t mul(const uint64_t a, const uint64_t b) const noexcept {\n        __uint128_t\
+    \ ans = __uint128_t(a) * b;\n        ans = (ans >> 61) + (ans & mod);\n      \
+    \  if(ans >= mod) {\n            ans -= mod;\n        }\n        return ans;\n\
+    \    }\npublic:\n    RollingHash(const std::string &s) {\n        const int n\
+    \ = std::ssize(s);\n        hashed.resize(n + 1);\n        power.resize(n + 1);\n\
+    \        power[0] = 1;\n        for(const auto i: std::views::iota(0, n)) {\n\
+    \            power[i + 1] = mul(power[i], base);\n            hashed[i + 1] =\
+    \ mul(hashed[i], base) + s[i];\n            if(hashed[i + 1] >= mod) {\n     \
+    \           hashed[i + 1] -= mod;\n            }\n        }\n    }\n    constexpr\
+    \ inline uint64_t get(const int64_t l, const int64_t r) const noexcept {\n   \
+    \     uint64_t ret = hashed[r] + mod - mul(hashed[l], power[r - l]);\n       \
+    \ if(ret >= mod) {\n            ret -= mod;\n        }\n        return ret;\n\
+    \    }\n    constexpr inline uint64_t connect(const uint64_t h1, const uint64_t\
+    \ h2, const int64_t h2len) const noexcept {\n        uint64_t ret = mul(h1, power[h2len])\
+    \ + h2;\n        if(ret >= mod) {\n            ret -= mod;\n        }\n      \
+    \  return ret;\n    }\n    constexpr inline int64_t LCP(const RollingHash &b,\
+    \ int64_t l1, int64_t r1, int64_t l2, int64_t r2) noexcept {\n        int64_t\
+    \ low = -1, high = std::min(r1 - l1, r2 - l2) + 1;\n        while(high - low >\
+    \ 1) {\n            const int64_t mid = (low + high) / 2;\n            if(get(l1,\
+    \ l1 + mid) == b.get(l2, l2 + mid)) {\n                low = mid;\n          \
+    \  } else {\n                high = mid;\n            }\n        }\n        return\
+    \ low;\n    }\n};\n}\n\n/**\n * @brief Rolling Hash\n * @see https://github.com/tatyam-prime/kyopro_library/blob/master/RollingHash.cpp\n\
     \ */\n"
-  code: "#pragma once\n\n#include <vector>\n#include <chrono>\n#ifndef TEMPLATE\n\
-    typedef long long ll;\ntypedef unsigned long long ul;\ntypedef __uint128_t u128;\n\
-    constexpr ul LINF = (1LL << 61) - 1;\n#endif\nconst ul base = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count()\
-    \ % LINF;\ntemplate <ul mod> struct RollingHash {\nprivate:\n    std::vector<ul>\
-    \ hashed, power;\n    static constexpr ul mask(const ll a){ return (1ULL << a)\
-    \ - 1; }\n    inline ul mul(const ul a, const ul b) const {\n        u128 ans\
-    \ = u128(a) * b;\n        ans = (ans >> 61) + (ans & mod);\n        if(ans >=\
-    \ mod) ans -= mod;\n        return ans;\n    }\npublic:\n    RollingHash(const\
-    \ std::string &s) {\n        const ll n = s.size();\n        hashed.resize(n +\
-    \ 1);\n        power.resize(n + 1);\n        power[0] = 1;\n        for(ll i =\
-    \ 0; i < n; ++i) {\n            power[i + 1] = mul(power[i], base);\n        \
-    \    hashed[i + 1] = mul(hashed[i], base) + s[i];\n            if(hashed[i + 1]\
-    \ >= mod) hashed[i + 1] -= mod;\n        }\n    }\n    ul get(const ll l, const\
-    \ ll r) const {\n        ul ret = hashed[r] + mod - mul(hashed[l], power[r - l]);\n\
-    \        if(ret >= mod) ret -= mod;\n        return ret;\n    }\n    ul connect(const\
-    \ ul h1, const ul h2, const ll h2len) const {\n        ul ret = mul(h1, power[h2len])\
-    \ + h2;\n        if(ret >= mod) ret -= mod;\n        return ret;\n    }\n    ll\
-    \ LCP(const RollingHash &b, ll l1, ll r1, ll l2, ll r2) {\n        ll low = -1,\
-    \ high = std::min(r1 - l1, r2 - l2) + 1;\n        while(high - low > 1) {\n  \
-    \          const ll mid = (low + high) / 2;\n            if(get(l1, l1 + mid)\
-    \ == b.get(l2, l2 + mid)) low = mid;\n            else high = mid;\n        }\n\
-    \        return low;\n    }\n};\nusing RH = RollingHash<LINF>;\n\n/**\n * @brief\
-    \ Rolling Hash\n * @see https://github.com/tatyam-prime/kyopro_library/blob/master/RollingHash.cpp\n\
+  code: "#pragma once\n\n#ifndef ROLLING_HASH\n#define ROLLING_HASH\n#endif\n\n#include\
+    \ <vector>\n#include <chrono>\n#include <ranges>\nnamespace man {\nconst uint64_t\
+    \ base = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count()\
+    \ % ((1LL << 61) - 1);\ntemplate <uint64_t mod> struct RollingHash {\nprivate:\n\
+    \    std::vector<uint64_t> hashed, power;\n    static constexpr inline uint64_t\
+    \ mask(const int64_t a) noexcept { return (1ULL << a) - 1; }\n    constexpr inline\
+    \ uint64_t mul(const uint64_t a, const uint64_t b) const noexcept {\n        __uint128_t\
+    \ ans = __uint128_t(a) * b;\n        ans = (ans >> 61) + (ans & mod);\n      \
+    \  if(ans >= mod) {\n            ans -= mod;\n        }\n        return ans;\n\
+    \    }\npublic:\n    RollingHash(const std::string &s) {\n        const int n\
+    \ = std::ssize(s);\n        hashed.resize(n + 1);\n        power.resize(n + 1);\n\
+    \        power[0] = 1;\n        for(const auto i: std::views::iota(0, n)) {\n\
+    \            power[i + 1] = mul(power[i], base);\n            hashed[i + 1] =\
+    \ mul(hashed[i], base) + s[i];\n            if(hashed[i + 1] >= mod) {\n     \
+    \           hashed[i + 1] -= mod;\n            }\n        }\n    }\n    constexpr\
+    \ inline uint64_t get(const int64_t l, const int64_t r) const noexcept {\n   \
+    \     uint64_t ret = hashed[r] + mod - mul(hashed[l], power[r - l]);\n       \
+    \ if(ret >= mod) {\n            ret -= mod;\n        }\n        return ret;\n\
+    \    }\n    constexpr inline uint64_t connect(const uint64_t h1, const uint64_t\
+    \ h2, const int64_t h2len) const noexcept {\n        uint64_t ret = mul(h1, power[h2len])\
+    \ + h2;\n        if(ret >= mod) {\n            ret -= mod;\n        }\n      \
+    \  return ret;\n    }\n    constexpr inline int64_t LCP(const RollingHash &b,\
+    \ int64_t l1, int64_t r1, int64_t l2, int64_t r2) noexcept {\n        int64_t\
+    \ low = -1, high = std::min(r1 - l1, r2 - l2) + 1;\n        while(high - low >\
+    \ 1) {\n            const int64_t mid = (low + high) / 2;\n            if(get(l1,\
+    \ l1 + mid) == b.get(l2, l2 + mid)) {\n                low = mid;\n          \
+    \  } else {\n                high = mid;\n            }\n        }\n        return\
+    \ low;\n    }\n};\n}\n\n/**\n * @brief Rolling Hash\n * @see https://github.com/tatyam-prime/kyopro_library/blob/master/RollingHash.cpp\n\
     \ */"
   dependsOn: []
   isVerificationFile: false
   path: C++/string/RH.hpp
   requiredBy: []
-  timestamp: '2024-02-19 12:20:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-06-06 22:43:06+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/rh.test.cpp
 documentation_of: C++/string/RH.hpp

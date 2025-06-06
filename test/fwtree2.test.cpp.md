@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/ds/fwtree/FenwickTree.hpp
     title: Binary Indexed Tree
   _extendedRequiredBy: []
@@ -16,32 +16,35 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_E
   bundledCode: "#line 1 \"test/fwtree2.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_E\"\
     \n#include <iostream>\n#line 2 \"C++/ds/fwtree/FenwickTree.hpp\"\n\r\n#include\
-    \ <vector>\r\ntemplate <class T> struct FenwickTree {\r\nprivate:\r\n    int n;\r\
-    \n    std::vector<T> data;\r\n    void init(const size_t size) {\r\n        n\
-    \ = size + 2;\r\n        data.resize(n + 1);\r\n    }\r\npublic:\r\n    FenwickTree(){}\r\
-    \n    FenwickTree(const size_t size){ init(size); }\r\n    FenwickTree(const std::vector<T>\
-    \ &a) {\r\n        init(a.size());\r\n        for(size_t i = 0; i < a.size();\
-    \ ++i) {\r\n            add(i, a[i]);\r\n        }\r\n    }\r\n    T sum(int k)\
-    \ const {\r\n        if(k < 0) {\r\n            return 0;\r\n        }\r\n   \
-    \     T ret = 0;\r\n        for(++k; k > 0; k -= k & -k) {\r\n            ret\
-    \ += data[k];\r\n        }\r\n        return ret;\r\n    }\r\n    inline T sum(int\
-    \ l, int r) const { return sum(r) - sum(l - 1); }\r\n    inline T operator[](int\
-    \ k) const { return sum(k) - sum(k - 1); }\r\n    void add(int k, const T &x)\
+    \ <vector>\r\n#include <ranges>\r\nnamespace man {\r\ntemplate <class T> struct\
+    \ FenwickTree {\r\nprivate:\r\n    int n;\r\n    std::vector<T> data;\r\n    inline\
+    \ void init(const size_t size) noexcept {\r\n        n = size + 2;\r\n       \
+    \ data.resize(n + 1);\r\n    }\r\npublic:\r\n    FenwickTree(){}\r\n    FenwickTree(const\
+    \ size_t size){ init(size); }\r\n    FenwickTree(const std::vector<T> &a) {\r\n\
+    \        init(a.size());\r\n        for(const auto i: std::views::iota(0, std::ssize(a)))\
+    \ {\r\n            add(i, a[i]);\r\n        }\r\n    }\r\n    constexpr inline\
+    \ T sum(int k) const noexcept {\r\n        if(k < 0) {\r\n            return 0;\r\
+    \n        }\r\n        T ret = 0;\r\n        for(++k; k > 0; k -= k & -k) {\r\n\
+    \            ret += data[k];\r\n        }\r\n        return ret;\r\n    }\r\n\
+    \    constexpr inline T sum(int l, int r) const noexcept { return sum(r) - sum(l\
+    \ - 1); }\r\n    constexpr inline T operator[](int k) const noexcept { return\
+    \ sum(k) - sum(k - 1); }\r\n    constexpr inline void add(int k, const T &x) noexcept\
     \ {\r\n        for(++k; k < n; k += k & -k) {\r\n            data[k] += x;\r\n\
-    \        }\r\n    }\r\n    void add(const int l, const int r, const T& x) {\r\n\
-    \        add(l, x);\r\n        add(r + 1, -x);\r\n    }\r\n    int lower_bound(T\
-    \ w) {\r\n        if(w <= 0) {\r\n            return 0;\r\n        }\r\n     \
-    \   int x = 0;\r\n        for(int k = 1 << std::__lg(n); k; k >>= 1) {\r\n   \
-    \         if(x + k <= n - 1 && data[x + k] < w) {\r\n                w -= data[x\
-    \ + k];\r\n                x += k;\r\n            }\r\n        }\r\n        return\
-    \ x;\r\n    }\r\n    int upper_bound(T w) {\r\n        if(w < 0) {\r\n       \
-    \     return 0;\r\n        }\r\n        int x = 0;\r\n        for(int k = 1 <<\
-    \ std::__lg(n); k; k >>= 1) {\r\n            if(x + k <= n - 1 && data[x + k]\
-    \ <= w) {\r\n                w -= data[x + k];\r\n                x += k;\r\n\
-    \            }\r\n        }\r\n        return x;\r\n    }\r\n};\r\n\r\n/**\r\n\
-    \ * @brief Binary Indexed Tree\r\n * @see https://nyaannyaan.github.io/library/data-structure/binary-indexed-tree.hpp\r\
+    \        }\r\n    }\r\n    constexpr inline void add(const int l, const int r,\
+    \ const T& x) noexcept {\r\n        add(l, x);\r\n        add(r + 1, -x);\r\n\
+    \    }\r\n    constexpr inline int lower_bound(T w) noexcept {\r\n        if(w\
+    \ <= 0) {\r\n            return 0;\r\n        }\r\n        int x = 0;\r\n    \
+    \    for(int k = 1 << std::__lg(n); k > 0; k >>= 1) {\r\n            if(x + k\
+    \ <= n - 1 && data[x + k] < w) {\r\n                w -= data[x + k];\r\n    \
+    \            x += k;\r\n            }\r\n        }\r\n        return x;\r\n  \
+    \  }\r\n    constexpr inline int upper_bound(T w) noexcept {\r\n        if(w <\
+    \ 0) {\r\n            return 0;\r\n        }\r\n        int x = 0;\r\n       \
+    \ for(int k = 1 << std::__lg(n); k > 0; k >>= 1) {\r\n            if(x + k <=\
+    \ n - 1 && data[x + k] <= w) {\r\n                w -= data[x + k];\r\n      \
+    \          x += k;\r\n            }\r\n        }\r\n        return x;\r\n    }\r\
+    \n};\r\n}\r\n\r\n/**\r\n * @brief Binary Indexed Tree\r\n * @see https://nyaannyaan.github.io/library/data-structure/binary-indexed-tree.hpp\r\
     \n */\n#line 4 \"test/fwtree2.test.cpp\"\nint main() {\n    std::cin.tie(nullptr)\
-    \ -> sync_with_stdio(false);\n    int n, q;\n    std::cin >> n >> q;\n    FenwickTree<int64_t>\
+    \ -> sync_with_stdio(false);\n    int n, q;\n    std::cin >> n >> q;\n    man::FenwickTree<int64_t>\
     \ bit(n);\n    while(q--) {\n        int h;\n        std::cin >> h;\n        if(h\
     \ == 0) {\n            int s, t, x;\n            std::cin >> s >> t >> x;\n  \
     \          bit.add(--s, --t, x);\n        } else {\n            int i;\n     \
@@ -49,7 +52,7 @@ data:
     \    }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_E\"\n#include\
     \ <iostream>\n#include \"C++/ds/fwtree/FenwickTree.hpp\"\nint main() {\n    std::cin.tie(nullptr)\
-    \ -> sync_with_stdio(false);\n    int n, q;\n    std::cin >> n >> q;\n    FenwickTree<int64_t>\
+    \ -> sync_with_stdio(false);\n    int n, q;\n    std::cin >> n >> q;\n    man::FenwickTree<int64_t>\
     \ bit(n);\n    while(q--) {\n        int h;\n        std::cin >> h;\n        if(h\
     \ == 0) {\n            int s, t, x;\n            std::cin >> s >> t >> x;\n  \
     \          bit.add(--s, --t, x);\n        } else {\n            int i;\n     \
@@ -60,7 +63,7 @@ data:
   isVerificationFile: true
   path: test/fwtree2.test.cpp
   requiredBy: []
-  timestamp: '2024-03-03 06:51:22+09:00'
+  timestamp: '2025-06-06 22:43:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fwtree2.test.cpp

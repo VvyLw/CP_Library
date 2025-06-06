@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedVerifiedWith:
@@ -24,49 +24,49 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/m_add.test.cpp
     title: test/m_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/s_rmq.test.cpp
     title: test/s_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/stable.test.cpp
     title: test/stable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: "\u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\u30EB"
     links: []
   bundledCode: "#line 2 \"C++/math/primefactortable.hpp\"\n\n#include <vector>\n#include\
-    \ <map>\n#include <numeric>\nnamespace Heileden {\nstruct p_fact {\n    std::vector<int64_t>\
+    \ <map>\n#include <numeric>\nnamespace man {\nstruct p_fact {\n    std::vector<int64_t>\
     \ spf;\n    p_fact(const int n): spf(n + 1){\n        std::iota(spf.begin(), spf.end(),\
     \ 0);\n        for(int64_t i = 2; i * i <= n; ++i) {\n            if(spf[i] ==\
     \ i) {\n                for(int64_t j = i * i; j <= n; j += i) {\n           \
-    \         if(spf[j]==j) {\n                        spf[j]=i;\n               \
-    \     }\n                }\n            }\n        }\n    }\n    std::map<int,\
-    \ int> get(int n) {\n        std::map<int, int> m;\n        while(n != 1) {\n\
-    \            m[spf[n]]++;\n            n /= spf[n];\n        }\n        return\
-    \ m;\n    }\n};\n}\n\n/**\n * @brief \u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\
-    \u30D6\u30EB\n */\n"
+    \         if(spf[j] == j) {\n                        spf[j] = i;\n           \
+    \         }\n                }\n            }\n        }\n    }\n    inline std::map<int,\
+    \ int> get(int n) noexcept {\n        std::map<int, int> m;\n        while(n !=\
+    \ 1) {\n            m[spf[n]]++;\n            n /= spf[n];\n        }\n      \
+    \  return m;\n    }\n};\n}\n\n/**\n * @brief \u7D20\u56E0\u6570\u5206\u89E3\u30C6\
+    \u30FC\u30D6\u30EB\n */\n"
   code: "#pragma once\n\n#include <vector>\n#include <map>\n#include <numeric>\nnamespace\
-    \ Heileden {\nstruct p_fact {\n    std::vector<int64_t> spf;\n    p_fact(const\
-    \ int n): spf(n + 1){\n        std::iota(spf.begin(), spf.end(), 0);\n       \
-    \ for(int64_t i = 2; i * i <= n; ++i) {\n            if(spf[i] == i) {\n     \
-    \           for(int64_t j = i * i; j <= n; j += i) {\n                    if(spf[j]==j)\
-    \ {\n                        spf[j]=i;\n                    }\n              \
-    \  }\n            }\n        }\n    }\n    std::map<int, int> get(int n) {\n \
-    \       std::map<int, int> m;\n        while(n != 1) {\n            m[spf[n]]++;\n\
+    \ man {\nstruct p_fact {\n    std::vector<int64_t> spf;\n    p_fact(const int\
+    \ n): spf(n + 1){\n        std::iota(spf.begin(), spf.end(), 0);\n        for(int64_t\
+    \ i = 2; i * i <= n; ++i) {\n            if(spf[i] == i) {\n                for(int64_t\
+    \ j = i * i; j <= n; j += i) {\n                    if(spf[j] == j) {\n      \
+    \                  spf[j] = i;\n                    }\n                }\n   \
+    \         }\n        }\n    }\n    inline std::map<int, int> get(int n) noexcept\
+    \ {\n        std::map<int, int> m;\n        while(n != 1) {\n            m[spf[n]]++;\n\
     \            n /= spf[n];\n        }\n        return m;\n    }\n};\n}\n\n/**\n\
     \ * @brief \u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\u30EB\n */"
   dependsOn: []
@@ -74,8 +74,8 @@ data:
   path: C++/math/primefactortable.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2024-03-29 03:01:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-06-06 22:43:06+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aarray.test.cpp
   - test/m_add.test.cpp

@@ -2,39 +2,40 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/math/tetration.hpp
     title: "Tetration(a\u2191\u2191b)"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/phi.test.cpp
     title: test/phi.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/tetration.test.cpp
     title: test/tetration.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Euler's Phi-function
     links: []
-  bundledCode: "#line 2 \"C++/math/euler_phi.hpp\"\ntemplate <class T> inline T euler_phi(T\
-    \ n) {\n\tT res = n;\n\tfor(T i = 2; i * i <= n; ++i) {\n\t    if(n % i == 0)\
-    \ {\n\t\t\tres -= res / i;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tn /= i;\n\t\t\t\
-    }\n\t\t}\n\t}\n\tif(n > 1) {\n\t\tres -= res / n;\n\t}\n\treturn res;\n}\n\n/**\n\
-    \ * @brief Euler's Phi-function\n */\n"
-  code: "#pragma once\ntemplate <class T> inline T euler_phi(T n) {\n\tT res = n;\n\
-    \tfor(T i = 2; i * i <= n; ++i) {\n\t    if(n % i == 0) {\n\t\t\tres -= res /\
-    \ i;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tn /= i;\n\t\t\t}\n\t\t}\n\t}\n\tif(n\
-    \ > 1) {\n\t\tres -= res / n;\n\t}\n\treturn res;\n}\n\n/**\n * @brief Euler's\
-    \ Phi-function\n */"
+  bundledCode: "#line 2 \"C++/math/euler_phi.hpp\"\nnamespace man {\ntemplate <class\
+    \ T> constexpr inline T euler_phi(T n) noexcept {\n\tT ret = n;\n\tfor(T i = 2;\
+    \ i * i <= n; ++i) {\n\t    if(n % i == 0) {\n\t\t\tret -= ret / i;\n\t\t\twhile(n\
+    \ % i == 0) {\n\t\t\t\tn /= i;\n\t\t\t}\n\t\t}\n\t}\n\tif(n > 1) {\n\t\tret -=\
+    \ ret / n;\n\t}\n\treturn ret;\n}\n}\n\n/**\n * @brief Euler's Phi-function\n\
+    \ */\n"
+  code: "#pragma once\nnamespace man {\ntemplate <class T> constexpr inline T euler_phi(T\
+    \ n) noexcept {\n\tT ret = n;\n\tfor(T i = 2; i * i <= n; ++i) {\n\t    if(n %\
+    \ i == 0) {\n\t\t\tret -= ret / i;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tn /= i;\n\
+    \t\t\t}\n\t\t}\n\t}\n\tif(n > 1) {\n\t\tret -= ret / n;\n\t}\n\treturn ret;\n\
+    }\n}\n\n/**\n * @brief Euler's Phi-function\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/math/euler_phi.hpp
   requiredBy:
   - C++/math/tetration.hpp
-  timestamp: '2024-02-19 12:20:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-06-06 22:43:06+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/tetration.test.cpp
   - test/phi.test.cpp

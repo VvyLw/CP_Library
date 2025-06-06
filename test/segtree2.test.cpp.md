@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/ds/SegmentTree.hpp
     title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A
@@ -17,50 +17,65 @@ data:
   bundledCode: "#line 1 \"test/segtree2.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A\"\
     \n#include <iostream>\n#include <limits>\n#line 2 \"C++/ds/SegmentTree.hpp\"\n\
     \r\n#pragma GCC diagnostic ignored \"-Wreorder\"\r\n\r\n#include <vector>\r\n\
-    #include <functional>\r\ntemplate <class T> struct SegTree {\r\nprivate:\r\n \
-    \   using F = std::function<T(T, T)>;\r\n    int n, rank, fine;\r\n    const F\
-    \ f;\r\n    const T e;\r\n    std::vector<T> dat;\r\npublic:\r\n    SegTree(const\
-    \ int n_, const F f_, const T& e_): f(f_), e(e_), fine(n_) {\r\n        n=1,rank=0;\r\
-    \n        while(fine>n) n<<=1LL,rank++;\r\n        dat.assign(2*n,e_);\r\n   \
-    \ }\r\n    SegTree(const std::vector<T> &v, const F f_, const T e_): f(f_), e(e_),\
-    \ fine(v.size()) {\r\n        n=1,rank=0;\r\n        while(fine>n) n<<=1LL,rank++;\r\
-    \n        dat.assign(2*n,e_);\r\n        for(size_t i=0; i<v.size(); ++i) update(i,v[i]);\r\
-    \n    }\r\n    T operator[](int i) const { return dat[i+n]; }\r\n    void update(int\
-    \ i, const T& x) {\r\n        i+=n;\r\n        dat[i]=x;\r\n        while(i>>=1LL)\
-    \ dat[i]=f(dat[2*i],dat[2*i+1]);\r\n    }\r\n    void add(int i, const T& x) {\r\
-    \n        i+=n;\r\n        dat[i]+=x;\r\n        while(i>>=1LL) dat[i]=f(dat[2*i],dat[2*i+1]);\r\
-    \n    }\r\n    T query(int a, int b) const {\r\n        T l=e,r=e;\r\n       \
-    \ for(a+=n, b+=n; a<b; a>>=1LL,b>>=1LL) {\r\n            if(a&1) l=f(l,dat[a++]);\r\
-    \n            if(b&1) r=f(dat[--b],r);\r\n        }\r\n        return f(l,r);\r\
-    \n    }\r\n    T alle() const { return dat[1]; }\r\n    template <class Boolean=bool>\
-    \ inline int find_left(int r, const Boolean &fn) {\r\n        if(!r) return 0;\r\
-    \n        int h=0,i=r+n;\r\n        T val=e;\r\n        for(; h <= rank; h++)\
-    \ if(i>>h&1){\r\n            T val2=f(val,dat[i>>h^1]);\r\n            if(fn(val2)){\r\
-    \n                i -= 1<<h;\r\n                if(i==n) return 0;\r\n       \
-    \         val=val2;\r\n            }\r\n            else break;\r\n        }\r\
-    \n        for(; h--;){\r\n            T val2 = f(val,dat[(i>>h)-1]);\r\n     \
-    \       if(fn(val2)){\r\n                i-=1<<h;\r\n                if(i==n)\
-    \ return 0;\r\n                val=val2;\r\n            }\r\n        }\r\n   \
-    \     return i-n;\r\n    }\r\n    template <class Boolean=bool> inline int find_right(int\
-    \ l, const Boolean &fn) {\r\n        if(l==fine) return fine;\r\n        int h=0,i=l+n;\r\
-    \n        T val=e;\r\n        for(; h<=rank; h++) if(i>>h&1){\r\n            T\
-    \ val2=f(val,dat[i>>h]);\r\n            if(fn(val2)){\r\n                i+=1LL<<h;\r\
-    \n                if(i==n*2) return fine;\r\n                val=val2;\r\n   \
-    \         }\r\n            else break;\r\n        }\r\n        for(; h--;){\r\n\
-    \            T val2=f(val, dat[i>>h]);\r\n            if(fn(val2)){\r\n      \
-    \          i+=1LL<<h;\r\n                if(i==n*2) return fine;\r\n         \
-    \       val=val2;\r\n            }\r\n        }\r\n        return std::min(i-n,fine);\r\
-    \n    }\r\n};\r\n/**\r\n * @brief \u30BB\u30B0\u30E1\u30F3\u30C8\u6728\r\n * @see\
+    #include <functional>\r\n#include <ranges>\r\nnamespace man {\r\ntemplate <class\
+    \ T> struct SegTree {\r\nprivate:\r\n    using F = std::function<T(T, T)>;\r\n\
+    \    int n, rank, fine;\r\n    const F f;\r\n    const T e;\r\n    std::vector<T>\
+    \ dat;\r\npublic:\r\n    SegTree(const int n_, const F f_, const T& e_): f(f_),\
+    \ e(e_), fine(n_) {\r\n        n = 1, rank = 0;\r\n        while(fine > n) {\r\
+    \n            n <<= 1LL, rank++;\r\n        }\r\n        dat.assign(n << 1, e_);\r\
+    \n    }\r\n    SegTree(const std::vector<T> &v, const F f_, const T e_): f(f_),\
+    \ e(e_), fine(std::ssize(v)) {\r\n        n = 1, rank = 0;\r\n        while(fine\
+    \ > n) {\r\n            n <<= 1LL, rank++;\r\n        }\r\n        dat.assign(n\
+    \ << 1, e_);\r\n        for(const auto i: std::views::iota(0, std::ssize(v)))\
+    \ {\r\n            update(i, v[i]);\r\n        }\r\n    }\r\n    constexpr inline\
+    \ T operator[](int i) const noexcept { return dat[i + n]; }\r\n    constexpr inline\
+    \ void update(int i, const T& x) noexcept {\r\n        i += n;\r\n        dat[i]\
+    \ = x;\r\n        while(i >>= 1LL) {\r\n            dat[i] = f(dat[2 * i], dat[2\
+    \ * i + 1]);\r\n        }\r\n    }\r\n    constexpr inline void add(int i, const\
+    \ T& x) noexcept {\r\n        i += n;\r\n        dat[i] += x;\r\n        while(i\
+    \ >>= 1LL) {\r\n            dat[i] = f(dat[2 * i], dat[2 * i + 1]);\r\n      \
+    \  }\r\n    }\r\n    constexpr inline T query(int a, int b) const noexcept {\r\
+    \n        T l = e, r = e;\r\n        for(a += n, b += n; a < b; a >>= 1LL, b >>=\
+    \ 1LL) {\r\n            if(a & 1) {\r\n                l = f(l, dat[a++]);\r\n\
+    \            }\r\n            if(b & 1) {\r\n                r = f(dat[--b], r);\r\
+    \n            }\r\n        }\r\n        return f(l, r);\r\n    }\r\n    constexpr\
+    \ inline T all() const noexcept { return dat[1]; }\r\n    template <class Boolean\
+    \ = bool> constexpr inline int find_left(int r, const Boolean &fn) noexcept{\r\
+    \n        if(r == 0) {\r\n            return 0;\r\n        }\r\n        int h\
+    \ = 0, i = r + n;\r\n        T val = e;\r\n        for(; h <= rank; h++) {\r\n\
+    \            if(i >> h & 1){\r\n                T val2 = f(val, dat[i >> h ^ 1]);\r\
+    \n                if(fn(val2)) {\r\n                    i -= 1 << h;\r\n     \
+    \               if(i == n) {\r\n                        return 0;\r\n        \
+    \            }\r\n                    val = val2;\r\n                } else {\r\
+    \n                    break;\r\n                }\r\n            }\r\n       \
+    \ }\r\n        for(; h--;) {\r\n            T val2 = f(val, dat[(i >> h) - 1]);\r\
+    \n            if(fn(val2)) {\r\n                i -= 1 << h;\r\n             \
+    \   if(i == n) {\r\n                    return 0;\r\n                }\r\n   \
+    \             val = val2;\r\n            }\r\n        }\r\n        return i -\
+    \ n;\r\n    }\r\n    template <class Boolean = bool> constexpr inline int find_right(int\
+    \ l, const Boolean &fn) noexcept {\r\n        if(l == fine) {\r\n            return\
+    \ fine;\r\n        }\r\n        int h = 0, i = l + n;\r\n        T val = e;\r\n\
+    \        for(; h <= rank; h++) {\r\n            if(i >> h & 1) {\r\n         \
+    \       const T val2 = f(val, dat[i >> h]);\r\n                if(fn(val2)) {\r\
+    \n                    i += 1LL << h;\r\n                    if(i == n * 2) {\r\
+    \n                        return fine;\r\n                    }\r\n          \
+    \          val = val2;\r\n                } else {\r\n                    break;\r\
+    \n                }\r\n            }\r\n        }\r\n        for(; h--;) {\r\n\
+    \            const T val2 = f(val, dat[i >> h]);\r\n            if(fn(val2)) {\r\
+    \n                i += 1LL << h;\r\n                if(i == n * 2) {\r\n     \
+    \               return fine;\r\n                }\r\n                val = val2;\r\
+    \n            }\r\n        }\r\n        return std::min(i - n, fine);\r\n    }\r\
+    \n};\r\n}\r\n/**\r\n * @brief \u30BB\u30B0\u30E1\u30F3\u30C8\u6728\r\n * @see\
     \ https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp\r\
     \n */\n#line 5 \"test/segtree2.test.cpp\"\nint main() {\n    int n, q;\n    std::cin\
-    \ >> n >> q;\n    SegTree<int> seg(n, [](const int x, const int y) -> int { return\
-    \ std::min(x, y); }, std::numeric_limits<int>::max());\n    while(q--) {\n   \
-    \     int com, x, y;\n        std::cin >> com >> x >> y;\n        if(com == 0)\
-    \ {\n            seg.update(x, y);\n        } else {\n            std::cout <<\
-    \ seg.query(x, y + 1) << '\\n';\n        }\n    }\n}\n"
+    \ >> n >> q;\n    man::SegTree<int> seg(n, [](const int x, const int y) -> int\
+    \ { return std::min(x, y); }, std::numeric_limits<int>::max());\n    while(q--)\
+    \ {\n        int com, x, y;\n        std::cin >> com >> x >> y;\n        if(com\
+    \ == 0) {\n            seg.update(x, y);\n        } else {\n            std::cout\
+    \ << seg.query(x, y + 1) << '\\n';\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A\"\
     \n#include <iostream>\n#include <limits>\n#include \"C++/ds/SegmentTree.hpp\"\n\
-    int main() {\n    int n, q;\n    std::cin >> n >> q;\n    SegTree<int> seg(n,\
+    int main() {\n    int n, q;\n    std::cin >> n >> q;\n    man::SegTree<int> seg(n,\
     \ [](const int x, const int y) -> int { return std::min(x, y); }, std::numeric_limits<int>::max());\n\
     \    while(q--) {\n        int com, x, y;\n        std::cin >> com >> x >> y;\n\
     \        if(com == 0) {\n            seg.update(x, y);\n        } else {\n   \
@@ -70,8 +85,8 @@ data:
   isVerificationFile: true
   path: test/segtree2.test.cpp
   requiredBy: []
-  timestamp: '2024-03-09 16:51:27+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-06-06 22:43:22+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/segtree2.test.cpp
 layout: document

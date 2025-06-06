@@ -3,172 +3,195 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/wm.test.cpp
     title: test/wm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/wm2.test.cpp
     title: test/wm2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/wm3.test.cpp
     title: test/wm3.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Wavelet Matrix
     links:
     - https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp
   bundledCode: "#line 2 \"C++/ds/WM.hpp\"\n\n#include <cassert>\n#include <vector>\n\
-    #include <algorithm>\n#include <tuple>\nstruct SIDict {\nprivate:\n    int blk;\n\
-    \    std::vector<int> bit, sum;\npublic:\n    SIDict(){}\n    SIDict(const int\
-    \ len): blk((len + 31) >> 5), bit(blk), sum(blk){}\n    void set(const int k){\
-    \ bit[k >> 5] |= 1 << (k & 31); }\n    void build() {\n\t\tsum[0] = 0;\n\t\tfor(int\
-    \ i = 0; i + 1< blk; ++i) {\n\t\t\tsum[i + 1] = sum[i] + __builtin_popcount(bit[i]);\n\
-    \t\t}\n\t}\n    int rank(const int k) const { return (sum[k >> 5] + __builtin_popcount(bit[k\
-    \ >> 5] & ((1 << (k & 31)) - 1))); }\n    int rank(const bool val, const int k)\
-    \ const { return val ? rank(k) : k - rank(k); }\n    bool operator[](const int\
-    \ k) noexcept { return (bit[k >> 5] >> (k & 31)) & 1; }\n};\n\ntemplate <class\
+    #include <algorithm>\n#include <tuple>\n#include <ranges>\nnamespace man {\nnamespace\
+    \ internal {\nstruct SIDict {\nprivate:\n    int blk;\n    std::vector<int> bit,\
+    \ sum;\npublic:\n    SIDict(){}\n    SIDict(const int len): blk((len + 31) >>\
+    \ 5), bit(blk), sum(blk){}\n    inline void set(const int k) noexcept { bit[k\
+    \ >> 5] |= 1 << (k & 31); }\n    inline void build() noexcept {\n\t\tsum[0] =\
+    \ 0;\n\t\tfor(const auto i: std::views::iota(0, blk - 1)) {\n\t\t\tsum[i + 1]\
+    \ = sum[i] + __builtin_popcount(bit[i]);\n\t\t}\n\t}\n    inline int rank(const\
+    \ int k) const noexcept { return (sum[k >> 5] + __builtin_popcount(bit[k >> 5]\
+    \ & ((1 << (k & 31)) - 1))); }\n    inline int rank(const bool val, const int\
+    \ k) const noexcept { return val ? rank(k) : k - rank(k); }\n    inline bool operator[](const\
+    \ int k) noexcept { return (bit[k >> 5] >> (k & 31)) & 1; }\n};\n\ntemplate <class\
     \ T, int log> struct WMBeta {\nprivate:\n    SIDict matrix[log];\n    int mid[log];\n\
-    \    T access(int k) const {\n        T ret = 0;\n        for(int level = log;\
-    \ --level >= 0;) {\n            const bool f = matrix[level][k];\n           \
-    \ if(f) {\n                ret |= (T)1 << level;\n            }\n            k\
-    \ = matrix[level].rank(f, k) + mid[level] * f;\n        }\n        return ret;\n\
-    \    }\n    std::pair<int, int> succ(const bool f, const int l, const int r, const\
-    \ int level) const { return {matrix[level].rank(f, l) + mid[level] * f, matrix[level].rank(f,\
+    \    constexpr inline T access(int k) const noexcept {\n        T ret = 0;\n \
+    \       for(const auto level: std::views::iota(0, log) | std::views::reverse)\
+    \ {\n            const bool f = matrix[level][k];\n            if(f) {\n     \
+    \           ret |= (T) 1 << level;\n            }\n            k = matrix[level].rank(f,\
+    \ k) + mid[level] * f;\n        }\n        return ret;\n    }\n    constexpr inline\
+    \ std::pair<int, int> succ(const bool f, const int l, const int r, const int level)\
+    \ const noexcept { return {matrix[level].rank(f, l) + mid[level] * f, matrix[level].rank(f,\
     \ r) + mid[level] * f}; }\npublic:\n    WMBeta(){}\n    WMBeta(std::vector<T>\
-    \ v) {\n        const int len = v.size();\n        std::vector<T> l(len), r(len);\n\
-    \        for(int level = log; --level >= 0;) {\n            matrix[level] = SIDict(len\
-    \ + 1);\n            int left = 0, right = 0;\n            for(int i = 0; i <\
-    \ len; ++i) {\n                if((v[i] >> level) & 1) {\n                   \
-    \ matrix[level].set(i);\n                    r[right++] = v[i];\n            \
-    \    }\n                else {\n                    l[left++] = v[i];\n      \
-    \          }\n            }\n            mid[level] = left;\n            matrix[level].build();\n\
-    \            v.swap(l);\n            for(int i = 0; i < right; ++i) {\n      \
-    \          v[left + i] = r[i];\n            }\n        }\n    }\n    T operator[](const\
-    \ int k) noexcept { return access(k); }\n    int rank(const T x, int r) const\
-    \ {\n        int l = 0;\n        for(int level = log; --level >= 0;) {\n     \
-    \       std::tie(l, r) = succ((x >> level) & 1, l, r, level);\n        }\n   \
-    \     return r - l;\n    }\n    T kth_min(int l, int r, int k) const {\n     \
-    \   assert(0 <= k && k < r - l);\n        T ret = 0;\n        for(int level =\
-    \ log; --level >= 0;) {\n            const int cnt = matrix[level].rank(false,\
-    \ r) - matrix[level].rank(false, l);\n            const bool f = cnt <= k;\n \
-    \           if(f) {\n                ret |= T(1) << level;\n                k\
-    \ -= cnt;\n            }\n            std::tie(l, r) = succ(f, l, r, level);\n\
-    \        }\n        return ret;\n    }\n    T kth_max(const int l, const int r,\
-    \ const int k) const { return kth_min(l, r, r - l - k - 1); }\n    int range_freq(int\
-    \ l, int r, const T upper) const {\n        int ret = 0;\n        for(int level\
-    \ = log; --level;) {\n            const bool f = (upper >> level) & 1;\n     \
-    \       if(f) {\n                ret += matrix[level].rank(false, r) - matrix[level].rank(false,\
+    \ v) {\n        const int len = std::ssize(v);\n        std::vector<T> l(len),\
+    \ r(len);\n        for(const auto level: std::views::iota(0, log) | std::views::reverse)\
+    \ {\n            matrix[level] = SIDict(len + 1);\n            int left = 0, right\
+    \ = 0;\n            for(const auto i: std::views::iota(0, len)) {\n          \
+    \      if((v[i] >> level) & 1) {\n                    matrix[level].set(i);\n\
+    \                    r[right++] = v[i];\n                }\n                else\
+    \ {\n                    l[left++] = v[i];\n                }\n            }\n\
+    \            mid[level] = left;\n            matrix[level].build();\n        \
+    \    v.swap(l);\n            for(const auto i: std::views::iota(0, right)) {\n\
+    \                v[left + i] = r[i];\n            }\n        }\n    }\n    constexpr\
+    \ inline T operator[](const int k) const noexcept { return access(k); }\n    constexpr\
+    \ inline int rank(const T x, int r) const noexcept {\n        int l = 0;\n   \
+    \     for(const auto level: std::views::iota(0, log) | std::views::reverse) {\n\
+    \            std::tie(l, r) = succ((x >> level) & 1, l, r, level);\n        }\n\
+    \        return r - l;\n    }\n    constexpr inline T kth_min(int l, int r, int\
+    \ k) const noexcept {\n        assert(0 <= k && k < r - l);\n        T ret = 0;\n\
+    \        for(const auto level: std::views::iota(0, log) | std::views::reverse)\
+    \ {\n            const int cnt = matrix[level].rank(false, r) - matrix[level].rank(false,\
+    \ l);\n            const bool f = cnt <= k;\n            if(f) {\n           \
+    \     ret |= T(1) << level;\n                k -= cnt;\n            }\n      \
+    \      std::tie(l, r) = succ(f, l, r, level);\n        }\n        return ret;\n\
+    \    }\n    constexpr inline T kth_max(const int l, const int r, const int k)\
+    \ const noexcept{ return kth_min(l, r, r - l - k - 1); }\n    constexpr inline\
+    \ int range_freq(int l, int r, const T upper) const noexcept {\n        int ret\
+    \ = 0;\n        for(const auto level: std::views::iota(0, log) | std::views::reverse)\
+    \ {\n            const bool f = (upper >> level) & 1;\n            if(f) {\n \
+    \               ret += matrix[level].rank(false, r) - matrix[level].rank(false,\
     \ l);\n            }\n            std::tie(l, r) = succ(f, l, r, level);\n   \
-    \     }\n        return ret;\n    }\n    int range_freq(const int l, const int\
-    \ r, const T lower, const T upper) const { return range_freq(l, r, upper) - range_freq(l,\
-    \ r, lower); }\n    T prev(const int l, const int r, const T upper) const {\n\t\
-    \tconst int cnt = range_freq(l, r, upper);\n\t\treturn cnt == 0 ? (T)-1 : kth_min(l,\
-    \ r, cnt - 1);\n\t}\n    T next(const int l, const int r, const T lower) const\
+    \     }\n        return ret;\n    }\n    constexpr inline int range_freq(const\
+    \ int l, const int r, const T lower, const T upper) const noexcept { return range_freq(l,\
+    \ r, upper) - range_freq(l, r, lower); }\n    constexpr inline T prev(const int\
+    \ l, const int r, const T upper) const noexcept {\n\t\tconst int cnt = range_freq(l,\
+    \ r, upper);\n\t\treturn cnt == 0 ? (T)-1 : kth_min(l, r, cnt - 1);\n\t}\n   \
+    \ constexpr inline T next(const int l, const int r, const T lower) const noexcept\
     \ {\n\t\tconst int cnt = range_freq(l, r, lower);\n\t\treturn cnt == r - l ? (T)-1\
-    \ : kth_min(l, r, cnt);\n\t}\n};\n\ntemplate <class T, int log = 20> struct WaveletMatrix\
-    \ {\nprivate:\n    WMBeta<int, log> mat;\n    std::vector<T> ys;\n    inline int\
-    \ get(const T x) const { return std::lower_bound(ys.cbegin(), ys.cend(), x) -\
-    \ ys.cbegin(); }\n    T access(const int k) const { return ys[mat[k]]; }\npublic:\n\
-    \    WaveletMatrix(const std::vector<T> v): ys(v) {\n        std::sort(ys.begin(),\
-    \ ys.end());\n        ys.erase(std::unique(ys.begin(), ys.end()), ys.end());\n\
-    \        std::vector<int> t(v.size());\n        for(int i = 0; auto &el: v) {\n\
-    \            t[i++] = get(el);\n        }\n        mat = WMBeta<int, log>(t);\n\
-    \    }\n    T operator[](const int k) noexcept { return access(k); }\n    int\
-    \ rank(const int r, const T x) const {\n        const auto pos = get(x);\n   \
-    \     if(pos == std::ssize(ys) || ys[pos] != x) {\n            return 0;\n   \
-    \     }\n        return mat.rank(pos, r);\n    }\n    int rank(const int l, const\
-    \ int r, const T x) const { return rank(r, x) - rank(l, x); }\n    T kth_min(const\
-    \ int l, const int r, const int k) const { return ys[mat.kth_min(l, r, k)]; }\n\
-    \    T kth_max(const int l, const int r, const int k) const { return ys[mat.kth_max(l,\
-    \ r, k)]; }\n    int range_freq(const int l, const int r, const T upper) const\
-    \ { return mat.range_freq(l, r, get(upper)); }\n    int range_freq(const int l,\
-    \ const int r, const T lower, const T upper) const { return mat.range_freq(l,\
-    \ r, get(lower), get(upper)); }\n    T prev(const int l, const int r, const T\
-    \ upper) {\n        const auto ret = mat.prev(l, r, get(upper));\n        return\
-    \ ret == -1 ? (T)-1 : ys[ret];\n    }\n    T next(const int l, const int r, const\
-    \ T lower) {\n        const auto ret = mat.next(l, r, get(lower));\n        return\
-    \ ret == -1 ? (T)-1 : ys[ret];\n    }\n};\n/**\n * @brief Wavelet Matrix\n * @see\
-    \ https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n */\n"
+    \ : kth_min(l, r, cnt);\n\t}\n};\n}\n\ntemplate <class T, int log = 20> struct\
+    \ WaveletMatrix {\nprivate:\n    internal::WMBeta<int, log> mat;\n    std::vector<T>\
+    \ ys;\n    constexpr inline int get(const T x) const noexcept { return std::ranges::lower_bound(ys,\
+    \ x) - ys.cbegin(); }\n    constexpr inline T access(const int k) const noexcept\
+    \ { return ys[mat[k]]; }\npublic:\n    WaveletMatrix(const std::vector<T> v):\
+    \ ys(v) {\n        std::sort(ys.begin(), ys.end());\n        const auto it = std::ranges::unique(ys);\n\
+    \        ys.erase(it.begin(), it.end());\n        std::vector<int> t(v.size());\n\
+    \        for(int i = 0; auto &el: v) {\n            t[i++] = get(el);\n      \
+    \  }\n        mat = internal::WMBeta<int, log>(t);\n    }\n    constexpr inline\
+    \ T operator[](const int k) const noexcept { return access(k); }\n    constexpr\
+    \ inline int rank(const int r, const T x) const noexcept {\n        const auto\
+    \ pos = get(x);\n        if(pos == std::ssize(ys) || ys[pos] != x) {\n       \
+    \     return 0;\n        }\n        return mat.rank(pos, r);\n    }\n    constexpr\
+    \ inline int rank(const int l, const int r, const T x) const noexcept { return\
+    \ rank(r, x) - rank(l, x); }\n    constexpr inline T kth_min(const int l, const\
+    \ int r, const int k) const noexcept { return ys[mat.kth_min(l, r, k)]; }\n  \
+    \  constexpr inline T kth_max(const int l, const int r, const int k) const noexcept\
+    \ { return ys[mat.kth_max(l, r, k)]; }\n    constexpr inline int range_freq(const\
+    \ int l, const int r, const T upper) const noexcept { return mat.range_freq(l,\
+    \ r, get(upper)); }\n    constexpr inline int range_freq(const int l, const int\
+    \ r, const T lower, const T upper) const noexcept { return mat.range_freq(l, r,\
+    \ get(lower), get(upper)); }\n    constexpr inline T prev(const int l, const int\
+    \ r, const T upper) noexcept {\n        const auto ret = mat.prev(l, r, get(upper));\n\
+    \        return ret == -1 ? (T)-1 : ys[ret];\n    }\n    constexpr inline T next(const\
+    \ int l, const int r, const T lower) noexcept {\n        const auto ret = mat.next(l,\
+    \ r, get(lower));\n        return ret == -1 ? (T)-1 : ys[ret];\n    }\n};\n}\n\
+    /**\n * @brief Wavelet Matrix\n * @see https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n\
+    \ */\n"
   code: "#pragma once\n\n#include <cassert>\n#include <vector>\n#include <algorithm>\n\
-    #include <tuple>\nstruct SIDict {\nprivate:\n    int blk;\n    std::vector<int>\
-    \ bit, sum;\npublic:\n    SIDict(){}\n    SIDict(const int len): blk((len + 31)\
-    \ >> 5), bit(blk), sum(blk){}\n    void set(const int k){ bit[k >> 5] |= 1 <<\
-    \ (k & 31); }\n    void build() {\n\t\tsum[0] = 0;\n\t\tfor(int i = 0; i + 1<\
-    \ blk; ++i) {\n\t\t\tsum[i + 1] = sum[i] + __builtin_popcount(bit[i]);\n\t\t}\n\
-    \t}\n    int rank(const int k) const { return (sum[k >> 5] + __builtin_popcount(bit[k\
-    \ >> 5] & ((1 << (k & 31)) - 1))); }\n    int rank(const bool val, const int k)\
-    \ const { return val ? rank(k) : k - rank(k); }\n    bool operator[](const int\
-    \ k) noexcept { return (bit[k >> 5] >> (k & 31)) & 1; }\n};\n\ntemplate <class\
-    \ T, int log> struct WMBeta {\nprivate:\n    SIDict matrix[log];\n    int mid[log];\n\
-    \    T access(int k) const {\n        T ret = 0;\n        for(int level = log;\
-    \ --level >= 0;) {\n            const bool f = matrix[level][k];\n           \
-    \ if(f) {\n                ret |= (T)1 << level;\n            }\n            k\
-    \ = matrix[level].rank(f, k) + mid[level] * f;\n        }\n        return ret;\n\
-    \    }\n    std::pair<int, int> succ(const bool f, const int l, const int r, const\
-    \ int level) const { return {matrix[level].rank(f, l) + mid[level] * f, matrix[level].rank(f,\
+    #include <tuple>\n#include <ranges>\nnamespace man {\nnamespace internal {\nstruct\
+    \ SIDict {\nprivate:\n    int blk;\n    std::vector<int> bit, sum;\npublic:\n\
+    \    SIDict(){}\n    SIDict(const int len): blk((len + 31) >> 5), bit(blk), sum(blk){}\n\
+    \    inline void set(const int k) noexcept { bit[k >> 5] |= 1 << (k & 31); }\n\
+    \    inline void build() noexcept {\n\t\tsum[0] = 0;\n\t\tfor(const auto i: std::views::iota(0,\
+    \ blk - 1)) {\n\t\t\tsum[i + 1] = sum[i] + __builtin_popcount(bit[i]);\n\t\t}\n\
+    \t}\n    inline int rank(const int k) const noexcept { return (sum[k >> 5] + __builtin_popcount(bit[k\
+    \ >> 5] & ((1 << (k & 31)) - 1))); }\n    inline int rank(const bool val, const\
+    \ int k) const noexcept { return val ? rank(k) : k - rank(k); }\n    inline bool\
+    \ operator[](const int k) noexcept { return (bit[k >> 5] >> (k & 31)) & 1; }\n\
+    };\n\ntemplate <class T, int log> struct WMBeta {\nprivate:\n    SIDict matrix[log];\n\
+    \    int mid[log];\n    constexpr inline T access(int k) const noexcept {\n  \
+    \      T ret = 0;\n        for(const auto level: std::views::iota(0, log) | std::views::reverse)\
+    \ {\n            const bool f = matrix[level][k];\n            if(f) {\n     \
+    \           ret |= (T) 1 << level;\n            }\n            k = matrix[level].rank(f,\
+    \ k) + mid[level] * f;\n        }\n        return ret;\n    }\n    constexpr inline\
+    \ std::pair<int, int> succ(const bool f, const int l, const int r, const int level)\
+    \ const noexcept { return {matrix[level].rank(f, l) + mid[level] * f, matrix[level].rank(f,\
     \ r) + mid[level] * f}; }\npublic:\n    WMBeta(){}\n    WMBeta(std::vector<T>\
-    \ v) {\n        const int len = v.size();\n        std::vector<T> l(len), r(len);\n\
-    \        for(int level = log; --level >= 0;) {\n            matrix[level] = SIDict(len\
-    \ + 1);\n            int left = 0, right = 0;\n            for(int i = 0; i <\
-    \ len; ++i) {\n                if((v[i] >> level) & 1) {\n                   \
-    \ matrix[level].set(i);\n                    r[right++] = v[i];\n            \
-    \    }\n                else {\n                    l[left++] = v[i];\n      \
-    \          }\n            }\n            mid[level] = left;\n            matrix[level].build();\n\
-    \            v.swap(l);\n            for(int i = 0; i < right; ++i) {\n      \
-    \          v[left + i] = r[i];\n            }\n        }\n    }\n    T operator[](const\
-    \ int k) noexcept { return access(k); }\n    int rank(const T x, int r) const\
-    \ {\n        int l = 0;\n        for(int level = log; --level >= 0;) {\n     \
-    \       std::tie(l, r) = succ((x >> level) & 1, l, r, level);\n        }\n   \
-    \     return r - l;\n    }\n    T kth_min(int l, int r, int k) const {\n     \
-    \   assert(0 <= k && k < r - l);\n        T ret = 0;\n        for(int level =\
-    \ log; --level >= 0;) {\n            const int cnt = matrix[level].rank(false,\
-    \ r) - matrix[level].rank(false, l);\n            const bool f = cnt <= k;\n \
-    \           if(f) {\n                ret |= T(1) << level;\n                k\
-    \ -= cnt;\n            }\n            std::tie(l, r) = succ(f, l, r, level);\n\
-    \        }\n        return ret;\n    }\n    T kth_max(const int l, const int r,\
-    \ const int k) const { return kth_min(l, r, r - l - k - 1); }\n    int range_freq(int\
-    \ l, int r, const T upper) const {\n        int ret = 0;\n        for(int level\
-    \ = log; --level;) {\n            const bool f = (upper >> level) & 1;\n     \
-    \       if(f) {\n                ret += matrix[level].rank(false, r) - matrix[level].rank(false,\
+    \ v) {\n        const int len = std::ssize(v);\n        std::vector<T> l(len),\
+    \ r(len);\n        for(const auto level: std::views::iota(0, log) | std::views::reverse)\
+    \ {\n            matrix[level] = SIDict(len + 1);\n            int left = 0, right\
+    \ = 0;\n            for(const auto i: std::views::iota(0, len)) {\n          \
+    \      if((v[i] >> level) & 1) {\n                    matrix[level].set(i);\n\
+    \                    r[right++] = v[i];\n                }\n                else\
+    \ {\n                    l[left++] = v[i];\n                }\n            }\n\
+    \            mid[level] = left;\n            matrix[level].build();\n        \
+    \    v.swap(l);\n            for(const auto i: std::views::iota(0, right)) {\n\
+    \                v[left + i] = r[i];\n            }\n        }\n    }\n    constexpr\
+    \ inline T operator[](const int k) const noexcept { return access(k); }\n    constexpr\
+    \ inline int rank(const T x, int r) const noexcept {\n        int l = 0;\n   \
+    \     for(const auto level: std::views::iota(0, log) | std::views::reverse) {\n\
+    \            std::tie(l, r) = succ((x >> level) & 1, l, r, level);\n        }\n\
+    \        return r - l;\n    }\n    constexpr inline T kth_min(int l, int r, int\
+    \ k) const noexcept {\n        assert(0 <= k && k < r - l);\n        T ret = 0;\n\
+    \        for(const auto level: std::views::iota(0, log) | std::views::reverse)\
+    \ {\n            const int cnt = matrix[level].rank(false, r) - matrix[level].rank(false,\
+    \ l);\n            const bool f = cnt <= k;\n            if(f) {\n           \
+    \     ret |= T(1) << level;\n                k -= cnt;\n            }\n      \
+    \      std::tie(l, r) = succ(f, l, r, level);\n        }\n        return ret;\n\
+    \    }\n    constexpr inline T kth_max(const int l, const int r, const int k)\
+    \ const noexcept{ return kth_min(l, r, r - l - k - 1); }\n    constexpr inline\
+    \ int range_freq(int l, int r, const T upper) const noexcept {\n        int ret\
+    \ = 0;\n        for(const auto level: std::views::iota(0, log) | std::views::reverse)\
+    \ {\n            const bool f = (upper >> level) & 1;\n            if(f) {\n \
+    \               ret += matrix[level].rank(false, r) - matrix[level].rank(false,\
     \ l);\n            }\n            std::tie(l, r) = succ(f, l, r, level);\n   \
-    \     }\n        return ret;\n    }\n    int range_freq(const int l, const int\
-    \ r, const T lower, const T upper) const { return range_freq(l, r, upper) - range_freq(l,\
-    \ r, lower); }\n    T prev(const int l, const int r, const T upper) const {\n\t\
-    \tconst int cnt = range_freq(l, r, upper);\n\t\treturn cnt == 0 ? (T)-1 : kth_min(l,\
-    \ r, cnt - 1);\n\t}\n    T next(const int l, const int r, const T lower) const\
+    \     }\n        return ret;\n    }\n    constexpr inline int range_freq(const\
+    \ int l, const int r, const T lower, const T upper) const noexcept { return range_freq(l,\
+    \ r, upper) - range_freq(l, r, lower); }\n    constexpr inline T prev(const int\
+    \ l, const int r, const T upper) const noexcept {\n\t\tconst int cnt = range_freq(l,\
+    \ r, upper);\n\t\treturn cnt == 0 ? (T)-1 : kth_min(l, r, cnt - 1);\n\t}\n   \
+    \ constexpr inline T next(const int l, const int r, const T lower) const noexcept\
     \ {\n\t\tconst int cnt = range_freq(l, r, lower);\n\t\treturn cnt == r - l ? (T)-1\
-    \ : kth_min(l, r, cnt);\n\t}\n};\n\ntemplate <class T, int log = 20> struct WaveletMatrix\
-    \ {\nprivate:\n    WMBeta<int, log> mat;\n    std::vector<T> ys;\n    inline int\
-    \ get(const T x) const { return std::lower_bound(ys.cbegin(), ys.cend(), x) -\
-    \ ys.cbegin(); }\n    T access(const int k) const { return ys[mat[k]]; }\npublic:\n\
-    \    WaveletMatrix(const std::vector<T> v): ys(v) {\n        std::sort(ys.begin(),\
-    \ ys.end());\n        ys.erase(std::unique(ys.begin(), ys.end()), ys.end());\n\
-    \        std::vector<int> t(v.size());\n        for(int i = 0; auto &el: v) {\n\
-    \            t[i++] = get(el);\n        }\n        mat = WMBeta<int, log>(t);\n\
-    \    }\n    T operator[](const int k) noexcept { return access(k); }\n    int\
-    \ rank(const int r, const T x) const {\n        const auto pos = get(x);\n   \
-    \     if(pos == std::ssize(ys) || ys[pos] != x) {\n            return 0;\n   \
-    \     }\n        return mat.rank(pos, r);\n    }\n    int rank(const int l, const\
-    \ int r, const T x) const { return rank(r, x) - rank(l, x); }\n    T kth_min(const\
-    \ int l, const int r, const int k) const { return ys[mat.kth_min(l, r, k)]; }\n\
-    \    T kth_max(const int l, const int r, const int k) const { return ys[mat.kth_max(l,\
-    \ r, k)]; }\n    int range_freq(const int l, const int r, const T upper) const\
-    \ { return mat.range_freq(l, r, get(upper)); }\n    int range_freq(const int l,\
-    \ const int r, const T lower, const T upper) const { return mat.range_freq(l,\
-    \ r, get(lower), get(upper)); }\n    T prev(const int l, const int r, const T\
-    \ upper) {\n        const auto ret = mat.prev(l, r, get(upper));\n        return\
-    \ ret == -1 ? (T)-1 : ys[ret];\n    }\n    T next(const int l, const int r, const\
-    \ T lower) {\n        const auto ret = mat.next(l, r, get(lower));\n        return\
-    \ ret == -1 ? (T)-1 : ys[ret];\n    }\n};\n/**\n * @brief Wavelet Matrix\n * @see\
-    \ https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n */"
+    \ : kth_min(l, r, cnt);\n\t}\n};\n}\n\ntemplate <class T, int log = 20> struct\
+    \ WaveletMatrix {\nprivate:\n    internal::WMBeta<int, log> mat;\n    std::vector<T>\
+    \ ys;\n    constexpr inline int get(const T x) const noexcept { return std::ranges::lower_bound(ys,\
+    \ x) - ys.cbegin(); }\n    constexpr inline T access(const int k) const noexcept\
+    \ { return ys[mat[k]]; }\npublic:\n    WaveletMatrix(const std::vector<T> v):\
+    \ ys(v) {\n        std::sort(ys.begin(), ys.end());\n        const auto it = std::ranges::unique(ys);\n\
+    \        ys.erase(it.begin(), it.end());\n        std::vector<int> t(v.size());\n\
+    \        for(int i = 0; auto &el: v) {\n            t[i++] = get(el);\n      \
+    \  }\n        mat = internal::WMBeta<int, log>(t);\n    }\n    constexpr inline\
+    \ T operator[](const int k) const noexcept { return access(k); }\n    constexpr\
+    \ inline int rank(const int r, const T x) const noexcept {\n        const auto\
+    \ pos = get(x);\n        if(pos == std::ssize(ys) || ys[pos] != x) {\n       \
+    \     return 0;\n        }\n        return mat.rank(pos, r);\n    }\n    constexpr\
+    \ inline int rank(const int l, const int r, const T x) const noexcept { return\
+    \ rank(r, x) - rank(l, x); }\n    constexpr inline T kth_min(const int l, const\
+    \ int r, const int k) const noexcept { return ys[mat.kth_min(l, r, k)]; }\n  \
+    \  constexpr inline T kth_max(const int l, const int r, const int k) const noexcept\
+    \ { return ys[mat.kth_max(l, r, k)]; }\n    constexpr inline int range_freq(const\
+    \ int l, const int r, const T upper) const noexcept { return mat.range_freq(l,\
+    \ r, get(upper)); }\n    constexpr inline int range_freq(const int l, const int\
+    \ r, const T lower, const T upper) const noexcept { return mat.range_freq(l, r,\
+    \ get(lower), get(upper)); }\n    constexpr inline T prev(const int l, const int\
+    \ r, const T upper) noexcept {\n        const auto ret = mat.prev(l, r, get(upper));\n\
+    \        return ret == -1 ? (T)-1 : ys[ret];\n    }\n    constexpr inline T next(const\
+    \ int l, const int r, const T lower) noexcept {\n        const auto ret = mat.next(l,\
+    \ r, get(lower));\n        return ret == -1 ? (T)-1 : ys[ret];\n    }\n};\n}\n\
+    /**\n * @brief Wavelet Matrix\n * @see https://ei1333.github.io/library/structure/wavelet/wavelet-matrix.hpp\n\
+    \ */"
   dependsOn: []
   isVerificationFile: false
   path: C++/ds/WM.hpp
   requiredBy: []
-  timestamp: '2024-03-10 20:33:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-06-06 22:43:06+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/wm.test.cpp
   - test/wm2.test.cpp
