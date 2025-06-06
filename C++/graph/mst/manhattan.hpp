@@ -3,33 +3,36 @@
 #include <cassert>
 #include <map>
 #include <numeric>
+#include <ranges>
 #include "C++/graph/mst/MST.hpp"
-template <class T> inline std::vector<edge> manhattan(std::vector<T> x, std::vector<T> y) {
-    assert(x.size() == y.size());
-    std::vector<edge> res;
-    std::vector<int> id(x.size());
+namespace man {
+template <class T> inline std::vector<edge> manhattan(std::vector<T> x, std::vector<T> y) noexcept {
+    assert(std::ssize(x) == std::ssize(y));
+    std::vector<edge> ret;
+    std::vector<int> id(std::ssize(x));
     std::iota(id.begin(), id.end(), 0);
-    for(int s = 0; s < 2; ++s) {
-        for(int t = 0; t < 2; ++t) {
-            std::sort(id.begin(), id.end(), [&](const int i, const int j){ return x[i] + y[i] < x[j] + y[j]; });
+    for([[maybe_unused]] const auto _: std::views::iota(0, 2)) {
+        for([[maybe_unused]] const auto _: std::views::iota(0, 2)) {
+            std::ranges::sort(id, [&](const int i, const int j) -> bool { return x[i] + y[i] < x[j] + y[j]; });
             std::map<T, int> idx;
             for(const auto i: id) {
                 for(auto it = idx.lower_bound(-y[i]); it != idx.end(); it = idx.erase(it)) {
-                    const int j = it -> second;
+                    const int j = it->second;
                     if(x[i] - x[j] < y[i] - y[j]) {
                         break;
                     }
-                    res.emplace_back(i, j, -1, std::abs(x[i] - x[j]) + std::abs(y[i] - y[j]));
+                    ret.emplace_back(i, j, -1, std::abs(x[i] - x[j]) + std::abs(y[i] - y[j]));
                 }
                 idx[-y[i]] = i;
             }
             x.swap(y);
         }
-        for(size_t i = 0; i < x.size(); ++i) {
+        for(const auto i: std::views::iota(0, std::ssize(x))) {
             x[i] *= -1;
         }
     }
-    return res;
+    return ret;
+}
 }
 
 /**

@@ -4,6 +4,8 @@
 
 #include <cassert>
 #include <algorithm>
+namespace man {
+namespace internal {
 template <bool is_min = true> struct SkewHeap {
     struct Node {
         long long key, lazy;
@@ -55,6 +57,8 @@ public:
         return t;
     }
 };
+}
+}
 
 /**
  * @brief SkewHeap

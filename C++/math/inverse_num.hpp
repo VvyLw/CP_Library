@@ -2,23 +2,26 @@
 
 #include <algorithm>
 #include "C++/ds/fwtree/FenwickTree.hpp"
-template <class T> inline long long inv_num(const std::vector<T> &a) {
-    std::vector<std::pair<T, int>> p(a.size());
-    for(size_t i = 0; i < a.size(); ++i) {
+namespace man {
+template <class T> constexpr inline int64_t inv_num(const std::vector<T> &a) noexcept {
+    const int n = std::ssize(a);
+    std::vector<std::pair<T, int>> p(n);
+    for(const auto i: std::views::iota(0, n)) {
         p[i] = {a[i], i};
     }
-    std::sort(p.begin(), p.end());
-    std::vector<int> id(a.size());
-    for(size_t i = 0; i < a.size(); ++i) {
+    std::ranges::sort(p);
+    std::vector<int> id(n);
+    for(const auto i: std::views::iota(0, n)) {
         id[p[i].second] = i;
     }
-    FenwickTree<T> bit(a.size());
-    long long res = 0;
-    for(size_t i = 0; i < a.size(); ++i) {
-        res += i - bit.sum(id[i]);
+    FenwickTree<T> bit(n);
+    int64_t ret = 0;
+    for(const auto i: std::views::iota(0, n)) {
+        ret += i - bit.sum(id[i]);
         bit.add(id[i], 1);
     }
-    return res;
+    return ret;
+}
 }
 
 /**

@@ -4,18 +4,20 @@
 #include <vector>
 #include <algorithm>
 #include <numeric>
+#include <ranges>
+namespace man {
 struct SuffixArray: std::vector<int> {
 private:
-    std::vector<int> sa_is(const std::vector<int> &s) const {
-    	const int n = s.size();
-    	std::vector<int> ret(n), is_s(n), is_lms(n);;
+    inline std::vector<int> sa_is(const std::vector<int> &s) const noexcept {
+    	const int n = std::ssize(s);
+    	std::vector<int> ret(n), is_s(n), is_lms(n);
     	int m = 0;
-    	for(int i = n - 2; i >= 0; i--) {
+    	for(const auto i: std::views::iota(0, n - 1) | std::views::reverse) {
       		is_s[i] = (s[i] > s[i + 1]) || (s[i] == s[i + 1] && is_s[i + 1]);
       		m += is_lms[i + 1] = is_s[i] && !is_s[i + 1];
     	}
     	const auto induced_sort = [&](const std::vector<int> &lms) -> void {
-      		const int upper = *std::max_element(s.begin(), s.end());
+      		const int upper = *std::ranges::max_element(s);
       		std::vector<int> l(upper + 2), r(upper + 2);
 			for(const auto &v: s) {
 				++l[v + 1];
@@ -23,8 +25,8 @@ private:
 			}
 			std::partial_sum(l.begin(), l.end(), l.begin());
 			std::partial_sum(r.begin(), r.end(), r.begin());
-			ret.assign(ret.size(), -1);
-			for(int i = std::ssize(lms); --i >= 0;) {
+			ret.assign(std::ssize(ret), -1);
+			for(const auto i: std::views::iota(0, std::ssize(lms)) | std::views::reverse) {
 				ret[--r[s[lms[i]]]] = lms[i];
 			}
 			for(const auto &v: ret) {
@@ -32,7 +34,7 @@ private:
 					ret[l[s[v - 1]]++] = v - 1;
 				}
 			}
-			r.assign(r.size(), 0);
+			r.assign(std::ssize(r), 0);
 			for(const auto &v: s) {
 				++r[v];
 			}
@@ -45,14 +47,14 @@ private:
 		};
 		std::vector<int> lms, new_lms;
 		lms.reserve(m);
-		for(int i = 0; ++i < n;) {
+		for(const auto i: std::views::iota(1, n)) {
 			if(is_lms[i]) {
 				lms.emplace_back(i);
 			}
 		}
 		induced_sort(lms);
 		new_lms.reserve(m);
-		for(int i = 0; i < n; ++i) {
+		for(const auto i: std::views::iota(0, n)) {
 			if(!is_s[ret[i]] && ret[i] > 0 && is_s[ret[i] - 1]) {
 				new_lms.emplace_back(ret[i]);
 			}
@@ -61,7 +63,7 @@ private:
 			if(s[a++] != s[b++]) {
 				return false;
 			}
-			while(1) {
+			while(true) {
 				if(s[a] != s[b]) {
 					return false;
 				}
@@ -73,7 +75,7 @@ private:
 		};
 		int rank = 0;
 		ret[n - 1] = 0;
-		for(int i = 0; ++i < m;) {
+		for(const auto i: std::views::iota(1, m)) {
 			if(!same(new_lms[i - 1], new_lms[i])) {
 				++rank;
 			}
@@ -81,11 +83,11 @@ private:
 		}
 		if(rank + 1 < m) {
 			std::vector<int> new_s(m);
-			for(int i = 0; i < m; ++i) {
+			for(const auto i: std::views::iota(0, m)) {
 				new_s[i] = ret[lms[i]];
 			}
 			const auto lms_sa = sa_is(new_s);
-			for(int i = 0; i < m; ++i) {
+			for(const auto i: std::views::iota(0, m)) {
 				new_lms[i] = lms[lms_sa[i]];
 			}
 		}
@@ -95,34 +97,35 @@ private:
 public:
 	std::string vs;
 	explicit SuffixArray(const std::string &vs, bool compress = false): vs(vs) {
-		std::vector<int> new_vs(vs.size() + 1);
+		std::vector<int> new_vs(std::ssize(vs) + 1);
 		if(compress) {
             std::string xs = vs;
-            std::sort(xs.begin(), xs.end());
-            xs.erase(std::unique(xs.begin(), xs.end()), xs.end());
-            for(size_t i = 0; i < vs.size(); ++i) {
-                new_vs[i] = std::lower_bound(xs.begin(), xs.end(), vs[i]) - xs.begin() + 1;
+            std::ranges::sort(xs);
+			const auto it = std::ranges::unique(xs);
+            xs.erase(it.begin(), it.end());
+            for(const auto i: std::views::iota(0, std::ssize(vs))) {
+                new_vs[i] = std::ranges::lower_bound(xs, vs[i]) - xs.cbegin() + 1;
             }
 		} else {
-            const auto d = *std::min_element(vs.begin(), vs.end());
-            for(size_t i = 0; i < vs.size(); ++i) {
+            const auto d = *std::ranges::min_element(vs);
+            for(const auto i: std::views::iota(0, std::ssize(vs))) {
                 new_vs[i] = vs[i] - d + 1;
             }
 		}
 		const auto ret = sa_is(new_vs);
-		assign(ret.begin(), ret.end());
+		assign(ret.cbegin(), ret.cend());
 	}
-	void output() const {
-		for(size_t i = 0; i < size(); ++i) {
+	inline void output() const noexcept {
+		for(const auto i: std::views::iota(0U, size())) {
             std::cout << i << ":[" << (*this)[i] << "]";
-            for(size_t j = (*this)[i]; j < vs.size(); ++j) {
+            for(const auto j: std::views::iota((*this)[i], std::ssize(vs))) {
                 std::cout << " " << vs[j];
             }
             std::cout << "\n";
 		}
 	}
-	bool lt_substr(const std::string &t, int si = 0, int ti = 0) {
-		const int sn = vs.size(), tn = t.size();
+	constexpr inline bool lt_substr(const std::string &t, int si = 0, int ti = 0) noexcept {
+		const int sn = std::ssize(vs), tn = std::ssize(t);
 		while(si < sn && ti < tn) {
             if(vs[si] < t[ti]) {
                 return true;
@@ -134,7 +137,7 @@ public:
 		}
 		return si >= sn && ti < tn;
 	}
-	int lower_bound(const std::string &t) {
+	inline int lower_bound(const std::string &t) noexcept {
 		int ng = 0, ok = size();
 		while(ok - ng > 1) {
             const int mid = (ok + ng) / 2;
@@ -142,7 +145,7 @@ public:
 		}
 		return ok;
 	}
-	std::pair<int, int> equal_range(std::string t) {
+	inline std::pair<int, int> equal_range(std::string t) noexcept {
 		const int low = lower_bound(t);
 		int ng = low - 1, ok = size();
 		t.back()++;
@@ -153,14 +156,14 @@ public:
 		t.back()--;
 		return {low, ok};
 	}
-	std::vector<int> lcp_array() const {
+	inline std::vector<int> lcp_array() const noexcept {
 		const int n = size() - 1;
 		std::vector<int> lcp(n + 1), rank(n + 1);
-		for(int i = 0; i <= n; ++i) {
+		for(const auto i: std::views::iota(0, n + 1)) {
 		    rank[(*this)[i]] = i;
 		}
 		int h = 0;
-		for(int i = 0; i <= n; ++i) {
+		for(const auto i: std::views::iota(0, n + 1)) {
             if(rank[i] < n) {
                 const int j = (*this)[rank[i] + 1];
                 for(; j + h < n && i + h < n; ++h) {
@@ -177,6 +180,7 @@ public:
 		return lcp;
 	}
 };
+}
 
 /**
  * @brief Suffix Array

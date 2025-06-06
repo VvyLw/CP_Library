@@ -1,63 +1,66 @@
 #include <iostream>
 #include <array>
 #include <algorithm>
+#include <ranges>
 #ifndef TEMPLATE
-template <class T> inline T sqr(const T x){ return x * x; }
-template <class T> inline T Mod(T x, const T m) {
+namespace man {
+template <class T> constexpr inline T sqr(const T x) noexcept { return x * x; }
+template <class T> constexpr inline T mod(T x, const T m) noexcept {
     x %= m;
     return x < 0 ? x + m : x;
 }
-#else
-using namespace zia_qu;
+}
 #endif
+namespace man {
 template <int lim> struct ModPrime {
 private:
-    const int64_t mod;
+    const int64_t m;
 	std::array<int64_t, lim> f{}, rf{};
-	const int len = std::min(mod, (int64_t) lim);
-    int64_t inv(int64_t x) {
-        int64_t res = 1, k = mod - 2;
-		while(k) {
+	const int len = std::min(m, (int64_t) lim);
+    constexpr inline int64_t inv(int64_t x) noexcept {
+        int64_t ret = 1, k = m - 2;
+		while(k > 0) {
 			if(k & 1) {
-				res = Mod(res * x, mod);
+				ret = mod(ret * x, m);
 			}
-			x = Mod(sqr(x), mod);
+			x = mod(sqr(x), m);
 			k >>= 1;
 		}
-		return res;
+		return ret;
     }
 public:
-    ModPrime(const int64_t mod_): mod(mod_) {
+    ModPrime(const int64_t mod_): m(mod_) {
 		f[0] = 1;
-		for(int i = 0; ++i < len;) {
-			f[i] = Mod(f[i - 1] * i, mod);
+		for(const auto i: std::views::iota(1, len)) {
+			f[i] = mod(f[i - 1] * i, m);
 		}
 		rf[len - 1] = inv(f[len - 1]);
-		for(int i = len; --i > 0;) {
-			rf[i - 1] = Mod(rf[i] * i, mod);
+		for(const auto i: std::views::iota(1, len) | std::views::reverse) {
+			rf[i - 1] = mod(rf[i] * i, m);
 		}
     }
-    int64_t C(const int n, const int k) const {
+    constexpr inline int64_t C(const int n, const int k) const noexcept {
 		if(k < 0 || n < k) {
 			return 0;
 		}
-		const int64_t a = f[n], b = rf[n - k], c = rf[k], bc = Mod(b * c, mod);
-		return Mod(a * bc, mod);
+		const int64_t a = f[n], b = rf[n - k], c = rf[k], bc = mod(b * c, m);
+		return mod(a * bc, m);
 	}
-	int64_t P(const int n, const int k) const {
-		if (k < 0 || n < k) {
+	constexpr inline int64_t P(const int n, const int k) const noexcept {
+		if(k < 0 || n < k) {
 			return 0;
 		}
 		const int64_t a = f[n], b = rf[n - k];
-		return Mod(a * b, mod);
+		return mod(a * b, m);
 	}
-	int64_t H(const int n, const int k) const {
-		if (n == 0 && k == 0) {
+	constexpr inline int64_t H(const int n, const int k) const noexcept {
+		if(n == 0 && k == 0) {
 			return 1;
 		}
 		return C(n + k - 1, k);
 	}
 };
+}
 /**
  * @brief ModPrime
  */

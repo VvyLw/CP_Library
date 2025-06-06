@@ -3,20 +3,22 @@
 #include <cassert>
 #include <vector>
 #include <algorithm>
-std::vector<int> manacher(std::string s, const bool calc_even = true) {
-    int n = s.size();
+#include <ranges>
+namespace man {
+inline std::vector<int> manacher(std::string s, const bool calc_even = true) noexcept {
+    int n = std::ssize(s);
     if(calc_even) {
         assert(n > 0);
         s.resize(2 * n - 1);
-        for(int i = n; --i >= 0;) {
+        for(const auto i: std::views::iota(0, n) | std::views::reverse) {
             s[2 * i] = s[i];
         }
-        const auto d = *std::min_element(s.begin(), s.end());
-        for(int i = 0; i < n - 1; ++i) {
+        const auto d = *std::ranges::min_element(s);
+        for(const auto i: std::views::iota(0, n - 1)) {
             s[2 * i + 1] = d;
         }
     }
-    n = s.size();
+    n = std::ssize(s);
     std::vector<int> rad(n);
     for(int i = 0, j = 0; i < n;) {
         while(i - j >= 0 && i + j < n && s[i - j] == s[i + j]) {
@@ -36,11 +38,13 @@ std::vector<int> manacher(std::string s, const bool calc_even = true) {
                 rad[i]--;
             }
         }
-    }
-    else {
-        for(auto &x: rad) x = 2 * x - 1;
+    } else {
+        for(auto &x: rad) {
+            x = 2 * x - 1;
+        }
     }
     return rad;
+}
 }
 
 /**

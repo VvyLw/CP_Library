@@ -3,6 +3,7 @@
 #include <vector>
 #include <cmath>
 #include <ranges>
+namespace man {
 template <class T> requires std::ranges::random_access_range<T> constexpr inline std::vector<std::vector<int>> doubling(const T &a, const int64_t k) noexcept {
     const int z = std::ceil(std::log2(k)), n = a.size();
     std::vector dbl(z, std::vector(n, 0));
@@ -15,6 +16,7 @@ template <class T> requires std::ranges::random_access_range<T> constexpr inline
         }
     }
     return dbl;
+}
 }
 
 /**

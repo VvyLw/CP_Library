@@ -1,18 +1,20 @@
 #pragma once
-template <class T> inline T euler_phi(T n) {
-	T res = n;
+namespace man {
+template <class T> constexpr inline T euler_phi(T n) noexcept {
+	T ret = n;
 	for(T i = 2; i * i <= n; ++i) {
 	    if(n % i == 0) {
-			res -= res / i;
+			ret -= ret / i;
 			while(n % i == 0) {
 				n /= i;
 			}
 		}
 	}
 	if(n > 1) {
-		res -= res / n;
+		ret -= ret / n;
 	}
-	return res;
+	return ret;
+}
 }
 
 /**

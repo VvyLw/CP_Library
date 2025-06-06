@@ -3,8 +3,8 @@
 #include <vector>
 #include "C++/graph/edge.hpp"
 struct MST {
-    std::vector<edge> tree;
-    long long cost;
+    std::vector<man::edge> tree;
+    int64_t cost;
 };
 
 /**

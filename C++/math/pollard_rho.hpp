@@ -1,11 +1,9 @@
 #pragma once
 
 #include <vector>
+namespace man {
 constexpr inline bool miller(const uint64_t n) noexcept;
 namespace internal {
-#ifndef TEMPLATE
-typedef __uint128_t u128;
-#endif
 constexpr inline uint bsf(const uint64_t n) noexcept { return __builtin_ctzll(n); }
 constexpr inline uint64_t gcd(uint64_t a, uint64_t b) noexcept {
     if(a == 0) {
@@ -27,12 +25,12 @@ constexpr inline uint64_t gcd(uint64_t a, uint64_t b) noexcept {
 }
 constexpr inline uint64_t mod_pow(const uint64_t a, uint64_t b, const uint64_t mod) noexcept {
     uint64_t r = 1;
-    u128 x = a % mod;
+    __uint128_t x = a % mod;
     while(b > 0) {
         if(b & 1) {
-            r = (u128(r) * x) % mod;
+            r = (__uint128_t(r) * x) % mod;
         }
-        x = (u128(x) * x) % mod;
+        x = (__uint128_t(x) * x) % mod;
         b >>= 1;
     }
     return r;
@@ -45,7 +43,7 @@ constexpr inline uint64_t find(const uint64_t n) noexcept {
         return 2;
     }
     int st = 0;
-    const auto f = [&](const uint64_t x) -> uint64_t { return (u128(x) * x + st) % n; };
+    const auto f = [&](const uint64_t x) -> uint64_t { return (__uint128_t(x) * x + st) % n; };
     while(true) {
         st++;
         uint64_t x = st, y = f(x);
@@ -104,6 +102,7 @@ inline std::vector<uint64_t> rho(const uint64_t n) noexcept {
     const std::vector<uint64_t> ri = rho(n / x);
     le.insert(le.end(), ri.begin(), ri.end());
     return le;
+}
 }
 /**
  * @brief Pollard's Rho

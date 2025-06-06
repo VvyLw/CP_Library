@@ -2,25 +2,32 @@
 
 #include "C++/math/euler_phi.hpp"
 #ifndef TEMPLATE
-namespace zia_qu {
-template <class T> inline T pow(T a, T b, const T mod=0) {
-	T res=1;
-	if(mod) {
-		res%=mod;
-		a%=mod;
+namespace man {
+template <class T> constexpr inline T pow(T a, T b, const T mod = 0) noexcept {
+	T ret = 1;
+	if(mod != 0) {
+		ret %= mod;
+		a %= mod;
 	}
-	while(b>0) {
-		if(b&1) res*=a;
-		if(mod) res%=mod;
-		a*=a;
-		if(mod) a%=mod;
-		b>>=1;
+	while(b > 0) {
+		if(b & 1) {
+			ret *= a;
+		}
+		if(mod != 0) {
+			ret %= mod;
+		}
+		a *= a;
+		if(mod) {
+			a %= mod;
+		}
+		b >>= 1;
 	}
-	return res;
+	return ret;
 }
 }
 #endif
-template <class T> inline T tetration(const T a, const T b, const T m) {
+namespace man {
+template <class T> constexpr inline T tetration(const T a, const T b, const T m) noexcept {
     if(m == 1) {
         return 0;
     }
@@ -34,14 +41,15 @@ template <class T> inline T tetration(const T a, const T b, const T m) {
         return a % m;
     }
     if(b == 2) {
-        return zia_qu::pow(a, a, m);
+        return pow(a, a, m);
     }
     const auto phi = euler_phi(m);
     auto tmp = tetration(a, b - 1, phi);
     if(!tmp) {
         tmp += phi;
     }
-    return zia_qu::pow(a, tmp, m);
+    return pow(a, tmp, m);
+}
 }
 
 /**

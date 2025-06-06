@@ -1,6 +1,7 @@
 #pragma once
 
 #include "C++/ds/fwtree/FenwickTree.hpp"
+namespace man {
 template <class T> struct RangeBIT {
 private:
     FenwickTree<T> a, b;
@@ -12,18 +13,19 @@ public:
             add(i, i + 1, v[i]);
         }
     }
-    void add(const int l, const int r, const T &x) {
+    constexpr inline void add(const int l, const int r, const T &x) noexcept {
         a.add(l, x);
         a.add(r, -x);
         b.add(l, x * (1 - l));
         b.add(r, x * (r - 1));
     }
-    inline T operator[](const int i) const { return sum(i, i + 1); }
-    inline T sum(int l, int r) {
+    constexpr inline T operator[](const int i) const noexcept { return sum(i, i + 1); }
+    constexpr inline T sum(int l, int r) noexcept {
         l--, r--;
         return a.sum(r) * r + b.sum(r) - a.sum(l) * l - b.sum(l);
     }
 };
+}
 
 /**
  * @brief Range BIT

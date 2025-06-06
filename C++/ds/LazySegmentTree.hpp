@@ -3,7 +3,12 @@
 #include <ostream>
 #include <cassert>
 #include <vector>
+#include <algorithm>
 #include <functional>
+#include <cmath>
+#include <limits>
+#include <ranges>
+namespace man {
 template <class T, class U> struct LazySegTree {
 private:
     using F = std::function<T(T, T)>;
@@ -42,41 +47,41 @@ public:
         data.assign(2 * sz, e);
         lazy.assign(2 * sz, id);
     }
-    LazySegTree(const std::vector<T> &v, const F &f, const M &map, const C &comp, const T &e, const U &id): LazySegTree(v.size(), f, map, comp, e, id){ build(v); }
+    LazySegTree(const std::vector<T> &v, const F &f, const M &map, const C &comp, const T &e, const U &id): LazySegTree(std::ssize(v), f, map, comp, e, id){ build(v); }
     void build(const std::vector<T> &v) {
-        assert(n == (int) v.size());
-        for(int k = 0; k < n; ++k) {
+        assert(n == std::ssize(v));
+        for(const auto k: std::views::iota(0, n)) {
             data[k + sz] = v[k];
         }
-        for(int k = sz; --k > 0;) {
+        for(const auto k: std::views::iota(1, sz) | std::views::reverse) {
             update(k);
         }
     }
     void set(int k, const T &x) {
         k += sz;
-        for(int i = h; i > 0; i--) {
+        for(const auto i: std::views::iota(1) | std::views::take(h) | std::views::reverse) {
             propagate(k >> i);
         }
         data[k] = x;
-        for(int i = 0; ++i <= h;) {
+        for(const auto i: std::views::iota(1) | std::views::take(h)) {
             update(k >> i);
         }
     }
-    T &operator[](int k) {
+    inline T &operator[](int k) noexcept {
         k += sz;
-        for(int i = h; i > 0; i--) {
+        for(const auto i: std::views::iota(1) | std::views::take(h) | std::views::reverse) {
             propagate(k >> i);
         }
         return data[k];
     }
-    T const& operator[](const int k) const { return data[k + sz]; }
-    T query(int l, int r) {
+    inline T const& operator[](const int k) const noexcept { return data[k + sz]; }
+    inline T query(int l, int r) noexcept {
         if(l >= r) {
             return e;
         }
         l += sz;
         r += sz;
-        for(int i = h; i > 0; i--) {
+        for(const auto i: std::views::iota(1) | std::views::take(h) | std::views::reverse) {
             if(((l >> i) << i) != l) {
                 propagate(l >> i);
             }
@@ -95,24 +100,24 @@ public:
         }
         return f(L, R);
     }
-    T alle() const { return data[1]; }
-    void apply(int k, const U &x) {
+    constexpr inline T all() const noexcept { return data[1]; }
+    constexpr inline void apply(int k, const U &x) noexcept {
         k += sz;
-        for(int i = h; i > 0; i--) {
+        for(const auto i: std::views::iota(1) | std::views::take(h) | std::views::reverse) {
             propagate(k >> i);
         }
         data[k] = map(data[k], x);
-        for(int i = 0; ++i <= h;) {
+        for(const auto i: std::views::iota(1) | std::views::take(h)) {
             update(k >> i);
         }
     }
-    void apply(int l, int r, const U &x) {
+    constexpr inline void apply(int l, int r, const U &x) noexcept {
         if(l >= r) {
             return;
         }
         l += sz;
         r += sz;
-        for(int i = h; i > 0; i--) {
+        for(const auto i: std::views::iota(1) | std::views::take(h) | std::views::reverse) {
             if(((l >> i) << i) != l) {
                 propagate(l >> i);
             }
@@ -130,7 +135,7 @@ public:
             }
         }
         l = l2, r = r2;
-        for(int i = 0; ++i <= h;) {
+        for(const auto i: std::views::iota(1) | std::views::take(h)) {
             if(((l >> i) << i) != l) {
                 update(l >> i);
             }
@@ -139,13 +144,13 @@ public:
             }
         }
     }
-    inline int size() const { return n; }
-    template <class Boolean> int find_first(int l, const Boolean &fn) {
+    constexpr inline int size() const noexcept { return n; }
+    template <class Boolean = bool> constexpr inline int find_first(int l, const Boolean &fn) noexcept {
         if(l >= n) {
             return n;
         }
         l += sz;
-        for(int i = h; i > 0; i--) {
+        for(const auto i: std::views::iota(1) | std::views::take(h) | std::views::reverse) {
             propagate(l >> i);
         }
         T sum = e;
@@ -169,12 +174,12 @@ public:
         } while((l & -l) != l);
         return n;
     }
-    template <class Boolean> int find_last(int r, const Boolean &fn) {
+    template <class Boolean = bool> constexpr inline int find_last(int r, const Boolean &fn) noexcept {
         if(r <= 0) {
             return -1;
         }
         r += sz;
-        for(int i = h; i > 0; i--) {
+        for(const auto i: std::views::iota(1) | std::views::take(h) | std::views::reverse) {
             propagate((r - 1) >> i);
         }
         T sum = e;
@@ -199,8 +204,8 @@ public:
         } while((r & -r) != r);
         return -1;
     }
-    void clear(){ std::fill(data.cbegin(), data.cend(), e); }
-    friend std::ostream &operator<<(std::ostream &os, const LazySegTree &seg) {
+    constexpr inline void clear() noexcept { std::ranges::fill(data, e); }
+    inline friend std::ostream &operator<<(std::ostream &os, const LazySegTree &seg) noexcept {
         os << seg[0];
         for(int i = 0; ++i < seg.size();) {
             os << ' ' << seg[i];
@@ -208,10 +213,6 @@ public:
         return os;
     }
 };
-
-
-#include <cmath>
-#include <limits>
 
 template <class T> struct zwei {
     T first, second;
@@ -232,9 +233,9 @@ template <class T> struct RAMN: LazySegTree<T, T> {
     RAMN(const std::vector<T> &v): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T a, const T b){ return a + b; }, [](const T a, const T b){ return a + b; }, std::numeric_limits<T>::max(), 0){}
 };
 template <class T> struct RASM: LazySegTree<zwei<T>, T> {
-    RASM(const std::vector<T> &v): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first + b.first, a.second + b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.first + a.second * b, a.second); }, [](const T a, const T b){ return a + b; }, zwei<T>(0, 0), 0) {
-        std::vector<zwei<T>> w(v.size());
-        for(size_t i = 0; i < v.size(); ++i) {
+    RASM(const std::vector<T> &v): LazySegTree<zwei<T>, T>(std::ssize(v), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first + b.first, a.second + b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.first + a.second * b, a.second); }, [](const T a, const T b){ return a + b; }, zwei<T>(0, 0), 0) {
+        std::vector<zwei<T>> w(std::ssize(v));
+        for(const auto i: std::views::iota(0, std::ssize(v))) {
             w[i] = zwei<T>(v[i], 1);
         }
         LazySegTree<zwei<T>, T>::build(w);
@@ -247,14 +248,15 @@ template <class T> struct RUMN: LazySegTree<T, T> {
     RUMN(const std::vector<T> &v): LazySegTree<T, T>(v, [](const T a, const T b){ return std::min(a, b); }, [](const T, const T b){ return b; }, [](const T, const T b){ return b; }, std::numeric_limits<T>::max(), std::numeric_limits<T>::max()){}
 };
 template <class T> struct RUSM: LazySegTree<zwei<T>, T> {
-    RUSM(const std::vector<T> &v): LazySegTree<zwei<T>, T>(v.size(), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first + b.first, a.second + b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.second * b, a.second); }, [](const T a, const T b){ return b; }, zwei<T>(0, 0), std::numeric_limits<T>::min()) {
-        std::vector<zwei<T>> w(v.size());
-        for(size_t i = 0; i < v.size(); ++i) {
+    RUSM(const std::vector<T> &v): LazySegTree<zwei<T>, T>(std::ssize(v), [](const zwei<T> a, const zwei<T> b){ return zwei<T>(a.first + b.first, a.second + b.second); }, [](const zwei<T> a, const T b){ return zwei<T>(a.second * b, a.second); }, [](const T a, const T b){ return b; }, zwei<T>(0, 0), std::numeric_limits<T>::min()) {
+        std::vector<zwei<T>> w(std::ssize(v));
+        for(const auto i: std::views::iota(0, std::ssize(v))) {
             w[i] = zwei<T>(v[i], 1);
         }
         LazySegTree<zwei<T>, T>::build(w);
     }
 };
+}
 
 /**
  * @brief 遅延セグ木

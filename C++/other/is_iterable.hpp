@@ -2,6 +2,7 @@
 
 #include <type_traits>
 #include <concepts>
+#include <iterator>
 
 template <class T> concept is_iterable = requires(const T &a) {
     { std::begin(a) } -> std::same_as<typename std::remove_reference<decltype(std::begin(a))>::type>;

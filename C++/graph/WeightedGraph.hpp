@@ -2,6 +2,7 @@
 
 #include "C++/graph/Graph.hpp"
 #include "C++/graph/ShortestPath.hpp"
+namespace man {
 template <bool undirected = true> struct w_graph: graph<undirected> {
 protected:
     using graph<undirected>::indexed;
@@ -14,7 +15,7 @@ public:
     using graph<undirected>::dist;
     using graph<undirected>::t_sort;
     using graph<undirected>::cycle;
-    void add(int a, int b, const long long cost) {
+    inline void add(int a, int b, const int64_t cost) noexcept {
         a -= indexed, b -= indexed;
         (*this)[a].emplace_back(a, b, id, cost);
         edges.emplace_back(a, b, id++, cost);
@@ -23,21 +24,21 @@ public:
             edges.emplace_back(b, a, id++, cost);
         }
     }
-    void input(const int m) {
-        for(int i = 0; i < m; ++i) {
+    inline void input(const int m) noexcept {
+        for([[maybe_unused]] const auto _: std::views::iota(0, m)) {
             int a, b;
-            long long c;
+            int64_t c;
             std::cin >> a >> b >> c;
             add(a, b, c);
         }
     }
-    ShortestPath dijkstra(const int v) {
-        std::vector<long long> cst(this -> size(), (1LL << 61) - 1);
-        std::vector<int> src(this -> size(), -1);
-        std::priority_queue<std::pair<long long, int>, std::vector<std::pair<long long, int>>, std::greater<std::pair<long long, int>>> dj;
+    inline ShortestPath dijkstra(const int v) noexcept {
+        std::vector<int64_t> cst(this->size(), (1LL << 61) - 1);
+        std::vector<int> src(this->size(), -1);
+        std::priority_queue<std::pair<int64_t, int>, std::vector<std::pair<int64_t, int>>, std::greater<std::pair<int64_t, int>>> dj;
         cst[v] = 0;
         dj.emplace(cst[v], v);
-        while(dj.size()) {
+        while(!dj.empty()) {
             const auto tmp = dj.top();
             dj.pop();
             if(cst[tmp.second] < tmp.first) {
@@ -52,9 +53,9 @@ public:
         }
         return {cst, src};
     }
-    std::vector<long long> spfa(const int v) {
+    inline std::vector<int64_t> spfa(const int v) noexcept {
         const int n = this -> size();
-        std::vector<long long> cst(n, (1LL << 61) - 1);
+        std::vector<int64_t> cst(n, (1LL << 61) - 1);
         std::vector<int> pending(n), times(n);
         std::queue<int> q;
         q.emplace(v);
@@ -66,7 +67,7 @@ public:
             q.pop();
             pending[p] = 0;
             for(const auto &e : (*this)[p]) {
-                const long long next = cst[p] + e.cost;
+                const int64_t next = cst[p] + e.cost;
                 if(next >= cst[e]) {
                     continue;
                 }
@@ -83,21 +84,21 @@ public:
         }
 		return cst;
     }
-    std::vector<std::vector<long long>> warshall_floyd() {
+    std::vector<std::vector<int64_t>> warshall_floyd() {
 		const int n = this -> size();
-        const long long lim = (1LL << 61) - 1;
+        const int64_t lim = (1LL << 61) - 1;
 		std::vector cst(n, std::vector(n, lim));
-		for(int i = 0; i < n; ++i) {
+		for(const auto i: std::views::iota(0, n)) {
             cst[i][i] = 0;
         }
-		for(int i = 0; i < n; ++i) {
+		for(const auto i: std::views::iota(0, n)) {
             for(const auto &j: (*this)[i]) {
                 cst[i][j] = j.cost;
             }
         }
-		for(int k = 0; k < n; ++k) {
-            for(int i = 0; i < n; ++i) {
-                for(int j = 0; j < n; ++j) {
+		for(const auto k: std::views::iota(0, n)) {
+            for(const auto i: std::views::iota(0, n)) {
+                for(const auto j: std::views::iota(0, n)) {
                     if(cst[i][k] == lim || cst[k][j] == lim) {
                         continue;
                     }
@@ -108,6 +109,7 @@ public:
 		return cst;
 	}
 };
+}
 
 /**
  * @brief 重み付きグラフライブラリ

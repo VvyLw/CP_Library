@@ -5,18 +5,22 @@
 #include <algorithm>
 #include <queue>
 #include <stack>
+#include <ranges>
 #ifndef TEMPLATE
+namespace man {
 template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
+}
 #endif
 #include "C++/graph/edge.hpp"
+namespace man {
 template <bool undirected = true> struct graph: std::vector<std::vector<edge>> {
 protected:
     int indexed, id;
     std::vector<edge> edges;
 public:
     graph(){}
-    graph(const int n, const int indexed_ = 1): indexed(indexed_), id(0){ this -> resize(n); }
-    void add(int a, int b) {
+    graph(const int n, const int indexed_ = 1): indexed(indexed_), id(0){ this->resize(n); }
+    inline void add(int a, int b) noexcept {
         a -= indexed, b-= indexed;
         (*this)[a].emplace_back(a, b, id);
         edges.emplace_back(a, b, id++);
@@ -25,20 +29,20 @@ public:
             edges.emplace_back(b, a, id++);
         }
     }
-    void input(const int m) {
-        for(int i = 0; i < m; ++i) {
+    inline void input(const int m) noexcept {
+        for([[maybe_unused]] const auto _: std::views::iota(0, m)) {
             int a, b;
             std::cin >> a >> b;
             add(a, b);
         }
     }
-    std::vector<edge> get_edge() const { return edges; }
-    std::vector<int> all_dist(const int v) {
+    inline std::vector<edge> get_edge() const noexcept { return edges; }
+    inline std::vector<int> all_dist(const int v) noexcept {
         std::vector<int> d(this -> size(), -1);
         std::queue<int> q;
         d[v] = 0;
         q.emplace(v);
-        while(q.size()) {
+        while(!q.empty()) {
             const int tmp = q.front();
             q.pop();
             for(const auto &el: (*this)[tmp]) {
@@ -51,23 +55,23 @@ public:
         }
         return d;
     }
-    int dist(const int u, const int v){ return all_dist(u)[v]; }
-    std::vector<int> t_sort() {
-        const int n = this -> size();
+    inline int dist(const int u, const int v) noexcept { return all_dist(u)[v]; }
+    inline std::vector<int> t_sort() noexcept {
+        const int n = this->size();
 		std::vector<int> deg(n);
-		for(int i = 0; i < n; ++i) {
+		for(const auto i: std::views::iota(0, n)) {
 			for(const auto ed: (*this)[i]) {
 				deg[ed]++;
 			}
 		}
 		std::stack<int> sk;
-		for(int i = 0; i < n; ++i) {
+		for(const auto i: std::views::iota(0, n)) {
 			if(deg[i] == 0) {
 				sk.emplace(i);
 			}
 		}
 		std::vector<int> ord;
-		while(sk.size()) {
+		while(!sk.empty()) {
 			const auto tmp = sk.top();
             sk.pop();
 			ord.emplace_back(tmp);
@@ -79,7 +83,7 @@ public:
 		}
 		return ord.size() == size() ? ord : std::vector<int>{};
 	}
-    std::vector<edge> cycle() {
+    inline std::vector<edge> cycle() noexcept {
         const int n = size();
         std::vector<int> used(n);
         std::vector<edge> pre(n), cycle;
@@ -106,15 +110,14 @@ public:
         };
         for(int i = 0; i < n; ++i) {
 			if(used[i] == 0 && dfs(dfs, i)) {
-				std::reverse(cycle.begin(), cycle.end());
+				std::ranges::reverse(cycle);
 				return cycle;
 			}
 		}
 		return {};
     }
 };
-typedef std::vector<edge> ve;
-typedef std::vector<ve> we;
+}
 
 /**
  * @brief グラフライブラリ

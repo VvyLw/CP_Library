@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <functional>
+namespace man {
 template <class T> struct DualSegTree {
 private:
     using F = std::function<T(T, T)>;
@@ -11,14 +12,14 @@ private:
     std::vector<T> lazy;
     const T id;
     const F ap;
-    inline void propagate(const int k) {
+    constexpr inline void propagate(const int k) noexcept {
         if(lazy[k] != id) {
             lazy[2 * k] = ap(lazy[2 * k], lazy[k]);
             lazy[2 * k + 1] = ap(lazy[2 * k + 1], lazy[k]);
             lazy[k] = id;
         }
     }
-    inline void thrust(const int k) {
+    constexpr inline void thrust(const int k) noexcept {
         for(int i = h; i > 0; i--) {
             propagate(k >> i);
         }
@@ -33,7 +34,7 @@ public:
         }
         lazy.assign(2 * sz, id);
     }
-    void apply(int a, int b, const T &x) {
+    constexpr inline void apply(int a, int b, const T &x) noexcept {
         thrust(a += sz);
         thrust(b += sz - 1);
         for(int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {
@@ -47,11 +48,12 @@ public:
             }
         }
     }
-    inline T operator[](int k) {
+    constexpr inline T operator[](int k) noexcept {
         thrust(k += sz);
         return lazy[k];
     }
 };
+}
 
 /**
  * @brief 双対セグ木

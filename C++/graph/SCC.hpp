@@ -2,12 +2,14 @@
 
 #include <vector>
 #include <algorithm>
+#include <ranges>
+namespace man {
 template <class G> struct SCC {
 private:
 	std::vector<int> comp, order, used;
 	std::vector<std::vector<int>> group;
 	G g, rg, dag;
-	void dfs(const int i) {
+	inline void dfs(const int i) noexcept {
 		if(used[i]) {
 			return;
 		}
@@ -17,7 +19,7 @@ private:
 		}
 		order.push_back(i);
   	}
-  	void rdfs(const int i, const int cnt) {
+  	constexpr inline void rdfs(const int i, const int cnt) noexcept {
     	if(comp[i] != -1) {
 			return;
 		}
@@ -26,20 +28,20 @@ private:
 			rdfs(e, cnt);
 		}
   	}
-	void build() {
-		const int n = g.size();
+	inline void build() noexcept {
+		const int n = std::ssize(g);
 		rg = G(n, 0);
-		for(int i = 0; i < n; ++i) {
+		for(const auto i: std::views::iota(0, n)) {
 			for(const auto &e: g[i]) {
 				rg.add(e.to, e.src);
 			}
 		}
 		used.assign(n, 0);
 		comp.assign(n, -1);
-		for(int i = 0; i < n; ++i) {
+		for(const auto i: std::views::iota(0, n)) {
 			dfs(i);
 		}
-		std::reverse(order.begin(), order.end());
+		std::ranges::reverse(order);
 		int ptr = 0;
 		for(const auto &i: order) {
 			if(comp[i] == -1) {
@@ -47,7 +49,7 @@ private:
 			}
 		}
 		dag = G(ptr, 0);
-		for(int i = 0; i < n; ++i) {
+		for(const auto i: std::views::iota(0, n)) {
 			for(const auto &e: g[i]) {
 				const int x = comp[e.src], y = comp[e.to];
 				if(x == y) {
@@ -57,16 +59,17 @@ private:
 			}
 		}
 		group.resize(ptr);
-		for(int i = 0; i < n; ++i) {
+		for(const auto i: std::views::iota(0, n)) {
 			group[comp[i]].emplace_back(i);
 		}
 	}
 public:
     SCC(const G &g): g(g){ build(); }
-	int operator[](const int i) const { return comp[i]; }
-	std::vector<std::vector<int>> groups() const { return group; }
-	G DAG() const { return dag; }
+	constexpr inline int operator[](const int i) const noexcept { return comp[i]; }
+	inline std::vector<std::vector<int>> groups() const noexcept { return group; }
+	inline G DAG() const noexcept { return dag; }
 };
+}
 
 /**
  * @brief Strongly Connected Components(強連結成分分解)

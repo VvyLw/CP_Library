@@ -2,6 +2,8 @@
 
 #include <vector>
 #include <numeric>
+#include <ranges>
+namespace man {
 struct phi_table {
 private:
     int n;
@@ -9,7 +11,7 @@ private:
 public:
 	phi_table(const int n_): n(n_), euler(n_ + 1) {
 		std::iota(euler.begin(), euler.end(), 0);
-		for(int i = 2; i <= n; ++i) {
+		for(const auto i: std::views::iota(2, n + 1)) {
 			if(euler[i] == i) {
 				for(int j = i; j <= n; j += i) {
 					euler[j] = euler[j] / i * (i - 1);
@@ -17,8 +19,9 @@ public:
 			}
 		}
 	}
-	std::vector<int> get() const { return euler; }
+	inline std::vector<int> get() const noexcept { return euler; }
 };
+}
 
 /**
  * @brief Euler's Phi-function(table)

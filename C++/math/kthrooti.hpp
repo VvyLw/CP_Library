@@ -1,29 +1,31 @@
 #pragma once
 
 #include <limits>
+#include <ranges>
 #ifndef TEMPLATE
-typedef unsigned long long ul;
-template <class T, class U> inline bool overflow_if_mul(const T a, const U b){ return (std::numeric_limits<T>::max()/a)<b; }
+namespace man {
+template <class T, class U> constexpr inline bool overflow_if_mul(const T a, const U b) noexcept { return (std::numeric_limits<T>::max()/a)<b; }
+}
 #endif
-namespace Heileden {
-inline ul kthrooti(const ul n, const int k) {
-    if(k==1) {
+namespace man {
+inline uint64_t kthrooti(const uint64_t n, const int k) {
+    if(k == 1) {
 		return n;
 	}
-	const auto chk=[&](const unsigned x) {
-		ul mul=1;
-		for(int i = 0; i < k; ++i) {
-            if(overflow_if_mul(mul, x)) {
+	const auto chk = [&](const unsigned x) -> bool {
+		uint64_t mul = 1;
+		for([[maybe_unused]] const auto _: std::views::iota(0, k)) {
+            if(man::overflow_if_mul(mul, x)) {
                 return false;
             }
-            mul*=x;
+            mul *= x;
         }
-		return mul<=n;
+		return mul <= n;
 	};
-	ul ret=0;
-	for(int i = 32; --i >= 0;) {
-		if(chk(ret|(1U<<i))) {
-			ret|=1U<<i;
+	uint64_t ret = 0;
+	for(const auto i: std::views::iota(0, 32) | std::views::reverse) {
+		if(chk(ret | (1U << i))) {
+			ret |= 1U << i;
 		}
 	}
 	return ret;

@@ -2,9 +2,9 @@
 
 #include <vector>
 #include <utility>
-namespace Heileden {
-template <class T> inline std::vector<std::pair<T, int>> prmfct(T n) {
-    std::vector<std::pair<T, int>> res;
+namespace man {
+template <class T> inline std::vector<std::pair<T, int>> prmfct(T n) noexcept {
+    std::vector<std::pair<T, int>> ret;
     for(int64_t i = 2; i * i <= n; ++i) {
         if(n % i != 0) {
             continue;
@@ -14,12 +14,12 @@ template <class T> inline std::vector<std::pair<T, int>> prmfct(T n) {
             tmp++;
             n /= i;
         }
-        res.emplace_back(i, tmp);
+        ret.emplace_back(i, tmp);
     }
     if(n != 1) {
-        res.emplace_back(n, 1);
+        ret.emplace_back(n, 1);
     }
-    return res;
+    return ret;
 }
 }
 

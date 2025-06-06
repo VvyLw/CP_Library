@@ -4,23 +4,25 @@
 
 #include <vector>
 #include <algorithm>
+namespace man {
 struct ShortestPath {
 private:
-    const std::vector<long long> cost;
+    const std::vector<int64_t> cost;
     const std::vector<int> src;
 public:
-    ShortestPath(const std::vector<long long> &cost, const std::vector<int> &src): cost(cost), src(src){}
-    bool is_thru(const int i){ return src[i] != -1; }
-    std::vector<int> path(int i) {
-        std::vector<int> res;
+    ShortestPath(const std::vector<int64_t> &cost, const std::vector<int> &src): cost(cost), src(src){}
+    inline bool is_thru(const int i) const noexcept { return src[i] != -1; }
+    inline std::vector<int> path(int i) noexcept {
+        std::vector<int> ret;
         for(; i != -1; i = src[i]) {
-            res.emplace_back(i);
+            ret.emplace_back(i);
         }
-        std::ranges::reverse(res);
-        return res;
+        std::ranges::reverse(ret);
+        return ret;
     }
-    std::vector<long long> get() const { return cost; }
+    inline std::vector<int64_t> get() const noexcept { return cost; }
 };
+}
 
 /**
  * @brief 最短路

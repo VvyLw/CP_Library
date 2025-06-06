@@ -2,11 +2,12 @@
 
 #include <vector>
 #include <algorithm>
+namespace man {
 template <class T> struct depq {
 private:
     std::vector<T> d;
-    inline int parent(int k) const { return ((k >> 1) - 1) & ~1; }
-    int down(int k) {
+    constexpr inline int parent(int k) const noexcept { return ((k >> 1) - 1) & ~1; }
+    constexpr inline int down(int k) noexcept {
 	    const int n = d.size();
 	    if(k & 1) {
     	    while(2 * k + 1 < n) {
@@ -39,7 +40,7 @@ private:
 	    }
 	    return k;
     }
-    int up(int k, const int root = 1) {
+    constexpr inline int up(int k, const int root = 1) noexcept {
 	    if((k | 1) < std::ssize(d) && d[k & ~1] < d[k | 1]) {
     	    std::swap(d[k & ~1], d[k | 1]);
 	        k ^= 1;
@@ -64,14 +65,14 @@ public:
 	        up(down(i), i);
 	    }
     }
-    void push(const T &x) {
-	    const int k = d.size();
+    constexpr inline void push(const T &x) noexcept {
+	    const int k = std::ssize(d);
     	d.emplace_back(x);
     	up(k);
     }
-    T pop_min() {
+    constexpr inline T pop_min() noexcept {
         const auto res = get_min();
-	    if(d.size() < 3) {
+	    if(std::ssize(d) < 3) {
 	        d.pop_back(); 
 	    } else {
 	        std::swap(d[1], d.back());
@@ -80,9 +81,9 @@ public:
 	    }
         return res;
     }
-    T pop_max() {
+    constexpr inline T pop_max() noexcept {
         const auto res = get_max();
-        if(d.size() < 2) { 
+        if(std::ssize(d) < 2) { 
             d.pop_back();
         } else {
             std::swap(d[0], d.back());
@@ -91,11 +92,12 @@ public:
         }
         return res;
     }
-    T get_min() const { return d.size() < 2 ? d[0] : d[1]; }
-    T get_max() const { return d[0]; }
-    int size() const { return d.size(); }
-    bool empty() const { return d.empty(); }
+    constexpr inline T get_min() const noexcept { return std::ssize(d) < 2 ? d[0] : d[1]; }
+    constexpr inline T get_max() const noexcept { return d[0]; }
+    constexpr inline int size() const noexcept { return d.size(); }
+    constexpr inline bool empty() const noexcept { return d.empty(); }
 };
+}
 /**
  * @brief Double-Ended Priority Queue(両端優先度付きキュー)
  * @see https://natsugiri.hatenablog.com/entry/2016/10/10/035445

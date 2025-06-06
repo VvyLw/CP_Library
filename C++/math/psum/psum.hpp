@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <numeric>
-namespace Heileden {
+namespace man {
 template <class T = int64_t> struct psum {
 private:
     int n;

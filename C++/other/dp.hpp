@@ -7,13 +7,15 @@
 #include <iterator>
 #include <limits>
 #include <numeric>
+#include <ranges>
 
-template <class T> T knapsack01_v(const std::vector<int> &a, const std::vector<T> &v, const int w) {
-    const int n = a.size();
+namespace man {
+template <class T> constexpr inline T knapsack01_v(const std::vector<int> &a, const std::vector<T> &v, const int w) noexcept {
+    const int n = std::ssize(a);
     std::vector dp(w + 1, std::numeric_limits<T>::min());
     dp[0] = 0;
-    for(int i = 0; i < n; i++) {
-        for(int j = w; j >= a[i]; j--) {
+    for(const auto i: std::views::iota(0, n)) {
+        for(const auto j: std::views::iota(a[i], w + 1) | std::views::reverse) {
             if(dp[j - a[i]] != std::numeric_limits<T>::min()) {
                 if(dp[j - a[i]] + v[i] > dp[j]) {
                     dp[j] = dp[j - a[i]] + v[i];
@@ -212,6 +214,7 @@ template <class T> inline std::vector<int> lis(const std::vector<T> &v) {
 /**
  * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp
  */
+}
 
 /**
  * @brief DP(Knapsack, LCS, LIS, 最大長方形, coin)

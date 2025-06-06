@@ -1,12 +1,13 @@
 #pragma once
 
 #include <vector>
-namespace Heileden {
+#include <ranges>
+namespace man {
 struct p_table {
     std::vector<int> SoE;
     p_table(const int n): SoE(n + 1, 1) {
         SoE[0] = SoE[1] = 0;
-        for(int64_t i = 2; i <= n; ++i) {
+        for(const int64_t i: std::views::iota(2, n + 1)) {
             if(!SoE[i]) {
                 continue;
             }
@@ -17,7 +18,7 @@ struct p_table {
     }
     std::vector<int> get() {
         std::vector<int> p;
-        for(size_t i = 2; i < SoE.size(); ++i) {
+        for(const auto i: std::views::iota(2, std::ssize(SoE))) {
             if(SoE[i]) {
                 p.emplace_back(i);
             }

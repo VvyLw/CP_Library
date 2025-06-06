@@ -3,7 +3,7 @@
 #include <vector>
 #include <map>
 #include <numeric>
-namespace Heileden {
+namespace man {
 struct p_fact {
     std::vector<int64_t> spf;
     p_fact(const int n): spf(n + 1){
@@ -11,14 +11,14 @@ struct p_fact {
         for(int64_t i = 2; i * i <= n; ++i) {
             if(spf[i] == i) {
                 for(int64_t j = i * i; j <= n; j += i) {
-                    if(spf[j]==j) {
-                        spf[j]=i;
+                    if(spf[j] == j) {
+                        spf[j] = i;
                     }
                 }
             }
         }
     }
-    std::map<int, int> get(int n) {
+    inline std::map<int, int> get(int n) noexcept {
         std::map<int, int> m;
         while(n != 1) {
             m[spf[n]]++;

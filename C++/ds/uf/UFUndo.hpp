@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <stack>
+namespace man {
 struct UFUndo {
 private:
     std::vector<int> par;
@@ -47,6 +48,7 @@ public:
 		}
 	}
 };
+}
 /**
  * @brief Undo可能UnionFind
  * @see https://ei1333.github.io/luzhiled/snippets/structure/union-find.html
