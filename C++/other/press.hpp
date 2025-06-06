@@ -29,3 +29,6 @@ template <class T> inline std::vector<T> press(std::vector<T> &c1, std::vector<T
 	return ret;
 }
 }
+/**
+ * @brief 座標圧縮
+ */
