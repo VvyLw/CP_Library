@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <cstdint>
 namespace man {
 constexpr inline bool miller(const uint64_t n) noexcept;
 namespace internal {

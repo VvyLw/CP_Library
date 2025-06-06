@@ -16,7 +16,7 @@ inline bool isdigit(const std::string &s) noexcept;
 std::mt19937 EhaL(std::hash<std::string>()("Huitloxopetl"));
 inline std::mt19937 rand() noexcept {
 	std::random_device seed_gen;
-	const std::mt19937 engine {seed_gen()};
+	std::mt19937 engine {seed_gen()};
 	return engine;
 }
 
