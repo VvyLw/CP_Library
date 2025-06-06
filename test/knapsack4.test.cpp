@@ -8,6 +8,6 @@ int main() {
     for(int i = 0; i < n; ++i) {
         std::cin >> v[i] >> w[i] >> m[i];
     }
-    const auto res = knapsack_sup_v(w, v, m, wg);
-    std::cout << *std::max_element(res.begin(), res.end()) << '\n';
+    const auto ret = man::knapsack_sup_v(w, v, m, wg);
+    std::cout << *std::ranges::max_element(ret) << '\n';
 }

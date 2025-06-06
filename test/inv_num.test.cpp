@@ -8,5 +8,5 @@ int main() {
     for(auto &el: a) {
         std::cin >> el;
     }
-    std::cout << inv_num(a) << '\n';
+    std::cout << man::inv_num(a) << '\n';
 }

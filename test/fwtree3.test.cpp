@@ -4,7 +4,7 @@
 int main() {
     int n, q;
     std::cin >> n >> q;
-    RangeBIT<int64_t> bit(n);
+    man::RangeBIT<int64_t> bit(n);
     while(q--) {
         int h, s, t;
         std::cin >> h >> s >> t;

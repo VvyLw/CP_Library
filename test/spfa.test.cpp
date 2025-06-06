@@ -4,7 +4,7 @@ constexpr auto LIM = (1LL << 61) - 1;
 int main() {
     int v, e, r;
     std::cin >> v >> e >> r;
-    w_graph<false> g(v, 0);
+    man::w_graph<false> g(v, 0);
     g.input(e);
     const auto res = g.spfa(r);
     if(res.empty()) {

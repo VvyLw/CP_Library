@@ -4,10 +4,6 @@
 //#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
 #include "C++/template.hpp"
 #include "C++/ds/SparseTable.hpp"
-using namespace std;
-using namespace zia_qu;
-using namespace Lady_sANDy;
-using namespace Heileden;
 int main() {
 	VvyLw::wa_haya_exe();
 	now(start);
@@ -21,11 +17,14 @@ int main() {
 
 
 void VvyLw::solve() {
-	INT(n,q);
-    VEC(int,a,n);
-    SparseTable<int> st(a,[](int a, int b){ return min(a,b); });
+	int n, q;
+	std::cin >> n >> q;
+    std::vector<int> a(n);
+	std::cin >> a;
+    man::SparseTable<int> st(a, [](int a, int b) -> int { return std::min(a, b); });
     while(q--) {
-        INT(l,r);
-        out(st.query(l,r));
+        int l, r;
+		std::cin >> l >> r;
+        std::cout << st.query(l, r) << '\n';
     }
 }

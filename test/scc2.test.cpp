@@ -5,9 +5,9 @@
 int main() {
     int n, m;
     std::cin >> n >> m;
-    graph<false> g(n, 0);
+    man::graph<false> g(n, 0);
     g.input(m);
-    SCC scc(g);
+    man::SCC scc(g);
     const auto res = scc.groups();
     std::cout << res.size() << '\n';
     for(const auto &el: res) {

@@ -1,6 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_B"
 #include <iostream>
 #include "C++/string/RH.hpp"
+#include "C++/core/alias.hpp"
 int main() {
     std::string t, p;
     std::cin >> t >> p;

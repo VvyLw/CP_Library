@@ -9,7 +9,7 @@ int main() {
     for(auto &el: a) {
         std::cin >> el;
     }
-    WaveletMatrix wm(a);
+    man::WaveletMatrix wm(a);
     while(q--) {
         int l, r, x;
         std::cin >> l >> r >> x;

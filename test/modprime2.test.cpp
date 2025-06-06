@@ -2,7 +2,7 @@
 #include <iostream>
 #include "C++/math/ModPrime.hpp"
 constexpr int mod = 1e9 + 7;
-ModPrime<(int) 2e7 + 1> mp(mod);
+man::ModPrime<(int) 2e7 + 1> mp(mod);
 int main() {
     std::cin.tie(nullptr) -> sync_with_stdio(false);
     int t;

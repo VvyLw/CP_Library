@@ -4,9 +4,6 @@
 //#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
 #include "C++/template.hpp"
 #include "C++/ds/fwtree/FenwickTree.hpp"
-using namespace zia_qu;
-using namespace Lady_sANDy;
-using namespace Heileden;
 int main() {
   	VvyLw::wa_haya_exe();
   	now(start);
@@ -19,15 +16,21 @@ int main() {
 // --------------------------------------------------------------------------------------------------------------
 
 void VvyLw::solve() {
-    INT(n,q);
-    FenwickTree<ll> bit(n);
-    rep(n) {
-        INT(a);
-        bit.add(i,a);
+    int n, q;
+    std::cin >> n >> q;
+    man::FenwickTree<i64> bit(n);
+    for(const auto i: std::views::iota(0, n)) {
+        int a;
+        std::cin >> a;
+        bit.add(i, a);
     }
     while(q--) {
-        INT(t,p,q);
-        if(t) out(bit.sum(p,q-1));
-        else bit.add(p,q);
+        int t, p, q;
+        std::cin >> t >> p >> q;
+        if(t) {
+            std::cout << bit.sum(p, q - 1) << '\n';
+        } else {
+            bit.add(p, q);
+        }
     }
 }

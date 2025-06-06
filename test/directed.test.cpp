@@ -4,11 +4,11 @@
 int main() {
     int v, e, r;
     std::cin >> v >> e >> r;
-    std::vector<edge> edges;
+    std::vector<man::edge> edges;
     while(e--) {
         int s, t, w;
         std::cin >> s >> t >> w;
         edges.emplace_back(s, t, -1, w);
     }
-    std::cout << directed(edges, v, r).cost << '\n';
+    std::cout << man::directed(edges, v, r).cost << '\n';
 }

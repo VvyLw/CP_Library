@@ -5,9 +5,9 @@
 int main() {
     int v, e, q;
     std::cin >> v >> e;
-    graph<false> g(v, 0);
+    man::graph<false> g(v, 0);
     g.input(e);
-    SCC scc(g);
+    man::SCC scc(g);
     std::cin >> q;
     while(q--) {
         int a, b;

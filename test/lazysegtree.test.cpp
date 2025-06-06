@@ -5,7 +5,7 @@ int main() {
     std::cin.tie(nullptr) -> sync_with_stdio(false);
     int n, q;
     std::cin >> n >> q;
-    RUSM<int64_t> seg(std::vector<int64_t>(n, INT32_MAX));
+    man::RUSM<int64_t> seg(std::vector<int64_t>(n, INT32_MAX));
     while(q--) {
         int h;
         std::cin >> h;

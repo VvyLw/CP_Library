@@ -5,7 +5,7 @@ int main() {
     std::cin.tie(nullptr) -> sync_with_stdio(false);
     int n, q;
     std::cin >> n >> q;
-    RUMN<int> seg(std::vector(n, INT32_MAX));
+    man::RUMN<int> seg(std::vector(n, INT32_MAX));
     while(q--) {
         int h, s, t;
         std::cin >> h >> s >> t;

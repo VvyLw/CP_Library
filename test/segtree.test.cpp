@@ -4,9 +4,6 @@
 //#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
 #include "C++/template.hpp"
 #include "C++/ds/SegmentTree.hpp"
-using namespace zia_qu;
-using namespace Lady_sANDy;
-using namespace Heileden;
 
 int main() {
 	VvyLw::wa_haya_exe();
@@ -21,12 +18,18 @@ int main() {
 
 
 void VvyLw::solve() {
-	INT(n,q);
-	VEC(ll,a,n);
-	SegTree<ll> rsq(a,[](ll a, ll b){ return a+b; },0);
+	int n, q;
+	std::cin >> n >> q;
+	man::vec::vi a(n);
+	std::cin >> a;
+	man::SegTree<i64> rsq(a, [](const i64 a, const i64 b) -> i64 { return a + b; }, 0);
 	while(q--) {
-		INT(t,p,q);
-		if(t) out(rsq.query(p,q));
-		else rsq.add(p,q);
+		int t, p, q;
+		std::cin >> t >> p >> q;
+		if(t) {
+			std::cout << rsq.query(p, q) << '\n';
+		} else {
+			rsq.add(p, q);
+		}
 	}
 }

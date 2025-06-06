@@ -4,7 +4,7 @@
 int main() {
     int n, q;
     std::cin >> n >> q;
-    RUSM<int> seg(std::vector(n, 0));
+    man::RUSM<int> seg(std::vector(n, 0));
     while(q--) {
         int h, s, t;
         std::cin >> h >> s >> t;

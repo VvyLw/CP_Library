@@ -8,7 +8,7 @@ int main() {
     for(auto &el: s) {
         std::cin >> el;
     }
-    depq<int> depq(s);
+    man::depq<int> depq(s);
     while(q--) {
         int t;
         std::cin >> t;

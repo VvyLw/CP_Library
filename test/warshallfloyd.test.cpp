@@ -4,7 +4,7 @@ constexpr long long lim = (1LL << 61) - 1;
 int main() {
     int v, e;
     std::cin >> v >> e;
-    w_graph<false> g(v, 0);
+    man::w_graph<false> g(v, 0);
     g.input(e);
     const auto res = g.warshall_floyd();
     for(int i = 0; i < v; ++i) {

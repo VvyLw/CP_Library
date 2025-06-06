@@ -4,7 +4,7 @@
 int main() {
     int n, q;
     std::cin >> n >> q;
-    RASM<int64_t> seg(std::vector(n, 0L));
+    man::RASM<int64_t> seg(std::vector(n, 0L));
     while(q--) {
         int h, s, t;
         std::cin >> h >> s >> t;

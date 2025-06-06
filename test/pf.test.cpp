@@ -12,7 +12,7 @@ int main() {
         int64_t n;
         std::cin >> n;
         if(!m.contains(n)) {
-            auto p = rho(n);
+            auto p = man::rho(n);
             std::ranges::sort(p);
             m.try_emplace(n, p);
         }

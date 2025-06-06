@@ -2,10 +2,10 @@
 #include <iostream>
 #include "C++/math/kthrooti.hpp"
 void solve() {
-    ul a;
+    uint64_t a;
     int k;
     std::cin >> a >> k;
-    std::cout << Heileden::kthrooti(a, k) << '\n';
+    std::cout << man::kthrooti(a, k) << '\n';
 }
 int main() {
     std::cin.tie(nullptr) -> sync_with_stdio(false);

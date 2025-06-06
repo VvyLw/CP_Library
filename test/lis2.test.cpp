@@ -8,5 +8,5 @@ int main() {
     for(auto &el: a) {
         std::cin >> el;
     }
-    std::cout << lis(a).size() << '\n';
+    std::cout << man::lis(a).size() << '\n';
 }

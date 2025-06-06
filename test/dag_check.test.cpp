@@ -3,7 +3,7 @@
 int main() {
     int v, e;
     std::cin >> v >> e;
-    graph<false> g(v, 0);
+    man::graph<false> g(v, 0);
     g.input(e);
     std::cout << g.t_sort().empty() << '\n';
 }

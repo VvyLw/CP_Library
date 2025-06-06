@@ -4,7 +4,7 @@
 int main() {
     int n, m, s, t;
     std::cin >> n >> m >> s >> t;
-    w_graph<false> g(n, 0);
+    man::w_graph<false> g(n, 0);
     g.input(m);
     auto dj = g.dijkstra(s);
     if(!dj.is_thru(t)) {

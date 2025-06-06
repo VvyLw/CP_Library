@@ -1,11 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 #include "C++/math/Modint.hpp"
 #include "C++/ds/LazySegmentTree.hpp"
-using Z = zwei<mint>;
+#include "C++/core/alias.hpp"
+using Z = man::zwei<mint>;
 int main() {
     int n, q;
     std::cin >> n >> q;
-    LazySegTree<Z, Z> seg(n, [](const Z &a, const Z &b) -> Z { return Z(a.first + b.first, a.second + b.second); }, [](const Z &a, const Z &b) -> Z { return Z(a.first * b.first + a.second * b.second, a.second); }, [](const Z &a, const Z &b) -> Z { return Z(a.first * b.first, a.second * b.first + b.second); }, Z(0, 0), Z(1, 0));
+    man::LazySegTree<Z, Z> seg(n, [](const Z &a, const Z &b) -> Z { return Z(a.first + b.first, a.second + b.second); }, [](const Z &a, const Z &b) -> Z { return Z(a.first * b.first + a.second * b.second, a.second); }, [](const Z &a, const Z &b) -> Z { return Z(a.first * b.first, a.second * b.first + b.second); }, Z(0, 0), Z(1, 0));
 	std::vector<Z> a(n);
     for(int i = 0; i < n; ++i) {
         int x;

@@ -4,5 +4,5 @@
 int main() {
     long n;
     std::cin >> n;
-    std::cout << euler_phi(n) << '\n';
+    std::cout << man::euler_phi(n) << '\n';
 }

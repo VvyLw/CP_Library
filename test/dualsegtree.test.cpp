@@ -4,7 +4,7 @@
 int main() {
     int n, q;
     std::cin >> n >> q;
-    DualSegTree<int> seg(n, [](const int a, const int b) -> int { return b; }, INT32_MAX);
+    man::DualSegTree<int> seg(n, [](const int a, const int b) -> int { return b; }, INT32_MAX);
     while(q--) {
         int h;
         std::cin >> h;

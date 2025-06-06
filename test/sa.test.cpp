@@ -3,7 +3,7 @@
 int main() {
     std::string s;
     std::cin >> s;
-    SuffixArray sa(s);
+    man::SuffixArray sa(s);
     sa.erase(sa.begin());
     for(size_t i = 0; i < sa.size(); ++i) {
         std::cout << sa[i] << " \n"[i + 1 == sa.size()];

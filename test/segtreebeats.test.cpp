@@ -9,7 +9,7 @@ int main() {
     for(auto &e: a) {
         std::cin >> e;
     }
-    SegmentTreeBeats seg(a);
+    man::SegmentTreeBeats seg(a);
     while(q--) {
         int t, l, r;
         std::cin >> t >> l >> r;

@@ -8,5 +8,5 @@ int main() {
     for(int i = 0; i < n; ++i) {
         std::cin >> v[i] >> w[i];
     }
-    std::cout << knapsack01_v(w, v, wg) << '\n';
+    std::cout << man::knapsack01_v(w, v, wg) << '\n';
 }

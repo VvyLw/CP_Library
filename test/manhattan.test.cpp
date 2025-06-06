@@ -9,7 +9,7 @@ int main() {
     for(int i = 0; i < n; ++i) {
         std::cin >> x[i] >> y[i];
     }
-    const auto ans = kruskal(manhattan(x, y), n);
+    const auto ans = man::kruskal(man::manhattan(x, y), n);
     std::cout << ans.cost << '\n';
     for(const auto &e: ans.tree) {
         std::cout << e.src << ' ' << e.to << '\n';

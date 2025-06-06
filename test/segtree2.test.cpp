@@ -5,7 +5,7 @@
 int main() {
     int n, q;
     std::cin >> n >> q;
-    SegTree<int> seg(n, [](const int x, const int y) -> int { return std::min(x, y); }, std::numeric_limits<int>::max());
+    man::SegTree<int> seg(n, [](const int x, const int y) -> int { return std::min(x, y); }, std::numeric_limits<int>::max());
     while(q--) {
         int com, x, y;
         std::cin >> com >> x >> y;

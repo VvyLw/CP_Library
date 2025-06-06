@@ -7,7 +7,7 @@ int main() {
     while(q--) {
         std::string x, y;
         std::cin >> x >> y;
-        const int z = lcs(x, y);
+        const int z = man::lcs(x, y);
         std::cout << z << '\n';
     }
 }

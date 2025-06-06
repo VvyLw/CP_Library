@@ -2,9 +2,9 @@
 #include <iostream>
 #include "C++/math/tetration.hpp"
 void solve() {
-    long long a, b, m;
+    int64_t a, b, m;
     std::cin >> a >> b >> m;
-    std::cout << tetration(a, b, m) << '\n';
+    std::cout << man::tetration(a, b, m) << '\n';
 }
 int main() {
     int t;

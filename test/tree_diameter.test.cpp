@@ -4,7 +4,7 @@
 int main() {
     int n;
     std::cin >> n;
-    diameter g(n, 0);
+    man::diameter g(n, 0);
     g.input(n - 1);
     std::cout << g.build() << ' ';
     const auto p = g.get_path();

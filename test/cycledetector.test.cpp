@@ -4,7 +4,7 @@
 int main() {
     int n, m;
     std::cin >> n >> m;
-    graph<false> g(n, 0);
+    man::graph<false> g(n, 0);
     g.input(m);
     const auto res = g.cycle();
     if(res.empty()) {

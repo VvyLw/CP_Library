@@ -7,7 +7,7 @@ int main() {
     std::cin.tie(nullptr) -> sync_with_stdio(false);
     int n;
     std::cin >> n;
-    psum2d<int64_t> p(m, m);
+    man::psum2d<int64_t> p(m, m);
     while(n--) {
         int x1, y1, x2, y2;
         std::cin >> x1 >> y1 >> x2 >> y2;

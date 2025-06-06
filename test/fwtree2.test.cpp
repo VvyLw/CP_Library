@@ -5,7 +5,7 @@ int main() {
     std::cin.tie(nullptr) -> sync_with_stdio(false);
     int n, q;
     std::cin >> n >> q;
-    FenwickTree<int64_t> bit(n);
+    man::FenwickTree<int64_t> bit(n);
     while(q--) {
         int h;
         std::cin >> h;

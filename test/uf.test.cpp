@@ -4,9 +4,6 @@
 //#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
 #include "C++/template.hpp"
 #include "C++/ds/uf/UnionFind.hpp"
-using namespace zia_qu;
-using namespace Lady_sANDy;
-using namespace Heileden;
 int main() {
   	VvyLw::wa_haya_exe();
   	now(start);
@@ -19,11 +16,16 @@ int main() {
 // --------------------------------------------------------------------------------------------------------------
 
 void VvyLw::solve() {
-    INT(n,q);
-    UnionFind uf(n);
+    int n, q;
+    std::cin >> n >> q;
+    man::UnionFind uf(n);
     while(q--) {
-        INT(t,a,b);
-        if(t) out(uf[a]==uf[b]);
-        else uf.unite(a,b);
+        int t, a, b;
+        std::cin >> t >> a >> b;
+        if(t) {
+            std::cout << (uf[a] == uf[b]) << '\n';
+        } else {
+            uf.unite(a,b);
+        }
     }
 }

@@ -4,7 +4,7 @@
 int main() {
     int a, b, c, d;
     std::cin >> a >> b >> c >> d;
-    Matrix<int64_t> m(2);
+    man::Matrix<int64_t> m(2);
     m[0][0] = a;
     m[0][1] = b;
     m[1][0] = c;

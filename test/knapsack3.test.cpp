@@ -10,5 +10,5 @@ int main() {
     for(int i = 0; i < n; ++i) {
         std::cin >> v[i] >> w[i] >> m[i];
     }
-    std::cout << knapsack_sup_w(w, v, m, wg) << '\n';
+    std::cout << man::knapsack_sup_w(w, v, m, wg) << '\n';
 }

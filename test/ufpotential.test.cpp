@@ -4,7 +4,7 @@
 int main() {
     int n, q;
     std::cin >> n >> q;
-    UFPotential uf(n);
+    man::UFPotential uf(n);
     while(q--) {
         int t, x, y;
         std::cin >> t >> x >> y;

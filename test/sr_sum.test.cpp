@@ -3,9 +3,6 @@
 #pragma GCC optimize("unroll-loops")//*/
 //#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
 #include "C++/template.hpp"
-using namespace zia_qu;
-using namespace Lady_sANDy;
-using namespace Heileden;
 int main() {
   	VvyLw::wa_haya_exe();
   	now(start);
@@ -18,11 +15,14 @@ int main() {
 // --------------------------------------------------------------------------------------------------------------
 
 void VvyLw::solve() {
-    INT(n,q);
-    VEC(ll,a,n);
-    psum s(a);
+    int n, q;
+    std::cin >> n >> q;
+    man::vec::vi a(n);
+    std::cin >> a;
+    man::psum s(a);
     while(q--) {
-        INT(l,r);
-        out(s.sum(l,r));
+        int l, r;
+        std::cin >> l >> r;
+        std::cout << s.sum(l, r) << '\n';
     }
 }

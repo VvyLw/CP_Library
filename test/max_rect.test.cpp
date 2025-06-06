@@ -8,5 +8,5 @@ int main() {
     for(auto &el: a) {
         std::cin >> el;
     }
-    std::cout << max_rectangle(a) << '\n';
+    std::cout << man::max_rectangle(a) << '\n';
 }
