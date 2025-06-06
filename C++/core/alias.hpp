@@ -42,5 +42,5 @@ template <class T> using Tree = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::
 template <class T> using TREE = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;
 
 /**
- * @brief 定数
+ * @brief エイリアス
  */

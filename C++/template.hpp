@@ -237,7 +237,6 @@ template <class T> constexpr inline T max(const std::vector<T>& v) noexcept { re
 template <class T> constexpr inline T max(const std::vector<T>& v, const int a, const int b) noexcept { return *std::max_element(v.cbegin() + a, v.cbegin() + b + 1); }
 template <class T> constexpr inline int min_id(const std::vector<T>& v) noexcept { return std::ranges::min_element(v) - v.cbegin(); }
 template <class T> constexpr inline int max_id(const std::vector<T>& v) noexcept { return std::ranges::max_element(v) - v.cbegin(); }
-
 template <class T> constexpr inline T count(std::vector<T> v, const T &x) noexcept {
 	if(!std::ranges::is_sorted(v)) {
 		std::ranges::sort(v);
@@ -292,10 +291,15 @@ template <class T, class F> inline std::vector<T> isum(const std::vector<T> &v, 
 	std::inclusive_scan(v.cbegin(), v.cend(), std::back_inserter(s), fn);
 	return s;
 }
-template <class T> inline auto rand_extract(const std::vector<T> &v, const int size = 1) noexcept {
+template <class T> inline std::vector<T> rand_extract(const std::vector<T> &v, const int size) noexcept {
 	std::vector<T> ret;
 	std::ranges::sample(v, std::back_inserter(ret), size, rand());
-	return std::ssize(ret) == 1 ? ret.front() : ret;
+	return ret;
+}
+template <class T> inline T rand_extract(const std::vector<T> &v) noexcept {
+	std::vector<T> ret;
+	std::ranges::sample(v, std::back_inserter(ret), 1, rand());
+	return ret.front();
 }
 template <class T = int64_t> constexpr inline T sum(const std::vector<T> &v) noexcept { return std::accumulate(v.cbegin(), v.cend(), T(0)); }
 template <class T = int64_t> constexpr inline T sum(const std::vector<T> &v, const int a, const int b) noexcept { return std::accumulate(v.cbegin() + a, v.cbegin() + b, T(0)); }
@@ -374,15 +378,6 @@ template <class T = int64_t> constexpr inline T binom(T n, const T r, const T mo
 constexpr inline bool is_int(const long double n) noexcept { return n == std::floor(n); }
 constexpr inline bool is_sqr(const int64_t n) noexcept { return is_int(std::sqrt(n)); }
 }
-
-#include "C++/other/press.hpp"
-#include "C++/math/is_prime.hpp"
-#include "C++/math/divisor.hpp"
-#include "C++/math/primefactor.hpp"
-#include "C++/math/primetable.hpp"
-#include "C++/math/primefactortable.hpp"
-#include "C++/math/psum/psum.hpp"
-#include "C++/math/kthrooti.hpp"
 
 #include "C++/core/timer.hpp"
 #include "C++/core/mypair.hpp"

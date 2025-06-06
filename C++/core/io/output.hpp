@@ -59,7 +59,7 @@ template <class K, class V> inline std::ostream& operator<<(std::ostream &os, co
     return os;
 }
 template <class T> inline std::ostream& operator<<(std::ostream &os, const std::set<T> &st) noexcept {
-    if(st.size()) {
+    if(!st.empty()) {
         os << *st.begin();
         for(auto i = st.begin(); ++i != st.end();) {
             os << ' ' << *i;
