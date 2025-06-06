@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/core/alias.hpp
-    title: "\u5B9A\u6570"
+    title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
   - icon: ':heavy_check_mark:'
     path: C++/string/RH.hpp
     title: Rolling Hash
@@ -65,11 +65,11 @@ data:
     \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\ntemplate\
     \ <class T> using TREE = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>,\
     \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\n\
-    /**\n * @brief \u5B9A\u6570\n */\n#line 5 \"test/rh.test.cpp\"\nint main() {\n\
-    \    std::string t, p;\n    std::cin >> t >> p;\n    RH rh1(t), rh2(p);\n    for(size_t\
-    \ i = 0; i + p.size() <= t.size(); ++i) {\n        if(rh1.get(i, i + p.size())\
-    \ == rh2.get(0, p.size())) {\n            std::cout << i << '\\n';\n        }\n\
-    \    }\n}\n"
+    /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n#line 5 \"test/rh.test.cpp\"\
+    \nint main() {\n    std::string t, p;\n    std::cin >> t >> p;\n    RH rh1(t),\
+    \ rh2(p);\n    for(size_t i = 0; i + p.size() <= t.size(); ++i) {\n        if(rh1.get(i,\
+    \ i + p.size()) == rh2.get(0, p.size())) {\n            std::cout << i << '\\\
+    n';\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_B\"\
     \n#include <iostream>\n#include \"C++/string/RH.hpp\"\n#include \"C++/core/alias.hpp\"\
     \nint main() {\n    std::string t, p;\n    std::cin >> t >> p;\n    RH rh1(t),\
@@ -82,7 +82,7 @@ data:
   isVerificationFile: true
   path: test/rh.test.cpp
   requiredBy: []
-  timestamp: '2025-06-06 22:43:22+09:00'
+  timestamp: '2025-06-07 07:29:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/rh.test.cpp

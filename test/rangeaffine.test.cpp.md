@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/core/alias.hpp
-    title: "\u5B9A\u6570"
+    title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
   - icon: ':heavy_check_mark:'
     path: C++/ds/LazySegmentTree.hpp
     title: "\u9045\u5EF6\u30BB\u30B0\u6728"
@@ -266,19 +266,19 @@ data:
     \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\ntemplate\
     \ <class T> using TREE = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>,\
     \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\n\
-    /**\n * @brief \u5B9A\u6570\n */\n#line 5 \"test/rangeaffine.test.cpp\"\nusing\
-    \ Z = man::zwei<mint>;\nint main() {\n    int n, q;\n    std::cin >> n >> q;\n\
-    \    man::LazySegTree<Z, Z> seg(n, [](const Z &a, const Z &b) -> Z { return Z(a.first\
-    \ + b.first, a.second + b.second); }, [](const Z &a, const Z &b) -> Z { return\
-    \ Z(a.first * b.first + a.second * b.second, a.second); }, [](const Z &a, const\
-    \ Z &b) -> Z { return Z(a.first * b.first, a.second * b.first + b.second); },\
-    \ Z(0, 0), Z(1, 0));\n\tstd::vector<Z> a(n);\n    for(int i = 0; i < n; ++i) {\n\
-    \        int x;\n        std::cin >> x;\n        a[i] = Z(x, 1);\n    }\n    seg.build(a);\n\
-    \    while(q--) {\n        int t, l, r;\n        std::cin >> t >> l >> r;\n  \
-    \      if(t == 0) {\n            int p, q;\n            std::cin >> p >> q;\n\
-    \            seg.apply(l, r, Z(p, q));\n        } else {\n            std::cout\
-    \ << seg.query(l, r) << '\\n';\n        }\n    }\n}\n\n// verified but actually\
-    \ failed(slowest: 9.000372 sec.)\n"
+    /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n#line 5 \"test/rangeaffine.test.cpp\"\
+    \nusing Z = man::zwei<mint>;\nint main() {\n    int n, q;\n    std::cin >> n >>\
+    \ q;\n    man::LazySegTree<Z, Z> seg(n, [](const Z &a, const Z &b) -> Z { return\
+    \ Z(a.first + b.first, a.second + b.second); }, [](const Z &a, const Z &b) ->\
+    \ Z { return Z(a.first * b.first + a.second * b.second, a.second); }, [](const\
+    \ Z &a, const Z &b) -> Z { return Z(a.first * b.first, a.second * b.first + b.second);\
+    \ }, Z(0, 0), Z(1, 0));\n\tstd::vector<Z> a(n);\n    for(int i = 0; i < n; ++i)\
+    \ {\n        int x;\n        std::cin >> x;\n        a[i] = Z(x, 1);\n    }\n\
+    \    seg.build(a);\n    while(q--) {\n        int t, l, r;\n        std::cin >>\
+    \ t >> l >> r;\n        if(t == 0) {\n            int p, q;\n            std::cin\
+    \ >> p >> q;\n            seg.apply(l, r, Z(p, q));\n        } else {\n      \
+    \      std::cout << seg.query(l, r) << '\\n';\n        }\n    }\n}\n\n// verified\
+    \ but actually failed(slowest: 9.000372 sec.)\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
     \n#include \"C++/math/Modint.hpp\"\n#include \"C++/ds/LazySegmentTree.hpp\"\n\
     #include \"C++/core/alias.hpp\"\nusing Z = man::zwei<mint>;\nint main() {\n  \
@@ -300,7 +300,7 @@ data:
   isVerificationFile: true
   path: test/rangeaffine.test.cpp
   requiredBy: []
-  timestamp: '2025-06-06 23:25:25+09:00'
+  timestamp: '2025-06-07 07:29:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/rangeaffine.test.cpp

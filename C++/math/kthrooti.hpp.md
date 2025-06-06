@@ -5,52 +5,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/math/primecounter.hpp
     title: "\u7D20\u6570\u306E\u500B\u6570"
-  - icon: ':heavy_check_mark:'
-    path: C++/template.hpp
-    title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aarray.test.cpp
-    title: test/aarray.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/add.test.cpp
-    title: test/add.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/add128.test.cpp
-    title: test/add128.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/extgcd.test.cpp
-    title: test/extgcd.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/fwtree.test.cpp
-    title: test/fwtree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/kthrooti.test.cpp
     title: test/kthrooti.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/m_add.test.cpp
-    title: test/m_add.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/parsum.test.cpp
-    title: test/parsum.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/pcounter.test.cpp
     title: test/pcounter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/s_rmq.test.cpp
-    title: test/s_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/segtree.test.cpp
-    title: test/segtree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/sr_sum.test.cpp
-    title: test/sr_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/stable.test.cpp
-    title: test/stable.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/uf.test.cpp
-    title: test/uf.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -85,25 +46,12 @@ data:
   isVerificationFile: false
   path: C++/math/kthrooti.hpp
   requiredBy:
-  - C++/template.hpp
   - C++/math/primecounter.hpp
   timestamp: '2025-06-06 23:25:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aarray.test.cpp
   - test/kthrooti.test.cpp
-  - test/m_add.test.cpp
-  - test/sr_sum.test.cpp
-  - test/uf.test.cpp
   - test/pcounter.test.cpp
-  - test/add128.test.cpp
-  - test/parsum.test.cpp
-  - test/extgcd.test.cpp
-  - test/stable.test.cpp
-  - test/fwtree.test.cpp
-  - test/segtree.test.cpp
-  - test/add.test.cpp
-  - test/s_rmq.test.cpp
 documentation_of: C++/math/kthrooti.hpp
 layout: document
 redirect_from:

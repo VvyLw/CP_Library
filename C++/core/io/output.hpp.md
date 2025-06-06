@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedVerifiedWith:
@@ -36,7 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,9 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: "\u51FA\u529B"
     links:
@@ -76,7 +76,7 @@ data:
     \ m.begin()->first << ' ' << m.begin()->second;\n        for(auto i = m.begin();\
     \ ++i != m.end();) {\n            os << '\\n' << i->first << ' ' << i->second;\n\
     \        }\n    }\n    return os;\n}\ntemplate <class T> inline std::ostream&\
-    \ operator<<(std::ostream &os, const std::set<T> &st) noexcept {\n    if(st.size())\
+    \ operator<<(std::ostream &os, const std::set<T> &st) noexcept {\n    if(!st.empty())\
     \ {\n        os << *st.begin();\n        for(auto i = st.begin(); ++i != st.end();)\
     \ {\n            os << ' ' << *i;\n        }\n    }\n    return os;\n}\ntemplate\
     \ <class T> inline std::ostream& operator<<(std::ostream &os, const std::multiset<T>\
@@ -113,7 +113,7 @@ data:
     \ m.begin()->first << ' ' << m.begin()->second;\n        for(auto i = m.begin();\
     \ ++i != m.end();) {\n            os << '\\n' << i->first << ' ' << i->second;\n\
     \        }\n    }\n    return os;\n}\ntemplate <class T> inline std::ostream&\
-    \ operator<<(std::ostream &os, const std::set<T> &st) noexcept {\n    if(st.size())\
+    \ operator<<(std::ostream &os, const std::set<T> &st) noexcept {\n    if(!st.empty())\
     \ {\n        os << *st.begin();\n        for(auto i = st.begin(); ++i != st.end();)\
     \ {\n            os << ' ' << *i;\n        }\n    }\n    return os;\n}\ntemplate\
     \ <class T> inline std::ostream& operator<<(std::ostream &os, const std::multiset<T>\
@@ -131,8 +131,8 @@ data:
   path: C++/core/io/output.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2025-06-06 22:43:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-06-07 07:29:34+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aarray.test.cpp
   - test/m_add.test.cpp

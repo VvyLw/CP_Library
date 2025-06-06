@@ -1,56 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/core/alias.hpp
-    title: "\u5B9A\u6570"
-  - icon: ':heavy_check_mark:'
+    title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
+  - icon: ':question:'
     path: C++/core/io/input.hpp
     title: "\u5165\u529B"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/core/io/output.hpp
     title: "\u51FA\u529B"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/core/myvector.hpp
     title: C++/core/myvector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/core/timer.hpp
     title: "\u30BF\u30A4\u30DE\u30FC"
-  - icon: ':heavy_check_mark:'
-    path: C++/math/divisor.hpp
-    title: "\u7D04\u6570\u5217\u6319"
-  - icon: ':heavy_check_mark:'
-    path: C++/math/is_prime.hpp
-    title: C++/math/is_prime.hpp
-  - icon: ':heavy_check_mark:'
-    path: C++/math/kthrooti.hpp
-    title: "k\u4E57\u6839(\u6574\u6570)"
-  - icon: ':heavy_check_mark:'
-    path: C++/math/primefactor.hpp
-    title: "\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':heavy_check_mark:'
-    path: C++/math/primefactortable.hpp
-    title: "\u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
-    path: C++/math/primetable.hpp
-    title: Sieve of Eratosthenes
-  - icon: ':heavy_check_mark:'
-    path: C++/math/psum/psum.hpp
-    title: "\u7D2F\u7A4D\u548C"
-  - icon: ':heavy_check_mark:'
-    path: C++/other/press.hpp
-    title: "\u5EA7\u6A19\u5727\u7E2E"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -182,7 +158,7 @@ data:
     \ *std::max_element(v.cbegin() + a, v.cbegin() + b + 1); }\r\ntemplate <class\
     \ T> constexpr inline int min_id(const std::vector<T>& v) noexcept { return std::ranges::min_element(v)\
     \ - v.cbegin(); }\r\ntemplate <class T> constexpr inline int max_id(const std::vector<T>&\
-    \ v) noexcept { return std::ranges::max_element(v) - v.cbegin(); }\r\n\r\ntemplate\
+    \ v) noexcept { return std::ranges::max_element(v) - v.cbegin(); }\r\ntemplate\
     \ <class T> constexpr inline T count(std::vector<T> v, const T &x) noexcept {\r\
     \n\tif(!std::ranges::is_sorted(v)) {\r\n\t\tstd::ranges::sort(v);\r\n\t}\r\n\t\
     return std::ranges::upper_bound(v, x) - std::ranges::lower_bound(v, x);\r\n}\r\
@@ -210,11 +186,13 @@ data:
     \n\trotate(a, 1);\r\n\ta.pop_back();\r\n\treturn a;\r\n}\r\ntemplate <class T,\
     \ class F> inline std::vector<T> isum(const std::vector<T> &v, const F &fn) noexcept\
     \ {\r\n\tstd::vector<T> s{0};\r\n\tstd::inclusive_scan(v.cbegin(), v.cend(), std::back_inserter(s),\
-    \ fn);\r\n\treturn s;\r\n}\r\ntemplate <class T> inline auto rand_extract(const\
-    \ std::vector<T> &v, const int size = 1) noexcept {\r\n\tstd::vector<T> ret;\r\
-    \n\tstd::ranges::sample(v, std::back_inserter(ret), size, rand());\r\n\treturn\
-    \ std::ssize(ret) == 1 ? ret.front() : ret;\r\n}\r\ntemplate <class T = int64_t>\
-    \ constexpr inline T sum(const std::vector<T> &v) noexcept { return std::accumulate(v.cbegin(),\
+    \ fn);\r\n\treturn s;\r\n}\r\ntemplate <class T> inline std::vector<T> rand_extract(const\
+    \ std::vector<T> &v, const int size) noexcept {\r\n\tstd::vector<T> ret;\r\n\t\
+    std::ranges::sample(v, std::back_inserter(ret), size, rand());\r\n\treturn ret;\r\
+    \n}\r\ntemplate <class T> inline T rand_extract(const std::vector<T> &v) noexcept\
+    \ {\r\n\tstd::vector<T> ret;\r\n\tstd::ranges::sample(v, std::back_inserter(ret),\
+    \ 1, rand());\r\n\treturn ret.front();\r\n}\r\ntemplate <class T = int64_t> constexpr\
+    \ inline T sum(const std::vector<T> &v) noexcept { return std::accumulate(v.cbegin(),\
     \ v.cend(), T(0)); }\r\ntemplate <class T = int64_t> constexpr inline T sum(const\
     \ std::vector<T> &v, const int a, const int b) noexcept { return std::accumulate(v.cbegin()\
     \ + a, v.cbegin() + b, T(0)); }\r\n\r\ntemplate <class T, class Boolean = bool>\
@@ -245,81 +223,7 @@ data:
     \tif(mod) {\r\n\t\t\tret %= mod;\r\n\t\t}\r\n\t}\r\n\treturn ret;\r\n}\r\nconstexpr\
     \ inline bool is_int(const long double n) noexcept { return n == std::floor(n);\
     \ }\r\nconstexpr inline bool is_sqr(const int64_t n) noexcept { return is_int(std::sqrt(n));\
-    \ }\r\n}\r\n\r\n#line 3 \"C++/other/press.hpp\"\n\nnamespace man {\ntemplate <class\
-    \ T> inline std::vector<T> press(const std::vector<T> &v) noexcept {\n\tstd::vector<T>\
-    \ ret, cp = v;\n\tuniq(cp);\n\tfor(const auto &el: v) {\n\t\tret.emplace_back(std::ranges::lower_bound(cp,\
-    \ el) - cp.cbegin());\n\t}\n\treturn ret;\n}\ntemplate <class T> inline std::vector<T>\
-    \ press(std::vector<T> &c1, std::vector<T> &c2) {\n\tstd::vector<T> ret;\n\tconst\
-    \ int n = c1.size();\n\tfor(const auto i: std::views::iota(0, n)) {\n\t\tfor(const\
-    \ auto d: std::views::iota(0, 1)) {\n\t\t\tT tc1 = c1[i] + d;\n\t\t\tT tc2 = c2[i]\
-    \ + d;\n\t\t\tret.emplace_back(tc1);\n\t\t\tret.emplace_back(tc2);\n\t\t}\n\t\
-    }\n\tuniq(ret);\n\tfor(const auto i: std::views::iota(0, n)) {\n\t\tc1[i] = std::ranges::lower_bound(ret,\
-    \ c1[i]) - ret.cbegin();\n\t\tc2[i] = std::ranges::lower_bound(ret, c2[i]) - ret.cbegin();\n\
-    \t}\n\treturn ret;\n}\n}\n/**\n * @brief \u5EA7\u6A19\u5727\u7E2E\n */\n#line\
-    \ 3 \"C++/math/is_prime.hpp\"\n\nnamespace man {\nconstexpr inline bool is_prime(const\
-    \ uint64_t n) noexcept {\n\tif(n <= 1) {\n\t\treturn false;\n\t}\n\tif(n <= 3)\
-    \ {\n\t\treturn true;\n\t}\n\tif(n % 2 ==0 || n % 3 == 0) {\n\t\treturn false;\n\
-    \t}\n\tfor(int64_t i = 5; i * i <= n; i += 6) {\n\t\tif(n % i == 0 || n % (i +\
-    \ 2) == 0) {\n\t\t\treturn false;\n\t\t}\n\t}\n\treturn true;\n}\n}\n#line 2 \"\
-    C++/math/divisor.hpp\"\n\n#line 5 \"C++/math/divisor.hpp\"\nnamespace man {\n\
-    template <class T> inline std::vector<T> div(const T n) noexcept {\n    std::vector<T>\
-    \ d;\n    for(int64_t i = 1; i * i <= n; ++i) {\n        if(n % i == 0) {\n  \
-    \          d.emplace_back(i);\n            if(i * i != n) {\n                d.emplace_back(n\
-    \ / i);\n            }\n        }\n    }\n    std::ranges::sort(d);\n    return\
-    \ d;\n}\n}\n\n/**\n * @brief \u7D04\u6570\u5217\u6319\n */\n#line 2 \"C++/math/primefactor.hpp\"\
-    \n\n#line 5 \"C++/math/primefactor.hpp\"\nnamespace man {\ntemplate <class T>\
-    \ inline std::vector<std::pair<T, int>> prmfct(T n) noexcept {\n    std::vector<std::pair<T,\
-    \ int>> ret;\n    for(int64_t i = 2; i * i <= n; ++i) {\n        if(n % i != 0)\
-    \ {\n            continue;\n        }\n        int tmp = 0;\n        while(n %\
-    \ i == 0) {\n            tmp++;\n            n /= i;\n        }\n        ret.emplace_back(i,\
-    \ tmp);\n    }\n    if(n != 1) {\n        ret.emplace_back(n, 1);\n    }\n   \
-    \ return ret;\n}\n}\n\n/**\n * @brief \u7D20\u56E0\u6570\u5206\u89E3\n */\n#line\
-    \ 2 \"C++/math/primetable.hpp\"\n\n#line 4 \"C++/math/primetable.hpp\"\n#include\
-    \ <ranges>\nnamespace man {\nstruct p_table {\n    std::vector<int> SoE;\n   \
-    \ p_table(const int n): SoE(n + 1, 1) {\n        SoE[0] = SoE[1] = 0;\n      \
-    \  for(const int64_t i: std::views::iota(2, n + 1)) {\n            if(!SoE[i])\
-    \ {\n                continue;\n            }\n            for(int64_t j = i *\
-    \ i; j <= n; j += i) {\n                SoE[j] = 0;\n            }\n        }\n\
-    \    }\n    std::vector<int> get() {\n        std::vector<int> p;\n        for(const\
-    \ auto i: std::views::iota(2, std::ssize(SoE))) {\n            if(SoE[i]) {\n\
-    \                p.emplace_back(i);\n            }\n        }\n        return\
-    \ p;\n    }\n};\n}\n\n/**\n * @brief Sieve of Eratosthenes\n */\n#line 2 \"C++/math/primefactortable.hpp\"\
-    \n\n#line 6 \"C++/math/primefactortable.hpp\"\nnamespace man {\nstruct p_fact\
-    \ {\n    std::vector<int64_t> spf;\n    p_fact(const int n): spf(n + 1){\n   \
-    \     std::iota(spf.begin(), spf.end(), 0);\n        for(int64_t i = 2; i * i\
-    \ <= n; ++i) {\n            if(spf[i] == i) {\n                for(int64_t j =\
-    \ i * i; j <= n; j += i) {\n                    if(spf[j] == j) {\n          \
-    \              spf[j] = i;\n                    }\n                }\n       \
-    \     }\n        }\n    }\n    inline std::map<int, int> get(int n) noexcept {\n\
-    \        std::map<int, int> m;\n        while(n != 1) {\n            m[spf[n]]++;\n\
-    \            n /= spf[n];\n        }\n        return m;\n    }\n};\n}\n\n/**\n\
-    \ * @brief \u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\u30EB\n */\n#line\
-    \ 2 \"C++/math/psum/psum.hpp\"\n\n#line 5 \"C++/math/psum/psum.hpp\"\nnamespace\
-    \ man {\ntemplate <class T = int64_t> struct psum {\nprivate:\n    int n;\n  \
-    \  bool not_built;\n    std::vector<int64_t> s;\npublic:\n    psum(const std::vector<T>\
-    \ &v): s{0} { std::partial_sum(v.cbegin(), v.cend(), std::back_inserter(s)); }\n\
-    \    psum(const int n): n(n), not_built(true), s(n + 1){}\n    constexpr inline\
-    \ std::vector<int64_t> get() const noexcept { return s; }\n    // [l, r]\n   \
-    \ constexpr inline int64_t sum(const int l, const int r) const noexcept  { return\
-    \ s[r] - s[l]; }\n    constexpr inline void add(const int l, const int r, const\
-    \ int64_t x = 1) noexcept {\n        static_assert(not_built);\n        s[l] +=\
-    \ x;\n        s[r] -= x;\n    }\n    constexpr inline std::vector<int64_t> build()\
-    \ noexcept {\n        static_assert(not_built);\n        std::vector<int64_t>\
-    \ res;\n        std::partial_sum(s.cbegin(), s.cend(), std::back_inserter(res));\n\
-    \        not_built = false;\n        res.resize(n);\n        return res;\n   \
-    \ }\n};\n}\n\n/**\n * @brief \u7D2F\u7A4D\u548C\n */\n#line 2 \"C++/math/kthrooti.hpp\"\
-    \n\n#line 6 \"C++/math/kthrooti.hpp\"\n#ifndef TEMPLATE\nnamespace man {\ntemplate\
-    \ <class T, class U> constexpr inline bool overflow_if_mul(const T a, const U\
-    \ b) noexcept { return (std::numeric_limits<T>::max()/a)<b; }\n}\n#endif\nnamespace\
-    \ man {\ninline uint64_t kthrooti(const uint64_t n, const int k) {\n    if(k ==\
-    \ 1) {\n\t\treturn n;\n\t}\n\tconst auto chk = [&](const unsigned x) -> bool {\n\
-    \t\tuint64_t mul = 1;\n\t\tfor([[maybe_unused]] const auto _: std::views::iota(0,\
-    \ k)) {\n            if(man::overflow_if_mul(mul, x)) {\n                return\
-    \ false;\n            }\n            mul *= x;\n        }\n\t\treturn mul <= n;\n\
-    \t};\n\tuint64_t ret = 0;\n\tfor(const auto i: std::views::iota(0, 32) | std::views::reverse)\
-    \ {\n\t\tif(chk(ret | (1U << i))) {\n\t\t\tret |= 1U << i;\n\t\t}\n\t}\n\treturn\
-    \ ret;\n}\n}\n\n/**\n * @brief k\u4E57\u6839(\u6574\u6570)\n */\n#line 386 \"\
-    C++/template.hpp\"\n\r\n#line 2 \"C++/core/timer.hpp\"\n\n#line 5 \"C++/core/timer.hpp\"\
+    \ }\r\n}\r\n\r\n#line 2 \"C++/core/timer.hpp\"\n\n#line 5 \"C++/core/timer.hpp\"\
     \nusing Timer = std::chrono::system_clock::time_point;\nTimer start, stop;\n#if\
     \ local\ninline void now(Timer &t) noexcept { t = std::chrono::system_clock::now();\
     \ }\ninline void time(const Timer &t1, const Timer &t2) noexcept { std::cerr <<\
@@ -345,16 +249,16 @@ data:
     \ __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
     template <class T> using TREE = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>,\
     \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\n\
-    /**\n * @brief \u5B9A\u6570\n */\n#line 2 \"C++/core/myvector.hpp\"\n\n#line 4\
-    \ \"C++/core/myvector.hpp\"\n\nnamespace man {\nnamespace vec {\ntemplate <class\
-    \ T> using V = std::vector<T>;\ntypedef V<int64_t> vi;\ntypedef V<uint64_t> vu;\n\
-    typedef V<long double> vd;\ntypedef V<char> vc;\ntypedef V<std::string> vs;\n\
-    typedef V<bool> vb;\ntypedef V<vi> wi;\ntypedef V<vu> wu;\ntypedef V<vd> wd;\n\
-    typedef V<vc> wc;\ntypedef V<vs> ws;\ntypedef V<vb> wb;\n#ifdef EDGE\ntypedef\
-    \ V<man::edge> ve;\ntypedef V<ve> we;\n#endif\ntemplate <class T, class U> inline\
-    \ V<U> ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n), std::forward<U>(v));\n\
-    }\ntemplate <class T, class... Ts> inline decltype(auto) ndiv(T&& n, Ts&&... v)\
-    \ noexcept {\n  return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n),\
+    /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n#line 2 \"C++/core/myvector.hpp\"\
+    \n\n#line 4 \"C++/core/myvector.hpp\"\n\nnamespace man {\nnamespace vec {\ntemplate\
+    \ <class T> using V = std::vector<T>;\ntypedef V<int64_t> vi;\ntypedef V<uint64_t>\
+    \ vu;\ntypedef V<long double> vd;\ntypedef V<char> vc;\ntypedef V<std::string>\
+    \ vs;\ntypedef V<bool> vb;\ntypedef V<vi> wi;\ntypedef V<vu> wu;\ntypedef V<vd>\
+    \ wd;\ntypedef V<vc> wc;\ntypedef V<vs> ws;\ntypedef V<vb> wb;\n#ifdef EDGE\n\
+    typedef V<man::edge> ve;\ntypedef V<ve> we;\n#endif\ntemplate <class T, class\
+    \ U> inline V<U> ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n),\
+    \ std::forward<U>(v));\n}\ntemplate <class T, class... Ts> inline decltype(auto)\
+    \ ndiv(T&& n, Ts&&... v) noexcept {\n  return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n),\
     \ ndiv(std::forward<Ts>(v)...));\n}\ntemplate <class T> constexpr V<T>& operator++(V<T>&\
     \ v) noexcept { for(auto &el: v) el++; return v; }\ntemplate <class T> constexpr\
     \ V<T>& operator--(V<T>& v) noexcept { for(auto &el: v) el--; return v; }\ntemplate\
@@ -490,7 +394,7 @@ data:
     \ m.begin()->first << ' ' << m.begin()->second;\n        for(auto i = m.begin();\
     \ ++i != m.end();) {\n            os << '\\n' << i->first << ' ' << i->second;\n\
     \        }\n    }\n    return os;\n}\ntemplate <class T> inline std::ostream&\
-    \ operator<<(std::ostream &os, const std::set<T> &st) noexcept {\n    if(st.size())\
+    \ operator<<(std::ostream &os, const std::set<T> &st) noexcept {\n    if(!st.empty())\
     \ {\n        os << *st.begin();\n        for(auto i = st.begin(); ++i != st.end();)\
     \ {\n            os << ' ' << *i;\n        }\n    }\n    return os;\n}\ntemplate\
     \ <class T> inline std::ostream& operator<<(std::ostream &os, const std::multiset<T>\
@@ -502,7 +406,7 @@ data:
     \ {\n            os << ' ' << *i;\n        }\n    }\n    return os;\n}\n} // IO\n\
     \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
     #include <C++/core/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
-    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 391 \"C++/template.hpp\"\n\r\
+    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 386 \"C++/template.hpp\"\n\r\
     \n#define overload4(_1,_2,_3,_4,name,...) name\r\n#define REP1(n) for([[maybe_unused]]\
     \ const auto _: std::views::iota(0, (n)))\r\n#define REP2(i,n) for(const auto\
     \ i: std::views::iota(0, (n)))\r\n#define REP3(i,a,b) for(const auto i: std::views::iota((a),\
@@ -529,14 +433,6 @@ data:
     n';\n    }\n}"
   dependsOn:
   - C++/template.hpp
-  - C++/other/press.hpp
-  - C++/math/is_prime.hpp
-  - C++/math/divisor.hpp
-  - C++/math/primefactor.hpp
-  - C++/math/primetable.hpp
-  - C++/math/primefactortable.hpp
-  - C++/math/psum/psum.hpp
-  - C++/math/kthrooti.hpp
   - C++/core/timer.hpp
   - C++/core/mypair.hpp
   - C++/core/alias.hpp
@@ -546,8 +442,8 @@ data:
   isVerificationFile: true
   path: test/sr_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-06-06 23:25:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-06-07 07:29:34+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/sr_sum.test.cpp
 layout: document

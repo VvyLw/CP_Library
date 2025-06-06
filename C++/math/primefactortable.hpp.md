@@ -1,50 +1,11 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: C++/template.hpp
-    title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aarray.test.cpp
-    title: test/aarray.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/add.test.cpp
-    title: test/add.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/add128.test.cpp
-    title: test/add128.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/extgcd.test.cpp
-    title: test/extgcd.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/fwtree.test.cpp
-    title: test/fwtree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/m_add.test.cpp
-    title: test/m_add.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/parsum.test.cpp
-    title: test/parsum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/s_rmq.test.cpp
-    title: test/s_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/segtree.test.cpp
-    title: test/segtree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/sr_sum.test.cpp
-    title: test/sr_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/stable.test.cpp
-    title: test/stable.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/uf.test.cpp
-    title: test/uf.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     document_title: "\u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\u30EB"
     links: []
@@ -72,23 +33,10 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: C++/math/primefactortable.hpp
-  requiredBy:
-  - C++/template.hpp
+  requiredBy: []
   timestamp: '2025-06-06 22:43:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aarray.test.cpp
-  - test/m_add.test.cpp
-  - test/sr_sum.test.cpp
-  - test/uf.test.cpp
-  - test/add128.test.cpp
-  - test/parsum.test.cpp
-  - test/extgcd.test.cpp
-  - test/stable.test.cpp
-  - test/fwtree.test.cpp
-  - test/segtree.test.cpp
-  - test/add.test.cpp
-  - test/s_rmq.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: C++/math/primefactortable.hpp
 layout: document
 redirect_from:

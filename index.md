@@ -3,16 +3,16 @@ data:
   libraryCategories:
   - name: C++/core
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/core/alias.hpp
-      title: "\u5B9A\u6570"
-    - icon: ':heavy_check_mark:'
+      title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
+    - icon: ':question:'
       path: C++/core/mypair.hpp
       title: C++/core/mypair.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/core/myvector.hpp
       title: C++/core/myvector.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/core/timer.hpp
       title: "\u30BF\u30A4\u30DE\u30FC"
   - name: C++/core/io
@@ -20,10 +20,10 @@ data:
     - icon: ':warning:'
       path: C++/core/io/debug_print.hpp
       title: "\u30C7\u30D0\u30C3\u30AC\u30FC"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/core/io/input.hpp
       title: "\u5165\u529B"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/core/io/output.hpp
       title: "\u51FA\u529B"
   - name: C++/ds
@@ -121,7 +121,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math/Modint.hpp
       title: Modint
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: C++/math/divisor.hpp
       title: "\u7D04\u6570\u5217\u6319"
     - icon: ':heavy_check_mark:'
@@ -133,7 +133,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math/inverse_num.hpp
       title: "\u8EE2\u5012\u6570"
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: C++/math/is_prime.hpp
       title: C++/math/is_prime.hpp
     - icon: ':heavy_check_mark:'
@@ -148,10 +148,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math/primecounter.hpp
       title: "\u7D20\u6570\u306E\u500B\u6570"
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: C++/math/primefactor.hpp
       title: "\u7D20\u56E0\u6570\u5206\u89E3"
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: C++/math/primefactortable.hpp
       title: "\u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\u30EB"
     - icon: ':heavy_check_mark:'
@@ -162,7 +162,7 @@ data:
       title: "Tetration(a\u2191\u2191b)"
   - name: C++/math/psum
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: C++/math/psum/psum.hpp
       title: "\u7D2F\u7A4D\u548C"
     - icon: ':heavy_check_mark:'
@@ -185,7 +185,7 @@ data:
     - icon: ':warning:'
       path: C++/other/merge_sort.hpp
       title: "\u30DE\u30FC\u30B8\u30BD\u30FC\u30C8"
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: C++/other/press.hpp
       title: "\u5EA7\u6A19\u5727\u7E2E"
     - icon: ':warning:'
@@ -207,7 +207,7 @@ data:
       title: Z-Algorithm
   - name: C++
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/template.hpp
       title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   - name: Java
@@ -707,7 +707,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/spfa.test.cpp
       title: test/spfa.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/sr_sum.test.cpp
       title: test/sr_sum.test.cpp
     - icon: ':heavy_check_mark:'
