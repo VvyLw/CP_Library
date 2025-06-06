@@ -5,7 +5,7 @@ data:
   - icon: ':x:'
     path: C++/math/primecounter.hpp
     title: "\u7D20\u6570\u306E\u500B\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedVerifiedWith:
@@ -27,25 +27,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/m_add.test.cpp
     title: test/m_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
   - icon: ':x:'
     path: test/pcounter.test.cpp
     title: test/pcounter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/s_rmq.test.cpp
     title: test/s_rmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stable.test.cpp
     title: test/stable.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
   _isVerificationFailed: true

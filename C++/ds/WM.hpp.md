@@ -3,10 +3,10 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/wm.test.cpp
     title: test/wm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/wm2.test.cpp
     title: test/wm2.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/wm3.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Wavelet Matrix
     links:
@@ -191,7 +191,7 @@ data:
   path: C++/ds/WM.hpp
   requiredBy: []
   timestamp: '2025-06-06 22:43:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/wm.test.cpp
   - test/wm2.test.cpp

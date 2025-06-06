@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/ds/WM.hpp
     title: Wavelet Matrix
   _extendedRequiredBy: []

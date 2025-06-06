@@ -4,56 +4,56 @@ data:
   - icon: ':question:'
     path: C++/core/alias.hpp
     title: "\u5B9A\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/io/input.hpp
     title: "\u5165\u529B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/io/output.hpp
     title: "\u51FA\u529B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/myvector.hpp
     title: C++/core/myvector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/timer.hpp
     title: "\u30BF\u30A4\u30DE\u30FC"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/ds/SegmentTree.hpp
     title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/divisor.hpp
     title: "\u7D04\u6570\u5217\u6319"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/is_prime.hpp
     title: C++/math/is_prime.hpp
   - icon: ':question:'
     path: C++/math/kthrooti.hpp
     title: "k\u4E57\u6839(\u6574\u6570)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/primefactor.hpp
     title: "\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/primefactortable.hpp
     title: "\u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\u30EB"
   - icon: ':question:'
     path: C++/math/primetable.hpp
     title: Sieve of Eratosthenes
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/psum/psum.hpp
     title: "\u7D2F\u7A4D\u548C"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/other/press.hpp
-    title: C++/other/press.hpp
-  - icon: ':question:'
+    title: "\u5EA7\u6A19\u5727\u7E2E"
+  - icon: ':heavy_check_mark:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
@@ -258,49 +258,50 @@ data:
     \ + d;\n\t\t\tret.emplace_back(tc1);\n\t\t\tret.emplace_back(tc2);\n\t\t}\n\t\
     }\n\tuniq(ret);\n\tfor(const auto i: std::views::iota(0, n)) {\n\t\tc1[i] = std::ranges::lower_bound(ret,\
     \ c1[i]) - ret.cbegin();\n\t\tc2[i] = std::ranges::lower_bound(ret, c2[i]) - ret.cbegin();\n\
-    \t}\n\treturn ret;\n}\n}\n#line 3 \"C++/math/is_prime.hpp\"\n\nnamespace man {\n\
-    constexpr inline bool is_prime(const uint64_t n) noexcept {\n\tif(n <= 1) {\n\t\
-    \treturn false;\n\t}\n\tif(n <= 3) {\n\t\treturn true;\n\t}\n\tif(n % 2 ==0 ||\
-    \ n % 3 == 0) {\n\t\treturn false;\n\t}\n\tfor(int64_t i = 5; i * i <= n; i +=\
-    \ 6) {\n\t\tif(n % i == 0 || n % (i + 2) == 0) {\n\t\t\treturn false;\n\t\t}\n\
-    \t}\n\treturn true;\n}\n}\n#line 2 \"C++/math/divisor.hpp\"\n\n#line 5 \"C++/math/divisor.hpp\"\
-    \nnamespace man {\ntemplate <class T> inline std::vector<T> div(const T n) noexcept\
-    \ {\n    std::vector<T> d;\n    for(int64_t i = 1; i * i <= n; ++i) {\n      \
-    \  if(n % i == 0) {\n            d.emplace_back(i);\n            if(i * i != n)\
-    \ {\n                d.emplace_back(n / i);\n            }\n        }\n    }\n\
-    \    std::ranges::sort(d);\n    return d;\n}\n}\n\n/**\n * @brief \u7D04\u6570\
-    \u5217\u6319\n */\n#line 2 \"C++/math/primefactor.hpp\"\n\n#line 5 \"C++/math/primefactor.hpp\"\
-    \nnamespace man {\ntemplate <class T> inline std::vector<std::pair<T, int>> prmfct(T\
-    \ n) noexcept {\n    std::vector<std::pair<T, int>> ret;\n    for(int64_t i =\
-    \ 2; i * i <= n; ++i) {\n        if(n % i != 0) {\n            continue;\n   \
-    \     }\n        int tmp = 0;\n        while(n % i == 0) {\n            tmp++;\n\
-    \            n /= i;\n        }\n        ret.emplace_back(i, tmp);\n    }\n  \
-    \  if(n != 1) {\n        ret.emplace_back(n, 1);\n    }\n    return ret;\n}\n\
-    }\n\n/**\n * @brief \u7D20\u56E0\u6570\u5206\u89E3\n */\n#line 2 \"C++/math/primetable.hpp\"\
-    \n\n#line 4 \"C++/math/primetable.hpp\"\n#include <ranges>\nnamespace man {\n\
-    struct p_table {\n    std::vector<int> SoE;\n    p_table(const int n): SoE(n +\
-    \ 1, 1) {\n        SoE[0] = SoE[1] = 0;\n        for(const int64_t i: std::views::iota(2,\
-    \ n + 1)) {\n            if(!SoE[i]) {\n                continue;\n          \
-    \  }\n            for(int64_t j = i * i; j <= n; j += i) {\n                SoE[j]\
-    \ = 0;\n            }\n        }\n    }\n    std::vector<int> get() {\n      \
-    \  std::vector<int> p;\n        for(const auto i: std::views::iota(2, std::ssize(SoE)))\
-    \ {\n            if(SoE[i]) {\n                p.emplace_back(i);\n          \
-    \  }\n        }\n        return p;\n    }\n};\n}\n\n/**\n * @brief Sieve of Eratosthenes\n\
-    \ */\n#line 2 \"C++/math/primefactortable.hpp\"\n\n#line 6 \"C++/math/primefactortable.hpp\"\
-    \nnamespace man {\nstruct p_fact {\n    std::vector<int64_t> spf;\n    p_fact(const\
-    \ int n): spf(n + 1){\n        std::iota(spf.begin(), spf.end(), 0);\n       \
-    \ for(int64_t i = 2; i * i <= n; ++i) {\n            if(spf[i] == i) {\n     \
-    \           for(int64_t j = i * i; j <= n; j += i) {\n                    if(spf[j]\
-    \ == j) {\n                        spf[j] = i;\n                    }\n      \
-    \          }\n            }\n        }\n    }\n    inline std::map<int, int> get(int\
-    \ n) noexcept {\n        std::map<int, int> m;\n        while(n != 1) {\n    \
-    \        m[spf[n]]++;\n            n /= spf[n];\n        }\n        return m;\n\
-    \    }\n};\n}\n\n/**\n * @brief \u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\
-    \u30EB\n */\n#line 2 \"C++/math/psum/psum.hpp\"\n\n#line 5 \"C++/math/psum/psum.hpp\"\
-    \nnamespace man {\ntemplate <class T = int64_t> struct psum {\nprivate:\n    int\
-    \ n;\n    bool not_built;\n    std::vector<int64_t> s;\npublic:\n    psum(const\
-    \ std::vector<T> &v): s{0} { std::partial_sum(v.cbegin(), v.cend(), std::back_inserter(s));\
-    \ }\n    psum(const int n): n(n), not_built(true), s(n + 1){}\n    constexpr inline\
+    \t}\n\treturn ret;\n}\n}\n/**\n * @brief \u5EA7\u6A19\u5727\u7E2E\n */\n#line\
+    \ 3 \"C++/math/is_prime.hpp\"\n\nnamespace man {\nconstexpr inline bool is_prime(const\
+    \ uint64_t n) noexcept {\n\tif(n <= 1) {\n\t\treturn false;\n\t}\n\tif(n <= 3)\
+    \ {\n\t\treturn true;\n\t}\n\tif(n % 2 ==0 || n % 3 == 0) {\n\t\treturn false;\n\
+    \t}\n\tfor(int64_t i = 5; i * i <= n; i += 6) {\n\t\tif(n % i == 0 || n % (i +\
+    \ 2) == 0) {\n\t\t\treturn false;\n\t\t}\n\t}\n\treturn true;\n}\n}\n#line 2 \"\
+    C++/math/divisor.hpp\"\n\n#line 5 \"C++/math/divisor.hpp\"\nnamespace man {\n\
+    template <class T> inline std::vector<T> div(const T n) noexcept {\n    std::vector<T>\
+    \ d;\n    for(int64_t i = 1; i * i <= n; ++i) {\n        if(n % i == 0) {\n  \
+    \          d.emplace_back(i);\n            if(i * i != n) {\n                d.emplace_back(n\
+    \ / i);\n            }\n        }\n    }\n    std::ranges::sort(d);\n    return\
+    \ d;\n}\n}\n\n/**\n * @brief \u7D04\u6570\u5217\u6319\n */\n#line 2 \"C++/math/primefactor.hpp\"\
+    \n\n#line 5 \"C++/math/primefactor.hpp\"\nnamespace man {\ntemplate <class T>\
+    \ inline std::vector<std::pair<T, int>> prmfct(T n) noexcept {\n    std::vector<std::pair<T,\
+    \ int>> ret;\n    for(int64_t i = 2; i * i <= n; ++i) {\n        if(n % i != 0)\
+    \ {\n            continue;\n        }\n        int tmp = 0;\n        while(n %\
+    \ i == 0) {\n            tmp++;\n            n /= i;\n        }\n        ret.emplace_back(i,\
+    \ tmp);\n    }\n    if(n != 1) {\n        ret.emplace_back(n, 1);\n    }\n   \
+    \ return ret;\n}\n}\n\n/**\n * @brief \u7D20\u56E0\u6570\u5206\u89E3\n */\n#line\
+    \ 2 \"C++/math/primetable.hpp\"\n\n#line 4 \"C++/math/primetable.hpp\"\n#include\
+    \ <ranges>\nnamespace man {\nstruct p_table {\n    std::vector<int> SoE;\n   \
+    \ p_table(const int n): SoE(n + 1, 1) {\n        SoE[0] = SoE[1] = 0;\n      \
+    \  for(const int64_t i: std::views::iota(2, n + 1)) {\n            if(!SoE[i])\
+    \ {\n                continue;\n            }\n            for(int64_t j = i *\
+    \ i; j <= n; j += i) {\n                SoE[j] = 0;\n            }\n        }\n\
+    \    }\n    std::vector<int> get() {\n        std::vector<int> p;\n        for(const\
+    \ auto i: std::views::iota(2, std::ssize(SoE))) {\n            if(SoE[i]) {\n\
+    \                p.emplace_back(i);\n            }\n        }\n        return\
+    \ p;\n    }\n};\n}\n\n/**\n * @brief Sieve of Eratosthenes\n */\n#line 2 \"C++/math/primefactortable.hpp\"\
+    \n\n#line 6 \"C++/math/primefactortable.hpp\"\nnamespace man {\nstruct p_fact\
+    \ {\n    std::vector<int64_t> spf;\n    p_fact(const int n): spf(n + 1){\n   \
+    \     std::iota(spf.begin(), spf.end(), 0);\n        for(int64_t i = 2; i * i\
+    \ <= n; ++i) {\n            if(spf[i] == i) {\n                for(int64_t j =\
+    \ i * i; j <= n; j += i) {\n                    if(spf[j] == j) {\n          \
+    \              spf[j] = i;\n                    }\n                }\n       \
+    \     }\n        }\n    }\n    inline std::map<int, int> get(int n) noexcept {\n\
+    \        std::map<int, int> m;\n        while(n != 1) {\n            m[spf[n]]++;\n\
+    \            n /= spf[n];\n        }\n        return m;\n    }\n};\n}\n\n/**\n\
+    \ * @brief \u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\u30EB\n */\n#line\
+    \ 2 \"C++/math/psum/psum.hpp\"\n\n#line 5 \"C++/math/psum/psum.hpp\"\nnamespace\
+    \ man {\ntemplate <class T = int64_t> struct psum {\nprivate:\n    int n;\n  \
+    \  bool not_built;\n    std::vector<int64_t> s;\npublic:\n    psum(const std::vector<T>\
+    \ &v): s{0} { std::partial_sum(v.cbegin(), v.cend(), std::back_inserter(s)); }\n\
+    \    psum(const int n): n(n), not_built(true), s(n + 1){}\n    constexpr inline\
     \ std::vector<int64_t> get() const noexcept { return s; }\n    // [l, r]\n   \
     \ constexpr inline int64_t sum(const int l, const int r) const noexcept  { return\
     \ s[r] - s[l]; }\n    constexpr inline void add(const int l, const int r, const\
@@ -602,8 +603,8 @@ data:
   isVerificationFile: true
   path: test/segtree.test.cpp
   requiredBy: []
-  timestamp: '2025-06-06 22:43:22+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-06 22:58:51+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segtree.test.cpp
 layout: document

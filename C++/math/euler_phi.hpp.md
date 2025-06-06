@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/tetration.hpp
     title: "Tetration(a\u2191\u2191b)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/phi.test.cpp
     title: test/phi.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tetration.test.cpp
     title: test/tetration.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Euler's Phi-function
     links: []
@@ -35,7 +35,7 @@ data:
   requiredBy:
   - C++/math/tetration.hpp
   timestamp: '2025-06-06 22:43:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/tetration.test.cpp
   - test/phi.test.cpp

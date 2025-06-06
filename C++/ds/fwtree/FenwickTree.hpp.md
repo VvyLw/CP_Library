@@ -21,12 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/inv_num.test.cpp
     title: test/inv_num.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Binary Indexed Tree
     links:
@@ -96,7 +96,7 @@ data:
   - C++/ds/fwtree/RangeBIT.hpp
   - C++/math/inverse_num.hpp
   timestamp: '2025-06-06 22:43:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fwtree3.test.cpp
   - test/fwtree2.test.cpp

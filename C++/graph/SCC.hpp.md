@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/scc.test.cpp
     title: test/scc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/scc2.test.cpp
     title: test/scc2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "Strongly Connected Components(\u5F37\u9023\u7D50\u6210\u5206\u5206\
       \u89E3)"
@@ -72,7 +72,7 @@ data:
   path: C++/graph/SCC.hpp
   requiredBy: []
   timestamp: '2025-06-06 22:43:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/scc.test.cpp
   - test/scc2.test.cpp

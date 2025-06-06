@@ -6,13 +6,13 @@ data:
     - icon: ':question:'
       path: C++/core/alias.hpp
       title: "\u5B9A\u6570"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/core/mypair.hpp
       title: C++/core/mypair.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/core/myvector.hpp
       title: C++/core/myvector.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/core/timer.hpp
       title: "\u30BF\u30A4\u30DE\u30FC"
   - name: C++/core/io
@@ -20,10 +20,10 @@ data:
     - icon: ':warning:'
       path: C++/core/io/debug_print.hpp
       title: "\u30C7\u30D0\u30C3\u30AC\u30FC"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/core/io/input.hpp
       title: "\u5165\u529B"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/core/io/output.hpp
       title: "\u51FA\u529B"
   - name: C++/ds
@@ -34,16 +34,16 @@ data:
     - icon: ':question:'
       path: C++/ds/LazySegmentTree.hpp
       title: "\u9045\u5EF6\u30BB\u30B0\u6728"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/ds/SegmentTree.hpp
       title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/ds/SegmentTreeBeats.hpp
       title: SegmentTreeBeats!
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/ds/SparseTable.hpp
       title: Sparse Table
-    - icon: ':x:'
+    - icon: ':question:'
       path: C++/ds/WM.hpp
       title: Wavelet Matrix
     - icon: ':heavy_check_mark:'
@@ -52,7 +52,7 @@ data:
         \u30AD\u30E5\u30FC)"
   - name: C++/ds/fwtree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/ds/fwtree/FenwickTree.hpp
       title: Binary Indexed Tree
     - icon: ':heavy_check_mark:'
@@ -63,37 +63,37 @@ data:
     - icon: ':warning:'
       path: C++/ds/uf/MergeUF.hpp
       title: MergeUnionFind
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/ds/uf/UFPotential.hpp
       title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304DUnionFind"
     - icon: ':warning:'
       path: C++/ds/uf/UFUndo.hpp
       title: "Undo\u53EF\u80FDUnionFind"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/ds/uf/UnionFind.hpp
       title: UnionFind
   - name: C++/graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/graph/Graph.hpp
       title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
     - icon: ':heavy_check_mark:'
       path: C++/graph/LCA.hpp
       title: "Lowest Common Ancestor(\u6700\u5C0F\u5171\u901A\u7956\u5148)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/graph/SCC.hpp
       title: "Strongly Connected Components(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
         )"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/graph/ShortestPath.hpp
       title: "\u6700\u77ED\u8DEF"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/graph/WeightedGraph.hpp
       title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/graph/diameter.hpp
       title: "\u6728\u306E\u76F4\u5F84"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/graph/edge.hpp
       title: Edge
   - name: C++/graph/mst
@@ -115,16 +115,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math/Matrix.hpp
       title: "\u884C\u5217\u30E9\u30A4\u30D6\u30E9\u30EA"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/ModPrime.hpp
       title: ModPrime
     - icon: ':x:'
       path: C++/math/Modint.hpp
       title: Modint
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/divisor.hpp
       title: "\u7D04\u6570\u5217\u6319"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/euler_phi.hpp
       title: Euler's Phi-function
     - icon: ':warning:'
@@ -133,13 +133,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math/inverse_num.hpp
       title: "\u8EE2\u5012\u6570"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/is_prime.hpp
       title: C++/math/is_prime.hpp
     - icon: ':question:'
       path: C++/math/kthrooti.hpp
       title: "k\u4E57\u6839(\u6574\u6570)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/phitable.hpp
       title: Euler's Phi-function(table)
     - icon: ':x:'
@@ -148,24 +148,24 @@ data:
     - icon: ':x:'
       path: C++/math/primecounter.hpp
       title: "\u7D20\u6570\u306E\u500B\u6570"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/primefactor.hpp
       title: "\u7D20\u56E0\u6570\u5206\u89E3"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/primefactortable.hpp
       title: "\u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\u30EB"
     - icon: ':question:'
       path: C++/math/primetable.hpp
       title: Sieve of Eratosthenes
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/tetration.hpp
       title: "Tetration(a\u2191\u2191b)"
   - name: C++/math/psum
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/psum/psum.hpp
       title: "\u7D2F\u7A4D\u548C"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/psum/psum2d.hpp
       title: "\u4E8C\u6B21\u5143\u7D2F\u7A4D\u548C"
   - name: C++/other
@@ -185,18 +185,18 @@ data:
     - icon: ':warning:'
       path: C++/other/merge_sort.hpp
       title: "\u30DE\u30FC\u30B8\u30BD\u30FC\u30C8"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/other/press.hpp
-      title: C++/other/press.hpp
+      title: "\u5EA7\u6A19\u5727\u7E2E"
     - icon: ':warning:'
       path: C++/other/runlength.hpp
       title: "\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E"
   - name: C++/string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/string/RH.hpp
       title: Rolling Hash
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/string/SA.hpp
       title: Suffix Array
     - icon: ':heavy_check_mark:'
@@ -207,7 +207,7 @@ data:
       title: Z-Algorithm
   - name: C++
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/template.hpp
       title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   - name: Java
@@ -653,10 +653,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/modprime.test.cpp
       title: test/modprime.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/modprime2.test.cpp
       title: test/modprime2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/parsum.test.cpp
       title: test/parsum.test.cpp
     - icon: ':x:'
@@ -665,73 +665,73 @@ data:
     - icon: ':x:'
       path: test/pf.test.cpp
       title: test/pf.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/phi.test.cpp
       title: test/phi.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/phi_table.test.cpp
       title: test/phi_table.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/psum2d.test.cpp
       title: test/psum2d.test.cpp
     - icon: ':x:'
       path: test/rangeaffine.test.cpp
       title: test/rangeaffine.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/rh.test.cpp
       title: test/rh.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/s_rmq.test.cpp
       title: test/s_rmq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/sa.test.cpp
       title: test/sa.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/scc.test.cpp
       title: test/scc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/scc2.test.cpp
       title: test/scc2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/segtree.test.cpp
       title: test/segtree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/segtree2.test.cpp
       title: test/segtree2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/segtreebeats.test.cpp
       title: test/segtreebeats.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/shortestpath.test.cpp
       title: test/shortestpath.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/spfa.test.cpp
       title: test/spfa.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/sr_sum.test.cpp
       title: test/sr_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/stable.test.cpp
       title: test/stable.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/tetration.test.cpp
       title: test/tetration.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/tree_diameter.test.cpp
       title: test/tree_diameter.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/uf.test.cpp
       title: test/uf.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/ufpotential.test.cpp
       title: test/ufpotential.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/warshallfloyd.test.cpp
       title: test/warshallfloyd.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/wm.test.cpp
       title: test/wm.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/wm2.test.cpp
       title: test/wm2.test.cpp
     - icon: ':x:'

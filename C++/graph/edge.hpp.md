@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/Graph.hpp
     title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/WeightedGraph.hpp
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/diameter.hpp
     title: "\u6728\u306E\u76F4\u5F84"
   - icon: ':heavy_check_mark:'
@@ -42,27 +42,27 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/manhattan.test.cpp
     title: test/manhattan.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/scc.test.cpp
     title: test/scc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/scc2.test.cpp
     title: test/scc2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/shortestpath.test.cpp
     title: test/shortestpath.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/spfa.test.cpp
     title: test/spfa.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree_diameter.test.cpp
     title: test/tree_diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/warshallfloyd.test.cpp
     title: test/warshallfloyd.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Edge
     links: []
@@ -89,7 +89,7 @@ data:
   - C++/graph/mst/kruskal.hpp
   - C++/graph/WeightedGraph.hpp
   timestamp: '2025-06-06 22:43:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/spfa.test.cpp
   - test/tree_diameter.test.cpp

@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/modprime.test.cpp
     title: test/modprime.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/modprime2.test.cpp
     title: test/modprime2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: ModPrime
     links: []
@@ -65,7 +65,7 @@ data:
   path: C++/math/ModPrime.hpp
   requiredBy: []
   timestamp: '2025-06-06 22:43:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modprime2.test.cpp
   - test/modprime.test.cpp
