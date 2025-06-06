@@ -1,39 +1,39 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/ds/LazySegmentTree.hpp
     title: "\u9045\u5EF6\u30BB\u30B0\u6728"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_F
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_F
   bundledCode: "#line 1 \"test/lazysegtree2.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_F\"\
-    \n#include <iostream>\n#line 2 \"C++/ds/LazySegmentTree.hpp\"\n\n#include <ostream>\n\
-    #include <cassert>\n#include <vector>\n#include <algorithm>\n#include <functional>\n\
-    #include <cmath>\n#include <limits>\n#include <ranges>\nnamespace man {\ntemplate\
-    \ <class T, class U> struct LazySegTree {\nprivate:\n    using F = std::function<T(T,\
-    \ T)>;\n    using M = std::function<T(T, U)>;\n    using C = std::function<U(U,\
-    \ U)>;\n    int n, sz, h;\n    std::vector<T> data;\n    std::vector<U> lazy;\n\
-    \    const F f;\n    const M map;\n    const C comp;\n    const T e;\n    const\
-    \ U id;\n    inline void update(const int k){ data[k] = f(data[2 * k], data[2\
-    \ * k + 1]); }\n    inline void all_apply(const int k, const U &x) {\n       \
-    \ data[k] = map(data[k], x);\n        if(k < sz) {\n            lazy[k] = comp(lazy[k],\
-    \ x);\n        }\n    }\n    inline void propagate(const int k) {\n        if(lazy[k]\
-    \ != id) {\n            all_apply(2 * k, lazy[k]);\n            all_apply(2 *\
-    \ k + 1, lazy[k]);\n            lazy[k] = id;\n        }\n    }\npublic:\n   \
-    \ LazySegTree(const int n, const F &f, const M &map, const C &comp, const T &e,\
-    \ const U &id): n(n), f(f), map(map), comp(comp), e(e), id(id) {\n        sz =\
-    \ 1;\n        h = 0;\n        while(sz < n) {\n            sz <<= 1;\n       \
-    \     h++;\n        }\n        data.assign(2 * sz, e);\n        lazy.assign(2\
-    \ * sz, id);\n    }\n    LazySegTree(const std::vector<T> &v, const F &f, const\
-    \ M &map, const C &comp, const T &e, const U &id): LazySegTree(std::ssize(v),\
+    \n#include <iostream>\n#include <cstdint>\n#line 2 \"C++/ds/LazySegmentTree.hpp\"\
+    \n\n#include <ostream>\n#include <cassert>\n#include <vector>\n#include <algorithm>\n\
+    #include <functional>\n#include <cmath>\n#include <limits>\n#include <ranges>\n\
+    namespace man {\ntemplate <class T, class U> struct LazySegTree {\nprivate:\n\
+    \    using F = std::function<T(T, T)>;\n    using M = std::function<T(T, U)>;\n\
+    \    using C = std::function<U(U, U)>;\n    int n, sz, h;\n    std::vector<T>\
+    \ data;\n    std::vector<U> lazy;\n    const F f;\n    const M map;\n    const\
+    \ C comp;\n    const T e;\n    const U id;\n    inline void update(const int k){\
+    \ data[k] = f(data[2 * k], data[2 * k + 1]); }\n    inline void all_apply(const\
+    \ int k, const U &x) {\n        data[k] = map(data[k], x);\n        if(k < sz)\
+    \ {\n            lazy[k] = comp(lazy[k], x);\n        }\n    }\n    inline void\
+    \ propagate(const int k) {\n        if(lazy[k] != id) {\n            all_apply(2\
+    \ * k, lazy[k]);\n            all_apply(2 * k + 1, lazy[k]);\n            lazy[k]\
+    \ = id;\n        }\n    }\npublic:\n    LazySegTree(const int n, const F &f, const\
+    \ M &map, const C &comp, const T &e, const U &id): n(n), f(f), map(map), comp(comp),\
+    \ e(e), id(id) {\n        sz = 1;\n        h = 0;\n        while(sz < n) {\n \
+    \           sz <<= 1;\n            h++;\n        }\n        data.assign(2 * sz,\
+    \ e);\n        lazy.assign(2 * sz, id);\n    }\n    LazySegTree(const std::vector<T>\
+    \ &v, const F &f, const M &map, const C &comp, const T &e, const U &id): LazySegTree(std::ssize(v),\
     \ f, map, comp, e, id){ build(v); }\n    void build(const std::vector<T> &v) {\n\
     \        assert(n == std::ssize(v));\n        for(const auto k: std::views::iota(0,\
     \ n)) {\n            data[k + sz] = v[k];\n        }\n        for(const auto k:\
@@ -137,7 +137,7 @@ data:
     \ std::views::iota(0, std::ssize(v))) {\n            w[i] = zwei<T>(v[i], 1);\n\
     \        }\n        LazySegTree<zwei<T>, T>::build(w);\n    }\n};\n}\n\n/**\n\
     \ * @brief \u9045\u5EF6\u30BB\u30B0\u6728\n * @see https://ei1333.github.io/library/structure/segment-tree/lazy-segment-tree.hpp\n\
-    \ */\n#line 4 \"test/lazysegtree2.test.cpp\"\nint main() {\n    std::cin.tie(nullptr)\
+    \ */\n#line 5 \"test/lazysegtree2.test.cpp\"\nint main() {\n    std::cin.tie(nullptr)\
     \ -> sync_with_stdio(false);\n    int n, q;\n    std::cin >> n >> q;\n    man::RUMN<int>\
     \ seg(std::vector(n, INT32_MAX));\n    while(q--) {\n        int h, s, t;\n  \
     \      std::cin >> h >> s >> t;\n        t++;\n        if(h == 0) {\n        \
@@ -145,20 +145,20 @@ data:
     \     } else {\n            std::cout << seg.query(s, t) << '\\n';\n        }\n\
     \    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_F\"\n#include\
-    \ <iostream>\n#include \"C++/ds/LazySegmentTree.hpp\"\nint main() {\n    std::cin.tie(nullptr)\
-    \ -> sync_with_stdio(false);\n    int n, q;\n    std::cin >> n >> q;\n    man::RUMN<int>\
-    \ seg(std::vector(n, INT32_MAX));\n    while(q--) {\n        int h, s, t;\n  \
-    \      std::cin >> h >> s >> t;\n        t++;\n        if(h == 0) {\n        \
-    \    int x;\n            std::cin >> x;\n            seg.apply(s, t, x);\n   \
-    \     } else {\n            std::cout << seg.query(s, t) << '\\n';\n        }\n\
-    \    }\n}"
+    \ <iostream>\n#include <cstdint>\n#include \"C++/ds/LazySegmentTree.hpp\"\nint\
+    \ main() {\n    std::cin.tie(nullptr) -> sync_with_stdio(false);\n    int n, q;\n\
+    \    std::cin >> n >> q;\n    man::RUMN<int> seg(std::vector(n, INT32_MAX));\n\
+    \    while(q--) {\n        int h, s, t;\n        std::cin >> h >> s >> t;\n  \
+    \      t++;\n        if(h == 0) {\n            int x;\n            std::cin >>\
+    \ x;\n            seg.apply(s, t, x);\n        } else {\n            std::cout\
+    \ << seg.query(s, t) << '\\n';\n        }\n    }\n}"
   dependsOn:
   - C++/ds/LazySegmentTree.hpp
   isVerificationFile: true
   path: test/lazysegtree2.test.cpp
   requiredBy: []
-  timestamp: '2025-06-06 22:43:22+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-06 23:25:25+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lazysegtree2.test.cpp
 layout: document

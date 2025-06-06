@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: C++/core
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/core/alias.hpp
       title: "\u5B9A\u6570"
     - icon: ':heavy_check_mark:'
@@ -28,10 +28,10 @@ data:
       title: "\u51FA\u529B"
   - name: C++/ds
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/ds/DualSegmentTree.hpp
       title: "\u53CC\u5BFE\u30BB\u30B0\u6728"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/ds/LazySegmentTree.hpp
       title: "\u9045\u5EF6\u30BB\u30B0\u6728"
     - icon: ':heavy_check_mark:'
@@ -43,7 +43,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/ds/SparseTable.hpp
       title: Sparse Table
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/ds/WM.hpp
       title: Wavelet Matrix
     - icon: ':heavy_check_mark:'
@@ -118,7 +118,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math/ModPrime.hpp
       title: ModPrime
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/Modint.hpp
       title: Modint
     - icon: ':heavy_check_mark:'
@@ -136,16 +136,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math/is_prime.hpp
       title: C++/math/is_prime.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/kthrooti.hpp
       title: "k\u4E57\u6839(\u6574\u6570)"
     - icon: ':heavy_check_mark:'
       path: C++/math/phitable.hpp
       title: Euler's Phi-function(table)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/pollard_rho.hpp
       title: Pollard's Rho
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/primecounter.hpp
       title: "\u7D20\u6570\u306E\u500B\u6570"
     - icon: ':heavy_check_mark:'
@@ -154,7 +154,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math/primefactortable.hpp
       title: "\u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/primetable.hpp
       title: Sieve of Eratosthenes
     - icon: ':heavy_check_mark:'
@@ -202,7 +202,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/string/manacher.hpp
       title: Manacher
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/string/z-algo.hpp
       title: Z-Algorithm
   - name: C++
@@ -569,7 +569,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/directed.test.cpp
       title: test/directed.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/dualsegtree.test.cpp
       title: test/dualsegtree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -602,16 +602,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/knapsack5.test.cpp
       title: test/knapsack5.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/kthrooti.test.cpp
       title: test/kthrooti.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/lazysegtree.test.cpp
       title: test/lazysegtree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/lazysegtree2.test.cpp
       title: test/lazysegtree2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/lazysegtree3.test.cpp
       title: test/lazysegtree3.test.cpp
     - icon: ':heavy_check_mark:'
@@ -659,10 +659,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/parsum.test.cpp
       title: test/parsum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/pcounter.test.cpp
       title: test/pcounter.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/pf.test.cpp
       title: test/pf.test.cpp
     - icon: ':heavy_check_mark:'
@@ -674,7 +674,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/psum2d.test.cpp
       title: test/psum2d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/rangeaffine.test.cpp
       title: test/rangeaffine.test.cpp
     - icon: ':heavy_check_mark:'
@@ -734,10 +734,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/wm2.test.cpp
       title: test/wm2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/wm3.test.cpp
       title: test/wm3.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/zalgo.test.cpp
       title: test/zalgo.test.cpp
 layout: toppage

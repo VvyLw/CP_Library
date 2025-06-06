@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/alias.hpp
     title: "\u5B9A\u6570"
   - icon: ':heavy_check_mark:'
@@ -25,7 +25,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/math/is_prime.hpp
     title: C++/math/is_prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/kthrooti.hpp
     title: "k\u4E57\u6839(\u6574\u6570)"
   - icon: ':heavy_check_mark:'
@@ -34,7 +34,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: C++/math/primefactortable.hpp
     title: "\u7D20\u56E0\u6570\u5206\u89E3\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/primetable.hpp
     title: Sieve of Eratosthenes
   - icon: ':heavy_check_mark:'
@@ -66,16 +66,16 @@ data:
     \ noexcept { std::cin.tie(nullptr) -> sync_with_stdio(false); }\r\nvoid solve();\r\
     \n}\r\n\r\nnamespace man {\r\ninline bool isdigit(const std::string &s) noexcept;\r\
     \nstd::mt19937 EhaL(std::hash<std::string>()(\"Huitloxopetl\"));\r\ninline std::mt19937\
-    \ rand() noexcept {\r\n\tstd::random_device seed_gen;\r\n\tconst std::mt19937\
-    \ engine {seed_gen()};\r\n\treturn engine;\r\n}\r\n\r\ntemplate <class T, class\
-    \ U> constexpr inline bool chmax(T& a, const U& b) noexcept { if(a < b){ a = b;\
-    \ return true; } return false; }\r\ntemplate <class T, class U> constexpr inline\
-    \ bool chmin(T& a, const U& b) noexcept { if(a > b){ a = b; return true; } return\
-    \ false; }\r\ntemplate <class T, class U> constexpr inline bool overflow_if_add(const\
-    \ T a, const U b) noexcept { return (std::numeric_limits<T>::max() - a) < b; }\r\
-    \ntemplate <class T, class U> constexpr inline bool overflow_if_mul(const T a,\
-    \ const U b) noexcept { return (std::numeric_limits<T>::max() / a) < b; }\r\n\
-    inline void fix(const short x) noexcept { std::cout << std::fixed << std::setprecision(x);\
+    \ rand() noexcept {\r\n\tstd::random_device seed_gen;\r\n\tstd::mt19937 engine\
+    \ {seed_gen()};\r\n\treturn engine;\r\n}\r\n\r\ntemplate <class T, class U> constexpr\
+    \ inline bool chmax(T& a, const U& b) noexcept { if(a < b){ a = b; return true;\
+    \ } return false; }\r\ntemplate <class T, class U> constexpr inline bool chmin(T&\
+    \ a, const U& b) noexcept { if(a > b){ a = b; return true; } return false; }\r\
+    \ntemplate <class T, class U> constexpr inline bool overflow_if_add(const T a,\
+    \ const U b) noexcept { return (std::numeric_limits<T>::max() - a) < b; }\r\n\
+    template <class T, class U> constexpr inline bool overflow_if_mul(const T a, const\
+    \ U b) noexcept { return (std::numeric_limits<T>::max() / a) < b; }\r\ninline\
+    \ void fix(const short x) noexcept { std::cout << std::fixed << std::setprecision(x);\
     \ }\r\n\r\ninline std::string string_replace(const std::string &s, const std::string\
     \ &a, const std::string &b) noexcept { return std::regex_replace(s, std::regex(a),\
     \ b); }\r\ninline bool regex_contains(const std::string &s, const std::string\
@@ -308,7 +308,7 @@ data:
     \ res;\n        std::partial_sum(s.cbegin(), s.cend(), std::back_inserter(res));\n\
     \        not_built = false;\n        res.resize(n);\n        return res;\n   \
     \ }\n};\n}\n\n/**\n * @brief \u7D2F\u7A4D\u548C\n */\n#line 2 \"C++/math/kthrooti.hpp\"\
-    \n\n#line 5 \"C++/math/kthrooti.hpp\"\n#ifndef TEMPLATE\nnamespace man {\ntemplate\
+    \n\n#line 6 \"C++/math/kthrooti.hpp\"\n#ifndef TEMPLATE\nnamespace man {\ntemplate\
     \ <class T, class U> constexpr inline bool overflow_if_mul(const T a, const U\
     \ b) noexcept { return (std::numeric_limits<T>::max()/a)<b; }\n}\n#endif\nnamespace\
     \ man {\ninline uint64_t kthrooti(const uint64_t n, const int k) {\n    if(k ==\
@@ -542,7 +542,7 @@ data:
   isVerificationFile: true
   path: test/add.test.cpp
   requiredBy: []
-  timestamp: '2025-06-06 22:58:51+09:00'
+  timestamp: '2025-06-06 23:25:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/add.test.cpp

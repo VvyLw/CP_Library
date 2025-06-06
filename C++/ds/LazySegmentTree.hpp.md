@@ -3,13 +3,13 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/lazysegtree.test.cpp
     title: test/lazysegtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/lazysegtree2.test.cpp
     title: test/lazysegtree2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/lazysegtree3.test.cpp
     title: test/lazysegtree3.test.cpp
   - icon: ':heavy_check_mark:'
@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lazysegtree5.test.cpp
     title: test/lazysegtree5.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/rangeaffine.test.cpp
     title: test/rangeaffine.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u9045\u5EF6\u30BB\u30B0\u6728"
     links:
@@ -278,7 +278,7 @@ data:
   path: C++/ds/LazySegmentTree.hpp
   requiredBy: []
   timestamp: '2025-06-06 22:43:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lazysegtree.test.cpp
   - test/lazysegtree5.test.cpp

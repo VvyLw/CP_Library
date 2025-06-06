@@ -1,27 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/kthrooti.hpp
     title: "k\u4E57\u6839(\u6574\u6570)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/primetable.hpp
     title: Sieve of Eratosthenes
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/pcounter.test.cpp
     title: test/pcounter.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u7D20\u6570\u306E\u500B\u6570"
     links: []
   bundledCode: "#line 2 \"C++/math/primecounter.hpp\"\n\n#include <vector>\n#line\
-    \ 2 \"C++/math/kthrooti.hpp\"\n\n#include <limits>\n#include <ranges>\n#ifndef\
-    \ TEMPLATE\nnamespace man {\ntemplate <class T, class U> constexpr inline bool\
-    \ overflow_if_mul(const T a, const U b) noexcept { return (std::numeric_limits<T>::max()/a)<b;\
+    \ 2 \"C++/math/kthrooti.hpp\"\n\n#include <cstdint>\n#include <limits>\n#include\
+    \ <ranges>\n#ifndef TEMPLATE\nnamespace man {\ntemplate <class T, class U> constexpr\
+    \ inline bool overflow_if_mul(const T a, const U b) noexcept { return (std::numeric_limits<T>::max()/a)<b;\
     \ }\n}\n#endif\nnamespace man {\ninline uint64_t kthrooti(const uint64_t n, const\
     \ int k) {\n    if(k == 1) {\n\t\treturn n;\n\t}\n\tconst auto chk = [&](const\
     \ unsigned x) -> bool {\n\t\tuint64_t mul = 1;\n\t\tfor([[maybe_unused]] const\
@@ -107,8 +107,8 @@ data:
   isVerificationFile: false
   path: C++/math/primecounter.hpp
   requiredBy: []
-  timestamp: '2025-06-06 22:43:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-06-06 23:25:25+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/pcounter.test.cpp
 documentation_of: C++/math/primecounter.hpp

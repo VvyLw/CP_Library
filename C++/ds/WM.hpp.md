@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/wm2.test.cpp
     title: test/wm2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/wm3.test.cpp
     title: test/wm3.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Wavelet Matrix
     links:
@@ -191,7 +191,7 @@ data:
   path: C++/ds/WM.hpp
   requiredBy: []
   timestamp: '2025-06-06 22:43:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/wm.test.cpp
   - test/wm2.test.cpp
