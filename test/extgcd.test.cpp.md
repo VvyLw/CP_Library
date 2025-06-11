@@ -438,7 +438,7 @@ data:
   isVerificationFile: true
   path: test/extgcd.test.cpp
   requiredBy: []
-  timestamp: '2025-06-11 13:19:35+09:00'
+  timestamp: '2025-06-11 13:21:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/extgcd.test.cpp

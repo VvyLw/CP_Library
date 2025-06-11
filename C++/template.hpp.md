@@ -671,5 +671,5 @@ redirect_from:
 title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
 ---
 ## 最初に貼る
-[詳しい話(前半)](https://vvylw.hatenablog.com/entry/2023/11/09/165722)  
-後半はおいおい書きます。
+関数はman名前空間にあります  
+`using namespace man;`はしていないのでご自身でお願いします
