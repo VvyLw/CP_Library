@@ -10,19 +10,19 @@ data:
   - icon: ':question:'
     path: C++/core/io/output.hpp
     title: "\u51FA\u529B"
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/core/myvector.hpp
     title: C++/core/myvector.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/core/timer.hpp
     title: "\u30BF\u30A4\u30DE\u30FC"
   - icon: ':x:'
     path: C++/math/psum/psum.hpp
     title: "\u7D2F\u7A4D\u548C"
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
@@ -319,7 +319,7 @@ data:
     \ bool operator>=(const P<T, U> &p, const P<T, U> &q) noexcept { if(p.first ==\
     \ q.first){ return p.second >= q.second; } return p.first > q.first; }\ntemplate\
     \ <class T> constexpr inline PP<T> rotate(const PP<T>& a) noexcept { return {-a.second,\
-    \ a.first}; } // 90 degree ccw\ntemplate <class T> constexpr inline pd rotate(const\
+    \ a.first}; } // 90 degree ccw\ntemplate <class T> constexpr inline dec rotate(const\
     \ PP<T>& a, const int ang) noexcept {\n    assert(0 <= ang && ang < 360);\n  \
     \  const long double rad = PI * ang / 180;\n    return {a.first * std::cos(rad)\
     \ - a.second * std::sin(rad), a.first * std::sin(rad) + a.second * std::cos(rad)};\n\
@@ -459,7 +459,7 @@ data:
   isVerificationFile: true
   path: test/sr_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-06-11 14:30:23+09:00'
+  timestamp: '2025-06-11 14:36:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/sr_sum.test.cpp

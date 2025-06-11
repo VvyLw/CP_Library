@@ -10,39 +10,39 @@ data:
   - icon: ':question:'
     path: C++/core/io/output.hpp
     title: "\u51FA\u529B"
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/core/myvector.hpp
     title: C++/core/myvector.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/core/timer.hpp
     title: "\u30BF\u30A4\u30DE\u30FC"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aarray.test.cpp
     title: test/aarray.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/add.test.cpp
     title: test/add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/add128.test.cpp
     title: test/add128.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/extgcd.test.cpp
     title: test/extgcd.test.cpp
   - icon: ':x:'
     path: test/fwtree.test.cpp
     title: test/fwtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/m_add.test.cpp
     title: test/m_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/s_rmq.test.cpp
     title: test/s_rmq.test.cpp
   - icon: ':x:'
@@ -51,15 +51,15 @@ data:
   - icon: ':x:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stable.test.cpp
     title: test/stable.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/template.md
     document_title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
@@ -345,7 +345,7 @@ data:
     \ bool operator>=(const P<T, U> &p, const P<T, U> &q) noexcept { if(p.first ==\
     \ q.first){ return p.second >= q.second; } return p.first > q.first; }\ntemplate\
     \ <class T> constexpr inline PP<T> rotate(const PP<T>& a) noexcept { return {-a.second,\
-    \ a.first}; } // 90 degree ccw\ntemplate <class T> constexpr inline pd rotate(const\
+    \ a.first}; } // 90 degree ccw\ntemplate <class T> constexpr inline dec rotate(const\
     \ PP<T>& a, const int ang) noexcept {\n    assert(0 <= ang && ang < 360);\n  \
     \  const long double rad = PI * ang / 180;\n    return {a.first * std::cos(rad)\
     \ - a.second * std::sin(rad), a.first * std::sin(rad) + a.second * std::cos(rad)};\n\
@@ -648,8 +648,8 @@ data:
   isVerificationFile: false
   path: C++/template.hpp
   requiredBy: []
-  timestamp: '2025-06-11 14:30:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-06-11 14:36:07+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/add.test.cpp
   - test/uf.test.cpp

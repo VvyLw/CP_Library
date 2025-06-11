@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/inv_num.test.cpp
     title: test/inv_num.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
   _isVerificationFailed: true
