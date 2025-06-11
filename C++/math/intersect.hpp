@@ -3,7 +3,11 @@
 #include <cassert>
 #include <utility>
 #include <limits>
-#include "C++/core/concept.hpp"
+#ifndef ALIAS
+namespace internal {
+template <typename T> concept num = std::integral<T> || std::floating_point<T>;
+}
+#endif
 namespace man {
 template <internal::num T> constexpr inline std::pair<long double, long double> intersection(const std::pair<T, T> &a, const T sec1, const std::pair<T, T> &b, const T sec2) noexcept {
     long double m1, m2, b1, b2;

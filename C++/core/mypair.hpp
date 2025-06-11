@@ -6,6 +6,12 @@
 #include <cmath>
 #include <numeric>
 
+#ifndef ALIAS
+namespace internal {
+template <typename T> concept num = std::integral<T> || std::floating_point<T>;
+}
+#endif
+
 namespace man {
 namespace pav {
 template <class T, class U> using P = std::pair<T, U>;

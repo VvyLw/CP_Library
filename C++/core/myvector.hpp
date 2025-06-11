@@ -2,6 +2,12 @@
 
 #include <vector>
 
+#ifndef ALIAS
+namespace internal {
+template <typename T> concept num = std::integral<T> || std::floating_point<T>;
+}
+#endif
+
 namespace man {
 namespace vec {
 template <class T> using V = std::vector<T>;
