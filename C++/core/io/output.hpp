@@ -37,7 +37,7 @@ template <class K, class V> inline std::ostream& operator<<(std::ostream &os, co
     }
     return os;
 }
-template <std::ranges::range T> inline std::ostream& operator<<(std::ostream &os, const T &v) noexcept {
+template <std::ranges::range T> requires (!std::convertible_to<T, std::string_view>) inline std::ostream& operator<<(std::ostream &os, const T &v) noexcept {
     if(!v.empty()) {
         os << *v.cbegin();
         for(auto i = v.cbegin(); ++i != v.cend();) {
