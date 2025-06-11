@@ -201,16 +201,15 @@ data:
     \n}\r\ntemplate <class T> inline T rand_extract(const std::vector<T> &v) noexcept\
     \ {\r\n\tstd::vector<T> ret;\r\n\tstd::ranges::sample(v, std::back_inserter(ret),\
     \ 1, rand());\r\n\treturn ret.front();\r\n}\r\ntemplate <std::ranges::random_access_range\
-    \ T> constexpr inline auto sum(const T &v) noexcept { return std::accumulate(v.cbegin(),\
+    \ T> inline auto sum(const T &v) noexcept { return std::accumulate(v.cbegin(),\
     \ v.cend(), decltype(v.front())(0)); }\r\ntemplate <std::ranges::random_access_range\
-    \ T> constexpr inline auto sum(const T &v, const int a, const int b) noexcept\
-    \ { return std::accumulate(v.cbegin() + a, v.cbegin() + b, decltype(v.front())(0));\
-    \ }\r\ntemplate <std::ranges::random_access_range T, class Boolean = bool> constexpr\
-    \ inline auto sum(const std::vector<T> &v, const Boolean &fn) noexcept { return\
-    \ std::accumulate(v.cbegin(), v.cend(), decltype(v.front())(0), fn); }\r\ntemplate\
-    \ <std::ranges::random_access_range T, class Boolean = bool> constexpr inline\
-    \ auto sum(const std::vector<T> &v, const int a, const int b, const Boolean &fn)\
-    \ noexcept { return std::accumulate(v.cbegin() + a, v.cbegin() + b, decltype(v.front())(0),\
+    \ T> inline auto sum(const T &v, const int a, const int b) noexcept { return std::accumulate(v.cbegin()\
+    \ + a, v.cbegin() + b, decltype(v.front())(0)); }\r\ntemplate <std::ranges::random_access_range\
+    \ T, class Boolean = bool> inline auto sum(const T &v, const Boolean &fn) noexcept\
+    \ { return std::accumulate(v.cbegin(), v.cend(), decltype(v.front())(0), fn);\
+    \ }\r\ntemplate <std::ranges::random_access_range T, class Boolean = bool> inline\
+    \ auto sum(const T &v, const int a, const int b, const Boolean &fn) noexcept {\
+    \ return std::accumulate(v.cbegin() + a, v.cbegin() + b, decltype(v.front())(0),\
     \ fn); }\r\n\r\ntemplate <internal::num T, class Boolean = bool> constexpr inline\
     \ T bins(T ok, T ng, const Boolean &fn, const long double eps = 1) noexcept {\r\
     \n\twhile(std::abs(ok - ng) > eps) {\r\n\t\tconst T mid = (ok + ng) / 2;\r\n\t\
@@ -453,7 +452,7 @@ data:
   isVerificationFile: true
   path: test/sr_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-06-11 19:04:20+09:00'
+  timestamp: '2025-06-11 20:40:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sr_sum.test.cpp
