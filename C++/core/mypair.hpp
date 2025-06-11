@@ -37,7 +37,7 @@ template <class T, class U> constexpr bool operator<=(const P<T, U> &p, const P<
 template <class T, class U> constexpr bool operator>(const P<T, U> &p, const P<T, U> &q) noexcept { if(p.first == q.first){ return p.second > q.second; } return p.first > q.first; }
 template <class T, class U> constexpr bool operator>=(const P<T, U> &p, const P<T, U> &q) noexcept { if(p.first == q.first){ return p.second >= q.second; } return p.first > q.first; }
 template <class T> constexpr inline PP<T> rotate(const PP<T>& a) noexcept { return {-a.second, a.first}; } // 90 degree ccw
-template <class T> constexpr inline pd rotate(const PP<T>& a, const int ang) noexcept {
+template <class T> constexpr inline dec rotate(const PP<T>& a, const int ang) noexcept {
     assert(0 <= ang && ang < 360);
     const long double rad = PI * ang / 180;
     return {a.first * std::cos(rad) - a.second * std::sin(rad), a.first * std::sin(rad) + a.second * std::cos(rad)};
