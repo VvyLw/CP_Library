@@ -156,45 +156,29 @@ inline std::string tolower(std::string s) noexcept {
 	}
 	return s;
 }
-inline std::vector<int> ten_to_adic(int64_t n, const short base) noexcept {
+template <int base> constexpr inline std::string ten_to(int64_t n, const bool upper = true) noexcept {
+	static_assert(base < 10 || base == 16);
+	if constexpr (base == 16) {
+		std::stringstream ss;
+		ss << std::hex << n;
+		const std::string s = ss.str();
+		return upper ? toupper(s) : s;
+	}
 	if(n == 0) {
-		return {0};
+		return "0";
 	}
 	std::vector<int> ret;
 	while(n > 0) {
 		ret.emplace_back(n % base);
 		n /= base;
 	}
-	return ret;
-}
-inline int64_t adic_to_ten(const std::vector<int> &v, const short base) {
-	int64_t ret = 0;
-	for(const auto &el: v) {
-		ret += pow<int64_t>(base, size_t(&el - &v[0])) * el;
+	std::string s;
+	for(const auto &e: ret | std::views::reverse) {
+		s += std::to_string(e);
 	}
-	return ret;
-}
-inline std::string to_hex(const int64_t x, const bool upper = false) noexcept {
-	std::stringstream ss;
-	ss << std::hex << x;
-	const std::string s = ss.str();
-	return upper ? toupper(s) : s;
-}
-inline std::string to_oct(const int64_t x) noexcept {
-	std::stringstream s;
-	s << std::oct << x;
-	return s.str();
-}
-inline std::string to_bin(const int64_t x) noexcept {
-	std::stringstream ss;
-	ss << std::bitset<64>(x);
-	std::string s = ss.str();
-	std::ranges::reverse(s);
-	s.resize(std::ssize(ten_to_adic(x, 2)));
-	std::ranges::reverse(s);
 	return s;
 }
-inline int64_t to_ten(const std::string &s, const short base = 10) noexcept { return std::stoll(s, nullptr, base); }
+template <int base = 10> constexpr inline int64_t to_ten(const std::string &s) noexcept { return std::stoll(s, nullptr, base); }
 template <std::integral... Ts> constexpr uint64_t gcd(const Ts... a) noexcept {
 	std::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};
 	uint64_t g = 0;
@@ -386,8 +370,8 @@ constexpr inline bool is_sqr(const int64_t n) noexcept { return is_int(std::sqrt
 #define overload4(_1,_2,_3,_4,name,...) name
 #define REP1(n) for([[maybe_unused]] const auto _: std::views::iota(0, (n)))
 #define REP2(i,n) for(const auto i: std::views::iota(0, (n)))
-#define REP3(i,a,b) for(const auto i: std::views::iota((a), (b) + 1))
-#define REP4(i,a,b,c) for(i64 i = (a); i <= (b); i += (c))
+#define REP3(i,a,b) for(const auto i: std::views::iota((a), (b)))
+#define REP4(i,a,b,c) for(i64 i = (a); i < (b); i += (c))
 #define REP(...) overload4(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)
 
 using namespace IO;
