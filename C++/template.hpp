@@ -209,8 +209,8 @@ template <class... Ts> constexpr uint64_t sylcm(const Ts... a) noexcept {
 	}
 	return l;
 }
-template <class... Ts> constexpr auto symin(const Ts... a) noexcept { return std::min(std::initializer_list<std::common_type_t<Ts...>>{a...}); }
-template <class... Ts> constexpr auto symax(const Ts... a) noexcept { return std::max(std::initializer_list<std::common_type_t<Ts...>>{a...}); }
+template <class... Ts> constexpr auto min(const Ts... a) noexcept { return std::min(std::initializer_list<std::common_type_t<Ts...>>{a...}); }
+template <class... Ts> constexpr auto max(const Ts... a) noexcept { return std::max(std::initializer_list<std::common_type_t<Ts...>>{a...}); }
 template <class K, class V> inline std::vector<K> key_l(const std::map<K, V> &m, const V val) noexcept {
 	std::vector<K> keys;
 	for(auto it = m.cbegin(); it != m.cend(); ++it) {
@@ -231,12 +231,6 @@ template <class K, class V> constexpr inline auto val_max(const std::map<K, V> &
 	return *std::ranges::max_element(m, [](const std::pair<K, V> &x, const std::pair<K, V> &y) -> bool { return x.second < y.second; });
 }
 
-template <class T> constexpr inline T min(const std::vector<T>& v) noexcept { return *std::ranges::min_element(v); }
-template <class T> constexpr inline T min(const std::vector<T>& v, const int a, const int b) noexcept { return *std::min_element(v.cbegin() + a, v.cbegin() + b + 1); }
-template <class T> constexpr inline T max(const std::vector<T>& v) noexcept { return *std::ranges::max_element(v); }
-template <class T> constexpr inline T max(const std::vector<T>& v, const int a, const int b) noexcept { return *std::max_element(v.cbegin() + a, v.cbegin() + b + 1); }
-template <class T> constexpr inline int min_id(const std::vector<T>& v) noexcept { return std::ranges::min_element(v) - v.cbegin(); }
-template <class T> constexpr inline int max_id(const std::vector<T>& v) noexcept { return std::ranges::max_element(v) - v.cbegin(); }
 template <class T> constexpr inline T count(std::vector<T> v, const T &x) noexcept {
 	if(!std::ranges::is_sorted(v)) {
 		std::ranges::sort(v);
@@ -303,6 +297,8 @@ template <class T> inline T rand_extract(const std::vector<T> &v) noexcept {
 }
 template <class T = int64_t> constexpr inline T sum(const std::vector<T> &v) noexcept { return std::accumulate(v.cbegin(), v.cend(), T(0)); }
 template <class T = int64_t> constexpr inline T sum(const std::vector<T> &v, const int a, const int b) noexcept { return std::accumulate(v.cbegin() + a, v.cbegin() + b, T(0)); }
+template <class T = int64_t, class Boolean = bool> constexpr inline T sum(const std::vector<T> &v, const Boolean &fn) noexcept { return std::accumulate(v.cbegin(), v.cend(), T(0), fn); }
+template <class T = int64_t, class Boolean = bool> constexpr inline T sum(const std::vector<T> &v, const int a, const int b, const Boolean &fn) noexcept { return std::accumulate(v.cbegin() + a, v.cbegin() + b, T(0), fn); }
 
 template <class T, class Boolean = bool> constexpr inline T bins(T ok, T ng, const Boolean &fn, const long double eps = 1) noexcept {
 	while(std::abs(ok - ng) > eps) {
