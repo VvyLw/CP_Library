@@ -4,7 +4,7 @@
 #include <limits>
 #include <ranges>
 namespace man {
-template <class T> constexpr inline void merge(std::vector<T>& v, const int left, const int mid, const int right) noexcept {
+template <std::integral T> constexpr inline void merge(std::vector<T>& v, const int left, const int mid, const int right) noexcept {
     const int n1 = mid - left, n2 = right - mid;
     std::vector<T> l(n1 + 1), r(n2 + 1);
     for(int i = 0; i < n1; ++i) {
@@ -23,7 +23,7 @@ template <class T> constexpr inline void merge(std::vector<T>& v, const int left
         }
     }
 }
-template <class T> constexpr inline void merge_sort(std::vector<T> &v, const int l, const int r) noexcept {
+template <std::integral T> constexpr inline void merge_sort(std::vector<T> &v, const int l, const int r) noexcept {
     if(l + 1 < r) {
         const int mid = (l + r) / 2;
         merge_sort(v, l, mid);

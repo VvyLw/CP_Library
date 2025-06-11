@@ -26,7 +26,7 @@ public:
     inline bool operator[](const int k) noexcept { return (bit[k >> 5] >> (k & 31)) & 1; }
 };
 
-template <class T, int log> struct WMBeta {
+template <std::integral T, int log> struct WMBeta {
 private:
     SIDict matrix[log];
     int mid[log];
@@ -113,7 +113,7 @@ public:
 };
 }
 
-template <class T, int log = 20> struct WaveletMatrix {
+template <std::integral T, int log = 20> struct WaveletMatrix {
 private:
     internal::WMBeta<int, log> mat;
     std::vector<T> ys;

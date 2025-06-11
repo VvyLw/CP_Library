@@ -2,14 +2,14 @@
 
 #include "C++/ds/fwtree/FenwickTree.hpp"
 namespace man {
-template <class T> struct RangeBIT {
+template <std::integral T> struct RangeBIT {
 private:
     FenwickTree<T> a, b;
 public:
     RangeBIT(const int n): a(n + 1), b(n + 1){}
     RangeBIT(const std::vector<T> &v) {
-        this(v.size());
-        for(size_t i = 0; i < v.size(); ++i) {
+        this(std::ssize(v));
+        for(const auto i: std::views::iota(0, std::ssize(v))) {
             add(i, i + 1, v[i]);
         }
     }

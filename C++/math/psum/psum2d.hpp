@@ -3,7 +3,7 @@
 #include <vector>
 #include <ranges>
 namespace man {
-template <class T> struct psum2d {
+template <std::integral T> struct psum2d {
 private:
     int h, w;
     std::vector<std::vector<T>> data;

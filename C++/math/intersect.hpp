@@ -3,8 +3,9 @@
 #include <cassert>
 #include <utility>
 #include <limits>
+#include "C++/core/concept.hpp"
 namespace man {
-template <class T> constexpr inline std::pair<long double, long double> intersection(const std::pair<T, T> &a, const T sec1, const std::pair<T, T> &b, const T sec2) noexcept {
+template <internal::num T> constexpr inline std::pair<long double, long double> intersection(const std::pair<T, T> &a, const T sec1, const std::pair<T, T> &b, const T sec2) noexcept {
     long double m1, m2, b1, b2;
     if(a.first == 0 && b.first == 0) {
         return {std::numeric_limits<T>::min(), std::numeric_limits<T>::max()};

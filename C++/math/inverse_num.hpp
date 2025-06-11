@@ -3,7 +3,7 @@
 #include <algorithm>
 #include "C++/ds/fwtree/FenwickTree.hpp"
 namespace man {
-template <class T> constexpr inline int64_t inv_num(const std::vector<T> &a) noexcept {
+template <std::integral T> constexpr inline int64_t inv_num(const std::vector<T> &a) noexcept {
     const int n = std::ssize(a);
     std::vector<std::pair<T, int>> p(n);
     for(const auto i: std::views::iota(0, n)) {

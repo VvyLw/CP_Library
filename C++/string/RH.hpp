@@ -1,14 +1,13 @@
 #pragma once
 
-#ifndef ROLLING_HASH
-#define ROLLING_HASH
-#endif
-
 #include <vector>
 #include <chrono>
 #include <ranges>
 namespace man {
-const uint64_t base = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count() % ((1LL << 61) - 1);
+#ifndef ALIAS
+constexpr int64_t LINF = (1LL << 61) - 1;
+#endif
+const uint64_t base = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count() % LINF;
 template <uint64_t mod> struct RollingHash {
 private:
     std::vector<uint64_t> hashed, power;
@@ -62,6 +61,7 @@ public:
         return low;
     }
 };
+typedef RollingHash<LINF> RH;
 }
 
 /**

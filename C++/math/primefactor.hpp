@@ -3,7 +3,7 @@
 #include <vector>
 #include <utility>
 namespace man {
-template <class T> inline std::vector<std::pair<T, int>> prmfct(T n) noexcept {
+template <std::integral T> inline std::vector<std::pair<T, int>> prmfct(T n) noexcept {
     std::vector<std::pair<T, int>> ret;
     for(int64_t i = 2; i * i <= n; ++i) {
         if(n % i != 0) {

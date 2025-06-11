@@ -41,9 +41,7 @@ inline std::istream& operator>>(std::istream &is, __int128_t &val) noexcept {
     return is;
 }
 template <class T, class U> inline std::istream& operator>>(std::istream &is, std::pair<T, U> &p) noexcept { is >> p.first >> p.second; return is; }
-template <class T, size_t N> inline std::istream& operator>>(std::istream &is, std::array<T, N> &a) noexcept { for(auto &el: a){ is >> el; } return is; }
-template <class T> inline std::istream& operator>>(std::istream &is, std::vector<T> &v) noexcept { for(auto &el: v){ is >> el; } return is; }
-template <class T> inline std::istream& operator>>(std::istream &is, std::deque<T> &dq) noexcept { for(auto &el: dq){ is >> el; } return is; }
+template <std::ranges::random_access_range T> inline std::istream& operator>>(std::istream &is, T &v) noexcept { for(auto &el: v){ is >> el; } return is; }
 } // IO
 
 /**

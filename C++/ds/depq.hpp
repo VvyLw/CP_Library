@@ -2,13 +2,14 @@
 
 #include <vector>
 #include <algorithm>
+#include <ranges>
 namespace man {
-template <class T> struct depq {
+template <std::integral T> struct depq {
 private:
     std::vector<T> d;
     constexpr inline int parent(int k) const noexcept { return ((k >> 1) - 1) & ~1; }
     constexpr inline int down(int k) noexcept {
-	    const int n = d.size();
+	    const int n = std::ssize(d);
 	    if(k & 1) {
     	    while(2 * k + 1 < n) {
 		        int c = 2 * k + 3;
@@ -58,7 +59,7 @@ private:
     }
 public:
     depq(const std::vector<T> &d_): d(d_) {
-	    for(int i = d.size(); i--;) {
+	    for(const auto i: std::views::iota(0, std::ssize(d)) | std::views::reverse) {
 	        if(i & 1 && d[i - 1] < d[i]) {
                 std::swap(d[i - 1], d[i]);
             }
@@ -86,15 +87,15 @@ public:
         if(std::ssize(d) < 2) { 
             d.pop_back();
         } else {
-            std::swap(d[0], d.back());
+            std::swap(d.front(), d.back());
             d.pop_back();
             up(down(0));
         }
         return res;
     }
     constexpr inline T get_min() const noexcept { return std::ssize(d) < 2 ? d[0] : d[1]; }
-    constexpr inline T get_max() const noexcept { return d[0]; }
-    constexpr inline int size() const noexcept { return d.size(); }
+    constexpr inline T get_max() const noexcept { return d.front(); }
+    constexpr inline int size() const noexcept { return std::ssize(d); }
     constexpr inline bool empty() const noexcept { return d.empty(); }
 };
 }

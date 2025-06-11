@@ -6,7 +6,7 @@
 #include <ranges>
 #include "C++/graph/mst/MST.hpp"
 namespace man {
-template <class T> inline std::vector<edge> manhattan(std::vector<T> x, std::vector<T> y) noexcept {
+template <std::integral T> inline std::vector<edge> manhattan(std::vector<T> x, std::vector<T> y) noexcept {
     assert(std::ssize(x) == std::ssize(y));
     std::vector<edge> ret;
     std::vector<int> id(std::ssize(x));

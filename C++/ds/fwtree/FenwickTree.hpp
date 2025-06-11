@@ -3,7 +3,7 @@
 #include <vector>
 #include <ranges>
 namespace man {
-template <class T> struct FenwickTree {
+template <std::integral T> struct FenwickTree {
 private:
     int n;
     std::vector<T> data;
@@ -15,7 +15,7 @@ public:
     FenwickTree(){}
     FenwickTree(const size_t size){ init(size); }
     FenwickTree(const std::vector<T> &a) {
-        init(a.size());
+        init(std::ssize(a));
         for(const auto i: std::views::iota(0, std::ssize(a))) {
             add(i, a[i]);
         }

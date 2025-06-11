@@ -3,7 +3,7 @@
 #include "C++/math/euler_phi.hpp"
 #ifndef TEMPLATE
 namespace man {
-template <class T> constexpr inline T pow(T a, T b, const T mod = 0) noexcept {
+template <std::integral T> constexpr inline T pow(T a, T b, const T mod = 0) noexcept {
 	T ret = 1;
 	if(mod != 0) {
 		ret %= mod;
@@ -27,7 +27,7 @@ template <class T> constexpr inline T pow(T a, T b, const T mod = 0) noexcept {
 }
 #endif
 namespace man {
-template <class T> constexpr inline T tetration(const T a, const T b, const T m) noexcept {
+template <std::integral T> constexpr inline T tetration(const T a, const T b, const T m) noexcept {
     if(m == 1) {
         return 0;
     }

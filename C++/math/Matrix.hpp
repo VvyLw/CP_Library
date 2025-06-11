@@ -5,7 +5,7 @@
 #include <vector>
 #include <ranges>
 namespace man {
-template <class T> struct Matrix {
+template <std::integral T> struct Matrix {
 private:
     const int h, w;
     std::vector<std::vector<T>> mat;

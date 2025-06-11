@@ -27,17 +27,17 @@ template <class T, class U> inline V<U> ndiv(T&& n, U&& v) noexcept {
 template <class T, class... Ts> inline decltype(auto) ndiv(T&& n, Ts&&... v) noexcept {
   return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n), ndiv(std::forward<Ts>(v)...));
 }
-template <class T> constexpr V<T>& operator++(V<T>& v) noexcept { for(auto &el: v) el++; return v; }
-template <class T> constexpr V<T>& operator--(V<T>& v) noexcept { for(auto &el: v) el--; return v; }
-template <class T, class U> constexpr V<T>& operator+=(V<T>& v, const U x) noexcept { for(auto &el: v) el+=x; return v; }
-template <class T, class U> constexpr V<T>& operator-=(V<T>& v, const U x) noexcept { for(auto &el: v) el-=x; return v; }
-template <class T, class U> constexpr V<T>& operator*=(V<T>& v, const U x) noexcept { for(auto &el: v) el*=x; return v; }
-template <class T, class U> constexpr V<T>& operator/=(V<T>& v, const U x) noexcept { for(auto &el: v) el/=x; return v; }
-template <class T, class U> constexpr V<T>& operator%=(V<T>& v, const U x) noexcept { for(auto &el: v) el%=x; return v; }
-template <class T, class U> constexpr V<T> operator+(const V<T>& v, const U x) noexcept { V<T> res = v; res+=x; return res; }
-template <class T, class U> constexpr V<T> operator-(const V<T>& v, const U x) noexcept { V<T> res = v; res-=x; return res; }
-template <class T, class U> constexpr V<T> operator*(const V<T>& v, const U x) noexcept { V<T> res = v; res*=x; return res; }
-template <class T, class U> constexpr V<T> operator/(const V<T>& v, const U x) noexcept { V<T> res = v; res/=x; return res; }
-template <class T, class U> constexpr V<T> operator%(const V<T>& v, const U x) noexcept { V<T> res = v; res%=x; return res; }
+template <internal::num T> constexpr V<T>& operator++(V<T>& v) noexcept { for(auto &el: v){ el++; } return v; }
+template <internal::num T> constexpr V<T>& operator--(V<T>& v) noexcept { for(auto &el: v){ el--; } return v; }
+template <internal::num T, internal::num U> constexpr V<T>& operator+=(V<T>& v, const U x) noexcept { for(auto &el: v){ el += x; } return v; }
+template <internal::num T, internal::num U> constexpr V<T>& operator-=(V<T>& v, const U x) noexcept { for(auto &el: v){ el -= x; } return v; }
+template <internal::num T, internal::num U> constexpr V<T>& operator*=(V<T>& v, const U x) noexcept { for(auto &el: v){ el *= x; } return v; }
+template <internal::num T, internal::num U> constexpr V<T>& operator/=(V<T>& v, const U x) noexcept { for(auto &el: v){ el /= x; } return v; }
+template <std::integral T, std::integral U> constexpr V<T>& operator%=(V<T>& v, const U x) noexcept { for(auto &el: v){ el %= x; } return v; }
+template <internal::num T, internal::num U> constexpr V<T> operator+(const V<T>& v, const U x) noexcept { V<T> ret = v; ret += x; return ret; }
+template <internal::num T, internal::num U> constexpr V<T> operator-(const V<T>& v, const U x) noexcept { V<T> ret = v; ret -= x; return ret; }
+template <internal::num T, internal::num U> constexpr V<T> operator*(const V<T>& v, const U x) noexcept { V<T> ret = v; ret *= x; return ret; }
+template <internal::num T, internal::num U> constexpr V<T> operator/(const V<T>& v, const U x) noexcept { V<T> ret = v; ret /= x; return ret; }
+template <std::integral T, std::integral U> constexpr V<T> operator%(const V<T>& v, const U x) noexcept { V<T> ret = v; ret %= x; return ret; }
 }
 }

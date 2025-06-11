@@ -5,7 +5,7 @@
 #include <ranges>
 #ifndef TEMPLATE
 namespace man {
-template <class T, class U> constexpr inline bool overflow_if_mul(const T a, const U b) noexcept { return (std::numeric_limits<T>::max()/a)<b; }
+template <std::integral T, std::integral U> constexpr inline bool overflow_if_mul(const T a, const U b) noexcept { return (std::numeric_limits<T>::max()/a)<b; }
 }
 #endif
 namespace man {

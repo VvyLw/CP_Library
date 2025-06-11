@@ -1,6 +1,6 @@
 #pragma once
 namespace man {
-template <class T> constexpr inline T euler_phi(T n) noexcept {
+template <std::integral T> constexpr inline T euler_phi(T n) noexcept {
 	T ret = n;
 	for(T i = 2; i * i <= n; ++i) {
 	    if(n % i == 0) {

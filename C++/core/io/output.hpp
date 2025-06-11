@@ -1,11 +1,8 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
-#include <utility>
+#include <array>
 #include <map>
-#include <set>
-#include <deque>
 namespace IO {
 inline std::ostream &operator<<(std::ostream &dest, const __int128_t &value) noexcept {
     std::ostream::sentry s(dest);
@@ -31,24 +28,6 @@ inline std::ostream &operator<<(std::ostream &dest, const __int128_t &value) noe
     return dest;
 }
 template <class T, class U> inline std::ostream& operator<<(std::ostream &os, const std::pair<T, U> &p) noexcept { os << p.first << ' ' << p.second; return os; }
-template <class T, size_t N> inline std::ostream& operator<<(std::ostream &os, const std::array<T, N> &a) noexcept {
-    if(!a.empty()) {
-        os << a.front();
-        for(auto i = a.begin(); ++i != a.end();) {
-            os << ' ' << *i;
-        }
-    }
-    return os;
-}
-template <class T> inline std::ostream& operator<<(std::ostream &os, const std::vector<T> &v) noexcept {
-    if(!v.empty()) {
-        os << v.front();
-        for(auto i = v.begin(); ++i != v.end();) {
-            os << ' ' << *i;
-        }
-    }
-    return os;
-}
 template <class K, class V> inline std::ostream& operator<<(std::ostream &os, const std::map<K, V> &m) noexcept {
     if(!m.empty()) {
         os << m.begin()->first << ' ' << m.begin()->second;
@@ -58,28 +37,10 @@ template <class K, class V> inline std::ostream& operator<<(std::ostream &os, co
     }
     return os;
 }
-template <class T> inline std::ostream& operator<<(std::ostream &os, const std::set<T> &st) noexcept {
-    if(!st.empty()) {
-        os << *st.begin();
-        for(auto i = st.begin(); ++i != st.end();) {
-            os << ' ' << *i;
-        }
-    }
-    return os;
-}
-template <class T> inline std::ostream& operator<<(std::ostream &os, const std::multiset<T> &ms) noexcept {
-    if(!ms.empty()) {
-        os << *ms.begin();
-        for(auto i = ms.begin(); ++i != ms.end();) {
-            os << ' ' << *i;
-        }
-    }
-    return os;
-}
-template <class T> inline std::ostream& operator<<(std::ostream &os, const std::deque<T> &dq) noexcept {
-    if(!dq.empty()) {
-        os << dq.front();
-        for(auto i = dq.begin(); ++i != dq.end();) {
+template <std::ranges::range T> inline std::ostream& operator<<(std::ostream &os, const T &v) noexcept {
+    if(!v.empty()) {
+        os << *v.cbegin();
+        for(auto i = v.cbegin(); ++i != v.cend();) {
             os << ' ' << *i;
         }
     }

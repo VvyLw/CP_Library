@@ -4,7 +4,7 @@
 #include <algorithm>
 
 namespace man {
-template <class T = long long> struct SegmentTreeBeats {
+template <class T> struct SegmentTreeBeats {
 private:
     static constexpr int64_t INF = (1LL << 61) - 1;
     struct Node {

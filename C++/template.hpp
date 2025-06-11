@@ -12,6 +12,8 @@ inline void dec_prec(const short x) noexcept { std::cout << std::fixed << std::s
 void solve();
 }
 
+#include "C++/core/alias.hpp"
+
 namespace man {
 inline bool isdigit(const std::string &s) noexcept;
 std::mt19937 EhaL(std::hash<std::string>()("Huitloxopetl"));
@@ -23,19 +25,19 @@ inline std::mt19937 rand() noexcept {
 
 template <class T, class U> constexpr inline bool chmax(T& a, const U& b) noexcept { if(a < b){ a = b; return true; } return false; }
 template <class T, class U> constexpr inline bool chmin(T& a, const U& b) noexcept { if(a > b){ a = b; return true; } return false; }
-template <class T, class U> constexpr inline bool overflow_if_add(const T a, const U b) noexcept { return (std::numeric_limits<T>::max() - a) < b; }
-template <class T, class U> constexpr inline bool overflow_if_mul(const T a, const U b) noexcept { return (std::numeric_limits<T>::max() / a) < b; }
+template <internal::num T, internal::num U> constexpr inline bool overflow_if_add(const T a, const U b) noexcept { return (std::numeric_limits<T>::max() - a) < b; }
+template <internal::num T, internal::num U> constexpr inline bool overflow_if_mul(const T a, const U b) noexcept { return (std::numeric_limits<T>::max() / a) < b; }
 
 inline std::string string_replace(const std::string &s, const std::string &a, const std::string &b) noexcept { return std::regex_replace(s, std::regex(a), b); }
 inline bool regex_contains(const std::string &s, const std::string &t) noexcept { return std::regex_search(s, std::regex(t)); }
-constexpr inline auto yes(const bool ok = true) noexcept { return ok ? "Yes" : "No"; }
-template <class T> constexpr inline T sqr(const T x) noexcept { return x * x; }
-template <class T> constexpr inline T cub(const T x) noexcept { return x * x * x; }
-template <class T> constexpr inline T mod(T x, const T m) noexcept {
+constexpr inline auto yes(const bool ok) noexcept { return ok ? "Yes" : "No"; }
+template <internal::num T> constexpr inline T sqr(const T x) noexcept { return x * x; }
+template <internal::num T> constexpr inline T cub(const T x) noexcept { return x * x * x; }
+template <std::integral T> constexpr inline T mod(T x, const T m) noexcept {
 	x %= m;
 	return x < 0 ? x + m : x;
 }
-template <class T> constexpr inline T pow(T a, T b, const T mod = 0) noexcept {
+template <std::integral T> constexpr inline T pow(T a, T b, const T mod = 0) noexcept {
 	T ret = 1;
 	if(mod != 0) {
 		ret %= mod;
@@ -69,7 +71,7 @@ constexpr inline int bitdigit(const int64_t x) noexcept { return 64 - __builtin_
 constexpr inline int popcnt(const int64_t x) noexcept { return __builtin_popcountll(x); }
 constexpr inline int fione(const int64_t x) noexcept { return __builtin_ffsll(x); }
 constexpr inline int zrcnt(const int64_t x) noexcept { return __builtin_ctzll(x); }
-template <class T = int64_t> constexpr inline bool scope(const T a, const T x, const T b) noexcept { return a <= x && x <= b; }
+template <internal::num T> constexpr inline bool scope(const T a, const T x, const T b) noexcept { return a <= x && x <= b; }
 constexpr inline bool isupper(const char c) noexcept { return std::isupper(c); }
 inline bool isupper(const std::string &s) noexcept {
 	bool ok = true;
@@ -193,7 +195,7 @@ inline std::string to_bin(const int64_t x) noexcept {
 	return s;
 }
 inline int64_t to_ten(const std::string &s, const short base = 10) noexcept { return std::stoll(s, nullptr, base); }
-template <class... Ts> constexpr uint64_t sygcd(const Ts... a) noexcept {
+template <std::integral... Ts> constexpr uint64_t gcd(const Ts... a) noexcept {
 	std::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};
 	uint64_t g = 0;
 	for(const auto &el: v) {
@@ -201,7 +203,7 @@ template <class... Ts> constexpr uint64_t sygcd(const Ts... a) noexcept {
 	}
 	return g;
 }
-template <class... Ts> constexpr uint64_t sylcm(const Ts... a) noexcept {
+template <std::integral... Ts> constexpr uint64_t lcm(const Ts... a) noexcept {
 	std::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};
 	uint64_t l = 1;
 	for(const auto &el: v) {
@@ -209,8 +211,8 @@ template <class... Ts> constexpr uint64_t sylcm(const Ts... a) noexcept {
 	}
 	return l;
 }
-template <class... Ts> constexpr auto min(const Ts... a) noexcept { return std::min(std::initializer_list<std::common_type_t<Ts...>>{a...}); }
-template <class... Ts> constexpr auto max(const Ts... a) noexcept { return std::max(std::initializer_list<std::common_type_t<Ts...>>{a...}); }
+template <internal::num... Ts> constexpr auto min(const Ts... a) noexcept { return std::min(std::initializer_list<std::common_type_t<Ts...>>{a...}); }
+template <internal::num... Ts> constexpr auto max(const Ts... a) noexcept { return std::max(std::initializer_list<std::common_type_t<Ts...>>{a...}); }
 template <class K, class V> inline std::vector<K> key_l(const std::map<K, V> &m, const V val) noexcept {
 	std::vector<K> keys;
 	for(auto it = m.cbegin(); it != m.cend(); ++it) {
@@ -231,7 +233,7 @@ template <class K, class V> constexpr inline auto val_max(const std::map<K, V> &
 	return *std::ranges::max_element(m, [](const std::pair<K, V> &x, const std::pair<K, V> &y) -> bool { return x.second < y.second; });
 }
 
-template <class T> constexpr inline T count(std::vector<T> v, const T &x) noexcept {
+template <std::integral T> constexpr inline T count(std::vector<T> v, const T &x) noexcept {
 	if(!std::ranges::is_sorted(v)) {
 		std::ranges::sort(v);
 	}
@@ -295,12 +297,12 @@ template <class T> inline T rand_extract(const std::vector<T> &v) noexcept {
 	std::ranges::sample(v, std::back_inserter(ret), 1, rand());
 	return ret.front();
 }
-template <class T = int64_t> constexpr inline T sum(const std::vector<T> &v) noexcept { return std::accumulate(v.cbegin(), v.cend(), T(0)); }
-template <class T = int64_t> constexpr inline T sum(const std::vector<T> &v, const int a, const int b) noexcept { return std::accumulate(v.cbegin() + a, v.cbegin() + b, T(0)); }
-template <class T = int64_t, class Boolean = bool> constexpr inline T sum(const std::vector<T> &v, const Boolean &fn) noexcept { return std::accumulate(v.cbegin(), v.cend(), T(0), fn); }
-template <class T = int64_t, class Boolean = bool> constexpr inline T sum(const std::vector<T> &v, const int a, const int b, const Boolean &fn) noexcept { return std::accumulate(v.cbegin() + a, v.cbegin() + b, T(0), fn); }
+template <std::ranges::random_access_range T> constexpr inline auto sum(const T &v) noexcept { return std::accumulate(v.cbegin(), v.cend(), decltype(v.front())(0)); }
+template <std::ranges::random_access_range T> constexpr inline auto sum(const T &v, const int a, const int b) noexcept { return std::accumulate(v.cbegin() + a, v.cbegin() + b, decltype(v.front())(0)); }
+template <std::ranges::random_access_range T, class Boolean = bool> constexpr inline auto sum(const std::vector<T> &v, const Boolean &fn) noexcept { return std::accumulate(v.cbegin(), v.cend(), decltype(v.front())(0), fn); }
+template <std::ranges::random_access_range T, class Boolean = bool> constexpr inline auto sum(const std::vector<T> &v, const int a, const int b, const Boolean &fn) noexcept { return std::accumulate(v.cbegin() + a, v.cbegin() + b, decltype(v.front())(0), fn); }
 
-template <class T, class Boolean = bool> constexpr inline T bins(T ok, T ng, const Boolean &fn, const long double eps = 1) noexcept {
+template <internal::num T, class Boolean = bool> constexpr inline T bins(T ok, T ng, const Boolean &fn, const long double eps = 1) noexcept {
 	while(std::abs(ok - ng) > eps) {
 		const T mid = (ok + ng) / 2;
 		(fn(mid) ? ok : ng) = mid;
@@ -320,7 +322,7 @@ inline std::vector<std::string> rotate(const std::vector<std::string> &s) noexce
 	}
 	return t;
 }
-template <class T> inline std::vector<std::vector<T>> rotate(const std::vector<std::vector<T>> &v) noexcept {
+template <internal::num T> inline std::vector<std::vector<T>> rotate(const std::vector<std::vector<T>> &v) noexcept {
 	const int h = std::ssize(v), w = std::ssize(v.front());
 	std::vector ret(w, std::vector<T>(h));
 	for(const auto i: std::views::iota(0, h)) {
@@ -333,7 +335,7 @@ template <class T> inline std::vector<std::vector<T>> rotate(const std::vector<s
 	}
 	return ret;
 }
-template <class T> constexpr inline T factor(T n, const T mod = 0) noexcept {
+template <std::integral T> constexpr inline T factor(T n, const T mod = 0) noexcept {
 	T ret = 1;
 	while(n > 0) {
 		ret *= n--;
@@ -343,7 +345,7 @@ template <class T> constexpr inline T factor(T n, const T mod = 0) noexcept {
 	}
 	return ret;
 }
-template <class T = int64_t> constexpr inline T perm(T n, const T r, const T mod = 0) noexcept {
+template <std::integral T> constexpr inline T perm(T n, const T r, const T mod = 0) noexcept {
 	const T tmp = n;
 	T ret = 1;
 	while(n > tmp - r) {
@@ -354,7 +356,7 @@ template <class T = int64_t> constexpr inline T perm(T n, const T r, const T mod
 	}
 	return ret;
 }
-template <class T = int64_t> constexpr inline T binom(T n, const T r, const T mod = 0) noexcept {
+template <std::integral T> constexpr inline T binom(T n, const T r, const T mod = 0) noexcept {
 	if(r < 0 || n < r) {
 		return 0;
 	}
@@ -376,6 +378,7 @@ constexpr inline bool is_sqr(const int64_t n) noexcept { return is_int(std::sqrt
 }
 
 #include "C++/core/timer.hpp"
+#include "C++/core/myvector.hpp"
 #include "C++/core/mypair.hpp"
 #include "C++/core/io/input.hpp"
 #include "C++/core/io/output.hpp"

@@ -3,7 +3,7 @@
 #include <vector>
 #include <numeric>
 namespace man {
-template <class T = int64_t> struct psum {
+template <std::integral T> struct psum {
 private:
     int n;
     bool not_built;

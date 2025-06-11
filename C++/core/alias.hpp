@@ -10,6 +10,10 @@
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 
+namespace internal {
+template <typename T> concept num = std::integral<T> || std::floating_point<T>;
+}
+
 constexpr int dx[] = {0, 0, 0, -1, 1, -1, -1, 1, 1};
 constexpr int dy[] = {0, -1, 1, 0, 0, -1, 1, -1, 1};
 constexpr int MOD = 0x3b800001;
@@ -17,7 +21,7 @@ constexpr int M0D = 1e9 + 7;
 constexpr int INF = 1 << 30;
 constexpr int64_t LINF = (1LL << 61) - 1;
 constexpr long double DINF = std::numeric_limits<long double>::infinity();
-template <class T> constexpr T LIM = std::numeric_limits<T>::max();
+template <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();
 constexpr long double PI = std::numbers::pi;
 constexpr long double E = std::numbers::e;
 
@@ -30,9 +34,6 @@ typedef __uint128_t u128;
 #ifdef MODINT
 typedef man::Modint<MOD> mint;
 typedef man::Modint<M0D> Mint;
-#endif
-#ifdef ROLLING_HASH
-typedef man::RollingHash<LINF> RH;
 #endif
 template <size_t N> using ti = std::array<i64, N>;
 typedef ti<3> tri;

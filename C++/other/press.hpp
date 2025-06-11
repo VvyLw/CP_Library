@@ -1,8 +1,9 @@
 #pragma once
 #include <vector>
+#include <concepts>
 
 namespace man {
-template <class T> inline std::vector<T> press(const std::vector<T> &v) noexcept {
+template <std::integral T> inline std::vector<T> press(const std::vector<T> &v) noexcept {
 	std::vector<T> ret, cp = v;
 	uniq(cp);
 	for(const auto &el: v) {
@@ -10,16 +11,12 @@ template <class T> inline std::vector<T> press(const std::vector<T> &v) noexcept
 	}
 	return ret;
 }
-template <class T> inline std::vector<T> press(std::vector<T> &c1, std::vector<T> &c2) {
+template <std::integral T> inline std::vector<T> press(std::vector<T> &c1, std::vector<T> &c2) {
 	std::vector<T> ret;
-	const int n = c1.size();
+	const int n = std::ssize(c1);
 	for(const auto i: std::views::iota(0, n)) {
-		for(const auto d: std::views::iota(0, 1)) {
-			T tc1 = c1[i] + d;
-			T tc2 = c2[i] + d;
-			ret.emplace_back(tc1);
-			ret.emplace_back(tc2);
-		}
+		ret.emplace_back(c1[i]);
+		ret.emplace_back(c2[i]);
 	}
 	uniq(ret);
 	for(const auto i: std::views::iota(0, n)) {
