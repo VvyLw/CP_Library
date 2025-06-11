@@ -132,9 +132,9 @@ data:
     \n\t}\r\n\treturn g;\r\n}\r\ntemplate <class... Ts> constexpr uint64_t sylcm(const\
     \ Ts... a) noexcept {\r\n\tstd::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};\r\
     \n\tuint64_t l = 1;\r\n\tfor(const auto &el: v) {\r\n\t\tl = std::lcm(l, el);\r\
-    \n\t}\r\n\treturn l;\r\n}\r\ntemplate <class... Ts> constexpr auto symin(const\
-    \ Ts... a) noexcept { return std::min(std::initializer_list<std::common_type_t<Ts...>>{a...});\
-    \ }\r\ntemplate <class... Ts> constexpr auto symax(const Ts... a) noexcept { return\
+    \n\t}\r\n\treturn l;\r\n}\r\ntemplate <class... Ts> constexpr auto min(const Ts...\
+    \ a) noexcept { return std::min(std::initializer_list<std::common_type_t<Ts...>>{a...});\
+    \ }\r\ntemplate <class... Ts> constexpr auto max(const Ts... a) noexcept { return\
     \ std::max(std::initializer_list<std::common_type_t<Ts...>>{a...}); }\r\ntemplate\
     \ <class K, class V> inline std::vector<K> key_l(const std::map<K, V> &m, const\
     \ V val) noexcept {\r\n\tstd::vector<K> keys;\r\n\tfor(auto it = m.cbegin(); it\
@@ -152,26 +152,16 @@ data:
     \ class V> constexpr inline auto val_max(const std::map<K, V> &m) noexcept {\r\
     \n\treturn *std::ranges::max_element(m, [](const std::pair<K, V> &x, const std::pair<K,\
     \ V> &y) -> bool { return x.second < y.second; });\r\n}\r\n\r\ntemplate <class\
-    \ T> constexpr inline T min(const std::vector<T>& v) noexcept { return *std::ranges::min_element(v);\
-    \ }\r\ntemplate <class T> constexpr inline T min(const std::vector<T>& v, const\
-    \ int a, const int b) noexcept { return *std::min_element(v.cbegin() + a, v.cbegin()\
-    \ + b + 1); }\r\ntemplate <class T> constexpr inline T max(const std::vector<T>&\
-    \ v) noexcept { return *std::ranges::max_element(v); }\r\ntemplate <class T> constexpr\
-    \ inline T max(const std::vector<T>& v, const int a, const int b) noexcept { return\
-    \ *std::max_element(v.cbegin() + a, v.cbegin() + b + 1); }\r\ntemplate <class\
-    \ T> constexpr inline int min_id(const std::vector<T>& v) noexcept { return std::ranges::min_element(v)\
-    \ - v.cbegin(); }\r\ntemplate <class T> constexpr inline int max_id(const std::vector<T>&\
-    \ v) noexcept { return std::ranges::max_element(v) - v.cbegin(); }\r\ntemplate\
-    \ <class T> constexpr inline T count(std::vector<T> v, const T &x) noexcept {\r\
-    \n\tif(!std::ranges::is_sorted(v)) {\r\n\t\tstd::ranges::sort(v);\r\n\t}\r\n\t\
-    return std::ranges::upper_bound(v, x) - std::ranges::lower_bound(v, x);\r\n}\r\
-    \ntemplate <class T> constexpr inline T inner_prod(const std::vector<T> &v, const\
-    \ std::vector<T> &u, const T init) noexcept { return std::inner_product(v.cbegin(),\
-    \ v.cend(), u.cbegin(), init); }\r\ninline std::vector<int> iota(const int n,\
-    \ const int init = 0) noexcept {\r\n\tstd::vector<int> a(n);\r\n\tstd::iota(a.begin(),\
-    \ a.end(), init);\r\n\treturn a;\r\n}\r\ntemplate <class T> constexpr inline int\
-    \ uniq(T& v) noexcept {\r\n\tif(!std::ranges::is_sorted(v)) {\r\n\t\tstd::ranges::sort(v);\r\
-    \n\t}\r\n\tconst auto it = std::ranges::unique(v);\r\n\tv.erase(it.begin(), it.end());\r\
+    \ T> constexpr inline T count(std::vector<T> v, const T &x) noexcept {\r\n\tif(!std::ranges::is_sorted(v))\
+    \ {\r\n\t\tstd::ranges::sort(v);\r\n\t}\r\n\treturn std::ranges::upper_bound(v,\
+    \ x) - std::ranges::lower_bound(v, x);\r\n}\r\ntemplate <class T> constexpr inline\
+    \ T inner_prod(const std::vector<T> &v, const std::vector<T> &u, const T init)\
+    \ noexcept { return std::inner_product(v.cbegin(), v.cend(), u.cbegin(), init);\
+    \ }\r\ninline std::vector<int> iota(const int n, const int init = 0) noexcept\
+    \ {\r\n\tstd::vector<int> a(n);\r\n\tstd::iota(a.begin(), a.end(), init);\r\n\t\
+    return a;\r\n}\r\ntemplate <class T> constexpr inline int uniq(T& v) noexcept\
+    \ {\r\n\tif(!std::ranges::is_sorted(v)) {\r\n\t\tstd::ranges::sort(v);\r\n\t}\r\
+    \n\tconst auto it = std::ranges::unique(v);\r\n\tv.erase(it.begin(), it.end());\r\
     \n\treturn std::ssize(v);\r\n}\r\ntemplate <class T> constexpr inline void rotate(T&\
     \ s, const int idx) noexcept {\r\n\tconst int id = mod<int>(idx, std::ssize(s));\r\
     \n\tstd::ranges::rotate(s, s.begin() + id);\r\n}\r\ntemplate <class T> constexpr\
@@ -198,34 +188,40 @@ data:
     \ inline T sum(const std::vector<T> &v) noexcept { return std::accumulate(v.cbegin(),\
     \ v.cend(), T(0)); }\r\ntemplate <class T = int64_t> constexpr inline T sum(const\
     \ std::vector<T> &v, const int a, const int b) noexcept { return std::accumulate(v.cbegin()\
-    \ + a, v.cbegin() + b, T(0)); }\r\n\r\ntemplate <class T, class Boolean = bool>\
-    \ constexpr inline T bins(T ok, T ng, const Boolean &fn, const long double eps\
-    \ = 1) noexcept {\r\n\twhile(std::abs(ok - ng) > eps) {\r\n\t\tconst T mid = (ok\
-    \ + ng) / 2;\r\n\t\t(fn(mid) ? ok : ng) = mid;\r\n\t}\r\n\treturn ok;\r\n}\r\n\
-    inline std::vector<std::string> rotate(const std::vector<std::string> &s) noexcept\
-    \ {\r\n\tconst int h = std::ssize(s), w = std::ssize(s.front());\r\n\tstd::vector\
-    \ t(w, std::string(h, {}));\r\n\tfor(const auto i: std::views::iota(0, h)) {\r\
-    \n\t\tfor(const auto j: std::views::iota(0, w)) {\r\n\t\t\tt[j][i] = s[i][j];\r\
-    \n\t\t}\r\n\t}\r\n\tfor(const auto i: std::views::iota(0, w)) {\r\n\t\tstd::ranges::reverse(t[i]);\r\
-    \n\t}\r\n\treturn t;\r\n}\r\ntemplate <class T> inline std::vector<std::vector<T>>\
-    \ rotate(const std::vector<std::vector<T>> &v) noexcept {\r\n\tconst int h = std::ssize(v),\
-    \ w = std::ssize(v.front());\r\n\tstd::vector ret(w, std::vector<T>(h));\r\n\t\
-    for(const auto i: std::views::iota(0, h)) {\r\n\t\tfor(const auto j: std::views::iota(0,\
-    \ w)) {\r\n\t\t\tret[j][i] = v[i][j];\r\n\t\t}\r\n\t}\r\n\tfor(const auto i: std::views::iota(0,\
-    \ w)) {\r\n\t\tstd::ranges::reverse(ret[i]);\r\n\t}\r\n\treturn ret;\r\n}\r\n\
-    template <class T> constexpr inline T factor(T n, const T mod = 0) noexcept {\r\
-    \n\tT ret = 1;\r\n\twhile(n > 0) {\r\n\t\tret *= n--;\r\n\t\tif(mod) {\r\n\t\t\
-    \tret %= mod;\r\n\t\t}\r\n\t}\r\n\treturn ret;\r\n}\r\ntemplate <class T = int64_t>\
-    \ constexpr inline T perm(T n, const T r, const T mod = 0) noexcept {\r\n\tconst\
-    \ T tmp = n;\r\n\tT ret = 1;\r\n\twhile(n > tmp - r) {\r\n\t\tret *= n--;\r\n\t\
-    \tif(mod) {\r\n\t\t\tret %= mod;\r\n\t\t}\r\n\t}\r\n\treturn ret;\r\n}\r\ntemplate\
-    \ <class T = int64_t> constexpr inline T binom(T n, const T r, const T mod = 0)\
-    \ noexcept {\r\n\tif(r < 0 || n < r) {\r\n\t\treturn 0;\r\n\t}\r\n\tT ret = 1;\r\
-    \n\tfor(const auto i: std::views::iota(1) | std::views::take(r)) {\r\n\t\tret\
-    \ *= n--;\r\n\t\tif(mod) {\r\n\t\t\tret %= mod;\r\n\t\t}\r\n\t\tret /= i;\r\n\t\
-    \tif(mod) {\r\n\t\t\tret %= mod;\r\n\t\t}\r\n\t}\r\n\treturn ret;\r\n}\r\nconstexpr\
-    \ inline bool is_int(const long double n) noexcept { return n == std::floor(n);\
-    \ }\r\nconstexpr inline bool is_sqr(const int64_t n) noexcept { return is_int(std::sqrt(n));\
+    \ + a, v.cbegin() + b, T(0)); }\r\ntemplate <class T = int64_t, class Boolean\
+    \ = bool> constexpr inline T sum(const std::vector<T> &v, const Boolean &fn) noexcept\
+    \ { return std::accumulate(v.cbegin(), v.cend(), T(0), fn); }\r\ntemplate <class\
+    \ T = int64_t, class Boolean = bool> constexpr inline T sum(const std::vector<T>\
+    \ &v, const int a, const int b, const Boolean &fn) noexcept { return std::accumulate(v.cbegin()\
+    \ + a, v.cbegin() + b, T(0), fn); }\r\n\r\ntemplate <class T, class Boolean =\
+    \ bool> constexpr inline T bins(T ok, T ng, const Boolean &fn, const long double\
+    \ eps = 1) noexcept {\r\n\twhile(std::abs(ok - ng) > eps) {\r\n\t\tconst T mid\
+    \ = (ok + ng) / 2;\r\n\t\t(fn(mid) ? ok : ng) = mid;\r\n\t}\r\n\treturn ok;\r\n\
+    }\r\ninline std::vector<std::string> rotate(const std::vector<std::string> &s)\
+    \ noexcept {\r\n\tconst int h = std::ssize(s), w = std::ssize(s.front());\r\n\t\
+    std::vector t(w, std::string(h, {}));\r\n\tfor(const auto i: std::views::iota(0,\
+    \ h)) {\r\n\t\tfor(const auto j: std::views::iota(0, w)) {\r\n\t\t\tt[j][i] =\
+    \ s[i][j];\r\n\t\t}\r\n\t}\r\n\tfor(const auto i: std::views::iota(0, w)) {\r\n\
+    \t\tstd::ranges::reverse(t[i]);\r\n\t}\r\n\treturn t;\r\n}\r\ntemplate <class\
+    \ T> inline std::vector<std::vector<T>> rotate(const std::vector<std::vector<T>>\
+    \ &v) noexcept {\r\n\tconst int h = std::ssize(v), w = std::ssize(v.front());\r\
+    \n\tstd::vector ret(w, std::vector<T>(h));\r\n\tfor(const auto i: std::views::iota(0,\
+    \ h)) {\r\n\t\tfor(const auto j: std::views::iota(0, w)) {\r\n\t\t\tret[j][i]\
+    \ = v[i][j];\r\n\t\t}\r\n\t}\r\n\tfor(const auto i: std::views::iota(0, w)) {\r\
+    \n\t\tstd::ranges::reverse(ret[i]);\r\n\t}\r\n\treturn ret;\r\n}\r\ntemplate <class\
+    \ T> constexpr inline T factor(T n, const T mod = 0) noexcept {\r\n\tT ret = 1;\r\
+    \n\twhile(n > 0) {\r\n\t\tret *= n--;\r\n\t\tif(mod) {\r\n\t\t\tret %= mod;\r\n\
+    \t\t}\r\n\t}\r\n\treturn ret;\r\n}\r\ntemplate <class T = int64_t> constexpr inline\
+    \ T perm(T n, const T r, const T mod = 0) noexcept {\r\n\tconst T tmp = n;\r\n\
+    \tT ret = 1;\r\n\twhile(n > tmp - r) {\r\n\t\tret *= n--;\r\n\t\tif(mod) {\r\n\
+    \t\t\tret %= mod;\r\n\t\t}\r\n\t}\r\n\treturn ret;\r\n}\r\ntemplate <class T =\
+    \ int64_t> constexpr inline T binom(T n, const T r, const T mod = 0) noexcept\
+    \ {\r\n\tif(r < 0 || n < r) {\r\n\t\treturn 0;\r\n\t}\r\n\tT ret = 1;\r\n\tfor(const\
+    \ auto i: std::views::iota(1) | std::views::take(r)) {\r\n\t\tret *= n--;\r\n\t\
+    \tif(mod) {\r\n\t\t\tret %= mod;\r\n\t\t}\r\n\t\tret /= i;\r\n\t\tif(mod) {\r\n\
+    \t\t\tret %= mod;\r\n\t\t}\r\n\t}\r\n\treturn ret;\r\n}\r\nconstexpr inline bool\
+    \ is_int(const long double n) noexcept { return n == std::floor(n); }\r\nconstexpr\
+    \ inline bool is_sqr(const int64_t n) noexcept { return is_int(std::sqrt(n));\
     \ }\r\n}\r\n\r\n#line 2 \"C++/core/timer.hpp\"\n\n#line 5 \"C++/core/timer.hpp\"\
     \nusing Timer = std::chrono::system_clock::time_point;\nTimer start, stop;\n#if\
     \ local\ninline void now(Timer &t) noexcept { t = std::chrono::system_clock::now();\
@@ -409,7 +405,7 @@ data:
     \ {\n            os << ' ' << *i;\n        }\n    }\n    return os;\n}\n} // IO\n\
     \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
     #include <C++/core/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
-    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 386 \"C++/template.hpp\"\n\r\
+    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 382 \"C++/template.hpp\"\n\r\
     \n#define overload4(_1,_2,_3,_4,name,...) name\r\n#define REP1(n) for([[maybe_unused]]\
     \ const auto _: std::views::iota(0, (n)))\r\n#define REP2(i,n) for(const auto\
     \ i: std::views::iota(0, (n)))\r\n#define REP3(i,a,b) for(const auto i: std::views::iota((a),\
@@ -474,7 +470,7 @@ data:
   isVerificationFile: true
   path: test/fwtree.test.cpp
   requiredBy: []
-  timestamp: '2025-06-07 07:29:34+09:00'
+  timestamp: '2025-06-11 12:03:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fwtree.test.cpp

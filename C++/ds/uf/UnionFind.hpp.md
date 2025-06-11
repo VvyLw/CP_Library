@@ -70,8 +70,8 @@ data:
   isVerificationFile: false
   path: C++/ds/uf/UnionFind.hpp
   requiredBy:
-  - C++/ds/uf/MergeUF.hpp
   - C++/graph/mst/kruskal.hpp
+  - C++/ds/uf/MergeUF.hpp
   timestamp: '2025-06-06 22:43:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

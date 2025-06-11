@@ -134,19 +134,19 @@ data:
   timestamp: '2025-06-07 07:29:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aarray.test.cpp
-  - test/m_add.test.cpp
-  - test/sr_sum.test.cpp
+  - test/add.test.cpp
   - test/uf.test.cpp
+  - test/s_rmq.test.cpp
+  - test/sr_sum.test.cpp
+  - test/stable.test.cpp
+  - test/m_add.test.cpp
+  - test/add128_2.test.cpp
   - test/add128.test.cpp
   - test/parsum.test.cpp
-  - test/add128_2.test.cpp
-  - test/extgcd.test.cpp
-  - test/stable.test.cpp
   - test/fwtree.test.cpp
+  - test/aarray.test.cpp
+  - test/extgcd.test.cpp
   - test/segtree.test.cpp
-  - test/add.test.cpp
-  - test/s_rmq.test.cpp
 documentation_of: C++/core/io/output.hpp
 layout: document
 redirect_from:
