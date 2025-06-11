@@ -26,7 +26,7 @@ data:
     \ int k) const noexcept { return (sum[k >> 5] + __builtin_popcount(bit[k >> 5]\
     \ & ((1 << (k & 31)) - 1))); }\n    inline int rank(const bool val, const int\
     \ k) const noexcept { return val ? rank(k) : k - rank(k); }\n    inline bool operator[](const\
-    \ int k) noexcept { return (bit[k >> 5] >> (k & 31)) & 1; }\n};\n\ntemplate <class\
+    \ int k) noexcept { return (bit[k >> 5] >> (k & 31)) & 1; }\n};\n\ntemplate <std::integral\
     \ T, int log> struct WMBeta {\nprivate:\n    SIDict matrix[log];\n    int mid[log];\n\
     \    constexpr inline T access(int k) const noexcept {\n        T ret = 0;\n \
     \       for(const auto level: std::views::iota(0, log) | std::views::reverse)\
@@ -71,8 +71,8 @@ data:
     \ r, upper);\n\t\treturn cnt == 0 ? (T)-1 : kth_min(l, r, cnt - 1);\n\t}\n   \
     \ constexpr inline T next(const int l, const int r, const T lower) const noexcept\
     \ {\n\t\tconst int cnt = range_freq(l, r, lower);\n\t\treturn cnt == r - l ? (T)-1\
-    \ : kth_min(l, r, cnt);\n\t}\n};\n}\n\ntemplate <class T, int log = 20> struct\
-    \ WaveletMatrix {\nprivate:\n    internal::WMBeta<int, log> mat;\n    std::vector<T>\
+    \ : kth_min(l, r, cnt);\n\t}\n};\n}\n\ntemplate <std::integral T, int log = 20>\
+    \ struct WaveletMatrix {\nprivate:\n    internal::WMBeta<int, log> mat;\n    std::vector<T>\
     \ ys;\n    constexpr inline int get(const T x) const noexcept { return std::ranges::lower_bound(ys,\
     \ x) - ys.cbegin(); }\n    constexpr inline T access(const int k) const noexcept\
     \ { return ys[mat[k]]; }\npublic:\n    WaveletMatrix(const std::vector<T> v):\
@@ -114,7 +114,7 @@ data:
   isVerificationFile: true
   path: test/wm3.test.cpp
   requiredBy: []
-  timestamp: '2025-06-06 22:43:22+09:00'
+  timestamp: '2025-06-11 17:30:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/wm3.test.cpp

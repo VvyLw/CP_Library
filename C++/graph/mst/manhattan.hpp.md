@@ -28,7 +28,7 @@ data:
     \ inline operator int() const noexcept { return to; }\n};\n}\n\n/**\n * @brief\
     \ Edge\n */\n#line 5 \"C++/graph/mst/MST.hpp\"\nstruct MST {\n    std::vector<man::edge>\
     \ tree;\n    int64_t cost;\n};\n\n/**\n * @brief \u6700\u5C0F\u5168\u57DF\u6728\
-    \n */\n#line 8 \"C++/graph/mst/manhattan.hpp\"\nnamespace man {\ntemplate <class\
+    \n */\n#line 8 \"C++/graph/mst/manhattan.hpp\"\nnamespace man {\ntemplate <std::integral\
     \ T> inline std::vector<edge> manhattan(std::vector<T> x, std::vector<T> y) noexcept\
     \ {\n    assert(std::ssize(x) == std::ssize(y));\n    std::vector<edge> ret;\n\
     \    std::vector<int> id(std::ssize(x));\n    std::iota(id.begin(), id.end(),\
@@ -47,7 +47,7 @@ data:
     \ */\n"
   code: "#pragma once\n\n#include <cassert>\n#include <map>\n#include <numeric>\n\
     #include <ranges>\n#include \"C++/graph/mst/MST.hpp\"\nnamespace man {\ntemplate\
-    \ <class T> inline std::vector<edge> manhattan(std::vector<T> x, std::vector<T>\
+    \ <std::integral T> inline std::vector<edge> manhattan(std::vector<T> x, std::vector<T>\
     \ y) noexcept {\n    assert(std::ssize(x) == std::ssize(y));\n    std::vector<edge>\
     \ ret;\n    std::vector<int> id(std::ssize(x));\n    std::iota(id.begin(), id.end(),\
     \ 0);\n    for([[maybe_unused]] const auto _: std::views::iota(0, 2)) {\n    \
@@ -69,7 +69,7 @@ data:
   isVerificationFile: false
   path: C++/graph/mst/manhattan.hpp
   requiredBy: []
-  timestamp: '2025-06-06 22:43:06+09:00'
+  timestamp: '2025-06-11 17:30:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/manhattan.test.cpp

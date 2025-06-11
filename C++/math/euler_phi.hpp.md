@@ -18,23 +18,23 @@ data:
   attributes:
     document_title: Euler's Phi-function
     links: []
-  bundledCode: "#line 2 \"C++/math/euler_phi.hpp\"\nnamespace man {\ntemplate <class\
+  bundledCode: "#line 2 \"C++/math/euler_phi.hpp\"\nnamespace man {\ntemplate <std::integral\
     \ T> constexpr inline T euler_phi(T n) noexcept {\n\tT ret = n;\n\tfor(T i = 2;\
     \ i * i <= n; ++i) {\n\t    if(n % i == 0) {\n\t\t\tret -= ret / i;\n\t\t\twhile(n\
     \ % i == 0) {\n\t\t\t\tn /= i;\n\t\t\t}\n\t\t}\n\t}\n\tif(n > 1) {\n\t\tret -=\
     \ ret / n;\n\t}\n\treturn ret;\n}\n}\n\n/**\n * @brief Euler's Phi-function\n\
     \ */\n"
-  code: "#pragma once\nnamespace man {\ntemplate <class T> constexpr inline T euler_phi(T\
-    \ n) noexcept {\n\tT ret = n;\n\tfor(T i = 2; i * i <= n; ++i) {\n\t    if(n %\
-    \ i == 0) {\n\t\t\tret -= ret / i;\n\t\t\twhile(n % i == 0) {\n\t\t\t\tn /= i;\n\
-    \t\t\t}\n\t\t}\n\t}\n\tif(n > 1) {\n\t\tret -= ret / n;\n\t}\n\treturn ret;\n\
-    }\n}\n\n/**\n * @brief Euler's Phi-function\n */"
+  code: "#pragma once\nnamespace man {\ntemplate <std::integral T> constexpr inline\
+    \ T euler_phi(T n) noexcept {\n\tT ret = n;\n\tfor(T i = 2; i * i <= n; ++i) {\n\
+    \t    if(n % i == 0) {\n\t\t\tret -= ret / i;\n\t\t\twhile(n % i == 0) {\n\t\t\
+    \t\tn /= i;\n\t\t\t}\n\t\t}\n\t}\n\tif(n > 1) {\n\t\tret -= ret / n;\n\t}\n\t\
+    return ret;\n}\n}\n\n/**\n * @brief Euler's Phi-function\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/math/euler_phi.hpp
   requiredBy:
   - C++/math/tetration.hpp
-  timestamp: '2025-06-06 22:43:06+09:00'
+  timestamp: '2025-06-11 17:30:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/tetration.test.cpp

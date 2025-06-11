@@ -13,7 +13,7 @@ data:
     document_title: "\u7D2F\u7A4D\u548C"
     links: []
   bundledCode: "#line 2 \"C++/math/psum/psum.hpp\"\n\n#include <vector>\n#include\
-    \ <numeric>\nnamespace man {\ntemplate <class T = int64_t> struct psum {\nprivate:\n\
+    \ <numeric>\nnamespace man {\ntemplate <std::integral T> struct psum {\nprivate:\n\
     \    int n;\n    bool not_built;\n    std::vector<int64_t> s;\npublic:\n    psum(const\
     \ std::vector<T> &v): s{0} { std::partial_sum(v.cbegin(), v.cend(), std::back_inserter(s));\
     \ }\n    psum(const int n): n(n), not_built(true), s(n + 1){}\n    constexpr inline\
@@ -27,7 +27,7 @@ data:
     \        not_built = false;\n        res.resize(n);\n        return res;\n   \
     \ }\n};\n}\n\n/**\n * @brief \u7D2F\u7A4D\u548C\n */\n"
   code: "#pragma once\n\n#include <vector>\n#include <numeric>\nnamespace man {\n\
-    template <class T = int64_t> struct psum {\nprivate:\n    int n;\n    bool not_built;\n\
+    template <std::integral T> struct psum {\nprivate:\n    int n;\n    bool not_built;\n\
     \    std::vector<int64_t> s;\npublic:\n    psum(const std::vector<T> &v): s{0}\
     \ { std::partial_sum(v.cbegin(), v.cend(), std::back_inserter(s)); }\n    psum(const\
     \ int n): n(n), not_built(true), s(n + 1){}\n    constexpr inline std::vector<int64_t>\
@@ -43,7 +43,7 @@ data:
   isVerificationFile: false
   path: C++/math/psum/psum.hpp
   requiredBy: []
-  timestamp: '2025-06-06 22:43:06+09:00'
+  timestamp: '2025-06-11 17:30:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sr_sum.test.cpp

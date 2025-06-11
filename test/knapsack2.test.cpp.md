@@ -18,34 +18,37 @@ data:
     \n#include <iostream>\n#line 2 \"C++/other/dp.hpp\"\n\n#include <vector>\n#include\
     \ <utility>\n#include <algorithm>\n#include <stack>\n#include <iterator>\n#include\
     \ <limits>\n#include <numeric>\n#include <ranges>\n\nnamespace man {\ntemplate\
-    \ <class T> constexpr inline T knapsack01_v(const std::vector<int> &a, const std::vector<T>\
-    \ &v, const int w) noexcept {\n    const int n = std::ssize(a);\n    std::vector\
-    \ dp(w + 1, std::numeric_limits<T>::min());\n    dp[0] = 0;\n    for(const auto\
-    \ i: std::views::iota(0, n)) {\n        for(const auto j: std::views::iota(a[i],\
+    \ <std::integral T> constexpr inline T knapsack01_v(const std::vector<int> &a,\
+    \ const std::vector<T> &v, const int w) noexcept {\n    const int n = std::ssize(a);\n\
+    \    std::vector dp(w + 1, std::numeric_limits<T>::min());\n    dp[0] = 0;\n \
+    \   for(const auto i: std::views::iota(0, n)) {\n        for(const auto j: std::views::iota(a[i],\
     \ w + 1) | std::views::reverse) {\n            if(dp[j - a[i]] != std::numeric_limits<T>::min())\
     \ {\n                if(dp[j - a[i]] + v[i] > dp[j]) {\n                    dp[j]\
     \ = dp[j - a[i]] + v[i];\n                }\n            }\n        }\n    }\n\
     \    return *std::ranges::max_element(dp);\n}\n/**\n * @see https://ei1333.github.io/library/dp/knapsack-01.hpp\n\
-    \ */\n\ntemplate <class T> int knapsack01_w(const std::vector<T> &a, const std::vector<int>\
-    \ &v, const T &w) {\n    const int n = a.size();\n    const int s = std::accumulate(v.begin(),\
-    \ v.end(), 0);\n    std::vector dp(s + 1, w + 1);\n    dp[0] = 0;\n    for(int\
-    \ i = 0; i < n; i++) {\n        for(int j = s; j >= v[i]; j--) {\n           \
-    \ dp[j] = std::min(dp[j], dp[j - v[i]] + a[i]);\n        }\n    }\n    int res\
-    \ = 0;\n    for(int i = 0; i <= s; i++) {\n        if(dp[i] <= w) {\n        \
-    \    res = i;\n        }\n    }\n    return res;\n}\n/**\n * @see https://ei1333.github.io/library/dp/knapsack-01-2.hpp\n\
-    \ */\n\ntemplate <class T> std::vector<T> knapsack_sup_v(const std::vector<int>\
+    \ */\n\ntemplate <std::integral T> int knapsack01_w(const std::vector<T> &a, const\
+    \ std::vector<int> &v, const T &w) {\n    const int n = std::ssize(a);\n    const\
+    \ int s = std::accumulate(v.cbegin(), v.cend(), 0);\n    std::vector dp(s + 1,\
+    \ w + 1);\n    dp[0] = 0;\n    for(const auto i: std::views::iota(0, n)) {\n \
+    \       for(const auto j: std::views::iota(v[i], s + 1) | std::views::reverse)\
+    \ {\n            dp[j] = std::min(dp[j], dp[j - v[i]] + a[i]);\n        }\n  \
+    \  }\n    int res = 0;\n    for(const auto i: std::views::iota(0, s + 1)) {\n\
+    \        if(dp[i] <= w) {\n            res = i;\n        }\n    }\n    return\
+    \ res;\n}\n/**\n * @see https://ei1333.github.io/library/dp/knapsack-01-2.hpp\n\
+    \ */\n\ntemplate <std::integral T> std::vector<T> knapsack_sup_v(const std::vector<int>\
     \ &a, const std::vector<T> &v, const std::vector<int> &m, const int w, const bool\
-    \ less = false) {\n    const int n = a.size();\n    std::vector<T> dp(w + 1, std::numeric_limits<T>::min()),\
-    \ deqv(w + 1);\n    dp[0] = 0;\n    std::vector<int> deq(w + 1);\n    for(int\
-    \ i = 0; i < n; ++i) {\n        if(a[i] == 0) {\n            for(int j = 0; j\
-    \ <= w; ++j) {\n                if(dp[j] != std::numeric_limits<T>::min() && (less\
-    \ ? dp[j] + v[i] * m[i] < dp[j] : dp[j] + v[i] * m[i] > dp[j])) {\n          \
-    \          dp[j] = dp[j] + v[i] * m[i];\n                }\n            }\n  \
-    \      } else {\n            for(int k = 0; k < a[i]; ++k) {\n               \
-    \ int s = 0, t = 0;\n                for(int j = 0; a[i] * j + k <= w; ++j) {\n\
-    \                    if(dp[a[i] * j + k] != std::numeric_limits<T>::min()) {\n\
-    \                        const T val = dp[a[i] * j + k] - j * v[i];\n        \
-    \                while(s < t && (less ? val < deqv[t - 1] : val > deqv[t - 1]))\
+    \ less = false) {\n    const int n = std::ssize(a);\n    std::vector<T> dp(w +\
+    \ 1, std::numeric_limits<T>::min()), deqv(w + 1);\n    dp[0] = 0;\n    std::vector<int>\
+    \ deq(w + 1);\n    for(const auto i: std::views::iota(0, n)) {\n        if(a[i]\
+    \ == 0) {\n            for(const auto j: std::views::iota(0, w + 1)) {\n     \
+    \           if(dp[j] != std::numeric_limits<T>::min() && (less ? dp[j] + v[i]\
+    \ * m[i] < dp[j] : dp[j] + v[i] * m[i] > dp[j])) {\n                    dp[j]\
+    \ = dp[j] + v[i] * m[i];\n                }\n            }\n        } else {\n\
+    \            for(const auto k: std::views::iota(0, a[i])) {\n                int\
+    \ s = 0, t = 0;\n                for(int j = 0; a[i] * j + k <= w; ++j) {\n  \
+    \                  if(dp[a[i] * j + k] != std::numeric_limits<T>::min()) {\n \
+    \                       const T val = dp[a[i] * j + k] - j * v[i];\n         \
+    \               while(s < t && (less ? val < deqv[t - 1] : val > deqv[t - 1]))\
     \ {\n                            t--;\n                        }\n           \
     \             deq[t] = j;\n                        deqv[t++] = val;\n        \
     \            }\n                    if(s < t) {\n                        dp[j\
@@ -53,53 +56,54 @@ data:
     \ m[i]) {\n                            s++;\n                        }\n     \
     \               }\n                }\n            }\n        }\n    }\n    return\
     \ dp;\n}\n/**\n * @see https://ei1333.github.io/library/dp/knapsack-limitations.hpp\n\
-    \ */\n\ntemplate <class T> T knapsack_sup_w(const std::vector<T> &a, const std::vector<int>\
-    \ &v, const std::vector<T> &m, const T &w) {\n    const int n = a.size();\n  \
-    \  const int max = *std::ranges::max_element(v);\n    if(max == 0) {\n       \
-    \ return 0;\n    }\n    std::vector<int> ma(n);\n    std::vector<T> mb(n);\n \
-    \   for(int i = 0; i < n; i++) {\n        ma[i] = std::min<int>(m[i], max - 1);\n\
-    \        mb[i] = m[i] - ma[i];\n    }\n    int sum = 0;\n    for(int i = 0; i\
-    \ < n; ++i) {\n        sum += ma[i] * v[i];\n    }\n    std::vector dp = knapsack_sup_v(v,\
-    \ a, ma, sum, true);\n    std::vector<int> id(n);\n    std::iota(id.begin(), id.end(),\
-    \ 0);\n    std::stable_sort(id.begin(), id.end(), [&](const int i, const int j)\
-    \ -> bool { return v[i] * a[j] > v[j] * a[i]; });\n    T res = T{};\n    for(size_t\
-    \ i = 0; i < dp.size(); ++i) {\n        if(dp[i] > w || dp[i] == std::numeric_limits<T>::min())\
-    \ {\n            continue;\n        }\n        T rest = w - dp[i], cost = i;\n\
-    \        for(const int j: id) {\n            const T get = std::min(mb[j], rest\
-    \ / a[j]);\n            if(get <= 0) {\n                continue;\n          \
-    \  }\n            cost += get * v[j];\n            rest -= get * a[j];\n     \
-    \   }\n        res = std::max(res, cost);\n    }\n    return res;\n}\n/**\n *\
-    \ @see https://ei1333.github.io/library/dp/knapsack-limitations-2.hpp\n */\n\n\
-    template <class T> T knapsack(const std::vector<int> &a, const std::vector<T>\
-    \ &v, const int w) {\n    const int n = a.size();\n    std::vector dp(w + 1, std::numeric_limits<T>::min());\n\
-    \    dp[0] = 0;\n    for(int i = 0; i < n; i++) {\n        for(int j = a[i]; j\
-    \ <= w; j++) {\n            if(dp[j - a[i]] != std::numeric_limits<T>::min())\
-    \ {\n                if(dp[j - a[i]] + v[i] > dp[j]) {\n                    dp[j]\
+    \ */\n\ntemplate <std::integral T> T knapsack_sup_w(const std::vector<T> &a, const\
+    \ std::vector<int> &v, const std::vector<T> &m, const T &w) {\n    const int n\
+    \ = std::ssize(a);\n    const int max = *std::ranges::max_element(v);\n    if(max\
+    \ == 0) {\n        return 0;\n    }\n    std::vector<int> ma(n);\n    std::vector<T>\
+    \ mb(n);\n    for(const auto i: std::views::iota(0, n)) {\n        ma[i] = std::min<int>(m[i],\
+    \ max - 1);\n        mb[i] = m[i] - ma[i];\n    }\n    int sum = 0;\n    for(const\
+    \ auto i: std::views::iota(0, n)) {\n        sum += ma[i] * v[i];\n    }\n   \
+    \ std::vector dp = knapsack_sup_v(v, a, ma, sum, true);\n    std::vector<int>\
+    \ id(n);\n    std::iota(id.begin(), id.end(), 0);\n    std::stable_sort(id.begin(),\
+    \ id.end(), [&](const int i, const int j) -> bool { return v[i] * a[j] > v[j]\
+    \ * a[i]; });\n    T res = T{};\n    for(const auto i: std::views::iota(0, std::ssize(dp)))\
+    \ {\n        if(dp[i] > w || dp[i] == std::numeric_limits<T>::min()) {\n     \
+    \       continue;\n        }\n        T rest = w - dp[i], cost = i;\n        for(const\
+    \ int j: id) {\n            const T get = std::min(mb[j], rest / a[j]);\n    \
+    \        if(get <= 0) {\n                continue;\n            }\n          \
+    \  cost += get * v[j];\n            rest -= get * a[j];\n        }\n        res\
+    \ = std::max(res, cost);\n    }\n    return res;\n}\n/**\n * @see https://ei1333.github.io/library/dp/knapsack-limitations-2.hpp\n\
+    \ */\n\ntemplate <std::integral T> T knapsack(const std::vector<int> &a, const\
+    \ std::vector<T> &v, const int w) {\n    const int n = std::ssize(a);\n    std::vector\
+    \ dp(w + 1, std::numeric_limits<T>::min());\n    dp[0] = 0;\n    for(const auto\
+    \ i: std::views::iota(0, n)) {\n        for(const auto j: std::views::iota(a[i],\
+    \ w + 1)) {\n            if(dp[j - a[i]] != std::numeric_limits<T>::min()) {\n\
+    \                if(dp[j - a[i]] + v[i] > dp[j]) {\n                    dp[j]\
     \ = dp[j - a[i]] + v[i];\n                }\n            }\n        }\n    }\n\
     \    return *std::ranges::max_element(dp);\n}\n/**\n * @see https://ei1333.github.io/library/dp/knapsack.hpp\n\
-    \ */\n\ntemplate <class T> inline long long max_rectangle(std::vector<T> h) {\n\
-    \    h.resize(h.size() + 1);\n    std::stack<size_t> sk;\n    std::vector<int>\
-    \ l(h.size());\n    long long res = 0;\n    for(size_t i = 0; i < h.size(); i++)\
-    \ {\n        while(!sk.empty() && h[sk.top()] >= h[i]) {\n            res = std::max(res,\
-    \ (long long) (i - l[sk.top()] - 1) * h[sk.top()]);\n            sk.pop();\n \
-    \       }\n        l[i] = sk.empty() ? -1 : sk.top();\n        sk.emplace(i);\n\
-    \    }\n    return res;\n}\n/**\n * @see https://ei1333.github.io/library/dp/largest-rectangle.hpp\n\
+    \ */\n\ntemplate <std::integral T> inline int64_t max_rectangle(std::vector<T>\
+    \ h) {\n    h.resize(std::ssize(h) + 1);\n    std::stack<size_t> sk;\n    std::vector<int>\
+    \ l(std::ssize(h));\n    int64_t ret = 0;\n    for(const auto i: std::views::iota(0,\
+    \ std::ssize(h))) {\n        while(!sk.empty() && h[sk.top()] >= h[i]) {\n   \
+    \         ret = std::max(ret, static_cast<int64_t>(i - l[sk.top()] - 1) * h[sk.top()]);\n\
+    \            sk.pop();\n        }\n        l[i] = sk.empty() ? -1 : sk.top();\n\
+    \        sk.emplace(i);\n    }\n    return ret;\n}\n/**\n * @see https://ei1333.github.io/library/dp/largest-rectangle.hpp\n\
     \ */\n\ninline int lcs(const std::string &s, const std::string &t) {\n    const\
-    \ int n = s.size();\n    std::vector<int> dp(n + 1), ndp(n + 1);\n    for(size_t\
-    \ i = 0; i < t.size(); ++i) {\n        for(int j = 0; j < n; ++j) {\n        \
-    \    if(s[j] == t[i]) {\n                ndp[j + 1] = dp[j] + 1;\n           \
-    \ } else {\n                ndp[j + 1] = std::max(ndp[j], dp[j + 1]);\n      \
-    \      }\n        }\n        dp.swap(ndp);\n    }\n    return dp[n];\n}\n/**\n\
-    \ * @see https://maku.blog/p/a3jyhwd/\n */\n\ntemplate <class T> inline std::vector<int>\
-    \ lis(const std::vector<T> &v) {\n    const int n = v.size();\n    std::vector<std::pair<T,\
-    \ int>> dp;\n    std::vector<int> p(n, -1), res;\n    for(int i = 0; i < n; ++i)\
-    \ {\n        const auto it = std::ranges::lower_bound(dp, std::make_pair(v[i],\
-    \ -i));\n        if(it != dp.begin()) {\n            p[i] = -prev(it) -> second;\n\
-    \        }\n        if(it == dp.end()) {\n            dp.emplace_back(std::make_pair(v[i],\
-    \ -i));\n        } else {\n            *it = std::make_pair(v[i], -i);\n     \
-    \   }\n    }\n    for(int i = -dp.back().second; i != -1; i = p[i]) {\n      \
-    \  res.emplace_back(i);\n    }\n    std::ranges::reverse(res);\n    return res;\n\
-    }\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
+    \ int n = std::ssize(s);\n    std::vector<int> dp(n + 1), ndp(n + 1);\n    for(const\
+    \ auto i: std::views::iota(0, std::ssize(t))) {\n        for(const auto j: std::views::iota(0,\
+    \ n)) {\n            if(s[j] == t[i]) {\n                ndp[j + 1] = dp[j] +\
+    \ 1;\n            } else {\n                ndp[j + 1] = std::max(ndp[j], dp[j\
+    \ + 1]);\n            }\n        }\n        dp.swap(ndp);\n    }\n    return dp[n];\n\
+    }\n/**\n * @see https://maku.blog/p/a3jyhwd/\n */\n\ntemplate <std::integral T>\
+    \ inline std::vector<int> lis(const std::vector<T> &v) {\n    const int n = std::ssize(v);\n\
+    \    std::vector<std::pair<T, int>> dp;\n    std::vector<int> p(n, -1), ret;\n\
+    \    for(const auto i: std::views::iota(0, n)) {\n        const auto it = std::ranges::lower_bound(dp,\
+    \ std::make_pair(v[i], -i));\n        if(it != dp.cbegin()) {\n            p[i]\
+    \ = -prev(it) -> second;\n        }\n        if(it == dp.cend()) {\n         \
+    \   dp.emplace_back(std::make_pair(v[i], -i));\n        } else {\n           \
+    \ *it = std::make_pair(v[i], -i);\n        }\n    }\n    for(int i = -dp.back().second;\
+    \ i != -1; i = p[i]) {\n        ret.emplace_back(i);\n    }\n    std::ranges::reverse(ret);\n\
+    \    return ret;\n}\n/**\n * @see https://nyaannyaan.github.io/library/dp/longest-increasing-sequence.hpp\n\
     \ */\n}\n\n/**\n * @brief DP(Knapsack, LCS, LIS, \u6700\u5927\u9577\u65B9\u5F62\
     , coin)\n */\n#line 4 \"test/knapsack2.test.cpp\"\nint main() {\n    int n, wg;\n\
     \    std::cin >> n >> wg;\n    std::vector<int> v(n), w(n);\n    for(int i = 0;\
@@ -115,7 +119,7 @@ data:
   isVerificationFile: true
   path: test/knapsack2.test.cpp
   requiredBy: []
-  timestamp: '2025-06-06 22:43:22+09:00'
+  timestamp: '2025-06-11 17:30:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/knapsack2.test.cpp

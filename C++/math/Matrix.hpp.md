@@ -14,9 +14,9 @@ data:
     links:
     - https://ei1333.github.io/luzhiled/snippets/math/matrix.html
   bundledCode: "#line 2 \"C++/math/Matrix.hpp\"\n\n#include <ostream>\n#include <cassert>\n\
-    #include <vector>\n#include <ranges>\nnamespace man {\ntemplate <class T> struct\
-    \ Matrix {\nprivate:\n    const int h, w;\n    std::vector<std::vector<T>> mat;\n\
-    public:\n    Matrix(const size_t n): h(n), w(n), mat(h, std::vector<T>(w)){}\n\
+    #include <vector>\n#include <ranges>\nnamespace man {\ntemplate <std::integral\
+    \ T> struct Matrix {\nprivate:\n    const int h, w;\n    std::vector<std::vector<T>>\
+    \ mat;\npublic:\n    Matrix(const size_t n): h(n), w(n), mat(h, std::vector<T>(w)){}\n\
     \    Matrix(const size_t h, const size_t w): h(h), w(w), mat(h, std::vector<T>(w)){}\n\
     \    Matrix(const std::vector<std::vector<T>> &m): h(std::ssize(m)), w(std::ssize(m.front())),\
     \ mat(h, std::vector<T>(w)) {\n        for(const auto i: std::views::iota(0, h))\
@@ -63,10 +63,10 @@ data:
     \ os;\n    }\n};\n}\n/**\n * @brief \u884C\u5217\u30E9\u30A4\u30D6\u30E9\u30EA\
     \n * @see https://ei1333.github.io/luzhiled/snippets/math/matrix.html\n */\n"
   code: "#pragma once\n\n#include <ostream>\n#include <cassert>\n#include <vector>\n\
-    #include <ranges>\nnamespace man {\ntemplate <class T> struct Matrix {\nprivate:\n\
-    \    const int h, w;\n    std::vector<std::vector<T>> mat;\npublic:\n    Matrix(const\
-    \ size_t n): h(n), w(n), mat(h, std::vector<T>(w)){}\n    Matrix(const size_t\
-    \ h, const size_t w): h(h), w(w), mat(h, std::vector<T>(w)){}\n    Matrix(const\
+    #include <ranges>\nnamespace man {\ntemplate <std::integral T> struct Matrix {\n\
+    private:\n    const int h, w;\n    std::vector<std::vector<T>> mat;\npublic:\n\
+    \    Matrix(const size_t n): h(n), w(n), mat(h, std::vector<T>(w)){}\n    Matrix(const\
+    \ size_t h, const size_t w): h(h), w(w), mat(h, std::vector<T>(w)){}\n    Matrix(const\
     \ std::vector<std::vector<T>> &m): h(std::ssize(m)), w(std::ssize(m.front())),\
     \ mat(h, std::vector<T>(w)) {\n        for(const auto i: std::views::iota(0, h))\
     \ {\n            for(const auto j: std::views::iota(0, w)) {\n               \
@@ -115,7 +115,7 @@ data:
   isVerificationFile: false
   path: C++/math/Matrix.hpp
   requiredBy: []
-  timestamp: '2025-06-06 22:43:06+09:00'
+  timestamp: '2025-06-11 17:30:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/matrix.test.cpp

@@ -14,10 +14,10 @@ data:
     links:
     - https://nyaannyaan.github.io/library/segment-tree/segment-tree-beats.hpp
   bundledCode: "#line 2 \"C++/ds/SegmentTreeBeats.hpp\"\n\n#include <vector>\n#include\
-    \ <algorithm>\n\nnamespace man {\ntemplate <class T = long long> struct SegmentTreeBeats\
-    \ {\nprivate:\n    static constexpr int64_t INF = (1LL << 61) - 1;\n    struct\
-    \ Node {\n        int64_t sum = 0, g1 = 0, l1 = 0, g2 = -INF, gc = 1, l2 = INF,\
-    \ lc = 1, add = 0;\n    };\n    std::vector<Node> v;\n    int n, log;\n    constexpr\
+    \ <algorithm>\n\nnamespace man {\ntemplate <class T> struct SegmentTreeBeats {\n\
+    private:\n    static constexpr int64_t INF = (1LL << 61) - 1;\n    struct Node\
+    \ {\n        int64_t sum = 0, g1 = 0, l1 = 0, g2 = -INF, gc = 1, l2 = INF, lc\
+    \ = 1, add = 0;\n    };\n    std::vector<Node> v;\n    int n, log;\n    constexpr\
     \ inline void update(const int k) noexcept {\n        Node& p = v[k], l = v[k\
     \ * 2 + 0], r = v[k * 2 + 1];\n        p.sum = l.sum + r.sum;\n        if(l.g1\
     \ == r.g1) {\n            p.g1 = l.g1;\n            p.g2 = std::max(l.g2, r.g2);\n\
@@ -113,24 +113,24 @@ data:
     \ inner_fold<3>(l, r); }\n};\n}\n\n/**\n * @brief SegmentTreeBeats!\n * @see https://nyaannyaan.github.io/library/segment-tree/segment-tree-beats.hpp\n\
     \ */\n"
   code: "#pragma once\n\n#include <vector>\n#include <algorithm>\n\nnamespace man\
-    \ {\ntemplate <class T = long long> struct SegmentTreeBeats {\nprivate:\n    static\
-    \ constexpr int64_t INF = (1LL << 61) - 1;\n    struct Node {\n        int64_t\
-    \ sum = 0, g1 = 0, l1 = 0, g2 = -INF, gc = 1, l2 = INF, lc = 1, add = 0;\n   \
-    \ };\n    std::vector<Node> v;\n    int n, log;\n    constexpr inline void update(const\
-    \ int k) noexcept {\n        Node& p = v[k], l = v[k * 2 + 0], r = v[k * 2 + 1];\n\
-    \        p.sum = l.sum + r.sum;\n        if(l.g1 == r.g1) {\n            p.g1\
-    \ = l.g1;\n            p.g2 = std::max(l.g2, r.g2);\n            p.gc = l.gc +\
-    \ r.gc;\n        } else {\n            const bool f = l.g1 > r.g1;\n         \
-    \   p.g1 = f ? l.g1 : r.g1;\n            p.gc = f ? l.gc : r.gc;\n           \
-    \ p.g2 = std::max(f ? r.g1 : l.g1, f ? l.g2 : r.g2);\n        }\n        if(l.l1\
-    \ == r.l1) {\n            p.l1 = l.l1;\n            p.l2 = std::min(l.l2, r.l2);\n\
-    \            p.lc = l.lc + r.lc;\n        } else {\n            const bool f =\
-    \ l.l1 < r.l1;\n            p.l1 = f ? l.l1 : r.l1;\n            p.lc = f ? l.lc\
-    \ : r.lc;\n            p.l2 = std::min(f ? r.l1 : l.l1, f ? l.l2 : r.l2);\n  \
-    \      }\n    }\n    constexpr inline void push_add(const int k, const int64_t\
-    \ x) noexcept {\n        Node& p = v[k];\n        p.sum += x << (log + __builtin_clz(k)\
-    \ - 31);\n        p.g1 += x;\n        p.l1 += x;\n        if(p.g2 != -INF) {\n\
-    \            p.g2 += x;\n        }\n        if(p.l2 != INF) {\n            p.l2\
+    \ {\ntemplate <class T> struct SegmentTreeBeats {\nprivate:\n    static constexpr\
+    \ int64_t INF = (1LL << 61) - 1;\n    struct Node {\n        int64_t sum = 0,\
+    \ g1 = 0, l1 = 0, g2 = -INF, gc = 1, l2 = INF, lc = 1, add = 0;\n    };\n    std::vector<Node>\
+    \ v;\n    int n, log;\n    constexpr inline void update(const int k) noexcept\
+    \ {\n        Node& p = v[k], l = v[k * 2 + 0], r = v[k * 2 + 1];\n        p.sum\
+    \ = l.sum + r.sum;\n        if(l.g1 == r.g1) {\n            p.g1 = l.g1;\n   \
+    \         p.g2 = std::max(l.g2, r.g2);\n            p.gc = l.gc + r.gc;\n    \
+    \    } else {\n            const bool f = l.g1 > r.g1;\n            p.g1 = f ?\
+    \ l.g1 : r.g1;\n            p.gc = f ? l.gc : r.gc;\n            p.g2 = std::max(f\
+    \ ? r.g1 : l.g1, f ? l.g2 : r.g2);\n        }\n        if(l.l1 == r.l1) {\n  \
+    \          p.l1 = l.l1;\n            p.l2 = std::min(l.l2, r.l2);\n          \
+    \  p.lc = l.lc + r.lc;\n        } else {\n            const bool f = l.l1 < r.l1;\n\
+    \            p.l1 = f ? l.l1 : r.l1;\n            p.lc = f ? l.lc : r.lc;\n  \
+    \          p.l2 = std::min(f ? r.l1 : l.l1, f ? l.l2 : r.l2);\n        }\n   \
+    \ }\n    constexpr inline void push_add(const int k, const int64_t x) noexcept\
+    \ {\n        Node& p = v[k];\n        p.sum += x << (log + __builtin_clz(k) -\
+    \ 31);\n        p.g1 += x;\n        p.l1 += x;\n        if(p.g2 != -INF) {\n \
+    \           p.g2 += x;\n        }\n        if(p.l2 != INF) {\n            p.l2\
     \ += x;\n        }\n        p.add += x;\n    }\n    constexpr inline void push_min(const\
     \ int k, const int64_t x) noexcept {\n        Node& p = v[k];\n        p.sum +=\
     \ (x - p.g1) * p.gc;\n        if(p.l1 == p.g1) {\n            p.l1 = x;\n    \
@@ -215,7 +215,7 @@ data:
   isVerificationFile: false
   path: C++/ds/SegmentTreeBeats.hpp
   requiredBy: []
-  timestamp: '2025-06-06 22:43:06+09:00'
+  timestamp: '2025-06-11 17:30:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/segtreebeats.test.cpp

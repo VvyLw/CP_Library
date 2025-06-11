@@ -66,7 +66,7 @@ data:
     \ * @brief Kruskal\u6CD5\n */\n#line 2 \"C++/graph/mst/manhattan.hpp\"\n\n#line\
     \ 4 \"C++/graph/mst/manhattan.hpp\"\n#include <map>\n#include <numeric>\n#include\
     \ <ranges>\n#line 8 \"C++/graph/mst/manhattan.hpp\"\nnamespace man {\ntemplate\
-    \ <class T> inline std::vector<edge> manhattan(std::vector<T> x, std::vector<T>\
+    \ <std::integral T> inline std::vector<edge> manhattan(std::vector<T> x, std::vector<T>\
     \ y) noexcept {\n    assert(std::ssize(x) == std::ssize(y));\n    std::vector<edge>\
     \ ret;\n    std::vector<int> id(std::ssize(x));\n    std::iota(id.begin(), id.end(),\
     \ 0);\n    for([[maybe_unused]] const auto _: std::views::iota(0, 2)) {\n    \
@@ -102,7 +102,7 @@ data:
   isVerificationFile: true
   path: test/manhattan.test.cpp
   requiredBy: []
-  timestamp: '2025-06-06 22:43:22+09:00'
+  timestamp: '2025-06-11 17:30:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/manhattan.test.cpp

@@ -249,22 +249,22 @@ data:
     \ * @brief \u9045\u5EF6\u30BB\u30B0\u6728\n * @see https://ei1333.github.io/library/structure/segment-tree/lazy-segment-tree.hpp\n\
     \ */\n#line 2 \"C++/core/alias.hpp\"\n\n#ifndef ALIAS\n#define ALIAS\n#endif\n\
     \n#line 8 \"C++/core/alias.hpp\"\n#include <numbers>\n#include <queue>\n#include\
-    \ <ext/pb_ds/assoc_container.hpp>\n#include <ext/pb_ds/tree_policy.hpp>\n\nconstexpr\
-    \ int dx[] = {0, 0, 0, -1, 1, -1, -1, 1, 1};\nconstexpr int dy[] = {0, -1, 1,\
-    \ 0, 0, -1, 1, -1, 1};\nconstexpr int MOD = 0x3b800001;\nconstexpr int M0D = 1e9\
-    \ + 7;\nconstexpr int INF = 1 << 30;\nconstexpr int64_t LINF = (1LL << 61) - 1;\n\
-    constexpr long double DINF = std::numeric_limits<long double>::infinity();\ntemplate\
-    \ <class T> constexpr T LIM = std::numeric_limits<T>::max();\nconstexpr long double\
-    \ PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\ntypedef\
-    \ int64_t i64;\ntypedef long double ld;\ntypedef uint32_t u32;\ntypedef uint64_t\
-    \ u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\n#ifdef MODINT\ntypedef\
-    \ man::Modint<MOD> mint;\ntypedef man::Modint<M0D> Mint;\n#endif\n#ifdef ROLLING_HASH\n\
-    typedef man::RollingHash<LINF> RH;\n#endif\ntemplate <size_t N> using ti = std::array<i64,\
-    \ N>;\ntypedef ti<3> tri;\ntemplate <class T> using pq = std::priority_queue<T>;\n\
-    template <class T> using pqr = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
-    template <class T> using Tree = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>,\
-    \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\ntemplate\
-    \ <class T> using TREE = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>,\
+    \ <ext/pb_ds/assoc_container.hpp>\n#include <ext/pb_ds/tree_policy.hpp>\n\nnamespace\
+    \ internal {\ntemplate <typename T> concept num = std::integral<T> || std::floating_point<T>;\n\
+    }\n\nconstexpr int dx[] = {0, 0, 0, -1, 1, -1, -1, 1, 1};\nconstexpr int dy[]\
+    \ = {0, -1, 1, 0, 0, -1, 1, -1, 1};\nconstexpr int MOD = 0x3b800001;\nconstexpr\
+    \ int M0D = 1e9 + 7;\nconstexpr int INF = 1 << 30;\nconstexpr int64_t LINF = (1LL\
+    \ << 61) - 1;\nconstexpr long double DINF = std::numeric_limits<long double>::infinity();\n\
+    template <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();\n\
+    constexpr long double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\
+    \ntypedef int64_t i64;\ntypedef long double ld;\ntypedef uint32_t u32;\ntypedef\
+    \ uint64_t u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\n#ifdef MODINT\n\
+    typedef man::Modint<MOD> mint;\ntypedef man::Modint<M0D> Mint;\n#endif\ntemplate\
+    \ <size_t N> using ti = std::array<i64, N>;\ntypedef ti<3> tri;\ntemplate <class\
+    \ T> using pq = std::priority_queue<T>;\ntemplate <class T> using pqr = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\ntemplate <class T> using Tree = __gnu_pbds::tree<T,\
+    \ __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
+    template <class T> using TREE = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>,\
     \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\n\
     /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n#line 5 \"test/rangeaffine.test.cpp\"\
     \nusing Z = man::zwei<mint>;\nint main() {\n    int n, q;\n    std::cin >> n >>\
@@ -300,7 +300,7 @@ data:
   isVerificationFile: true
   path: test/rangeaffine.test.cpp
   requiredBy: []
-  timestamp: '2025-06-07 07:29:34+09:00'
+  timestamp: '2025-06-11 17:30:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/rangeaffine.test.cpp

@@ -17,11 +17,11 @@ data:
     links: []
   bundledCode: "#line 2 \"C++/math/inverse_num.hpp\"\n\n#include <algorithm>\n#line\
     \ 2 \"C++/ds/fwtree/FenwickTree.hpp\"\n\r\n#include <vector>\r\n#include <ranges>\r\
-    \nnamespace man {\r\ntemplate <class T> struct FenwickTree {\r\nprivate:\r\n \
-    \   int n;\r\n    std::vector<T> data;\r\n    inline void init(const size_t size)\
-    \ noexcept {\r\n        n = size + 2;\r\n        data.resize(n + 1);\r\n    }\r\
-    \npublic:\r\n    FenwickTree(){}\r\n    FenwickTree(const size_t size){ init(size);\
-    \ }\r\n    FenwickTree(const std::vector<T> &a) {\r\n        init(a.size());\r\
+    \nnamespace man {\r\ntemplate <std::integral T> struct FenwickTree {\r\nprivate:\r\
+    \n    int n;\r\n    std::vector<T> data;\r\n    inline void init(const size_t\
+    \ size) noexcept {\r\n        n = size + 2;\r\n        data.resize(n + 1);\r\n\
+    \    }\r\npublic:\r\n    FenwickTree(){}\r\n    FenwickTree(const size_t size){\
+    \ init(size); }\r\n    FenwickTree(const std::vector<T> &a) {\r\n        init(std::ssize(a));\r\
     \n        for(const auto i: std::views::iota(0, std::ssize(a))) {\r\n        \
     \    add(i, a[i]);\r\n        }\r\n    }\r\n    constexpr inline T sum(int k)\
     \ const noexcept {\r\n        if(k < 0) {\r\n            return 0;\r\n       \
@@ -44,7 +44,7 @@ data:
     \                w -= data[x + k];\r\n                x += k;\r\n            }\r\
     \n        }\r\n        return x;\r\n    }\r\n};\r\n}\r\n\r\n/**\r\n * @brief Binary\
     \ Indexed Tree\r\n * @see https://nyaannyaan.github.io/library/data-structure/binary-indexed-tree.hpp\r\
-    \n */\n#line 5 \"C++/math/inverse_num.hpp\"\nnamespace man {\ntemplate <class\
+    \n */\n#line 5 \"C++/math/inverse_num.hpp\"\nnamespace man {\ntemplate <std::integral\
     \ T> constexpr inline int64_t inv_num(const std::vector<T> &a) noexcept {\n  \
     \  const int n = std::ssize(a);\n    std::vector<std::pair<T, int>> p(n);\n  \
     \  for(const auto i: std::views::iota(0, n)) {\n        p[i] = {a[i], i};\n  \
@@ -54,8 +54,8 @@ data:
     \ {\n        ret += i - bit.sum(id[i]);\n        bit.add(id[i], 1);\n    }\n \
     \   return ret;\n}\n}\n\n/**\n * @brief \u8EE2\u5012\u6570\n */\n"
   code: "#pragma once\n\n#include <algorithm>\n#include \"C++/ds/fwtree/FenwickTree.hpp\"\
-    \nnamespace man {\ntemplate <class T> constexpr inline int64_t inv_num(const std::vector<T>\
-    \ &a) noexcept {\n    const int n = std::ssize(a);\n    std::vector<std::pair<T,\
+    \nnamespace man {\ntemplate <std::integral T> constexpr inline int64_t inv_num(const\
+    \ std::vector<T> &a) noexcept {\n    const int n = std::ssize(a);\n    std::vector<std::pair<T,\
     \ int>> p(n);\n    for(const auto i: std::views::iota(0, n)) {\n        p[i] =\
     \ {a[i], i};\n    }\n    std::ranges::sort(p);\n    std::vector<int> id(n);\n\
     \    for(const auto i: std::views::iota(0, n)) {\n        id[p[i].second] = i;\n\
@@ -67,7 +67,7 @@ data:
   isVerificationFile: false
   path: C++/math/inverse_num.hpp
   requiredBy: []
-  timestamp: '2025-06-06 22:43:06+09:00'
+  timestamp: '2025-06-11 17:30:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/inv_num.test.cpp

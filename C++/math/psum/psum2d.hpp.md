@@ -13,8 +13,8 @@ data:
     document_title: "\u4E8C\u6B21\u5143\u7D2F\u7A4D\u548C"
     links: []
   bundledCode: "#line 2 \"C++/math/psum/psum2d.hpp\"\n\n#include <vector>\n#include\
-    \ <ranges>\nnamespace man {\ntemplate <class T> struct psum2d {\nprivate:\n  \
-    \  int h, w;\n    std::vector<std::vector<T>> data;\npublic:\n    psum2d(const\
+    \ <ranges>\nnamespace man {\ntemplate <std::integral T> struct psum2d {\nprivate:\n\
+    \    int h, w;\n    std::vector<std::vector<T>> data;\npublic:\n    psum2d(const\
     \ int h, const int w): h(h + 3), w(w + 3), data(h + 3, std::vector<T>(w + 3)){}\n\
     \    psum2d(const std::vector<std::vector<T>> &v): h(std::ssize(v) + 3), w(std::ssize(v.front())\
     \ + 3), data(std::ssize(v) + 3, std::vector<T>(std::ssize(v.front()) + 3)) {\n\
@@ -34,7 +34,7 @@ data:
     \ int j) const noexcept { return data[i + 1][j + 1]; }\n};\n}\n\n/**\n * @brief\
     \ \u4E8C\u6B21\u5143\u7D2F\u7A4D\u548C\n */\n"
   code: "#pragma once\n\n#include <vector>\n#include <ranges>\nnamespace man {\ntemplate\
-    \ <class T> struct psum2d {\nprivate:\n    int h, w;\n    std::vector<std::vector<T>>\
+    \ <std::integral T> struct psum2d {\nprivate:\n    int h, w;\n    std::vector<std::vector<T>>\
     \ data;\npublic:\n    psum2d(const int h, const int w): h(h + 3), w(w + 3), data(h\
     \ + 3, std::vector<T>(w + 3)){}\n    psum2d(const std::vector<std::vector<T>>\
     \ &v): h(std::ssize(v) + 3), w(std::ssize(v.front()) + 3), data(std::ssize(v)\
@@ -58,7 +58,7 @@ data:
   isVerificationFile: false
   path: C++/math/psum/psum2d.hpp
   requiredBy: []
-  timestamp: '2025-06-06 22:43:06+09:00'
+  timestamp: '2025-06-11 17:30:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/psum2d.test.cpp

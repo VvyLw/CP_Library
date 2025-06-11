@@ -30,7 +30,7 @@ data:
     \ int k) const noexcept { return (sum[k >> 5] + __builtin_popcount(bit[k >> 5]\
     \ & ((1 << (k & 31)) - 1))); }\n    inline int rank(const bool val, const int\
     \ k) const noexcept { return val ? rank(k) : k - rank(k); }\n    inline bool operator[](const\
-    \ int k) noexcept { return (bit[k >> 5] >> (k & 31)) & 1; }\n};\n\ntemplate <class\
+    \ int k) noexcept { return (bit[k >> 5] >> (k & 31)) & 1; }\n};\n\ntemplate <std::integral\
     \ T, int log> struct WMBeta {\nprivate:\n    SIDict matrix[log];\n    int mid[log];\n\
     \    constexpr inline T access(int k) const noexcept {\n        T ret = 0;\n \
     \       for(const auto level: std::views::iota(0, log) | std::views::reverse)\
@@ -75,8 +75,8 @@ data:
     \ r, upper);\n\t\treturn cnt == 0 ? (T)-1 : kth_min(l, r, cnt - 1);\n\t}\n   \
     \ constexpr inline T next(const int l, const int r, const T lower) const noexcept\
     \ {\n\t\tconst int cnt = range_freq(l, r, lower);\n\t\treturn cnt == r - l ? (T)-1\
-    \ : kth_min(l, r, cnt);\n\t}\n};\n}\n\ntemplate <class T, int log = 20> struct\
-    \ WaveletMatrix {\nprivate:\n    internal::WMBeta<int, log> mat;\n    std::vector<T>\
+    \ : kth_min(l, r, cnt);\n\t}\n};\n}\n\ntemplate <std::integral T, int log = 20>\
+    \ struct WaveletMatrix {\nprivate:\n    internal::WMBeta<int, log> mat;\n    std::vector<T>\
     \ ys;\n    constexpr inline int get(const T x) const noexcept { return std::ranges::lower_bound(ys,\
     \ x) - ys.cbegin(); }\n    constexpr inline T access(const int k) const noexcept\
     \ { return ys[mat[k]]; }\npublic:\n    WaveletMatrix(const std::vector<T> v):\
@@ -114,20 +114,20 @@ data:
     \ >> 5] & ((1 << (k & 31)) - 1))); }\n    inline int rank(const bool val, const\
     \ int k) const noexcept { return val ? rank(k) : k - rank(k); }\n    inline bool\
     \ operator[](const int k) noexcept { return (bit[k >> 5] >> (k & 31)) & 1; }\n\
-    };\n\ntemplate <class T, int log> struct WMBeta {\nprivate:\n    SIDict matrix[log];\n\
-    \    int mid[log];\n    constexpr inline T access(int k) const noexcept {\n  \
-    \      T ret = 0;\n        for(const auto level: std::views::iota(0, log) | std::views::reverse)\
-    \ {\n            const bool f = matrix[level][k];\n            if(f) {\n     \
-    \           ret |= (T) 1 << level;\n            }\n            k = matrix[level].rank(f,\
-    \ k) + mid[level] * f;\n        }\n        return ret;\n    }\n    constexpr inline\
-    \ std::pair<int, int> succ(const bool f, const int l, const int r, const int level)\
-    \ const noexcept { return {matrix[level].rank(f, l) + mid[level] * f, matrix[level].rank(f,\
-    \ r) + mid[level] * f}; }\npublic:\n    WMBeta(){}\n    WMBeta(std::vector<T>\
-    \ v) {\n        const int len = std::ssize(v);\n        std::vector<T> l(len),\
-    \ r(len);\n        for(const auto level: std::views::iota(0, log) | std::views::reverse)\
-    \ {\n            matrix[level] = SIDict(len + 1);\n            int left = 0, right\
-    \ = 0;\n            for(const auto i: std::views::iota(0, len)) {\n          \
-    \      if((v[i] >> level) & 1) {\n                    matrix[level].set(i);\n\
+    };\n\ntemplate <std::integral T, int log> struct WMBeta {\nprivate:\n    SIDict\
+    \ matrix[log];\n    int mid[log];\n    constexpr inline T access(int k) const\
+    \ noexcept {\n        T ret = 0;\n        for(const auto level: std::views::iota(0,\
+    \ log) | std::views::reverse) {\n            const bool f = matrix[level][k];\n\
+    \            if(f) {\n                ret |= (T) 1 << level;\n            }\n\
+    \            k = matrix[level].rank(f, k) + mid[level] * f;\n        }\n     \
+    \   return ret;\n    }\n    constexpr inline std::pair<int, int> succ(const bool\
+    \ f, const int l, const int r, const int level) const noexcept { return {matrix[level].rank(f,\
+    \ l) + mid[level] * f, matrix[level].rank(f, r) + mid[level] * f}; }\npublic:\n\
+    \    WMBeta(){}\n    WMBeta(std::vector<T> v) {\n        const int len = std::ssize(v);\n\
+    \        std::vector<T> l(len), r(len);\n        for(const auto level: std::views::iota(0,\
+    \ log) | std::views::reverse) {\n            matrix[level] = SIDict(len + 1);\n\
+    \            int left = 0, right = 0;\n            for(const auto i: std::views::iota(0,\
+    \ len)) {\n                if((v[i] >> level) & 1) {\n                    matrix[level].set(i);\n\
     \                    r[right++] = v[i];\n                }\n                else\
     \ {\n                    l[left++] = v[i];\n                }\n            }\n\
     \            mid[level] = left;\n            matrix[level].build();\n        \
@@ -158,8 +158,8 @@ data:
     \ r, upper);\n\t\treturn cnt == 0 ? (T)-1 : kth_min(l, r, cnt - 1);\n\t}\n   \
     \ constexpr inline T next(const int l, const int r, const T lower) const noexcept\
     \ {\n\t\tconst int cnt = range_freq(l, r, lower);\n\t\treturn cnt == r - l ? (T)-1\
-    \ : kth_min(l, r, cnt);\n\t}\n};\n}\n\ntemplate <class T, int log = 20> struct\
-    \ WaveletMatrix {\nprivate:\n    internal::WMBeta<int, log> mat;\n    std::vector<T>\
+    \ : kth_min(l, r, cnt);\n\t}\n};\n}\n\ntemplate <std::integral T, int log = 20>\
+    \ struct WaveletMatrix {\nprivate:\n    internal::WMBeta<int, log> mat;\n    std::vector<T>\
     \ ys;\n    constexpr inline int get(const T x) const noexcept { return std::ranges::lower_bound(ys,\
     \ x) - ys.cbegin(); }\n    constexpr inline T access(const int k) const noexcept\
     \ { return ys[mat[k]]; }\npublic:\n    WaveletMatrix(const std::vector<T> v):\
@@ -190,7 +190,7 @@ data:
   isVerificationFile: false
   path: C++/ds/WM.hpp
   requiredBy: []
-  timestamp: '2025-06-06 22:43:06+09:00'
+  timestamp: '2025-06-11 17:30:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/wm.test.cpp

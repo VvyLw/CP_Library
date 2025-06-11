@@ -3,9 +3,6 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: C++/core/mypair.hpp
-    title: C++/core/mypair.hpp
-  - icon: ':heavy_check_mark:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedVerifiedWith:
@@ -60,25 +57,28 @@ data:
     \ ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n), std::forward<U>(v));\n\
     }\ntemplate <class T, class... Ts> inline decltype(auto) ndiv(T&& n, Ts&&... v)\
     \ noexcept {\n  return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n),\
-    \ ndiv(std::forward<Ts>(v)...));\n}\ntemplate <class T> constexpr V<T>& operator++(V<T>&\
-    \ v) noexcept { for(auto &el: v) el++; return v; }\ntemplate <class T> constexpr\
-    \ V<T>& operator--(V<T>& v) noexcept { for(auto &el: v) el--; return v; }\ntemplate\
-    \ <class T, class U> constexpr V<T>& operator+=(V<T>& v, const U x) noexcept {\
-    \ for(auto &el: v) el+=x; return v; }\ntemplate <class T, class U> constexpr V<T>&\
-    \ operator-=(V<T>& v, const U x) noexcept { for(auto &el: v) el-=x; return v;\
-    \ }\ntemplate <class T, class U> constexpr V<T>& operator*=(V<T>& v, const U x)\
-    \ noexcept { for(auto &el: v) el*=x; return v; }\ntemplate <class T, class U>\
-    \ constexpr V<T>& operator/=(V<T>& v, const U x) noexcept { for(auto &el: v) el/=x;\
-    \ return v; }\ntemplate <class T, class U> constexpr V<T>& operator%=(V<T>& v,\
-    \ const U x) noexcept { for(auto &el: v) el%=x; return v; }\ntemplate <class T,\
-    \ class U> constexpr V<T> operator+(const V<T>& v, const U x) noexcept { V<T>\
-    \ res = v; res+=x; return res; }\ntemplate <class T, class U> constexpr V<T> operator-(const\
-    \ V<T>& v, const U x) noexcept { V<T> res = v; res-=x; return res; }\ntemplate\
-    \ <class T, class U> constexpr V<T> operator*(const V<T>& v, const U x) noexcept\
-    \ { V<T> res = v; res*=x; return res; }\ntemplate <class T, class U> constexpr\
-    \ V<T> operator/(const V<T>& v, const U x) noexcept { V<T> res = v; res/=x; return\
-    \ res; }\ntemplate <class T, class U> constexpr V<T> operator%(const V<T>& v,\
-    \ const U x) noexcept { V<T> res = v; res%=x; return res; }\n}\n}\n"
+    \ ndiv(std::forward<Ts>(v)...));\n}\ntemplate <internal::num T> constexpr V<T>&\
+    \ operator++(V<T>& v) noexcept { for(auto &el: v){ el++; } return v; }\ntemplate\
+    \ <internal::num T> constexpr V<T>& operator--(V<T>& v) noexcept { for(auto &el:\
+    \ v){ el--; } return v; }\ntemplate <internal::num T, internal::num U> constexpr\
+    \ V<T>& operator+=(V<T>& v, const U x) noexcept { for(auto &el: v){ el += x; }\
+    \ return v; }\ntemplate <internal::num T, internal::num U> constexpr V<T>& operator-=(V<T>&\
+    \ v, const U x) noexcept { for(auto &el: v){ el -= x; } return v; }\ntemplate\
+    \ <internal::num T, internal::num U> constexpr V<T>& operator*=(V<T>& v, const\
+    \ U x) noexcept { for(auto &el: v){ el *= x; } return v; }\ntemplate <internal::num\
+    \ T, internal::num U> constexpr V<T>& operator/=(V<T>& v, const U x) noexcept\
+    \ { for(auto &el: v){ el /= x; } return v; }\ntemplate <std::integral T, std::integral\
+    \ U> constexpr V<T>& operator%=(V<T>& v, const U x) noexcept { for(auto &el: v){\
+    \ el %= x; } return v; }\ntemplate <internal::num T, internal::num U> constexpr\
+    \ V<T> operator+(const V<T>& v, const U x) noexcept { V<T> ret = v; ret += x;\
+    \ return ret; }\ntemplate <internal::num T, internal::num U> constexpr V<T> operator-(const\
+    \ V<T>& v, const U x) noexcept { V<T> ret = v; ret -= x; return ret; }\ntemplate\
+    \ <internal::num T, internal::num U> constexpr V<T> operator*(const V<T>& v, const\
+    \ U x) noexcept { V<T> ret = v; ret *= x; return ret; }\ntemplate <internal::num\
+    \ T, internal::num U> constexpr V<T> operator/(const V<T>& v, const U x) noexcept\
+    \ { V<T> ret = v; ret /= x; return ret; }\ntemplate <std::integral T, std::integral\
+    \ U> constexpr V<T> operator%(const V<T>& v, const U x) noexcept { V<T> ret =\
+    \ v; ret %= x; return ret; }\n}\n}\n"
   code: "#pragma once\n\n#include <vector>\n\nnamespace man {\nnamespace vec {\ntemplate\
     \ <class T> using V = std::vector<T>;\ntypedef V<int64_t> zhl;\ntypedef V<uint64_t>\
     \ uzhl;\ntypedef V<long double> dec;\ntypedef V<char> chr;\ntypedef V<std::string>\
@@ -88,32 +88,34 @@ data:
     \ <class T, class U> inline V<U> ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n),\
     \ std::forward<U>(v));\n}\ntemplate <class T, class... Ts> inline decltype(auto)\
     \ ndiv(T&& n, Ts&&... v) noexcept {\n  return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n),\
-    \ ndiv(std::forward<Ts>(v)...));\n}\ntemplate <class T> constexpr V<T>& operator++(V<T>&\
-    \ v) noexcept { for(auto &el: v) el++; return v; }\ntemplate <class T> constexpr\
-    \ V<T>& operator--(V<T>& v) noexcept { for(auto &el: v) el--; return v; }\ntemplate\
-    \ <class T, class U> constexpr V<T>& operator+=(V<T>& v, const U x) noexcept {\
-    \ for(auto &el: v) el+=x; return v; }\ntemplate <class T, class U> constexpr V<T>&\
-    \ operator-=(V<T>& v, const U x) noexcept { for(auto &el: v) el-=x; return v;\
-    \ }\ntemplate <class T, class U> constexpr V<T>& operator*=(V<T>& v, const U x)\
-    \ noexcept { for(auto &el: v) el*=x; return v; }\ntemplate <class T, class U>\
-    \ constexpr V<T>& operator/=(V<T>& v, const U x) noexcept { for(auto &el: v) el/=x;\
-    \ return v; }\ntemplate <class T, class U> constexpr V<T>& operator%=(V<T>& v,\
-    \ const U x) noexcept { for(auto &el: v) el%=x; return v; }\ntemplate <class T,\
-    \ class U> constexpr V<T> operator+(const V<T>& v, const U x) noexcept { V<T>\
-    \ res = v; res+=x; return res; }\ntemplate <class T, class U> constexpr V<T> operator-(const\
-    \ V<T>& v, const U x) noexcept { V<T> res = v; res-=x; return res; }\ntemplate\
-    \ <class T, class U> constexpr V<T> operator*(const V<T>& v, const U x) noexcept\
-    \ { V<T> res = v; res*=x; return res; }\ntemplate <class T, class U> constexpr\
-    \ V<T> operator/(const V<T>& v, const U x) noexcept { V<T> res = v; res/=x; return\
-    \ res; }\ntemplate <class T, class U> constexpr V<T> operator%(const V<T>& v,\
-    \ const U x) noexcept { V<T> res = v; res%=x; return res; }\n}\n}"
+    \ ndiv(std::forward<Ts>(v)...));\n}\ntemplate <internal::num T> constexpr V<T>&\
+    \ operator++(V<T>& v) noexcept { for(auto &el: v){ el++; } return v; }\ntemplate\
+    \ <internal::num T> constexpr V<T>& operator--(V<T>& v) noexcept { for(auto &el:\
+    \ v){ el--; } return v; }\ntemplate <internal::num T, internal::num U> constexpr\
+    \ V<T>& operator+=(V<T>& v, const U x) noexcept { for(auto &el: v){ el += x; }\
+    \ return v; }\ntemplate <internal::num T, internal::num U> constexpr V<T>& operator-=(V<T>&\
+    \ v, const U x) noexcept { for(auto &el: v){ el -= x; } return v; }\ntemplate\
+    \ <internal::num T, internal::num U> constexpr V<T>& operator*=(V<T>& v, const\
+    \ U x) noexcept { for(auto &el: v){ el *= x; } return v; }\ntemplate <internal::num\
+    \ T, internal::num U> constexpr V<T>& operator/=(V<T>& v, const U x) noexcept\
+    \ { for(auto &el: v){ el /= x; } return v; }\ntemplate <std::integral T, std::integral\
+    \ U> constexpr V<T>& operator%=(V<T>& v, const U x) noexcept { for(auto &el: v){\
+    \ el %= x; } return v; }\ntemplate <internal::num T, internal::num U> constexpr\
+    \ V<T> operator+(const V<T>& v, const U x) noexcept { V<T> ret = v; ret += x;\
+    \ return ret; }\ntemplate <internal::num T, internal::num U> constexpr V<T> operator-(const\
+    \ V<T>& v, const U x) noexcept { V<T> ret = v; ret -= x; return ret; }\ntemplate\
+    \ <internal::num T, internal::num U> constexpr V<T> operator*(const V<T>& v, const\
+    \ U x) noexcept { V<T> ret = v; ret *= x; return ret; }\ntemplate <internal::num\
+    \ T, internal::num U> constexpr V<T> operator/(const V<T>& v, const U x) noexcept\
+    \ { V<T> ret = v; ret /= x; return ret; }\ntemplate <std::integral T, std::integral\
+    \ U> constexpr V<T> operator%(const V<T>& v, const U x) noexcept { V<T> ret =\
+    \ v; ret %= x; return ret; }\n}\n}"
   dependsOn: []
   isVerificationFile: false
   path: C++/core/myvector.hpp
   requiredBy:
-  - C++/core/mypair.hpp
   - C++/template.hpp
-  timestamp: '2025-06-11 14:30:23+09:00'
+  timestamp: '2025-06-11 17:30:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/add.test.cpp

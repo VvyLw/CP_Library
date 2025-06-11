@@ -17,7 +17,7 @@ data:
   bundledCode: "#line 1 \"test/matrix.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/2441\"\
     \n#include <iostream>\n#line 2 \"C++/math/Matrix.hpp\"\n\n#include <ostream>\n\
     #include <cassert>\n#include <vector>\n#include <ranges>\nnamespace man {\ntemplate\
-    \ <class T> struct Matrix {\nprivate:\n    const int h, w;\n    std::vector<std::vector<T>>\
+    \ <std::integral T> struct Matrix {\nprivate:\n    const int h, w;\n    std::vector<std::vector<T>>\
     \ mat;\npublic:\n    Matrix(const size_t n): h(n), w(n), mat(h, std::vector<T>(w)){}\n\
     \    Matrix(const size_t h, const size_t w): h(h), w(w), mat(h, std::vector<T>(w)){}\n\
     \    Matrix(const std::vector<std::vector<T>> &m): h(std::ssize(m)), w(std::ssize(m.front())),\
@@ -80,7 +80,7 @@ data:
   isVerificationFile: true
   path: test/matrix.test.cpp
   requiredBy: []
-  timestamp: '2025-06-06 22:43:22+09:00'
+  timestamp: '2025-06-11 17:30:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/matrix.test.cpp
