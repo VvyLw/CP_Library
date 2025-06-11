@@ -11,15 +11,15 @@ typedef V<long double> dec;
 typedef V<char> chr;
 typedef V<std::string> str;
 typedef V<bool> bol;
-typedef V<vi> zhl2;
-typedef V<vu> uzhl2;
-typedef V<vd> dec2;
-typedef V<vc> chr2;
-typedef V<vs> str2;
-typedef V<vb> bol2;
+typedef V<zhl> zhl2;
+typedef V<uzhl> uzhl2;
+typedef V<dec> dec2;
+typedef V<chr> chr2;
+typedef V<str> str2;
+typedef V<bol> bol2;
 #ifdef EDGE
 typedef V<man::edge> edg;
-typedef V<ve> edg2;
+typedef V<edg> edg2;
 #endif
 template <class T, class U> inline V<U> ndiv(T&& n, U&& v) noexcept {
   return V<U>(std::forward<T>(n), std::forward<U>(v));

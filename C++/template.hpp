@@ -192,7 +192,7 @@ inline std::string to_bin(const int64_t x) noexcept {
 	std::ranges::reverse(s);
 	return s;
 }
-inline int64_t to_ten(const std::string &s, const short base) noexcept { return std::stoll(s, nullptr, base); }
+inline int64_t to_ten(const std::string &s, const short base = 10) noexcept { return std::stoll(s, nullptr, base); }
 template <class... Ts> constexpr uint64_t sygcd(const Ts... a) noexcept {
 	std::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};
 	uint64_t g = 0;
