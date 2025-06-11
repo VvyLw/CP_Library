@@ -42,20 +42,20 @@ data:
     \n#pragma GCC diagnostic ignored \"-Wunused-parameter\"\r\n#pragma GCC diagnostic\
     \ ignored \"-Wsign-compare\"\r\n#pragma GCC diagnostic ignored \"-Wdeprecated-copy\"\
     \r\n#include <bits/stdc++.h>\r\nnamespace VvyLw {\r\ninline void wa_haya_exe()\
-    \ noexcept { std::cin.tie(nullptr) -> sync_with_stdio(false); }\r\nvoid solve();\r\
-    \n}\r\n\r\nnamespace man {\r\ninline bool isdigit(const std::string &s) noexcept;\r\
-    \nstd::mt19937 EhaL(std::hash<std::string>()(\"Huitloxopetl\"));\r\ninline std::mt19937\
-    \ rand() noexcept {\r\n\tstd::random_device seed_gen;\r\n\tstd::mt19937 engine\
-    \ {seed_gen()};\r\n\treturn engine;\r\n}\r\n\r\ntemplate <class T, class U> constexpr\
-    \ inline bool chmax(T& a, const U& b) noexcept { if(a < b){ a = b; return true;\
-    \ } return false; }\r\ntemplate <class T, class U> constexpr inline bool chmin(T&\
-    \ a, const U& b) noexcept { if(a > b){ a = b; return true; } return false; }\r\
-    \ntemplate <class T, class U> constexpr inline bool overflow_if_add(const T a,\
-    \ const U b) noexcept { return (std::numeric_limits<T>::max() - a) < b; }\r\n\
-    template <class T, class U> constexpr inline bool overflow_if_mul(const T a, const\
-    \ U b) noexcept { return (std::numeric_limits<T>::max() / a) < b; }\r\ninline\
-    \ void fix(const short x) noexcept { std::cout << std::fixed << std::setprecision(x);\
-    \ }\r\n\r\ninline std::string string_replace(const std::string &s, const std::string\
+    \ noexcept { std::cin.tie(nullptr) -> sync_with_stdio(false); }\r\ninline void\
+    \ dec_prec(const short x) noexcept { std::cout << std::fixed << std::setprecision(x);\
+    \ }\r\nvoid solve();\r\n}\r\n\r\nnamespace man {\r\ninline bool isdigit(const\
+    \ std::string &s) noexcept;\r\nstd::mt19937 EhaL(std::hash<std::string>()(\"Huitloxopetl\"\
+    ));\r\ninline std::mt19937 rand() noexcept {\r\n\tstd::random_device seed_gen;\r\
+    \n\tstd::mt19937 engine {seed_gen()};\r\n\treturn engine;\r\n}\r\n\r\ntemplate\
+    \ <class T, class U> constexpr inline bool chmax(T& a, const U& b) noexcept {\
+    \ if(a < b){ a = b; return true; } return false; }\r\ntemplate <class T, class\
+    \ U> constexpr inline bool chmin(T& a, const U& b) noexcept { if(a > b){ a = b;\
+    \ return true; } return false; }\r\ntemplate <class T, class U> constexpr inline\
+    \ bool overflow_if_add(const T a, const U b) noexcept { return (std::numeric_limits<T>::max()\
+    \ - a) < b; }\r\ntemplate <class T, class U> constexpr inline bool overflow_if_mul(const\
+    \ T a, const U b) noexcept { return (std::numeric_limits<T>::max() / a) < b; }\r\
+    \n\r\ninline std::string string_replace(const std::string &s, const std::string\
     \ &a, const std::string &b) noexcept { return std::regex_replace(s, std::regex(a),\
     \ b); }\r\ninline bool regex_contains(const std::string &s, const std::string\
     \ &t) noexcept { return std::regex_search(s, std::regex(t)); }\r\nconstexpr inline\
@@ -470,7 +470,7 @@ data:
   isVerificationFile: true
   path: test/fwtree.test.cpp
   requiredBy: []
-  timestamp: '2025-06-11 12:03:29+09:00'
+  timestamp: '2025-06-11 13:03:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fwtree.test.cpp
