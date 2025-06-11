@@ -281,10 +281,10 @@ template <class T> inline T rand_extract(const std::vector<T> &v) noexcept {
 	std::ranges::sample(v, std::back_inserter(ret), 1, rand());
 	return ret.front();
 }
-template <std::ranges::random_access_range T> constexpr inline auto sum(const T &v) noexcept { return std::accumulate(v.cbegin(), v.cend(), decltype(v.front())(0)); }
-template <std::ranges::random_access_range T> constexpr inline auto sum(const T &v, const int a, const int b) noexcept { return std::accumulate(v.cbegin() + a, v.cbegin() + b, decltype(v.front())(0)); }
-template <std::ranges::random_access_range T, class Boolean = bool> constexpr inline auto sum(const std::vector<T> &v, const Boolean &fn) noexcept { return std::accumulate(v.cbegin(), v.cend(), decltype(v.front())(0), fn); }
-template <std::ranges::random_access_range T, class Boolean = bool> constexpr inline auto sum(const std::vector<T> &v, const int a, const int b, const Boolean &fn) noexcept { return std::accumulate(v.cbegin() + a, v.cbegin() + b, decltype(v.front())(0), fn); }
+template <std::ranges::random_access_range T> inline auto sum(const T &v) noexcept { return std::accumulate(v.cbegin(), v.cend(), decltype(v.front())(0)); }
+template <std::ranges::random_access_range T> inline auto sum(const T &v, const int a, const int b) noexcept { return std::accumulate(v.cbegin() + a, v.cbegin() + b, decltype(v.front())(0)); }
+template <std::ranges::random_access_range T, class Boolean = bool> inline auto sum(const T &v, const Boolean &fn) noexcept { return std::accumulate(v.cbegin(), v.cend(), decltype(v.front())(0), fn); }
+template <std::ranges::random_access_range T, class Boolean = bool> inline auto sum(const T &v, const int a, const int b, const Boolean &fn) noexcept { return std::accumulate(v.cbegin() + a, v.cbegin() + b, decltype(v.front())(0), fn); }
 
 template <internal::num T, class Boolean = bool> constexpr inline T bins(T ok, T ng, const Boolean &fn, const long double eps = 1) noexcept {
 	while(std::abs(ok - ng) > eps) {
