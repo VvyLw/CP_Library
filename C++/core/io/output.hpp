@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef IO_OUTPUT
-#define IO_OUTPUT
-#endif
-
 #include <iostream>
 #include <vector>
 #include <utility>
