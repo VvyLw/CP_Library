@@ -20,7 +20,7 @@ int main() {
 void VvyLw::solve() {
 	int n, q;
 	std::cin >> n >> q;
-	man::vec::vi a(n);
+	man::vec::zhl a(n);
 	std::cin >> a;
 	man::SegTree<i64> rsq(a, [](const i64 a, const i64 b) -> i64 { return a + b; }, 0);
 	while(q--) {

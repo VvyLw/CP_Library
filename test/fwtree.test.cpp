@@ -20,7 +20,7 @@ int main() {
 void VvyLw::solve() {
 	int n, q;
 	std::cin >> n >> q;
-	man::vec::vi a(n);
+	man::vec::zhl a(n);
 	std::cin >> a;
 	man::FenwickTree bit(a);
 	while(q--) {
