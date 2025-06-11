@@ -403,7 +403,11 @@ data:
     \ operator<<(std::ostream &os, const std::deque<T> &dq) noexcept {\n    if(!dq.empty())\
     \ {\n        os << dq.front();\n        for(auto i = dq.begin(); ++i != dq.end();)\
     \ {\n            os << ' ' << *i;\n        }\n    }\n    return os;\n}\n} // IO\n\
-    \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
+    \nnamespace man {\ninline void print() noexcept { std::cout << '\\n'; }\ntemplate\
+    \ <class Head, class... Tail> inline void print(const Head& head, const Tail&\
+    \ ...tail) noexcept {\n    std::cout << head;\n    if constexpr(sizeof...(Tail)\
+    \ > 0) {\n        std::cout << ' ';\n        print(tail...);\n    } else {\n \
+    \       std::cout << '\\n';\n    }\n}\n}\n\n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
     #include <C++/core/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
     #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 382 \"C++/template.hpp\"\n\r\
     \n#define overload4(_1,_2,_3,_4,name,...) name\r\n#define REP1(n) for([[maybe_unused]]\
@@ -471,7 +475,7 @@ data:
   isVerificationFile: true
   path: test/s_rmq.test.cpp
   requiredBy: []
-  timestamp: '2025-06-11 13:03:09+09:00'
+  timestamp: '2025-06-11 13:19:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/s_rmq.test.cpp
