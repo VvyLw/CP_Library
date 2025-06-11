@@ -1,5 +1,9 @@
 #pragma once
 
+#ifndef IO_OUTPUT
+#define IO_OUTPUT
+#endif
+
 #include <iostream>
 #include <vector>
 #include <utility>
@@ -86,6 +90,19 @@ template <class T> inline std::ostream& operator<<(std::ostream &os, const std::
     return os;
 }
 } // IO
+
+namespace man {
+inline void print() noexcept { std::cout << '\n'; }
+template <class Head, class... Tail> inline void print(const Head& head, const Tail& ...tail) noexcept {
+    std::cout << head;
+    if constexpr(sizeof...(Tail) > 0) {
+        std::cout << ' ';
+        print(tail...);
+    } else {
+        std::cout << '\n';
+    }
+}
+}
 
 #if local
 //https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3
