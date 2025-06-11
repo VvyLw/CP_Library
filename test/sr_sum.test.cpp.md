@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/alias.hpp
     title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/io/input.hpp
     title: "\u5165\u529B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/io/output.hpp
     title: "\u51FA\u529B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/myvector.hpp
     title: C++/core/myvector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/timer.hpp
     title: "\u30BF\u30A4\u30DE\u30FC"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/psum/psum.hpp
     title: "\u7D2F\u7A4D\u548C"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -433,7 +433,7 @@ data:
     \ }\n};\n}\n\n/**\n * @brief \u7D2F\u7A4D\u548C\n */\n#line 7 \"test/sr_sum.test.cpp\"\
     \nint main() {\n  \tVvyLw::wa_haya_exe();\n  \tnow(start);\n  \t//INT(t); while(t--)\n\
     \  \tVvyLw::solve();\n  \tnow(stop);\n  \ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
-    \nvoid VvyLw::solve() {\n    int n, q;\n    std::cin >> n >> q;\n    man::vec::vi\
+    \nvoid VvyLw::solve() {\n    int n, q;\n    std::cin >> n >> q;\n    man::vec::zhl\
     \ a(n);\n    std::cin >> a;\n    man::psum s(a);\n    while(q--) {\n        int\
     \ l, r;\n        std::cin >> l >> r;\n        std::cout << s.sum(l, r) << '\\\
     n';\n    }\n}\n"
@@ -443,7 +443,7 @@ data:
     \ \"C++/template.hpp\"\n#include \"C++/math/psum/psum.hpp\"\nint main() {\n  \t\
     VvyLw::wa_haya_exe();\n  \tnow(start);\n  \t//INT(t); while(t--)\n  \tVvyLw::solve();\n\
     \  \tnow(stop);\n  \ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
-    \nvoid VvyLw::solve() {\n    int n, q;\n    std::cin >> n >> q;\n    man::vec::vi\
+    \nvoid VvyLw::solve() {\n    int n, q;\n    std::cin >> n >> q;\n    man::vec::zhl\
     \ a(n);\n    std::cin >> a;\n    man::psum s(a);\n    while(q--) {\n        int\
     \ l, r;\n        std::cin >> l >> r;\n        std::cout << s.sum(l, r) << '\\\
     n';\n    }\n}"
@@ -459,8 +459,8 @@ data:
   isVerificationFile: true
   path: test/sr_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-06-11 14:36:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-11 14:43:00+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sr_sum.test.cpp
 layout: document

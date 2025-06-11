@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/alias.hpp
     title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/io/input.hpp
     title: "\u5165\u529B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/io/output.hpp
     title: "\u51FA\u529B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/myvector.hpp
     title: C++/core/myvector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/timer.hpp
     title: "\u30BF\u30A4\u30DE\u30FC"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/ds/fwtree/FenwickTree.hpp
     title: Binary Indexed Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
@@ -448,7 +448,7 @@ data:
     \n */\n#line 7 \"test/fwtree.test.cpp\"\n\nint main() {\n\tVvyLw::wa_haya_exe();\n\
     \tnow(start);\n\t/*INT(t); while(t--)//*/\n\tVvyLw::solve();\n\tnow(stop);\n\t\
     time(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
-    \n\nvoid VvyLw::solve() {\n\tint n, q;\n\tstd::cin >> n >> q;\n\tman::vec::vi\
+    \n\nvoid VvyLw::solve() {\n\tint n, q;\n\tstd::cin >> n >> q;\n\tman::vec::zhl\
     \ a(n);\n\tstd::cin >> a;\n\tman::FenwickTree bit(a);\n\twhile(q--) {\n\t\tint\
     \ t, p, q;\n\t\tstd::cin >> t >> p >> q;\n\t\tif(t) {\n\t\t\tstd::cout << bit.sum(p,\
     \ --q) << '\\n';\n\t\t} else {\n\t\t\tbit.add(p, q);\n\t\t}\n\t}\n}\n"
@@ -458,7 +458,7 @@ data:
     \ \"C++/template.hpp\"\n#include \"C++/ds/fwtree/FenwickTree.hpp\"\n\nint main()\
     \ {\n\tVvyLw::wa_haya_exe();\n\tnow(start);\n\t/*INT(t); while(t--)//*/\n\tVvyLw::solve();\n\
     \tnow(stop);\n\ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
-    \n\nvoid VvyLw::solve() {\n\tint n, q;\n\tstd::cin >> n >> q;\n\tman::vec::vi\
+    \n\nvoid VvyLw::solve() {\n\tint n, q;\n\tstd::cin >> n >> q;\n\tman::vec::zhl\
     \ a(n);\n\tstd::cin >> a;\n\tman::FenwickTree bit(a);\n\twhile(q--) {\n\t\tint\
     \ t, p, q;\n\t\tstd::cin >> t >> p >> q;\n\t\tif(t) {\n\t\t\tstd::cout << bit.sum(p,\
     \ --q) << '\\n';\n\t\t} else {\n\t\t\tbit.add(p, q);\n\t\t}\n\t}\n}"
@@ -474,8 +474,8 @@ data:
   isVerificationFile: true
   path: test/fwtree.test.cpp
   requiredBy: []
-  timestamp: '2025-06-11 14:36:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-11 14:43:00+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fwtree.test.cpp
 layout: document

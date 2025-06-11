@@ -9,7 +9,7 @@ data:
     path: C++/math/inverse_num.hpp
     title: "\u8EE2\u5012\u6570"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fwtree.test.cpp
     title: test/fwtree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -24,9 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Binary Indexed Tree
     links:
@@ -96,7 +96,7 @@ data:
   - C++/math/inverse_num.hpp
   - C++/ds/fwtree/RangeBIT.hpp
   timestamp: '2025-06-06 22:43:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fwtree2.test.cpp
   - test/inv_num.test.cpp
