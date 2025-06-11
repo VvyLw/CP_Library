@@ -246,54 +246,57 @@ data:
     \ - t1).count() << \"ms\\n\"; }\n#else\nvoid now(Timer &t){ void(0); }\nvoid time(const\
     \ Timer &t1, const Timer &t2){ void(0); }\n#endif\n\n/**\n * @brief \u30BF\u30A4\
     \u30DE\u30FC\n */\n#line 2 \"C++/core/myvector.hpp\"\n\n#line 4 \"C++/core/myvector.hpp\"\
-    \n\nnamespace man {\nnamespace vec {\ntemplate <class T> using V = std::vector<T>;\n\
-    typedef V<int64_t> zhl;\ntypedef V<uint64_t> uzhl;\ntypedef V<long double> dec;\n\
-    typedef V<char> chr;\ntypedef V<std::string> str;\ntypedef V<bool> bol;\ntypedef\
-    \ V<zhl> zhl2;\ntypedef V<uzhl> uzhl2;\ntypedef V<dec> dec2;\ntypedef V<chr> chr2;\n\
-    typedef V<str> str2;\ntypedef V<bol> bol2;\n#ifdef EDGE\ntypedef V<man::edge>\
-    \ edg;\ntypedef V<edg> edg2;\n#endif\ntemplate <class T, class U> inline V<U>\
-    \ ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n), std::forward<U>(v));\n\
-    }\ntemplate <class T, class... Ts> inline decltype(auto) ndiv(T&& n, Ts&&... v)\
-    \ noexcept {\n  return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n),\
-    \ ndiv(std::forward<Ts>(v)...));\n}\ntemplate <internal::num T> constexpr V<T>&\
-    \ operator++(V<T>& v) noexcept { for(auto &el: v){ el++; } return v; }\ntemplate\
-    \ <internal::num T> constexpr V<T>& operator--(V<T>& v) noexcept { for(auto &el:\
-    \ v){ el--; } return v; }\ntemplate <internal::num T, internal::num U> constexpr\
-    \ V<T>& operator+=(V<T>& v, const U x) noexcept { for(auto &el: v){ el += x; }\
-    \ return v; }\ntemplate <internal::num T, internal::num U> constexpr V<T>& operator-=(V<T>&\
-    \ v, const U x) noexcept { for(auto &el: v){ el -= x; } return v; }\ntemplate\
-    \ <internal::num T, internal::num U> constexpr V<T>& operator*=(V<T>& v, const\
-    \ U x) noexcept { for(auto &el: v){ el *= x; } return v; }\ntemplate <internal::num\
-    \ T, internal::num U> constexpr V<T>& operator/=(V<T>& v, const U x) noexcept\
-    \ { for(auto &el: v){ el /= x; } return v; }\ntemplate <std::integral T, std::integral\
-    \ U> constexpr V<T>& operator%=(V<T>& v, const U x) noexcept { for(auto &el: v){\
-    \ el %= x; } return v; }\ntemplate <internal::num T, internal::num U> constexpr\
-    \ V<T> operator+(const V<T>& v, const U x) noexcept { V<T> ret = v; ret += x;\
-    \ return ret; }\ntemplate <internal::num T, internal::num U> constexpr V<T> operator-(const\
-    \ V<T>& v, const U x) noexcept { V<T> ret = v; ret -= x; return ret; }\ntemplate\
-    \ <internal::num T, internal::num U> constexpr V<T> operator*(const V<T>& v, const\
-    \ U x) noexcept { V<T> ret = v; ret *= x; return ret; }\ntemplate <internal::num\
-    \ T, internal::num U> constexpr V<T> operator/(const V<T>& v, const U x) noexcept\
-    \ { V<T> ret = v; ret /= x; return ret; }\ntemplate <std::integral T, std::integral\
-    \ U> constexpr V<T> operator%(const V<T>& v, const U x) noexcept { V<T> ret =\
-    \ v; ret %= x; return ret; }\n}\n}\n#line 2 \"C++/core/mypair.hpp\"\n\n#line 8\
-    \ \"C++/core/mypair.hpp\"\n\nnamespace man {\nnamespace pav {\ntemplate <class\
-    \ T, class U> using P = std::pair<T, U>;\ntemplate <class T> using PP = P<T, T>;\n\
-    typedef PP<int64_t> zhl;\ntypedef PP<long double> dec;\ntypedef PP<char> chr;\n\
-    typedef PP<std::string> str;\ntemplate <internal::num T> constexpr PP<T> operator+(const\
-    \ PP<T>& a, const PP<T>& b) noexcept { return {a.first + b.first, a.second + b.second};\
-    \ }\ntemplate <internal::num T> constexpr PP<T> operator-(const PP<T>& a, const\
-    \ PP<T>& b) noexcept { return {a.first - b.first, a.second - b.second}; }\ntemplate\
-    \ <internal::num T> constexpr PP<T> operator-(const PP<T>& a) noexcept { return\
-    \ {-a.first, -a.second}; }\ntemplate <internal::num T, class U> constexpr PP<T>\
-    \ operator*(const PP<T>& a, const U& b) noexcept { return {a.first * b, a.second\
-    \ * b}; }\ntemplate <internal::num T, class U> constexpr PP<T> operator/(const\
-    \ PP<T>& a, const U& b) noexcept { return {a.first / b, a.second / b}; }\ntemplate\
-    \ <internal::num T> constexpr PP<T>& operator+=(PP<T>& a, const PP<T>& b) noexcept\
-    \ { return a = a + b; }\ntemplate <internal::num T> constexpr PP<T>& operator-=(PP<T>&\
-    \ a, const PP<T>& b) noexcept { return a = a - b; }\ntemplate <internal::num T,\
-    \ internal::num U> constexpr PP<T>& operator*=(PP<T>& a, const U& b) noexcept\
-    \ { return a = a * b; }\ntemplate <internal::num T, internal::num U> PP<T>& operator/=(PP<T>&\
+    \n\n#ifndef ALIAS\nnamespace internal {\ntemplate <typename T> concept num = std::integral<T>\
+    \ || std::floating_point<T>;\n}\n#endif\n\nnamespace man {\nnamespace vec {\n\
+    template <class T> using V = std::vector<T>;\ntypedef V<int64_t> zhl;\ntypedef\
+    \ V<uint64_t> uzhl;\ntypedef V<long double> dec;\ntypedef V<char> chr;\ntypedef\
+    \ V<std::string> str;\ntypedef V<bool> bol;\ntypedef V<zhl> zhl2;\ntypedef V<uzhl>\
+    \ uzhl2;\ntypedef V<dec> dec2;\ntypedef V<chr> chr2;\ntypedef V<str> str2;\ntypedef\
+    \ V<bol> bol2;\n#ifdef EDGE\ntypedef V<man::edge> edg;\ntypedef V<edg> edg2;\n\
+    #endif\ntemplate <class T, class U> inline V<U> ndiv(T&& n, U&& v) noexcept {\n\
+    \  return V<U>(std::forward<T>(n), std::forward<U>(v));\n}\ntemplate <class T,\
+    \ class... Ts> inline decltype(auto) ndiv(T&& n, Ts&&... v) noexcept {\n  return\
+    \ V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n), ndiv(std::forward<Ts>(v)...));\n\
+    }\ntemplate <internal::num T> constexpr V<T>& operator++(V<T>& v) noexcept { for(auto\
+    \ &el: v){ el++; } return v; }\ntemplate <internal::num T> constexpr V<T>& operator--(V<T>&\
+    \ v) noexcept { for(auto &el: v){ el--; } return v; }\ntemplate <internal::num\
+    \ T, internal::num U> constexpr V<T>& operator+=(V<T>& v, const U x) noexcept\
+    \ { for(auto &el: v){ el += x; } return v; }\ntemplate <internal::num T, internal::num\
+    \ U> constexpr V<T>& operator-=(V<T>& v, const U x) noexcept { for(auto &el: v){\
+    \ el -= x; } return v; }\ntemplate <internal::num T, internal::num U> constexpr\
+    \ V<T>& operator*=(V<T>& v, const U x) noexcept { for(auto &el: v){ el *= x; }\
+    \ return v; }\ntemplate <internal::num T, internal::num U> constexpr V<T>& operator/=(V<T>&\
+    \ v, const U x) noexcept { for(auto &el: v){ el /= x; } return v; }\ntemplate\
+    \ <std::integral T, std::integral U> constexpr V<T>& operator%=(V<T>& v, const\
+    \ U x) noexcept { for(auto &el: v){ el %= x; } return v; }\ntemplate <internal::num\
+    \ T, internal::num U> constexpr V<T> operator+(const V<T>& v, const U x) noexcept\
+    \ { V<T> ret = v; ret += x; return ret; }\ntemplate <internal::num T, internal::num\
+    \ U> constexpr V<T> operator-(const V<T>& v, const U x) noexcept { V<T> ret =\
+    \ v; ret -= x; return ret; }\ntemplate <internal::num T, internal::num U> constexpr\
+    \ V<T> operator*(const V<T>& v, const U x) noexcept { V<T> ret = v; ret *= x;\
+    \ return ret; }\ntemplate <internal::num T, internal::num U> constexpr V<T> operator/(const\
+    \ V<T>& v, const U x) noexcept { V<T> ret = v; ret /= x; return ret; }\ntemplate\
+    \ <std::integral T, std::integral U> constexpr V<T> operator%(const V<T>& v, const\
+    \ U x) noexcept { V<T> ret = v; ret %= x; return ret; }\n}\n}\n#line 2 \"C++/core/mypair.hpp\"\
+    \n\n#line 8 \"C++/core/mypair.hpp\"\n\n#ifndef ALIAS\nnamespace internal {\ntemplate\
+    \ <typename T> concept num = std::integral<T> || std::floating_point<T>;\n}\n\
+    #endif\n\nnamespace man {\nnamespace pav {\ntemplate <class T, class U> using\
+    \ P = std::pair<T, U>;\ntemplate <class T> using PP = P<T, T>;\ntypedef PP<int64_t>\
+    \ zhl;\ntypedef PP<long double> dec;\ntypedef PP<char> chr;\ntypedef PP<std::string>\
+    \ str;\ntemplate <internal::num T> constexpr PP<T> operator+(const PP<T>& a, const\
+    \ PP<T>& b) noexcept { return {a.first + b.first, a.second + b.second}; }\ntemplate\
+    \ <internal::num T> constexpr PP<T> operator-(const PP<T>& a, const PP<T>& b)\
+    \ noexcept { return {a.first - b.first, a.second - b.second}; }\ntemplate <internal::num\
+    \ T> constexpr PP<T> operator-(const PP<T>& a) noexcept { return {-a.first, -a.second};\
+    \ }\ntemplate <internal::num T, class U> constexpr PP<T> operator*(const PP<T>&\
+    \ a, const U& b) noexcept { return {a.first * b, a.second * b}; }\ntemplate <internal::num\
+    \ T, class U> constexpr PP<T> operator/(const PP<T>& a, const U& b) noexcept {\
+    \ return {a.first / b, a.second / b}; }\ntemplate <internal::num T> constexpr\
+    \ PP<T>& operator+=(PP<T>& a, const PP<T>& b) noexcept { return a = a + b; }\n\
+    template <internal::num T> constexpr PP<T>& operator-=(PP<T>& a, const PP<T>&\
+    \ b) noexcept { return a = a - b; }\ntemplate <internal::num T, internal::num\
+    \ U> constexpr PP<T>& operator*=(PP<T>& a, const U& b) noexcept { return a = a\
+    \ * b; }\ntemplate <internal::num T, internal::num U> PP<T>& operator/=(PP<T>&\
     \ a, const U& b) noexcept { return a = a / b; }\ntemplate <class T> constexpr\
     \ bool operator==(const PP<T> &p, const PP<T> &q) noexcept { return p.first ==\
     \ q.first && p.second == q.second; }\ntemplate <class T> constexpr bool operator!=(const\
@@ -458,7 +461,7 @@ data:
   isVerificationFile: true
   path: test/uf.test.cpp
   requiredBy: []
-  timestamp: '2025-06-11 18:57:46+09:00'
+  timestamp: '2025-06-11 19:04:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/uf.test.cpp

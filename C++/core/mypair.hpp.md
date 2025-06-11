@@ -48,17 +48,18 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"C++/core/mypair.hpp\"\n\n#include <cassert>\n#include <utility>\n\
-    #include <tuple>\n#include <cmath>\n#include <numeric>\n\nnamespace man {\nnamespace\
-    \ pav {\ntemplate <class T, class U> using P = std::pair<T, U>;\ntemplate <class\
-    \ T> using PP = P<T, T>;\ntypedef PP<int64_t> zhl;\ntypedef PP<long double> dec;\n\
-    typedef PP<char> chr;\ntypedef PP<std::string> str;\ntemplate <internal::num T>\
-    \ constexpr PP<T> operator+(const PP<T>& a, const PP<T>& b) noexcept { return\
-    \ {a.first + b.first, a.second + b.second}; }\ntemplate <internal::num T> constexpr\
-    \ PP<T> operator-(const PP<T>& a, const PP<T>& b) noexcept { return {a.first -\
-    \ b.first, a.second - b.second}; }\ntemplate <internal::num T> constexpr PP<T>\
-    \ operator-(const PP<T>& a) noexcept { return {-a.first, -a.second}; }\ntemplate\
-    \ <internal::num T, class U> constexpr PP<T> operator*(const PP<T>& a, const U&\
-    \ b) noexcept { return {a.first * b, a.second * b}; }\ntemplate <internal::num\
+    #include <tuple>\n#include <cmath>\n#include <numeric>\n\n#ifndef ALIAS\nnamespace\
+    \ internal {\ntemplate <typename T> concept num = std::integral<T> || std::floating_point<T>;\n\
+    }\n#endif\n\nnamespace man {\nnamespace pav {\ntemplate <class T, class U> using\
+    \ P = std::pair<T, U>;\ntemplate <class T> using PP = P<T, T>;\ntypedef PP<int64_t>\
+    \ zhl;\ntypedef PP<long double> dec;\ntypedef PP<char> chr;\ntypedef PP<std::string>\
+    \ str;\ntemplate <internal::num T> constexpr PP<T> operator+(const PP<T>& a, const\
+    \ PP<T>& b) noexcept { return {a.first + b.first, a.second + b.second}; }\ntemplate\
+    \ <internal::num T> constexpr PP<T> operator-(const PP<T>& a, const PP<T>& b)\
+    \ noexcept { return {a.first - b.first, a.second - b.second}; }\ntemplate <internal::num\
+    \ T> constexpr PP<T> operator-(const PP<T>& a) noexcept { return {-a.first, -a.second};\
+    \ }\ntemplate <internal::num T, class U> constexpr PP<T> operator*(const PP<T>&\
+    \ a, const U& b) noexcept { return {a.first * b, a.second * b}; }\ntemplate <internal::num\
     \ T, class U> constexpr PP<T> operator/(const PP<T>& a, const U& b) noexcept {\
     \ return {a.first / b, a.second / b}; }\ntemplate <internal::num T> constexpr\
     \ PP<T>& operator+=(PP<T>& a, const PP<T>& b) noexcept { return a = a + b; }\n\
@@ -127,23 +128,25 @@ data:
     \ auto &el: vp) {\n        ret.emplace_back(el.second);\n    }\n    return ret;\n\
     }\n}\n}\n"
   code: "#pragma once\n\n#include <cassert>\n#include <utility>\n#include <tuple>\n\
-    #include <cmath>\n#include <numeric>\n\nnamespace man {\nnamespace pav {\ntemplate\
-    \ <class T, class U> using P = std::pair<T, U>;\ntemplate <class T> using PP =\
-    \ P<T, T>;\ntypedef PP<int64_t> zhl;\ntypedef PP<long double> dec;\ntypedef PP<char>\
-    \ chr;\ntypedef PP<std::string> str;\ntemplate <internal::num T> constexpr PP<T>\
-    \ operator+(const PP<T>& a, const PP<T>& b) noexcept { return {a.first + b.first,\
-    \ a.second + b.second}; }\ntemplate <internal::num T> constexpr PP<T> operator-(const\
-    \ PP<T>& a, const PP<T>& b) noexcept { return {a.first - b.first, a.second - b.second};\
-    \ }\ntemplate <internal::num T> constexpr PP<T> operator-(const PP<T>& a) noexcept\
-    \ { return {-a.first, -a.second}; }\ntemplate <internal::num T, class U> constexpr\
-    \ PP<T> operator*(const PP<T>& a, const U& b) noexcept { return {a.first * b,\
-    \ a.second * b}; }\ntemplate <internal::num T, class U> constexpr PP<T> operator/(const\
-    \ PP<T>& a, const U& b) noexcept { return {a.first / b, a.second / b}; }\ntemplate\
-    \ <internal::num T> constexpr PP<T>& operator+=(PP<T>& a, const PP<T>& b) noexcept\
-    \ { return a = a + b; }\ntemplate <internal::num T> constexpr PP<T>& operator-=(PP<T>&\
-    \ a, const PP<T>& b) noexcept { return a = a - b; }\ntemplate <internal::num T,\
-    \ internal::num U> constexpr PP<T>& operator*=(PP<T>& a, const U& b) noexcept\
-    \ { return a = a * b; }\ntemplate <internal::num T, internal::num U> PP<T>& operator/=(PP<T>&\
+    #include <cmath>\n#include <numeric>\n\n#ifndef ALIAS\nnamespace internal {\n\
+    template <typename T> concept num = std::integral<T> || std::floating_point<T>;\n\
+    }\n#endif\n\nnamespace man {\nnamespace pav {\ntemplate <class T, class U> using\
+    \ P = std::pair<T, U>;\ntemplate <class T> using PP = P<T, T>;\ntypedef PP<int64_t>\
+    \ zhl;\ntypedef PP<long double> dec;\ntypedef PP<char> chr;\ntypedef PP<std::string>\
+    \ str;\ntemplate <internal::num T> constexpr PP<T> operator+(const PP<T>& a, const\
+    \ PP<T>& b) noexcept { return {a.first + b.first, a.second + b.second}; }\ntemplate\
+    \ <internal::num T> constexpr PP<T> operator-(const PP<T>& a, const PP<T>& b)\
+    \ noexcept { return {a.first - b.first, a.second - b.second}; }\ntemplate <internal::num\
+    \ T> constexpr PP<T> operator-(const PP<T>& a) noexcept { return {-a.first, -a.second};\
+    \ }\ntemplate <internal::num T, class U> constexpr PP<T> operator*(const PP<T>&\
+    \ a, const U& b) noexcept { return {a.first * b, a.second * b}; }\ntemplate <internal::num\
+    \ T, class U> constexpr PP<T> operator/(const PP<T>& a, const U& b) noexcept {\
+    \ return {a.first / b, a.second / b}; }\ntemplate <internal::num T> constexpr\
+    \ PP<T>& operator+=(PP<T>& a, const PP<T>& b) noexcept { return a = a + b; }\n\
+    template <internal::num T> constexpr PP<T>& operator-=(PP<T>& a, const PP<T>&\
+    \ b) noexcept { return a = a - b; }\ntemplate <internal::num T, internal::num\
+    \ U> constexpr PP<T>& operator*=(PP<T>& a, const U& b) noexcept { return a = a\
+    \ * b; }\ntemplate <internal::num T, internal::num U> PP<T>& operator/=(PP<T>&\
     \ a, const U& b) noexcept { return a = a / b; }\ntemplate <class T> constexpr\
     \ bool operator==(const PP<T> &p, const PP<T> &q) noexcept { return p.first ==\
     \ q.first && p.second == q.second; }\ntemplate <class T> constexpr bool operator!=(const\
@@ -209,7 +212,7 @@ data:
   path: C++/core/mypair.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2025-06-11 17:30:11+09:00'
+  timestamp: '2025-06-11 19:04:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/add.test.cpp
