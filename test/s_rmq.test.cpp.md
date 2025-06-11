@@ -371,33 +371,35 @@ data:
     \        val = 10 * val + el - '0';\n    }\n    if(s.front()=='-') {\n       \
     \ val = -val;\n    }\n    return is;\n}\ntemplate <class T, class U> inline std::istream&\
     \ operator>>(std::istream &is, std::pair<T, U> &p) noexcept { is >> p.first >>\
-    \ p.second; return is; }\ntemplate <std::ranges::random_access_range T> inline\
-    \ std::istream& operator>>(std::istream &is, T &v) noexcept { for(auto &el: v){\
-    \ is >> el; } return is; }\n} // IO\n\n/**\n * @brief \u5165\u529B\n */\n#line\
-    \ 2 \"C++/core/io/output.hpp\"\n\n#line 6 \"C++/core/io/output.hpp\"\nnamespace\
-    \ IO {\ninline std::ostream &operator<<(std::ostream &dest, const __int128_t &value)\
-    \ noexcept {\n    std::ostream::sentry s(dest);\n    constexpr char dig[] = \"\
-    0123456789\";\n    if(s) {\n        __uint128_t tmp = value < 0 ? -value : value;\n\
-    \        char buffer[128];\n        char *d = std::end(buffer);\n        do {\n\
-    \            --d;\n            *d = dig[tmp % 10];\n            tmp /= 10;\n \
-    \       } while(tmp != 0);\n        if(value < 0) {\n            --d;\n      \
-    \      *d = '-';\n        }\n        const int len = std::end(buffer) - d;\n \
-    \       if(dest.rdbuf() -> sputn(d, len) != len) {\n            dest.setstate(std::ios_base::badbit);\n\
-    \        }\n    }\n    return dest;\n}\ntemplate <class T, class U> inline std::ostream&\
-    \ operator<<(std::ostream &os, const std::pair<T, U> &p) noexcept { os << p.first\
-    \ << ' ' << p.second; return os; }\ntemplate <class K, class V> inline std::ostream&\
-    \ operator<<(std::ostream &os, const std::map<K, V> &m) noexcept {\n    if(!m.empty())\
-    \ {\n        os << m.begin()->first << ' ' << m.begin()->second;\n        for(auto\
-    \ i = m.begin(); ++i != m.end();) {\n            os << '\\n' << i->first << '\
-    \ ' << i->second;\n        }\n    }\n    return os;\n}\ntemplate <std::ranges::range\
-    \ T> inline std::ostream& operator<<(std::ostream &os, const T &v) noexcept {\n\
-    \    if(!v.empty()) {\n        os << *v.cbegin();\n        for(auto i = v.cbegin();\
-    \ ++i != v.cend();) {\n            os << ' ' << *i;\n        }\n    }\n    return\
-    \ os;\n}\n} // IO\n\nnamespace man {\ninline void print() noexcept { std::cout\
-    \ << '\\n'; }\ntemplate <class Head, class... Tail> inline void print(const Head&\
-    \ head, const Tail& ...tail) noexcept {\n    std::cout << head;\n    if constexpr(sizeof...(Tail)\
-    \ > 0) {\n        std::cout << ' ';\n        print(tail...);\n    } else {\n \
-    \       std::cout << '\\n';\n    }\n}\n}\n\n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
+    \ p.second; return is; }\ntemplate <std::ranges::random_access_range T> requires\
+    \ (!std::convertible_to<T, std::string_view>) inline std::istream& operator>>(std::istream\
+    \ &is, T &v) noexcept { for(auto &el: v){ is >> el; } return is; }\n} // IO\n\n\
+    /**\n * @brief \u5165\u529B\n */\n#line 2 \"C++/core/io/output.hpp\"\n\n#line\
+    \ 6 \"C++/core/io/output.hpp\"\nnamespace IO {\ninline std::ostream &operator<<(std::ostream\
+    \ &dest, const __int128_t &value) noexcept {\n    std::ostream::sentry s(dest);\n\
+    \    constexpr char dig[] = \"0123456789\";\n    if(s) {\n        __uint128_t\
+    \ tmp = value < 0 ? -value : value;\n        char buffer[128];\n        char *d\
+    \ = std::end(buffer);\n        do {\n            --d;\n            *d = dig[tmp\
+    \ % 10];\n            tmp /= 10;\n        } while(tmp != 0);\n        if(value\
+    \ < 0) {\n            --d;\n            *d = '-';\n        }\n        const int\
+    \ len = std::end(buffer) - d;\n        if(dest.rdbuf() -> sputn(d, len) != len)\
+    \ {\n            dest.setstate(std::ios_base::badbit);\n        }\n    }\n   \
+    \ return dest;\n}\ntemplate <class T, class U> inline std::ostream& operator<<(std::ostream\
+    \ &os, const std::pair<T, U> &p) noexcept { os << p.first << ' ' << p.second;\
+    \ return os; }\ntemplate <class K, class V> inline std::ostream& operator<<(std::ostream\
+    \ &os, const std::map<K, V> &m) noexcept {\n    if(!m.empty()) {\n        os <<\
+    \ m.begin()->first << ' ' << m.begin()->second;\n        for(auto i = m.begin();\
+    \ ++i != m.end();) {\n            os << '\\n' << i->first << ' ' << i->second;\n\
+    \        }\n    }\n    return os;\n}\ntemplate <std::ranges::range T> requires\
+    \ (!std::convertible_to<T, std::string_view>) inline std::ostream& operator<<(std::ostream\
+    \ &os, const T &v) noexcept {\n    if(!v.empty()) {\n        os << *v.cbegin();\n\
+    \        for(auto i = v.cbegin(); ++i != v.cend();) {\n            os << ' ' <<\
+    \ *i;\n        }\n    }\n    return os;\n}\n} // IO\n\nnamespace man {\ninline\
+    \ void print() noexcept { std::cout << '\\n'; }\ntemplate <class Head, class...\
+    \ Tail> inline void print(const Head& head, const Tail& ...tail) noexcept {\n\
+    \    std::cout << head;\n    if constexpr(sizeof...(Tail) > 0) {\n        std::cout\
+    \ << ' ';\n        print(tail...);\n    } else {\n        std::cout << '\\n';\n\
+    \    }\n}\n}\n\n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
     #include <C++/core/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
     #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 385 \"C++/template.hpp\"\n\r\
     \n#define overload4(_1,_2,_3,_4,name,...) name\r\n#define REP1(n) for([[maybe_unused]]\
@@ -465,7 +467,7 @@ data:
   isVerificationFile: true
   path: test/s_rmq.test.cpp
   requiredBy: []
-  timestamp: '2025-06-11 17:30:11+09:00'
+  timestamp: '2025-06-11 17:47:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/s_rmq.test.cpp
