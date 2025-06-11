@@ -2,64 +2,64 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aarray.test.cpp
     title: test/aarray.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/add.test.cpp
     title: test/add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/add128.test.cpp
     title: test/add128.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/extgcd.test.cpp
     title: test/extgcd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/fwtree.test.cpp
     title: test/fwtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/m_add.test.cpp
     title: test/m_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/s_rmq.test.cpp
     title: test/s_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/stable.test.cpp
     title: test/stable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"C++/core/myvector.hpp\"\n\n#include <vector>\n\nnamespace\
     \ man {\nnamespace vec {\ntemplate <class T> using V = std::vector<T>;\ntypedef\
-    \ V<int64_t> vi;\ntypedef V<uint64_t> vu;\ntypedef V<long double> vd;\ntypedef\
-    \ V<char> vc;\ntypedef V<std::string> vs;\ntypedef V<bool> vb;\ntypedef V<vi>\
-    \ wi;\ntypedef V<vu> wu;\ntypedef V<vd> wd;\ntypedef V<vc> wc;\ntypedef V<vs>\
-    \ ws;\ntypedef V<vb> wb;\n#ifdef EDGE\ntypedef V<man::edge> ve;\ntypedef V<ve>\
-    \ we;\n#endif\ntemplate <class T, class U> inline V<U> ndiv(T&& n, U&& v) noexcept\
-    \ {\n  return V<U>(std::forward<T>(n), std::forward<U>(v));\n}\ntemplate <class\
-    \ T, class... Ts> inline decltype(auto) ndiv(T&& n, Ts&&... v) noexcept {\n  return\
-    \ V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n), ndiv(std::forward<Ts>(v)...));\n\
+    \ V<int64_t> zhl;\ntypedef V<uint64_t> uzhl;\ntypedef V<long double> dec;\ntypedef\
+    \ V<char> chr;\ntypedef V<std::string> str;\ntypedef V<bool> bol;\ntypedef V<vi>\
+    \ zhl2;\ntypedef V<vu> uzhl2;\ntypedef V<vd> dec2;\ntypedef V<vc> chr2;\ntypedef\
+    \ V<vs> str2;\ntypedef V<vb> bol2;\n#ifdef EDGE\ntypedef V<man::edge> edg;\ntypedef\
+    \ V<ve> edg2;\n#endif\ntemplate <class T, class U> inline V<U> ndiv(T&& n, U&&\
+    \ v) noexcept {\n  return V<U>(std::forward<T>(n), std::forward<U>(v));\n}\ntemplate\
+    \ <class T, class... Ts> inline decltype(auto) ndiv(T&& n, Ts&&... v) noexcept\
+    \ {\n  return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n), ndiv(std::forward<Ts>(v)...));\n\
     }\ntemplate <class T> constexpr V<T>& operator++(V<T>& v) noexcept { for(auto\
     \ &el: v) el++; return v; }\ntemplate <class T> constexpr V<T>& operator--(V<T>&\
     \ v) noexcept { for(auto &el: v) el--; return v; }\ntemplate <class T, class U>\
@@ -80,12 +80,12 @@ data:
     \ class U> constexpr V<T> operator%(const V<T>& v, const U x) noexcept { V<T>\
     \ res = v; res%=x; return res; }\n}\n}\n"
   code: "#pragma once\n\n#include <vector>\n\nnamespace man {\nnamespace vec {\ntemplate\
-    \ <class T> using V = std::vector<T>;\ntypedef V<int64_t> vi;\ntypedef V<uint64_t>\
-    \ vu;\ntypedef V<long double> vd;\ntypedef V<char> vc;\ntypedef V<std::string>\
-    \ vs;\ntypedef V<bool> vb;\ntypedef V<vi> wi;\ntypedef V<vu> wu;\ntypedef V<vd>\
-    \ wd;\ntypedef V<vc> wc;\ntypedef V<vs> ws;\ntypedef V<vb> wb;\n#ifdef EDGE\n\
-    typedef V<man::edge> ve;\ntypedef V<ve> we;\n#endif\ntemplate <class T, class\
-    \ U> inline V<U> ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n),\
+    \ <class T> using V = std::vector<T>;\ntypedef V<int64_t> zhl;\ntypedef V<uint64_t>\
+    \ uzhl;\ntypedef V<long double> dec;\ntypedef V<char> chr;\ntypedef V<std::string>\
+    \ str;\ntypedef V<bool> bol;\ntypedef V<vi> zhl2;\ntypedef V<vu> uzhl2;\ntypedef\
+    \ V<vd> dec2;\ntypedef V<vc> chr2;\ntypedef V<vs> str2;\ntypedef V<vb> bol2;\n\
+    #ifdef EDGE\ntypedef V<man::edge> edg;\ntypedef V<ve> edg2;\n#endif\ntemplate\
+    \ <class T, class U> inline V<U> ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n),\
     \ std::forward<U>(v));\n}\ntemplate <class T, class... Ts> inline decltype(auto)\
     \ ndiv(T&& n, Ts&&... v) noexcept {\n  return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n),\
     \ ndiv(std::forward<Ts>(v)...));\n}\ntemplate <class T> constexpr V<T>& operator++(V<T>&\
@@ -113,8 +113,8 @@ data:
   requiredBy:
   - C++/core/mypair.hpp
   - C++/template.hpp
-  timestamp: '2025-06-06 22:43:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-06-11 14:22:09+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/add.test.cpp
   - test/uf.test.cpp

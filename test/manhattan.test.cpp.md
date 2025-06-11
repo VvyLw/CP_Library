@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/ds/uf/UnionFind.hpp
     title: UnionFind
   - icon: ':heavy_check_mark:'

@@ -1,65 +1,65 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/core/alias.hpp
     title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/core/io/input.hpp
     title: "\u5165\u529B"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/core/io/output.hpp
     title: "\u51FA\u529B"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/core/myvector.hpp
     title: C++/core/myvector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/core/timer.hpp
     title: "\u30BF\u30A4\u30DE\u30FC"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aarray.test.cpp
     title: test/aarray.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/add.test.cpp
     title: test/add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/add128.test.cpp
     title: test/add128.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/extgcd.test.cpp
     title: test/extgcd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/fwtree.test.cpp
     title: test/fwtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/m_add.test.cpp
     title: test/m_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/s_rmq.test.cpp
     title: test/s_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/stable.test.cpp
     title: test/stable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/template.md
     document_title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
@@ -276,12 +276,12 @@ data:
     \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\n\
     /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n#line 2 \"C++/core/myvector.hpp\"\
     \n\n#line 4 \"C++/core/myvector.hpp\"\n\nnamespace man {\nnamespace vec {\ntemplate\
-    \ <class T> using V = std::vector<T>;\ntypedef V<int64_t> vi;\ntypedef V<uint64_t>\
-    \ vu;\ntypedef V<long double> vd;\ntypedef V<char> vc;\ntypedef V<std::string>\
-    \ vs;\ntypedef V<bool> vb;\ntypedef V<vi> wi;\ntypedef V<vu> wu;\ntypedef V<vd>\
-    \ wd;\ntypedef V<vc> wc;\ntypedef V<vs> ws;\ntypedef V<vb> wb;\n#ifdef EDGE\n\
-    typedef V<man::edge> ve;\ntypedef V<ve> we;\n#endif\ntemplate <class T, class\
-    \ U> inline V<U> ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n),\
+    \ <class T> using V = std::vector<T>;\ntypedef V<int64_t> zhl;\ntypedef V<uint64_t>\
+    \ uzhl;\ntypedef V<long double> dec;\ntypedef V<char> chr;\ntypedef V<std::string>\
+    \ str;\ntypedef V<bool> bol;\ntypedef V<vi> zhl2;\ntypedef V<vu> uzhl2;\ntypedef\
+    \ V<vd> dec2;\ntypedef V<vc> chr2;\ntypedef V<vs> str2;\ntypedef V<vb> bol2;\n\
+    #ifdef EDGE\ntypedef V<man::edge> edg;\ntypedef V<ve> edg2;\n#endif\ntemplate\
+    \ <class T, class U> inline V<U> ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n),\
     \ std::forward<U>(v));\n}\ntemplate <class T, class... Ts> inline decltype(auto)\
     \ ndiv(T&& n, Ts&&... v) noexcept {\n  return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n),\
     \ ndiv(std::forward<Ts>(v)...));\n}\ntemplate <class T> constexpr V<T>& operator++(V<T>&\
@@ -305,8 +305,8 @@ data:
     \ const U x) noexcept { V<T> res = v; res%=x; return res; }\n}\n}\n#line 10 \"\
     C++/core/mypair.hpp\"\nnamespace man {\nnamespace pav {\ntemplate <class T, class\
     \ U> using P = std::pair<T, U>;\ntemplate <class T> using PP = P<T, T>;\ntypedef\
-    \ PP<int64_t> pi;\ntypedef PP<long double> pd;\ntypedef PP<char> pc;\ntypedef\
-    \ PP<std::string> ps;\ntemplate <class T> constexpr PP<T> operator+(const PP<T>&\
+    \ PP<int64_t> zhl;\ntypedef PP<long double> dec;\ntypedef PP<char> chr;\ntypedef\
+    \ PP<std::string> str;\ntemplate <class T> constexpr PP<T> operator+(const PP<T>&\
     \ a, const PP<T>& b) noexcept { return {a.first + b.first, a.second + b.second};\
     \ }\ntemplate <class T> constexpr PP<T> operator-(const PP<T>& a, const PP<T>&\
     \ b) noexcept { return {a.first - b.first, a.second - b.second}; }\ntemplate <class\
@@ -648,8 +648,8 @@ data:
   isVerificationFile: false
   path: C++/template.hpp
   requiredBy: []
-  timestamp: '2025-06-11 13:21:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-06-11 14:22:09+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/add.test.cpp
   - test/uf.test.cpp
