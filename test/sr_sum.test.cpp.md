@@ -132,23 +132,18 @@ data:
     \treturn std::ssize(s);\r\n}\r\ninline std::string toupper(std::string s) noexcept\
     \ {\r\n\tfor(auto &c: s) {\r\n\t\tc = std::toupper(c);\r\n\t}\r\n\treturn s;\r\
     \n}\r\ninline std::string tolower(std::string s) noexcept {\r\n\tfor(auto &c:\
-    \ s) {\r\n\t\tc = std::tolower(c);\r\n\t}\r\n\treturn s;\r\n}\r\ninline std::vector<int>\
-    \ ten_to_adic(int64_t n, const short base) noexcept {\r\n\tif(n == 0) {\r\n\t\t\
-    return {0};\r\n\t}\r\n\tstd::vector<int> ret;\r\n\twhile(n > 0) {\r\n\t\tret.emplace_back(n\
-    \ % base);\r\n\t\tn /= base;\r\n\t}\r\n\treturn ret;\r\n}\r\ninline int64_t adic_to_ten(const\
-    \ std::vector<int> &v, const short base) {\r\n\tint64_t ret = 0;\r\n\tfor(const\
-    \ auto &el: v) {\r\n\t\tret += pow<int64_t>(base, size_t(&el - &v[0])) * el;\r\
-    \n\t}\r\n\treturn ret;\r\n}\r\ninline std::string to_hex(const int64_t x, const\
-    \ bool upper = false) noexcept {\r\n\tstd::stringstream ss;\r\n\tss << std::hex\
-    \ << x;\r\n\tconst std::string s = ss.str();\r\n\treturn upper ? toupper(s) :\
-    \ s;\r\n}\r\ninline std::string to_oct(const int64_t x) noexcept {\r\n\tstd::stringstream\
-    \ s;\r\n\ts << std::oct << x;\r\n\treturn s.str();\r\n}\r\ninline std::string\
-    \ to_bin(const int64_t x) noexcept {\r\n\tstd::stringstream ss;\r\n\tss << std::bitset<64>(x);\r\
-    \n\tstd::string s = ss.str();\r\n\tstd::ranges::reverse(s);\r\n\ts.resize(std::ssize(ten_to_adic(x,\
-    \ 2)));\r\n\tstd::ranges::reverse(s);\r\n\treturn s;\r\n}\r\ninline int64_t to_ten(const\
-    \ std::string &s, const short base = 10) noexcept { return std::stoll(s, nullptr,\
-    \ base); }\r\ntemplate <std::integral... Ts> constexpr uint64_t gcd(const Ts...\
-    \ a) noexcept {\r\n\tstd::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};\r\
+    \ s) {\r\n\t\tc = std::tolower(c);\r\n\t}\r\n\treturn s;\r\n}\r\ntemplate <int\
+    \ base> constexpr inline std::string ten_to(int64_t n, const bool upper = true)\
+    \ noexcept {\r\n\tstatic_assert(base < 10 || base == 16);\r\n\tif constexpr (base\
+    \ == 16) {\r\n\t\tstd::stringstream ss;\r\n\t\tss << std::hex << n;\r\n\t\tconst\
+    \ std::string s = ss.str();\r\n\t\treturn upper ? toupper(s) : s;\r\n\t}\r\n\t\
+    if(n == 0) {\r\n\t\treturn \"0\";\r\n\t}\r\n\tstd::vector<int> ret;\r\n\twhile(n\
+    \ > 0) {\r\n\t\tret.emplace_back(n % base);\r\n\t\tn /= base;\r\n\t}\r\n\tstd::string\
+    \ s;\r\n\tfor(const auto &e: ret | std::views::reverse) {\r\n\t\ts += std::to_string(e);\r\
+    \n\t}\r\n\treturn s;\r\n}\r\ntemplate <int base = 10> constexpr inline int64_t\
+    \ to_ten(const std::string &s) noexcept { return std::stoll(s, nullptr, base);\
+    \ }\r\ntemplate <std::integral... Ts> constexpr uint64_t gcd(const Ts... a) noexcept\
+    \ {\r\n\tstd::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};\r\
     \n\tuint64_t g = 0;\r\n\tfor(const auto &el: v) {\r\n\t\tg = std::gcd(g, el);\r\
     \n\t}\r\n\treturn g;\r\n}\r\ntemplate <std::integral... Ts> constexpr uint64_t\
     \ lcm(const Ts... a) noexcept {\r\n\tstd::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};\r\
@@ -372,10 +367,11 @@ data:
     \ val = -val;\n    }\n    return is;\n}\ntemplate <class T, class U> inline std::istream&\
     \ operator>>(std::istream &is, std::pair<T, U> &p) noexcept { is >> p.first >>\
     \ p.second; return is; }\ntemplate <std::ranges::random_access_range T> requires\
-    \ (!std::convertible_to<T, std::string_view>) inline std::istream& operator>>(std::istream\
-    \ &is, T &v) noexcept { for(auto &el: v){ is >> el; } return is; }\n} // IO\n\n\
-    /**\n * @brief \u5165\u529B\n */\n#line 2 \"C++/core/io/output.hpp\"\n\n#line\
-    \ 6 \"C++/core/io/output.hpp\"\nnamespace IO {\ninline std::ostream &operator<<(std::ostream\
+    \ (!std::same_as<std::remove_cvref_t<T>, std::string> && !std::same_as<std::remove_cvref_t<T>,\
+    \ std::string_view> && !std::is_array_v<std::remove_cvref_t<T>>) inline std::istream&\
+    \ operator>>(std::istream &is, T &v) noexcept { for(auto &el: v){ is >> el; }\
+    \ return is; }\n} // IO\n\n/**\n * @brief \u5165\u529B\n */\n#line 2 \"C++/core/io/output.hpp\"\
+    \n\n#line 6 \"C++/core/io/output.hpp\"\nnamespace IO {\ninline std::ostream &operator<<(std::ostream\
     \ &dest, const __int128_t &value) noexcept {\n    std::ostream::sentry s(dest);\n\
     \    constexpr char dig[] = \"0123456789\";\n    if(s) {\n        __uint128_t\
     \ tmp = value < 0 ? -value : value;\n        char buffer[128];\n        char *d\
@@ -391,23 +387,26 @@ data:
     \ m.begin()->first << ' ' << m.begin()->second;\n        for(auto i = m.begin();\
     \ ++i != m.end();) {\n            os << '\\n' << i->first << ' ' << i->second;\n\
     \        }\n    }\n    return os;\n}\ntemplate <std::ranges::range T> requires\
-    \ (!std::convertible_to<T, std::string_view>) inline std::ostream& operator<<(std::ostream\
-    \ &os, const T &v) noexcept {\n    if(!v.empty()) {\n        os << *v.cbegin();\n\
-    \        for(auto i = v.cbegin(); ++i != v.cend();) {\n            os << ' ' <<\
-    \ *i;\n        }\n    }\n    return os;\n}\n} // IO\n\nnamespace man {\ninline\
-    \ void print() noexcept { std::cout << '\\n'; }\ntemplate <class Head, class...\
-    \ Tail> inline void print(const Head& head, const Tail& ...tail) noexcept {\n\
-    \    std::cout << head;\n    if constexpr(sizeof...(Tail) > 0) {\n        std::cout\
-    \ << ' ';\n        print(tail...);\n    } else {\n        std::cout << '\\n';\n\
-    \    }\n}\n}\n\n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
+    \ (!std::same_as<std::remove_cvref_t<T>, std::string> && !std::same_as<std::remove_cvref_t<T>,\
+    \ std::string_view> && !std::is_array_v<std::remove_cvref_t<T>>) inline std::ostream&\
+    \ operator<<(std::ostream &os, const T &v) noexcept {\n    if(!v.empty()) {\n\
+    \        os << *v.cbegin();\n        for(auto i = v.cbegin(); ++i != v.cend();)\
+    \ {\n            os << ' ' << *i;\n        }\n    }\n    return os;\n}\n} // IO\n\
+    \nnamespace man {\ntemplate <class Head, class... Tail> inline void print(const\
+    \ Head& head, const Tail& ...tail) noexcept {\n    using IO::operator<<;\n   \
+    \ std::cout << head;\n    if constexpr(sizeof...(Tail) > 0) {\n        std::cout\
+    \ << ' ';\n        print(tail...);\n    }\n}\ninline void println() noexcept {\
+    \ std::cout << '\\n'; }\ntemplate <class Head, class... Tail> inline void println(const\
+    \ Head& head, const Tail& ...tail) noexcept { print(head, tail...); std::cout\
+    \ << '\\n'; }\n}\n\n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
     #include <C++/core/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
-    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 385 \"C++/template.hpp\"\n\r\
+    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 369 \"C++/template.hpp\"\n\r\
     \n#define overload4(_1,_2,_3,_4,name,...) name\r\n#define REP1(n) for([[maybe_unused]]\
     \ const auto _: std::views::iota(0, (n)))\r\n#define REP2(i,n) for(const auto\
     \ i: std::views::iota(0, (n)))\r\n#define REP3(i,a,b) for(const auto i: std::views::iota((a),\
-    \ (b) + 1))\r\n#define REP4(i,a,b,c) for(i64 i = (a); i <= (b); i += (c))\r\n\
-    #define REP(...) overload4(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\r\
-    \n\r\nusing namespace IO;\r\nusing namespace std::views;\r\nnamespace iter = std::ranges;\r\
+    \ (b)))\r\n#define REP4(i,a,b,c) for(i64 i = (a); i < (b); i += (c))\r\n#define\
+    \ REP(...) overload4(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\r\n\r\n\
+    using namespace IO;\r\nusing namespace std::views;\r\nnamespace iter = std::ranges;\r\
     \n\r\n/**\r\n * @brief \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\
     \n */\n#line 2 \"C++/math/psum/psum.hpp\"\n\n#line 5 \"C++/math/psum/psum.hpp\"\
     \nnamespace man {\ntemplate <std::integral T> struct psum {\nprivate:\n    int\
@@ -451,7 +450,7 @@ data:
   isVerificationFile: true
   path: test/sr_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-06-11 17:47:26+09:00'
+  timestamp: '2025-06-11 18:57:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sr_sum.test.cpp

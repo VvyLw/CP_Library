@@ -66,9 +66,10 @@ data:
     \ val = -val;\n    }\n    return is;\n}\ntemplate <class T, class U> inline std::istream&\
     \ operator>>(std::istream &is, std::pair<T, U> &p) noexcept { is >> p.first >>\
     \ p.second; return is; }\ntemplate <std::ranges::random_access_range T> requires\
-    \ (!std::convertible_to<T, std::string_view>) inline std::istream& operator>>(std::istream\
-    \ &is, T &v) noexcept { for(auto &el: v){ is >> el; } return is; }\n} // IO\n\n\
-    /**\n * @brief \u5165\u529B\n */\n"
+    \ (!std::same_as<std::remove_cvref_t<T>, std::string> && !std::same_as<std::remove_cvref_t<T>,\
+    \ std::string_view> && !std::is_array_v<std::remove_cvref_t<T>>) inline std::istream&\
+    \ operator>>(std::istream &is, T &v) noexcept { for(auto &el: v){ is >> el; }\
+    \ return is; }\n} // IO\n\n/**\n * @brief \u5165\u529B\n */\n"
   code: "#pragma once\n\n#include <iostream>\n#include <cassert>\n#include <array>\n\
     #include <vector>\n#include <deque>\n#ifndef TEMPLATE\nnamespace man {\nconstexpr\
     \ inline bool isdigit(const char c) noexcept { return std::isdigit(c); }\ninline\
@@ -83,7 +84,8 @@ data:
     \    if(s.front()=='-') {\n        val = -val;\n    }\n    return is;\n}\ntemplate\
     \ <class T, class U> inline std::istream& operator>>(std::istream &is, std::pair<T,\
     \ U> &p) noexcept { is >> p.first >> p.second; return is; }\ntemplate <std::ranges::random_access_range\
-    \ T> requires (!std::convertible_to<T, std::string_view>) inline std::istream&\
+    \ T> requires (!std::same_as<std::remove_cvref_t<T>, std::string> && !std::same_as<std::remove_cvref_t<T>,\
+    \ std::string_view> && !std::is_array_v<std::remove_cvref_t<T>>) inline std::istream&\
     \ operator>>(std::istream &is, T &v) noexcept { for(auto &el: v){ is >> el; }\
     \ return is; }\n} // IO\n\n/**\n * @brief \u5165\u529B\n */"
   dependsOn: []
@@ -91,7 +93,7 @@ data:
   path: C++/core/io/input.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2025-06-11 17:47:26+09:00'
+  timestamp: '2025-06-11 18:57:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/add.test.cpp
