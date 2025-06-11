@@ -8,6 +8,7 @@
 #include <bits/stdc++.h>
 namespace VvyLw {
 inline void wa_haya_exe() noexcept { std::cin.tie(nullptr) -> sync_with_stdio(false); }
+inline void dec_prec(const short x) noexcept { std::cout << std::fixed << std::setprecision(x); }
 void solve();
 }
 
@@ -24,7 +25,6 @@ template <class T, class U> constexpr inline bool chmax(T& a, const U& b) noexce
 template <class T, class U> constexpr inline bool chmin(T& a, const U& b) noexcept { if(a > b){ a = b; return true; } return false; }
 template <class T, class U> constexpr inline bool overflow_if_add(const T a, const U b) noexcept { return (std::numeric_limits<T>::max() - a) < b; }
 template <class T, class U> constexpr inline bool overflow_if_mul(const T a, const U b) noexcept { return (std::numeric_limits<T>::max() / a) < b; }
-inline void fix(const short x) noexcept { std::cout << std::fixed << std::setprecision(x); }
 
 inline std::string string_replace(const std::string &s, const std::string &a, const std::string &b) noexcept { return std::regex_replace(s, std::regex(a), b); }
 inline bool regex_contains(const std::string &s, const std::string &t) noexcept { return std::regex_search(s, std::regex(t)); }
