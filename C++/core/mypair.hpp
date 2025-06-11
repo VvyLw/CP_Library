@@ -11,10 +11,10 @@ namespace man {
 namespace pav {
 template <class T, class U> using P = std::pair<T, U>;
 template <class T> using PP = P<T, T>;
-typedef PP<int64_t> pi;
-typedef PP<long double> pd;
-typedef PP<char> pc;
-typedef PP<std::string> ps;
+typedef PP<int64_t> zhl;
+typedef PP<long double> dec;
+typedef PP<char> chr;
+typedef PP<std::string> str;
 template <class T> constexpr PP<T> operator+(const PP<T>& a, const PP<T>& b) noexcept { return {a.first + b.first, a.second + b.second}; }
 template <class T> constexpr PP<T> operator-(const PP<T>& a, const PP<T>& b) noexcept { return {a.first - b.first, a.second - b.second}; }
 template <class T> constexpr PP<T> operator-(const PP<T>& a) noexcept { return {-a.first, -a.second}; }
