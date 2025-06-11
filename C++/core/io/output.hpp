@@ -37,7 +37,7 @@ template <class K, class V> inline std::ostream& operator<<(std::ostream &os, co
     }
     return os;
 }
-template <std::ranges::range T> requires (!std::convertible_to<T, std::string_view>) inline std::ostream& operator<<(std::ostream &os, const T &v) noexcept {
+template <std::ranges::range T> requires (!std::same_as<std::remove_cvref_t<T>, std::string> && !std::same_as<std::remove_cvref_t<T>, std::string_view> && !std::is_array_v<std::remove_cvref_t<T>>) inline std::ostream& operator<<(std::ostream &os, const T &v) noexcept {
     if(!v.empty()) {
         os << *v.cbegin();
         for(auto i = v.cbegin(); ++i != v.cend();) {
@@ -49,16 +49,16 @@ template <std::ranges::range T> requires (!std::convertible_to<T, std::string_vi
 } // IO
 
 namespace man {
-inline void print() noexcept { std::cout << '\n'; }
 template <class Head, class... Tail> inline void print(const Head& head, const Tail& ...tail) noexcept {
+    using IO::operator<<;
     std::cout << head;
     if constexpr(sizeof...(Tail) > 0) {
         std::cout << ' ';
         print(tail...);
-    } else {
-        std::cout << '\n';
     }
 }
+inline void println() noexcept { std::cout << '\n'; }
+template <class Head, class... Tail> inline void println(const Head& head, const Tail& ...tail) noexcept { print(head, tail...); std::cout << '\n'; }
 }
 
 #if local
