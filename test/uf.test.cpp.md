@@ -125,8 +125,8 @@ data:
     \ to_bin(const int64_t x) noexcept {\r\n\tstd::stringstream ss;\r\n\tss << std::bitset<64>(x);\r\
     \n\tstd::string s = ss.str();\r\n\tstd::ranges::reverse(s);\r\n\ts.resize(std::ssize(ten_to_adic(x,\
     \ 2)));\r\n\tstd::ranges::reverse(s);\r\n\treturn s;\r\n}\r\ninline int64_t to_ten(const\
-    \ std::string &s, const short base) noexcept { return std::stoll(s, nullptr, base);\
-    \ }\r\ntemplate <class... Ts> constexpr uint64_t sygcd(const Ts... a) noexcept\
+    \ std::string &s, const short base = 10) noexcept { return std::stoll(s, nullptr,\
+    \ base); }\r\ntemplate <class... Ts> constexpr uint64_t sygcd(const Ts... a) noexcept\
     \ {\r\n\tstd::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};\r\
     \n\tuint64_t g = 0;\r\n\tfor(const auto &el: v) {\r\n\t\tg = std::gcd(g, el);\r\
     \n\t}\r\n\treturn g;\r\n}\r\ntemplate <class... Ts> constexpr uint64_t sylcm(const\
@@ -252,9 +252,9 @@ data:
     \n\n#line 4 \"C++/core/myvector.hpp\"\n\nnamespace man {\nnamespace vec {\ntemplate\
     \ <class T> using V = std::vector<T>;\ntypedef V<int64_t> zhl;\ntypedef V<uint64_t>\
     \ uzhl;\ntypedef V<long double> dec;\ntypedef V<char> chr;\ntypedef V<std::string>\
-    \ str;\ntypedef V<bool> bol;\ntypedef V<vi> zhl2;\ntypedef V<vu> uzhl2;\ntypedef\
-    \ V<vd> dec2;\ntypedef V<vc> chr2;\ntypedef V<vs> str2;\ntypedef V<vb> bol2;\n\
-    #ifdef EDGE\ntypedef V<man::edge> edg;\ntypedef V<ve> edg2;\n#endif\ntemplate\
+    \ str;\ntypedef V<bool> bol;\ntypedef V<zhl> zhl2;\ntypedef V<uzhl> uzhl2;\ntypedef\
+    \ V<dec> dec2;\ntypedef V<chr> chr2;\ntypedef V<str> str2;\ntypedef V<bol> bol2;\n\
+    #ifdef EDGE\ntypedef V<man::edge> edg;\ntypedef V<edg> edg2;\n#endif\ntemplate\
     \ <class T, class U> inline V<U> ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n),\
     \ std::forward<U>(v));\n}\ntemplate <class T, class... Ts> inline decltype(auto)\
     \ ndiv(T&& n, Ts&&... v) noexcept {\n  return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n),\
@@ -467,7 +467,7 @@ data:
   isVerificationFile: true
   path: test/uf.test.cpp
   requiredBy: []
-  timestamp: '2025-06-11 14:22:09+09:00'
+  timestamp: '2025-06-11 14:30:23+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/uf.test.cpp

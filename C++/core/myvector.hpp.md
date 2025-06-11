@@ -53,38 +53,38 @@ data:
   bundledCode: "#line 2 \"C++/core/myvector.hpp\"\n\n#include <vector>\n\nnamespace\
     \ man {\nnamespace vec {\ntemplate <class T> using V = std::vector<T>;\ntypedef\
     \ V<int64_t> zhl;\ntypedef V<uint64_t> uzhl;\ntypedef V<long double> dec;\ntypedef\
-    \ V<char> chr;\ntypedef V<std::string> str;\ntypedef V<bool> bol;\ntypedef V<vi>\
-    \ zhl2;\ntypedef V<vu> uzhl2;\ntypedef V<vd> dec2;\ntypedef V<vc> chr2;\ntypedef\
-    \ V<vs> str2;\ntypedef V<vb> bol2;\n#ifdef EDGE\ntypedef V<man::edge> edg;\ntypedef\
-    \ V<ve> edg2;\n#endif\ntemplate <class T, class U> inline V<U> ndiv(T&& n, U&&\
-    \ v) noexcept {\n  return V<U>(std::forward<T>(n), std::forward<U>(v));\n}\ntemplate\
-    \ <class T, class... Ts> inline decltype(auto) ndiv(T&& n, Ts&&... v) noexcept\
-    \ {\n  return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n), ndiv(std::forward<Ts>(v)...));\n\
-    }\ntemplate <class T> constexpr V<T>& operator++(V<T>& v) noexcept { for(auto\
-    \ &el: v) el++; return v; }\ntemplate <class T> constexpr V<T>& operator--(V<T>&\
-    \ v) noexcept { for(auto &el: v) el--; return v; }\ntemplate <class T, class U>\
-    \ constexpr V<T>& operator+=(V<T>& v, const U x) noexcept { for(auto &el: v) el+=x;\
-    \ return v; }\ntemplate <class T, class U> constexpr V<T>& operator-=(V<T>& v,\
-    \ const U x) noexcept { for(auto &el: v) el-=x; return v; }\ntemplate <class T,\
-    \ class U> constexpr V<T>& operator*=(V<T>& v, const U x) noexcept { for(auto\
-    \ &el: v) el*=x; return v; }\ntemplate <class T, class U> constexpr V<T>& operator/=(V<T>&\
-    \ v, const U x) noexcept { for(auto &el: v) el/=x; return v; }\ntemplate <class\
-    \ T, class U> constexpr V<T>& operator%=(V<T>& v, const U x) noexcept { for(auto\
-    \ &el: v) el%=x; return v; }\ntemplate <class T, class U> constexpr V<T> operator+(const\
-    \ V<T>& v, const U x) noexcept { V<T> res = v; res+=x; return res; }\ntemplate\
-    \ <class T, class U> constexpr V<T> operator-(const V<T>& v, const U x) noexcept\
-    \ { V<T> res = v; res-=x; return res; }\ntemplate <class T, class U> constexpr\
-    \ V<T> operator*(const V<T>& v, const U x) noexcept { V<T> res = v; res*=x; return\
-    \ res; }\ntemplate <class T, class U> constexpr V<T> operator/(const V<T>& v,\
-    \ const U x) noexcept { V<T> res = v; res/=x; return res; }\ntemplate <class T,\
-    \ class U> constexpr V<T> operator%(const V<T>& v, const U x) noexcept { V<T>\
-    \ res = v; res%=x; return res; }\n}\n}\n"
+    \ V<char> chr;\ntypedef V<std::string> str;\ntypedef V<bool> bol;\ntypedef V<zhl>\
+    \ zhl2;\ntypedef V<uzhl> uzhl2;\ntypedef V<dec> dec2;\ntypedef V<chr> chr2;\n\
+    typedef V<str> str2;\ntypedef V<bol> bol2;\n#ifdef EDGE\ntypedef V<man::edge>\
+    \ edg;\ntypedef V<edg> edg2;\n#endif\ntemplate <class T, class U> inline V<U>\
+    \ ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n), std::forward<U>(v));\n\
+    }\ntemplate <class T, class... Ts> inline decltype(auto) ndiv(T&& n, Ts&&... v)\
+    \ noexcept {\n  return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n),\
+    \ ndiv(std::forward<Ts>(v)...));\n}\ntemplate <class T> constexpr V<T>& operator++(V<T>&\
+    \ v) noexcept { for(auto &el: v) el++; return v; }\ntemplate <class T> constexpr\
+    \ V<T>& operator--(V<T>& v) noexcept { for(auto &el: v) el--; return v; }\ntemplate\
+    \ <class T, class U> constexpr V<T>& operator+=(V<T>& v, const U x) noexcept {\
+    \ for(auto &el: v) el+=x; return v; }\ntemplate <class T, class U> constexpr V<T>&\
+    \ operator-=(V<T>& v, const U x) noexcept { for(auto &el: v) el-=x; return v;\
+    \ }\ntemplate <class T, class U> constexpr V<T>& operator*=(V<T>& v, const U x)\
+    \ noexcept { for(auto &el: v) el*=x; return v; }\ntemplate <class T, class U>\
+    \ constexpr V<T>& operator/=(V<T>& v, const U x) noexcept { for(auto &el: v) el/=x;\
+    \ return v; }\ntemplate <class T, class U> constexpr V<T>& operator%=(V<T>& v,\
+    \ const U x) noexcept { for(auto &el: v) el%=x; return v; }\ntemplate <class T,\
+    \ class U> constexpr V<T> operator+(const V<T>& v, const U x) noexcept { V<T>\
+    \ res = v; res+=x; return res; }\ntemplate <class T, class U> constexpr V<T> operator-(const\
+    \ V<T>& v, const U x) noexcept { V<T> res = v; res-=x; return res; }\ntemplate\
+    \ <class T, class U> constexpr V<T> operator*(const V<T>& v, const U x) noexcept\
+    \ { V<T> res = v; res*=x; return res; }\ntemplate <class T, class U> constexpr\
+    \ V<T> operator/(const V<T>& v, const U x) noexcept { V<T> res = v; res/=x; return\
+    \ res; }\ntemplate <class T, class U> constexpr V<T> operator%(const V<T>& v,\
+    \ const U x) noexcept { V<T> res = v; res%=x; return res; }\n}\n}\n"
   code: "#pragma once\n\n#include <vector>\n\nnamespace man {\nnamespace vec {\ntemplate\
     \ <class T> using V = std::vector<T>;\ntypedef V<int64_t> zhl;\ntypedef V<uint64_t>\
     \ uzhl;\ntypedef V<long double> dec;\ntypedef V<char> chr;\ntypedef V<std::string>\
-    \ str;\ntypedef V<bool> bol;\ntypedef V<vi> zhl2;\ntypedef V<vu> uzhl2;\ntypedef\
-    \ V<vd> dec2;\ntypedef V<vc> chr2;\ntypedef V<vs> str2;\ntypedef V<vb> bol2;\n\
-    #ifdef EDGE\ntypedef V<man::edge> edg;\ntypedef V<ve> edg2;\n#endif\ntemplate\
+    \ str;\ntypedef V<bool> bol;\ntypedef V<zhl> zhl2;\ntypedef V<uzhl> uzhl2;\ntypedef\
+    \ V<dec> dec2;\ntypedef V<chr> chr2;\ntypedef V<str> str2;\ntypedef V<bol> bol2;\n\
+    #ifdef EDGE\ntypedef V<man::edge> edg;\ntypedef V<edg> edg2;\n#endif\ntemplate\
     \ <class T, class U> inline V<U> ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n),\
     \ std::forward<U>(v));\n}\ntemplate <class T, class... Ts> inline decltype(auto)\
     \ ndiv(T&& n, Ts&&... v) noexcept {\n  return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n),\
@@ -113,7 +113,7 @@ data:
   requiredBy:
   - C++/core/mypair.hpp
   - C++/template.hpp
-  timestamp: '2025-06-11 14:22:09+09:00'
+  timestamp: '2025-06-11 14:30:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/add.test.cpp
