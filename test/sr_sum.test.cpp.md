@@ -10,19 +10,19 @@ data:
   - icon: ':question:'
     path: C++/core/io/output.hpp
     title: "\u51FA\u529B"
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/core/myvector.hpp
     title: C++/core/myvector.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/core/timer.hpp
     title: "\u30BF\u30A4\u30DE\u30FC"
   - icon: ':x:'
     path: C++/math/psum/psum.hpp
     title: "\u7D2F\u7A4D\u548C"
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
@@ -38,36 +38,50 @@ data:
   bundledCode: "#line 1 \"test/sr_sum.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\
     \n/*#pragma GCC optimize(\"O3\")\n#pragma GCC optimize(\"unroll-loops\")//*/\n\
     //#pragma GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native\"\
-    )\n#line 2 \"C++/template.hpp\"\n#ifndef TEMPLATE\r\n#define TEMPLATE\r\n#endif\r\
-    \n#pragma GCC diagnostic ignored \"-Wunused-parameter\"\r\n#pragma GCC diagnostic\
-    \ ignored \"-Wsign-compare\"\r\n#pragma GCC diagnostic ignored \"-Wdeprecated-copy\"\
-    \r\n#include <bits/stdc++.h>\r\nnamespace VvyLw {\r\nenum TestCase { single, multi\
-    \ };\r\ninline void solve() noexcept;\r\ntemplate <TestCase tc = single, int x\
-    \ = 12> constexpr inline void wa_haya_exe() noexcept {\r\n\tstd::cin.tie(nullptr)\
-    \ -> sync_with_stdio(false);\r\n\tif constexpr (x > 0) {\r\n\t\tstd::cout << std::fixed\
-    \ << std::setprecision(x);\r\n\t}\r\n\tint t = 1;\r\n\tif constexpr (tc == multi)\
-    \ {\r\n\t\tstd::cin >> t;\r\n\t}\r\n\tfor([[maybe_unused]] const auto _: std::views::iota(0,\
-    \ t)) {\r\n\t\tsolve();\r\n\t}\r\n}\r\n}\r\n\r\nusing enum VvyLw::TestCase;\r\n\
-    \r\n#line 2 \"C++/core/alias.hpp\"\n\n#ifndef ALIAS\n#define ALIAS\n#endif\n\n\
-    #line 8 \"C++/core/alias.hpp\"\n#include <numbers>\n#line 10 \"C++/core/alias.hpp\"\
-    \n#include <ext/pb_ds/assoc_container.hpp>\n#include <ext/pb_ds/tree_policy.hpp>\n\
-    \nnamespace internal {\ntemplate <typename T> concept num = std::integral<T> ||\
-    \ std::floating_point<T>;\n}\n\nconstexpr int dx[] = {0, 0, 0, -1, 1, -1, -1,\
-    \ 1, 1};\nconstexpr int dy[] = {0, -1, 1, 0, 0, -1, 1, -1, 1};\nconstexpr int\
-    \ MOD = 0x3b800001;\nconstexpr int M0D = 1e9 + 7;\nconstexpr int INF = 1 << 30;\n\
-    constexpr int64_t LINF = (1LL << 61) - 1;\nconstexpr long double DINF = std::numeric_limits<long\
-    \ double>::infinity();\ntemplate <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();\n\
-    constexpr long double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\
-    \ntypedef int64_t i64;\ntypedef long double ld;\ntypedef uint32_t u32;\ntypedef\
-    \ uint64_t u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\n#ifdef MODINT\n\
-    typedef man::Modint<MOD> mint;\ntypedef man::Modint<M0D> Mint;\n#endif\ntemplate\
-    \ <size_t N> using ti = std::array<i64, N>;\ntypedef ti<3> tri;\ntemplate <class\
-    \ T> using pq = std::priority_queue<T>;\ntemplate <class T> using pqr = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\ntemplate <class T> using Tree = __gnu_pbds::tree<T,\
-    \ __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
-    template <class T> using TREE = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>,\
+    )\n#line 2 \"C++/math/psum/psum.hpp\"\n\n#include <vector>\n#include <numeric>\n\
+    namespace man {\ntemplate <std::integral T> struct psum {\nprivate:\n    int n;\n\
+    \    bool not_built;\n    std::vector<int64_t> s;\npublic:\n    psum(const std::vector<T>\
+    \ &v): s{0} { std::partial_sum(v.cbegin(), v.cend(), std::back_inserter(s)); }\n\
+    \    psum(const int n): n(n), not_built(true), s(n + 1){}\n    constexpr inline\
+    \ std::vector<int64_t> get() const noexcept { return s; }\n    // [l, r]\n   \
+    \ constexpr inline int64_t sum(const int l, const int r) const noexcept  { return\
+    \ s[r] - s[l]; }\n    constexpr inline void add(const int l, const int r, const\
+    \ int64_t x = 1) noexcept {\n        static_assert(not_built);\n        s[l] +=\
+    \ x;\n        s[r] -= x;\n    }\n    constexpr inline std::vector<int64_t> build()\
+    \ noexcept {\n        static_assert(not_built);\n        std::vector<int64_t>\
+    \ res;\n        std::partial_sum(s.cbegin(), s.cend(), std::back_inserter(res));\n\
+    \        not_built = false;\n        res.resize(n);\n        return res;\n   \
+    \ }\n};\n}\n\n/**\n * @brief \u7D2F\u7A4D\u548C\n */\n#line 2 \"C++/template.hpp\"\
+    \n#ifndef TEMPLATE\r\n#define TEMPLATE\r\n#endif\r\n#pragma GCC diagnostic ignored\
+    \ \"-Wunused-parameter\"\r\n#pragma GCC diagnostic ignored \"-Wsign-compare\"\r\
+    \n#pragma GCC diagnostic ignored \"-Wdeprecated-copy\"\r\n#include <bits/stdc++.h>\r\
+    \nnamespace VvyLw {\r\nenum TestCase { single, multi };\r\ninline void solve()\
+    \ noexcept;\r\ntemplate <TestCase tc = single, int x = 12> constexpr inline void\
+    \ wa_haya_exe() noexcept {\r\n\tstd::cin.tie(nullptr) -> sync_with_stdio(false);\r\
+    \n\tstd::cout << std::fixed << std::setprecision(x);\r\n\tint t = 1;\r\n\tif constexpr\
+    \ (tc == multi) {\r\n\t\tstd::cin >> t;\r\n\t}\r\n\tfor([[maybe_unused]] const\
+    \ auto _: std::views::iota(0, t)) {\r\n\t\tsolve();\r\n\t}\r\n}\r\n}\r\n\r\nusing\
+    \ enum VvyLw::TestCase;\r\n\r\n#line 2 \"C++/core/alias.hpp\"\n\n#ifndef ALIAS\n\
+    #define ALIAS\n#endif\n\n#line 8 \"C++/core/alias.hpp\"\n#include <numbers>\n\
+    #line 10 \"C++/core/alias.hpp\"\n#include <ext/pb_ds/assoc_container.hpp>\n#include\
+    \ <ext/pb_ds/tree_policy.hpp>\n\nnamespace internal {\ntemplate <typename T> concept\
+    \ num = std::integral<T> || std::floating_point<T>;\n}\n\nconstexpr int dx[] =\
+    \ {0, 0, 0, -1, 1, -1, -1, 1, 1};\nconstexpr int dy[] = {0, -1, 1, 0, 0, -1, 1,\
+    \ -1, 1};\nconstexpr int MOD = 0x3b800001;\nconstexpr int M0D = 1e9 + 7;\nconstexpr\
+    \ int INF = 1 << 30;\nconstexpr int64_t LINF = (1LL << 61) - 1;\nconstexpr long\
+    \ double DINF = std::numeric_limits<long double>::infinity();\ntemplate <internal::num\
+    \ T> constexpr T LIM = std::numeric_limits<T>::max();\nconstexpr long double PI\
+    \ = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\ntypedef int64_t\
+    \ i64;\ntypedef long double ld;\ntypedef uint32_t u32;\ntypedef uint64_t u64;\n\
+    typedef __int128_t i128;\ntypedef __uint128_t u128;\n#ifdef MODINT\ntypedef man::Modint<MOD>\
+    \ mint;\ntypedef man::Modint<M0D> Mint;\n#endif\ntemplate <size_t N> using ti\
+    \ = std::array<i64, N>;\ntypedef ti<3> tri;\ntemplate <class T> using pq = std::priority_queue<T>;\n\
+    template <class T> using pqr = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+    template <class T> using Tree = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>,\
+    \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\ntemplate\
+    \ <class T> using TREE = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>,\
     \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\n\
-    /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n#line 30 \"C++/template.hpp\"\
+    /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n#line 28 \"C++/template.hpp\"\
     \n\r\nnamespace man {\r\ninline bool isdigit(const std::string &s) noexcept;\r\
     \nstd::mt19937 EhaL(std::hash<std::string>()(\"Huitloxopetl\"));\r\ninline std::mt19937\
     \ rand() noexcept {\r\n\tstd::random_device seed_gen;\r\n\tstd::mt19937 engine\
@@ -409,41 +423,28 @@ data:
     \ print<f>(head, tail...); std::cout << '\\n'; }\n} // IO\n\nusing enum IO::Flash;\n\
     \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
     #include <C++/core/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
-    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 383 \"C++/template.hpp\"\n\r\
+    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 381 \"C++/template.hpp\"\n\r\
     \n#define REP(n) for([[maybe_unused]] const auto _: std::views::iota(0, (n)))\r\
     \n\r\nusing namespace IO;\r\nusing namespace std::views;\r\nnamespace iter = std::ranges;\r\
     \n\r\n/**\r\n * @brief \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\
-    \n */\n#line 2 \"C++/math/psum/psum.hpp\"\n\n#line 5 \"C++/math/psum/psum.hpp\"\
-    \nnamespace man {\ntemplate <std::integral T> struct psum {\nprivate:\n    int\
-    \ n;\n    bool not_built;\n    std::vector<int64_t> s;\npublic:\n    psum(const\
-    \ std::vector<T> &v): s{0} { std::partial_sum(v.cbegin(), v.cend(), std::back_inserter(s));\
-    \ }\n    psum(const int n): n(n), not_built(true), s(n + 1){}\n    constexpr inline\
-    \ std::vector<int64_t> get() const noexcept { return s; }\n    // [l, r]\n   \
-    \ constexpr inline int64_t sum(const int l, const int r) const noexcept  { return\
-    \ s[r] - s[l]; }\n    constexpr inline void add(const int l, const int r, const\
-    \ int64_t x = 1) noexcept {\n        static_assert(not_built);\n        s[l] +=\
-    \ x;\n        s[r] -= x;\n    }\n    constexpr inline std::vector<int64_t> build()\
-    \ noexcept {\n        static_assert(not_built);\n        std::vector<int64_t>\
-    \ res;\n        std::partial_sum(s.cbegin(), s.cend(), std::back_inserter(res));\n\
-    \        not_built = false;\n        res.resize(n);\n        return res;\n   \
-    \ }\n};\n}\n\n/**\n * @brief \u7D2F\u7A4D\u548C\n */\n#line 7 \"test/sr_sum.test.cpp\"\
-    \nint main() {\n  \tVvyLw::wa_haya_exe();\n  \tnow(start);\n  \t//INT(t); while(t--)\n\
-    \  \tVvyLw::solve();\n  \tnow(stop);\n  \ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
-    \nvoid VvyLw::solve() {\n    int n, q;\n    std::cin >> n >> q;\n    man::vec::zhl\
-    \ a(n);\n    std::cin >> a;\n    man::psum s(a);\n    while(q--) {\n        int\
-    \ l, r;\n        std::cin >> l >> r;\n        std::cout << s.sum(l, r) << '\\\
-    n';\n    }\n}\n"
+    \n */\n#line 7 \"test/sr_sum.test.cpp\"\nint main() {\n  \tnow(start);\n  \tVvyLw::wa_haya_exe();\n\
+    \  \tnow(stop);\n  \ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
+    \ninline void VvyLw::solve() noexcept {\n    int n, q;\n    std::cin >> n >> q;\n\
+    \    man::vec::zhl a(n);\n    std::cin >> a;\n    man::psum s(a);\n    while(q--)\
+    \ {\n        int l, r;\n        std::cin >> l >> r;\n        std::cout << s.sum(l,\
+    \ r) << '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n/*#pragma\
     \ GCC optimize(\"O3\")\n#pragma GCC optimize(\"unroll-loops\")//*/\n//#pragma\
     \ GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native\")\n#include\
-    \ \"C++/template.hpp\"\n#include \"C++/math/psum/psum.hpp\"\nint main() {\n  \t\
-    VvyLw::wa_haya_exe();\n  \tnow(start);\n  \t//INT(t); while(t--)\n  \tVvyLw::solve();\n\
-    \  \tnow(stop);\n  \ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
-    \nvoid VvyLw::solve() {\n    int n, q;\n    std::cin >> n >> q;\n    man::vec::zhl\
-    \ a(n);\n    std::cin >> a;\n    man::psum s(a);\n    while(q--) {\n        int\
-    \ l, r;\n        std::cin >> l >> r;\n        std::cout << s.sum(l, r) << '\\\
-    n';\n    }\n}"
+    \ \"C++/math/psum/psum.hpp\"\n#include \"C++/template.hpp\"\nint main() {\n  \t\
+    now(start);\n  \tVvyLw::wa_haya_exe();\n  \tnow(stop);\n  \ttime(start, stop);\n\
+    }\n\n// --------------------------------------------------------------------------------------------------------------\n\
+    \ninline void VvyLw::solve() noexcept {\n    int n, q;\n    std::cin >> n >> q;\n\
+    \    man::vec::zhl a(n);\n    std::cin >> a;\n    man::psum s(a);\n    while(q--)\
+    \ {\n        int l, r;\n        std::cin >> l >> r;\n        std::cout << s.sum(l,\
+    \ r) << '\\n';\n    }\n}"
   dependsOn:
+  - C++/math/psum/psum.hpp
   - C++/template.hpp
   - C++/core/alias.hpp
   - C++/core/timer.hpp
@@ -451,11 +452,10 @@ data:
   - C++/core/mypair.hpp
   - C++/core/io/input.hpp
   - C++/core/io/output.hpp
-  - C++/math/psum/psum.hpp
   isVerificationFile: true
   path: test/sr_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-06-12 12:26:53+09:00'
+  timestamp: '2025-06-12 12:50:02+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/sr_sum.test.cpp

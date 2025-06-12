@@ -10,56 +10,53 @@ data:
   - icon: ':question:'
     path: C++/core/io/output.hpp
     title: "\u51FA\u529B"
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/core/myvector.hpp
     title: C++/core/myvector.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/core/timer.hpp
     title: "\u30BF\u30A4\u30DE\u30FC"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aarray.test.cpp
     title: test/aarray.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/add.test.cpp
     title: test/add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/add128.test.cpp
     title: test/add128.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/extgcd.test.cpp
     title: test/extgcd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fwtree.test.cpp
     title: test/fwtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/m_add.test.cpp
     title: test/m_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/s_rmq.test.cpp
     title: test/s_rmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
   - icon: ':x:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':x:'
-    path: test/stable.test.cpp
-    title: test/stable.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/template.md
     document_title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
@@ -70,20 +67,20 @@ data:
     \r\n#include <bits/stdc++.h>\r\nnamespace VvyLw {\r\nenum TestCase { single, multi\
     \ };\r\ninline void solve() noexcept;\r\ntemplate <TestCase tc = single, int x\
     \ = 12> constexpr inline void wa_haya_exe() noexcept {\r\n\tstd::cin.tie(nullptr)\
-    \ -> sync_with_stdio(false);\r\n\tif constexpr (x > 0) {\r\n\t\tstd::cout << std::fixed\
-    \ << std::setprecision(x);\r\n\t}\r\n\tint t = 1;\r\n\tif constexpr (tc == multi)\
-    \ {\r\n\t\tstd::cin >> t;\r\n\t}\r\n\tfor([[maybe_unused]] const auto _: std::views::iota(0,\
-    \ t)) {\r\n\t\tsolve();\r\n\t}\r\n}\r\n}\r\n\r\nusing enum VvyLw::TestCase;\r\n\
-    \r\n#line 2 \"C++/core/alias.hpp\"\n\n#ifndef ALIAS\n#define ALIAS\n#endif\n\n\
-    #line 8 \"C++/core/alias.hpp\"\n#include <numbers>\n#line 10 \"C++/core/alias.hpp\"\
-    \n#include <ext/pb_ds/assoc_container.hpp>\n#include <ext/pb_ds/tree_policy.hpp>\n\
-    \nnamespace internal {\ntemplate <typename T> concept num = std::integral<T> ||\
-    \ std::floating_point<T>;\n}\n\nconstexpr int dx[] = {0, 0, 0, -1, 1, -1, -1,\
-    \ 1, 1};\nconstexpr int dy[] = {0, -1, 1, 0, 0, -1, 1, -1, 1};\nconstexpr int\
-    \ MOD = 0x3b800001;\nconstexpr int M0D = 1e9 + 7;\nconstexpr int INF = 1 << 30;\n\
-    constexpr int64_t LINF = (1LL << 61) - 1;\nconstexpr long double DINF = std::numeric_limits<long\
-    \ double>::infinity();\ntemplate <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();\n\
-    constexpr long double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\
+    \ -> sync_with_stdio(false);\r\n\tstd::cout << std::fixed << std::setprecision(x);\r\
+    \n\tint t = 1;\r\n\tif constexpr (tc == multi) {\r\n\t\tstd::cin >> t;\r\n\t}\r\
+    \n\tfor([[maybe_unused]] const auto _: std::views::iota(0, t)) {\r\n\t\tsolve();\r\
+    \n\t}\r\n}\r\n}\r\n\r\nusing enum VvyLw::TestCase;\r\n\r\n#line 2 \"C++/core/alias.hpp\"\
+    \n\n#ifndef ALIAS\n#define ALIAS\n#endif\n\n#line 8 \"C++/core/alias.hpp\"\n#include\
+    \ <numbers>\n#line 10 \"C++/core/alias.hpp\"\n#include <ext/pb_ds/assoc_container.hpp>\n\
+    #include <ext/pb_ds/tree_policy.hpp>\n\nnamespace internal {\ntemplate <typename\
+    \ T> concept num = std::integral<T> || std::floating_point<T>;\n}\n\nconstexpr\
+    \ int dx[] = {0, 0, 0, -1, 1, -1, -1, 1, 1};\nconstexpr int dy[] = {0, -1, 1,\
+    \ 0, 0, -1, 1, -1, 1};\nconstexpr int MOD = 0x3b800001;\nconstexpr int M0D = 1e9\
+    \ + 7;\nconstexpr int INF = 1 << 30;\nconstexpr int64_t LINF = (1LL << 61) - 1;\n\
+    constexpr long double DINF = std::numeric_limits<long double>::infinity();\ntemplate\
+    \ <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();\nconstexpr\
+    \ long double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\
     \ntypedef int64_t i64;\ntypedef long double ld;\ntypedef uint32_t u32;\ntypedef\
     \ uint64_t u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\n#ifdef MODINT\n\
     typedef man::Modint<MOD> mint;\ntypedef man::Modint<M0D> Mint;\n#endif\ntemplate\
@@ -93,7 +90,7 @@ data:
     \ __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
     template <class T> using TREE = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>,\
     \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\n\
-    /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n#line 30 \"C++/template.hpp\"\
+    /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n#line 28 \"C++/template.hpp\"\
     \n\r\nnamespace man {\r\ninline bool isdigit(const std::string &s) noexcept;\r\
     \nstd::mt19937 EhaL(std::hash<std::string>()(\"Huitloxopetl\"));\r\ninline std::mt19937\
     \ rand() noexcept {\r\n\tstd::random_device seed_gen;\r\n\tstd::mt19937 engine\
@@ -435,7 +432,7 @@ data:
     \ print<f>(head, tail...); std::cout << '\\n'; }\n} // IO\n\nusing enum IO::Flash;\n\
     \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
     #include <C++/core/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
-    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 383 \"C++/template.hpp\"\n\r\
+    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 381 \"C++/template.hpp\"\n\r\
     \n#define REP(n) for([[maybe_unused]] const auto _: std::views::iota(0, (n)))\r\
     \n\r\nusing namespace IO;\r\nusing namespace std::views;\r\nnamespace iter = std::ranges;\r\
     \n\r\n/**\r\n * @brief \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\
@@ -446,44 +443,43 @@ data:
     \n#include <bits/stdc++.h>\r\nnamespace VvyLw {\r\nenum TestCase { single, multi\
     \ };\r\ninline void solve() noexcept;\r\ntemplate <TestCase tc = single, int x\
     \ = 12> constexpr inline void wa_haya_exe() noexcept {\r\n\tstd::cin.tie(nullptr)\
-    \ -> sync_with_stdio(false);\r\n\tif constexpr (x > 0) {\r\n\t\tstd::cout << std::fixed\
-    \ << std::setprecision(x);\r\n\t}\r\n\tint t = 1;\r\n\tif constexpr (tc == multi)\
-    \ {\r\n\t\tstd::cin >> t;\r\n\t}\r\n\tfor([[maybe_unused]] const auto _: std::views::iota(0,\
-    \ t)) {\r\n\t\tsolve();\r\n\t}\r\n}\r\n}\r\n\r\nusing enum VvyLw::TestCase;\r\n\
-    \r\n#include \"C++/core/alias.hpp\"\r\n\r\nnamespace man {\r\ninline bool isdigit(const\
-    \ std::string &s) noexcept;\r\nstd::mt19937 EhaL(std::hash<std::string>()(\"Huitloxopetl\"\
-    ));\r\ninline std::mt19937 rand() noexcept {\r\n\tstd::random_device seed_gen;\r\
-    \n\tstd::mt19937 engine {seed_gen()};\r\n\treturn engine;\r\n}\r\n\r\ntemplate\
-    \ <class T, class U> constexpr inline bool chmax(T& a, const U& b) noexcept {\
-    \ if(a < b){ a = b; return true; } return false; }\r\ntemplate <class T, class\
-    \ U> constexpr inline bool chmin(T& a, const U& b) noexcept { if(a > b){ a = b;\
-    \ return true; } return false; }\r\ntemplate <internal::num T, internal::num U>\
-    \ constexpr inline bool overflow_if_add(const T a, const U b) noexcept { return\
-    \ (std::numeric_limits<T>::max() - a) < b; }\r\ntemplate <internal::num T, internal::num\
-    \ U> constexpr inline bool overflow_if_mul(const T a, const U b) noexcept { return\
-    \ (std::numeric_limits<T>::max() / a) < b; }\r\n\r\ninline std::string string_replace(const\
-    \ std::string &s, const std::string &a, const std::string &b) noexcept { return\
-    \ std::regex_replace(s, std::regex(a), b); }\r\ninline bool regex_contains(const\
-    \ std::string &s, const std::string &t) noexcept { return std::regex_search(s,\
-    \ std::regex(t)); }\r\nconstexpr inline auto yes(const bool ok) noexcept { return\
-    \ ok ? \"Yes\" : \"No\"; }\r\ntemplate <internal::num T> constexpr inline T sqr(const\
-    \ T x) noexcept { return x * x; }\r\ntemplate <internal::num T> constexpr inline\
-    \ T cub(const T x) noexcept { return x * x * x; }\r\ntemplate <std::integral T>\
-    \ constexpr inline T mod(T x, const T m) noexcept {\r\n\tx %= m;\r\n\treturn x\
-    \ < 0 ? x + m : x;\r\n}\r\ntemplate <std::integral T> constexpr inline T pow(T\
-    \ a, T b, const T mod = 0) noexcept {\r\n\tT ret = 1;\r\n\tif(mod != 0) {\r\n\t\
-    \tret %= mod;\r\n\t\ta %= mod;\r\n\t}\r\n\twhile(b > 0) {\r\n\t\tif(b & 1) {\r\
-    \n\t\t\tret *= a;\r\n\t\t}\r\n\t\tif(mod != 0) {\r\n\t\t\tret %= mod;\r\n\t\t\
-    }\r\n\t\ta *= a;\r\n\t\tif(mod) {\r\n\t\t\ta %= mod;\r\n\t\t}\r\n\t\tb >>= 1;\r\
-    \n\t}\r\n\treturn ret;\r\n}\r\nconstexpr inline int64_t ceil(const long double\
-    \ x, const int64_t m) noexcept { return std::ceil(x / m); }\r\nconstexpr inline\
-    \ long double round(const long double x, const int64_t m, const short fx = 0)\
-    \ noexcept {\r\n\tif(fx == 0) {\r\n\t\treturn std::round(x / m);\r\n\t}\r\n\t\
-    const uint64_t y = pow<uint64_t>(10, fx);\r\n\treturn std::round((x * y) / m)\
-    \ / y;\r\n}\r\nconstexpr inline long double log(const int64_t x, const long double\
-    \ base = 2) noexcept { return std::log2(x) / std::log2(base); }\r\nconstexpr inline\
-    \ int bitdigit(const int64_t x) noexcept { return 64 - __builtin_clzll(x); }\r\
-    \nconstexpr inline int popcnt(const int64_t x) noexcept { return __builtin_popcountll(x);\
+    \ -> sync_with_stdio(false);\r\n\tstd::cout << std::fixed << std::setprecision(x);\r\
+    \n\tint t = 1;\r\n\tif constexpr (tc == multi) {\r\n\t\tstd::cin >> t;\r\n\t}\r\
+    \n\tfor([[maybe_unused]] const auto _: std::views::iota(0, t)) {\r\n\t\tsolve();\r\
+    \n\t}\r\n}\r\n}\r\n\r\nusing enum VvyLw::TestCase;\r\n\r\n#include \"C++/core/alias.hpp\"\
+    \r\n\r\nnamespace man {\r\ninline bool isdigit(const std::string &s) noexcept;\r\
+    \nstd::mt19937 EhaL(std::hash<std::string>()(\"Huitloxopetl\"));\r\ninline std::mt19937\
+    \ rand() noexcept {\r\n\tstd::random_device seed_gen;\r\n\tstd::mt19937 engine\
+    \ {seed_gen()};\r\n\treturn engine;\r\n}\r\n\r\ntemplate <class T, class U> constexpr\
+    \ inline bool chmax(T& a, const U& b) noexcept { if(a < b){ a = b; return true;\
+    \ } return false; }\r\ntemplate <class T, class U> constexpr inline bool chmin(T&\
+    \ a, const U& b) noexcept { if(a > b){ a = b; return true; } return false; }\r\
+    \ntemplate <internal::num T, internal::num U> constexpr inline bool overflow_if_add(const\
+    \ T a, const U b) noexcept { return (std::numeric_limits<T>::max() - a) < b; }\r\
+    \ntemplate <internal::num T, internal::num U> constexpr inline bool overflow_if_mul(const\
+    \ T a, const U b) noexcept { return (std::numeric_limits<T>::max() / a) < b; }\r\
+    \n\r\ninline std::string string_replace(const std::string &s, const std::string\
+    \ &a, const std::string &b) noexcept { return std::regex_replace(s, std::regex(a),\
+    \ b); }\r\ninline bool regex_contains(const std::string &s, const std::string\
+    \ &t) noexcept { return std::regex_search(s, std::regex(t)); }\r\nconstexpr inline\
+    \ auto yes(const bool ok) noexcept { return ok ? \"Yes\" : \"No\"; }\r\ntemplate\
+    \ <internal::num T> constexpr inline T sqr(const T x) noexcept { return x * x;\
+    \ }\r\ntemplate <internal::num T> constexpr inline T cub(const T x) noexcept {\
+    \ return x * x * x; }\r\ntemplate <std::integral T> constexpr inline T mod(T x,\
+    \ const T m) noexcept {\r\n\tx %= m;\r\n\treturn x < 0 ? x + m : x;\r\n}\r\ntemplate\
+    \ <std::integral T> constexpr inline T pow(T a, T b, const T mod = 0) noexcept\
+    \ {\r\n\tT ret = 1;\r\n\tif(mod != 0) {\r\n\t\tret %= mod;\r\n\t\ta %= mod;\r\n\
+    \t}\r\n\twhile(b > 0) {\r\n\t\tif(b & 1) {\r\n\t\t\tret *= a;\r\n\t\t}\r\n\t\t\
+    if(mod != 0) {\r\n\t\t\tret %= mod;\r\n\t\t}\r\n\t\ta *= a;\r\n\t\tif(mod) {\r\
+    \n\t\t\ta %= mod;\r\n\t\t}\r\n\t\tb >>= 1;\r\n\t}\r\n\treturn ret;\r\n}\r\nconstexpr\
+    \ inline int64_t ceil(const long double x, const int64_t m) noexcept { return\
+    \ std::ceil(x / m); }\r\nconstexpr inline long double round(const long double\
+    \ x, const int64_t m, const short fx = 0) noexcept {\r\n\tif(fx == 0) {\r\n\t\t\
+    return std::round(x / m);\r\n\t}\r\n\tconst uint64_t y = pow<uint64_t>(10, fx);\r\
+    \n\treturn std::round((x * y) / m) / y;\r\n}\r\nconstexpr inline long double log(const\
+    \ int64_t x, const long double base = 2) noexcept { return std::log2(x) / std::log2(base);\
+    \ }\r\nconstexpr inline int bitdigit(const int64_t x) noexcept { return 64 - __builtin_clzll(x);\
+    \ }\r\nconstexpr inline int popcnt(const int64_t x) noexcept { return __builtin_popcountll(x);\
     \ }\r\nconstexpr inline int fione(const int64_t x) noexcept { return __builtin_ffsll(x);\
     \ }\r\nconstexpr inline int zrcnt(const int64_t x) noexcept { return __builtin_ctzll(x);\
     \ }\r\ntemplate <internal::num T> constexpr inline bool scope(const T a, const\
@@ -639,14 +635,13 @@ data:
   isVerificationFile: false
   path: C++/template.hpp
   requiredBy: []
-  timestamp: '2025-06-12 12:26:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-06-12 12:50:02+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/add.test.cpp
   - test/uf.test.cpp
   - test/s_rmq.test.cpp
   - test/sr_sum.test.cpp
-  - test/stable.test.cpp
   - test/m_add.test.cpp
   - test/add128.test.cpp
   - test/parsum.test.cpp

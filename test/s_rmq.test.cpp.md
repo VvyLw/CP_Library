@@ -10,26 +10,26 @@ data:
   - icon: ':question:'
     path: C++/core/io/output.hpp
     title: "\u51FA\u529B"
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/core/myvector.hpp
     title: C++/core/myvector.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/core/timer.hpp
     title: "\u30BF\u30A4\u30DE\u30FC"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/ds/SparseTable.hpp
     title: Sparse Table
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -38,26 +38,53 @@ data:
   bundledCode: "#line 1 \"test/s_rmq.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\
     \n/*#pragma GCC optimize(\"O3\")\n#pragma GCC optimize(\"unroll-loops\")//*/\n\
     //#pragma GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native\"\
-    )\n#line 2 \"C++/template.hpp\"\n#ifndef TEMPLATE\r\n#define TEMPLATE\r\n#endif\r\
-    \n#pragma GCC diagnostic ignored \"-Wunused-parameter\"\r\n#pragma GCC diagnostic\
-    \ ignored \"-Wsign-compare\"\r\n#pragma GCC diagnostic ignored \"-Wdeprecated-copy\"\
+    )\n#line 2 \"C++/ds/SparseTable.hpp\"\n\r\n#include <vector>\r\n#include <functional>\r\
+    \n#include <ranges>\r\nnamespace man {\r\ntemplate <class T> struct SparseTable\
+    \ {\r\nprivate:\r\n    using F = std::function<T(T,T)>;\r\n    std::vector<std::vector<T>>\
+    \ st;\r\n    std::vector<T> lookup;\r\n    F f;\r\npublic:\r\n    SparseTable(const\
+    \ std::vector<T> &v, const F &f_) : f(f_) {\r\n        int b = 0;\r\n        while((1\
+    \ << b) <= std::ssize(v)) {\r\n            ++b;\r\n        }\r\n        st.assign(b,\
+    \ std::vector<T>(1 << b));\r\n        for(const auto i: std::views::iota(0, std::ssize(v)))\
+    \ {\r\n            st[0][i] = v[i];\r\n        }\r\n        for(const auto i:\
+    \ std::views::iota(1, b)) {\r\n            for(int j = 0; j + (1 << i) <= (1 <<\
+    \ b); j++) {\r\n                st[i][j] = f(st[i - 1][j], st[i - 1][j + (1 <<\
+    \ (i - 1))]);\r\n            }\r\n        }\r\n        lookup.resize(std::ssize(v)\
+    \ + 1);\r\n        for(const auto i: std::views::iota(2, std::ssize(lookup)))\
+    \ {\r\n            lookup[i] = lookup[i >> 1] + 1;\r\n        }\r\n    }\r\n \
+    \   constexpr inline T query(const T l, const T r) noexcept {\r\n        const\
+    \ int b = lookup[r - l];\r\n        return f(st[b][l], st[b][r - (1 << b)]);\r\
+    \n    }\r\n    template <class Boolean = bool> constexpr inline int min_left(const\
+    \ int x, const Boolean &fn) noexcept {\r\n        if(x == 0) {\r\n           \
+    \ return 0;\r\n        }\r\n        int ok = x, ng = -1;\r\n        while(std::abs(ok\
+    \ - ng) > 1) {\r\n            const int mid = (ok + ng) / 2;\r\n            (fn(query(mid,\
+    \ x) - 1) ? ok : ng) = mid;\r\n        }\r\n        return ok;\r\n    }\r\n  \
+    \  template <class Boolean = bool> constexpr inline int max_right(const int x,\
+    \ const Boolean &fn) noexcept {\r\n        if(x == std::ssize(lookup) - 1) {\r\
+    \n            return std::ssize(lookup) - 1;\r\n        }\r\n        int ok =\
+    \ x, ng = std::ssize(lookup);\r\n        while(std::abs(ok - ng) > 1) {\r\n  \
+    \          const int mid = (ok + ng) / 2;\r\n            (fn(query(x, mid)) ?\
+    \ ok : ng) = mid;\r\n        }\r\n        return ok;\r\n    }\r\n};\r\n}\r\n/**\r\
+    \n * @brief Sparse Table\r\n * @see https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html\r\
+    \n */\n#line 2 \"C++/template.hpp\"\n#ifndef TEMPLATE\r\n#define TEMPLATE\r\n\
+    #endif\r\n#pragma GCC diagnostic ignored \"-Wunused-parameter\"\r\n#pragma GCC\
+    \ diagnostic ignored \"-Wsign-compare\"\r\n#pragma GCC diagnostic ignored \"-Wdeprecated-copy\"\
     \r\n#include <bits/stdc++.h>\r\nnamespace VvyLw {\r\nenum TestCase { single, multi\
     \ };\r\ninline void solve() noexcept;\r\ntemplate <TestCase tc = single, int x\
     \ = 12> constexpr inline void wa_haya_exe() noexcept {\r\n\tstd::cin.tie(nullptr)\
-    \ -> sync_with_stdio(false);\r\n\tif constexpr (x > 0) {\r\n\t\tstd::cout << std::fixed\
-    \ << std::setprecision(x);\r\n\t}\r\n\tint t = 1;\r\n\tif constexpr (tc == multi)\
-    \ {\r\n\t\tstd::cin >> t;\r\n\t}\r\n\tfor([[maybe_unused]] const auto _: std::views::iota(0,\
-    \ t)) {\r\n\t\tsolve();\r\n\t}\r\n}\r\n}\r\n\r\nusing enum VvyLw::TestCase;\r\n\
-    \r\n#line 2 \"C++/core/alias.hpp\"\n\n#ifndef ALIAS\n#define ALIAS\n#endif\n\n\
-    #line 8 \"C++/core/alias.hpp\"\n#include <numbers>\n#line 10 \"C++/core/alias.hpp\"\
-    \n#include <ext/pb_ds/assoc_container.hpp>\n#include <ext/pb_ds/tree_policy.hpp>\n\
-    \nnamespace internal {\ntemplate <typename T> concept num = std::integral<T> ||\
-    \ std::floating_point<T>;\n}\n\nconstexpr int dx[] = {0, 0, 0, -1, 1, -1, -1,\
-    \ 1, 1};\nconstexpr int dy[] = {0, -1, 1, 0, 0, -1, 1, -1, 1};\nconstexpr int\
-    \ MOD = 0x3b800001;\nconstexpr int M0D = 1e9 + 7;\nconstexpr int INF = 1 << 30;\n\
-    constexpr int64_t LINF = (1LL << 61) - 1;\nconstexpr long double DINF = std::numeric_limits<long\
-    \ double>::infinity();\ntemplate <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();\n\
-    constexpr long double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\
+    \ -> sync_with_stdio(false);\r\n\tstd::cout << std::fixed << std::setprecision(x);\r\
+    \n\tint t = 1;\r\n\tif constexpr (tc == multi) {\r\n\t\tstd::cin >> t;\r\n\t}\r\
+    \n\tfor([[maybe_unused]] const auto _: std::views::iota(0, t)) {\r\n\t\tsolve();\r\
+    \n\t}\r\n}\r\n}\r\n\r\nusing enum VvyLw::TestCase;\r\n\r\n#line 2 \"C++/core/alias.hpp\"\
+    \n\n#ifndef ALIAS\n#define ALIAS\n#endif\n\n#line 8 \"C++/core/alias.hpp\"\n#include\
+    \ <numbers>\n#line 10 \"C++/core/alias.hpp\"\n#include <ext/pb_ds/assoc_container.hpp>\n\
+    #include <ext/pb_ds/tree_policy.hpp>\n\nnamespace internal {\ntemplate <typename\
+    \ T> concept num = std::integral<T> || std::floating_point<T>;\n}\n\nconstexpr\
+    \ int dx[] = {0, 0, 0, -1, 1, -1, -1, 1, 1};\nconstexpr int dy[] = {0, -1, 1,\
+    \ 0, 0, -1, 1, -1, 1};\nconstexpr int MOD = 0x3b800001;\nconstexpr int M0D = 1e9\
+    \ + 7;\nconstexpr int INF = 1 << 30;\nconstexpr int64_t LINF = (1LL << 61) - 1;\n\
+    constexpr long double DINF = std::numeric_limits<long double>::infinity();\ntemplate\
+    \ <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();\nconstexpr\
+    \ long double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\
     \ntypedef int64_t i64;\ntypedef long double ld;\ntypedef uint32_t u32;\ntypedef\
     \ uint64_t u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\n#ifdef MODINT\n\
     typedef man::Modint<MOD> mint;\ntypedef man::Modint<M0D> Mint;\n#endif\ntemplate\
@@ -67,7 +94,7 @@ data:
     \ __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
     template <class T> using TREE = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>,\
     \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\n\
-    /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n#line 30 \"C++/template.hpp\"\
+    /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n#line 28 \"C++/template.hpp\"\
     \n\r\nnamespace man {\r\ninline bool isdigit(const std::string &s) noexcept;\r\
     \nstd::mt19937 EhaL(std::hash<std::string>()(\"Huitloxopetl\"));\r\ninline std::mt19937\
     \ rand() noexcept {\r\n\tstd::random_device seed_gen;\r\n\tstd::mt19937 engine\
@@ -409,57 +436,30 @@ data:
     \ print<f>(head, tail...); std::cout << '\\n'; }\n} // IO\n\nusing enum IO::Flash;\n\
     \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
     #include <C++/core/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
-    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 383 \"C++/template.hpp\"\n\r\
+    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 381 \"C++/template.hpp\"\n\r\
     \n#define REP(n) for([[maybe_unused]] const auto _: std::views::iota(0, (n)))\r\
     \n\r\nusing namespace IO;\r\nusing namespace std::views;\r\nnamespace iter = std::ranges;\r\
     \n\r\n/**\r\n * @brief \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\
-    \n */\n#line 2 \"C++/ds/SparseTable.hpp\"\n\r\n#line 5 \"C++/ds/SparseTable.hpp\"\
-    \nnamespace man {\r\ntemplate <class T> struct SparseTable {\r\nprivate:\r\n \
-    \   using F = std::function<T(T,T)>;\r\n    std::vector<std::vector<T>> st;\r\n\
-    \    std::vector<T> lookup;\r\n    F f;\r\npublic:\r\n    SparseTable(const std::vector<T>\
-    \ &v, const F &f_) : f(f_) {\r\n        int b = 0;\r\n        while((1 << b) <=\
-    \ std::ssize(v)) {\r\n            ++b;\r\n        }\r\n        st.assign(b, std::vector<T>(1\
-    \ << b));\r\n        for(const auto i: std::views::iota(0, std::ssize(v))) {\r\
-    \n            st[0][i] = v[i];\r\n        }\r\n        for(const auto i: std::views::iota(1,\
-    \ b)) {\r\n            for(int j = 0; j + (1 << i) <= (1 << b); j++) {\r\n   \
-    \             st[i][j] = f(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);\r\n \
-    \           }\r\n        }\r\n        lookup.resize(std::ssize(v) + 1);\r\n  \
-    \      for(const auto i: std::views::iota(2, std::ssize(lookup))) {\r\n      \
-    \      lookup[i] = lookup[i >> 1] + 1;\r\n        }\r\n    }\r\n    constexpr\
-    \ inline T query(const T l, const T r) noexcept {\r\n        const int b = lookup[r\
-    \ - l];\r\n        return f(st[b][l], st[b][r - (1 << b)]);\r\n    }\r\n    template\
-    \ <class Boolean = bool> constexpr inline int min_left(const int x, const Boolean\
-    \ &fn) noexcept {\r\n        if(x == 0) {\r\n            return 0;\r\n       \
-    \ }\r\n        int ok = x, ng = -1;\r\n        while(std::abs(ok - ng) > 1) {\r\
-    \n            const int mid = (ok + ng) / 2;\r\n            (fn(query(mid, x)\
-    \ - 1) ? ok : ng) = mid;\r\n        }\r\n        return ok;\r\n    }\r\n    template\
-    \ <class Boolean = bool> constexpr inline int max_right(const int x, const Boolean\
-    \ &fn) noexcept {\r\n        if(x == std::ssize(lookup) - 1) {\r\n           \
-    \ return std::ssize(lookup) - 1;\r\n        }\r\n        int ok = x, ng = std::ssize(lookup);\r\
-    \n        while(std::abs(ok - ng) > 1) {\r\n            const int mid = (ok +\
-    \ ng) / 2;\r\n            (fn(query(x, mid)) ? ok : ng) = mid;\r\n        }\r\n\
-    \        return ok;\r\n    }\r\n};\r\n}\r\n/**\r\n * @brief Sparse Table\r\n *\
-    \ @see https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html\r\
-    \n */\n#line 7 \"test/s_rmq.test.cpp\"\nint main() {\n  \tVvyLw::wa_haya_exe();\n\
-    \  \tnow(start);\n  \t//INT(t); while(t--)\n  \tVvyLw::solve();\n  \tnow(stop);\n\
-    \  \ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
-    \nvoid VvyLw::solve() {\n    int n, q;\n    std::cin >> n >> q;\n    std::vector<int>\
-    \ a(n);\n    std::cin >> a;\n    man::SparseTable<int> st(a, [](int a, int b)\
-    \ -> int { return std::min(a, b); });\n    while(q--) {\n        int l, r;\n \
-    \       std::cin >> l >> r;\n        std::cout << st.query(l, r) << '\\n';\n \
-    \   }\n}\n"
+    \n */\n#line 7 \"test/s_rmq.test.cpp\"\nint main() {\n  \tnow(start);\n  \tVvyLw::wa_haya_exe();\n\
+    \  \tnow(stop);\n  \ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
+    \ninline void VvyLw::solve() noexcept {\n    int n, q;\n    std::cin >> n >> q;\n\
+    \    std::vector<int> a(n);\n    std::cin >> a;\n    man::SparseTable<int> st(a,\
+    \ [](int a, int b) -> int { return std::min(a, b); });\n    REP(q) {\n       \
+    \ int l, r;\n        std::cin >> l >> r;\n        std::cout << st.query(l, r)\
+    \ << '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n/*#pragma\
     \ GCC optimize(\"O3\")\n#pragma GCC optimize(\"unroll-loops\")//*/\n//#pragma\
     \ GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native\")\n#include\
-    \ \"C++/template.hpp\"\n#include \"C++/ds/SparseTable.hpp\"\nint main() {\n  \t\
-    VvyLw::wa_haya_exe();\n  \tnow(start);\n  \t//INT(t); while(t--)\n  \tVvyLw::solve();\n\
-    \  \tnow(stop);\n  \ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
-    \nvoid VvyLw::solve() {\n    int n, q;\n    std::cin >> n >> q;\n    std::vector<int>\
-    \ a(n);\n    std::cin >> a;\n    man::SparseTable<int> st(a, [](int a, int b)\
-    \ -> int { return std::min(a, b); });\n    while(q--) {\n        int l, r;\n \
-    \       std::cin >> l >> r;\n        std::cout << st.query(l, r) << '\\n';\n \
-    \   }\n}"
+    \ \"C++/ds/SparseTable.hpp\"\n#include \"C++/template.hpp\"\nint main() {\n  \t\
+    now(start);\n  \tVvyLw::wa_haya_exe();\n  \tnow(stop);\n  \ttime(start, stop);\n\
+    }\n\n// --------------------------------------------------------------------------------------------------------------\n\
+    \ninline void VvyLw::solve() noexcept {\n    int n, q;\n    std::cin >> n >> q;\n\
+    \    std::vector<int> a(n);\n    std::cin >> a;\n    man::SparseTable<int> st(a,\
+    \ [](int a, int b) -> int { return std::min(a, b); });\n    REP(q) {\n       \
+    \ int l, r;\n        std::cin >> l >> r;\n        std::cout << st.query(l, r)\
+    \ << '\\n';\n    }\n}"
   dependsOn:
+  - C++/ds/SparseTable.hpp
   - C++/template.hpp
   - C++/core/alias.hpp
   - C++/core/timer.hpp
@@ -467,12 +467,11 @@ data:
   - C++/core/mypair.hpp
   - C++/core/io/input.hpp
   - C++/core/io/output.hpp
-  - C++/ds/SparseTable.hpp
   isVerificationFile: true
   path: test/s_rmq.test.cpp
   requiredBy: []
-  timestamp: '2025-06-12 12:26:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-12 12:50:02+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/s_rmq.test.cpp
 layout: document

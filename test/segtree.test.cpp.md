@@ -10,26 +10,26 @@ data:
   - icon: ':question:'
     path: C++/core/io/output.hpp
     title: "\u51FA\u529B"
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/core/myvector.hpp
     title: C++/core/myvector.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/core/timer.hpp
     title: "\u30BF\u30A4\u30DE\u30FC"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/ds/SegmentTree.hpp
     title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-  - icon: ':x:'
+  - icon: ':question:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
@@ -38,26 +38,77 @@ data:
   bundledCode: "#line 1 \"test/segtree.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\
     \n/*#pragma GCC optimize(\"O3\")\n#pragma GCC optimize(\"unroll-loops\")//*/\n\
     //#pragma GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native\"\
-    )\n#line 2 \"C++/template.hpp\"\n#ifndef TEMPLATE\r\n#define TEMPLATE\r\n#endif\r\
-    \n#pragma GCC diagnostic ignored \"-Wunused-parameter\"\r\n#pragma GCC diagnostic\
-    \ ignored \"-Wsign-compare\"\r\n#pragma GCC diagnostic ignored \"-Wdeprecated-copy\"\
+    )\n#line 2 \"C++/ds/SegmentTree.hpp\"\n\r\n#pragma GCC diagnostic ignored \"-Wreorder\"\
+    \r\n\r\n#include <vector>\r\n#include <functional>\r\n#include <ranges>\r\nnamespace\
+    \ man {\r\ntemplate <class T> struct SegTree {\r\nprivate:\r\n    using F = std::function<T(T,\
+    \ T)>;\r\n    int n, rank, fine;\r\n    const F f;\r\n    const T e;\r\n    std::vector<T>\
+    \ dat;\r\npublic:\r\n    SegTree(const int n_, const F f_, const T& e_): f(f_),\
+    \ e(e_), fine(n_) {\r\n        n = 1, rank = 0;\r\n        while(fine > n) {\r\
+    \n            n <<= 1LL, rank++;\r\n        }\r\n        dat.assign(n << 1, e_);\r\
+    \n    }\r\n    SegTree(const std::vector<T> &v, const F f_, const T e_): f(f_),\
+    \ e(e_), fine(std::ssize(v)) {\r\n        n = 1, rank = 0;\r\n        while(fine\
+    \ > n) {\r\n            n <<= 1LL, rank++;\r\n        }\r\n        dat.assign(n\
+    \ << 1, e_);\r\n        for(const auto i: std::views::iota(0, std::ssize(v)))\
+    \ {\r\n            update(i, v[i]);\r\n        }\r\n    }\r\n    constexpr inline\
+    \ T operator[](int i) const noexcept { return dat[i + n]; }\r\n    constexpr inline\
+    \ void update(int i, const T& x) noexcept {\r\n        i += n;\r\n        dat[i]\
+    \ = x;\r\n        while(i >>= 1LL) {\r\n            dat[i] = f(dat[2 * i], dat[2\
+    \ * i + 1]);\r\n        }\r\n    }\r\n    constexpr inline void add(int i, const\
+    \ T& x) noexcept {\r\n        i += n;\r\n        dat[i] += x;\r\n        while(i\
+    \ >>= 1LL) {\r\n            dat[i] = f(dat[2 * i], dat[2 * i + 1]);\r\n      \
+    \  }\r\n    }\r\n    constexpr inline T query(int a, int b) const noexcept {\r\
+    \n        T l = e, r = e;\r\n        for(a += n, b += n; a < b; a >>= 1LL, b >>=\
+    \ 1LL) {\r\n            if(a & 1) {\r\n                l = f(l, dat[a++]);\r\n\
+    \            }\r\n            if(b & 1) {\r\n                r = f(dat[--b], r);\r\
+    \n            }\r\n        }\r\n        return f(l, r);\r\n    }\r\n    constexpr\
+    \ inline T all() const noexcept { return dat[1]; }\r\n    template <class Boolean\
+    \ = bool> constexpr inline int find_left(int r, const Boolean &fn) noexcept{\r\
+    \n        if(r == 0) {\r\n            return 0;\r\n        }\r\n        int h\
+    \ = 0, i = r + n;\r\n        T val = e;\r\n        for(; h <= rank; h++) {\r\n\
+    \            if(i >> h & 1){\r\n                T val2 = f(val, dat[i >> h ^ 1]);\r\
+    \n                if(fn(val2)) {\r\n                    i -= 1 << h;\r\n     \
+    \               if(i == n) {\r\n                        return 0;\r\n        \
+    \            }\r\n                    val = val2;\r\n                } else {\r\
+    \n                    break;\r\n                }\r\n            }\r\n       \
+    \ }\r\n        for(; h--;) {\r\n            T val2 = f(val, dat[(i >> h) - 1]);\r\
+    \n            if(fn(val2)) {\r\n                i -= 1 << h;\r\n             \
+    \   if(i == n) {\r\n                    return 0;\r\n                }\r\n   \
+    \             val = val2;\r\n            }\r\n        }\r\n        return i -\
+    \ n;\r\n    }\r\n    template <class Boolean = bool> constexpr inline int find_right(int\
+    \ l, const Boolean &fn) noexcept {\r\n        if(l == fine) {\r\n            return\
+    \ fine;\r\n        }\r\n        int h = 0, i = l + n;\r\n        T val = e;\r\n\
+    \        for(; h <= rank; h++) {\r\n            if(i >> h & 1) {\r\n         \
+    \       const T val2 = f(val, dat[i >> h]);\r\n                if(fn(val2)) {\r\
+    \n                    i += 1LL << h;\r\n                    if(i == n * 2) {\r\
+    \n                        return fine;\r\n                    }\r\n          \
+    \          val = val2;\r\n                } else {\r\n                    break;\r\
+    \n                }\r\n            }\r\n        }\r\n        for(; h--;) {\r\n\
+    \            const T val2 = f(val, dat[i >> h]);\r\n            if(fn(val2)) {\r\
+    \n                i += 1LL << h;\r\n                if(i == n * 2) {\r\n     \
+    \               return fine;\r\n                }\r\n                val = val2;\r\
+    \n            }\r\n        }\r\n        return std::min(i - n, fine);\r\n    }\r\
+    \n};\r\n}\r\n/**\r\n * @brief \u30BB\u30B0\u30E1\u30F3\u30C8\u6728\r\n * @see\
+    \ https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp\r\
+    \n */\n#line 2 \"C++/template.hpp\"\n#ifndef TEMPLATE\r\n#define TEMPLATE\r\n\
+    #endif\r\n#pragma GCC diagnostic ignored \"-Wunused-parameter\"\r\n#pragma GCC\
+    \ diagnostic ignored \"-Wsign-compare\"\r\n#pragma GCC diagnostic ignored \"-Wdeprecated-copy\"\
     \r\n#include <bits/stdc++.h>\r\nnamespace VvyLw {\r\nenum TestCase { single, multi\
     \ };\r\ninline void solve() noexcept;\r\ntemplate <TestCase tc = single, int x\
     \ = 12> constexpr inline void wa_haya_exe() noexcept {\r\n\tstd::cin.tie(nullptr)\
-    \ -> sync_with_stdio(false);\r\n\tif constexpr (x > 0) {\r\n\t\tstd::cout << std::fixed\
-    \ << std::setprecision(x);\r\n\t}\r\n\tint t = 1;\r\n\tif constexpr (tc == multi)\
-    \ {\r\n\t\tstd::cin >> t;\r\n\t}\r\n\tfor([[maybe_unused]] const auto _: std::views::iota(0,\
-    \ t)) {\r\n\t\tsolve();\r\n\t}\r\n}\r\n}\r\n\r\nusing enum VvyLw::TestCase;\r\n\
-    \r\n#line 2 \"C++/core/alias.hpp\"\n\n#ifndef ALIAS\n#define ALIAS\n#endif\n\n\
-    #line 8 \"C++/core/alias.hpp\"\n#include <numbers>\n#line 10 \"C++/core/alias.hpp\"\
-    \n#include <ext/pb_ds/assoc_container.hpp>\n#include <ext/pb_ds/tree_policy.hpp>\n\
-    \nnamespace internal {\ntemplate <typename T> concept num = std::integral<T> ||\
-    \ std::floating_point<T>;\n}\n\nconstexpr int dx[] = {0, 0, 0, -1, 1, -1, -1,\
-    \ 1, 1};\nconstexpr int dy[] = {0, -1, 1, 0, 0, -1, 1, -1, 1};\nconstexpr int\
-    \ MOD = 0x3b800001;\nconstexpr int M0D = 1e9 + 7;\nconstexpr int INF = 1 << 30;\n\
-    constexpr int64_t LINF = (1LL << 61) - 1;\nconstexpr long double DINF = std::numeric_limits<long\
-    \ double>::infinity();\ntemplate <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();\n\
-    constexpr long double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\
+    \ -> sync_with_stdio(false);\r\n\tstd::cout << std::fixed << std::setprecision(x);\r\
+    \n\tint t = 1;\r\n\tif constexpr (tc == multi) {\r\n\t\tstd::cin >> t;\r\n\t}\r\
+    \n\tfor([[maybe_unused]] const auto _: std::views::iota(0, t)) {\r\n\t\tsolve();\r\
+    \n\t}\r\n}\r\n}\r\n\r\nusing enum VvyLw::TestCase;\r\n\r\n#line 2 \"C++/core/alias.hpp\"\
+    \n\n#ifndef ALIAS\n#define ALIAS\n#endif\n\n#line 8 \"C++/core/alias.hpp\"\n#include\
+    \ <numbers>\n#line 10 \"C++/core/alias.hpp\"\n#include <ext/pb_ds/assoc_container.hpp>\n\
+    #include <ext/pb_ds/tree_policy.hpp>\n\nnamespace internal {\ntemplate <typename\
+    \ T> concept num = std::integral<T> || std::floating_point<T>;\n}\n\nconstexpr\
+    \ int dx[] = {0, 0, 0, -1, 1, -1, -1, 1, 1};\nconstexpr int dy[] = {0, -1, 1,\
+    \ 0, 0, -1, 1, -1, 1};\nconstexpr int MOD = 0x3b800001;\nconstexpr int M0D = 1e9\
+    \ + 7;\nconstexpr int INF = 1 << 30;\nconstexpr int64_t LINF = (1LL << 61) - 1;\n\
+    constexpr long double DINF = std::numeric_limits<long double>::infinity();\ntemplate\
+    \ <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();\nconstexpr\
+    \ long double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\
     \ntypedef int64_t i64;\ntypedef long double ld;\ntypedef uint32_t u32;\ntypedef\
     \ uint64_t u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\n#ifdef MODINT\n\
     typedef man::Modint<MOD> mint;\ntypedef man::Modint<M0D> Mint;\n#endif\ntemplate\
@@ -67,7 +118,7 @@ data:
     \ __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
     template <class T> using TREE = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>,\
     \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\n\
-    /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n#line 30 \"C++/template.hpp\"\
+    /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n#line 28 \"C++/template.hpp\"\
     \n\r\nnamespace man {\r\ninline bool isdigit(const std::string &s) noexcept;\r\
     \nstd::mt19937 EhaL(std::hash<std::string>()(\"Huitloxopetl\"));\r\ninline std::mt19937\
     \ rand() noexcept {\r\n\tstd::random_device seed_gen;\r\n\tstd::mt19937 engine\
@@ -409,81 +460,30 @@ data:
     \ print<f>(head, tail...); std::cout << '\\n'; }\n} // IO\n\nusing enum IO::Flash;\n\
     \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
     #include <C++/core/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
-    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 383 \"C++/template.hpp\"\n\r\
+    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 381 \"C++/template.hpp\"\n\r\
     \n#define REP(n) for([[maybe_unused]] const auto _: std::views::iota(0, (n)))\r\
     \n\r\nusing namespace IO;\r\nusing namespace std::views;\r\nnamespace iter = std::ranges;\r\
     \n\r\n/**\r\n * @brief \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\
-    \n */\n#line 2 \"C++/ds/SegmentTree.hpp\"\n\r\n#pragma GCC diagnostic ignored\
-    \ \"-Wreorder\"\r\n\r\n#line 7 \"C++/ds/SegmentTree.hpp\"\n#include <ranges>\r\
-    \nnamespace man {\r\ntemplate <class T> struct SegTree {\r\nprivate:\r\n    using\
-    \ F = std::function<T(T, T)>;\r\n    int n, rank, fine;\r\n    const F f;\r\n\
-    \    const T e;\r\n    std::vector<T> dat;\r\npublic:\r\n    SegTree(const int\
-    \ n_, const F f_, const T& e_): f(f_), e(e_), fine(n_) {\r\n        n = 1, rank\
-    \ = 0;\r\n        while(fine > n) {\r\n            n <<= 1LL, rank++;\r\n    \
-    \    }\r\n        dat.assign(n << 1, e_);\r\n    }\r\n    SegTree(const std::vector<T>\
-    \ &v, const F f_, const T e_): f(f_), e(e_), fine(std::ssize(v)) {\r\n       \
-    \ n = 1, rank = 0;\r\n        while(fine > n) {\r\n            n <<= 1LL, rank++;\r\
-    \n        }\r\n        dat.assign(n << 1, e_);\r\n        for(const auto i: std::views::iota(0,\
-    \ std::ssize(v))) {\r\n            update(i, v[i]);\r\n        }\r\n    }\r\n\
-    \    constexpr inline T operator[](int i) const noexcept { return dat[i + n];\
-    \ }\r\n    constexpr inline void update(int i, const T& x) noexcept {\r\n    \
-    \    i += n;\r\n        dat[i] = x;\r\n        while(i >>= 1LL) {\r\n        \
-    \    dat[i] = f(dat[2 * i], dat[2 * i + 1]);\r\n        }\r\n    }\r\n    constexpr\
-    \ inline void add(int i, const T& x) noexcept {\r\n        i += n;\r\n       \
-    \ dat[i] += x;\r\n        while(i >>= 1LL) {\r\n            dat[i] = f(dat[2 *\
-    \ i], dat[2 * i + 1]);\r\n        }\r\n    }\r\n    constexpr inline T query(int\
-    \ a, int b) const noexcept {\r\n        T l = e, r = e;\r\n        for(a += n,\
-    \ b += n; a < b; a >>= 1LL, b >>= 1LL) {\r\n            if(a & 1) {\r\n      \
-    \          l = f(l, dat[a++]);\r\n            }\r\n            if(b & 1) {\r\n\
-    \                r = f(dat[--b], r);\r\n            }\r\n        }\r\n       \
-    \ return f(l, r);\r\n    }\r\n    constexpr inline T all() const noexcept { return\
-    \ dat[1]; }\r\n    template <class Boolean = bool> constexpr inline int find_left(int\
-    \ r, const Boolean &fn) noexcept{\r\n        if(r == 0) {\r\n            return\
-    \ 0;\r\n        }\r\n        int h = 0, i = r + n;\r\n        T val = e;\r\n \
-    \       for(; h <= rank; h++) {\r\n            if(i >> h & 1){\r\n           \
-    \     T val2 = f(val, dat[i >> h ^ 1]);\r\n                if(fn(val2)) {\r\n\
-    \                    i -= 1 << h;\r\n                    if(i == n) {\r\n    \
-    \                    return 0;\r\n                    }\r\n                  \
-    \  val = val2;\r\n                } else {\r\n                    break;\r\n \
-    \               }\r\n            }\r\n        }\r\n        for(; h--;) {\r\n \
-    \           T val2 = f(val, dat[(i >> h) - 1]);\r\n            if(fn(val2)) {\r\
-    \n                i -= 1 << h;\r\n                if(i == n) {\r\n           \
-    \         return 0;\r\n                }\r\n                val = val2;\r\n  \
-    \          }\r\n        }\r\n        return i - n;\r\n    }\r\n    template <class\
-    \ Boolean = bool> constexpr inline int find_right(int l, const Boolean &fn) noexcept\
-    \ {\r\n        if(l == fine) {\r\n            return fine;\r\n        }\r\n  \
-    \      int h = 0, i = l + n;\r\n        T val = e;\r\n        for(; h <= rank;\
-    \ h++) {\r\n            if(i >> h & 1) {\r\n                const T val2 = f(val,\
-    \ dat[i >> h]);\r\n                if(fn(val2)) {\r\n                    i +=\
-    \ 1LL << h;\r\n                    if(i == n * 2) {\r\n                      \
-    \  return fine;\r\n                    }\r\n                    val = val2;\r\n\
-    \                } else {\r\n                    break;\r\n                }\r\
-    \n            }\r\n        }\r\n        for(; h--;) {\r\n            const T val2\
-    \ = f(val, dat[i >> h]);\r\n            if(fn(val2)) {\r\n                i +=\
-    \ 1LL << h;\r\n                if(i == n * 2) {\r\n                    return\
-    \ fine;\r\n                }\r\n                val = val2;\r\n            }\r\
-    \n        }\r\n        return std::min(i - n, fine);\r\n    }\r\n};\r\n}\r\n/**\r\
-    \n * @brief \u30BB\u30B0\u30E1\u30F3\u30C8\u6728\r\n * @see https://github.com/tatyam-prime/kyopro_library/blob/master/SegmentTree.cpp\r\
-    \n */\n#line 7 \"test/segtree.test.cpp\"\n\nint main() {\n\tVvyLw::wa_haya_exe();\n\
-    \tnow(start);\n\t/*INT(t); while(t--)//*/\n\tVvyLw::solve();\n\tnow(stop);\n\t\
-    time(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
-    \n\nvoid VvyLw::solve() {\n\tint n, q;\n\tstd::cin >> n >> q;\n\tman::vec::zhl\
-    \ a(n);\n\tstd::cin >> a;\n\tman::SegTree<i64> rsq(a, [](const i64 a, const i64\
-    \ b) -> i64 { return a + b; }, 0);\n\twhile(q--) {\n\t\tint t, p, q;\n\t\tstd::cin\
-    \ >> t >> p >> q;\n\t\tif(t) {\n\t\t\tstd::cout << rsq.query(p, q) << '\\n';\n\
-    \t\t} else {\n\t\t\trsq.add(p, q);\n\t\t}\n\t}\n}\n"
+    \n */\n#line 7 \"test/segtree.test.cpp\"\n\nint main() {\n\tnow(start);\n\tVvyLw::wa_haya_exe();\n\
+    \tnow(stop);\n\ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
+    \n\ninline void VvyLw::solve() noexcept {\n\tint n, q;\n\tstd::cin >> n >> q;\n\
+    \tman::vec::zhl a(n);\n\tstd::cin >> a;\n\tman::SegTree<i64> rsq(a, [](const i64\
+    \ a, const i64 b) -> i64 { return a + b; }, 0);\n\twhile(q--) {\n\t\tint t, p,\
+    \ q;\n\t\tstd::cin >> t >> p >> q;\n\t\tif(t) {\n\t\t\tstd::cout << rsq.query(p,\
+    \ q) << '\\n';\n\t\t} else {\n\t\t\trsq.add(p, q);\n\t\t}\n\t}\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
     /*#pragma GCC optimize(\"O3\")\n#pragma GCC optimize(\"unroll-loops\")//*/\n//#pragma\
     \ GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native\")\n#include\
-    \ \"C++/template.hpp\"\n#include \"C++/ds/SegmentTree.hpp\"\n\nint main() {\n\t\
-    VvyLw::wa_haya_exe();\n\tnow(start);\n\t/*INT(t); while(t--)//*/\n\tVvyLw::solve();\n\
-    \tnow(stop);\n\ttime(start, stop);\n}\n\n// --------------------------------------------------------------------------------------------------------------\n\
-    \n\nvoid VvyLw::solve() {\n\tint n, q;\n\tstd::cin >> n >> q;\n\tman::vec::zhl\
-    \ a(n);\n\tstd::cin >> a;\n\tman::SegTree<i64> rsq(a, [](const i64 a, const i64\
-    \ b) -> i64 { return a + b; }, 0);\n\twhile(q--) {\n\t\tint t, p, q;\n\t\tstd::cin\
-    \ >> t >> p >> q;\n\t\tif(t) {\n\t\t\tstd::cout << rsq.query(p, q) << '\\n';\n\
-    \t\t} else {\n\t\t\trsq.add(p, q);\n\t\t}\n\t}\n}"
+    \ \"C++/ds/SegmentTree.hpp\"\n#include \"C++/template.hpp\"\n\nint main() {\n\t\
+    now(start);\n\tVvyLw::wa_haya_exe();\n\tnow(stop);\n\ttime(start, stop);\n}\n\n\
+    // --------------------------------------------------------------------------------------------------------------\n\
+    \n\ninline void VvyLw::solve() noexcept {\n\tint n, q;\n\tstd::cin >> n >> q;\n\
+    \tman::vec::zhl a(n);\n\tstd::cin >> a;\n\tman::SegTree<i64> rsq(a, [](const i64\
+    \ a, const i64 b) -> i64 { return a + b; }, 0);\n\twhile(q--) {\n\t\tint t, p,\
+    \ q;\n\t\tstd::cin >> t >> p >> q;\n\t\tif(t) {\n\t\t\tstd::cout << rsq.query(p,\
+    \ q) << '\\n';\n\t\t} else {\n\t\t\trsq.add(p, q);\n\t\t}\n\t}\n}"
   dependsOn:
+  - C++/ds/SegmentTree.hpp
   - C++/template.hpp
   - C++/core/alias.hpp
   - C++/core/timer.hpp
@@ -491,12 +491,11 @@ data:
   - C++/core/mypair.hpp
   - C++/core/io/input.hpp
   - C++/core/io/output.hpp
-  - C++/ds/SegmentTree.hpp
   isVerificationFile: true
   path: test/segtree.test.cpp
   requiredBy: []
-  timestamp: '2025-06-12 12:26:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-12 12:50:02+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segtree.test.cpp
 layout: document

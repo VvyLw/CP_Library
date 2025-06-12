@@ -3,22 +3,19 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/s_rmq.test.cpp
     title: test/s_rmq.test.cpp
-  - icon: ':x:'
-    path: test/stable.test.cpp
-    title: test/stable.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Sparse Table
     links:
     - https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html
   bundledCode: "#line 2 \"C++/ds/SparseTable.hpp\"\n\r\n#include <vector>\r\n#include\
-    \ <functional>\r\nnamespace man {\r\ntemplate <class T> struct SparseTable {\r\
-    \nprivate:\r\n    using F = std::function<T(T,T)>;\r\n    std::vector<std::vector<T>>\
+    \ <functional>\r\n#include <ranges>\r\nnamespace man {\r\ntemplate <class T> struct\
+    \ SparseTable {\r\nprivate:\r\n    using F = std::function<T(T,T)>;\r\n    std::vector<std::vector<T>>\
     \ st;\r\n    std::vector<T> lookup;\r\n    F f;\r\npublic:\r\n    SparseTable(const\
     \ std::vector<T> &v, const F &f_) : f(f_) {\r\n        int b = 0;\r\n        while((1\
     \ << b) <= std::ssize(v)) {\r\n            ++b;\r\n        }\r\n        st.assign(b,\
@@ -44,12 +41,12 @@ data:
     \ ok : ng) = mid;\r\n        }\r\n        return ok;\r\n    }\r\n};\r\n}\r\n/**\r\
     \n * @brief Sparse Table\r\n * @see https://ei1333.github.io/luzhiled/snippets/structure/sparse-table.html\r\
     \n */\n"
-  code: "#pragma once\r\n\r\n#include <vector>\r\n#include <functional>\r\nnamespace\
-    \ man {\r\ntemplate <class T> struct SparseTable {\r\nprivate:\r\n    using F\
-    \ = std::function<T(T,T)>;\r\n    std::vector<std::vector<T>> st;\r\n    std::vector<T>\
-    \ lookup;\r\n    F f;\r\npublic:\r\n    SparseTable(const std::vector<T> &v, const\
-    \ F &f_) : f(f_) {\r\n        int b = 0;\r\n        while((1 << b) <= std::ssize(v))\
-    \ {\r\n            ++b;\r\n        }\r\n        st.assign(b, std::vector<T>(1\
+  code: "#pragma once\r\n\r\n#include <vector>\r\n#include <functional>\r\n#include\
+    \ <ranges>\r\nnamespace man {\r\ntemplate <class T> struct SparseTable {\r\nprivate:\r\
+    \n    using F = std::function<T(T,T)>;\r\n    std::vector<std::vector<T>> st;\r\
+    \n    std::vector<T> lookup;\r\n    F f;\r\npublic:\r\n    SparseTable(const std::vector<T>\
+    \ &v, const F &f_) : f(f_) {\r\n        int b = 0;\r\n        while((1 << b) <=\
+    \ std::ssize(v)) {\r\n            ++b;\r\n        }\r\n        st.assign(b, std::vector<T>(1\
     \ << b));\r\n        for(const auto i: std::views::iota(0, std::ssize(v))) {\r\
     \n            st[0][i] = v[i];\r\n        }\r\n        for(const auto i: std::views::iota(1,\
     \ b)) {\r\n            for(int j = 0; j + (1 << i) <= (1 << b); j++) {\r\n   \
@@ -76,11 +73,10 @@ data:
   isVerificationFile: false
   path: C++/ds/SparseTable.hpp
   requiredBy: []
-  timestamp: '2025-06-06 22:43:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-06-12 12:50:02+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/s_rmq.test.cpp
-  - test/stable.test.cpp
 documentation_of: C++/ds/SparseTable.hpp
 layout: document
 redirect_from:
