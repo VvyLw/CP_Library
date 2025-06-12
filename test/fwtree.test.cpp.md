@@ -42,8 +42,8 @@ data:
     \n#pragma GCC diagnostic ignored \"-Wunused-parameter\"\r\n#pragma GCC diagnostic\
     \ ignored \"-Wsign-compare\"\r\n#pragma GCC diagnostic ignored \"-Wdeprecated-copy\"\
     \r\n#include <bits/stdc++.h>\r\nnamespace VvyLw {\r\nenum TestCase { single, multi\
-    \ };\r\ninline void solve() noexcept;\r\ntemplate <TestCase tc = single, short\
-    \ x = 0> constexpr inline void wa_haya_exe() noexcept {\r\n\tstd::cin.tie(nullptr)\
+    \ };\r\ninline void solve() noexcept;\r\ntemplate <TestCase tc = single, int x\
+    \ = 12> constexpr inline void wa_haya_exe() noexcept {\r\n\tstd::cin.tie(nullptr)\
     \ -> sync_with_stdio(false);\r\n\tif constexpr (x > 0) {\r\n\t\tstd::cout << std::fixed\
     \ << std::setprecision(x);\r\n\t}\r\n\tint t = 1;\r\n\tif constexpr (tc == multi)\
     \ {\r\n\t\tstd::cin >> t;\r\n\t}\r\n\tfor([[maybe_unused]] const auto _: std::views::iota(0,\
@@ -470,7 +470,7 @@ data:
   isVerificationFile: true
   path: test/fwtree.test.cpp
   requiredBy: []
-  timestamp: '2025-06-12 12:21:53+09:00'
+  timestamp: '2025-06-12 12:26:53+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/fwtree.test.cpp
