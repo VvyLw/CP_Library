@@ -43,6 +43,7 @@
 "test/phi.test.cpp": "2025-06-11 17:30:11 +0900",
 "test/phi_table.test.cpp": "2025-06-06 22:43:22 +0900",
 "test/psum2d.test.cpp": "2025-06-11 17:30:11 +0900",
+"test/rangeaffine.test.cpp": "2025-06-12 17:29:16 +0900",
 "test/rh.test.cpp": "2025-06-12 17:15:04 +0900",
 "test/s_rmq.test.cpp": "2025-06-12 17:15:04 +0900",
 "test/sa.test.cpp": "2025-06-06 22:43:22 +0900",
