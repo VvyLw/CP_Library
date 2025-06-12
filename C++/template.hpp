@@ -9,7 +9,7 @@
 namespace VvyLw {
 enum TestCase { single, multi };
 inline void solve() noexcept;
-template <TestCase tc = single, short x = 0> constexpr inline void wa_haya_exe() noexcept {
+template <TestCase tc = single, int x = 12> constexpr inline void wa_haya_exe() noexcept {
 	std::cin.tie(nullptr) -> sync_with_stdio(false);
 	if constexpr (x > 0) {
 		std::cout << std::fixed << std::setprecision(x);
