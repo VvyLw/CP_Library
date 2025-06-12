@@ -11,9 +11,7 @@ enum TestCase { single, multi };
 inline void solve() noexcept;
 template <TestCase tc = single, int x = 12> constexpr inline void wa_haya_exe() noexcept {
 	std::cin.tie(nullptr) -> sync_with_stdio(false);
-	if constexpr (x > 0) {
-		std::cout << std::fixed << std::setprecision(x);
-	}
+	std::cout << std::fixed << std::setprecision(x);
 	int t = 1;
 	if constexpr (tc == multi) {
 		std::cin >> t;

@@ -7,7 +7,7 @@ namespace man {
 typedef __int128_t i128;
 inline i128 solve() noexcept {
     i128 a, b;
-    std::cin >> a >> b;
+    IO::input(a, b);
     return a + b;
 }
 }
@@ -16,6 +16,6 @@ int main() {
     int t;
     std::cin >> t;
     for([[maybe_unused]] const auto _: std::views::iota(0, t)) {
-        std::cout << man::solve() << '\n';
+        IO::println(man::solve());
     }
 }

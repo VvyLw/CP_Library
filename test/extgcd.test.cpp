@@ -5,11 +5,8 @@
 #include "C++/template.hpp"
 
 int main() {
-    VvyLw::wa_haya_exe();
     now(start);
-    int T=1;
-    //in(T);
-    while(T--) VvyLw::solve();
+    VvyLw::wa_haya_exe();
     now(stop);
     time(start, stop);
 }
@@ -17,7 +14,7 @@ int main() {
 // --------------------------------------------------------------------------------------------------------------
 
 
-void VvyLw::solve() {
+inline void VvyLw::solve() noexcept {
     int a, b;
     std::cin >> a >> b;
     std::cout << man::pav::extgcd(std::make_pair(a,b)) << '\n';

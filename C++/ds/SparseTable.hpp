@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <functional>
+#include <ranges>
 namespace man {
 template <class T> struct SparseTable {
 private:

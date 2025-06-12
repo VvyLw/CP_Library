@@ -4,20 +4,15 @@
 //#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
 #include "C++/template.hpp"
 int main() {
-  	VvyLw::wa_haya_exe();
   	now(start);
-  	int t;
-	std::cin >> t;
-	for([[maybe_unused]] const auto _: std::views::iota(0, t)) {
-		VvyLw::solve();
-	}
-  	now(stop);
+  	VvyLw::wa_haya_exe<multi>();
+	now(stop);
   	time(start, stop);
 }
 
 // --------------------------------------------------------------------------------------------------------------
 
-void VvyLw::solve() {
+inline void VvyLw::solve() noexcept {
     i128 a, b;
 	std::cin >> a >> b;
     std::cout << a + b << '\n';
