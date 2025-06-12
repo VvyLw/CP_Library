@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/ds/fwtree/FenwickTree.hpp
     title: Binary Indexed Tree
   - icon: ':heavy_check_mark:'

@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/core/alias.hpp
     title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/core/io/input.hpp
     title: "\u5165\u529B"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/core/io/output.hpp
     title: "\u51FA\u529B"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/core/myvector.hpp
     title: C++/core/myvector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/core/timer.hpp
     title: "\u30BF\u30A4\u30DE\u30FC"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/math/psum/psum.hpp
     title: "\u7D2F\u7A4D\u548C"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -41,30 +41,33 @@ data:
     )\n#line 2 \"C++/template.hpp\"\n#ifndef TEMPLATE\r\n#define TEMPLATE\r\n#endif\r\
     \n#pragma GCC diagnostic ignored \"-Wunused-parameter\"\r\n#pragma GCC diagnostic\
     \ ignored \"-Wsign-compare\"\r\n#pragma GCC diagnostic ignored \"-Wdeprecated-copy\"\
-    \r\n#include <bits/stdc++.h>\r\nnamespace VvyLw {\r\ninline void wa_haya_exe()\
-    \ noexcept { std::cin.tie(nullptr) -> sync_with_stdio(false); }\r\ninline void\
-    \ dec_prec(const short x) noexcept { std::cout << std::fixed << std::setprecision(x);\
-    \ }\r\nvoid solve();\r\n}\r\n\r\n#line 2 \"C++/core/alias.hpp\"\n\n#ifndef ALIAS\n\
-    #define ALIAS\n#endif\n\n#line 8 \"C++/core/alias.hpp\"\n#include <numbers>\n\
-    #line 10 \"C++/core/alias.hpp\"\n#include <ext/pb_ds/assoc_container.hpp>\n#include\
-    \ <ext/pb_ds/tree_policy.hpp>\n\nnamespace internal {\ntemplate <typename T> concept\
-    \ num = std::integral<T> || std::floating_point<T>;\n}\n\nconstexpr int dx[] =\
-    \ {0, 0, 0, -1, 1, -1, -1, 1, 1};\nconstexpr int dy[] = {0, -1, 1, 0, 0, -1, 1,\
-    \ -1, 1};\nconstexpr int MOD = 0x3b800001;\nconstexpr int M0D = 1e9 + 7;\nconstexpr\
-    \ int INF = 1 << 30;\nconstexpr int64_t LINF = (1LL << 61) - 1;\nconstexpr long\
-    \ double DINF = std::numeric_limits<long double>::infinity();\ntemplate <internal::num\
-    \ T> constexpr T LIM = std::numeric_limits<T>::max();\nconstexpr long double PI\
-    \ = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\ntypedef int64_t\
-    \ i64;\ntypedef long double ld;\ntypedef uint32_t u32;\ntypedef uint64_t u64;\n\
-    typedef __int128_t i128;\ntypedef __uint128_t u128;\n#ifdef MODINT\ntypedef man::Modint<MOD>\
-    \ mint;\ntypedef man::Modint<M0D> Mint;\n#endif\ntemplate <size_t N> using ti\
-    \ = std::array<i64, N>;\ntypedef ti<3> tri;\ntemplate <class T> using pq = std::priority_queue<T>;\n\
-    template <class T> using pqr = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
-    template <class T> using Tree = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>,\
-    \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\ntemplate\
-    \ <class T> using TREE = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>,\
+    \r\n#include <bits/stdc++.h>\r\nnamespace VvyLw {\r\nenum TestCase { single, multi\
+    \ };\r\ninline void solve() noexcept;\r\ntemplate <TestCase tc = single> constexpr\
+    \ inline void wa_haya_exe(const short x = 0) noexcept {\r\n\tstd::cin.tie(nullptr)\
+    \ -> sync_with_stdio(false);\r\n\tif(x > 0) {\r\n\t\tstd::cout << std::fixed <<\
+    \ std::setprecision(x);\r\n\t}\r\n\tint t = 1;\r\n\tif constexpr (tc == multi)\
+    \ {\r\n\t\tstd::cin >> t;\r\n\t}\r\n\tfor([[maybe_unused]] const auto _: std::views::iota(0,\
+    \ t)) {\r\n\t\tsolve();\r\n\t}\r\n}\r\n}\r\n\r\nusing enum VvyLw::TestCase;\r\n\
+    \r\n#line 2 \"C++/core/alias.hpp\"\n\n#ifndef ALIAS\n#define ALIAS\n#endif\n\n\
+    #line 8 \"C++/core/alias.hpp\"\n#include <numbers>\n#line 10 \"C++/core/alias.hpp\"\
+    \n#include <ext/pb_ds/assoc_container.hpp>\n#include <ext/pb_ds/tree_policy.hpp>\n\
+    \nnamespace internal {\ntemplate <typename T> concept num = std::integral<T> ||\
+    \ std::floating_point<T>;\n}\n\nconstexpr int dx[] = {0, 0, 0, -1, 1, -1, -1,\
+    \ 1, 1};\nconstexpr int dy[] = {0, -1, 1, 0, 0, -1, 1, -1, 1};\nconstexpr int\
+    \ MOD = 0x3b800001;\nconstexpr int M0D = 1e9 + 7;\nconstexpr int INF = 1 << 30;\n\
+    constexpr int64_t LINF = (1LL << 61) - 1;\nconstexpr long double DINF = std::numeric_limits<long\
+    \ double>::infinity();\ntemplate <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();\n\
+    constexpr long double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\
+    \ntypedef int64_t i64;\ntypedef long double ld;\ntypedef uint32_t u32;\ntypedef\
+    \ uint64_t u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\n#ifdef MODINT\n\
+    typedef man::Modint<MOD> mint;\ntypedef man::Modint<M0D> Mint;\n#endif\ntemplate\
+    \ <size_t N> using ti = std::array<i64, N>;\ntypedef ti<3> tri;\ntemplate <class\
+    \ T> using pq = std::priority_queue<T>;\ntemplate <class T> using pqr = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\ntemplate <class T> using Tree = __gnu_pbds::tree<T,\
+    \ __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
+    template <class T> using TREE = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>,\
     \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\n\
-    /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n#line 16 \"C++/template.hpp\"\
+    /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n#line 30 \"C++/template.hpp\"\
     \n\r\nnamespace man {\r\ninline bool isdigit(const std::string &s) noexcept;\r\
     \nstd::mt19937 EhaL(std::hash<std::string>()(\"Huitloxopetl\"));\r\ninline std::mt19937\
     \ rand() noexcept {\r\n\tstd::random_device seed_gen;\r\n\tstd::mt19937 engine\
@@ -372,43 +375,44 @@ data:
     \ (!std::same_as<std::remove_cvref_t<T>, std::string> && !std::same_as<std::remove_cvref_t<T>,\
     \ std::string_view> && !std::is_array_v<std::remove_cvref_t<T>>) inline std::istream&\
     \ operator>>(std::istream &is, T &v) noexcept { for(auto &el: v){ is >> el; }\
-    \ return is; }\n} // IO\n\n/**\n * @brief \u5165\u529B\n */\n#line 2 \"C++/core/io/output.hpp\"\
-    \n\n#line 6 \"C++/core/io/output.hpp\"\nnamespace IO {\ninline std::ostream &operator<<(std::ostream\
-    \ &dest, const __int128_t &value) noexcept {\n    std::ostream::sentry s(dest);\n\
-    \    constexpr char dig[] = \"0123456789\";\n    if(s) {\n        __uint128_t\
-    \ tmp = value < 0 ? -value : value;\n        char buffer[128];\n        char *d\
-    \ = std::end(buffer);\n        do {\n            --d;\n            *d = dig[tmp\
-    \ % 10];\n            tmp /= 10;\n        } while(tmp != 0);\n        if(value\
-    \ < 0) {\n            --d;\n            *d = '-';\n        }\n        const int\
-    \ len = std::end(buffer) - d;\n        if(dest.rdbuf() -> sputn(d, len) != len)\
-    \ {\n            dest.setstate(std::ios_base::badbit);\n        }\n    }\n   \
-    \ return dest;\n}\ntemplate <class T, class U> inline std::ostream& operator<<(std::ostream\
-    \ &os, const std::pair<T, U> &p) noexcept { os << p.first << ' ' << p.second;\
-    \ return os; }\ntemplate <class K, class V> inline std::ostream& operator<<(std::ostream\
-    \ &os, const std::map<K, V> &m) noexcept {\n    if(!m.empty()) {\n        os <<\
-    \ m.begin()->first << ' ' << m.begin()->second;\n        for(auto i = m.begin();\
-    \ ++i != m.end();) {\n            os << '\\n' << i->first << ' ' << i->second;\n\
-    \        }\n    }\n    return os;\n}\ntemplate <std::ranges::range T> requires\
-    \ (!std::same_as<std::remove_cvref_t<T>, std::string> && !std::same_as<std::remove_cvref_t<T>,\
+    \ return is; }\ntemplate <class Head, class... Tail> inline bool input(Head &head,\
+    \ Tail &...tail) noexcept {\n    if(!(std::cin >> head)) {\n        return false;\n\
+    \    }\n    if constexpr(sizeof...(Tail) > 0) {\n        input(tail...);\n   \
+    \ }\n    return true;\n}\n} // IO\n\n/**\n * @brief \u5165\u529B\n */\n#line 2\
+    \ \"C++/core/io/output.hpp\"\n\n#line 6 \"C++/core/io/output.hpp\"\nnamespace\
+    \ IO {\ninline std::ostream &operator<<(std::ostream &dest, const __int128_t &value)\
+    \ noexcept {\n    std::ostream::sentry s(dest);\n    constexpr char dig[] = \"\
+    0123456789\";\n    if(s) {\n        __uint128_t tmp = value < 0 ? -value : value;\n\
+    \        char buffer[128];\n        char *d = std::end(buffer);\n        do {\n\
+    \            --d;\n            *d = dig[tmp % 10];\n            tmp /= 10;\n \
+    \       } while(tmp != 0);\n        if(value < 0) {\n            --d;\n      \
+    \      *d = '-';\n        }\n        const int len = std::end(buffer) - d;\n \
+    \       if(dest.rdbuf() -> sputn(d, len) != len) {\n            dest.setstate(std::ios_base::badbit);\n\
+    \        }\n    }\n    return dest;\n}\ntemplate <class T, class U> inline std::ostream&\
+    \ operator<<(std::ostream &os, const std::pair<T, U> &p) noexcept { os << p.first\
+    \ << ' ' << p.second; return os; }\ntemplate <class K, class V> inline std::ostream&\
+    \ operator<<(std::ostream &os, const std::map<K, V> &m) noexcept {\n    if(!m.empty())\
+    \ {\n        os << m.begin()->first << ' ' << m.begin()->second;\n        for(auto\
+    \ i = m.begin(); ++i != m.end();) {\n            os << '\\n' << i->first << '\
+    \ ' << i->second;\n        }\n    }\n    return os;\n}\ntemplate <std::ranges::range\
+    \ T> requires (!std::same_as<std::remove_cvref_t<T>, std::string> && !std::same_as<std::remove_cvref_t<T>,\
     \ std::string_view> && !std::is_array_v<std::remove_cvref_t<T>>) inline std::ostream&\
     \ operator<<(std::ostream &os, const T &v) noexcept {\n    if(!v.empty()) {\n\
     \        os << *v.cbegin();\n        for(auto i = v.cbegin(); ++i != v.cend();)\
-    \ {\n            os << ' ' << *i;\n        }\n    }\n    return os;\n}\n} // IO\n\
-    \nnamespace man {\ntemplate <class Head, class... Tail> inline void print(const\
-    \ Head& head, const Tail& ...tail) noexcept {\n    using IO::operator<<;\n   \
-    \ std::cout << head;\n    if constexpr(sizeof...(Tail) > 0) {\n        std::cout\
-    \ << ' ';\n        print(tail...);\n    }\n}\ninline void println() noexcept {\
-    \ std::cout << '\\n'; }\ntemplate <class Head, class... Tail> inline void println(const\
-    \ Head& head, const Tail& ...tail) noexcept { print(head, tail...); std::cout\
-    \ << '\\n'; }\n}\n\n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
+    \ {\n            os << ' ' << *i;\n        }\n    }\n    return os;\n}\nenum Flash\
+    \ { non_flush, flush };\ntemplate <Flash f = non_flush, class Head, class... Tail>\
+    \ inline void print(const Head& head, const Tail& ...tail) noexcept {\n    std::cout\
+    \ << head;\n    if constexpr(sizeof...(Tail) > 0) {\n        std::cout << ' ';\n\
+    \        print<f>(tail...);\n    } else {\n        if constexpr(f == flush) {\n\
+    \            std::cout.flush();\n        }\n    }\n}\ninline void println() noexcept\
+    \ { std::cout << '\\n'; }\ntemplate <Flash f = non_flush, class Head, class...\
+    \ Tail> inline void println(const Head& head, const Tail& ...tail) noexcept {\
+    \ print<f>(head, tail...); std::cout << '\\n'; }\n} // IO\n\nusing enum IO::Flash;\n\
+    \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
     #include <C++/core/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
-    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 369 \"C++/template.hpp\"\n\r\
-    \n#define overload4(_1,_2,_3,_4,name,...) name\r\n#define REP1(n) for([[maybe_unused]]\
-    \ const auto _: std::views::iota(0, (n)))\r\n#define REP2(i,n) for(const auto\
-    \ i: std::views::iota(0, (n)))\r\n#define REP3(i,a,b) for(const auto i: std::views::iota((a),\
-    \ (b)))\r\n#define REP4(i,a,b,c) for(i64 i = (a); i < (b); i += (c))\r\n#define\
-    \ REP(...) overload4(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\r\n\r\n\
-    using namespace IO;\r\nusing namespace std::views;\r\nnamespace iter = std::ranges;\r\
+    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 383 \"C++/template.hpp\"\n\r\
+    \n#define REP(n) for([[maybe_unused]] const auto _: std::views::iota(0, (n)))\r\
+    \n\r\nusing namespace IO;\r\nusing namespace std::views;\r\nnamespace iter = std::ranges;\r\
     \n\r\n/**\r\n * @brief \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\
     \n */\n#line 2 \"C++/math/psum/psum.hpp\"\n\n#line 5 \"C++/math/psum/psum.hpp\"\
     \nnamespace man {\ntemplate <std::integral T> struct psum {\nprivate:\n    int\
@@ -452,8 +456,8 @@ data:
   isVerificationFile: true
   path: test/sr_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-06-11 20:40:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-06-12 11:55:48+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/sr_sum.test.cpp
 layout: document

@@ -2,52 +2,52 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aarray.test.cpp
     title: test/aarray.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/add.test.cpp
     title: test/add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/add128.test.cpp
     title: test/add128.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/add128_2.test.cpp
     title: test/add128_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/extgcd.test.cpp
     title: test/extgcd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/fwtree.test.cpp
     title: test/fwtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/m_add.test.cpp
     title: test/m_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/s_rmq.test.cpp
     title: test/s_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/stable.test.cpp
     title: test/stable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: "\u51FA\u529B"
     links:
@@ -73,14 +73,16 @@ data:
     \ std::string_view> && !std::is_array_v<std::remove_cvref_t<T>>) inline std::ostream&\
     \ operator<<(std::ostream &os, const T &v) noexcept {\n    if(!v.empty()) {\n\
     \        os << *v.cbegin();\n        for(auto i = v.cbegin(); ++i != v.cend();)\
-    \ {\n            os << ' ' << *i;\n        }\n    }\n    return os;\n}\n} // IO\n\
-    \nnamespace man {\ntemplate <class Head, class... Tail> inline void print(const\
-    \ Head& head, const Tail& ...tail) noexcept {\n    using IO::operator<<;\n   \
-    \ std::cout << head;\n    if constexpr(sizeof...(Tail) > 0) {\n        std::cout\
-    \ << ' ';\n        print(tail...);\n    }\n}\ninline void println() noexcept {\
-    \ std::cout << '\\n'; }\ntemplate <class Head, class... Tail> inline void println(const\
-    \ Head& head, const Tail& ...tail) noexcept { print(head, tail...); std::cout\
-    \ << '\\n'; }\n}\n\n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
+    \ {\n            os << ' ' << *i;\n        }\n    }\n    return os;\n}\nenum Flash\
+    \ { non_flush, flush };\ntemplate <Flash f = non_flush, class Head, class... Tail>\
+    \ inline void print(const Head& head, const Tail& ...tail) noexcept {\n    std::cout\
+    \ << head;\n    if constexpr(sizeof...(Tail) > 0) {\n        std::cout << ' ';\n\
+    \        print<f>(tail...);\n    } else {\n        if constexpr(f == flush) {\n\
+    \            std::cout.flush();\n        }\n    }\n}\ninline void println() noexcept\
+    \ { std::cout << '\\n'; }\ntemplate <Flash f = non_flush, class Head, class...\
+    \ Tail> inline void println(const Head& head, const Tail& ...tail) noexcept {\
+    \ print<f>(head, tail...); std::cout << '\\n'; }\n} // IO\n\nusing enum IO::Flash;\n\
+    \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
     #include <C++/core/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
     #endif\n\n/**\n * @brief \u51FA\u529B\n */\n"
   code: "#pragma once\n\n#include <iostream>\n#include <array>\n#include <map>\nnamespace\
@@ -103,14 +105,16 @@ data:
     \ std::string_view> && !std::is_array_v<std::remove_cvref_t<T>>) inline std::ostream&\
     \ operator<<(std::ostream &os, const T &v) noexcept {\n    if(!v.empty()) {\n\
     \        os << *v.cbegin();\n        for(auto i = v.cbegin(); ++i != v.cend();)\
-    \ {\n            os << ' ' << *i;\n        }\n    }\n    return os;\n}\n} // IO\n\
-    \nnamespace man {\ntemplate <class Head, class... Tail> inline void print(const\
-    \ Head& head, const Tail& ...tail) noexcept {\n    using IO::operator<<;\n   \
-    \ std::cout << head;\n    if constexpr(sizeof...(Tail) > 0) {\n        std::cout\
-    \ << ' ';\n        print(tail...);\n    }\n}\ninline void println() noexcept {\
-    \ std::cout << '\\n'; }\ntemplate <class Head, class... Tail> inline void println(const\
-    \ Head& head, const Tail& ...tail) noexcept { print(head, tail...); std::cout\
-    \ << '\\n'; }\n}\n\n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
+    \ {\n            os << ' ' << *i;\n        }\n    }\n    return os;\n}\nenum Flash\
+    \ { non_flush, flush };\ntemplate <Flash f = non_flush, class Head, class... Tail>\
+    \ inline void print(const Head& head, const Tail& ...tail) noexcept {\n    std::cout\
+    \ << head;\n    if constexpr(sizeof...(Tail) > 0) {\n        std::cout << ' ';\n\
+    \        print<f>(tail...);\n    } else {\n        if constexpr(f == flush) {\n\
+    \            std::cout.flush();\n        }\n    }\n}\ninline void println() noexcept\
+    \ { std::cout << '\\n'; }\ntemplate <Flash f = non_flush, class Head, class...\
+    \ Tail> inline void println(const Head& head, const Tail& ...tail) noexcept {\
+    \ print<f>(head, tail...); std::cout << '\\n'; }\n} // IO\n\nusing enum IO::Flash;\n\
+    \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
     #include <C++/core/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
     #endif\n\n/**\n * @brief \u51FA\u529B\n */"
   dependsOn: []
@@ -118,8 +122,8 @@ data:
   path: C++/core/io/output.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2025-06-11 18:57:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-06-12 11:55:33+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/add.test.cpp
   - test/uf.test.cpp

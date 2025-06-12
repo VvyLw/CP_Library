@@ -2,29 +2,29 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aarray.test.cpp
     title: test/aarray.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/add.test.cpp
     title: test/add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/add128.test.cpp
     title: test/add128.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/extgcd.test.cpp
     title: test/extgcd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/fwtree.test.cpp
     title: test/fwtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/m_add.test.cpp
     title: test/m_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -33,24 +33,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/rh.test.cpp
     title: test/rh.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/s_rmq.test.cpp
     title: test/s_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/stable.test.cpp
     title: test/stable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
     links: []
@@ -100,7 +100,7 @@ data:
   requiredBy:
   - C++/template.hpp
   timestamp: '2025-06-11 17:30:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/rh.test.cpp
   - test/add.test.cpp

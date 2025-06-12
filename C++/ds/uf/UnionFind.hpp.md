@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/manhattan.test.cpp
     title: test/manhattan.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: UnionFind
     links:
@@ -73,7 +73,7 @@ data:
   - C++/graph/mst/kruskal.hpp
   - C++/ds/uf/MergeUF.hpp
   timestamp: '2025-06-06 22:43:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/uf.test.cpp
   - test/manhattan.test.cpp
