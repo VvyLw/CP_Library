@@ -45,27 +45,27 @@ data:
   attributes:
     document_title: "\u30BF\u30A4\u30DE\u30FC"
     links: []
-  bundledCode: "#line 2 \"C++/core/timer.hpp\"\n\n#include <ostream>\n#include <chrono>\n\
-    using Timer = std::chrono::system_clock::time_point;\nTimer start, stop;\n#if\
+  bundledCode: "#line 2 \"C++/core/timer.hpp\"\n\n#include <iostream>\n#include <chrono>\n\
+    typedef std::chrono::system_clock::time_point Timer;\nTimer start, stop;\n#if\
     \ local\ninline void now(Timer &t) noexcept { t = std::chrono::system_clock::now();\
     \ }\ninline void time(const Timer &t1, const Timer &t2) noexcept { std::cerr <<\
     \ std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count() << \"\
     ms\\n\"; }\n#else\nvoid now(Timer &t){ void(0); }\nvoid time(const Timer &t1,\
     \ const Timer &t2){ void(0); }\n#endif\n\n/**\n * @brief \u30BF\u30A4\u30DE\u30FC\
     \n */\n"
-  code: "#pragma once\n\n#include <ostream>\n#include <chrono>\nusing Timer = std::chrono::system_clock::time_point;\n\
-    Timer start, stop;\n#if local\ninline void now(Timer &t) noexcept { t = std::chrono::system_clock::now();\
-    \ }\ninline void time(const Timer &t1, const Timer &t2) noexcept { std::cerr <<\
-    \ std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count() << \"\
-    ms\\n\"; }\n#else\nvoid now(Timer &t){ void(0); }\nvoid time(const Timer &t1,\
-    \ const Timer &t2){ void(0); }\n#endif\n\n/**\n * @brief \u30BF\u30A4\u30DE\u30FC\
-    \n */"
+  code: "#pragma once\n\n#include <iostream>\n#include <chrono>\ntypedef std::chrono::system_clock::time_point\
+    \ Timer;\nTimer start, stop;\n#if local\ninline void now(Timer &t) noexcept {\
+    \ t = std::chrono::system_clock::now(); }\ninline void time(const Timer &t1, const\
+    \ Timer &t2) noexcept { std::cerr << std::chrono::duration_cast<std::chrono::milliseconds>(t2\
+    \ - t1).count() << \"ms\\n\"; }\n#else\nvoid now(Timer &t){ void(0); }\nvoid time(const\
+    \ Timer &t1, const Timer &t2){ void(0); }\n#endif\n\n/**\n * @brief \u30BF\u30A4\
+    \u30DE\u30FC\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/core/timer.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2025-06-06 22:43:06+09:00'
+  timestamp: '2025-06-12 14:49:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/add.test.cpp

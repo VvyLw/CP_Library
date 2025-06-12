@@ -263,10 +263,10 @@ data:
     ret %= mod;\r\n\t\t}\r\n\t}\r\n\treturn ret;\r\n}\r\nconstexpr inline bool is_int(const\
     \ long double n) noexcept { return n == std::floor(n); }\r\nconstexpr inline bool\
     \ is_sqr(const int64_t n) noexcept { return is_int(std::sqrt(n)); }\r\n}\r\n\r\
-    \n#line 2 \"C++/core/timer.hpp\"\n\n#line 5 \"C++/core/timer.hpp\"\nusing Timer\
-    \ = std::chrono::system_clock::time_point;\nTimer start, stop;\n#if local\ninline\
-    \ void now(Timer &t) noexcept { t = std::chrono::system_clock::now(); }\ninline\
-    \ void time(const Timer &t1, const Timer &t2) noexcept { std::cerr << std::chrono::duration_cast<std::chrono::milliseconds>(t2\
+    \n#line 2 \"C++/core/timer.hpp\"\n\n#line 5 \"C++/core/timer.hpp\"\ntypedef std::chrono::system_clock::time_point\
+    \ Timer;\nTimer start, stop;\n#if local\ninline void now(Timer &t) noexcept {\
+    \ t = std::chrono::system_clock::now(); }\ninline void time(const Timer &t1, const\
+    \ Timer &t2) noexcept { std::cerr << std::chrono::duration_cast<std::chrono::milliseconds>(t2\
     \ - t1).count() << \"ms\\n\"; }\n#else\nvoid now(Timer &t){ void(0); }\nvoid time(const\
     \ Timer &t1, const Timer &t2){ void(0); }\n#endif\n\n/**\n * @brief \u30BF\u30A4\
     \u30DE\u30FC\n */\n#line 2 \"C++/core/myvector.hpp\"\n\n#line 4 \"C++/core/myvector.hpp\"\
@@ -635,7 +635,7 @@ data:
   isVerificationFile: false
   path: C++/template.hpp
   requiredBy: []
-  timestamp: '2025-06-12 12:50:02+09:00'
+  timestamp: '2025-06-12 14:49:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/add.test.cpp
