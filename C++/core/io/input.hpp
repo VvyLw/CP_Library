@@ -42,6 +42,15 @@ inline std::istream& operator>>(std::istream &is, __int128_t &val) noexcept {
 }
 template <class T, class U> inline std::istream& operator>>(std::istream &is, std::pair<T, U> &p) noexcept { is >> p.first >> p.second; return is; }
 template <std::ranges::random_access_range T> requires (!std::same_as<std::remove_cvref_t<T>, std::string> && !std::same_as<std::remove_cvref_t<T>, std::string_view> && !std::is_array_v<std::remove_cvref_t<T>>) inline std::istream& operator>>(std::istream &is, T &v) noexcept { for(auto &el: v){ is >> el; } return is; }
+template <class Head, class... Tail> inline bool input(Head &head, Tail &...tail) noexcept {
+    if(!(std::cin >> head)) {
+        return false;
+    }
+    if constexpr(sizeof...(Tail) > 0) {
+        input(tail...);
+    }
+    return true;
+}
 } // IO
 
 /**

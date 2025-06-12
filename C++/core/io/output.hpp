@@ -46,20 +46,23 @@ template <std::ranges::range T> requires (!std::same_as<std::remove_cvref_t<T>, 
     }
     return os;
 }
-} // IO
-
-namespace man {
-template <class Head, class... Tail> inline void print(const Head& head, const Tail& ...tail) noexcept {
-    using IO::operator<<;
+enum Flash { non_flush, flush };
+template <Flash f = non_flush, class Head, class... Tail> inline void print(const Head& head, const Tail& ...tail) noexcept {
     std::cout << head;
     if constexpr(sizeof...(Tail) > 0) {
         std::cout << ' ';
-        print(tail...);
+        print<f>(tail...);
+    } else {
+        if constexpr(f == flush) {
+            std::cout.flush();
+        }
     }
 }
 inline void println() noexcept { std::cout << '\n'; }
-template <class Head, class... Tail> inline void println(const Head& head, const Tail& ...tail) noexcept { print(head, tail...); std::cout << '\n'; }
-}
+template <Flash f = non_flush, class Head, class... Tail> inline void println(const Head& head, const Tail& ...tail) noexcept { print<f>(head, tail...); std::cout << '\n'; }
+} // IO
+
+using enum IO::Flash;
 
 #if local
 //https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3
