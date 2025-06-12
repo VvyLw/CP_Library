@@ -31,10 +31,6 @@ typedef uint32_t u32;
 typedef uint64_t u64;
 typedef __int128_t i128;
 typedef __uint128_t u128;
-#ifdef MODINT
-typedef man::Modint<MOD> mint;
-typedef man::Modint<M0D> Mint;
-#endif
 template <size_t N> using ti = std::array<i64, N>;
 typedef ti<3> tri;
 template <class T> using pq = std::priority_queue<T>;

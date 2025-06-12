@@ -3,7 +3,7 @@
 #include "C++/graph/WeightedGraph.hpp"
 #ifndef TEMPLATE
 namespace man {
-template <class T, class U> inline bool chmax(T& a, const U& b){ if(a<b){ a=b; return 1; } return 0; }
+template <class T, class U> constexpr inline bool chmax(T& a, const U& b) noexcept { if(a < b){ a = b; return true; } return false; }
 }
 #endif
 namespace man {

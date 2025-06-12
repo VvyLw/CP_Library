@@ -8,7 +8,7 @@
 #include <ranges>
 #ifndef TEMPLATE
 namespace man {
-template <class T, class U> bool chmin(T& a, const U& b){ if(a>b){ a=b; return 1; } return 0; }
+template <class T, class U> constexpr inline bool chmin(T& a, const U& b) noexcept { if(a > b){ a = b; return true; } return false; }
 }
 #endif
 #include "C++/graph/edge.hpp"

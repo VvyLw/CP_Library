@@ -54,6 +54,15 @@ template <uint mod> struct Modint {
         return (is);
     }
 };
+
+#ifndef ALIAS
+constexpr int MOD = 0x3b800001;
+constexpr int M0D = 1e9 + 7;
+#endif
+
+typedef man::Modint<MOD> mint;
+typedef man::Modint<M0D> Mint;
+
 template <class mint> struct Comb {
 private:
     std::vector<mint> fac{1}, inv{1};
