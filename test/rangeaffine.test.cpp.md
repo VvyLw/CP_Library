@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/core/alias.hpp
     title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/ds/LazySegmentTree.hpp
     title: "\u9045\u5EF6\u30BB\u30B0\u6728"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/math/Modint.hpp
     title: Modint
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -61,8 +61,10 @@ data:
     \ cnt; cnt *= cnt; x /= 2; } return ans; }\n    friend std::ostream& operator<<(std::ostream&\
     \ os, const Modint& m){ os << m.num; return os; }\n    friend std::istream &operator>>(std::istream\
     \ &is, Modint &a) {\n        int64_t t;\n        is >> t;\n        a = Modint(t);\n\
-    \        return (is);\n    }\n};\ntemplate <class mint> struct Comb {\nprivate:\n\
-    \    std::vector<mint> fac{1}, inv{1};\n    inline void reserve(uint64_t a) noexcept\
+    \        return (is);\n    }\n};\n\n#ifndef ALIAS\nconstexpr int MOD = 0x3b800001;\n\
+    constexpr int M0D = 1e9 + 7;\n#endif\n\ntypedef man::Modint<MOD> mint;\ntypedef\
+    \ man::Modint<M0D> Mint;\n\ntemplate <class mint> struct Comb {\nprivate:\n  \
+    \  std::vector<mint> fac{1}, inv{1};\n    inline void reserve(uint64_t a) noexcept\
     \ {\n        if(std::ssize(fac) >= a) {\n            return;\n        }\n    \
     \    if(a < std::ssize(fac) * 2) {\n            a = std::ssize(fac) * 2;\n   \
     \     }\n        if(a >= mint::get_mod()) {\n            a = mint::get_mod();\n\
@@ -258,8 +260,7 @@ data:
     template <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();\n\
     constexpr long double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\
     \ntypedef int64_t i64;\ntypedef long double ld;\ntypedef uint32_t u32;\ntypedef\
-    \ uint64_t u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\n#ifdef MODINT\n\
-    typedef man::Modint<MOD> mint;\ntypedef man::Modint<M0D> Mint;\n#endif\ntemplate\
+    \ uint64_t u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\ntemplate\
     \ <size_t N> using ti = std::array<i64, N>;\ntypedef ti<3> tri;\ntemplate <class\
     \ T> using pq = std::priority_queue<T>;\ntemplate <class T> using pqr = std::priority_queue<T,\
     \ std::vector<T>, std::greater<T>>;\ntemplate <class T> using Tree = __gnu_pbds::tree<T,\
@@ -300,8 +301,8 @@ data:
   isVerificationFile: true
   path: test/rangeaffine.test.cpp
   requiredBy: []
-  timestamp: '2025-06-11 17:30:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-06-12 17:15:04+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/rangeaffine.test.cpp
 layout: document

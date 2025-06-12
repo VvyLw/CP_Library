@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/core/alias.hpp
     title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
   - icon: ':heavy_check_mark:'
@@ -56,8 +56,7 @@ data:
     \ <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();\nconstexpr\
     \ long double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\
     \ntypedef int64_t i64;\ntypedef long double ld;\ntypedef uint32_t u32;\ntypedef\
-    \ uint64_t u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\n#ifdef MODINT\n\
-    typedef man::Modint<MOD> mint;\ntypedef man::Modint<M0D> Mint;\n#endif\ntemplate\
+    \ uint64_t u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\ntemplate\
     \ <size_t N> using ti = std::array<i64, N>;\ntypedef ti<3> tri;\ntemplate <class\
     \ T> using pq = std::priority_queue<T>;\ntemplate <class T> using pqr = std::priority_queue<T,\
     \ std::vector<T>, std::greater<T>>;\ntemplate <class T> using Tree = __gnu_pbds::tree<T,\
@@ -432,7 +431,7 @@ data:
   isVerificationFile: true
   path: test/m_add.test.cpp
   requiredBy: []
-  timestamp: '2025-06-12 14:49:17+09:00'
+  timestamp: '2025-06-12 17:15:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/m_add.test.cpp

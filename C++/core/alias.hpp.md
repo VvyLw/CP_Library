@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/rangeaffine.test.cpp
     title: test/rangeaffine.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,9 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
     links: []
@@ -62,8 +62,7 @@ data:
     \ <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();\nconstexpr\
     \ long double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\
     \ntypedef int64_t i64;\ntypedef long double ld;\ntypedef uint32_t u32;\ntypedef\
-    \ uint64_t u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\n#ifdef MODINT\n\
-    typedef man::Modint<MOD> mint;\ntypedef man::Modint<M0D> Mint;\n#endif\ntemplate\
+    \ uint64_t u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\ntemplate\
     \ <size_t N> using ti = std::array<i64, N>;\ntypedef ti<3> tri;\ntemplate <class\
     \ T> using pq = std::priority_queue<T>;\ntemplate <class T> using pqr = std::priority_queue<T,\
     \ std::vector<T>, std::greater<T>>;\ntemplate <class T> using Tree = __gnu_pbds::tree<T,\
@@ -82,8 +81,7 @@ data:
     \ <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();\nconstexpr\
     \ long double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\
     \ntypedef int64_t i64;\ntypedef long double ld;\ntypedef uint32_t u32;\ntypedef\
-    \ uint64_t u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\n#ifdef MODINT\n\
-    typedef man::Modint<MOD> mint;\ntypedef man::Modint<M0D> Mint;\n#endif\ntemplate\
+    \ uint64_t u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\ntemplate\
     \ <size_t N> using ti = std::array<i64, N>;\ntypedef ti<3> tri;\ntemplate <class\
     \ T> using pq = std::priority_queue<T>;\ntemplate <class T> using pqr = std::priority_queue<T,\
     \ std::vector<T>, std::greater<T>>;\ntemplate <class T> using Tree = __gnu_pbds::tree<T,\
@@ -96,8 +94,8 @@ data:
   path: C++/core/alias.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2025-06-11 17:30:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-06-12 17:15:04+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/rh.test.cpp
   - test/add.test.cpp

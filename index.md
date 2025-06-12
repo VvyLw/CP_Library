@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: C++/core
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/core/alias.hpp
       title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
     - icon: ':heavy_check_mark:'
@@ -31,7 +31,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/ds/DualSegmentTree.hpp
       title: "\u53CC\u5BFE\u30BB\u30B0\u6728"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/ds/LazySegmentTree.hpp
       title: "\u9045\u5EF6\u30BB\u30B0\u6728"
     - icon: ':heavy_check_mark:'
@@ -118,7 +118,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math/ModPrime.hpp
       title: ModPrime
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/math/Modint.hpp
       title: Modint
     - icon: ':warning:'
@@ -671,7 +671,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/psum2d.test.cpp
       title: test/psum2d.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/rangeaffine.test.cpp
       title: test/rangeaffine.test.cpp
     - icon: ':heavy_check_mark:'
