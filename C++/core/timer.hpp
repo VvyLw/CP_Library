@@ -1,8 +1,8 @@
 #pragma once
 
-#include <ostream>
+#include <iostream>
 #include <chrono>
-using Timer = std::chrono::system_clock::time_point;
+typedef std::chrono::system_clock::time_point Timer;
 Timer start, stop;
 #if local
 inline void now(Timer &t) noexcept { t = std::chrono::system_clock::now(); }
