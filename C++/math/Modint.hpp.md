@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/rangeaffine.test.cpp
     title: test/rangeaffine.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/Modint.md
     document_title: Modint
@@ -54,10 +54,8 @@ data:
     \ cnt; cnt *= cnt; x /= 2; } return ans; }\n    friend std::ostream& operator<<(std::ostream&\
     \ os, const Modint& m){ os << m.num; return os; }\n    friend std::istream &operator>>(std::istream\
     \ &is, Modint &a) {\n        int64_t t;\n        is >> t;\n        a = Modint(t);\n\
-    \        return (is);\n    }\n};\n\n#ifndef ALIAS\nconstexpr int MOD = 0x3b800001;\n\
-    constexpr int M0D = 1e9 + 7;\n#endif\n\ntypedef man::Modint<MOD> mint;\ntypedef\
-    \ man::Modint<M0D> Mint;\n\ntemplate <class mint> struct Comb {\nprivate:\n  \
-    \  std::vector<mint> fac{1}, inv{1};\n    inline void reserve(uint64_t a) noexcept\
+    \        return (is);\n    }\n};\n\ntemplate <class mint> struct Comb {\nprivate:\n\
+    \    std::vector<mint> fac{1}, inv{1};\n    inline void reserve(uint64_t a) noexcept\
     \ {\n        if(std::ssize(fac) >= a) {\n            return;\n        }\n    \
     \    if(a < std::ssize(fac) * 2) {\n            a = std::ssize(fac) * 2;\n   \
     \     }\n        if(a >= mint::get_mod()) {\n            a = mint::get_mod();\n\
@@ -119,7 +117,9 @@ data:
     \ &os, const a_mint &p) noexcept { return os << p.val; }\n    inline friend ::std::istream\
     \ &operator>>(::std::istream &is, a_mint &a) noexcept {\n        int64_t t;\n\
     \        is >> t;\n        a = a_mint(t);\n        return is;\n    }\n};\n}\n\n\
-    /**\n * @brief Modint\n * @docs docs/Modint.md\n * @see https://atcoder.jp/contests/arc151/submissions/35526971\n\
+    #ifndef ALIAS\nconstexpr int MOD = 0x3b800001;\nconstexpr int M0D = 1e9 + 7;\n\
+    #endif\n\ntypedef man::Modint<MOD> mint;\ntypedef man::Modint<M0D> Mint;\n\n/**\n\
+    \ * @brief Modint\n * @docs docs/Modint.md\n * @see https://atcoder.jp/contests/arc151/submissions/35526971\n\
     \ */\n"
   code: "#pragma once\n\n#pragma GCC diagnostic ignored \"-Wdeprecated-copy\"\n\n\
     #ifndef MODINT\n#define MODINT\n#endif\n\n#include <iostream>\n#include <cassert>\n\
@@ -161,10 +161,8 @@ data:
     \ cnt; cnt *= cnt; x /= 2; } return ans; }\n    friend std::ostream& operator<<(std::ostream&\
     \ os, const Modint& m){ os << m.num; return os; }\n    friend std::istream &operator>>(std::istream\
     \ &is, Modint &a) {\n        int64_t t;\n        is >> t;\n        a = Modint(t);\n\
-    \        return (is);\n    }\n};\n\n#ifndef ALIAS\nconstexpr int MOD = 0x3b800001;\n\
-    constexpr int M0D = 1e9 + 7;\n#endif\n\ntypedef man::Modint<MOD> mint;\ntypedef\
-    \ man::Modint<M0D> Mint;\n\ntemplate <class mint> struct Comb {\nprivate:\n  \
-    \  std::vector<mint> fac{1}, inv{1};\n    inline void reserve(uint64_t a) noexcept\
+    \        return (is);\n    }\n};\n\ntemplate <class mint> struct Comb {\nprivate:\n\
+    \    std::vector<mint> fac{1}, inv{1};\n    inline void reserve(uint64_t a) noexcept\
     \ {\n        if(std::ssize(fac) >= a) {\n            return;\n        }\n    \
     \    if(a < std::ssize(fac) * 2) {\n            a = std::ssize(fac) * 2;\n   \
     \     }\n        if(a >= mint::get_mod()) {\n            a = mint::get_mod();\n\
@@ -226,14 +224,16 @@ data:
     \ &os, const a_mint &p) noexcept { return os << p.val; }\n    inline friend ::std::istream\
     \ &operator>>(::std::istream &is, a_mint &a) noexcept {\n        int64_t t;\n\
     \        is >> t;\n        a = a_mint(t);\n        return is;\n    }\n};\n}\n\n\
-    /**\n * @brief Modint\n * @docs docs/Modint.md\n * @see https://atcoder.jp/contests/arc151/submissions/35526971\n\
+    #ifndef ALIAS\nconstexpr int MOD = 0x3b800001;\nconstexpr int M0D = 1e9 + 7;\n\
+    #endif\n\ntypedef man::Modint<MOD> mint;\ntypedef man::Modint<M0D> Mint;\n\n/**\n\
+    \ * @brief Modint\n * @docs docs/Modint.md\n * @see https://atcoder.jp/contests/arc151/submissions/35526971\n\
     \ */"
   dependsOn: []
   isVerificationFile: false
   path: C++/math/Modint.hpp
   requiredBy: []
-  timestamp: '2025-06-12 17:15:04+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-06-12 17:29:16+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/rangeaffine.test.cpp
 documentation_of: C++/math/Modint.hpp

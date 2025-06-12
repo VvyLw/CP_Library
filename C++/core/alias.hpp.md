@@ -27,9 +27,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/parsum.test.cpp
     title: test/parsum.test.cpp
-  - icon: ':x:'
-    path: test/rangeaffine.test.cpp
-    title: test/rangeaffine.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/rh.test.cpp
     title: test/rh.test.cpp
@@ -45,9 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
     links: []
@@ -95,7 +92,7 @@ data:
   requiredBy:
   - C++/template.hpp
   timestamp: '2025-06-12 17:15:04+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/rh.test.cpp
   - test/add.test.cpp
@@ -106,7 +103,6 @@ data:
   - test/add128.test.cpp
   - test/parsum.test.cpp
   - test/fwtree.test.cpp
-  - test/rangeaffine.test.cpp
   - test/aarray.test.cpp
   - test/extgcd.test.cpp
   - test/segtree.test.cpp

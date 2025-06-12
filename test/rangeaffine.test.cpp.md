@@ -1,20 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: C++/core/alias.hpp
-    title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/ds/LazySegmentTree.hpp
     title: "\u9045\u5EF6\u30BB\u30B0\u6728"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/Modint.hpp
     title: Modint
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -61,10 +58,8 @@ data:
     \ cnt; cnt *= cnt; x /= 2; } return ans; }\n    friend std::ostream& operator<<(std::ostream&\
     \ os, const Modint& m){ os << m.num; return os; }\n    friend std::istream &operator>>(std::istream\
     \ &is, Modint &a) {\n        int64_t t;\n        is >> t;\n        a = Modint(t);\n\
-    \        return (is);\n    }\n};\n\n#ifndef ALIAS\nconstexpr int MOD = 0x3b800001;\n\
-    constexpr int M0D = 1e9 + 7;\n#endif\n\ntypedef man::Modint<MOD> mint;\ntypedef\
-    \ man::Modint<M0D> Mint;\n\ntemplate <class mint> struct Comb {\nprivate:\n  \
-    \  std::vector<mint> fac{1}, inv{1};\n    inline void reserve(uint64_t a) noexcept\
+    \        return (is);\n    }\n};\n\ntemplate <class mint> struct Comb {\nprivate:\n\
+    \    std::vector<mint> fac{1}, inv{1};\n    inline void reserve(uint64_t a) noexcept\
     \ {\n        if(std::ssize(fac) >= a) {\n            return;\n        }\n    \
     \    if(a < std::ssize(fac) * 2) {\n            a = std::ssize(fac) * 2;\n   \
     \     }\n        if(a >= mint::get_mod()) {\n            a = mint::get_mod();\n\
@@ -126,7 +121,9 @@ data:
     \ &os, const a_mint &p) noexcept { return os << p.val; }\n    inline friend ::std::istream\
     \ &operator>>(::std::istream &is, a_mint &a) noexcept {\n        int64_t t;\n\
     \        is >> t;\n        a = a_mint(t);\n        return is;\n    }\n};\n}\n\n\
-    /**\n * @brief Modint\n * @docs docs/Modint.md\n * @see https://atcoder.jp/contests/arc151/submissions/35526971\n\
+    #ifndef ALIAS\nconstexpr int MOD = 0x3b800001;\nconstexpr int M0D = 1e9 + 7;\n\
+    #endif\n\ntypedef man::Modint<MOD> mint;\ntypedef man::Modint<M0D> Mint;\n\n/**\n\
+    \ * @brief Modint\n * @docs docs/Modint.md\n * @see https://atcoder.jp/contests/arc151/submissions/35526971\n\
     \ */\n#line 2 \"C++/ds/LazySegmentTree.hpp\"\n\n#include <ostream>\n#line 6 \"\
     C++/ds/LazySegmentTree.hpp\"\n#include <algorithm>\n#include <functional>\n#include\
     \ <cmath>\n#include <limits>\n#line 11 \"C++/ds/LazySegmentTree.hpp\"\nnamespace\
@@ -249,26 +246,22 @@ data:
     \ std::views::iota(0, std::ssize(v))) {\n            w[i] = zwei<T>(v[i], 1);\n\
     \        }\n        LazySegTree<zwei<T>, T>::build(w);\n    }\n};\n}\n\n/**\n\
     \ * @brief \u9045\u5EF6\u30BB\u30B0\u6728\n * @see https://ei1333.github.io/library/structure/segment-tree/lazy-segment-tree.hpp\n\
-    \ */\n#line 2 \"C++/core/alias.hpp\"\n\n#ifndef ALIAS\n#define ALIAS\n#endif\n\
-    \n#line 8 \"C++/core/alias.hpp\"\n#include <numbers>\n#include <queue>\n#include\
-    \ <ext/pb_ds/assoc_container.hpp>\n#include <ext/pb_ds/tree_policy.hpp>\n\nnamespace\
-    \ internal {\ntemplate <typename T> concept num = std::integral<T> || std::floating_point<T>;\n\
-    }\n\nconstexpr int dx[] = {0, 0, 0, -1, 1, -1, -1, 1, 1};\nconstexpr int dy[]\
-    \ = {0, -1, 1, 0, 0, -1, 1, -1, 1};\nconstexpr int MOD = 0x3b800001;\nconstexpr\
-    \ int M0D = 1e9 + 7;\nconstexpr int INF = 1 << 30;\nconstexpr int64_t LINF = (1LL\
-    \ << 61) - 1;\nconstexpr long double DINF = std::numeric_limits<long double>::infinity();\n\
-    template <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();\n\
-    constexpr long double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\
-    \ntypedef int64_t i64;\ntypedef long double ld;\ntypedef uint32_t u32;\ntypedef\
-    \ uint64_t u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\ntemplate\
-    \ <size_t N> using ti = std::array<i64, N>;\ntypedef ti<3> tri;\ntemplate <class\
-    \ T> using pq = std::priority_queue<T>;\ntemplate <class T> using pqr = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\ntemplate <class T> using Tree = __gnu_pbds::tree<T,\
-    \ __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
-    template <class T> using TREE = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>,\
-    \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\n\
-    /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n#line 5 \"test/rangeaffine.test.cpp\"\
-    \nusing Z = man::zwei<mint>;\nint main() {\n    int n, q;\n    std::cin >> n >>\
+    \ */\n#line 4 \"test/rangeaffine.test.cpp\"\nusing Z = man::zwei<mint>;\nint main()\
+    \ {\n    int n, q;\n    std::cin >> n >> q;\n    man::LazySegTree<Z, Z> seg(n,\
+    \ [](const Z &a, const Z &b) -> Z { return Z(a.first + b.first, a.second + b.second);\
+    \ }, [](const Z &a, const Z &b) -> Z { return Z(a.first * b.first + a.second *\
+    \ b.second, a.second); }, [](const Z &a, const Z &b) -> Z { return Z(a.first *\
+    \ b.first, a.second * b.first + b.second); }, Z(0, 0), Z(1, 0));\n\tstd::vector<Z>\
+    \ a(n);\n    for(int i = 0; i < n; ++i) {\n        int x;\n        std::cin >>\
+    \ x;\n        a[i] = Z(x, 1);\n    }\n    seg.build(a);\n    while(q--) {\n  \
+    \      int t, l, r;\n        std::cin >> t >> l >> r;\n        if(t == 0) {\n\
+    \            int p, q;\n            std::cin >> p >> q;\n            seg.apply(l,\
+    \ r, Z(p, q));\n        } else {\n            std::cout << seg.query(l, r) <<\
+    \ '\\n';\n        }\n    }\n}\n\n// verified but actually failed(slowest: 9.000372\
+    \ sec.)\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
+    \n#include \"C++/math/Modint.hpp\"\n#include \"C++/ds/LazySegmentTree.hpp\"\n\
+    using Z = man::zwei<mint>;\nint main() {\n    int n, q;\n    std::cin >> n >>\
     \ q;\n    man::LazySegTree<Z, Z> seg(n, [](const Z &a, const Z &b) -> Z { return\
     \ Z(a.first + b.first, a.second + b.second); }, [](const Z &a, const Z &b) ->\
     \ Z { return Z(a.first * b.first + a.second * b.second, a.second); }, [](const\
@@ -279,30 +272,15 @@ data:
     \ t >> l >> r;\n        if(t == 0) {\n            int p, q;\n            std::cin\
     \ >> p >> q;\n            seg.apply(l, r, Z(p, q));\n        } else {\n      \
     \      std::cout << seg.query(l, r) << '\\n';\n        }\n    }\n}\n\n// verified\
-    \ but actually failed(slowest: 9.000372 sec.)\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
-    \n#include \"C++/math/Modint.hpp\"\n#include \"C++/ds/LazySegmentTree.hpp\"\n\
-    #include \"C++/core/alias.hpp\"\nusing Z = man::zwei<mint>;\nint main() {\n  \
-    \  int n, q;\n    std::cin >> n >> q;\n    man::LazySegTree<Z, Z> seg(n, [](const\
-    \ Z &a, const Z &b) -> Z { return Z(a.first + b.first, a.second + b.second); },\
-    \ [](const Z &a, const Z &b) -> Z { return Z(a.first * b.first + a.second * b.second,\
-    \ a.second); }, [](const Z &a, const Z &b) -> Z { return Z(a.first * b.first,\
-    \ a.second * b.first + b.second); }, Z(0, 0), Z(1, 0));\n\tstd::vector<Z> a(n);\n\
-    \    for(int i = 0; i < n; ++i) {\n        int x;\n        std::cin >> x;\n  \
-    \      a[i] = Z(x, 1);\n    }\n    seg.build(a);\n    while(q--) {\n        int\
-    \ t, l, r;\n        std::cin >> t >> l >> r;\n        if(t == 0) {\n         \
-    \   int p, q;\n            std::cin >> p >> q;\n            seg.apply(l, r, Z(p,\
-    \ q));\n        } else {\n            std::cout << seg.query(l, r) << '\\n';\n\
-    \        }\n    }\n}\n\n// verified but actually failed(slowest: 9.000372 sec.)"
+    \ but actually failed(slowest: 9.000372 sec.)"
   dependsOn:
   - C++/math/Modint.hpp
   - C++/ds/LazySegmentTree.hpp
-  - C++/core/alias.hpp
   isVerificationFile: true
   path: test/rangeaffine.test.cpp
   requiredBy: []
-  timestamp: '2025-06-12 17:15:04+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-12 17:29:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/rangeaffine.test.cpp
 layout: document

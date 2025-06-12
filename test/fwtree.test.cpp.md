@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/alias.hpp
     title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
   - icon: ':heavy_check_mark:'
