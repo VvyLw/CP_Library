@@ -68,10 +68,10 @@ data:
     \n#endif\r\n#pragma GCC diagnostic ignored \"-Wunused-parameter\"\r\n#pragma GCC\
     \ diagnostic ignored \"-Wsign-compare\"\r\n#pragma GCC diagnostic ignored \"-Wdeprecated-copy\"\
     \r\n#include <bits/stdc++.h>\r\nnamespace VvyLw {\r\nenum TestCase { single, multi\
-    \ };\r\ninline void solve() noexcept;\r\ntemplate <TestCase tc = single> constexpr\
-    \ inline void wa_haya_exe(const short x = 0) noexcept {\r\n\tstd::cin.tie(nullptr)\
-    \ -> sync_with_stdio(false);\r\n\tif(x > 0) {\r\n\t\tstd::cout << std::fixed <<\
-    \ std::setprecision(x);\r\n\t}\r\n\tint t = 1;\r\n\tif constexpr (tc == multi)\
+    \ };\r\ninline void solve() noexcept;\r\ntemplate <TestCase tc = single, short\
+    \ x = 0> constexpr inline void wa_haya_exe() noexcept {\r\n\tstd::cin.tie(nullptr)\
+    \ -> sync_with_stdio(false);\r\n\tif constexpr (x > 0) {\r\n\t\tstd::cout << std::fixed\
+    \ << std::setprecision(x);\r\n\t}\r\n\tint t = 1;\r\n\tif constexpr (tc == multi)\
     \ {\r\n\t\tstd::cin >> t;\r\n\t}\r\n\tfor([[maybe_unused]] const auto _: std::views::iota(0,\
     \ t)) {\r\n\t\tsolve();\r\n\t}\r\n}\r\n}\r\n\r\nusing enum VvyLw::TestCase;\r\n\
     \r\n#line 2 \"C++/core/alias.hpp\"\n\n#ifndef ALIAS\n#define ALIAS\n#endif\n\n\
@@ -161,18 +161,17 @@ data:
     \treturn std::ssize(s);\r\n}\r\ninline std::string toupper(std::string s) noexcept\
     \ {\r\n\tfor(auto &c: s) {\r\n\t\tc = std::toupper(c);\r\n\t}\r\n\treturn s;\r\
     \n}\r\ninline std::string tolower(std::string s) noexcept {\r\n\tfor(auto &c:\
-    \ s) {\r\n\t\tc = std::tolower(c);\r\n\t}\r\n\treturn s;\r\n}\r\ntemplate <int\
-    \ base> constexpr inline std::string ten_to(int64_t n, const bool upper = true)\
-    \ noexcept {\r\n\tstatic_assert(base < 10 || base == 16);\r\n\tif constexpr (base\
-    \ == 16) {\r\n\t\tstd::stringstream ss;\r\n\t\tss << std::hex << n;\r\n\t\tconst\
-    \ std::string s = ss.str();\r\n\t\treturn upper ? toupper(s) : s;\r\n\t}\r\n\t\
-    if(n == 0) {\r\n\t\treturn \"0\";\r\n\t}\r\n\tstd::vector<int> ret;\r\n\twhile(n\
-    \ > 0) {\r\n\t\tret.emplace_back(n % base);\r\n\t\tn /= base;\r\n\t}\r\n\tstd::string\
-    \ s;\r\n\tfor(const auto &e: ret | std::views::reverse) {\r\n\t\ts += std::to_string(e);\r\
-    \n\t}\r\n\treturn s;\r\n}\r\ntemplate <int base = 10> constexpr inline int64_t\
-    \ to_ten(const std::string &s) noexcept { return std::stoll(s, nullptr, base);\
-    \ }\r\ntemplate <std::integral... Ts> constexpr uint64_t gcd(const Ts... a) noexcept\
-    \ {\r\n\tstd::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};\r\
+    \ s) {\r\n\t\tc = std::tolower(c);\r\n\t}\r\n\treturn s;\r\n}\r\ninline std::string\
+    \ ten_to(int64_t n, const int base, const bool upper = true) noexcept {\r\n\t\
+    assert(base < 10 || base == 16);\r\n\tif (base == 16) {\r\n\t\tstd::stringstream\
+    \ ss;\r\n\t\tss << std::hex << n;\r\n\t\tconst std::string s = ss.str();\r\n\t\
+    \treturn upper ? toupper(s) : s;\r\n\t}\r\n\tif(n == 0) {\r\n\t\treturn \"0\"\
+    ;\r\n\t}\r\n\tstd::vector<int> ret;\r\n\twhile(n > 0) {\r\n\t\tret.emplace_back(n\
+    \ % base);\r\n\t\tn /= base;\r\n\t}\r\n\tstd::string s;\r\n\tfor(const auto &e:\
+    \ ret | std::views::reverse) {\r\n\t\ts += std::to_string(e);\r\n\t}\r\n\treturn\
+    \ s;\r\n}\r\ninline int64_t to_ten(const std::string &s, const int base = 10)\
+    \ noexcept { return std::stoll(s, nullptr, base); }\r\ntemplate <std::integral...\
+    \ Ts> constexpr uint64_t gcd(const Ts... a) noexcept {\r\n\tstd::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};\r\
     \n\tuint64_t g = 0;\r\n\tfor(const auto &el: v) {\r\n\t\tg = std::gcd(g, el);\r\
     \n\t}\r\n\treturn g;\r\n}\r\ntemplate <std::integral... Ts> constexpr uint64_t\
     \ lcm(const Ts... a) noexcept {\r\n\tstd::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};\r\
@@ -445,10 +444,10 @@ data:
     \ GCC diagnostic ignored \"-Wunused-parameter\"\r\n#pragma GCC diagnostic ignored\
     \ \"-Wsign-compare\"\r\n#pragma GCC diagnostic ignored \"-Wdeprecated-copy\"\r\
     \n#include <bits/stdc++.h>\r\nnamespace VvyLw {\r\nenum TestCase { single, multi\
-    \ };\r\ninline void solve() noexcept;\r\ntemplate <TestCase tc = single> constexpr\
-    \ inline void wa_haya_exe(const short x = 0) noexcept {\r\n\tstd::cin.tie(nullptr)\
-    \ -> sync_with_stdio(false);\r\n\tif(x > 0) {\r\n\t\tstd::cout << std::fixed <<\
-    \ std::setprecision(x);\r\n\t}\r\n\tint t = 1;\r\n\tif constexpr (tc == multi)\
+    \ };\r\ninline void solve() noexcept;\r\ntemplate <TestCase tc = single, short\
+    \ x = 0> constexpr inline void wa_haya_exe() noexcept {\r\n\tstd::cin.tie(nullptr)\
+    \ -> sync_with_stdio(false);\r\n\tif constexpr (x > 0) {\r\n\t\tstd::cout << std::fixed\
+    \ << std::setprecision(x);\r\n\t}\r\n\tint t = 1;\r\n\tif constexpr (tc == multi)\
     \ {\r\n\t\tstd::cin >> t;\r\n\t}\r\n\tfor([[maybe_unused]] const auto _: std::views::iota(0,\
     \ t)) {\r\n\t\tsolve();\r\n\t}\r\n}\r\n}\r\n\r\nusing enum VvyLw::TestCase;\r\n\
     \r\n#include \"C++/core/alias.hpp\"\r\n\r\nnamespace man {\r\ninline bool isdigit(const\
@@ -519,18 +518,17 @@ data:
     \treturn std::ssize(s);\r\n}\r\ninline std::string toupper(std::string s) noexcept\
     \ {\r\n\tfor(auto &c: s) {\r\n\t\tc = std::toupper(c);\r\n\t}\r\n\treturn s;\r\
     \n}\r\ninline std::string tolower(std::string s) noexcept {\r\n\tfor(auto &c:\
-    \ s) {\r\n\t\tc = std::tolower(c);\r\n\t}\r\n\treturn s;\r\n}\r\ntemplate <int\
-    \ base> constexpr inline std::string ten_to(int64_t n, const bool upper = true)\
-    \ noexcept {\r\n\tstatic_assert(base < 10 || base == 16);\r\n\tif constexpr (base\
-    \ == 16) {\r\n\t\tstd::stringstream ss;\r\n\t\tss << std::hex << n;\r\n\t\tconst\
-    \ std::string s = ss.str();\r\n\t\treturn upper ? toupper(s) : s;\r\n\t}\r\n\t\
-    if(n == 0) {\r\n\t\treturn \"0\";\r\n\t}\r\n\tstd::vector<int> ret;\r\n\twhile(n\
-    \ > 0) {\r\n\t\tret.emplace_back(n % base);\r\n\t\tn /= base;\r\n\t}\r\n\tstd::string\
-    \ s;\r\n\tfor(const auto &e: ret | std::views::reverse) {\r\n\t\ts += std::to_string(e);\r\
-    \n\t}\r\n\treturn s;\r\n}\r\ntemplate <int base = 10> constexpr inline int64_t\
-    \ to_ten(const std::string &s) noexcept { return std::stoll(s, nullptr, base);\
-    \ }\r\ntemplate <std::integral... Ts> constexpr uint64_t gcd(const Ts... a) noexcept\
-    \ {\r\n\tstd::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};\r\
+    \ s) {\r\n\t\tc = std::tolower(c);\r\n\t}\r\n\treturn s;\r\n}\r\ninline std::string\
+    \ ten_to(int64_t n, const int base, const bool upper = true) noexcept {\r\n\t\
+    assert(base < 10 || base == 16);\r\n\tif (base == 16) {\r\n\t\tstd::stringstream\
+    \ ss;\r\n\t\tss << std::hex << n;\r\n\t\tconst std::string s = ss.str();\r\n\t\
+    \treturn upper ? toupper(s) : s;\r\n\t}\r\n\tif(n == 0) {\r\n\t\treturn \"0\"\
+    ;\r\n\t}\r\n\tstd::vector<int> ret;\r\n\twhile(n > 0) {\r\n\t\tret.emplace_back(n\
+    \ % base);\r\n\t\tn /= base;\r\n\t}\r\n\tstd::string s;\r\n\tfor(const auto &e:\
+    \ ret | std::views::reverse) {\r\n\t\ts += std::to_string(e);\r\n\t}\r\n\treturn\
+    \ s;\r\n}\r\ninline int64_t to_ten(const std::string &s, const int base = 10)\
+    \ noexcept { return std::stoll(s, nullptr, base); }\r\ntemplate <std::integral...\
+    \ Ts> constexpr uint64_t gcd(const Ts... a) noexcept {\r\n\tstd::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};\r\
     \n\tuint64_t g = 0;\r\n\tfor(const auto &el: v) {\r\n\t\tg = std::gcd(g, el);\r\
     \n\t}\r\n\treturn g;\r\n}\r\ntemplate <std::integral... Ts> constexpr uint64_t\
     \ lcm(const Ts... a) noexcept {\r\n\tstd::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};\r\
@@ -641,7 +639,7 @@ data:
   isVerificationFile: false
   path: C++/template.hpp
   requiredBy: []
-  timestamp: '2025-06-12 11:55:48+09:00'
+  timestamp: '2025-06-12 12:17:36+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/add.test.cpp
