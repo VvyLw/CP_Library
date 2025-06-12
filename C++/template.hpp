@@ -7,10 +7,24 @@
 #pragma GCC diagnostic ignored "-Wdeprecated-copy"
 #include <bits/stdc++.h>
 namespace VvyLw {
-inline void wa_haya_exe() noexcept { std::cin.tie(nullptr) -> sync_with_stdio(false); }
-inline void dec_prec(const short x) noexcept { std::cout << std::fixed << std::setprecision(x); }
-void solve();
+enum TestCase { single, multi };
+inline void solve() noexcept;
+template <TestCase tc = single> constexpr inline void wa_haya_exe(const short x = 0) noexcept {
+	std::cin.tie(nullptr) -> sync_with_stdio(false);
+	if(x > 0) {
+		std::cout << std::fixed << std::setprecision(x);
+	}
+	int t = 1;
+	if constexpr (tc == multi) {
+		std::cin >> t;
+	}
+	for([[maybe_unused]] const auto _: std::views::iota(0, t)) {
+		solve();
+	}
 }
+}
+
+using enum VvyLw::TestCase;
 
 #include "C++/core/alias.hpp"
 
@@ -367,12 +381,7 @@ constexpr inline bool is_sqr(const int64_t n) noexcept { return is_int(std::sqrt
 #include "C++/core/io/input.hpp"
 #include "C++/core/io/output.hpp"
 
-#define overload4(_1,_2,_3,_4,name,...) name
-#define REP1(n) for([[maybe_unused]] const auto _: std::views::iota(0, (n)))
-#define REP2(i,n) for(const auto i: std::views::iota(0, (n)))
-#define REP3(i,a,b) for(const auto i: std::views::iota((a), (b)))
-#define REP4(i,a,b,c) for(i64 i = (a); i < (b); i += (c))
-#define REP(...) overload4(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)
+#define REP(n) for([[maybe_unused]] const auto _: std::views::iota(0, (n)))
 
 using namespace IO;
 using namespace std::views;
