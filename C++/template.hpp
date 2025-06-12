@@ -171,14 +171,14 @@ inline std::string tolower(std::string s) noexcept {
 	return s;
 }
 inline std::string ten_to(int64_t n, const int base, const bool upper = true) noexcept {
-	assert(base < 10 || base == 16);
-	if (base == 16) {
+	assert(base <= 10 || base == 16);
+	if(base == 16) {
 		std::stringstream ss;
 		ss << std::hex << n;
 		const std::string s = ss.str();
 		return upper ? toupper(s) : s;
 	}
-	if(n == 0) {
+	if(n == 0 || base == 0) {
 		return "0";
 	}
 	std::vector<int> ret;
