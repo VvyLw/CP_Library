@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/alias.hpp
     title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/io/input.hpp
     title: "\u5165\u529B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/io/output.hpp
     title: "\u51FA\u529B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/myvector.hpp
     title: C++/core/myvector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/timer.hpp
     title: "\u30BF\u30A4\u30DE\u30FC"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/math/psum/psum.hpp
     title: "\u7D2F\u7A4D\u548C"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -38,17 +38,17 @@ data:
   bundledCode: "#line 1 \"test/sr_sum.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\
     \n/*#pragma GCC optimize(\"O3\")\n#pragma GCC optimize(\"unroll-loops\")//*/\n\
     //#pragma GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native\"\
-    )\n#line 2 \"C++/math/psum/psum.hpp\"\n\n#include <vector>\n#include <numeric>\n\
-    namespace man {\ntemplate <std::integral T> struct psum {\nprivate:\n    int n;\n\
-    \    bool not_built;\n    std::vector<int64_t> s;\npublic:\n    psum(const std::vector<T>\
-    \ &v): s{0} { std::partial_sum(v.cbegin(), v.cend(), std::back_inserter(s)); }\n\
-    \    psum(const int n): n(n), not_built(true), s(n + 1){}\n    constexpr inline\
-    \ std::vector<int64_t> get() const noexcept { return s; }\n    // [l, r]\n   \
-    \ constexpr inline int64_t sum(const int l, const int r) const noexcept  { return\
-    \ s[r] - s[l]; }\n    constexpr inline void add(const int l, const int r, const\
-    \ int64_t x = 1) noexcept {\n        static_assert(not_built);\n        s[l] +=\
-    \ x;\n        s[r] -= x;\n    }\n    constexpr inline std::vector<int64_t> build()\
-    \ noexcept {\n        static_assert(not_built);\n        std::vector<int64_t>\
+    )\n#line 2 \"C++/math/psum/psum.hpp\"\n\n#include <cstdint>\n#include <vector>\n\
+    #include <numeric>\nnamespace man {\ntemplate <std::integral T> struct psum {\n\
+    private:\n    int n;\n    bool not_built;\n    std::vector<int64_t> s;\npublic:\n\
+    \    psum(const std::vector<T> &v): s{0} { std::partial_sum(v.cbegin(), v.cend(),\
+    \ std::back_inserter(s)); }\n    psum(const int n): n(n), not_built(true), s(n\
+    \ + 1){}\n    constexpr inline std::vector<int64_t> get() const noexcept { return\
+    \ s; }\n    // [l, r]\n    constexpr inline int64_t sum(const int l, const int\
+    \ r) const noexcept  { return s[r] - s[l]; }\n    constexpr inline void add(const\
+    \ int l, const int r, const int64_t x = 1) noexcept {\n        static_assert(not_built);\n\
+    \        s[l] += x;\n        s[r] -= x;\n    }\n    constexpr inline std::vector<int64_t>\
+    \ build() noexcept {\n        static_assert(not_built);\n        std::vector<int64_t>\
     \ res;\n        std::partial_sum(s.cbegin(), s.cend(), std::back_inserter(res));\n\
     \        not_built = false;\n        res.resize(n);\n        return res;\n   \
     \ }\n};\n}\n\n/**\n * @brief \u7D2F\u7A4D\u548C\n */\n#line 2 \"C++/template.hpp\"\
@@ -455,8 +455,8 @@ data:
   isVerificationFile: true
   path: test/sr_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-06-12 12:50:02+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-12 12:59:01+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sr_sum.test.cpp
 layout: document

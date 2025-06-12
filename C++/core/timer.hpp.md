@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedVerifiedWith:
@@ -33,15 +33,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u30BF\u30A4\u30DE\u30FC"
     links: []
@@ -66,7 +66,7 @@ data:
   requiredBy:
   - C++/template.hpp
   timestamp: '2025-06-06 22:43:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/add.test.cpp
   - test/uf.test.cpp

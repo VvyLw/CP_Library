@@ -3,16 +3,16 @@ data:
   libraryCategories:
   - name: C++/core
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/core/alias.hpp
       title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/core/mypair.hpp
       title: C++/core/mypair.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/core/myvector.hpp
       title: C++/core/myvector.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/core/timer.hpp
       title: "\u30BF\u30A4\u30DE\u30FC"
   - name: C++/core/io
@@ -20,10 +20,10 @@ data:
     - icon: ':warning:'
       path: C++/core/io/debug_print.hpp
       title: "\u30C7\u30D0\u30C3\u30AC\u30FC"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/core/io/input.hpp
       title: "\u5165\u529B"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/core/io/output.hpp
       title: "\u51FA\u529B"
   - name: C++/ds
@@ -162,7 +162,7 @@ data:
       title: "Tetration(a\u2191\u2191b)"
   - name: C++/math/psum
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: C++/math/psum/psum.hpp
       title: "\u7D2F\u7A4D\u548C"
     - icon: ':heavy_check_mark:'
@@ -204,7 +204,7 @@ data:
       title: Z-Algorithm
   - name: C++
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: C++/template.hpp
       title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   - name: Java
@@ -704,7 +704,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/spfa.test.cpp
       title: test/spfa.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/sr_sum.test.cpp
       title: test/sr_sum.test.cpp
     - icon: ':heavy_check_mark:'
