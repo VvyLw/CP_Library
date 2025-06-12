@@ -9,9 +9,9 @@
 namespace VvyLw {
 enum TestCase { single, multi };
 inline void solve() noexcept;
-template <TestCase tc = single> constexpr inline void wa_haya_exe(const short x = 0) noexcept {
+template <TestCase tc = single, short x = 0> constexpr inline void wa_haya_exe() noexcept {
 	std::cin.tie(nullptr) -> sync_with_stdio(false);
-	if(x > 0) {
+	if constexpr (x > 0) {
 		std::cout << std::fixed << std::setprecision(x);
 	}
 	int t = 1;
@@ -170,9 +170,9 @@ inline std::string tolower(std::string s) noexcept {
 	}
 	return s;
 }
-template <int base> constexpr inline std::string ten_to(int64_t n, const bool upper = true) noexcept {
-	static_assert(base < 10 || base == 16);
-	if constexpr (base == 16) {
+inline std::string ten_to(int64_t n, const int base, const bool upper = true) noexcept {
+	assert(base < 10 || base == 16);
+	if (base == 16) {
 		std::stringstream ss;
 		ss << std::hex << n;
 		const std::string s = ss.str();
@@ -192,7 +192,7 @@ template <int base> constexpr inline std::string ten_to(int64_t n, const bool up
 	}
 	return s;
 }
-template <int base = 10> constexpr inline int64_t to_ten(const std::string &s) noexcept { return std::stoll(s, nullptr, base); }
+inline int64_t to_ten(const std::string &s, const int base = 10) noexcept { return std::stoll(s, nullptr, base); }
 template <std::integral... Ts> constexpr uint64_t gcd(const Ts... a) noexcept {
 	std::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};
 	uint64_t g = 0;
