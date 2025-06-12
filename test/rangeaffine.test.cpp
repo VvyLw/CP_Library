@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 #include "C++/math/Modint.hpp"
 #include "C++/ds/LazySegmentTree.hpp"
-#include "C++/core/alias.hpp"
 using Z = man::zwei<mint>;
 int main() {
     int n, q;
