@@ -137,10 +137,10 @@ data:
     \n}\r\ninline std::string tolower(std::string s) noexcept {\r\n\tfor(auto &c:\
     \ s) {\r\n\t\tc = std::tolower(c);\r\n\t}\r\n\treturn s;\r\n}\r\ninline std::string\
     \ ten_to(int64_t n, const int base, const bool upper = true) noexcept {\r\n\t\
-    assert(base < 10 || base == 16);\r\n\tif (base == 16) {\r\n\t\tstd::stringstream\
+    assert(base <= 10 || base == 16);\r\n\tif(base == 16) {\r\n\t\tstd::stringstream\
     \ ss;\r\n\t\tss << std::hex << n;\r\n\t\tconst std::string s = ss.str();\r\n\t\
-    \treturn upper ? toupper(s) : s;\r\n\t}\r\n\tif(n == 0) {\r\n\t\treturn \"0\"\
-    ;\r\n\t}\r\n\tstd::vector<int> ret;\r\n\twhile(n > 0) {\r\n\t\tret.emplace_back(n\
+    \treturn upper ? toupper(s) : s;\r\n\t}\r\n\tif(n == 0 || base == 0) {\r\n\t\t\
+    return \"0\";\r\n\t}\r\n\tstd::vector<int> ret;\r\n\twhile(n > 0) {\r\n\t\tret.emplace_back(n\
     \ % base);\r\n\t\tn /= base;\r\n\t}\r\n\tstd::string s;\r\n\tfor(const auto &e:\
     \ ret | std::views::reverse) {\r\n\t\ts += std::to_string(e);\r\n\t}\r\n\treturn\
     \ s;\r\n}\r\ninline int64_t to_ten(const std::string &s, const int base = 10)\
@@ -474,7 +474,7 @@ data:
   isVerificationFile: true
   path: test/parsum.test.cpp
   requiredBy: []
-  timestamp: '2025-06-12 12:17:36+09:00'
+  timestamp: '2025-06-12 12:21:53+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/parsum.test.cpp
