@@ -8,7 +8,6 @@
 
 #include <iostream>
 #include <cassert>
-#include <cstdint>
 #include <vector>
 #include <utility>
 #include <type_traits>
@@ -19,7 +18,7 @@ template <uint mod> struct Modint {
     uint num = 0;
     constexpr Modint() noexcept {}
     constexpr Modint(const Modint &x) noexcept : num(x.num){}
-    constexpr operator int64_t() const noexcept { return num; }
+    constexpr operator long long() const noexcept { return num; }
     constexpr static unsigned get_mod(){ return mod; }
     constexpr Modint& operator+=(Modint x) noexcept { num += x.num; if(num >= mod) num -= mod; return *this; }
     constexpr Modint& operator++() noexcept { if(num == mod - 1) num = 0; else num++; return *this; }
@@ -28,7 +27,7 @@ template <uint mod> struct Modint {
     constexpr Modint& operator-=(Modint x) noexcept { if(num < x.num) num += mod; num -= x.num; return *this; }
     constexpr Modint& operator--() noexcept { if(num == 0) num = mod - 1; else num--; return *this; }
     constexpr Modint operator--(int) noexcept { Modint ans(*this); operator--(); return ans; }
-    constexpr Modint& operator*=(Modint x) noexcept { num = uint64_t(num) * x.num % mod; return *this; }
+    constexpr Modint& operator*=(Modint x) noexcept { num = static_cast<unsigned long long>(num) * x.num % mod; return *this; }
     constexpr Modint& operator/=(Modint x) noexcept { return operator*=(x.inv()); }
     constexpr void operator%=(Modint x) noexcept { void(0); }
     template <class T> constexpr Modint(T x) noexcept {
@@ -43,22 +42,22 @@ template <uint mod> struct Modint {
     template <class T> constexpr Modint& operator*=(T x) noexcept { return operator*=(Modint(x)); }
     template <class T> constexpr Modint operator/(T x) const noexcept { return Modint(*this) /= x; }
     template <class T> constexpr Modint& operator/=(T x) noexcept { return operator/=(Modint(x)); }
-    constexpr Modint inv() const noexcept { int64_t x = 0, y = 0; extgcd(num, mod, x, y); return x; }
-    static constexpr int64_t extgcd(int64_t a, int64_t b, int64_t &x, int64_t &y) noexcept { int64_t g = a; x = 1; y = 0; if(b){ g = extgcd(b, a % b, y, x); y -= a / b * x; } return g; }
-    constexpr Modint pow(uint64_t x) const noexcept { Modint ans = 1, cnt = *this; while(x){ if(x & 1) ans *= cnt; cnt *= cnt; x /= 2; } return ans; }
+    constexpr Modint inv() const noexcept { long long x = 0, y = 0; extgcd(num, mod, x, y); return x; }
+    static constexpr long long extgcd(long long a, long long b, long long &x, long long &y) noexcept { long long g = a; x = 1; y = 0; if(b){ g = extgcd(b, a % b, y, x); y -= a / b * x; } return g; }
+    constexpr Modint pow(unsigned long long x) const noexcept { Modint ans = 1, cnt = *this; while(x){ if(x & 1) ans *= cnt; cnt *= cnt; x /= 2; } return ans; }
     friend std::ostream& operator<<(std::ostream& os, const Modint& m){ os << m.num; return os; }
     friend std::istream &operator>>(std::istream &is, Modint &a) {
-        int64_t t;
+        long long t;
         is >> t;
         a = Modint(t);
-        return (is);
+        return is;
     }
 };
 
 template <class mint> struct Comb {
 private:
     std::vector<mint> fac{1}, inv{1};
-    inline void reserve(uint64_t a) noexcept {
+    inline void reserve(unsigned long long a) noexcept {
         if(std::ssize(fac) >= a) {
             return;
         }
@@ -78,14 +77,14 @@ private:
         }
     }
 public:
-    inline mint fact(const int64_t n) noexcept {
+    inline mint fact(const long long n) noexcept {
         if(n < 0) {
             return 0;
         }
         reserve(n + 1);
         return fac[n];
     }
-    inline mint nPr(int64_t n, const int64_t r) noexcept {
+    inline mint nPr(long long n, const long long r) noexcept {
         if(r < 0 || n < r) {
             return 0;
         }
@@ -99,7 +98,7 @@ public:
         reserve(n + 1);
         return fac[n] * inv[n - r];
     }
-    inline mint nCr(const int64_t n, int64_t r) noexcept {
+    inline mint nCr(const long long n, long long r) noexcept {
         if(r < 0 || n < r) {
             return 0;
         }
@@ -107,7 +106,7 @@ public:
         reserve(r + 1);
         return nPr(n, r) * inv[r];
     }
-    inline mint nHr(const int64_t n, const int64_t r) noexcept {
+    inline mint nHr(const long long n, const long long r) noexcept {
         if(n == 0 && r == 0) {
             return 1;
         }
@@ -121,13 +120,13 @@ public:
 struct a_mint {
     int val;
     a_mint() : val(0){}
-    a_mint(const int64_t x) : val(x >= 0 ? x % get_mod() : (get_mod() - (-x) % get_mod()) % get_mod()){}
+    a_mint(const long long x) : val(x >= 0 ? x % get_mod() : (get_mod() - (-x) % get_mod()) % get_mod()){}
     int getmod() { return get_mod(); }
     static int &get_mod() {
         static int mod = 0;
         return mod;
     }
-    static void set_mod(int md) { assert(md>0); get_mod() = md; }
+    static void set_mod(int md) { assert(md > 0); get_mod() = md; }
     a_mint &operator+=(const a_mint &p) noexcept {
         if((val += p.val) >= get_mod()) {
             val -= get_mod();
@@ -173,7 +172,7 @@ struct a_mint {
         }
         return a_mint(u);
     }
-    inline a_mint pow(int64_t n) const noexcept {
+    inline a_mint pow(long long n) const noexcept {
         a_mint ret(1), mul(val);
         while(n > 0) {
             if(n & 1) {
@@ -186,7 +185,7 @@ struct a_mint {
     }
     inline friend ::std::ostream &operator<<(::std::ostream &os, const a_mint &p) noexcept { return os << p.val; }
     inline friend ::std::istream &operator>>(::std::istream &is, a_mint &a) noexcept {
-        int64_t t;
+        long long t;
         is >> t;
         a = a_mint(t);
         return is;

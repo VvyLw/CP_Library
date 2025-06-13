@@ -4,7 +4,7 @@
 #include "C++/graph/edge.hpp"
 struct MST {
     std::vector<man::edge> tree;
-    int64_t cost;
+    long long cost;
 };
 
 /**

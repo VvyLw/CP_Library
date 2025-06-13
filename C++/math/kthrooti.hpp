@@ -9,12 +9,12 @@ template <std::integral T, std::integral U> constexpr inline bool overflow_if_mu
 }
 #endif
 namespace man {
-inline uint64_t kthrooti(const uint64_t n, const int k) {
+inline unsigned long long kthrooti(const unsigned long long n, const int k) {
     if(k == 1) {
 		return n;
 	}
 	const auto chk = [&](const unsigned x) -> bool {
-		uint64_t mul = 1;
+		unsigned long long mul = 1;
 		for([[maybe_unused]] const auto _: std::views::iota(0, k)) {
             if(man::overflow_if_mul(mul, x)) {
                 return false;
@@ -23,7 +23,7 @@ inline uint64_t kthrooti(const uint64_t n, const int k) {
         }
 		return mul <= n;
 	};
-	uint64_t ret = 0;
+	unsigned long long ret = 0;
 	for(const auto i: std::views::iota(0, 32) | std::views::reverse) {
 		if(chk(ret | (1U << i))) {
 			ret |= 1U << i;

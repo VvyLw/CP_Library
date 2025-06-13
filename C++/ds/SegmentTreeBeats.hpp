@@ -6,9 +6,9 @@
 namespace man {
 template <class T> struct SegmentTreeBeats {
 private:
-    static constexpr int64_t INF = (1LL << 61) - 1;
+    static constexpr long long INF = (1LL << 61) - 1;
     struct Node {
-        int64_t sum = 0, g1 = 0, l1 = 0, g2 = -INF, gc = 1, l2 = INF, lc = 1, add = 0;
+        long long sum = 0, g1 = 0, l1 = 0, g2 = -INF, gc = 1, l2 = INF, lc = 1, add = 0;
     };
     std::vector<Node> v;
     int n, log;
@@ -36,7 +36,7 @@ private:
             p.l2 = std::min(f ? r.l1 : l.l1, f ? l.l2 : r.l2);
         }
     }
-    constexpr inline void push_add(const int k, const int64_t x) noexcept {
+    constexpr inline void push_add(const int k, const long long x) noexcept {
         Node& p = v[k];
         p.sum += x << (log + __builtin_clz(k) - 31);
         p.g1 += x;
@@ -49,7 +49,7 @@ private:
         }
         p.add += x;
     }
-    constexpr inline void push_min(const int k, const int64_t x) noexcept {
+    constexpr inline void push_min(const int k, const long long x) noexcept {
         Node& p = v[k];
         p.sum += (x - p.g1) * p.gc;
         if(p.l1 == p.g1) {
@@ -60,7 +60,7 @@ private:
         }
         p.g1 = x;
     }
-    constexpr inline void push_max(const int k, const int64_t x) noexcept {
+    constexpr inline void push_max(const int k, const long long x) noexcept {
         Node& p = v[k];
         p.sum += (x - p.l1) * p.lc;
         if(p.g1 == p.l1) {
@@ -91,7 +91,7 @@ private:
             push_max(k * 2 + 1, p.l1);
         }
     }
-    constexpr inline void subtree_chmin(const int k, const int64_t x) noexcept {
+    constexpr inline void subtree_chmin(const int k, const long long x) noexcept {
         if(v[k].g1 <= x) {
             return;
         }
@@ -104,7 +104,7 @@ private:
         subtree_chmin(k * 2 + 1, x);
         update(k);
     }
-    constexpr inline void subtree_chmax(const int k, const int64_t x) noexcept {
+    constexpr inline void subtree_chmax(const int k, const long long x) noexcept {
         if(x <= v[k].l1) {
             return;
         }
@@ -117,7 +117,7 @@ private:
         subtree_chmax(k * 2 + 1, x);
         update(k);
     }
-    template <int cmd> constexpr inline void _apply(const int k, const int64_t x) noexcept {
+    template <int cmd> constexpr inline void _apply(const int k, const long long x) noexcept {
         if constexpr (cmd == 1) {
             subtree_chmin(k, x);
         }
@@ -132,7 +132,7 @@ private:
             subtree_chmax(k, x);
         }
     }
-    template <int cmd> void inner_apply(int l, int r, const int64_t x) {
+    template <int cmd> void inner_apply(int l, int r, const long long x) {
         if(l == r) {
             return;
         }
@@ -169,7 +169,7 @@ private:
             }
         }
     }
-    template <int cmd> constexpr inline int64_t e() noexcept {
+    template <int cmd> constexpr inline long long e() noexcept {
         if constexpr (cmd == 1) {
             return INF;
         }
@@ -178,7 +178,7 @@ private:
         }
         return 0;
     }
-    template <int cmd> constexpr inline void op(int64_t& a, const Node& b) noexcept {
+    template <int cmd> constexpr inline void op(long long& a, const Node& b) noexcept {
         if constexpr (cmd == 1) {
             a = min(a, b.l1);
         }
@@ -189,7 +189,7 @@ private:
             a += b.sum;
         }
     }
-    template <int cmd> constexpr inline int64_t inner_fold(int l, int r) noexcept {
+    template <int cmd> constexpr inline long long inner_fold(int l, int r) noexcept {
         if(l == r) {
             return e<cmd>();
         }
@@ -202,7 +202,7 @@ private:
                 push((r - 1) >> i);
             }
         }
-        int64_t lx = e<cmd>(), rx = e<cmd>();
+        long long lx = e<cmd>(), rx = e<cmd>();
         while(l < r) {
             if(l & 1) {
                 op<cmd>(lx, v[l++]);
@@ -241,13 +241,13 @@ public:
             update(i);
         }
     }
-    constexpr inline void chmin(const int l, const int r, const int64_t x) noexcept { inner_apply<1>(l, r, x); }
-    constexpr inline void chmax(const int l, const int r, const int64_t x) noexcept { inner_apply<2>(l, r, x); }
-    constexpr inline void add(const int l, const int r, const int64_t x) noexcept { inner_apply<3>(l, r, x); }
-    constexpr inline void update(const int l, const int r, const int64_t x) noexcept { inner_apply<4>(l, r, x); }
-    constexpr inline int64_t min(const int l, const int r) noexcept { return inner_fold<1>(l, r); }
-    constexpr inline int64_t max(const int l, const int r) noexcept{ return inner_fold<2>(l, r); }
-    constexpr inline int64_t sum(const int l, const int r) noexcept { return inner_fold<3>(l, r); }
+    constexpr inline void chmin(const int l, const int r, const long long x) noexcept { inner_apply<1>(l, r, x); }
+    constexpr inline void chmax(const int l, const int r, const long long x) noexcept { inner_apply<2>(l, r, x); }
+    constexpr inline void add(const int l, const int r, const long long x) noexcept { inner_apply<3>(l, r, x); }
+    constexpr inline void update(const int l, const int r, const long long x) noexcept { inner_apply<4>(l, r, x); }
+    constexpr inline long long min(const int l, const int r) noexcept { return inner_fold<1>(l, r); }
+    constexpr inline long long max(const int l, const int r) noexcept{ return inner_fold<2>(l, r); }
+    constexpr inline long long sum(const int l, const int r) noexcept { return inner_fold<3>(l, r); }
 };
 }
 

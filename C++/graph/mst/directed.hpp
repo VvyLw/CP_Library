@@ -52,7 +52,7 @@ inline MST directed(std::vector<man::edge> edges, const int n, const int v) noex
     for(int i = v; i != -1; i = par[i]) {
 		vis[i] = 1;
 	}
-    int64_t cost = 0;
+    long long cost = 0;
     std::vector<man::edge> e;
     for(int i = x; i >= 0; i--) {
 		if(vis[i] == 1) {

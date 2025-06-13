@@ -11,8 +11,8 @@ template <typename T> concept num = std::integral<T> || std::floating_point<T>;
 namespace man {
 namespace vec {
 template <class T> using V = std::vector<T>;
-typedef V<int64_t> zhl;
-typedef V<uint64_t> uzhl;
+typedef V<long long> zhl;
+typedef V<unsigned long long> uzhl;
 typedef V<long double> dec;
 typedef V<char> chr;
 typedef V<std::string> str;

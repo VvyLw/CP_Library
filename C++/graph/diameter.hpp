@@ -14,8 +14,8 @@ private:
     using w_graph<undirected>::edges;
     std::vector<int> to;
     std::vector<edge> path;
-    constexpr inline std::pair<int64_t, int> dfs(const int i, const int par) noexcept {
-        std::pair<int64_t, int> ret(0, i);
+    constexpr inline std::pair<long long, int> dfs(const int i, const int par) noexcept {
+        std::pair<long long, int> ret(0, i);
         for(const auto &e: (*this)[i]) {
             if(e == par) {
                 continue;
@@ -33,7 +33,7 @@ public:
     using w_graph<undirected>::add;
     using w_graph<undirected>::input;
     using w_graph<undirected>::get_edge;    
-    constexpr inline int64_t build() noexcept {
+    constexpr inline long long build() noexcept {
         const auto p = dfs(0, -1);
         const auto q = dfs(p.second, -1);
         int now = p.second;

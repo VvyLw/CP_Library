@@ -15,7 +15,7 @@ public:
     using graph<undirected>::dist;
     using graph<undirected>::t_sort;
     using graph<undirected>::cycle;
-    inline void add(int a, int b, const int64_t cost) noexcept {
+    inline void add(int a, int b, const long long cost) noexcept {
         a -= indexed, b -= indexed;
         (*this)[a].emplace_back(a, b, id, cost);
         edges.emplace_back(a, b, id++, cost);
@@ -27,15 +27,15 @@ public:
     inline void input(const int m) noexcept {
         for([[maybe_unused]] const auto _: std::views::iota(0, m)) {
             int a, b;
-            int64_t c;
+            long long c;
             std::cin >> a >> b >> c;
             add(a, b, c);
         }
     }
     inline ShortestPath dijkstra(const int v) noexcept {
-        std::vector<int64_t> cst(this->size(), (1LL << 61) - 1);
+        std::vector<long long> cst(this->size(), (1LL << 61) - 1);
         std::vector<int> src(this->size(), -1);
-        std::priority_queue<std::pair<int64_t, int>, std::vector<std::pair<int64_t, int>>, std::greater<std::pair<int64_t, int>>> dj;
+        std::priority_queue<std::pair<long long, int>, std::vector<std::pair<long long, int>>, std::greater<std::pair<long long, int>>> dj;
         cst[v] = 0;
         dj.emplace(cst[v], v);
         while(!dj.empty()) {
@@ -53,9 +53,9 @@ public:
         }
         return {cst, src};
     }
-    inline std::vector<int64_t> spfa(const int v) noexcept {
+    inline std::vector<long long> spfa(const int v) noexcept {
         const int n = this -> size();
-        std::vector<int64_t> cst(n, (1LL << 61) - 1);
+        std::vector<long long> cst(n, (1LL << 61) - 1);
         std::vector<int> pending(n), times(n);
         std::queue<int> q;
         q.emplace(v);
@@ -67,7 +67,7 @@ public:
             q.pop();
             pending[p] = 0;
             for(const auto &e : (*this)[p]) {
-                const int64_t next = cst[p] + e.cost;
+                const long long next = cst[p] + e.cost;
                 if(next >= cst[e]) {
                     continue;
                 }
@@ -84,9 +84,9 @@ public:
         }
 		return cst;
     }
-    std::vector<std::vector<int64_t>> warshall_floyd() {
+    std::vector<std::vector<long long>> warshall_floyd() {
 		const int n = this -> size();
-        const int64_t lim = (1LL << 61) - 1;
+        const long long lim = (1LL << 61) - 1;
 		std::vector cst(n, std::vector(n, lim));
 		for(const auto i: std::views::iota(0, n)) {
             cst[i][i] = 0;

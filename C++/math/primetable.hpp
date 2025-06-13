@@ -7,11 +7,11 @@ struct p_table {
     std::vector<int> SoE;
     p_table(const int n): SoE(n + 1, 1) {
         SoE[0] = SoE[1] = 0;
-        for(const int64_t i: std::views::iota(2, n + 1)) {
+        for(const long long i: std::views::iota(2, n + 1)) {
             if(!SoE[i]) {
                 continue;
             }
-            for(int64_t j = i * i; j <= n; j += i) {
+            for(long long j = i * i; j <= n; j += i) {
                 SoE[j] = 0;
             }
         }

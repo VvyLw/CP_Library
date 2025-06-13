@@ -5,14 +5,14 @@
 #include <ranges>
 namespace man {
 #ifndef ALIAS
-constexpr int64_t LINF = (1LL << 61) - 1;
+constexpr long long LINF = (1LL << 61) - 1;
 #endif
-const uint64_t base = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count() % LINF;
-template <uint64_t mod> struct RollingHash {
+const unsigned long long base = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count() % LINF;
+template <unsigned long long mod> struct RollingHash {
 private:
-    std::vector<uint64_t> hashed, power;
-    static constexpr inline uint64_t mask(const int64_t a) noexcept { return (1ULL << a) - 1; }
-    constexpr inline uint64_t mul(const uint64_t a, const uint64_t b) const noexcept {
+    std::vector<unsigned long long> hashed, power;
+    static constexpr inline unsigned long long mask(const long long a) noexcept { return (1ULL << a) - 1; }
+    constexpr inline unsigned long long mul(const unsigned long long a, const unsigned long long b) const noexcept {
         __uint128_t ans = __uint128_t(a) * b;
         ans = (ans >> 61) + (ans & mod);
         if(ans >= mod) {
@@ -34,24 +34,24 @@ public:
             }
         }
     }
-    constexpr inline uint64_t get(const int64_t l, const int64_t r) const noexcept {
-        uint64_t ret = hashed[r] + mod - mul(hashed[l], power[r - l]);
+    constexpr inline unsigned long long get(const long long l, const long long r) const noexcept {
+        unsigned long long ret = hashed[r] + mod - mul(hashed[l], power[r - l]);
         if(ret >= mod) {
             ret -= mod;
         }
         return ret;
     }
-    constexpr inline uint64_t connect(const uint64_t h1, const uint64_t h2, const int64_t h2len) const noexcept {
-        uint64_t ret = mul(h1, power[h2len]) + h2;
+    constexpr inline unsigned long long connect(const unsigned long long h1, const unsigned long long h2, const long long h2len) const noexcept {
+        unsigned long long ret = mul(h1, power[h2len]) + h2;
         if(ret >= mod) {
             ret -= mod;
         }
         return ret;
     }
-    constexpr inline int64_t LCP(const RollingHash &b, int64_t l1, int64_t r1, int64_t l2, int64_t r2) noexcept {
-        int64_t low = -1, high = std::min(r1 - l1, r2 - l2) + 1;
+    constexpr inline long long LCP(const RollingHash &b, long long l1, long long r1, long long l2, long long r2) noexcept {
+        long long low = -1, high = std::min(r1 - l1, r2 - l2) + 1;
         while(high - low > 1) {
-            const int64_t mid = (low + high) / 2;
+            const long long mid = (low + high) / 2;
             if(get(l1, l1 + mid) == b.get(l2, l2 + mid)) {
                 low = mid;
             } else {

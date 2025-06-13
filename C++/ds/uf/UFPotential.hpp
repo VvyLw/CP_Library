@@ -5,7 +5,7 @@ namespace man {
 struct UFPotential {
 private:
     std::vector<int> par;
-    std::vector<int64_t> diff;
+    std::vector<long long> diff;
 public:
     UFPotential(const int n): par(n, -1), diff(n){}
     inline int root(const int i) noexcept {
@@ -20,7 +20,7 @@ public:
         root(i);
         return diff[i];
     }
-    inline int64_t dist(const int x, const int y) noexcept { return dist(y) - dist(x); }
+    inline long long dist(const int x, const int y) noexcept { return dist(y) - dist(x); }
     inline int unite(int x, int y, long long w) noexcept {
         w += dist(y, x);
         x = root(x), y = root(y);

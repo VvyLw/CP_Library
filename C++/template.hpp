@@ -70,19 +70,15 @@ template <std::integral T> constexpr inline T pow(T a, T b, const T mod = 0) noe
 	}
 	return ret;
 }
-constexpr inline int64_t ceil(const long double x, const int64_t m) noexcept { return std::ceil(x / m); }
-constexpr inline long double round(const long double x, const int64_t m, const short fx = 0) noexcept {
+constexpr inline long long ceil(const long double x, const long long m) noexcept { return std::ceil(x / m); }
+constexpr inline long double round(const long double x, const long long m, const short fx = 0) noexcept {
 	if(fx == 0) {
 		return std::round(x / m);
 	}
-	const uint64_t y = pow<uint64_t>(10, fx);
+	const unsigned long long y = pow<unsigned long long>(10, fx);
 	return std::round((x * y) / m) / y;
 }
-constexpr inline long double log(const int64_t x, const long double base = 2) noexcept { return std::log2(x) / std::log2(base); }
-constexpr inline int bitdigit(const int64_t x) noexcept { return 64 - __builtin_clzll(x); }
-constexpr inline int popcnt(const int64_t x) noexcept { return __builtin_popcountll(x); }
-constexpr inline int fione(const int64_t x) noexcept { return __builtin_ffsll(x); }
-constexpr inline int zrcnt(const int64_t x) noexcept { return __builtin_ctzll(x); }
+constexpr inline long double log(const long long x, const long double base = 2) noexcept { return std::log2(x) / std::log2(base); }
 template <internal::num T> constexpr inline bool scope(const T a, const T x, const T b) noexcept { return a <= x && x <= b; }
 constexpr inline bool isupper(const char c) noexcept { return std::isupper(c); }
 inline bool isupper(const std::string &s) noexcept {
@@ -168,7 +164,7 @@ inline std::string tolower(std::string s) noexcept {
 	}
 	return s;
 }
-inline std::string ten_to(int64_t n, const int base, const bool upper = true) noexcept {
+inline std::string ten_to(long long n, const int base, const bool upper = true) noexcept {
 	assert(base <= 10 || base == 16);
 	if(base == 16) {
 		std::stringstream ss;
@@ -190,18 +186,18 @@ inline std::string ten_to(int64_t n, const int base, const bool upper = true) no
 	}
 	return s;
 }
-inline int64_t to_ten(const std::string &s, const int base = 10) noexcept { return std::stoll(s, nullptr, base); }
-template <std::integral... Ts> constexpr uint64_t gcd(const Ts... a) noexcept {
+inline long long to_ten(const std::string &s, const int base = 10) noexcept { return std::stoll(s, nullptr, base); }
+template <std::integral... Ts> constexpr unsigned long long gcd(const Ts... a) noexcept {
 	std::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};
-	uint64_t g = 0;
+	unsigned long long g = 0;
 	for(const auto &el: v) {
 		g = std::gcd(g, el);
 	}
 	return g;
 }
-template <std::integral... Ts> constexpr uint64_t lcm(const Ts... a) noexcept {
+template <std::integral... Ts> constexpr unsigned long long lcm(const Ts... a) noexcept {
 	std::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};
-	uint64_t l = 1;
+	unsigned long long l = 1;
 	for(const auto &el: v) {
 		l = std::lcm(l, el);
 	}
@@ -370,7 +366,7 @@ template <std::integral T> constexpr inline T binom(T n, const T r, const T mod 
 	return ret;
 }
 constexpr inline bool is_int(const long double n) noexcept { return n == std::floor(n); }
-constexpr inline bool is_sqr(const int64_t n) noexcept { return is_int(std::sqrt(n)); }
+constexpr inline bool is_sqr(const long long n) noexcept { return is_int(std::sqrt(n)); }
 }
 
 #include "C++/core/timer.hpp"

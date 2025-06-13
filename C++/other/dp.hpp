@@ -152,14 +152,14 @@ template <std::integral T> T knapsack(const std::vector<int> &a, const std::vect
  * @see https://ei1333.github.io/library/dp/knapsack.hpp
  */
 
-template <std::integral T> inline int64_t max_rectangle(std::vector<T> h) {
+template <std::integral T> inline long long max_rectangle(std::vector<T> h) {
     h.resize(std::ssize(h) + 1);
     std::stack<size_t> sk;
     std::vector<int> l(std::ssize(h));
-    int64_t ret = 0;
+    long long ret = 0;
     for(const auto i: std::views::iota(0, std::ssize(h))) {
         while(!sk.empty() && h[sk.top()] >= h[i]) {
-            ret = std::max(ret, static_cast<int64_t>(i - l[sk.top()] - 1) * h[sk.top()]);
+            ret = std::max(ret, static_cast<long long>(i - l[sk.top()] - 1) * h[sk.top()]);
             sk.pop();
         }
         l[i] = sk.empty() ? -1 : sk.top();

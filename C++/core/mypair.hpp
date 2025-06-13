@@ -16,7 +16,7 @@ namespace man {
 namespace pav {
 template <class T, class U> using P = std::pair<T, U>;
 template <class T> using PP = P<T, T>;
-typedef PP<int64_t> zhl;
+typedef PP<long long> zhl;
 typedef PP<long double> dec;
 typedef PP<char> chr;
 typedef PP<std::string> str;

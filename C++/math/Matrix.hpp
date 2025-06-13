@@ -60,7 +60,7 @@ public:
         mat.swap(mt);
         return *this;
     }
-    constexpr inline Matrix &operator^=(int64_t k) noexcept {
+    constexpr inline Matrix &operator^=(long long k) noexcept {
         Matrix m = Matrix::E(h);
         while(k > 0) {
             if(k & 1) {
