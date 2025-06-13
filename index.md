@@ -3,16 +3,16 @@ data:
   libraryCategories:
   - name: C++/core
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/core/alias.hpp
       title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/core/mypair.hpp
       title: C++/core/mypair.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/core/myvector.hpp
       title: C++/core/myvector.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/core/timer.hpp
       title: "\u30BF\u30A4\u30DE\u30FC"
   - name: C++/core/io
@@ -20,10 +20,10 @@ data:
     - icon: ':warning:'
       path: C++/core/io/debug_print.hpp
       title: "\u30C7\u30D0\u30C3\u30AC\u30FC"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/core/io/input.hpp
       title: "\u5165\u529B"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/core/io/output.hpp
       title: "\u51FA\u529B"
   - name: C++/ds
@@ -63,18 +63,18 @@ data:
     - icon: ':warning:'
       path: C++/ds/uf/MergeUF.hpp
       title: MergeUnionFind
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/ds/uf/UFPotential.hpp
       title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304DUnionFind"
     - icon: ':warning:'
       path: C++/ds/uf/UFUndo.hpp
       title: "Undo\u53EF\u80FDUnionFind"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/ds/uf/UnionFind.hpp
       title: UnionFind
   - name: C++/graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/graph/Graph.hpp
       title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
     - icon: ':heavy_check_mark:'
@@ -84,16 +84,16 @@ data:
       path: C++/graph/SCC.hpp
       title: "Strongly Connected Components(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
         )"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/graph/ShortestPath.hpp
       title: "\u6700\u77ED\u8DEF"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/graph/WeightedGraph.hpp
       title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/graph/diameter.hpp
       title: "\u6728\u306E\u76F4\u5F84"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/graph/edge.hpp
       title: Edge
   - name: C++/graph/mst
@@ -162,7 +162,7 @@ data:
       title: "Tetration(a\u2191\u2191b)"
   - name: C++/math/psum
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: C++/math/psum/psum.hpp
       title: "\u7D2F\u7A4D\u548C"
     - icon: ':heavy_check_mark:'
@@ -204,7 +204,7 @@ data:
       title: Z-Algorithm
   - name: C++
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: C++/template.hpp
       title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   - name: Java
@@ -698,28 +698,28 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/segtreebeats.test.cpp
       title: test/segtreebeats.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/shortestpath.test.cpp
       title: test/shortestpath.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/spfa.test.cpp
       title: test/spfa.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/sr_sum.test.cpp
       title: test/sr_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/tetration.test.cpp
       title: test/tetration.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/tree_diameter.test.cpp
       title: test/tree_diameter.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/uf.test.cpp
       title: test/uf.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/ufpotential.test.cpp
       title: test/ufpotential.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/warshallfloyd.test.cpp
       title: test/warshallfloyd.test.cpp
     - icon: ':heavy_check_mark:'

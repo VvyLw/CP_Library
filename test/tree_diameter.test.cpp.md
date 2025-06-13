@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/Graph.hpp
     title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/ShortestPath.hpp
     title: "\u6700\u77ED\u8DEF"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/WeightedGraph.hpp
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/graph/diameter.hpp
     title: "\u6728\u306E\u76F4\u5F84"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/edge.hpp
     title: Edge
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/tree_diameter
@@ -34,11 +34,11 @@ data:
     \ class U> constexpr inline bool chmin(T& a, const U& b) noexcept { if(a > b){\
     \ a = b; return true; } return false; }\r\n}\r\n#endif\r\n#line 2 \"C++/graph/edge.hpp\"\
     \n#ifndef EDGE\n#define EDGE\n#endif\n\nnamespace man {\nstruct edge {\n    int\
-    \ src, to, id;\n    int64_t cost;\n    edge(){}\n    edge(const int src_, const\
-    \ int to_, const int id_ = -1, const int64_t cost_ = 0): src(src_), to(to_), id(id_),\
-    \ cost(cost_){}\n    constexpr inline operator int() const noexcept { return to;\
-    \ }\n};\n}\n\n/**\n * @brief Edge\n */\n#line 15 \"C++/graph/Graph.hpp\"\nnamespace\
-    \ man {\r\ntemplate <bool undirected = true> struct graph: std::vector<std::vector<edge>>\
+    \ src, to, id;\n    long long cost;\n    edge(){}\n    edge(const int src_, const\
+    \ int to_, const int id_ = -1, const long long cost_ = 0): src(src_), to(to_),\
+    \ id(id_), cost(cost_){}\n    constexpr inline operator int() const noexcept {\
+    \ return to; }\n};\n}\n\n/**\n * @brief Edge\n */\n#line 15 \"C++/graph/Graph.hpp\"\
+    \nnamespace man {\r\ntemplate <bool undirected = true> struct graph: std::vector<std::vector<edge>>\
     \ {\r\nprotected:\r\n    int indexed, id;\r\n    std::vector<edge> edges;\r\n\
     public:\r\n    graph(){}\r\n    graph(const int n, const int indexed_ = 1): indexed(indexed_),\
     \ id(0){ this->resize(n); }\r\n    inline void add(int a, int b) noexcept {\r\n\
@@ -82,77 +82,80 @@ data:
     \t}\r\n\t\treturn {};\r\n    }\r\n};\r\n}\r\n\r\n/**\r\n * @brief \u30B0\u30E9\
     \u30D5\u30E9\u30A4\u30D6\u30E9\u30EA\r\n */\n#line 2 \"C++/graph/ShortestPath.hpp\"\
     \n\n#pragma GCC diagnostic ignored \"-Wreorder\"\n\n#line 7 \"C++/graph/ShortestPath.hpp\"\
-    \nnamespace man {\nstruct ShortestPath {\nprivate:\n    const std::vector<int64_t>\
-    \ cost;\n    const std::vector<int> src;\npublic:\n    ShortestPath(const std::vector<int64_t>\
-    \ &cost, const std::vector<int> &src): cost(cost), src(src){}\n    inline bool\
-    \ is_thru(const int i) const noexcept { return src[i] != -1; }\n    inline std::vector<int>\
-    \ path(int i) noexcept {\n        std::vector<int> ret;\n        for(; i != -1;\
-    \ i = src[i]) {\n            ret.emplace_back(i);\n        }\n        std::ranges::reverse(ret);\n\
-    \        return ret;\n    }\n    inline std::vector<int64_t> get() const noexcept\
-    \ { return cost; }\n};\n}\n\n/**\n * @brief \u6700\u77ED\u8DEF\n */\n#line 5 \"\
-    C++/graph/WeightedGraph.hpp\"\nnamespace man {\ntemplate <bool undirected = true>\
-    \ struct w_graph: graph<undirected> {\nprotected:\n    using graph<undirected>::indexed;\n\
-    \    using graph<undirected>::id;\n    using graph<undirected>::edges;\npublic:\n\
-    \    w_graph(const int n, const int indexed_ = 1): graph<undirected>(n, indexed_){}\n\
-    \    using graph<undirected>::get_edge;\n    using graph<undirected>::all_dist;\n\
-    \    using graph<undirected>::dist;\n    using graph<undirected>::t_sort;\n  \
-    \  using graph<undirected>::cycle;\n    inline void add(int a, int b, const int64_t\
-    \ cost) noexcept {\n        a -= indexed, b -= indexed;\n        (*this)[a].emplace_back(a,\
-    \ b, id, cost);\n        edges.emplace_back(a, b, id++, cost);\n        if(undirected)\
-    \ {\n            (*this)[b].emplace_back(b, a, --id, cost);\n            edges.emplace_back(b,\
+    \nnamespace man {\nstruct ShortestPath {\nprivate:\n    const std::vector<long\
+    \ long> cost;\n    const std::vector<int> src;\npublic:\n    ShortestPath(const\
+    \ std::vector<long long> &cost, const std::vector<int> &src): cost(cost), src(src){}\n\
+    \    inline bool is_thru(const int i) const noexcept { return src[i] != -1; }\n\
+    \    inline std::vector<int> path(int i) noexcept {\n        std::vector<int>\
+    \ ret;\n        for(; i != -1; i = src[i]) {\n            ret.emplace_back(i);\n\
+    \        }\n        std::ranges::reverse(ret);\n        return ret;\n    }\n \
+    \   inline std::vector<long long> get() const noexcept { return cost; }\n};\n\
+    }\n\n/**\n * @brief \u6700\u77ED\u8DEF\n */\n#line 5 \"C++/graph/WeightedGraph.hpp\"\
+    \nnamespace man {\ntemplate <bool undirected = true> struct w_graph: graph<undirected>\
+    \ {\nprotected:\n    using graph<undirected>::indexed;\n    using graph<undirected>::id;\n\
+    \    using graph<undirected>::edges;\npublic:\n    w_graph(const int n, const\
+    \ int indexed_ = 1): graph<undirected>(n, indexed_){}\n    using graph<undirected>::get_edge;\n\
+    \    using graph<undirected>::all_dist;\n    using graph<undirected>::dist;\n\
+    \    using graph<undirected>::t_sort;\n    using graph<undirected>::cycle;\n \
+    \   inline void add(int a, int b, const long long cost) noexcept {\n        a\
+    \ -= indexed, b -= indexed;\n        (*this)[a].emplace_back(a, b, id, cost);\n\
+    \        edges.emplace_back(a, b, id++, cost);\n        if(undirected) {\n   \
+    \         (*this)[b].emplace_back(b, a, --id, cost);\n            edges.emplace_back(b,\
     \ a, id++, cost);\n        }\n    }\n    inline void input(const int m) noexcept\
     \ {\n        for([[maybe_unused]] const auto _: std::views::iota(0, m)) {\n  \
-    \          int a, b;\n            int64_t c;\n            std::cin >> a >> b >>\
-    \ c;\n            add(a, b, c);\n        }\n    }\n    inline ShortestPath dijkstra(const\
-    \ int v) noexcept {\n        std::vector<int64_t> cst(this->size(), (1LL << 61)\
-    \ - 1);\n        std::vector<int> src(this->size(), -1);\n        std::priority_queue<std::pair<int64_t,\
-    \ int>, std::vector<std::pair<int64_t, int>>, std::greater<std::pair<int64_t,\
-    \ int>>> dj;\n        cst[v] = 0;\n        dj.emplace(cst[v], v);\n        while(!dj.empty())\
-    \ {\n            const auto tmp = dj.top();\n            dj.pop();\n         \
-    \   if(cst[tmp.second] < tmp.first) {\n                continue;\n           \
-    \ }\n            for(const auto &el: (*this)[tmp.second]) {\n                if(chmin(cst[el],\
-    \ tmp.first + el.cost)) {\n                    src[el] = tmp.second;\n       \
-    \             dj.emplace(cst[el], el);\n                }\n            }\n   \
-    \     }\n        return {cst, src};\n    }\n    inline std::vector<int64_t> spfa(const\
-    \ int v) noexcept {\n        const int n = this -> size();\n        std::vector<int64_t>\
-    \ cst(n, (1LL << 61) - 1);\n        std::vector<int> pending(n), times(n);\n \
-    \       std::queue<int> q;\n        q.emplace(v);\n        pending[v] = 1;\n \
-    \       ++times[v];\n        cst[v] = 0;\n        while(!q.empty()) {\n      \
-    \      const int p = q.front();\n            q.pop();\n            pending[p]\
-    \ = 0;\n            for(const auto &e : (*this)[p]) {\n                const int64_t\
-    \ next = cst[p] + e.cost;\n                if(next >= cst[e]) {\n            \
-    \        continue;\n                }\n                cst[e] = next;\n      \
-    \          if(!pending[e]) {\n                    if(++times[e] >= n) {\n    \
-    \                    cst.clear();\n                        return cst;\n     \
-    \               }\n                    pending[e] = 1;\n                    q.emplace(e);\n\
-    \                }\n            }\n        }\n\t\treturn cst;\n    }\n    std::vector<std::vector<int64_t>>\
-    \ warshall_floyd() {\n\t\tconst int n = this -> size();\n        const int64_t\
-    \ lim = (1LL << 61) - 1;\n\t\tstd::vector cst(n, std::vector(n, lim));\n\t\tfor(const\
-    \ auto i: std::views::iota(0, n)) {\n            cst[i][i] = 0;\n        }\n\t\
-    \tfor(const auto i: std::views::iota(0, n)) {\n            for(const auto &j:\
-    \ (*this)[i]) {\n                cst[i][j] = j.cost;\n            }\n        }\n\
-    \t\tfor(const auto k: std::views::iota(0, n)) {\n            for(const auto i:\
-    \ std::views::iota(0, n)) {\n                for(const auto j: std::views::iota(0,\
-    \ n)) {\n                    if(cst[i][k] == lim || cst[k][j] == lim) {\n    \
-    \                    continue;\n                    }\n                    chmin(cst[i][j],\
-    \ cst[i][k] + cst[k][j]);\n                }\n            }\n        }\n\t\treturn\
-    \ cst;\n\t}\n};\n}\n\n/**\n * @brief \u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\
-    \u30E9\u30A4\u30D6\u30E9\u30EA\n */\n#line 4 \"C++/graph/diameter.hpp\"\n#ifndef\
-    \ TEMPLATE\nnamespace man {\ntemplate <class T, class U> constexpr inline bool\
-    \ chmax(T& a, const U& b) noexcept { if(a < b){ a = b; return true; } return false;\
-    \ }\n}\n#endif\nnamespace man {\ntemplate <bool undirected=true> struct diameter:\
-    \ w_graph<undirected> {\nprivate:\n    using w_graph<undirected>::indexed;\n \
-    \   using w_graph<undirected>::id;\n    using w_graph<undirected>::edges;\n  \
-    \  std::vector<int> to;\n    std::vector<edge> path;\n    constexpr inline std::pair<int64_t,\
-    \ int> dfs(const int i, const int par) noexcept {\n        std::pair<int64_t,\
-    \ int> ret(0, i);\n        for(const auto &e: (*this)[i]) {\n            if(e\
-    \ == par) {\n                continue;\n            }\n            auto cost =\
-    \ dfs(e, i);\n            cost.first += e.cost;\n            if(chmax(ret, cost))\
-    \ {\n                to[i] = e;\n            }\n        }\n        return ret;\n\
-    \    }\npublic:\n    diameter(const int n, const int id = 1): w_graph<undirected>(n,\
-    \ id), to(n, -1){}\n    using w_graph<undirected>::add;\n    using w_graph<undirected>::input;\n\
-    \    using w_graph<undirected>::get_edge;    \n    constexpr inline int64_t build()\
-    \ noexcept {\n        const auto p = dfs(0, -1);\n        const auto q = dfs(p.second,\
+    \          int a, b;\n            long long c;\n            std::cin >> a >> b\
+    \ >> c;\n            add(a, b, c);\n        }\n    }\n    inline ShortestPath\
+    \ dijkstra(const int v) noexcept {\n        std::vector<long long> cst(this->size(),\
+    \ (1LL << 61) - 1);\n        std::vector<int> src(this->size(), -1);\n       \
+    \ std::priority_queue<std::pair<long long, int>, std::vector<std::pair<long long,\
+    \ int>>, std::greater<std::pair<long long, int>>> dj;\n        cst[v] = 0;\n \
+    \       dj.emplace(cst[v], v);\n        while(!dj.empty()) {\n            const\
+    \ auto tmp = dj.top();\n            dj.pop();\n            if(cst[tmp.second]\
+    \ < tmp.first) {\n                continue;\n            }\n            for(const\
+    \ auto &el: (*this)[tmp.second]) {\n                if(chmin(cst[el], tmp.first\
+    \ + el.cost)) {\n                    src[el] = tmp.second;\n                 \
+    \   dj.emplace(cst[el], el);\n                }\n            }\n        }\n  \
+    \      return {cst, src};\n    }\n    inline std::vector<long long> spfa(const\
+    \ int v) noexcept {\n        const int n = this -> size();\n        std::vector<long\
+    \ long> cst(n, (1LL << 61) - 1);\n        std::vector<int> pending(n), times(n);\n\
+    \        std::queue<int> q;\n        q.emplace(v);\n        pending[v] = 1;\n\
+    \        ++times[v];\n        cst[v] = 0;\n        while(!q.empty()) {\n     \
+    \       const int p = q.front();\n            q.pop();\n            pending[p]\
+    \ = 0;\n            for(const auto &e : (*this)[p]) {\n                const long\
+    \ long next = cst[p] + e.cost;\n                if(next >= cst[e]) {\n       \
+    \             continue;\n                }\n                cst[e] = next;\n \
+    \               if(!pending[e]) {\n                    if(++times[e] >= n) {\n\
+    \                        cst.clear();\n                        return cst;\n \
+    \                   }\n                    pending[e] = 1;\n                 \
+    \   q.emplace(e);\n                }\n            }\n        }\n\t\treturn cst;\n\
+    \    }\n    std::vector<std::vector<long long>> warshall_floyd() {\n\t\tconst\
+    \ int n = this -> size();\n        const long long lim = (1LL << 61) - 1;\n\t\t\
+    std::vector cst(n, std::vector(n, lim));\n\t\tfor(const auto i: std::views::iota(0,\
+    \ n)) {\n            cst[i][i] = 0;\n        }\n\t\tfor(const auto i: std::views::iota(0,\
+    \ n)) {\n            for(const auto &j: (*this)[i]) {\n                cst[i][j]\
+    \ = j.cost;\n            }\n        }\n\t\tfor(const auto k: std::views::iota(0,\
+    \ n)) {\n            for(const auto i: std::views::iota(0, n)) {\n           \
+    \     for(const auto j: std::views::iota(0, n)) {\n                    if(cst[i][k]\
+    \ == lim || cst[k][j] == lim) {\n                        continue;\n         \
+    \           }\n                    chmin(cst[i][j], cst[i][k] + cst[k][j]);\n\
+    \                }\n            }\n        }\n\t\treturn cst;\n\t}\n};\n}\n\n\
+    /**\n * @brief \u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\
+    \u30EA\n */\n#line 4 \"C++/graph/diameter.hpp\"\n#ifndef TEMPLATE\nnamespace man\
+    \ {\ntemplate <class T, class U> constexpr inline bool chmax(T& a, const U& b)\
+    \ noexcept { if(a < b){ a = b; return true; } return false; }\n}\n#endif\nnamespace\
+    \ man {\ntemplate <bool undirected=true> struct diameter: w_graph<undirected>\
+    \ {\nprivate:\n    using w_graph<undirected>::indexed;\n    using w_graph<undirected>::id;\n\
+    \    using w_graph<undirected>::edges;\n    std::vector<int> to;\n    std::vector<edge>\
+    \ path;\n    constexpr inline std::pair<long long, int> dfs(const int i, const\
+    \ int par) noexcept {\n        std::pair<long long, int> ret(0, i);\n        for(const\
+    \ auto &e: (*this)[i]) {\n            if(e == par) {\n                continue;\n\
+    \            }\n            auto cost = dfs(e, i);\n            cost.first +=\
+    \ e.cost;\n            if(chmax(ret, cost)) {\n                to[i] = e;\n  \
+    \          }\n        }\n        return ret;\n    }\npublic:\n    diameter(const\
+    \ int n, const int id = 1): w_graph<undirected>(n, id), to(n, -1){}\n    using\
+    \ w_graph<undirected>::add;\n    using w_graph<undirected>::input;\n    using\
+    \ w_graph<undirected>::get_edge;    \n    constexpr inline long long build() noexcept\
+    \ {\n        const auto p = dfs(0, -1);\n        const auto q = dfs(p.second,\
     \ -1);\n        int now = p.second;\n        while(now != q.second) {\n      \
     \      for(const auto &e: (*this)[now]) {\n                if(to[now] == e) {\n\
     \                    path.emplace_back(e);\n                }\n            }\n\
@@ -179,8 +182,8 @@ data:
   isVerificationFile: true
   path: test/tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2025-06-12 17:15:04+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-06-14 01:07:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/tree_diameter.test.cpp
 layout: document

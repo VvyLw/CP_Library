@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/edge.hpp
     title: Edge
   - icon: ':heavy_check_mark:'
@@ -25,33 +25,33 @@ data:
   bundledCode: "#line 2 \"C++/graph/mst/directed.hpp\"\n\n#include <ranges>\n#line\
     \ 2 \"C++/graph/mst/MST.hpp\"\n\n#include <vector>\n#line 2 \"C++/graph/edge.hpp\"\
     \n#ifndef EDGE\n#define EDGE\n#endif\n\nnamespace man {\nstruct edge {\n    int\
-    \ src, to, id;\n    int64_t cost;\n    edge(){}\n    edge(const int src_, const\
-    \ int to_, const int id_ = -1, const int64_t cost_ = 0): src(src_), to(to_), id(id_),\
-    \ cost(cost_){}\n    constexpr inline operator int() const noexcept { return to;\
-    \ }\n};\n}\n\n/**\n * @brief Edge\n */\n#line 5 \"C++/graph/mst/MST.hpp\"\nstruct\
-    \ MST {\n    std::vector<man::edge> tree;\n    int64_t cost;\n};\n\n/**\n * @brief\
-    \ \u6700\u5C0F\u5168\u57DF\u6728\n */\n#line 2 \"C++/other/SkewHeap.hpp\"\n\n\
-    #pragma GCC diagnostic ignored \"-Wreorder\"\n\n#include <cassert>\n#include <algorithm>\n\
-    namespace man {\nnamespace internal {\ntemplate <bool is_min = true> struct SkewHeap\
-    \ {\n    struct Node {\n        long long key, lazy;\n        Node *l, *r;\n \
-    \       int idx;\n        explicit Node(const long long &key, const int idx):\
-    \ key(key), idx(idx), lazy(0), l(nullptr), r(nullptr){}\n    };\nprivate:\n  \
-    \  Node *alloc(const long long &key, int idx = -1) {\n        return new Node(key,\
-    \ idx);\n    }\n    Node *propagate(Node *t) {\n        if(t && t -> lazy != 0)\
-    \ {\n            if(t -> l) {\n                t -> l -> lazy += t -> lazy;\n\
-    \            }\n            if(t -> r) {\n                t -> r -> lazy += t\
-    \ -> lazy;\n            }\n            t -> key += t -> lazy;\n            t ->\
-    \ lazy = 0;\n        }\n        return t;\n    }\npublic:\n    SkewHeap(){}\n\
-    \    Node *meld(Node *x, Node *y) {\n        propagate(x), propagate(y);\n   \
-    \     if(!x || !y) {\n            return x ? x : y;\n        }\n        if((x\
-    \ -> key < y -> key) ^ is_min) {\n            std::swap(x, y);\n        }\n  \
-    \      x -> r = meld(y, x -> r);\n        std::swap(x -> l, x -> r);\n       \
-    \ return x;\n    }\n    Node *push(Node *t, const long long &key, int idx = -1){\
-    \ return meld(t, alloc(key, idx)); }\n    Node *pop(Node *t) {\n        assert(t);\n\
-    \        return meld(t -> l, t -> r);\n    }\n    Node *add(Node *t, const long\
-    \ long &lazy) {\n        if(t) {\n            t -> lazy += lazy;\n           \
-    \ propagate(t);\n        }\n        return t;\n    }\n};\n}\n}\n\n/**\n * @brief\
-    \ SkewHeap\n * @see https://ei1333.github.io/library/structure/heap/skew-heap.hpp\n\
+    \ src, to, id;\n    long long cost;\n    edge(){}\n    edge(const int src_, const\
+    \ int to_, const int id_ = -1, const long long cost_ = 0): src(src_), to(to_),\
+    \ id(id_), cost(cost_){}\n    constexpr inline operator int() const noexcept {\
+    \ return to; }\n};\n}\n\n/**\n * @brief Edge\n */\n#line 5 \"C++/graph/mst/MST.hpp\"\
+    \nstruct MST {\n    std::vector<man::edge> tree;\n    long long cost;\n};\n\n\
+    /**\n * @brief \u6700\u5C0F\u5168\u57DF\u6728\n */\n#line 2 \"C++/other/SkewHeap.hpp\"\
+    \n\n#pragma GCC diagnostic ignored \"-Wreorder\"\n\n#include <cassert>\n#include\
+    \ <algorithm>\nnamespace man {\nnamespace internal {\ntemplate <bool is_min =\
+    \ true> struct SkewHeap {\n    struct Node {\n        long long key, lazy;\n \
+    \       Node *l, *r;\n        int idx;\n        explicit Node(const long long\
+    \ &key, const int idx): key(key), idx(idx), lazy(0), l(nullptr), r(nullptr){}\n\
+    \    };\nprivate:\n    Node *alloc(const long long &key, int idx = -1) {\n   \
+    \     return new Node(key, idx);\n    }\n    Node *propagate(Node *t) {\n    \
+    \    if(t && t -> lazy != 0) {\n            if(t -> l) {\n                t ->\
+    \ l -> lazy += t -> lazy;\n            }\n            if(t -> r) {\n         \
+    \       t -> r -> lazy += t -> lazy;\n            }\n            t -> key += t\
+    \ -> lazy;\n            t -> lazy = 0;\n        }\n        return t;\n    }\n\
+    public:\n    SkewHeap(){}\n    Node *meld(Node *x, Node *y) {\n        propagate(x),\
+    \ propagate(y);\n        if(!x || !y) {\n            return x ? x : y;\n     \
+    \   }\n        if((x -> key < y -> key) ^ is_min) {\n            std::swap(x,\
+    \ y);\n        }\n        x -> r = meld(y, x -> r);\n        std::swap(x -> l,\
+    \ x -> r);\n        return x;\n    }\n    Node *push(Node *t, const long long\
+    \ &key, int idx = -1){ return meld(t, alloc(key, idx)); }\n    Node *pop(Node\
+    \ *t) {\n        assert(t);\n        return meld(t -> l, t -> r);\n    }\n   \
+    \ Node *add(Node *t, const long long &lazy) {\n        if(t) {\n            t\
+    \ -> lazy += lazy;\n            propagate(t);\n        }\n        return t;\n\
+    \    }\n};\n}\n}\n\n/**\n * @brief SkewHeap\n * @see https://ei1333.github.io/library/structure/heap/skew-heap.hpp\n\
     \ */\n#line 6 \"C++/graph/mst/directed.hpp\"\nnamespace man {\ninline MST directed(std::vector<man::edge>\
     \ edges, const int n, const int v) noexcept {\n    for(const auto i: std::views::iota(0,\
     \ n)) {\n        if(i != v) {\n            edges.emplace_back(i, v, 0);\n    \
@@ -70,7 +70,7 @@ data:
     \            par[x] = i;\n            link[x] = i;\n            x = go(x);\n \
     \       }\n        while(ins[x] && go(x) == x) {\n            ins[x] = heap.pop(ins[x]);\n\
     \        }\n    }\n    for(int i = v; i != -1; i = par[i]) {\n\t\tvis[i] = 1;\n\
-    \t}\n    int64_t cost = 0;\n    std::vector<man::edge> e;\n    for(int i = x;\
+    \t}\n    long long cost = 0;\n    std::vector<man::edge> e;\n    for(int i = x;\
     \ i >= 0; i--) {\n\t\tif(vis[i] == 1) {\n\t\t\tcontinue;\n\t\t}\n        cost\
     \ += edges[ins[i] -> idx].cost;\n        e.emplace_back(edges[ins[i] -> idx]);\n\
     \        for(int j = edges[ins[i] -> idx]; j != -1 && vis[j] == 0; j = par[j])\
@@ -96,7 +96,7 @@ data:
     \            par[x] = i;\n            link[x] = i;\n            x = go(x);\n \
     \       }\n        while(ins[x] && go(x) == x) {\n            ins[x] = heap.pop(ins[x]);\n\
     \        }\n    }\n    for(int i = v; i != -1; i = par[i]) {\n\t\tvis[i] = 1;\n\
-    \t}\n    int64_t cost = 0;\n    std::vector<man::edge> e;\n    for(int i = x;\
+    \t}\n    long long cost = 0;\n    std::vector<man::edge> e;\n    for(int i = x;\
     \ i >= 0; i--) {\n\t\tif(vis[i] == 1) {\n\t\t\tcontinue;\n\t\t}\n        cost\
     \ += edges[ins[i] -> idx].cost;\n        e.emplace_back(edges[ins[i] -> idx]);\n\
     \        for(int j = edges[ins[i] -> idx]; j != -1 && vis[j] == 0; j = par[j])\
@@ -110,7 +110,7 @@ data:
   isVerificationFile: false
   path: C++/graph/mst/directed.hpp
   requiredBy: []
-  timestamp: '2025-06-06 22:43:06+09:00'
+  timestamp: '2025-06-14 01:07:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/directed.test.cpp

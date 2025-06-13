@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/ds/uf/UnionFind.hpp
     title: UnionFind
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/edge.hpp
     title: Edge
   - icon: ':heavy_check_mark:'
@@ -30,11 +30,11 @@ data:
     \n#include <iostream>\n#line 2 \"C++/graph/mst/kruskal.hpp\"\n\n#include <vector>\n\
     #line 2 \"C++/graph/mst/MST.hpp\"\n\n#line 2 \"C++/graph/edge.hpp\"\n#ifndef EDGE\n\
     #define EDGE\n#endif\n\nnamespace man {\nstruct edge {\n    int src, to, id;\n\
-    \    int64_t cost;\n    edge(){}\n    edge(const int src_, const int to_, const\
-    \ int id_ = -1, const int64_t cost_ = 0): src(src_), to(to_), id(id_), cost(cost_){}\n\
+    \    long long cost;\n    edge(){}\n    edge(const int src_, const int to_, const\
+    \ int id_ = -1, const long long cost_ = 0): src(src_), to(to_), id(id_), cost(cost_){}\n\
     \    constexpr inline operator int() const noexcept { return to; }\n};\n}\n\n\
     /**\n * @brief Edge\n */\n#line 5 \"C++/graph/mst/MST.hpp\"\nstruct MST {\n  \
-    \  std::vector<man::edge> tree;\n    int64_t cost;\n};\n\n/**\n * @brief \u6700\
+    \  std::vector<man::edge> tree;\n    long long cost;\n};\n\n/**\n * @brief \u6700\
     \u5C0F\u5168\u57DF\u6728\n */\n#line 2 \"C++/ds/uf/UnionFind.hpp\"\n\r\n#include\
     \ <cassert>\r\n#line 5 \"C++/ds/uf/UnionFind.hpp\"\n#include <algorithm>\r\nnamespace\
     \ man {\r\nstruct UnionFind {\r\nprotected:\r\n    std::vector<int> par;\r\npublic:\r\
@@ -60,7 +60,7 @@ data:
     \n */\n#line 6 \"C++/graph/mst/kruskal.hpp\"\nnamespace man {\ninline MST kruskal(std::vector<edge>\
     \ edges, const int n) noexcept {\n    std::ranges::sort(edges, [&](const edge\
     \ &e, const edge &f) -> bool { return e.cost < f.cost; });\n    UnionFind uf(n);\n\
-    \    std::vector<edge> e;\n    int64_t ret = 0;\n    for(const auto &ed: edges)\
+    \    std::vector<edge> e;\n    long long ret = 0;\n    for(const auto &ed: edges)\
     \ {\n        if(uf.unite(ed.src, ed)) {\n            e.emplace_back(ed);\n   \
     \         ret += ed.cost;\n        }\n    }\n    return {e, ret};\n}\n}\n\n/**\n\
     \ * @brief Kruskal\u6CD5\n */\n#line 2 \"C++/graph/mst/manhattan.hpp\"\n\n#line\
@@ -102,7 +102,7 @@ data:
   isVerificationFile: true
   path: test/manhattan.test.cpp
   requiredBy: []
-  timestamp: '2025-06-11 17:30:11+09:00'
+  timestamp: '2025-06-14 01:07:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/manhattan.test.cpp

@@ -20,51 +20,51 @@ data:
     \ <class T> constexpr inline T sqr(const T x) noexcept { return x * x; }\ntemplate\
     \ <class T> constexpr inline T mod(T x, const T m) noexcept {\n    x %= m;\n \
     \   return x < 0 ? x + m : x;\n}\n}\n#endif\nnamespace man {\ntemplate <int lim>\
-    \ struct ModPrime {\nprivate:\n    const int64_t m;\n\tstd::array<int64_t, lim>\
-    \ f{}, rf{};\n\tconst int len = std::min(m, (int64_t) lim);\n    constexpr inline\
-    \ int64_t inv(int64_t x) noexcept {\n        int64_t ret = 1, k = m - 2;\n\t\t\
-    while(k > 0) {\n\t\t\tif(k & 1) {\n\t\t\t\tret = mod(ret * x, m);\n\t\t\t}\n\t\
-    \t\tx = mod(sqr(x), m);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn ret;\n    }\npublic:\n\
-    \    ModPrime(const int64_t mod_): m(mod_) {\n\t\tf[0] = 1;\n\t\tfor(const auto\
-    \ i: std::views::iota(1, len)) {\n\t\t\tf[i] = mod(f[i - 1] * i, m);\n\t\t}\n\t\
-    \trf[len - 1] = inv(f[len - 1]);\n\t\tfor(const auto i: std::views::iota(1, len)\
-    \ | std::views::reverse) {\n\t\t\trf[i - 1] = mod(rf[i] * i, m);\n\t\t}\n    }\n\
-    \    constexpr inline int64_t C(const int n, const int k) const noexcept {\n\t\
-    \tif(k < 0 || n < k) {\n\t\t\treturn 0;\n\t\t}\n\t\tconst int64_t a = f[n], b\
-    \ = rf[n - k], c = rf[k], bc = mod(b * c, m);\n\t\treturn mod(a * bc, m);\n\t\
-    }\n\tconstexpr inline int64_t P(const int n, const int k) const noexcept {\n\t\
-    \tif(k < 0 || n < k) {\n\t\t\treturn 0;\n\t\t}\n\t\tconst int64_t a = f[n], b\
-    \ = rf[n - k];\n\t\treturn mod(a * b, m);\n\t}\n\tconstexpr inline int64_t H(const\
-    \ int n, const int k) const noexcept {\n\t\tif(n == 0 && k == 0) {\n\t\t\treturn\
-    \ 1;\n\t\t}\n\t\treturn C(n + k - 1, k);\n\t}\n};\n}\n/**\n * @brief ModPrime\n\
-    \ */\n"
+    \ struct ModPrime {\nprivate:\n    const long long m;\n\tstd::array<long long,\
+    \ lim> f{}, rf{};\n\tconst int len = std::min(m, (long long) lim);\n    constexpr\
+    \ inline long long inv(long long x) noexcept {\n        long long ret = 1, k =\
+    \ m - 2;\n\t\twhile(k > 0) {\n\t\t\tif(k & 1) {\n\t\t\t\tret = mod(ret * x, m);\n\
+    \t\t\t}\n\t\t\tx = mod(sqr(x), m);\n\t\t\tk >>= 1;\n\t\t}\n\t\treturn ret;\n \
+    \   }\npublic:\n    ModPrime(const long long mod_): m(mod_) {\n\t\tf[0] = 1;\n\
+    \t\tfor(const auto i: std::views::iota(1, len)) {\n\t\t\tf[i] = mod(f[i - 1] *\
+    \ i, m);\n\t\t}\n\t\trf[len - 1] = inv(f[len - 1]);\n\t\tfor(const auto i: std::views::iota(1,\
+    \ len) | std::views::reverse) {\n\t\t\trf[i - 1] = mod(rf[i] * i, m);\n\t\t}\n\
+    \    }\n    constexpr inline long long C(const int n, const int k) const noexcept\
+    \ {\n\t\tif(k < 0 || n < k) {\n\t\t\treturn 0;\n\t\t}\n\t\tconst long long a =\
+    \ f[n], b = rf[n - k], c = rf[k], bc = mod(b * c, m);\n\t\treturn mod(a * bc,\
+    \ m);\n\t}\n\tconstexpr inline long long P(const int n, const int k) const noexcept\
+    \ {\n\t\tif(k < 0 || n < k) {\n\t\t\treturn 0;\n\t\t}\n\t\tconst long long a =\
+    \ f[n], b = rf[n - k];\n\t\treturn mod(a * b, m);\n\t}\n\tconstexpr inline long\
+    \ long H(const int n, const int k) const noexcept {\n\t\tif(n == 0 && k == 0)\
+    \ {\n\t\t\treturn 1;\n\t\t}\n\t\treturn C(n + k - 1, k);\n\t}\n};\n}\n/**\n *\
+    \ @brief ModPrime\n */\n"
   code: "#include <iostream>\n#include <array>\n#include <algorithm>\n#include <ranges>\n\
     #ifndef TEMPLATE\nnamespace man {\ntemplate <class T> constexpr inline T sqr(const\
     \ T x) noexcept { return x * x; }\ntemplate <class T> constexpr inline T mod(T\
     \ x, const T m) noexcept {\n    x %= m;\n    return x < 0 ? x + m : x;\n}\n}\n\
     #endif\nnamespace man {\ntemplate <int lim> struct ModPrime {\nprivate:\n    const\
-    \ int64_t m;\n\tstd::array<int64_t, lim> f{}, rf{};\n\tconst int len = std::min(m,\
-    \ (int64_t) lim);\n    constexpr inline int64_t inv(int64_t x) noexcept {\n  \
-    \      int64_t ret = 1, k = m - 2;\n\t\twhile(k > 0) {\n\t\t\tif(k & 1) {\n\t\t\
-    \t\tret = mod(ret * x, m);\n\t\t\t}\n\t\t\tx = mod(sqr(x), m);\n\t\t\tk >>= 1;\n\
-    \t\t}\n\t\treturn ret;\n    }\npublic:\n    ModPrime(const int64_t mod_): m(mod_)\
-    \ {\n\t\tf[0] = 1;\n\t\tfor(const auto i: std::views::iota(1, len)) {\n\t\t\t\
-    f[i] = mod(f[i - 1] * i, m);\n\t\t}\n\t\trf[len - 1] = inv(f[len - 1]);\n\t\t\
-    for(const auto i: std::views::iota(1, len) | std::views::reverse) {\n\t\t\trf[i\
-    \ - 1] = mod(rf[i] * i, m);\n\t\t}\n    }\n    constexpr inline int64_t C(const\
-    \ int n, const int k) const noexcept {\n\t\tif(k < 0 || n < k) {\n\t\t\treturn\
-    \ 0;\n\t\t}\n\t\tconst int64_t a = f[n], b = rf[n - k], c = rf[k], bc = mod(b\
-    \ * c, m);\n\t\treturn mod(a * bc, m);\n\t}\n\tconstexpr inline int64_t P(const\
-    \ int n, const int k) const noexcept {\n\t\tif(k < 0 || n < k) {\n\t\t\treturn\
-    \ 0;\n\t\t}\n\t\tconst int64_t a = f[n], b = rf[n - k];\n\t\treturn mod(a * b,\
-    \ m);\n\t}\n\tconstexpr inline int64_t H(const int n, const int k) const noexcept\
-    \ {\n\t\tif(n == 0 && k == 0) {\n\t\t\treturn 1;\n\t\t}\n\t\treturn C(n + k -\
-    \ 1, k);\n\t}\n};\n}\n/**\n * @brief ModPrime\n */"
+    \ long long m;\n\tstd::array<long long, lim> f{}, rf{};\n\tconst int len = std::min(m,\
+    \ (long long) lim);\n    constexpr inline long long inv(long long x) noexcept\
+    \ {\n        long long ret = 1, k = m - 2;\n\t\twhile(k > 0) {\n\t\t\tif(k & 1)\
+    \ {\n\t\t\t\tret = mod(ret * x, m);\n\t\t\t}\n\t\t\tx = mod(sqr(x), m);\n\t\t\t\
+    k >>= 1;\n\t\t}\n\t\treturn ret;\n    }\npublic:\n    ModPrime(const long long\
+    \ mod_): m(mod_) {\n\t\tf[0] = 1;\n\t\tfor(const auto i: std::views::iota(1, len))\
+    \ {\n\t\t\tf[i] = mod(f[i - 1] * i, m);\n\t\t}\n\t\trf[len - 1] = inv(f[len -\
+    \ 1]);\n\t\tfor(const auto i: std::views::iota(1, len) | std::views::reverse)\
+    \ {\n\t\t\trf[i - 1] = mod(rf[i] * i, m);\n\t\t}\n    }\n    constexpr inline\
+    \ long long C(const int n, const int k) const noexcept {\n\t\tif(k < 0 || n <\
+    \ k) {\n\t\t\treturn 0;\n\t\t}\n\t\tconst long long a = f[n], b = rf[n - k], c\
+    \ = rf[k], bc = mod(b * c, m);\n\t\treturn mod(a * bc, m);\n\t}\n\tconstexpr inline\
+    \ long long P(const int n, const int k) const noexcept {\n\t\tif(k < 0 || n <\
+    \ k) {\n\t\t\treturn 0;\n\t\t}\n\t\tconst long long a = f[n], b = rf[n - k];\n\
+    \t\treturn mod(a * b, m);\n\t}\n\tconstexpr inline long long H(const int n, const\
+    \ int k) const noexcept {\n\t\tif(n == 0 && k == 0) {\n\t\t\treturn 1;\n\t\t}\n\
+    \t\treturn C(n + k - 1, k);\n\t}\n};\n}\n/**\n * @brief ModPrime\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/math/ModPrime.hpp
   requiredBy: []
-  timestamp: '2025-06-06 22:43:06+09:00'
+  timestamp: '2025-06-14 01:07:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modprime2.test.cpp

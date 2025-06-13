@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedVerifiedWith:
@@ -36,15 +36,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
     links: []
@@ -54,45 +54,47 @@ data:
     \ T> concept num = std::integral<T> || std::floating_point<T>;\n}\n\nconstexpr\
     \ int dx[] = {0, 0, 0, -1, 1, -1, -1, 1, 1};\nconstexpr int dy[] = {0, -1, 1,\
     \ 0, 0, -1, 1, -1, 1};\nconstexpr int MOD = 0x3b800001;\nconstexpr int M0D = 1e9\
-    \ + 7;\nconstexpr int INF = 1 << 30;\nconstexpr int64_t LINF = (1LL << 61) - 1;\n\
-    constexpr long double DINF = std::numeric_limits<long double>::infinity();\ntemplate\
-    \ <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();\nconstexpr\
-    \ long double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\
-    \ntypedef int64_t i64;\ntypedef long double ld;\ntypedef uint32_t u32;\ntypedef\
-    \ uint64_t u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\ntemplate\
-    \ <size_t N> using ti = std::array<i64, N>;\ntypedef ti<3> tri;\ntemplate <class\
-    \ T> using pq = std::priority_queue<T>;\ntemplate <class T> using pqr = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\ntemplate <class T> using Tree = __gnu_pbds::tree<T,\
-    \ __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
-    template <class T> using TREE = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>,\
-    \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\n\
-    /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n"
+    \ + 7;\nconstexpr int INF = 1 << 30;\nconstexpr long long LINF = (1LL << 61) -\
+    \ 1;\nconstexpr long double DINF = std::numeric_limits<long double>::infinity();\n\
+    template <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();\n\
+    constexpr long double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\
+    \ntypedef long long i64;\ntypedef long double ld;\ntypedef unsigned u32;\ntypedef\
+    \ unsigned long long u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\n\
+    template <size_t N> using ti = std::array<i64, N>;\ntypedef ti<3> tri;\ntemplate\
+    \ <class T> using pq = std::priority_queue<T>;\ntemplate <class T> using pqr =\
+    \ std::priority_queue<T, std::vector<T>, std::greater<T>>;\ntemplate <class T>\
+    \ using Tree = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag,\
+    \ __gnu_pbds::tree_order_statistics_node_update>;\ntemplate <class T> using TREE\
+    \ = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>, __gnu_pbds::rb_tree_tag,\
+    \ __gnu_pbds::tree_order_statistics_node_update>;\n\n/**\n * @brief \u30A8\u30A4\
+    \u30EA\u30A2\u30B9\n */\n"
   code: "#pragma once\n\n#ifndef ALIAS\n#define ALIAS\n#endif\n\n#include <limits>\n\
     #include <numbers>\n#include <queue>\n#include <ext/pb_ds/assoc_container.hpp>\n\
     #include <ext/pb_ds/tree_policy.hpp>\n\nnamespace internal {\ntemplate <typename\
     \ T> concept num = std::integral<T> || std::floating_point<T>;\n}\n\nconstexpr\
     \ int dx[] = {0, 0, 0, -1, 1, -1, -1, 1, 1};\nconstexpr int dy[] = {0, -1, 1,\
     \ 0, 0, -1, 1, -1, 1};\nconstexpr int MOD = 0x3b800001;\nconstexpr int M0D = 1e9\
-    \ + 7;\nconstexpr int INF = 1 << 30;\nconstexpr int64_t LINF = (1LL << 61) - 1;\n\
-    constexpr long double DINF = std::numeric_limits<long double>::infinity();\ntemplate\
-    \ <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();\nconstexpr\
-    \ long double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\
-    \ntypedef int64_t i64;\ntypedef long double ld;\ntypedef uint32_t u32;\ntypedef\
-    \ uint64_t u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\ntemplate\
-    \ <size_t N> using ti = std::array<i64, N>;\ntypedef ti<3> tri;\ntemplate <class\
-    \ T> using pq = std::priority_queue<T>;\ntemplate <class T> using pqr = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\ntemplate <class T> using Tree = __gnu_pbds::tree<T,\
-    \ __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
-    template <class T> using TREE = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>,\
-    \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\n\
-    /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */"
+    \ + 7;\nconstexpr int INF = 1 << 30;\nconstexpr long long LINF = (1LL << 61) -\
+    \ 1;\nconstexpr long double DINF = std::numeric_limits<long double>::infinity();\n\
+    template <internal::num T> constexpr T LIM = std::numeric_limits<T>::max();\n\
+    constexpr long double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\
+    \ntypedef long long i64;\ntypedef long double ld;\ntypedef unsigned u32;\ntypedef\
+    \ unsigned long long u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\n\
+    template <size_t N> using ti = std::array<i64, N>;\ntypedef ti<3> tri;\ntemplate\
+    \ <class T> using pq = std::priority_queue<T>;\ntemplate <class T> using pqr =\
+    \ std::priority_queue<T, std::vector<T>, std::greater<T>>;\ntemplate <class T>\
+    \ using Tree = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag,\
+    \ __gnu_pbds::tree_order_statistics_node_update>;\ntemplate <class T> using TREE\
+    \ = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>, __gnu_pbds::rb_tree_tag,\
+    \ __gnu_pbds::tree_order_statistics_node_update>;\n\n/**\n * @brief \u30A8\u30A4\
+    \u30EA\u30A2\u30B9\n */"
   dependsOn: []
   isVerificationFile: false
   path: C++/core/alias.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2025-06-12 17:15:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-06-14 01:07:36+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/rh.test.cpp
   - test/add.test.cpp

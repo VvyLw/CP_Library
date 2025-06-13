@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/Graph.hpp
     title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
   - icon: ':heavy_check_mark:'
     path: C++/graph/LCA.hpp
     title: "Lowest Common Ancestor(\u6700\u5C0F\u5171\u901A\u7956\u5148)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/edge.hpp
     title: Edge
   _extendedRequiredBy: []
@@ -27,11 +27,11 @@ data:
     \ inline bool chmin(T& a, const U& b) noexcept { if(a > b){ a = b; return true;\
     \ } return false; }\r\n}\r\n#endif\r\n#line 2 \"C++/graph/edge.hpp\"\n#ifndef\
     \ EDGE\n#define EDGE\n#endif\n\nnamespace man {\nstruct edge {\n    int src, to,\
-    \ id;\n    int64_t cost;\n    edge(){}\n    edge(const int src_, const int to_,\
-    \ const int id_ = -1, const int64_t cost_ = 0): src(src_), to(to_), id(id_), cost(cost_){}\n\
-    \    constexpr inline operator int() const noexcept { return to; }\n};\n}\n\n\
-    /**\n * @brief Edge\n */\n#line 15 \"C++/graph/Graph.hpp\"\nnamespace man {\r\n\
-    template <bool undirected = true> struct graph: std::vector<std::vector<edge>>\
+    \ id;\n    long long cost;\n    edge(){}\n    edge(const int src_, const int to_,\
+    \ const int id_ = -1, const long long cost_ = 0): src(src_), to(to_), id(id_),\
+    \ cost(cost_){}\n    constexpr inline operator int() const noexcept { return to;\
+    \ }\n};\n}\n\n/**\n * @brief Edge\n */\n#line 15 \"C++/graph/Graph.hpp\"\nnamespace\
+    \ man {\r\ntemplate <bool undirected = true> struct graph: std::vector<std::vector<edge>>\
     \ {\r\nprotected:\r\n    int indexed, id;\r\n    std::vector<edge> edges;\r\n\
     public:\r\n    graph(){}\r\n    graph(const int n, const int indexed_ = 1): indexed(indexed_),\
     \ id(0){ this->resize(n); }\r\n    inline void add(int a, int b) noexcept {\r\n\
@@ -124,7 +124,7 @@ data:
   isVerificationFile: true
   path: test/lca.test.cpp
   requiredBy: []
-  timestamp: '2025-06-12 17:15:04+09:00'
+  timestamp: '2025-06-14 01:07:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lca.test.cpp

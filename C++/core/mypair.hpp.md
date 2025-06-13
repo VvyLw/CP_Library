@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedVerifiedWith:
@@ -33,23 +33,23 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"C++/core/mypair.hpp\"\n\n#include <cassert>\n#include <utility>\n\
     #include <tuple>\n#include <cmath>\n#include <numeric>\n\n#ifndef ALIAS\nnamespace\
     \ internal {\ntemplate <typename T> concept num = std::integral<T> || std::floating_point<T>;\n\
     }\n#endif\n\nnamespace man {\nnamespace pav {\ntemplate <class T, class U> using\
-    \ P = std::pair<T, U>;\ntemplate <class T> using PP = P<T, T>;\ntypedef PP<int64_t>\
-    \ zhl;\ntypedef PP<long double> dec;\ntypedef PP<char> chr;\ntypedef PP<std::string>\
+    \ P = std::pair<T, U>;\ntemplate <class T> using PP = P<T, T>;\ntypedef PP<long\
+    \ long> zhl;\ntypedef PP<long double> dec;\ntypedef PP<char> chr;\ntypedef PP<std::string>\
     \ str;\ntemplate <internal::num T> constexpr PP<T> operator+(const PP<T>& a, const\
     \ PP<T>& b) noexcept { return {a.first + b.first, a.second + b.second}; }\ntemplate\
     \ <internal::num T> constexpr PP<T> operator-(const PP<T>& a, const PP<T>& b)\
@@ -128,8 +128,8 @@ data:
     #include <cmath>\n#include <numeric>\n\n#ifndef ALIAS\nnamespace internal {\n\
     template <typename T> concept num = std::integral<T> || std::floating_point<T>;\n\
     }\n#endif\n\nnamespace man {\nnamespace pav {\ntemplate <class T, class U> using\
-    \ P = std::pair<T, U>;\ntemplate <class T> using PP = P<T, T>;\ntypedef PP<int64_t>\
-    \ zhl;\ntypedef PP<long double> dec;\ntypedef PP<char> chr;\ntypedef PP<std::string>\
+    \ P = std::pair<T, U>;\ntemplate <class T> using PP = P<T, T>;\ntypedef PP<long\
+    \ long> zhl;\ntypedef PP<long double> dec;\ntypedef PP<char> chr;\ntypedef PP<std::string>\
     \ str;\ntemplate <internal::num T> constexpr PP<T> operator+(const PP<T>& a, const\
     \ PP<T>& b) noexcept { return {a.first + b.first, a.second + b.second}; }\ntemplate\
     \ <internal::num T> constexpr PP<T> operator-(const PP<T>& a, const PP<T>& b)\
@@ -209,8 +209,8 @@ data:
   path: C++/core/mypair.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2025-06-11 19:04:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-06-14 01:07:36+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/add.test.cpp
   - test/uf.test.cpp

@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/edge.hpp
     title: Edge
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/WeightedGraph.hpp
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/graph/diameter.hpp
     title: "\u6728\u306E\u76F4\u5F84"
   _extendedVerifiedWith:
@@ -30,21 +30,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/scc2.test.cpp
     title: test/scc2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/shortestpath.test.cpp
     title: test/shortestpath.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/spfa.test.cpp
     title: test/spfa.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/tree_diameter.test.cpp
     title: test/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/warshallfloyd.test.cpp
     title: test/warshallfloyd.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
     links: []
@@ -54,11 +54,11 @@ data:
     \ class U> constexpr inline bool chmin(T& a, const U& b) noexcept { if(a > b){\
     \ a = b; return true; } return false; }\r\n}\r\n#endif\r\n#line 2 \"C++/graph/edge.hpp\"\
     \n#ifndef EDGE\n#define EDGE\n#endif\n\nnamespace man {\nstruct edge {\n    int\
-    \ src, to, id;\n    int64_t cost;\n    edge(){}\n    edge(const int src_, const\
-    \ int to_, const int id_ = -1, const int64_t cost_ = 0): src(src_), to(to_), id(id_),\
-    \ cost(cost_){}\n    constexpr inline operator int() const noexcept { return to;\
-    \ }\n};\n}\n\n/**\n * @brief Edge\n */\n#line 15 \"C++/graph/Graph.hpp\"\nnamespace\
-    \ man {\r\ntemplate <bool undirected = true> struct graph: std::vector<std::vector<edge>>\
+    \ src, to, id;\n    long long cost;\n    edge(){}\n    edge(const int src_, const\
+    \ int to_, const int id_ = -1, const long long cost_ = 0): src(src_), to(to_),\
+    \ id(id_), cost(cost_){}\n    constexpr inline operator int() const noexcept {\
+    \ return to; }\n};\n}\n\n/**\n * @brief Edge\n */\n#line 15 \"C++/graph/Graph.hpp\"\
+    \nnamespace man {\r\ntemplate <bool undirected = true> struct graph: std::vector<std::vector<edge>>\
     \ {\r\nprotected:\r\n    int indexed, id;\r\n    std::vector<edge> edges;\r\n\
     public:\r\n    graph(){}\r\n    graph(const int n, const int indexed_ = 1): indexed(indexed_),\
     \ id(0){ this->resize(n); }\r\n    inline void add(int a, int b) noexcept {\r\n\
@@ -156,8 +156,8 @@ data:
   requiredBy:
   - C++/graph/WeightedGraph.hpp
   - C++/graph/diameter.hpp
-  timestamp: '2025-06-12 17:15:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-06-14 01:07:36+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/spfa.test.cpp
   - test/dag_check.test.cpp

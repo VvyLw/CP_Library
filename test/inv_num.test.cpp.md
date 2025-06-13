@@ -48,14 +48,14 @@ data:
     \n        }\r\n        return x;\r\n    }\r\n};\r\n}\r\n\r\n/**\r\n * @brief Binary\
     \ Indexed Tree\r\n * @see https://nyaannyaan.github.io/library/data-structure/binary-indexed-tree.hpp\r\
     \n */\n#line 5 \"C++/math/inverse_num.hpp\"\nnamespace man {\ntemplate <std::integral\
-    \ T> constexpr inline int64_t inv_num(const std::vector<T> &a) noexcept {\n  \
-    \  const int n = std::ssize(a);\n    std::vector<std::pair<T, int>> p(n);\n  \
-    \  for(const auto i: std::views::iota(0, n)) {\n        p[i] = {a[i], i};\n  \
-    \  }\n    std::ranges::sort(p);\n    std::vector<int> id(n);\n    for(const auto\
-    \ i: std::views::iota(0, n)) {\n        id[p[i].second] = i;\n    }\n    FenwickTree<T>\
-    \ bit(n);\n    int64_t ret = 0;\n    for(const auto i: std::views::iota(0, n))\
-    \ {\n        ret += i - bit.sum(id[i]);\n        bit.add(id[i], 1);\n    }\n \
-    \   return ret;\n}\n}\n\n/**\n * @brief \u8EE2\u5012\u6570\n */\n#line 4 \"test/inv_num.test.cpp\"\
+    \ T> constexpr inline long long inv_num(const std::vector<T> &a) noexcept {\n\
+    \    const int n = std::ssize(a);\n    std::vector<std::pair<T, int>> p(n);\n\
+    \    for(const auto i: std::views::iota(0, n)) {\n        p[i] = {a[i], i};\n\
+    \    }\n    std::ranges::sort(p);\n    std::vector<int> id(n);\n    for(const\
+    \ auto i: std::views::iota(0, n)) {\n        id[p[i].second] = i;\n    }\n   \
+    \ FenwickTree<T> bit(n);\n    long long ret = 0;\n    for(const auto i: std::views::iota(0,\
+    \ n)) {\n        ret += i - bit.sum(id[i]);\n        bit.add(id[i], 1);\n    }\n\
+    \    return ret;\n}\n}\n\n/**\n * @brief \u8EE2\u5012\u6570\n */\n#line 4 \"test/inv_num.test.cpp\"\
     \nint main() {\n    int n;\n    std::cin >> n;\n    std::vector<int> a(n);\n \
     \   for(auto &el: a) {\n        std::cin >> el;\n    }\n    std::cout << man::inv_num(a)\
     \ << '\\n';\n}\n"
@@ -70,7 +70,7 @@ data:
   isVerificationFile: true
   path: test/inv_num.test.cpp
   requiredBy: []
-  timestamp: '2025-06-11 17:30:11+09:00'
+  timestamp: '2025-06-14 01:07:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/inv_num.test.cpp

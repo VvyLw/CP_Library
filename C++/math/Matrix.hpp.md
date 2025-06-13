@@ -40,8 +40,8 @@ data:
     \ j: std::views::iota(0, w)) {\n                for(const auto k: std::views::iota(0,\
     \ w)) {\n                    mt[i][j] += (*this)[i][k] * m[k][j];\n          \
     \      }\n            }\n        }\n        mat.swap(mt);\n        return *this;\n\
-    \    }\n    constexpr inline Matrix &operator^=(int64_t k) noexcept {\n      \
-    \  Matrix m = Matrix::E(h);\n        while(k > 0) {\n            if(k & 1) {\n\
+    \    }\n    constexpr inline Matrix &operator^=(long long k) noexcept {\n    \
+    \    Matrix m = Matrix::E(h);\n        while(k > 0) {\n            if(k & 1) {\n\
     \                m *= *this;\n            }\n            *this *= *this;\n   \
     \         k >>= 1LL;\n        }\n        mat.swap(m.mat);\n        return *this;\n\
     \    }\n    constexpr inline bool operator==(const Matrix &m) const noexcept {\n\
@@ -89,8 +89,8 @@ data:
     \ j: std::views::iota(0, w)) {\n                for(const auto k: std::views::iota(0,\
     \ w)) {\n                    mt[i][j] += (*this)[i][k] * m[k][j];\n          \
     \      }\n            }\n        }\n        mat.swap(mt);\n        return *this;\n\
-    \    }\n    constexpr inline Matrix &operator^=(int64_t k) noexcept {\n      \
-    \  Matrix m = Matrix::E(h);\n        while(k > 0) {\n            if(k & 1) {\n\
+    \    }\n    constexpr inline Matrix &operator^=(long long k) noexcept {\n    \
+    \    Matrix m = Matrix::E(h);\n        while(k > 0) {\n            if(k & 1) {\n\
     \                m *= *this;\n            }\n            *this *= *this;\n   \
     \         k >>= 1LL;\n        }\n        mat.swap(m.mat);\n        return *this;\n\
     \    }\n    constexpr inline bool operator==(const Matrix &m) const noexcept {\n\
@@ -115,7 +115,7 @@ data:
   isVerificationFile: false
   path: C++/math/Matrix.hpp
   requiredBy: []
-  timestamp: '2025-06-11 17:30:11+09:00'
+  timestamp: '2025-06-14 01:07:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/matrix.test.cpp

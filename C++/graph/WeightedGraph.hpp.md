@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/Graph.hpp
     title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/ShortestPath.hpp
     title: "\u6700\u77ED\u8DEF"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/graph/edge.hpp
     title: Edge
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: C++/graph/diameter.hpp
     title: "\u6728\u306E\u76F4\u5F84"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/dijkstra.test.cpp
     title: test/dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/shortestpath.test.cpp
     title: test/shortestpath.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/spfa.test.cpp
     title: test/spfa.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/tree_diameter.test.cpp
     title: test/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/warshallfloyd.test.cpp
     title: test/warshallfloyd.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\
       \u30EA"
@@ -43,8 +43,8 @@ data:
     \ man {\r\ntemplate <class T, class U> constexpr inline bool chmin(T& a, const\
     \ U& b) noexcept { if(a > b){ a = b; return true; } return false; }\r\n}\r\n#endif\r\
     \n#line 2 \"C++/graph/edge.hpp\"\n#ifndef EDGE\n#define EDGE\n#endif\n\nnamespace\
-    \ man {\nstruct edge {\n    int src, to, id;\n    int64_t cost;\n    edge(){}\n\
-    \    edge(const int src_, const int to_, const int id_ = -1, const int64_t cost_\
+    \ man {\nstruct edge {\n    int src, to, id;\n    long long cost;\n    edge(){}\n\
+    \    edge(const int src_, const int to_, const int id_ = -1, const long long cost_\
     \ = 0): src(src_), to(to_), id(id_), cost(cost_){}\n    constexpr inline operator\
     \ int() const noexcept { return to; }\n};\n}\n\n/**\n * @brief Edge\n */\n#line\
     \ 15 \"C++/graph/Graph.hpp\"\nnamespace man {\r\ntemplate <bool undirected = true>\
@@ -92,13 +92,13 @@ data:
     \n\r\n/**\r\n * @brief \u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA\r\n */\n\
     #line 2 \"C++/graph/ShortestPath.hpp\"\n\n#pragma GCC diagnostic ignored \"-Wreorder\"\
     \n\n#line 7 \"C++/graph/ShortestPath.hpp\"\nnamespace man {\nstruct ShortestPath\
-    \ {\nprivate:\n    const std::vector<int64_t> cost;\n    const std::vector<int>\
-    \ src;\npublic:\n    ShortestPath(const std::vector<int64_t> &cost, const std::vector<int>\
+    \ {\nprivate:\n    const std::vector<long long> cost;\n    const std::vector<int>\
+    \ src;\npublic:\n    ShortestPath(const std::vector<long long> &cost, const std::vector<int>\
     \ &src): cost(cost), src(src){}\n    inline bool is_thru(const int i) const noexcept\
     \ { return src[i] != -1; }\n    inline std::vector<int> path(int i) noexcept {\n\
     \        std::vector<int> ret;\n        for(; i != -1; i = src[i]) {\n       \
     \     ret.emplace_back(i);\n        }\n        std::ranges::reverse(ret);\n  \
-    \      return ret;\n    }\n    inline std::vector<int64_t> get() const noexcept\
+    \      return ret;\n    }\n    inline std::vector<long long> get() const noexcept\
     \ { return cost; }\n};\n}\n\n/**\n * @brief \u6700\u77ED\u8DEF\n */\n#line 5 \"\
     C++/graph/WeightedGraph.hpp\"\nnamespace man {\ntemplate <bool undirected = true>\
     \ struct w_graph: graph<undirected> {\nprotected:\n    using graph<undirected>::indexed;\n\
@@ -106,48 +106,50 @@ data:
     \    w_graph(const int n, const int indexed_ = 1): graph<undirected>(n, indexed_){}\n\
     \    using graph<undirected>::get_edge;\n    using graph<undirected>::all_dist;\n\
     \    using graph<undirected>::dist;\n    using graph<undirected>::t_sort;\n  \
-    \  using graph<undirected>::cycle;\n    inline void add(int a, int b, const int64_t\
-    \ cost) noexcept {\n        a -= indexed, b -= indexed;\n        (*this)[a].emplace_back(a,\
+    \  using graph<undirected>::cycle;\n    inline void add(int a, int b, const long\
+    \ long cost) noexcept {\n        a -= indexed, b -= indexed;\n        (*this)[a].emplace_back(a,\
     \ b, id, cost);\n        edges.emplace_back(a, b, id++, cost);\n        if(undirected)\
     \ {\n            (*this)[b].emplace_back(b, a, --id, cost);\n            edges.emplace_back(b,\
     \ a, id++, cost);\n        }\n    }\n    inline void input(const int m) noexcept\
     \ {\n        for([[maybe_unused]] const auto _: std::views::iota(0, m)) {\n  \
-    \          int a, b;\n            int64_t c;\n            std::cin >> a >> b >>\
-    \ c;\n            add(a, b, c);\n        }\n    }\n    inline ShortestPath dijkstra(const\
-    \ int v) noexcept {\n        std::vector<int64_t> cst(this->size(), (1LL << 61)\
-    \ - 1);\n        std::vector<int> src(this->size(), -1);\n        std::priority_queue<std::pair<int64_t,\
-    \ int>, std::vector<std::pair<int64_t, int>>, std::greater<std::pair<int64_t,\
-    \ int>>> dj;\n        cst[v] = 0;\n        dj.emplace(cst[v], v);\n        while(!dj.empty())\
-    \ {\n            const auto tmp = dj.top();\n            dj.pop();\n         \
-    \   if(cst[tmp.second] < tmp.first) {\n                continue;\n           \
-    \ }\n            for(const auto &el: (*this)[tmp.second]) {\n                if(chmin(cst[el],\
-    \ tmp.first + el.cost)) {\n                    src[el] = tmp.second;\n       \
-    \             dj.emplace(cst[el], el);\n                }\n            }\n   \
-    \     }\n        return {cst, src};\n    }\n    inline std::vector<int64_t> spfa(const\
-    \ int v) noexcept {\n        const int n = this -> size();\n        std::vector<int64_t>\
-    \ cst(n, (1LL << 61) - 1);\n        std::vector<int> pending(n), times(n);\n \
-    \       std::queue<int> q;\n        q.emplace(v);\n        pending[v] = 1;\n \
-    \       ++times[v];\n        cst[v] = 0;\n        while(!q.empty()) {\n      \
-    \      const int p = q.front();\n            q.pop();\n            pending[p]\
-    \ = 0;\n            for(const auto &e : (*this)[p]) {\n                const int64_t\
-    \ next = cst[p] + e.cost;\n                if(next >= cst[e]) {\n            \
-    \        continue;\n                }\n                cst[e] = next;\n      \
-    \          if(!pending[e]) {\n                    if(++times[e] >= n) {\n    \
-    \                    cst.clear();\n                        return cst;\n     \
-    \               }\n                    pending[e] = 1;\n                    q.emplace(e);\n\
-    \                }\n            }\n        }\n\t\treturn cst;\n    }\n    std::vector<std::vector<int64_t>>\
-    \ warshall_floyd() {\n\t\tconst int n = this -> size();\n        const int64_t\
-    \ lim = (1LL << 61) - 1;\n\t\tstd::vector cst(n, std::vector(n, lim));\n\t\tfor(const\
-    \ auto i: std::views::iota(0, n)) {\n            cst[i][i] = 0;\n        }\n\t\
-    \tfor(const auto i: std::views::iota(0, n)) {\n            for(const auto &j:\
-    \ (*this)[i]) {\n                cst[i][j] = j.cost;\n            }\n        }\n\
-    \t\tfor(const auto k: std::views::iota(0, n)) {\n            for(const auto i:\
-    \ std::views::iota(0, n)) {\n                for(const auto j: std::views::iota(0,\
-    \ n)) {\n                    if(cst[i][k] == lim || cst[k][j] == lim) {\n    \
-    \                    continue;\n                    }\n                    chmin(cst[i][j],\
-    \ cst[i][k] + cst[k][j]);\n                }\n            }\n        }\n\t\treturn\
-    \ cst;\n\t}\n};\n}\n\n/**\n * @brief \u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\
-    \u30E9\u30A4\u30D6\u30E9\u30EA\n */\n"
+    \          int a, b;\n            long long c;\n            std::cin >> a >> b\
+    \ >> c;\n            add(a, b, c);\n        }\n    }\n    inline ShortestPath\
+    \ dijkstra(const int v) noexcept {\n        std::vector<long long> cst(this->size(),\
+    \ (1LL << 61) - 1);\n        std::vector<int> src(this->size(), -1);\n       \
+    \ std::priority_queue<std::pair<long long, int>, std::vector<std::pair<long long,\
+    \ int>>, std::greater<std::pair<long long, int>>> dj;\n        cst[v] = 0;\n \
+    \       dj.emplace(cst[v], v);\n        while(!dj.empty()) {\n            const\
+    \ auto tmp = dj.top();\n            dj.pop();\n            if(cst[tmp.second]\
+    \ < tmp.first) {\n                continue;\n            }\n            for(const\
+    \ auto &el: (*this)[tmp.second]) {\n                if(chmin(cst[el], tmp.first\
+    \ + el.cost)) {\n                    src[el] = tmp.second;\n                 \
+    \   dj.emplace(cst[el], el);\n                }\n            }\n        }\n  \
+    \      return {cst, src};\n    }\n    inline std::vector<long long> spfa(const\
+    \ int v) noexcept {\n        const int n = this -> size();\n        std::vector<long\
+    \ long> cst(n, (1LL << 61) - 1);\n        std::vector<int> pending(n), times(n);\n\
+    \        std::queue<int> q;\n        q.emplace(v);\n        pending[v] = 1;\n\
+    \        ++times[v];\n        cst[v] = 0;\n        while(!q.empty()) {\n     \
+    \       const int p = q.front();\n            q.pop();\n            pending[p]\
+    \ = 0;\n            for(const auto &e : (*this)[p]) {\n                const long\
+    \ long next = cst[p] + e.cost;\n                if(next >= cst[e]) {\n       \
+    \             continue;\n                }\n                cst[e] = next;\n \
+    \               if(!pending[e]) {\n                    if(++times[e] >= n) {\n\
+    \                        cst.clear();\n                        return cst;\n \
+    \                   }\n                    pending[e] = 1;\n                 \
+    \   q.emplace(e);\n                }\n            }\n        }\n\t\treturn cst;\n\
+    \    }\n    std::vector<std::vector<long long>> warshall_floyd() {\n\t\tconst\
+    \ int n = this -> size();\n        const long long lim = (1LL << 61) - 1;\n\t\t\
+    std::vector cst(n, std::vector(n, lim));\n\t\tfor(const auto i: std::views::iota(0,\
+    \ n)) {\n            cst[i][i] = 0;\n        }\n\t\tfor(const auto i: std::views::iota(0,\
+    \ n)) {\n            for(const auto &j: (*this)[i]) {\n                cst[i][j]\
+    \ = j.cost;\n            }\n        }\n\t\tfor(const auto k: std::views::iota(0,\
+    \ n)) {\n            for(const auto i: std::views::iota(0, n)) {\n           \
+    \     for(const auto j: std::views::iota(0, n)) {\n                    if(cst[i][k]\
+    \ == lim || cst[k][j] == lim) {\n                        continue;\n         \
+    \           }\n                    chmin(cst[i][j], cst[i][k] + cst[k][j]);\n\
+    \                }\n            }\n        }\n\t\treturn cst;\n\t}\n};\n}\n\n\
+    /**\n * @brief \u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\
+    \u30EA\n */\n"
   code: "#pragma once\n\n#include \"C++/graph/Graph.hpp\"\n#include \"C++/graph/ShortestPath.hpp\"\
     \nnamespace man {\ntemplate <bool undirected = true> struct w_graph: graph<undirected>\
     \ {\nprotected:\n    using graph<undirected>::indexed;\n    using graph<undirected>::id;\n\
@@ -155,48 +157,50 @@ data:
     \ int indexed_ = 1): graph<undirected>(n, indexed_){}\n    using graph<undirected>::get_edge;\n\
     \    using graph<undirected>::all_dist;\n    using graph<undirected>::dist;\n\
     \    using graph<undirected>::t_sort;\n    using graph<undirected>::cycle;\n \
-    \   inline void add(int a, int b, const int64_t cost) noexcept {\n        a -=\
-    \ indexed, b -= indexed;\n        (*this)[a].emplace_back(a, b, id, cost);\n \
-    \       edges.emplace_back(a, b, id++, cost);\n        if(undirected) {\n    \
-    \        (*this)[b].emplace_back(b, a, --id, cost);\n            edges.emplace_back(b,\
+    \   inline void add(int a, int b, const long long cost) noexcept {\n        a\
+    \ -= indexed, b -= indexed;\n        (*this)[a].emplace_back(a, b, id, cost);\n\
+    \        edges.emplace_back(a, b, id++, cost);\n        if(undirected) {\n   \
+    \         (*this)[b].emplace_back(b, a, --id, cost);\n            edges.emplace_back(b,\
     \ a, id++, cost);\n        }\n    }\n    inline void input(const int m) noexcept\
     \ {\n        for([[maybe_unused]] const auto _: std::views::iota(0, m)) {\n  \
-    \          int a, b;\n            int64_t c;\n            std::cin >> a >> b >>\
-    \ c;\n            add(a, b, c);\n        }\n    }\n    inline ShortestPath dijkstra(const\
-    \ int v) noexcept {\n        std::vector<int64_t> cst(this->size(), (1LL << 61)\
-    \ - 1);\n        std::vector<int> src(this->size(), -1);\n        std::priority_queue<std::pair<int64_t,\
-    \ int>, std::vector<std::pair<int64_t, int>>, std::greater<std::pair<int64_t,\
-    \ int>>> dj;\n        cst[v] = 0;\n        dj.emplace(cst[v], v);\n        while(!dj.empty())\
-    \ {\n            const auto tmp = dj.top();\n            dj.pop();\n         \
-    \   if(cst[tmp.second] < tmp.first) {\n                continue;\n           \
-    \ }\n            for(const auto &el: (*this)[tmp.second]) {\n                if(chmin(cst[el],\
-    \ tmp.first + el.cost)) {\n                    src[el] = tmp.second;\n       \
-    \             dj.emplace(cst[el], el);\n                }\n            }\n   \
-    \     }\n        return {cst, src};\n    }\n    inline std::vector<int64_t> spfa(const\
-    \ int v) noexcept {\n        const int n = this -> size();\n        std::vector<int64_t>\
-    \ cst(n, (1LL << 61) - 1);\n        std::vector<int> pending(n), times(n);\n \
-    \       std::queue<int> q;\n        q.emplace(v);\n        pending[v] = 1;\n \
-    \       ++times[v];\n        cst[v] = 0;\n        while(!q.empty()) {\n      \
-    \      const int p = q.front();\n            q.pop();\n            pending[p]\
-    \ = 0;\n            for(const auto &e : (*this)[p]) {\n                const int64_t\
-    \ next = cst[p] + e.cost;\n                if(next >= cst[e]) {\n            \
-    \        continue;\n                }\n                cst[e] = next;\n      \
-    \          if(!pending[e]) {\n                    if(++times[e] >= n) {\n    \
-    \                    cst.clear();\n                        return cst;\n     \
-    \               }\n                    pending[e] = 1;\n                    q.emplace(e);\n\
-    \                }\n            }\n        }\n\t\treturn cst;\n    }\n    std::vector<std::vector<int64_t>>\
-    \ warshall_floyd() {\n\t\tconst int n = this -> size();\n        const int64_t\
-    \ lim = (1LL << 61) - 1;\n\t\tstd::vector cst(n, std::vector(n, lim));\n\t\tfor(const\
-    \ auto i: std::views::iota(0, n)) {\n            cst[i][i] = 0;\n        }\n\t\
-    \tfor(const auto i: std::views::iota(0, n)) {\n            for(const auto &j:\
-    \ (*this)[i]) {\n                cst[i][j] = j.cost;\n            }\n        }\n\
-    \t\tfor(const auto k: std::views::iota(0, n)) {\n            for(const auto i:\
-    \ std::views::iota(0, n)) {\n                for(const auto j: std::views::iota(0,\
-    \ n)) {\n                    if(cst[i][k] == lim || cst[k][j] == lim) {\n    \
-    \                    continue;\n                    }\n                    chmin(cst[i][j],\
-    \ cst[i][k] + cst[k][j]);\n                }\n            }\n        }\n\t\treturn\
-    \ cst;\n\t}\n};\n}\n\n/**\n * @brief \u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\
-    \u30E9\u30A4\u30D6\u30E9\u30EA\n */"
+    \          int a, b;\n            long long c;\n            std::cin >> a >> b\
+    \ >> c;\n            add(a, b, c);\n        }\n    }\n    inline ShortestPath\
+    \ dijkstra(const int v) noexcept {\n        std::vector<long long> cst(this->size(),\
+    \ (1LL << 61) - 1);\n        std::vector<int> src(this->size(), -1);\n       \
+    \ std::priority_queue<std::pair<long long, int>, std::vector<std::pair<long long,\
+    \ int>>, std::greater<std::pair<long long, int>>> dj;\n        cst[v] = 0;\n \
+    \       dj.emplace(cst[v], v);\n        while(!dj.empty()) {\n            const\
+    \ auto tmp = dj.top();\n            dj.pop();\n            if(cst[tmp.second]\
+    \ < tmp.first) {\n                continue;\n            }\n            for(const\
+    \ auto &el: (*this)[tmp.second]) {\n                if(chmin(cst[el], tmp.first\
+    \ + el.cost)) {\n                    src[el] = tmp.second;\n                 \
+    \   dj.emplace(cst[el], el);\n                }\n            }\n        }\n  \
+    \      return {cst, src};\n    }\n    inline std::vector<long long> spfa(const\
+    \ int v) noexcept {\n        const int n = this -> size();\n        std::vector<long\
+    \ long> cst(n, (1LL << 61) - 1);\n        std::vector<int> pending(n), times(n);\n\
+    \        std::queue<int> q;\n        q.emplace(v);\n        pending[v] = 1;\n\
+    \        ++times[v];\n        cst[v] = 0;\n        while(!q.empty()) {\n     \
+    \       const int p = q.front();\n            q.pop();\n            pending[p]\
+    \ = 0;\n            for(const auto &e : (*this)[p]) {\n                const long\
+    \ long next = cst[p] + e.cost;\n                if(next >= cst[e]) {\n       \
+    \             continue;\n                }\n                cst[e] = next;\n \
+    \               if(!pending[e]) {\n                    if(++times[e] >= n) {\n\
+    \                        cst.clear();\n                        return cst;\n \
+    \                   }\n                    pending[e] = 1;\n                 \
+    \   q.emplace(e);\n                }\n            }\n        }\n\t\treturn cst;\n\
+    \    }\n    std::vector<std::vector<long long>> warshall_floyd() {\n\t\tconst\
+    \ int n = this -> size();\n        const long long lim = (1LL << 61) - 1;\n\t\t\
+    std::vector cst(n, std::vector(n, lim));\n\t\tfor(const auto i: std::views::iota(0,\
+    \ n)) {\n            cst[i][i] = 0;\n        }\n\t\tfor(const auto i: std::views::iota(0,\
+    \ n)) {\n            for(const auto &j: (*this)[i]) {\n                cst[i][j]\
+    \ = j.cost;\n            }\n        }\n\t\tfor(const auto k: std::views::iota(0,\
+    \ n)) {\n            for(const auto i: std::views::iota(0, n)) {\n           \
+    \     for(const auto j: std::views::iota(0, n)) {\n                    if(cst[i][k]\
+    \ == lim || cst[k][j] == lim) {\n                        continue;\n         \
+    \           }\n                    chmin(cst[i][j], cst[i][k] + cst[k][j]);\n\
+    \                }\n            }\n        }\n\t\treturn cst;\n\t}\n};\n}\n\n\
+    /**\n * @brief \u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\
+    \u30EA\n */"
   dependsOn:
   - C++/graph/Graph.hpp
   - C++/graph/edge.hpp
@@ -205,8 +209,8 @@ data:
   path: C++/graph/WeightedGraph.hpp
   requiredBy:
   - C++/graph/diameter.hpp
-  timestamp: '2025-06-12 17:15:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-06-14 01:07:36+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/spfa.test.cpp
   - test/tree_diameter.test.cpp

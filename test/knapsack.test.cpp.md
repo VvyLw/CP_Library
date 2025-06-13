@@ -81,11 +81,11 @@ data:
     \                if(dp[j - a[i]] + v[i] > dp[j]) {\n                    dp[j]\
     \ = dp[j - a[i]] + v[i];\n                }\n            }\n        }\n    }\n\
     \    return *std::ranges::max_element(dp);\n}\n/**\n * @see https://ei1333.github.io/library/dp/knapsack.hpp\n\
-    \ */\n\ntemplate <std::integral T> inline int64_t max_rectangle(std::vector<T>\
+    \ */\n\ntemplate <std::integral T> inline long long max_rectangle(std::vector<T>\
     \ h) {\n    h.resize(std::ssize(h) + 1);\n    std::stack<size_t> sk;\n    std::vector<int>\
-    \ l(std::ssize(h));\n    int64_t ret = 0;\n    for(const auto i: std::views::iota(0,\
+    \ l(std::ssize(h));\n    long long ret = 0;\n    for(const auto i: std::views::iota(0,\
     \ std::ssize(h))) {\n        while(!sk.empty() && h[sk.top()] >= h[i]) {\n   \
-    \         ret = std::max(ret, static_cast<int64_t>(i - l[sk.top()] - 1) * h[sk.top()]);\n\
+    \         ret = std::max(ret, static_cast<long long>(i - l[sk.top()] - 1) * h[sk.top()]);\n\
     \            sk.pop();\n        }\n        l[i] = sk.empty() ? -1 : sk.top();\n\
     \        sk.emplace(i);\n    }\n    return ret;\n}\n/**\n * @see https://ei1333.github.io/library/dp/largest-rectangle.hpp\n\
     \ */\n\ninline int lcs(const std::string &s, const std::string &t) {\n    const\
@@ -119,7 +119,7 @@ data:
   isVerificationFile: true
   path: test/knapsack.test.cpp
   requiredBy: []
-  timestamp: '2025-06-11 17:30:11+09:00'
+  timestamp: '2025-06-14 01:07:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/knapsack.test.cpp

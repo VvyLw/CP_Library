@@ -11,15 +11,15 @@ data:
     links: []
   bundledCode: "#line 2 \"C++/math/primefactor.hpp\"\n\n#include <vector>\n#include\
     \ <utility>\nnamespace man {\ntemplate <std::integral T> inline std::vector<std::pair<T,\
-    \ int>> prmfct(T n) noexcept {\n    std::vector<std::pair<T, int>> ret;\n    for(int64_t\
-    \ i = 2; i * i <= n; ++i) {\n        if(n % i != 0) {\n            continue;\n\
+    \ int>> prmfct(T n) noexcept {\n    std::vector<std::pair<T, int>> ret;\n    for(long\
+    \ long i = 2; i * i <= n; ++i) {\n        if(n % i != 0) {\n            continue;\n\
     \        }\n        int tmp = 0;\n        while(n % i == 0) {\n            tmp++;\n\
     \            n /= i;\n        }\n        ret.emplace_back(i, tmp);\n    }\n  \
     \  if(n != 1) {\n        ret.emplace_back(n, 1);\n    }\n    return ret;\n}\n\
     }\n\n/**\n * @brief \u7D20\u56E0\u6570\u5206\u89E3\n */\n"
   code: "#pragma once\n\n#include <vector>\n#include <utility>\nnamespace man {\n\
     template <std::integral T> inline std::vector<std::pair<T, int>> prmfct(T n) noexcept\
-    \ {\n    std::vector<std::pair<T, int>> ret;\n    for(int64_t i = 2; i * i <=\
+    \ {\n    std::vector<std::pair<T, int>> ret;\n    for(long long i = 2; i * i <=\
     \ n; ++i) {\n        if(n % i != 0) {\n            continue;\n        }\n    \
     \    int tmp = 0;\n        while(n % i == 0) {\n            tmp++;\n         \
     \   n /= i;\n        }\n        ret.emplace_back(i, tmp);\n    }\n    if(n !=\
@@ -29,7 +29,7 @@ data:
   isVerificationFile: false
   path: C++/math/primefactor.hpp
   requiredBy: []
-  timestamp: '2025-06-11 17:30:11+09:00'
+  timestamp: '2025-06-14 01:07:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/math/primefactor.hpp

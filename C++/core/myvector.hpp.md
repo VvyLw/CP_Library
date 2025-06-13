@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedVerifiedWith:
@@ -33,25 +33,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"C++/core/myvector.hpp\"\n\n#include <vector>\n\n#ifndef\
     \ ALIAS\nnamespace internal {\ntemplate <typename T> concept num = std::integral<T>\
     \ || std::floating_point<T>;\n}\n#endif\n\nnamespace man {\nnamespace vec {\n\
-    template <class T> using V = std::vector<T>;\ntypedef V<int64_t> zhl;\ntypedef\
-    \ V<uint64_t> uzhl;\ntypedef V<long double> dec;\ntypedef V<char> chr;\ntypedef\
-    \ V<std::string> str;\ntypedef V<bool> bol;\ntypedef V<zhl> zhl2;\ntypedef V<uzhl>\
-    \ uzhl2;\ntypedef V<dec> dec2;\ntypedef V<chr> chr2;\ntypedef V<str> str2;\ntypedef\
-    \ V<bol> bol2;\n#ifdef EDGE\ntypedef V<man::edge> edg;\ntypedef V<edg> edg2;\n\
+    template <class T> using V = std::vector<T>;\ntypedef V<long long> zhl;\ntypedef\
+    \ V<unsigned long long> uzhl;\ntypedef V<long double> dec;\ntypedef V<char> chr;\n\
+    typedef V<std::string> str;\ntypedef V<bool> bol;\ntypedef V<zhl> zhl2;\ntypedef\
+    \ V<uzhl> uzhl2;\ntypedef V<dec> dec2;\ntypedef V<chr> chr2;\ntypedef V<str> str2;\n\
+    typedef V<bol> bol2;\n#ifdef EDGE\ntypedef V<man::edge> edg;\ntypedef V<edg> edg2;\n\
     #endif\ntemplate <class T, class U> inline V<U> ndiv(T&& n, U&& v) noexcept {\n\
     \  return V<U>(std::forward<T>(n), std::forward<U>(v));\n}\ntemplate <class T,\
     \ class... Ts> inline decltype(auto) ndiv(T&& n, Ts&&... v) noexcept {\n  return\
@@ -80,14 +80,14 @@ data:
   code: "#pragma once\n\n#include <vector>\n\n#ifndef ALIAS\nnamespace internal {\n\
     template <typename T> concept num = std::integral<T> || std::floating_point<T>;\n\
     }\n#endif\n\nnamespace man {\nnamespace vec {\ntemplate <class T> using V = std::vector<T>;\n\
-    typedef V<int64_t> zhl;\ntypedef V<uint64_t> uzhl;\ntypedef V<long double> dec;\n\
-    typedef V<char> chr;\ntypedef V<std::string> str;\ntypedef V<bool> bol;\ntypedef\
-    \ V<zhl> zhl2;\ntypedef V<uzhl> uzhl2;\ntypedef V<dec> dec2;\ntypedef V<chr> chr2;\n\
-    typedef V<str> str2;\ntypedef V<bol> bol2;\n#ifdef EDGE\ntypedef V<man::edge>\
-    \ edg;\ntypedef V<edg> edg2;\n#endif\ntemplate <class T, class U> inline V<U>\
-    \ ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n), std::forward<U>(v));\n\
-    }\ntemplate <class T, class... Ts> inline decltype(auto) ndiv(T&& n, Ts&&... v)\
-    \ noexcept {\n  return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n),\
+    typedef V<long long> zhl;\ntypedef V<unsigned long long> uzhl;\ntypedef V<long\
+    \ double> dec;\ntypedef V<char> chr;\ntypedef V<std::string> str;\ntypedef V<bool>\
+    \ bol;\ntypedef V<zhl> zhl2;\ntypedef V<uzhl> uzhl2;\ntypedef V<dec> dec2;\ntypedef\
+    \ V<chr> chr2;\ntypedef V<str> str2;\ntypedef V<bol> bol2;\n#ifdef EDGE\ntypedef\
+    \ V<man::edge> edg;\ntypedef V<edg> edg2;\n#endif\ntemplate <class T, class U>\
+    \ inline V<U> ndiv(T&& n, U&& v) noexcept {\n  return V<U>(std::forward<T>(n),\
+    \ std::forward<U>(v));\n}\ntemplate <class T, class... Ts> inline decltype(auto)\
+    \ ndiv(T&& n, Ts&&... v) noexcept {\n  return V<decltype(ndiv(std::forward<Ts>(v)...))>(std::forward<T>(n),\
     \ ndiv(std::forward<Ts>(v)...));\n}\ntemplate <internal::num T> constexpr V<T>&\
     \ operator++(V<T>& v) noexcept { for(auto &el: v){ el++; } return v; }\ntemplate\
     \ <internal::num T> constexpr V<T>& operator--(V<T>& v) noexcept { for(auto &el:\
@@ -115,8 +115,8 @@ data:
   path: C++/core/myvector.hpp
   requiredBy:
   - C++/template.hpp
-  timestamp: '2025-06-11 19:04:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-06-14 01:07:36+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/add.test.cpp
   - test/uf.test.cpp
