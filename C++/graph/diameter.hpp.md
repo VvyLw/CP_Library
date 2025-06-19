@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/Graph.hpp
     title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/ShortestPath.hpp
     title: "\u6700\u77ED\u8DEF"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/WeightedGraph.hpp
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/edge.hpp
     title: Edge
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree_diameter.test.cpp
     title: test/tree_diameter.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u6728\u306E\u76F4\u5F84"
     links:
@@ -193,7 +193,7 @@ data:
   path: C++/graph/diameter.hpp
   requiredBy: []
   timestamp: '2025-06-14 01:07:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/tree_diameter.test.cpp
 documentation_of: C++/graph/diameter.hpp

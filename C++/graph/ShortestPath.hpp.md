@@ -2,31 +2,31 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/WeightedGraph.hpp
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/diameter.hpp
     title: "\u6728\u306E\u76F4\u5F84"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/dijkstra.test.cpp
     title: test/dijkstra.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/shortestpath.test.cpp
     title: test/shortestpath.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/spfa.test.cpp
     title: test/spfa.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree_diameter.test.cpp
     title: test/tree_diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/warshallfloyd.test.cpp
     title: test/warshallfloyd.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u6700\u77ED\u8DEF"
     links: []
@@ -57,13 +57,13 @@ data:
   - C++/graph/WeightedGraph.hpp
   - C++/graph/diameter.hpp
   timestamp: '2025-06-14 01:07:36+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/spfa.test.cpp
-  - test/tree_diameter.test.cpp
   - test/dijkstra.test.cpp
   - test/shortestpath.test.cpp
   - test/warshallfloyd.test.cpp
+  - test/tree_diameter.test.cpp
+  - test/spfa.test.cpp
 documentation_of: C++/graph/ShortestPath.hpp
 layout: document
 redirect_from:

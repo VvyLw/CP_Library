@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/alias.hpp
     title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/io/input.hpp
     title: "\u5165\u529B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/io/output.hpp
     title: "\u51FA\u529B"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/mypair.hpp
     title: C++/core/mypair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/myvector.hpp
     title: C++/core/myvector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/core/timer.hpp
     title: "\u30BF\u30A4\u30DE\u30FC"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/ds/uf/UnionFind.hpp
     title: UnionFind
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind
@@ -460,7 +460,7 @@ data:
   path: test/uf.test.cpp
   requiredBy: []
   timestamp: '2025-06-14 01:07:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/uf.test.cpp
 layout: document

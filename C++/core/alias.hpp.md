@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/template.hpp
     title: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedVerifiedWith:
@@ -36,15 +36,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/segtree.test.cpp
     title: test/segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sr_sum.test.cpp
     title: test/sr_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/uf.test.cpp
     title: test/uf.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u30A8\u30A4\u30EA\u30A2\u30B9"
     links: []
@@ -94,20 +94,20 @@ data:
   requiredBy:
   - C++/template.hpp
   timestamp: '2025-06-14 01:07:36+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/rh.test.cpp
-  - test/add.test.cpp
-  - test/uf.test.cpp
   - test/s_rmq.test.cpp
+  - test/extgcd.test.cpp
   - test/sr_sum.test.cpp
+  - test/fwtree.test.cpp
+  - test/uf.test.cpp
+  - test/segtree.test.cpp
+  - test/add.test.cpp
   - test/m_add.test.cpp
+  - test/aarray.test.cpp
   - test/add128.test.cpp
   - test/parsum.test.cpp
-  - test/fwtree.test.cpp
-  - test/aarray.test.cpp
-  - test/extgcd.test.cpp
-  - test/segtree.test.cpp
 documentation_of: C++/core/alias.hpp
 layout: document
 redirect_from:

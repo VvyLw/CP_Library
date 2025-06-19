@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/Graph.hpp
     title: "\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/WeightedGraph.hpp
     title: "\u91CD\u307F\u4ED8\u304D\u30B0\u30E9\u30D5\u30E9\u30A4\u30D6\u30E9\u30EA"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: C++/graph/diameter.hpp
     title: "\u6728\u306E\u76F4\u5F84"
   - icon: ':heavy_check_mark:'
@@ -48,21 +48,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/scc2.test.cpp
     title: test/scc2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/shortestpath.test.cpp
     title: test/shortestpath.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/spfa.test.cpp
     title: test/spfa.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree_diameter.test.cpp
     title: test/tree_diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/warshallfloyd.test.cpp
     title: test/warshallfloyd.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Edge
     links: []
@@ -81,28 +81,28 @@ data:
   isVerificationFile: false
   path: C++/graph/edge.hpp
   requiredBy:
+  - C++/graph/mst/MST.hpp
+  - C++/graph/mst/kruskal.hpp
+  - C++/graph/mst/directed.hpp
+  - C++/graph/mst/manhattan.hpp
   - C++/graph/Graph.hpp
   - C++/graph/WeightedGraph.hpp
   - C++/graph/diameter.hpp
-  - C++/graph/mst/kruskal.hpp
-  - C++/graph/mst/manhattan.hpp
-  - C++/graph/mst/MST.hpp
-  - C++/graph/mst/directed.hpp
   timestamp: '2025-06-14 01:07:36+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/spfa.test.cpp
-  - test/dag_check.test.cpp
-  - test/tree_diameter.test.cpp
-  - test/manhattan.test.cpp
-  - test/directed.test.cpp
   - test/dijkstra.test.cpp
   - test/scc.test.cpp
   - test/shortestpath.test.cpp
   - test/warshallfloyd.test.cpp
-  - test/lca.test.cpp
-  - test/cycledetector.test.cpp
+  - test/directed.test.cpp
   - test/scc2.test.cpp
+  - test/lca.test.cpp
+  - test/tree_diameter.test.cpp
+  - test/spfa.test.cpp
+  - test/dag_check.test.cpp
+  - test/cycledetector.test.cpp
+  - test/manhattan.test.cpp
 documentation_of: C++/graph/edge.hpp
 layout: document
 redirect_from:
