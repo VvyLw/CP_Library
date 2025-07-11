@@ -180,16 +180,15 @@ data:
     \ class V> constexpr inline auto val_max(const std::map<K, V> &m) noexcept {\r\
     \n\treturn *std::ranges::max_element(m, [](const std::pair<K, V> &x, const std::pair<K,\
     \ V> &y) -> bool { return x.second < y.second; });\r\n}\r\n\r\ntemplate <std::integral\
-    \ T> constexpr inline T count(std::vector<T> v, const T &x) noexcept {\r\n\tif(!std::ranges::is_sorted(v))\
-    \ {\r\n\t\tstd::ranges::sort(v);\r\n\t}\r\n\treturn std::ranges::upper_bound(v,\
-    \ x) - std::ranges::lower_bound(v, x);\r\n}\r\ntemplate <class T> constexpr inline\
-    \ T inner_prod(const std::vector<T> &v, const std::vector<T> &u, const T init)\
-    \ noexcept { return std::inner_product(v.cbegin(), v.cend(), u.cbegin(), init);\
-    \ }\r\ninline std::vector<int> iota(const int n, const int init = 0) noexcept\
-    \ {\r\n\tstd::vector<int> a(n);\r\n\tstd::iota(a.begin(), a.end(), init);\r\n\t\
-    return a;\r\n}\r\ntemplate <class T> constexpr inline int uniq(T& v) noexcept\
-    \ {\r\n\tif(!std::ranges::is_sorted(v)) {\r\n\t\tstd::ranges::sort(v);\r\n\t}\r\
-    \n\tconst auto it = std::ranges::unique(v);\r\n\tv.erase(it.begin(), it.end());\r\
+    \ T> constexpr inline T count(const std::vector<T> &v, const T &x) noexcept {\r\
+    \n\treturn std::ranges::upper_bound(v, x) - std::ranges::lower_bound(v, x);\r\n\
+    }\r\ntemplate <class T> constexpr inline T inner_prod(const std::vector<T> &v,\
+    \ const std::vector<T> &u, const T init) noexcept { return std::inner_product(v.cbegin(),\
+    \ v.cend(), u.cbegin(), init); }\r\ninline std::vector<int> iota(const int n,\
+    \ const int init = 0) noexcept {\r\n\tstd::vector<int> a(n);\r\n\tstd::iota(a.begin(),\
+    \ a.end(), init);\r\n\treturn a;\r\n}\r\ntemplate <class T> constexpr inline int\
+    \ uniq(T& v) noexcept {\r\n\tif(!std::ranges::is_sorted(v)) {\r\n\t\tstd::ranges::sort(v);\r\
+    \n\t}\r\n\tconst auto it = std::ranges::unique(v);\r\n\tv.erase(it.begin(), it.end());\r\
     \n\treturn std::ssize(v);\r\n}\r\ntemplate <class T> constexpr inline void rotate(T&\
     \ s, const int idx) noexcept {\r\n\tconst int id = mod<int>(idx, std::ssize(s));\r\
     \n\tstd::ranges::rotate(s, s.begin() + id);\r\n}\r\ntemplate <class T> constexpr\
@@ -419,7 +418,7 @@ data:
     \ print<f>(head, tail...); std::cout << '\\n'; }\n} // IO\n\nusing enum IO::Flash;\n\
     \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
     #include <C++/core/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
-    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 377 \"C++/template.hpp\"\n\r\
+    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 374 \"C++/template.hpp\"\n\r\
     \n#define REP(n) for([[maybe_unused]] const auto _: std::views::iota(0, (n)))\r\
     \n\r\nusing namespace IO;\r\nusing namespace std::views;\r\nnamespace iter = std::ranges;\r\
     \n\r\n/**\r\n * @brief \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\
@@ -451,7 +450,7 @@ data:
   isVerificationFile: true
   path: test/sr_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-06-14 01:07:36+09:00'
+  timestamp: '2025-07-11 21:49:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sr_sum.test.cpp
