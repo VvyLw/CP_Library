@@ -286,10 +286,10 @@ template <class T> inline T rand_extract(const std::vector<T> &v) noexcept {
 	std::ranges::sample(v, std::back_inserter(ret), 1, rand());
 	return ret.front();
 }
-template <std::ranges::random_access_range T> inline auto sum(const T &v) noexcept { return std::accumulate(v.cbegin(), v.cend(), decltype(v.front())(0)); }
-template <std::ranges::random_access_range T> inline auto sum(const T &v, const int a, const int b) noexcept { return std::accumulate(v.cbegin() + a, v.cbegin() + b, decltype(v.front())(0)); }
-template <std::ranges::random_access_range T, class Boolean = bool> inline auto sum(const T &v, const Boolean &fn) noexcept { return std::accumulate(v.cbegin(), v.cend(), decltype(v.front())(0), fn); }
-template <std::ranges::random_access_range T, class Boolean = bool> inline auto sum(const T &v, const int a, const int b, const Boolean &fn) noexcept { return std::accumulate(v.cbegin() + a, v.cbegin() + b, decltype(v.front())(0), fn); }
+template <std::ranges::input_range T> inline auto sum(const T &v) noexcept { return std::accumulate(v.cbegin(), v.cend(), std::ranges::range_value_t<T>{}); }
+template <std::ranges::input_range T> inline auto sum(const T &v, const int a, const int b) noexcept { return std::accumulate(v.cbegin() + a, v.cbegin() + b, std::ranges::range_value_t<T>{}); }
+template <std::ranges::input_range T, class Boolean = bool> inline auto sum(const T &v, const Boolean &fn) noexcept { return std::accumulate(v.cbegin(), v.cend(), std::ranges::range_value_t<T>{}, fn); }
+template <std::ranges::input_range T, class Boolean = bool> inline auto sum(const T &v, const int a, const int b, const Boolean &fn) noexcept { return std::accumulate(v.cbegin() + a, v.cbegin() + b, std::ranges::range_value_t<T>{}, fn); }
 
 template <internal::num T, class Boolean = bool> constexpr inline T bins(T ok, T ng, const Boolean &fn, const long double eps = 1) noexcept {
 	while(std::abs(ok - ng) > eps) {
@@ -364,6 +364,28 @@ template <std::integral T> constexpr inline T binom(T n, const T r, const T mod 
 }
 constexpr inline bool is_int(const long double n) noexcept { return n == std::floor(n); }
 constexpr inline bool is_sqr(const long long n) noexcept { return is_int(std::sqrt(n)); }
+constexpr inline bool is_prime(const unsigned long long n) noexcept {
+	if(n <= 1) {
+		return false;
+	}
+	if(n <= 3) {
+		return true;
+	}
+	if(n % 2 ==0 || n % 3 == 0) {
+		return false;
+	}
+	for(long long i = 5; i * i <= n; i += 6) {
+		if(n % i == 0 || n % (i + 2) == 0) {
+			return false;
+		}
+	}
+	return true;
+}
+inline bool is_palindrome(const std::string &s) noexcept {
+	auto t = s;
+	std::ranges::reverse(t);
+	return s == t;
+}
 }
 
 #include "C++/core/timer.hpp"
