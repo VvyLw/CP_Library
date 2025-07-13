@@ -133,9 +133,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: C++/math/inverse_num.hpp
       title: "\u8EE2\u5012\u6570"
-    - icon: ':warning:'
-      path: C++/math/is_prime.hpp
-      title: C++/math/is_prime.hpp
     - icon: ':heavy_check_mark:'
       path: C++/math/kthrooti.hpp
       title: "k\u4E57\u6839(\u6574\u6570)"

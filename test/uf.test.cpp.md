@@ -218,16 +218,16 @@ data:
     std::ranges::sample(v, std::back_inserter(ret), size, rand());\r\n\treturn ret;\r\
     \n}\r\ntemplate <class T> inline T rand_extract(const std::vector<T> &v) noexcept\
     \ {\r\n\tstd::vector<T> ret;\r\n\tstd::ranges::sample(v, std::back_inserter(ret),\
-    \ 1, rand());\r\n\treturn ret.front();\r\n}\r\ntemplate <std::ranges::random_access_range\
+    \ 1, rand());\r\n\treturn ret.front();\r\n}\r\ntemplate <std::ranges::input_range\
     \ T> inline auto sum(const T &v) noexcept { return std::accumulate(v.cbegin(),\
-    \ v.cend(), decltype(v.front())(0)); }\r\ntemplate <std::ranges::random_access_range\
+    \ v.cend(), std::ranges::range_value_t<T>{}); }\r\ntemplate <std::ranges::input_range\
     \ T> inline auto sum(const T &v, const int a, const int b) noexcept { return std::accumulate(v.cbegin()\
-    \ + a, v.cbegin() + b, decltype(v.front())(0)); }\r\ntemplate <std::ranges::random_access_range\
+    \ + a, v.cbegin() + b, std::ranges::range_value_t<T>{}); }\r\ntemplate <std::ranges::input_range\
     \ T, class Boolean = bool> inline auto sum(const T &v, const Boolean &fn) noexcept\
-    \ { return std::accumulate(v.cbegin(), v.cend(), decltype(v.front())(0), fn);\
-    \ }\r\ntemplate <std::ranges::random_access_range T, class Boolean = bool> inline\
+    \ { return std::accumulate(v.cbegin(), v.cend(), std::ranges::range_value_t<T>{},\
+    \ fn); }\r\ntemplate <std::ranges::input_range T, class Boolean = bool> inline\
     \ auto sum(const T &v, const int a, const int b, const Boolean &fn) noexcept {\
-    \ return std::accumulate(v.cbegin() + a, v.cbegin() + b, decltype(v.front())(0),\
+    \ return std::accumulate(v.cbegin() + a, v.cbegin() + b, std::ranges::range_value_t<T>{},\
     \ fn); }\r\n\r\ntemplate <internal::num T, class Boolean = bool> constexpr inline\
     \ T bins(T ok, T ng, const Boolean &fn, const long double eps = 1) noexcept {\r\
     \n\twhile(std::abs(ok - ng) > eps) {\r\n\t\tconst T mid = (ok + ng) / 2;\r\n\t\
@@ -255,15 +255,22 @@ data:
     \ {\r\n\t\t\tret %= mod;\r\n\t\t}\r\n\t\tret /= i;\r\n\t\tif(mod) {\r\n\t\t\t\
     ret %= mod;\r\n\t\t}\r\n\t}\r\n\treturn ret;\r\n}\r\nconstexpr inline bool is_int(const\
     \ long double n) noexcept { return n == std::floor(n); }\r\nconstexpr inline bool\
-    \ is_sqr(const long long n) noexcept { return is_int(std::sqrt(n)); }\r\n}\r\n\
-    \r\n#line 2 \"C++/core/timer.hpp\"\n\n#line 5 \"C++/core/timer.hpp\"\ntypedef\
-    \ std::chrono::system_clock::time_point Timer;\nTimer start, stop;\n#if local\n\
-    inline void now(Timer &t) noexcept { t = std::chrono::system_clock::now(); }\n\
-    inline void time(const Timer &t1, const Timer &t2) noexcept { std::cerr << std::chrono::duration_cast<std::chrono::milliseconds>(t2\
-    \ - t1).count() << \"ms\\n\"; }\n#else\nvoid now(Timer &t){ void(0); }\nvoid time(const\
-    \ Timer &t1, const Timer &t2){ void(0); }\n#endif\n\n/**\n * @brief \u30BF\u30A4\
-    \u30DE\u30FC\n */\n#line 2 \"C++/core/myvector.hpp\"\n\n#line 4 \"C++/core/myvector.hpp\"\
-    \n\n#ifndef ALIAS\nnamespace internal {\ntemplate <typename T> concept num = std::integral<T>\
+    \ is_sqr(const long long n) noexcept { return is_int(std::sqrt(n)); }\r\nconstexpr\
+    \ inline bool is_prime(const unsigned long long n) noexcept {\r\n\tif(n <= 1)\
+    \ {\r\n\t\treturn false;\r\n\t}\r\n\tif(n <= 3) {\r\n\t\treturn true;\r\n\t}\r\
+    \n\tif(n % 2 ==0 || n % 3 == 0) {\r\n\t\treturn false;\r\n\t}\r\n\tfor(long long\
+    \ i = 5; i * i <= n; i += 6) {\r\n\t\tif(n % i == 0 || n % (i + 2) == 0) {\r\n\
+    \t\t\treturn false;\r\n\t\t}\r\n\t}\r\n\treturn true;\r\n}\r\ninline bool is_palindrome(const\
+    \ std::string &s) noexcept {\r\n\tauto t = s;\r\n\tstd::ranges::reverse(t);\r\n\
+    \treturn s == t;\r\n}\r\n}\r\n\r\n#line 2 \"C++/core/timer.hpp\"\n\n#line 5 \"\
+    C++/core/timer.hpp\"\ntypedef std::chrono::system_clock::time_point Timer;\nTimer\
+    \ start, stop;\n#if local\ninline void now(Timer &t) noexcept { t = std::chrono::system_clock::now();\
+    \ }\ninline void time(const Timer &t1, const Timer &t2) noexcept { std::cerr <<\
+    \ std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count() << \"\
+    ms\\n\"; }\n#else\nvoid now(Timer &t){ void(0); }\nvoid time(const Timer &t1,\
+    \ const Timer &t2){ void(0); }\n#endif\n\n/**\n * @brief \u30BF\u30A4\u30DE\u30FC\
+    \n */\n#line 2 \"C++/core/myvector.hpp\"\n\n#line 4 \"C++/core/myvector.hpp\"\n\
+    \n#ifndef ALIAS\nnamespace internal {\ntemplate <typename T> concept num = std::integral<T>\
     \ || std::floating_point<T>;\n}\n#endif\n\nnamespace man {\nnamespace vec {\n\
     template <class T> using V = std::vector<T>;\ntypedef V<long long> zhl;\ntypedef\
     \ V<unsigned long long> uzhl;\ntypedef V<long double> dec;\ntypedef V<char> chr;\n\
@@ -425,7 +432,7 @@ data:
     \ print<f>(head, tail...); std::cout << '\\n'; }\n} // IO\n\nusing enum IO::Flash;\n\
     \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
     #include <C++/core/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
-    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 374 \"C++/template.hpp\"\n\r\
+    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 396 \"C++/template.hpp\"\n\r\
     \n#define REP(n) for([[maybe_unused]] const auto _: std::views::iota(0, (n)))\r\
     \n\r\nusing namespace IO;\r\nusing namespace std::views;\r\nnamespace iter = std::ranges;\r\
     \n\r\n/**\r\n * @brief \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\
@@ -458,7 +465,7 @@ data:
   isVerificationFile: true
   path: test/uf.test.cpp
   requiredBy: []
-  timestamp: '2025-07-11 21:49:26+09:00'
+  timestamp: '2025-07-13 17:53:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/uf.test.cpp
