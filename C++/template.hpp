@@ -224,7 +224,6 @@ template <class K, class V> constexpr inline auto val_min(const std::map<K, V> &
 template <class K, class V> constexpr inline auto val_max(const std::map<K, V> &m) noexcept {
 	return *std::ranges::max_element(m, [](const std::pair<K, V> &x, const std::pair<K, V> &y) -> bool { return x.second < y.second; });
 }
-
 template <std::integral T> constexpr inline T count(const std::vector<T> &v, const T &x) noexcept {
 	return std::ranges::upper_bound(v, x) - std::ranges::lower_bound(v, x);
 }
@@ -235,9 +234,7 @@ inline std::vector<int> iota(const int n, const int init = 0) noexcept {
 	return a;
 }
 template <class T> constexpr inline int uniq(T& v) noexcept {
-	if(!std::ranges::is_sorted(v)) {
-		std::ranges::sort(v);
-	}
+	std::ranges::sort(v);
 	const auto it = std::ranges::unique(v);
 	v.erase(it.begin(), it.end());
 	return std::ssize(v);
