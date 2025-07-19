@@ -192,7 +192,7 @@ data:
     \ V> &y) -> bool { return x.second < y.second; });\r\n}\r\ntemplate <class K,\
     \ class V> constexpr inline auto val_max(const std::map<K, V> &m) noexcept {\r\
     \n\treturn *std::ranges::max_element(m, [](const std::pair<K, V> &x, const std::pair<K,\
-    \ V> &y) -> bool { return x.second < y.second; });\r\n}\r\n\r\ntemplate <std::integral\
+    \ V> &y) -> bool { return x.second < y.second; });\r\n}\r\ntemplate <std::integral\
     \ T> constexpr inline T count(const std::vector<T> &v, const T &x) noexcept {\r\
     \n\treturn std::ranges::upper_bound(v, x) - std::ranges::lower_bound(v, x);\r\n\
     }\r\ntemplate <class T> constexpr inline T inner_prod(const std::vector<T> &v,\
@@ -200,32 +200,31 @@ data:
     \ v.cend(), u.cbegin(), init); }\r\ninline std::vector<int> iota(const int n,\
     \ const int init = 0) noexcept {\r\n\tstd::vector<int> a(n);\r\n\tstd::iota(a.begin(),\
     \ a.end(), init);\r\n\treturn a;\r\n}\r\ntemplate <class T> constexpr inline int\
-    \ uniq(T& v) noexcept {\r\n\tif(!std::ranges::is_sorted(v)) {\r\n\t\tstd::ranges::sort(v);\r\
-    \n\t}\r\n\tconst auto it = std::ranges::unique(v);\r\n\tv.erase(it.begin(), it.end());\r\
-    \n\treturn std::ssize(v);\r\n}\r\ntemplate <class T> constexpr inline void rotate(T&\
-    \ s, const int idx) noexcept {\r\n\tconst int id = mod<int>(idx, std::ssize(s));\r\
-    \n\tstd::ranges::rotate(s, s.begin() + id);\r\n}\r\ntemplate <class T> constexpr\
-    \ inline T set_diff(const T& s, const T& t) noexcept {\r\n\tassert(std::ranges::is_sorted(s)\
-    \ && std::ranges::is_sorted(t));\r\n\tT ret;\r\n\tstd::ranges::set_difference(s,\
-    \ t, std::inserter(ret, std::end(ret)));\r\n\treturn ret;\r\n}\r\ntemplate <class\
-    \ T> constexpr inline T set_sum(const T& s, const T& t) noexcept {\r\n\tassert(std::ranges::is_sorted(s)\
-    \ && std::ranges::is_sorted(t));\r\n\tT ret;\r\n\tstd::ranges::set_union(s, t,\
-    \ std::inserter(ret, std::end(ret)));\r\n\treturn ret;\r\n}\r\ntemplate <class\
-    \ T> constexpr inline T set_mul(const T& s, const T& t) noexcept {\r\n\tassert(std::ranges::is_sorted(s)\
-    \ && std::ranges::is_sorted(t));\r\n\tT ret;\r\n\tstd::ranges::set_intersection(s,\
-    \ t, std::inserter(ret, std::end(ret)));\r\n\treturn ret;\r\n}\r\ntemplate <class\
-    \ T> inline std::vector<T> adj_diff(const std::vector<T> &v) noexcept {\r\n\t\
-    std::vector<T> a;\r\n\tstd::adjacent_difference(v.cbegin(), v.cend(), std::back_inserter(a));\r\
-    \n\trotate(a, 1);\r\n\ta.pop_back();\r\n\treturn a;\r\n}\r\ntemplate <class T,\
-    \ class F> inline std::vector<T> isum(const std::vector<T> &v, const F &fn) noexcept\
-    \ {\r\n\tstd::vector<T> s{0};\r\n\tstd::inclusive_scan(v.cbegin(), v.cend(), std::back_inserter(s),\
-    \ fn);\r\n\treturn s;\r\n}\r\ntemplate <class T> inline std::vector<T> rand_extract(const\
-    \ std::vector<T> &v, const int size) noexcept {\r\n\tstd::vector<T> ret;\r\n\t\
-    std::ranges::sample(v, std::back_inserter(ret), size, rand());\r\n\treturn ret;\r\
-    \n}\r\ntemplate <class T> inline T rand_extract(const std::vector<T> &v) noexcept\
-    \ {\r\n\tstd::vector<T> ret;\r\n\tstd::ranges::sample(v, std::back_inserter(ret),\
-    \ 1, rand());\r\n\treturn ret.front();\r\n}\r\ntemplate <std::ranges::input_range\
-    \ T> inline auto sum(const T &v) noexcept { return std::accumulate(v.cbegin(),\
+    \ uniq(T& v) noexcept {\r\n\tstd::ranges::sort(v);\r\n\tconst auto it = std::ranges::unique(v);\r\
+    \n\tv.erase(it.begin(), it.end());\r\n\treturn std::ssize(v);\r\n}\r\ntemplate\
+    \ <class T> constexpr inline void rotate(T& s, const int idx) noexcept {\r\n\t\
+    const int id = mod<int>(idx, std::ssize(s));\r\n\tstd::ranges::rotate(s, s.begin()\
+    \ + id);\r\n}\r\ntemplate <class T> constexpr inline T set_diff(const T& s, const\
+    \ T& t) noexcept {\r\n\tassert(std::ranges::is_sorted(s) && std::ranges::is_sorted(t));\r\
+    \n\tT ret;\r\n\tstd::ranges::set_difference(s, t, std::inserter(ret, std::end(ret)));\r\
+    \n\treturn ret;\r\n}\r\ntemplate <class T> constexpr inline T set_sum(const T&\
+    \ s, const T& t) noexcept {\r\n\tassert(std::ranges::is_sorted(s) && std::ranges::is_sorted(t));\r\
+    \n\tT ret;\r\n\tstd::ranges::set_union(s, t, std::inserter(ret, std::end(ret)));\r\
+    \n\treturn ret;\r\n}\r\ntemplate <class T> constexpr inline T set_mul(const T&\
+    \ s, const T& t) noexcept {\r\n\tassert(std::ranges::is_sorted(s) && std::ranges::is_sorted(t));\r\
+    \n\tT ret;\r\n\tstd::ranges::set_intersection(s, t, std::inserter(ret, std::end(ret)));\r\
+    \n\treturn ret;\r\n}\r\ntemplate <class T> inline std::vector<T> adj_diff(const\
+    \ std::vector<T> &v) noexcept {\r\n\tstd::vector<T> a;\r\n\tstd::adjacent_difference(v.cbegin(),\
+    \ v.cend(), std::back_inserter(a));\r\n\trotate(a, 1);\r\n\ta.pop_back();\r\n\t\
+    return a;\r\n}\r\ntemplate <class T, class F> inline std::vector<T> isum(const\
+    \ std::vector<T> &v, const F &fn) noexcept {\r\n\tstd::vector<T> s{0};\r\n\tstd::inclusive_scan(v.cbegin(),\
+    \ v.cend(), std::back_inserter(s), fn);\r\n\treturn s;\r\n}\r\ntemplate <class\
+    \ T> inline std::vector<T> rand_extract(const std::vector<T> &v, const int size)\
+    \ noexcept {\r\n\tstd::vector<T> ret;\r\n\tstd::ranges::sample(v, std::back_inserter(ret),\
+    \ size, rand());\r\n\treturn ret;\r\n}\r\ntemplate <class T> inline T rand_extract(const\
+    \ std::vector<T> &v) noexcept {\r\n\tstd::vector<T> ret;\r\n\tstd::ranges::sample(v,\
+    \ std::back_inserter(ret), 1, rand());\r\n\treturn ret.front();\r\n}\r\ntemplate\
+    \ <std::ranges::input_range T> inline auto sum(const T &v) noexcept { return std::accumulate(v.cbegin(),\
     \ v.cend(), std::ranges::range_value_t<T>{}); }\r\ntemplate <std::ranges::input_range\
     \ T> inline auto sum(const T &v, const int a, const int b) noexcept { return std::accumulate(v.cbegin()\
     \ + a, v.cbegin() + b, std::ranges::range_value_t<T>{}); }\r\ntemplate <std::ranges::input_range\
@@ -438,7 +437,7 @@ data:
     \ print<f>(head, tail...); std::cout << '\\n'; }\n} // IO\n\nusing enum IO::Flash;\n\
     \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
     #include <C++/core/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
-    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 396 \"C++/template.hpp\"\n\r\
+    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 393 \"C++/template.hpp\"\n\r\
     \n#define REP(n) for([[maybe_unused]] const auto _: std::views::iota(0, (n)))\r\
     \n\r\nusing namespace IO;\r\nusing namespace std::views;\r\nnamespace iter = std::ranges;\r\
     \n\r\n/**\r\n * @brief \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\
@@ -472,7 +471,7 @@ data:
   isVerificationFile: true
   path: test/s_rmq.test.cpp
   requiredBy: []
-  timestamp: '2025-07-13 17:53:05+09:00'
+  timestamp: '2025-07-20 00:40:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/s_rmq.test.cpp
