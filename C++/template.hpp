@@ -40,6 +40,7 @@ template <class T, class U> constexpr inline bool chmin(T& a, const U& b) noexce
 template <internal::num T, internal::num U> constexpr inline bool overflow_if_add(const T a, const U b) noexcept { return (std::numeric_limits<T>::max() - a) < b; }
 template <internal::num T, internal::num U> constexpr inline bool overflow_if_mul(const T a, const U b) noexcept { return (std::numeric_limits<T>::max() / a) < b; }
 
+template <int num> constexpr inline void setfill(const char c) noexcept { std::cout << std::setw(num) << std::setfill(c); }
 inline std::string string_replace(const std::string &s, const std::string &a, const std::string &b) noexcept { return std::regex_replace(s, std::regex(a), b); }
 inline bool regex_contains(const std::string &s, const std::string &t) noexcept { return std::regex_search(s, std::regex(t)); }
 constexpr inline auto yes(const bool ok) noexcept { return ok ? "Yes" : "No"; }
