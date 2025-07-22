@@ -99,43 +99,45 @@ data:
     \ U> constexpr inline bool overflow_if_add(const T a, const U b) noexcept { return\
     \ (std::numeric_limits<T>::max() - a) < b; }\r\ntemplate <internal::num T, internal::num\
     \ U> constexpr inline bool overflow_if_mul(const T a, const U b) noexcept { return\
-    \ (std::numeric_limits<T>::max() / a) < b; }\r\n\r\ninline std::string string_replace(const\
-    \ std::string &s, const std::string &a, const std::string &b) noexcept { return\
-    \ std::regex_replace(s, std::regex(a), b); }\r\ninline bool regex_contains(const\
-    \ std::string &s, const std::string &t) noexcept { return std::regex_search(s,\
-    \ std::regex(t)); }\r\nconstexpr inline auto yes(const bool ok) noexcept { return\
-    \ ok ? \"Yes\" : \"No\"; }\r\ntemplate <internal::num T> constexpr inline T sqr(const\
-    \ T x) noexcept { return x * x; }\r\ntemplate <internal::num T> constexpr inline\
-    \ T cub(const T x) noexcept { return x * x * x; }\r\ntemplate <std::integral T>\
-    \ constexpr inline T mod(T x, const T m) noexcept {\r\n\tx %= m;\r\n\treturn x\
-    \ < 0 ? x + m : x;\r\n}\r\ntemplate <std::integral T> constexpr inline T pow(T\
-    \ a, T b, const T mod = 0) noexcept {\r\n\tT ret = 1;\r\n\tif(mod != 0) {\r\n\t\
-    \tret %= mod;\r\n\t\ta %= mod;\r\n\t}\r\n\twhile(b > 0) {\r\n\t\tif(b & 1) {\r\
-    \n\t\t\tret *= a;\r\n\t\t}\r\n\t\tif(mod != 0) {\r\n\t\t\tret %= mod;\r\n\t\t\
-    }\r\n\t\ta *= a;\r\n\t\tif(mod) {\r\n\t\t\ta %= mod;\r\n\t\t}\r\n\t\tb >>= 1;\r\
-    \n\t}\r\n\treturn ret;\r\n}\r\nconstexpr inline long long ceil(const long double\
-    \ x, const long long m) noexcept { return std::ceil(x / m); }\r\nconstexpr inline\
-    \ long double round(const long double x, const long long m, const short fx = 0)\
-    \ noexcept {\r\n\tif(fx == 0) {\r\n\t\treturn std::round(x / m);\r\n\t}\r\n\t\
-    const unsigned long long y = pow<unsigned long long>(10, fx);\r\n\treturn std::round((x\
-    \ * y) / m) / y;\r\n}\r\nconstexpr inline long double log(const long long x, const\
-    \ long double base = 2) noexcept { return std::log2(x) / std::log2(base); }\r\n\
-    template <internal::num T> constexpr inline bool scope(const T a, const T x, const\
-    \ T b) noexcept { return a <= x && x <= b; }\r\nconstexpr inline bool isupper(const\
-    \ char c) noexcept { return std::isupper(c); }\r\ninline bool isupper(const std::string\
-    \ &s) noexcept {\r\n\tbool ok = true;\r\n\tfor(const auto &el: s) {\r\n\t\tok\
-    \ &= isupper(el);\r\n\t}\r\n\treturn ok;\r\n}\r\nconstexpr inline bool islower(const\
-    \ char c) noexcept { return std::islower(c); }\r\ninline bool islower(const std::string\
-    \ &s) noexcept {\r\n\tbool ok = true;\r\n\tfor(const auto &el: s) {\r\n\t\tok\
-    \ &= islower(el);\r\n\t}\r\n\treturn ok;\r\n}\r\nconstexpr inline bool isalpha(const\
-    \ char c) noexcept { return std::isalpha(c); }\r\ninline bool isalpha(const std::string\
-    \ &s) noexcept {\r\n\tbool ok = true;\r\n\tfor(const auto &el: s) {\r\n\t\tok\
-    \ &= isalpha(el);\r\n\t}\r\n\treturn ok;\r\n}\r\nconstexpr inline bool isdigit(const\
-    \ char c) noexcept { return std::isdigit(c); }\r\ninline bool isdigit(const std::string\
-    \ &s) noexcept {\r\n\tbool ok = true, neg = s.front() == '-';\r\n    for(const\
-    \ auto &el: s) {\r\n        if(neg) {\r\n            neg = false;\r\n        \
-    \    continue;\r\n        }\r\n        ok &= isdigit(el);\r\n    }\r\n    return\
-    \ ok;\r\n}\r\nconstexpr inline bool isalnum(const char c) noexcept { return std::isalnum(c);\
+    \ (std::numeric_limits<T>::max() / a) < b; }\r\n\r\ntemplate <int num> constexpr\
+    \ inline void setfill(const char c) noexcept { std::cout << std::setw(num) <<\
+    \ std::setfill(c); }\r\ninline std::string string_replace(const std::string &s,\
+    \ const std::string &a, const std::string &b) noexcept { return std::regex_replace(s,\
+    \ std::regex(a), b); }\r\ninline bool regex_contains(const std::string &s, const\
+    \ std::string &t) noexcept { return std::regex_search(s, std::regex(t)); }\r\n\
+    constexpr inline auto yes(const bool ok) noexcept { return ok ? \"Yes\" : \"No\"\
+    ; }\r\ntemplate <internal::num T> constexpr inline T sqr(const T x) noexcept {\
+    \ return x * x; }\r\ntemplate <internal::num T> constexpr inline T cub(const T\
+    \ x) noexcept { return x * x * x; }\r\ntemplate <std::integral T> constexpr inline\
+    \ T mod(T x, const T m) noexcept {\r\n\tx %= m;\r\n\treturn x < 0 ? x + m : x;\r\
+    \n}\r\ntemplate <std::integral T> constexpr inline T pow(T a, T b, const T mod\
+    \ = 0) noexcept {\r\n\tT ret = 1;\r\n\tif(mod != 0) {\r\n\t\tret %= mod;\r\n\t\
+    \ta %= mod;\r\n\t}\r\n\twhile(b > 0) {\r\n\t\tif(b & 1) {\r\n\t\t\tret *= a;\r\
+    \n\t\t}\r\n\t\tif(mod != 0) {\r\n\t\t\tret %= mod;\r\n\t\t}\r\n\t\ta *= a;\r\n\
+    \t\tif(mod) {\r\n\t\t\ta %= mod;\r\n\t\t}\r\n\t\tb >>= 1;\r\n\t}\r\n\treturn ret;\r\
+    \n}\r\nconstexpr inline long long ceil(const long double x, const long long m)\
+    \ noexcept { return std::ceil(x / m); }\r\nconstexpr inline long double round(const\
+    \ long double x, const long long m, const short fx = 0) noexcept {\r\n\tif(fx\
+    \ == 0) {\r\n\t\treturn std::round(x / m);\r\n\t}\r\n\tconst unsigned long long\
+    \ y = pow<unsigned long long>(10, fx);\r\n\treturn std::round((x * y) / m) / y;\r\
+    \n}\r\nconstexpr inline long double log(const long long x, const long double base\
+    \ = 2) noexcept { return std::log2(x) / std::log2(base); }\r\ntemplate <internal::num\
+    \ T> constexpr inline bool scope(const T a, const T x, const T b) noexcept { return\
+    \ a <= x && x <= b; }\r\nconstexpr inline bool isupper(const char c) noexcept\
+    \ { return std::isupper(c); }\r\ninline bool isupper(const std::string &s) noexcept\
+    \ {\r\n\tbool ok = true;\r\n\tfor(const auto &el: s) {\r\n\t\tok &= isupper(el);\r\
+    \n\t}\r\n\treturn ok;\r\n}\r\nconstexpr inline bool islower(const char c) noexcept\
+    \ { return std::islower(c); }\r\ninline bool islower(const std::string &s) noexcept\
+    \ {\r\n\tbool ok = true;\r\n\tfor(const auto &el: s) {\r\n\t\tok &= islower(el);\r\
+    \n\t}\r\n\treturn ok;\r\n}\r\nconstexpr inline bool isalpha(const char c) noexcept\
+    \ { return std::isalpha(c); }\r\ninline bool isalpha(const std::string &s) noexcept\
+    \ {\r\n\tbool ok = true;\r\n\tfor(const auto &el: s) {\r\n\t\tok &= isalpha(el);\r\
+    \n\t}\r\n\treturn ok;\r\n}\r\nconstexpr inline bool isdigit(const char c) noexcept\
+    \ { return std::isdigit(c); }\r\ninline bool isdigit(const std::string &s) noexcept\
+    \ {\r\n\tbool ok = true, neg = s.front() == '-';\r\n    for(const auto &el: s)\
+    \ {\r\n        if(neg) {\r\n            neg = false;\r\n            continue;\r\
+    \n        }\r\n        ok &= isdigit(el);\r\n    }\r\n    return ok;\r\n}\r\n\
+    constexpr inline bool isalnum(const char c) noexcept { return std::isalnum(c);\
     \ }\r\ninline bool isalnum(const std::string &s) noexcept {\r\n\tbool ok = true;\r\
     \n\tfor(const auto &el: s) {\r\n\t\tok &= isalnum(el);\r\n\t}\r\n\treturn ok;\r\
     \n}\r\nconstexpr inline bool isspace(const char c) noexcept { return std::isspace(c);\
@@ -431,7 +433,7 @@ data:
     \ print<f>(head, tail...); std::cout << '\\n'; }\n} // IO\n\nusing enum IO::Flash;\n\
     \n#if local\n//https://gist.github.com/naskya/1e5e5cd269cfe16a76988378a60e2ca3\n\
     #include <C++/core/io/debug_print.hpp>\n#else\n#define dump(...) static_cast<void>(0)\n\
-    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 393 \"C++/template.hpp\"\n\r\
+    #endif\n\n/**\n * @brief \u51FA\u529B\n */\n#line 394 \"C++/template.hpp\"\n\r\
     \n#define REP(n) for([[maybe_unused]] const auto _: std::views::iota(0, (n)))\r\
     \n\r\nusing namespace IO;\r\nusing namespace std::views;\r\nnamespace iter = std::ranges;\r\
     \n\r\n/**\r\n * @brief \u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\r\n * @docs docs/template.md\r\
@@ -464,7 +466,7 @@ data:
   isVerificationFile: true
   path: test/uf.test.cpp
   requiredBy: []
-  timestamp: '2025-07-20 00:40:17+09:00'
+  timestamp: '2025-07-22 17:49:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/uf.test.cpp
