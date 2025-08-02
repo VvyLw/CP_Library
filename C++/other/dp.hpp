@@ -39,13 +39,13 @@ template <std::integral T> int knapsack01_w(const std::vector<T> &a, const std::
             dp[j] = std::min(dp[j], dp[j - v[i]] + a[i]);
         }
     }
-    int res = 0;
+    int ret = 0;
     for(const auto i: std::views::iota(0, s + 1)) {
         if(dp[i] <= w) {
-            res = i;
+            ret = i;
         }
     }
-    return res;
+    return ret;
 }
 /**
  * @see https://ei1333.github.io/library/dp/knapsack-01-2.hpp
@@ -110,8 +110,8 @@ template <std::integral T> T knapsack_sup_w(const std::vector<T> &a, const std::
     std::vector dp = knapsack_sup_v(v, a, ma, sum, true);
     std::vector<int> id(n);
     std::iota(id.begin(), id.end(), 0);
-    std::stable_sort(id.begin(), id.end(), [&](const int i, const int j) -> bool { return v[i] * a[j] > v[j] * a[i]; });
-    T res = T{};
+    std::ranges::stable_sort(id, [&](const int i, const int j) -> bool { return v[i] * a[j] > v[j] * a[i]; });
+    T ret = T{};
     for(const auto i: std::views::iota(0, std::ssize(dp))) {
         if(dp[i] > w || dp[i] == std::numeric_limits<T>::min()) {
             continue;
@@ -125,9 +125,9 @@ template <std::integral T> T knapsack_sup_w(const std::vector<T> &a, const std::
             cost += get * v[j];
             rest -= get * a[j];
         }
-        res = std::max(res, cost);
+        ret = std::max(ret, cost);
     }
-    return res;
+    return ret;
 }
 /**
  * @see https://ei1333.github.io/library/dp/knapsack-limitations-2.hpp
