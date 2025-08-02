@@ -32,9 +32,9 @@ data:
     \ w + 1);\n    dp[0] = 0;\n    for(const auto i: std::views::iota(0, n)) {\n \
     \       for(const auto j: std::views::iota(v[i], s + 1) | std::views::reverse)\
     \ {\n            dp[j] = std::min(dp[j], dp[j - v[i]] + a[i]);\n        }\n  \
-    \  }\n    int res = 0;\n    for(const auto i: std::views::iota(0, s + 1)) {\n\
-    \        if(dp[i] <= w) {\n            res = i;\n        }\n    }\n    return\
-    \ res;\n}\n/**\n * @see https://ei1333.github.io/library/dp/knapsack-01-2.hpp\n\
+    \  }\n    int ret = 0;\n    for(const auto i: std::views::iota(0, s + 1)) {\n\
+    \        if(dp[i] <= w) {\n            ret = i;\n        }\n    }\n    return\
+    \ ret;\n}\n/**\n * @see https://ei1333.github.io/library/dp/knapsack-01-2.hpp\n\
     \ */\n\ntemplate <std::integral T> std::vector<T> knapsack_sup_v(const std::vector<int>\
     \ &a, const std::vector<T> &v, const std::vector<int> &m, const int w, const bool\
     \ less = false) {\n    const int n = std::ssize(a);\n    std::vector<T> dp(w +\
@@ -64,15 +64,15 @@ data:
     \ max - 1);\n        mb[i] = m[i] - ma[i];\n    }\n    int sum = 0;\n    for(const\
     \ auto i: std::views::iota(0, n)) {\n        sum += ma[i] * v[i];\n    }\n   \
     \ std::vector dp = knapsack_sup_v(v, a, ma, sum, true);\n    std::vector<int>\
-    \ id(n);\n    std::iota(id.begin(), id.end(), 0);\n    std::stable_sort(id.begin(),\
-    \ id.end(), [&](const int i, const int j) -> bool { return v[i] * a[j] > v[j]\
-    \ * a[i]; });\n    T res = T{};\n    for(const auto i: std::views::iota(0, std::ssize(dp)))\
+    \ id(n);\n    std::iota(id.begin(), id.end(), 0);\n    std::ranges::stable_sort(id,\
+    \ [&](const int i, const int j) -> bool { return v[i] * a[j] > v[j] * a[i]; });\n\
+    \    T ret = T{};\n    for(const auto i: std::views::iota(0, std::ssize(dp)))\
     \ {\n        if(dp[i] > w || dp[i] == std::numeric_limits<T>::min()) {\n     \
     \       continue;\n        }\n        T rest = w - dp[i], cost = i;\n        for(const\
     \ int j: id) {\n            const T get = std::min(mb[j], rest / a[j]);\n    \
     \        if(get <= 0) {\n                continue;\n            }\n          \
-    \  cost += get * v[j];\n            rest -= get * a[j];\n        }\n        res\
-    \ = std::max(res, cost);\n    }\n    return res;\n}\n/**\n * @see https://ei1333.github.io/library/dp/knapsack-limitations-2.hpp\n\
+    \  cost += get * v[j];\n            rest -= get * a[j];\n        }\n        ret\
+    \ = std::max(ret, cost);\n    }\n    return ret;\n}\n/**\n * @see https://ei1333.github.io/library/dp/knapsack-limitations-2.hpp\n\
     \ */\n\ntemplate <std::integral T> T knapsack(const std::vector<int> &a, const\
     \ std::vector<T> &v, const int w) {\n    const int n = std::ssize(a);\n    std::vector\
     \ dp(w + 1, std::numeric_limits<T>::min());\n    dp[0] = 0;\n    for(const auto\
@@ -121,7 +121,7 @@ data:
   isVerificationFile: true
   path: test/knapsack4.test.cpp
   requiredBy: []
-  timestamp: '2025-06-14 01:07:36+09:00'
+  timestamp: '2025-08-02 21:00:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/knapsack4.test.cpp
