@@ -119,7 +119,7 @@ data:
     \t\tif(mod) {\r\n\t\t\ta %= mod;\r\n\t\t}\r\n\t\tb >>= 1;\r\n\t}\r\n\treturn ret;\r\
     \n}\r\nconstexpr inline long long ceil(const long double x, const long long m)\
     \ noexcept { return std::ceil(x / m); }\r\nconstexpr inline long double round(const\
-    \ long double x, const long long m, const short fx = 0) noexcept {\r\n\tif(fx\
+    \ long double x, const long long m = 1, const short fx = 0) noexcept {\r\n\tif(fx\
     \ == 0) {\r\n\t\treturn std::round(x / m);\r\n\t}\r\n\tconst unsigned long long\
     \ y = pow<unsigned long long>(10, fx);\r\n\treturn std::round((x * y) / m) / y;\r\
     \n}\r\nconstexpr inline long double log(const long long x, const long double base\
@@ -478,57 +478,58 @@ data:
     }\r\n\t\ta *= a;\r\n\t\tif(mod) {\r\n\t\t\ta %= mod;\r\n\t\t}\r\n\t\tb >>= 1;\r\
     \n\t}\r\n\treturn ret;\r\n}\r\nconstexpr inline long long ceil(const long double\
     \ x, const long long m) noexcept { return std::ceil(x / m); }\r\nconstexpr inline\
-    \ long double round(const long double x, const long long m, const short fx = 0)\
-    \ noexcept {\r\n\tif(fx == 0) {\r\n\t\treturn std::round(x / m);\r\n\t}\r\n\t\
-    const unsigned long long y = pow<unsigned long long>(10, fx);\r\n\treturn std::round((x\
-    \ * y) / m) / y;\r\n}\r\nconstexpr inline long double log(const long long x, const\
-    \ long double base = 2) noexcept { return std::log2(x) / std::log2(base); }\r\n\
-    template <internal::num T> constexpr inline bool scope(const T a, const T x, const\
-    \ T b) noexcept { return a <= x && x <= b; }\r\nconstexpr inline bool isupper(const\
-    \ char c) noexcept { return std::isupper(c); }\r\ninline bool isupper(const std::string\
+    \ long double round(const long double x, const long long m = 1, const short fx\
+    \ = 0) noexcept {\r\n\tif(fx == 0) {\r\n\t\treturn std::round(x / m);\r\n\t}\r\
+    \n\tconst unsigned long long y = pow<unsigned long long>(10, fx);\r\n\treturn\
+    \ std::round((x * y) / m) / y;\r\n}\r\nconstexpr inline long double log(const\
+    \ long long x, const long double base = 2) noexcept { return std::log2(x) / std::log2(base);\
+    \ }\r\ntemplate <internal::num T> constexpr inline bool scope(const T a, const\
+    \ T x, const T b) noexcept { return a <= x && x <= b; }\r\nconstexpr inline bool\
+    \ isupper(const char c) noexcept { return std::isupper(c); }\r\ninline bool isupper(const\
+    \ std::string &s) noexcept {\r\n\tbool ok = true;\r\n\tfor(const auto &el: s)\
+    \ {\r\n\t\tok &= isupper(el);\r\n\t}\r\n\treturn ok;\r\n}\r\nconstexpr inline\
+    \ bool islower(const char c) noexcept { return std::islower(c); }\r\ninline bool\
+    \ islower(const std::string &s) noexcept {\r\n\tbool ok = true;\r\n\tfor(const\
+    \ auto &el: s) {\r\n\t\tok &= islower(el);\r\n\t}\r\n\treturn ok;\r\n}\r\nconstexpr\
+    \ inline bool isalpha(const char c) noexcept { return std::isalpha(c); }\r\ninline\
+    \ bool isalpha(const std::string &s) noexcept {\r\n\tbool ok = true;\r\n\tfor(const\
+    \ auto &el: s) {\r\n\t\tok &= isalpha(el);\r\n\t}\r\n\treturn ok;\r\n}\r\nconstexpr\
+    \ inline bool isdigit(const char c) noexcept { return std::isdigit(c); }\r\ninline\
+    \ bool isdigit(const std::string &s) noexcept {\r\n\tbool ok = true, neg = s.front()\
+    \ == '-';\r\n    for(const auto &el: s) {\r\n        if(neg) {\r\n           \
+    \ neg = false;\r\n            continue;\r\n        }\r\n        ok &= isdigit(el);\r\
+    \n    }\r\n    return ok;\r\n}\r\nconstexpr inline bool isalnum(const char c)\
+    \ noexcept { return std::isalnum(c); }\r\ninline bool isalnum(const std::string\
     \ &s) noexcept {\r\n\tbool ok = true;\r\n\tfor(const auto &el: s) {\r\n\t\tok\
-    \ &= isupper(el);\r\n\t}\r\n\treturn ok;\r\n}\r\nconstexpr inline bool islower(const\
-    \ char c) noexcept { return std::islower(c); }\r\ninline bool islower(const std::string\
+    \ &= isalnum(el);\r\n\t}\r\n\treturn ok;\r\n}\r\nconstexpr inline bool isspace(const\
+    \ char c) noexcept { return std::isspace(c); }\r\ninline bool isspace(const std::string\
     \ &s) noexcept {\r\n\tbool ok = true;\r\n\tfor(const auto &el: s) {\r\n\t\tok\
-    \ &= islower(el);\r\n\t}\r\n\treturn ok;\r\n}\r\nconstexpr inline bool isalpha(const\
-    \ char c) noexcept { return std::isalpha(c); }\r\ninline bool isalpha(const std::string\
+    \ &= isspace(el);\r\n\t}\r\n\treturn ok;\r\n}\r\nconstexpr inline bool ispunct(const\
+    \ char c) noexcept { return std::ispunct(c); }\r\ninline bool ispunct(const std::string\
     \ &s) noexcept {\r\n\tbool ok = true;\r\n\tfor(const auto &el: s) {\r\n\t\tok\
-    \ &= isalpha(el);\r\n\t}\r\n\treturn ok;\r\n}\r\nconstexpr inline bool isdigit(const\
-    \ char c) noexcept { return std::isdigit(c); }\r\ninline bool isdigit(const std::string\
-    \ &s) noexcept {\r\n\tbool ok = true, neg = s.front() == '-';\r\n    for(const\
-    \ auto &el: s) {\r\n        if(neg) {\r\n            neg = false;\r\n        \
-    \    continue;\r\n        }\r\n        ok &= isdigit(el);\r\n    }\r\n    return\
-    \ ok;\r\n}\r\nconstexpr inline bool isalnum(const char c) noexcept { return std::isalnum(c);\
-    \ }\r\ninline bool isalnum(const std::string &s) noexcept {\r\n\tbool ok = true;\r\
-    \n\tfor(const auto &el: s) {\r\n\t\tok &= isalnum(el);\r\n\t}\r\n\treturn ok;\r\
-    \n}\r\nconstexpr inline bool isspace(const char c) noexcept { return std::isspace(c);\
-    \ }\r\ninline bool isspace(const std::string &s) noexcept {\r\n\tbool ok = true;\r\
-    \n\tfor(const auto &el: s) {\r\n\t\tok &= isspace(el);\r\n\t}\r\n\treturn ok;\r\
-    \n}\r\nconstexpr inline bool ispunct(const char c) noexcept { return std::ispunct(c);\
-    \ }\r\ninline bool ispunct(const std::string &s) noexcept {\r\n\tbool ok = true;\r\
-    \n\tfor(const auto &el: s) {\r\n\t\tok &= ispunct(el);\r\n\t}\r\n\treturn ok;\r\
-    \n}\r\nconstexpr inline bool isprint(const char c) noexcept { return std::isprint(c);\
-    \ }\r\ninline bool isprint(const std::string &s) noexcept {\r\n\tbool ok = true;\r\
-    \n\tfor(const auto &el: s) {\r\n\t\tok &= isprint(el);\r\n\t}\r\n\treturn ok;\r\
-    \n}\r\ninline auto strins(std::string &s, const int id, const std::string &t)\
-    \ noexcept {\r\n\ts.insert(id, t);\r\n\treturn std::ssize(s);\r\n}\r\ninline std::string\
-    \ toupper(std::string s) noexcept {\r\n\tfor(auto &c: s) {\r\n\t\tc = std::toupper(c);\r\
-    \n\t}\r\n\treturn s;\r\n}\r\ninline std::string tolower(std::string s) noexcept\
-    \ {\r\n\tfor(auto &c: s) {\r\n\t\tc = std::tolower(c);\r\n\t}\r\n\treturn s;\r\
-    \n}\r\ninline std::string ten_to(long long n, const int base, const bool upper\
-    \ = true) noexcept {\r\n\tassert(base <= 10 || base == 16);\r\n\tif(base == 16)\
-    \ {\r\n\t\tstd::stringstream ss;\r\n\t\tss << std::hex << n;\r\n\t\tconst std::string\
-    \ s = ss.str();\r\n\t\treturn upper ? toupper(s) : s;\r\n\t}\r\n\tif(n == 0 ||\
-    \ base == 0) {\r\n\t\treturn \"0\";\r\n\t}\r\n\tstd::vector<int> ret;\r\n\twhile(n\
-    \ > 0) {\r\n\t\tret.emplace_back(n % base);\r\n\t\tn /= base;\r\n\t}\r\n\tstd::string\
-    \ s;\r\n\tfor(const auto &e: ret | std::views::reverse) {\r\n\t\ts += std::to_string(e);\r\
-    \n\t}\r\n\treturn s;\r\n}\r\ninline long long to_ten(const std::string &s, const\
-    \ int base = 10) noexcept { return std::stoll(s, nullptr, base); }\r\ntemplate\
-    \ <std::integral... Ts> constexpr unsigned long long gcd(const Ts... a) noexcept\
-    \ {\r\n\tstd::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};\r\
-    \n\tunsigned long long g = 0;\r\n\tfor(const auto &el: v) {\r\n\t\tg = std::gcd(g,\
-    \ el);\r\n\t}\r\n\treturn g;\r\n}\r\ntemplate <std::integral... Ts> constexpr\
-    \ unsigned long long lcm(const Ts... a) noexcept {\r\n\tstd::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};\r\
+    \ &= ispunct(el);\r\n\t}\r\n\treturn ok;\r\n}\r\nconstexpr inline bool isprint(const\
+    \ char c) noexcept { return std::isprint(c); }\r\ninline bool isprint(const std::string\
+    \ &s) noexcept {\r\n\tbool ok = true;\r\n\tfor(const auto &el: s) {\r\n\t\tok\
+    \ &= isprint(el);\r\n\t}\r\n\treturn ok;\r\n}\r\ninline auto strins(std::string\
+    \ &s, const int id, const std::string &t) noexcept {\r\n\ts.insert(id, t);\r\n\
+    \treturn std::ssize(s);\r\n}\r\ninline std::string toupper(std::string s) noexcept\
+    \ {\r\n\tfor(auto &c: s) {\r\n\t\tc = std::toupper(c);\r\n\t}\r\n\treturn s;\r\
+    \n}\r\ninline std::string tolower(std::string s) noexcept {\r\n\tfor(auto &c:\
+    \ s) {\r\n\t\tc = std::tolower(c);\r\n\t}\r\n\treturn s;\r\n}\r\ninline std::string\
+    \ ten_to(long long n, const int base, const bool upper = true) noexcept {\r\n\t\
+    assert(base <= 10 || base == 16);\r\n\tif(base == 16) {\r\n\t\tstd::stringstream\
+    \ ss;\r\n\t\tss << std::hex << n;\r\n\t\tconst std::string s = ss.str();\r\n\t\
+    \treturn upper ? toupper(s) : s;\r\n\t}\r\n\tif(n == 0 || base == 0) {\r\n\t\t\
+    return \"0\";\r\n\t}\r\n\tstd::vector<int> ret;\r\n\twhile(n > 0) {\r\n\t\tret.emplace_back(n\
+    \ % base);\r\n\t\tn /= base;\r\n\t}\r\n\tstd::string s;\r\n\tfor(const auto &e:\
+    \ ret | std::views::reverse) {\r\n\t\ts += std::to_string(e);\r\n\t}\r\n\treturn\
+    \ s;\r\n}\r\ninline long long to_ten(const std::string &s, const int base = 10)\
+    \ noexcept { return std::stoll(s, nullptr, base); }\r\ntemplate <std::integral...\
+    \ Ts> constexpr unsigned long long gcd(const Ts... a) noexcept {\r\n\tstd::vector\
+    \ v = std::initializer_list<std::common_type_t<Ts...>>{a...};\r\n\tunsigned long\
+    \ long g = 0;\r\n\tfor(const auto &el: v) {\r\n\t\tg = std::gcd(g, el);\r\n\t\
+    }\r\n\treturn g;\r\n}\r\ntemplate <std::integral... Ts> constexpr unsigned long\
+    \ long lcm(const Ts... a) noexcept {\r\n\tstd::vector v = std::initializer_list<std::common_type_t<Ts...>>{a...};\r\
     \n\tunsigned long long l = 1;\r\n\tfor(const auto &el: v) {\r\n\t\tl = std::lcm(l,\
     \ el);\r\n\t}\r\n\treturn l;\r\n}\r\ntemplate <internal::num... Ts> constexpr\
     \ auto min(const Ts... a) noexcept { return std::min(std::initializer_list<std::common_type_t<Ts...>>{a...});\
@@ -641,7 +642,7 @@ data:
   isVerificationFile: false
   path: C++/template.hpp
   requiredBy: []
-  timestamp: '2025-08-15 20:49:10+09:00'
+  timestamp: '2025-08-15 21:06:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/s_rmq.test.cpp

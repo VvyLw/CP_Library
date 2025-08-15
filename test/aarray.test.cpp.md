@@ -93,7 +93,7 @@ data:
     \t\tif(mod) {\r\n\t\t\ta %= mod;\r\n\t\t}\r\n\t\tb >>= 1;\r\n\t}\r\n\treturn ret;\r\
     \n}\r\nconstexpr inline long long ceil(const long double x, const long long m)\
     \ noexcept { return std::ceil(x / m); }\r\nconstexpr inline long double round(const\
-    \ long double x, const long long m, const short fx = 0) noexcept {\r\n\tif(fx\
+    \ long double x, const long long m = 1, const short fx = 0) noexcept {\r\n\tif(fx\
     \ == 0) {\r\n\t\treturn std::round(x / m);\r\n\t}\r\n\tconst unsigned long long\
     \ y = pow<unsigned long long>(10, fx);\r\n\treturn std::round((x * y) / m) / y;\r\
     \n}\r\nconstexpr inline long double log(const long long x, const long double base\
@@ -441,7 +441,7 @@ data:
   isVerificationFile: true
   path: test/aarray.test.cpp
   requiredBy: []
-  timestamp: '2025-08-15 20:49:10+09:00'
+  timestamp: '2025-08-15 21:06:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aarray.test.cpp
