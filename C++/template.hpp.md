@@ -102,9 +102,9 @@ data:
     \ (std::numeric_limits<T>::max() - a) < b; }\r\ntemplate <internal::num T, internal::num\
     \ U> constexpr inline bool overflow_if_mul(const T a, const U b) noexcept { return\
     \ (std::numeric_limits<T>::max() / a) < b; }\r\n\r\ntemplate <int num> constexpr\
-    \ inline void setfill(const char c) noexcept { std::cout << std::setw(num) <<\
-    \ std::setfill(c); }\r\ninline std::string string_replace(const std::string &s,\
-    \ const std::string &a, const std::string &b) noexcept { return std::regex_replace(s,\
+    \ inline void setfill(const char c = ' ') noexcept { std::cout << std::setw(num)\
+    \ << std::setfill(c); }\r\ninline std::string string_replace(const std::string\
+    \ &s, const std::string &a, const std::string &b) noexcept { return std::regex_replace(s,\
     \ std::regex(a), b); }\r\ninline bool regex_contains(const std::string &s, const\
     \ std::string &t) noexcept { return std::regex_search(s, std::regex(t)); }\r\n\
     constexpr inline auto yes(const bool ok) noexcept { return ok ? \"Yes\" : \"No\"\
@@ -461,7 +461,7 @@ data:
     \ T a, const U b) noexcept { return (std::numeric_limits<T>::max() - a) < b; }\r\
     \ntemplate <internal::num T, internal::num U> constexpr inline bool overflow_if_mul(const\
     \ T a, const U b) noexcept { return (std::numeric_limits<T>::max() / a) < b; }\r\
-    \n\r\ntemplate <int num> constexpr inline void setfill(const char c) noexcept\
+    \n\r\ntemplate <int num> constexpr inline void setfill(const char c = ' ') noexcept\
     \ { std::cout << std::setw(num) << std::setfill(c); }\r\ninline std::string string_replace(const\
     \ std::string &s, const std::string &a, const std::string &b) noexcept { return\
     \ std::regex_replace(s, std::regex(a), b); }\r\ninline bool regex_contains(const\
@@ -641,20 +641,20 @@ data:
   isVerificationFile: false
   path: C++/template.hpp
   requiredBy: []
-  timestamp: '2025-07-22 17:49:12+09:00'
+  timestamp: '2025-08-15 20:49:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/add128.test.cpp
+  - test/s_rmq.test.cpp
+  - test/aarray.test.cpp
+  - test/extgcd.test.cpp
   - test/m_add.test.cpp
+  - test/fwtree.test.cpp
+  - test/segtree.test.cpp
   - test/sr_sum.test.cpp
   - test/parsum.test.cpp
-  - test/fwtree.test.cpp
+  - test/add128.test.cpp
   - test/uf.test.cpp
-  - test/aarray.test.cpp
   - test/add.test.cpp
-  - test/extgcd.test.cpp
-  - test/s_rmq.test.cpp
-  - test/segtree.test.cpp
 documentation_of: C++/template.hpp
 layout: document
 redirect_from:

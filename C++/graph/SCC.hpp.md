@@ -74,8 +74,8 @@ data:
   timestamp: '2025-06-06 22:43:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/scc.test.cpp
   - test/scc2.test.cpp
+  - test/scc.test.cpp
 documentation_of: C++/graph/SCC.hpp
 layout: document
 redirect_from:

@@ -52,8 +52,8 @@ data:
   timestamp: '2025-06-14 01:07:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/kthrooti.test.cpp
   - test/pcounter.test.cpp
+  - test/kthrooti.test.cpp
 documentation_of: C++/math/kthrooti.hpp
 layout: document
 redirect_from:

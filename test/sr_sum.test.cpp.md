@@ -92,7 +92,7 @@ data:
     \ T a, const U b) noexcept { return (std::numeric_limits<T>::max() - a) < b; }\r\
     \ntemplate <internal::num T, internal::num U> constexpr inline bool overflow_if_mul(const\
     \ T a, const U b) noexcept { return (std::numeric_limits<T>::max() / a) < b; }\r\
-    \n\r\ntemplate <int num> constexpr inline void setfill(const char c) noexcept\
+    \n\r\ntemplate <int num> constexpr inline void setfill(const char c = ' ') noexcept\
     \ { std::cout << std::setw(num) << std::setfill(c); }\r\ninline std::string string_replace(const\
     \ std::string &s, const std::string &a, const std::string &b) noexcept { return\
     \ std::regex_replace(s, std::regex(a), b); }\r\ninline bool regex_contains(const\
@@ -457,7 +457,7 @@ data:
   isVerificationFile: true
   path: test/sr_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-07-22 17:49:12+09:00'
+  timestamp: '2025-08-15 20:49:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sr_sum.test.cpp
