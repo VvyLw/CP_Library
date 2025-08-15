@@ -72,7 +72,7 @@ template <std::integral T> constexpr inline T pow(T a, T b, const T mod = 0) noe
 	return ret;
 }
 constexpr inline long long ceil(const long double x, const long long m) noexcept { return std::ceil(x / m); }
-constexpr inline long double round(const long double x, const long long m, const short fx = 0) noexcept {
+constexpr inline long double round(const long double x, const long long m = 1, const short fx = 0) noexcept {
 	if(fx == 0) {
 		return std::round(x / m);
 	}
