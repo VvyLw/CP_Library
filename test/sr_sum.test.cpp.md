@@ -69,18 +69,18 @@ data:
     \ {0, 0, 0, -1, 1, -1, -1, 1, 1};\nconstexpr int dy[] = {0, -1, 1, 0, 0, -1, 1,\
     \ -1, 1};\nconstexpr int MOD = 0x3b800001;\nconstexpr int M0D = 1e9 + 7;\nconstexpr\
     \ int INF = 1 << 30;\nconstexpr long long LINF = (1LL << 61) - 1;\nconstexpr long\
-    \ double DINF = std::numeric_limits<long double>::infinity();\ntemplate <internal::num\
-    \ T> constexpr T LIM = std::numeric_limits<T>::max();\nconstexpr long double PI\
-    \ = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\ntypedef long\
-    \ long i64;\ntypedef long double ld;\ntypedef unsigned u32;\ntypedef unsigned\
-    \ long long u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\ntemplate\
-    \ <size_t N> using ti = std::array<i64, N>;\ntypedef ti<3> tri;\ntemplate <class\
-    \ T> using pq = std::priority_queue<T>;\ntemplate <class T> using pqr = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\ntemplate <class T> using Tree = __gnu_pbds::tree<T,\
-    \ __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
-    template <class T> using TREE = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>,\
-    \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\n\
-    /**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n#line 28 \"C++/template.hpp\"\
+    \ double DINF = std::numeric_limits<long double>::infinity();\nconstexpr long\
+    \ double PI = std::numbers::pi;\nconstexpr long double E = std::numbers::e;\n\n\
+    typedef long long i64;\ntypedef long double ld;\ntypedef unsigned u32;\ntypedef\
+    \ unsigned long long u64;\ntypedef __int128_t i128;\ntypedef __uint128_t u128;\n\
+    namespace man {\ntemplate <size_t N> using ti = std::array<i64, N>;\ntypedef ti<3>\
+    \ tri;\ntemplate <class T> using pq = std::priority_queue<T>;\ntemplate <class\
+    \ T> using pqr = std::priority_queue<T, std::vector<T>, std::greater<T>>;\ntemplate\
+    \ <class T> using Tree = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>,\
+    \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\ntemplate\
+    \ <class T> using TREE = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::greater<T>,\
+    \ __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n}\n\
+    \n/**\n * @brief \u30A8\u30A4\u30EA\u30A2\u30B9\n */\n#line 28 \"C++/template.hpp\"\
     \n\r\nnamespace man {\r\ninline bool isdigit(const std::string &s) noexcept;\r\
     \nstd::mt19937 EhaL(std::hash<std::string>()(\"Huitloxopetl\"));\r\ninline std::mt19937\
     \ rand() noexcept {\r\n\tstd::random_device seed_gen;\r\n\tstd::mt19937 engine\
@@ -458,7 +458,7 @@ data:
   isVerificationFile: true
   path: test/sr_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-08-15 21:06:36+09:00'
+  timestamp: '2025-09-02 10:21:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sr_sum.test.cpp
