@@ -79,7 +79,7 @@ constexpr inline long double round(const long double x, const long long m = 1, c
 	const unsigned long long y = pow<unsigned long long>(10, fx);
 	return std::round((x * y) / m) / y;
 }
-constexpr inline long double log(const long long x, const long double base = 2) noexcept { return std::log2(x) / std::log2(base); }
+constexpr inline long double log(const long long x, const long double base = 2) noexcept { return std::log2l(x) / std::log2(base); }
 template <internal::num T> constexpr inline bool scope(const T a, const T x, const T b) noexcept { return a <= x && x <= b; }
 constexpr inline bool isupper(const char c) noexcept { return std::isupper(c); }
 inline bool isupper(const std::string &s) noexcept {
