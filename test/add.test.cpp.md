@@ -96,7 +96,7 @@ data:
     \ = 0) noexcept {\r\n\tif(fx == 0) {\r\n\t\treturn std::round(x / m);\r\n\t}\r\
     \n\tconst unsigned long long y = pow<unsigned long long>(10, fx);\r\n\treturn\
     \ std::round((x * y) / m) / y;\r\n}\r\nconstexpr inline long double log(const\
-    \ long long x, const long double base = 2) noexcept { return std::log2(x) / std::log2(base);\
+    \ long long x, const long double base = 2) noexcept { return std::log2l(x) / std::log2(base);\
     \ }\r\ntemplate <internal::num T> constexpr inline bool scope(const T a, const\
     \ T x, const T b) noexcept { return a <= x && x <= b; }\r\nconstexpr inline bool\
     \ isupper(const char c) noexcept { return std::isupper(c); }\r\ninline bool isupper(const\
@@ -435,7 +435,7 @@ data:
   isVerificationFile: true
   path: test/add.test.cpp
   requiredBy: []
-  timestamp: '2025-09-02 10:21:41+09:00'
+  timestamp: '2025-10-12 23:46:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/add.test.cpp
