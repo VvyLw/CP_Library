@@ -31,7 +31,6 @@ public:
         }
     }
     inline std::vector<int> get() noexcept { return ret; }
-    inline int get(const int i) noexcept { return ret[i]; }
 };
 }
 

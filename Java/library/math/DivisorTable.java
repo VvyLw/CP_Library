@@ -1,5 +1,9 @@
 package library.math;
 
+/**
+ * n以下の整数について約数の個数を数えるテーブルを作成するクラス
+ * 線形篩
+ */
 public final class DivisorTable {
 	private final int[] ret;
 	public DivisorTable(final int n) {
@@ -28,6 +32,9 @@ public final class DivisorTable {
 			}
 		}
 	}
-	public final int[] getAll(){ return ret; }
-	public final int get(final int i){ return ret[i]; }
+	/**
+	 * n以下の約数の個数をリストアップした配列を返す
+	 * @return n以下の約数の個数をリストアップした配列
+	 */
+	public final int[] get(){ return ret; }
 }

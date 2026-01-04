@@ -3138,7 +3138,6 @@ final class DivisorTable {
 		}
 	}
 	final int[] getAll(){ return ret; }
-	final int get(final int i){ return ret[i]; }
 }
 
 final class EulerPhiTable {
