@@ -34,8 +34,7 @@ data:
     \ 1) * (cnt[i * p] + 1);\n\t\t\t\t\tbreak;\n\t\t\t\t} else {\n\t\t\t\t\tcnt[i\
     \ * p] = 1;\n\t\t\t\t\tret[i * p] = ret[i] * 2;\n\t\t\t\t}\n            }\n  \
     \      }\n    }\n    inline std::vector<int> get() noexcept { return ret; }\n\
-    \    inline int get(const int i) noexcept { return ret[i]; }\n};\n}\n\n/**\n *\
-    \ @brief \u7D04\u6570\u306E\u500B\u6570(\u7DDA\u5F62\u7BE9)\n */\n"
+    };\n}\n\n/**\n * @brief \u7D04\u6570\u306E\u500B\u6570(\u7DDA\u5F62\u7BE9)\n */\n"
   code: "#pragma once\n\n#include \"C++/math/primetable.hpp\"\nnamespace man {\nstruct\
     \ d_table {\nprivate:\n    std::vector<int> ret, cnt;\n    p_table pt;\npublic:\n\
     \    d_table(const int n): ret(n + 1), cnt(n + 1), pt(n){\n        const auto\
@@ -48,14 +47,14 @@ data:
     \ p] = ret[i] / (cnt[i] + 1) * (cnt[i * p] + 1);\n\t\t\t\t\tbreak;\n\t\t\t\t}\
     \ else {\n\t\t\t\t\tcnt[i * p] = 1;\n\t\t\t\t\tret[i * p] = ret[i] * 2;\n\t\t\t\
     \t}\n            }\n        }\n    }\n    inline std::vector<int> get() noexcept\
-    \ { return ret; }\n    inline int get(const int i) noexcept { return ret[i]; }\n\
-    };\n}\n\n/**\n * @brief \u7D04\u6570\u306E\u500B\u6570(\u7DDA\u5F62\u7BE9)\n */"
+    \ { return ret; }\n};\n}\n\n/**\n * @brief \u7D04\u6570\u306E\u500B\u6570(\u7DDA\
+    \u5F62\u7BE9)\n */"
   dependsOn:
   - C++/math/primetable.hpp
   isVerificationFile: false
   path: C++/math/divisortable.hpp
   requiredBy: []
-  timestamp: '2026-01-04 19:34:02+09:00'
+  timestamp: '2026-01-04 19:41:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: C++/math/divisortable.hpp

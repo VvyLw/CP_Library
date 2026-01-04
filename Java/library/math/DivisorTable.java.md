@@ -566,18 +566,23 @@ data:
     \  File \"/home/runner/.local/lib/python3.12/site-packages/onlinejudge_verify/languages/user_defined.py\"\
     , line 68, in bundle\n    raise RuntimeError('bundler is not specified: {}'.format(str(path)))\n\
     RuntimeError: bundler is not specified: Java/library/math/DivisorTable.java\n"
-  code: "package library.math;\n\npublic final class DivisorTable {\n\tprivate final\
-    \ int[] ret;\n\tpublic DivisorTable(final int n) {\n\t\tret = new int[n + 1];\n\
-    \t\tfinal int[] cnt = new int[n + 1];\n\t\tfinal var pt = new PrimeTable(n);\n\
-    \t\tfinal boolean[] isPrime = pt.table();\n\t\tfinal int[] primes = pt.get();\n\
-    \t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(isPrime[i]) {\n\t\t\t\tret[i] = 2;\n\
-    \t\t\t\tcnt[i] = 1;\n\t\t\t}\n\t\t\tfor(final int p: primes) {\n\t\t\t\tif((long)\
-    \ i * p > n) {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\tif(i % p == 0) {\n\t\t\t\t\
-    \tcnt[i * p] = cnt[i] + 1;\n\t\t\t\t\tret[i * p] = ret[i] / (cnt[i] + 1) * (cnt[i\
-    \ * p] + 1);\n\t\t\t\t\tbreak;\n\t\t\t\t} else {\n\t\t\t\t\tcnt[i * p] = 1;\n\t\
-    \t\t\t\tret[i * p] = ret[i] * 2;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tpublic final\
-    \ int[] getAll(){ return ret; }\n\tpublic final int get(final int i){ return ret[i];\
-    \ }\n}"
+  code: "package library.math;\n\n/**\n * n\u4EE5\u4E0B\u306E\u6574\u6570\u306B\u3064\
+    \u3044\u3066\u7D04\u6570\u306E\u500B\u6570\u3092\u6570\u3048\u308B\u30C6\u30FC\
+    \u30D6\u30EB\u3092\u4F5C\u6210\u3059\u308B\u30AF\u30E9\u30B9\n * \u7DDA\u5F62\u7BE9\
+    \n */\npublic final class DivisorTable {\n\tprivate final int[] ret;\n\tpublic\
+    \ DivisorTable(final int n) {\n\t\tret = new int[n + 1];\n\t\tfinal int[] cnt\
+    \ = new int[n + 1];\n\t\tfinal var pt = new PrimeTable(n);\n\t\tfinal boolean[]\
+    \ isPrime = pt.table();\n\t\tfinal int[] primes = pt.get();\n\t\tfor(int i = 2;\
+    \ i <= n; ++i) {\n\t\t\tif(isPrime[i]) {\n\t\t\t\tret[i] = 2;\n\t\t\t\tcnt[i]\
+    \ = 1;\n\t\t\t}\n\t\t\tfor(final int p: primes) {\n\t\t\t\tif((long) i * p > n)\
+    \ {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\tif(i % p == 0) {\n\t\t\t\t\tcnt[i *\
+    \ p] = cnt[i] + 1;\n\t\t\t\t\tret[i * p] = ret[i] / (cnt[i] + 1) * (cnt[i * p]\
+    \ + 1);\n\t\t\t\t\tbreak;\n\t\t\t\t} else {\n\t\t\t\t\tcnt[i * p] = 1;\n\t\t\t\
+    \t\tret[i * p] = ret[i] * 2;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\t/**\n\t * n\u4EE5\
+    \u4E0B\u306E\u7D04\u6570\u306E\u500B\u6570\u3092\u30EA\u30B9\u30C8\u30A2\u30C3\
+    \u30D7\u3057\u305F\u914D\u5217\u3092\u8FD4\u3059\n\t * @return n\u4EE5\u4E0B\u306E\
+    \u7D04\u6570\u306E\u500B\u6570\u3092\u30EA\u30B9\u30C8\u30A2\u30C3\u30D7\u3057\
+    \u305F\u914D\u5217\n\t */\n\tpublic final int[] get(){ return ret; }\n}"
   dependsOn:
   - Java/Main.java
   - Java/library/ds/deque/MyDeque.java
@@ -766,7 +771,7 @@ data:
   - Java/aoj/Main.java
   - Java/codeforces/Main.java
   - Java/yukicoder/Main.java
-  timestamp: '2026-01-04 19:05:37+09:00'
+  timestamp: '2026-01-04 19:41:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/library/math/DivisorTable.java

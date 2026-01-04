@@ -1534,7 +1534,7 @@ data:
   - Java/library/other/SuffixArray.java
   - Java/aoj/Main.java
   - Java/yukicoder/Main.java
-  timestamp: '2026-01-04 19:05:37+09:00'
+  timestamp: '2026-01-04 19:41:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/codeforces/Main.java

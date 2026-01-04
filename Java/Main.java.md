@@ -1798,88 +1798,87 @@ data:
     \tcnt[i * p] = cnt[i] + 1;\n\t\t\t\t\tret[i * p] = ret[i] / (cnt[i] + 1) * (cnt[i\
     \ * p] + 1);\n\t\t\t\t\tbreak;\n\t\t\t\t} else {\n\t\t\t\t\tcnt[i * p] = 1;\n\t\
     \t\t\t\tret[i * p] = ret[i] * 2;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal int[]\
-    \ getAll(){ return ret; }\n\tfinal int get(final int i){ return ret[i]; }\n}\n\
-    \nfinal class EulerPhiTable {\n\tprivate final int[] euler;\n\tEulerPhiTable(final\
-    \ int n) {\n\t\teuler = Utility.iota(n + 1).toArray();\n\t\tfor(int i = 2; i <=\
-    \ n; ++i) {\n\t\t\tif(euler[i] == i) {\n\t\t\t\tfor(int j = i; j <= n; j += i)\
-    \ {\n\t\t\t\t\teuler[j] = euler[j] / i * (i - 1);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
-    \t}\n\tfinal int[] get(){ return euler; }\n}\n\nfinal class DP {\n\tstatic final\
-    \ long knapsack01(final int[] a, final long[] v, final int w) {\n\t\tfinal int\
-    \ n = a.length;\n\t\tfinal long[] dp = new long[w + 1];\n\t\tArrays.fill(dp, Long.MIN_VALUE);\n\
-    \t\tdp[0] = 0;\n\t\tfor(int i = 0; i < n; i++) {\n\t\t\tfor(int j = w; j >= a[i];\
-    \ j--) {\n\t\t\t\tif(dp[j - a[i]] != Long.MIN_VALUE) {\n\t\t\t\t\tif(dp[j - a[i]]\
-    \ + v[i] > dp[j]) {\n\t\t\t\t\t\tdp[j] = dp[j - a[i]] + v[i];\n\t\t\t\t\t}\n\t\
-    \t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn Utility.max(dp);\n\t}\n\tstatic final int\
-    \ knapsack01(final long[] a, final int[] v, final long w) {\n\t\tfinal int n =\
-    \ a.length;\n\t\tfinal int s = (int) Utility.sum(v);\n\t\tfinal long[] dp = new\
-    \ long[s + 1];\n\t\tArrays.fill(dp, w + 1);\n\t\tdp[0] = 0;\n\t\tfor(int i = 0;\
-    \ i < n; i++) {\n\t\t\tfor(int j = s; j >= v[i]; j--) {\n\t\t\t\tdp[j] = Math.min(dp[j],\
-    \ dp[j - v[i]] + a[i]);\n\t\t\t}\n\t\t}\n\t\tint res = 0;\n\t\tfor(int i = 0;\
-    \ i <= s; i++) {\n\t\t\tif(dp[i] <= w) {\n\t\t\t\tres = i;\n\t\t\t}\n\t\t}\n\t\
-    \treturn res;\n\t}\n\tprivate static final long[] knapsack(final int[] a, final\
-    \ long[] v, final int[] m, final int w, final boolean less) {\n\t\tfinal int n\
-    \ = a.length;\n\t\tfinal long[] dp = new long[w + 1], deqv = new long[w + 1];\n\
-    \t\tArrays.fill(dp, Long.MIN_VALUE);\n\t\tdp[0] = 0;\n\t\tfinal int[] deq = new\
-    \ int[w + 1];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(a[i] == 0) {\n\t\t\t\
-    \tfor(int j = 0; j <= w; ++j) {\n\t\t\t\t\tif(dp[j] != Long.MIN_VALUE && (less\
-    \ ? dp[j] + v[i] * m[i] < dp[j] : dp[j] + v[i] * m[i] > dp[j])) {\n\t\t\t\t\t\t\
-    dp[j] = dp[j] + v[i] * m[i];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\t\
-    for(int k = 0; k < a[i]; ++k) {\n\t\t\t\t\tint s = 0, t = 0;\n\t\t\t\t\tfor(int\
-    \ j = 0; a[i] * j + k <= w; ++j) {\n\t\t\t\t\t\tif(dp[a[i] * j + k] != Long.MIN_VALUE)\
-    \ {\n\t\t\t\t\t\t\tfinal long val = dp[a[i] * j + k] - j * v[i];\n\t\t\t\t\t\t\
-    \twhile(s < t && (less ? val < deqv[t - 1] : val > deqv[t - 1])) {\n\t\t\t\t\t\
-    \t\t\tt--;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tdeq[t] = j;\n\t\t\t\t\t\t\tdeqv[t++]\
-    \ = val;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif(s < t) {\n\t\t\t\t\t\t\tdp[j * a[i] +\
-    \ k] = deqv[s] + j * v[i];\n\t\t\t\t\t\t\tif(deq[s] == j - m[i]) {\n\t\t\t\t\t\
-    \t\t\ts++;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\
-    \t}\n\t\treturn dp;\n\t}\n\tstatic final long knapsack(final int[] a, final long[]\
-    \ v, final int[] m, final int w){ return Utility.max(knapsack(a, v, m, w, false));\
-    \ }\n\tstatic final long knapsack(final long[] a, final int[] v, final long[]\
-    \ m, final long w) {\n\t\tfinal int n = a.length;\n\t\tfinal int max = Utility.max(v);\n\
-    \t\tif(max == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal int[] ma = new int[n];\n\
-    \t\tfinal long[] mb = new long[n];\n\t\tfor(int i = 0; i < n; i++) {\n\t\t\tma[i]\
-    \ = (int) Math.min(m[i], max - 1);\n\t\t\tmb[i] = m[i] - ma[i];\n\t\t}\n\t\tint\
-    \ sum = 0;\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tsum += ma[i] * v[i];\n\t\t\
-    }\n\t\tfinal long[] dp = knapsack(v, a, ma, sum, true);\n\t\tfinal int[] id =\
-    \ Utility.iota(n).boxed().sorted((i, j) -> -Long.compare(v[i] * a[j], v[j] * a[i])).mapToInt(i\
-    \ -> i).toArray();\n\t\tlong res = 0;\n\t\tfor(int i = 0; i < dp.length; ++i)\
-    \ {\n\t\t\tif(dp[i] > w || dp[i] == Long.MIN_VALUE) {\n\t\t\t\tcontinue;\n\t\t\
-    \t}\n\t\t\tlong rest = w - dp[i], cost = i;\n\t\t\tfor(final int j: id) {\n\t\t\
-    \t\tfinal long get = Math.min(mb[j], rest / a[j]);\n\t\t\t\tif(get <= 0) {\n\t\
-    \t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\tcost += get * v[j];\n\t\t\t\trest -= get\
-    \ * a[j];\n\t\t\t}\n\t\t\tres = Math.max(res, cost);\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tstatic final long knapsack(final int[] a, final long[] v, final int w)\
-    \ {\n\t\tfinal int n = a.length;\n\t\tfinal long[] dp = new long[w + 1];\n\t\t\
-    Arrays.fill(dp, Long.MIN_VALUE);\n\t\tdp[0] = 0;\n\t\tfor(int i = 0; i < n; i++)\
-    \ {\n\t\t\tfor(int j = a[i]; j <= w; j++) {\n\t\t\t\tif(dp[j - a[i]] != Long.MIN_VALUE)\
+    \ getAll(){ return ret; }\n}\n\nfinal class EulerPhiTable {\n\tprivate final int[]\
+    \ euler;\n\tEulerPhiTable(final int n) {\n\t\teuler = Utility.iota(n + 1).toArray();\n\
+    \t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(euler[i] == i) {\n\t\t\t\tfor(int\
+    \ j = i; j <= n; j += i) {\n\t\t\t\t\teuler[j] = euler[j] / i * (i - 1);\n\t\t\
+    \t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal int[] get(){ return euler; }\n}\n\nfinal class\
+    \ DP {\n\tstatic final long knapsack01(final int[] a, final long[] v, final int\
+    \ w) {\n\t\tfinal int n = a.length;\n\t\tfinal long[] dp = new long[w + 1];\n\t\
+    \tArrays.fill(dp, Long.MIN_VALUE);\n\t\tdp[0] = 0;\n\t\tfor(int i = 0; i < n;\
+    \ i++) {\n\t\t\tfor(int j = w; j >= a[i]; j--) {\n\t\t\t\tif(dp[j - a[i]] != Long.MIN_VALUE)\
     \ {\n\t\t\t\t\tif(dp[j - a[i]] + v[i] > dp[j]) {\n\t\t\t\t\t\tdp[j] = dp[j - a[i]]\
     \ + v[i];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn Utility.max(dp);\n\
-    \t}\n\tstatic final long maxRectangle(final int[] a) {\n\t\tfinal Stack<Integer>\
-    \ sk = new Stack<>();\n\t\tfinal long[] h = new long[a.length + 1];\n\t\tfor(int\
-    \ i = 0; i < a.length; ++i) {\n\t\t\th[i] = a[i];\n\t\t}\n\t\tfinal int[] l =\
-    \ new int[h.length];\n\t\tlong res = 0;\n\t\tfor(int i = 0; i < h.length; i++)\
-    \ {\n\t\t\twhile(!sk.isEmpty() && h[sk.peek()] >= h[i]) {\n\t\t\t\tres = max(res,\
-    \ (i - l[sk.peek()] - 1) * h[sk.pop()]);\n\t\t\t}\n\t\t\tl[i] = sk.isEmpty() ?\
-    \ -1 : sk.peek();\n\t\t\tsk.add(i);\n\t\t}\n\t\treturn res;\n\t}\n\tstatic final\
-    \ long maxRectangle(final long[] a) {\n\t\tfinal Stack<Integer> sk = new Stack<>();\n\
-    \t\tfinal long[] h = Arrays.copyOf(a, a.length + 1);\n\t\tfinal int[] l = new\
-    \ int[h.length];\n\t\tlong res = 0;\n\t\tfor(int i = 0; i < h.length; i++) {\n\
-    \t\t\twhile(!sk.isEmpty() && h[sk.peek()] >= h[i]) {\n\t\t\t\tres = max(res, (i\
-    \ - l[sk.peek()] - 1) * h[sk.pop()]);\n\t\t\t}\n\t\t\tl[i] = sk.isEmpty() ? -1\
-    \ : sk.peek();\n\t\t\tsk.add(i);\n\t\t}\n\t\treturn res;\n\t}\n\tstatic final\
-    \ int lcs(final String s, final String t) {\n\t\tfinal int n = s.length();\n\t\
-    \tfinal int[] dp = new int[n + 1], ndp = new int[n + 1];\n\t\tfor(int i = 0; i\
-    \ < t.length(); ++i) {\n\t\t\tfor(int j = 0; j < n; ++j) {\n\t\t\t\tif(s.charAt(j)\
-    \ == t.charAt(i)) {\n\t\t\t\t\tndp[j + 1] = dp[j] + 1;\n\t\t\t\t} else {\n\t\t\
-    \t\t\tndp[j + 1] = max(ndp[j], dp[j + 1]);\n\t\t\t\t}\n\t\t\t}\n\t\t\tUtility.swap(dp,\
-    \ ndp);\n\t\t}\n\t\treturn dp[n];\n\t}\n\tstatic final int[] lis(final int[] a)\
-    \ {\n\t\tfinal int n = a.length;\n\t\tList<IntPair> dp = new ArrayList<IntPair>();\n\
-    \t\tfinal int[] p = new int[n];\n\t\tArrays.fill(p, -1);\n\t\tfor(int i = 0; i\
-    \ < n; ++i) {\n\t\t\tfinal int id = Utility.lowerBound(dp, IntPair.of(a[i], -i));\n\
-    \t\t\tif(id != 0) {\n\t\t\t\tp[i] = -dp.get(id - 1).second.intValue();\n\t\t\t\
-    }\n\t\t\tif(id == dp.size()) {\n\t\t\t\tdp.add(IntPair.of(a[i], -i));\n\t\t\t\
-    } else {\n\t\t\t\tdp.set(id, IntPair.of(a[i], -i));\n\t\t\t}\n\t\t}\n\t\tfinal\
-    \ List<Integer> res = new ArrayList<Integer>();\n\t\tfor(int i = -dp.get(dp.size()\
+    \t}\n\tstatic final int knapsack01(final long[] a, final int[] v, final long w)\
+    \ {\n\t\tfinal int n = a.length;\n\t\tfinal int s = (int) Utility.sum(v);\n\t\t\
+    final long[] dp = new long[s + 1];\n\t\tArrays.fill(dp, w + 1);\n\t\tdp[0] = 0;\n\
+    \t\tfor(int i = 0; i < n; i++) {\n\t\t\tfor(int j = s; j >= v[i]; j--) {\n\t\t\
+    \t\tdp[j] = Math.min(dp[j], dp[j - v[i]] + a[i]);\n\t\t\t}\n\t\t}\n\t\tint res\
+    \ = 0;\n\t\tfor(int i = 0; i <= s; i++) {\n\t\t\tif(dp[i] <= w) {\n\t\t\t\tres\
+    \ = i;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n\tprivate static final long[] knapsack(final\
+    \ int[] a, final long[] v, final int[] m, final int w, final boolean less) {\n\
+    \t\tfinal int n = a.length;\n\t\tfinal long[] dp = new long[w + 1], deqv = new\
+    \ long[w + 1];\n\t\tArrays.fill(dp, Long.MIN_VALUE);\n\t\tdp[0] = 0;\n\t\tfinal\
+    \ int[] deq = new int[w + 1];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(a[i]\
+    \ == 0) {\n\t\t\t\tfor(int j = 0; j <= w; ++j) {\n\t\t\t\t\tif(dp[j] != Long.MIN_VALUE\
+    \ && (less ? dp[j] + v[i] * m[i] < dp[j] : dp[j] + v[i] * m[i] > dp[j])) {\n\t\
+    \t\t\t\t\tdp[j] = dp[j] + v[i] * m[i];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t} else {\n\
+    \t\t\t\tfor(int k = 0; k < a[i]; ++k) {\n\t\t\t\t\tint s = 0, t = 0;\n\t\t\t\t\
+    \tfor(int j = 0; a[i] * j + k <= w; ++j) {\n\t\t\t\t\t\tif(dp[a[i] * j + k] !=\
+    \ Long.MIN_VALUE) {\n\t\t\t\t\t\t\tfinal long val = dp[a[i] * j + k] - j * v[i];\n\
+    \t\t\t\t\t\t\twhile(s < t && (less ? val < deqv[t - 1] : val > deqv[t - 1])) {\n\
+    \t\t\t\t\t\t\t\tt--;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tdeq[t] = j;\n\t\t\t\t\t\t\
+    \tdeqv[t++] = val;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif(s < t) {\n\t\t\t\t\t\t\tdp[j\
+    \ * a[i] + k] = deqv[s] + j * v[i];\n\t\t\t\t\t\t\tif(deq[s] == j - m[i]) {\n\t\
+    \t\t\t\t\t\t\ts++;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\
+    \t\t}\n\t\t}\n\t\treturn dp;\n\t}\n\tstatic final long knapsack(final int[] a,\
+    \ final long[] v, final int[] m, final int w){ return Utility.max(knapsack(a,\
+    \ v, m, w, false)); }\n\tstatic final long knapsack(final long[] a, final int[]\
+    \ v, final long[] m, final long w) {\n\t\tfinal int n = a.length;\n\t\tfinal int\
+    \ max = Utility.max(v);\n\t\tif(max == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal\
+    \ int[] ma = new int[n];\n\t\tfinal long[] mb = new long[n];\n\t\tfor(int i =\
+    \ 0; i < n; i++) {\n\t\t\tma[i] = (int) Math.min(m[i], max - 1);\n\t\t\tmb[i]\
+    \ = m[i] - ma[i];\n\t\t}\n\t\tint sum = 0;\n\t\tfor(int i = 0; i < n; ++i) {\n\
+    \t\t\tsum += ma[i] * v[i];\n\t\t}\n\t\tfinal long[] dp = knapsack(v, a, ma, sum,\
+    \ true);\n\t\tfinal int[] id = Utility.iota(n).boxed().sorted((i, j) -> -Long.compare(v[i]\
+    \ * a[j], v[j] * a[i])).mapToInt(i -> i).toArray();\n\t\tlong res = 0;\n\t\tfor(int\
+    \ i = 0; i < dp.length; ++i) {\n\t\t\tif(dp[i] > w || dp[i] == Long.MIN_VALUE)\
+    \ {\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tlong rest = w - dp[i], cost = i;\n\t\t\t\
+    for(final int j: id) {\n\t\t\t\tfinal long get = Math.min(mb[j], rest / a[j]);\n\
+    \t\t\t\tif(get <= 0) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\tcost += get *\
+    \ v[j];\n\t\t\t\trest -= get * a[j];\n\t\t\t}\n\t\t\tres = Math.max(res, cost);\n\
+    \t\t}\n\t\treturn res;\n\t}\n\tstatic final long knapsack(final int[] a, final\
+    \ long[] v, final int w) {\n\t\tfinal int n = a.length;\n\t\tfinal long[] dp =\
+    \ new long[w + 1];\n\t\tArrays.fill(dp, Long.MIN_VALUE);\n\t\tdp[0] = 0;\n\t\t\
+    for(int i = 0; i < n; i++) {\n\t\t\tfor(int j = a[i]; j <= w; j++) {\n\t\t\t\t\
+    if(dp[j - a[i]] != Long.MIN_VALUE) {\n\t\t\t\t\tif(dp[j - a[i]] + v[i] > dp[j])\
+    \ {\n\t\t\t\t\t\tdp[j] = dp[j - a[i]] + v[i];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\
+    }\n\t\t}\n\t\treturn Utility.max(dp);\n\t}\n\tstatic final long maxRectangle(final\
+    \ int[] a) {\n\t\tfinal Stack<Integer> sk = new Stack<>();\n\t\tfinal long[] h\
+    \ = new long[a.length + 1];\n\t\tfor(int i = 0; i < a.length; ++i) {\n\t\t\th[i]\
+    \ = a[i];\n\t\t}\n\t\tfinal int[] l = new int[h.length];\n\t\tlong res = 0;\n\t\
+    \tfor(int i = 0; i < h.length; i++) {\n\t\t\twhile(!sk.isEmpty() && h[sk.peek()]\
+    \ >= h[i]) {\n\t\t\t\tres = max(res, (i - l[sk.peek()] - 1) * h[sk.pop()]);\n\t\
+    \t\t}\n\t\t\tl[i] = sk.isEmpty() ? -1 : sk.peek();\n\t\t\tsk.add(i);\n\t\t}\n\t\
+    \treturn res;\n\t}\n\tstatic final long maxRectangle(final long[] a) {\n\t\tfinal\
+    \ Stack<Integer> sk = new Stack<>();\n\t\tfinal long[] h = Arrays.copyOf(a, a.length\
+    \ + 1);\n\t\tfinal int[] l = new int[h.length];\n\t\tlong res = 0;\n\t\tfor(int\
+    \ i = 0; i < h.length; i++) {\n\t\t\twhile(!sk.isEmpty() && h[sk.peek()] >= h[i])\
+    \ {\n\t\t\t\tres = max(res, (i - l[sk.peek()] - 1) * h[sk.pop()]);\n\t\t\t}\n\t\
+    \t\tl[i] = sk.isEmpty() ? -1 : sk.peek();\n\t\t\tsk.add(i);\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\tstatic final int lcs(final String s, final String t) {\n\t\tfinal\
+    \ int n = s.length();\n\t\tfinal int[] dp = new int[n + 1], ndp = new int[n +\
+    \ 1];\n\t\tfor(int i = 0; i < t.length(); ++i) {\n\t\t\tfor(int j = 0; j < n;\
+    \ ++j) {\n\t\t\t\tif(s.charAt(j) == t.charAt(i)) {\n\t\t\t\t\tndp[j + 1] = dp[j]\
+    \ + 1;\n\t\t\t\t} else {\n\t\t\t\t\tndp[j + 1] = max(ndp[j], dp[j + 1]);\n\t\t\
+    \t\t}\n\t\t\t}\n\t\t\tUtility.swap(dp, ndp);\n\t\t}\n\t\treturn dp[n];\n\t}\n\t\
+    static final int[] lis(final int[] a) {\n\t\tfinal int n = a.length;\n\t\tList<IntPair>\
+    \ dp = new ArrayList<IntPair>();\n\t\tfinal int[] p = new int[n];\n\t\tArrays.fill(p,\
+    \ -1);\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tfinal int id = Utility.lowerBound(dp,\
+    \ IntPair.of(a[i], -i));\n\t\t\tif(id != 0) {\n\t\t\t\tp[i] = -dp.get(id - 1).second.intValue();\n\
+    \t\t\t}\n\t\t\tif(id == dp.size()) {\n\t\t\t\tdp.add(IntPair.of(a[i], -i));\n\t\
+    \t\t} else {\n\t\t\t\tdp.set(id, IntPair.of(a[i], -i));\n\t\t\t}\n\t\t}\n\t\t\
+    final List<Integer> res = new ArrayList<Integer>();\n\t\tfor(int i = -dp.get(dp.size()\
     \ - 1).second.intValue(); i != -1; i = p[i]) {\n\t\t\tres.add(i);\n\t\t}\n\t\t\
     Collections.reverse(res);\n\t\treturn res.stream().mapToInt(i -> i).toArray();\n\
     \t}\n\tstatic final int[] lis(final long[] a) {\n\t\tfinal int n = a.length;\n\
@@ -2830,7 +2829,7 @@ data:
   - Java/aoj/Main.java
   - Java/codeforces/Main.java
   - Java/yukicoder/Main.java
-  timestamp: '2026-01-04 19:05:37+09:00'
+  timestamp: '2026-01-04 19:41:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/Main.java
