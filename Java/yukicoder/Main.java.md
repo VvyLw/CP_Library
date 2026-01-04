@@ -230,6 +230,9 @@ data:
     path: Java/library/graph/WeightedGraph.java
     title: Java/library/graph/WeightedGraph.java
   - icon: ':warning:'
+    path: Java/library/math/DivisorTable.java
+    title: Java/library/math/DivisorTable.java
+  - icon: ':warning:'
     path: Java/library/math/EulerPhiTable.java
     title: Java/library/math/EulerPhiTable.java
   - icon: ':warning:'
@@ -503,6 +506,9 @@ data:
   - icon: ':warning:'
     path: Java/library/graph/WeightedGraph.java
     title: Java/library/graph/WeightedGraph.java
+  - icon: ':warning:'
+    path: Java/library/math/DivisorTable.java
+    title: Java/library/math/DivisorTable.java
   - icon: ':warning:'
     path: Java/library/math/EulerPhiTable.java
     title: Java/library/math/EulerPhiTable.java
@@ -1370,6 +1376,7 @@ data:
   - Java/library/ds/pair/IntPair.java
   - Java/library/ds/pair/FloatPair.java
   - Java/library/ds/pair/Zwei.java
+  - Java/library/math/DivisorTable.java
   - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
   - Java/library/math/PrimeCounter.java
@@ -1464,6 +1471,7 @@ data:
   - Java/library/ds/pair/IntPair.java
   - Java/library/ds/pair/FloatPair.java
   - Java/library/ds/pair/Zwei.java
+  - Java/library/math/DivisorTable.java
   - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
   - Java/library/math/PrimeCounter.java
@@ -1525,7 +1533,7 @@ data:
   - Java/library/other/SuffixArray.java
   - Java/aoj/Main.java
   - Java/codeforces/Main.java
-  timestamp: '2024-10-17 12:58:35+09:00'
+  timestamp: '2026-01-04 19:05:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/yukicoder/Main.java

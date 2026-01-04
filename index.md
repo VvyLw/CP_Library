@@ -465,6 +465,9 @@ data:
   - name: Java/library/math
     pages:
     - icon: ':warning:'
+      path: Java/library/math/DivisorTable.java
+      title: Java/library/math/DivisorTable.java
+    - icon: ':warning:'
       path: Java/library/math/EulerPhiTable.java
       title: Java/library/math/EulerPhiTable.java
     - icon: ':warning:'

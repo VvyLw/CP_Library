@@ -227,6 +227,9 @@ data:
     path: Java/library/graph/WeightedGraph.java
     title: Java/library/graph/WeightedGraph.java
   - icon: ':warning:'
+    path: Java/library/math/DivisorTable.java
+    title: Java/library/math/DivisorTable.java
+  - icon: ':warning:'
     path: Java/library/math/EulerPhiTable.java
     title: Java/library/math/EulerPhiTable.java
   - icon: ':warning:'
@@ -500,6 +503,9 @@ data:
   - icon: ':warning:'
     path: Java/library/graph/WeightedGraph.java
     title: Java/library/graph/WeightedGraph.java
+  - icon: ':warning:'
+    path: Java/library/math/DivisorTable.java
+    title: Java/library/math/DivisorTable.java
   - icon: ':warning:'
     path: Java/library/math/EulerPhiTable.java
     title: Java/library/math/EulerPhiTable.java
@@ -1782,44 +1788,54 @@ data:
     return 0;\n\t\t}\n\t\tfinal long a = f[n], b = rf[n - k];\n\t\treturn (a * b)\
     \ % mod;\n\t}\n\tfinal long H(final int n, final int k) {\n\t\tif (n == 0 && k\
     \ == 0) {\n\t\t\treturn 1;\n\t\t}\n\t\treturn C(n + k - 1, k);\n\t}\n\tfinal long\
-    \ fact(final int n){ return f[n]; }\n}\n\nfinal class EulerPhiTable {\n\tprivate\
-    \ final int[] euler;\n\tEulerPhiTable(final int n) {\n\t\teuler = Utility.iota(n\
-    \ + 1).toArray();\n\t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(euler[i] == i)\
-    \ {\n\t\t\t\tfor(int j = i; j <= n; j += i) {\n\t\t\t\t\teuler[j] = euler[j] /\
-    \ i * (i - 1);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal int[] get(){ return euler;\
-    \ }\n}\n\nfinal class DP {\n\tstatic final long knapsack01(final int[] a, final\
-    \ long[] v, final int w) {\n\t\tfinal int n = a.length;\n\t\tfinal long[] dp =\
-    \ new long[w + 1];\n\t\tArrays.fill(dp, Long.MIN_VALUE);\n\t\tdp[0] = 0;\n\t\t\
-    for(int i = 0; i < n; i++) {\n\t\t\tfor(int j = w; j >= a[i]; j--) {\n\t\t\t\t\
-    if(dp[j - a[i]] != Long.MIN_VALUE) {\n\t\t\t\t\tif(dp[j - a[i]] + v[i] > dp[j])\
-    \ {\n\t\t\t\t\t\tdp[j] = dp[j - a[i]] + v[i];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\
-    }\n\t\t}\n\t\treturn Utility.max(dp);\n\t}\n\tstatic final int knapsack01(final\
-    \ long[] a, final int[] v, final long w) {\n\t\tfinal int n = a.length;\n\t\t\
-    final int s = (int) Utility.sum(v);\n\t\tfinal long[] dp = new long[s + 1];\n\t\
-    \tArrays.fill(dp, w + 1);\n\t\tdp[0] = 0;\n\t\tfor(int i = 0; i < n; i++) {\n\t\
-    \t\tfor(int j = s; j >= v[i]; j--) {\n\t\t\t\tdp[j] = Math.min(dp[j], dp[j - v[i]]\
-    \ + a[i]);\n\t\t\t}\n\t\t}\n\t\tint res = 0;\n\t\tfor(int i = 0; i <= s; i++)\
-    \ {\n\t\t\tif(dp[i] <= w) {\n\t\t\t\tres = i;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\
-    \t}\n\tprivate static final long[] knapsack(final int[] a, final long[] v, final\
-    \ int[] m, final int w, final boolean less) {\n\t\tfinal int n = a.length;\n\t\
-    \tfinal long[] dp = new long[w + 1], deqv = new long[w + 1];\n\t\tArrays.fill(dp,\
-    \ Long.MIN_VALUE);\n\t\tdp[0] = 0;\n\t\tfinal int[] deq = new int[w + 1];\n\t\t\
-    for(int i = 0; i < n; ++i) {\n\t\t\tif(a[i] == 0) {\n\t\t\t\tfor(int j = 0; j\
-    \ <= w; ++j) {\n\t\t\t\t\tif(dp[j] != Long.MIN_VALUE && (less ? dp[j] + v[i] *\
-    \ m[i] < dp[j] : dp[j] + v[i] * m[i] > dp[j])) {\n\t\t\t\t\t\tdp[j] = dp[j] +\
-    \ v[i] * m[i];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\tfor(int k = 0;\
-    \ k < a[i]; ++k) {\n\t\t\t\t\tint s = 0, t = 0;\n\t\t\t\t\tfor(int j = 0; a[i]\
-    \ * j + k <= w; ++j) {\n\t\t\t\t\t\tif(dp[a[i] * j + k] != Long.MIN_VALUE) {\n\
-    \t\t\t\t\t\t\tfinal long val = dp[a[i] * j + k] - j * v[i];\n\t\t\t\t\t\t\twhile(s\
-    \ < t && (less ? val < deqv[t - 1] : val > deqv[t - 1])) {\n\t\t\t\t\t\t\t\tt--;\n\
-    \t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tdeq[t] = j;\n\t\t\t\t\t\t\tdeqv[t++] = val;\n\t\
-    \t\t\t\t\t}\n\t\t\t\t\t\tif(s < t) {\n\t\t\t\t\t\t\tdp[j * a[i] + k] = deqv[s]\
-    \ + j * v[i];\n\t\t\t\t\t\t\tif(deq[s] == j - m[i]) {\n\t\t\t\t\t\t\t\ts++;\n\t\
-    \t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ dp;\n\t}\n\tstatic final long knapsack(final int[] a, final long[] v, final\
-    \ int[] m, final int w){ return Utility.max(knapsack(a, v, m, w, false)); }\n\t\
-    static final long knapsack(final long[] a, final int[] v, final long[] m, final\
-    \ long w) {\n\t\tfinal int n = a.length;\n\t\tfinal int max = Utility.max(v);\n\
+    \ fact(final int n){ return f[n]; }\n}\n\nfinal class DivisorTable {\n\tprivate\
+    \ final int[] ret;\n\tDivisorTable(final int n) {\n\t\tret = new int[n + 1];\n\
+    \t\tfinal int[] cnt = new int[n + 1];\n\t\tfinal var pt = new PrimeTable(n);\n\
+    \t\tfinal boolean[] isPrime = pt.table();\n\t\tfinal int[] primes = pt.get();\n\
+    \t\tfor(int i = 2; i <= n; ++i) {\n\t\t\tif(isPrime[i]) {\n\t\t\t\tret[i] = 2;\n\
+    \t\t\t\tcnt[i] = 1;\n\t\t\t}\n\t\t\tfor(final int p: primes) {\n\t\t\t\tif((long)\
+    \ i * p > n) {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\tif(i % p == 0) {\n\t\t\t\t\
+    \tcnt[i * p] = cnt[i] + 1;\n\t\t\t\t\tret[i * p] = ret[i] / (cnt[i] + 1) * (cnt[i\
+    \ * p] + 1);\n\t\t\t\t\tbreak;\n\t\t\t\t} else {\n\t\t\t\t\tcnt[i * p] = 1;\n\t\
+    \t\t\t\tret[i * p] = ret[i] * 2;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tfinal int[]\
+    \ getAll(){ return ret; }\n\tfinal int get(final int i){ return ret[i]; }\n}\n\
+    \nfinal class EulerPhiTable {\n\tprivate final int[] euler;\n\tEulerPhiTable(final\
+    \ int n) {\n\t\teuler = Utility.iota(n + 1).toArray();\n\t\tfor(int i = 2; i <=\
+    \ n; ++i) {\n\t\t\tif(euler[i] == i) {\n\t\t\t\tfor(int j = i; j <= n; j += i)\
+    \ {\n\t\t\t\t\teuler[j] = euler[j] / i * (i - 1);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
+    \t}\n\tfinal int[] get(){ return euler; }\n}\n\nfinal class DP {\n\tstatic final\
+    \ long knapsack01(final int[] a, final long[] v, final int w) {\n\t\tfinal int\
+    \ n = a.length;\n\t\tfinal long[] dp = new long[w + 1];\n\t\tArrays.fill(dp, Long.MIN_VALUE);\n\
+    \t\tdp[0] = 0;\n\t\tfor(int i = 0; i < n; i++) {\n\t\t\tfor(int j = w; j >= a[i];\
+    \ j--) {\n\t\t\t\tif(dp[j - a[i]] != Long.MIN_VALUE) {\n\t\t\t\t\tif(dp[j - a[i]]\
+    \ + v[i] > dp[j]) {\n\t\t\t\t\t\tdp[j] = dp[j - a[i]] + v[i];\n\t\t\t\t\t}\n\t\
+    \t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn Utility.max(dp);\n\t}\n\tstatic final int\
+    \ knapsack01(final long[] a, final int[] v, final long w) {\n\t\tfinal int n =\
+    \ a.length;\n\t\tfinal int s = (int) Utility.sum(v);\n\t\tfinal long[] dp = new\
+    \ long[s + 1];\n\t\tArrays.fill(dp, w + 1);\n\t\tdp[0] = 0;\n\t\tfor(int i = 0;\
+    \ i < n; i++) {\n\t\t\tfor(int j = s; j >= v[i]; j--) {\n\t\t\t\tdp[j] = Math.min(dp[j],\
+    \ dp[j - v[i]] + a[i]);\n\t\t\t}\n\t\t}\n\t\tint res = 0;\n\t\tfor(int i = 0;\
+    \ i <= s; i++) {\n\t\t\tif(dp[i] <= w) {\n\t\t\t\tres = i;\n\t\t\t}\n\t\t}\n\t\
+    \treturn res;\n\t}\n\tprivate static final long[] knapsack(final int[] a, final\
+    \ long[] v, final int[] m, final int w, final boolean less) {\n\t\tfinal int n\
+    \ = a.length;\n\t\tfinal long[] dp = new long[w + 1], deqv = new long[w + 1];\n\
+    \t\tArrays.fill(dp, Long.MIN_VALUE);\n\t\tdp[0] = 0;\n\t\tfinal int[] deq = new\
+    \ int[w + 1];\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tif(a[i] == 0) {\n\t\t\t\
+    \tfor(int j = 0; j <= w; ++j) {\n\t\t\t\t\tif(dp[j] != Long.MIN_VALUE && (less\
+    \ ? dp[j] + v[i] * m[i] < dp[j] : dp[j] + v[i] * m[i] > dp[j])) {\n\t\t\t\t\t\t\
+    dp[j] = dp[j] + v[i] * m[i];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\t\
+    for(int k = 0; k < a[i]; ++k) {\n\t\t\t\t\tint s = 0, t = 0;\n\t\t\t\t\tfor(int\
+    \ j = 0; a[i] * j + k <= w; ++j) {\n\t\t\t\t\t\tif(dp[a[i] * j + k] != Long.MIN_VALUE)\
+    \ {\n\t\t\t\t\t\t\tfinal long val = dp[a[i] * j + k] - j * v[i];\n\t\t\t\t\t\t\
+    \twhile(s < t && (less ? val < deqv[t - 1] : val > deqv[t - 1])) {\n\t\t\t\t\t\
+    \t\t\tt--;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tdeq[t] = j;\n\t\t\t\t\t\t\tdeqv[t++]\
+    \ = val;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif(s < t) {\n\t\t\t\t\t\t\tdp[j * a[i] +\
+    \ k] = deqv[s] + j * v[i];\n\t\t\t\t\t\t\tif(deq[s] == j - m[i]) {\n\t\t\t\t\t\
+    \t\t\ts++;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\
+    \t}\n\t\treturn dp;\n\t}\n\tstatic final long knapsack(final int[] a, final long[]\
+    \ v, final int[] m, final int w){ return Utility.max(knapsack(a, v, m, w, false));\
+    \ }\n\tstatic final long knapsack(final long[] a, final int[] v, final long[]\
+    \ m, final long w) {\n\t\tfinal int n = a.length;\n\t\tfinal int max = Utility.max(v);\n\
     \t\tif(max == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tfinal int[] ma = new int[n];\n\
     \t\tfinal long[] mb = new long[n];\n\t\tfor(int i = 0; i < n; i++) {\n\t\t\tma[i]\
     \ = (int) Math.min(m[i], max - 1);\n\t\t\tmb[i] = m[i] - ma[i];\n\t\t}\n\t\tint\
@@ -2656,6 +2672,7 @@ data:
   - Java/library/ds/pair/IntPair.java
   - Java/library/ds/pair/FloatPair.java
   - Java/library/ds/pair/Zwei.java
+  - Java/library/math/DivisorTable.java
   - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
   - Java/library/math/PrimeCounter.java
@@ -2750,6 +2767,7 @@ data:
   - Java/library/ds/pair/IntPair.java
   - Java/library/ds/pair/FloatPair.java
   - Java/library/ds/pair/Zwei.java
+  - Java/library/math/DivisorTable.java
   - Java/library/math/ModPrime.java
   - Java/library/math/PrimeTable.java
   - Java/library/math/PrimeCounter.java
@@ -2812,7 +2830,7 @@ data:
   - Java/aoj/Main.java
   - Java/codeforces/Main.java
   - Java/yukicoder/Main.java
-  timestamp: '2024-10-17 12:58:35+09:00'
+  timestamp: '2026-01-04 19:05:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Java/Main.java
