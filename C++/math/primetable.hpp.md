@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: C++/math/divisortable.hpp
+    title: "\u7D04\u6570\u306E\u500B\u6570(\u7DDA\u5F62\u7BE9)"
   - icon: ':heavy_check_mark:'
     path: C++/math/primecounter.hpp
     title: "\u7D20\u6570\u306E\u500B\u6570"
@@ -39,6 +42,7 @@ data:
   isVerificationFile: false
   path: C++/math/primetable.hpp
   requiredBy:
+  - C++/math/divisortable.hpp
   - C++/math/primecounter.hpp
   timestamp: '2025-06-14 01:07:36+09:00'
   verificationStatus: LIBRARY_ALL_AC

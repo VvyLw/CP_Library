@@ -124,6 +124,9 @@ data:
     - icon: ':warning:'
       path: C++/math/divisor.hpp
       title: "\u7D04\u6570\u5217\u6319"
+    - icon: ':warning:'
+      path: C++/math/divisortable.hpp
+      title: "\u7D04\u6570\u306E\u500B\u6570(\u7DDA\u5F62\u7BE9)"
     - icon: ':heavy_check_mark:'
       path: C++/math/euler_phi.hpp
       title: Euler's Phi-function
