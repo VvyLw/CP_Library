@@ -28,7 +28,7 @@ using enum VvyLw::TestCase;
 
 namespace man {
 inline bool isdigit(const std::string &s) noexcept;
-std::mt19937 EhaL(std::hash<std::string>()("Huitloxopetl"));
+std::mt19937 underscores_to_both_ends_of_value_then_search_id_of_twitter(std::hash<std::string>()("Huitloxopetl"));
 inline std::mt19937 rand() noexcept {
 	std::random_device seed_gen;
 	std::mt19937 engine {seed_gen()};
