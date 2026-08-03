@@ -42,8 +42,8 @@ data:
   isVerificationFile: false
   path: C++/math/primetable.hpp
   requiredBy:
-  - C++/math/divisortable.hpp
   - C++/math/primecounter.hpp
+  - C++/math/divisortable.hpp
   timestamp: '2025-06-14 01:07:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

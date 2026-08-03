@@ -213,10 +213,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/dijkstra.test.cpp
-  - test/tree_diameter.test.cpp
   - test/shortestpath.test.cpp
   - test/spfa.test.cpp
   - test/warshallfloyd.test.cpp
+  - test/tree_diameter.test.cpp
 documentation_of: C++/graph/WeightedGraph.hpp
 layout: document
 redirect_from:
