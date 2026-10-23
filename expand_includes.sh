@@ -11,6 +11,9 @@ from pathlib import Path
 INCLUDE_RE = re.compile(
     r'^\s*#\s*include\s*"([^"\n]+)"(?:\s*(?://.*|/\*.*\*/))?\s*$'
 )
+SYSTEM_INCLUDE_RE = re.compile(
+    r'^\s*#\s*include\s*<([^>\n]+)>(?:\s*(?://.*|/\*.*\*/))?\s*$'
+)
 PRAGMA_ONCE_RE = re.compile(
     r'^\s*#\s*pragma\s+once\s*(?://.*|/\*.*\*/)?\s*$'
 )
@@ -52,6 +55,7 @@ def main() -> int:
     include_dirs = [directory.resolve() for directory in args.include_dirs]
     active: list[Path] = []
     once_included: set[Path] = set()
+    system_includes: set[str] = set()
 
     def expand(path: Path) -> str:
         path = path.resolve()
@@ -72,6 +76,12 @@ def main() -> int:
 
                 match = INCLUDE_RE.match(content)
                 if match is None:
+                    system_match = SYSTEM_INCLUDE_RE.match(content)
+                    if system_match is not None:
+                        header = system_match.group(1)
+                        if header in system_includes:
+                            continue
+                        system_includes.add(header)
                     expanded_lines.append(line)
                     continue
 
