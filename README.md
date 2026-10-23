@@ -18,5 +18,12 @@ Nim: UnionFind, Wavelet Matrix
 Rust: UnionFind, Potential付きUnionFind  
 Python, Ruby: UnionFindのみ  
 バグ等あればIssueを投げるなりDMするなりお願いします。  
+
+C++をお使いの場合は`expand_includes.sh`を実行することで、ライブラリを展開することができます。  
+AtCoderなどに提出する際にご活用ください。  
+使用例)  
+```bash
+./expand_includes.sh -I/<path>/CP_Library/ a.cpp b.cpp
+```
   
 [Luzhiled's Library](https://ei1333.github.io/library/)を基本的に参考にしています。

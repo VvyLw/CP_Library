@@ -54,8 +54,8 @@ data:
   isVerificationFile: false
   path: C++/graph/ShortestPath.hpp
   requiredBy:
-  - C++/graph/WeightedGraph.hpp
   - C++/graph/diameter.hpp
+  - C++/graph/WeightedGraph.hpp
   timestamp: '2025-06-14 01:07:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

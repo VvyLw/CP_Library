@@ -645,17 +645,17 @@ data:
   timestamp: '2026-08-03 20:06:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/segtree.test.cpp
-  - test/add128.test.cpp
-  - test/m_add.test.cpp
-  - test/uf.test.cpp
-  - test/fwtree.test.cpp
-  - test/extgcd.test.cpp
-  - test/aarray.test.cpp
-  - test/add.test.cpp
   - test/sr_sum.test.cpp
+  - test/add.test.cpp
+  - test/extgcd.test.cpp
+  - test/segtree.test.cpp
+  - test/fwtree.test.cpp
+  - test/m_add.test.cpp
+  - test/aarray.test.cpp
+  - test/add128.test.cpp
   - test/s_rmq.test.cpp
   - test/parsum.test.cpp
+  - test/uf.test.cpp
 documentation_of: C++/template.hpp
 layout: document
 redirect_from:
